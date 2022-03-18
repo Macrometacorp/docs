@@ -22,7 +22,7 @@ const redocusaurus = [
             /**
              * Highlight color for docs
              */
-            primaryColor: '#1890ff',
+            primaryColor: '#6666e5',
             /**
              * Options to pass to redoc
              * @see https://github.com/redocly/redoc#redoc-options-object
@@ -69,8 +69,9 @@ const config = {
       navbar: {
 
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Macrometa Logo',
           src: 'img/logo.svg',
+          srcDark: 'img/logo-white.svg',
         },
         items: [
           {
