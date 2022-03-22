@@ -19,11 +19,15 @@
     "@docusaurus/theme-live-codeblock": "^2.0.0-beta.17",
     "@docusaurus/theme-search-algolia": "^2.0.0-beta.17",
     "@mdx-js/react": "^1.6.21",
+    "@stoplight/elements": "^7.5.13",
+    "buffer": "^6.0.3",
     "clsx": "^1.1.1",
+    "path-browserify": "^1.0.1",
     "prism-react-renderer": "^1.2.1",
+    "process": "^0.11.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "redocusaurus": "^0.9.0"
+    "stream-browserify": "^3.0.0"
   },
   "browserslist": {
     "production": [
@@ -36,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "postcss-import": "^14.0.2",
+    "tailwindcss": "^3.0.23"
   }
 }
