@@ -1,8 +1,0 @@
---dir
-.
-
---ignore
-/vendor
-
---ignore
-/test/.gem
