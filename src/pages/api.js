@@ -33,7 +33,7 @@ export default function APIPage() {
             <>
               {/* <APIVersionSwitcher current="v1" /> */}
               <API
-                apiDescriptionUrl="https://api-staging1.eng.macrometa.io/_admin/api/swagger.json"
+                apiDescriptionUrl="https://api-gdn.paas.macrometa.io/_admin/api/swagger.json"
                 router="hash"
                 basePath="/api"
                 layout="sidebar"
