@@ -25,9 +25,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into alertStream
     select and(isFraud) as isFraudTransaction
-    from cscStream#window.lengthBatch(10)
-    insert into alertStream;
+    from cscStream WINDOW TUMBLING_LENGTH(10);
 ```
 
 This will returns the result for AND operation of isFraud values as a boolean value for event chunk expiry by window length batch.
@@ -51,9 +51,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select avg(temp) as avgTemp
-    from fooStream#window.timeBatch
-    insert into barStream;
+    from fooStream WINDOW TUMBLING_TIME;
 ```
 
 avg(temp) returns the average temp value for all the events based on their arrival and expiry.
@@ -78,9 +78,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select count() as count
-    from fooStream#window.timeBatch(10 sec)
-    insert into barStream;
+    from fooStream WINDOW TUMBLING_TIME(10 sec);
 ```
 
 This will return the count of all the events for time batch in 10 seconds.
@@ -104,12 +104,12 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select distinctcount(pageID) as count
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
-distinctcount(pageID) for the following output returns `3` when the available values are as follows. Â 
+distinctcount(pageID) for the following output returns `3` when the available values are as follows.  
 
 * WEB_PAGE_1
 * WEB_PAGE_1
@@ -140,9 +140,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select max(temp) as maxTemp
-    from fooStream#window.timeBatch(10 sec)
-    insert into barStream;
+    from fooStream WINDOW TUMBLING_TIME(10 sec);
 ```
 
 max(temp) returns the maximum temp value recorded for all the events based on their arrival and expiry.
@@ -166,9 +166,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into outputStream
     select maxForever(temp) as max
-    from inputStream
-    insert into outputStream;
+    from inputStream;
 ```
 
 maxForever(temp) returns the maximum temp value recorded for all the events throughout the lifetime of the query.
@@ -192,9 +192,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into outputStream
     select min(temp) as minTemp
-    from inputStream
-    insert into outputStream;
+    from inputStream;
 ```
 
 min(temp) returns the minimum temp value recorded for all the events based on their arrival and expiry.
@@ -218,9 +218,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into outputStream
     select minForever(temp) as max
-    from inputStream
-    insert into outputStream;
+    from inputStream;
 ```
 
 minForever(temp) returns the minimum temp value recorded for all the events throughout the lifetime of the query.
@@ -244,9 +244,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into alertStream
     select or(isFraud) as isFraudTransaction
-    from cscStream#window.lengthBatch(10)
-    insert into alertStream;
+    from cscStream WINDOW TUMBLING_LENGTH(10);
 ```
 
 This will returns the result for OR operation of isFraud values as a boolean value for event chunk expiry by window length batch.
@@ -270,9 +270,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into outputStream
     select stddev(temp) as stdTemp
-    from inputStream
-    insert into outputStream;
+    from inputStream;
 ```
 
 stddev(temp) returns the calculated standard deviation of temp for all the events based on their arrival and expiry.
@@ -282,9 +282,9 @@ stddev(temp) returns the calculated standard deviation of temp for all the event
 Returns the sum for all the events.
 
 Syntax
-```js
+
     <LONG|DOUBLE> sum(<INT|LONG|DOUBLE|FLOAT> arg)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                        | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -294,16 +294,16 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into outputStream
     select sum(volume) as sumOfVolume
-    from inputStream
-    insert into outputStream;
+    from inputStream;
 ```
 
 This will returns the sum of volume values as a long value for each event arrival and expiry.
 
 ### unionSet (Aggregate Function)
 
-Union multiple sets. Â This attribute aggregator maintains a union of sets. The given input set is put into the union set and the union set is returned.
+Union multiple sets.  This attribute aggregator maintains a union of sets. The given input set is put into the union set and the union set is returned.
 
 Syntax
 
@@ -320,13 +320,13 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into initStream
     select createSet(symbol) as initialSet
     from stockStream
-    insert into initStream
 
+    insert into distinctStockStream
     select unionSet(initialSet) as distinctSymbols
-    from initStream#window.timeBatch(10 sec)
-    insert into distinctStockStream;
+    from initStream WINDOW TUMBLING_TIME(10 sec);
 ```
 
 `distinctStockStream` will return the set object which contains the distinct set of stock symbols received during a sliding window of 10 seconds.
@@ -344,9 +344,9 @@ Syntax
 EXAMPLE 1
 
 ```js
+    insert into RoomTempStream
     select convert(roomNo, 'string') as roomNo, temp, UUID() as messageID
-    from TempStream
-    insert into RoomTempStream;
+    from TempStream;
 ```
 
 This will converts a room number to string, introducing a message ID to each event asUUID() returns `a34eec40-32c2-44fe-8075-7f4fde2e2dd8` from TempStream select convert(roomNo, `string`) as roomNo, temp, UUID() as messageID insert into RoomTempStream;
@@ -371,9 +371,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select symbol as name, cast(temp, 'double') as temp
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
 This will cast the fooStream temp field value into `double` format.
@@ -397,9 +397,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select coalesce('123', null, '789') as value
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
 This will returns first null value 123.
@@ -407,9 +407,9 @@ This will returns first null value 123.
 EXAMPLE 2
 
 ```js
+    insert into barStream
     select coalesce(null, 76, 567) as value
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
 This will returns first null value 76.
@@ -417,9 +417,9 @@ This will returns first null value 76.
 EXAMPLE 3
 
 ```js
+    insert into barStream
     select coalesce(null, null, null) as value
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
 This will returns null as there are no notnull values.
@@ -444,9 +444,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select convert(temp, 'double') as temp
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
 This will convert fooStream temp value into `double`.
@@ -454,9 +454,9 @@ This will convert fooStream temp value into `double`.
 EXAMPLE 2
 
 ```js
+    insert into barStream
     select convert(temp, 'int') as temp
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
 This will convert fooStream temp value into `int` (value = "convert(45.9, `int`) returns 46").
@@ -480,9 +480,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into initStream
     select createSet(symbol) as initialSet
-    from stockStream
-    insert into initStream;
+    from stockStream;
 ```
 
 For every incoming stockStream event, the initStream stream will produce a set object having only one element: the symbol in the incoming stockStream.
@@ -500,9 +500,9 @@ Syntax
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select symbol as name, currentTimeMillis() as eventTimestamp
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
 This will extract current stream processor application timestamp.
@@ -527,9 +527,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into StandardTempStream
     select default(temp, 0.0) as temp, roomNum
-    from TempStream
-    insert into StandardTempStream;
+    from TempStream;
 ```
 
 This will replace TempStream's temp attribute with default value if the temp is null.
@@ -547,9 +547,9 @@ Syntax
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select symbol as name, eventTimestamp() as eventTimestamp
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
 This will extract current events timestamp.
@@ -576,9 +576,9 @@ EXAMPLE 1
 
 ```js
     @info(name = 'query1')
+    insert into outputStream
     select sensorValue, ifThenElse(sensorValue>35,'High','Low') as status
-    from sensorEventStream
-    insert into outputStream;
+    from sensorEventStream;
 ```
 
 This will returns High if sensorValue = 50.
@@ -587,18 +587,18 @@ EXAMPLE 2
 
 ```js
     @info(name = 'query1')
+    insert into outputStream
     select sensorValue, ifThenElse(voltage < 5, 0, 1) as status
-    from sensorEventStream
-    insert into outputStream;
+    from sensorEventStream;
 ```
 This will returns 1 if voltage= 12.
 
 EXAMPLE 3
 ```js
     @info(name = 'query1')
+    insert into outputStream
     select userName, ifThenElse(password == 'admin', true, false) as passwordState
-    from userEventStream
-    insert into outputStream;
+    from userEventStream;
 ```
 This will returns passwordState as true if password = admin.
 
@@ -619,18 +619,18 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select instanceOfBoolean(switchState) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 This will return true if the value of switchState is true.
 
 EXAMPLE 2
 
 ```js
+    insert into barStream
     select instanceOfBoolean(value) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 if the value = 32 then this will returns false as the value is not an instance of the boolean.
 
@@ -649,19 +649,18 @@ QUERY PARAMETERS
 | arg  | The parameter to be checked. |               | INT LONG DOUBLE FLOAT STRING BOOL OBJECT | No       | Yes     |
 
 EXAMPLE 1
-
-    from fooStream
+    insert into barStream
     select instanceOfDouble(value) as state
-    insert into barStream;
+    from fooStream;
 
 This will return true if the value field format is double ex : 56.45.
 
 EXAMPLE 2
 
 ```js
+    insert into barStream
     select instanceOfDouble(switchState) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 if the switchState = true then this will returns false as the value is not an instance of the double.
 
@@ -681,17 +680,17 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 ```js
+    insert into barStream
     select instanceOfFloat(value) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 This will return true if the value field format is float ex : 56.45f.
 
 EXAMPLE 2
 ```js
+    insert into barStream
     select instanceOfFloat(switchState) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 if the switchState = true then this will returns false as the value is
 an instance of the boolean not a float.
@@ -713,9 +712,9 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select instanceOfInteger(value) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 
 This will return true if the value field format is integer.
@@ -723,9 +722,9 @@ This will return true if the value field format is integer.
 EXAMPLE 2
 
 ```js
+    insert into barStream
     select instanceOfInteger(switchState) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 if the switchState = true then this will returns false as the value is an instance of the boolean not a long.
 
@@ -746,17 +745,17 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select instanceOfLong(value) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 This will return true if the value field format is long ex : 56456l.
 
 EXAMPLE 2
 ```js
+    insert into barStream
     select instanceOfLong(switchState) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 if the switchState = true then this will returns false as the value is an instance of the boolean not a long.
 
@@ -777,18 +776,18 @@ QUERY PARAMETERS
 EXAMPLE 1
 
 ```js
+    insert into barStream
     select instanceOfString(value) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 This will return true if the value field format is string ex : `test`.
 
 EXAMPLE 2
 
 ```js
+    insert into barStream
     select instanceOfString(switchState) as state
-    from fooStream
-    insert into barStream;
+    from fooStream;
 ```
 if the switchState = true then this will returns false as the value is an instance of the boolean not a string.
 
@@ -810,8 +809,8 @@ EXAMPLE 1
 
 ```js
     @info(name = 'query1') from inputStream
-    select maximum(price1, price2, price3) as max
-    insert into outputStream;
+    insert into outputStream
+    select maximum(price1, price2, price3) as max;
 ```
 This will returns the maximum value of the input parameters price1,
 price2, price3.
@@ -833,8 +832,8 @@ QUERY PARAMETERS
 EXAMPLE 1
 ```js
     @info(name = 'query1') from inputStream
-    select maximum(price1, price2, price3) as max
-    insert into outputStream;
+    insert into outputStream
+    select maximum(price1, price2, price3) as max;
 ```
 This will returns the minimum value of the input parameters price1, price2, price3.
 
@@ -853,18 +852,17 @@ QUERY PARAMETERS
 | set  | The set object. This parameter should be of type java.util.Set. A set object may be created by the `set` attribute aggregator. |               | OBJECT              | No       | Yes     |
 
 EXAMPLE 1
-
+    insert into initStream
     select initSet(symbol) as initialSet
-    from stockStream
-    insert into initStream;
-   
-    select union(initialSet) as distinctSymbols
-    from initStream#window.timeBatch(10 sec)
-    insert into distinctStockStream;
+    from stockStream;
 
+    insert into distinctStockStream
+    select union(initialSet) as distinctSymbols
+    from initStream WINDOW TUMBLING_TIME(10 sec);
+
+    insert into sizeStream
     select sizeOfSet(distinctSymbols) sizeOfSymbolSet
-    from distinctStockStream
-    insert into sizeStream;
+    from distinctStockStream;
 
 The sizeStream stream will output the number of distinct stock symbols received during a sliding window of 10 seconds.
 
@@ -887,17 +885,17 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
+    insert into outputStream
     select x, y
-    from PolarStream#pol2Cart(theta, rho)
-    insert into outputStream ;
+    from PolarStream#pol2Cart(theta, rho);
 
 This will return cartesian coordinates (4.99953024681082, 0.06853693328228748) for theta: 0.7854 and rho: 5.
 
 EXAMPLE 2
 
+    insert into outputStream
     select x, y, z
-    from PolarStream#pol2Cart(theta, rho, 3.4)
-    insert into outputStream ;
+    from PolarStream#pol2Cart(theta, rho, 3.4);
 
 This will return cartesian coordinates (4.99953024681082, 0.06853693328228748, 3.4)for theta: 0.7854 and rho: 5 and z: 3.4.
 
@@ -924,49 +922,49 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
+    insert into BarStream
     select *
-    from FooStream#log()
-    insert into BarStream;
+    from FooStream#log();
 
 Logs events with StreamApp name message prefix on default log level INFO.
 
 EXAMPLE 2
     
+    insert into BarStream
     select *
-    from FooStream#log("Sample Event :")
-    insert into BarStream;
+    from FooStream#log("Sample Event :");
 
 Logs events with the message prefix "Sample Event :" on default log level INFO.
 
 EXAMPLE 3
 
+    insert into BarStream
     select *
-    from FooStream#log("DEBUG", "Sample Event :", true)
-    insert into BarStream;
+    from FooStream#log("DEBUG", "Sample Event :", true);
 
 Logs events with the message prefix "Sample Event :" on log level DEBUG.
 
 EXAMPLE 4
 
+    insert into BarStream
     select *
-    from FooStream#log("Event Arrived", false)
-    insert into BarStream;
+    from FooStream#log("Event Arrived", false);
 
 For each event logs a message "Event Arrived" on default log level INFO.
 
 EXAMPLE 5
 
+    insert into BarStream
     select *
-    from FooStream#log("Sample Event :", true)
-    insert into BarStream;
+    from FooStream#log("Sample Event :", true);
 
 Logs events with the message prefix "Sample Event :" on default log level INFO.
 
 EXAMPLE 6
     
+    insert into BarStream
     select *
-    from FooStream#log(true)
-    insert into BarStream;
+    from FooStream#log(true);
 
 Logs events with on default log level INFO.
 
@@ -987,11 +985,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream consumerItemStream (itemId string, price float)
+    CREATE STREAM consumerItemStream (itemId string, price float)
+    insert into outputStream
     select price, str:groupConcat(itemId) as itemIds
-    from consumerItemStream#window.batch()
-    group by price
-    insert into outputStream;
+    from consumerItemStream WINDOW TUMBLING()
+    group by price;
 
 This will output comma separated items IDs that have the same price for each incoming batch of events.
 
@@ -1011,28 +1009,28 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InputEventStream (symbol string, price float, volume int);
+    CREATE STREAM  InputEventStream (symbol string, price float, volume int);
 
     @info(name = 'query1')
+    insert into OutputStream
     select symbol, sum(price) as totalPrice
-    from InputEventStream#cron('*/5 * * * * ?')
-    insert into OutputStream;
+    from InputEventStream#cron('*/5 * * * * ?');
 
 This let the totalPrice to gradually increase and resets to zero as a batch every 5 seconds.
 
 EXAMPLE 2
 
-    define stream StockEventStream (symbol string, price float, volume int)
-    define window StockEventWindow (symbol string, price float, volume int) cron('*/5 * * * * ?');
+    CREATE STREAM StockEventStream (symbol string, price float, volume int)
+    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) cron('*/5 * * * * ?');
 
     @info(name = 'query0')
-    from StockEventStream
-    insert into StockEventWindow;
+    insert into StockEventWindow
+    from StockEventStream;
 
     @info(name = 'query1')
+    insert into OutputStream 
     select symbol, sum(price) as totalPrice
-    from StockEventWindow
-    insert into OutputStream ;
+    from StockEventWindow;
 
 The defined window will let the totalPrice to gradually increase and resets to zero as a batch every 5 seconds.
 
@@ -1052,21 +1050,21 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define window delayWindow(symbol string, volume int) delay(1 hour);
-    define stream PurchaseStream(symbol string, volume int);
-    define stream DeliveryStream(symbol string);
-    define stream OutputStream(symbol string);
+    CREATE WINDOW delayWindow(symbol string, volume int) delay(1 hour);
+    CREATE STREAM PurchaseStream(symbol string, volume int);
+    CREATE STREAM DeliveryStream(symbol string);
+    CREATE STREAM OutputStream(symbol string);
 
     @info(name='query1')
+    insert into delayWindow
     select symbol, volume
-    from PurchaseStream
-    insert into delayWindow;
+    from PurchaseStream;
 
     @info(name='query2')
+    insert into OutputStream
     select delayWindow.symbol
     from delayWindow join DeliveryStream
-    on delayWindow.symbol == DeliveryStream.symbol
-    insert into OutputStream;
+    on delayWindow.symbol == DeliveryStream.symbol;
 
 In this example, purchase events that arrive in the `PurchaseStream` stream are directed to a delay window. At any given time, this delay window holds purchase events that have arrived within the last hour. These purchase events in the window are matched by the `symbol` attribute, with delivery events that arrive in the `DeliveryStream` stream. This monitors whether the delivery of products is done with a minimum delay of one hour after the purchase.
 
@@ -1087,16 +1085,16 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define window cseEventWindow (symbol string, price float, volume int) externalTime(eventTime, 20 sec) output expired events;
+    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) externalTime(eventTime, 20 sec) output expired events;
 
     @info(name = 'query0')
-    from cseEventStream
-    insert into cseEventWindow;
+    insert into cseEventWindow
+    from cseEventStream;
 
     @info(name = 'query1')
+    insert expired events into outputStream
     select symbol, sum(price) as price
-    from cseEventWindow
-    insert expired events into outputStream ;
+    from cseEventWindow;
 
 processing events arrived within the last 20 seconds from the eventTime and output expired events.
 
@@ -1123,26 +1121,27 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define window cseEventWindow (symbol string, price float, volume int) externalTimeBatch(eventTime, 1 sec) output expired events;
+    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) externalTimeBatch(eventTime, 1 sec) output expired events;
     @info(name = 'query0')
-    from cseEventStream
-    insert into cseEventWindow;
+    insert into cseEventWindow
+    from cseEventStream;
+
     @info(name = 'query1')
+    insert expired events into outputStream 
     select symbol, sum(price) as price
-    from cseEventWindow
-    insert expired events into outputStream ;
+    from cseEventWindow;
 
 This will processing events that arrive every 1 seconds from the eventTime.
 
 EXAMPLE 2
 
-    define window cseEventWindow (symbol string, price float, volume int) externalTimeBatch(eventTime, 20 sec, 0) output expired events;
+    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) externalTimeBatch(eventTime, 20 sec, 0) output expired events;
 
 This will processing events that arrive every 1 seconds from the eventTime. Starts on 0th millisecond of an hour.
 
 EXAMPLE 3
 
-    define window cseEventWindow (symbol string, price float, volume int) externalTimeBatch(eventTime, 2 sec, eventTimestamp, 100) output expired events;
+    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) externalTimeBatch(eventTime, 2 sec, eventTimestamp, 100) output expired events;
 
 This will processing events that arrive every 2 seconds from the eventTim. Considers the first event's eventTimestamp value as startTime. Waits 100 milliseconds for the arrival of a new event before flushing current batch.
 
@@ -1168,7 +1167,7 @@ EXAMPLE 1
 
     @info(name = 'query1')
     select cardNo, price
-    from purchase[price >= 30]#window.frequent(2)
+    from purchase[price >= 30] WINDOW FREQUENT(2)
     insert all events into PotentialFraud;
 
 This will returns the 2 most frequent events.
@@ -1177,7 +1176,7 @@ EXAMPLE 2
 
     @info(name = 'query1')
     select cardNo, price
-    from purchase[price >= 30]#window.frequent(2, cardNo)
+    from purchase[price >= 30] WINDOW FREQUENT(2, cardNo)
     insert all events into PotentialFraud;
 
 This will returns the 2 latest events with the most frequently appeared card numbers.
@@ -1198,16 +1197,16 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define window StockEventWindow (symbol string, price float, volume int) length(10) output all events;
+    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) length(10) output all events;
 
     @info(name = 'query0')
-    from StockEventStream
-    insert into StockEventWindow;
-    @info(name = 'query1')
+    insert into StockEventWindow
+    from StockEventStream;
 
+    @info(name = 'query1')
+    insert all events into outputStream 
     select symbol, sum(price) as price
-    from StockEventWindow
-    insert all events into outputStream ;
+    from StockEventWindow;
 
 This will process last 10 events in a sliding manner.
 
@@ -1229,39 +1228,39 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InputEventStream (symbol string, price float, volume int);
+    CREATE STREAM InputEventStream (symbol string, price float, volume int);
 
     @info(name = 'query1')
+    insert into OutputStream
     select symbol, sum(price) as price
-    from InputEventStream#lengthBatch(10)
-    insert into OutputStream;
+    from InputEventStream#lengthBatch(10);
 
 This collect and process 10 events as a batch and output them.
 
 EXAMPLE 2
 
-    define stream InputEventStream (symbol string, price float, volume int);
+    CREATE STREAM InputEventStream (symbol string, price float, volume int);
 
     @info(name = 'query1')
+    insert into OutputStream
     select symbol, sum(price) as sumPrice
-    from InputEventStream#lengthBatch(10, true)
-    insert into OutputStream;
+    from InputEventStream#lengthBatch(10, true);
 
 This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually, after every 10 events it clears the window as a batch and resets the `sumPrice` to zero.
 
 EXAMPLE 3
 
-    define stream InputEventStream (symbol string, price float, volume int);
-    define window StockEventWindow (symbol string, price float, volume int) lengthBatch(10) output all events;
+    CREATE STREAM InputEventStream (symbol string, price float, volume int);
+    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) lengthBatch(10) output all events;
 
     @info(name = 'query0')
-    from InputEventStream
-    insert into StockEventWindow;
+    insert into StockEventWindow
+    from InputEventStream;
 
     @info(name = 'query1')
+    insert all events into OutputStream 
     select symbol, sum(price) as price
-    from StockEventWindow
-    insert all events into OutputStream ;
+    from StockEventWindow;
 
 This uses an defined window to process 10 events as a batch and output all events.
 
@@ -1287,29 +1286,33 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream purchase (cardNo string, price float);
-    define window purchaseWindow (cardNo string, price float) lossyFrequent(0.1, 0.01);
+    CREATE STREAM purchase (cardNo string, price float);
+    CREATE WINDOW purchaseWindow (cardNo string, price float) lossyFrequent(0.1, 0.01);
+
     @info(name = 'query0')
-    from purchase[price >= 30]
-    insert into purchaseWindow;
+    insert into purchaseWindow
+    from purchase[price >= 30];
+
     @info(name = 'query1')
+    insert all events into PotentialFraud
     select cardNo, price
-    from purchaseWindow
-    insert all events into PotentialFraud;
+    from purchaseWindow;
 
 lossyFrequent(0.1, 0.01) returns all the events of which the current frequency exceeds 0.1, with an error bound of 0.01.
 
 EXAMPLE 2
 
-    define stream purchase (cardNo string, price float);
-    define window purchaseWindow (cardNo string, price float) lossyFrequent(0.3, 0.05, cardNo);
+    CREATE STREAM purchase (cardNo string, price float);
+    CREATE WINDOW purchaseWindow (cardNo string, price float) lossyFrequent(0.3, 0.05, cardNo);
+
     @info(name = 'query0')
-    from purchase[price >= 30]
-    insert into purchaseWindow;
+    insert into purchaseWindow
+    from purchase[price >= 30];
+
     @info(name = 'query1')
+    insert all events into PotentialFraud
     select cardNo, price
-    from purchaseWindow
-    insert all events into PotentialFraud;
+    from purchaseWindow;
 
 lossyFrequent(0.3, 0.05, cardNo) returns all the events of which the cardNo attributes frequency exceeds 0.3, with an error bound of 0.05.
 
@@ -1333,24 +1336,25 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream PurchaseEventStream (user string, item_number int, price float, quantity int);
+    CREATE STREAM PurchaseEventStream (user string, item_number int, price float, quantity int);
 
     @info(name='query1)
+    insert into OutputStream
     select user, sum(quantity) as totalQuantity, sum(price) as totalPrice
-    from PurchaseEventStream#window.session(5 sec, user)
-    group by user
-    insert into OutputStream;
+    from PurchaseEventStream WINDOW SESSION(5 sec, user)
+    group by user;
+
 From the events arriving at the PurchaseEventStream, a session window with 5 seconds session gap is processed based on `user` attribute as the session group identification key. All events falling into the same session are aggregated based on `user` attribute, and outputted to the OutputStream.
 
 EXAMPLE 2
 
-    define stream PurchaseEventStream (user string, item_number int, price float, quantity int);
+    CREATE STREAM PurchaseEventStream (user string, item_number int, price float, quantity int);
 
     @info(name='query2)
+    insert into OutputStream
     select user, sum(quantity) as totalQuantity, sum(price) as totalPrice
-    from PurchaseEventStream#window.session(5 sec, user, 2 sec)
-    group by user
-    insert into OutputStream;
+    from PurchaseEventStream WINDOW SESSION(5 sec, user, 2 sec)
+    group by user;
 
 From the events arriving at the PurchaseEventStream, a session window with 5 seconds session gap is processed based on `user` attribute as the session group identification key. This session window is kept active for 2 seconds after the session expiry to capture late (out of order) event arrivals. If the event timestamp falls in to the last session the session is reactivated. Then all events falling into the same session are aggregated based on `user` attribute, and outputted to the OutputStream.
 
@@ -1374,15 +1378,17 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream cseEventStream (symbol string, price float, volume long);
-    define window cseEventWindow (symbol string, price float, volume long) sort(2,volume, 'asc');
+    CREATE STREAM cseEventStream (symbol string, price float, volume long);
+    CREATE WINDOW cseEventWindow (symbol string, price float, volume long) sort(2,volume, 'asc');
+
     @info(name = 'query0')
-    from cseEventStream
-    insert into cseEventWindow;
+    insert into cseEventWindow
+    from cseEventStream;
+
     @info(name = 'query1')
+    insert all events into outputStream 
     select volume
-    from cseEventWindow
-    insert all events into outputStream ;
+    from cseEventWindow;
 
 sort(5, price, `asc`) keeps the events sorted by price in the ascending order. Therefore, at any given time, the window contains the 5 lowest prices.
 
@@ -1402,14 +1408,16 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define window cseEventWindow (symbol string, price float, volume int) time(20) output all events;
+    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) time(20) output all events;
+
     @info(name = 'query0')
-    from cseEventStream
-    insert into cseEventWindow;
+    insert into cseEventWindow
+    from cseEventStream;
+
     @info(name = 'query1')
+    insert all events into outputStream 
     select symbol, sum(price) as price
-    from cseEventWindow
-    insert all events into outputStream ;
+    from cseEventWindow;
 
 This will processing events that arrived within the last 20 milliseconds.
 
@@ -1434,39 +1442,39 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InputEventStream (symbol string, price float, volume int);
+    CREATE STREAM InputEventStream (symbol string, price float, volume int);
 
     @info(name = 'query1')
+    insert into OutputStream
     select symbol, sum(price) as price
-    from InputEventStream#timeBatch(20 sec)
-    insert into OutputStream;
+    from InputEventStream#timeBatch(20 sec);
 
 This collect and process incoming events as a batch every 20 seconds and output them.
 
 EXAMPLE 2
 
-    define stream InputEventStream (symbol string, price float, volume int);
+    CREATE STREAM InputEventStream (symbol string, price float, volume int);
 
     @info(name = 'query1')
+    insert into OutputStream
     select symbol, sum(price) as sumPrice
-    from InputEventStream#timeBatch(20 sec, true)
-    insert into OutputStream;
+    from InputEventStream#timeBatch(20 sec, true);
 
 This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually and on every 20 second interval it clears the window as a batch resetting the `sumPrice` to zero.
 
 EXAMPLE 3
 
-    define stream InputEventStream (symbol string, price float, volume int);
-    define window StockEventWindow (symbol string, price float, volume int) timeBatch(20 sec) output all events;
+    CREATE STREAM InputEventStream (symbol string, price float, volume int);
+    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) timeBatch(20 sec) output all events;
 
     @info(name = 'query0')
-    from InputEventStream
-    insert into StockEventWindow;
+    insert into StockEventWindow
+    from InputEventStream;
 
     @info(name = 'query1')
+    insert all events into OutputStream 
     select symbol, sum(price) as price
-    from StockEventWindow
-    insert all events into OutputStream ;
+    from StockEventWindow;
 
 This uses an defined window to process events arrived every 20 seconds as a batch and output all events.
 
@@ -1487,444 +1495,18 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream cseEventStream (symbol string, price float, volume int);
-    define window cseEventWindow (symbol string, price float, volume int) timeLength(2 sec, 10);
+    CREATE STREAM cseEventStream (symbol string, price float, volume int);
+    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) timeLength(2 sec, 10);
+
     @info(name = 'query0')
-    from cseEventStream
-    insert into cseEventWindow;
+    insert into cseEventWindow
+    from cseEventStream;
+
     @info(name = 'query1')
-    from cseEventWindow select symbol, price, volume
-    insert all events into outputStream;
+    insert all events into outputStream
+    from cseEventWindow select symbol, price, volume;
 
 window.timeLength(2 sec, 10) holds the last 10 events that arrived during last 2 seconds and gets updated for every event arrival and expiry.
-
-File
-----
-
-### isDirectory (Function)
-
-This function checks for a given file path points to a directory
-
-Syntax
-
-    <BOOL> file:isDirectory(<STRING> uri)
-
-QUERY PARAMETERS
-
-| Name | Description                             | Default Value | Possible Data Types | Optional | Dynamic |
-|------|-----------------------------------------|---------------|---------------------|----------|---------|
-| uri  | The path to be checked for a directory. |               | STRING              | No       | Yes     |
-
-EXAMPLE 1
-
-    file:isDirectory(filePath) as isDirectory
-
-Checks whether the given path is a directory. Result will be returned as an boolean.
-
-### isExist (Function)
-
-This function checks whether a file or a folder exists in a given path
-
-Syntax
-
-    <BOOL> file:isExist(<STRING> uri)
-
-QUERY PARAMETERS
-
-| Name | Description                       | Default Value | Possible Data Types | Optional | Dynamic |
-|------|-----------------------------------|---------------|---------------------|----------|---------|
-| uri  | File path to check for existence. |               | STRING              | No       | Yes     |
-
-EXAMPLE 1
-
-    file:isExist('/User/gdn/source/test.txt') as exists
-
-Checks existence of a file in the given path. Result will be returned as an boolean .
-
-EXAMPLE 2
-
-    file:isExist('/User/gdn/source/') as exists
-
-Checks existence of a folder in the given path. Result will be returned as an boolean .
-
-### isFile (Function)
-
-This function checks for a given file path points to a file
-
-Syntax
-
-    <BOOL> file:isFile(<STRING> file.path)
-
-QUERY PARAMETERS
-
-| Name      | Description                        | Default Value | Possible Data Types | Optional | Dynamic |
-|-----------|------------------------------------|---------------|---------------------|----------|---------|
-| file.path | The path to be checked for a file. |               | STRING              | No       | Yes     |
-
-EXAMPLE 1
-
-    file:isFile(filePath) as isFile
-
-Checks whether the given path is a file. Result will be returned as an boolean.
-
-### lastModifiedTime (Function)
-
-Checks for the last modified time for a given file path
-
-Syntax
-
-    <STRING> file:lastModifiedTime(<STRING> uri)
-    <STRING> file:lastModifiedTime(<STRING> uri, <STRING> datetime.format)
-
-QUERY PARAMETERS
-
-| Name            | Description                                          | Default Value       | Possible Data Types | Optional | Dynamic |
-|-----------------|------------------------------------------------------|---------------------|---------------------|----------|---------|
-| uri             | File path to be checked for te last modified time.   |                     | STRING              | No       | Yes     |
-| datetime.format | Format of the last modified datetime to be returned. | MM/dd/yyyy HH:mm:ss | STRING              | Yes      | No      |
-
-EXAMPLE 1
-
-    file:lastModifiedTime(filePath) as lastModifiedTime
-
-Last modified datetime of a file will be returned as an string in MM/dd/yyyy HH:mm:ss.
-
-EXAMPLE 2
-
-    file:lastModifiedTime(filePath, dd/MM/yyyy HH:mm:ss) as lastModifiedTime
-
-Last modified datetime of a file will be returned as an string in `dd/MM/yyyy HH:mm:ss` format.
-
-### size (Function)
-
-This function checks for a given file's size
-
-Syntax
-
-    <LONG> file:size(<STRING> uri)
-
-QUERY PARAMETERS
-
-| Name | Description                                                        | Default Value | Possible Data Types | Optional | Dynamic |
-|------|--------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| uri  | Absolute path to the file or directory to be checked for the size. |               | STRING              | No       | Yes     |
-
-EXAMPLE 1
-
-    file:size('/User/gdn/source/test.txt') as fileSize
-
-Size of a file in a given path will be returned.
-
-### archive (Stream Function)
-
-Archives files and folders as a zip or in tar format that are available in the given file uri.
-
-Syntax
-
-    file:archive(<STRING> uri, <STRING> destination.dir.uri)
-    file:archive(<STRING> uri, <STRING> destination.dir.uri, <STRING> archive.type)
-    file:archive(<STRING> uri, <STRING> destination.dir.uri, <STRING> archive.type, <STRING> include.by.regexp)
-    file:archive(<STRING> uri, <STRING> destination.dir.uri, <STRING> archive.type, <STRING> include.by.regexp, <BOOL> exclude.subdirectories)
-
-QUERY PARAMETERS
-
-| Name                   | Description                                                                                         | Default Value | Possible Data Types | Optional | Dynamic |
-|------------------------|-----------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| uri                    | Absolute path of the file or the directory                                                          |               | STRING              | No       | Yes     |
-| destination.dir.uri    | Absolute directory path of the the archived file.                                                   |               | STRING              | No       | Yes     |
-| archive.type           | Archive type can be zip or tar                                                                      | zip           | STRING              | Yes      | No      |
-| include.by.regexp      | Only the files matching the patterns will be archived. Note: Add an empty string to match all files |               | STRING              | Yes      | No      |
-| exclude.subdirectories | This flag is used to exclude the subdirectories and its files without archiving.                    | false         | BOOL                | Yes      | No      |
-
-EXAMPLE 1
-
-    InputStream#file:archive('/User/gdn/to_be_archived', '/User/gdn/archive_destination/file.zip')
-
-Archives to\_be\_archived folder in zip format and stores archive\_destination folder as file.zip.
-
-EXAMPLE 2
-
-    InputStream#file:archive('/User/gdn/to_be_archived', '/User/gdn/archive_destination/file', 'tar')
-
-Archives to\_be\_archived folder in tar format and stores in archive\_destination folder as file.tar.
-
-EXAMPLE 3
-```js
-    InputStream#file:archive('/User/gdn/to_be_archived', '/User/gdn/archive_destination/file', 'tar', '.*test3.txt$')
-```
-
-Archives files which adheres to `.\*test3.txt\$` regex in to\_be\_archived folder in tar format and stores in archive\_destination folder as file.tar.
-
-EXAMPLE 4
-
-    InputStream#file:archive('/User/gdn/to_be_archived', '/User/gdn/archive_destination/file', '', '', 'false')
-
-Archives to\_be\_archived folder excluding the sub-folders in zip format and stores in archive\_destination folder as file.tar.
-
-### copy (Stream Function)
-
-This function performs copying file from one directory to another.
-
-Syntax
-
-    file:copy(<STRING> uri, <STRING> destination.dir.uri)
-    file:copy(<STRING> uri, <STRING> destination.dir.uri, <STRING> include.by.regexp)
-    file:copy(<STRING> uri, <STRING> destination.dir.uri, <STRING> include.by.regexp, <BOOL> exclude.root.dir)
-
-QUERY PARAMETERS
-
-| Name                | Description                                                                                                     | Default Value | Possible Data Types | Optional | Dynamic |
-|---------------------|-----------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| uri                 | Absolute path of the File or the directory.                                                                     |               | STRING              | No       | Yes     |
-| destination.dir.uri | Absolute path of the destination directory. Note: Parent folder structure will be created if it does not exist. |               | STRING              | No       | Yes     |
-| include.by.regexp   | Only the files matching the patterns will be copied. Note: Add an empty string to match all files               |               | STRING              | Yes      | No      |
-| exclude.root.dir    | This flag is used to exclude parent folder when copying the content.                                            | false         | BOOL                | Yes      | No      |
-
-Extra Return Attributes
-
-| Name      | Description                                            | Possible Types |
-|-----------|--------------------------------------------------------|----------------|
-| isSuccess | Status of the file copying operation (true if success) | BOOL           |
-
-EXAMPLE 1
-
-    InputStream#file:copy('/User/gdn/source/test.txt', 'User/gdn/destination/')
-
-Copies `test.txt` in `source` folder to the `destination` folder.
-
-EXAMPLE 2
-
-    InputStream#file:copy('/User/gdn/source/', 'User/gdn/destination/')
-
-Copies `source` folder to the `destination` folder with all its content
-
-EXAMPLE 3
-```js
-    InputStream#file:copy('/User/gdn/source/', 'User/gdn/destination/', '.*test3.txt$')
-```
-Copies `source` folder to the `destination` folder ignoring files doesnt adhere to the given regex.
-
-EXAMPLE 4
-
-    InputStream#file:copy('/User/gdn/source/', 'User/gdn/destination/', '', true)
-
-Copies only the files resides in `source` folder to `destination` folder.
-
-### create (Stream Function)
-
-Create a file or a folder in the given location
-
-Syntax
-
-    file:create(<STRING> uri, <STRING> is.directory)
-
-QUERY PARAMETERS
-
-| Name         | Description                                              | Default Value | Possible Data Types | Optional | Dynamic |
-|--------------|----------------------------------------------------------|---------------|---------------------|----------|---------|
-| uri          | Absolute file path which needs to be created.            |               | STRING              | No       | Yes     |
-| is.directory | This flag is used when creating file path is a directory |               | STRING              | No       | Yes     |
-
-EXAMPLE 1
-
-    from CreateFileStream#file:create('/User/gdn/source/test.txt', false)
-
-Creates a file in the given path with the name of `test.txt`.
-
-EXAMPLE 2
-
-    from CreateFileStream#file:create('/User/gdn/source/', true)
-
-Creates a folder in the given path with the name of `source`.
-
-### delete (Stream Function)
-
-Deletes file/files in a particular path
-
-Syntax
-
-    file:delete(<STRING> uri)
-
-QUERY PARAMETERS
-
-| Name | Description                                               | Default Value | Possible Data Types | Optional | Dynamic |
-|------|-----------------------------------------------------------|---------------|---------------------|----------|---------|
-| uri  | Absolute path of the file or the directory to be deleted. |               | STRING              | No       | Yes     |
-
-EXAMPLE 1
-
-    from DeleteFileStream#file:delete('/User/gdn/source/test.txt')
-
-Deletes the file in the given path.
-
-EXAMPLE 2
-
-    from DeleteFileStream#file:delete('/User/gdn/source/')
-
-Deletes the folder in the given path.
-
-### move (Stream Function)
-
-This function performs copying file from one directory to another.
-
-Syntax
-
-    file:move(<STRING> uri, <STRING> destination.dir.uri)
-    file:move(<STRING> uri, <STRING> destination.dir.uri, <STRING> include.by.regexp)
-    file:move(<STRING> uri, <STRING> destination.dir.uri, <STRING> include.by.regexp, <BOOL> exclude.root.dir)
-
-QUERY PARAMETERS
-
-| Name                | Description                                                                                                          | Default Value | Possible Data Types | Optional | Dynamic |
-|---------------------|----------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| uri                 | Absolute file or directory path.                                                                                     |               | STRING              | No       | Yes     |
-| destination.dir.uri | Absolute file path to the destination directory. Note: Parent folder structure will be created if it does not exist. |               | STRING              | No       | Yes     |
-| include.by.regexp   | Only the files matching the patterns will be moved. Note: Add an empty string to match all files                     |               | STRING              | Yes      | No      |
-| exclude.root.dir    | Exclude parent folder when moving the content.                                                                       | false         | BOOL                | Yes      | No      |
-
-Extra Return Attributes
-
-| Name      | Description                                           | Possible Types |
-|-----------|-------------------------------------------------------|----------------|
-| isSuccess | Status of the file moving operation (true if success) | BOOL           |
-
-EXAMPLE 1
-
-    InputStream#file:move('/User/gdn/source/test.txt', 'User/gdn/destination/')
-
-Moves `test.txt` in `source` folder to the `destination` folder.
-
-EXAMPLE 2
-
-    InputStream#file:move('/User/gdn/source/', 'User/gdn/destination/')
-
-Moves `source` folder to the `destination` folder with all its content
-
-EXAMPLE 3
-```js
-    InputStream#file:move('/User/gdn/source/', 'User/gdn/destination/', '.*test3.txt$')
-```
-Moves `source` folder to the `destination` folder excluding files doesnt adhere to the given regex.
-
-EXAMPLE 4
-
-    InputStream#file:move('/User/gdn/source/', 'User/gdn/destination/', '', true)
-
-Moves only the files resides in `source` folder to `destination` folder.
-
-### search (Stream Function)
-
-Searches files in a given folder and lists.
-
-Syntax
-
-    file:search(<STRING> uri)
-    file:search(<STRING> uri, <STRING> include.by.regexp)
-    file:search(<STRING> uri, <STRING> include.by.regexp, <BOOL> exclude.subdirectories)
-
-QUERY PARAMETERS
-
-| Name                   | Description                                                                                         | Default Value | Possible Data Types | Optional | Dynamic |
-|------------------------|-----------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| uri                    | Absolute file path of the directory.                                                                |               | STRING              | No       | Yes     |
-| include.by.regexp      | Only the files matching the patterns will be searched. Note: Add an empty string to match all files |               | STRING              | Yes      | Yes     |
-| exclude.subdirectories | This flag is used to exclude the files un subdirectories when listing.                              | false         | BOOL                | Yes      | No      |
-
-Extra Return Attributes
-
-| Name         | Description                                 | Possible Types |
-|--------------|---------------------------------------------|----------------|
-| fileNameList | The lit file name matches in the directory. | OBJECT         |
-
-EXAMPLE 1
-
-    ListFileStream#file:search(filePath)
-
-This will list all the files (also in sub-folders) in a given path.
-
-EXAMPLE 2
-```js
-    ListFileStream#file:search(filePath, '.*test3.txt$')
-```
-
-This will list all the files (also in sub-folders) which adheres to a given regex file pattern in a given path.
-
-EXAMPLE 3
-```js
-    ListFileStream#file:search(filePath, '.*test3.txt$', true)
-```
-
-This will list all the files excluding the files in sub-folders which adheres to a given regex file pattern in a given path.
-
-### searchInArchive (Stream Function)
-
-This.
-
-Syntax
-
-    file:searchInArchive(<STRING> uri)
-    file:searchInArchive(<STRING> uri, <STRING> include.by.regexp)
-
-QUERY PARAMETERS
-
-| Name              | Description                                                                                         | Default Value | Possible Data Types | Optional | Dynamic |
-|-------------------|-----------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| uri               | Absolute file path of the zip or tar file.                                                          |               | STRING              | No       | Yes     |
-| include.by.regexp | Only the files matching the patterns will be searched. Note: Add an empty string to match all files |               | STRING              | Yes      | No      |
-
-Extra Return Attributes
-
-| Name         | Description                               | Possible Types |
-|--------------|-------------------------------------------|----------------|
-| fileNameList | The list file names in the archived file. | OBJECT         |
-
-EXAMPLE 1
-
-    ListArchivedFileStream#file:listFilesInArchive(filePath)
-
-Lists the files inside the compressed file in the given path.
-
-EXAMPLE 2
-```js
-    ListArchivedFileStream#file:listFilesInArchive(filePath, '.*test3.txt$')
-```
-
-Filters file names adheres to the given regex and lists the files inside the compressed file in the given path.
-
-### unarchive (Stream Function)
-
-This function decompresses a given file
-
-Syntax
-
-    file:unarchive(<STRING> uri, <STRING> destination.dir.uri)
-    file:unarchive(<STRING> uri, <STRING> destination.dir.uri, <BOOL> exclude.root.dir)
-
-QUERY PARAMETERS
-
-| Name                | Description                                                                                                   | Default Value | Possible Data Types | Optional | Dynamic |
-|---------------------|---------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| uri                 | Absolute path of the file to be decompressed in the format of zip or tar.                                     |               | STRING              | No       | Yes     |
-| destination.dir.uri | Absolute path of the destination directory. Note: If the folder structure does not exist, it will be created. |               | STRING              | No       | Yes     |
-| exclude.root.dir    | This flag excludes parent folder when extracting the content.                                                 | false         | BOOL                | Yes      | No      |
-
-EXAMPLE 1
-
-    file:unarchive('/User/gdn/source/test.zip', '/User/gdn/destination')
-
-Unarchive a zip file in a given path to a given destination.
-
-EXAMPLE 2
-
-    file:unarchive('/User/gdn/source/test.tar', '/User/gdn/destination')
-
-Unarchive a tar file in a given path to a given destination.
-
-EXAMPLE 3
-
-    file:unarchive('/User/gdn/source/test.tar', '/User/gdn/destination', true)
-
-Unarchive a tar file in a given path to a given destination excluding the root folder.
 
 Js
 --
@@ -1975,7 +1557,7 @@ QUERY PARAMETERS
 EXAMPLE 1
 
     select json:group("json") as groupedJSONArray
-    from InputStream#window.length(5)
+    from InputStream WINDOW SLIDING_LENGTH(5)
     input OutputStream;
 
 When we input events having values for the `json` as
@@ -1987,7 +1569,7 @@ to the `OutputStream`.
 EXAMPLE 2
 
     select json:group("json", true) as groupedJSONArray
-    from InputStream#window.length(5)
+    from InputStream WINDOW SLIDING_LENGTH(5)
     input OutputStream;
 
 When we input events having values for the `json` as
@@ -1998,7 +1580,7 @@ When we input events having values for the `json` as
 EXAMPLE 3
 
     select json:group("json", "result") as groupedJSONArray
-    from InputStream#window.length(5)
+    from InputStream WINDOW SLIDING_LENGTH(5)
     input OutputStream;
 
 When we input events having values for the `json` as
@@ -2010,7 +1592,7 @@ to the `OutputStream`.
 EXAMPLE 4
 
     select json:group("json", "result", true) as groupedJSONArray
-    from InputStream#window.length(5)
+    from InputStream WINDOW SLIDING_LENGTH(5)
     input OutputStream;
 
 When we input events having values for the `json` as `{"date":"2013-11-19","time":"10:30"}` and `{"date":"2013-11-19","time":"10:30"}`, it returns `{"result":[{"date":"2013-11-19","time":"10:30"}]}` to the `OutputStream`.
@@ -2037,7 +1619,7 @@ QUERY PARAMETERS
 EXAMPLE 1
 
     select json:groupAsObject("json") as groupedJSONArray
-    from InputStream#window.length(5)
+    from InputStream WINDOW SLIDING_LENGTH(5)
     input OutputStream;
 
 When we input events having values for the `json` as `{"date":"2013-11-19","time":"10:30"}` and `{"date":"2013-11-19","time":"12:20"}`, it returns `[{"date":"2013-11-19","time":"10:30"}{"date":"2013-11-19","time":"12:20"}]` to the `OutputStream`.
@@ -2045,7 +1627,7 @@ When we input events having values for the `json` as `{"date":"2013-11-19","time
 EXAMPLE 2
 
     select json:groupAsObject("json", true) as groupedJSONArray
-    from InputStream#window.length(5)
+    from InputStream WINDOW SLIDING_LENGTH(5)
     input OutputStream;
 
 When we input events having values for the `json` as `{"date":"2013-11-19","time":"10:30"}` and `{"date":"2013-11-19","time":"10:30"}`, it returns `[{"date":"2013-11-19","time":"10:30"}]` to the `OutputStream`.
@@ -2053,7 +1635,7 @@ When we input events having values for the `json` as `{"date":"2013-11-19","time
 EXAMPLE 3
 
     select json:groupAsObject("json", "result") as groupedJSONArray
-    from InputStream#window.length(5)
+    from InputStream WINDOW SLIDING_LENGTH(5)
     input OutputStream;
 
 When we input events having values for the `json` as `{"date":"2013-11-19","time":"10:30"}` and `{"date":"2013-11-19","time":"12:20"}`, it returns `{"result":[{"date":"2013-11-19","time":"10:30"},{"date":"2013-11-19","time":"12:20"}}` to the `OutputStream`.
@@ -2061,7 +1643,7 @@ When we input events having values for the `json` as `{"date":"2013-11-19","time
 EXAMPLE 4
 
     select json:groupAsObject("json", "result", true) as groupedJSONArray
-    from InputStream#window.length(5)
+    from InputStream WINDOW SLIDING_LENGTH(5)
     input OutputStream;
 
 When we input events having values for the `json` as `{"date":"2013-11-19","time":"10:30"}` and `{"date":"2013-11-19","time":"10:30"}`, it returns `{"result":[{"date":"2013-11-19","time":"10:30"}]}` to the `OutputStream`.
@@ -2449,23 +2031,23 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    define stream InputStream (json string, path string);
+    CREATE STREAM InputStream (json string, path string);
 
     @info(name = 'query1')
+    insert into OutputStream
     select path, jsonElement
-    from InputStream#json:tokenizeAsObject(json, path)
-    insert into OutputStream;
+    from InputStream#json:tokenizeAsObject(json, path);
 
 If the input `json` is `{name:'John', enrolledSubjects:['Mathematics', 'Physics']}`, and the `path` is passed as `$.enrolledSubjects` then for both the elements in the selected JSON array, it generates it generates events as `('$.enrolledSubjects', 'Mathematics')`, and `('$.enrolledSubjects', 'Physics')`. For the same input JSON, if the `path` is passed as `$.name` then it will only produce one event `('$.name', 'John')` as the `path` provided a single JSON element.
 
 EXAMPLE 2
 
-    define stream InputStream (json string, path string);
+    CREATE STREAM InputStream (json string, path string);
 
     @info(name = 'query1')
+    insert into OutputStream
     select path, jsonElement
-    from InputStream#json:tokenizeAsObject(json, path, true)
-    insert into OutputStream;
+    from InputStream#json:tokenizeAsObject(json, path, true);
 
 If the input `json` is `{name:'John', age:25}`,and the `path` is passed as `$.salary` then the system will produce `('$.salary', null)`, as the `fail.on.missing.attribute` is `true` and there are no matching element for `$.salary`.
 
@@ -2494,23 +2076,23 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    define stream InputStream (json string, path string);
+    CREATE STREAM InputStream (json string, path string);
 
     @info(name = 'query1')
+    insert into OutputStream
     select path, jsonElement
-    from InputStream#json:tokenizeAsObject(json, path)
-    insert into OutputStream;
+    from InputStream#json:tokenizeAsObject(json, path);
 
 If the input `json` is `{name:'John', enrolledSubjects:['Mathematics', 'Physics']}`, and the `path` is passed as `$.enrolledSubjects` then for both the elements in the selected JSON array, it generates it generates events as `('$.enrolledSubjects', 'Mathematics')`, and `('$.enrolledSubjects', 'Physics')`. For the same input JSON, if the `path` is passed as `$.name` then it will only produce one event `('$.name', 'John')` as the `path` provided a single JSON element.
 
 EXAMPLE 2
 
-    define stream InputStream (json string, path string);
+    CREATE STREAM InputStream (json string, path string);
 
     @info(name = 'query1')
+    insert into OutputStream
     select path, jsonElement
-    from InputStream#json:tokenizeAsObject(json, path, true)
-    insert into OutputStream;
+    from InputStream#json:tokenizeAsObject(json, path, true);
 
 If the input `json` is `{name:'John', age:25}`,and the `path` is passed as `$.salary` then the system will produce `('$.salary', null)`, as the `fail.on.missing.attribute` is `true` and there are no matching element for `$.salary`.
 
@@ -2535,9 +2117,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
+    insert into OutputStream
     select list:collect(symbol) as stockSymbols
-    from StockStream#window.lengthBatch(10)
-    insert into OutputStream;
+    from StockStream WINDOW TUMBLING_LENGTH(10);
 
 For the window expiry of 10 events, the collect() function will collect attributes of `symbol` to a single list and return as stockSymbols.
 
@@ -2559,9 +2141,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
+    insert into OutputStream
     select list:merge(list) as stockSymbols
-    from StockStream#window.lengthBatch(2)
-    insert into OutputStream;
+    from StockStream WINDOW TUMBLING_LENGTH(2);
 
 For the window expiry of 2 events, the merge() function will collect attributes of `list` and merge them to a single list, returned as stockSymbols.
 
@@ -3039,9 +2621,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
+    insert into OutputStream
     select map:collect(symbol, price) as stockDetails
-    from StockStream#window.lengthBatch(10)
-    insert into OutputStream;
+    from StockStream WINDOW TUMBLING_LENGTH(10);
 
 For the window expiry of 10 events, the collect() function will collectattributes of `key` and `value` to a single map and return as stockDetails.
 
@@ -3061,9 +2643,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
+    insert into OutputStream
     select map:merge(map) as stockDetails
-    from StockStream#window.lengthBatch(2)
-    insert into OutputStream;
+    from StockStream WINDOW TUMBLING_LENGTH(2);
 
 For the window expiry of 2 events, the merge() function will collect attributes of `map` and merge them to a single map, returned as stockDetails.
 
@@ -3215,7 +2797,7 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    map:createFromJSON("{â€˜symbol' : 'IBM', 'price' : 200, 'volume' : 100}")
+    map:createFromJSON("{€˜symbol' : 'IBM', 'price' : 200, 'volume' : 100}")
 
 This returns a map with the keys `symbol`, `price`, and `volume`, and their values, `IBM`, `200` and `100` respectively.
 
@@ -3580,15 +3162,15 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    define stream StockStream(symbol string, price float);
+    CREATE STREAM StockStream(symbol string, price float);
 
+    insert into TempStream
     select map:collect(symbol, price) as symbolPriceMap
-    from StockStream#window.lengthBatch(2)
-    insert into TempStream;
+    from StockStream WINDOW TUMBLING_LENGTH(2);
 
+    insert into SymbolStream
     select key, value
-    from TempStream#map:tokenize(customMap)
-    insert into SymbolStream;
+    from TempStream#map:tokenize(customMap);
 
 Based on the length batch window, `symbolPriceMap` will collect two events, and the map will then again tokenized to give 2 events with key and values being symbol name and price respectively.
 
@@ -3612,10 +3194,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (sensorId int, temperature double);
+    CREATE STREAM InValueStream (sensorId int, temperature double);
+
+    insert into OutMediationStream
     select math:percentile(temperature, 97.0) as percentile
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 This function returns the percentile value based on the argument given. For example, math:percentile(temperature, 97.0) returns the 97th percentile value of all the temperature events.
 
@@ -3635,10 +3218,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:abs(inValue) as absValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 Irrespective of whether the `invalue` in the input stream holds a value of abs(3) or abs(-3),the function returns 3 since the absolute value of both 3 and -3 is 3. The result directed to OutMediationStream stream.
 
@@ -3658,10 +3242,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:acos(inValue) as acosValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the input stream is given, the function calculates the arc-cosine value of it and returns the arc-cosine value to the output stream, OutMediationStream. For example, acos(0.5) returns 1.0471975511965979.
 
@@ -3681,10 +3266,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:asin(inValue) as asinValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the input stream is given, the function calculates the arc-sin value of it and returns the arc-sin value to the output stream, OutMediationStream. For example, asin(0.5) returns 0.5235987755982989.
 
@@ -3706,10 +3292,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue1 double, inValue2 double);
+    CREATE STREAM InValueStream (inValue1 double, inValue2 double);
+
+    insert into OutMediationStream
     select math:atan(inValue1, inValue2) as convertedValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue1` in the input stream is given, the function calculates the arc-tangent value of it and returns the arc-tangent value to the output stream, OutMediationStream. If both the `inValue1` and `inValue2` are given, then the function considers them to be x and y coordinates respectively and returns the calculated arc-tangent value to the output stream, OutMediationStream. For example, atan(12d, 5d) returns 1.1760052070951352.
 
@@ -3729,10 +3316,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue long);
+    CREATE STREAM InValueStream (inValue long);
+
+    insert into OutMediationStream
     select math:bin(inValue) as binValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the input stream is given, the function converts it into an unsigned integer in base 2 and directs the output to the output stream, OutMediationStream. For example, bin(9) returns `1001`.
 
@@ -3752,10 +3340,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:cbrt(inValue) as cbrtValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` is given, the function calculates the cube-root value for the same and directs the output to the output stream, OutMediationStream. For example, cbrt(17d) returns 2.5712815906582356.
 
@@ -3775,10 +3364,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:ceil(inValue) as ceilingValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 This function calculates the ceiling value of the given `inValue` and directs the result to `OutMediationStream` output stream. For example, ceil(423.187d) returns 424.0.
 
@@ -3800,10 +3390,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue string,fromBase int,toBase int);
+    CREATE STREAM InValueStream (inValue string,fromBase int,toBase int);
+
+    insert into OutMediationStream
     select math:conv(inValue,fromBase,toBase) as convertedValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStrea;
 
 If the `inValue` in the input stream is given, and the base in which it currently resides in and the base to which it should be converted to is specified, the function converts it into a string in the target base and directs it to the output stream, OutMediationStream. For example, conv("7f", 16, 10) returns "127".
 
@@ -3824,10 +3415,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue1 double, inValue2 double);
+    CREATE STREAM InValueStream (inValue1 double, inValue2 double);
+
+    insert into OutMediationStream
     select math:copySign(inValue1,inValue2) as copysignValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If two values are provided as `inValue1` and `inValue2`, the function copies the magnitude and sign of the second argument into the first one and directs the result to the output stream, OutMediatonStream. For example, copySign(5.6d, -3.0d) returns -5.6.
 
@@ -3847,10 +3439,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:cos(inValue) as cosValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` is given, the function calculates the cosine value for the same and directs the output to the output stream, OutMediationStream. For example, cos(6d) returns 0.9601702866503661.
 
@@ -3870,10 +3463,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:cosh(inValue) as cosValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` is given, the function calculates the hyperbolic cosine value for the same and directs the output to the output stream, OutMediationStream. For example, cosh (6d) returns 201.7156361224559.
 
@@ -3887,10 +3481,11 @@ Syntax
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:e() as eValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 This function returns the constant, 2.7182818284590452354 which is then closest double value to e and directs the output to `OutMediationStream` output stream.
 
@@ -3910,10 +3505,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:exp(inValue) as expValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the inputstream holds a value, this function calculates the corresponding Euler's number `e` and directs it to the output stream, OutMediationStream. For example, exp(10.23) returns 27722.51006805505.
 
@@ -3933,10 +3529,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:floor(inValue) as floorValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 This function calculates the floor value of the given `inValue` input and directs the output to the `OutMediationStream` output stream. For example, (10.23) returns 10.0.
 
@@ -3956,10 +3553,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:getExponent(inValue) as expValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 This function calculates the unbiased exponent of a given input, `inValue` and directs the result to the `OutMediationStream` output stream. For example, getExponent(60984.1) returns 15.
 
@@ -3979,10 +3577,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue int);
+    CREATE STREAM InValueStream (inValue int);
+
+    insert into OutMediationStream
     select math:hex(inValue) as hexString
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the input stream is provided, the function converts this into its corresponding hexadecimal format and directs the output to the output stream, OutMediationStream. For example, hex(200) returns "c8".
 
@@ -4002,10 +3601,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue1 double,inValue2 int);
+    CREATE STREAM InValueStream (inValue1 double,inValue2 int);
+
+    insert into OutMediationStream
     select math:isInfinite(inValue1) as isInfinite
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the value given in the `inValue` in the input stream is of infinitely large magnitude, the function returns the value, `true` and directs the result to the output stream, `OutMediationStream`. For example, isInfinite(java.lang.Double.POSITIVE\_INFINITY) returns true.
 
@@ -4025,10 +3625,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue1 double,inValue2 int);
+    CREATE STREAM InValueStream (inValue1 double,inValue2 int);
+
+    insert into OutMediationStream
     select math:isNan(inValue1) as isNaN
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue1` in the input stream has a value that is undefined, then the function considers it as an `NaN` value and directs `True` to the output stream, OutMediationStream. For example, isNan(java.lang.Math.log(-12d)) returns true.
 
@@ -4048,10 +3649,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:ln(inValue) as lnValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the input stream is given, the function calculates its natural logarithm (base e) and directs the results to the output stream, `OutMeditionStream`. For example, ln(11.453) returns 2.438251704415579.
 
@@ -4072,10 +3674,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (number double, base double);
+    CREATE STREAM InValueStream (number double, base double);
+
+    insert into OutMediationStream
     select math:log(number, base) as logValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the number and the base to which it has to be converted into is given in the input stream, the function calculates the number to the base specified and directs the result to the output stream, OutMediationStream. For example, log(34, 2f) returns 5.08746284125034.
 
@@ -4095,10 +3698,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:log10(inValue) as lnValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the input stream is given, the function calculates the base 10 logarithm of the same and directs the result to the output stream, `OutMediatioStream`. For example, log10(19.234) returns 1.2840696117100832.
 
@@ -4118,10 +3722,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:log2(inValue) as lnValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the input stream is given, the function calculates the base 2 logarithm of the same and returns the value to the output stream, `OutMediationStream`. For example log2(91d) returns 6.507794640198696.
 
@@ -4142,10 +3747,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue1 double,inValue2 int);
+    CREATE STREAM InValueStream (inValue1 double,inValue2 int);
+
+    insert into OutMediationStream
     select math:max(inValue1,inValue2) as maxValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If two input values `inValue1`, and `inValue2` are given, the function compares them and directs the larger value to the output stream, OutMediationStream. For example, max(123.67d, 91) returns 123.67.
 
@@ -4166,10 +3772,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue1 double,inValue2 int);
+    CREATE STREAM InValueStream (inValue1 double,inValue2 int);
+
+    insert into OutMediationStream
     select math:min(inValue1,inValue2) as minValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If two input values, `inValue1` and `inValue2` are given, the function compares them and directs the smaller value of the two to the output stream, OutMediationStream. For example, min(123.67d, 91) returns 91.
 
@@ -4189,10 +3796,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue long);
+    CREATE STREAM InValueStream (inValue long);
+
+    insert into OutMediationStream
     select math:oct(inValue) as octValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the input stream is given, this function calculates the octal value corresponding to the same and directs it to the output stream, OutMediationStream. For example, oct(99l) returns "143".
 
@@ -4212,10 +3820,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue string);
+    CREATE STREAM InValueStream (inValue string);
+
+    insert into OutMediationStream
     select math:parseDouble(inValue) as output
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 If the `inValue` in the input stream holds a value, this function converts it into the corresponding double value and directs it to the output stream, OutMediationStream. For example, parseDouble("123") returns 123.0.
 
@@ -4235,10 +3844,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue string);
+    CREATE STREAM InValueStream (inValue string);
+
+    insert into OutMediationStream
     select math:parseFloat(inValue) as output
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 The function converts the input value given in `inValue`,into its corresponding float value and directs the result into the output stream, OutMediationStream. For example, parseFloat("123") returns 123.0.
 
@@ -4258,10 +3868,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue string);
+    CREATE STREAM InValueStream (inValue string);
+
+    insert into OutMediationStream
     select math:parseInt(inValue) as output
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 The function converts the `inValue` into its corresponding integer value and directs the output to the output stream, OutMediationStream. For example, parseInt("123") returns 123.
 
@@ -4281,10 +3892,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue string);
+    CREATE STREAM InValueStream (inValue string);
+
+    insert into OutMediationStream
     select math:parseLong(inValue) as output
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 The function converts the `inValue` to its corresponding long value and directs the result to the output stream, OutMediationStream. For example, parseLong("123") returns 123.
 
@@ -4298,10 +3910,11 @@ Syntax
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:pi() as piValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 pi() always returns 3.141592653589793.
 
@@ -4322,10 +3935,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue1 double, inValue2 double);
+    CREATE STREAM InValueStream (inValue1 double, inValue2 double);
+
+    insert into OutMediationStream
     select math:power(inValue1,inValue2) as powerValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 This function raises the `inValue1` to the power of `inValue2` and directs the output to the output stream, `OutMediationStream`. For example, (5.6d, 3.0d) returns 175.61599999999996.
 
@@ -4346,10 +3960,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (symbol string, price long, volume long);
+    CREATE STREAM InValueStream (symbol string, price long, volume long);
+
+    insert into OutMediationStream
     select math:oct(inValue) as octValue
-    from InValueStream select symbol, math:rand() as randNumber
-    insert into OutMediationStream;
+    from InValueStream select symbol, math:rand() as randNumber;
 
 In the example given above, a random double value between 0 and 1 will be generated using math:rand().
 
@@ -4369,10 +3984,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:round(inValue) as roundValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 The function rounds off `inValue1` to the closest int/long value and directs the output to the output stream, `OutMediationStream`. For example, round(3252.353) returns 3252.
 
@@ -4392,10 +4008,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:signum(inValue) as sign
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 The function evaluates the `inValue` given to be positive, negative or zero and directs the result to the output stream, `OutMediationStream`. For example, signum(-6.32d) returns -1.
 
@@ -4416,10 +4033,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:sin(inValue) as sinValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 The function calculates the sine value of the given `inValue` and directs the output to the output stream, `OutMediationStream`. For example, sin(6d) returns -0.27941549819892586.
 
@@ -4439,10 +4057,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:sinh(inValue) as sinhValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 This function calculates the hyperbolic sine value of `inValue` and directs the output to the output stream, `OutMediationStream`. For example, sinh(6d) returns 201.71315737027922.
 
@@ -4462,10 +4081,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:sqrt(inValue) as sqrtValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 The function calculates the square-root value of the `inValue` and directs the output to the output stream, `OutMediationStream`. For example, sqrt(4d) returns 2.
 
@@ -4485,10 +4105,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     select math:tan(inValue) as tanValue
-    from InValueStream
-    insert into OutMediationStream;
+    from InValueStream;
 
 This function calculates the tan value of the `inValue` given and directs the output to the output stream, `OutMediationStream`. For example, tan(6d) returns -0.29100619138474915.
 
@@ -4509,10 +4130,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     from InValueStream
-    select math:tanh(inValue) as tanhValue
-    insert into OutMediationStream;
+    select math:tanh(inValue) as tanhValue;
 
 If the `inVaue` in the input stream is given, this function calculates
 the hyperbolic tangent value of the same and directs the output to
@@ -4536,10 +4158,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     from InValueStream
-    select math:toDegrees(inValue) as degreesValue
-    insert into OutMediationStream;
+    select math:toDegrees(inValue) as degreesValue;
 
 The function converts the `inValue` in the input stream from radians
 to degrees and directs the output to `OutMediationStream` output
@@ -4562,10 +4185,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    define stream InValueStream (inValue double);
+    CREATE STREAM InValueStream (inValue double);
+
+    insert into OutMediationStream
     from InValueStream
-    select math:toRadians(inValue) as radiansValue
-    insert into OutMediationStream;
+    select math:toRadians(inValue) as radiansValue;
 
 This function converts the input, from degrees to radians and directs
 the result to `OutMediationStream` output stream. For example,
@@ -4606,9 +4230,9 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName='abc' where customerName='xyz'")
+    insert into  RecordStream
     select numRecords
-    insert into  RecordStream;
+    from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName='abc' where customerName='xyz'");
 
 This query updates the events from the input stream named
 `TriggerStream` with an additional attribute named `numRecords`, of
@@ -4617,9 +4241,9 @@ events are inserted into an output stream named `RecordStream`.
 
 EXAMPLE 2
 
-    from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName=? where customerName=?", changedName, previousName)
+    insert into  RecordStream
     select numRecords
-    insert into  RecordStream;
+    from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName=? where customerName=?", changedName, previousName);
 
 This query updates the events from the input stream named
 `TriggerStream` with an additional attribute named `numRecords`, of
@@ -4643,7 +4267,7 @@ QUERY PARAMETERS
 | Name                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Default Value | Possible Data Types               | Optional | Dynamic |
 |---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|-----------------------------------|----------|---------|
 | datasource.name           | The name of the datasource for which the query should be performed. |               | STRING                            | No       | No      |
-| attribute.definition.list | This is provided as a comma-separated list in the `<AttributeName AttributeType>` format. The SQL query is expected to return the attributes in the given order. e.g., If one attribute is defined here, the SQL query should return one column result set. If more than one column is returned, then the first column is processed. The  data types supported are `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, and `BOOL`. Â Mapping of the  data type to the database data type can be done as follows, \* Datatype\* -\> \*Datasource Datatype\* `STRING` -\> `CHAR`,`VARCHAR`,`LONGVARCHAR` `INT`Â Â Â Â -\> `INTEGER` `LONG`Â Â Â Â -\> `BIGINT` `DOUBLE`-\> `DOUBLE` `FLOAT`Â Â Â Â -\> `REAL` `BOOL`Â Â Â Â -\> `BIT` |               | STRING                            | No       | No      |
+| attribute.definition.list | This is provided as a comma-separated list in the `<AttributeName AttributeType>` format. The SQL query is expected to return the attributes in the given order. e.g., If one attribute is defined here, the SQL query should return one column result set. If more than one column is returned, then the first column is processed. The  data types supported are `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, and `BOOL`. Mapping of the  data type to the database data type can be done as follows, \* Datatype\* -\> \*Datasource Datatype\* `STRING` -\> `CHAR`,`VARCHAR`,`LONGVARCHAR` `INT` -\> `INTEGER` `LONG` -\> `BIGINT` `DOUBLE`-\> `DOUBLE` `FLOAT` -\> `REAL` `BOOL` -\> `BIT` |               | STRING                            | No       | No      |
 | query                     | The select query(formatted according to the relevant database type) that needs to be performed |               | STRING                            | No       | Yes     |
 | parameter                 | If the second parameter is a parametrised SQL query, then stream processor attributes can be passed to set the values of the parameters |               | STRING BOOL INT DOUBLE FLOAT LONG | Yes      | Yes     |
 
@@ -4655,9 +4279,9 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string, transaction string, amount int', 'select * from Transactions_Table')
+    insert into recordStream
     select creditcardno, country, transaction, amount
-    insert into recordStream;
+    from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string, transaction string, amount int', 'select * from Transactions_Table');
 
 Events inserted into recordStream includes all records matched for the
 query i.e an event will be generated for each record retrieved from the
@@ -4667,8 +4291,9 @@ country, transaction, amount).
 
 EXAMPLE 2
 
-    from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord) select creditcardno, country, transaction, amount
-    insert into recordStream;
+    insert into recordStream
+    select creditcardno, country, transaction, amount
+    from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord);
 
 Events inserted into recordStream includes all records matched for the
 query i.e an event will be generated for each record retrieved from the
@@ -4698,7 +4323,7 @@ QUERY PARAMETERS
 | starting.index | The starting index of the input sequence from where the input sequence ismatched with the given regex pattern.For example, `10`. | 0             | INT                 | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+```
     regex:find('\d\d(.*)gdn', '21 products are produced by gdn currently')
 ```
 
@@ -4707,7 +4332,7 @@ matches the regex pattern, `\d\d(.*)gdn`. It returns `true` as a
 subsequence exists.
 
 EXAMPLE 2
-```js
+```
     regex:find('\d\d(.*)gdn', '21 products are produced by gdn.', 4)
 ```
 This method attempts to find the subsequence of the input.sequence that
@@ -4720,9 +4345,9 @@ Returns the subsequence captured by the given group during the regex
 match operation.
 
 Syntax
-```js
+
     <STRING> regex:group(<STRING> regex, <STRING> input.sequence, <INT> group.id)
-```
+
 QUERY PARAMETERS
 
 | Name           | Description                                                                                                    | Default Value | Possible Data Types | Optional | Dynamic |
@@ -4732,7 +4357,7 @@ QUERY PARAMETERS
 | group.id       | The given group id of the regex expression. For example, `2`.                                                  |               | INT                 | No       | Yes     |
 
 EXAMPLE 1
-```js
+```
     regex:group('\d\d(.*)(gdn.*)(gdn.*)', '21 products are produced within 10 years by gdn currently by gdn employees', 3)
 ```
 
@@ -4746,9 +4371,9 @@ and unlike
 `regex:matches() it does not require that the entire input.sequence be matched.`
 
 Syntax
-```js
+
     <BOOL> regex:lookingAt(<STRING> regex, <STRING> input.sequence)
-```
+
 QUERY PARAMETERS
 
 | Name           | Description                                                                                                    | Default Value | Possible Data Types | Optional | Dynamic |
@@ -4796,7 +4421,7 @@ Function matches the entire input.sequence against
 `true`.
 
 EXAMPLE 2
-```js
+```
     regex:matches('gdn(.*)middleware', 'gdn is situated in trace and its a middleware company')
 ```
 
@@ -4815,14 +4440,14 @@ is best for reordering events on attributes those are used for
 aggregations.data .
 
 Syntax
-```js
+
     reorder:akslack(<LONG> timestamp, <INT|FLOAT|LONG|DOUBLE> correlation.field)
     reorder:akslack(<LONG> timestamp, <INT|FLOAT|LONG|DOUBLE> correlation.field, <LONG> batch.size)
     reorder:akslack(<LONG> timestamp, <INT|FLOAT|LONG|DOUBLE> correlation.field, <LONG> batch.size, <LONG> timeout)
     reorder:akslack(<LONG> timestamp, <INT|FLOAT|LONG|DOUBLE> correlation.field, <LONG> batch.size, <LONG> timeout, <LONG> max.k)
     reorder:akslack(<LONG> timestamp, <INT|FLOAT|LONG|DOUBLE> correlation.field, <LONG> batch.size, <LONG> timeout, <LONG> max.k, <BOOL> discard.late.arrival)
     reorder:akslack(<LONG> timestamp, <INT|FLOAT|LONG|DOUBLE> correlation.field, <LONG> batch.size, <LONG> timeout, <LONG> max.k, <BOOL> discard.late.arrival, <DOUBLE> error.threshold, <DOUBLE> confidence.level)
-```
+
 QUERY PARAMETERS
 
 | Name                 | Description                                                                                                                                                                                                                                     | Default Value                                          | Possible Data Types   | Optional | Dynamic |
@@ -4837,14 +4462,14 @@ QUERY PARAMETERS
 | confidence.level     | The confidence level to be applied in Alpha K-Slack algorithm.                                                                                                                                                                                  | \`0.95\` (95%)                                         | DOUBLE                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    define stream StockStream (eventTime long, symbol string, volume long);
+
+    CREATE STREAM StockStream (eventTime long, symbol string, volume long);
 
     @info(name = 'query1')
-    from StockStream#reorder:akslack(eventTime, volume, 20)#window.time(5 min)
+    insert into OutputStream
     select eventTime, symbol, sum(volume) as total
-    insert into OutputStream;
-```
+    from StockStream#reorder:akslack(eventTime, volume, 20) WINDOW SLIDING_TIME(5 min);
+
 The query reorders events based on the `eventTime` attribute value and
 optimises for aggregating `volume` attribute considering last 20
 events.
@@ -4856,14 +4481,14 @@ Stream processor performs reordering of out-of-order events using
 algorithm\](https://www2.informatik.uni-erlangen.de/publication/download/IPDPS2013.pdf).
 
 Syntax
-```js
+
     reorder:kslack(<LONG> timestamp)
     reorder:kslack(<LONG> timestamp, <LONG> timeout)
     reorder:kslack(<LONG> timestamp, <BOOL> discard.late.arrival)
     reorder:kslack(<LONG> timestamp, <LONG> timeout, <LONG> max.k)
     reorder:kslack(<LONG> timestamp, <LONG> timeout, <BOOL> discard.late.arrival)
     reorder:kslack(<LONG> timestamp, <LONG> timeout, <LONG> max.k, <BOOL> discard.late.arrival)
-```
+
 QUERY PARAMETERS
 
 | Name                 | Description                                                                                                                                                             | Default Value                                          | Possible Data Types | Optional | Dynamic |
@@ -4874,14 +4499,14 @@ QUERY PARAMETERS
 | discard.late.arrival | If set to `true` the processor would discarded the out-of-order events arriving later than the K-Slack window, and in otherwise it allows the late arrivals to proceed. | false                                                  | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    define stream StockStream (eventTime long, symbol string, volume long);
+
+    CREATE STREAM StockStream (eventTime long, symbol string, volume long);
 
     @info(name = 'query1')
-    from StockStream#reorder:kslack(eventTime, 5000)
+    insert into OutputStream
     select eventTime, symbol, volume
-    insert into OutputStream;
-```
+    from StockStream#reorder:kslack(eventTime, 5000);
+
 The query reorders events based on the `eventTime` attribute value,
 and it forcefully flushes all the events who have arrived older than the
 given `timeout` value (`5000` milliseconds) every second.
@@ -4894,20 +4519,20 @@ Script
 This extension allows you to include JavaScript functions within the Query Language.
 
 Syntax
-```js
+
     define function <FunctionName>[javascript] return <type> {
         // Script code
     };
-```
+
 EXAMPLE 1
-```js
+
     define function concatJ[JavaScript] return string {"  var str1 = data[0];
      var str2 = data[1];
      var str3 = data[2];
      var res = str1.concat(str2,str3);
      return res;
     };
-```
+
 This JS function will consume 3 var variables, concatenate them and will
 return as a string
 
@@ -4934,9 +4559,10 @@ option. For gmail accounts, you can enable this option via
 https://myaccount.google.com/lesssecureapps.
 
 Syntax
-```js
-    @sink(type="email", username="<STRING>", address="<STRING>", password="<STRING>", host="<STRING>", port="<INT>", ssl.enable="<BOOL>", auth="<BOOL>", content.type="<STRING>", subject="<STRING>", to="<STRING>", cc="<STRING>", bcc="<STRING>", attachments="<STRING>", connection.pool.size="<INT>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="email", map.type="<STRING>", username="<STRING>", address="<STRING>", password="<STRING>", host="<STRING>", port="<INT>", ssl.enable="<BOOL>", auth="<BOOL>", content.type="<STRING>", subject="<STRING>", to="<STRING>", cc="<STRING>", bcc="<STRING>", attachments="<STRING>", connection.pool.size="<INT>")
+
+
 QUERY PARAMETERS
 
 | Name                 | Description                                                                                                                                                                                                                                                                   | Default Value                                              | Possible Data Types | Optional | Dynamic |
@@ -4996,7 +4622,7 @@ System Parameters
 
 EXAMPLE 1
 
-    @sink(type='email', @map(type ='json'), username='sender.account', address='sender.account@gmail.com',password='account.password',subject='Alerts from gdn Stream Processor',to='{{email}}',)define stream FooStream (email string, loginId int, name string);
+    CREATE SINK FooStream WITH (type='email', map.type ='json', username='sender.account', address='sender.account@gmail.com',password='account.password',subject='Alerts from gdn Stream Processor',to='{{email}}') (email string, loginId int, name string);
 
 This example illustrates how to publish events via an email sink based
 on the values provided for the mandatory parameters. As shown in the
@@ -5007,23 +4633,19 @@ secure connection.
 
 EXAMPLE 2
 
-    @sink(type='email', @map(type ='json'), subject='Alerts from gdn Stream Processor',to='{{email}}',)define stream FooStream (email string, loginId int, name string);
+    CREATE SINK FooStream WITH type='email', map.type ='json', subject='Alerts from gdn Stream Processor',to='{{email}}') (email string, loginId int, name string);
 
 This example illustrates how to configure the query parameters and the
-system parameters in the `deployment.yaml` file. Â Corresponding
-parameters need to be configured under `email`, and namespace:`sink`
-as follows: Â Â stream processor: extensions: Â Â Â Â Â Â - extension:
-Â Â Â Â Â Â Â Â Â Â name:`email` Â Â Â Â Â Â Â Â Â Â namespace:`sink`
-Â Â Â Â Â Â Â Â Â Â properties: Â Â Â Â Â Â Â Â Â Â Â Â username: <sender's email username>
-Â Â Â Â Â Â Â Â Â Â Â Â address: <sender's email address> Â Â Â Â Â Â Â Â Â Â Â Â password:
-<sender's email password> As shown in the example, events from the
+system parameters in the `deployment.yaml` file. 
+
+As shown in the example, events from the
 FooStream are published in `json` format via the email sink as emails
 to the given `to` recipients. The email is sent from the
 `sender.account@gmail.com` address via a secure connection.
 
 EXAMPLE 3
 
-    @sink(type='email', @map(type ='json'), username='sender.account', address='sender.account@gmail.com',password='account.password',host='smtp.gmail.com',port='465',ssl.enable='true',auth='true',content.type='text/html',subject='Alerts from gdn Stream Processor-{{name}}',to='to1.account@gmail.com, to2.account@gmail.com',cc='cc1.account@gmail.com, cc2.account@gmail.com',bcc='bcc1.account@gmail.com)define stream FooStream (name string, age int, country string);
+    CREATE SINK FooStream WITH (type='email', map.type ='json', username='sender.account', address='sender.account@gmail.com',password='account.password',host='smtp.gmail.com',port='465',ssl.enable='true',auth='true',content.type='text/html',subject='Alerts from gdn Stream Processor-{{name}}',to='to1.account@gmail.com, to2.account@gmail.com',cc='cc1.account@gmail.com, cc2.account@gmail.com',bcc='bcc1.account@gmail.com) (name string, age int, country string);
 
 This example illustrates how to publish events via the email sink.
 Events from the `FooStream` stream are published in `xml` format via
@@ -5033,11 +4655,11 @@ namespace in the `subject` attribute is the value of the `name`
 parameter in the corresponding output event.
 
 EXAMPLE 4
-
-    @sink(type='email', @map(type ='json'), username='sender.account', address='sender.account@gmail.com',password='account.password',host='smtp.gmail.com',port='465',ssl.enable='true',auth='true',content.type='text/html',subject='Alerts from gdn Stream Processor-{{name}}',to='to1.account@gmail.com, to2.account@gmail.com',cc='cc1.account@gmail.com, cc2.account@gmail.com',bcc='bcc1.account@gmail.comattachments= '{{attachments}}')define stream FooStream (name string, age int, country string, attachments string);
+    
+    CREATE SINK FooStream WITH (type='email', map.type ='json', username='sender.account', address='sender.account@gmail.com',password='account.password',host='smtp.gmail.com',port='465',ssl.enable='true',auth='true',content.type='text/html',subject='Alerts from gdn Stream Processor-{{name}}',to='to1.account@gmail.com, to2.account@gmail.com',cc='cc1.account@gmail.com, cc2.account@gmail.com',bcc='bcc1.account@gmail.comattachments= '{{attachments}}') (name string, age int, country string, attachments string);
 
 This example illustrates how to publish events via the email sink. Here,
-the email also contains attachments. Â Events from the FooStream are
+the email also contains attachments. Events from the FooStream are
 published in `xml` format via the email sink as a `text/html`
 message to the specified `to`,`cc`, and `bcc` recipients via a
 secure connection. The `name` namespace in the `subject` attribute
@@ -5045,34 +4667,6 @@ is the value for the `name` parameter in the corresponding output
 event. The attachments included in the email message are the local files
 available in the path specified as the value for the `attachments`
 attribute.
-
-### file (Sink)
-
-File Sink can be used to publish (write) event data which is processed
-within stream processor to files. File sink provides support to write
-both textual and binary data into files
-
-Syntax
-```js
-    @sink(type="file", file.uri="<STRING>", append="<BOOL>", add.line.separator="<BOOL>", @map(...)))
-```
-QUERY PARAMETERS
-
-| Name               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Default Value                                       | Possible Data Types | Optional | Dynamic |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|---------------------|----------|---------|
-| file.uri           | Used to specify the file for data to be written.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                     | STRING              | No       | Yes     |
-| append             | This parameter is used to specify whether the data should be append to the file or not. If append = `true`, data will be write at the end of the file without changing the existing content. If file does not exist, a new fill will be crated and then data will be written. If append append = `false`, If given file exists, existing content will be deleted and then data will be written back to the file. If given file does not exist, a new file will be created and then data will be written on it. | true                                                | BOOL                | Yes      | No      |
-| add.line.separator | This parameter is used to specify whether events added to the file should be separated by a newline. If add.event.separator= `true`,then a newline will be added after data is added to the file.                                                                                                                                                                                                                                                                                                                | true. (However, if csv mapper is used, it is false) | BOOL                | Yes      | No      |
-
-EXAMPLE 1
-
-    @sink(type='file', @map(type='json'), append='false', file.uri='/abc/{{symbol}}.txt') define stream BarStream (symbol string, price float, volume long);
-
-Under above configuration, for each event, a file will be generated if
-there's no such a file,and then data will be written to that file as
-json messagesoutput will looks like below. { Â Â Â Â "event":{
-Â Â Â Â Â Â Â Â "symbol":"gdn", Â Â Â Â Â Â Â Â "price":55.6,
-Â Â Â Â Â Â Â Â "volume":100 Â Â Â Â } }
 
 ### grpc (Sink)
 
@@ -5088,9 +4682,9 @@ expect a response back. I.e getting a google.protobuf.Empty response
 back.
 
 Syntax
-```js
-    @sink(type="grpc", publisher.url="<STRING>", headers="<STRING>", idle.timeout="<LONG>", keep.alive.time="<LONG>", keep.alive.timeout="<LONG>", keep.alive.without.calls="<BOOL>", enable.retry="<BOOL>", max.retry.attempts="<INT>", retry.buffer.size="<LONG>", per.rpc.buffer.size="<LONG>", channel.termination.waiting.time="<LONG>", truststore.file="<STRING>", truststore.password="<STRING>", truststore.algorithm="<STRING>", tls.store.type="<STRING>", keystore.file="<STRING>", keystore.password="<STRING>", keystore.algorithm="<STRING>", enable.ssl="<BOOL>", mutual.auth.enabled="<BOOL>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="grpc", map.type="<STRING>", publisher.url="<STRING>", headers="<STRING>", idle.timeout="<LONG>", keep.alive.time="<LONG>", keep.alive.timeout="<LONG>", keep.alive.without.calls="<BOOL>", enable.retry="<BOOL>", max.retry.attempts="<INT>", retry.buffer.size="<LONG>", per.rpc.buffer.size="<LONG>", channel.termination.waiting.time="<LONG>", truststore.file="<STRING>", truststore.password="<STRING>", truststore.algorithm="<STRING>", tls.store.type="<STRING>", keystore.file="<STRING>", keystore.password="<STRING>", keystore.algorithm="<STRING>", enable.ssl="<BOOL>", mutual.auth.enabled="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                             | Description                                                                                                                                                                                                                                                                                                           | Default Value   | Possible Data Types | Optional | Dynamic |
@@ -5117,12 +4711,9 @@ QUERY PARAMETERS
 | mutual.auth.enabled              | to enable mutual authentication. If set to true and truststore.file or keystore.file is not given then it will be set to default carbon jks by default                                                                                                                                                                | FALSE           | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='grpc',
-          publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.EventService/consume',
-          @map(type='json'))
-    define stream FooStream (message String);
-```
+
+    CREATE SINK FooStream WITH (type='grpc', map.type='JSON', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.EventService/consume') (message String);
+
 Here a stream named FooStream is defined with grpc sink. A grpc server
 should be running at 194.23.98.100 listening to port 8080. sink.id is
 set to 1 here. So we can write a source with sink.id 1 so that it will
@@ -5131,37 +4722,26 @@ since we are using EventService/consume the sink will be operating in
 default mode
 
 EXAMPLE 2
-```js
-    @sink(type='grpc',
-          publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.EventService/consume',
-          headers='{{headers}}',
-          @map(type='json'),
-               @payload('{{message}}'))
-    define stream FooStream (message String, headers String);
-```
+
+    CREATE SINK FooStream WITH (type='grpc', map.type='JSON', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.EventService/consume', headers='{{headers}}', map.payload='{{message}}') (message String, headers String);
+
 A similar example to above but with headers. Headers are also send into
 the stream as a data. In the sink headers dynamic property reads the
 value and sends it as MetaData with the request
 
 EXAMPLE 3
-```js
-    @sink(type='grpc',
-          publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.MyService/send',
-          @map(type='protobuf'),
-    define stream FooStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
-```
+
+    CREATE SINK FooStream WITH (type='grpc', map.type='protobuf', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.MyService/send') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
+
 Here a stream named FooStream is defined with grpc sink. A grpc server
 should be running at 134.23.43.35 listening to port 8080 since there is
 no mapper provided, attributes of stream definition should be as same as
 the attributes of protobuf message definition.
 
 EXAMPLE 4
-```js
-    @sink(type='grpc',
-          publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.MyService/testMap',
-          @map(type='protobuf'),
-    define stream FooStream (stringValue string, intValue int,map object);
-```
+
+    CREATE SINK FooStream WITH (type='grpc', map.type='protobuf', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.MyService/testMap') (stringValue string, intValue int,map object);
+
 Here a stream named FooStream is defined with grpc sink. A grpc server
 should be running at 134.23.43.35 listening to port 8080. The `map
 object` in the stream definition defines that this stream is going to
@@ -5169,29 +4749,22 @@ use Map object with grpc service. We can use any map object that extends
 `java.util.AbstractMap` class.
 
 EXAMPLE 5
-```js
-    @sink(type='grpc',
-          publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.MyService/testMap',
-          @map(type='protobuf',
-    @payload(stringValue='a',longValue='b',intValue='c',booleanValue='d',floatValue = 'e', doubleValue = 'f')))
-    define stream FooStream (a string, b long, c int,d bool,e float,f double);
-```
+
+    CREATE SINK FooStream WITH (type='grpc', map.type='protobuf', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.MyService/testMap', map.payload="stringValue='a',longValue='b',intValue='c',booleanValue='d',floatValue = 'e', doubleValue = 'f'"') (a string, b long, c int,d bool,e float,f double);
+
 Here a stream named FooStream is defined with grpc sink. A grpc server
-should be running at 194.23.98.100 listening to port 8080. \@payload is
+should be running at 194.23.98.100 listening to port 8080. `map.payload` is
 provided in this stream, therefore we can use any name for the
 attributes in the stream definition, but we should correctly map those
 names with protobuf message attributes. If we are planning to send
-metadata within a stream we should use \@payload to map attributes to
+metadata within a stream we should use `map.payload` to map attributes to
 identify the metadata attribute and the protobuf attributes separately.
 
 EXAMPLE 6
-```js
-    @sink(type='grpc',
-          publisher.url = 'grpc://194.23.98.100:8888/org.gdn.grpc.test.StreamService/clientStream',
-          @map(type='protobuf'))
-    define stream FooStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
-```
-Here in the grpc sink, we are sending a stream of requests to the server
+
+    CREATE SINK FooStream WITH (type='grpc', map.type='protobuf', publisher.url = 'grpc://194.23.98.100:8888/org.gdn.grpc.test.StreamService/clientStream') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
+
+Here in the `grpc` sink, we are sending a stream of requests to the server
 that runs on 194.23.98.100 and port 8888. When we need to send a stream
 of requests from the grpc sink we have to define a client stream RPC
 method.Then the stream processor will identify whether it's a unary method or a
@@ -5213,9 +4786,9 @@ responses. A unique sink.id is used to correlate between the sink and
 its corresponding source.
 
 Syntax
-```js
-    @sink(type="grpc-call", publisher.url="<STRING>", sink.id="<INT>", headers="<STRING>", idle.timeout="<LONG>", keep.alive.time="<LONG>", keep.alive.timeout="<LONG>", keep.alive.without.calls="<BOOL>", enable.retry="<BOOL>", max.retry.attempts="<INT>", retry.buffer.size="<LONG>", per.rpc.buffer.size="<LONG>", channel.termination.waiting.time="<LONG>", max.inbound.message.size="<LONG>", max.inbound.metadata.size="<LONG>", truststore.file="<STRING>", truststore.password="<STRING>", truststore.algorithm="<STRING>", tls.store.type="<STRING>", keystore.file="<STRING>", keystore.password="<STRING>", keystore.algorithm="<STRING>", enable.ssl="<BOOL>", mutual.auth.enabled="<BOOL>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="grpc-call", map.type="<STRING>" publisher.url="<STRING>", sink.id="<INT>", headers="<STRING>", idle.timeout="<LONG>", keep.alive.time="<LONG>", keep.alive.timeout="<LONG>", keep.alive.without.calls="<BOOL>", enable.retry="<BOOL>", max.retry.attempts="<INT>", retry.buffer.size="<LONG>", per.rpc.buffer.size="<LONG>", channel.termination.waiting.time="<LONG>", max.inbound.message.size="<LONG>", max.inbound.metadata.size="<LONG>", truststore.file="<STRING>", truststore.password="<STRING>", truststore.algorithm="<STRING>", tls.store.type="<STRING>", keystore.file="<STRING>", keystore.password="<STRING>", keystore.algorithm="<STRING>", enable.ssl="<BOOL>", mutual.auth.enabled="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                             | Description                                                                                                                                                                                                                                                                                                           | Default Value   | Possible Data Types | Optional | Dynamic |
@@ -5245,14 +4818,11 @@ QUERY PARAMETERS
 | mutual.auth.enabled              | to enable mutual authentication. If set to true and truststore.file or keystore.file is not given then it will be set to default carbon jks by default                                                                                                                                                                | FALSE           | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='grpc-call',
-          publisher.url = 'grpc://194.23.98.100:8080/EventService/process',
-          sink.id= '1', @map(type='json'))
-    define stream FooStream (message String);
-    @source(type='grpc-call-response', sink.id= '1')
-    define stream BarStream (message String);
-```
+
+    CREATE SINK FooStream WITH (type='grpc-call', map.type='json', publisher.url = 'grpc://194.23.98.100:8080/EventService/process', sink.id= '1') (message String);
+
+    CREATE SOURCE BarStream WITH (type='grpc-call-response', sink.id= '1') (message String);
+
 Here a stream named FooStream is defined with grpc sink. A grpc server
 should be running at 194.23.98.100 listening to port 8080. sink.id is
 set to 1 here. So we can write a source with sink.id 1 so that it will
@@ -5261,29 +4831,21 @@ since we are using EventService/process the sink will be operating in
 default mode
 
 EXAMPLE 2
-```js
-    @sink(type='grpc-call',
-          publisher.url = 'grpc://194.23.98.100:8080/EventService/process',
-          sink.id= '1', @map(type='json'))
-    define stream FooStream (message String);
 
-    @source(type='grpc-call-response', sink.id= '1')
-    define stream BarStream (message String);
-```
+    CREATE SINK FooStream WITH (type='grpc-call`, map.type='json', publisher.url = 'grpc://194.23.98.100:8080/EventService/process', sink.id= '1',) (message String);
+
+    CREATE SOURCE BarStream WITH (type='grpc-call-response', sink.id= '1') (message String);
+
 Here with the same FooStream definition we have added a BarStream which
 has a grpc-call-response source with the same sink.id 1. So the
 responses for calls sent from the FooStream will be added to BarStream.
 
 EXAMPLE 3
-```js
-    @sink(type='grpc-call',
-          publisher.url = 'grpc://194.23.98.100:8888/org.gdn.grpc.test.MyService/process',
-          sink.id= '1', @map(type='protobuf'))
-    define stream FooStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
 
-    @source(type='grpc-call-response', receiver.url = 'grpc://localhost:8888/org.gdn.grpc.MyService/process', sink.id= '1',
-    @map(type='protobuf'))define stream FooStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
-```
+    CREATE SINK FooStream WITH (type='grpc-call`, map.type='protobuf', publisher.url = 'grpc://194.23.98.100:8888/org.gdn.grpc.test.MyService/process', sink.id= '1') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
+
+    CREATE SOURCE FooStream WITH (type='grpc-call-response', map.type='protobuf', receiver.url = 'grpc://localhost:8888/org.gdn.grpc.MyService/process', sink.id= '1',) (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
+
 Here a stream named FooStream is defined with grpc sink. A grpc server
 should be running at 194.23.98.100 listening to port 8080. We have added
 another stream called BarStream which is a grpc-call-response source
@@ -5297,15 +4859,11 @@ stream processor event, we can give any address and any port number in the URL,
 but we should provide the service name and the method name correctly)
 
 EXAMPLE 4
-```js
-    @sink(type='grpc-call',
-          publisher.url = 'grpc://194.23.98.100:8888/org.gdn.grpc.test.MyService/process',
-          sink.id= '1', @map(type='protobuf',
-    @payload(stringValue='a',longValue='c',intValue='b',booleanValue='d',floatValue = 'e', doubleValue = 'f')))define stream FooStream (a string, b int,c long,d bool,e float,f double);
 
-    @source(type='grpc-call-response', receiver.url = 'grpc://localhost:8888/org.gdn.grpc.test.MyService/process', sink.id= '1',
-    @map(type='protobuf',@attributes(a = 'stringValue', b = 'intValue', c = 'longValue',d = 'booleanValue', e ='floatValue', f ='doubleValue')))define stream FooStream (a string, b int,c long,d bool,e float,f double);
-```
+    CREATE SINK FooStream WITH (type='grpc-call', map.type='protobuf', publisher.url = 'grpc://194.23.98.100:8888/org.gdn.grpc.test.MyService/process', sink.id= '1', map.payload="stringValue='a',longValue='c',intValue='b',booleanValue='d',floatValue = 'e', doubleValue = 'f'") (a string, b int,c long,d bool,e float,f double);
+
+    CREATE SOURCE FooStream WITH (type='grpc-call-response', map.type='protobuf', receiver.url = 'grpc://localhost:8888/org.gdn.grpc.test.MyService/process', sink.id= '1', map.attributes="a = 'stringValue', b = 'intValue', c = 'longValue',d = 'booleanValue', e ='floatValue', f ='doubleValue'") (a string, b int,c long,d bool,e float,f double);
+
 Here with the same FooStream definition we have added a BarStream which
 has a grpc-call-response source with the same sink.id 1. So the
 responses for calls sent from the FooStream will be added to BarStream.
@@ -5322,9 +4880,9 @@ receiving requests through grpc-service source. This correlates with the
 particular source using a unique source.id
 
 Syntax
-```js
-    @sink(type="grpc-service-response", source.id="<INT>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="grpc-service-response", map-type="<STRING>", source.id="<INT>", )
+
 QUERY PARAMETERS
 
 | Name      | Description                                                                                                             | Default Value | Possible Data Types | Optional | Dynamic |
@@ -5332,22 +4890,15 @@ QUERY PARAMETERS
 | source.id | A unique id to identify the correct source to which this sink is mapped. There is a 1:1 mapping between source and sink |               | INT                 | No       | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='grpc-service-response',
-          source.id='1',
-          @map(type='json'))
-    define stream BarStream (messageId String, message String);
 
-    @source(type='grpc-service',
-            url='grpc://134.23.43.35:8080/org.gdn.grpc.EventService/process',
-            source.id='1',
-            @map(type='json',
-                 @attributes(messageId='trp:messageId', message='message')))
-    define stream FooStream (messageId String, message String);
-    from FooStream
+    CREATE SINK BarStream WITH (type='grpc-service-response', source.id='1', map.type='json') (messageId String, message String);
+
+    CREATE SOURCE FooStream WITH (type='grpc-service',url='grpc://134.23.43.35:8080/org.gdn.grpc.EventService/process', source.id='1', map.type='json', map.attributes="messageId='trp:messageId', message='message'") (messageId String, message String);
+
+    insert into BarStream
     select *
-    insert into BarStream;
-```
+    from FooStream;
+
 The grpc requests are received through the grpc-service sink. Each
 received event is sent back through grpc-service-source. This is just a
 passthrough as we are selecting everything from FooStream
@@ -5361,9 +4912,9 @@ It can also publish to endpoints protected by basic authentication or
 OAuth 2.0.
 
 Syntax
-```js
-    @sink(type="http", publisher.url="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", tls.store.type="<STRING>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="http", map.type="<STRING>" publisher.url="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", tls.store.type="<STRING>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Default Value                                                | Possible Data Types | Optional | Dynamic |
@@ -5379,19 +4930,19 @@ QUERY PARAMETERS
 | consumer.secret                 | Consumer secret used for calling endpoints protected by OAuth 2.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
 | token.url                       | Token URL to generate a new access tokens when calling endpoints protected by OAuth 2.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | \-                                                           | STRING              | Yes      | No      |
 | refresh.token                   | Refresh token used for generating new access tokens when calling endpoints protected by OAuth 2.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
-| headers                         | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When `Content-Type` header is not provided the system derives the Content-Type based on the provided sink mapper as following: Â - `@map(type='xml')`: `application/xml` Â - `@map(type='json')`: `application/json` Â - `@map(type='text')`: `plain/text` Â - `@map(type='keyvalue')`: `application/x-www-form-urlencoded` Â - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.                  | Content-Type and Content-Length headers                      | STRING              | Yes      | No      |
+| headers                         | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When `Content-Type` header is not provided the system derives the Content-Type based on the provided sink mapper as following:  - `map.type='xml'`: `application/xml`  - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.                  | Content-Type and Content-Length headers                      | STRING              | Yes      | No      |
 | method                          | The HTTP method used for calling the endpoint.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | POST                                                         | STRING              | Yes      | No      |
 | socket.idle.timeout             | Socket timeout in millis.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 6000                                                         | INT                 | Yes      | No      |
 | chunk.disabled                  | Disable chunked transfer encoding.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | false                                                        | BOOL                | Yes      | No      |
 | ssl.protocol                    | SSL/TLS protocol.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | TLS                                                          | STRING              | Yes      | No      |
 | ssl.verification.disabled       | Disable SSL verification.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | false                                                        | BOOL                | Yes      | No      |
 | tls.store.type                  | TLS store type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | JKS                                                          | STRING              | Yes      | No      |
-| ssl.configurations              | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters: Â - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'` Â - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'` Â - Enable session creation: `'client.enable.session.creation:true'` Â - Supported server names: `'server.suported.server.names:server'` Â - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                              | \-                                                           | STRING              | Yes      | No      |
+| ssl.configurations              | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters:  - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'`  - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'`  - Enable session creation: `'client.enable.session.creation:true'`  - Supported server names: `'server.suported.server.names:server'`  - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                              | \-                                                           | STRING              | Yes      | No      |
 | proxy.host                      | Proxy server host                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
 | proxy.port                      | Proxy server port                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
 | proxy.username                  | Proxy server username                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | \-                                                           | STRING              | Yes      | No      |
 | proxy.password                  | Proxy server password                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | \-                                                           | STRING              | Yes      | No      |
-| client.bootstrap.configurations | Client bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Client connect timeout in millis: `'client.bootstrap.connect.timeout:15000'` Â - Client socket timeout in seconds: `'client.bootstrap.socket.timeout:15'` Â - Client socket reuse: `'client.bootstrap.socket.reuse:true'` Â - Enable TCP no delay: `'client.bootstrap.nodelay:true'` Â - Enable client keep alive: `'client.bootstrap.keepalive:true'` Â - Send buffer size: `'client.bootstrap.sendbuffersize:1048576'` Â - Receive buffer size: `'client.bootstrap.recievebuffersize:1048576'` | \-                                                           | STRING              | Yes      | No      |
+| client.bootstrap.configurations | Client bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Client connect timeout in millis: `'client.bootstrap.connect.timeout:15000'`  - Client socket timeout in seconds: `'client.bootstrap.socket.timeout:15'`  - Client socket reuse: `'client.bootstrap.socket.reuse:true'`  - Enable TCP no delay: `'client.bootstrap.nodelay:true'`  - Enable client keep alive: `'client.bootstrap.keepalive:true'`  - Send buffer size: `'client.bootstrap.sendbuffersize:1048576'`  - Receive buffer size: `'client.bootstrap.recievebuffersize:1048576'` | \-                                                           | STRING              | Yes      | No      |
 | max.pool.active.connections     | Maximum possible number of active connection per client pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | -1                                                           | INT                 | Yes      | No      |
 | min.pool.idle.connections       | Minimum number of idle connections that can exist per client pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 0                                                            | INT                 | Yes      | No      |
 | max.pool.idle.connections       | Maximum number of idle connections that can exist per client pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 100                                                          | INT                 | Yes      | No      |
@@ -5414,16 +4965,14 @@ System Parameters
 | trustStorePassword             | The default truststore password.                                                                                                        | gdncarbon                                                   | Truststore password as string           |
 
 EXAMPLE 1
-```js
-    @sink(type = 'http', publisher.url = 'http://stocks.com/stocks',
-          @map(type = 'json'))
-    define stream StockStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK StockStream WITH (type = 'http', map.type = 'json', publisher.url = 'http://stocks.com/stocks') (symbol string, price float, volume long);
+
 Events arriving on the StockStream will be published to the HTTP
 endpoint `http://stocks.com/stocks` using `POST` method with
 Content-Type `application/json` by converting those events to the
 default JSON format as following:
-```js
+
     {
       "event": {
         "symbol": "FB",
@@ -5431,35 +4980,29 @@ default JSON format as following:
         "volume": 5000
       }
     }
-```
+
 EXAMPLE 2
-```js
-    @sink(type='http', publisher.url = 'http://localhost:8009/foo',
-          client.bootstrap.configurations = "'client.bootstrap.socket.timeout:20'",
-          max.pool.active.connections = '1', headers = "{{headers}}",
-          @map(type='xml', @payload("""<stock>
-    {{payloadBody}}
-    </stock>""")))
-    define stream FooStream (payloadBody String, headers string);
-```
+          
+    CREATE SINK FooStream WITH (type='http', map.type='xml', publisher.url = 'http://localhost:8009/foo', client.bootstrap.configurations = "'client.bootstrap.socket.timeout:20'", max.pool.active.connections = '1', headers = "{{headers}}", map.payload="""<stock>{{payloadBody}}</stock>""") (payloadBody String, headers string);
+
 Events arriving on FooStream will be published to the HTTP endpoint
 `http://localhost:8009/foo` using `POST` method with Content-Type
 `application/xml` and setting `payloadBody` and `header` attribute
 values. If the `payloadBody` contains
-```js
+
     <symbol>gdn</symbol>
     <price>55.6</price>
     <volume>100</volume>
-```
+
 and `header` contains `'topic:foobar'` values, then the system will
 generate an output with the body:
-```js
+
     <stock>
     <symbol>gdn</symbol>
     <price>55.6</price>
     <volume>100</volume>
     </stock>
-```
+
 and HTTP headers: `Content-Length:xxx`, `Content-Location:'xxx'`,
 `Content-Type:'application/xml'`, `HTTP_METHOD:'POST'`
 
@@ -5472,9 +5015,9 @@ http-call-response source. It also supports calling endpoints protected
 with basic authentication or OAuth 2.0.
 
 Syntax
-```js
-    @sink(type="http-call", publisher.url="<STRING>", sink.id="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", downloading.enabled="<BOOL>", download.path="<STRING>", blocking.io="<BOOL>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="http-call", map.type="<STRING>", publisher.url="<STRING>", sink.id="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", downloading.enabled="<BOOL>", download.path="<STRING>", blocking.io="<BOOL>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Default Value                                                | Possible Data Types | Optional | Dynamic |
@@ -5491,7 +5034,7 @@ QUERY PARAMETERS
 | consumer.secret                 | Consumer secret used for calling endpoints protected by OAuth 2.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
 | token.url                       | Token URL to generate a new access tokens when calling endpoints protected by OAuth 2.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | \-                                                           | STRING              | Yes      | No      |
 | refresh.token                   | Refresh token used for generating new access tokens when calling endpoints protected by OAuth 2.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
-| headers                         | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following: Â - `@map(type='xml')`: `application/xml` Â - `@map(type='json')`: `application/json` Â - `@map(type='text')`: `plain/text` Â - `@map(type='keyvalue')`: `application/x-www-form-urlencoded` Â - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.              | Content-Type and Content-Length headers                      | STRING              | Yes      | No      |
+| headers                         | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following:  - `map.type='xml'`: `application/xml`  - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.              | Content-Type and Content-Length headers                      | STRING              | Yes      | No      |
 | method                          | The HTTP method used for calling the endpoint.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | POST                                                         | STRING              | Yes      | No      |
 | downloading.enabled             | Enable response received by the http-call-response source to be written to a file. When this is enabled the `download.path` property should be also set.                                                                                                                                                                                                                                                                                                                                                                                                                                                     | false                                                        | BOOL                | Yes      | No      |
 | download.path                   | The absolute file path along with the file name where the downloads should be saved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | \-                                                           | STRING              | Yes      | Yes     |
@@ -5500,12 +5043,12 @@ QUERY PARAMETERS
 | chunk.disabled                  | Disable chunked transfer encoding.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | false                                                        | BOOL                | Yes      | No      |
 | ssl.protocol                    | SSL/TLS protocol.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | TLS                                                          | STRING              | Yes      | No      |
 | ssl.verification.disabled       | Disable SSL verification.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | false                                                        | BOOL                | Yes      | No      |
-| ssl.configurations              | SSL/TSL configurations. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters: Â - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'` Â - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'` Â - Enable session creation: `'client.enable.session.creation:true'` Â - Supported server names: `'server.suported.server.names:server'` Â - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                       | \-                                                           | STRING              | Yes      | No      |
+| ssl.configurations              | SSL/TSL configurations. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters:  - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'`  - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'`  - Enable session creation: `'client.enable.session.creation:true'`  - Supported server names: `'server.suported.server.names:server'`  - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                       | \-                                                           | STRING              | Yes      | No      |
 | proxy.host                      | Proxy server host                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
 | proxy.port                      | Proxy server port                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
 | proxy.username                  | Proxy server username                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | \-                                                           | STRING              | Yes      | No      |
 | proxy.password                  | Proxy server password                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | \-                                                           | STRING              | Yes      | No      |
-| client.bootstrap.configurations | Client bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Client connect timeout in millis: `'client.bootstrap.connect.timeout:15000'` Â - Client socket timeout in seconds: `'client.bootstrap.socket.timeout:15'` Â - Client socket reuse: `'client.bootstrap.socket.reuse:true'` Â - Enable TCP no delay: `'client.bootstrap.nodelay:true'` Â - Enable client keep alive: `'client.bootstrap.keepalive:true'` Â - Send buffer size: `'client.bootstrap.sendbuffersize:1048576'` Â - Receive buffer size: `'client.bootstrap.recievebuffersize:1048576'` | \-                                                           | STRING              | Yes      | No      |
+| client.bootstrap.configurations | Client bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Client connect timeout in millis: `'client.bootstrap.connect.timeout:15000'`  - Client socket timeout in seconds: `'client.bootstrap.socket.timeout:15'`  - Client socket reuse: `'client.bootstrap.socket.reuse:true'`  - Enable TCP no delay: `'client.bootstrap.nodelay:true'`  - Enable client keep alive: `'client.bootstrap.keepalive:true'`  - Send buffer size: `'client.bootstrap.sendbuffersize:1048576'`  - Receive buffer size: `'client.bootstrap.recievebuffersize:1048576'` | \-                                                           | STRING              | Yes      | No      |
 | max.pool.active.connections     | Maximum possible number of active connection per client pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | -1                                                           | INT                 | Yes      | No      |
 | min.pool.idle.connections       | Minimum number of idle connections that can exist per client pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 0                                                            | INT                 | Yes      | No      |
 | max.pool.idle.connections       | Maximum number of idle connections that can exist per client pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 100                                                          | INT                 | Yes      | No      |
@@ -5528,22 +5071,16 @@ System Parameters
 | trustStorePassword             | The default truststore password.                                                                                                        | gdncarbon                                                   | Truststore password as string           |
 
 EXAMPLE 1
-```js
-    @sink(type='http-call', sink.id='foo',
-          publisher.url='http://localhost:8009/foo',
-          @map(type='xml', @payload('{{payloadBody}}')))
-    define stream FooStream (payloadBody string);
-
-    @source(type='http-call-response', sink.id='foo',
-            @map(type='text', regex.A='((.|\n)*)',
-                 @attributes(headers='trp:headers', message='A[1]')))
-    define stream ResponseStream(message string, headers string);
 ```
+    CREATE SINK FooStream WITH (type='http-call', sink.id='foo', publisher.url='http://localhost:8009/foo', map.type='xml', map.payload="'{{payloadBody}}'") (payloadBody string);
+
+    CREATE SOURCE ResponseStream WITH (type='http-call-response', sink.id='foo', map.type='text', regex.A='((.|\n)*)', map.attributes="headers='trp:headers', message='A[1]'") (message string, headers string);
+
 When events arrive in `FooStream`, http-call sink makes calls to
 endpoint on url `http://localhost:8009/foo` with `POST` method and
 Content-Type `application/xml`. If the event `payloadBody` attribute
 contains following XML:
-```js
+
     <item>
         <name>apple</name>
         <price>55</price>
@@ -5558,22 +5095,12 @@ steam by assigning the message body as `message` attribute and response
 headers as `headers` attribute of the event.
 
 EXAMPLE 2
-```js
-    @sink(type='http-call', publisher.url='http://localhost:8005/files/{{name}}'
-          downloading.enabled='true', download.path='{{downloadPath}}{{name}}',
-          method='GET', sink.id='download', @map(type='json'))
-    define stream DownloadRequestStream(name String, id int, downloadPath string);
+```
+    CREATE SINK DownloadRequestStream WITH (type='http-call', publisher.url='http://localhost:8005/files/{{name}}', downloading.enabled='true', download.path='{{downloadPath}}{{name}}', method='GET', sink.id='download', map.type='json') (name String, id int, downloadPath string);
 
-    @source(type='http-call-response', sink.id='download',
-            http.status.code='2\\d+',
-            @map(type='text', regex.A='((.|\n)*)',
-                 @attributes(name='trp:name', id='trp:id', file='A[1]')))
-    define stream ResponseStream2xx(name string, id string, file string);
+    CREATE SOURCE ResponseStream2xx WITH (type='http-call-response', sink.id='download', http.status.code='2\\d+', map.type='text', map.regex.A='((.|\n)*)', map.attributes="name='trp:name', id='trp:id', file='A[1]'") (name string, id string, file string);
 
-    @source(type='http-call-response', sink.id='download',
-            http.status.code='4\\d+',
-            @map(type='text', regex.A='((.|\n)*)', @attributes(errorMsg='A[1]')))
-    define stream ResponseStream4xx(errorMsg string);
+    CREATE SOURCE ResponseStream4xx WITH (type='http-call-response', sink.id='download', http.status.code='4\\d+', map.type='text', map.regex.A='((.|\n)*)', map.attributes="errorMsg='A[1]'") (errorMsg string);
 ```
 When events arrive in `DownloadRequestStream` with `name`:`foo.txt`,
 `id`:`75` and `downloadPath`:`/user/download/` the http-call sink sends
@@ -5604,9 +5131,9 @@ also supports calling endpoints protected with basic authentication or
 OAuth 2.0.
 
 Syntax
-```js
-    @sink(type="http-request", publisher.url="<STRING>", sink.id="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", downloading.enabled="<BOOL>", download.path="<STRING>", blocking.io="<BOOL>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (sink.type="http-request", map.type="<STRING>", publisher.url="<STRING>", sink.id="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", downloading.enabled="<BOOL>", download.path="<STRING>", blocking.io="<BOOL>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Default Value                                                | Possible Data Types | Optional | Dynamic |
@@ -5623,7 +5150,7 @@ QUERY PARAMETERS
 | consumer.secret                 | Consumer secret used for calling endpoints protected by OAuth 2.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
 | token.url                       | Token URL to generate a new access tokens when calling endpoints protected by OAuth 2.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | \-                                                           | STRING              | Yes      | No      |
 | refresh.token                   | Refresh token used for generating new access tokens when calling endpoints protected by OAuth 2.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
-| headers                         | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following: Â - `@map(type='xml')`: `application/xml` Â - `@map(type='json')`: `application/json` Â - `@map(type='text')`: `plain/text` Â - `@map(type='keyvalue')`: `application/x-www-form-urlencoded` Â - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.              | Content-Type and Content-Length headers                      | STRING              | Yes      | No      |
+| headers                         | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following:  - `map.type='xml'`: `application/xml`  - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.              | Content-Type and Content-Length headers                      | STRING              | Yes      | No      |
 | method                          | The HTTP method used for calling the endpoint.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | POST                                                         | STRING              | Yes      | No      |
 | downloading.enabled             | Enable response received by the http-response source to be written to a file. When this is enabled the `download.path` property should be also set.                                                                                                                                                                                                                                                                                                                                                                                                                                                          | false                                                        | BOOL                | Yes      | No      |
 | download.path                   | The absolute file path along with the file name where the downloads should be saved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | \-                                                           | STRING              | Yes      | Yes     |
@@ -5632,12 +5159,12 @@ QUERY PARAMETERS
 | chunk.disabled                  | Disable chunked transfer encoding.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | false                                                        | BOOL                | Yes      | No      |
 | ssl.protocol                    | SSL/TLS protocol.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | TLS                                                          | STRING              | Yes      | No      |
 | ssl.verification.disabled       | Disable SSL verification.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | false                                                        | BOOL                | Yes      | No      |
-| ssl.configurations              | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters: Â - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'` Â - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'` Â - Enable session creation: `'client.enable.session.creation:true'` Â - Supported server names: `'server.suported.server.names:server'` Â - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                              | \-                                                           | STRING              | Yes      | No      |
+| ssl.configurations              | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters:  - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'`  - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'`  - Enable session creation: `'client.enable.session.creation:true'`  - Supported server names: `'server.suported.server.names:server'`  - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                              | \-                                                           | STRING              | Yes      | No      |
 | proxy.host                      | Proxy server host                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
 | proxy.port                      | Proxy server port                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | \-                                                           | STRING              | Yes      | No      |
 | proxy.username                  | Proxy server username                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | \-                                                           | STRING              | Yes      | No      |
 | proxy.password                  | Proxy server password                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | \-                                                           | STRING              | Yes      | No      |
-| client.bootstrap.configurations | Client bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Client connect timeout in millis: `'client.bootstrap.connect.timeout:15000'` Â - Client socket timeout in seconds: `'client.bootstrap.socket.timeout:15'` Â - Client socket reuse: `'client.bootstrap.socket.reuse:true'` Â - Enable TCP no delay: `'client.bootstrap.nodelay:true'` Â - Enable client keep alive: `'client.bootstrap.keepalive:true'` Â - Send buffer size: `'client.bootstrap.sendbuffersize:1048576'` Â - Receive buffer size: `'client.bootstrap.recievebuffersize:1048576'` | \-                                                           | STRING              | Yes      | No      |
+| client.bootstrap.configurations | Client bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Client connect timeout in millis: `'client.bootstrap.connect.timeout:15000'`  - Client socket timeout in seconds: `'client.bootstrap.socket.timeout:15'`  - Client socket reuse: `'client.bootstrap.socket.reuse:true'`  - Enable TCP no delay: `'client.bootstrap.nodelay:true'`  - Enable client keep alive: `'client.bootstrap.keepalive:true'`  - Send buffer size: `'client.bootstrap.sendbuffersize:1048576'`  - Receive buffer size: `'client.bootstrap.recievebuffersize:1048576'` | \-                                                           | STRING              | Yes      | No      |
 | max.pool.active.connections     | Maximum possible number of active connection per client pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | -1                                                           | INT                 | Yes      | No      |
 | min.pool.idle.connections       | Minimum number of idle connections that can exist per client pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 0                                                            | INT                 | Yes      | No      |
 | max.pool.idle.connections       | Maximum number of idle connections that can exist per client pool.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 100                                                          | INT                 | Yes      | No      |
@@ -5660,52 +5187,37 @@ System Parameters
 | trustStorePassword             | The default truststore password.                                                                                                        | gdncarbon                                                   | Truststore password as string           |
 
 EXAMPLE 1
-```js
-    @sink(type='http-request', sink.id='foo',
-          publisher.url='http://localhost:8009/foo',
-          @map(type='xml', @payload('{{payloadBody}}')))
-    define stream FooStream (payloadBody string);
-
-    @source(type='http-response', sink.id='foo',
-            @map(type='text', regex.A='((.|\n)*)',
-                 @attributes(headers='trp:headers', message='A[1]')))
-    define stream ResponseStream(message string, headers string);
 ```
+    CREATE SINK FooStream WITH (type='http-request', sink.id='foo', publisher.url='http://localhost:8009/foo', map.type='xml', map.payload="'{{payloadBody}}'") (payloadBody string);
+
+    CREATE SOURCE ResponseStream WITH (type='http-response', sink.id='foo', map.type='text', map.regex.A='((.|\n)*)', map.attributes="headers='trp:headers', message='A[1]'") (message string, headers string);
+
 When events arrive in `FooStream`, http-request sink makes calls to
 endpoint on url `http://localhost:8009/foo` with `POST` method and
 Content-Type `application/xml`. If the event `payloadBody` attribute
 contains following XML:
-```js
+
     <item>
         <name>apple</name>
         <price>55</price>
         <quantity>5</quantity>
     </item>
-```
+
 the http-request sink maps that and sends it to the endpoint. When
 endpoint sends a response it will be consumed by the corresponding
 http-response source correlated via the same `sink.id` `foo` and that
 will map the response message and send it via `ResponseStream` steam by
 assigning the message body as `message` attribute and response headers
 as `headers` attribute of the event.
+```
 
 EXAMPLE 2
-```js
-    @sink(type='http-request', publisher.url='http://localhost:8005/files/{{name}}'
-          downloading.enabled='true', download.path='{{downloadPath}}{{name}}',
-          method='GET', sink.id='download', @map(type='json'))
-    define stream DownloadRequestStream(name String, id int, downloadPath string);
+```
+    CREATE SINK DownloadRequestStream WITH (type='http-request', publisher.url='http://localhost:8005/files/{{name}}', downloading.enabled='true', download.path='{{downloadPath}}{{name}}', method='GET', sink.id='download', map.type='json') (name String, id int, downloadPath string);
 
-    @source(type='http-response', sink.id='download',
-            http.status.code='2\\d+',
-            @map(type='text', regex.A='((.|\n)*)',
-                 @attributes(name='trp:name', id='trp:id', file='A[1]')))
-    define stream ResponseStream2xx(name string, id string, file string);
+    CREATE SOURCE ResponseStream2xx WITH (type='http-response', sink.id='download', http.status.code='2\\d+', map.type='text', map.regex.A='((.|\n)*)', map.attributes="name='trp:name', id='trp:id', file='A[1]'") (name string, id string, file string);
 
-    @source(type='http-response', sink.id='download',
-            http.status.code='4\\d+',
-            @map(type='text', regex.A='((.|\n)*)', @attributes(errorMsg='A[1]')))
-    define stream ResponseStream4xx(errorMsg string);
+    CREATE SOURCE ResponseStream4xx WITH (type='http-response', sink.id='download', http.status.code='4\\d+', map.type='text', map.regex.A='((.|\n)*)', map.attributes="errorMsg='A[1]'") (errorMsg string);
 ```
 When events arrive in `DownloadRequestStream` with `name`:`foo.txt`,
 `id`:`75` and `downloadPath`:`/user/download/` the http-request sink
@@ -5733,56 +5245,49 @@ http-request source, by mapping the response messages to formats such as
 `text`, `XML` and `JSON`.
 
 Syntax
-```js
-    @sink(type="http-response", source.id="<STRING>", message.id="<STRING>", headers="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="http-response", map.type="<STRING>", source.id="<STRING>", message.id="<STRING>", headers="<STRING>")
+
 QUERY PARAMETERS
 
 | Name       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Default Value                           | Possible Data Types | Optional | Dynamic |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|---------------------|----------|---------|
 | source.id  | Identifier to correlate the http-response sink to its corresponding http-request source which consumed the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                         | STRING              | No       | No      |
 | message.id | Identifier to correlate the response with the request received by http-request source.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                         | STRING              | No       | Yes     |
-| headers    | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following: Â - `@map(type='xml')`: `application/xml` Â - `@map(type='json')`: `application/json` Â - `@map(type='text')`: `plain/text` Â - `@map(type='keyvalue')`: `application/x-www-form-urlencoded` Â - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload. | Content-Type and Content-Length headers | STRING              | Yes      | No      |
+| headers    | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following:  - `map.type='xml'`: `application/xml`  - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload. | Content-Type and Content-Length headers | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='http-request', receiver.url='http://localhost:5005/add',
-            source.id='adder',
-            @map(type='json, @attributes(messageId='trp:messageId',
-                                         value1='$.event.value1',
-                                         value2='$.event.value2')))
-    define stream AddStream (messageId string, value1 long, value2 long);
 
-    @sink(type='http-response', source.id='adder',
-          message.id='{{messageId}}', @map(type = 'json'))
-    define stream ResultStream (messageId string, results long);
+    CREATE SOURCE AddStream WITH (type='http-request', receiver.url='http://localhost:5005/add', source.id='adder', map.type='json, map.attributes="messageId='trp:messageId', value1='$.event.value1', value2='$.event.value2'") (messageId string, value1 long, value2 long);
+
+    CREATE SINK ResultStream WITH (type='http-response', source.id='adder', message.id='{{messageId}}', map.type='json') (messageId string, results long);
 
     @info(name = 'query1')
-    from AddStream
+    insert into ResultStream
     select messageId, value1 + value2 as results
-    insert into ResultStream;
-```
+    from AddStream;
+
 The http-request source on stream `AddStream` listens on url
 `http://localhost:5005/stocks` for JSON messages with format:
-```js
+
     {
       "event": {
         "value1": 3,
         "value2": 4
       }
     }
-```
+
 and when events arrive it maps to `AddStream` events and pass them to
 query `query1` for processing. The query results produced on
 `ResultStream` are sent as a response via http-response sink with
 format:
-```js
+
     {
       "event": {
         "results": 7
       }
     }
-```
+
 Here the request and response are correlated by passing the `messageId`
 produced by the http-request to the respective http-response sink.
 
@@ -5793,56 +5298,50 @@ by its corresponding http-service source, by mapping the response
 messages to formats such as `text`, `XML` and `JSON`.
 
 Syntax
-```js
-    @sink(type="http-service-response", source.id="<STRING>", message.id="<STRING>", headers="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="http-service-response", map.type="<STRING>", source.id="<STRING>", message.id="<STRING>", headers="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Default Value                           | Possible Data Types | Optional | Dynamic |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|---------------------|----------|---------|
 | source.id  | Identifier to correlate the http-service-response sink to its corresponding http-service source which consumed the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                         | STRING              | No       | No      |
 | message.id | Identifier to correlate the response with the request received by http-service source.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                         | STRING              | No       | Yes     |
-| headers    | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following: Â - `@map(type='xml')`: `application/xml` Â - `@map(type='json')`: `application/json` Â - `@map(type='text')`: `plain/text` Â - `@map(type='keyvalue')`: `application/x-www-form-urlencoded` Â - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload. | Content-Type and Content-Length headers | STRING              | Yes      | No      |
+| headers    | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following:  - `map.type='xml'`: `application/xml`  - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload. | Content-Type and Content-Length headers | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='http-service', receiver.url='http://localhost:5005/add',
-            source.id='adder',
-            @map(type='json, @attributes(messageId='trp:messageId',
-                                         value1='$.event.value1',
-                                         value2='$.event.value2')))
-    define stream AddStream (messageId string, value1 long, value2 long);
 
-    @sink(type='http-service-response', source.id='adder',
-          message.id='{{messageId}}', @map(type = 'json'))
-    define stream ResultStream (messageId string, results long);
+    CREATE SOURCE AddStream WITH (type='http-service', receiver.url='http://localhost:5005/add', source.id='adder', map.type='json, map.attributes="messageId='trp:messageId', value1='$.event.value1', value2='$.event.value2'") (messageId string, value1 long, value2 long);
+
+    CREATE SINK ResultStream WITH (type='http-service-response', source.id='adder', message.id='{{messageId}}', map.type='json') (messageId string, results long);
 
     @info(name = 'query1')
     from AddStream
     select messageId, value1 + value2 as results
     insert into ResultStream;
-```
+
 The http-service source on stream `AddStream` listens on url
 `http://localhost:5005/stocks` for JSON messages with format:
-```js
+
     {
       "event": {
         "value1": 3,
         "value2": 4
       }
     }
-```
+
 and when events arrive it maps to `AddStream` events and pass them to
 query `query1` for processing. The query results produced on
 `ResultStream` are sent as a response via http-service-response sink
 with format:
-```js
+
     {
       "event": {
         "results": 7
       }
     }
-```
+
 Here the request and response are correlated by passing the `messageId`
 produced by the http-service to the respective http-service-response
 sink.
@@ -5852,9 +5351,9 @@ sink.
 In-memory sink publishes events to In-memory sources that are subscribe to the same topic to which the sink publishes. This provides a way to connect multiple Stream Apps deployed under the same Stream Apps Manager (JVM). Here both the publisher and subscriber should have the same event schema (stream definition) for successful data transfer.
 
 Syntax
-```js
-    @sink(type="inMemory", topic="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="inMemory", map.type="<STRING>", topic="<STRING>")
+
 QUERY PARAMETERS
 
 | Name  | Description                                                         | Default Value | Possible Data Types | Optional | Dynamic |
@@ -5862,10 +5361,9 @@ QUERY PARAMETERS
 | topic | Event are delivered to allthe subscribers subscribed on this topic. |               | STRING              | No       | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='inMemory', topic='Stocks', @map(type='passThrough'))
-    define stream StocksStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK StocksStream WITH (type='inMemory', topic='Stocks', map.type='passThrough') (symbol string, price float, volume long);
+
 Here the `StocksStream` uses inMemory sink to emit the Stream App events to all the inMemory sources deployed in the same JVM and subscribed to the topic `Stocks`.
 
 ### jms (Sink)
@@ -5874,9 +5372,9 @@ JMS Sink allows users to subscribe to a JMS broker and publish JMS
 messages.
 
 Syntax
-```js
-    @sink(type="jms", destination="<STRING>", connection.factory.jndi.name="<STRING>", factory.initial="<STRING>", provider.url="<STRING>", connection.factory.type="<STRING>", connection.username="<STRING>", connection.password="<STRING>", connection.factory.nature="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="jms", map.type="<STRING>", connection.factory.jndi.name="<STRING>", factory.initial="<STRING>", provider.url="<STRING>", connection.factory.type="<STRING>", connection.username="<STRING>", connection.password="<STRING>", connection.factory.nature="<STRING>")
+
 QUERY PARAMETERS
 
 | Name                         | Description                                                                                                                                                                                       | Default Value          | Possible Data Types | Optional | Dynamic |
@@ -5891,17 +5389,15 @@ QUERY PARAMETERS
 | connection.factory.nature    | Connection factory nature for the broker(cached/pooled).                                                                                                                                          | default                | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='jms', @map(type='xml'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST', connection.factory.type='topic',connection.factory.jndi.name='TopicConnectionFactory')
-    define stream inputStream (name string, age int, country string);
-```
+
+    CREATE SINK inputStream WITH (type='jms', map.type='xml', factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost', destination='DAS_JMS_OUTPUT_TEST', connection.factory.type='topic', connection.factory.jndi.name='TopicConnectionFactory') (name string, age int, country string);
+
 This example shows how to publish to an ActiveMQ topic.
 
 EXAMPLE 2
-```js
-    @sink(type='jms', @map(type='xml'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST')
-    define stream inputStream (name string, age int, country string);
-```
+
+    CREATE SINK inputStream WITH (type='jms', map.type='xml', factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST') (name string, age int, country string);
+
 This example shows how to publish to an ActiveMQ queue. Note that we are
 not providing properties like connection factory type
 
@@ -5916,9 +5412,10 @@ taken from the Stream App event. To configure a sink to use the Kafka
 transport, the `type` parameter should have `kafka` as its value.
 
 Syntax
-```js
-    @sink(type="kafka", bootstrap.servers="<STRING>", topic="<STRING>", partition.no="<INT>", sequence.id="<STRING>", key="<STRING>", is.binary.message="<BOOL>", optional.configuration="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="kafka", map.type="<STRING>", bootstrap.servers="<STRING>", topic="<STRING>", partition.no="<INT>", sequence.id="<STRING>", key="<STRING>", is.binary.message="<BOOL>", optional.configuration="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name                   | Description                                                                                                                                                                                             | Default Value | Possible Data Types | Optional | Dynamic |
@@ -5932,36 +5429,30 @@ QUERY PARAMETERS
 | optional.configuration | This parameter contains all the other possible configurations that the producer is created with. e.g., `producer.type:async,batch.size:200`                                                             | null          | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
+
     @App:name('TestExecutionPlan')
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE STREAM FooStream (symbol string, price float, volume long);
+
     @info(name = 'query1')
-    @sink(
-    type='kafka',
-    topic='topic_with_partitions',
-    partition.no='0',
-    bootstrap.servers='localhost:9092',
-    @map(type='xml'))
-    Define stream BarStream (symbol string, price float, volume long);
-    from FooStream select symbol, price, volume insert into BarStream;
-```
+    CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='xml') (symbol string, price float, volume long);
+
+    insert into BarStream
+    from FooStream select symbol, price, volume ;
+
 This Kafka sink configuration publishes to 0th partition of the topic
 named `topic_with_partitions`.
 
 EXAMPLE 2
-```js
+
     @App:name('TestExecutionPlan')
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE STREAM FooStream (symbol string, price float, volume long);
+
     @info(name = 'query1')
-    @sink(
-    type='kafka',
-    topic='{{symbol}}',
-    partition.no='{{volume}}',
-    bootstrap.servers='localhost:9092',
-    @map(type='xml'))
-    Define stream BarStream (symbol string, price float, volume long);
-    from FooStream select symbol, price, volume insert into BarStream;
-```
+    CREATE SINK BarStream WITH (type='kafka', topic='{{symbol}}', partition.no='{{volume}}', bootstrap.servers='localhost:9092', map.type='xml') (symbol string, price float, volume long);
+
+    insert into BarStream
+    from FooStream select symbol, price, volume ;
+
 This query publishes dynamic topic and partitions that are taken from
 the Stream App event. The value for `partition.no` is taken from the
 `volume` attribute, and the topic value is taken from the `symbol`
@@ -5980,9 +5471,9 @@ the same topic, the `type` parameter must have `kafkaMultiDC` as its
 value.
 
 Syntax
-```js
-    @sink(type="kafkaMultiDC", bootstrap.servers="<STRING>", topic="<STRING>", sequence.id="<STRING>", key="<STRING>", partition.no="<INT>", is.binary.message="<BOOL>", optional.configuration="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="kafkaMultiDC", map.type="<STRING>", bootstrap.servers="<STRING>", topic="<STRING>", sequence.id="<STRING>", key="<STRING>", partition.no="<INT>", is.binary.message="<BOOL>", optional.configuration="<STRING>")
+
 QUERY PARAMETERS
 
 | Name                   | Description                                                                                                                                                                                                                                               | Default Value | Possible Data Types | Optional | Dynamic |
@@ -5996,13 +5487,16 @@ QUERY PARAMETERS
 | optional.configuration | This parameter contains all the other possible configurations that the producer is created with. e.g., `producer.type:async,batch.size:200`                                                                                                               | null          | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
+
     @App:name('TestExecutionPlan')
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE STREAM FooStream (symbol string, price float, volume long);
+
     @info(name = 'query1')
-    @sink(type='kafkaMultiDC', topic='myTopic', partition.no='0',bootstrap.servers='host1:9092, host2:9092', @map(type='xml'))Define stream BarStream (symbol string, price float, volume long);
-    from FooStream select symbol, price, volume insert into BarStream;
-```
+    CREATE SINK BarStream WITH (type='kafkaMultiDC', topic='myTopic', partition.no='0', bootstrap.servers='host1:9092, host2:9092', map.type='xml') (symbol string, price float, volume long);
+
+    insert into BarStream
+    from FooStream select symbol, price, volume ;
+
 This query publishes to the default (i.e., 0th) partition of the brokers
 in two data centers
 
@@ -6012,9 +5506,10 @@ This is a sink that can be used as a logger. This will log the output
 events in the output stream with user specified priority and a prefix
 
 Syntax
-```js
-    @sink(type="log", priority="<STRING>", prefix="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="log", map.type="<STRING>", priority="<STRING>", prefix="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name     | Description                                                                                                                                                           | Default Value            | Possible Data Types | Optional | Dynamic |
@@ -6023,35 +5518,31 @@ QUERY PARAMETERS
 | prefix   | This will be the prefix to the output message. If the output stream has event \[2,4\] and the prefix is given as "Hello" then the log will show "Hello : [2,4]" | default prefix will be : | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='log', prefix='My Log', priority='DEBUG')
-    define stream BarStream (symbol string, price float, volume long)
-```
+
+    CREATE SINK BarStream WITH (type='log', prefix='My Log', priority='DEBUG') (symbol string, price float, volume long)
+
 In this example BarStream uses log sink and the prefix is given as My
 Log. Also the priority is set to DEBUG.
 
 EXAMPLE 2
-```js
-    @sink(type='log', priority='DEBUG')
-    define stream BarStream (symbol string, price float, volume long)
-```
+
+    CREATE SINK BarStream WITH (type='log', priority='DEBUG') (symbol string, price float, volume long)
+
 In this example BarStream uses log sink and the priority is set to
 DEBUG. User has not specified prefix so the default prefix will be in
 the form \<Stream App App Name\> : \<Stream Name\>
 
 EXAMPLE 3
-```js
-    @sink(type='log', prefix='My Log')
-    define stream BarStream (symbol string, price float, volume long)
-```
+
+    CREATE SINK BarStream WITH (type='log', prefix='My Log') (symbol string, price float, volume long)
+
 In this example BarStream uses log sink and the prefix is given as My
 Log. User has not given a priority so it will be set to default INFO.
 
 EXAMPLE 4
-```js
-    @sink(type='log')
-    define stream BarStream (symbol string, price float, volume long)
-```
+
+    CREATE SINK BarStream WITH (type='log') (symbol string, price float, volume long)
+
 In this example BarStream uses log sink. The user has not given prefix
 or priority so they will be set to their default values.
 
@@ -6062,7 +5553,7 @@ messages.
 
 Syntax
 
-    @sink(type="nats", destination="<STRING>", bootstrap.servers="<STRING>", client.id="<STRING>", cluster.id="<STRING>", @map(...)))
+    CREATE SINK <NAME> WITH (type="nats", map.type="<STRING>", destination="<STRING>", bootstrap.servers="<STRING>", client.id="<STRING>", cluster.id="<STRING>")
 
 QUERY PARAMETERS
 
@@ -6074,10 +5565,9 @@ QUERY PARAMETERS
 | cluster.id        | The identifier of the NATS server/cluster.                                                                                                | test-cluster          | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='nats', @map(type='xml'), destination='SP_NATS_OUTPUT_TEST', bootstrap.servers='nats://localhost:4222',client.id='nats_client',server.id='test-cluster')
-    define stream outputStream (name string, age int, country string);
-```
+
+    CREATE SINK outputStream WITH (type='nats', map.type='xml', destination='SP_NATS_OUTPUT_TEST', bootstrap.servers='nats://localhost:4222',client.id='nats_client',server.id='test-cluster') (name string, age int, country string);
+
 This example shows how to publish to a NATS subject with all supporting
 configurations. With the following configuration the sink identified as
 `nats-client` will publish to a subject named as
@@ -6086,10 +5576,9 @@ cluster id of `test-cluster`, running in localhost and listening to
 the port 4222 for client connection.
 
 EXAMPLE 2
-```js
-    @sink(type='nats', @map(type='xml'), destination='SP_NATS_OUTPUT_TEST')
-    define stream outputStream (name string, age int, country string);
-```
+
+    CREATE SINK outputStream WITH (type='nats', map.type='xml', destination='SP_NATS_OUTPUT_TEST') (name string, age int, country string);
+
 This example shows how to publish to a NATS subject with mandatory
 configurations. With the following configuration the sink identified
 with an auto generated client id will publish to a subject named as
@@ -6102,15 +5591,15 @@ the port 4222 for client connection.
 This sink publishes events processed by Stream App into Prometheus metrics
 and exposes them to the Prometheus server at the specified URL. The
 created metrics can be published to Prometheus via `server` or
-`pushGateway`, depending on your preference. Â The metric types that
+`pushGateway`, depending on your preference.  The metric types that
 are supported by the Prometheus sink are `counter`, `gauge`,
 `histogram`, and `summary`. The values and labels of the Prometheus
 metrics can be updated through the events.
 
 Syntax
-```js
-    @sink(type="prometheus", job="<STRING>", publish.mode="<STRING>", push.url="<STRING>", server.url="<STRING>", metric.type="<STRING>", metric.help="<STRING>", metric.name="<STRING>", buckets="<STRING>", quantiles="<STRING>", quantile.error="<DOUBLE>", value.attribute="<STRING>", push.operation="<STRING>", grouping.key="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="prometheus", map.type="<STRING>", job="<STRING>", publish.mode="<STRING>", push.url="<STRING>", server.url="<STRING>", metric.type="<STRING>", metric.help="<STRING>", metric.name="<STRING>", buckets="<STRING>", quantiles="<STRING>", quantile.error="<DOUBLE>", value.attribute="<STRING>", push.operation="<STRING>", grouping.key="<STRING>")
+
 QUERY PARAMETERS
 
 | Name            | Description                                                                                                                                                                                                                                                                                                                                                                                                     | Default Value         | Possible Data Types | Optional | Dynamic |
@@ -6119,7 +5608,7 @@ QUERY PARAMETERS
 | publish.mode    | The mode in which the metrics need to be exposed to the Prometheus server.The possible publishing modes are `server` and `pushgateway`.The server mode exposes the metrics through an HTTP server at the specified URL, and the `pushGateway` mode pushes the metrics to the pushGateway that needs to be running at the specified URL.                                                                   | server                | STRING              | Yes      | No      |
 | push.url        | This parameter specifies the target URL of the Prometheus pushGateway. This is the URL at which the pushGateway must be listening. This URL needs to be defined in the Prometheus configuration file as a target before it can be used here.                                                                                                                                                                    | http://localhost:9091 | STRING              | Yes      | No      |
 | server.url      | This parameter specifies the URL where the HTTP server is initiated to expose metrics in the `server` publish mode. This URL needs to be defined in the Prometheus configuration file as a target before it can be used here.                                                                                                                                                                                 | http://localhost:9080 | STRING              | Yes      | No      |
-| metric.type     | The type of Prometheus metric that needs to be created at the sink. Â The supported metric types are `counter`, `gauge`, `histogram` and `summary`.                                                                                                                                                                                                                                                      |                       | STRING              | No       | No      |
+| metric.type     | The type of Prometheus metric that needs to be created at the sink.  The supported metric types are `counter`, `gauge`, `histogram` and `summary`.                                                                                                                                                                                                                                                      |                       | STRING              | No       | No      |
 | metric.help     | A brief description of the metric and its purpose.                                                                                                                                                                                                                                                                                                                                                              |                       | STRING              | Yes      | No      |
 | metric.name     | This parameter allows you to assign a preferred name for the metric. The metric name must match the regex format, i.e., [a-zA-Z:][a-zA-Z0-9:]*.                                                                                                                                                                                                                                                        |                       | STRING              | Yes      | No      |
 | buckets         | The bucket values preferred by the user for histogram metrics. The bucket values must be in the `string` format with each bucket value separated by a comma as shown in the example below. "2,4,6,8"                                                                                                                                                                                                        | null                  | STRING              | Yes      | No      |
@@ -6127,7 +5616,7 @@ QUERY PARAMETERS
 | quantile.error  | The error tolerance value for calculating quantiles in summary metrics. This must be a positive value, but less than 1.                                                                                                                                                                                                                                                                                         | 0.001                 | DOUBLE              | Yes      | No      |
 | value.attribute | The name of the attribute in the stream definition that specifies the metric value. The defined `value` attribute must be included in the stream definition. The system increases the metric value for the counter and gauge metric types by the value of the `value` attribute. The system observes the value of the `value` attribute for the calculations of `summary` and `histogram` metric types. | value                 | STRING              | Yes      | No      |
 | push.operation  | This parameter defines the mode for pushing metrics to the pushGateway. The available push operations are `push` and `pushadd`. The operations differ according to the existing metrics in pushGateway where `push` operation replaces the existing metrics, and `pushadd` operation only updates the newly created metrics.                                                                            | pushadd               | STRING              | Yes      | No      |
-| grouping.key    | This parameter specifies the grouping key of created metrics in key-value pairs. The grouping key is used only in pushGateway mode in order to distinguish the metrics from already existing metrics. The expected format of the grouping key is as follows: Â "`key1:value1`,`key2:value2`"                                                                                                               |                       | STRING              | Yes      | No      |
+| grouping.key    | This parameter specifies the grouping key of created metrics in key-value pairs. The grouping key is used only in pushGateway mode in order to distinguish the metrics from already existing metrics. The expected format of the grouping key is as follows:  "`key1:value1`,`key2:value2`"                                                                                                               |                       | STRING              | Yes      | No      |
 
 System Parameters
 
@@ -6140,19 +5629,17 @@ System Parameters
 | groupingKey | This property configures the grouping key of created metrics in key-value pairs. Grouping key is used only in pushGateway mode in order to distinguish these metrics from already existing metrics under the same job. The expected format of the grouping key is as follows: "`key1:value1`,`key2:value2`" . | null                  | Any key value pairs in the supported format |
 
 EXAMPLE 1
-```js
-    @sink(type='prometheus',job='fooOrderCount', server.url ='http://localhost:9080', publish.mode='server', metric.type='counter', metric.help= 'Number of foo orders', @map(type='keyvalue'))
-    define stream FooCountStream (Name String, quantity int, value int);
-```
+
+    CREATE SINK FooCountStream WITH (type='prometheus',job='fooOrderCount', server.url ='http://localhost:9080', publish.mode='server', metric.type='counter', metric.help= 'Number of foo orders', map.type='keyvalue') (Name String, quantity int, value int);
+
 In the above example, the Prometheus-sink creates a counter metric with
 the stream name and defined attributes as labels. The metric is exposed
 through an HTTP server at the target URL.
 
 EXAMPLE 2
-```js
-    @sink(type='prometheus',job='inventoryLevel', push.url='http://localhost:9080', publish.mode='pushGateway', metric.type='gauge', metric.help= 'Current level of inventory', @map(type='keyvalue'))
-    define stream InventoryLevelStream (Name String, value int);
-```
+
+    CREATE SINK InventoryLevelStream WITH (type='prometheus',job='inventoryLevel', push.url='http://localhost:9080', publish.mode='pushGateway', metric.type='gauge', metric.help= 'Current level of inventory', map.type='keyvalue') (Name String, value int);
+
 In the above example, the Prometheus-sink creates a gauge metric with
 the stream name and defined attributes as labels.The metric is pushed to
 the Prometheus pushGateway at the target URL.
@@ -6163,9 +5650,9 @@ The rabbitmq sink pushes the events into a rabbitmq broker using the
 AMQP protocol
 
 Syntax
-```js
-    @sink(type="rabbitmq", uri="<STRING>", heartbeat="<INT>", exchange.name="<STRING>", exchange.type="<STRING>", exchange.durable.enabled="<BOOL>", exchange.autodelete.enabled="<BOOL>", delivery.mode="<INT>", content.type="<STRING>", content.encoding="<STRING>", priority="<INT>", correlation.id="<STRING>", reply.to="<STRING>", expiration="<STRING>", message.id="<STRING>", timestamp="<STRING>", type="<STRING>", user.id="<STRING>", app.id="<STRING>", routing.key="<STRING>", headers="<STRING>", tls.enabled="<BOOL>", tls.truststore.path="<STRING>", tls.truststore.password="<STRING>", tls.truststore.type="<STRING>", tls.version="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="rabbitmq", map.type="<STRING>", uri="<STRING>", heartbeat="<INT>", exchange.name="<STRING>", exchange.type="<STRING>", exchange.durable.enabled="<BOOL>", exchange.autodelete.enabled="<BOOL>", delivery.mode="<INT>", content.type="<STRING>", content.encoding="<STRING>", priority="<INT>", correlation.id="<STRING>", reply.to="<STRING>", expiration="<STRING>", message.id="<STRING>", timestamp="<STRING>", type="<STRING>", user.id="<STRING>", app.id="<STRING>", routing.key="<STRING>", headers="<STRING>", tls.enabled="<BOOL>", tls.truststore.path="<STRING>", tls.truststore.password="<STRING>", tls.truststore.type="<STRING>", tls.version="<STRING>")
+
 QUERY PARAMETERS
 
 | Name                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Default Value                                            | Possible Data Types | Optional | Dynamic |
@@ -6197,18 +5684,16 @@ QUERY PARAMETERS
 | tls.version                 | The version of the tls/ssl.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | SSL                                                      | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
+
     @App:name('TestExecutionPlan')
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE STREAM FooStream (symbol string, price float, volume long);
+
     @info(name = 'query1')
-    @sink(type ='rabbitmq',
-    uri = 'amqp://guest:guest@localhost:5672',
-    exchange.name = 'direct',
-    routing.key= 'direct',
-    @map(type='xml'))
-    Define stream BarStream (symbol string, price float, volume long);
-    from FooStream select symbol, price, volume insert into BarStream;
-```
+    CREATE SINK BarStream WITH (type ='rabbitmq', uri = 'amqp://guest:guest@localhost:5672', exchange.name = 'direct', routing.key= 'direct', map.type='xml') (symbol string, price float, volume long);
+
+    insert into BarStream
+    from FooStream select symbol, price, volume ;
+
 This query publishes events to the `direct` exchange with the `direct`
 exchange type and the `directTest` routing key.
 
@@ -6217,9 +5702,9 @@ exchange type and the `directTest` routing key.
 S3 sink publishes events as Amazon AWS S3 buckets.
 
 Syntax
-```js
-    @sink(type="s3", credential.provider.class="<STRING>", aws.access.key="<STRING>", aws.secret.key="<STRING>", bucket.name="<STRING>", aws.region="<STRING>", versioning.enabled="<BOOL>", object.path="<STRING>", storage.class="<STRING>", content.type="<STRING>", bucket.acl="<STRING>", node.id="<STRING>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="s3", map.type="<STRING>", credential.provider.class="<STRING>", aws.access.key="<STRING>", aws.secret.key="<STRING>", bucket.name="<STRING>", aws.region="<STRING>", versioning.enabled="<BOOL>", object.path="<STRING>", storage.class="<STRING>", content.type="<STRING>", bucket.acl="<STRING>", node.id="<STRING>")
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                                                                          | Default Value            | Possible Data Types | Optional | Dynamic |
@@ -6237,25 +5722,23 @@ QUERY PARAMETERS
 | node.id                   | The node ID of the current publisher. This needs to be unique for each publisher instance as it may cause object overwrites while uploading the objects to same S3 bucket from different publishers. | EMPTY\_STRING            | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='s3', bucket.name='user-stream-bucket',object.path='bar/users', credential.provider='software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider', flush.size='3',
-        @map(type='json', enclosing.element='$.user',
-            @payload("""{"name": "{{name}}", "age": {{age}}}""")))
-    define stream UserStream(name string, age int);  
-```
+
+    CREATE SINK UserStream WITH (type='s3', bucket.name='user-stream-bucket',object.path='bar/users', credential.provider='software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider', flush.size='3', map.type='json', enclosing.element='$.user', map.payload=""""{"name": "{{name}}", "age": {{age}}}"""") (name string, age int);  
+
 This creates a S3 bucket named `user-stream-bucket`. Then this will
 collect 3 events together and create a JSON object and save that in S3.
 
 ### tcp (Sink)
 
 A Stream App application can be configured to publish events via the TCP
-transport by adding the @Sink(type = `tcp`) annotation at the top of
+transport by adding the `type='tcp'` annotation at the top of
 an event stream definition.
 
 Syntax
-```js
-    @sink(type="tcp", url="<STRING>", sync="<STRING>", tcp.no.delay="<BOOL>", keep.alive="<BOOL>", worker.threads="<INT|LONG>", @map(...)))
-```
+
+    CREATE SINK <NAME> WITH (type="tcp", map.type="<STRING>", url="<STRING>", sync="<STRING>", tcp.no.delay="<BOOL>", keep.alive="<BOOL>", worker.threads="<INT|LONG>")
+
+
 QUERY PARAMETERS
 
 | Name           | Description                                                                                                                                                                                                                                                                                                        | Default Value | Possible Data Types | Optional | Dynamic |
@@ -6267,11 +5750,9 @@ QUERY PARAMETERS
 | worker.threads | Number of threads to publish events.                                                                                                                                                                                                                                                                               | 10            | INT LONG            | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @Sink(type = 'tcp', url='tcp://localhost:8080/abc', sync='true'
-       @map(type='binary'))
-    define stream Foo (attribute1 string, attribute2 int);
-```
+
+    CREATE SINK Foo WITH (type = 'tcp', url='tcp://localhost:8080/abc', sync='true' map.type='binary') (attribute1 string, attribute2 int);
+
 A sink of type `tcp` has been defined. All events arriving at Foo
 stream via TCP transport will be sent to the url
 tcp://localhost:8080/abc in a synchronous manner.
@@ -6283,16 +5764,17 @@ Sinkmapper
 
 This extension is a Stream App Event to Avro Message output
 mapper.Transports that publish messages to Avro sink can utilize this
-extension to convert Stream App events to Avro messages. Â You can either
+extension to convert Stream App events to Avro messages.  You can either
 specify the Avro schema or provide the schema registry URL and the
 schema reference ID as parameters in the stream definition. If no Avro
 schema is specified, a flat Avro schema of the `record` type is
 generated with the stream attributes as schema fields.
 
 Syntax
-```js
-    @sink(..., @map(type="avro", schema.def="<STRING>", schema.registry="<STRING>", schema.id="<STRING>")
-```
+
+    CREATE SINK <NAME> WITH (map.type="avro", map.schema.def="<STRING>", map.schema.registry="<STRING>", map.schema.id="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name            | Description                                                                                                                                                                                                                     | Default Value | Possible Data Types | Optional | Dynamic |
@@ -6302,19 +5784,16 @@ QUERY PARAMETERS
 | schema.id       | This specifies the ID of the avro schema. This ID is the global ID that is returned from the schema registry when posting the schema to the registry. The specified ID is used to retrieve the schema from the schema registry. |               | STRING              | No       | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='inMemory', topic='stock', @map(type='avro',schema.def = """{"type":"record","name":"stock","namespace":"stock.example","fields":[{"name":"symbol","type":"string"},{"name":"price","type":"float"},{"name":"volume","type":"long"}]}"""))
-    define stream StockStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK StockStream WITH (type='inMemory', topic='stock', map.type='avro', map.schema.def = """{"type":"record","name":"stock","namespace":"stock.example","fields":[{"name":"symbol","type":"string"},{"name":"price","type":"float"},{"name":"volume","type":"long"}]}""") (symbol string, price float, volume long);
+
 The above configuration performs a default Avro mapping that generates
 an Avro message as an output ByteBuffer.
 
 EXAMPLE 2
-```js
-    @sink(type='inMemory', topic='stock', @map(type='avro',schema.registry = 'http://localhost:8081', schema.id ='22',@payload("""{"Symbol":{{symbol}},"Price":{{price}},"Volume":{{volume}}}"""
-    )))
-    define stream StockStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK StockStream WITH (type='inMemory', topic='stock', map.type='avro', map.schema.registry = 'http://localhost:8081', map.schema.id ='22', map.payload=""""{"Symbol":{{symbol}},"Price":{{price}},"Volume":{{volume}}}"""") (symbol string, price float, volume long);
+
 The above configuration performs a custom Avro mapping that generates an
 Avro message as an output ByteBuffer. The Avro schema is retrieved from
 the given schema registry (localhost:8081) using the schema ID provided.
@@ -6325,13 +5804,15 @@ This section explains how to map events processed via Stream App in order to
 publish them in the `binary` format.
 
 Syntax
-```js
-    @sink(..., @map(type="binary")
-```
+
+    CREATE SINK <NAME> WITH (map.type="binary")
+
+
 EXAMPLE 1
-```js
-    @sink(type='inMemory', topic='gdn', @map(type='binary')) define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='gdn', map.type='binary') (symbol string, price float, volume long);
+
+
 This will publish Stream App event in binary format.
 
 ### csv (Sink Mapper)
@@ -6343,9 +5824,10 @@ pre-defined CSV format where event conversion takes place without extra
 configurations.
 
 Syntax
-```js
-    @sink(..., @map(type="csv", delimiter="<STRING>", header="<BOOL>", event.grouping.enabled="<BOOL>")
-```
+
+    CREATE SINK <NAME> WITH (map.type="csv", map.delimiter="<STRING>", map.header="<BOOL>", map.event.grouping.enabled="<BOOL>")
+
+
 QUERY PARAMETERS
 
 | Name                   | Description                                                                                                                                                                                                                  | Default Value | Possible Data Types | Optional | Dynamic |
@@ -6355,26 +5837,25 @@ QUERY PARAMETERS
 | event.grouping.enabled | If this parameter is set to `true`, events are grouped via a line.separator when multiple events are received. It is required to specify a value for the System.lineSeparator() when the value for this parameter is `true`. | false         | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='inMemory', topic='{{symbol}}', @map(type='csv'))
-    define stream BarStream (symbol string, price float, volume long);
-```
-Above configuration will perform a default CSV output mapping, which
-will generate output as follows: Â gdn,55.6,100 < OS supported line separatorn />If header is true and delimiter is "-", then the output
-will be as follows: symbol-price-volume < OS supported line separator /> gdn-55.6-100 < OS supported line separator />
+
+    CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='csv') (symbol string, price float, volume long);
+
+Above configuration will perform a default CSV output mapping, which will generate output as follows: `symbol-price-volumegdn-55.6-100`
+
+If header is true and delimiter is "-", then the output will be as follows: `symbol-price-volume`
 
 EXAMPLE 2
-```js
-    @sink(type='inMemory', topic='{{symbol}}', @map(type='csv',header='true',delimiter='-',@payload(symbol='0',price='2',volume='1')))define stream BarStream (symbol string, price float,volume long);
-```
+
+    CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='csv', map.header='true', map.delimiter='-', map.payload="symbol='0',price='2',volume='1'") (symbol string, price float,volume long);
+
 Above configuration will perform a custom CSV mapping. Here, user can
 add custom place order in the @payload. The place order indicates that
 where the attribute name's value will be appear in the output message,
-The output will be produced output as follows: gdn,100,55.6 If header
-is true and delimiter is "-", then the output will be as follows:
-symbol-price-volume gdn-55.6-100< OS supported line separator />If event
-grouping is enabled, then the output is as follows: gdn-55.6-100< OS supported line separator /> gdn-55.6-100< OS supported line separator />
-gdn-55.6-100< OS supported line separator/>
+The output will be produced output as follows: gdn,100,55.6 
+
+If header is true and delimiter is "-", then the output will be as follows: `price-volume-symbol 55.6-100-gdn` 
+
+If event grouping is enabled, then the output is as follows: `price-volume-symbol 55.6-100-gdnSystem.lineSeparator() 55.6-100-IBMSystem.lineSeparator() 55.6-100-IFSSystem.lineSeparator()`
 
 ### json (Sink Mapper)
 
@@ -6384,9 +5865,10 @@ JSON messages. You can either send a pre-defined JSON format or a custom
 JSON message.
 
 Syntax
-```js
-    @sink(..., @map(type="json", validate.json="<BOOL>", enclosing.element="<STRING>")
-```
+
+    CREATE SINK <NAME> WITH (map.type="json", map.validate.json="<BOOL>", map.enclosing.element="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name              | Description                                                                                                                                                                                                                                                                                                                                                        | Default Value | Possible Data Types | Optional | Dynamic |
@@ -6395,23 +5877,14 @@ QUERY PARAMETERS
 | enclosing.element | This specifies the enclosing element to be used if multiple events are sent in the same JSON message. Stream App treats the child elements of the given enclosing element as events and executes JSON expressions on them. If an `enclosing.element` is not provided, the multiple event scenario is disregarded and JSON path is evaluated based on the root element. | \$            | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='inMemory', topic='stock', @map(type='json'))
-    define stream FooStream (symbol string, price float, volume long);
-```
-Above configuration does a default JSON input mapping that generates the
-output given below. { Â Â Â Â "event":{ Â Â Â Â Â Â Â Â "symbol":gdn,
-Â Â Â Â Â Â Â Â "price":55.6, Â Â Â Â Â Â Â Â "volume":100 Â Â Â Â } }
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
+
 
 EXAMPLE 2
-```js
-    @sink(type='inMemory', topic='{{symbol}}', @map(type='json', enclosing.element='$.portfolio', validate.json='true', @payload( """{"StockData":{"Symbol":"{{symbol}}","Price":{{price}}}}""")))
-    define stream BarStream (symbol string, price float, volume long);
-```
-The above configuration performs a custom JSON mapping that generates
-the following JSON message as the output. {"portfolio":{
-Â Â Â Â "StockData":{ Â Â Â Â Â Â Â Â "Symbol":gdn, Â Â Â Â Â Â Â Â "Price":55.6
-Â Â Â Â Â Â } Â Â } }
+
+    CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='json', map.enclosing.element='$.portfolio', map.validate.json='true', map.payload="""{"StockData":{"Symbol":"{{symbol}}","Price":{{price}}}}""") (symbol string, price float, volume long);
+
 
 ### keyvalue (Sink Mapper)
 
@@ -6422,33 +5895,30 @@ conversion takes place without extra configurations, or use custom keys
 with which the messages can be published.
 
 Syntax
-```js
-    @sink(..., @map(type="keyvalue")
-```
+
+    CREATE SINK <NAME> WITH (map.type="keyvalue")
+
 EXAMPLE 1
-```js
-    @sink(type='inMemory', topic='stock', @map(type='keyvalue'))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue') (symbol string, price float, volume long);
+
 This query performs a default Key-Value output mapping. The expected
 output is something similar to the following: symbol:`gdn` price :
 55.6f volume: 100L
 
 EXAMPLE 2
-```js
-    @sink(type='inMemory', topic='stock', @map(type='keyvalue', @payload(a='symbol',b='price',c='volume')))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', map.payload="a='symbol',b='price',c='volume'") (symbol string, price float, volume long);
+
 This query performs a custom Key-Value output mapping where values are
 passed as objects. Values for `symbol`, `price`, and `volume` attributes
 are published with the keys `a`, `b` and `c` respectively. The expected
 output is a map similar to the following: a:`gdn` b : 55.6f c: 100L
 
 EXAMPLE 3
-```js
-    @sink(type='inMemory', topic='stock', @map(type='keyvalue', @payload(a='{{symbol}} is here',b='`price`',c='volume')))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', map.payload="a='{{symbol}} is here',b='`price`',c='volume'") (symbol string, price float, volume long);
+
 This query performs a custom Key-Value output mapping where the values
 of the `a` and `b` attributes are strings and c is object. The expected
 output should be a Map similar to the following: a:`gdn is here` b :
@@ -6460,14 +5930,13 @@ Pass-through mapper passed events (Event\[\]) through without any
 mapping or modifications.
 
 Syntax
-```js
-    @sink(..., @map(type="passThrough")
-```
+
+    CREATE SINK <NAME> WITH (map.type="passThrough")
+
 EXAMPLE 1
-```js
-    @sink(type='inMemory', @map(type='passThrough'))
-    define stream BarStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK BarStream WITH (type='inMemory', map.type='passThrough') (symbol string, price float, volume long);
+
 In the following example BarStream uses passThrough outputmapper which
 emit Stream App event directly without any transformation into sink.
 
@@ -6483,9 +5952,10 @@ When you use this mapper with `stream processor-io-grpc` you don't have to
 provide the protobuf message class in the `class` parameter.
 
 Syntax
-```js
-    @sink(..., @map(type="protobuf", class="<STRING>")
-```
+
+    CREATE SINK <NAME> WITH (type="protobuf", class="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name  | Description                                                                                                                           | Default Value | Possible Data Types | Optional | Dynamic |
@@ -6493,32 +5963,25 @@ QUERY PARAMETERS
 | class | This specifies the class name of the protobuf message class, If sink type is grpc then it's not necessary to provide this parameter. | \-            | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='inMemory', topic='test01',
-    @map(type='protobuf', class='io.streamprocessor.extension.map.protobuf.autogenerated.Request'))
-    define stream BarStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
-```
+
+    CREATE SINK BarStream WITH (type='inMemory', topic='test01', map.type='protobuf', map.class='io.streamprocessor.extension.map.protobuf.autogenerated.Request') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
+
 This will map `BarStream` values into
 `io.streamprocessor.extension.map.protobuf.autogenerated.Request` protobuf
 message type.
 
 EXAMPLE 2
-```js
-    @sink(type='grpc',  publisher.url = 'grpc://localhost:2000/org.gdn.grpc.test.MyService/process
-    @map(type='protobuf'))
-    define stream BarStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double)
-```
+
+    CREATE SINK BarStream WITH (type='grpc', publisher.url='grpc://localhost:2000/org.gdn.grpc.test.MyService/process, map.type='protobuf') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double)
+
 Above definition will map `BarStream` values into the protobuf messages.
 Since this is a `grpc` sink, protobuf mapper will get the type of the
 protobuf class by the `publisher.url`.
 
 EXAMPLE 3
-```js
-    @sink(type='grpc', publisher.url = 'grpc://localhost:2000/org.gdn.grpc.test.MyService/process
-    @map(type='protobuf'),
-    @payload(stringValue='a',longValue='b',intValue='c',booleanValue='d',floatValue = 'e', doubleValue  = 'f')))
-    define stream BarStream (a string, b long, c int,d bool,e float,f double);
-```
+
+    CREATE SINK BarStream WITH (type='grpc', publisher.url = 'grpc://localhost:2000/org.gdn.grpc.test.MyService/process, map.type='protobuf', map.payload="stringValue='a',longValue='b',intValue='c',booleanValue='d',floatValue = 'e', doubleValue  = 'f'") (a string, b long, c int,d bool,e float,f double);
+
 This will map BarStream values to request message type of the `process`
 method in `MyService` service. and stream values will map like this, -
 value of `a` will be assign `stringValue` variable in the message class
@@ -6530,11 +5993,9 @@ value of `d` will be assign `booleanValue` variable in the message class
 class
 
 EXAMPLE 4
-```js
-    @sink(type='inMemory', topic='test01',
-    @map(type='protobuf' class='io.streamprocessor.extension.map.protobuf.autogenerated.RequestWithList'))
-     define stream BarStream (stringValue string,intValue int,stringList object, intList object);
-```
+
+    CREATE SINK BarStream WITH (type='inMemory', topic='test01', map.type='protobuf', map.class='io.streamprocessor.extension.map.protobuf.autogenerated.RequestWithList') (stringValue string,intValue int,stringList object, intList object);
+
 This will map `BarStream` values into
 `io.streamprocessor.extension.map.protobuf.autogenerated.RequestWithList`. If you
 want to map data types other than the scalar data types, you have to use
@@ -6556,9 +6017,9 @@ replaced with `&amp;` `"` is replaced with `&quot;` `=` is replaced with
 `{{{` instead of double `{{`.
 
 Syntax
-```js
-    @sink(..., @map(type="text", event.grouping.enabled="<BOOL>", delimiter="<STRING>", new.line.character="<STRING>", mustache.enabled="<BOOL>")
-```
+
+    CREATE SINK <NAME> WITH (type="text", event.grouping.enabled="<BOOL>", delimiter="<STRING>", new.line.character="<STRING>", mustache.enabled="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                   | Description                                                                                                                                                                                                                                                                   | Default Value        | Possible Data Types | Optional | Dynamic |
@@ -6569,36 +6030,32 @@ QUERY PARAMETERS
 | mustache.enabled       | If this parameter is set to `true`, then mustache mapping gets enabled forcustom text mapping.                                                                                                                                                                                | false                | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='inMemory', topic='stock', @map(type='text'))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text') (symbol string, price float, volume long);
+
 This query performs a default text input mapping. The expected output is
 as follows: symbol:"gdn", price:55.6, volume:100
 
 EXAMPLE 2
-```js
-    @sink(type='inMemory', topic='stock', @map(type='text', event.grouping.enabled='true'))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.event.grouping.enabled='true') (symbol string, price float, volume long);
+
 This query performs a default text input mapping with event grouping.
 The expected output is as follows: symbol:"gdn", price:55.6,
 volume:100 ~~~~~~~~~~ symbol:"gdn", price:55.6, volume:100
 
 EXAMPLE 3
-```js
-    @sink(type='inMemory', topic='stock', @map(type='text',  @payload("SensorID : {{symbol}}/{{volume}}, SensorPrice : Rs{{price}}/=, Value : {{volume}}ml")))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text',  map.payload="SensorID : {{symbol}}/{{volume}}, SensorPrice : Rs{{price}}/=, Value : {{volume}}ml") (symbol string, price float, volume long);
+
 This query performs a custom text mapping. The expected output is as
 follows: SensorID : gdn/100, SensorPrice : Rs1000/=, Value : 100ml for
 the following stream processor event. {gdn,1000,100}
 
 EXAMPLE 4
-```js
-    @sink(type='inMemory', topic='stock', @map(type='text', event.grouping.enabled='true', @payload("Stock price of {{symbol}} is {{price}}")))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.event.grouping.enabled='true', map.payload="Stock price of {{symbol}} is {{price}}") (symbol string, price float, volume long);
+
 This query performs a custom text mapping with event grouping. The
 expected output is as follows: Stock price of gdn is 55.6
 \~~~~~~~~~~ Stock price of gdn is 55.6 ~~~~~~~~~~\
@@ -6606,10 +6063,9 @@ Stock price of gdn is 55.6 for the following stream processor event.
 {gdn,55.6,10}
 
 EXAMPLE 5
-```js
-    @sink(type='inMemory', topic='stock', @map(type='text', mustache.enabled='true',  @payload("SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml")))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.mustache.enabled='true',  map.payload="SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml") (symbol string, price float, volume long);
+
 This query performs a custom text mapping to return unescaped HTML. The
 expected output is as follows: SensorID : a&b/100, SensorPrice :
 Rs1000/=, Value : 100ml for the following stream processor event. {a&b,1000,100}
@@ -6622,9 +6078,9 @@ send a pre-defined XML format or a custom XML message containing event
 data.
 
 Syntax
-```js
-    @sink(..., @map(type="xml", validate.xml="<BOOL>", enclosing.element="<STRING>")
-```
+
+    CREATE SINK <NAME> WITH (map.type="xml", validate.xml="<BOOL>", enclosing.element="<STRING>")
+
 QUERY PARAMETERS
 
 | Name              | Description                                                                                                                                                                                                                                                                                                                            | Default Value                                            | Possible Data Types | Optional | Dynamic |
@@ -6633,26 +6089,38 @@ QUERY PARAMETERS
 | enclosing.element | When an enclosing element is specified, the child elements (e.g., the immediate child elements) of that element are considered as events. This is useful when you need to send multiple events in a single XML message. When an enclosing element is not specified, one XML message per every event will be emitted without enclosing. | None in custom mapping and \<events\> in default mapping | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='inMemory', topic='stock', @map(type='xml'))
-    define stream FooStream (symbol string, price float, volume long);
+
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='xml') (symbol string, price float, volume long);
+
+Above configuration will do a default XML input mapping which will generate below output: 
+
+```xml
+<events>     
+    <event>
+        <symbol>gdn</symbol>         
+        <price>55.6</price>
+        <volume>100</volume>     
+    </event> 
+</events>
 ```
-Above configuration will do a default XML input mapping which will
-generate below output \<events\> Â Â Â Â \<event\>
-Â Â Â Â Â Â Â Â \<symbol\>gdn\</symbol\> Â Â Â Â Â Â Â Â \<price\>55.6\</price\>
-Â Â Â Â Â Â Â Â \<volume\>100\</volume\> Â Â Â Â \</event\> \</events\>
 
 EXAMPLE 2
-```js
-    @sink(type='inMemory', topic='{{symbol}}', @map(type='xml', enclosing.element='<portfolio>', validate.xml='true', @payload( "<StockData><Symbol>{{symbol}}</Symbol><Price>{{price}}</Price></StockData>")))
-    define stream BarStream (symbol string, price float, volume long);
-```
+
+    CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='xml', map.enclosing.element='<portfolio>', map.validate.xml='true', map.payload="<StockData><Symbol>{{symbol}}</Symbol><Price>{{price}}</Price></StockData>") (symbol string, price float, volume long);
+
 Above configuration will perform a custom XML mapping. Inside \@payload
 you can specify the custom template that you want to send the messages
 out and addd placeholders to places where you need to add event
-attributes.Above config will produce below output XML message
-\<portfolio\> Â Â Â Â \<StockData\> Â Â Â Â Â Â Â Â \<Symbol\>gdn\</Symbol\>
-Â Â Â Â Â Â Â Â \<Price\>55.6\</Price\> Â Â Â Â \</StockData\> \</portfolio\>
+attributes.Above config will produce below output XML message:
+
+```xml
+<portfolio>     
+    <StockData>         
+        <Symbol>gdn</Symbol>
+        <Price>55.6</Price>     
+    </StockData> 
+</portfolio>
+```
 
 Source
 ------
@@ -6662,17 +6130,17 @@ Source
 The CDC source receives events when change events (i.e., INSERT, UPDATE,
 DELETE) are triggered for a database table. Events are received in the
 `key-value` format. There are two modes you could perform
-CDC:Â Listening modeÂ andÂ Polling mode. In polling mode, the datasource is
+CDC: Listening mode and Polling mode. In polling mode, the datasource is
 periodically polled for capturing the changes. The polling period can be
 configured. In polling mode, you can only capture INSERT and UPDATE
 changes. On listening mode, the Source will keep listening to the Change
 Log of the database and notify in case a change has taken place. Here,
 you are immediately notified about the change, compared to polling mode.
 The key values of the map of a CDC change event are as follows. For
-`listening` mode: Â Â Â Â For insert: Keys are specified as columns of the
-table. Â Â Â Â For delete: Keys are followed by the specified table columns.
+`listening` mode:     For insert: Keys are specified as columns of the
+table.     For delete: Keys are followed by the specified table columns.
 This is achieved via `before_`. e.g., specifying `before_X`
-results in the key being added before the column named `X`. Â Â Â Â For
+results in the key being added before the column named `X`.     For
 update: Keys are followed followed by the specified table columns. This
 is achieved via `before_`. e.g., specifying `before_X` results in
 the key being added before the column named `X`. For `polling` mode:
@@ -6680,37 +6148,38 @@ Keys are specified as the columns of the table.\#\#\#\# Preparations
 required for working with Oracle Databases in listening mode Using the
 extension in Windows, Mac OSX and AIX are pretty straight forward
 inorder to achieve the required behaviour please follow the steps given
-below Â Â - Download the compatible version of oracle instantclient for
+below   - Download the compatible version of oracle instantclient for
 the database version from
 \[here\](https://www.oracle.com/database/technologies/instant-client/downloads.html)
-and extract Â Â - Extract and set the environment variable
+and extract   - Extract and set the environment variable
 `LD_LIBRARY_PATH` to the location of instantclient which was exstracted
-as shown below Â Â 
+as shown below   
 
         export LD_LIBRARY_PATH=<path to the instant client location>
 
 
-Â Â - Inside the instantclient folder which was download there are two
+  - Inside the instantclient folder which was download there are two
 jars `xstreams.jar` and `ojdbc<version>.jar` convert them to OSGi
 bundles using the tools which were provided in the `<distribution>/bin`
 for converting the `ojdbc.jar` use the tool `spi-provider.sh|bat` and
 for the conversion of `xstreams.jar` use the jni-provider.sh as shown
 below(Note: this way of converting Xstreams jar is applicable only for
 Linux environments for other OSs this step is not required and
-converting it through the `jartobundle.sh` tool is enough) Â Â 
+converting it through the `jartobundle.sh` tool is enough)   
 
         ./jni-provider.sh <input-jar> <destination> <comma seperated native library names>
 
 
-Â Â once ojdbc and xstreams jars are converted to OSGi copy the generated
+  once ojdbc and xstreams jars are converted to OSGi copy the generated
 jars to the `<distribution>/lib`. Currently streamprocessor-io-cdc only supports
 the oracle database distributions 12 and above See parameter: mode for
 supported databases and change events.
 
 Syntax
-```js
-    @source(type="cdc", url="<STRING>", mode="<STRING>", jdbc.driver.name="<STRING>", username="<STRING>", password="<STRING>", pool.properties="<STRING>", datasource.name="<STRING>", table.name="<STRING>", polling.column="<STRING>", polling.interval="<INT>", operation="<STRING>", connector.properties="<STRING>", database.server.id="<STRING>", database.server.name="<STRING>", wait.on.missed.record="<BOOL>", missed.record.waiting.timeout="<INT>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="cdc", map.type="<STRING>", url="<STRING>", mode="<STRING>", jdbc.driver.name="<STRING>", username="<STRING>", password="<STRING>", pool.properties="<STRING>", datasource.name="<STRING>", table.name="<STRING>", polling.column="<STRING>", polling.interval="<INT>", operation="<STRING>", connector.properties="<STRING>", database.server.id="<STRING>", database.server.name="<STRING>", wait.on.missed.record="<BOOL>", missed.record.waiting.timeout="<INT>") 
+
+
 QUERY PARAMETERS
 
 | Name                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Default Value                        | Possible Data Types | Optional | Dynamic |
@@ -6721,7 +6190,7 @@ QUERY PARAMETERS
 | username                      | The username to be used for accessing the database. This user needs to have the `SELECT`, `RELOAD`, `SHOW DATABASES`, `REPLICATION SLAVE`, and `REPLICATION CLIENT`privileges for the change data capturing table (specified via the `table.name` parameter). To operate in the polling mode, the user needs `SELECT` privileges.                                                                                                                                                                                     |                                      | STRING              | No       | No      |
 | password                      | The password of the username you specified for accessing the database.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                      | STRING              | No       | No      |
 | pool.properties               | The pool parameters for the database connection can be specified as key-value pairs.                                                                                                                                                                                                                                                                                                                                                                                                                                                |                                      | STRING              | Yes      | No      |
-| datasource.name               | Name of the gdn datasource to connect to the database. When datasource name is provided, the URL, username and password are not needed. A datasource based connection is given more priority over the URL based connection. Â This parameter is applicable only when the mode is set to `polling`, and it can be applied only when you use this extension with gdn Stream Processor.                                                                                                                                             |                                      | STRING              | Yes      | No      |
+| datasource.name               | Name of the gdn datasource to connect to the database. When datasource name is provided, the URL, username and password are not needed. A datasource based connection is given more priority over the URL based connection.  This parameter is applicable only when the mode is set to `polling`, and it can be applied only when you use this extension with gdn Stream Processor.                                                                                                                                             |                                      | STRING              | Yes      | No      |
 | table.name                    | The name of the table that needs to be monitored for data changes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                                      | STRING              | No       | No      |
 | polling.column                | The column name that is polled to capture the change data. It is recommended to have a TIMESTAMP field as the `polling.column` in order to capture the inserts and updates. Numeric auto-incremental fields and char fields can also be used as `polling.column`. However, note that fields of these types only support insert change capturing, and the possibility of using a char field also depends on how the data is input. **It is required to enter a value for this parameter only when the mode is `polling`.** |                                      | STRING              | Yes      | No      |
 | polling.interval              | The time interval (specified in seconds) to poll the given table for changes. This parameter is applicable only when the mode is set to `polling`.                                                                                                                                                                                                                                                                                                                                                                                | 1                                    | INT                 | Yes      | No      |
@@ -6733,65 +6202,46 @@ QUERY PARAMETERS
 | missed.record.waiting.timeout | The timeout (specified in seconds) to retry for missing/out-of-order record. This should be used along with the wait.on.missed.record parameter. If the parameter is not set, the process will indefinitely wait for the missing record.                                                                                                                                                                                                                                                                                            | -1                                   | INT                 | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type = 'cdc' , url = 'jdbc:mysql://localhost:3306/SimpleDB',
-    username = 'cdcuser', password = 'pswd4cdc',
-    table.name = 'students', operation = 'insert',
-    @map(type='keyvalue', @attributes(id = 'id', name = 'name')))
-    define stream inputStream (id string, name string);
-```
+
+    CREATE SOURCE inputStream WITH (type = 'cdc' , url = 'jdbc:mysql://localhost:3306/SimpleDB', username = 'cdcuser', password = 'pswd4cdc', table.name = 'students', operation = 'insert',
+    map.type='keyvalue', map.attributes="id='id', name='name'") (id string, name string);
+
 In this example, the CDC source listens to the row insertions that are
 made in the `students` table with the column name, and the ID. This
 table belongs to the `SimpleDB` MySQL database that can be accessed
 via the given URL.
 
 EXAMPLE 2
-```js
-    @source(type = 'cdc' , url = 'jdbc:mysql://localhost:3306/SimpleDB',
-    username = 'cdcuser', password = 'pswd4cdc',
-    table.name = 'students', operation = 'update',
-    @map(type='keyvalue', @attributes(id = 'id', name = 'name',
-    before_id = 'before_id', before_name = 'before_name')))
-    define stream inputStream (before_id string, id string,
-    before_name string , name string);
-```
+
+    CREATE SOURCE inputStream WITH (type = 'cdc' , url = 'jdbc:mysql://localhost:3306/SimpleDB', username = 'cdcuser', password = 'pswd4cdc', table.name = 'students', operation = 'update',
+    map.type='keyvalue', map.attributes="id='id', name='name', before_id='before_id', before_name='before_name'") (before_id string, id string, before_name string , name string);
+
 In this example, the CDC source listens to the row updates that are made
 in the `students` table. This table belongs to the `SimpleDB` MySQL
 database that can be accessed via the given URL.
 
 EXAMPLE 3
-```js
-    @source(type = 'cdc' , url = 'jdbc:mysql://localhost:3306/SimpleDB',
-    username = 'cdcuser', password = 'pswd4cdc',
-    table.name = 'students', operation = 'delete',
-    @map(type='keyvalue', @attributes(before_id = 'before_id', before_name = 'before_name')))
-    define stream inputStream (before_id string, before_name string);
-```
+
+    CREATE SOURCE inputStream WITH (type = 'cdc' , url = 'jdbc:mysql://localhost:3306/SimpleDB', username = 'cdcuser', password = 'pswd4cdc', table.name = 'students', operation = 'delete',
+    map.type='keyvalue', map.attributes="before_id='before_id', before_name='before_name'") (before_id string, before_name string);
+
 In this example, the CDC source listens to the row deletions made in the
 `students` table. This table belongs to the `SimpleDB` database that
 can be accessed via the given URL.
 
 EXAMPLE 4
-```js
-    @source(type = 'cdc', mode='polling', polling.column = 'id',
-    jdbc.driver.name = 'com.mysql.jdbc.Driver', url = 'jdbc:mysql://localhost:3306/SimpleDB',
-    username = 'cdcuser', password = 'pswd4cdc',
-    table.name = 'students',
-    @map(type='keyvalue'), @attributes(id = 'id', name = 'name'))
-    define stream inputStream (id int, name string);
-```
+
+    CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = 'id', jdbc.driver.name = 'com.mysql.jdbc.Driver', url = 'jdbc:mysql://localhost:3306/SimpleDB', username = 'cdcuser', password = 'pswd4cdc', table.name = 'students', map.type='keyvalue', map.attributes="id='id', name='name'") (id int, name string);
+
 In this example, the CDC source polls the `students` table for
 inserts. `id` that is specified as the polling column is an auto
 incremental field. The connection to the database is made via the URL,
 username, password, and the JDBC driver name.
 
 EXAMPLE 5
-```js
-    @source(type = 'cdc', mode='polling', polling.column = 'id', datasource.name = 'SimpleDB',
-    table.name = 'students',
-    @map(type='keyvalue'), @attributes(id = 'id', name = 'name'))
-    define stream inputStream (id int, name string);
-```
+
+    CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = 'id', datasource.name = 'SimpleDB', table.name = 'students', map.type='keyvalue', map.attributes="id='id', name='name'") (id int, name string);
+
 In this example, the CDC source polls the `students` table for
 inserts. The given polling column is a char column with the `S001,
 S002, ... .` pattern. The connection to the database is made via a
@@ -6799,22 +6249,16 @@ data source named `SimpleDB`. Note that the `datasource.name`
 parameter works only with the Stream Processor.
 
 EXAMPLE 6
-```js
-    @source(type = 'cdc', mode='polling', polling.column = 'last_updated', datasource.name = 'SimpleDB',
-    table.name = 'students',
-    @map(type='keyvalue'))
-    define stream inputStream (name string);
-```
+
+    CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = 'last_updated', datasource.name = 'SimpleDB', table.name = 'students', map.type='keyvalue') (name string);
+
 In this example, the CDC source polls the `students` table for inserts
 and updates. The polling column is a timestamp field.
 
 EXAMPLE 7
-```js
-    @source(type='cdc', jdbc.driver.name='com.mysql.jdbc.Driver', url='jdbc:mysql://localhost:3306/SimpleDB', username='cdcuser', password='pswd4cdc', table.name='students', mode='polling', polling.column='id', operation='insert', wait.on.missed.record='true', missed.record.waiting.timeout='10',
-    @map(type='keyvalue'),
-    @attributes(batch_no='batch_no', item='item', qty='qty'))
-    define stream inputStream (id int, name string);
-```
+
+    CREATE SOURCE inputStream WITH (type='cdc', jdbc.driver.name='com.mysql.jdbc.Driver', url='jdbc:mysql://localhost:3306/SimpleDB', username='cdcuser', password='pswd4cdc', table.name='students', mode='polling', polling.column='id', operation='insert', wait.on.missed.record='true', missed.record.waiting.timeout='10', map.type='keyvalue', map.attributes="batch_no='batch_no', item='item', qty='qty'") (id int, name string);
+
 In this example, the CDC source polls the `students` table for
 inserts. The polling column is a numeric field. This source expects the
 records in the database to be written concurrently/out-of-order so it
@@ -6822,10 +6266,9 @@ waits if it encounters a missing record. If the record doesn't appear
 within 10 seconds it resumes the process.
 
 EXAMPLE 8
-```js
-    @source(type = 'cdc', url = 'jdbc:oracle:thin://localhost:1521/ORCLCDB', username='c##xstrm', password='xs', table.name='DEBEZIUM.sweetproductiontable', operation = 'insert', connector.properties='oracle.outserver.name=DBZXOUT,oracle.pdb=ORCLPDB1' @map(type = 'keyvalue'))
-    define stream insertSweetProductionStream (ID int, NAME string, WEIGHT int);
-```
+
+    CREATE SOURCE insertSweetProductionStream WITH (type = 'cdc', url = 'jdbc:oracle:thin://localhost:1521/ORCLCDB', username='c##xstrm', password='xs', table.name='DEBEZIUM.sweetproductiontable', operation = 'insert', connector.properties='oracle.outserver.name=DBZXOUT,oracle.pdb=ORCLPDB1' map.type='keyvalue') (ID int, NAME string, WEIGHT int);
+
 In this example, the CDC source connect to an Oracle database and
 listens for insert queries of sweetproduction table
 
@@ -6850,9 +6293,10 @@ Reference Implementation - POP3 Store
 Store\](https://javaee.github.io/javamail/POP3-Store)
 
 Syntax
-```js
-    @source(type="email", username="<STRING>", password="<STRING>", store="<STRING>", host="<STRING>", port="<INT>", folder="<STRING>", search.term="<STRING>", polling.interval="<LONG>", action.after.processed="<STRING>", folder.to.move="<STRING>", content.type="<STRING>", ssl.enable="<BOOL>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="email", map.type="<STRING>", username="<STRING>", password="<STRING>", store="<STRING>", host="<STRING>", port="<INT>", folder="<STRING>", search.term="<STRING>", polling.interval="<LONG>", action.after.processed="<STRING>", folder.to.move="<STRING>", content.type="<STRING>", ssl.enable="<BOOL>")
+
+
 QUERY PARAMETERS
 
 | Name                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Default Value                                                                                                                                        | Possible Data Types | Optional | Dynamic |
@@ -6865,7 +6309,7 @@ QUERY PARAMETERS
 | folder                 | The name of the folder to which the emails should be fetched.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | INBOX                                                                                                                                                | STRING              | Yes      | No      |
 | search.term            | The option that includes conditions such as key-value pairs to search for emails. In a string search term, the key and the value should be separated by a semicolon (`;`). Each key-value pair must be within inverted commas (` `). The string search term can define multiple comma-separated key-value pairs. This string search term currently supports only the `subject`, `from`, `to`, `bcc`, and `cc` keys. e.g., if you enter `subject:DAS, from:carbon, bcc:gdn`, the search term creates a search term instance that filters emails that contain `DAS` in the subject, `carbon` in the `from` address, and `gdn` in one of the `bcc` addresses. The string search term carries out sub string matching that is case-sensitive. If `@` in included in the value for any key other than the `subject` key, it checks for an address that is equal to the value given. e.g., If you search for `abc@`, the string search terms looks for an address that contains `abc` before the `@` symbol. | None                                                                                                                                                 | STRING              | Yes      | No      |
 | polling.interval       | This defines the time interval in seconds at which th email source should poll the account to check for new mail arrivals.in seconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | 600                                                                                                                                                  | LONG                | Yes      | No      |
-| action.after.processed | The action to be performed by the email source for the processed mail. Possible values are as follows: `FLAGGED`: Sets the flag as `flagged`. `SEEN`: Sets the flag as `read`. `ANSWERED`: Sets the flag as `answered`. `DELETE`: Deletes tha mail after the polling cycle. `MOVE`: Moves the mail to the folder specified in the `folder.to.move` parameter. Â If the folder specified is `pop3`, then the only option available is `DELETE`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | NONE                                                                                                                                                 | STRING              | Yes      | No      |
+| action.after.processed | The action to be performed by the email source for the processed mail. Possible values are as follows: `FLAGGED`: Sets the flag as `flagged`. `SEEN`: Sets the flag as `read`. `ANSWERED`: Sets the flag as `answered`. `DELETE`: Deletes tha mail after the polling cycle. `MOVE`: Moves the mail to the folder specified in the `folder.to.move` parameter.  If the folder specified is `pop3`, then the only option available is `DELETE`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | NONE                                                                                                                                                 | STRING              | Yes      | No      |
 | folder.to.move         | The name of the folder to which the mail must be moved once it is processed. If the action after processing is `MOVE`, it is required to specify a value for this parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                      | STRING              | No       | No      |
 | content.type           | The content type of the email. It can be either `text/plain` or `text/html.`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | text/plain                                                                                                                                           | STRING              | Yes      | No      |
 | ssl.enable             | If this is set to `true`, a secure port is used to establish the connection. The possible values are `true` and `false`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | true                                                                                                                                                 | BOOL                | Yes      | No      |
@@ -6944,9 +6388,9 @@ System Parameters
 | mail.pop3.keepmessagecontent      | If this property is set to `true`, a hard reference to the cached content is retained, preventing the memory from being reused until the folder is closed, or until the cached content is explicitly invalidated (using the `invalidate` method).                                                                                                                                                                 | false                                                                   | true or false             |
 
 EXAMPLE 1
-```js
-    @source(type='email', @map(type='xml'), username='receiver.account', password='account.password',)define stream inputStream (name string, age int, country string);
-```
+
+    CREATE SOURCE inputStream WITH (type='email', map.type='xml', username='receiver.account', password='account.password') (name string, age int, country string);
+
 This example illustrates how to receive events in `xml` format via the
 email source. In this example, only the required parameters are defined
 in the stream definition. The default values are taken for the other
@@ -6954,9 +6398,9 @@ parameters. The search term is not defined, and therefore, all the new
 messages in the inbox folder are polled and taken.
 
 EXAMPLE 2
-```js
-    @source(type='email', @map(type='xml'), username='receiver.account', password='account.password',store = 'imap',host = 'imap.gmail.com',port = '993',searchTerm = 'subject:Stream Processor, from: from.account@ , cc: cc.account',polling.interval='500',action.after.processed='DELETE',content.type='text/html,)define stream inputStream (name string, age int, country string);
-```
+
+    CREATE SOURCE inputStream WITH (type='email', map.type='xml', username='receiver.account', password='account.password',store = 'imap',host = 'imap.gmail.com',port = '993',searchTerm = 'subject:Stream Processor, from: from.account@ , cc: cc.account',polling.interval='500',action.after.processed='DELETE',content.type='text/html') (name string, age int, country string);
+
 This example illustrates how to receive events in `xml` format via the
 email source. The email source polls the mail account every 500 seconds
 to check whether any new mails have arrived. It processes new mails only
@@ -6967,70 +6411,6 @@ receipient list and the word `Stream Processor` in the mail subject).
 in this example, the action after processing is `DELETE`.
 Therefore,after processing the event, corresponding mail is deleted from
 the mail folder.
-
-### file (Source)
-
-File Source provides the functionality for user to feed data to stream processor
-from files. Both text and binary files are supported by file source.
-
-Syntax
-```js
-    @source(type="file", dir.uri="<STRING>", file.uri="<STRING>", mode="<STRING>", tailing="<BOOL>", action.after.process="<STRING>", action.after.failure="<STRING>", move.after.process="<STRING>", move.after.failure="<STRING>", begin.regex="<STRING>", end.regex="<STRING>", file.polling.interval="<STRING>", dir.polling.interval="<STRING>", timeout="<STRING>", file.read.wait.timeout="<STRING>", @map(...)))
-```
-QUERY PARAMETERS
-
-| Name                   | Description                                                                                                                                                                                                                                                                                                                                | Default Value | Possible Data Types | Optional | Dynamic |
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| dir.uri                | Used to specify a directory to be processed. All the files inside this directory will be processed. Only one of `dir.uri` and `file.uri` should be provided. This uri MUST have the respective protocol specified.                                                                                                                     |               | STRING              | No       | No      |
-| file.uri               | Used to specify a file to be processed. Â Only one of `dir.uri` and `file.uri` should be provided. This uri MUST have the respective protocol specified.                                                                                                                                                                                |               | STRING              | No       | No      |
-| mode                   | This parameter is used to specify how files in given directory should.Possible values for this parameter are, 1. TEXT.FULL : to read a text file completely at once. 2. BINARY.FULL : to read a binary file completely at once. 3. LINE : to read a text file line by line. 4. REGEX : to read a text file and extract data using a regex. | line          | STRING              | Yes      | No      |
-| tailing                | This can either have value true or false. By default it will be true. This attribute allows user to specify whether the file should be tailed or not. If tailing is enabled, the first file of the directory will be tailed. Also tailing should not be enabled in `binary.full` or `text.full` modes.                                 | true          | BOOL                | Yes      | No      |
-| action.after.process   | This parameter is used to specify the action which should be carried out after processing a file in the given directory. It can be either DELETE or MOVE and default value will be `DELETE`. If the action.after.process is MOVE, user must specify the location to move consumed files using `move.after.process` parameter.          | delete        | STRING              | Yes      | No      |
-| action.after.failure   | This parameter is used to specify the action which should be carried out if a failure occurred during the process. It can be either DELETE or MOVE and default value will be `DELETE`. If the action.after.failure is MOVE, user must specify the location to move consumed files using `move.after.failure` parameter.                | delete        | STRING              | Yes      | No      |
-| move.after.process     | If action.after.process is MOVE, user must specify the location to move consumed files using `move.after.process` parameter. This should be the absolute path of the file that going to be created after moving is done. This uri MUST have the respective protocol specified.                                                           |               | STRING              | No       | No      |
-| move.after.failure     | If action.after.failure is MOVE, user must specify the location to move consumed files using `move.after.failure` parameter. This should be the absolute path of the file that going to be created after moving is done. This uri MUST have the respective protocol specified.                                                           |               | STRING              | No       | No      |
-| begin.regex            | This will define the regex to be matched at the beginning of the retrieved content.                                                                                                                                                                                                                                                        | None          | STRING              | Yes      | No      |
-| end.regex              | This will define the regex to be matched at the end of the retrieved content.                                                                                                                                                                                                                                                              | None          | STRING              | Yes      | No      |
-| file.polling.interval  | This parameter is used to specify the time period (in milliseconds) of a polling cycle for a file.                                                                                                                                                                                                                                         | 1000          | STRING              | Yes      | No      |
-| dir.polling.interval   | This parameter is used to specify the time period (in milliseconds) of a polling cycle for a directory.                                                                                                                                                                                                                                    | 1000          | STRING              | Yes      | No      |
-| timeout                | This parameter is used to specify the maximum time period (in milliseconds) for waiting until a file is processed.                                                                                                                                                                                                                         | 5000          | STRING              | Yes      | No      |
-| file.read.wait.timeout | This parameter is used to specify the maximum time period (in milliseconds) till it waits before retrying to read the full file content.                                                                                                                                                                                                   | 1000          | STRING              | Yes      | No      |
-
-EXAMPLE 1
-```js
-    @source(type='file',
-    mode='text.full',
-    tailing='false'
-     dir.uri='file://abc/xyz',
-    action.after.process='delete',
-    @map(type='json'))
-    define stream FooStream (symbol string, price float, volume long);
-```
-Under above configuration, all the files in directory will be picked and
-read one by one. In this case, it's assumed that all the files contains
-json valid json strings with keys `symbol`,`price` and `volume`.
-Once a file is read, its content will be converted to an event using
-streamprocessor-map-json extension and then, that event will be received to the
-FooStream. Finally, after reading is finished, the file will be deleted.
-
-EXAMPLE 2
-```js
-    @source(type='file',
-    mode='files.repo.line',
-    tailing='true',
-    dir.uri='file://abc/xyz',
-    @map(type='json'))
-    define stream FooStream (symbol string, price float, volume long);
-```
-
-Under above configuration, the first file in directory `/abc/xyz` will
-be picked and read line by line. In this case, it is assumed that the
-file contains lines json strings. For each line, line content will be
-converted to an event using streamprocessor-map-json extension and then, that
-event will be received to the FooStream. Once file content is completely
-read, it will keep checking whether a new entry is added to the file or
-not. If such entry is added, it will be immediately picked up and
-processed.
 
 ### grpc (Source)
 
@@ -7047,9 +6427,10 @@ This method will receive requests and injects them into stream through a
 mapper.
 
 Syntax
-```js
-    @source(type="grpc", receiver.url="<STRING>", max.inbound.message.size="<INT>", max.inbound.metadata.size="<INT>", server.shutdown.waiting.time="<LONG>", truststore.file="<STRING>", truststore.password="<STRING>", truststore.algorithm="<STRING>", tls.store.type="<STRING>", keystore.file="<STRING>", keystore.password="<STRING>", keystore.algorithm="<STRING>", enable.ssl="<BOOL>", mutual.auth.enabled="<BOOL>", threadpool.size="<INT>", threadpool.buffer.size="<INT>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="grpc", map.type="<STRING>", receiver.url="<STRING>", max.inbound.message.size="<INT>", max.inbound.metadata.size="<INT>", server.shutdown.waiting.time="<LONG>", truststore.file="<STRING>", truststore.password="<STRING>", truststore.algorithm="<STRING>", tls.store.type="<STRING>", keystore.file="<STRING>", keystore.password="<STRING>", keystore.algorithm="<STRING>", enable.ssl="<BOOL>", mutual.auth.enabled="<BOOL>", threadpool.size="<INT>", threadpool.buffer.size="<INT>")
+
+
 QUERY PARAMETERS
 
 | Name                         | Description                                                                                                                                                                                                                                                                                                                 | Default Value | Possible Data Types | Optional | Dynamic |
@@ -7082,47 +6463,34 @@ System Parameters
 | trustStoreAlgorithm | the encryption algorithm to be used for server authentication | SunX509                                                  | \-                                      |
 
 EXAMPLE 1
-```js
-    @source(type='grpc',
-           receiver.url='grpc://localhost:8888/org.gdn.grpc.EventService/consume',
-           @map(type='json'))
-    define stream BarStream (message String);
-```
+
+    CREATE SOURCE BarStream WITH (type='grpc', receiver.url='grpc://localhost:8888/org.gdn.grpc.EventService/consume', map.type='json') (message String);
+
 Here the port is given as 8888. So a grpc server will be started on port
 8888 and the server will expose EventService. This is the default
 service packed with the source. In EventService the consume method is
 
 EXAMPLE 2
-```js
-    @source(type='grpc',
-           receiver.url='grpc://localhost:8888/org.gdn.grpc.EventService/consume',
-           @map(type='json', @attributes(name='trp:name', age='trp:age', message='message')))
-    define stream BarStream (message String, name String, age int);
-```
+
+    CREATE SOURCE BarStream WITH (type='grpc', receiver.url='grpc://localhost:8888/org.gdn.grpc.EventService/consume', map.type='json', map.attributes="name='trp:name', age='trp:age', message='message'") (message String, name String, age int);
+
 Here we are getting headers sent with the request as transport
 properties and injecting them into the stream. With each request a
 header will be sent in MetaData in the following format: `Name:John`,
 `Age:23`
 
 EXAMPLE 3
-```js
-    @source(type='grpc',
-           receiver.url='grpc://localhost:8888/org.gdn.grpc.MyService/send',
-           @map(type='protobuf'))
-    define stream BarStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
-```
+
+    CREATE SOURCE BarStream WITH (type='grpc', receiver.url='grpc://localhost:8888/org.gdn.grpc.MyService/send', map.type='protobuf') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
+
 Here the port is given as 8888. So a grpc server will be started on port
 8888 and sever will keep listening to the `send` RPC method in the
 `MyService` service.
 
 EXAMPLE 4
-```js
-    @source(type='grpc',
-           receiver.url='grpc://localhost:8888/org.gdn.grpc.MyService/send',
-           @map(type='protobuf',
-    @attributes(a = 'stringValue', b = 'intValue', c = 'longValue',d = 'booleanValue', e ='floatValue', f ='doubleValue')))
-    define stream BarStream (a string ,c long,b int, d bool,e float,f double);
-```
+
+    CREATE SOURCE BarStream WITH (type='grpc', receiver.url='grpc://localhost:8888/org.gdn.grpc.MyService/send', map.type='protobuf', attributes="a = 'stringValue', b = 'intValue', c = 'longValue',d = 'booleanValue', e ='floatValue', f ='doubleValue'") (a string ,c long,b int, d bool,e float,f double);
+
 Here the port is given as 8888. So a grpc server will be started on port
 8888 and sever will keep listening to the `send` method in the
 `MyService` service. Since we provide mapping in the stream we can use
@@ -7131,12 +6499,9 @@ correct protobuf message attributes' names. If we want to send
 metadata, we should map the attributes.
 
 EXAMPLE 5
-```js
-    @source(type='grpc',
-           receiver.url='grpc://localhost:8888/org.gdn.grpc.StreamService/clientStream',
-           @map(type='protobuf'))
-    define stream BarStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
-```
+
+    CREATE SOURCE BarStream WITH (type='grpc', receiver.url='grpc://localhost:8888/org.gdn.grpc.StreamService/clientStream', map.type='protobuf') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
+
 Here we receive a stream of requests to the grpc source. Whenever we
 want to use streaming with grpc source, we have to define the RPC method
 as client streaming method,
@@ -7152,9 +6517,9 @@ sink.id 15 then we need to set the sink.id as 15 in the source to
 receives responses. Sinks and sources have 1:1 mapping
 
 Syntax
-```js
-    @source(type="grpc-call-response", sink.id="<INT>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="grpc-call-response", map.type="<STRING>", sink.id="<INT>")
+
 QUERY PARAMETERS
 
 | Name    | Description                                                                                                                                                                                                                                                                                                   | Default Value | Possible Data Types | Optional | Dynamic |
@@ -7162,13 +6527,11 @@ QUERY PARAMETERS
 | sink.id | a unique ID that should be set for each grpc-call source. There is a 1:1 mapping between grpc-call sinks and grpc-call-response sources. Each sink has one particular source listening to the responses to requests published from that sink. So the same sink.id should be given when writing the sink also. |               | INT                 | No       | No      |
 
 EXAMPLE 1
-```js
-    @source(type='grpc-call-response', sink.id= '1')
-    define stream BarStream (message String);@sink(type='grpc-call',
-          publisher.url = 'grpc://194.23.98.100:8080/EventService/process',
-          sink.id= '1', @map(type='json'))
-    define stream FooStream (message String);
-```
+
+    CREATE SOURCE BarStream WITH (type='grpc-call-response', sink.id= '1') (message String);
+
+    CREATE SINK FooStream WITH (type='grpc-call', publisher.url = 'grpc://194.23.98.100:8080/EventService/process', sink.id= '1', map.type='json') (message String);
+
 Here we are listening to responses for requests sent from the sink with
 sink.id 1 will be received here. The results will be injected into
 BarStream
@@ -7190,9 +6553,10 @@ proto. This uses GrpcServiceResponse sink to send reponses back in the
 same Event message format.
 
 Syntax
-```js
-    @source(type="grpc-service", receiver.url="<STRING>", max.inbound.message.size="<INT>", max.inbound.metadata.size="<INT>", service.timeout="<INT>", server.shutdown.waiting.time="<LONG>", truststore.file="<STRING>", truststore.password="<STRING>", truststore.algorithm="<STRING>", tls.store.type="<STRING>", keystore.file="<STRING>", keystore.password="<STRING>", keystore.algorithm="<STRING>", enable.ssl="<BOOL>", mutual.auth.enabled="<BOOL>", threadpool.size="<INT>", threadpool.buffer.size="<INT>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="grpc-service", map.type="<STRING>", receiver.url="<STRING>", max.inbound.message.size="<INT>", max.inbound.metadata.size="<INT>", service.timeout="<INT>", server.shutdown.waiting.time="<LONG>", truststore.file="<STRING>", truststore.password="<STRING>", truststore.algorithm="<STRING>", tls.store.type="<STRING>", keystore.file="<STRING>", keystore.password="<STRING>", keystore.algorithm="<STRING>", enable.ssl="<BOOL>", mutual.auth.enabled="<BOOL>", threadpool.size="<INT>", threadpool.buffer.size="<INT>")
+
+
 QUERY PARAMETERS
 
 | Name                         | Description                                                                                                                                                                                                                                                                                                                 | Default Value | Possible Data Types | Optional | Dynamic |
@@ -7226,13 +6590,9 @@ System Parameters
 | trustStoreAlgorithm | the encryption algorithm to be used for server authentication | SunX509                                                  | \-                                      |
 
 EXAMPLE 1
-```js
-    @source(type='grpc-service',
-           receiver.url='grpc://localhost:8888/org.gdn.grpc.EventService/process',
-           source.id='1',
-           @map(type='json', @attributes(messageId='trp:messageId', message='message')))
-    define stream FooStream (messageId String, message String);
-```
+
+    CREATE SOURCE FooStream WITH (type='grpc-service', receiver.url='grpc://localhost:8888/org.gdn.grpc.EventService/process', source.id='1', map.type='json', map.attributes="messageId='trp:messageId', message='message'") (messageId String, message String);
+
 Here a grpc server will be started at port 8888. The process method of
 EventService will be exposed for clients. source.id is set as 1. So a
 grpc-service-response sink with source.id = 1 will send responses back
@@ -7241,57 +6601,39 @@ specify the transport property messageId since we need to correlate the
 request message with the response.
 
 EXAMPLE 2
-```js
-    @sink(type='grpc-service-response',
-          source.id='1',
-          @map(type='json'))
-    define stream BarStream (messageId String, message String);
 
-    @source(type='grpc-service',
-           receiver.url='grpc://134.23.43.35:8080/org.gdn.grpc.EventService/process',
-           source.id='1',
-           @map(type='json', @attributes(messageId='trp:messageId', message='message')))
-    define stream FooStream (messageId String, message String);
+    CREATE SINK BarStream WITH (type='grpc-service-response', source.id='1', map.type='json') (messageId String, message String);
 
-    from FooStream
+    CREATE SOURCE FooStream WITH (type='grpc-service', receiver.url='grpc://134.23.43.35:8080/org.gdn.grpc.EventService/process', source.id='1', map.type='json', map.attributes="messageId='trp:messageId', message='message'") (messageId String, message String);
+
+    insert into BarStream
     select *
-    insert into BarStream;
-```
+    from FooStream;
+
 The grpc requests are received through the grpc-service sink. Each
 received event is sent back through grpc-service-source. This is just a
 passthrough through Stream App as we are selecting everything from FooStream
 and inserting into BarStream.
 
 EXAMPLE 3
-```js
-    @source(type='grpc-service', source.id='1'
-           receiver.url='grpc://locanhost:8888/org.gdn.grpc.EventService/consume',
-           @map(type='json', @attributes(name='trp:name', age='trp:age', message='message'))) define stream BarStream (message String, name String, age int);
-```
+
+    CREATE SOURCE BarStream WITH (type='grpc-service', source.id='1', receiver.url='grpc://locanhost:8888/org.gdn.grpc.EventService/consume', map.type='json', map.attributes="name='trp:name', age='trp:age', message='message'") (message String, name String, age int);
+
 Here we are getting headers sent with the request as transport
 properties and injecting them into the stream. With each request a
 header will be sent in MetaData in the following format: `Name:John`,
 `Age:23`
 
 EXAMPLE 4
-```js
-    @sink(type='grpc-service-response',
-          source.id='1',
-          message.id='{{messageId}}',
-          @map(type='protobuf',
-    @payload(stringValue='a',intValue='b',longValue='c',booleanValue='d',floatValue = 'e', doubleValue ='f')))
-    define stream BarStream (a string,messageId string, b int,c long,d bool,e float,f double);
 
-    @source(type='grpc-service',
-           receiver.url='grpc://134.23.43.35:8888/org.gdn.grpc.test.MyService/process',
-           source.id='1',
-           @map(type='protobuf', @attributes(messageId='trp:message.id', a = 'stringValue', b = 'intValue', c = 'longValue',d = 'booleanValue', e = 'floatValue', f ='doubleValue')))
-    define stream FooStream (a string,messageId string, b int,c long,d bool,e float,f double);
+    CREATE SINK BarStream WITH (type='grpc-service-response', source.id='1', message.id='{{messageId}}', map.type='protobuf', map.payload="stringValue='a',intValue='b',longValue='c',booleanValue='d',floatValue = 'e', doubleValue ='f'") (a string,messageId string, b int,c long,d bool,e float,f double);
 
-    from FooStream
+    CREATE SOURCE FooStream WITH (type='grpc-service', receiver.url='grpc://134.23.43.35:8888/org.gdn.grpc.test.MyService/process', source.id='1', map.type='protobuf', map.attributes="messageId='trp:message.id', a = 'stringValue', b = 'intValue', c = 'longValue',d = 'booleanValue', e = 'floatValue', f ='doubleValue'") (a string,messageId string, b int,c long,d bool,e float,f double);
+
+    insert into BarStream
     select *
-    insert into BarStream;
-```
+    from FooStream;
+
 Here a grpc server will be started at port 8888. The process method of
 the MyService will be exposed to the clients. `source.id` is set as 1.
 So a grpc-service-response sink with source.id = 1 will send responses
@@ -7310,9 +6652,10 @@ users/systems. The request headers and properties can be accessed via
 transport properties in the format `trp:<header>`.
 
 Syntax
-```js
-    @source(type="http", receiver.url="<STRING>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="http", map.type="<STRING>", receiver.url="<STRING>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>")
+
+
 QUERY PARAMETERS
 
 | Name                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Default Value             | Possible Data Types | Optional | Dynamic |
@@ -7324,10 +6667,10 @@ QUERY PARAMETERS
 | ssl.verify.client                      | The type of client certificate verification. Supported values are `require`, `optional`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | \-                        | STRING              | Yes      | No      |
 | ssl.protocol                           | SSL/TLS protocol.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | TLS                       | STRING              | Yes      | No      |
 | tls.store.type                         | TLS store type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | JKS                       | STRING              | Yes      | No      |
-| ssl.configurations                     | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters: Â - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'` Â - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'` Â - Enable session creation: `'client.enable.session.creation:true'` Â - Supported server names: `'server.suported.server.names:server'` Â - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                                                                                                                                                                                                                                                                    | \-                        | STRING              | Yes      | No      |
-| request.size.validation.configurations | Configurations to validate the HTTP request size. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Enable request size validation: `'request.size.validation:true'` Â If request size is validated Â - Maximum request size: `'request.size.validation.maximum.value:2048'` Â - Response status code when request size validation fails: `'request.size.validation.reject.status.code:401'` Â - Response message when request size validation fails: `'request.size.validation.reject.message:Message is bigger than the valid size'` Â - Response Content-Type when request size validation fails: `'request.size.validation.reject.message.content.type:plain/text'`                                                                                                                                           | \-                        | STRING              | Yes      | No      |
-| header.validation.configurations       | Configurations to validate HTTP headers. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Enable header size validation: `'header.size.validation:true'` Â If header size is validated Â - Maximum length of initial line: `'header.validation.maximum.request.line:4096'` Â - Maximum length of all headers: `'header.validation.maximum.size:8192'` Â - Maximum length of the content or each chunk: `'header.validation.maximum.chunk.size:8192'` Â - Response status code when header validation fails: `'header.validation.reject.status.code:401'` Â - Response message when header validation fails: `'header.validation.reject.message:Message header is bigger than the valid size'` Â - Response Content-Type when header validation fails: `'header.validation.reject.message.content.type:plain/text'` | \-                        | STRING              | Yes      | No      |
-| server.bootstrap.configurations        | Server bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Server connect timeout in millis: `'server.bootstrap.connect.timeout:15000'` Â - Server socket timeout in seconds: `'server.bootstrap.socket.timeout:15'` Â - Enable TCP no delay: `'server.bootstrap.nodelay:true'` Â - Enable server keep alive: `'server.bootstrap.keepalive:true'` Â - Send buffer size: `'server.bootstrap.sendbuffersize:1048576'` Â - Receive buffer size: `'server.bootstrap.recievebuffersize:1048576'` Â - Number of connections queued: `'server.bootstrap.socket.backlog:100'`                                                                                                                                                                                                                             | \-                        | STRING              | Yes      | No      |
+| ssl.configurations                     | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters:  - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'`  - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'`  - Enable session creation: `'client.enable.session.creation:true'`  - Supported server names: `'server.suported.server.names:server'`  - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                                                                                                                                                                                                                                                                    | \-                        | STRING              | Yes      | No      |
+| request.size.validation.configurations | Configurations to validate the HTTP request size. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Enable request size validation: `'request.size.validation:true'`  If request size is validated  - Maximum request size: `'request.size.validation.maximum.value:2048'`  - Response status code when request size validation fails: `'request.size.validation.reject.status.code:401'`  - Response message when request size validation fails: `'request.size.validation.reject.message:Message is bigger than the valid size'`  - Response Content-Type when request size validation fails: `'request.size.validation.reject.message.content.type:plain/text'`                                                                                                                                           | \-                        | STRING              | Yes      | No      |
+| header.validation.configurations       | Configurations to validate HTTP headers. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Enable header size validation: `'header.size.validation:true'`  If header size is validated  - Maximum length of initial line: `'header.validation.maximum.request.line:4096'`  - Maximum length of all headers: `'header.validation.maximum.size:8192'`  - Maximum length of the content or each chunk: `'header.validation.maximum.chunk.size:8192'`  - Response status code when header validation fails: `'header.validation.reject.status.code:401'`  - Response message when header validation fails: `'header.validation.reject.message:Message header is bigger than the valid size'`  - Response Content-Type when header validation fails: `'header.validation.reject.message.content.type:plain/text'` | \-                        | STRING              | Yes      | No      |
+| server.bootstrap.configurations        | Server bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Server connect timeout in millis: `'server.bootstrap.connect.timeout:15000'`  - Server socket timeout in seconds: `'server.bootstrap.socket.timeout:15'`  - Enable TCP no delay: `'server.bootstrap.nodelay:true'`  - Enable server keep alive: `'server.bootstrap.keepalive:true'`  - Send buffer size: `'server.bootstrap.sendbuffersize:1048576'`  - Receive buffer size: `'server.bootstrap.recievebuffersize:1048576'`  - Number of connections queued: `'server.bootstrap.socket.backlog:100'`                                                                                                                                                                                                                             | \-                        | STRING              | Yes      | No      |
 | trace.log.enabled                      | Enable trace log for traffic monitoring.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | false                     | BOOL                | Yes      | No      |
 
 System Parameters
@@ -7345,16 +6688,15 @@ System Parameters
 | keyStorePassword               | The default keystore password.                                                                                                          | gdncarbon                                            | Keystore password as string |
 
 EXAMPLE 1
-```js
+
     @app.name('StockProcessor')
 
-    @source(type='http', @map(type = 'json'))
-    define stream StockStream (symbol string, price float, volume long);
-```
+    CREATE SOURCE StockStream WITH (type='http', map.type='json') (symbol string, price float, volume long);
+
 Above HTTP source listeners on url
 `http://0.0.0.0:9763/StockProcessor/StockStream` for JSON messages on
 the format:
-```js
+
     {
       "event": {
         "symbol": "FB",
@@ -7362,19 +6704,17 @@ the format:
         "volume": 5000
       }
     }
-```
+
 It maps the incoming messages and sends them to `StockStream` for
 processing.
 
 EXAMPLE 2
-```js
-    @source(type='http', receiver.url='http://localhost:5005/stocks',
-            @map(type = 'xml'))
-    define stream StockStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE StockStream WITH (type='http', receiver.url='http://localhost:5005/stocks', map.type='xml') (symbol string, price float, volume long);
+
 Above HTTP source listeners on url `http://localhost:5005/stocks` for
 JSON messages on the format:
-```js
+
     <events>
         <event>
             <symbol>Fb</symbol>
@@ -7382,7 +6722,7 @@ JSON messages on the format:
             <volume>100</volume>
         </event>
     </events>
-```
+
 It maps the incoming messages and sends them to `StockStream` for
 processing.
 
@@ -7398,9 +6738,10 @@ headers and properties via transport properties in the format
 `trp:<attribute name>` and `trp:<header/property>` respectively.
 
 Syntax
-```js
-    @source(type="http-call-response", sink.id="<STRING>", http.status.code="<STRING>", allow.streaming.responses="<BOOL>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="http-call-response", map.type="<STRING>", sink.id="<STRING>", http.status.code="<STRING>", allow.streaming.responses="<BOOL>")
+
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                                                               | Default Value | Possible Data Types | Optional | Dynamic |
@@ -7410,51 +6751,38 @@ QUERY PARAMETERS
 | allow.streaming.responses | Enable consuming responses on a streaming manner.                                                                                                                                         | false         | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='http-call', method='POST',
-          publisher.url='http://localhost:8005/registry/employee',
-          sink.id='employee-info', @map(type='json'))
-    define stream EmployeeRequestStream (name string, id int);
 
-    @source(type='http-call-response', sink.id='employee-info',
-            http.status.code='2\\d+',
-            @map(type='json',
-                 @attributes(name='trp:name', id='trp:id',
-                             location='$.town', age='$.age')))
-    define stream EmployeeResponseStream(name string, id int,
-                                         location string, age int);
+    CREATE SINK EmployeeRequestStream WITH (type='http-call', method='POST', publisher.url='http://localhost:8005/registry/employee', sink.id='employee-info', map.type='json') (name string, id int);
 
-    @source(type='http-call-response', sink.id='employee-info',
-            http.status.code='4\\d+',
-            @map(type='text', regex.A='((.|\n)*)',
-                 @attributes(error='A[1]')))
-    define stream EmployeeErrorStream(error string);
-```
+    CREATE SOURCE EmployeeResponseStream WITH (type='http-call-response', sink.id='employee-info', http.status.code='2\\d+', map.type='json', map.attributes="name='trp:name', id='trp:id', location='$.town', age='$.age'") (name string, id int, location string, age int);
+
+    CREATE SOURCE EmployeeErrorStream WITH (type='http-call-response', sink.id='employee-info', http.status.code='4\\d+', map.type='text', map.regex.A='((.|\n)*)', map.attributes="error='A[1]'") (error string);
+
 When events arrive in `EmployeeRequestStream`, http-call sink makes
 calls to endpoint on url `http://localhost:8005/registry/employee` with
 `POST` method and Content-Type `application/json`. If the arriving event
 has attributes `name`:`John` and `id`:`1423` it will send a message with
 default JSON mapping as follows:
-```js
+
     {
       "event": {
         "name": "John",
         "id": 1423
       }
     }
-```
+
 When the endpoint responds with status code in the range of 200 the
 message will be received by the http-call-response source associated
 with the `EmployeeResponseStream` stream, because it is correlated with
 the sink by the same `sink.id` `employee-info` and as that expects
 messages with `http.status.code` in regex format `2\\d+`. If the
 response message is in the format
-```json
+
     {
       "town": "NY",
       "age": 24
     }
-```
+
 the source maps the `location` and `age` attributes by executing JSON
 path on the message and maps the `name` and `id` attributes by
 extracting them from the request event via as transport properties. If
@@ -7481,9 +6809,9 @@ format `trp:<header>`. It also supports basic authentication to ensure
 events are received from authorized users/systems.
 
 Syntax
-```js
-    @source(type="http-request", receiver.url="<STRING>", source.id="<STRING>", connection.timeout="<INT>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="http-request", map.type="<STRING>", receiver.url="<STRING>", source.id="<STRING>", connection.timeout="<INT>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Default Value             | Possible Data Types | Optional | Dynamic |
@@ -7497,10 +6825,10 @@ QUERY PARAMETERS
 | ssl.verify.client                      | The type of client certificate verification. Supported values are `require`, `optional`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | \-                        | STRING              | Yes      | No      |
 | ssl.protocol                           | SSL/TLS protocol.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | TLS                       | STRING              | Yes      | No      |
 | tls.store.type                         | TLS store type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | JKS                       | STRING              | Yes      | No      |
-| ssl.configurations                     | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters: Â - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'` Â - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'` Â - Enable session creation: `'client.enable.session.creation:true'` Â - Supported server names: `'server.suported.server.names:server'` Â - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                                                                                                                                                                                                                                                                    | \-                        | STRING              | Yes      | No      |
-| request.size.validation.configurations | Configurations to validate the HTTP request size. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Enable request size validation: `'request.size.validation:true'` Â If request size is validated Â - Maximum request size: `'request.size.validation.maximum.value:2048'` Â - Response status code when request size validation fails: `'request.size.validation.reject.status.code:401'` Â - Response message when request size validation fails: `'request.size.validation.reject.message:Message is bigger than the valid size'` Â - Response Content-Type when request size validation fails: `'request.size.validation.reject.message.content.type:plain/text'`                                                                                                                                           | \-                        | STRING              | Yes      | No      |
-| header.validation.configurations       | Configurations to validate HTTP headers. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Enable header size validation: `'header.size.validation:true'` Â If header size is validated Â - Maximum length of initial line: `'header.validation.maximum.request.line:4096'` Â - Maximum length of all headers: `'header.validation.maximum.size:8192'` Â - Maximum length of the content or each chunk: `'header.validation.maximum.chunk.size:8192'` Â - Response status code when header validation fails: `'header.validation.reject.status.code:401'` Â - Response message when header validation fails: `'header.validation.reject.message:Message header is bigger than the valid size'` Â - Response Content-Type when header validation fails: `'header.validation.reject.message.content.type:plain/text'` | \-                        | STRING              | Yes      | No      |
-| server.bootstrap.configurations        | Server bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Server connect timeout in millis: `'server.bootstrap.connect.timeout:15000'` Â - Server socket timeout in seconds: `'server.bootstrap.socket.timeout:15'` Â - Enable TCP no delay: `'server.bootstrap.nodelay:true'` Â - Enable server keep alive: `'server.bootstrap.keepalive:true'` Â - Send buffer size: `'server.bootstrap.sendbuffersize:1048576'` Â - Receive buffer size: `'server.bootstrap.recievebuffersize:1048576'` Â - Number of connections queued: `'server.bootstrap.socket.backlog:100'`                                                                                                                                                                                                                             | \-                        | STRING              | Yes      | No      |
+| ssl.configurations                     | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters:  - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'`  - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'`  - Enable session creation: `'client.enable.session.creation:true'`  - Supported server names: `'server.suported.server.names:server'`  - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                                                                                                                                                                                                                                                                    | \-                        | STRING              | Yes      | No      |
+| request.size.validation.configurations | Configurations to validate the HTTP request size. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Enable request size validation: `'request.size.validation:true'`  If request size is validated  - Maximum request size: `'request.size.validation.maximum.value:2048'`  - Response status code when request size validation fails: `'request.size.validation.reject.status.code:401'`  - Response message when request size validation fails: `'request.size.validation.reject.message:Message is bigger than the valid size'`  - Response Content-Type when request size validation fails: `'request.size.validation.reject.message.content.type:plain/text'`                                                                                                                                           | \-                        | STRING              | Yes      | No      |
+| header.validation.configurations       | Configurations to validate HTTP headers. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Enable header size validation: `'header.size.validation:true'`  If header size is validated  - Maximum length of initial line: `'header.validation.maximum.request.line:4096'`  - Maximum length of all headers: `'header.validation.maximum.size:8192'`  - Maximum length of the content or each chunk: `'header.validation.maximum.chunk.size:8192'`  - Response status code when header validation fails: `'header.validation.reject.status.code:401'`  - Response message when header validation fails: `'header.validation.reject.message:Message header is bigger than the valid size'`  - Response Content-Type when header validation fails: `'header.validation.reject.message.content.type:plain/text'` | \-                        | STRING              | Yes      | No      |
+| server.bootstrap.configurations        | Server bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Server connect timeout in millis: `'server.bootstrap.connect.timeout:15000'`  - Server socket timeout in seconds: `'server.bootstrap.socket.timeout:15'`  - Enable TCP no delay: `'server.bootstrap.nodelay:true'`  - Enable server keep alive: `'server.bootstrap.keepalive:true'`  - Send buffer size: `'server.bootstrap.sendbuffersize:1048576'`  - Receive buffer size: `'server.bootstrap.recievebuffersize:1048576'`  - Number of connections queued: `'server.bootstrap.socket.backlog:100'`                                                                                                                                                                                                                             | \-                        | STRING              | Yes      | No      |
 | trace.log.enabled                      | Enable trace log for traffic monitoring.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | false                     | BOOL                | Yes      | No      |
 
 System Parameters
@@ -7518,43 +6846,36 @@ System Parameters
 | keyStorePassword               | The default keystore password.                                                                                                          | gdncarbon                                            | Keystore password as string |
 
 EXAMPLE 1
-```js
-    @source(type='http-request', receiver.url='http://localhost:5005/add',
-            source.id='adder',
-            @map(type='json, @attributes(messageId='trp:messageId',
-                                         value1='$.event.value1',
-                                         value2='$.event.value2')))
-    define stream AddStream (messageId string, value1 long, value2 long);
 
-    @sink(type='http-response', source.id='adder',
-          message.id='{{messageId}}', @map(type = 'json'))
-    define stream ResultStream (messageId string, results long);
+    CREATE SOURCE AddStream WITH (type='http-request', receiver.url='http://localhost:5005/add', source.id='adder', map.type='json, map.attributes="messageId='trp:messageId', value1='$.event.value1', value2='$.event.value2'") (messageId string, value1 long, value2 long);
+
+    CREATE SINK ResultStream WITH (type='http-response', source.id='adder', message.id='{{messageId}}', map.type='json') (messageId string, results long);
 
     @info(name = 'query1')
-    from AddStream
+    insert into ResultStream
     select messageId, value1 + value2 as results
-    insert into ResultStream;
-```
+    from AddStream;
+
 Above sample listens events on `http://localhost:5005/stocks` url for
 JSON messages on the format:
-```js
+
     {
       "event": {
         "value1": 3,
         "value2": 4
       }
     }
-```
+
 Map the vents into AddStream, process the events through query `query1`,
 and sends the results produced on ResultStream via http-response sink on
 the message format:
-```js
+
     {
       "event": {
         "results": 7
       }
     }
-```
+
 ### ~~http-response (Source)~~
 
 *Deprecated*
@@ -7570,9 +6891,10 @@ headers and properties via transport properties in the format
 `trp:<attribute name>` and `trp:<header/property>` respectively.
 
 Syntax
-```js
-    @source(type="http-response", sink.id="<STRING>", http.status.code="<STRING>", allow.streaming.responses="<BOOL>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="http-response", map.type="<STRING>", sink.id="<STRING>", http.status.code="<STRING>", allow.streaming.responses="<BOOL>")
+
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                                                               | Default Value | Possible Data Types | Optional | Dynamic |
@@ -7582,51 +6904,38 @@ QUERY PARAMETERS
 | allow.streaming.responses | Enable consuming responses on a streaming manner.                                                                                                                                         | false         | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @sink(type='http-request', method='POST',
-          publisher.url='http://localhost:8005/registry/employee',
-          sink.id='employee-info', @map(type='json'))
-    define stream EmployeeRequestStream (name string, id int);
 
-    @source(type='http-response', sink.id='employee-info',
-            http.status.code='2\\d+',
-            @map(type='json',
-                 @attributes(name='trp:name', id='trp:id',
-                             location='$.town', age='$.age')))
-    define stream EmployeeResponseStream(name string, id int,
-                                         location string, age int);
+    CREATE SINK EmployeeRequestStream WITH (type='http-request', method='POST', publisher.url='http://localhost:8005/registry/employee', sink.id='employee-info', map.type='json') (name string, id int);
 
-    @source(type='http-response', sink.id='employee-info',
-            http.status.code='4\\d+',
-            @map(type='text', regex.A='((.|\n)*)',
-                 @attributes(error='A[1]')))
-    define stream EmployeeErrorStream(error string);
-```
+    CREATE SOURCE EmployeeResponseStream WITH (type='http-response', sink.id='employee-info', http.status.code='2\\d+', map.type='json', map.attributes="name='trp:name', id='trp:id', location='$.town', age='$.age'") (name string, id int, location string, age int);
+
+    CREATE SOURCE EmployeeErrorStream WITH (type='http-response', sink.id='employee-info', http.status.code='4\\d+', map.type='text', regex.A='((.|\n)*)', map.attributes="error='A[1]'") (error string);
+
 When events arrive in `EmployeeRequestStream`, http-request sink makes
 calls to endpoint on url `http://localhost:8005/registry/employee` with
 `POST` method and Content-Type `application/json`. If the arriving event
 has attributes `name`:`John` and `id`:`1423` it will send a message with
 default JSON mapping as follows:
-```js
+
     {
       "event": {
         "name": "John",
         "id": 1423
       }
     }
-```
+
 When the endpoint responds with status code in the range of 200 the
 message will be received by the http-response source associated with the
 `EmployeeResponseStream` stream, because it is correlated with the sink
 by the same `sink.id` `employee-info` and as that expects messages with
 `http.status.code` in regex format `2\\d+`. If the response message is
 in the format
-```json
+
     {
       "town": "NY",
       "age": 24
     }
-```
+
 the source maps the `location` and `age` attributes by executing JSON
 path on the message and maps the `name` and `id` attributes by
 extracting them from the request event via as transport properties. If
@@ -7652,7 +6961,7 @@ are received from authorized users/systems.
 
 Syntax
 
-    @source(type="http-service", receiver.url="<STRING>", source.id="<STRING>", connection.timeout="<INT>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>", @map(...)))
+    CREATE SOURCE <NAME> WITH (type="http-service", map.type="<STRING>", receiver.url="<STRING>", source.id="<STRING>", connection.timeout="<INT>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>")
 
 QUERY PARAMETERS
 
@@ -7667,10 +6976,10 @@ QUERY PARAMETERS
 | ssl.verify.client                      | The type of client certificate verification. Supported values are `require`, `optional`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | \-                        | STRING              | Yes      | No      |
 | ssl.protocol                           | SSL/TLS protocol.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | TLS                       | STRING              | Yes      | No      |
 | tls.store.type                         | TLS store type.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | JKS                       | STRING              | Yes      | No      |
-| ssl.configurations                     | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters: Â - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'` Â - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'` Â - Enable session creation: `'client.enable.session.creation:true'` Â - Supported server names: `'server.suported.server.names:server'` Â - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                                                                                                                                                                                                                                                                    | \-                        | STRING              | Yes      | No      |
-| request.size.validation.configurations | Configurations to validate the HTTP request size. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Enable request size validation: `'request.size.validation:true'` Â If request size is validated Â - Maximum request size: `'request.size.validation.maximum.value:2048'` Â - Response status code when request size validation fails: `'request.size.validation.reject.status.code:401'` Â - Response message when request size validation fails: `'request.size.validation.reject.message:Message is bigger than the valid size'` Â - Response Content-Type when request size validation fails: `'request.size.validation.reject.message.content.type:plain/text'`                                                                                                                                           | \-                        | STRING              | Yes      | No      |
-| header.validation.configurations       | Configurations to validate HTTP headers. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Enable header size validation: `'header.size.validation:true'` Â If header size is validated Â - Maximum length of initial line: `'header.validation.maximum.request.line:4096'` Â - Maximum length of all headers: `'header.validation.maximum.size:8192'` Â - Maximum length of the content or each chunk: `'header.validation.maximum.chunk.size:8192'` Â - Response status code when header validation fails: `'header.validation.reject.status.code:401'` Â - Response message when header validation fails: `'header.validation.reject.message:Message header is bigger than the valid size'` Â - Response Content-Type when header validation fails: `'header.validation.reject.message.content.type:plain/text'` | \-                        | STRING              | Yes      | No      |
-| server.bootstrap.configurations        | Server bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations : Â - Server connect timeout in millis: `'server.bootstrap.connect.timeout:15000'` Â - Server socket timeout in seconds: `'server.bootstrap.socket.timeout:15'` Â - Enable TCP no delay: `'server.bootstrap.nodelay:true'` Â - Enable server keep alive: `'server.bootstrap.keepalive:true'` Â - Send buffer size: `'server.bootstrap.sendbuffersize:1048576'` Â - Receive buffer size: `'server.bootstrap.recievebuffersize:1048576'` Â - Number of connections queued: `'server.bootstrap.socket.backlog:100'`                                                                                                                                                                                                                             | \-                        | STRING              | Yes      | No      |
+| ssl.configurations                     | SSL/TSL configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported parameters:  - SSL/TLS protocols: `'sslEnabledProtocols:TLSv1.1,TLSv1.2'`  - List of ciphers: `'ciphers:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256'`  - Enable session creation: `'client.enable.session.creation:true'`  - Supported server names: `'server.suported.server.names:server'`  - Add HTTP SNIMatcher: `'server.supported.snimatchers:SNIMatcher'`                                                                                                                                                                                                                                                                                                                                                                                                    | \-                        | STRING              | Yes      | No      |
+| request.size.validation.configurations | Configurations to validate the HTTP request size. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Enable request size validation: `'request.size.validation:true'`  If request size is validated  - Maximum request size: `'request.size.validation.maximum.value:2048'`  - Response status code when request size validation fails: `'request.size.validation.reject.status.code:401'`  - Response message when request size validation fails: `'request.size.validation.reject.message:Message is bigger than the valid size'`  - Response Content-Type when request size validation fails: `'request.size.validation.reject.message.content.type:plain/text'`                                                                                                                                           | \-                        | STRING              | Yes      | No      |
+| header.validation.configurations       | Configurations to validate HTTP headers. Expected format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Enable header size validation: `'header.size.validation:true'`  If header size is validated  - Maximum length of initial line: `'header.validation.maximum.request.line:4096'`  - Maximum length of all headers: `'header.validation.maximum.size:8192'`  - Maximum length of the content or each chunk: `'header.validation.maximum.chunk.size:8192'`  - Response status code when header validation fails: `'header.validation.reject.status.code:401'`  - Response message when header validation fails: `'header.validation.reject.message:Message header is bigger than the valid size'`  - Response Content-Type when header validation fails: `'header.validation.reject.message.content.type:plain/text'` | \-                        | STRING              | Yes      | No      |
+| server.bootstrap.configurations        | Server bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Server connect timeout in millis: `'server.bootstrap.connect.timeout:15000'`  - Server socket timeout in seconds: `'server.bootstrap.socket.timeout:15'`  - Enable TCP no delay: `'server.bootstrap.nodelay:true'`  - Enable server keep alive: `'server.bootstrap.keepalive:true'`  - Send buffer size: `'server.bootstrap.sendbuffersize:1048576'`  - Receive buffer size: `'server.bootstrap.recievebuffersize:1048576'`  - Number of connections queued: `'server.bootstrap.socket.backlog:100'`                                                                                                                                                                                                                             | \-                        | STRING              | Yes      | No      |
 | trace.log.enabled                      | Enable trace log for traffic monitoring.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | false                     | BOOL                | Yes      | No      |
 
 System Parameters
@@ -7688,43 +6997,36 @@ System Parameters
 | keyStorePassword               | The default keystore password.                                                                                                          | gdncarbon                                            | Keystore password as string |
 
 EXAMPLE 1
-```js
-    @source(type='http-service', receiver.url='http://localhost:5005/add',
-            source.id='adder',
-            @map(type='json, @attributes(messageId='trp:messageId',
-                                         value1='$.event.value1',
-                                         value2='$.event.value2')))
-    define stream AddStream (messageId string, value1 long, value2 long);
 
-    @sink(type='http-service-response', source.id='adder',
-          message.id='{{messageId}}', @map(type = 'json'))
-    define stream ResultStream (messageId string, results long);
+    CREATE SOURCE AddStream WITH (type='http-service', receiver.url='http://localhost:5005/add', source.id='adder', map.type='json, map.attributes="messageId='trp:messageId', value1='$.event.value1', value2='$.event.value2'") (messageId string, value1 long, value2 long);
+
+    CREATE SINK ResultStream WITH (type='http-service-response', source.id='adder', message.id='{{messageId}}', map.type='json') (messageId string, results long);
 
     @info(name = 'query1')
-    from AddStream
+    insert into ResultStream
     select messageId, value1 + value2 as results
-    insert into ResultStream;
-```
+    from AddStream;
+
 Above sample listens events on `http://localhost:5005/stocks` url for
 JSON messages on the format:
-```js
+
     {
       "event": {
         "value1": 3,
         "value2": 4
       }
     }
-```
+
 Map the vents into AddStream, process the events through query `query1`,
 and sends the results produced on ResultStream via http-service-response
 sink on the message format:
-```js
+
     {
       "event": {
         "results": 7
       }
     }
-```
+
 ### inMemory (Source)
 
 In-memory source subscribes to a topic to consume events which are
@@ -7734,9 +7036,10 @@ connect multiple Stream App Apps deployed under the same Stream App Manager
 schema (stream definition) for successful data transfer.
 
 Syntax
-```js
-    @source(type="inMemory", topic="<STRING>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="inMemory", map.type="<STRING>", topic="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name  | Description                                       | Default Value | Possible Data Types | Optional | Dynamic |
@@ -7744,10 +7047,9 @@ QUERY PARAMETERS
 | topic | Subscribes to the events sent on the given topic. |               | STRING              | No       | No      |
 
 EXAMPLE 1
-```js
-    @source(type='inMemory', topic='Stocks', @map(type='passThrough'))
-    define stream StocksStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE StocksStream WITH (type='inMemory', topic='Stocks', map.type='passThrough') (symbol string, price float, volume long);
+
 Here the `StocksStream` uses inMemory source to consume events published
 on the topic `Stocks` by the inMemory sinks deployed in the same JVM.
 
@@ -7757,9 +7059,10 @@ JMS Source allows users to subscribe to a JMS broker and receive JMS
 messages. It has the ability to receive Map messages and Text messages.
 
 Syntax
-```js
-    @source(type="jms", destination="<STRING>", connection.factory.jndi.name="<STRING>", factory.initial="<STRING>", provider.url="<STRING>", connection.factory.type="<STRING>", worker.count="<INT>", connection.username="<STRING>", connection.password="<STRING>", retry.interval="<INT>", retry.count="<INT>", use.receiver="<BOOL>", subscription.durable="<BOOL>", connection.factory.nature="<STRING>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="jms", map.type="<STRING>", destination="<STRING>", connection.factory.jndi.name="<STRING>", factory.initial="<STRING>", provider.url="<STRING>", connection.factory.type="<STRING>", worker.count="<INT>", connection.username="<STRING>", connection.password="<STRING>", retry.interval="<INT>", retry.count="<INT>", use.receiver="<BOOL>", subscription.durable="<BOOL>", connection.factory.nature="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name                         | Description                                                                                                                                                                                       | Default Value          | Possible Data Types | Optional | Dynamic |
@@ -7779,18 +7082,16 @@ QUERY PARAMETERS
 | connection.factory.nature    | Connection factory nature for the broker.                                                                                                                                                         | default                | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='jms', @map(type='json'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='tcp://localhost:61616',destination='DAS_JMS_TEST', connection.factory.type='topic',connection.factory.jndi.name='TopicConnectionFactory')
-    define stream inputStream (name string, age int, country string);
-```
+
+    CREATE SOURCE inputStream WITH (type='jms', map.type='json', factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='tcp://localhost:61616',destination='DAS_JMS_TEST', connection.factory.type='topic',connection.factory.jndi.name='TopicConnectionFactory') (name string, age int, country string);
+
 This example shows how to connect to an ActiveMQ topic and receive
 messages.
 
 EXAMPLE 2
-```js
-    @source(type='jms', @map(type='json'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='tcp://localhost:61616',destination='DAS_JMS_TEST' )
-    define stream inputStream (name string, age int, country string);
-```
+
+    CREATE SOURCE inputStream WITH (type='jms', map.type='json', factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='tcp://localhost:61616',destination='DAS_JMS_TEST') (name string, age int, country string);
+
 This example shows how to connect to an ActiveMQ queue and receive
 messages. Note that we are not providing properties like connection
 factory type
@@ -7804,9 +7105,10 @@ created in the Kafka cluster, the Kafka sink creates the default
 partition for the given topic.
 
 Syntax
-```js
-    @source(type="kafka", bootstrap.servers="<STRING>", topic.list="<STRING>", group.id="<STRING>", threading.option="<STRING>", partition.no.list="<STRING>", seq.enabled="<BOOL>", is.binary.message="<BOOL>", topic.offsets.map="<STRING>", enable.offsets.commit="<BOOL>", optional.configuration="<STRING>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="kafka", map.type="<STRING>", bootstrap.servers="<STRING>", topic.list="<STRING>", group.id="<STRING>", threading.option="<STRING>", partition.no.list="<STRING>", seq.enabled="<BOOL>", is.binary.message="<BOOL>", topic.offsets.map="<STRING>", enable.offsets.commit="<BOOL>", optional.configuration="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Default Value | Possible Data Types | Optional | Dynamic |
@@ -7818,26 +7120,21 @@ QUERY PARAMETERS
 | partition.no.list      | The partition number list for the given topic. This is provided as a list of comma-separated values. e.g., `0,1,2,`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 0             | STRING              | Yes      | No      |
 | seq.enabled            | If this parameter is set to `true`, the sequence of the events received via the source is taken into account. Therefore, each event should contain a sequence number as an attribute value to indicate the sequence.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | false         | BOOL                | Yes      | No      |
 | is.binary.message      | In order to receive binary events via the Kafka source,it is required to setthis parameter to `True`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | false         | BOOL                | Yes      | No      |
-| topic.offsets.map      | This parameter specifies reading offsets for each topic and partition. The value for this parameter is specified in the following format: Â `<topic>=<offset>,<topic>=<offset>,` Â Â When an offset is defined for a topic, the Kafka source skips reading the message with the number specified as the offset as well as all the messages sent previous to that message. If the offset is not defined for a specific topic it reads messages from the beginning. e.g., `stocks=100,trades=50` reads from the 101th message of the `stocks` topic, and from the 51st message of the `trades` topic.                                                                                                                                                                                                                                                                                                                                                                                                     | null          | STRING              | Yes      | No      |
+| topic.offsets.map      | This parameter specifies reading offsets for each topic and partition. The value for this parameter is specified in the following format:  `<topic>=<offset>,<topic>=<offset>,`   When an offset is defined for a topic, the Kafka source skips reading the message with the number specified as the offset as well as all the messages sent previous to that message. If the offset is not defined for a specific topic it reads messages from the beginning. e.g., `stocks=100,trades=50` reads from the 101th message of the `stocks` topic, and from the 51st message of the `trades` topic.                                                                                                                                                                                                                                                                                                                                                                                                     | null          | STRING              | Yes      | No      |
 | enable.offsets.commit  | This parameter specifies whether to commit offsets. If the manual asynchronous offset committing is needed, `enable.offsets.commit` should be `true` and `enable.auto.commit` should be `false`. If periodical committing is needed `enable.offsets.commit` should be `true` and `enable.auto.commit` should be `true`. If committing is not needed, `enable.offsets.commit` should be `false`. Note: `enable.auto.commit` is an `optional.configuration` property. If it is set to `true`, Source will periodically(default: 1000ms. Configurable with `auto.commit.interval.ms` property as an `optional.configuration`) commit its current offset (defined as the offset of the next message to be read) for the partitions it is reading from back to Kafka. To guarantee at-least-once processing, we recommend you to enable Stream App Periodic State Persistence when `enable.auto.commit` property is set to `true`. During manual committing, it might introduce a latency during consumption. | true          | BOOL                | Yes      | No      |
 | optional.configuration | This parameter contains all the other possible configurations that the consumer is created with. e.g., `ssl.keystore.type:JKS,batch.size:200`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | null          | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
+
     @App:name('TestExecutionPlan')
-    define stream BarStream (symbol string, price float, volume long);
+    CREATE STREAM BarStream (symbol string, price float, volume long);
+
     @info(name = 'query1')
-    @source(
-    type='kafka',
-    topic.list='kafka_topic,kafka_topic2',
-    group.id='test',
-    threading.option='partition.wise',
-    bootstrap.servers='localhost:9092',
-    partition.no.list='0,1',
-    @map(type='xml'))
-    Define stream FooStream (symbol string, price float, volume long);
-    from FooStream select symbol, price, volume insert into BarStream;
-```
+    CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic,kafka_topic2', group.id='test', threading.option='partition.wise', bootstrap.servers='localhost:9092', partition.no.list='0,1', map.type='xml') (symbol string, price float, volume long);
+
+    insert into BarStream
+    from FooStream select symbol, price, volume ;
+
 This kafka source configuration listens to the `kafka_topic` and
 `kafka_topic2` topics with `0` and `1` partitions. A thread is created
 for each topic and partition combination. The events are received in the
@@ -7845,20 +7142,16 @@ XML format, mapped to a Stream App event, and sent to a stream named
 `FooStream`.
 
 EXAMPLE 2
-```js
+
     @App:name('TestExecutionPlan')
-    define stream BarStream (symbol string, price float, volume long);
+    CREATE STREAM BarStream (symbol string, price float, volume long);
+
     @info(name = 'query1')
-    @source(
-    type='kafka',
-    topic.list='kafka_topic',
-    group.id='test',
-    threading.option='single.thread',
-    bootstrap.servers='localhost:9092',
-    @map(type='xml'))
-    Define stream FooStream (symbol string, price float, volume long);
-    from FooStream select symbol, price, volume insert into BarStream;
-```
+    CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic', group.id='test', threading.option='single.thread', bootstrap.servers='localhost:9092', map.type='xml') (symbol string, price float, volume long);
+
+    insert into BarStream
+    from FooStream select symbol, price, volume ;
+
 This Kafka source configuration listens to the `kafka_topic` topic for
 the default partition because no `partition.no.list` is defined. Only
 one thread is created for the topic. The events are received in the XML
@@ -7876,9 +7169,9 @@ creates the default partition `0` for a given topic, if the topic has
 not yet been created in the Kafka cluster.
 
 Syntax
-```js
-    @source(type="kafkaMultiDC", bootstrap.servers="<STRING>", topic="<STRING>", partition.no="<INT>", is.binary.message="<BOOL>", optional.configuration="<STRING>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="kafkaMultiDC", map.type="<STRING>", bootstrap.servers="<STRING>", topic="<STRING>", partition.no="<INT>", is.binary.message="<BOOL>", optional.configuration="<STRING>")
+
 QUERY PARAMETERS
 
 | Name                   | Description                                                                                                                                              | Default Value | Possible Data Types | Optional | Dynamic |
@@ -7890,14 +7183,16 @@ QUERY PARAMETERS
 | optional.configuration | This contains all the other possible configurations with which the consumer can be created.eg: producer.type:async,batch.size:200                        | null          | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
+
     @App:name('TestExecutionPlan')
-    define stream BarStream (symbol string, price float, volume long);
+    CREATE STREAM BarStream (symbol string, price float, volume long);
+
     @info(name = 'query1')
-    @source(type='kafkaMultiDC', topic='kafka_topic', bootstrap.servers='host1:9092,host1:9093', partition.no='1', @map(type='xml'))
-    Define stream FooStream (symbol string, price float, volume long);
-    from FooStream select symbol, price, volume insert into BarStream;
-```
+    CREATE SOURCE FooStream WITH (type='kafkaMultiDC', topic='kafka_topic', bootstrap.servers='host1:9092,host1:9093', partition.no='1', map.type='xml') (symbol string, price float, volume long);
+
+    insert into BarStream
+    from FooStream select symbol, price, volume;
+
 The following query listens to `kafka_topic` topic, deployed in the
 broker host1:9092 and host1:9093, with partition 1. A thread is created
 for each broker. The receiving xml events are mapped to a stream processor event
@@ -7910,9 +7205,9 @@ messages. It has the ability to receive all the message types supported
 by NATS.
 
 Syntax
-```js
-    @source(type="nats", destination="<STRING>", bootstrap.servers="<STRING>", client.id="<STRING>", cluster.id="<STRING>", queue.group.name="<STRING>", durable.name="<STRING>", subscription.sequence="<STRING>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="nats", map.type="<STRING>", destination="<STRING>", bootstrap.servers="<STRING>", client.id="<STRING>", cluster.id="<STRING>", queue.group.name="<STRING>", durable.name="<STRING>", subscription.sequence="<STRING>")
+
 QUERY PARAMETERS
 
 | Name                  | Description                                                                                                                                                                                                                                       | Default Value         | Possible Data Types | Optional | Dynamic |
@@ -7926,10 +7221,9 @@ QUERY PARAMETERS
 | subscription.sequence | This can be used to subscribe to a subject from a given number of message sequence. All the messages from the given point of sequence number will be passed to the client. If not provided then the either the persisted value or 0 will be used. | None                  | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='nats', @map(type='text'), destination='SP_NATS_INPUT_TEST', bootstrap.servers='nats://localhost:4222',client.id='nats_client',server.id='test-cluster',queue.group.name = 'group_nats',durable.name = 'nats-durable',subscription.sequence = '100')
-    define stream inputStream (name string, age int, country string);
-```
+
+    CREATE SOURCE inputStream WITH (type='nats', map.type='text', destination='SP_NATS_INPUT_TEST', bootstrap.servers='nats://localhost:4222',client.id='nats_client',server.id='test-cluster',queue.group.name = 'group_nats',durable.name = 'nats-durable',subscription.sequence = '100') (name string, age int, country string);
+
 This example shows how to subscribe to a NATS subject with all
 supporting configurations.With the following configuration the source
 identified as `nats-client` will subscribes to a subject named as
@@ -7939,10 +7233,9 @@ the port 4222 for client connection. This subscription will receive all
 the messages from 100th in the subject.
 
 EXAMPLE 2
-```js
-    @source(type='nats', @map(type='text'), destination='SP_NATS_INPUT_TEST', )
-    define stream inputStream (name string, age int, country string);
-```
+
+    CREATE SOURCE inputStream WITH (type='nats', map.type='text', destination='SP_NATS_INPUT_TEST') (name string, age int, country string);
+
 This example shows how to subscribe to a NATS subject with mandatory
 configurations.With the following configuration the source identified
 with an auto generated client id will subscribes to a subject named as
@@ -7952,10 +7245,9 @@ the port 4222 for client connection. This will receive all available
 messages in the subject
 
 EXAMPLE 3
-```js
-    @source(type='nats', @map(type='json', @attributes(name='$.name', age='$.age', country='$.country', sequenceNum='trp:sequenceNumber')), destination='SIDDHI_NATS_SOURCE_TEST_DEST', client.id='nats_client', bootstrap.servers='nats://localhost:4222', cluster.id='test-cluster')
-    define stream inputStream (name string, age int, country string, sequenceNum string);
-```
+
+    CREATE SOURCE inputStream WITH (type='nats', map.type='json', map.attributes="name='$.name', age='$.age', country='$.country', sequenceNum='trp:sequenceNumber'", destination='SIDDHI_NATS_SOURCE_TEST_DEST', client.id='nats_client', bootstrap.servers='nats://localhost:4222', cluster.id='test-cluster') (name string, age int, country string, sequenceNum string);
+
 This example shows how to pass NATS Streaming sequence number to the
 event.
 
@@ -7976,9 +7268,9 @@ for the `value` attribute are `INT`, `LONG`, `FLOAT`, and
 `DOUBLE`.
 
 Syntax
-```js
-    @source(type="prometheus", target.url="<STRING>", scrape.interval="<INT>", scrape.timeout="<INT>", scheme="<STRING>", metric.name="<STRING>", metric.type="<STRING>", username="<STRING>", password="<STRING>", client.truststore.file="<STRING>", client.truststore.password="<STRING>", headers="<STRING>", job="<STRING>", instance="<STRING>", grouping.key="<STRING>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="prometheus", map.type="<STRING>", target.url="<STRING>", scrape.interval="<INT>", scrape.timeout="<INT>", scheme="<STRING>", metric.name="<STRING>", metric.type="<STRING>", username="<STRING>", password="<STRING>", client.truststore.file="<STRING>", client.truststore.password="<STRING>", headers="<STRING>", job="<STRING>", instance="<STRING>", grouping.key="<STRING>")
+
 QUERY PARAMETERS
 
 | Name                       | Description                                                                                                                                                                                                                                                                                                                                                      | Default Value | Possible Data Types | Optional | Dynamic |
@@ -7986,9 +7278,9 @@ QUERY PARAMETERS
 | target.url                 | This property specifies the target URL to which the Prometheus metrics are exported in the `TEXT` format.                                                                                                                                                                                                                                                      |               | STRING              | No       | No      |
 | scrape.interval            | This property specifies the time interval in seconds within which the source should send an HTTP request to the specified target URL.                                                                                                                                                                                                                            | 60            | INT                 | Yes      | No      |
 | scrape.timeout             | This property is the time duration in seconds for a scrape request to get timed-out if the server at the URL does not respond.                                                                                                                                                                                                                                   | 10            | INT                 | Yes      | No      |
-| scheme                     | This property specifies the scheme of the target URL. Â The supported schemes are `HTTP` and `HTTPS`.                                                                                                                                                                                                                                                         | HTTP          | STRING              | Yes      | No      |
+| scheme                     | This property specifies the scheme of the target URL.  The supported schemes are `HTTP` and `HTTPS`.                                                                                                                                                                                                                                                         | HTTP          | STRING              | Yes      | No      |
 | metric.name                | This property specifies the name of the metrics that are to be fetched. The metric name must match the regex format, i.e., `\[a-zA-Z\_:\]\[a-zA-Z0-9\_:\]\* `.                                                                                                                                                                                                 | Stream name   | STRING              | Yes      | No      |
-| metric.type                | This property specifies the type of the Prometheus metric that is required to be fetched. Â The supported metric types are `counter`, `gauge`, `histogram`, and `summary`.                                                                                                                                                                              |               | STRING              | No       | No      |
+| metric.type                | This property specifies the type of the Prometheus metric that is required to be fetched.  The supported metric types are `counter`, `gauge`, `histogram`, and `summary`.                                                                                                                                                                              |               | STRING              | No       | No      |
 | username                   | This property specifies the username that needs to be added in the authorization header of the HTTP request if basic authentication is enabled at the target. It is required to specify both the username and the password to enable basic authentication. If you do not provide a value for one or both of these parameters, an error is logged in the console. |               | STRING              | Yes      | No      |
 | password                   | This property specifies the password that needs to be added in the authorization header of the HTTP request if basic authentication is enabled at the target. It is required to specify both the username and the password to enable basic authentication. If you do not provide a value for one or both of these parameters, an error is logged in the console. |               | STRING              | Yes      | No      |
 | client.truststore.file     | The file path to the location of the truststore to which the client needs to send HTTPS requests via the `HTTPS` protocol.                                                                                                                                                                                                                                     |               | STRING              | Yes      | No      |
@@ -7996,7 +7288,7 @@ QUERY PARAMETERS
 | headers                    | Headers that need to be included as HTTP request headers in the request. The format of the supported input is as follows, "`header1:value1`,`header2:value2`"                                                                                                                                                                                              |               | STRING              | Yes      | No      |
 | job                        | This property defines the job name of the exported Prometheus metrics that needs to be fetched.                                                                                                                                                                                                                                                                  |               | STRING              | Yes      | No      |
 | instance                   | This property defines the instance of the exported Prometheus metrics that needs to be fetched.                                                                                                                                                                                                                                                                  |               | STRING              | Yes      | No      |
-| grouping.key               | This parameter specifies the grouping key of the required metrics in key-value pairs. The grouping key is used if the metrics are exported by Prometheus `pushGateway` in order to distinguish those metrics from already existing metrics. Â The expected format of the grouping key is as follows: "`key1:value1`,`key2:value2`"                        |               | STRING              | Yes      | No      |
+| grouping.key               | This parameter specifies the grouping key of the required metrics in key-value pairs. The grouping key is used if the metrics are exported by Prometheus `pushGateway` in order to distinguish those metrics from already existing metrics.  The expected format of the grouping key is as follows: "`key1:value1`,`key2:value2`"                        |               | STRING              | Yes      | No      |
 
 System Parameters
 
@@ -8015,52 +7307,54 @@ System Parameters
 | groupingKey        | The default grouping key of the required Prometheus metrics in key-value pairs. The grouping key is used if the metrics are exported by the Prometheus pushGateway in order to distinguish these metrics from already existing metrics. The expected format of the grouping key is as follows: "`key1:value1`,`key2:value2`"   |                                                          | Any valid grouping key pairs           |
 
 EXAMPLE 1
-```js
-    @source(type= 'prometheus', target.url= 'http://localhost:9080/metrics', metric.type= 'counter', metric.name= 'sweet_production_counter', @map(type= 'keyvalue'))
-    define stream FooStream1(metric_name string, metric_type string, help string, subtype string, name string, quantity string, value double);
+
+    CREATE SOURCE FooStream1 WITH (type= 'prometheus', target.url= 'http://localhost:9080/metrics', metric.type= 'counter', metric.name= 'sweet_production_counter', map.type='keyvalue') (metric_name string, metric_type string, help string, subtype string, name string, quantity string, value double);
+
+In this example, the Prometheus source sends an HTTP request to the `target.url` and analyzes the response. From the analyzed response, the source retrieves the Prometheus counter metrics with the `sweet_production_counter` nameand converts the filtered metrics into Stream App events using the key-value mapper. The generated maps have keys and values as follows:   
+
 ```
-In this example, the Prometheus source sends an HTTP request to the
-`target.url` and analyzes the response. From the analyzed response,
-the source retrieves the Prometheus counter metrics with the
-`sweet_production_counter` nameand converts the filtered metrics
-into Stream App events using the key-value mapper. The generated maps have
-keys and values as follows: Â Â metric_name ->
-sweet_production_counter Â Â metric_type -> counter Â Â help ->
-`help_string_of_metric` Â Â subtype -> null Â Â name ->
-`value_of_label_name` Â Â quantity -> `value_of_label_quantity`
-Â Â value -> `value_of_metric`
+metric_name -> sweet_production_counter   
+metric_type -> counter   
+help -> help_string_of_metric   
+subtype -> null   
+name -> value_of_label_name   
+quantity -> value_of_label_quantity
+value -> value_of_metric
+```
 
 EXAMPLE 2
-```js
-    @source(type= 'prometheus', target.url= 'http://localhost:9080/metrics', metric.type= 'summary', metric.name= 'sweet_production_summary', @map(type= 'keyvalue'))
-     define stream FooStream2(metric_name string, metric_type string, help string, subtype string, name string, quantity string, quantile string, value double);
+
+    CREATE SOURCE FooStream2 WITH (type='prometheus', target.url= 'http://localhost:9080/metrics', metric.type='summary', metric.name='sweet_production_summary', map.type='keyvalue') (metric_name string, metric_type string, help string, subtype string, name string, quantity string, quantile string, value double);
+
+In this example, the Prometheus source sends an HTTP request to the `target.url` and analyzes the response. From the analysed response, the source retrieves the Prometheus summary metrics with the `sweet_production_summary` nameand converts the filtered metrics into Stream App events using the key-value mapper. The generated maps have keys and values as follows:   
+
 ```
-In this example, the Prometheus source sends an HTTP request to the
-`target.url` and analyzes the response. From the analysed response,
-the source retrieves the Prometheus summary metrics with the
-`sweet_production_summary` nameand converts the filtered metrics
-into Stream App events using the key-value mapper. The generated maps have
-keys and values as follows: Â Â metric_name ->
-sweet_production_summary Â Â metric_type -> summary Â Â help ->
-`help_string_of_metric` Â Â subtype ->
-<`sum`/`count`/`null`> Â Â name -> `value_of_label_name`
-Â Â quantity -> `value_of_label_quantity` Â Â quantile -> `value of the quantile` Â Â value -> `value_of_metric`
+metric_name -> sweet_production_summary   
+metric_type -> summary   
+help -> help_string_of_metric   
+subtype -> `sum`/`count`/`null`   
+name -> value_of_label_name
+quantity -> value_of_label_quantity   
+quantile -> value of the quantile   
+value -> value_of_metric
+```
 
 EXAMPLE 3
-```js
-    @source(type= 'prometheus', target.url= 'http://localhost:9080/metrics', metric.type= 'histogram', metric.name= 'sweet_production_histogram', @map(type= 'keyvalue'))
-    define stream FooStream3(metric_name string, metric_type string, help string, subtype string, name string, quantity string, le string, value double);
+
+    CREATE SOURCE FooStream3 WITH (type= 'prometheus', target.url= 'http://localhost:9080/metrics', metric.type= 'histogram', metric.name= 'sweet_production_histogram', map.type='keyvalue') (metric_name string, metric_type string, help string, subtype string, name string, quantity string, le string, value double);
+
+In this example, the prometheus source sends an HTTP request to the `target.url` and analyzes the response. From the analyzed response, the source retrieves the Prometheus histogram metrics with the `sweet_production_histogram` name and converts the filtered metrics into Stream App events using the key-value mapper. The generated maps have keys and values as follows:   
+
 ```
-In this example, the prometheus source sends an HTTP request to the
-`target.url` and analyzes the response. From the analyzed response,
-the source retrieves the Prometheus histogram metrics with the
-`sweet_production_histogram` name and converts the filtered metrics
-into Stream App events using the key-value mapper. The generated maps have
-keys and values as follows, Â Â metric_name ->
-sweet_production_histogram Â Â metric_type -> histogram Â Â help ->
-`help_string_of_metric` Â Â subtype ->
-<`sum`/`count`/`bucket`> Â Â name -> `value_of_label_name`
-Â Â quantity -> `value_of_label_quantity` Â Â le -> `value of the bucket` Â Â value -> `value_of_metric`
+metric_name -> sweet_production_histogram   
+metric_type -> histogram   
+help -> <help_string_of_metric>   
+subtype -> <`sum`/`count`/`bucket`>   
+name -> <value_of_label_name>
+quantity -> <value_of_label_quantity>   
+le -> <value of the bucket>   
+value -> <value_of_metric>
+```
 
 ### rabbitmq (Source)
 
@@ -8068,9 +7362,9 @@ The rabbitmq source receives the events from the rabbitmq broker via the
 AMQP protocol.
 
 Syntax
-```js
-    @source(type="rabbitmq", uri="<STRING>", heartbeat="<INT>", exchange.name="<STRING>", exchange.type="<STRING>", exchange.durable.enabled="<BOOL>", exchange.autodelete.enabled="<BOOL>", routing.key="<STRING>", headers="<STRING>", queue.name="<STRING>", queue.durable.enabled="<BOOL>", queue.exclusive.enabled="<BOOL>", queue.autodelete.enabled="<BOOL>", tls.enabled="<BOOL>", tls.truststore.path="<STRING>", tls.truststore.password="<STRING>", tls.truststore.type="<STRING>", tls.version="<STRING>", auto.ack="<BOOL>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="rabbitmq", map.type="<STRING>", uri="<STRING>", heartbeat="<INT>", exchange.name="<STRING>", exchange.type="<STRING>", exchange.durable.enabled="<BOOL>", exchange.autodelete.enabled="<BOOL>", routing.key="<STRING>", headers="<STRING>", queue.name="<STRING>", queue.durable.enabled="<BOOL>", queue.exclusive.enabled="<BOOL>", queue.autodelete.enabled="<BOOL>", tls.enabled="<BOOL>", tls.truststore.path="<STRING>", tls.truststore.password="<STRING>", tls.truststore.type="<STRING>", tls.version="<STRING>", auto.ack="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                        | Description                                                                                                                                                                                                                                                                                                                       | Default Value                                            | Possible Data Types | Optional | Dynamic |
@@ -8095,33 +7389,31 @@ QUERY PARAMETERS
 | auto.ack                    | If this parameter is set to `false`, the server should expect explicit messages acknowledgements once delivered                                                                                                                                                                                                                   | true                                                     | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
+
     @App:name('TestExecutionPlan')
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE STREAM FooStream (symbol string, price float, volume long);
+
     @info(name = 'query1')
-    @source(type ='rabbitmq',
-    uri = 'amqp://guest:guest@localhost:5672',
-    exchange.name = 'direct',
-    routing.key= 'direct',
-    @map(type='xml'))
-    Define stream BarStream (symbol string, price float, volume long);
-    from FooStream select symbol, price, volume insert into BarStream;
-```
+    CREATE SOURCE BarStream WITH (type ='rabbitmq', uri = 'amqp://guest:guest@localhost:5672', exchange.name = 'direct', routing.key= 'direct', map.type='xml') (symbol string, price float, volume long);
+
+    insert into BarStream
+    from FooStream select symbol, price, volume ;
+
 This query receives events from the `direct` exchange with the
 `direct`exchange type, and the `directTest` routing key.
 
 ### tcp (Source)
 
 A Stream App application can be configured to receive events via the TCP
-transport by adding the @Source(type = `tcp`) annotation at the top
+transport by adding the `type='tcp'` annotation at the top
 of an event stream definition. When this is defined the associated
 stream will receive events from the TCP transport on the host and port
 defined in the system.
 
 Syntax
-```js
-    @source(type="tcp", context="<STRING>", @map(...)))
-```
+
+    CREATE SOURCE <NAME> WITH (type="tcp", map.type="<STRING>", context="<STRING>")
+
 QUERY PARAMETERS
 
 | Name    | Description                                                    | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8140,10 +7432,9 @@ System Parameters
 | keep.alive       | This property defines whether the server should be kept alive when there are no connections available.                                                                                                                                                                                                             | true          | true false                          |
 
 EXAMPLE 1
-```js
-    @Source(type = 'tcp', context='abc', @map(type='binary'))
-    define stream Foo (attribute1 string, attribute2 int );
-```
+
+    CREATE SOURCE Foo WITH (type = 'tcp', context='abc', map.type='binary') (attribute1 string, attribute2 int );
+
 Under this configuration, events are received via the TCP transport on
 default host,port, `abc` context, and they are passed to `Foo` stream
 for processing.
@@ -8155,17 +7446,17 @@ Sourcemapper
 
 This extension is an Avro to Event input mapper. Transports that accept
 Avro messages can utilize this extension to convert the incoming Avro
-messages to Stream App events. Â The Avro schema to be used for creating Avro
-messages can be specified as a parameter in the stream definition. Â If
+messages to Stream App events.  The Avro schema to be used for creating Avro
+messages can be specified as a parameter in the stream definition.  If
 no Avro schema is specified, a flat avro schema of the `record` type
 is generated with the stream attributes as schema fields. The
 generated/specified Avro schema is used to convert Avro messages to
 Stream App events.
 
 Syntax
-```js
-    @source(..., @map(type="avro", schema.def="<STRING>", schema.registry="<STRING>", schema.id="<STRING>", fail.on.missing.attribute="<BOOL>")
-```
+
+    CREATE SOURCE <NAME> WITH (map.type="avro", map.schema.def="<STRING>", map.schema.registry="<STRING>", map.schema.id="<STRING>", map.fail.on.missing.attribute="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                                                                                                                                                                                                                                                                                | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8177,27 +7468,24 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    @source(type='inMemory', topic='user', @map(type='avro', schema .def = """{"type":"record","name":"userInfo","namespace":"user.example","fields":[{"name":"name","type":"string"}, {"name":"age","type":"int"}]}"""))
-    define stream UserStream (name string, age int );
+    CREATE SOURCE UserStream WITH (type='inMemory', topic='user', map.type='avro', map.schema.def = """{"type":"record","name":"userInfo","namespace":"user.example","fields":[{"name":"name","type":"string"}, {"name":"age","type":"int"}]}""") (name string, age int );
 
 The above Stream App query performs a default Avro input mapping. The input
 Avro message that contains user information is converted to a Stream App
 event. The expected input is a byte array or ByteBuffer.
 
 EXAMPLE 2
-```js
-    @source(type='inMemory', topic='user', @map(type='avro', schema .def = """{"type":"record","name":"userInfo","namespace":"avro.userInfo","fields":[{"name":"username","type":"string"}, {"name":"age","type":"int"}]}""",@attributes(name="username",age="age")))
-    define stream userStream (name string, age int );
-```
+
+    CREATE SOURCE userStream WITH (type='inMemory', topic='user', map.type='avro', map.schema.def = """{"type":"record","name":"userInfo","namespace":"avro.userInfo","fields":[{"name":"username","type":"string"}, {"name":"age","type":"int"}]}""", map.attributes="name="username",age="age"") (name string, age int );
+
 The above Stream App query performs a custom Avro input mapping. The input
 Avro message that contains user information is converted to a Stream App
-event. Â The expected input is a byte array or ByteBuffer.
+event.  The expected input is a byte array or ByteBuffer.
 
 EXAMPLE 3
-```js
-    @source(type='inMemory', topic='user', @map(type='avro',schema.registry='http://192.168.2.5:9090', schema.id='1',@attributes(name="username",age="age")))
-    define stream UserStream (name string, age int );
-```
+
+    CREATE SOURCE UserStream WITH (type='inMemory', topic='user', map.type='avro',schema.registry='http://192.168.2.5:9090', schema.id='1', map.attributes="name='username', age='age'") (name string, age int );
+
 The above Stream App query performs a custom Avro input mapping. The input
 Avro message that contains user information is converted to a Stream App
 event via the schema retrieved from the given schema
@@ -8210,13 +7498,13 @@ This extension is a binary input mapper that converts events received in
 `binary` format to Stream App events before they are processed.
 
 Syntax
-```js
-    @source(..., @map(type="binary")
-```
+
+    CREATE SOURCE <NAME> WITH (map.type="binary")
+
 EXAMPLE 1
-```js
-    @source(type='inMemory', topic='gdn', @map(type='binary'))define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='gdn', map.type='binary') (symbol string, price float, volume long);
+
 This query performs a mapping to convert an event of the `binary` format
 to a Stream App event.
 
@@ -8228,9 +7516,10 @@ conversion takes place without extra configurations,or receive custom
 CSV message where a custom place order to map from custom CSV message.
 
 Syntax
-```js
-    @source(..., @map(type="csv", delimiter="<STRING>", header.present="<BOOL>", fail.on.unknown.attribute="<BOOL>", event.grouping.enabled="<BOOL>")
-```
+
+    CREATE SOURCE <NAME> WITH (map.type="csv", map.delimiter="<STRING>", map.header.present="<BOOL>", map.fail.on.unknown.attribute="<BOOL>", map.event.grouping.enabled="<BOOL>")
+
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                                                                                                                                                                                                                            | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8241,29 +7530,25 @@ QUERY PARAMETERS
 | event.grouping.enabled    | This parameter specifies whether event grouping is enabled or not. To receive a group of events together and generate multiple events, this parameter must be set to `true`.                                                                                                                                                                           | false         | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='inMemory', topic='stock', @map(type='csv'))
-     define stream FooStream (symbol string, price float, volume int);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='csv') (symbol string, price float, volume int);
+
 Above configuration will do a default CSV input mapping. Expected input
-will look like below: Â gdn ,55.6 , 100OR Â "gdn,No10,Palam Groove
+will look like below:  gdn ,55.6 , 100OR  "gdn,No10,Palam Groove
 Rd,Col-03" ,55.6 , 100If header.present is true and delimiter is "-",
 then the input is as follows: symbol-price-volumegdn-55.6-100
 
 EXAMPLE 2
 
-    @source(type='inMemory', topic='stock', @map(type='csv',header='true', @attributes(symbol = "2", price = "0", volume = "1")))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='csv', header='true', map.attributes="symbol = '2', price = '0', volume = '1'") (symbol string, price float, volume long);
 
-Above configuration will perform a custom CSV mapping. Here, user can
-add place order of each attribute in the @attribute. The place order
-indicates where the attribute name's value has appeared in the
-input.Expected input will look like below: 55.6,100,gdn
-OR55.6,100,"gdn,No10,Palm Groove Rd,Col-03" If header is true and
-delimiter is "-", then the output is as follows: price-volume-symbol
-55.6-100-gdn If group events is enabled then input should be as
-follows: price-volume-symbol 55.6-100-gdnSystem.lineSeparator()
-55.6-100-IBMSystem.lineSeparator() 55.6-100-IFSSystem.lineSeparator()
+Above configuration will perform a custom CSV mapping. Here, user can add place order of each attribute in the @attribute. The place order indicates where the attribute name's value has appeared in the input.Expected input will look like below: 
+
+`55.6,100,gdn OR55.6,100,"gdn,No10,Palm Groove Rd,Col-03"` 
+
+If header is true and delimiter is "-", then the output is as follows: `price-volume-symbol 55.6-100-gdn` 
+
+If group events is enabled then input should be as follows: `price-volume-symbol 55.6-100-gdnSystem.lineSeparator() 55.6-100-IBMSystem.lineSeparator() 55.6-100-IFSSystem.lineSeparator()`
 
 ### json (Source Mapper)
 
@@ -8276,32 +7561,30 @@ the JSON string of the event can be enclosed by the element "event",
 though optional.
 
 Syntax
-```js
-    @source(..., @map(type="json", enclosing.element="<STRING>", fail.on.missing.attribute="<BOOL>")
-```
+
+    CREATE SOURCE <NAME> WITH (map.type="json", enclosing.element="<STRING>", fail.on.missing.attribute="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                                                                                                                                                                                                                                                                     | Default Value | Possible Data Types | Optional | Dynamic |
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
 | enclosing.element         | This is used to specify the enclosing element when sending multiple events in the same JSON message. Mapper treats the child elements of a given enclosing element as events and executes the JSON path expressions on these child elements. If the enclosing.element is not provided then the multiple-event scenario is disregarded and the JSON path is evaluated based on the root element. | \$            | STRING              | Yes      | No      |
-| fail.on.missing.attribute | This parameter allows users to handle unknown attributes.The value of this can either be true or false. By default it is true. Â If a JSON execution fails or returns null, mapper drops that message. However, setting this property to false prompts mapper to send an event with a null value to Stream App, where users can handle it as required, ie., assign a default value.)                 | true          | BOOL                | Yes      | No      |
+| fail.on.missing.attribute | This parameter allows users to handle unknown attributes.The value of this can either be true or false. By default it is true.  If a JSON execution fails or returns null, mapper drops that message. However, setting this property to false prompts mapper to send an event with a null value to Stream App, where users can handle it as required, ie., assign a default value.)                 | true          | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='inMemory', topic='stock', @map(type='json'))
-    define stream FooStream (symbol string, price float, volume long);
-```
-This configuration performs a default JSON input mapping. Â For a single
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
+
+This configuration performs a default JSON input mapping.  For a single
 event, the input is required to be in one of the following formats: {
-Â Â Â Â "event":{ Â Â Â Â Â Â Â Â "symbol":"gdn", Â Â Â Â Â Â Â Â "price":55.6,
-Â Â Â Â Â Â Â Â "volume":100 Â Â Â Â } } or { Â Â Â Â "symbol":"gdn",
-Â Â Â Â "price":55.6, Â Â Â Â "volume":100 }
+    "event":{         "symbol":"gdn",         "price":55.6,
+        "volume":100     } } or {     "symbol":"gdn",
+    "price":55.6,     "volume":100 }
 
 EXAMPLE 2
-```js
-    @source(type='inMemory', topic='stock', @map(type='json'))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
+
 This configuration performs a default JSON input mapping. For multiple
 events, the input is required to be in one of the following formats: [
 {\"event\":{\"symbol\":\"gdn\",\"price\":55.6,\"volume\":100}},
@@ -8312,22 +7595,21 @@ events, the input is required to be in one of the following formats: [
 {\"symbol\":\"gdn\",\"price\":57.6,\"volume\":80} ]
 
 EXAMPLE 3
-```js
-    @source(type='inMemory', topic='stock', @map(type='json', enclosing.element="$.portfolio", @attributes(symbol = "company.symbol", price = "price", volume = "volume")))
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json', map.enclosing.element="$.portfolio", map.attributes="symbol = 'company.symbol', price = 'price', volume = 'volume'")
+
 This configuration performs a custom JSON mapping. For a single event,
-the expected input is similar to the one shown below: { Â "portfolio":{
-Â Â Â Â Â "stock":{ "volume":100, Â Â Â Â Â Â Â Â "company":{
-Â Â Â Â Â Â Â Â Â Â Â "symbol":"gdn" Â Â Â Â Â Â Â Â Â Â }, Â Â Â Â Â Â Â Â "price":55.6
-Â Â Â Â Â Â Â } Â Â Â } }
+the expected input is similar to the one shown below: {  "portfolio":{
+     "stock":{ "volume":100,         "company":{
+           "symbol":"gdn"           },         "price":55.6
+       }    } }
 
 EXAMPLE 4
-```js
-    @source(type='inMemory', topic='stock', @map(type='json', enclosing.element="$.portfolio", @attributes(symbol = "stock.company.symbol", price = "stock.price", volume = "stock.volume")))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json', map.enclosing.element="$.portfolio", map.attributes="symbol = 'stock.company.symbol', price = 'stock.price', volume = 'stock.volume'") (symbol string, price float, volume long);
+
 The configuration performs a custom JSON mapping. For multiple events,
-expected input looks as follows. .{"portfolio": Â Â Â [
+expected input looks as follows. .{"portfolio":    [
 {\"stock\":{\"volume\":100,\"company\":{\"symbol\":\"gdn\"},\"price\":56.6}},
 {\"stock\":{\"volume\":200,\"company\":{\"symbol\":\"gdn\"},\"price\":57.6}}
 ] }
@@ -8341,9 +7623,9 @@ place without extra configurations, or use custom keys to map from the
 message.
 
 Syntax
-```js
-    @source(..., @map(type="keyvalue", fail.on.missing.attribute="<BOOL>")
-```
+
+    CREATE SOURCE <NAME> WITH (map.type="keyvalue", map.fail.on.missing.attribute="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                          | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8351,18 +7633,17 @@ QUERY PARAMETERS
 | fail.on.missing.attribute | If this parameter is set to `true`, if an event arrives without a matching key for a specific attribute in the connected stream, it is dropped and not processed by the Stream Processor. If this parameter is set to `false` the Stream Processor adds the required key to such events with a null value, and the event is converted to a Stream App event so that you could handle them as required before they are further processed. | true          | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='inMemory', topic='stock', @map(type='keyvalue'))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue') (symbol string, price float, volume long);
+
 This query performs a default key value input mapping. The expected
 input is a map similar to the following: symbol: `gdn` price: 55.6f
 volume: 100
 
 EXAMPLE 2
-```js
-    @source(type='inMemory', topic='stock', @map(type='keyvalue', fail.on.missing.attribute='true', @attributes(symbol = 's', price = 'p', volume = 'v')))define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', map.fail.on.missing.attribute='true', map.attributes="symbol = 's', price = 'p', volume = 'v'") (symbol string, price float, volume long);
+
 This query performs a custom key value input mapping. The matching keys
 for the `symbol`, `price` and `volume` attributes are be `s`, `p`, and
 `v` respectively. The expected input is a map similar to the following:
@@ -8374,14 +7655,13 @@ Pass-through mapper passed events (Event[]) through without any
 mapping or modifications.
 
 Syntax
-```js
-    @source(..., @map(type="passThrough")
-```
+
+    CREATE SOURCE <NAME> WITH (map.type="passThrough")
+
 EXAMPLE 1
-```js
-    @source(type='tcp', @map(type='passThrough'))
-    define stream BarStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE BarStream WITH (type='tcp', map.type='passThrough') (symbol string, price float, volume long);
+
 In this example BarStream uses passThrough inputmapper which passes the
 received Stream App event directly without any transformation into source.
 
@@ -8397,9 +7677,9 @@ When you use this mapper with `streamprocessor-io-grpc` you don't have to
 provide the protobuf message class in the `class` parameter.
 
 Syntax
-```js
-    @source(..., @map(type="protobuf", class="<STRING>")
-```
+
+    CREATE SOURCE <NAME> WITH (map.type="protobuf", class="<STRING>")
+
 QUERY PARAMETERS
 
 | Name  | Description                                                                                                                       | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8407,30 +7687,25 @@ QUERY PARAMETERS
 | class | This specifies the class name of the protobuf message class, If sink type is grpc then it's not necessary to provide this field. | \-            | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='inMemory', topic='test01',
-    @map(type='protobuf', class='io.streamprocessor.extension.map.protobuf.autogenerated.Request'))
-    define stream FooStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='test01', map.type='protobuf', map.class='io.streamprocessor.extension.map.protobuf.autogenerated.Request') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
+
 This will convert the
 `io.streamprocessor.extension.map.protobuf.autogenerated.Request` protobuf
 messages into stream processor events.
 
 EXAMPLE 2
-```js
-    source(type='grpc', receiver.url = 'grpc://localhost:8084/org.gdn.grpc.test.MyService/process',
-    @map(type='protobuf')) define stream FooStream (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
-```
+
+    CREATE SOURCE FooStream WITH (type='grpc', receiver.url = 'grpc://localhost:8084/org.gdn.grpc.test.MyService/process', map.type='protobuf') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
+
 This will convert the protobuf messages that are received to this source
 into stream processor events. Since this is `grpc` source we don't need to
 provide the `class` parameter
 
 EXAMPLE 3
-```js
-    source(type='grpc', receiver.url = 'grpc://localhost:8084/org.gdn.grpc.test.MyService/process',
-    @map(type='protobuf', @attributes(a = 'stringValue', b = 'intValue', c = 'longValue',d = 'booleanValue',' e = floatValue', f ='doubleValue')))
-    define stream FooStream (a string ,c long,b int, d bool,e float,f double);
-```
+
+    CREATE SOURCE FooStream WITH (type='grpc', receiver.url = 'grpc://localhost:8084/org.gdn.grpc.test.MyService/process', map.type='protobuf', map.attributes="a = 'stringValue', b = 'intValue', c = 'longValue',d = 'booleanValue',' e = floatValue', f ='doubleValue'") (a string ,c long,b int, d bool,e float,f double);
+
 This will convert the protobuf messages that are received to this source
 into stream processor events. since there's a mapping available for the stream,
 protobuf message object will be map like this, - `stringValue` of the
@@ -8444,11 +7719,9 @@ protobuf message will be assign to the `e` attribute of the stream -
 attribute of the stream
 
 EXAMPLE 4
-```js
-    source((type='inMemory', topic='test01',
-    @map(type='protobuf', class='io.streamprocessor.extension.map.protobuf.autogenerated.RequestWithList))
-    define stream FooStream (stringValue string ,intValue int,stringList object, intList object););
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='test01', map.type='protobuf', map.class='io.streamprocessor.extension.map.protobuf.autogenerated.RequestWithList) (stringValue string ,intValue int,stringList object, intList object););
+
 This will convert the
 `io.streamprocessor.extension.map.protobuf.autogenerated.RequestWithList`
 protobuf messages that are received to this source into stream processor events.
@@ -8465,9 +7738,10 @@ configurations, or specify a regex to map a text message using custom
 configurations.
 
 Syntax
-```js
-    @source(..., @map(type="text", regex.groupid="<STRING>", fail.on.missing.attribute="<BOOL>", event.grouping.enabled="<BOOL>", delimiter="<STRING>", new.line.character="<STRING>")
-```
+
+    CREATE SOURCE <NAME> WITH (map.type="text", regex.groupid="<STRING>", fail.on.missing.attribute="<BOOL>", event.grouping.enabled="<BOOL>", delimiter="<STRING>", new.line.character="<STRING>")
+
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                         | Default Value        | Possible Data Types | Optional | Dynamic |
@@ -8479,10 +7753,9 @@ QUERY PARAMETERS
 | new.line.character        | This attribute indicates the new line character of the event that is expected to be received. This is used mostly when communication between 2 types of operating systems is expected. For example, Linux uses `\n` as the end of line character whereas windows uses `\r\n`.                                                                                                                                                       | \\n                  | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='inMemory', topic='stock', @map(type='text'))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='text') (symbol string, price float, volume long);
+
 This query performs a default text input mapping. The expected input is
 as follows: symbol:"gdn", price:55.6, volume:100 OR symbol:`gdn`,
 price:55.6, volume:100 If group events is enabled then input should be
@@ -8490,10 +7763,9 @@ as follows: symbol:"gdn", price:55.6, volume:100 ~~~~~~~~~~
 symbol:"gdn", price:55.6, volume:100
 
 EXAMPLE 2
-```js
-    @source(type='inMemory', topic='stock', @map(type='text', fail.on.missing.attribute = 'true', regex.A='(\w+)\s([-0-9]+)',regex.B='volume\s([-0-9]+)', @attributes(symbol = 'A[1]',price = 'A[2]',volume = 'B')))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='text', map.fail.on.missing.attribute='true', map.regex.A='(\w+)\s([-0-9]+)', map.regex.B='volume\s([-0-9]+)', map.attributes="symbol='A[1]', price='A[2]', volume='B'") (symbol string, price float, volume long);
+
 This query performs a custom text mapping. The expected input is as
 follows: wos2 550 volume 100 If group events is enabled then input
 should be as follows: wos2 550 volume 100 ~~~~~~~~~~ wos2 550
@@ -8508,9 +7780,10 @@ where event conversion will happen without any configs or can use xpath
 to map from a custom XML message.
 
 Syntax
-```js
-    @source(..., @map(type="xml", namespaces="<STRING>", enclosing.element="<STRING>", fail.on.missing.attribute="<BOOL>")
-```
+
+    CREATE SOURCE <NAME> WITH (map.type="xml", map.namespaces="<STRING>", map.enclosing.element="<STRING>", map.fail.on.missing.attribute="<BOOL>")
+
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                                                                                                                                                                                                                                                           | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8520,24 +7793,39 @@ QUERY PARAMETERS
 | fail.on.missing.attribute | This can either have value true or false. By default it will be true. This attribute allows user to handle unknown attributes. By default if an xpath execution fails or returns null DAS will drop that message. However setting this property to false will prompt DAS to send and event with null value to Stream App where user can handle it accordingly(ie. Assign a default value) | True          | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @source(type='inMemory', topic='stock', @map(type='xml'))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='xml') (symbol string, price float, volume long);
+
 Above configuration will do a default XML input mapping. Expected input
-will look like below.<events> Â Â Â Â <event>
-Â Â Â Â Â Â Â Â <symbol>gdn</symbol> Â Â Â Â Â Â Â Â <price>55.6</price>
-Â Â Â Â Â Â Â Â <volume>100</volume> Â Â Â Â </event> </events>
+will look like below:
+
+```xml
+<events>     
+    <event>
+        <symbol>gdn</symbol>         
+        <price>55.6</price>
+        <volume>100</volume>    
+    </event> 
+</events>
+```
 
 EXAMPLE 2
-```js
-    @source(type='inMemory', topic='stock', @map(type='xml', namespaces = "dt=urn:schemas-microsoft-com:datatypes", enclosing.element="//portfolio", @attributes(symbol = "company/symbol", price = "price", volume = "volume")))
-    define stream FooStream (symbol string, price float, volume long);
-```
+
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='xml', map.namespaces = "dt=urn:schemas-microsoft-com:datatypes", map.enclosing.element="//portfolio", map.attributes="symbol = 'company/symbol', price = 'price', volume = 'volume'") (symbol string, price float, volume long);
+
 Above configuration will perform a custom XML mapping. In the custom
 mapping user can add xpath expressions representing each event attribute
 using @attribute annotation. Expected input will look like below.
-`<portfolio xmlns:dt="urn:schemas-microsoft-com:datatypes"> Â Â Â Â <stock exchange="nasdaq"> Â Â Â Â Â Â Â Â <volume>100</volume> Â Â Â Â Â Â Â Â <company> Â Â Â Â Â Â Â Â Â Â Â <symbol>gdn</symbol> Â Â Â Â Â Â Â Â </company> Â Â Â Â Â Â Â Â <price dt:type="number">55.6</price> Â Â Â Â </stock> </portfolio>`
+
+```xml
+<portfolio xmlns:dt="urn:schemas-microsoft-com:datatypes">
+    <stock exchange="nasdaq">         
+    <volume>100</volume>
+    <company><symbol>gdn</symbol></company>         
+    <price dt:type="number">55.6</price>
+    </stock> 
+</portfolio>
+```
 
 Store
 -----
@@ -8548,16 +7836,16 @@ Using this extension a MongoDB Event Table can be configured to persist
 events in a MongoDB of user's choice.
 
 Syntax
-```js
+
     @Store(type="mongodb", mongodb.uri="<STRING>", collection.name="<STRING>", secure.connection="<STRING>", trust.store="<STRING>", trust.store.password="<STRING>", key.store="<STRING>", key.store.password="<STRING>")
     @PrimaryKey("PRIMARY_KEY")
     @Index("INDEX")
-```
+
 QUERY PARAMETERS
 
 | Name                 | Description                                                                                                                                                                                                                                                                                                                                                                                                     | Default Value                                            | Possible Data Types | Optional | Dynamic |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|---------------------|----------|---------|
-| mongodb.uri          | The MongoDB URI for the MongoDB data store. The uri must be of the format mongodb://[username:password@]host1[:port1][,hostN[:portN]][/[database][?options]] The options specified in the uri will override any connection options specified in the deployment yaml file. Â Note: The user should have read permissions to the admindb as well as read/write permissions to the database accessed. |                                                          | STRING              | No       | No      |
+| mongodb.uri          | The MongoDB URI for the MongoDB data store. The uri must be of the format mongodb://[username:password@]host1[:port1][,hostN[:portN]][/[database][?options]] The options specified in the uri will override any connection options specified in the deployment yaml file.  Note: The user should have read permissions to the admindb as well as read/write permissions to the database accessed. |                                                          | STRING              | No       | No      |
 | collection.name      | The name of the collection in the store this Event Table should be persisted as.                                                                                                                                                                                                                                                                                                                                | Name of the stream processor event table.                          | STRING              | Yes      | No      |
 | secure.connection    | Describes enabling the SSL for the mongodb connection                                                                                                                                                                                                                                                                                                                                                           | false                                                    | STRING              | Yes      | No      |
 | trust.store          | File path to the trust store.                                                                                                                                                                                                                                                                                                                                                                                   | \${carbon.home}/resources/security/client-truststore.jks | STRING              | Yes      | No      |
@@ -8597,12 +7885,12 @@ System Parameters
 | minHeartbeatFrequency                        | Sets the minimum heartbeat frequency. In the event that the driver has to frequently re-check a server's availability, it will wait at least this long since the previous check to avoid wasted effort.                                                                                | 500                                                      | Any positive integer                                                                                                                       |
 
 EXAMPLE 1
-```js
-    @Store(type="mongodb",mongodb.uri="mongodb://admin:admin@localhost/Foo")
+
+
     @PrimaryKey("symbol")
     @Index("volume:1", {background:true,unique:true}")
-    define table FooTable (symbol string, price float, volume long);
-```
+    CREATE STORE FooTable WITH (type="mongodb",mongodb.uri="mongodb://admin:admin@localhost/Foo") (symbol string, price float, volume long);
+
 This will create a collection called FooTable for the events to be saved
 with symbol as Primary Key(unique index at mongoDB level) and index for
 the field volume will be created in ascending order with the index
@@ -8613,12 +7901,14 @@ combination of values for the fields specified here. @Index: This
 specifies the fields that must be indexed at the database level. You can
 specify multiple values as a come-separated list. A single value to be
 in the format, `<FieldName>:<SortOrder>`. The last element is optional
-through which a valid index options can be passed. Â Â Â Â Â Â Â Â `SortOrder`
-: 1 for Ascending & -1 for Descending. Optional, with default value as
-1. Â Â Â Â Â Â Â Â `IndexOptions` : Index Options must be defined inside curly
-brackets. Â Â Â Â Â Â Â Â Â Â Â Â Options must follow the standard mongodb index
-options format.
-Â Â Â Â Â Â Â Â Â Â Â Â https://docs.mongodb.com/manual/reference/method/db.collection.createIndex/
+through which a valid index options can be passed.         
+
+
+`<SortOrder>`: 1 for Ascending & -1 for Descending. Optional, with default value as 1. 
+`<IndexOptions>`: Index Options must be defined inside curly brackets.             
+
+Options must follow the standard mongodb index options format.
+            https://docs.mongodb.com/manual/reference/method/db.collection.createIndex/
 Example 1: @Index(`'symbol:1'`, `'{"unique":true}'`)
 Example 2: @Index(`'symbol'`, `'{"unique":true}'`)
 Example 3: @Index(`'symbol:1'`, `'volume:-1'`, `'{"unique":true}'`)
@@ -8630,11 +7920,11 @@ tables. It also implements read-write operations on connected data
 sources.
 
 Syntax
-```js
-    @Store(type="rdbms", jdbc.url="<STRING>", username="<STRING>", password="<STRING>", jdbc.driver.name="<STRING>", pool.properties="<STRING>", jndi.resource="<STRING>", datasource="<STRING>", table.name="<STRING>", field.length="<STRING>", table.check.query="<STRING>", use.collation="<BOOL>")
+
     @PrimaryKey("PRIMARY_KEY")
     @Index("INDEX")
-```
+    CREATE STORE <NAME> WITH (type="rdbms", jdbc.url="<STRING>", username="<STRING>", password="<STRING>", jdbc.driver.name="<STRING>", pool.properties="<STRING>", jndi.resource="<STRING>", datasource="<STRING>", table.name="<STRING>", field.length="<STRING>", table.check.query="<STRING>", use.collation="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name              | Description                                                                                                                                                                                                                                                                                                                                             | Default Value                                           | Possible Data Types | Optional | Dynamic |
@@ -8680,62 +7970,57 @@ System Parameters
 | {{RDBMS-Name}}.typeMapping.bigStringType | This is used to specify the big string data type. An attribute defines as `string` type in Stream App stream and field.length define in the annotation is greater than the fieldSizeLimit, will be stored into RDBMS with this type. | **H2**: N/A **MySQL**: N/A**Oracle**: CLOB**Microsoft SQL Server**: N/A **PostgreSQL**: N/A **DB2.\***: N/A                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | N/A                  |
 
 EXAMPLE 1
-```js
-    @Store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/stocks", username="root", password="root", jdbc.driver.name="com.mysql.jdbc.Driver",field.length="symbol:100")
+
     @PrimaryKey("id", "symbol")
     @Index("volume")
-    define table StockTable (id string, symbol string, price float, volume long);
-```
+    CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/stocks", username="root", password="root", jdbc.driver.name="com.mysql.jdbc.Driver",field.length="symbol:100") (id string, symbol string, price float, volume long);
+
 The above example creates an event table named `StockTable` in the
 database if it does not already exist (with four attributes named `id`,
 `symbol`, `price`, and `volume` of the types `string`, `string`,
 `float`, and `long` respectively). The connection is made as
 specified by the parameters configured for the `@Store` annotation.
-Â The @PrimaryKey() and @Index() annotations can be used to define
+ The @PrimaryKey() and @Index() annotations can be used to define
 primary keys or indexes for the table and they follow Stream App query
 syntax. RDBMS store supports having more than one `attributes` in the
-@PrimaryKey or @Index annotations. Â In this example a composite
+@PrimaryKey or @Index annotations.  In this example a composite
 Primary key of both attributes `id` and `symbol` will be created.
 
 EXAMPLE 2
-```js
-    @Store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/das", username="root", password="root" , jdbc.driver.name="org.h2.Driver",field.length="symbol:100")
+
     @PrimaryKey("symbol")
     @Index("symbol")
-    define table StockTable (symbol string, price float, volume long);
-    define stream InputStream (symbol string, volume long);
-    from InputStream as a join StockTable as b on str:contains(b.symbol, a.symbol)
+    CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/das", username="root", password="root" , jdbc.driver.name="org.h2.Driver",field.length="symbol:100") (symbol string, price float, volume long);
+    CREATE STREAM InputStream (symbol string, volume long);
+
+    insert into FooStream
     select a.symbol as symbol, b.volume as volume
-    insert into FooStream;
-```
+    from InputStream as a join StockTable as b on str:contains(b.symbol, a.symbol);
+
 The above example creates an event table named `StockTable` in the
 database if it does not already exist (with three attributes named
 `symbol`, `price`, and `volume` of the types `string`, `float`
 and `long` respectively). Then the table is joined with a stream named
 `InputStream` based on a condition. The following operations are
-included in the condition: [ AND, OR, Comparisons( < <= > >= ==
-!=), IS NULL, NOT, str:contains(Table< Column />, Stream< Attribute /> or
-Search.String)]
+included in the condition: [ AND, OR, Comparisons( < <= > >= == !=), IS NULL, NOT, str:contains(`Table<Column>`, `Stream<Attribute>` or Search String)]
 
 EXAMPLE 3
-```js
-    @Store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/das", table.name="StockTable", username="root", password="root" , jdbc.driver.name="org.h2.Driver", field.length="symbol:100", table.check.query="SELECT 1 FROM StockTable LIMIT 1")
+
     @PrimaryKey("symbol")
     @Index("symbol")
-    define table StockTable (symbol string, price float, volume long);
-    define stream InputStream (symbol string, volume long);
-    from InputStream as a join StockTable as b on str:contains(b.symbol, a.symbol)
+    CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/das", table.name="StockTable", username="root", password="root" , jdbc.driver.name="org.h2.Driver", field.length="symbol:100", table.check.query="SELECT 1 FROM StockTable LIMIT 1") (symbol string, price float, volume long);
+    CREATE STREAM InputStream (symbol string, volume long);
+
+    insert into FooStream
     select a.symbol as symbol, b.volume as volume
-    insert into FooStream;
-```
+    from InputStream as a join StockTable as b on str:contains(b.symbol, a.symbol);
+
 The above example creates an event table named `StockTable` in the
 database if it does not already exist (with three attributes named
 `symbol`, `price`, and `volume` of the types `string`, `float`
 and `long` respectively). Then the table is joined with a stream named
 `InputStream` based on a condition. The following operations are
-included in the condition: [ AND, OR, Comparisons( < <= > >= ==
-!=), IS NULL, NOT, str:contains(Table< Column />, Stream< Attribute /> or
-Search.String)]
+included in the condition: [ AND, OR, Comparisons( < <= > >= == !=), IS NULL, NOT, str:contains(Table`<Column>`, Stream`<Attribute>` or Search.String)]
 
 ### redis (Store)
 
@@ -8747,11 +8032,11 @@ used to map the relational data in to redis's key and value
 representation
 
 Syntax
-```js
-    @Store(type="redis", table.name="<STRING>", cluster.mode="<BOOL>", nodes="<STRING>", ttl.seconds="<LONG>", ttl.on.update="<BOOL>", ttl.on.read="<BOOL>")
+
     @PrimaryKey("PRIMARY_KEY")
     @Index("INDEX")
-```
+    CREATE STORE <NAME> WITH (type="redis", table.name="<STRING>", cluster.mode="<BOOL>", nodes="<STRING>", ttl.seconds="<LONG>", ttl.on.update="<BOOL>", ttl.on.read="<BOOL>")
+
 QUERY PARAMETERS
 
 | Name          | Description                                                                                                                                                                                                                                                                                                  | Default Value                           | Possible Data Types | Optional | Dynamic |
@@ -8764,28 +8049,28 @@ QUERY PARAMETERS
 | ttl.on.read   | Set ttl on read rows                                                                                                                                                                                                                                                                                         | false                                   | BOOL                | Yes      | No      |
 
 EXAMPLE 1
-```js
-    @store(type='redis',nodes='localhost:6379@root',table.name='fooTable',cluster.mode=false)define table fooTable(time long, date String)
-```
+
+    CREATE STORE fooTable WITH (type='redis',nodes='localhost:6379@root',table.name='fooTable',cluster.mode=false) (time long, date String)
+
 Above example will create a redis table with the name fooTable and work
 on asingle redis node.
 
 EXAMPLE 2
-```js
+
     @Store(type='redis', table.name='SweetProductionTable', nodes='localhost:30001,localhost:30002,localhost:30003', cluster.mode='true')
     @primaryKey('symbol')
     @index('price')
-    define table SweetProductionTable (symbol string, price float, volume long);
-```
+    CREATE STORE SweetProductionTable (symbol string, price float, volume long);
+
 Above example demonstrate how to use the redis extension to connect in
 to redis cluster. Please note that, as nodes all the master node's host
 and port should be provided in order to work correctly. In clustered
 node password will not besupported
 
 EXAMPLE 3
-```js
-    @store(type='redis',nodes='localhost:6379@root',table.name='fooTable', ttl.seconds='30', ttl.onUpdate='true', ttl.onRead='true')define table fooTable(time long, date String)
-```
+
+    CREATE STORE fooTable WITH (type='redis',nodes='localhost:6379@root',table.name='fooTable', ttl.seconds='30', ttl.onUpdate='true', ttl.onRead='true') (time long, date String)
+
 Above example will create a redis table with the name fooTable and work
 on asingle redis node. All rows inserted, updated or read will have its
 ttl set to 30 seconds
@@ -8800,12 +8085,12 @@ in those events using a separator, e.g.,a comma (,) or a hyphen (-), and
 returns the concatenated key string.
 
 Syntax
-```js
+
     <STRING> str:groupConcat(<STRING> key)
     <STRING> str:groupConcat(<STRING> key, <STRING> ...)
     <STRING> str:groupConcat(<STRING> key, <STRING> separator, <BOOL> distinct)
     <STRING> str:groupConcat(<STRING> key, <STRING> separator, <BOOL> distinct, <STRING> order)
-```
+
 QUERY PARAMETERS
 
 | Name      | Description                                                                                                                      | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8816,20 +8101,20 @@ QUERY PARAMETERS
 | order     | This parameter accepts `ASC` or `DESC` strings to sort the string keys in either ascending or descending order respectively. | No order      | STRING              | Yes      | Yes     |
 
 EXAMPLE 1
-```js
-    from InputStream#window.time(5 min)
+
+    from InputStream WINDOW SLIDING_TIME(5 min)
     select str:groupConcat("key") as groupedKeys
     input OutputStream;
-```
+
 When we input events having values for the `key` as `'A'`, `'B'`, `'S'`,
 `'C'`, `'A'`, it returns `"A,B,S,C,A"` to the `OutputStream`.
 
 EXAMPLE 2
-```js
-    from InputStream#window.time(5 min)
+
+    from InputStream WINDOW SLIDING_TIME(5 min)
     select groupConcat("key","-",true,"ASC") as groupedKeys
     input OutputStream;
-```
+
 When we input events having values for the `key` as `'A'`, `'B'`, `'S'`,
 `'C'`, `'A'`, specify the seperator as hyphen and choose the order to be
 ascending, the function returns `"A-B-C-S"` to the `OutputStream`.
@@ -8840,9 +8125,9 @@ This function returns the `char` value that is present at the given
 index position. of the input string.
 
 Syntax
-```js
+
     <STRING> str:charAt(<STRING> input.value, <INT> index)
-```
+
 QUERY PARAMETERS
 
 | Name        | Description                                                                          | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8851,9 +8136,9 @@ QUERY PARAMETERS
 | index       | The variable that specifies the index of the char value that needs to be returned.   |               | INT                 | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     charAt("gdn", 1)
-```
+
 In this case, the functiion returns the character that exists at index
 1. Hence, it returns `S`.
 
@@ -8862,9 +8147,9 @@ In this case, the functiion returns the character that exists at index
 Gives the frequency of a char in `input string`.
 
 Syntax
-```js
+
     <LONG> str:charFrequency(<STRING> input.string, <STRING> char)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                        | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8885,9 +8170,9 @@ This returns the first input parameter value of the given argument, that
 is not null.
 
 Syntax
-```js
+
     <INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> str:coalesce(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> arg, <INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> ...)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                                                                                           | Default Value | Possible Data Types                      | Optional | Dynamic |
@@ -8895,9 +8180,9 @@ QUERY PARAMETERS
 | arg  | It can have one or more input parameters in any data type. However, all the specified parameters are required to be of the same type. |               | INT LONG DOUBLE FLOAT STRING BOOL OBJECT | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     coalesce(null, "BBB", "CCC")
-```
+
 This returns the first input parameter that is not null. In this
 example, it returns "BBB".
 
@@ -8907,9 +8192,9 @@ This function returns a string value that is obtained as a result of
 concatenating two or more input string values.
 
 Syntax
-```js
+
     <STRING> str:concat(<STRING> arg, <STRING> ...)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                               | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8917,9 +8202,9 @@ QUERY PARAMETERS
 | arg  | This can have two or more `string` type input parameters. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     concat("D533", "8JU^", "XYZ")
-```
+
 This returns a string value by concatenating two or more given
 arguments. In the example shown above, it returns "D5338JU\^XYZ".
 
@@ -8929,9 +8214,9 @@ This function returns `true` if the`input.string` contains the specified
 sequence of char values in the `search.string`.
 
 Syntax
-```js
+
     <BOOL> str:contains(<STRING> input.string, <STRING> search.string)
-```
+
 QUERY PARAMETERS
 
 | Name          | Description                                                | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8940,9 +8225,9 @@ QUERY PARAMETERS
 | search.string | The string value to be searched for in the `input.string`. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     contains("21 products are produced by gdn currently", "gdn")
-```
+
 This returns a boolean value as the output. In this case, it
 returns`true`.
 
@@ -8952,9 +8237,9 @@ This returns a boolean value by comparing two strings lexicographically
 without considering the letter case.
 
 Syntax
-```js
+
     <BOOL> str:equalsIgnoreCase(<STRING> arg1, <STRING> arg2)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                                 | Default Value | Possible Data Types | Optional | Dynamic |
@@ -8963,9 +8248,9 @@ QUERY PARAMETERS
 | arg2 | The second input string argument. This is compared with the first argument. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     equalsIgnoreCase("gdn", "gdn")
-```
+
 This returns a boolean value as the output. In this scenario, it returns
 "true".
 
@@ -8976,10 +8261,10 @@ values in the map. fillTemplate(string, r1, r2 ..) replace all the
 entries {{1}}, {{2}}, {{3}} with r1 , r2, r3.
 
 Syntax
-```js
+
     <STRING> str:fillTemplate(<STRING> template, <STRING|INT|LONG|DOUBLE|FLOAT|BOOL> replacement.type, <STRING|INT|LONG|DOUBLE|FLOAT|BOOL> ...)
     <STRING> str:fillTemplate(<STRING> template, <OBJECT> map)
-```
+
 QUERY PARAMETERS
 
 | Name             | Description                                                                                                                                                                                                                                                                                                                                | Default Value | Possible Data Types               | Optional | Dynamic |
@@ -8989,18 +8274,18 @@ QUERY PARAMETERS
 | map              | A map with key-value pairs to be replaced.                                                                                                                                                                                                                                                                                                 | \-            | OBJECT                            | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+
     str:fillTemplate("{{prize}} > 100 && {{salary}} < 10000", map:create('prize', 300, 'salary', 10000))
-```
+
 In this example, the template is `{{prize}} > 100 && {{salary}} <
 10000`.Here, the templated string {{prize}} is replaced with the value
 corresponding to the `prize` key in the given map. Likewise salary
 replace with the salary value of the map
 
 EXAMPLE 2
-```js
+
     str:fillTemplate("{{1}} > 100 && {{2}} < 10000", 200, 300)
-```
+
 In this example, the template is `{{1}} > 100 && {{2}} <
 10000`.Here, the templated string {{1}} is replaced with the
 corresponding 1st value 200. Likewise {{2}} replace with the 300
@@ -9011,9 +8296,9 @@ This function returns a hexadecimal string by converting each byte of
 each character in the input string to two hexadecimal digits.
 
 Syntax
-```js
+
     <STRING> str:hex(<STRING> input.string)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                       | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9021,9 +8306,9 @@ QUERY PARAMETERS
 | input.string | The input string to derive the hexadecimal value. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     hex("MySQL")
-```
+
 This returns the hexadecimal value of the input.string. In this
 scenario, the output is "4d7953514c".
 
@@ -9032,9 +8317,9 @@ scenario, the output is "4d7953514c".
 Returns the length of the input string.
 
 Syntax
-```js
+
     <INT> str:length(<STRING> input.string)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                            | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9042,9 +8327,9 @@ QUERY PARAMETERS
 | input.string | The input string to derive the length. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     length("Hello World")
-```
+
 This outputs the length of the provided string. In this scenario, the,
 output is `11` .
 
@@ -9054,9 +8339,9 @@ Converts the capital letters in the input string to the equivalent
 simple letters.
 
 Syntax
-```js
+
     <STRING> str:lower(<STRING> input.string)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                                                      | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9064,9 +8349,9 @@ QUERY PARAMETERS
 | input.string | The input string to convert to the lower case (i.e., equivalent simple letters). |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     lower("gdn cep ")
-```
+
 This converts the capital letters in the input.string to the equivalent
 simple letters. In this scenario, the output is "gdn cep ".
 
@@ -9076,9 +8361,9 @@ Returns a boolean value based on the matchability of the input string
 and the given regular expression.
 
 Syntax
-```js
+
     <BOOL> str:regexp(<STRING> input.string, <STRING> regex)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                                  | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9087,7 +8372,7 @@ QUERY PARAMETERS
 | regex        | The regular expression to be matched with the input string.  |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+```
     regexp("gdn abcdh", "GDN(.*h)")
 ```
 
@@ -9099,9 +8384,9 @@ given string. In this scenario, it returns "true" as the output.
 Repeats the input string for a specified number of times.
 
 Syntax
-```js
+
     <STRING> str:repeat(<STRING> input.string, <INT> times)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                                                   | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9110,9 +8395,9 @@ QUERY PARAMETERS
 | times        | The number of times the input.string needs to be repeated .                   |               | INT                 | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     repeat("StRing 1", 3)
-```
+
 This returns a string value by repeating the string for a specified
 number of times. In this scenario, the output is "StRing 1StRing
 1StRing 1".
@@ -9123,9 +8408,9 @@ Finds all the substrings of the input string that matches with the given
 expression, and replaces them with the given replacement string.
 
 Syntax
-```js
+
     <STRING> str:replaceAll(<STRING> input.string, <STRING> regex, <STRING> replacement.string)
-```
+
 QUERY PARAMETERS
 
 | Name               | Description                                                                                | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9135,9 +8420,9 @@ QUERY PARAMETERS
 | replacement.string | The string with which each substring that matches the given expression should be replaced. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     replaceAll("hello hi hello",  'hello', 'test')
-```
+
 This returns a string after replacing the substrings of the input string
 with the replacement string. In this scenario, the output is "test hi
 test" .
@@ -9149,9 +8434,9 @@ given regular expression, and replaces itwith the given replacement
 string.
 
 Syntax
-```js
+
     <STRING> str:replaceFirst(<STRING> input.string, <STRING> regex, <STRING> replacement.string)
-```
+
 QUERY PARAMETERS
 
 | Name               | Description                                                                                                       | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9161,7 +8446,7 @@ QUERY PARAMETERS
 | replacement.string | The string with which the first substring of input string that matches the regular expression should be replaced. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+```
     replaceFirst("hello gdn A hello",  'gdn(.*)A', 'XXXX')
 ```
 
@@ -9175,9 +8460,9 @@ Returns the input string in the reverse order character-wise and
 string-wise.
 
 Syntax
-```js
+
     <STRING> str:reverse(<STRING> input.string)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                      | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9185,9 +8470,9 @@ QUERY PARAMETERS
 | input.string | The input string to be reversed. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     reverse("Hello World")
-```
+
 This outputs a string value by reversing the incoming `input.string`. In
 this scenario, the output is "dlroW olleH".
 
@@ -9198,9 +8483,9 @@ Splits the `input.string` into substrings using the value parsed in the
 the `group.number`.
 
 Syntax
-```js
+
     <STRING> str:split(<STRING> input.string, <STRING> split.string, <INT> group.number)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                              | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9210,9 +8495,9 @@ QUERY PARAMETERS
 | group.number | The index of the split group                             |               | INT                 | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     split("gdn,ABM,NSFT", ",", 0)
-```
+
 This splits the given `input.string` by given `split.string` and returns
 the string in the index given by group.number. In this scenario, the
 output will is "gdn".
@@ -9226,9 +8511,9 @@ returned. If the first string is lexicographically greater than the
 second string, a negative value is returned.
 
 Syntax
-```js
+
     <INT> str:strcmp(<STRING> arg1, <STRING> arg2)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                                                         | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9237,9 +8522,9 @@ QUERY PARAMETERS
 | arg2 | The second input string argument that should be compared with the first argument lexicographically. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     strcmp("AbCDefghiJ KLMN", 'Hello')
-```
+
 This compares two strings lexicographically and outputs an integer
 value.
 
@@ -9250,12 +8535,12 @@ of the following factors: starting index, length, regular expression,
 and regex group number.
 
 Syntax
-```js
+
     <STRING> str:substr(<STRING> input.string, <INT> begin.index)
     <STRING> str:substr(<STRING> input.string, <INT> begin.index, <INT> length)
     <STRING> str:substr(<STRING> input.string, <STRING> regex)
     <STRING> str:substr(<STRING> input.string, <STRING> regex, <INT> group.number)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                                          | Default Value                             | Possible Data Types | Optional | Dynamic |
@@ -9267,21 +8552,21 @@ QUERY PARAMETERS
 | group.number | The regex group number                                               | 0                                         | INT                 | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+
     substr("AbCDefghiJ KLMN", 4)
-```
+
 This outputs the substring based on the given `begin.index`. In this
 scenario, the output is "efghiJ KLMN".
 
 EXAMPLE 2
-```js
+
     substr("AbCDefghiJ KLMN",  2, 4)
-```
+
 This outputs the substring based on the given `begin.index` and length.
 In this scenario, the output is "CDef".
 
 EXAMPLE 3
-```js
+```
     substr("gdnD efghiJ KLMN", '^gdn(.*)')
 ```
 
@@ -9289,9 +8574,9 @@ This outputs the substring by applying the regex. In this scenario, the
 output is "gdnD efghiJ KLMN".
 
 EXAMPLE 4
-```js
+
     substr("gdn cep gdn XX E hi hA gdn heAllo",  'gdn(.*)A(.*)',  2)
-```
+
 This outputs the substring by applying the regex and considering the
 `group.number`. In this scenario, the output is " ello".
 
@@ -9301,9 +8586,9 @@ Returns a copy of the input string without the leading and trailing
 whitespace (if any).
 
 Syntax
-```js
+
     <STRING> str:trim(<STRING> input.string)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9311,9 +8596,9 @@ QUERY PARAMETERS
 | input.string | The input string that needs to be trimmed. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     trim("  AbCDefghiJ KLMN  ")
-```
+
 This returns a copy of the `input.string` with the leading and/or
 trailing white-spaces omitted. In this scenario, the output is
 "AbCDefghiJ KLMN".
@@ -9324,9 +8609,9 @@ Returns a string by converting the hexadecimal characters in the input
 string.
 
 Syntax
-```js
+
     <STRING> str:unhex(<STRING> input.string)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                                        | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9334,9 +8619,9 @@ QUERY PARAMETERS
 | input.string | The hexadecimal input string that needs to be converted to string. |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unhex("4d7953514c")
-```
+
 This converts the hexadecimal value to string.
 
 ### upper (Function)
@@ -9345,9 +8630,9 @@ Converts the simple letters in the input string to the equivalent
 capital/block letters.
 
 Syntax
-```js
+
     <STRING> str:upper(<STRING> input.string)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                                                                     | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9355,9 +8640,9 @@ QUERY PARAMETERS
 | input.string | The input string that should be converted to the upper case (equivalent capital/block letters). |               | STRING              | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     upper("Hello World")
-```
+
 This converts the simple letters in the `input.string` to theequivalent
 capital letters. In this scenario, the output is "HELLO WORLD".
 
@@ -9367,10 +8652,10 @@ This function splits the input string into tokens using a given regular
 expression and returns the split tokens.
 
 Syntax
-```js
+
     str:tokenize(<STRING> input.string, <STRING> regex)
     str:tokenize(<STRING> input.string, <STRING> regex, <BOOL> distinct)
-```
+
 QUERY PARAMETERS
 
 | Name         | Description                                                      | Default Value | Possible Data Types | Optional | Dynamic |
@@ -9386,13 +8671,14 @@ Extra Return Attributes
 | token | The attribute which contains a single token. | STRING         |
 
 EXAMPLE 1
-```js
-    define stream inputStream (str string);
+
+    CREATE STREAM inputStream (str string);
     @info(name = 'query1')
-    from inputStream#str:tokenize(str , ',')
+
+    insert into outputStream
     select token
-    insert into outputStream;
-```
+    from inputStream#str:tokenize(str , ',');
+
 This query performs tokenization on the given string. If the str is
 "Android,Windows8,iOS", then the string is split into 3 events
 containing the `token` attribute values, i.e., `Android`, `Windows8` and
@@ -9406,13 +8692,13 @@ Time
 Function returns the system time in `yyyy-MM-dd` format.
 
 Syntax
-```js
+
     <STRING> time:currentDate()
-```
+
 EXAMPLE 1
-```js
+
     time:currentDate()
-```
+
 Returns the current date in the `yyyy-MM-dd` format, such as
 `2019-06-21`.
 
@@ -9421,13 +8707,13 @@ Returns the current date in the `yyyy-MM-dd` format, such as
 Function returns system time in the `HH:mm:ss` format.
 
 Syntax
-```js
+
     <STRING> time:currentTime()
-```
+
 EXAMPLE 1
-```js
+
     time:currentTime()
-```
+
 Returns the current date in the `HH:mm:ss` format, such as `15:23:24`.
 
 ### currentTimestamp (Function)
@@ -9438,10 +8724,10 @@ provided as an argument, it converts and return the current system time
 to the given timezone format.
 
 Syntax
-```js
+
     <STRING> time:currentTimestamp()
     <STRING> time:currentTimestamp(<STRING> timezone)
-```
+
 QUERY PARAMETERS
 
 | Name     | Description                                                                                                                                                                                                    | Default Value   | Possible Data Types | Optional | Dynamic |
@@ -9449,25 +8735,25 @@ QUERY PARAMETERS
 | timezone | The timezone to which the current time need to be converted. For example, `Asia/Kolkata`, `PST`. Get the supported timezone IDs from \[here\](https://docs.oracle.com/javase/8/docs/api/java/time/ZoneId.html) | System timezone | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
+
     time:currentTimestamp()
-```
+
 Returns current system time in `yyyy-MM-dd HH:mm:ss` format, such as
 `2019-03-31 14:07:00`.
 
 EXAMPLE 2
-```js
+
     time:currentTimestamp('Asia/Kolkata')
-```
+
 Returns current system time converted to `Asia/Kolkata` timezone
 `yyyy-MM-dd HH:mm:ss` format, such as `2019-03-31 19:07:00`. Get the
 supported timezone IDs from
 [here](https://docs.oracle.com/javase/8/docs/api/java/time/ZoneId.html)
 
 EXAMPLE 3
-```js
+
     time:currentTimestamp('CST')
-```
+
 Returns current system time converted to `CST` timezone
 `yyyy-MM-dd HH:mm:ss` format, such as `2019-03-31 02:07:00`. Get the
 supported timezone IDs from
@@ -9479,10 +8765,10 @@ Extracts the date part of a date or date-time and return it in
 `yyyy-MM-dd` format.
 
 Syntax
-```js
+
     <STRING> time:date(<STRING> date.value, <STRING> date.format)
     <STRING> time:date(<STRING> date.value)
-```
+
 QUERY PARAMETERS
 
 | Name        | Description                                                                                  | Default Value               | Possible Data Types | Optional | Dynamic |
@@ -9491,21 +8777,21 @@ QUERY PARAMETERS
 | date.format | The format of the date value provided. For example, `yyyy/MM/dd HH:mm:ss.SSS`.               | \`yyyy-MM-dd HH:mm:ss.SSS\` | STRING              | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+
     time:date('2014/11/11 13:23:44', 'yyyy/MM/dd HH:mm:ss')
-```
+
 Extracts the date and returns `2014-11-11`.
 
 EXAMPLE 2
-```js
+
     time:date('2014-11-23 13:23:44.345')
-```
+
 Extracts the date and returns `2014-11-13`.
 
 EXAMPLE 3
-```js
+
     time:date('13:23:44', 'HH:mm:ss')
-```
+
 Extracts the date and returns `1970-01-01`.
 
 ### dateAdd (Function)
@@ -9513,11 +8799,11 @@ Extracts the date and returns `1970-01-01`.
 Adds the specified time interval to a date.
 
 Syntax
-```js
+
     <STRING> time:dateAdd(<STRING> date.value, <INT> expr, <STRING> unit)
     <STRING> time:dateAdd(<LONG> timestamp.in.milliseconds, <INT> expr, <STRING> unit)
     <STRING> time:dateAdd(<STRING> date.value, <INT> expr, <STRING> unit, <STRING> date.format)
-```
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                 | Default Value               | Possible Data Types | Optional | Dynamic |
@@ -9529,24 +8815,24 @@ QUERY PARAMETERS
 | timestamp.in.milliseconds | The date value in milliseconds. For example, `1415712224000L`.                                                                              | \-                          | LONG                | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+
     time:dateAdd('2014-11-11 13:23:44.657', 5, 'YEAR', 'yyyy-MM-dd HH:mm:ss.SSS')
-```
+
 Adds five years to the given date value and returns
 `2019-11-11 13:23:44.657`.
 
 EXAMPLE 2
-```js
+
     time:dateAdd('2014-11-11 13:23:44.657', 5, 'YEAR')
-```
+
 Adds five years to the given date value and returns
 `2019-11-11 13:23:44.657` using the default date.format
 `yyyy-MM-dd HH:mm:ss.SSS`.
 
 EXAMPLE 3
-```js
+
     time:dateAdd( 1415712224000L, 1, 'HOUR')
-```
+
 Adds one hour and `1415715824000` as a `string`.
 
 ### dateDiff (Function)
@@ -9554,11 +8840,11 @@ Adds one hour and `1415715824000` as a `string`.
 Returns difference between two dates in days.
 
 Syntax
-```js
+
     <INT> time:dateDiff(<STRING> date.value1, <STRING> date.value2, <STRING> date.format1, <STRING> date.format2)
     <INT> time:dateDiff(<STRING> date.value1, <STRING> date.value2)
     <INT> time:dateDiff(<LONG> timestamp.in.milliseconds1, <LONG> timestamp.in.milliseconds2)
-```
+
 QUERY PARAMETERS
 
 | Name                       | Description                                                                                                    | Default Value               | Possible Data Types | Optional | Dynamic |
@@ -9571,21 +8857,21 @@ QUERY PARAMETERS
 | timestamp.in.milliseconds2 | The second date value in milliseconds from the epoch. For example, `1415712224000L`.                           | \-                          | LONG                | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+
     time:dateDiff('2014-11-11 13:23:44', '2014-11-9 13:23:44', 'yyyy-MM-dd HH:mm:ss', 'yyyy-MM-dd HH:mm:ss')
-```
+
 Returns the date difference between the two given dates as `2`.
 
 EXAMPLE 2
-```js
+
     time:dateDiff('2014-11-13 13:23:44', '2014-11-9 13:23:44')
-```
+
 Returns the date difference between the two given dates as `4`.
 
 EXAMPLE 3
-```js
+
     time:dateDiff(1415692424000L, 1412841224000L)
-```
+
 Returns the date difference between the two given dates as `33`.
 
 ### dateFormat (Function)
@@ -9594,11 +8880,11 @@ Formats the data in string or milliseconds format to the given date
 format.
 
 Syntax
-```js
+
     <STRING> time:dateFormat(<STRING> date.value, <STRING> date.target.format, <STRING> date.source.format)
     <STRING> time:dateFormat(<STRING> date.value, <STRING> date.target.format)
     <STRING> time:dateFormat(<LONG> timestamp.in.milliseconds, <STRING> date.target.format)
-```
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                 | Default Value               | Possible Data Types | Optional | Dynamic |
@@ -9609,23 +8895,23 @@ QUERY PARAMETERS
 | timestamp.in.milliseconds | The date value in milliseconds from the epoch. For example, `1415712224000L`.                               | \-                          | LONG                | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+
     time:dateFormat('2014/11/11 13:23:44', 'mm:ss', 'yyyy/MM/dd HH:mm:ss')
-```
+
 Converts date based on the target date format `mm:ss` and returns
 `23:44`.
 
 EXAMPLE 2
-```js
+
     time:dateFormat('2014-11-11 13:23:44', 'HH:mm:ss')
-```
+
 Converts date based on the target date format `HH:mm:ss` and returns
 `13:23:44`.
 
 EXAMPLE 3
-```js
+
     time:dateFormat(1415692424000L, 'yyyy-MM-dd')
-```
+
 Converts date in millisecond based on the target date format
 `yyyy-MM-dd` and returns `2014-11-11`.
 
@@ -9634,11 +8920,11 @@ Converts date in millisecond based on the target date format
 Subtracts the specified time interval from the given date.
 
 Syntax
-```js
+
     <STRING> time:dateSub(<STRING> date.value, <INT> expr, <STRING> unit)
     <STRING> time:dateSub(<STRING> date.value, <INT> expr, <STRING> unit, <STRING> date.format)
     <STRING> time:dateSub(<LONG> timestamp.in.milliseconds, <INT> expr, <STRING> unit)
-```
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                 | Default Value               | Possible Data Types | Optional | Dynamic |
@@ -9650,24 +8936,24 @@ QUERY PARAMETERS
 | timestamp.in.milliseconds | The date value in milliseconds. For example, `1415712224000L`.                                                                              | \-                          | LONG                | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+
     time:dateSub('2019-11-11 13:23:44.657', 5, 'YEAR', 'yyyy-MM-dd HH:mm:ss.SSS')
-```
+
 Subtracts five years to the given date value and returns
 `2014-11-11 13:23:44.657`.
 
 EXAMPLE 2
-```js
+
     time:dateSub('2019-11-11 13:23:44.657', 5, 'YEAR')
-```
+
 Subtracts five years to the given date value and returns
 `2014-11-11 13:23:44.657` using the default date.format
 `yyyy-MM-dd HH:mm:ss.SSS`.
 
 EXAMPLE 3
-```js
+
     time:dateSub( 1415715824000L, 1, 'HOUR')
-```
+
 Subtracts one hour and `1415712224000` as a `string`.
 
 ### dayOfWeek (Function)
@@ -9675,10 +8961,10 @@ Subtracts one hour and `1415712224000` as a `string`.
 Extracts the day on which a given date falls.
 
 Syntax
-```js
+
     <STRING> time:dayOfWeek(<STRING> date.value, <STRING> date.format)
     <STRING> time:dayOfWeek(<STRING> date.value)
-```
+
 QUERY PARAMETERS
 
 | Name        | Description                                                                                  | Default Value               | Possible Data Types | Optional | Dynamic |
@@ -9687,15 +8973,15 @@ QUERY PARAMETERS
 | date.format | The format of the date value provided. For example, `yyyy/MM/dd HH:mm:ss.SSS`.               | \`yyyy-MM-dd HH:mm:ss.SSS\` | STRING              | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+
     time:date('2014/12/11 13:23:44', 'yyyy/MM/dd HH:mm:ss')
-```
+
 Extracts the date and returns `Thursday`.
 
 EXAMPLE 2
-```js
+
     time:date('2014-11-11 13:23:44.345')
-```
+
 Extracts the date and returns `Tuesday`.
 
 ### extract (Function)
@@ -9703,13 +8989,13 @@ Extracts the date and returns `Tuesday`.
 Function extracts a date unit from the date.
 
 Syntax
-```js
+
     <INT> time:extract(<STRING> unit, <STRING> date.value)
     <INT> time:extract(<STRING> unit, <STRING> date.value, <STRING> date.format)
     <INT> time:extract(<STRING> unit, <STRING> date.value, <STRING> date.format, <STRING> locale)
     <INT> time:extract(<LONG> timestamp.in.milliseconds, <STRING> unit)
     <INT> time:extract(<LONG> timestamp.in.milliseconds, <STRING> unit, <STRING> locale)
-```
+
 QUERY PARAMETERS
 
 | Name                      | Description                                                                                                                                 | Default Value                                           | Possible Data Types | Optional | Dynamic |
@@ -9721,21 +9007,21 @@ QUERY PARAMETERS
 | locale                    | Represents a specific geographical, political or cultural region. For example `en_US` and `fr_FR`                                           | Current default locale set in the Java Virtual Machine. | STRING              | Yes      | No      |
 
 EXAMPLE 1
-```js
+
     time:extract('YEAR', '2019/11/11 13:23:44.657', 'yyyy/MM/dd HH:mm:ss.SSS')
-```
+
 Extracts the year amount and returns `2019`.
 
 EXAMPLE 2
-```js
+
     time:extract('DAY', '2019-11-12 13:23:44.657')
-```
+
 Extracts the day amount and returns `12`.
 
 EXAMPLE 3
-```js
+
     time:extract(1394556804000L, 'HOUR')
-```
+
 Extracts the hour amount and returns `22`.
 
 ### timestampInMilliseconds (Function)
@@ -9743,11 +9029,11 @@ Extracts the hour amount and returns `22`.
 Returns the system time or the given time in milliseconds.
 
 Syntax
-```js
+
     <LONG> time:timestampInMilliseconds()
     <LONG> time:timestampInMilliseconds(<STRING> date.value, <STRING> date.format)
     <LONG> time:timestampInMilliseconds(<STRING> date.value)
-```
+
 QUERY PARAMETERS
 
 | Name        | Description                                                                                  | Default Value               | Possible Data Types | Optional | Dynamic |
@@ -9756,22 +9042,22 @@ QUERY PARAMETERS
 | date.format | The format of the date value provided. For example, `yyyy/MM/dd HH:mm:ss.SSS`.               | \`yyyy-MM-dd HH:mm:ss.SSS\` | STRING              | Yes      | Yes     |
 
 EXAMPLE 1
-```js
+
     time:timestampInMilliseconds()
-```
+
 Returns the system current time in milliseconds.
 
 EXAMPLE 2
-```js
+
     time:timestampInMilliseconds('2007-11-30 10:30:19', 'yyyy-MM-DD HH:MM:SS')
-```
+
 Converts `2007-11-30 10:30:19` in `yyyy-MM-DD HH:MM:SS` format to
 milliseconds as `1170131400019`.
 
 EXAMPLE 3
-```js
+
     time:timestampInMilliseconds('2007-11-30 10:30:19.000')
-```
+
 Converts `2007-11-30 10:30:19` in `yyyy-MM-DD HH:MM:ss.SSS` format to
 milliseconds as `1196398819000`.
 
@@ -9781,13 +9067,13 @@ Function returns the system current time in UTC timezone with
 `yyyy-MM-dd HH:mm:ss` format.
 
 Syntax
-```js
+
     <STRING> time:utcTimestamp()
-```
+
 EXAMPLE 1
-```js
+
     time:utcTimestamp()
-```
+
 Returns the system current time in UTC timezone with
 `yyyy-MM-dd HH:mm:ss` format, and a sample output will be like
 `2019-07-03 09:58:34`.
@@ -9801,9 +9087,9 @@ Removes duplicate events based on the `unique.key` parameter that arrive
 within the `time.interval` gap from one another.
 
 Syntax
-```js
+
     unique:deduplicate(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> time.interval)
-```
+
 QUERY PARAMETERS
 
 | Name          | Description                                                            | Default Value | Possible Data Types               | Optional | Dynamic |
@@ -9812,13 +9098,13 @@ QUERY PARAMETERS
 | time.interval | The sliding time period within which the duplicate events are dropped. |               | INT LONG                          | No       | No      |
 
 EXAMPLE 1
-```js
-    define stream TemperatureStream (sensorId string, temperature double)
 
-    from TemperatureStream#unique:deduplicate(sensorId, 30 sec)
+    CREATE STREAM TemperatureStream (sensorId string, temperature double)
+
+    insert into UniqueTemperatureStream
     select *
-    insert into UniqueTemperatureStream;
-```
+    from TemperatureStream#unique:deduplicate(sensorId, 30 sec);
+
 Query that removes duplicate events of `TemperatureStream` stream based
 on `sensorId` attribute when they arrive within 30 seconds.
 
@@ -9826,17 +9112,15 @@ on `sensorId` attribute when they arrive within 30 seconds.
 
 Window that retains the latest events based on a given unique keys. When
 a new event arrives with the same key it replaces the one that exist in
-the window.
-
-This function is not recommended to be used when the
+the window.\<b\>This function is not recommended to be used when the
 maximum number of unique attributes are undefined, as there is a risk of
-system going out to memory.
+system going out to memory\</b\>.
 
 Syntax
-```js
+
     unique:ever(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key)
     unique:ever(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG|FLOAT|BOOL|DOUBLE|STRING> ...)
-```
+
 QUERY PARAMETERS
 
 | Name       | Description                                   | Default Value | Possible Data Types               | Optional | Dynamic |
@@ -9844,41 +9128,41 @@ QUERY PARAMETERS
 | unique.key | The attribute used to checked for uniqueness. |               | INT LONG FLOAT BOOL DOUBLE STRING | No       | Yes     |
 
 EXAMPLE 1
-```js
-    define stream LoginEvents (timestamp long, ip string);
 
-    from LoginEvents#window.unique:ever(ip)
+    CREATE STREAM LoginEvents (timestamp long, ip string);
+
+    from LoginEvents WINDOW UNIQUE:ever(ip)
     select count(ip) as ipCount
     insert events into UniqueIps;
-```
+
 Query collects all unique events based on the `ip` attribute by
 retaining the latest unique events from the `LoginEvents` stream. Then
 the query counts the unique `ip`s arrived so far and outputs the
 `ipCount` via the `UniqueIps` stream.
 
 EXAMPLE 2
-```js
-    define stream DriverChangeStream (trainID string, driver string);
 
-    from DriverChangeStream#window.unique:ever(trainID)
+    CREATE STREAM DriverChangeStream (trainID string, driver string);
+
+    from DriverChangeStream WINDOW UNIQUE:ever(trainID)
     select trainID, driver
     insert expired events into PreviousDriverChangeStream;
-```
+
 Query collects all unique events based on the `trainID` attribute by
 retaining the latest unique events from the `DriverChangeStream` stream.
 The query outputs the previous unique event stored in the window as the
 expired events are emitted via `PreviousDriverChangeStream` stream.
 
 EXAMPLE 3
-```js
-    define stream StockStream (symbol string, price float);
-    define stream PriceRequestStream(symbol string);
 
-    from StockStream#window.unique:ever(symbol) as s join PriceRequestStream as p
+    CREATE STREAM StockStream (symbol string, price float);
+    CREATE STREAM PriceRequestStream(symbol string);
+
+    from StockStream WINDOW UNIQUE:ever(symbol) as s join PriceRequestStream as p
     on s.symbol == p.symbol
     select s.symbol as symbol, s.price as price
     insert events into PriceResponseStream;
-```
+
 Query stores the last unique event for each `symbol` attribute of
 `StockStream` stream, and joins them with events arriving on the
 `PriceRequestStream` for equal `symbol` attributes to fetch the latest
@@ -9897,12 +9181,12 @@ the same as that of an existing event in the window, the existing event
 expires and it is replaced by the new event.
 
 Syntax
-```js
+
     unique:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time)
     unique:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time)
     unique:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out)
     unique:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out, <BOOL> replace.time.stamp.with.batch.end.time)
-```
+
 QUERY PARAMETERS
 
 | Name                                   | Description                                                                                                                             | Default Value                                                                         | Possible Data Types               | Optional | Dynamic |
@@ -9915,13 +9199,13 @@ QUERY PARAMETERS
 | replace.time.stamp.with.batch.end.time | Replaces the `timestamp` value with the corresponding batch end time stamp.                                                           | false                                                                                 | BOOL                              | Yes      | No      |
 
 EXAMPLE 1
-```js
-    define stream LoginEvents (timestamp long, ip string);
 
-    from LoginEvents#window.unique:externalTimeBatch(ip, timestamp, 1 sec, 0, 2 sec)
+    CREATE STREAM LoginEvents (timestamp long, ip string);
+
+    insert into UniqueIps 
     select timestamp, ip, count() as total
-    insert into UniqueIps ;
-```
+    from LoginEvents WINDOW UNIQUE:externalTimeBatch(ip, timestamp, 1 sec, 0, 2 sec);
+
 In this query, the window holds the latest unique events that arrive
 from the `LoginEvent` stream during each second. The latest events are
 determined based on the external time stamp. At a given time, all the
@@ -9939,10 +9223,10 @@ key that is already in the window, that event is not processed by the
 window.
 
 Syntax
-```js
+
     unique:first(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key)
     unique:first(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG|FLOAT|BOOL|DOUBLE|STRING> ...)
-```
+
 QUERY PARAMETERS
 
 | Name       | Description                                                                                                                                                            | Default Value | Possible Data Types               | Optional | Dynamic |
@@ -9950,12 +9234,12 @@ QUERY PARAMETERS
 | unique.key | The attribute that should be checked for uniqueness. If there is more than one parameter to check for uniqueness, it can be specified as an array separated by commas. |               | INT LONG FLOAT BOOL DOUBLE STRING | No       | Yes     |
 
 EXAMPLE 1
-```js
-    define stream LoginEvents (timeStamp long, ip string);
 
-    from LoginEvents#window.unique:first(ip)
-    insert into UniqueIps ;
-```
+    CREATE STREAM LoginEvents (timeStamp long, ip string);
+
+    insert into UniqueIps 
+    from LoginEvents WINDOW UNIQUE:first(ip);
+
 This returns the first set of unique items that arrive from the
 `LoginEvents` stream, and returns them to the `UniqueIps` stream.
 The unique events are only those with a unique value for the `ip`
@@ -9971,9 +9255,9 @@ that matches the same of an existing event in the window, that event is
 not processed by the window.
 
 Syntax
-```js
+
     unique:firstLengthBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT> window.length)
-```
+
 QUERY PARAMETERS
 
 | Name          | Description                                          | Default Value | Possible Data Types               | Optional | Dynamic |
@@ -9982,13 +9266,13 @@ QUERY PARAMETERS
 | window.length | The number of events the window should tumble.       |               | INT                               | No       | No      |
 
 EXAMPLE 1
-```js
-    define window CseEventWindow (symbol string, price float, volume int)
 
-    from CseEventStream#window.unique:firstLengthBatch(symbol, 10)
+    CREATE WINDOW CseEventWindow (symbol string, price float, volume int);
+
+    from CseEventStream WINDOW UNIQUE:firstLengthBatch(symbol, 10)
     select symbol, price, volume
     insert all events into OutputStream ;
-```
+
 The window in this configuration holds the first unique events from the
 `CseEventStream` stream every second, and outputs them all into the
 the `OutputStream` stream. All the events in a window during a given
@@ -10003,10 +9287,10 @@ arrives with a key which is already in the window, that event is not
 processed by the window.
 
 Syntax
-```js
+
     unique:firstTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
     unique:firstTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT|LONG> start.time)
-```
+
 QUERY PARAMETERS
 
 | Name        | Description                                                                                                     | Default Value                 | Possible Data Types               | Optional | Dynamic |
@@ -10016,13 +9300,13 @@ QUERY PARAMETERS
 | start.time  | This specifies an offset in milliseconds in order to start the window at a time different to the standard time. | Timestamp of the first event. | INT LONG                          | Yes      | No      |
 
 EXAMPLE 1
-```js
-    define stream CseEventStream (symbol string, price float, volume int)
 
-    from CseEventStream#window.unique:firstTimeBatch(symbol,1 sec)
+    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+
+    from CseEventStream WINDOW UNIQUE:firstTimeBatch(symbol,1 sec)
      select symbol, price, volume
     insert all events into OutputStream ;
-```
+
 This holds the first unique events that arrive from the
 `cseEventStream` input stream during each second, based on the
 symbol,as a batch, and returns all the events to the `OutputStream`.
@@ -10036,9 +9320,9 @@ already there in the window, then the previous event expires and new
 event is kept within the window.
 
 Syntax
-```js
+
     unique:length(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT> window.length)
-```
+
 QUERY PARAMETERS
 
 | Name          | Description                                                              | Default Value | Possible Data Types               | Optional | Dynamic |
@@ -10047,13 +9331,13 @@ QUERY PARAMETERS
 | window.length | The number of events that should be included in a sliding length window. |               | INT                               | No       | No      |
 
 EXAMPLE 1
-```js
-    define stream CseEventStream (symbol string, price float, volume int)
 
-    from CseEventStream#window.unique:length(symbol,10)
+    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+
+    from CseEventStream WINDOW UNIQUE:length(symbol,10)
     select symbol, price, volume
     insert all events into OutputStream;
-```
+
 In this configuration, the window holds the latest 10 unique events. The
 latest events are selected based on the symbol attribute. If the
 `CseEventStream` receives an event for which the value for the symbol
@@ -10073,9 +9357,9 @@ length having the same value for the unique key parameter as an existing
 event in the window, the previous event is replaced by the new event.
 
 Syntax
-```js
+
     unique:lengthBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT> window.length)
-```
+
 QUERY PARAMETERS
 
 | Name          | Description                                          | Default Value | Possible Data Types               | Optional | Dynamic |
@@ -10084,13 +9368,13 @@ QUERY PARAMETERS
 | window.length | The number of events the window should tumble.       |               | INT                               | No       | No      |
 
 EXAMPLE 1
-```js
-    define window CseEventWindow (symbol string, price float, volume int)
 
-     from CseEventStream#window.unique:lengthBatch(symbol, 10)
+    CREATE WINDOW CseEventWindow (symbol string, price float, volume int);
+
+     from CseEventStream WINDOW UNIQUE:lengthBatch(symbol, 10)
     select symbol, price, volume
     insert expired events into OutputStream ;
-```
+
 In this query, the window at any give time holds the last 10 unique
 events from the `CseEventStream` stream. Each of the 10 events within
 the window at a given time has a unique value for the symbol attribute.
@@ -10111,9 +9395,9 @@ the unique key parameter as an existing event in the window, the
 previous event is replaced by the new event.
 
 Syntax
-```js
+
     unique:time(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
-```
+
 QUERY PARAMETERS
 
 | Name        | Description                                                      | Default Value | Possible Data Types               | Optional | Dynamic |
@@ -10122,13 +9406,13 @@ QUERY PARAMETERS
 | window.time | The sliding time period for which the window should hold events. |               | INT LONG                          | No       | No      |
 
 EXAMPLE 1
-```js
-    define stream CseEventStream (symbol string, price float, volume int)
 
-    from CseEventStream#window.unique:time(symbol, 1 sec)
+    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+
+    from CseEventStream WINDOW UNIQUE:time(symbol, 1 sec)
     select symbol, price, volume
     insert expired events into OutputStream ;
-```
+
 In this query, the window holds the latest unique events that arrived
 within the last second from the `CseEventStream`, and returns the
 expired events to the `OutputStream` stream. During any given second,
@@ -10146,10 +9430,10 @@ which matches that of an existing event, the existing event expires and
 it is replaced by the latest event.
 
 Syntax
-```js
+
     unique:timeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
     unique:timeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT|LONG> start.time)
-```
+
 QUERY PARAMETERS
 
 | Name        | Description                                                                                                     | Default Value            | Possible Data Types               | Optional | Dynamic |
@@ -10159,13 +9443,13 @@ QUERY PARAMETERS
 | start.time  | This specifies an offset in milliseconds in order to start the window at a time different to the standard time. | Timestamp of first event | INT LONG                          | Yes      | No      |
 
 EXAMPLE 1
-```js
-    define stream CseEventStream (symbol string, price float, volume int)
 
-    from CseEventStream#window.unique:timeBatch(symbol, 1 sec)
+    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+
+    from CseEventStream WINDOW UNIQUE:timeBatch(symbol, 1 sec)
     select symbol, price, volume
     insert all events into OutputStream ;
-```
+
 This window holds the latest unique events that arrive from the
 `CseEventStream` at a given time, and returns all the events to the
 `OutputStream` stream. It is updated every second based on the latest
@@ -10181,10 +9465,10 @@ a value for the key parameter which matches the value of an existing
 event, the existing event expires and it is replaced by the new event.
 
 Syntax
-```js
+
     unique:timeLengthBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT> window.length)
     unique:timeLengthBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT|LONG> start.time, <INT> window.length)
-```
+
 QUERY PARAMETERS
 
 | Name          | Description                                                                                                     | Default Value            | Possible Data Types               | Optional | Dynamic |
@@ -10195,13 +9479,13 @@ QUERY PARAMETERS
 | window.length | The number of events the window should tumble.                                                                  |                          | INT                               | No       | No      |
 
 EXAMPLE 1
-```js
-    define stream CseEventStream (symbol string, price float, volume int)
 
-    from CseEventStream#window.unique:timeLengthBatch(symbol, 1 sec, 20)
+    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+
+    from CseEventStream WINDOW UNIQUE:timeLengthBatch(symbol, 1 sec, 20)
     select symbol, price, volume
     insert all events into OutputStream;
-```
+
 This window holds the latest unique events that arrive from the
 `CseEventStream` at a given time, and returns all the events to the
 `OutputStream` stream. It is updated every second based on the latest
@@ -10215,9 +9499,9 @@ Unitconversion
 This converts the input given in megameters into kilometers.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:MmTokm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                           | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10225,9 +9509,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from megameters into kilometers. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:MmTokm(1)
-```
+
 The megameter value `1` is converted into kilometers as `1000.0` .
 
 ### cmToft (Function)
@@ -10235,9 +9519,9 @@ The megameter value `1` is converted into kilometers as `1000.0` .
 This converts the input given in centimeters into feet.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:cmToft(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10245,9 +9529,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from centimeters into feet. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:cmToft(100)
-```
+
 The centimeters value `100` is converted into feet as `3.280` .
 
 ### cmToin (Function)
@@ -10255,9 +9539,9 @@ The centimeters value `100` is converted into feet as `3.280` .
 This converts the input given in centimeters into inches.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:cmToin(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                        | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10265,9 +9549,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from centimeters into inches. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:cmToin(100)
-```
+
 Input centimeters value `100` is converted into inches as `39.37`.
 
 ### cmTokm (Function)
@@ -10275,9 +9559,9 @@ Input centimeters value `100` is converted into inches as `39.37`.
 This converts the input value given in centimeters into kilometers.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:cmTokm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                            | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10285,9 +9569,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from centimeters into kilometers. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:cmTokm(100)
-```
+
 The centimeters value `100` is converted into kilometers as `0.001`.
 
 ### cmTom (Function)
@@ -10295,9 +9579,9 @@ The centimeters value `100` is converted into kilometers as `0.001`.
 This converts the input given in centimeters into meters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:cmTom(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                        | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10305,9 +9589,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from centimeters into meters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:cmTom(100)
-```
+
 The centimeters value `100` is converted into meters as `1.0` .
 
 ### cmTomi (Function)
@@ -10315,9 +9599,9 @@ The centimeters value `100` is converted into meters as `1.0` .
 This converts the input given in centimeters into miles.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:cmTomi(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                       | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10325,9 +9609,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from centimeters into miles. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:cmTomi(10000)
-```
+
 The centimeters value `10000` is converted into miles as `0.062` .
 
 ### cmTomm (Function)
@@ -10335,9 +9619,9 @@ The centimeters value `10000` is converted into miles as `0.062` .
 This converts the input given in centimeters into millimeters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:cmTomm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                             | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10345,9 +9629,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from centimeters into millimeters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:cmTomm(1)
-```
+
 The centimeter value `1` is converted into millimeters as `10.0` .
 
 ### cmTonm (Function)
@@ -10355,9 +9639,9 @@ The centimeter value `1` is converted into millimeters as `10.0` .
 This converts the input given in centimeters into nanometers.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:cmTonm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                            | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10365,9 +9649,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from centimeters into nanometers. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:cmTonm(1)
-```
+
 The centimeter value `1` is converted into nanometers as `10000000`
 .
 
@@ -10376,9 +9660,9 @@ The centimeter value `1` is converted into nanometers as `10000000`
 This converts the input in centimeters into micrometers.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:cmToum(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                             | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10386,9 +9670,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from centimeters into micrometers. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:cmToum(100)
-```
+
 The centimeters value `100` is converted into micrometers as
 `1000000.0` .
 
@@ -10397,9 +9681,9 @@ The centimeters value `100` is converted into micrometers as
 This converts the input given in centimeters into yards.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:cmToyd(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                       | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10407,9 +9691,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from centimeters into yards. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:cmToyd(1)
-```
+
 The centimeter value `1` is converted into yards as `0.01` .
 
 ### dToh (Function)
@@ -10417,9 +9701,9 @@ The centimeter value `1` is converted into yards as `0.01` .
 This converts the input given in days into hours.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:dToh(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10427,9 +9711,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from days into hours. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:dToh(1)
-```
+
 The day value `1` is converted into hours as `24.0`.
 
 ### gTokg (Function)
@@ -10437,9 +9721,9 @@ The day value `1` is converted into hours as `24.0`.
 This converts the input given in grams into kilograms.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:gTokg(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                     | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10447,9 +9731,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from grams into kilograms. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:gTokg(1000)
-```
+
 The grams value `1000` is converted into kilogram as `1.0` .
 
 ### gTomg (Function)
@@ -10457,9 +9741,9 @@ The grams value `1000` is converted into kilogram as `1.0` .
 This converts the input given in grams into milligrams.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:gTomg(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10467,9 +9751,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from grams into milligrams. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:gTomg(1)
-```
+
 The gram value `1` is converted into milligrams as `1000.0` .
 
 ### gToug (Function)
@@ -10477,9 +9761,9 @@ The gram value `1` is converted into milligrams as `1000.0` .
 This converts the input given in grams into micrograms.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:gToug(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10487,9 +9771,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from grams into micrograms. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:gToug(1)
-```
+
 The gram value `1` is converted into micrograms as `1000000.0` .
 
 ### hTom (Function)
@@ -10497,9 +9781,9 @@ The gram value `1` is converted into micrograms as `1000000.0` .
 This converts the input given in hours into minutes.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:hTom(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                   | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10507,9 +9791,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from hours into minutes. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:hTom(1)
-```
+
 The hour value `1` is converted into minutes as `60.0` .
 
 ### hTos (Function)
@@ -10517,9 +9801,9 @@ The hour value `1` is converted into minutes as `60.0` .
 This converts the input given in hours into seconds.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:hTos(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                   | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10527,9 +9811,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from hours into seconds. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:hTos(1)
-```
+
 The hour value `1` is converted into seconds as `3600.0`.
 
 ### kgToLT (Function)
@@ -10537,9 +9821,9 @@ The hour value `1` is converted into seconds as `3600.0`.
 This converts the input given in kilograms into imperial tons.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kgToLT(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                             | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10547,9 +9831,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilograms into imperial tons. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kgToLT(1000)
-```
+
 The kilograms value `1000` is converted into imperial tons as
 `0.9842` .
 
@@ -10558,9 +9842,9 @@ The kilograms value `1000` is converted into imperial tons as
 This converts the input given in kilograms into US tons.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kgToST(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                       | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10568,9 +9852,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilograms into US tons. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kgToST(1000)
-```
+
 The kilograms value `1000` is converted into US tons as `1.10` .
 
 ### kgTog (Function)
@@ -10578,9 +9862,9 @@ The kilograms value `1000` is converted into US tons as `1.10` .
 This converts the input given in kilograms into grams.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kgTog(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                     | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10588,9 +9872,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilograms into grams. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kgTog(1)
-```
+
 The kilogram value `1` is converted into grams as `1000`.
 
 ### kgTolb (Function)
@@ -10598,9 +9882,9 @@ The kilogram value `1` is converted into grams as `1000`.
 This converts the input given in kilograms into pounds.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kgTolb(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10608,9 +9892,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilograms into pounds. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kgTolb(1)
-```
+
 The kilogram value `1` is converted into pounds as `2.2` .
 
 ### kgTooz (Function)
@@ -10618,9 +9902,9 @@ The kilogram value `1` is converted into pounds as `2.2` .
 This converts the input given in kilograms into ounces.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kgTooz(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10628,9 +9912,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilograms into ounces. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kgTooz(1)
-```
+
 The kilogram value `1` is converted into ounces as ` 35.274` .
 
 ### kgTost (Function)
@@ -10638,9 +9922,9 @@ The kilogram value `1` is converted into ounces as ` 35.274` .
 This converts the input given in kilograms into imperial stones.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kgTost(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                               | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10648,9 +9932,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilograms into imperial stones. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kgTost(1)
-```
+
 The kilogram value `1` is converted into imperial stones as `0.157`
 .
 
@@ -10659,9 +9943,9 @@ The kilogram value `1` is converted into imperial stones as `0.157`
 This converts the input given in kilograms into tonnes.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kgTot(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10669,9 +9953,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilograms into tonnes. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kgTot(1)
-```
+
 The kilogram value `1` is converted into tonnes as `0.001` .
 
 ### kmTocm (Function)
@@ -10679,9 +9963,9 @@ The kilogram value `1` is converted into tonnes as `0.001` .
 This converts the input given in kilometers into centimeters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kmTocm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                            | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10689,9 +9973,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilometers into centimeters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kmTocm(1)
-```
+
 The kilometer value `1` is converted into centimeters as `100000.0`
 .
 
@@ -10700,9 +9984,9 @@ The kilometer value `1` is converted into centimeters as `100000.0`
 This converts the input given in kilometers into feet.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kmToft(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                     | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10710,9 +9994,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilometers into feet. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kmToft(1)
-```
+
 The kilometer value `1` is converted into feet as `3280.8` .
 
 ### kmToin (Function)
@@ -10720,9 +10004,9 @@ The kilometer value `1` is converted into feet as `3280.8` .
 This converts the input given in kilometers into inches.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kmToin(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                       | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10730,9 +10014,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilometers into inches. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kmToin(1)
-```
+
 The kilometer value `1` is converted into inches as `39370.08` .
 
 ### kmTom (Function)
@@ -10740,9 +10024,9 @@ The kilometer value `1` is converted into inches as `39370.08` .
 This converts the input given in kilometers into meters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kmTom(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                       | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10750,9 +10034,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilometers into meters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kmTom(1)
-```
+
 The kilometer value `1` is converted into meters as `1000.0` .
 
 ### kmTomi (Function)
@@ -10760,9 +10044,9 @@ The kilometer value `1` is converted into meters as `1000.0` .
 This converts the input given in kilometers into miles.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kmTomi(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10770,9 +10054,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilometers into miles. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kmTomi(1)
-```
+
 The kilometer value `1` is converted into miles as `0.621` .
 
 ### kmTomm (Function)
@@ -10780,9 +10064,9 @@ The kilometer value `1` is converted into miles as `0.621` .
 This converts the input given in kilometers into millimeters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kmTomm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                            | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10790,9 +10074,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilometers into millimeters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kmTomm(1)
-```
+
 The kilometer value `1` is converted into millimeters as `1000000.0`
 .
 
@@ -10801,9 +10085,9 @@ The kilometer value `1` is converted into millimeters as `1000000.0`
 This converts the input given in kilometers into nanometers.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kmTonm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                           | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10811,9 +10095,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilometers into nanometers. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kmTonm(1)
-```
+
 The kilometer value `1` is converted into nanometers as
 `1000000000000.0` .
 
@@ -10822,9 +10106,9 @@ The kilometer value `1` is converted into nanometers as
 This converts the input given in kilometers into micrometers.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kmToum(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                            | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10832,9 +10116,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilometers into micrometers. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kmToum(1)
-```
+
 The kilometer value `1` is converted into micrometers as
 `1000000000.0` .
 
@@ -10843,9 +10127,9 @@ The kilometer value `1` is converted into micrometers as
 This converts the input given in kilometers into yards.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:kmToyd(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10853,9 +10137,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from kilometers into yards. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:kmToyd(1)
-```
+
 The kilometer value `1` is converted into yards as `1093.6` .
 
 ### lTom3 (Function)
@@ -10863,9 +10147,9 @@ The kilometer value `1` is converted into yards as `1093.6` .
 This converts the input given in liters into cubic meters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:lTom3(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                         | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10873,9 +10157,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from liters into cubic meters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:lTom3(1000)
-```
+
 The liters value `1000` is converted into cubic meters as `1` .
 
 ### lToml (Function)
@@ -10883,9 +10167,9 @@ The liters value `1000` is converted into cubic meters as `1` .
 This converts the input given in liters into milliliters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:lToml(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                        | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10893,9 +10177,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from liters into milliliters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:lToml(1)
-```
+
 The liter value `1` is converted into milliliters as `1000.0` .
 
 ### m3Tol (Function)
@@ -10903,9 +10187,9 @@ The liter value `1` is converted into milliliters as `1000.0` .
 This converts the input given in cubic meters into liters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:m3Tol(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                   | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10913,9 +10197,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from meters into liters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:m3Tol(1)
-```
+
 The cubic meter value `1` is converted into liters as `1000.0` .
 
 ### mTocm (Function)
@@ -10923,9 +10207,9 @@ The cubic meter value `1` is converted into liters as `1000.0` .
 This converts the input given in meters into centimeters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:mTocm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                        | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10933,9 +10217,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from meters into centimeters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:mTocm(1)
-```
+
 The meter value `1` is converted to centimeters as `100.0` .
 
 ### mToft (Function)
@@ -10943,9 +10227,9 @@ The meter value `1` is converted to centimeters as `100.0` .
 This converts the input given in meters into feet.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:mToft(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                 | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10953,9 +10237,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from meters into feet. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:mToft(1)
-```
+
 The meter value `1` is converted into feet as `3.280` .
 
 ### mTomm (Function)
@@ -10963,9 +10247,9 @@ The meter value `1` is converted into feet as `3.280` .
 This converts the input given in meters into millimeters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:mTomm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                        | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10973,9 +10257,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from meters into millimeters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:mTomm(1)
-```
+
 The meter value `1` is converted into millimeters as `1000.0` .
 
 ### mTos (Function)
@@ -10983,9 +10267,9 @@ The meter value `1` is converted into millimeters as `1000.0` .
 This converts the input given in minutes into seconds.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:mTos(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                     | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -10993,9 +10277,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from minutes into seconds. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:mTos(1)
-```
+
 The minute value `1` is converted into seconds as `60.0` .
 
 ### mToyd (Function)
@@ -11003,9 +10287,9 @@ The minute value `1` is converted into seconds as `60.0` .
 This converts the input given in meters into yards.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:mToyd(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                  | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -11013,9 +10297,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from meters into yards. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:mToyd(1)
-```
+
 The meter value `1` is converted into yards as `1.093` .
 
 ### miTokm (Function)
@@ -11023,9 +10307,9 @@ The meter value `1` is converted into yards as `1.093` .
 This converts the input given in miles into kilometers.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:miTokm(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -11033,9 +10317,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from miles into kilometers. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:miTokm(1)
-```
+
 The mile value `1` is converted into kilometers as `1.6` .
 
 ### mlTol (Function)
@@ -11043,9 +10327,9 @@ The mile value `1` is converted into kilometers as `1.6` .
 This converts the input given in milliliters into liters.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:mlTol(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                        | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -11053,9 +10337,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from milliliters into liters. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:mlTol(1000)
-```
+
 The milliliters value `1000` is converted into liters as `1`.
 
 ### sToms (Function)
@@ -11063,9 +10347,9 @@ The milliliters value `1000` is converted into liters as `1`.
 This converts the input given in seconds into milliseconds.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:sToms(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                          | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -11073,9 +10357,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from seconds into milliseconds. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:sToms(1)
-```
+
 The second value `1` is converted into milliseconds as `1000.0` .
 
 ### sTons (Function)
@@ -11083,9 +10367,9 @@ The second value `1` is converted into milliseconds as `1000.0` .
 This converts the input given in seconds into nanoseconds.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:sTons(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                         | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -11093,9 +10377,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from seconds into nanoseconds. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:sTons(1)
-```
+
 The second value `1` is converted into nanoseconds as `1000000000.0`
 .
 
@@ -11104,9 +10388,9 @@ The second value `1` is converted into nanoseconds as `1000000000.0`
 This converts the input given in seconds into microseconds.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:sTous(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                          | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -11114,9 +10398,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from seconds into microseconds. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:sTous(1)
-```
+
 The second value `1` is converted into microseconds as `1000000.0` .
 
 ### tTog (Function)
@@ -11124,9 +10408,9 @@ The second value `1` is converted into microseconds as `1000000.0` .
 This converts the input given in tonnes into grams.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:tTog(<INT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                  | Default Value | Possible Data Types | Optional | Dynamic |
@@ -11134,9 +10418,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from Tonnes into grams. |               | INT DOUBLE          | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:tTog(1)
-```
+
 The tonne value `1` is converted into grams as `1000000.0` .
 
 ### tTokg (Function)
@@ -11144,9 +10428,9 @@ The tonne value `1` is converted into grams as `1000000.0` .
 This converts the input given in tonnes into kilograms.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:tTokg(<INT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                      | Default Value | Possible Data Types | Optional | Dynamic |
@@ -11154,9 +10438,9 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from tonnes into kilograms. |               | INT DOUBLE          | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:tTokg(inValue)
-```
+
 The tonne value is converted into kilograms as `1000.0` .
 
 ### yTod (Function)
@@ -11164,9 +10448,9 @@ The tonne value is converted into kilograms as `1000.0` .
 This converts the given input in years into days.
 
 Syntax
-```js
+
     <DOUBLE> unitconversion:yTod(<INT|LONG|FLOAT|DOUBLE> p1)
-```
+
 QUERY PARAMETERS
 
 | Name | Description                                                | Default Value | Possible Data Types   | Optional | Dynamic |
@@ -11174,7 +10458,7 @@ QUERY PARAMETERS
 | p1   | The value that needs to be converted from years into days. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 EXAMPLE 1
-```js
+
     unitconversion:yTod(1)
-```
+
 The year value `1` is converted into days as `365.2525` .
