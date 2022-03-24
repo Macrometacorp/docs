@@ -89,9 +89,18 @@ The first step in using GDN is to establish a connection to a local region. When
 const jsc8 = require("jsc8");
 
 // Simple Way
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "", fabricName: '_system'});
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io", 
+  token: "", 
+  fabricName: '_system'
+});
+
 // ----- OR -----
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "<your-api-key>", fabricName: '_system'});
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io", 
+  apiKey: "<your-api-key>", 
+  fabricName: '_system'
+});
 
 // To use advanced options
 const client = new jsc8("https://gdn.paas.macrometa.io"); 
