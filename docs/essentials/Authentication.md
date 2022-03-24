@@ -20,19 +20,25 @@ Users can authenticate with Macrometa GDN via `email and password`, an `API Key`
 **Code Samples:**
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
 
-    from c8 import C8Client
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, 
-                        email='nemo@nautilus.com', password='xxxxxx')
+<TabItem value="js" label="Javascript">
+
+```js
+const jsc8 = require("jsc8");
+const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "", fabricName: '_system'});
+await client.login("nemo@nautilus.com", "xxxxxx");
+```
+
 </TabItem>
-  <TabItem value="js" label="Javascript">
+<TabItem value="py" label="Python">
 
-    const jsc8 = require("jsc8");
-    const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "", fabricName: '_system'});
-    await client.login("nemo@nautilus.com", "xxxxxx");
+```py
+from c8 import C8Client
+client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, 
+                    email='nemo@nautilus.com', password='xxxxxx')
+```
 
-  </TabItem>
+</TabItem>
 </Tabs>  
 
 ## Token based Authentication
@@ -42,18 +48,23 @@ Users can also authenticate with Macrometa GDN via `Json web tokens`. The `JWT T
 **Code Samples:**
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
 
-    from c8 import C8Client
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token=<your tokeb>)
+<TabItem value="js" label="Javascript">
 
-  </TabItem>
-  <TabItem value="js" label="Javascript">
+```js
+const jsc8 = require("jsc8");
+const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "xxxxxx", fabricName: '_system'});
+```
 
-    const jsc8 = require("jsc8");
-    const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "xxxxxx", fabricName: '_system'});
+</TabItem>
+<TabItem value="py" label="Python">
 
-  </TabItem>
+```py
+from c8 import C8Client
+client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token=<your tokeb>)
+```
+
+</TabItem>
 </Tabs>  
 
 ## API Keys
@@ -69,18 +80,22 @@ API keys never expire.
 **Code Samples:**
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+<TabItem value="js" label="Javascript">
 
-    from c8 import C8Client
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, apikey="xxxxxxx")
+```js
+const jsc8 = require("jsc8");
+const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "xxxxx", fabricName: '_system'});
+```
 
 </TabItem>
-  <TabItem value="js" label="Javascript">
+<TabItem value="py" label="Python">
 
-    const jsc8 = require("jsc8");
-    const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "xxxxx", fabricName: '_system'});
+```py
+from c8 import C8Client
+client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, apikey="xxxxxxx")
+```
 
-  </TabItem>
+</TabItem>
 </Tabs>  
 
 
