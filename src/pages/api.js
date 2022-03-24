@@ -31,12 +31,14 @@ export default function APIPage() {
           const { API } = require('@stoplight/elements');
           return (
             <>
-              {/* <APIVersionSwitcher current="v1" /> */}
+              {/* https://api-gdn.paas.macrometa.io/_admin/api/swagger.json */}
               <API
-                apiDescriptionUrl="https://api-gdn.paas.macrometa.io/_admin/api/swagger.json"
+                apiDescriptionUrl="/swagger.json"
                 router="hash"
-                basePath="/api"
+                basePath="/"
                 layout="sidebar"
+                hideMocking
+                hideInternal
               />
             </>
           );
