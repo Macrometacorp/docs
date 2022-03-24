@@ -24,7 +24,7 @@ the temperature of a room every second are transformed to indicate the average t
 
     In this example, let's assume that each event indicates the device ID, the room ID, and the temperature. Therefore, let's define an input stream as follows:
 
-    ```
+    ```sql
 	CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
     ```
        

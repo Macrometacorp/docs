@@ -1,10 +1,14 @@
+---
+sidebar_position: 2
+---
+
 # Naming Conventions
 
 The following naming conventions should be followed by users when creating geo-fabrics, collections and documents in C8.
 
 ## GeoFabric Names
 
-C8 will always start up with a default geofabric, named `_system`. Users can create additional geofabrics in C8, provided the fabric names conform to the following constraints:
+C8 will always start up with a default GeoFabrics, named `_system`. Users can create additional GeoFabrics in C8, provided the fabric names conform to the following constraints:
 
 * Fabric names must only consist of the letters `a` to `z` (both lower and upper case allowed), the numbers `0` to `9`. This also means that any non-ASCII database names are not allowed.
 * Fabric names must always start with a letter. Fabric names starting with an underscore are considered to be system fabrics, and users should not create or delete those.

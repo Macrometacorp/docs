@@ -73,9 +73,7 @@ To create `edge collection` use same endpoint `/_fabric/{fabric_name}/_api/colle
     FED_URL = "https://{}".format(FEDERATION)
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
-    FABRIC = "_system"
     AUTH_TOKEN = "bearer "
-    TENANT_NAME = "xxxxxx"
     COLLECTION_NAME_1 = "teachers"
     COLLECTION_NAME_2 = "lectures"
     EDGE_COLL_NAME = "teach"

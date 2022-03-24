@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Realtime Log Analytics
@@ -43,7 +43,7 @@ fastlyGetUniqueVisitorsByCountry
 
 3. Create the following collections in your GDN account:
 
-```
+```js
 fastly_users (global)
 fastly_logs (global)
 fastly_http_url_stats_1m (global)
@@ -65,7 +65,7 @@ fasty_unique_visitor_by_country_stats_1m (global)
 
 **Sample Log Format:**
 
-```
+```json
 {
   "timestamp": "2021-09-02T14:44:31+0000",
   "request_method": "POST",

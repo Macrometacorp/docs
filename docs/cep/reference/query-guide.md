@@ -53,7 +53,7 @@ StreamApp is a collection of Stream QL elements composed together as a script. H
 
 High level syntax of StreamApp is as follows.
 
-```
+```js
 <stream app>  :
         <app annotation> *
         ( <stream definition> | <table definition> | ... ) +
@@ -63,7 +63,7 @@ High level syntax of StreamApp is as follows.
 
 For example, this stream application with name `Temperature-Analytics` creates a stream named `TempStream` and a query named `5minAvgQuery`.
 
-```
+```js
 @app:name('Temperature-Analytics')
 @App:qlVersion("2")
 

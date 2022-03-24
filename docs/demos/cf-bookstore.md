@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 7
 ---
 
 # Book Store (using CloudFlare Workers)
@@ -15,7 +15,7 @@ Please contact support@macrometa.com if you have any questions.
 
 | **Tenant** | **Fabric** | **Password** | **GUI** | **Source Code**|
 |----------- |----------|-----------|--------------|-----------|
-| bookstore@macrometa.io | `_system` | `xxxxxxxxxx` | [**Book Store App**](https://bookstore.macrometadev.workers.dev/) |[github](https://github.com/Macrometacorp/tutorial-cloudflare-bookstore)|
+| bookstore@macrometa.io | `_system` | `xxxxxxxxxx` | [**Book Store App**](https://bookstore.macrometa.io/) |[github](https://github.com/Macrometacorp/tutorial-cloudflare-bookstore)|
 
 ### On GDN (Dynamo Mode)
 

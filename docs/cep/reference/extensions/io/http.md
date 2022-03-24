@@ -103,7 +103,7 @@ SYSTEM PARAMETERS:
 
 EXAMPLE:1
 
-```
+```js
 @sink(type = 'http', publisher.url = 'http://stocks.com/stocks',
       @map(type = 'json'))
 define stream StockStream (symbol string, price float, volume long);
@@ -111,7 +111,7 @@ define stream StockStream (symbol string, price float, volume long);
 
 Events arriving on the StockStream will be published to the HTTP endpoint `http://stocks.com/stocks` using `POST` method with Content-Type `application/json` by converting those events to the default JSON format as following:
 
-```
+```js
   "event": {
     "symbol": "FB",
     "price": 24.5,
@@ -121,7 +121,7 @@ Events arriving on the StockStream will be published to the HTTP endpoint `http:
 
 EXAMPLE:2
 
-```
+```js
 @sink(type='http', publisher.url = 'http://localhost:8009/foo',
       client.bootstrap.configurations = "'client.bootstrap.socket.timeout:20'",
       max.pool.active.connections = '1', headers = "{{headers}}",
@@ -135,7 +135,7 @@ Events arriving on FooStream will be published to the HTTP endpoint `http://loca
 
 If the `payloadBody` contains
 
-```
+```js
 <symbol>WSO2</symbol>
 <price>55.6</price>
 <volume>100</volume>
@@ -143,7 +143,7 @@ If the `payloadBody` contains
 
 and `header` contains `'topic:foobar'` values, then the system will generate an output with the body:
 
-```
+```js
 <stock>
 <symbol>WSO2</symbol>
 <price>55.6</price>
@@ -153,7 +153,7 @@ and `header` contains `'topic:foobar'` values, then the system will generate an 
 
 and HTTP headers:
 
-```
+```js
 Content-Length:xxx,
 Content-Location:'xxx',
 Content-Type:'application/xml',
@@ -166,7 +166,7 @@ The http-call sink publishes messages to endpoints via HTTP or HTTPS protocols u
 
 Syntax:
 
-```
+```js
 @sink(type="http-call", publisher.url="<STRING>", sink.id="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", downloading.enabled="<BOOL>", download.path="<STRING>", blocking.io="<BOOL>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>", @map(...)))
 ```
 
@@ -522,7 +522,7 @@ SYSTEM PARAMETERS:
 
 EXAMPLE 1:
 
-```
+```js
     @sink(type='http-call', sink.id='foo',
         publisher.url='http://localhost:8009/foo',
         @map(type='xml', @payload('{{payloadBody}}')))
@@ -538,7 +538,7 @@ When events arrive in `FooStream`, http-call sink makes calls to endpoint on url
 
 If the event `payloadBody` attribute contains following XML:
 
-```
+```js
 <item>
     <name>apple</name>
     <price>55</price>
@@ -553,7 +553,7 @@ When endpoint sends a response it will be consumed by the corresponding http-cal
 
 EXAMPLE 2:
 
-```
+```js
     @sink(type='http-call', publisher.url='http://localhost:8005/files/{{name}}'
         downloading.enabled='true', download.path='{{downloadPath}}{{name}}',
         method='`GET`', sink.id='download', @map(type='json'))
@@ -579,7 +579,7 @@ If the response status code is in the range of 400 then the message will be rece
 
 EXAMPLE 3:
 
-```
+```js
     @sink(type='http-call', method='GET', sink.id='foo',
         publisher.url='http://localhost:8009/foo',
         @map(type='query', @payload('{{payloadBody}}')))
@@ -590,7 +590,7 @@ When events arrive in `FooStream`, http-call sink makes calls to endpoint on url
 
 If the event `payloadBody` attribute contains following JSON:
 
-```
+```json
 {
     "name": "apple",
     "price": 55
@@ -605,7 +605,7 @@ The http-service-response sink send responses of the requests consumed by its co
 
 Syntax:
 
-```
+```js
     @sink(type="http-service-response", source.id="<STRING>", message.id="<STRING>", headers="<STRING>", @map(...)))
 ```
 
@@ -648,7 +648,7 @@ QUERY PARAMETERS:
 
 EXAMPLE:1
 
-```
+```js
 
     @source(type='http-service', receiver.url='http://localhost:5005/add',
             source.id='adder',
@@ -670,7 +670,7 @@ EXAMPLE:1
 
 The http-service source on stream `AddStream` listens on url `http://localhost:5005/stocks` for JSON messages with format:
 
-```
+```js
 {
     "event": {
         "value1": 3,
@@ -681,7 +681,7 @@ The http-service source on stream `AddStream` listens on url `http://localhost:5
 
 and when events arrive it maps to `AddStream` events and pass them to query `query1` for processing. The query results produced on `ResultStream` are sent as a response via http-service-response sink with format:
 
-```
+```js
 {
     "event": {
         "results": 7
@@ -702,7 +702,7 @@ The request headers and properties can be accessed via transport properties in t
 
 Syntax:
 
-```
+```js
 
     @source(type="http", receiver.url="<STRING>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>", @map(...)))
 
@@ -884,7 +884,7 @@ System Parameters:
 
 EXAMPLE:1
 
-```
+```js
     @app.name('StockProcessor')
 
     @source(type='http', @map(type = 'json'))
@@ -894,7 +894,7 @@ EXAMPLE:1
 
 Above HTTP source listeners on url `http://0.0.0.0:9763/StockProcessor/StockStream` for JSON messages on the format:
 
-```
+```js
 {
   "event": {
     "symbol": "FB",
@@ -908,7 +908,7 @@ It maps the incoming messages and sends them to `StockStream` for processing.
 
 EXAMPLE:2
 
-```
+```js
 @source(type='http', receiver.url='http://localhost:5005/stocks',
         @map(type = 'xml'))
 define stream StockStream (symbol string, price float, volume long);
@@ -917,7 +917,7 @@ define stream StockStream (symbol string, price float, volume long);
 
 Above HTTP source listeners on url `http://localhost:5005/stocks` for JSON messages on the format:
 
-```
+```js
 <events>
     <event>
         <symbol>Fb</symbol>
@@ -939,7 +939,7 @@ It allows accessing the attributes of the event that initiated the call, and the
 
 Syntax:
 
-```
+```js
 @source(type="http-call-response", sink.id="<STRING>", http.status.code="<STRING>", allow.streaming.responses="<BOOL>", @map(...)))
 ```
 
@@ -983,7 +983,7 @@ QUERY PARAMETERS:
 
 EXAMPLE:1
 
-```
+```js
 @sink(type='http-call', method='`POST`',
       publisher.url='http://localhost:8005/registry/employee',
       sink.id='employee-info', @map(type='json')) 
@@ -1008,7 +1008,7 @@ When events arrive in `EmployeeRequestStream`, http-call sink makes calls to end
 
 If the arriving event has attributes `name`:`John` and `id`:`1423` it will send a message with default JSON mapping as follows:
 
-```
+```js
 {
   "event": {
     "name": "John",
@@ -1019,7 +1019,7 @@ If the arriving event has attributes `name`:`John` and `id`:`1423` it will send 
 
 When the endpoint responds with status code in the range of 200 the message will be received by the http-call-response source associated with the `EmployeeResponseStream` stream, because it is correlated with the sink by the same `sink.id` `employee-info` and as that expects messages with `http.status.code` in regex format `2\\d+`. If the response message is in the format
 
-```
+```json
 {
   "town": "NY",
   "age": 24
@@ -1042,7 +1042,7 @@ It also supports basic authentication to ensure events are received from authori
 
 Syntax:
 
-```
+```js
     @source(type="http-service", receiver.url="<STRING>", source.id="<STRING>", connection.timeout="<INT>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>", @map(...)))
 ```
 
@@ -1238,7 +1238,7 @@ SYSTEM PARAMETERS:
 
 EXAMPLE:1
 
-```
+```js
     @source(type='http-service', receiver.url='http://localhost:5005/add',
             source.id='adder',
             @map(type='json, @attributes(messageId='trp:messageId',
@@ -1257,7 +1257,7 @@ EXAMPLE:1
 ```
 
 Above sample listens events on `http://localhost:5005/stocks` url for JSON messages on the format:
-```
+```js
     {
     "event": {
         "value1": 3,
@@ -1268,7 +1268,7 @@ Above sample listens events on `http://localhost:5005/stocks` url for JSON messa
 
 Map the vents into AddStream, process the events through query `query1`, and sends the results produced on ResultStream via http-service-response sink on the message format:
 
-```
+```js
     {
     "event": {
         "results": 7

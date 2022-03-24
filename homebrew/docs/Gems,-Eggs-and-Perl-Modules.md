@@ -45,7 +45,7 @@ To teach `easy_install` and `pip` to install there, either use the
 `--user` switch or create a `~/.pydistutils.cfg` file with the
 following content:
 
-```
+```sh
 [install]
 install_lib = ~/Library/Python/$py_version_short/lib/python/site-packages
 ```

@@ -11,7 +11,7 @@ This example shows joining two stream based on a condition.
 For more information on other [join operations](query-guide#join-stream) refer the [stream query guide](query-guide.md).
 
 
-```
+```sql
 CREATE STREAM TemperatureStream (roomNo string, temperature double);
 
 CREATE STREAM HumidityStream (roomNo string, humidity double);
@@ -59,7 +59,7 @@ For more information on partitioning events based on value ranges, refer other e
 For more information on [partition](query-guide#partition) refer the [stream query guide](query-guide.md).
 
 
-```
+```sql
 CREATE STREAM LoginStream ( userID string, loginSuccessful bool);
 
 -- Optional purging configuration, to remove partition instances that haven't received events for `1 hour` by checking every `10 sec`.
@@ -108,7 +108,7 @@ When events are sent to `LoginStream` stream, following events will be generated
 This example shows performing scatter and gather on string values.
 
 
-```
+```sql
 CREATE STREAM PurchaseStream (userId string, items string, store string);
 
 @info(name = 'Scatter-query')
@@ -157,7 +157,7 @@ The event arriving at `GroupedPurchaseItemStream` will be as follows:
 This example shows performing scatter and gather on string values.
 
 
-```
+```sql
 CREATE STREAM PurchaseStream (order string, store string);
 
 @info(name = 'Scatter-query')
@@ -206,7 +206,7 @@ from GroupedItemStream;
 
 Below event is sent to `PurchaseStream`,
 
-```
+```json
 [{
    "order":{
       "id":"501",

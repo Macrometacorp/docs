@@ -8,7 +8,7 @@ sidebar_position: 4
 
 This example shows filter-out events based on simple conditions such as `number value`, `range` or `null` type.
 
-```
+```sql
 -- Defines `TemperatureStream` stream to process events having `sensorId` and `temperature`(F).
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
@@ -55,7 +55,7 @@ After processing, the following events will be arriving at each stream:
 
 This example shows how to enrich events based on a simple `if-then-else` conditions.
 
-```
+```sql
 -- Defines `TemperatureStream` stream to process events having `sensorId` and `temperature`(F).
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
@@ -88,7 +88,7 @@ When an event with values [`'sensor1'`, `35.4`] is sent to TemperatureStream str
 
 This example demonstrates event cleansing using regex expressions.
 
-```
+```sql
 -- Defines `SweetProductionStream` having information of `name` and `amount`
 define stream SweetProductionStream (name string, amount int);
 
@@ -121,7 +121,7 @@ After processing, the event arriving at `ChocolateProductStream` will be as foll
 This example shows how to use `default` function to process attributes with `null` values.
 
 
-```
+```sql
 -- Defines `PatientRegistrationInputStream` having information in all primitive types.
 CREATE STREAM PatientRegistrationInputStream (
                  seqNo long, name string, age int,
@@ -171,7 +171,7 @@ with types,
 This example shows filter-out events based on data `type` of the attribute.
 
 
-```
+```sql
 -- Defines `SweetProductionStream` having information of `name` and `amount`
 CREATE STREAM SweetProductionStream (name string, amount int);
 
@@ -203,7 +203,7 @@ Provides examples of removing `duplicate` events that arrive within a given time
 
 ### Example
 
-```
+```sql
 CREATE STREAM TemperatureStream (sensorId string, seqNo string, temperature double);
 
 @info(name = 'Deduplicate-sensorId')

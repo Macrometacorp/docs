@@ -195,7 +195,7 @@ Let's assume your
       print("\n7. DELETE_DATA: region: {}, collections: {}, {}".format(global_url, collection_shops, collection_transit))
       shopCol.truncate()
       transitCol.truncate()
-      # # fabric.delete_collection(collection_name)
+      #client.delete_collection(collection_name)
 
   </TabItem>
   <TabItem value="js" label="Javascript">

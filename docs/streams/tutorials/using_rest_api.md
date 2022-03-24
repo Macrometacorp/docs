@@ -51,7 +51,7 @@ It provides,
     # Constants
 
     FEDERATION = "gdn.paas.macrometa.io"
-    FED_URL = "https://{}".format(FEDERATION)
+    FED_URL = "https://api-{}".format(FEDERATION)
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
     FABRIC = "_system"
@@ -88,17 +88,17 @@ It provides,
 
     # Create a stream
     # Note:- For a global stream pass global=true and global=false for local stream
-    url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "'?global=true"
+    url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "?global=true"
     resp = session.post(url)
     print("\nStream Created: ", resp.text)
 
     # Publish Messages
-    /# Send message in body
-    url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "/publish'?global=true"
+    # Send message in body
+    url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "/publish?global=true"
     resp = session.post(url)
     print("\nStream Created: ", resp.text)
 
-    or
+    # or
 
     stream_type = "c8local"
     producerurl = "wss://" + FEDERATION + "/_ws/ws/v2/producer/persistent/" + TENANT_NAME +\
@@ -192,7 +192,7 @@ It provides,
 
     const EMAIL = "nemo@nautilus.com";
     const PASSWORD = "xxxxxx";
-    const FEDERATION_NAME = "https://gdn.paas.macrometa.io";
+    const FEDERATION_NAME = api-gdn.paas.macrometa.io";
     const FEDERATION_URL = `https://${FEDERATION_NAME}`;
 
     const STREAM_NAME = "api_tutorial_streams";
@@ -225,8 +225,7 @@ It provides,
         const region = IS_GLOBAL ? "c8global" : "c8local";
         const streamName = `${region}s.${STREAM_NAME}`;
         const url = IS_GLOBAL
-          ? FEDERATION_NAME;
-          : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
+          ? FEDERATION_NAME : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
 
         const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}`;
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 16
+sidebar_position: 17
 ---
 
 # Dynamo Mode
@@ -12,9 +12,9 @@ sidebar_position: 16
 
     :::note
         Following api key is created under `demo@macrometa.io/_system` on https://gdn.paas.macrometa.io with `rw` permissions.
-        ```
+        
             demo.demok1.1a1aad0f4b000ca4d2d3bdb505298cbb9467b65526b0f79364e61e5f00000000
-        ```
+        
     :::
 
 2. Download & Install AWS Console CLI

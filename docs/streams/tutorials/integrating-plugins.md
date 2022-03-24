@@ -40,7 +40,7 @@ Additionally, the `numRecords` attribute (INT) indicates the number of records m
 
 Use the following template to create a CUD function:
 
-```
+```sql
 rdbms:cud(STRING datasource.name, STRING query)
 rdbms:cud(STRING datasource.name, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
 rdbms:cud(STRING datasource.name, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
@@ -52,14 +52,14 @@ The following examples assume you have an input stream called `TriggerStream` an
 
 This example query updates events from the input stream by adding a `numRecords` attribute, then inserts the updated events into an output stream:
 
-```
+```sql
 select numRecords from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName='abc' where customerName='xyz'") 
 insert into  RecordStream;
 ```
 
 This example query does the same thing with the addition of `previousName` and `changedName` attributes to indicate the names of the input and output streams:
 
-```
+```sql
 select numRecords from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName=? where customerName=?", changedName, previousName) 
 insert into  RecordStream;
 
@@ -88,7 +88,7 @@ Additionally, the `attributeName` attribute (any type) returns the attributes li
 
 Use the following template to create a Procedure function:
 
-```
+```sql
 rdbms:procedure(STRING datasource.name, STRING attribute.definition.list, STRING query)
 rdbms:procedure(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING output.parameter)
 rdbms:procedure(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING output.parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
@@ -101,7 +101,7 @@ In these examples, the values in the parentheses for `RETURNCON()` are the input
 
 This example runs a stored procedure from the database called `RETURNCON()` and returns the output `Name`, `Age`, and `Date_Time`:
 
-```
+```sql
 select Name, Age, Date_Time from IntrimStream#rdbms:procedure('ORACLE_DB', 'Name String, Age int,Date_Time String', 'begin RETURNCON(?,?); end;','cursor', NoOfYears)
 insert into tempStream1;
 ```
@@ -110,7 +110,7 @@ The output parameter is `cursor` and the input parameter is `NoOfYears`.
 
 This example runs a stored procedure from the database called `RETURNCON()` and returns the output `Name`, `Age`, and `Date_Time`:
 
-```
+```sql
 select Name, Age, Date_Time from IntrimStream#rdbms:procedure('ORACLE_DB', 'Name String, Age int,Date_Time String', 'begin RETURNCON(9,?); end;','cursor')
 insert into tempStream1;
 ```
@@ -142,7 +142,7 @@ Additionally, `attributeName` (any type) returns the attributes listed in the pa
 
 Use the following template to create a Query function:
 
-```
+```sql
 rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING query)
 rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
 rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING query, BOOL ack.empty.result.set)
@@ -154,7 +154,7 @@ rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING que
 
 The following examples query `creditcardno`, `country`, `transaction`, and `amount` from a database called `SAMPLE_DB`, then generate an event for each record retrieval insert the events into the `recordStream` output stream:
 
-```
+```sql
 select creditcardno, country, transaction, amount from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string, transaction string, amount int', 'select * from Transactions_Table')     
 insert into recordStream;
 ```
@@ -163,14 +163,14 @@ The event includes the attributes defined in the `attribute.definition.list` as 
 
 Additionally, this example uses the `countrySearchWord` parameter as a filter.
 
-```
+```sql
 select creditcardno, country, transaction, amount from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord)  
 insert into recordStream;
 ```
 
 This example returns null values if there are no events that satisfy the query:
 
-```
+```sql
 select creditcardno, country, transaction, amount from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord, true)  
 insert into recordStream;
 
@@ -204,7 +204,7 @@ Insert the following parameters into the provided [template](#template) to creat
 
 Use the following template to create a Store function:
 
-```
+```sql
 @Store(type="rdbms", jdbc.url="STRING", username="STRING", password="STRING", jdbc.driver.name="STRING", pool.properties="STRING", jndi.resource="STRING", datasource="STRING", table.name="STRING", field.length="STRING", table.check.query="STRING", use.collation="BOOL", allow.null.values="BOOL")
 @PrimaryKey("PRIMARY_KEY")
 @Index("INDEX")
@@ -214,7 +214,7 @@ Use the following template to create a Store function:
 
 The following example creates an event table named `StockTable` if one does not already exist in the database. The connection details are specified by the attributes under the `@Store` annotation.
 
-```
+```sql
 CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/stocks", username="root", password="root", jdbc.driver.name="com.mysql.jdbc.Driver", field.length="symbol:100", PrimaryKey="id", PrimaryKey="symbol", Index="volume") (id string, symbol string, price float, volume long);
 ```
 
@@ -222,7 +222,7 @@ The `@PrimaryKey()` and `@Index()` annotations follow CEP query syntax to define
 
 This example creates an event table named `StockTable`, then adds a stream called `InputStream`:
 
-```
+```sql
 CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/das", username="root", password="root" , jdbc.driver.name="org.h2.Driver", field.length="symbol:100", PrimaryKey="symbol", Index="symbol") (symbol string, price float, volume long);
 
 CREATE STREAM InputStream (symbol string, volume long);
@@ -233,7 +233,7 @@ insert into FooStream;
 
 This example checks to see if a table named `StockTable` exists in the database, and if not, creates an event table named `StockTable`.
 
-```
+```sql
 CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/das", table.name="StockTable", username="root", password="root" , jdbc.driver.name="org.h2.Driver", field.length="symbol:100", table.check.query="SELECT 1 FROM StockTable LIMIT 1", PrimaryKey="symbol", Index="symbol") (symbol string, price float, volume long);
 
 CREATE STREAM InputStream (symbol string, volume long);
@@ -296,7 +296,7 @@ The following CDC plugin examples assume you are using a table called `students`
 
 This example listens to row insertions:
 
-```
+```sql
 CREATE SOURCE inputStream WITH (type = 'cdc' , url = 'jdbc:mysql://localhost:3306/SimpleDB', username = 'user', password = 'password', table.name = 'students', operation = 'insert', map.type='keyvalue', attributes.id = 'id', attributes.name = 'name') (id string, name string);
 ```
 
@@ -307,7 +307,7 @@ You can adjust this plugin to listen for updates or deletions by adding `update`
 
 This example polls for row insertions:
 
-```
+```sql
 CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = 'id', jdbc.driver.name = 'com.mysql.jdbc.Driver', url = 'jdbc:mysql://localhost:3306/SimpleDB', username = 'user', password = 'password', table.name = 'students', map.type='keyvalue', attributes.id = 'id', attributes.name = 'name') (id int, name string);
 ```
 
@@ -318,7 +318,7 @@ The `polling.column` field is set to `id`, indicating that polling will be track
 
 This example polls for row insertions and adds sequential numbering to the polling column:
 
-```
+```sql
 CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = 'id', datasource.name = 'SimpleDB', table.name = 'students', map.type='keyvalue', attributes.id = 'id', attributes.name = 'name') (id int, name string);
 ```
 
@@ -329,7 +329,7 @@ The polling column The `datasource.name` parameter is only valid with a Stream P
 
 This example polls for row insertions and uses a timestamp in the polling column:
 
-```
+```sql
 CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = 'last_updated', datasource.name = 'SimpleDB', table.name = 'students', map.type='keyvalue') (name string);
 ```
 
@@ -339,7 +339,7 @@ The `polling.column` field is set to `last_updated`, indicating that polling wil
 
 This example polls for row insertions with a ten-second buffer to account for any concurrent or out-of-order requests:
 
-```
+```sql
 CREATE SOURCE inputStream (type='cdc', jdbc.driver.name='com.mysql.jdbc.Driver', url='jdbc:mysql://localhost:3306/SimpleDB', username='user', password='password', table.name='students', mode='polling', polling.column='id', operation='insert', wait.on.missed.record='true', missed.record.waiting.timeout='10', map.type='keyvalue', attributes.batch_no='batch_no', attributes.item='item', attributes.qty='qty') (id int, name string);
 ```
 
@@ -349,6 +349,6 @@ The polling column is numeric.
 
 This example connects to an Oracle database and listens to row insertions to a table called `sweetproductiontable`:
 
-```
+```sql
 CREATE SOURCE insertSweetProductionStream WITH (type = 'cdc', url = 'jdbc:oracle:thin://localhost:1521/ORCLCDB', username='c##xstrm', password='xs', table.name='DEBEZIUM.sweetproductiontable', operation = 'insert', connector.properties='oracle.outserver.name=DBZXOUT,oracle.pdb=ORCLPDB1' map.type = 'keyvalue') (ID int, NAME string, WEIGHT int);
 ```

@@ -22,19 +22,19 @@ a scenario where you receive sales records generated from multiple locations as 
 2. Define the input stream and the c8db collection that need to be joined as follows.
 
     1. Define the stream as follows.
-        ```
+        ```sql
         CREATE STREAM TrasanctionStream (userId long, transactionAmount double, location string);
         ```
         
     2. Define the table as follows.
-        ```
+        ```sql
         CREATE TABLE UserTable (userId long, firstName string, lastName string);
         ```
         
 3. Then define the stream query to join the stream and the table, and handle the result as required.
     1. Add the `from` clause as follows with the `join` keyword to join the table and the stream.
 
-        ```
+        ```sql
         from TransactionStream as t join UserTable as u on t.userId == u.userId
         ```
 
@@ -47,7 +47,7 @@ a scenario where you receive sales records generated from multiple locations as 
         :::        
     2. To specify how the value for each attribute in the output stream is derived, add a `select` clause as follows.
 
-        ```
+        ```sql
         select t.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
         ```
 
@@ -65,7 +65,7 @@ a scenario where you receive sales records generated from multiple locations as 
 
     4. The completed stream application is as follows.
 
-        ```
+        ```sql
         @App:name("EnrichingTransactionsApp")
         @App:qlVersion("2")
 
@@ -85,7 +85,7 @@ a scenario where you receive sales records generated from multiple locations as 
 
         1. Load `UserTable` Collection with User Data
 
-            ```
+            ```json
             {"userId":1200001,"firstName":"Raleigh","lastName":"McGilvra"}
             {"userId":1200002,"firstName":"Marty","lastName":"Mueller"}
             {"userId":1200003,"firstName":"Kelby","lastName":"Mattholie"}
@@ -93,14 +93,14 @@ a scenario where you receive sales records generated from multiple locations as 
 
         2. Publish events on the `TrasanctionStream`
 
-            ```
+            ```json
             {"userId":1200002,"transactionAmount":803,"location":"Chicago"}
             {"userId":1200001,"transactionAmount":1023,"location":"New York"}
             ```
 
         3. You can observe the following events on `EnrichedTrasanctionStream`
 
-            ```
+            ```json
             {"event":{"userId":1200002,"userName":"Marty Mueller","transactionAmount":803.0,"location":"Chicago"}}
             {"event":{"userId":1200001,"userName":"Raleigh McGilvra","transactionAmount":1023.0,"location":"New York"}}
             ```
@@ -122,18 +122,18 @@ To understand how this is done, consider a scenario where you receive informatio
 1. Define the two input streams via which you are receiving information about withdrawals and deposits.
         
     1. Create a stream named `CashWithdrawalStream` to capture information about withdrawals as follows.
-        ```
+        ```sql
         CREATE STREAM CashWithdrawalStream(branchID int, amount long);
         ```
 
     2. Create a stream named `CashDepositsStream` to capture information about deposits as follows.
-        ```
+        ```sql
         CREATE STREAM CashDepositsStream(branchID string, amount long);
         ```
         
 3. Now let's define an output stream to which the combined information from both the input streams need to be directed after the join.
 
-    ```
+    ```sql
 	CREATE STREAM CashFlowStream WITH (type='stream', stream.list='CashFlowStream') (branchID string, withdrawalAmount long, depositAmount long);
     ```
 
@@ -160,7 +160,7 @@ To understand how this is done, consider a scenario where you receive informatio
         :::      
     2. To specify how the value for each attribute is derived, add a `select` statement as follows.
 
-        ```
+        ```sql
         select w.branchID as branchID, w.amount as withdrawals, d.amount as deposits
         ```
         
@@ -169,19 +169,19 @@ To understand how this is done, consider a scenario where you receive informatio
         :::    
     3. To filter only events where total cash withdrawals are greater than 95% of the cash deposits, add a `having` clause as follows.
 
-        ```
+        ```sql
         having w.amount > d.amount * 0.95 
         ```
         
     4. To insert the results into the `CashFlowStream` output stream, add the `insert into` clause as follows.
 
-        ```
+        ```sql
         insert into CashFlowStream;
         ```
         
     5. The completed stream application is as follows:
 
-        ```
+        ```sql
         @App:name("BankTransactionsApp")
         @App:qlVersion("2")
 
@@ -210,13 +210,13 @@ To understand how this is done, consider an example where you have some credit c
 
 2. Define the input stream from which the input data (i.e., the credit card no in this example) must be taken.
 
-   ```
+   ```js
    define stream CreditCardStream (creditCardNo string);
    ```
    
 3. To publish the input data to the external application, connect a sink to the stream you created as shown below. For more information about publishing information, see the [Publishing Data guide](publishing-data.md).
 
-    ```
+    ```sql
 	CREATE STREAM CreditCardStream WITH (type='http-request', publisher.url='https://secure.ftipgw.com/ArgoFire/validate.asmx/GetCardType', method='POST', headers="'Content-Type:application/x-www-form-urlencoded'", sink.id="cardTypeSink", sink.map.type='keyvalue', sink.map.payload = (CardNumber='{{creditCardNo}}')) (creditCardNo string);
     ```
 
@@ -228,13 +228,13 @@ To understand how this is done, consider an example where you have some credit c
     :::    
 4. To capture the response of the external application once it returns the credit card type, create a stream as follows. For more information about consuming data, see the [Consuming Data guide](./consuming-data.md).
 
-    ```
+    ```sql
     CREATE STREAM EnrichedCreditCardStream (creditCardNo string, creditCardType string);
     ```
     
 5. Assuming the external application sends its output via HTTP transport, connect a source of the `http`type to the `EnrichedCreditCardStream` stream as follows. For more information about consuming events, see the [Consuming Data guide](./consuming-data.md).
 
-    ```
+    ```sql
 	CREATE STREAM EnrichedCreditCardInfoStream WITH (source.type='http-response', sink.id='cardTypeSink', map.type='xml', map.namespaces = "xmlns=http://localhost/SmartPayments/", attributes.creditCardNo = 'trp:creditCardNo',creditCardType = ".") (creditCardNo string,creditCardType string);
     ```
 
@@ -243,13 +243,13 @@ To understand how this is done, consider an example where you have some credit c
         
 6. To save the response of the external application, define a table named `CCInfoTable`.
 
-    ```
+    ```sql
     CREATE TABLE CCInfoTable (cardNo long, cardType string);
     ```
     
 7. To save the data enriched by integrating the information received from the external service, add a stream query as follows.
 
-    ```
+    ```sql
     update or insert into CCInfoTable 
         on CCInfoTable.creditCardNo == creditCardNo
     select *
@@ -260,7 +260,7 @@ To understand how this is done, consider an example where you have some credit c
      
 8. The completed stream application is as follows:
 
-    ```
+    ```sql
     @App:name("CCTypeIdentificationApp")
     @App:qlVersion("2")
 

@@ -59,11 +59,10 @@ For example:
 
     # Set constants
 
-    FEDERATION = "api.gdn.paas.macrometa.io"
+    FEDERATION = "api-gdn.paas.macrometa.io"
     FED_URL = "https://{}".format(FEDERATION)
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
-    FABRIC = "_system"
     COLLECTION_NAME = "testcollection"
     AUTH_TOKEN = "bearer "
 
@@ -113,10 +112,10 @@ For example:
     }
     resp = session.post(url, data = json.dumps(payload))
     resp = json.loads(resp.text)
-    if "error" in resp.keys():
+    if 'error' in resp and resp['error']:
         print("ERROR: " + resp["errorMessage"])
     else:
-        print("\nCollection created: ", resp.text)
+        print("\nCollection created: ", resp['name'])
 
 
     # Insert a document into a collection
@@ -340,8 +339,14 @@ You can use C8QL to run CRUD Operations.
 
     #Using C8QL
 
-    FEDERATION = "api.gdn.paas.macrometa.io"
+    import requests
+    import json
+
+    FEDERATION = "api-gdn.paas.macrometa.io"
     FED_URL = "https://{}".format(FEDERATION)
+    EMAIL = "nemo@nautilus.com"
+    PASSWORD = "xxxxxx"
+    AUTH_TOKEN = "bearer "
 
     # Create HTTPS session
 
@@ -418,7 +423,7 @@ Streams provide:
 
     # Constants
 
-    FEDERATION = "api.gdn.paas.macrometa.io"
+    FEDERATION = "api-gdn.paas.macrometa.io"
     FED_URL = "https://{}".format(FEDERATION)
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
@@ -457,17 +462,17 @@ Streams provide:
     # Create a stream
 	# Set global=true for a global stream or global=false for a local stream
 
-    url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "'?global=true"
+    url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "?global=true"
     resp = session.post(url)
     print("\nStream created: ", resp.text)
 
     # Publish messages
-    /# Send message in body
-    url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "/publish'?global=true"
+    # Send message in body
+    url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "/publish?global=true"
     resp = session.post(url)
     print("\nStream created: ", resp.text)
 
-    or
+    # or
 
     stream_type = "c8local"
     producerurl = "wss://" + FEDERATION + "/_ws/ws/v2/producer/persistent/" + TENANT_NAME +\
@@ -721,13 +726,12 @@ Macrometa GDN provides turnkey global distribution and transparent multi-master 
 
     # Set constants
 
-    FEDERATION = "api.gdn.paas.macrometa.io"
+    FEDERATION = "api-gdn.paas.macrometa.io"
     FED_URL = "https://{}".format(FEDERATION)
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
     FABRIC = "_system"
     AUTH_TOKEN = "bearer "
-    TENANT_NAME = "xxxxxx"
     READ_QUERY = "FOR doc IN @@collection RETURN doc"
     QUERY_NAME = "read"
     QUERY_PARAMS = {"@collection": "api_query_tutorial"}
@@ -1120,7 +1124,7 @@ To create `edge collection` use same endpoint `/_fabric/{fabric_name}/_api/colle
 
     # Constants
 
-    FEDERATION = "api.gdn.paas.macrometa.io"
+    FEDERATION = "api-gdn.paas.macrometa.io"
     FED_URL = "https://{}".format(FEDERATION)
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"

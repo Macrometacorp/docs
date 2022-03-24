@@ -209,7 +209,7 @@ The modified documents can also be returned by the query. In this case, the `UPD
 
 Both `OLD` and `NEW` will contain all document attributes, even those not specified in the update expression.
 
-```
+```js
 UPDATE document IN collection options RETURN OLD
 UPDATE document IN collection options RETURN NEW
 UPDATE keyExpression WITH document IN collection options RETURN OLD
