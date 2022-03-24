@@ -15,7 +15,7 @@ Refer to the [stream query guide](query-guide#error-handling) for more informati
 
 In the following example, we attempt to publish abnormal Glucose reading events to an unavailable HTTP endpoint, and the error is recorded to the logs.
 
-```
+```sql
 -- Defines `GlucoseReadingStream` stream which contains events related to Glucose readings.
 CREATE STREAM GlucoseReadingStream (locationRoom string,
     locationBed string, timeStamp string, sensorID long,
@@ -62,7 +62,7 @@ In this mode, publishing threads wait in back-off and re-trying mode, and only s
 Refer to the [stream query guide](../query-guide/#error-handling) for more information.
 
 
-```
+```sql
 -- Defines `GlucoseReadingStream` stream which contains events related to Glucose readings.
 CREATE STREAM GlucoseReadingStream (locationRoom string,
     locationBed string, timeStamp string, sensorID long,
@@ -106,6 +106,6 @@ Download the mock logger service from [here](https://github.com/mohanvive/siddhi
 
 - Now, you could see the event sent in step #1 is get logged in the logger service console as given below.
 
-    ```
+    ```bash
     LoggerService:42 - {event={timeStampInLong=1.576829362E9, locationRoom=Get-1024, locationBed=Level2, sensorID=10348.0, patientFullName=Alex John, sensorReadingValue=250.0}}
     ```

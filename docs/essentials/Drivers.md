@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 import Tabs from '@theme/Tabs';
@@ -86,7 +86,6 @@ The first step in using GDN is to establish a connection to a local region. When
     FED_URL = "https://{}".format(FEDERATION)
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
-    FABRIC = "_system"
     AUTH_TOKEN = "bearer "
 
     # Create a HTTPS Session
@@ -758,7 +757,6 @@ The first step in using GDN is to establish a connection to a local region. When
     FED_URL = "https://{}".format(FEDERATION)
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
-    FABRIC = "_system"
     AUTH_TOKEN = "bearer "
 
     # Create a HTTPS Session

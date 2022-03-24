@@ -132,7 +132,7 @@ Let's assume your
       # Step6: Delete data.
       print("\n6. DELETE_DATA: region: {}, collection: {}".format(global_url, collection_name))
       collection.truncate()
-      #fabric.delete_collection(collection_name)
+      #client.delete_collection(collection_name)
     
   </TabItem>
   <TabItem value="js" label="Javascript">

@@ -21,7 +21,7 @@ To understand the different ways you can filter the specific data you need to tr
 
 1. Define an input stream to specify the schema based on which events are selected.
 
-    ```
+    ```sql
     CREATE STREAM `InputTempStream` (deviceID long, roomNo string, temp double);
     ```
 
@@ -30,7 +30,7 @@ To understand the different ways you can filter the specific data you need to tr
     :::
 1. Define an output stream `Room2233AnalysisStream` to emit the result
 
-    ```
+    ```sql
 	CREATE STREAM Room2233AnalysisStream WITH (type='stream', stream='Room2233AnalysisStream', map.type='json') (deviceID long, roomNo string, temp double);
     ```
 
@@ -38,19 +38,19 @@ To understand the different ways you can filter the specific data you need to tr
 
     1. Add the `from` clause and enter `InputTempStream` as the input stream from which the input data. However, because you only need to extract readings for room no `2233`, include a filter in the `from` clause as shown below:
 
-        ```
+        ```sql
         from InputTempStream [roomNo=='2233']
         ```
 
     2. Add the `select` clause with `*` to indicate that all the attributes should be selected without any changes.
-        ```
+        ```sql
         select *
         from InputTempStream [roomNo=='2233']
         ```
 
     3. Add the `insert into` clause and direct the output to a stream named `Room2233AnalysisStream`.
 
-        ```
+        ```sql
         insert into Room2233AnalysisStream
         select *
         from InputTempStream [roomNo=='2233']
@@ -59,7 +59,7 @@ To understand the different ways you can filter the specific data you need to tr
         :::tip
             As a best practice, name your queries using the `@info` annotation. In this example, you can name the query `Filtering` as follows.
         :::
-        ```
+        ```sql
         @info(name = 'Filtering2233')
         insert into Room2233AnalysisStream
         select *
@@ -68,7 +68,7 @@ To understand the different ways you can filter the specific data you need to tr
 
 1. The saved stream application is as follows:
 
-    ```
+    ```sql
     @App:name("TemperatureApp")
     @App:description("Description of the plan")
     @App:qlVersion("2")
@@ -98,25 +98,25 @@ To filter events as described, follow the procedure below.
 
     1. Add `select` statement to project the fields:
 
-        ```
+        ```sql
         select deviceID, roomNo, temp
         ```
     
     1. Add a `from` clause as follows to get the required events from the `InputTempStream` stream.
 
-        ```
+        ```sql
         from InputTempStream[regex:find('SOU*B*', roomNo)]
         ```
 
     1. Add the `insert to` clause as follows to insert the results into a stream named `FilteredResultsStream`.
 
-        ```
+        ```sql
         insert into FilteredResultsStream
         ```
 
         The completed query is as follows.
 
-        ```
+        ```sql
         @info(name = 'FilteredRoomRange')
         insert into FilteredResultsStream
         select deviceID, roomNo, temp
@@ -127,7 +127,7 @@ To filter events as described, follow the procedure below.
 
 1. The completed stream application looks as follows.
 
-    ```
+    ```sql
     @App:name("TemperatureApp1")
     @App:description("Description of the plan")
     @App:qlVersion("2")
@@ -153,7 +153,7 @@ To filter events as described, follow the procedure below.
 
 For this purpose, you can use the `TemperatureApp` stream application that you created in the example under **Filtering based on exact match of attribute** section. However, instead of filtering only readings for room No `2233`, assume that you need to filter the readings for a range of rooms (e.g., rooms 100-210) where the temperature is greater than 40. For this, you can update the filter as follows.
 
-```
+```js
 [(roomNo >= 100 and roomNo < 210) or temp < 40]
 ```
     
@@ -168,13 +168,13 @@ Assume that in the previous example, you do not need the device ID for further p
 
 1. Open the `TemperatureApp` stream application that you previously created in the [Filtering data based on conditions](##filtering-data-based-on-conditions) section and start adding a new query. You can name it as `CleaningData` as shown below.
 
-    ```
+    ```sql
     @info(name = 'CleaningData')
     ```
    
 2. Add the `from` clause and enter `FilteredResultsStream` as the input stream from which the input data is taken.
 
-    ```
+    ```sql
     from FilteredResultsStream
     ```
 
@@ -182,31 +182,31 @@ Assume that in the previous example, you do not need the device ID for further p
 
     1. To select only the `roomNo` and `temp` attributes for further processing and remove the `deviceID` attribute, add them as follows.
 
-        ```
+        ```sql
         select deviceID, roomNo, temp
         ```
 
     2. To remove the unnecessary white spaces from the room number, add the `trim()` function as shown below.
 
-        ```
+        ```sql
         str:trim(roomNo) as roomNo
         ```
         
     3. Now the completed `select` statement is as follows.
 
-        ```
+        ```sql
         select str:trim(roomNo) as roomNo, temp
         ```
    
 4. Insert the results into an output stream as follows.
 
-    ```
+    ```sql
     insert into CleansedDataStream
     ```
    
 5. The completed query is as follows:
 
-    ```
+    ```sql
     @info(name = 'CleaningData')
     insert into CleansedDataStream
     select deviceID, str:trim(roomNo) as roomNo, temp
@@ -225,13 +225,13 @@ To do this, follow the procedure below:
 
 1. Start adding a new query to the `TemperatureApp` stream application. You can name it `AddingMissingValues` as follows.
 
-    ```
+    ```sql
     @info(name = 'AddingMissingValues')
     ```
     
 2. Add the `from` clause and enter `FilteredResultsStream` as the input stream from which the input data is taken.
 
-    ```
+    ```sql
     from FilteredResultsStream
     ```
 
@@ -243,13 +243,13 @@ To do this, follow the procedure below:
 3. Add the `select` clause. To assign `unknown` as the value for the `roomNo` attribute when it has a null value, you 
    need to use the `ifThenElse` function as shown below.
 
-    ```
+    ```sql
     ifThenElse(roomNo is null, "UNKNOWN", str:trim(roomNo)) as roomNo
     ```
 
     Select the `deviceID` and `temp` attributes can be selected without any changes. The query updated with the `select` clause now looks as follows.
 
-    ```
+    ```sql
     select deviceID, ifThenElse(roomNo is null, "UNKNOWN", str:trim(roomNo)) as roomNo, temp
     ```
    
@@ -259,7 +259,7 @@ To do this, follow the procedure below:
     
     The completed query now looks as follows.
     
-    ```
+    ```sql
     @info(name = 'AddingMissingValues')
     insert into CleansedDataStream
     select deviceID, ifThenElse(roomNo is null, "UNKNOWN", str:trim(roomNo)) as roomNo, temp

@@ -669,7 +669,7 @@ Example to publish messages on a stream and subscribe to that stream to receive 
 <Tabs groupId="operating-systems">
   <TabItem value="HTML" label="HTML with embedded Javascript">
 
-  ```
+  ```html
   <!DOCTYPE html>
   <html lang="en">
     <head>

@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Macrometa GDN is a geodistributed real-time coordination-free materialized views engine that supports multiple data models. You can use GDN as a geo-replicated real-time key-value datastore or database. 
 
-If you are new to Macrometa GDN, start by reading the [essentials](../../essentials/overview.md) of Macrometa GDN.
+If you are new to Macrometa GDN, start by reading the [essentials](../../essentials/overview) of Macrometa GDN.
 
 Each document stored in a *collection* (or table) contains a primary key `_key`. The rest of the document is considered a value. The collection behaves like a simple *key-value* (KV) store if it has no secondary indexes.
 

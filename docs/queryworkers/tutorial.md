@@ -115,60 +115,60 @@ For this example, we use the following credentials:
     if __name__ == '__main__':
 
     # Step1: Open connection to GDN. You will be routed to closest region.
-    print("1. CONNECT: federation: {},  user: {}".format(global_url, email))
-    client = C8Client(protocol='https', host=global_url, port=443,
-                        email=email, password=password,
-                        geofabric=geo_fabric)      
-
-    # Step2: Create a collection if not exists
-    print("2. CREATE_COLLECTION: region: {},  collection: {}".format(global_url, collection_name))
-    if client.has_collection(collection_name):
-        collection = client.collection(collection_name)
-    else:
-        collection = client.create_collection(collection_name)
-
-    # Step3: Create RestQLs
-    print("3. CREATE_RESTQLs: region: {}".format(global_url))
-    client.create_restql(insert_data)  # name: insertRecord
-    client.create_restql(get_data)  # name: getRecords
-    client.create_restql(update_data)  # name: updateRecord
-    client.create_restql(delete_data)  # name: deleteRecord
-    client.create_restql(get_count)  # name: countRecords
-    pp.pprint(client.get_restqls())
-
-    # Step4: Execute Query Workers
-    print("4. EXECUTE_RESTQLs: region: {}".format(global_url))
-
-    print("\t a. Insert data....")
-    response = client.execute_restql(
-        "insertRecord", {
-            "bindVars": {
-                "firstname": "john",
-                "lastname": "doe",
-                "email": "john.doe@macrometa.io",
-                "zipcode": "511037"
-            }
-        })
-    print("\t b. Get data....")
-    response = client.execute_restql("getRecords")
-    pp.pprint(response['result'])
-    print("\t c. Update data....")
-    response = client.execute_restql("updateRecord")
-    print("\t d. Get data....")
-    response = client.execute_restql("getRecords")
-    pp.pprint(response['result'])
-    print("\t e. Count records....")
-    response = client.execute_restql("countRecords")
-    pp.pprint(response['result'])
-    print("\t f. Delete data....")
-    response = client.execute_restql("deleteRecord")
-
-    print("5. DELETE_RESTQLs: region: {}".format(global_url))
-    client.delete_restql("insertRecord")
-    client.delete_restql("getRecords")
-    client.delete_restql("updateRecord")
-    client.delete_restql("countRecords")
-    client.delete_restql("deleteRecord")
+        print("1. CONNECT: federation: {},  user: {}".format(global_url, email))
+        client = C8Client(protocol='https', host=global_url, port=443,
+                            email=email, password=password,
+                            geofabric=geo_fabric)      
+    
+        # Step2: Create a collection if not exists
+        print("2. CREATE_COLLECTION: region: {},  collection: {}".format(global_url, collection_name))
+        if client.has_collection(collection_name):
+            collection = client.collection(collection_name)
+        else:
+            collection = client.create_collection(collection_name)
+    
+        # Step3: Create RestQLs
+        print("3. CREATE_RESTQLs: region: {}".format(global_url))
+        client.create_restql(insert_data)  # name: insertRecord
+        client.create_restql(get_data)  # name: getRecords
+        client.create_restql(update_data)  # name: updateRecord
+        client.create_restql(delete_data)  # name: deleteRecord
+        client.create_restql(get_count)  # name: countRecords
+        pp.pprint(client.get_restqls())
+    
+        # Step4: Execute Query Workers
+        print("4. EXECUTE_RESTQLs: region: {}".format(global_url))
+    
+        print("\t a. Insert data....")
+        response = client.execute_restql(
+            "insertRecord", {
+                "bindVars": {
+                    "firstname": "john",
+                    "lastname": "doe",
+                    "email": "john.doe@macrometa.io",
+                    "zipcode": "511037"
+                }
+            })
+        print("\t b. Get data....")
+        response = client.execute_restql("getRecords")
+        pp.pprint(response['result'])
+        print("\t c. Update data....")
+        response = client.execute_restql("updateRecord")
+        print("\t d. Get data....")
+        response = client.execute_restql("getRecords")
+        pp.pprint(response['result'])
+        print("\t e. Count records....")
+        response = client.execute_restql("countRecords")
+        pp.pprint(response['result'])
+        print("\t f. Delete data....")
+        response = client.execute_restql("deleteRecord")
+    
+        print("5. DELETE_RESTQLs: region: {}".format(global_url))
+        client.delete_restql("insertRecord")
+        client.delete_restql("getRecords")
+        client.delete_restql("updateRecord")
+        client.delete_restql("countRecords")
+        client.delete_restql("deleteRecord")
 
   </TabItem>
   <TabItem value="js" label="Javascript">

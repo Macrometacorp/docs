@@ -169,7 +169,7 @@ First, you need to identify which artifact is not being handled correctly anymor
 
 Fixing this error is typically easy, and requires only a bit of time on your part. Start by downloading the package for the cask: `brew fetch <cask_name>`. The last line of output will inform you of the location of the download. Navigate there and manually unpack it. As an example, lets say the structure inside the archive is as follows:
 
-```
+```rb
 .
 ├─ Files/SomeApp.app
 ├─ Files/script.sh
@@ -178,7 +178,7 @@ Fixing this error is typically easy, and requires only a bit of time on your par
 
 Now, let's look at the cask (`brew cat <cask_name>`):
 
-```
+```rb
 (…)
 app "SomeApp.app"
 (…)

@@ -23,7 +23,7 @@ See [Search Views](search.md) on how to set up a View.
 
 The `SEARCH` keyword is followed by an Search filter expressions, which is mostly comprised of calls to Search C8QL functions.
 
-```
+```js
 FOR doc IN viewName
   SEARCH expression OPTIONS {…}
   ...

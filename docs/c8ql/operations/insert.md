@@ -13,7 +13,7 @@ Each `INSERT` operation is restricted to a single collection, and the [collectio
 
 The syntax for an insert operation is:
 
-```
+```js
 INSERT document INTO collection [ OPTIONS options ]
 ```
 

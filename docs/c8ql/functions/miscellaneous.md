@@ -62,10 +62,41 @@ This is an alias for [LENGTH()](#length).
 
 Return the name of the current user.
 
-The current user is the user account name that was specified in the *Authorization* HTTP header of the request. It will only be populated if authentication on the server is turned on, and if the query was executed inside a request context. Otherwise, the return value of this function will be *null*.
+The current user is the user account name specified in the *Authorization* HTTP header of the request. If you ran the query as a request, authentication must be enabled on the server. Otherwise, the return value is *null*.
 
-- returns **userName** (string\|null): the current user name, or *null* if
-  authentication is disabled
+- returns **userName** (string\|null): the current user name.
+
+### CURRENT_USER_ATTRIBUTE()
+
+`CURRENT_USER_ATTRIBUTE() → attribute`
+
+Returns attributes that are assigned to a user.
+
+You can use these attributes to restrict access to documents. For example, you can add a document with an attribute `Department: finance` and create a similar `{ Department: finance }` attribute for an authorized user, then write the following query:
+
+```js
+FOR d IN data
+FILTER CURRENT_USER_ATTRIBUTE(“Department”) == d.Department
+RETURN d
+```
+
+To ensure security, verify that accounts who can access this query cannot also modify it and circumvent the attribute.
+
+### CURRENT_APIKEY_ATTRIBUTE()
+
+`CURRENT_APIKEY_ATTRIBUTE() → attribute`
+
+Returns attributes that are assigned to an API key.
+
+You can use these attributes to restrict access to documents. For example, you can add a document with an attribute `Department: finance` and create a similar `{ Department: finance }` attribute for an API key, then write the following query:
+
+```js
+FOR d IN data
+FILTER CURRENT_USER_ATTRIBUTE(“Department”) == d.Department
+RETURN d
+```
+
+To ensure security, verify that accounts who can access this query cannot also modify it and circumvent the attribute.
 
 ### DECODE_REV()
 

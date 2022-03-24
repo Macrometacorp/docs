@@ -34,14 +34,14 @@ To calculate and store time-based aggregation values for the scenario explained 
 
 1. Start creating a new stream application. You can name it `TradeApp` For instructions, see [Creating a Stream Application](create-stream-app.md).
 
-    ```
+    ```sql
     @App:name("TradeApp");
     @App:qlVersion("2")
     ```
 
 2. To capture the input events based on which the aggregations are calculated, define an input stream as follows.
 
-    ```
+    ```sql
     CREATE STREAM TradeStream (symbol string, price double, quantity long, timestamp long);
     ```
     
@@ -57,7 +57,7 @@ To calculate and store time-based aggregation values for the scenario explained 
     :::info
         The system uses the aggregation name you define here as part of the database table name. Table name is `<Aggregation_Name>_<Granularity>`. System will automatically create a collection `TradeAggregation_HOUR` in `c8db` as we will be calculating the aggregation hourly in the next step.
     :::    
-    ```
+    ```sql
     CREATE AGGREGATION TradeAggregation
     ```
 
@@ -65,31 +65,31 @@ To calculate and store time-based aggregation values for the scenario explained 
 
     1.  To select attributes to be included in the output event, add a `select` clause as follows.
 
-        ```
+        ```sql
         select symbol, avg(price) as avgPrice, sum(quantity) as total
         ```
         
         Here, the `avg()` fuction is applied to the `price` attribute to derive the average price. The `sum()` function is applied to the `quantity` attribute to derive the total quantity.
     
     2. To get input events from the `TradeStream` stream that you previously defined, add a `from` clause as follows.
-        ```
+        ```sql
         from TradeStream
         ```
     
     3. To group the output by the symbol, add a group by clause as follows.
-        ```
+        ```sql
         group by symbol
         ```
     
     4. The timestamp included in each input event allows you to calculate aggregates for the range of time granularities seconds-years. Therefore, to calculate aggregates for each time granularity within this range, add the `aggregate by` clause to this aggregate query as follows.
 
-        ```
+        ```sql
         aggregate by timestamp every hour;
         ```
         
 5. The completed stream application is as follows.
 
-    ```
+    ```sql
     @App:name("TradeApp")
     @App:qlVersion("2")
 
@@ -113,13 +113,13 @@ To do this, let's add the definitions and queries required for retrieval to the 
 1. Open the `TradeApp` stream application.
 
 2. To retrieve aggregations, you need to make retrieval requests. To capture these requests as events, let's define a stream as follows.
-    ```
+    ```sql
     CREATE STREAM TradeSummaryRetrievalStream (symbol string);
     ```
     
 3. To process the events captured via the `TradeSummaryRetrievalStream` stream you defined, add a new query as follows.
 
-    ```
+    ```sql
     insert into TradeSummaryStream
     select a.symbol, a.total, a.avgPrice 
     from TradeSummaryRetrievalStream as b join TradeAggregation as a
@@ -130,7 +130,7 @@ To do this, let's add the definitions and queries required for retrieval to the 
     
 4. The completed stream application is as follows.
 
-    ```
+    ```sql
     @App:name("TradeApp")
     @App:qlVersion("2")
     
@@ -167,20 +167,20 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 
 1. Start creating a new stream application. You can name it `PastHourProductionApp` For instructions, see [Creating a Stream Application](create-stream-app.md).
 
-   ```
+   ```sql
    @App:name('PastHourProductionApp');
    @App:qlVersion("2")
    ```
 
 2. To capture details about each production run, define an input stream as follows.
 
-    ```
+    ```sql
     CREATE STREAM ProductionStream (name string, amount long, timestamp long);
     ```
     
 3. To publish the production for the last hour, define the output stream as follows.
 
-    ```
+    ```sql
 	CREATE STREAM PastHourProductionStream WITH (type='log', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
     ```
 
@@ -190,7 +190,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 
 4. To define how the output is derived, add the `select` statement as follows:
 
-    ```
+    ```sql
     select name, sum(amount) as pastHourTotal
     ```
 
@@ -198,7 +198,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     
 5. To specify that the processing done as defined via the `select` statement applies to a time window, add the `from` clause and include the time window as shown below. This must be added above the `select` clause.
 
-    ```
+    ```sql
     from ProductionStream#window.time(1 hour)
     ```
 
@@ -212,19 +212,19 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 
 6. To group by the product name, add the `group by` clause as follows.
 
-    ```
+    ```sql
     group by name
     ```
     
 7. To insert the results into the `PastHourProductionStream` output stream, add the `insert into` clause as follows.
 
-    ```
+    ```sql
     insert into PastHourProductionStream
     ```
 
 8. The completed stream application is as follows:
     
-    ```
+    ```sql
     @App:name('PastHourProductionApp')
     @App:qlVersion("2")
     
@@ -246,20 +246,20 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
 
 1. Start creating a new stream application. You can name it `ProductionApp` For instructions, see [Creating a Stream Application](create-stream-app.md).
 
-   ```
+   ```sql
    @App:name('MaximumProductionApp')
    @App:qlVersion("2")
    ```
    
 2. Define an input stream as follows to capture details about the production.
 
-    ```
+    ```sql
     CREATE STREAM ProductionStream (name string, amount long);
     ```
     
 3. To output the maximum production detected every 10 production runs, define an output stream as follows.
 
-    ```
+    ```sql
 	CREATE STREAM DetectedMaximumProductionStream WITH (type='log', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
     ```
 
@@ -269,7 +269,7 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
         
 4. To define the subset of events to be considered based on the number of events, add the `from` clause with a `lengthBatch` window as follows.
 
-    ```
+    ```sql
     from ProductionStream#window.lengthBatch(10)
     ```
     
@@ -277,7 +277,7 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
 
 5. To derive the values for the `DetectedMaximumProductionStream` output stream, add the `select` statement as follows.
 
-    ```
+    ```sql
     select name, max(amount) as maximumValue
     ```
     
@@ -285,18 +285,18 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
     
 6. To group by the product name, add the `group by` clause as follows.
 
-    ```
+    ```sql
     group by name
     ```
     
 7. To insert the maximum production detected into the `DetectedMaximumProductionStream` output stream, add the `insert into` clause as follows.
-    ```
+    ```sql
     insert into DetectedMaximumProductionStream
     ```
 
 The completed stream application is as follows.
 
-```
+```sql
 @App:name('MaximumProductionApp') 
 @App:qlVersion("2")
 

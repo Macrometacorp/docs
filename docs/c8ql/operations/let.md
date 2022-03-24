@@ -8,7 +8,7 @@ The `LET` statement can be used to assign an arbitrary value to a variable. The 
 
 The general syntax is:
 
-```
+```js
 LET variableName = expression
 ```
 
@@ -24,7 +24,7 @@ LET b = PUSH(a, 4) // allowed, result: [1, 2, 3, 4]
 
 `LET` statements are mostly used to declare complex computations and to avoid repeated computations of the same value at multiple parts of a query.
 
-```
+```js
 FOR u IN users
   LET numRecommendations = LENGTH(u.recommendations)
   RETURN { 
@@ -38,7 +38,7 @@ In the above example, the computation of the number of recommendations is factor
 
 Another use case for `LET` is to declare a complex computation in a subquery, making the whole query more readable.
 
-```
+```js
 FOR u IN users
   LET friends = (
   FOR f IN friends 

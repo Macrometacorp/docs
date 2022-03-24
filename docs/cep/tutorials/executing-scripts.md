@@ -72,7 +72,7 @@ To write custom function calls, follow the procedure below:
     
 1. In the `TemperatureProcessing` stream application, define a source stream as follows.
 
-    ```
+    ```sql
     CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
     ```
 
@@ -104,7 +104,7 @@ To write custom function calls, follow the procedure below:
     
 1. Save the stream application. The completed stream application is as follows.
     
-    ```js
+    ```sql
     @App:name("TemperatureProcessing")
     @App:description("Calculate an average temperature of the room")
     @App:qlVersion("2")
@@ -144,13 +144,13 @@ To write custom function calls, follow the procedure below:
 
 1. Define an input C8DB collection
 
-    ```
+    ```sql
 	CREATE SOURCE STREAM CompanyXInputStream WITH (type = 'database', collection = "CompanyXInputStream", collection.type="doc" , replication.type="global", map.type='json') (seqNo string, name string, address string);
     ```
    
 1. Define an output stream   
 
-    ```
+    ```sql
 	CREATE SINK CompanyXProfessionalInfo WITH (type = 'c8streams', stream = "CompanyXProfessionalInfo", replication.type="local") (name string, workAddress string);
     ```   
 
@@ -195,7 +195,7 @@ To write custom function calls, follow the procedure below:
    
 1. Write a Stream Query to transfom data using `getWorkAddress` function.
 
-    ```
+    ```sql
     -- Data Processing
     @info(name='Query')
     insert into CompanyXProfessionalInfo
@@ -205,7 +205,7 @@ To write custom function calls, follow the procedure below:
 
 1. Save the stream application. The completed stream application is as follows.
 
-    ```js
+    ```sql
     @App:name('ProcessEmployeeData')
     @App:qlVersion("2")
     

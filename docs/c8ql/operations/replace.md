@@ -16,7 +16,7 @@ Each `REPLACE` operation is restricted to a single collection, and the [collecti
 
 The two syntaxes for a replace operation are:
 
-```
+```js
 REPLACE document IN collection options
 REPLACE keyExpression WITH document IN collection options
 ```

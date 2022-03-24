@@ -11,7 +11,7 @@ The pattern is a state machine implementation that detects event occurrences fro
 This example shows a simple pattern that detects high-temperature event occurrence of a continuous event stream.
 
 
-```
+```sql
 -- Defines `TemperatureStream` having information of room temperature such as `roomNo` and `temp`.
 CREATE STREAM TemperatureStream(roomNo int, temp double);
 
@@ -55,7 +55,7 @@ Counting patterns allow to match multiple events that may have been received for
 Refer the [stream query guide](query-guide.md) for more information.
 
 
-```
+```sql
 -- Defines `TemperatureStream` having information on room temperature such as `sensorID`, `roomNo` and `temp`.
 CREATE STREAM TemperatureStream (sensorID long, roomNo int, temp double);
 
@@ -106,7 +106,7 @@ Logical patterns match events that arrive in temporal order and correlate them w
 Refer the [stream query guide](query-guide.md) for more information.
 
 
-```
+```sql
 -- Defines `RegulatorStateChangeStream` having information of regulator state change such as `deviceID`, `roomNo`, `tempSet` and `action`.
 CREATE STREAM RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 
@@ -159,7 +159,7 @@ Stream Processor detects non-occurrence of events using the not keyword, and its
 Refer the [stream query guide](query-guide.md) for more information.
 
 
-```
+```sql
 -- Defines `RegulatorStateChangeStream` having information of regulator state change such as `deviceID`, `roomNo`, `tempSet` and `action`.
 CREATE STREAM RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 
@@ -199,7 +199,7 @@ Sequence is a state machine implementation that detects consecutive event occurr
 Refer the [stream query guide](query-guide.md) for more information.
 
 
-```
+```sql
 -- Defines `StockRateStream` having information on stock rate such as `symbol`, `price` and `volume`.
 CREATE STREAM StockRateStream (symbol string, price float, volume int);
 
@@ -244,7 +244,7 @@ Sequence query does expect the matching events to occur immediately after each o
 Refer the [stream query guide](query-guide.md) for more information.
 
 
-```
+```sql
 -- Defines `TemperatureStream` having information on room temperatures such as `roomNo` and `temp`.
 CREATE STREAM TemperatureStream(roomNo int, temp double);
 
@@ -296,7 +296,7 @@ The sequence can repetitively match event `sequences` and use logical event orde
 Refer the [stream query guide](query-guide.md) for more information.
 
 
-```
+```sql
 -- Defines `TempSensorStream` having information of temperature sensor device.
 CREATE STREAM TempSensorStream(deviceID long, isActive bool);
 

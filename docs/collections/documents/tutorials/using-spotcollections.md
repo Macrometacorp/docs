@@ -1,4 +1,5 @@
 ---
+sidebar_position: 6
 title: Using Spot Collections
 ---
 
@@ -99,16 +100,14 @@ Let's assume your
 
       # Step1: Open connection to GDN. You will be routed to closest region.
       print("1. CONNECT: federation: {},  user: {}".format(global_url, email))
-      client = C8Client(protocol='https', host=global_url, port=443)
-      tenant = client.tenant(email, password)
-      fabric = tenant.useFabric(geo_fabric)
+      client = C8Client(protocol='https', host=global_url, port=443, email=email, password=password, geofabric=geo_fabric)
 
       # Step2: Create a collection if not exists
       print("2. CREATE_COLLECTION: region: {},  collection: {}".format(global_url, collection_name))
-      if fabric.has_collection(collection_name):
-          collection = fabric.collection(collection_name)
+      if client.has_collection(collection_name):
+          collection = client.collection(collection_name)
       else:
-          collection = fabric.create_collection(collection_name, spot_collection=True)
+          collection = client.create_collection(collection_name, spot_collection=True)
 
       # Step3: Insert data into collection.
       print("3. INSERT_DATA: region: {}, collection: {}".format(global_url, collection_name))
@@ -116,7 +115,7 @@ Let's assume your
 
       # Step4: Read Data
       print("4. READ_DATA: region: {}, collection: {}".format(global_url, collection_name))
-      cursor = fabric.c8ql.execute(read_query)
+      cursor = client.execute_query(read_query)
       docs = [document for document in cursor]
       pp.pprint(docs)
 
@@ -133,7 +132,7 @@ Let's assume your
       # Step5: Delete Data
       print("5. DELETE_DATA: region: {}, collection: {}".format(global_url, collection_name))
       collection.truncate()
-      #fabric.delete_collection(collection_name)
+      #client.delete_collection(collection_name)
 
   </TabItem>
   <TabItem value="js" label="Javascript">

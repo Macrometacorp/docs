@@ -44,7 +44,7 @@ To demonstrate the array expansion operator, let's go on with the following thre
 
 With the `[*]` operator it becomes easy to query just the names of the friends for each user:
 
-```
+```sql
 FOR u IN users
   RETURN { name: u.name, friends: u.friends[*].name }
 ```

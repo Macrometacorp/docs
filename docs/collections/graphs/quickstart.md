@@ -261,7 +261,7 @@ An **edge collection** contains edge documents and shares its namespace with all
                             email='nemo@nautilus.com', password="xxxxxx",
                             geofabric='_system')
     client.create_collection(name='employees')
-    if client.has_graph(graph):
+    if client.has_graph('school'):
       print("Graph exists")
     else:
       print("Create: ", client.create_graph(graph_name='school'))
@@ -360,26 +360,20 @@ A graph consists of vertices and edges. Vertices are stored as documents in vert
 
     from c8 import C8Client
 
-    # Initialize the C8 Data Fabric client.
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
-
-    # For the "mytenant" tenant, connect to "test" fabric as tenant admin.
-    # This returns an API wrapper for the "test" fabric on tenant 'mytenant'
-    # Note that the 'mytenant' tenant should already exist.
-    tenant = client.tenant(email="nemo@nautilus.com", password="xxxxxx")
-    fabric = tenant.useFabric("_system")
-
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
 
 
     # List existing graphs in the fabric.
-    fabric.graphs()
+    client.get_graphs()
 
     # Create a new graph named "school" if it does not already exist.
     # This returns an API wrapper for "school" graph.
-    if fabric.has_graph('school'):
-        school = fabric.graph('school')
+    iif client.has_graph('school'):
+        school = client.graph('school')
     else:
-        school = fabric.create_graph('school')
+        school = client.create_graph('school')
 
   </TabItem>
   <TabItem value="js" label="Javascript">
@@ -441,27 +435,23 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     # Initialize the C8 Data Fabric client.
     # Step1: Open connection to GDN. You will be routed to closest region.
     print("1. CONNECT: federation: {},  user: {}".format(global_url, email))
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
-
-    # For the "mytenant" tenant, connect to "test" fabric as tenant admin.
-    # This returns an API wrapper for the "test" fabric on tenant 'mytenant'
-    # Note that the 'mytenant' tenant should already exist.
-    tenant = client.tenant(email="nemo@nautilus.com", password="xxxxxx")
-    fabric = tenant.useFabric('_system')
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email=email, password=password,
+                            geofabric=geo_fabric)
 
 
     # Step2: Create collections if not exists
     print("2a. CREATE_PEOPLE_VERTEX_COLLECTION: region: {},  collection: {}".format(global_url, collection_people))
-    if fabric.has_collection(collection_people):
-        peopleCol = fabric.collection(collection_people)
+    if client.has_collection(collection_people):
+        peopleCol = client.collection(collection_people)
     else:
-        peopleCol = fabric.create_collection(collection_people)
+        peopleCol = client.create_collection(collection_people)
 
     print("2b. CREATE_CALLS_EDGE_COLLECTION: region: {},  collection: {}".format(global_url, collection_calls))
-    if fabric.has_collection(collection_calls):
-        callsCol = fabric.collection(collection_calls)
+    if client.has_collection(collection_calls):
+        callsCol = client.collection(collection_calls)
     else:
-        callsCol = fabric.create_collection(collection_calls, edge=True)
+        callsCol = client.create_collection(collection_calls, edge=True)
 
     # Step3: Insert data into collections.
     print("3a. INSERT_PEOPLE_DATA: region: {}, collection: {}".format(global_url, collection_people))
@@ -588,7 +578,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
 
     #Step4: Create a graph
     print("4. CREATE_GRAPH...CDRgraph")
-    graph = fabric.create_graph(collection_graph)
+    graph = client.create_graph(collection_graph)
     register = graph.create_edge_definition(
             edge_collection=collection_calls,
             from_vertex_collections=[collection_people],
@@ -597,11 +587,11 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
 
     # Step5: Read Data
     print("5a. GRAPH_TRAVERSAL: Find outbound calls TO: {}".format(person))
-    cursor = fabric.c8ql.execute(graph_traversal1)
+    cursor = client.execute_query(graph_traversal1)
     docs = [document for document in cursor]
     pp.pprint(docs)
     print("5b. GRAPH_TRAVERSAL: Find inbound calls FROM: {}".format(person))
-    cursor = fabric.c8ql.execute(graph_traversal2)
+    cursor = client.execute_query(graph_traversal2)
     docs = [document for document in cursor]
     pp.pprint(docs)
 
@@ -609,7 +599,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     print("6. DELETE_DATA...")
     #callsCol.truncate()
     #peopleCol.truncate()
-    fabric.delete_graph(name=collection_graph, drop_collections=False)
+    client.delete_graph(collection_graph, drop_collections=False)
 
   </TabItem>
   <TabItem value="js" label="Javascript">
@@ -840,7 +830,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
 
     # Step4: Read Data
     print("4a. GRAPH_TRAVERSAL: Find outbound calls TO: {}".format(person))
-    cursor = fabric.c8ql.execute(graph_traversal1)
+    cursor = client.execute_query(graph_traversal1)
     docs = [document for document in cursor]
     pp.pprint(docs)
 
@@ -860,7 +850,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
   <TabItem value="py" label="Python">
 
     print("4b. GRAPH_TRAVERSAL: Find inbound calls FROM: {}".format(person))
-    cursor = fabric.c8ql.execute(graph_traversal2)
+    cursor = client.execute_query(graph_traversal2)
     docs = [document for document in cursor]
     pp.pprint(docs)
 
@@ -881,16 +871,12 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     from c8 import C8Client
 
     # Initialize the C8 Data Fabric client.
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
-
-    # For the "mytenant" tenant, connect to "test" fabric as tenant admin.
-    # This returns an API wrapper for the "test" fabric on tenant 'mytenant'
-    # Note that the 'mytenant' tenant should already exist.
-    tenant = client.tenant(email="nemo@nautilus.com", password="xxxxxx")
-    fabric = tenant.useFabric('_system')
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
 
     # This returns an API wrapper for "school" graph and deletes the graph
-    fabric.graph('school').delete()
+    client.delete_graph('school')
     
   </TabItem>
   <TabItem value="js" label="Javascript">

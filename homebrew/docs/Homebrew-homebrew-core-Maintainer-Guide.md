@@ -187,7 +187,7 @@ This error might pop up when parameters passed to `gcc` are in the wrong order.
 
 An example from `libmagic` formula:
 
-```
+```ruby
 ==> brew test libmagic --verbose
 Testing libmagic
 ==> /usr/bin/gcc -I/home/linuxbrew/.linuxbrew/Cellar/libmagic/5.38/include -L/home/linuxbrew/.linuxbrew/Cellar/libmagic/5.38/lib -lmagic test.c -o test

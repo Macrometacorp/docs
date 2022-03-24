@@ -8,7 +8,7 @@ sidebar_position: 5
 
 This example shows the use of math or logical operations on events.
 
-```
+```sql
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
 @info(name = 'celciusTemperature')
@@ -50,7 +50,7 @@ After processing, the following events will be arriving at each stream:
 
 This example shows transforming JSON objects within a stream application.
 
-```
+```sql
 CREATE STREAM InputStream(jsonString string);
 
 -- Transforms JSON string to JSON object which can then be manipulated
