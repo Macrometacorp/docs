@@ -9,7 +9,7 @@ title: Graph Queries
 
 Create a document collection named cities. Add a Geo Index to the collection cities with Fields location and Geo JSON set to true. To populate the cities collection, execute the following query:
 
-```JavaScript
+```sql
 LET c = [
 	{"_key": "sanfrancisco", "location": [-122.416667, 37.783333]},
 	{"_key": "newyork", "location": [-74.0059, 40.7127]},
@@ -26,7 +26,7 @@ FOR city IN c
 
 Create an edge collection named flights. To populate the flights collection, execute the following query:
 
-```JavaScript
+```sql
 LET e = [
 	{"_from": "cities/sanfrancisco", "_to": "cities/singapore", "distance": 13600},
 	{"_from": "cities/sanfrancisco", "_to": "cities/newyork", "distance": 4000},
@@ -61,7 +61,7 @@ Create a graph named airline with and edges in flights and both from and to vert
 
 Get all cities with a direct flight to New York:
 
-```JavaScript
+```sql
 WITH cities
      FOR city IN INBOUND "cities/newyork" flights
 	 RETURN city
@@ -71,7 +71,7 @@ WITH cities
 
 Get the shortest path from San Francisco to Paris:
 
-```JavaScript
+```sql
 WITH cities
      LET path = (
 	FOR city IN OUTBOUND SHORTEST_PATH "cities/sanfrancisco" TO "cities/paris"
@@ -84,7 +84,7 @@ WITH cities
 
 ### Get the distance on the shortest path from San Francisco to Paris:
 
-```JavaScript
+```sql
 WITH cities
      LET path = (
 	FOR city, e IN OUTBOUND SHORTEST_PATH "cities/sanfrancisco" TO "cities/paris"
@@ -99,7 +99,7 @@ WITH cities
 
 Get the 2 nearest cities to a specified latitude and longitude.
 
-```JavaScript
+```Sql
 FOR loc IN NEAR(cities, 53.35, -6.26, 2, "distance")
 RETURN {
 	name: loc._key,
@@ -113,7 +113,7 @@ RETURN {
 
 Get the cities that are no more than 2500km away from houston.
 
-```JavaScript
+```Sql
 LET city = DOCUMENT("cities/houston")
 FOR loc IN WITHIN(cities, city.location[1], city.location[0], 2500 * 1000, "distance")
 RETURN {
