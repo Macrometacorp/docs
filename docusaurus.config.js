@@ -32,7 +32,7 @@ const config = {
           //id: 'default',
           //routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
-          sidebarCollapsible: false,
+          sidebarCollapsible: true,
         },
         blog: false,
       },
