@@ -400,6 +400,7 @@ You can use C8QL to run CRUD Operations.
   resp = session.post(url, json={
       "query": "FOR c IN testcollection REMOVE c IN testcollection"
   })
+```  
 </TabItem>
 </Tabs>
 
@@ -420,6 +421,7 @@ Streams provide:
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
 
+```py
   import requests
   import json
   from websocket import create_connection

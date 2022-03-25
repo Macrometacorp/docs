@@ -25,7 +25,51 @@ Note: The collection `addresses` that you just created is now distributed to eve
 
 ![create-collection](/img/create-doc-view.png)
 
+<!-- // live code example. Live code not to be included in V1 of docs -->
+```jsx live
+
+  function MyPlayground(props) {
+
+    function CreateCollection(response) {
+      var url = "https://api-gdn.paas.macrometa.io/_fabric/_system/_api/collection";
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", url);
+
+      xhr.setRequestHeader("accept", "application/json");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.setRequestHeader("Authorization", "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjEuNjQ0NTE2MzA2ODU4MTIzN2UrNiwiZXhwIjoxNjQ0NTU5NTA2LCJpc3MiOiJtYWNyb21ldGEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJyb290Iiwic3ViIjoianVzdGluX21hY3JvbWV0YS5jb20iLCJ0ZW5hbnQiOiJqdXN0aW5fbWFjcm9tZXRhLmNvbSJ9.10HsLXmDeHzWTvoYCa1msXmhxOPp3iISlsQlhcJux90=");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+        }};
+
+      var data = `{
+        "isSystem": true,
+        "name": "addresses",
+        "type": 2,
+        "stream": true
+      }`;
+
+      xhr.send(data);
+      
+      xhr.onload = (e) => {
+      alert(xhr.response);
+      }
+    }
+
+  return (
+    <div>
+      <button onClick={CreateCollection}>Click me</button>
+    </div>
+  );
+}
+```
+
 ## Step 2: Add some data to your new collection and query it
+
 
 Now, click the `QUERIES` tab in the left nav to open the `C8QL` query editor. Copy and paste the query below into the editor and click `Run Query` a couple times. 
 

@@ -25,33 +25,33 @@ In the drivers, a **document** is a dictionary/object that is JSON serializable 
 Here is an example of a valid document:
 
 ```json
-  {
-      '_id': 'students/bruce',
-      '_key': 'bruce',
-      '_rev': '_Wm3dzEi--_',
-      'first_name': 'Bruce',
-      'last_name': 'Wayne',
-      'address': {
-          'street' : '1007 Mountain Dr.',
-          'city': 'Gotham',
-          'state': 'NJ'
-      },
-      'is_rich': True,
-      'friends': ['robin', 'gordon']
-  }
+    {
+        '_id': 'students/bruce',
+        '_key': 'bruce',
+        '_rev': '_Wm3dzEi--_',
+        'first_name': 'Bruce',
+        'last_name': 'Wayne',
+        'address': {
+            'street' : '1007 Mountain Dr.',
+            'city': 'Gotham',
+            'state': 'NJ'
+        },
+        'is_rich': True,
+        'friends': ['robin', 'gordon']
+    }
 ```
 
 **Edge documents (edges)** are similar to standard documents but with two additional required fields `_from` and `_to`. Values of these fields must be the handles of "from" and "to" vertex documents linked by the edge document in question. Here is an example of a valid edge document:
 
 ```json
-  {
-      '_id': 'friends/001',
-      '_key': '001',
-      '_rev': '_Wm3dyle--_',
-      '_from': 'students/john',
-      '_to': 'students/jane',
-      'closeness': 9.5
-  }
+    {
+        '_id': 'friends/001',
+        '_key': '001',
+        '_rev': '_Wm3dyle--_',
+        '_from': 'students/john',
+        '_to': 'students/jane',
+        'closeness': 9.5
+    }
 ```
 
 A **Graph** consists of vertices and edges. Edges are stored as documents in edge collections. A vertex can be a document of a document collection or of an edge collection (so edges can be used as vertices). Which collections are used within a named graph is defined via edge definitions. A `named graph` can contain more than one edge definition, at least one is needed. Graphs allow you to structure your models in line with your domain and group them logically in collections and giving you the power to query them in the same graph queries.
@@ -80,45 +80,47 @@ Let's assume your
 ## Driver download
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
-  pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
+```py
+    pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
 
-  To install pyC8, simply run
+    To install pyC8, simply run
 
-      $ pip3 install pyC8
+        $ pip3 install pyC8
 
-  or, if you prefer to use conda:
+    or, if you prefer to use conda:
 
-      conda install -c conda-forge pyC8
+        conda install -c conda-forge pyC8
 
-  or pipenv:
+    or pipenv:
 
-      pipenv install --pre pyC8
+        pipenv install --pre pyC8
 
-  Once the installation process is finished, you can begin developing applications in Python.
+    Once the installation process is finished, you can begin developing applications in Python.
+```
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
-</TabItem>
-<TabItem value="js" label="Javascript">
+```js
+    With Yarn or NPM
 
-  With Yarn or NPM
+        yarn add jsc8
+        (or)
+        npm install jsc8
 
-      yarn add jsc8
-      (or)
-      npm install jsc8
+    If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
 
-  If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+        npm install --global jsc8
 
-      npm install --global jsc8
+    From source,
 
-  From source,
-
-      git clone https://github.com/macrometacorp/jsc8.git
-      cd jsC8
-      npm install
-      npm run dist
-
-</TabItem>
+        git clone https://github.com/macrometacorp/jsc8.git
+        cd jsC8
+        npm install
+        npm run dist
+```
+  </TabItem>
 </Tabs>  
 
 ## Connect to GDN
@@ -126,36 +128,34 @@ Let's assume your
 The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you sepcified.
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  print("--- Connecting to C8")
-  # Simple Way
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password="xxxxxx",
-                          geofabric='_system')
+    print("--- Connecting to C8")
+    # Simple Way
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
 
-  # To use advanced options
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
+    # To use advanced options
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
 ```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+    const jsc8 = require("jsc8");
 
-  // Simple Way
-  const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // ----- OR -----
-  const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // Simple Way
+    const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // ----- OR -----
+    const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
 
 
-  // To use advanced options
-  const client = new jsc8("https://gdn.paas.macrometa.io"); 
-```
-
-</TabItem>
+    // To use advanced options
+    const client = new jsc8("https://gdn.paas.macrometa.io");
+```     
+  </TabItem>
 </Tabs>  
 
 ## Get GeoFabric Details
@@ -163,48 +163,46 @@ The first step in using GDN is to establish a connection to a local region. When
 To get details of fabric,
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  from c8 import C8Client
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password="xxxxxx",
-                          geofabric='_system')
-  print("Get geo fabric details...")
-  print(client.get_fabric_details())
+    from c8 import C8Client
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
+    print("Get geo fabric details...")
+    print(client.get_fabric_details())
 ```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+    const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+    // Crete a authenticated instance with Token / Apikey
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+    // Or use Email & Password to Authenticate client instance
+    const client = new jsc8("https://gdn.paas.macrometa.io");
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+    await client.login("nemo@nautilus.com", "xxxxxx");
 
-  async function getFabric() {
-      try{
-        await console.log("Getting the fabric details...");
-        let result = await client.get();
+    async function getFabric() {
+        try{
+          await console.log("Getting the fabric details...");
+          let result = await client.get();
 
-        await console.log("result is: ", result);
-      } catch(e){
-        await console.log("Fabric details could not be fetched because "+ e);
-      }
-  }
+          await console.log("result is: ", result);
+        } catch(e){
+          await console.log("Fabric details could not be fetched because "+ e);
+        }
+    }
 
-  getFabric();
-```
-
-</TabItem>
+    getFabric();
+```    
+  </TabItem>
 </Tabs>  
 
 ## Create Collection
@@ -214,50 +212,48 @@ We can now create collection in the fabric. To do this, first you connect to fab
 The below example shows the steps.
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password="xxxxxx",
-                          geofabric='_system')
-  client.create_collection(name='employees')
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
+    client.create_collection(name='employees')
 ```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+    const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+    // Crete a authenticated instance with Token / Apikey
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+    // Or use Email & Password to Authenticate client instance
+    const client = new jsc8("https://gdn.paas.macrometa.io");
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+    await client.login("nemo@nautilus.com", "xxxxxx");
 
-  //Variables
-  const collection_name = "employees";
+    //Variables
+    const collection_name = "employees";
 
-  async function createColl() {
-      try{
-        console.log(`Creating the collection ${collection_name}...`);
-        const exists_coll = await client.hasCollection(collection_name);
-        if (exists_coll === false) {
-          await client.createCollection(collection_name);
+    async function createColl() {
+        try{
+          console.log(`Creating the collection ${collection_name}...`);
+          const exists_coll = await client.hasCollection(collection_name);
+          if (exists_coll === false) {
+            await client.createCollection(collection_name);
+          }
+        } catch(e){
+          await console.log("Collection could not be created because "+ e);
         }
-      } catch(e){
-        await console.log("Collection could not be created because "+ e);
-      }
-  }
+    }
 
-  createColl();
-```
-
-</TabItem>
+    createColl();
+```    
+  </TabItem>
 </Tabs>  
 
 ## Create Edge Collection
@@ -269,52 +265,50 @@ An **edge collection** contains edge documents and shares its namespace with all
 
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  # Simple Approach
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password="xxxxxx",
-                          geofabric='_system')
-  client.create_collection(name='employees')
-  if client.has_graph('school'):
-    print("Graph exists")
-  else:
-    print("Create: ", client.create_graph(graph_name='school'))
+    # Simple Approach
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
+    client.create_collection(name='employees')
+    if client.has_graph('school'):
+      print("Graph exists")
+    else:
+      print("Create: ", client.create_graph(graph_name='school'))
 ```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+    const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+    // Crete a authenticated instance with Token / Apikey
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+    // Or use Email & Password to Authenticate client instance
+    const client = new jsc8("https://gdn.paas.macrometa.io");
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+    await client.login("nemo@nautilus.com", "xxxxxx");
 
-  async function createEdgeColl() {
-      try{
-        console.log(`Creating the edge collection`);
-        const exists_coll = await client.hasCollection("edgeCollection");
-        if (exists_coll === false) {
-          await client.createCollection("edgeCollection", { waitForSync: true }, true);
+    async function createEdgeColl() {
+        try{
+          console.log(`Creating the edge collection`);
+          const exists_coll = await client.hasCollection("edgeCollection");
+          if (exists_coll === false) {
+            await client.createCollection("edgeCollection", { waitForSync: true }, true);
+          }
+        } catch(e){
+          await console.log("Edge Collection could not be created because "+ e);
         }
-      } catch(e){
-        await console.log("Edge Collection could not be created because "+ e);
-      }
-  }
+    }
 
-  createEdgeColl();
+    createEdgeColl();
 ```
-
-</TabItem>
+  </TabItem>
 </Tabs>  
 
 You can manage edges via graph API wrappers also, but you must use document IDs instead of keys where applicable.
@@ -325,54 +319,52 @@ Let's insert documents to the employees collection as shown below.
 
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password="xxxxxx",
-                          geofabric='_system')
-  client.insert_document(collection_name='employees', document={'_key':'Jean', 'firstname': 'Jean', 'lastname':'Picard', 'email':'jean.picard@macrometa.io'})
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
+    client.insert_document(collection_name='employees', document={'_key':'Jean', 'firstname': 'Jean', 'lastname':'Picard', 'email':'jean.picard@macrometa.io'})
 
-  docs = [
-    {'_kefabricy':'James', 'firstname': 'James', 'lastname':'Kirk', 'email':'james.kirk@mafabriccrometa.io'},
-    {'_kefabricy': 'Han', 'firstname': 'Han', 'lastname':'Solo', 'email':'han.solo@macrfabricometa.io'},
-    {'_kefabricy': 'Bruce', 'firstname': 'Bruce', 'lastname':'Wayne', 'email':'bruce.wayne@mfabricacrometa.io'}
-  ]
+    docs = [
+      {'_kefabricy':'James', 'firstname': 'James', 'lastname':'Kirk', 'email':'james.kirk@mafabriccrometa.io'},
+      {'_kefabricy': 'Han', 'firstname': 'Han', 'lastname':'Solo', 'email':'han.solo@macrfabricometa.io'},
+      {'_kefabricy': 'Bruce', 'firstname': 'Bruce', 'lastname':'Wayne', 'email':'bruce.wayne@mfabricacrometa.io'}
+    ]
 
-  client.insert_document(collection_name='employees', document=docs)
+    client.insert_document(collection_name='employees', document=docs)
 ```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+    const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+    // Crete a authenticated instance with Token / Apikey
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+    // Or use Email & Password to Authenticate client instance
+    const client = new jsc8("https://gdn.paas.macrometa.io");
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+    await client.login("nemo@nautilus.com", "xxxxxx");
 
-  async function insertDoc() {
-      try{
-        await client.insertDocumentMany(
-          "employees",
-          [{ firstname: 'Jean', lastname: 'Picard' },{ firstname: 'Bruce', lastname: 'Wayne' }]
-        );
-      } catch(e){
-        await console.log("Document could not be inserted because "+ e);
-      }
-  }
+    async function insertDoc() {
+        try{
+          await client.insertDocumentMany(
+            "employees",
+            [{ firstname: 'Jean', lastname: 'Picard' },{ firstname: 'Bruce', lastname: 'Wayne' }]
+          );
+        } catch(e){
+          await console.log("Document could not be inserted because "+ e);
+        }
+    }
 
-  insertDoc();
-```
-
-</TabItem>
+    insertDoc();
+```    
+  </TabItem>
 </Tabs>  
 
 ## Create Graph
@@ -380,57 +372,55 @@ Let's insert documents to the employees collection as shown below.
 A graph consists of vertices and edges. Vertices are stored as documents in vertex collections and edges stored as documents in edge collections. The collections used in a graph and their relations are specified with edge definitions.
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  from c8 import C8Client
+    from c8 import C8Client
 
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password="xxxxxx",
-                          geofabric='_system')
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
 
 
-  # List existing graphs in the fabric.
-  client.get_graphs()
+    # List existing graphs in the fabric.
+    client.get_graphs()
 
-  # Create a new graph named "school" if it does not already exist.
-  # This returns an API wrapper for "school" graph.
-  iif client.has_graph('school'):
-      school = client.graph('school')
-  else:
-      school = client.create_graph('school')
+    # Create a new graph named "school" if it does not already exist.
+    # This returns an API wrapper for "school" graph.
+    iif client.has_graph('school'):
+        school = client.graph('school')
+    else:
+        school = client.create_graph('school')
 ```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+    const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+    // Crete a authenticated instance with Token / Apikey
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+    // Or use Email & Password to Authenticate client instance
+    const client = new jsc8("https://gdn.paas.macrometa.io");
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+    await client.login("nemo@nautilus.com", "xxxxxx");
 
-  async function createGraph(){
-      const info = await client.createGraph('some-graph', {
-        edgeDefinitions: [{
-            collection: 'edges',
-            from: ['start-vertices'],
-            to: ['end-vertices']
-        }]
-      });
-  }
+    async function createGraph(){
+        const info = await client.createGraph('some-graph', {
+          edgeDefinitions: [{
+              collection: 'edges',
+              from: ['start-vertices'],
+              to: ['end-vertices']
+          }]
+        });
+    }
 
-  createGraph();
+    createGraph();
 ```
-
-</TabItem>
+  </TabItem>
 </Tabs>  
 
 ## Graph Traversals
@@ -438,259 +428,55 @@ A graph consists of vertices and edges. Vertices are stored as documents in vert
 A graph consists of `vertices` and `edges`. Vertices are stored as documents in vertex collections and edges stored as documents in edge collections. The collections used in a graph and their relations are specified with edge definitions.
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  from c8 import C8Client
-  import pprint
+    from c8 import C8Client
+    import pprint
 
-  # Variables - Queries
-  global_url = "gdn.paas.macrometa.io"
-  email = "nemo@nautilus.com"
-  password = "xxxxxx"
-  geo_fabric = "_system"
-  collection_people = "CDRpeople"
-  collection_calls = "CDRcalls"
-  collection_cellsites = "CDRcellsites"
-  collection_graph = "CDRgraphdocs"
-  read_people = "FOR person IN CDRpeople RETURN person"
-  read_calls = "FOR call IN CDRcalls RETURN call"
-  person = "Lou Feaveer"
-  graph_traversal1 = "FOR c IN CDRpeople FILTER c.full_name == \"{}\" FOR v IN 1..1 INBOUND c CDRcalls RETURN v".format(person)
-  graph_traversal2 = "FOR c IN CDRpeople FILTER c.full_name == \"{}\" FOR v IN 1..1 OUTBOUND c CDRcalls RETURN v".format(person)
+    # Variables - Queries
+    global_url = "gdn.paas.macrometa.io"
+    email = "nemo@nautilus.com"
+    password = "xxxxxx"
+    geo_fabric = "_system"
+    collection_people = "CDRpeople"
+    collection_calls = "CDRcalls"
+    collection_cellsites = "CDRcellsites"
+    collection_graph = "CDRgraphdocs"
+    read_people = "FOR person IN CDRpeople RETURN person"
+    read_calls = "FOR call IN CDRcalls RETURN call"
+    person = "Lou Feaveer"
+    graph_traversal1 = "FOR c IN CDRpeople FILTER c.full_name == \"{}\" FOR v IN 1..1 INBOUND c CDRcalls RETURN v".format(person)
+    graph_traversal2 = "FOR c IN CDRpeople FILTER c.full_name == \"{}\" FOR v IN 1..1 OUTBOUND c CDRcalls RETURN v".format(person)
 
-  pp = pprint.PrettyPrinter(indent=4)
+    pp = pprint.PrettyPrinter(indent=4)
 
-  # Initialize the C8 Data Fabric client.
-  # Step1: Open connection to GDN. You will be routed to closest region.
-  print("1. CONNECT: federation: {},  user: {}".format(global_url, email))
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email=email, password=password,
-                          geofabric=geo_fabric)
+    # Initialize the C8 Data Fabric client.
+    # Step1: Open connection to GDN. You will be routed to closest region.
+    print("1. CONNECT: federation: {},  user: {}".format(global_url, email))
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email=email, password=password,
+                            geofabric=geo_fabric)
 
 
-  # Step2: Create collections if not exists
-  print("2a. CREATE_PEOPLE_VERTEX_COLLECTION: region: {},  collection: {}".format(global_url, collection_people))
-  if client.has_collection(collection_people):
-      peopleCol = client.collection(collection_people)
-  else:
-      peopleCol = client.create_collection(collection_people)
+    # Step2: Create collections if not exists
+    print("2a. CREATE_PEOPLE_VERTEX_COLLECTION: region: {},  collection: {}".format(global_url, collection_people))
+    if client.has_collection(collection_people):
+        peopleCol = client.collection(collection_people)
+    else:
+        peopleCol = client.create_collection(collection_people)
 
-  print("2b. CREATE_CALLS_EDGE_COLLECTION: region: {},  collection: {}".format(global_url, collection_calls))
-  if client.has_collection(collection_calls):
-      callsCol = client.collection(collection_calls)
-  else:
-      callsCol = client.create_collection(collection_calls, edge=True)
+    print("2b. CREATE_CALLS_EDGE_COLLECTION: region: {},  collection: {}".format(global_url, collection_calls))
+    if client.has_collection(collection_calls):
+        callsCol = client.collection(collection_calls)
+    else:
+        callsCol = client.create_collection(collection_calls, edge=True)
 
-  # Step3: Insert data into collections.
-  print("3a. INSERT_PEOPLE_DATA: region: {}, collection: {}".format(global_url, collection_people))
+    # Step3: Insert data into collections.
+    print("3a. INSERT_PEOPLE_DATA: region: {}, collection: {}".format(global_url, collection_people))
 
-  # insert documents into the collection
-  docs = [
-    {
-      "full_name": "Kiel Dummer",
-      "first_name": "Kiel",
-      "last_name": "Dummer",
-      "city": "Burbank",
-      "state": "CA",
-      "address": "40317 5th Crossing",
-      "calling_nbr": "757-697-9065",
-      "_key": "757-697-9065"
-    },
-    {
-      "full_name": "Pernell Winspare",
-      "first_name": "Pernell",
-      "last_name": "Winspare",
-      "city": "San Diego",
-      "state": "CA",
-      "address": "596 Packers Pass",
-      "calling_nbr": "718-208-8096",
-      "_key": "718-208-8096"
-    },
-    {
-      "full_name": "Ava Kermath",
-      "first_name": "Ava",
-      "last_name": "Kermath",
-      "city": "Berkeley",
-      "state": "CA",
-      "address": "2 Doe Crossing Junction",
-      "calling_nbr": "765-623-5328",
-      "_key": "765-623-5328"
-    },
-    {
-      "full_name": "Tremain McGrah",
-      "first_name": "Tremain",
-      "last_name": "McGrah",
-      "city": "Torrance",
-      "state": "CA",
-      "address": "079 Russell Street",
-      "calling_nbr": "859-783-3227",
-      "_key": "859-783-3227"
-    },
-    {
-      "full_name": "Vidovik Boddam",
-      "first_name": "Vidovik",
-      "last_name": "Boddam",
-      "city": "Los Angeles",
-      "state": "CA",
-      "address": "3 Brentwood Crossing",
-      "calling_nbr": "703-265-1313",
-      "_key": "703-265-1313"
-    },
-    {
-      "full_name": "Oralie Goward",
-      "first_name": "Oralie",
-      "last_name": "Goward",
-      "city": "Los Angeles",
-      "state": "CA",
-      "address": "922 Columbus Park",
-      "calling_nbr": "617-815-8610",
-      "_key": "617-815-8610"
-    },
-    {
-      "full_name": "Lou Feaveer",
-      "first_name": "Lou",
-      "last_name": "Feaveer",
-      "city": "San Jose",
-      "state": "CA",
-      "address": "55223 Hooker Crossing",
-      "calling_nbr": "716-463-8993",
-      "_key": "716-463-8993"
-    },
-    {
-      "full_name": "Peria King",
-      "first_name": "Peria",
-      "last_name": "King",
-      "city": "Stockton",
-      "state": "CA",
-      "address": "8 Troy Plaza",
-      "calling_nbr": "713-707-8699",
-      "_key": "713-707-8699"
-    }
-  ]
-  peopleCol.insert_many(docs)
-
-  print("3a. INSERT_CALL_RECORDS_DATA: region: {}, collection: {}".format(global_url, collection_calls))
-  docs = [
-          {
-      "calling_nbr": "757-697-9065",
-      "called_nbr": "716-463-8993",
-      "_from": "CDRpeople/757-697-9065",
-      "_to": "CDRpeople/716-463-8993",
-      "call_date": "1/4/2020",
-      "call_time": "13:33",
-      "call_duration": 30,
-      "cell_site": 4044703906
-    },
-    {
-      "calling_nbr": "716-463-8993",
-      "called_nbr": "713-707-8699",
-      "_from": "CDRpeople/716-463-8993",
-      "_to": "CDRpeople/713-707-8699",
-      "call_date": "1/28/2020",
-      "call_time": "3:02",
-      "call_duration": 18,
-      "cell_site": 2289973823
-    },
-    {
-      "calling_nbr": "765-623-5328",
-      "called_nbr": "713-707-8699",
-      "_from": "CDRpeople/765-623-5328",
-      "_to": "CDRpeople/713-707-8699",
-      "call_date": "1/28/2020",
-      "call_time": "3:02",
-      "call_duration": 18,
-      "cell_site": 2289973823
-    }
-      ]
-  callsCol.insert_many(docs)
-
-  #Step4: Create a graph
-  print("4. CREATE_GRAPH...CDRgraph")
-  graph = client.create_graph(collection_graph)
-  register = graph.create_edge_definition(
-          edge_collection=collection_calls,
-          from_vertex_collections=[collection_people],
-          to_vertex_collections=[collection_people]
-      )
-
-  # Step5: Read Data
-  print("5a. GRAPH_TRAVERSAL: Find outbound calls TO: {}".format(person))
-  cursor = client.execute_query(graph_traversal1)
-  docs = [document for document in cursor]
-  pp.pprint(docs)
-  print("5b. GRAPH_TRAVERSAL: Find inbound calls FROM: {}".format(person))
-  cursor = client.execute_query(graph_traversal2)
-  docs = [document for document in cursor]
-  pp.pprint(docs)
-
-  # Step6: Delete Data
-  print("6. DELETE_DATA...")
-  #callsCol.truncate()
-  #peopleCol.truncate()
-  client.delete_graph(collection_graph, drop_collections=False)
-```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
-
-```js
-  const jsc8 = require('jsc8');
-
-  // Variables - DB
-  const global_url = "https://gdn.paas.macrometa.io";
-
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
-
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
-
-  await client.login("nemo@nautilus.com", "xxxxxx");
-
-  //Variables
-  const collection_people = "CDRpeople";
-  const collection_calls = "CDRcalls";
-  const collection_cellsites = "CDRcellsites";
-  const collection_graph = "CDRgraphdocs";
-  const person = "Lou Feaveer";
-
-  let datalist = [];
-
-  // Variables - Queries
-  const read_people = "FOR person IN CDRpeople RETURN person";
-  const read_calls = "FOR call IN CDRcalls RETURN call";
-  const graph_traversal1 = `FOR c IN CDRpeople FILTER c.full_name == \"${person}\" FOR v IN 1..1 INBOUND c CDRcalls RETURN v`;
-  const graph_traversal2 = `FOR c IN CDRpeople FILTER c.full_name == \"${person}\" FOR v IN 1..1 OUTBOUND c CDRcalls RETURN v`;
-  
-  async function createCollection() {
-  
-    console.log("\n 2. CREATE_COLLECTION");
-
-    try{
-      console.log(`Creating the collection ${collection_people}...`);
-        const exists_coll = await client.hasCollection(collection_people);
-        if (exists_coll === false) {
-          await client.createCollection(collection_people);
-        }
-
-        console.log(`Creating the collection ${collection_calls}...`);
-        const exists_coll = await client.hasCollection(collection_calls);
-        if (exists_coll === false) {
-          await client.createCollection(collection_calls);
-        }
-    }
-    catch (e) {
-      await console.log("Collection creation did not succeed due to " + e);
-    }
-  }
-      
-  async function insertData() {
-
-    console.log(`\n 3a. INSERT_PEOPLE_DATA in region ${global_url}`);
-    let people_data =[
+    # insert documents into the collection
+    docs = [
       {
         "full_name": "Kiel Dummer",
         "first_name": "Kiel",
@@ -772,19 +558,19 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
         "_key": "713-707-8699"
       }
     ]
-    await client.insertDocumentMany(collection_people, people_data);
+    peopleCol.insert_many(docs)
 
-    console.log(`\n 3a. INSERT_CALL_RECORDS_DATA in region ${global_url}`);
-    let callsdata = [
-      {
-      "calling_nbr": "757-697-9065",
-      "called_nbr": "716-463-8993",
-      "_from": "CDRpeople/757-697-9065",
-      "_to": "CDRpeople/716-463-8993",
-      "call_date": "1/4/2020",
-      "call_time": "13:33",
-      "call_duration": 30,
-      "cell_site": 4044703906
+    print("3a. INSERT_CALL_RECORDS_DATA: region: {}, collection: {}".format(global_url, collection_calls))
+    docs = [
+            {
+        "calling_nbr": "757-697-9065",
+        "called_nbr": "716-463-8993",
+        "_from": "CDRpeople/757-697-9065",
+        "_to": "CDRpeople/716-463-8993",
+        "call_date": "1/4/2020",
+        "call_time": "13:33",
+        "call_duration": 30,
+        "cell_site": 4044703906
       },
       {
         "calling_nbr": "716-463-8993",
@@ -806,143 +592,339 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
         "call_duration": 18,
         "cell_site": 2289973823
       }
-    ];
-    await client.insertDocumentMany(collection_calls, callsdata);
-  }
+        ]
+    callsCol.insert_many(docs)
 
-  async function createGraph(){
-    console.log(`\n 4. CREATE_GRAPH region ${global_url}`);
+    #Step4: Create a graph
+    print("4. CREATE_GRAPH...CDRgraph")
+    graph = client.create_graph(collection_graph)
+    register = graph.create_edge_definition(
+            edge_collection=collection_calls,
+            from_vertex_collections=[collection_people],
+            to_vertex_collections=[collection_people]
+        )
 
-    await client.createGraph(collection_graph, {
-      edgeDefinitions: [{
-        collection: collection_calls,
-        from: [collection_people],
-        to: [collection_people]
-      }]
-    });
-  }
+    # Step5: Read Data
+    print("5a. GRAPH_TRAVERSAL: Find outbound calls TO: {}".format(person))
+    cursor = client.execute_query(graph_traversal1)
+    docs = [document for document in cursor]
+    pp.pprint(docs)
+    print("5b. GRAPH_TRAVERSAL: Find inbound calls FROM: {}".format(person))
+    cursor = client.execute_query(graph_traversal2)
+    docs = [document for document in cursor]
+    pp.pprint(docs)
 
-
-  async function readData(){
-    console.log(`5a. GRAPH_TRAVERSAL: Find outbound calls TO: ${person}`);
-    let result = await client.executeQuery(graph_traversal1);
-    console.log(result);
-    
-    console.log(`5b. GRAPH_TRAVERSAL: Find inbound calls FROM: ${person}`);
-    result = await client.executeQuery(graph_traversal2);
-    console.log(result);
-  }
-
-
-
-  async function deleteData(){
-    console.log("\ 6. DELETE_DATA");e fabric details...");
-    await client.deleteGraph(collection_graph, true);e fabric details...");
-    await client.deleteCollection(collection_people);e fabric details...");
-    await client.deleteCollection(collection_calls);e fabric details...");
-  }
-
-
-  (async function(){
-    await createCollection();
-    await insertData();
-    await createGraph();
-    await readData();
-    await deleteData();
-  })();
+    # Step6: Delete Data
+    print("6. DELETE_DATA...")
+    #callsCol.truncate()
+    #peopleCol.truncate()
+    client.delete_graph(collection_graph, drop_collections=False)
 ```
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
-</TabItem>
+```js
+    const jsc8 = require('jsc8');
+
+    // Variables - DB
+    const global_url = "https://gdn.paas.macrometa.io";
+
+    // Crete a authenticated instance with Token / Apikey
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // await console.log("Authentication done!!...");
+
+    // Or use Email & Password to Authenticate client instance
+    const client = new jsc8("https://gdn.paas.macrometa.io");
+
+    await client.login("nemo@nautilus.com", "xxxxxx");
+
+    //Variables
+    const collection_people = "CDRpeople";
+    const collection_calls = "CDRcalls";
+    const collection_cellsites = "CDRcellsites";
+    const collection_graph = "CDRgraphdocs";
+    const person = "Lou Feaveer";
+
+    let datalist = [];
+
+    // Variables - Queries
+    const read_people = "FOR person IN CDRpeople RETURN person";
+    const read_calls = "FOR call IN CDRcalls RETURN call";
+    const graph_traversal1 = `FOR c IN CDRpeople FILTER c.full_name == \"${person}\" FOR v IN 1..1 INBOUND c CDRcalls RETURN v`;
+    const graph_traversal2 = `FOR c IN CDRpeople FILTER c.full_name == \"${person}\" FOR v IN 1..1 OUTBOUND c CDRcalls RETURN v`;
+    
+    async function createCollection() {
+    
+      console.log("\n 2. CREATE_COLLECTION");
+
+      try{
+        console.log(`Creating the collection ${collection_people}...`);
+          const exists_coll = await client.hasCollection(collection_people);
+          if (exists_coll === false) {
+            await client.createCollection(collection_people);
+          }
+
+          console.log(`Creating the collection ${collection_calls}...`);
+          const exists_coll = await client.hasCollection(collection_calls);
+          if (exists_coll === false) {
+            await client.createCollection(collection_calls);
+          }
+      }
+      catch (e) {
+        await console.log("Collection creation did not succeed due to " + e);
+      }
+    }
+        
+    async function insertData() {
+
+      console.log(`\n 3a. INSERT_PEOPLE_DATA in region ${global_url}`);
+      let people_data =[
+        {
+          "full_name": "Kiel Dummer",
+          "first_name": "Kiel",
+          "last_name": "Dummer",
+          "city": "Burbank",
+          "state": "CA",
+          "address": "40317 5th Crossing",
+          "calling_nbr": "757-697-9065",
+          "_key": "757-697-9065"
+        },
+        {
+          "full_name": "Pernell Winspare",
+          "first_name": "Pernell",
+          "last_name": "Winspare",
+          "city": "San Diego",
+          "state": "CA",
+          "address": "596 Packers Pass",
+          "calling_nbr": "718-208-8096",
+          "_key": "718-208-8096"
+        },
+        {
+          "full_name": "Ava Kermath",
+          "first_name": "Ava",
+          "last_name": "Kermath",
+          "city": "Berkeley",
+          "state": "CA",
+          "address": "2 Doe Crossing Junction",
+          "calling_nbr": "765-623-5328",
+          "_key": "765-623-5328"
+        },
+        {
+          "full_name": "Tremain McGrah",
+          "first_name": "Tremain",
+          "last_name": "McGrah",
+          "city": "Torrance",
+          "state": "CA",
+          "address": "079 Russell Street",
+          "calling_nbr": "859-783-3227",
+          "_key": "859-783-3227"
+        },
+        {
+          "full_name": "Vidovik Boddam",
+          "first_name": "Vidovik",
+          "last_name": "Boddam",
+          "city": "Los Angeles",
+          "state": "CA",
+          "address": "3 Brentwood Crossing",
+          "calling_nbr": "703-265-1313",
+          "_key": "703-265-1313"
+        },
+        {
+          "full_name": "Oralie Goward",
+          "first_name": "Oralie",
+          "last_name": "Goward",
+          "city": "Los Angeles",
+          "state": "CA",
+          "address": "922 Columbus Park",
+          "calling_nbr": "617-815-8610",
+          "_key": "617-815-8610"
+        },
+        {
+          "full_name": "Lou Feaveer",
+          "first_name": "Lou",
+          "last_name": "Feaveer",
+          "city": "San Jose",
+          "state": "CA",
+          "address": "55223 Hooker Crossing",
+          "calling_nbr": "716-463-8993",
+          "_key": "716-463-8993"
+        },
+        {
+          "full_name": "Peria King",
+          "first_name": "Peria",
+          "last_name": "King",
+          "city": "Stockton",
+          "state": "CA",
+          "address": "8 Troy Plaza",
+          "calling_nbr": "713-707-8699",
+          "_key": "713-707-8699"
+        }
+      ]
+      await client.insertDocumentMany(collection_people, people_data);
+
+      console.log(`\n 3a. INSERT_CALL_RECORDS_DATA in region ${global_url}`);
+      let callsdata = [
+        {
+        "calling_nbr": "757-697-9065",
+        "called_nbr": "716-463-8993",
+        "_from": "CDRpeople/757-697-9065",
+        "_to": "CDRpeople/716-463-8993",
+        "call_date": "1/4/2020",
+        "call_time": "13:33",
+        "call_duration": 30,
+        "cell_site": 4044703906
+        },
+        {
+          "calling_nbr": "716-463-8993",
+          "called_nbr": "713-707-8699",
+          "_from": "CDRpeople/716-463-8993",
+          "_to": "CDRpeople/713-707-8699",
+          "call_date": "1/28/2020",
+          "call_time": "3:02",
+          "call_duration": 18,
+          "cell_site": 2289973823
+        },
+        {
+          "calling_nbr": "765-623-5328",
+          "called_nbr": "713-707-8699",
+          "_from": "CDRpeople/765-623-5328",
+          "_to": "CDRpeople/713-707-8699",
+          "call_date": "1/28/2020",
+          "call_time": "3:02",
+          "call_duration": 18,
+          "cell_site": 2289973823
+        }
+      ];
+      await client.insertDocumentMany(collection_calls, callsdata);
+    }
+
+    async function createGraph(){
+      console.log(`\n 4. CREATE_GRAPH region ${global_url}`);
+
+      await client.createGraph(collection_graph, {
+        edgeDefinitions: [{
+          collection: collection_calls,
+          from: [collection_people],
+          to: [collection_people]
+        }]
+      });
+    }
+
+
+    async function readData(){
+      console.log(`5a. GRAPH_TRAVERSAL: Find outbound calls TO: ${person}`);
+      let result = await client.executeQuery(graph_traversal1);
+      console.log(result);
+      
+      console.log(`5b. GRAPH_TRAVERSAL: Find inbound calls FROM: ${person}`);
+      result = await client.executeQuery(graph_traversal2);
+      console.log(result);
+    }
+
+
+
+    async function deleteData(){
+      console.log("\ 6. DELETE_DATA");e fabric details...");
+      await client.deleteGraph(collection_graph, true);e fabric details...");
+      await client.deleteCollection(collection_people);e fabric details...");
+      await client.deleteCollection(collection_calls);e fabric details...");
+    }
+
+
+    (async function(){
+      await createCollection();
+      await insertData();
+      await createGraph();
+      await readData();
+      await deleteData();
+    })();
+```
+  </TabItem>
 </Tabs>  
 
 #### Outbound Traversal
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  # Step4: Read Data
-  print("4a. GRAPH_TRAVERSAL: Find outbound calls TO: {}".format(person))
-  cursor = client.execute_query(graph_traversal1)
-  docs = [document for document in cursor]
-  pp.pprint(docs)
+    # Step4: Read Data
+    print("4a. GRAPH_TRAVERSAL: Find outbound calls TO: {}".format(person))
+    cursor = client.execute_query(graph_traversal1)
+    docs = [document for document in cursor]
+    pp.pprint(docs)
 ```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
 ```js
-  console.log(`5a. GRAPH_TRAVERSAL: Find outbound calls TO: ${person}`);
-  let result = await client.executeQuery(graph_traversal1);
-  console.log(result);
+    console.log(`5a. GRAPH_TRAVERSAL: Find outbound calls TO: ${person}`);
+    let result = await client.executeQuery(graph_traversal1);
+    console.log(result);
 ```
-
-</TabItem>
+  </TabItem>
 </Tabs>  
 
 #### Inbound Traversal
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  print("4b. GRAPH_TRAVERSAL: Find inbound calls FROM: {}".format(person))
-  cursor = client.execute_query(graph_traversal2)
-  docs = [document for document in cursor]
-  pp.pprint(docs)
+    print("4b. GRAPH_TRAVERSAL: Find inbound calls FROM: {}".format(person))
+    cursor = client.execute_query(graph_traversal2)
+    docs = [document for document in cursor]
+    pp.pprint(docs)
 ```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
 ```js
-  console.log(`5b. GRAPH_TRAVERSAL: Find inbound calls FROM: ${person}`);
-  result = await client.executeQuery(graph_traversal2);
-  console.log(result);
-```
-
-</TabItem>
+    console.log(`5b. GRAPH_TRAVERSAL: Find inbound calls FROM: ${person}`);
+    result = await client.executeQuery(graph_traversal2);
+    console.log(result);
+```    
+  </TabItem>
 </Tabs>  
 
 ## Delete Graph
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+  <TabItem value="py" label="Python">
 
 ```py
-  from c8 import C8Client
+    from c8 import C8Client
 
-  # Initialize the C8 Data Fabric client.
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password="xxxxxx",
-                          geofabric='_system')
+    # Initialize the C8 Data Fabric client.
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
 
-  # This returns an API wrapper for "school" graph and deletes the graph
-  client.delete_graph('school')
-```
-
-</TabItem>
-<TabItem value="js" label="Javascript">
+    # This returns an API wrapper for "school" graph and deletes the graph
+    client.delete_graph('school')
+```    
+  </TabItem>
+  <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+    const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+    // Crete a authenticated instance with Token / Apikey
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+    // Or use Email & Password to Authenticate client instance
+    const client = new jsc8("https://gdn.paas.macrometa.io");
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+    await client.login("nemo@nautilus.com", "xxxxxx");
 
-  async function DeleteGraph(){
-    await client.deleteGraph(some-graph, true);
-  }
+    async function DeleteGraph(){
+      await client.deleteGraph(some-graph, true);
+    }
 
-  DeleteGraph();
-```
-
-</TabItem>
+    DeleteGraph();
+```    
+  </TabItem>
 </Tabs>  

@@ -22,7 +22,7 @@ Download the appropriate drivers for Python or JavaScript.
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
 
-```
+```py
 pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
 
 To install pyC8, run
@@ -43,7 +43,7 @@ Any one of these three commands will install Python and enable you to develop ap
 </TabItem>
 <TabItem value="js" label="Javascript">
 
-```
+```js
 With Yarn:
 
     yarn add jsc8
@@ -402,7 +402,9 @@ async function restqldemo() {
     console.log("\n");
 }
 
+
 restqldemo().then(console.log("Starting Execution"));
 ```
+  
 </TabItem>
 </Tabs>  

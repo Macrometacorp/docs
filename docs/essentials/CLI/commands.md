@@ -11,13 +11,13 @@ Use the following commands with the GDN Command Line Interface (CLI) to perform 
 
 Prints the client version and commands help.
 
-```
+```bash
 gdnsl [flags]
 ```
 
 **Options:**
 
-```
+```bash
   -v, --version   prints the client version
   -h, --help      prints the commands help
 ```
@@ -30,13 +30,13 @@ Supported Shells:
  - bash
  - zsh
 
-```
+```bash
 gdnsl autocomplete [SHELL] [flags]
 ```
 
 **Examples:**
 
-```
+```bash
   $ gdnsl autocomplete
 
   $ gdnsl autocomplete bash
@@ -48,7 +48,7 @@ gdnsl autocomplete [SHELL] [flags]
 
 **Options:**
 
-```
+```bash
   -h, --help            Help for autocompletion.
   -r, --refresh-cache   Refresh cache. (ignores displaying instructions)
 ```
@@ -58,7 +58,7 @@ gdnsl autocomplete [SHELL] [flags]
 
 Print account details.
 
-```
+```bash
   gdnsl account [flags]
 ```
 
@@ -88,13 +88,13 @@ Print account details.
 
 **Options:**
 
-```
+```bash
   -h, --help                Help for account command.
 ```
 
 **Options inherited:**
 
-```
+```bash
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
 
@@ -128,7 +128,7 @@ API key commands.
 ```
 **Options:**
 
-```
+```bash
   -h, --help                  Help for apikeys.
       --key-id                The id of the api key.
       --create                Create an apikey.
@@ -138,7 +138,7 @@ API key commands.
 ```
 **Options inherited:**
 
-```
+```bash
       --config string         gdnsl config file (default is ./gdnsl.yaml)
  
 ```
@@ -192,7 +192,7 @@ Gets the access levels for the api key with keyid.
 ```
 **Options:**
 
-```
+```bash
    -h, --help             Help for apikeys.
       --keyId             Set the stream access levels in the database dbname of api key with keyid.
       --fabric            Name of the fabric(default is _system).
@@ -208,7 +208,7 @@ Gets the access levels for the api key with keyid.
 ```
 **Options inherited:**
 
-```
+```bash
       --config string     gdnsl config file (default is ./gdnsl.yaml)
  
 ```
@@ -274,7 +274,7 @@ Sets the access levels for the api key with keyid.
 ```
 **Options:**
 
-```
+```bash
   -h, --help              Help for apikeys.
       --keyId             Set the stream access levels in the database dbname of api key with keyid.
       --fabric            Name of the fabric. (default is _system).
@@ -288,7 +288,7 @@ Sets the access levels for the api key with keyid.
 ```
 **Options inherited:**
 
-```
+```bash
       --config string     gdnsl config file (default is ./gdnsl.yaml)
  
 ```
