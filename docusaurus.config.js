@@ -1,36 +1,13 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const {
+  tailwindPlugin,
+  webpackPlugin,
+} = require('./src/plugins');
+
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-
-/**
- * @type {import('redocusaurus').PresetEntry}
- */
-const redocusaurus = [
-    'redocusaurus',
-    {
-        debug: Boolean(process.env.DEBUG || process.env.CI),
-        specs: [
-            {
-                id: 'using-spec-swagger',
-                spec: 'openapi.json',
-                routePath: '/api',
-            },
-        ],
-        theme: {
-            /**
-             * Highlight color for docs
-             */
-            primaryColor: '#6666e5',
-            /**
-             * Options to pass to redoc
-             * @see https://github.com/redocly/redoc#redoc-options-object
-             */
-            redocOptions: { hideDownloadButton: false, disableSearch: false },
-        },
-    },
-];
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -43,24 +20,28 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'Macrometacorp', // Usually your GitHub org/user name.
   projectName: 'documentation', // Usually your repo name.
+  clientModules: [require.resolve('./src/css/tailwind.css')],
   themes: ['@docusaurus/theme-live-codeblock'],
 
   presets: [
-		redocusaurus,
     [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      '@docusaurus/preset-classic',
+      {
         docs: {
+          //path: 'docs/main',
+          //id: 'default',
+          //routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/macrometacorp/documentation',
+          sidebarCollapsible: false,
         },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      }),
+        blog: false,
+      },
     ],
+  ],
+
+  plugins: [
+    tailwindPlugin,
+    webpackPlugin,
   ],
 
   themeConfig:
