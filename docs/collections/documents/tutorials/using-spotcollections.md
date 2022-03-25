@@ -24,6 +24,7 @@ Let's assume your
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
 
+```py
   pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
 
   To install pyC8, simply run
@@ -39,10 +40,11 @@ Let's assume your
       pipenv install --pre pyC8
 
   Once the installation process is finished, you can begin developing applications in Python.
-
+```
 </TabItem>
 <TabItem value="js" label="Javascript">
 
+```js
   With Yarn or NPM
 
       yarn add jsc8
@@ -59,7 +61,7 @@ Let's assume your
       cd jsC8
       npm install
       npm run dist
-
+```
 </TabItem>
 </Tabs>  
 
