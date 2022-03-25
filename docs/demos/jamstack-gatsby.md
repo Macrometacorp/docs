@@ -1,5 +1,6 @@
 ---
-sidebar_position: 13
+sidebar_position: 14
+title: Polling App
 ---
 
 ## JAMStack Polling App (Gatsby)

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 15
+sidebar_position: 16
 ---
 
 # ToDo App using CF Workers & Macrometa GDN
@@ -10,7 +10,7 @@ This tutorial demonstrates low latency stateful data serving and edge functions 
 
 The serverless edge function runs on CloudFlare as [Worker](https://workers.cloudflare.com/) serving data with low latency from Macrometa's GDN (www.macrometa.com)
 
-You can try the `ToDo List App` here - **[Demo](https://couldflare-todo.solanki.workers.dev)**
+You can try the `ToDo List App` here - **[Demo](https://todo.macrometa.io/)**
 
 Depending on where you are (i.e., city, state, country), your request will be routed to the closest CloudFlare Edge PoP where the serverless function will run to generate the HTML and serve data (`puts`, `gets`) from the closest Macrometa GDN PoP.
 
@@ -43,10 +43,10 @@ Macrometa does not run on CloudFLare PoPs - it runs in datacenters and PoPs with
 
 2. Install [Wrangler](https://github.com/cloudflare/wrangler) on your machine.
 
-3. Add API_KEY Environment variables in `.env`
+3. Update API_KEY in `wrangler.toml` file
 
     ```bash
-    API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    vars = { API_KEY="xxxx", COLLECTION_NAME="todo" }
     ```
 
 4. To `Preview Run` the project with live reload
@@ -54,10 +54,6 @@ Macrometa does not run on CloudFLare PoPs - it runs in datacenters and PoPs with
     ```bash
     wrangler preview --watch
     ```
-
-    :::note
-        Macrometa Javascript Driver (jsC8) is already added to this demo. You can view `package.json` to list all other dependencies. If you want to install jsC8 manually then run `npm install --save jsc8`.
-    :::
     
 5. [Configure](https://developers.cloudflare.com/workers/tooling/wrangler/commands#config) your global Cloudflare user. This is an interactive command that will prompt you for your API token.
 

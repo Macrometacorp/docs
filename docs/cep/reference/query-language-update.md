@@ -1,5 +1,5 @@
 ---
-sidebar_position: 13
+sidebar_position: 14
 ---
 
 # Query Language Syntax Update
@@ -11,13 +11,13 @@ You must include `@App:qlversion('2')` at the beginning of the stream applicatio
 For all queries, version 2 replaces annotations such as `@sink` and `@source` are replaced by keywords such as `SINK` and `SOURCE` and `WITH()` properties. For example:
 
 * Version 1:
-    ```
+    ```js
     @sink(type='http-call', sink.id='echo-service', publisher.url='http://postman-echo.com/post', @map(type='json', @payload('{{payloadBody}}'))) ...
     ```
 
 
 * Version 2:
-    ```
+    ```js
     CREATE SINK sink_name WITH (type='http-call', sink.id='echo-service', publisher.url='http://postman-echo.com/post', map.type='json', map.payload = '{{payloadBody}}') ...
     ```
 
@@ -67,14 +67,14 @@ Additionally, the following key words are added for more granular querying:
 
 * Version 1:
 
-    ```
+    ```js
     @sink(type = 'c8streams', stream = "ExampleStream")
     define stream ExampleStream (data string);
     ```
 
 * Version 2:
 
-    ```
+    ```sql
     // Creates GDN stream source (default):
     CREATE STREAM ExampleStream (data string);
 
@@ -92,14 +92,14 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 1:
 
-    ```
+    ```js
     @store(type=’c8db’, collection=`<table_name>`)
     define table <table_name> (<attribute_name> <attribute_type>, ...);
     ```
 
 * Version 2:
 
-    ```
+    ```sql
     CREATE TABLE ExampleTable (data string);
     ```
 
@@ -109,7 +109,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 1:
 
-    ```
+    ```js
     define trigger InitTrigger at 'start';
     define trigger FiveMinTrigger at every 5 min;
     define trigger WorkStartTrigger at '0 15 10 ? * MON-FRI';
@@ -117,7 +117,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 2:
 
-    ```
+    ```sql
     CREATE TRIGGER InitTrigger WITH (expression = 'start');
     CREATE TRIGGER FiveMinTrigger WITH (interval = 5 min);
     CREATE TRIGGER WorkStartTrigger WITH (expression = '0 15 10 ? * MON-FRI');
@@ -127,14 +127,14 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 1:
 
-    ```
+    ```js
     @sink(type='restql-call',restql.name="restqlExample")
     define stream restqlStream (startTime string);
     ```
 
 * Version 2:
 
-    ```
+    ```sql
     CREATE SINK restqlStream WITH (type='query-worker', query.worker.name="restqlExample") (startTime string);
     ```
 
@@ -142,7 +142,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 1:
 
-    ```
+    ```js
     @source(type = 'c8db', collection = "ExampleInputTable", @map(type='json'))
     define stream ExampleInputTableStream (data string);
 
@@ -150,7 +150,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 2:
 
-    ```
+    ```sql
     CREATE SOURCE ExampleInputTableStream WITH (type = 'database', collection = "ExampleInputTable", map.type='json')(data string);
     ```
 
@@ -158,7 +158,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 1:
 
-    ```
+    ```js
     @store(type="rdbms", jdbc.url="jdbc:mysql://host:3306", username="root", password="Welcome@123#", jdbc.driver.name="com.mysql.jdbc.Driver", field.length="symbol:100", table.check.query="SELECT 1 FROM StockTable LIMIT")
     @PrimaryKey("id", "symbol")
     @Index("volume")
@@ -168,7 +168,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 2:
 
-    ```
+    ```sql
     CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://host:3306", username="root", password="Welcome@123#", jdbc.driver.name="com.mysql.jdbc.Driver", field.length="symbol:100", table.check.query="SELECT 1 FROM StockTable LIMIT", PrimaryKey='id', PrimaryKey='symbol', Index='volume')
     (id string, symbol string, price float, volume long);
 
@@ -178,13 +178,13 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 1:
 
-    ```
+    ```js
     define window SensorWindow (deviceID string, value float, roomNo int) timeBatch(1 second);
     ```
 
 * Version 2:
 
-    ```
+    ```sql
     CREATE WINDOW SensorWindow (deviceID string, value float, roomNo int) TUMBLING_TIME(1 second);
     ```
 
@@ -192,7 +192,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 1:
 
-    ```
+    ```js
     define function concatFn[javascript] return string {
     var str1 = data[0];
     var str2 = data[1];
@@ -205,7 +205,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 2:
 
-    ```
+    ```sql
     CREATE FUNCTION concatFn[javascript] RETURN STRING {
     var str1 = data[0];
     var str2 = data[1];
@@ -220,7 +220,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 1:
 
-    ```
+    ```js
     define stream StockStream (symbol string, price float, volume long);
     select symbol, price, volume
     from InputStream[price > 500]#window.length(1)
@@ -229,7 +229,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 2:
 
-    ```
+    ```sql
     CREATE STREAM StockStream (symbol string, price float, volume long)
     AS SELECT symbol, price, volume
     FROM InputStream[price > 500] WINDOW SLIDING_LENGTH(1);
@@ -239,7 +239,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 1:
 
-    ```
+    ```js
     define table StockTable (symbol string, price float, volume long);
     select symbol, price, volume
     from InputStream[price > 500]#window.length(1)
@@ -248,7 +248,7 @@ Tables no longer require `@sink` or `@source` annotations.
 
 * Version 2:
 
-    ```
+    ```sql
     CREATE TABLE StockTable (symbol string, price float, volume long)
     AS SELECT symbol, price, volume
     FROM InputStream[price > 500] WINDOW SLIDING_LENGTH(1);
@@ -266,7 +266,7 @@ For example:
 
 * Version 1:
 
-    ```
+    ```js
     select symbol, price, volume
     from InputStream[price > 500]#window.length(1)
     insert into StockStream;
@@ -274,7 +274,7 @@ For example:
 
 * Version 2:
 
-    ```
+    ```sql
     INSERT INTO StockStream
     SELECT symbol, price, volume
     FROM InputStream[price > 500] WINDOW SLIDING_LENGTH(1);
@@ -286,13 +286,13 @@ In addition to the new syntax, windows also use new names.
 
 * Version 1:
 
-    ```
+    ```js
     from ExampleStream#window.length(2) ...
     ```
 
 * Version 2:
 
-    ```
+    ```sql
     FROM ExampleStream WINDOW SLIDING_LENGTH(2) ...
     ```
 
@@ -321,7 +321,7 @@ The `WHERE` clause is an alternative to the `HAVING` clause.
 
 * Version 1:
 
-    ```
+    ```js
     select roomNo, avg(temp) as avgTemp
     from TempStream#window.time(10 min)
     having avgTemp > 30
@@ -331,7 +331,7 @@ The `WHERE` clause is an alternative to the `HAVING` clause.
 
 * Version 2:
 
-    ```
+    ```sql
     INSERT INTO AlertStream
     SELECT roomNo, avg(temp) as avgTemp
     FROM TempStream WINDOW SLIDING_TIME(10 min)

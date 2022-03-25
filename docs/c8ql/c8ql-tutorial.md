@@ -867,7 +867,7 @@ Relations such as between parents and children can be modeled as graph. In C8, t
 
 Our characters have the following relations between parents and children (first names only for a better overview):
 
-```
+```js
     Robb -> Ned
    Sansa -> Ned
     Arya -> Ned
@@ -1073,7 +1073,7 @@ It might be a bit unexpected, that Joffrey is returned twice. However, if you lo
 
 ![ChildOf_Graph](/img/ChildOf_Graph.png)
 
-```
+```js
 Tywin <- Jaime <- Joffrey
 Tywin <- Cersei <- Joffrey
 ```

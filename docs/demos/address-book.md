@@ -8,15 +8,15 @@ sidebar_position: 1
 
 ### On GDN
 
-| **Email** | **Passsword** | **Geo Fabric** |**Collection** | **GUI**|**Source Code**|
-|------------|---------- |-------------- |-------------- |------------|----------|
-| demo@macrometa.io | `xxxxxxxx` | _system | `addresses` | [AddressBook](https://macrometacorp.github.io/tutorial-addressbook-streams/)| [github](https://github.com/Macrometacorp/tutorial-addressbook-streams)|
+| **Email**         | **Passsword** | **Geo Fabric** | **Collection** | **GUI**                                                                      | **Source Code**                                                         |
+| ----------------- | ------------- | -------------- | -------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| demo@macrometa.io | `xxxxxxxx`    | \_system       | `addresses`    | [AddressBook](https://macrometacorp.github.io/tutorial-addressbook-streams/) | [github](https://github.com/Macrometacorp/tutorial-addressbook-streams) |
 
 ### On GDN (Wavelength 5G)
 
-| **Email** | **Passsword** | **Geo Fabric** |**Collection** | **GUI**|**Source Code**|
-|------------|---------- |-------------- |-------------- |------------|----------|
-| demo@macrometa.io | `xxxxxxxx` | _system | `addresses` | [AddressBook](https://macrometacorp.github.io/addressbook-streams-wavelength/)| 
+| **Email**         | **Passsword** | **Geo Fabric** | **Collection** |**GUI**                                                                        | **Source Code** |
+| ----------------- | ------------- | -------------- | -------------- | ------------------------------------------------------------------------------ | --------------- |
+| demo@macrometa.io | `xxxxxxxx`    | \_system       | `addresses`    | [AddressBook](https://macrometacorp.github.io/addressbook-streams-wavelength/) |
 
 :::note
 Stream Workers is currently an Enterprise only feature. We will be rolling it out to all users in Q1 of 2022.
@@ -28,16 +28,16 @@ Populate `addresses` collection with data:
 ```js
 
 // Query to insert addresses
-FOR persons IN [ 
-  { firstname: "Joseph", lastname: "Smith", email: "jsmith2020@gmail.com" },
-  { firstname: "Astrid", lastname: "Young", email: "missmoneybags@young.co.sg" },
-  { firstname: "Boris", lastname: "Balastikov", email: "bb@refundit.com" },
-  { firstname: "Sherlock", lastname: "Jones", email: "pd@elementary.org" },
-  { firstname: "Alpha", lastname: "Simpson", email: "alf@simpsonrealtech.com" },
-  { firstname: "Jose", lastname: "Garcia", email: "j.garcia@nebulus.com" },
-  { firstname: "Lee", lastname: "Ki", email: "Lee.ki@symbol.com" },
-  { firstname: "Mark", lastname: "Goldfine", email: "mark@tidalwave.com" },
-  { firstname: "Ramesh", lastname: "Sriram", email: "ramesh@lifely.com" } 
+FOR persons IN [
+  { firstName: "Joseph", lastName: "Smith", email: "jsmith2020@gmail.com" },
+  { firstName: "Astrid", lastName: "Young", email: "missmoneybags@young.co.sg" },
+  { firstName: "Boris", lastName: "Balastikov", email: "bb@refundit.com" },
+  { firstName: "Sherlock", lastName: "Jones", email: "pd@elementary.org" },
+  { firstName: "Alpha", lastName: "Simpson", email: "alf@simpsonrealtech.com" },
+  { firstName: "Jose", lastName: "Garcia", email: "j.garcia@nebulus.com" },
+  { firstName: "Lee", lastName: "Ki", email: "Lee.ki@symbol.com" },
+  { firstName: "Mark", lastName: "Goldfine", email: "mark@tidalwave.com" },
+  { firstName: "Ramesh", lastName: "Sriram", email: "ramesh@lifely.com" } 
   ]
   INSERT persons INTO addresses
 
@@ -47,28 +47,25 @@ Queries for RESTQL
 
 Query Name: addAddress
 ```js
-INSERT { firstname: @firstname, 
-        lastname: @lastname, 
-        email: @email, 
-        zipcode: @zipcode }
-   INTO addresses
+INSERT { firstName: @firstName, lastName: @lastName, email: @email }
+  INTO addresses
 ```
 
 Query Name: getAddresses
-```
+```js
 FOR address IN addresses
     RETURN address
 ```
 
 Query Name: updateEmail
-```
+```js
 UPDATE { _key: @key }
   WITH { email: @email }
   IN addresses
 ```
 
 Query Name: removeAddress
-```
+```js
 REMOVE { _key: @key} 
   IN addresses
 ```
@@ -77,28 +74,32 @@ REMOVE { _key: @key}
 
 ### GDN
 
-| **Email** | **Passsword** | **Geo Fabric** |**Collection** | **GUI**|**Source Code**|
-|------------|---------- |-------------- |-------------- |------------|----------|
-| demo@macrometa.io | `xxxxxx` | _system | `addresses` | [AddressBook (RESTQL)](http://addressbook-restql-gdn.s3-website-us-east-1.amazonaws.com/)| [github](https://github.com/Macrometacorp/tutorial-addressbook-restql)|
+| **Email**         | **Passsword** | **Geo Fabric** | **Collection** | **GUI**                                                                              | **Source Code**                                                        |
+| ----------------- | ------------- | -------------- | -------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| demo@macrometa.io | `xxxxxx`      | \_system       | `addresses`    | [AddressBook (RESTQL)](https://macrometacorp.github.io/tutorial-addressbook-restql/) | [github](https://github.com/Macrometacorp/tutorial-addressbook-restql) |
 
 > Note: The demo app automatically creates the following RESTQLs as part of startup.
 
-**SaveContact:**
+**insertAddress:**
 ```js
-INSERT {firstname:@firstName,lastname:@lastName,email:@email} INTO addresses
+INSERT { firstName: @firstName, lastName: @lastName, email: @email}
+  INTO addresses
 ```
 
-**ReadContact:**
+**getAddresses:**
 ```js
-FOR entry IN addresses RETURN entry
+FOR entry IN addresses
+  RETURN entry
 ```
 
-**RemoveContact:**
+**removeAddress:**
 ```js
 REMOVE @_key IN addresses
 ```
 
-**UpdateContact:**
+**updateAddress:**
 ```js
-UPDATE @_key WITH { firstname:@firstName, lastname:@lastName, email:@email} IN addresses
+UPDATE @_key
+  WITH { firstName: @firstName, lastName: @lastName, email: @email }
+  IN addresses
 ```

@@ -73,7 +73,7 @@ Note: The collection `addresses` that you just created is now distributed to eve
 
 Now, click the `QUERIES` tab in the left nav to open the `C8QL` query editor. Copy and paste the query below into the editor and click `Run Query` a couple times. 
 
-```SQL
+```sql
 // Query to insert addresses
 FOR persons IN [ 
   { firstname: "Captain", lastname: "Nemo", email: "cpnemo@gnautilus.com" },
@@ -90,7 +90,7 @@ Your `Query Result` will be empty brackets, but if you click on `Profile` button
 
 Now, let's query the data you just added to your collection. Copy the below query and replace the `INSERT` query currently in the editor with it.
 
-```SQL
+```sql
 FOR docs IN addresses RETURN docs 
 ```
 

@@ -15,7 +15,7 @@ There are multiple type of queries such as `window query`, `join query`, `patter
 ### Example
 Following is an example annotated with descriptive comments.
 
-```
+```sql
 -- Defines `InputTemperatureStream` stream to pass events having `sensorId` and `temperature` attributes of types `string` and `double`.
 CREATE STREAM InputTemperatureStream (sensorId string, temperature double);
 
@@ -55,14 +55,14 @@ There are multiple source and sink types, but this example only explains c8db so
 
 This example creates a C8DB source from which a stream consumes JSON messages:
 
-```
+```sql
 C8DB source to consume `JSON` messages from.
 CREATE SOURCE TemperatureStream WITH (type='database', collection='TemparatureStream', collection.type="doc", replication.type="global", map.type='json') (sensorId string, temperature double);
 ```
 
 This example creates a sink to log events that arrive from a stream called `TemperatureOnlyStream` with the `temperature` attribute of type `double`:
 
-```
+```sql
 CREATE SINK TemperatureOnlyStream WITH (type='stream', stream="TemperatureOnlyStream", replication.type="local", map.type='json') (temperature double);
 
 @info(name = 'Simple-selection')
@@ -108,7 +108,7 @@ Provides introduction to tables and database backed stores that can be used to s
 
 ### Example
 
-```
+```sql
 -- Defines `TemperatureStream` stream having `sensorId` and `temperature` attributes of types `string` and `double`.
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
@@ -140,7 +140,7 @@ The stored values can be retrieved by join tables and stores with the streams as
 
 The data in `TemperatureDetailsTable` can be retrieved via on-demand queries as below, using the `On Demand Query REST API`.
 
-```
+```sql
 select *
 from TemperatureDetailsTable
 ```
@@ -155,13 +155,13 @@ Stream App provides an isolated execution environment for processing the executi
 
 This example creates a C8DB source to consume events from stream applications:
 
-```
+```sql
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
 ```
 
 This example creates a sink to publish events from stream applications:
 
-```
+```sql
 CREATE SINK TemperatureOnlyStream WITH (type='inMemory', topic='Temperature') (temperature double);
 
 @info(name = 'Simple-selection')

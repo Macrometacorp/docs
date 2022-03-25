@@ -39,43 +39,43 @@ Following are the steps to create a stream application:
 
 1. Define an input stream to define the schema based on which input events are selected to the streaming integrator flow as follows.
 
-    ```
+    ```sql
 	CREATE STREAM <Stream_Name> (attribute1_name attribute1_type, attribute2_name attribute2_type, ...)
     ```
 
 	For example:
 
-    ```
+    ```sql
     CREATE STREAM ConsumerSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long)
     ```
 
 1. Connect a source to the input stream you added as follows.
 
-    ```
+    ```sql
 	CREATE SOURCE stream_name WITH (type='SOURCE_TYPE') (attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
 
     For example:
 
-    ```
+    ```sql
 	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream') (transNo int, product string, price int, quantity int, salesValue long);
     ```
     
 1. Configure parameters for the source you added. For example, you can specify the collection name for the stream source in the example used.
     
-    ```
+    ```sql
 	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream', stream.list='SalesTotalsEP') (transNo int, product string, price int, quantity int, salesValue long);
     ```
        
 1. Add an `@map` annotation to the source configuration as shown below.
 
-    ```
+    ```sql
 	CREATE SOURCE Stream_Name WITH (type='SOURCE_TYPE', PARAMETER1_NAME='PARAMETER1_VALUE', map.type='MAP_TYPE') (attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
 
     For example:
 
-    ```
+    ```sql
     CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream', stream.list='SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
     ```
     
@@ -104,13 +104,13 @@ Following are the steps to create a stream application:
     !!!tip
         In the example used, you can define the `PublishSalesTotals` stream that you already specified as the output stream in the query, and connect a `c8stream` sink to it as follows. Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
 
-    ```
+    ```sql
 	CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream='SalesTotals', replication.type='local') (transNo int, product string, price int, quantity int, salesValue long);
     ```
         
 1. Save the Stream Application. The completed application is as follows:
 
-    ```
+    ```js
     @App:name("SalesTotalsApp")
     @App:qlVersion("2")
     @App:description("Description of the plan")
@@ -137,19 +137,19 @@ Stream processor consumes a message in the default format when it makes no chang
 
 2. In the source configuration, make sure that an `@map` annotation is included with the mapping type as shown below.
 
-    ```
+    ```sql
 	CREATE SOURCE Stream_Name WITH (type='SOURCE_TYPE', PARAMETER1_NAME='PARAMETER1_VALUE', map.type='MAP_TYPE') (attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
     
     The map type specifies the format in which the messages are received.  For example:
     
-    ```
+    ```sql
 	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
     ```
     
 3. Save the stream application. If you save the stream application that was created using the example configurations, the completed stream application is as follows.
 
-    ```
+    ```js
     @App:name("SalesTotalsApp")
     @App:qlVersion("2")
     @App:description("Description of the plan")
@@ -189,7 +189,7 @@ Stream processor consumes a message in the custom format when it makes changes t
 
     * Defining attributes as keys and mapping content as values in the following format.
 
-        ```
+        ```sql
 		CREATE SOURCE Stream_Name WITH (type='SOURCE_TYPE', PARAMETER1_NAME='PARAMETER1_VALUE', map.type='MAP_TYPE', @attributes( attributeN='mapping_N', attribute1='mapping_1')) (attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
         ```
         :::tip 
@@ -202,18 +202,18 @@ Stream processor consumes a message in the custom format when it makes changes t
         
         The mapping can be defined as follows.
         
-        ```
+        ```sql
 		CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', @attributes(transNo = '$.transaction', salesValue = '$.sales')) (transNo int, product string, price int, quantity int, salesValue long);
         ```
         
     * Defining the mapping content of all attributes in the same order as how the attributes are defined in stream definition.
 
-        ```
+        ```sql
 		CREATE SOURCE Stream_Name WITH (type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', map.type='MAP_TYPE', @attributes( 'mapping_1', 'mapping_N')) (attribute1_name attribute1_type, attributeN_name attributeN_type, ...);
         ``` 
         
         e.g., If you consider the same example, mapping can be defined as follows.
               
-        ```
+        ```sql
 		CREATE SOURCE ConsumerSalesTotalsStream(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', @attributes(transNo = '$.transaction', product = product, quantity = quantity, salesValue = '$.sales')) (transNo int, product string, price int, quantity int, salesValue long);
         ```

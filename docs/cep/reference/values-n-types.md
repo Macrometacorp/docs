@@ -14,7 +14,7 @@ For information on [values](query-guide#value), and other useful [functions](que
 
 ### Example
 
-```
+```sql
 -- Defines `PatientRegistrationInputStream` having information in all primitive types.
 CREATE STREAM PatientRegistrationInputStream (
                  seqNo long, name string, age int,
@@ -68,7 +68,7 @@ For information of performing scatter and gather using `map:tokenize()`, and `ma
 
 ### Example
 
-```
+```sql
 -- Defines `CoupleDealInfoStream` having attributes `item1`, `price1`, `item2`, and `price2` with `string` and `double` types.
 CREATE STREAM CoupleDealInfoStream ( item1 string, price1 double, item2 string, price2 double);
 
@@ -130,7 +130,7 @@ For information of performing scatter and gather using `list:tokenize()`, and `l
 
 ### Example
 
-```
+```sql
 -- Defines `ProductComboStream` having `string` type attributes `product1`, `product2`, and `product3`.
 CREATE STREAM ProductComboStream ( product1 string, product2 string, product3 string);
 
@@ -191,7 +191,7 @@ For more information refer the [stream query guide](query-guide.md).
 
 ### Example
 
-```js
+```sql
 CREATE STREAM ProductInputStream (item string, price double);
 
 -- Empty `ProductInfoTable` with attributes `item` and `discount`.

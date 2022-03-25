@@ -1029,7 +1029,7 @@ First create the users
 db.create("authors");
 ```
 
-```
+```js
 [Collection 2926807549, "authors" (type document, status loaded)]
 ```
 

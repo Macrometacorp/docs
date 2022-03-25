@@ -70,7 +70,7 @@ The comparison operators also exist as `array variant`. In the array variant, th
 
 Examples:
 
-```
+```js
 [ 1, 2, 3 ] ALL IN [ 2, 3, 4 ]   // false
 [ 1, 2, 3 ] ALL IN [ 1, 2, 3 ]   // true
 [ 1, 2, 3 ] NONE IN [ 3 ]        // false
@@ -182,7 +182,7 @@ For string concatenation, you must use the [string function](functions/string.md
 
 Some example arithmetic operations:
 
-```
+```js
 1 + 1
 33 - 99
 12.4 * 4.5
@@ -247,7 +247,7 @@ The `..` operator will produce an array of the integer values in the defined ran
 
 **Examples**
 
-```
+```json
 2010..2013
 ```
 

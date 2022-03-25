@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 12
 ---
 
 # Global Cities Explorer
@@ -12,7 +12,7 @@ http://oxford-economics.demo.macrometa.io:8502
 
 ## Build and Run
 
-```
+```py
 Python Version 3.8.5
 
 $ pip3 install -r requirements.txt

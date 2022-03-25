@@ -456,7 +456,7 @@ This means `null` is the smallest type in C8QL and `document` is the type with t
 
 For example, the boolean `true` value will always be less than any numeric or string value, any array (even an empty array) or any object / document. Additionally, any string value (even an empty string) will always be greater than any numeric value, a boolean value, `true` or `false`.
 
-```
+```bash
     null < false
     null < true
     null < 0
@@ -518,7 +518,7 @@ Two array values are compared by comparing their individual elements position by
 
 If an array element is itself a compound value (an array or an object / document), then the comparison algorithm will check the element's sub values recursively. The element's sub-elements are compared recursively.
 
-```
+```bash
     [ ] < [ 0 ]
     [ 1 ] < [ 2 ]
     [ 1, 2 ] < [ 2 ]

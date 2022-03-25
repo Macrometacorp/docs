@@ -1,5 +1,5 @@
 ---
-sidebar_position: 12
+sidebar_position: 13
 ---
 
 # Credit Card Fraud
@@ -58,7 +58,7 @@ sidebar_position: 12
 
 ### Create Customers
 
-```
+```js
 let cust = [
     {"_key":"Marc","age":30,"gender":"man","name":"Marc"},
     {"_key":"Zoey","age":52,"gender":"woman","name":"Zoey"},
@@ -78,7 +78,7 @@ for customer in cust
 ```
 ### Create Merchants
 
-```
+```js
 LET m = [
 	{"_key": "Amazon", "name": "Amazon", "street": "2626 Wilkinson Court", "address":"San Bernardino, CA 92410"},
 	{"_key": "Abercrombie", "name": "Abercrombie", "street": "4355 Walnut Street", "address":"San Bernardino, CA 92410"},
@@ -104,7 +104,7 @@ FOR merchant IN m
 
 ### Create Transactions (Edges)
 
-```
+```js
 LET e = [
 	{"_from": "customers/Paul", "_to": "merchants/Just_Brew_It", "amount": 986, "status": "Undisputed", "time":"4/17/2014"},
 	{"_from": "customers/Paul", "_to": "merchants/Starbucks", "amount": 239, "status": "Undisputed", "time":"5/15/2014"},
