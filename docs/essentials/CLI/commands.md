@@ -58,7 +58,7 @@ gdnsl autocomplete [SHELL] [flags]
 
 Print account details.
 
-```bash
+```
   gdnsl account [flags]
 ```
 
