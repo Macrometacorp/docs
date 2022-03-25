@@ -1,5 +1,27 @@
 {  
+    "host": "api-gdn.paas.macrometa.io",
     "basePath": "/",
+    "schemes": [
+      "https"
+    ],
+    "servers": [
+      {
+        "url": "api-gdn.paas.macrometa.io",
+        "description": "Production server"
+      }
+    ],
+    "securityDefinitions": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "security": [
+      {
+        "ApiKeyAuth": []
+      }
+    ],
     "definitions": {
       "example_operation_success_rc_200": {
         "properties": {
@@ -8324,6 +8346,16 @@
               "x-description-offset": 355
             }
           ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/auth_token"
+                }
+              }
+            }
+          },
+
           "responses": {
             "200": {
               "description": "Returned if token is successfully created for user.\n",
@@ -8344,7 +8376,10 @@
           "summary": "Obtain JWT Authentication token for user.",
           "tags": [
             "Authentication"
-          ]
+          ],
+          "security": {
+            "ApiKeyAuth": false
+          }
         }
       },
       "/_fabric/{fabric}/_api/kv/{collection}/count": {
