@@ -1,7 +1,3 @@
----
-sidebar_position: 8
----
-
 # Time
 
 This extension provides time related functionality such as getting current time, current date,

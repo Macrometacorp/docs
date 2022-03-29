@@ -20,7 +20,7 @@ The Google PubSub sink publishes messages to a topic in the Google PubSub server
 Syntax:
 
 ```js
-@sink(type="googlepubsub", project.id="<STRING>", topic.id="<STRING>", credential.id="<STRING>", @map(...)))
+CREATE SINK <name> WITH (type="googlepubsub", project.id="<STRING>", topic.id="<STRING>", credential.id="<STRING>", map.type=<"STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -35,11 +35,7 @@ QUERY PARAMETERS:
 EXAMPLE 1:
 
 ```js
-@sink(type = 'googlepubsub', @map(type= 'text'),
-project.id = 'sp-path-1547649404768', 
-credential.id = 'PUB_SUB_FAST',
-topic.id ='topicA')
-define stream InputStream(message string);
+CREATE SINK InputStream WITH (type = 'googlepubsub', @map(type= 'text'), project.id = 'sp-path-1547649404768', credential.id = 'PUB_SUB_FAST', topic.id ='topicA') (message string);
 ```
 
 This query publishes messages to a topic in the Google PubSub server. Here, the messages are published to `topicA` topic in the `sp-path-1547649404768` project. If the `topicA` topic already exists in the `sp-path-1547649404768` project, messages are directly published to that topic. 
@@ -55,7 +51,7 @@ A subscription connects a topic to a subscriber application, enabling the applic
 Syntax:
 
 ```js
-@source(type="googlepubsub", project.id="<STRING>", topic.id="<STRING>", subscription.id="<STRING>", credential.id="<STRING>", @map(...)))
+CREATE SOURCE <name> WITH (type="googlepubsub", project.id="<STRING>", topic.id="<STRING>", subscription.id="<STRING>", credential.id="<STRING>", map.type="<STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -71,12 +67,7 @@ QUERY PARAMETERS:
 EXAMPLE 1:
 
 ```js
-@source(type='googlepubsub',@map(type='text'),
-topic.id='topicA',
-project.id='sp-path-1547649404768',
-credential.id = 'PUB_SUB_FAST',
-subscription.id='subA')
-define stream OutputStream(message String);
+CREATE SOURCE OutputStream WITH (type='googlepubsub', map.type='text', topic.id='topicA', project.id='sp-path-1547649404768', credential.id = 'PUB_SUB_FAST', subscription.id='subA') (message String);
 ```
 
 This query shows how to subscribe to a google pubsub topic. Here, a google pubsub source subscribes to the `topicA` topic that resides in the `sp-path-1547649404768` project within a google pubsub instance. The events are received in the text format, mapped to a event, and then sent to a stream named OutputStream.

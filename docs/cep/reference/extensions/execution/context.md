@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Context
 
 This extension provides useful environment properties such as current region where the Stream App is running.
@@ -35,12 +31,12 @@ SUPPORTED CONTEXT VARIABLES
 
 EXAMPLE 1
 
+    insert into OutputStream
     select customerName, context:getVar('region') as region
-    from InputStream
-    insert into OutputStream;
+    from InputStream;
     
 EXAMPLE 2
 
+    insert into OutputStream
     select customerName
-    from InputStream[region == context:getVar('region')]
-    insert into OutputStream;
+    from InputStream[region == context:getVar('region')];

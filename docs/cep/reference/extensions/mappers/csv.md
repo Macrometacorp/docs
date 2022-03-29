@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # CSV
 
 This is an extension that converts messages with CSV format to/from stream processor events.
@@ -34,7 +30,7 @@ configurations.
 
 Syntax
 
-    @sink(..., @map(type="csv", delimiter="<STRING>", header="<BOOL>", event.grouping.enabled="<BOOL>")
+    CREATE SINK <name> WITH (map.type="csv", delimiter="<STRING>", header="<BOOL>", event.grouping.enabled="<BOOL>")
 
 QUERY PARAMETERS
 
@@ -46,20 +42,19 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    @sink(type='inMemory', topic='{{symbol}}', @map(type='csv'))
-    define stream BarStream (symbol string, price float, volume long);
+    CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='csv') (symbol string, price float, volume long);
 
 Above configuration will perform a default CSV output mapping, which
 will generate output as follows:
-GDN,55.6,100 < OS supported lineseparator />
+GDN,55.6,100<OS supported lineseparator>
 
 If header is true and delimiter is "-", then the output
 will be as follows:
-symbol-price-volume < OS supported line separator /> GDN-55.6-100 < OS supported line separator />
+symbol-price-volume<OS supported line separator>GDN-55.6-100<OS supported line separator>
 
 EXAMPLE 2
 
-    @sink(type='inMemory', topic='{{symbol}}', @map(type='csv',header='true',delimiter='-',@payload(symbol='0',price='2',volume='1')))define stream BarStream (symbol string, price float,volume long);
+    CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='csv', map.header='true', map.delimiter='-', map.payload="symbol='0',price='2',volume='1'") (symbol string, price float,volume long);
 
 Above configuration will perform a custom CSV mapping. Here, user can
 add custom place order in the @payload. The place order indicates that
@@ -67,10 +62,10 @@ where the attribute name's value will be appear in the output message,
 The output will be produced output as follows:`GDN,100,55.6`
 If header is true and delimiter is "-", then the output will be as
 follows:
-symbol-price-volume GDN-55.6-100 < OS supported line separator />
+symbol-price-volume GDN-55.6-100<OS supported line separator>
 
 If event grouping is enabled, then the output is as
-follows:GDN-55.6-100 < OS supported line separator />GDN-55.6-100 < OS supported line separator />GDN-55.6-100 < OS supported line separator />
+follows:GDN-55.6-100<OS supported line separator>GDN-55.6-100<OS supported line separator>GDN-55.6-100<OS supported line separator>
 
 ## csv (Source Mapper)
 
@@ -81,7 +76,7 @@ CSV message where a custom place order to map from custom CSV message.
 
 Syntax
 
-    @source(..., @map(type="csv", delimiter="<STRING>", fail.on.unknown.attribute="<BOOL>", event.grouping.enabled="<BOOL>")
+    CREATE SOURCE <name> WITH (map.type="csv", delimiter="<STRING>", fail.on.unknown.attribute="<BOOL>", event.grouping.enabled="<BOOL>")
 
 QUERY PARAMETERS
 
@@ -93,8 +88,7 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    @source(type='inMemory', topic='stock', @map(type='csv'))
-     define stream FooStream (symbol string, price float, volume int);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='csv') (symbol string, price float, volume int);
 
 Above configuration will do a default CSV input mapping. Expected input
 will look like below:
@@ -104,8 +98,7 @@ then the input is as follows:symbol-price-volumeGDN-55.6-100
 
 EXAMPLE 2
 
-    @source(type='inMemory', topic='stock', @map(type='csv',header='true', @attributes(symbol = "2", price = "0", volume = "1")))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='csv', map.header='true', map.attributes="symbol = '2', price = '0', volume = '1'") (symbol string, price float, volume long);
 
 Above configuration will perform a custom CSV mapping. Here, user can
 add place order of each attribute in the @attribute. The place order

@@ -1,7 +1,3 @@
----
-sidebar_position: 7
----
-
 # Reorder
 
 This extension orders out-of-order event arrivals using algorithms such as K-Slack and alpha K-Stack.
@@ -51,12 +47,12 @@ QUERY PARAMETERS
 
 Examples EXAMPLE 1
 
-    define stream StockStream (eventTime long, symbol string, volume long);
+    CREATE STREAM StockStream (eventTime long, symbol string, volume long);
 
     @info(name = 'query1')
+    insert into OutputStream
     select eventTime, symbol, sum(volume) as total    
-    from StockStream#reorder:akslack(eventTime, volume, 20)#window.time(5 min)
-    insert into OutputStream;
+    from StockStream#reorder:akslack(eventTime, volume, 20)#window.time(5 min);
 
 The query reorders events based on the `eventTime` attribute value and
 optimises for aggregating `volume` attribute considering last 20
@@ -87,12 +83,12 @@ QUERY PARAMETERS
 
 Examples EXAMPLE 1
 
-    define stream StockStream (eventTime long, symbol string, volume long);
+    CREATE STREAM StockStream (eventTime long, symbol string, volume long);
 
     @info(name = 'query1')
+    insert into OutputStream
     select eventTime, symbol, volume    
-    from StockStream#reorder:kslack(eventTime, 5000)
-    insert into OutputStream;
+    from StockStream#reorder:kslack(eventTime, 5000);
 
 The query reorders events based on the `eventTime` attribute value,
 and it forcefully flushes all the events who have arrived older than the

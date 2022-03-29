@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # JSON
 
 This extension converts JSON messages to/from stream processor events.
@@ -36,7 +32,7 @@ JSON message.
 
 Syntax
 
-    @sink(..., @map(type="json", validate.json="<BOOL>", enclosing.element="<STRING>")
+    CREATE SINK <name> WITH (map.type="json", validate.json="<BOOL>", enclosing.element="<STRING>")
 
 QUERY PARAMETERS
 
@@ -47,8 +43,7 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    @sink(type='inMemory', topic='stock', @map(type='json'))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
 
 Above configuration does a default JSON input mapping that generates the
 output given
@@ -64,8 +59,7 @@ below.
 
 EXAMPLE 2
 
-    @sink(type='inMemory', topic='{{symbol}}', @map(type='json', enclosing.element='$.portfolio', validate.json='true', @payload( """{"StockData":{"Symbol":"{{symbol}}","Price":{{price}}}}""")))
-    define stream BarStream (symbol string, price float, volume long);
+    CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='json', enclosing.element='$.portfolio', validate.json='true', map.payload="""{"StockData":{"Symbol":"{{symbol}}","Price":{{price}}}}""") (symbol string, price float, volume long);
 
 The above configuration performs a custom JSON mapping that generates
 the following JSON message as the
@@ -92,7 +86,7 @@ though optional.
 
 Syntax
 
-    @source(..., @map(type="json", enclosing.element="<STRING>", fail.on.missing.attribute="<BOOL>")
+    CREATE SOURCE <name> WITH (map.type="json", enclosing.element="<STRING>", fail.on.missing.attribute="<BOOL>")
 
 QUERY PARAMETERS
 
@@ -103,8 +97,7 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    @source(type='inMemory', topic='stock', @map(type='json'))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
 
 This configuration performs a default JSON input mapping. For a single
 event, the input is required to be in one of the following
@@ -128,8 +121,7 @@ or
 
 EXAMPLE 2
 
-    @source(type='inMemory', topic='stock', @map(type='json'))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
 
 This configuration performs a default JSON input mapping. For multiple
 events, the input is required to be in one of the following
@@ -157,7 +149,7 @@ or
 
 EXAMPLE 3
 
-    @source(type='inMemory', topic='stock', @map(type='json', enclosing.element="$.portfolio", @attributes(symbol = "company.symbol", price = "price", volume = "volume")))
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json', map.enclosing.element="$.portfolio", map.attributes="symbol = 'company.symbol', price 'price', volume = 'volume'")
 
 This configuration performs a custom JSON mapping.For a single event,
 the expected input is similar to the one shown
@@ -177,8 +169,7 @@ below:
 
 EXAMPLE 4
 
-    @source(type='inMemory', topic='stock', @map(type='json', enclosing.element="$.portfolio", @attributes(symbol = "stock.company.symbol", price = "stock.price", volume = "stock.volume")))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', @map(type='json', enclosing.element="$.portfolio", map.attributes="symbol = 'stock.company.symbol', price = 'stock.price', volume = 'stock.volume'") (symbol string, price float, volume long);
 
 The configuration performs a custom JSON mapping.For multiple events,
 expected input looks as follows..
