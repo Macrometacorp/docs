@@ -16,12 +16,12 @@ const config = {
   title: 'Macrometa',
   tagline: 'Macrometa GDN Documentation',
   url: 'https://macrometa.com',
-  baseUrl: isDev ? '/' : '/new-docs/',
+  baseUrl: isDev ? '/' : '/docs-new/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'macrometacorp', // Usually your GitHub org/user name.
-  projectName: 'new-docs', // Usually your repo name.
+  projectName: 'docs-new', // Usually your repo name.
   clientModules: [require.resolve('./src/css/tailwind.css')],
   themes: ['@docusaurus/theme-live-codeblock'],
 
