@@ -33,7 +33,7 @@ export default function APIPage() {
             <>
               {/* https://api-gdn.paas.macrometa.io/_admin/api/swagger.json */}
               <API
-                apiDescriptionUrl="/swagger.json"
+                apiDescriptionUrl="/docs-new/swagger.json"
                 router="hash"
                 basePath="/"
                 layout="sidebar"

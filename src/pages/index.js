@@ -18,7 +18,7 @@ export default function Homepage() {
         />
         <link rel="canonical" href="https://macrometa.com/docs" />
       </Head>
-      <Redirect to="/docs/quickstart" />
+      <Redirect to="/docs-new/docs/quickstart" />
     </>
   );
 }
