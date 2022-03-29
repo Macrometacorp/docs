@@ -9,17 +9,19 @@ const {
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const isDev = process.env.NODE_ENV === 'development';
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Macrometa',
   tagline: 'Macrometa GDN Documentation',
   url: 'https://macrometa.com',
-  baseUrl: '/',
+  baseUrl: isDev ? '/' : '/new-docs/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'Macrometacorp', // Usually your GitHub org/user name.
-  projectName: 'documentation', // Usually your repo name.
+  organizationName: 'macrometacorp', // Usually your GitHub org/user name.
+  projectName: 'new-docs', // Usually your repo name.
   clientModules: [require.resolve('./src/css/tailwind.css')],
   themes: ['@docusaurus/theme-live-codeblock'],
 

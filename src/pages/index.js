@@ -1,8 +1,11 @@
 import React from 'react';
 import { Redirect } from '@docusaurus/router';
 import Head from '@docusaurus/Head';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function Homepage() {
+  const { siteConfig } = useDocusaurusContext();
+
   return (
     <>
       <Head>
@@ -18,7 +21,7 @@ export default function Homepage() {
         />
         <link rel="canonical" href="https://macrometa.com/docs" />
       </Head>
-      <Redirect to="/docs/quickstart" />
+      <Redirect to={`${siteConfig.baseUrl}docs/quickstart`} />
     </>
   );
 }

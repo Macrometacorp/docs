@@ -1233,7 +1233,8 @@
           },
           "tenant": {
             "description": "The name of the tenant for whose user we want the auth token.\n\n",
-            "type": "string"
+            "type": "string",
+            "default": "root"
           },
           "username": {
             "description": "The name of the user for whom we want the auth token.\n\n",
@@ -1241,6 +1242,7 @@
           }
         },
         "required": [
+          "email",
           "password"
         ],
         "type": "object"
@@ -8335,6 +8337,14 @@
       "/_open/auth": {
         "post": {
           "description": "\n\nObtain a JWT Authentication for a user. After obtaining the token, REST API\ncalls may be invoked by passing the obtained token in the REST header.\nEither email or both tenant and username must be specified.\nAdd the following to your header when you make REST calls:\n*\"Authorization: bearer TOKEN\"*\n\n\nA JSON object with these properties is required:\n\n  - **username**: The name of the user for whom we want the auth token.\n  - **password**: The user password as a string. \n  - **email**: The email of the user for whom we want the auth token.\n  - **tenant**: The name of the tenant for whose user we want the auth token.\n\n",
+          
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+
           "parameters": [
             {
               "in": "body",

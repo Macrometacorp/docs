@@ -2,8 +2,11 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function APIPage() {
+  const { siteConfig } = useDocusaurusContext();
+
   return (
     <Layout>
       <Head>
@@ -33,7 +36,7 @@ export default function APIPage() {
             <>
               {/* https://api-gdn.paas.macrometa.io/_admin/api/swagger.json */}
               <API
-                apiDescriptionUrl="/swagger.json"
+                apiDescriptionUrl={`${siteConfig.baseUrl}swagger/spec.json`}
                 router="hash"
                 basePath="/"
                 layout="sidebar"
