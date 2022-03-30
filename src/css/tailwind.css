@@ -22,7 +22,7 @@
 
   :root {
     /* Docusaurus themeing */
-    --ifm-color-primary: #6666e5;
+    --ifm-color-primary: #5c5cff;
     --ifm-color-primary-dark: rgb(33, 175, 144);
     --ifm-color-primary-darker: rgb(31, 165, 136);
     --ifm-color-primary-darkest: rgb(26, 136, 112);
@@ -52,8 +52,8 @@
 
     /* Tailwind theming */
 
-    --docs-color-primary: #2160fd;
-    --docs-color-primary-100: #2160fd;
+    --docs-color-primary: #5c5cff;
+    --docs-color-primary-100: #5c5cff;
 
     --docs-color-text: #000000;
     --docs-color-text-100: #646464;
@@ -73,17 +73,18 @@
 
     --docsearch-key-shadow: none !important;
     --docsearch-key-gradient: #dcdcdc !important;
+    --docsearch-highlight-color: #5c5cff;
   }
 
   html[data-theme='dark'] {
-    --ifm-link-color: #1a90ff;
-    --ifm-tabs-color-active-border: #1a90ff;
-    --ifm-tabs-color-active: #1a90ff;
-    --ifm-color-primary: #1a90ff;
+    --ifm-link-color: #8080ff;
+    --ifm-tabs-color-active-border: #8080ff;
+    --ifm-tabs-color-active: #8080ff;
+    --ifm-color-primary: #8080ff;
     --ifm-menu-color: #999 !important;
     --ifm-toc-link-color: #999 !important;
 
-    --docs-color-primary-100: #1a90ff;
+    --docs-color-primary-100: #8080ff;
 
     --docs-color-text: #ffffff;
     --docs-color-text-100: #b4b4b4;
@@ -107,41 +108,6 @@
     --docsearch-key-gradient: #696969 !important;
     --docsearch-searchbox-background: #2a2a2a !important;
   }
-}
-
-@layer utilities {
-  /* A dyte themed box shadow */
-  .dyte-shadow {
-    box-shadow: 4px 2px 16px 4px rgb(33 96 253 / 8%),
-      0 8px 24px rgb(33 96 253 / 8%);
-  }
-  /*
-  @apply after:dyte-shadow flex items-center content-none after:ml-2 after:inline-block 
-      after:h-1 after:w-1 after:animate-pulse after:rounded-full after:bg-primary;
-      */
-  .dot-after {
-    @apply flex items-center;
-  }
-  .dot-after::after {
-    content: '';
-    @apply dyte-shadow ml-2 inline-block h-1 w-1 animate-pulse rounded-full bg-primary;
-  }
-}
-
-@layer components {
-  .dyte-image-showcase {
-    @apply my-12 w-full rounded-md bg-gradient-to-r from-blue-700 to-blue-500 px-4 py-6 md:py-14;
-  }
-  .dyte-image-showcase > * {
-    @apply mx-auto block rounded-md drop-shadow-md;
-  }
-  .dyte-video-showcase {
-    @apply my-8 mx-auto block max-w-full rounded-md drop-shadow-md md:max-w-[80%];
-  }
-}
-
-.dyte-video-showcase.mobile {
-  @apply max-w-[240px] rounded-[1.5rem] drop-shadow-lg md:max-w-xs md:rounded-[2rem];
 }
 
 /* Docusaurus styles */
@@ -199,6 +165,15 @@ div[class^='sidebar_']
 
 .menu__link--sublist::after {
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
+}
+
+.navbar__logo {
+  margin-top: -8px;
+}
+
+.navbar {
+  background-color: var(--docs-color-background);
+  border-bottom: 1px solid var(--docs-color-border);
 }
 
 .navbar-sidebar__back {
@@ -558,4 +533,16 @@ b {
 .DocSearch-Commands ul {
   display: flex;
   justify-content: space-between;
+}
+
+.DocSearch-Modal {
+  background: var(--docs-color-background) !important;
+}
+
+.DocSearch-Footer {
+  background: var(--docs-color-background) !important;
+}
+
+.DocSearch-Commands-Key {
+  background: none !important;
 }

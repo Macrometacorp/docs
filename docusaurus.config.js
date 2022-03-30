@@ -75,14 +75,14 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://github.com/macrometacorp/',
-            label: 'GitHub',
-            position: 'right',
-          },
-          {
             position: 'left',
             label: 'API',
             href: '/api'
+          },
+          {
+            href: 'https://github.com/macrometacorp/',
+            label: 'GitHub',
+            position: 'left',
           },
         ],
       },
