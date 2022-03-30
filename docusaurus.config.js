@@ -75,7 +75,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://github.com/macrometacorp/documentation',
+            href: 'https://github.com/macrometacorp/',
             label: 'GitHub',
             position: 'right',
           },
@@ -116,7 +116,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/macrometacorp/documentation',
+                href: 'https://github.com/macrometacorp/',
               },
             ],
           },
