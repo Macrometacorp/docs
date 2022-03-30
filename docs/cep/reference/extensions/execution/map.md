@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Map
 
 This extension provides capability to generate and manipulate map (key-value) data objects.
@@ -137,9 +141,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    insert into OutputStream
     select map:collect(symbol, price) as stockDetails
-    from StockStream#window.lengthBatch(10);
+    from StockStream#window.lengthBatch(10)
+    insert into OutputStream;
 
 For the window expiry of 10 events, the collect() function will collect
 attributes of `key` and `value` to a single map and return as
@@ -162,9 +166,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    insert into OutputStream
     select map:merge(map) as stockDetails
-    from StockStream#window.lengthBatch(2);
+    from StockStream#window.lengthBatch(2)    
+    insert into OutputStream;
 
 For the window expiry of 2 events, the merge() function will collect
 attributes of `map` and merge them to a single map, returned as
@@ -727,15 +731,15 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    CREATE STREAM StockStream (symbol string, price float);
+    define stream StockStream(symbol string, price float);
 
-    insert into TempStream
     select map:collect(symbol, price) as symbolPriceMap
-    from StockStream#window.lengthBatch(2);
+    from StockStream#window.lengthBatch(2)
+    insert into TempStream;
 
-    insert into SymbolStream
     select key, value
-    from TempStream#map:tokenize(customMap);
+    from TempStream#map:tokenize(customMap)
+    insert into SymbolStream;
 
 Based on the length batch window, `symbolPriceMap` will collect two
 events, and the map will then again tokenized to give 2 events with key

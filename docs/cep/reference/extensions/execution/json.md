@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # JSON
 
 This extension provides capability to retrieve, insert, and modify JSON elements.
@@ -102,9 +106,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    insert into OutputStream
     select json:group("json") as groupedJSONArray
-    from InputStream#window.length(5);
+    from InputStream#window.length(5)
+    input OutputStream;
 
 When we input events having values for the `json` as
 `{"date":"2013-11-19","time":"10:30"}` and
@@ -114,9 +118,9 @@ to the `OutputStream`.
 
 EXAMPLE 2
 
-    insert into OutputStream
     select json:group("json", true) as groupedJSONArray
-    from InputStream#window.length(5);
+    from InputStream#window.length(5)
+    input OutputStream;
 
 When we input events having values for the `json` as
 `{"date":"2013-11-19","time":"10:30"}` and
@@ -125,9 +129,9 @@ When we input events having values for the `json` as
 
 EXAMPLE 3
 
-    insert into OutputStream
     select json:group("json", "result") as groupedJSONArray
-    from InputStream#window.length(5);
+    from InputStream#window.length(5)
+    input OutputStream;
 
 When we input events having values for the `json` as
 `{"date":"2013-11-19","time":"10:30"}` and
@@ -137,9 +141,9 @@ to the `OutputStream`.
 
 EXAMPLE 4
 
-    insert into OutputStream
     select json:group("json", "result", true) as groupedJSONArray
-    from InputStream#window.length(5);
+    from InputStream#window.length(5)
+    input OutputStream;
 
 When we input events having values for the `json` as
 `{"date":"2013-11-19","time":"10:30"}` and
@@ -170,9 +174,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    insert into OutputStream
     select json:groupAsObject("json") as groupedJSONArray
-    from InputStream#window.length(5);
+    from InputStream#window.length(5)
+    input OutputStream;
 
 When we input events having values for the `json` as
 `{"date":"2013-11-19","time":"10:30"}` and
@@ -182,9 +186,9 @@ to the `OutputStream`.
 
 EXAMPLE 2
 
-    insert into OutputStream
     select json:groupAsObject("json", true) as groupedJSONArray
-    from InputStream#window.length(5);
+    from InputStream#window.length(5)
+    input OutputStream;
 
 When we input events having values for the `json` as
 `{"date":"2013-11-19","time":"10:30"}` and
@@ -193,9 +197,9 @@ When we input events having values for the `json` as
 
 EXAMPLE 3
 
-    insert into OutputStream
     select json:groupAsObject("json", "result") as groupedJSONArray
-    from InputStream#window.length(5);
+    from InputStream#window.length(5)
+    input OutputStream;
 
 When we input events having values for the `json` as
 `{"date":"2013-11-19","time":"10:30"}` and
@@ -205,9 +209,9 @@ to the `OutputStream`.
 
 EXAMPLE 4
 
-    insert into OutputStream
     select json:groupAsObject("json", "result", true) as groupedJSONArray
-    from InputStream#window.length(5);
+    from InputStream#window.length(5)
+    input OutputStream;
 
 When we input events having values for the `json` as
 `{"date":"2013-11-19","time":"10:30"}` and
@@ -653,12 +657,12 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    CREATE STREAM InputStream (json string, path string);
+    define stream InputStream (json string, path string);
 
     @info(name = 'query1')
-    insert into OutputStream
     select path, jsonElement
-    from InputStream#json:tokenizeAsObject(json, path);
+    from InputStream#json:tokenizeAsObject(json, path)
+    insert into OutputStream;
 
 If the input `json` is
 `{name:'John', enrolledSubjects:['Mathematics', 'Physics']}`, and the
@@ -671,12 +675,12 @@ the selected JSON array, it generates it generates events as
 
 EXAMPLE 2
 
-    CREATE STREAM InputStream (json string, path string);
+    define stream InputStream (json string, path string);
 
     @info(name = 'query1')
-    insert into OutputStream
     select path, jsonElement
-    from InputStream#json:tokenizeAsObject(json, path, true);
+    from InputStream#json:tokenizeAsObject(json, path, true)
+    insert into OutputStream;
 
 If the input `json` is `{name:'John', age:25}`,and the `path` is
 passed as `$.salary` then the system will produce `('$.salary', null)`,
@@ -709,12 +713,12 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    CREATE STREAM InputStream (json string, path string);
+    define stream InputStream (json string, path string);
 
     @info(name = 'query1')
-    insert into OutputStream
     select path, jsonElement    
-    from InputStream#json:tokenizeAsObject(json, path);
+    from InputStream#json:tokenizeAsObject(json, path)
+    insert into OutputStream;
 
 If the input `json` is
 `{name:'John', enrolledSubjects:['Mathematics', 'Physics']}`, and the
@@ -727,12 +731,12 @@ the selected JSON array, it generates it generates events as
 
 EXAMPLE 2
 
-    CREATE STREAM InputStream (json string, path string);
+    define stream InputStream (json string, path string);
 
     @info(name = 'query1')
-    insert into OutputStream
     select path, jsonElement    
-    from InputStream#json:tokenizeAsObject(json, path, true);
+    from InputStream#json:tokenizeAsObject(json, path, true)
+    insert into OutputStream;
 
 If the input `json` is `{name:'John', age:25}`,and the `path` is
 passed as `$.salary` then the system will produce `('$.salary', null)`,

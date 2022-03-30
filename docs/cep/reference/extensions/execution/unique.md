@@ -1,3 +1,7 @@
+---
+sidebar_position: 9
+---
+
 # Unique
 
 This extension retains and processes unique events based on the given parameters.
@@ -118,11 +122,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM TemperatureStream (sensorId string, temperature double);
-
-    insert into UniqueTemperatureStream
+    define stream TemperatureStream (sensorId string, temperature double)
     select *
-    from TemperatureStream#unique:deduplicate(sensorId, 30 sec);
+    from TemperatureStream#unique:deduplicate(sensorId, 30 sec)
+    insert into UniqueTemperatureStream;
 
 Query that removes duplicate events of `TemperatureStream` stream based
 on `sensorId` attribute when they arrive within 30 seconds.
@@ -148,11 +151,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM LoginEvents (timestamp long, ip string);
+    define stream LoginEvents (timestamp long, ip string);
 
-    insert events into UniqueIps
     select count(ip) as ipCount
-    from LoginEvents#window.unique:ever(ip);
+    from LoginEvents#window.unique:ever(ip)
+    insert events into UniqueIps;
 
 Query collects all unique events based on the `ip` attribute by
 retaining the latest unique events from the `LoginEvents` stream. Then
@@ -161,11 +164,11 @@ the query counts the unique `ip`s arrived so far and outputs the
 
 EXAMPLE 2
 
-    CREATE STREAM DriverChangeStream (trainID string, driver string);
+    define stream DriverChangeStream (trainID string, driver string);
     
-    insert expired events into PreviousDriverChangeStream
     select trainID, driver
-    from DriverChangeStream#window.unique:ever(trainID);
+    from DriverChangeStream#window.unique:ever(trainID)
+    insert expired events into PreviousDriverChangeStream;
 
 Query collects all unique events based on the `trainID` attribute by
 retaining the latest unique events from the `DriverChangeStream` stream.
@@ -174,13 +177,13 @@ expired events are emitted via `PreviousDriverChangeStream` stream.
 
 EXAMPLE 3
 
-    CREATE STREAM StockStream (symbol string, price float);
-    CREATE STREAM PriceRequestStream(symbol string);
+    define stream StockStream (symbol string, price float);
+    define stream PriceRequestStream(symbol string);
 
-    insert events into PriceResponseStream
-    select s.symbol as symbol, s.price as price
     from StockStream#window.unique:ever(symbol) as s join PriceRequestStream as p
-    on s.symbol == p.symbol;
+    on s.symbol == p.symbol
+    select s.symbol as symbol, s.price as price
+    insert events into PriceResponseStream;
 
 Query stores the last unique event for each `symbol` attribute of
 `StockStream` stream, and joins them with events arriving on the
@@ -219,11 +222,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM LoginEvents (timestamp long, ip string);
+    define stream LoginEvents (timestamp long, ip string);
 
-    insert into UniqueIps
     select timestamp, ip, count() as total
-    from LoginEvents#window.unique:externalTimeBatch(ip, timestamp, 1 sec, 0, 2 sec);
+    from LoginEvents#window.unique:externalTimeBatch(ip, timestamp, 1 sec, 0, 2 sec)
+    insert into UniqueIps ;
 
 In this query, the window holds the latest unique events that arrive
 from the `LoginEvent` stream during each second. The latest events are
@@ -254,10 +257,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM LoginEvents (timeStamp long, ip string);
+    define stream LoginEvents (timeStamp long, ip string);
 
-    insert into UniqueIps
-    from LoginEvents#window.unique:first(ip);
+    from LoginEvents#window.unique:first(ip)
+    insert into UniqueIps ;
 
 This returns the first set of unique items that arrive from the
 `LoginEvents` stream, and returns them to the `UniqueIps` stream.
@@ -286,11 +289,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE WINDOW CseEventWindow (symbol string, price float, volume int)
+    define window CseEventWindow (symbol string, price float, volume int)
 
-    insert all events into OutputStream
     select symbol, price, volume
-    from CseEventStream#window.unique:firstLengthBatch(symbol, 10);
+    from CseEventStream#window.unique:firstLengthBatch(symbol, 10)
+    insert all events into OutputStream ;
 
 The window in this configuration holds the first unique events from the
 `CseEventStream` stream every second, and outputs them all into the
@@ -320,11 +323,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+    define stream CseEventStream (symbol string, price float, volume int)
 
-    insert all events into OutputStream
     select symbol, price, volume
-    from CseEventStream#window.unique:firstTimeBatch(symbol,1 sec);
+    from CseEventStream#window.unique:firstTimeBatch(symbol,1 sec)
+    insert all events into OutputStream ;
 
 This holds the first unique events that arrive from the
 `cseEventStream` input stream during each second, based on the
@@ -351,11 +354,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+    define stream CseEventStream (symbol string, price float, volume int)
 
-    insert all events into OutputStream
     select symbol, price, volume
-    from CseEventStream#window.unique:length(symbol,10);
+    from CseEventStream#window.unique:length(symbol,10)
+    insert all events into OutputStream;
 
 In this configuration, the window holds the latest 10 unique events. The
 latest events are selected based on the symbol attribute. If the
@@ -388,11 +391,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE WINDOW CseEventWindow (symbol string, price float, volume int)
+    define window CseEventWindow (symbol string, price float, volume int)
 
-    insert expired events into OutputStream
     select symbol, price, volume
-    from CseEventStream#window.unique:lengthBatch(symbol, 10);
+    from CseEventStream#window.unique:lengthBatch(symbol, 10)
+    insert expired events into OutputStream ;
 
 In this query, the window at any give time holds the last 10 unique
 events from the `CseEventStream` stream. Each of the 10 events within
@@ -426,11 +429,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+    define stream CseEventStream (symbol string, price float, volume int)
 
-    insert expired events into OutputStream
     select symbol, price, volume
-    from CseEventStream#window.unique:time(symbol, 1 sec);
+    from CseEventStream#window.unique:time(symbol, 1 sec)
+    insert expired events into OutputStream ;
 
 In this query, the window holds the latest unique events that arrived
 within the last second from the `CseEventStream`, and returns the
@@ -463,11 +466,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+    define stream CseEventStream (symbol string, price float, volume int)
 
-    insert all events into OutputStream
     select symbol, price, volume
-    from CseEventStream#window.unique:timeBatch(symbol, 1 sec);
+    from CseEventStream#window.unique:timeBatch(symbol, 1 sec)
+    insert all events into OutputStream ;
 
 This window holds the latest unique events that arrive from the
 `CseEventStream` at a given time, and returns all the events to the
@@ -499,11 +502,11 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM CseEventStream (symbol string, price float, volume int)
+    define stream CseEventStream (symbol string, price float, volume int)
 
-    insert all events into OutputStream
     select symbol, price, volume
-    from CseEventStream#window.unique:timeLengthBatch(symbol, 1 sec, 20);
+    from CseEventStream#window.unique:timeLengthBatch(symbol, 1 sec, 20)
+    insert all events into OutputStream;
 
 This window holds the latest unique events that arrive from the
 `CseEventStream` at a given time, and returns all the events to the

@@ -1,3 +1,7 @@
+---
+sidebar_position: 10
+---
+
 # Streaming ML
 
 This extension provides streaming machine learning (clustering, classification and regression) on event streams.
@@ -74,7 +78,7 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
+    define stream StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
 
     from StreamA#streamingml:bayesianRegression('model1', attribute_0, attribute_1, attribute_2, attribute_3)
     insert all events into OutputStream;
@@ -119,11 +123,11 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    CREATE STREAM InputStream (x double, y double);
+    define stream InputStream (x double, y double);
     @info(name = 'query1')
-    insert into OutputStream
     select closestCentroidCoordinate1, closestCentroidCoordinate2, x, y    
-    from InputStream#streamingml:kMeansIncremental(2, 0.2, x, y);
+    from InputStream#streamingml:kMeansIncremental(2, 0.2, x, y)
+    insert into OutputStream;
 
 This is an example where user provides the decay rate. First two events
 will be used to initiate the model since the required number of clusters
@@ -131,11 +135,11 @@ is specified as 2. After the first event itself prediction would start.
 
 EXAMPLE 2
 
-    CREATE STREAM InputStream (x double, y double);
+    define stream InputStream (x double, y double);
     @info(name = 'query1')
-    insert into OutputStream
     select closestCentroidCoordinate1, closestCentroidCoordinate2, x, y    
-    from InputStream#streamingml:kMeansIncremental(2, x, y);
+    from InputStream#streamingml:kMeansIncremental(2, x, y)
+    insert into OutputStream;
 
 This is an example where user doesnt give the decay rate so the default
 value will be used
@@ -179,11 +183,11 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    CREATE STREAM InputStream (x double, y double);
+    define stream InputStream (x double, y double);
     @info(name = 'query1')
-    insert into OutputStream
     select closestCentroidCoordinate1, closestCentroidCoordinate2, x, y    
-    from InputStream#streamingml:kMeansMiniBatch(2, 0.2, 10, 20, x, y);
+    from InputStream#streamingml:kMeansMiniBatch(2, 0.2, 10, 20, x, y)
+    insert into OutputStream;
 
 This is an example where user gives all three hyper parameters. first 20
 events will be consumed to build the model and from the 21st event
@@ -191,11 +195,11 @@ prediction would start
 
 EXAMPLE 2
 
-    CREATE STREAM InputStream (x double, y double);
+    define stream InputStream (x double, y double);
     @info(name = 'query1')
-    insert into OutputStream
     select closestCentroidCoordinate1, closestCentroidCoordinate2, x, y    
-    from InputStream#streamingml:kMeansMiniBatch(2, x, y);
+    from InputStream#streamingml:kMeansMiniBatch(2, x, y)
+    insert into OutputStream;
 
 This is an example where user has not specified hyper params. So default
 values will be used.
@@ -230,10 +234,10 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
+    define stream StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
 
-    insert all events into OutputStream
-    from StreamA#streamingml:perceptronClassifier('model1',0.0,0.5, attribute_0, attribute_1, attribute_2, attribute_3);
+    from StreamA#streamingml:perceptronClassifier('model1',0.0,0.5, attribute_0, attribute_1, attribute_2, attribute_3)
+    insert all events into OutputStream;
 
 This query uses a Perceptron model named `model1` with a `0.0` bias and
 a `0.5` threshold learning rate to predict the label of the feature
@@ -247,10 +251,10 @@ confidenceLevel double).
 
 EXAMPLE 2
 
-    CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
+    define stream StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
 
-    insert all events into OutputStream
-    from StreamA#streamingml:perceptronClassifier('model1',0.0, attribute_0, attribute_1, attribute_2, attribute_3);
+    from StreamA#streamingml:perceptronClassifier('model1',0.0, attribute_0, attribute_1, attribute_2, attribute_3)
+    insert all events into OutputStream;
 
 This query uses a Perceptron model named `model1` with a `0.0` bias to
 predict the label of the feature vector represented by `attribute_0`,
@@ -263,10 +267,10 @@ prediction bool, confidenceLevel double).
 
 EXAMPLE 3
 
-    CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
+    define stream StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
 
-    insert all events into OutputStream
-    from StreamA#streamingml:perceptronClassifier(`model1`, attribute_0, attribute_1, attribute_2);
+    from StreamA#streamingml:perceptronClassifier(`model1`, attribute_0, attribute_1, attribute_2)
+    insert all events into OutputStream;
 
 This query uses a Perceptron model named `model1` with a default 0.0
 bias to predict the label of the feature vector represented by
@@ -311,10 +315,10 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double );
+    define stream StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double );
 
-    insert all events into outputStream
-    from StreamA#streamingml:updateBayesianRegression('model1', attribute_4, attribute_0, attribute_1, attribute_2, attribute_3);
+    from StreamA#streamingml:updateBayesianRegression('model1', attribute_4, attribute_0, attribute_1, attribute_2, attribute_3)
+    insert all events into outputStream;
 
 This query builds/updates a Bayesian Linear regression model named
 `model1` using `attribute_0`, `attribute_1`, `attribute_2`, and
@@ -323,10 +327,10 @@ weights of the model are emitted to the OutputStream stream.
 
 EXAMPLE 2
 
-    CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double );
+    define stream StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double );
 
-    insert all events into outputStream
-    from StreamA#streamingml:updateBayesianRegression('model1', attribute_4, 2, 'NADAM', 0.01, attribute_0, attribute_1, attribute_2, attribute_3);
+    from StreamA#streamingml:updateBayesianRegression('model1', attribute_4, 2, 'NADAM', 0.01, attribute_0, attribute_1, attribute_2, attribute_3)
+    insert all events into outputStream;
 
 This query builds/updates a Bayesian Linear regression model named
 `model1` with a `0.01` learning rate using `attribute_0`, `attribute_1`,
@@ -358,14 +362,14 @@ Extra Return Attributes
 
 | Name          | Description                                  | Possible Types |
 |---------------|----------------------------------------------|----------------|
-| featureWeight | Weight of the <feature.name> of the model. | DOUBLE         |
+| featureWeight | Weight of the `feature.name` of the model. | DOUBLE         |
 
 EXAMPLE 1
 
-    CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 string );
+    define stream StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 string );
 
-    insert all events into outputStream
-    from StreamA#streamingml:updatePerceptronClassifier('model1', attribute_4, 0.01, attribute_0, attribute_1, attribute_2, attribute_3);
+    from StreamA#streamingml:updatePerceptronClassifier('model1', attribute_4, 0.01, attribute_0, attribute_1, attribute_2, attribute_3)
+    insert all events into outputStream;
 
 This query builds/updates a Perceptron model named `model1` with a
 `0.01` learning rate using `attribute_0`, `attribute_1`, `attribute_2`,
@@ -374,10 +378,10 @@ weights of the model are emitted to the OutputStream stream.
 
 EXAMPLE 2
 
-    CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double,attribute_3 double, attribute_4 string );
+    define stream StreamA (attribute_0 double, attribute_1 double, attribute_2 double,attribute_3 double, attribute_4 string );
 
-    insert all events into outputStream
-    from StreamA#streamingml:updatePerceptronClassifier('model1', attribute_4, attribute_0, attribute_1, attribute_2, attribute_3);
+     from StreamA#streamingml:updatePerceptronClassifier('model1', attribute_4, attribute_0, attribute_1, attribute_2, attribute_3)
+    insert all events into outputStream;
 
 This query builds/updates a Perceptron model named `model1` with a
 default `0.1` learning rate using `attribute_0`, `attribute_1`,

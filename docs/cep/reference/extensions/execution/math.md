@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Math
 
 This extension provides useful mathematical functions such as power, round, random, cos, log, etc.
@@ -244,11 +248,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (sensorId int, temperature double);
-
-    insert into OutMediationStream
+    define stream InValueStream (sensorId int, temperature double);
     from InValueStream
-    select math:percentile(temperature, 97.0) as percentile;
+    select math:percentile(temperature, 97.0) as percentile
+    insert into OutMediationStream;
 
 This function returns the percentile value based on the argument given.
 For example, `math:percentile(temperature, 97.0)` returns the 97th
@@ -271,11 +274,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:abs(inValue) as absValue
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 Irrespective of whether the `inValue` in the input stream holds a
 value of abs(3) or abs(-3),the function returns 3 since the absolute
@@ -301,11 +303,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:acos(inValue) as acosValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream is given, the function calculates
 the arc-cosine value of it and returns the arc-cosine value to the
@@ -331,11 +332,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:asin(inValue) as asinValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream is given, the function calculates
 the arc-sin value of it and returns the arc-sin value to the output
@@ -364,11 +364,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue1 double, inValue2 double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue1 double, inValue2 double);
     select math:atan(inValue1, inValue2) as convertedValue
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue1` in the input stream is given, the function
 calculates the arc-tangent value of it and returns the arc-tangent value
@@ -397,11 +396,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue long);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue long);
     select math:bin(inValue) as binValue
-    from InValueStream;
+    from InValueStream    
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream is given, the function converts
 it into an unsigned integer in base 2 and directs the output to the
@@ -424,11 +422,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:cbrt(inValue) as cbrtValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` is given, the function calculates the cube-root value
 for the same and directs the output to the output stream,
@@ -453,11 +450,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:ceil(inValue) as ceilingValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 This function calculates the ceiling value of the given `inValue` and
 directs the result to `OutMediationStream` output stream. For example,
@@ -482,11 +478,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue string,fromBase int,toBase int);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue string,fromBase int,toBase int);
     select math:conv(inValue,fromBase,toBase) as convertedValue
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream is given, and the base in which
 it currently resides in and the base to which it should be converted to
@@ -513,11 +508,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue1 double, inValue2 double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue1 double, inValue2 double);
     select math:copySign(inValue1,inValue2) as copysignValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If two values are provided as `inValue1` and `inValue2`, the
 function copies the magnitude and sign of the second argument into the
@@ -541,11 +535,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:cos(inValue) as cosValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` is given, the function calculates the cosine value
 for the same and directs the output to the output stream,
@@ -568,11 +561,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:cosh(inValue) as cosValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` is given, the function calculates the hyperbolic
 cosine value for the same and directs the output to the output stream,
@@ -590,11 +582,10 @@ Syntax
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:e() as eValue
-    from InValueStream;
+    from InValueStream    
+    insert into OutMediationStream;
 
 This function returns the constant, 2.7182818284590452354 which is the
 closest double value to e and directs the output to
@@ -617,11 +608,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:exp(inValue) as expValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the inputstream holds a value, this function
 calculates the corresponding Euler's number `e` and directs it to the
@@ -646,11 +636,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:floor(inValue) as floorValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 This function calculates the floor value of the given `inValue` input
 and directs the output to the `OutMediationStream` output stream. For
@@ -674,11 +663,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:getExponent(inValue) as expValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 This function calculates the unbiased exponent of a given input,
 `inValue` and directs the result to the `OutMediationStream` output
@@ -701,11 +689,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue int);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue int);
     select math:hex(inValue) as hexString    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream is provided, the function
 converts this into its corresponding hexadecimal format and directs the
@@ -730,11 +717,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue1 double,inValue2 int);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue1 double,inValue2 int);
     select math:isInfinite(inValue1) as isInfinite    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the value given in the `inValue` in the input stream is of
 infinitely large magnitude, the function returns the value, `true` and
@@ -759,11 +745,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue1 double,inValue2 int);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue1 double,inValue2 int);
     select math:isNan(inValue1) as isNaN    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue1` in the input stream has a value that is undefined,
 then the function considers it as an `NaN` value and directs `True`
@@ -786,11 +771,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:ln(inValue) as lnValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream is given, the function calculates
 its natural logarithm (base e) and directs the results to the output
@@ -815,11 +799,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (number double, base double);
-
-    insert into OutMediationStream
+    define stream InValueStream (number double, base double);
     select math:log(number, base) as logValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the number and the base to which it has to be converted into is given
 in the input stream, the function calculates the number to the base
@@ -842,11 +825,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:log10(inValue) as lnValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream is given, the function calculates
 the base 10 logarithm of the same and directs the result to the output
@@ -869,11 +851,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:log2(inValue) as lnValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream is given, the function calculates
 the base 2 logarithm of the same and returns the value to the output
@@ -897,11 +878,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue1 double,inValue2 int);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue1 double,inValue2 int);
     select math:max(inValue1,inValue2) as maxValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If two input values `inValue1`, and `inValue2` are given, the function
 compares them and directs the larger value to the output stream,
@@ -924,11 +904,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue1 double,inValue2 int);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue1 double,inValue2 int);
     select math:min(inValue1,inValue2) as minValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If two input values, `inValue1` and `inValue2` are given, the
 function compares them and directs the smaller value of the two to the
@@ -951,11 +930,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue long);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue long);
     select math:oct(inValue) as octValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream is given, this function
 calculates the octal value corresponding to the same and directs it to
@@ -978,11 +956,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue string);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue string);
     select math:parseDouble(inValue) as output    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inValue` in the input stream holds a value, this function
 converts it into the corresponding double value and directs it to the
@@ -1005,11 +982,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue string);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue string);
     select math:parseFloat(inValue) as output    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 The function converts the input value given in `inValue`,into its
 corresponding float value and directs the result into the output stream,
@@ -1031,11 +1007,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue string);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue string);
     select math:parseInt(inValue) as output    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 The function converts the `inValue` into its corresponding integer
 value and directs the output to the output stream, OutMediationStream.
@@ -1057,11 +1032,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue string);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue string);
     select math:parseLong(inValue) as output    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 The function converts the `inValue` to its corresponding long value
 and directs the result to the output stream, OutMediationStream. For
@@ -1079,11 +1053,10 @@ Syntax
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:pi() as piValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 pi() always returns 3.141592653589793.
 
@@ -1104,11 +1077,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue1 double, inValue2 double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue1 double, inValue2 double);
     select math:power(inValue1,inValue2) as powerValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 This function raises the `inValue1` to the power of `inValue2` and
 directs the output to the output stream, `OutMediationStream`. For
@@ -1134,11 +1106,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (symbol string, price long, volume long);
-
-    insert into OutMediationStream
+    define stream InValueStream (symbol string, price long, volume long);
     select math:oct(inValue) as octValue    
-    from InValueStream select symbol, math:rand() as randNumber;
+    from InValueStream select symbol, math:rand() as randNumber
+    insert into OutMediationStream;
 
 In the example given above, a random double value between 0 and 1 will
 be generated using math:rand().
@@ -1160,11 +1131,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:round(inValue) as roundValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 The function rounds off `inValue1` to the closest int/long value and
 directs the output to the output stream, `OutMediationStream`. For
@@ -1188,11 +1158,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:signum(inValue) as sign    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 The function evaluates the `inValue` given to be positive, negative or
 zero and directs the result to the output stream,
@@ -1215,11 +1184,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:sin(inValue) as sinValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 The function calculates the sine value of the given `inValue` and
 directs the output to the output stream, `OutMediationStream`. For
@@ -1242,11 +1210,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:sinh(inValue) as sinhValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 This function calculates the hyperbolic sine value of `inValue` and
 directs the output to the output stream, `OutMediationStream`. For
@@ -1269,11 +1236,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:sqrt(inValue) as sqrtValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 The function calculates the square-root value of the `inValue` and
 directs the output to the output stream, `OutMediationStream`. For
@@ -1296,11 +1262,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:tan(inValue) as tanValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 This function calculates the tan value of the `inValue` given and
 directs the output to the output stream, `OutMediationStream`. For
@@ -1323,11 +1288,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:tanh(inValue) as tanhValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 If the `inVaue` in the input stream is given, this function calculates
 the hyperbolic tangent value of the same and directs the output to
@@ -1351,11 +1315,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:toDegrees(inValue) as degreesValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 The function converts the `inValue` in the input stream from radians
 to degrees and directs the output to `OutMediationStream` output
@@ -1378,11 +1341,10 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE STREAM InValueStream (inValue double);
-
-    insert into OutMediationStream
+    define stream InValueStream (inValue double);
     select math:toRadians(inValue) as radiansValue    
-    from InValueStream;
+    from InValueStream
+    insert into OutMediationStream;
 
 This function converts the input, from degrees to radians and directs
 the result to `OutMediationStream` output stream. For example,

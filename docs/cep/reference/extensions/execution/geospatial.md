@@ -16,7 +16,7 @@ This extension provides geo data related functionality such as checking whether 
 * **[contains (Function)](#contains)**
 
     This function can be call using two sets of parameters.
-    Returns true if the location specified in terms of longitude and latitude is within the geo.json.geometry.fence.
+    This will returns true if the location specified in terms of longitude and latitude is within the geo.json.geometry.fence.
     Or returns true if the geo.json.geometry is within the geo.json.geometry.fence.Returns false otherwise 
     
 * **[withinDistance (Function)](#withinDistance)**
@@ -52,7 +52,7 @@ This extension provides geo data related functionality such as checking whether 
     
 * **[closestPoints (Stream Function)](#closestPoints)**
 
-    Returns the closest geo point to the geo.json.geometry.fence 
+    This will return the closest geo point to the geo.json.geometry.fence 
     
 * **[locationApproximate (Stream Function)](#locationApproximate)**
 
@@ -60,16 +60,16 @@ This extension provides geo data related functionality such as checking whether 
 
 * **[crosses (Stream Processor)](#crosses)**
 
-    Returns true when the the specified object of which the location is specified in terms of longitude and latitude crosses the geographic location specified in         geo.json.geometry.fence. Returns false when the object crosses out of the location specified in geo.json.geometry.fence
+    This will return true when the the specified object of which the location is specified in terms of longitude and latitude crosses the geographic location specified in         geo.json.geometry.fence. Returns false when the object crosses out of the location specified in geo.json.geometry.fence
  Or Returns true when the object (i.e. geo.json.geometry) crosses the specified geographic location (i.e. geo.json.geometry.fence). Returns false when the object crosses out of  geo.json.geometry.fence. 
  
  * **[proximity  (Stream Processor)](#proximity)**
 
-   Returns true when two objects (specified in terms of longitude and latitude) are within the specified radius to another object. Returns false when the specified object moves out of the specified radius. The proximityWith optional attribute indicates the ID of the object that the object specified is in close proximity with. proximityID is a unique ID for the two objects in close proximity. 
+   This will return true when two objects (specified in terms of longitude and latitude) are within the specified radius to another object. Returns false when the specified object moves out of the specified radius. The proximityWith optional attribute indicates the ID of the object that the object specified is in close proximity with. proximityID is a unique ID for the two objects in close proximity. 
    
  * **[stationary (Stream Processor)](#stationary)**
 
-   Returns true when the object (defined in terms of longitude and latitude) becomes stationary within the specified radius. Returns false when the object moves out of the specified radius.
+   This will return true when the object (defined in terms of longitude and latitude) becomes stationary within the specified radius. Returns false when the object moves out of the specified radius.
    
    
    
@@ -94,7 +94,7 @@ EXAMPLE 1
 
     geo:distance(10.45, 77.38, 83.98, 59.93)
 
-Returns the distance in meters.
+It will return the distance in meters.
 
 
 ## intersects
@@ -121,19 +121,19 @@ QUERY PARAMETERS
 EXAMPLE 1
 
     geo:intersects( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]} )
-Returns true because geo.json.geometry intersects geo.json.geometry.fence.
+It will return true because geo.json.geometry intersects geo.json.geometry.fence.
 
 EXAMPLE 2
 
     geo:intersects(0.5. 0.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
     
-Returns true because location pointed by longitude and latitude intersects geo.json.geometry.fence.
+It will return true because location pointed by longitude and latitude intersects geo.json.geometry.fence.
 
        
 ## contains
 
 This function can be call using two sets of parameters.
-Returns true if the location specified in terms of longitude and latitude is within the geo.json.geometry.fence.
+This will returns true if the location specified in terms of longitude and latitude is within the geo.json.geometry.fence.
 Or returns true if the geo.json.geometry is within the geo.json.geometry.fence.Returns false otherwise 
 
 Syntax
@@ -155,13 +155,13 @@ EXAMPLE 1
 
     geo:contains(0.5, 0.5, {'type':'Polygon','coordinates':[[[0,0],[0,2],[1,2],[1,0],[0,0]]]} )
 
-Returns true since given longitude and latitude values are within the geo.json.geometry.fence.
+This will return true since given longitude and latitude values are within the geo.json.geometry.fence.
 
 EXAMPLE 2
 
     geo:contains( {'type': 'Circle', 'radius': 110575, 'coordinates':[1.5, 1.5]} , {'type':'Polygon','coordinates':[[[0,0],[0,4],[3,4],[3,0],[0,0]]]} )
     
-Returns true since geo.json.geometry is within the geo.json.geometry.fence.
+This will return true since geo.json.geometry is within the geo.json.geometry.fence.
        
 
 ## withinDistance
@@ -191,13 +191,13 @@ EXAMPLE 1
     geo:withinDistance( 0.5 , 0.5, {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]}, 110574.61087757687)
 
 
-Returns true because the location specified in terms of longitude and latitude is within the distance of the geo.json.geometry.fence.
+This will return true because the location specified in terms of longitude and latitude is within the distance of the geo.json.geometry.fence.
 
 EXAMPLE 2
 
     geo:withinDistance( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]}, 110574.61087757687)
     
-Returns true because geo.json.geometry is within the distance of geo.json.geometry.fence.       
+This will return true because geo.json.geometry is within the distance of geo.json.geometry.fence.       
        
        
 ## disjoint
@@ -224,14 +224,13 @@ QUERY PARAMETERS
 EXAMPLE 1
 
     geo:disjoint( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
-
-Returns true because geo.json.geometry is disjoint from geo.json.geometry.fence.
+It will return true because geo.json.geometry is disjoint from geo.json.geometry.fence.
 
 EXAMPLE 2
 
     geo:disjoint(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
     
-Returns true because location pointed by longitude and latitude is disjoint from geo.json.geometry.fence.
+It will return true because location pointed by longitude and latitude is disjoint from geo.json.geometry.fence.
        
       
 ## touches
@@ -258,13 +257,13 @@ QUERY PARAMETERS
 EXAMPLE 1
 
     geo:touches( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
-Returns false because geo.json.geometry doesn't touches geo.json.geometry.fence.
+It will return false because geo.json.geometry doesn't touches geo.json.geometry.fence.
 
 EXAMPLE 2
 
     geo:touches(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
     
-Returns true because location pointed by longitude and latitude doesn't touches geo.json.geometry.fence.
+It will return true because location pointed by longitude and latitude doesn't touches geo.json.geometry.fence.
        
        
 ## overlaps
@@ -291,13 +290,13 @@ QUERY PARAMETERS
 EXAMPLE 1
 
     geo:overlaps( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
-Returns false because geo.json.geometry doesn't overlaps geo.json.geometry.fence.
+It will return false because geo.json.geometry doesn't overlaps geo.json.geometry.fence.
 
 EXAMPLE 2
 
     geo:overlaps(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
     
-Returns true because location pointed by longitude and latitude doesn't overlaps geo.json.geometry.fence.       
+It will return true because location pointed by longitude and latitude doesn't overlaps geo.json.geometry.fence.       
        
        
 ## equals
@@ -324,18 +323,18 @@ QUERY PARAMETERS
 EXAMPLE 1
 
     geo:equals( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
-Returns false because geo.json.geometry is not equal to geo.json.geometry.fence.
+It will return false because geo.json.geometry is not equal to geo.json.geometry.fence.
 
 EXAMPLE 2
 
     geo:equals(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
     
-Returns true because location pointed by longitude and latitude is not equal to geo.json.geometry.fence.          
+It will return true because location pointed by longitude and latitude is not equal to geo.json.geometry.fence.          
        
        
 ## closestPoints 
 
-Returns the closest geo point to the geo.json.geometry.fence. 
+This will return the closest geo point to the geo.json.geometry.fence. 
 
 Syntax
 
@@ -363,7 +362,7 @@ EXAMPLE 1
 
     geo:closestPoints(0.5,0.5,"{'type':'Polygon','coordinates':[[[0,0],[0,2],[1,2],[1,0],[0,0]]]}")
 
-Returns 0.5, 0.5, 0.5, 0.5.
+This will return 0.5, 0.5, 0.5, 0.5.
        
        
 ## locationApproximate
@@ -393,7 +392,7 @@ EXAMPLE 1
 
     geo:geoLocationApproximate("person1", 6.876657, 79.897648, "ENTER", "uuid1", 20.0d, 1452583935L)
 
-Returns 6.876657000000001 as the approximated location.
+This will return 6.876657000000001 as the approximated location.
        
    
 ## crosses 
@@ -420,7 +419,7 @@ EXAMPLE 1
 
     geo:crosses(km-4354, -0.5, 0.5, {'type':'Polygon','coordinates':[[[0, 0],[2, 0],[2, 1],[0, 1],[0, 0]]]} )
 
-Returns true since the specified location crosses the geo.json.geometry.fence.
+This will return true since the specified location crosses the geo.json.geometry.fence.
   
        
 ## proximity 
@@ -447,7 +446,7 @@ EXAMPLE 1
     geo:proximity(1, 0, 0, 110574.61087757687)
 
 
-Returns true since given longitude and latitude is within the radius
+This will return true since given longitude and latitude is within the radius
        
        
 ## stationary 
@@ -473,4 +472,4 @@ EXAMPLE 1
 
     geo:stationary(km-4354,0,0, 110574.61087757687)
 
-Returns true.
+This will return true.

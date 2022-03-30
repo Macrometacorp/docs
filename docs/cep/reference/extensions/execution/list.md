@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # List
 
 This extension provides capability to generate and manipulate list data objects.
@@ -119,9 +123,9 @@ QUERY PARAMETERS
 
 Examples EXAMPLE 1
 
-    insert into OutputStream
     select list:collect(symbol) as stockSymbols
-    from StockStream#window.lengthBatch(10);
+    from StockStream#window.lengthBatch(10)
+    insert into OutputStream;
 
 For the window expiry of 10 events, the collect() function will collect
 attributes of `symbol` to a single list and return as stockSymbols.
@@ -144,9 +148,9 @@ QUERY PARAMETERS
 
 Examples EXAMPLE 1
     
-    insert into OutputStream
     select list:merge(list) as stockSymbols
-    from StockStream#window.lengthBatch(2);
+    from StockStream#window.lengthBatch(2)
+    insert into OutputStream;
 
 For the window expiry of 2 events, the merge() function will collect
 attributes of `list` and merge them to a single list, returned as
