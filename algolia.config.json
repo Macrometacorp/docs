@@ -1,9 +1,9 @@
 {
     "index_name": "prod_DOCS",
     "start_urls": [
-      "http://localhost:3000/docs"
+      "https://macrometacorp.github.io/docs-new/"
     ],
-    "sitemap_urls": ["http://localhost:3000/sitemap.xml"],
+    "sitemap_urls": ["https://macrometacorp.github.io/docs-new/sitemap.xml"],
     "stop_urls": [],
     "selectors": {
     "lvl0": {
