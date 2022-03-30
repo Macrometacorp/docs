@@ -549,3 +549,13 @@ b {
 .prism-code > code {
   font-size: 14px;
 }
+
+/* Docsearch */
+.DocSearch-Logo {
+  display: none;
+}
+
+.DocSearch-Commands ul {
+  display: flex;
+  justify-content: space-between;
+}
