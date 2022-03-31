@@ -1,0 +1,11 @@
+name,firstname,lastname,email,phone,company,numberOfEmployees,city,street,industry,website,state,country,postalCode,title,leadSource,status,rating
+Idette Yandell,Idette,Yandell,iyandell@rakuten.com,847-895-0670,Rakuten,1000,Tokyo,Agadashi St,Agriculture,www.macrometa.com,Tohoku,Japan,863-2503,Developer III,Web,Open - Not Contacted,Hot
+Simon Mellings,Simon,Mellings,smellings1@devhub.com,713-604-2483,DevHub,1000,Houston,Cromweel Avenue,Apparel,www.hp.com,TX,United States,77228,Computer Systems Analyst III,Web,Closed - Not Converted,Cold
+David Sonschein,David,Sonschein,dsonschein@intel.com,941-451-5432,Intel,1000,Munich,3rd Street,Banking,www.intel.com,Spree,Germany,N5L,Sales Associate,Phone Inquiry,Closed - Converted,Hot
+Freddy Kettlestring,Freddy,Kettlestring,fkettlestring@aws.com,770-583-1839,AWS,1000,Tbilisi,Harrison St,Biotechnology,www.aws.com,GA,United States,31119,Computer Systems Analyst I,Phone Inquiry,Closed - Converted,Warm
+Danella MacNeice,Danella,MacNeice,dmacneice4@Oracle.com,610-523-5679,Oracle,1000,Harisburg,University Ave,Technology,www.oracle.com,PA,United States,19610,Analyst Programmer,Web,Working - Contacted,Cold
+Huntington Brisson,Huntington,Brisson,hbrisson@google.com,281-154-5566,Google,1000,Austin,Tijuana St,Education,www.google.com,TX,United States,77045,Help Desk Technician,Other,Working - Contacted,Hot
+Phyllida Bruhke,Phyllida,Bruhke,pbruhke6@linkedin.com,312-884-9608,Linkedin,1000,Springfield,Amery Lane,Education,www.linkedin.com,IL,United States,60663,Chief Design Engineer,Purchased List,Open - Not Contacted,Hot
+Oren Libbey,Oren,Libbey,olibbey7@meta.com,171-719-7116,Meta,1000,St. John's,Signal Hill Junction,Technology,www.meta.com,NL,Canada,E8M,VP Marketing,Partner Referral,Open - Not Contacted,Cold
+Darcy Kingzett,Darcy,Kingzett,dkingzett8@apple.edu,434-641-5413,Apple,1000,Raleigh,15th Avenue,Technology,www.apple.com,NC,United States,27705,Junior Executive,Phone Inquiry,Closed - Converted,Warm
+Sherwynd Boscher,Sherwynd,Boscher,sboscher9@foxstudios.com,629-789-8262,Fox Studios,1000,Paris,Rue de Ponce,Entertainment,www.foxstudios.com,Ile-de-France,France,33036 CEDEX,Analog Circuit Design manager,Web,Closed - Not Converted,Hot
