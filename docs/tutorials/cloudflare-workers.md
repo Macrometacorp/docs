@@ -1,5 +1,6 @@
 ---
 sidebar_position: 15
+title: Working with Cloudflare Workers
 ---
 
 # Working with Macrometa GDN and Cloudflare Workers
