@@ -23,7 +23,6 @@ const config = {
   organizationName: 'macrometacorp', // Usually your GitHub org/user name.
   projectName: 'docs-new', // Usually your repo name.
   clientModules: [require.resolve('./src/css/tailwind.css')],
-  themes: ['@docusaurus/theme-live-codeblock'],
 
   presets: [
     [
