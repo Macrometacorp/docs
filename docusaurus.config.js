@@ -60,7 +60,6 @@ const config = {
         searchParameters: {},
       },
       navbar: {
-
         logo: {
           alt: 'Macrometa Logo',
           src: 'img/logo.svg',
