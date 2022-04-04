@@ -52,13 +52,14 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      algolia: {
-        appId: 'GHXKYI4VEC', // public + read only and safe to commit
-        apiKey: '89c79be3419cb93594c775fa808715ee', // public + read only and safe to commit
-        indexName: 'prod_DOCS',
-        contextualSearch: true,
-        searchParameters: {},
-      },
+      // TODO: uncomment this to display search
+      // algolia: {
+      //   appId: 'GHXKYI4VEC', // public + read only and safe to commit
+      //   apiKey: '89c79be3419cb93594c775fa808715ee', // public + read only and safe to commit
+      //   indexName: 'prod_DOCS',
+      //   contextualSearch: true,
+      //   searchParameters: {},
+      // },
       navbar: {
         logo: {
           alt: 'Macrometa Logo',
