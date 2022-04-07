@@ -640,7 +640,7 @@ There are two recommended ways to store timestamps in GDN:
 
 The sort order of both is identical due to the sort properties of ISO date strings. You can't mix both types, numbers and strings, in a single attribute however.
 
-You can use [skiplist indices](../indexing-skiplist.html) with both date types. When chosing string representations, you can work with string comparisons (less than, greater than etc.) to express time ranges in your queries while still utilizing skiplist indices:
+You can use [skiplist indices](../../collections/documents/indexing/index-basics/#skiplist-index) with both date types. When chosing string representations, you can work with string comparisons (less than, greater than etc.) to express time ranges in your queries while still utilizing skiplist indices:
 
 ```js
     db._create("exampleTime");
