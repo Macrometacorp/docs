@@ -1,9 +1,7 @@
 ---
 sidebar_position: 3
-title: Additional Examples
+title: Examples
 ---
-
-# Overview
 
 ## Overview
 

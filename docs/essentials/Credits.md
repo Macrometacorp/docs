@@ -1,8 +1,7 @@
 ---
 sidebar_position: 8
-title: Credits
+title: Credits & Acknowledgements 
 ---
-# Credits & Acknowledgements
 
 Building something as audacious as Macrometa’s GDN cloud would not have been possible without the extraordinary contributions of many people. We are deeply indebted to the following people for the extraordinary body of research work and publications that have enabled us to build Macrometa.
 

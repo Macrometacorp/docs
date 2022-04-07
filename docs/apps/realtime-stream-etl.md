@@ -1,8 +1,7 @@
 ---
 sidebar_position: 11
+title: Realtime Stream ETL
 ---
-
-# Realtime Stream ETL
 
 Building real-time ETL solution for synthetic bank data using GDN.
 

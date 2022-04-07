@@ -1,9 +1,7 @@
 ---
 sidebar_position: 4
+title: FILTER
 ---
-
-FILTER
-======
 
 The `FILTER` statement can be used to restrict the results to elements that match an arbitrary logical condition.
 

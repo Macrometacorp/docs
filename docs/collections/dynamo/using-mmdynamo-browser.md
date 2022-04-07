@@ -1,9 +1,7 @@
 ---
 sidebar_position: 5
+title: Using mmDynamo Javascript SDK
 ---
-
-# Using mmDynamo Javascript SDK with Macrometa
-
 ## Browser(Javascript) NPM
 
 * Install `mmdynamo`

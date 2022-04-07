@@ -2,7 +2,6 @@
 sidebar_position: 1
 title: Concepts
 ---
-# Concepts
 
 GDN stores named and parameterized C8QL queries called *query workers* (or *query as API*), which can be executed from a dedicated REST endpoint. C8QL is a mix of SQL & JavaScript and provides a rich set of primitives to query & update GDN.
 

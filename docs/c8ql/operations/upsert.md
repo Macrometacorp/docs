@@ -1,9 +1,7 @@
 ---
 sidebar_position: 14
+title: UPSERT
 ---
-
-UPSERT
-======
 
 The `UPSERT` keyword can be used for checking whether certain documents exist, and to update/replace them in case they exist, or create them in case they do not exist. On a single server, upserts are executed transactionally in an all-or-nothing fashion. 
 

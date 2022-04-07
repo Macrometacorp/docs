@@ -1,8 +1,7 @@
 ---
 sidebar_position: 6
+title: Data Summarizations (Aggregations)
 ---
-
-# Data Summarizations (Aggregations)
 
 ## Sliding Time
 

@@ -1,9 +1,7 @@
 ---
 sidebar_position: 11
+title: Type Cast & Type Check Functions
 ---
-
-Type check and cast functions
-=============================
 
 Some operators expect their operands to have a certain data type. For example, logical operators expect their operands to be boolean values, and the arithmetic operators expect their operands to be numeric values. If an operation is performed with operands of other types, an automatic conversion to the expected types is tried. This is called implicit type casting. It helps to avoid query aborts.
 

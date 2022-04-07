@@ -1,8 +1,7 @@
 ---
 sidebar_position: 2
+title: Basics
 ---
-
-# Basics
 
 In this we cover basics of `streams`, `queries`, and how queries can be chained to one another. Similarly basics on `sources` and `sink` that are used to consume and publish events. Also about c8db `tables` aka collections that can be used to store and query events. Finally an introduction to the concept of `Stream Application`.
 

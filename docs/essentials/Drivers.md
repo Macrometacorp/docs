@@ -1,11 +1,10 @@
 ---
 sidebar_position: 6
+title: Drivers
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-# Drivers
 
 ## Pre-requisite
 

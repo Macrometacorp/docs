@@ -1,8 +1,7 @@
 ---
 sidebar_position: 1
+title: Global Address Book
 ---
-
-# Global Address Book
 
 ## Using Streams
 

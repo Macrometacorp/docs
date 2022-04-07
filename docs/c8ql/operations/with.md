@@ -1,8 +1,7 @@
 ---
 sidebar_position: 15
+title: WITH
 ---
-
-# WITH
 
 A C8QL query can optionally start with a `WITH` statement and the list of collections used by the query. All collections specified in `WITH` will be read-locked at query start, in addition to the other collections the query uses and that are detected by the C8QL query parser.
 

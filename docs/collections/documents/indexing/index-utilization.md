@@ -3,9 +3,6 @@ sidebar_position: 3
 title: Index Utilization
 ---
 
-
-# Index Utilization
-
 In most cases GDN will use a single index per collection in a given query. C8QL queries can use more than one index per collection when multiple FILTER conditions are combined with a logical `OR` and these can be covered by indexes. C8QL queries will use a single index per collection when FILTER conditions are combined with logical `AND`.
 
 Creating multiple indexes on different attributes of the same collection may give the query optimizer more choices when picking an index. Creating multiple indexes on different attributes can also help in speeding up different queries, with FILTER conditions on different attributes.

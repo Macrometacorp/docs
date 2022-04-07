@@ -1,8 +1,7 @@
 ---
 sidebar_position: 11
+title: Query Guide
 ---
-
-# Stream Query Guide
 
 ## Introduction
 

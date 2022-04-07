@@ -3,8 +3,6 @@ sidebar_position: 1
 title: Concepts
 ---
 
-# Streams
-
 ## Overview
 
 Streams in GDN is built on the [publish-subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.

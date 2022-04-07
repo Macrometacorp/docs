@@ -1,8 +1,7 @@
 ---
 sidebar_position: 6
+title: Grouping
 ---
-
-# Grouping
 
 To group results by arbitrary criteria, C8QL provides the `COLLECT` keyword. `COLLECT` will perform a grouping, but no aggregation. Aggregation can still be added in the query if required.
 

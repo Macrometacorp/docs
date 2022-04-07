@@ -1,8 +1,7 @@
 ---
 sidebar_position: 3
+title: Data Modification Queries
 ---
-
-# Data modification queries
 
 ## Overview
 

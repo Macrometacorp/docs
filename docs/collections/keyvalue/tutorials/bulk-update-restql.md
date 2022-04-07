@@ -6,8 +6,6 @@ title: Bulk Update with RestQL
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Bulk Update Key-Value Collection with RestQL
-
 The following example bulk updates key-value collection data via RestQL.
 
 Assume these credentials:

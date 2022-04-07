@@ -1,8 +1,7 @@
 ---
 sidebar_position: 2
+title: Naming Conventions
 ---
-
-# Naming Conventions
 
 The following naming conventions should be followed by users when creating geo-fabrics, collections and documents in C8.
 

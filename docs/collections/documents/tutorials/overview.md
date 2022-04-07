@@ -1,8 +1,7 @@
 ---
-sidebar_position: 7
+sidebar_position: 1
+title: Overview
 ---
-
-# Overview
 
 :::note
 If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../../essentials/overview.md)** of Macrometa GDN.

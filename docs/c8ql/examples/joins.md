@@ -1,8 +1,7 @@
 ---
 sidebar_position: 7
+title: Joins
 ---
-
-# Using Joins
 
 The two common scenarios when you want to join documents of collections are:
 

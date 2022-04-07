@@ -1,8 +1,7 @@
 ---
 sidebar_position: 4
+title: Coming from SQL
 ---
-
-# Coming from SQL
 
 If you worked with a relational database management system (RDBMS) such as MySQL, MariaDB or PostgreSQL, you will be familiar with its query language, a dialect of SQL (Structured Query Language).
 

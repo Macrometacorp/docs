@@ -1,8 +1,7 @@
 ---
 sidebar_position: 9
+title: Error Handling
 ---
-
-# Error Handling
 
 ## Logging
 

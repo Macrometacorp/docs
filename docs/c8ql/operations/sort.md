@@ -1,9 +1,7 @@
 ---
 sidebar_position: 6
+title: SORT
 ---
-
-SORT
-====
 
 The `SORT` statement will force a sort of the array of already produced intermediate results in the current block. `SORT` allows specifying one or multiple sort criteria and directions.  The general syntax is:
 

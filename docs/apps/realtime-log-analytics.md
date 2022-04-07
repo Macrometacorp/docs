@@ -1,8 +1,7 @@
 ---
 sidebar_position: 4
+title: Realtime Log Analytics
 ---
-
-# Realtime Log Analytics
 
 Realtime Log Analytics integrating logs from Fastly with Macrometa GDN to monitor the status and activity of Stream workers and Query workers. Fastly provides data about HTTP latency, response count, response size, and unique visitor traffic.
 

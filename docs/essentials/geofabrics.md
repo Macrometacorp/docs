@@ -1,8 +1,7 @@
 ---
 sidebar_position: 3
+title: GeoFabrics
 ---
-
-# GeoFabrics
 
 GeoFabrics enable you to create region-based subsets within your tenants. Each GeoFabric represents a group of collections, processes, and data that cannot be accessed from other GeoFabrics. You must log into the `_system` GeoFabric to create, modify, or delete GeoFabrics. Each GeoFabric has a unique URL that enables access to permissed users.
 

@@ -3,8 +3,6 @@ sidebar_position: 2
 title: Commands
 ---
 
-# Macrometa CLI Commands
-
 Use the following commands with the GDN Command Line Interface (CLI) to perform the same actions you can perform in the GUI or API.
 
 ## Client Version (gdnsl)

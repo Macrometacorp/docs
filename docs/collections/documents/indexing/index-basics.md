@@ -3,8 +3,6 @@ sidebar_position: 2
 title: Index Basics
 ---
 
-# Index basics
-
 Indexes allow users to quickly access documents by using indexed attributes with their queries. While GDN automatically indexes some system attributes, you can create extra indexes on non-system attributes of documents.
 
 You can create user-defined indexes on collections. You can create indexes by specifying the names of the index attributes. Some index types (such as full-text) can only index one attribute, while others allow indexing multiple attributes.

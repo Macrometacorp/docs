@@ -1,8 +1,7 @@
 ---
 sidebar_position: 8
+title: LET
 ---
-
-# LET
 
 The `LET` statement can be used to assign an arbitrary value to a variable. The variable is then introduced in the scope the `LET` statement is placed in.
 

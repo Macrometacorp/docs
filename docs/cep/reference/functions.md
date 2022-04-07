@@ -1,8 +1,7 @@
 ---
 sidebar_position: 12
+title: Functions
 ---
-
-# Functions
 
 ## Core
 

@@ -1,9 +1,7 @@
 ---
 sidebar_position: 9
+title: COLLECT
 ---
-
-COLLECT
-=======
 
 The `COLLECT` keyword can be used to group an array by one or multiple group criteria. 
 

@@ -1,8 +1,7 @@
 ---
 sidebar_position: 8
+title: Data Pipelines
 ---
-
-# Data Pipelines
 
 ## Stream Joins
 

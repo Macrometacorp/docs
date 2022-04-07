@@ -1,8 +1,7 @@
 ---
 sidebar_position: 5
+title: Dynamic Attribute Names
 ---
-
-# Dynamic Attribute Names
 
 You might want a C8QL query to return results with attribute names assembled by a function, or with a variable number of attributes.
 

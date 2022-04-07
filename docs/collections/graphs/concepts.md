@@ -3,8 +3,6 @@ sidebar_position: 2
 title: Concepts
 ---
 
-# Graphs, Vertices & Edges
-
 ## Introduction
 
 A Graph consists of `vertices` and `edges`. Edges are stored as documents in `edge collections`.

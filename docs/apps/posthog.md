@@ -1,8 +1,7 @@
 ---
 sidebar_position: 5
+title: PostHog Analytics Integration
 ---
-
-# PostHog Analytics Integration
 
 You can use [PostHog](https://posthog.com) with your Macrometa GDN tenants to quickly and easily capture usage data for your applications and make them readily available to anybody who needs it.
 

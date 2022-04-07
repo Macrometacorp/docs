@@ -1,8 +1,7 @@
 ---
 sidebar_position: 4
+title: Graph Traversals
 ---
-
-# Graph Traversals
 
 ## General query idea
 

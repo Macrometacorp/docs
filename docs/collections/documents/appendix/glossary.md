@@ -1,4 +1,7 @@
-# Glossary
+---
+sidebar_position: 1
+title: Glossary
+---
 
 This page contains a list of defined terms used by Macrometa.
 

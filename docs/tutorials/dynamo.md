@@ -1,8 +1,7 @@
 ---
 sidebar_position: 17
+title: Dynamo Mode
 ---
-
-# Dynamo Mode
 
 ## Prerequistes
 

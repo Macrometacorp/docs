@@ -1,8 +1,7 @@
 ---
 sidebar_position: 14
+title: Traversals
 ---
-
-# Traversals
 
 ## Finding the start vertex via a geo query
 

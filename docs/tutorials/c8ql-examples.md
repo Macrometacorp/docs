@@ -1,8 +1,7 @@
 ---
 sidebar_position: 18
+title: C8QL Examples
 ---
-
-# C8QL Examples
 
 **Assumptions**
 

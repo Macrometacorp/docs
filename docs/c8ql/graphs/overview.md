@@ -1,8 +1,7 @@
 ---
 sidebar_position: 1
+title: Overview
 ---
-
-# Overview
 
 There are multiple ways to work with graphs in GDN, as well as different ways to query your graphs using C8QL.
 

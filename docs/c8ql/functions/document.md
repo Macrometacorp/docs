@@ -1,8 +1,7 @@
 ---
 sidebar_position: 6
+title: Document Functions
 ---
-
-# Document functions
 
 
 C8QL provides below listed functions to operate on objects / document values. Also see [object access](../fundamentals.md#objects--documents) for additional language constructs.

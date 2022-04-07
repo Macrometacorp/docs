@@ -1,8 +1,7 @@
 ---
 sidebar_position: 2
+title: FOR
 ---
-
-# FOR
 
 The versatile `FOR` keyword can be used to iterate over a collection or View, all elements of an array or to traverse a graph.
 

@@ -1,8 +1,7 @@
 ---
 sidebar_position: 13
+title: Credit Card Fraud
 ---
-
-# Credit Card Fraud
 
 
 | **Federation** | **Email** | **Passsword** | **Geo Fabric** | **Source Code**|

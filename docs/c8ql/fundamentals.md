@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
+title: Fundamentals
 ---
-
 # C8QL Fundamentals
 
 |   Section    |    Description    |

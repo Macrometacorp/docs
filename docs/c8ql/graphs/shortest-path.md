@@ -1,8 +1,7 @@
 ---
 sidebar_position: 2
+title: Shortest Path
 ---
-
-# Shortest Path 
 
 ## General idea
 

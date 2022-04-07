@@ -1,8 +1,7 @@
 ---
 sidebar_position: 2
+title: Crypto Trading Bot
 ---
-
-# Crypto Trading Bot
 
 ### On GDN
 

@@ -1,8 +1,7 @@
 ---
 sidebar_position: 13
+title: Limits
 ---
-
-# Limits
 
 You can add stream worker limits to protect your tenants from service downtime caused by abnormal race conditions and CPU usage in stream worker code. These limits are disabled by default.
 

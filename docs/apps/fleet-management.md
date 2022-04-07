@@ -1,8 +1,7 @@
 ---
 sidebar_position: 10
+title: Fleet Management
 ---
-
-# Fleet Management
 
 Fleet management demo demonstrates how you can monitor and take actions to keep a fleet running efficiently, and within budget using Macrometa GDN. With the app, you can monitor which `vehicles need maintenance`, what were the `unplanned maintenance cost`, and `overall fleet health`, etc.
 ### On GDN

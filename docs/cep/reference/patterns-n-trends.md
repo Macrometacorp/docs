@@ -1,8 +1,7 @@
 ---
 sidebar_position: 7
+title: Patterns & Trends
 ---
-
-# Pattern & Trend Mining
 
 ## Simple Pattern
 

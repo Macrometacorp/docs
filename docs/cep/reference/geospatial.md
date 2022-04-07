@@ -1,8 +1,7 @@
 ---
 sidebar_position: 10
+title: Geospatial
 ---
-
-# Geo Spatial
 
 This extension provides data related to geographic (geo) functionality. For example, you can verify that a coordinate is within a predefined geo-fence or measure the distance between two coordinates.
 

@@ -1,9 +1,7 @@
 ---
 sidebar_position: 10
+title: REMOVE
 ---
-
-REMOVE
-======
 
 The `REMOVE` keyword can be used to remove documents from a collection. On a single server, the document removal is executed transactionally in an all-or-nothing fashion. 
 

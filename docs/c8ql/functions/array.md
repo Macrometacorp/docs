@@ -1,8 +1,7 @@
 ---
 sidebar_position: 5
+title: Array Functions
 ---
-
-# Array functions
 
 C8QL provides functions for higher-level array manipulation. Also see the [numeric functions](numeric.md) for functions that work on number arrays. If you want to concatenate the elements of an array equivalent to `join()` in JavaScript, see [CONCAT()](string#concat) and [CONCAT_SEPARATOR()](string#concat_separator) in the string functions chapter.
 

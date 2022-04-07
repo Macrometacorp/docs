@@ -1,12 +1,10 @@
 ---
 sidebar_position: 1
-title: Using Rest API
+title: Using Rest APIs
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-# Using REST APIs
 
 Today’s applications are required to be highly responsive and always online. They need to be deployed in datacenters closer to their users and can access data instantly across the globe. 
 
