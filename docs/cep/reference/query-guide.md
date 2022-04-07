@@ -869,7 +869,7 @@ Filter conditions can be applied both before and/or after the window.
 
 **Inbuilt windows**
 
-Following are some inbuilt Stream windows, for more windows refer [execution extensions](../extensions/).
+Following are some inbuilt Stream windows, for more windows refer [execution extensions](../reference/functions).
 
 |Inbuilt function | Description|
 | ------------- |-------------|
