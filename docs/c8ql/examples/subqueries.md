@@ -1,8 +1,7 @@
 ---
 sidebar_position: 12
+title: Subqueries
 ---
-
-# Subqueries
 
 Wherever an expression is allowed in C8QL, a subquery can be placed. A subquery is a query part that can introduce its own local variables without affecting variables and values in its outer scope(s).
 

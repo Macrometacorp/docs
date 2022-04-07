@@ -1,9 +1,7 @@
 ---
 sidebar_position: 11
+title: Type Cast & Type Check Functions
 ---
-
-Type check and cast functions
-=============================
 
 Some operators expect their operands to have a certain data type. For example, logical operators expect their operands to be boolean values, and the arithmetic operators expect their operands to be numeric values. If an operation is performed with operands of other types, an automatic conversion to the expected types is tried. This is called implicit type casting. It helps to avoid query aborts.
 
@@ -209,7 +207,7 @@ Check whether *value* is a string that can be used in a date function. This incl
 
 `IS_KEY(str) → bool`
 
-Check whether *value* is a string that can be used as a document key, i.e. as the value of the *_key* attribute. See [Naming Conventions for Document Keys](../data-modeling-naming-conventions-document-keys.html).
+Check whether *value* is a string that can be used as a document key, i.e. as the value of the *_key* attribute. See [Naming Conventions for Document Keys](../../collections/documents/naming-conventions#document-keys).
 
 - **str** (string): document key to test
 - returns **bool** (boolean): whether *str* can be used as document key

@@ -6,8 +6,6 @@ title: Realtime Updates
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Realtime Updates
-
 This tutorial is about using Macrometa GDN as a realtime database with local latencies across the globe.
 
 ## Pre-requisite

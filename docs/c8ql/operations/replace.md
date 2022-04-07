@@ -1,9 +1,7 @@
 ---
 sidebar_position: 12
+title: REPLACE
 ---
-
-REPLACE
-=======
 
 The `REPLACE` keyword can be used to completely replace documents in a collection. On a single server, the replace operation is executed transactionally in an all-or-nothing fashion.
 

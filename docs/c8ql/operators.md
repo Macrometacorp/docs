@@ -1,8 +1,7 @@
 ---
 sidebar_position: 6
+title: Operators
 ---
-
-# Operators
 
 ## Overview
 

@@ -1,8 +1,7 @@
 ---
 sidebar_position: 3
+title: k Shortest Paths
 ---
-
-# k Shortest Paths
 
 ## General idea
 

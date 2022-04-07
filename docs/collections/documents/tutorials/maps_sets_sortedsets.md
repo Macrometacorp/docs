@@ -3,8 +3,6 @@ sidebar_position: 5
 title: Maps, Sets, SortedSets
 ---
 
-# Maps, Sets & SortedSets
-
 The other day I came across a question about how to model popuplar Redis datatypes using Macrometa GDN. Macrometa GDN is a geo-replicated multi-model realtime database. So modelling Redis basic datatypes in Macrometa can be done easily. 
 
 By modelling these data types in GDN, developers can use ( i.e., `read-write`) these data types globally from regions closest to their Apps & APIs with very low latency. The GDN will take care of doing the necessary geo-replication and convergence.

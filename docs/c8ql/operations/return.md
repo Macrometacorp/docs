@@ -1,9 +1,7 @@
 ---
 sidebar_position: 3
+title: RETURN
 ---
-
-RETURN
-======
 
 The `RETURN` statement can be used to produce the result of a query. It is mandatory to specify a `RETURN` statement at the end of each block in a data-selection query, otherwise the query result would be undefined. Using `RETURN` on the main level in data-modification queries is optional.
 
@@ -45,7 +43,7 @@ FOR u IN users
   RETURN { name: u.name, age: u.age }
 ```
 
-Note: `RETURN` will close the current scope and eliminate all local variables in it. This is important to remember when working with [subqueries](examples-combining-queries.html).
+Note: `RETURN` will close the current scope and eliminate all local variables in it. This is important to remember when working with [subqueries](../examples/#subqueries).
 
 [Dynamic attribute names](../fundamentals#data-types) are
 supported as well:

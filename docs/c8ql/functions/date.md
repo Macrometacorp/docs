@@ -1,8 +1,7 @@
 ---
 sidebar_position: 4
+title: Date Functions
 ---
-
-# Date functions
 
 C8QL offers functionality to work with dates, but it does not have a special data type for dates (neither does JSON, which is usually used as format to ship data into and out of GDN). Instead, dates in C8QL are represented by either numbers or strings.
 
@@ -640,7 +639,7 @@ There are two recommended ways to store timestamps in GDN:
 
 The sort order of both is identical due to the sort properties of ISO date strings. You can't mix both types, numbers and strings, in a single attribute however.
 
-You can use [skiplist indices](../indexing-skiplist.html) with both date types. When chosing string representations, you can work with string comparisons (less than, greater than etc.) to express time ranges in your queries while still utilizing skiplist indices:
+You can use [skiplist indices](../../collections/documents/indexing/index-basics/#skiplist-index) with both date types. When chosing string representations, you can work with string comparisons (less than, greater than etc.) to express time ranges in your queries while still utilizing skiplist indices:
 
 ```js
     db._create("exampleTime");

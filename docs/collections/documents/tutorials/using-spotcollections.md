@@ -1,12 +1,10 @@
 ---
 sidebar_position: 6
-title: Using Spot Collections
+title: Spot Collections
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-# Spot Collections
 
 There are some use cases that call for strong consistency across all regions. For example, a financial application might need to show users' account balances. When users make a deposit, they want to see the result of this deposit reflected immediately when they view their balance (otherwise they may fear their money has been lost!). There should never appear to be more or less money in aggregate in the bank than there really is. 
 

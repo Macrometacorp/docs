@@ -1,8 +1,7 @@
 ---
 sidebar_position: 2
+title: Counting
 ---
-
-# Counting
 
 To return the count of documents that currently exist in a collection, you can call the [LENGTH() function](../functions/array.md#length):
 

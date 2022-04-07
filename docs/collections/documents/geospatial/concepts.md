@@ -2,9 +2,6 @@
 sidebar_position: 1
 title: Concepts
 ---
-
-# GeoSpatial Concepts
-
 ## Overview
 
 Starting with the mass-market availability of smartphones and continuing with IoT devices, self-driving cars ever more data is generated with geo information attached to it. Analyzing this data in real-time requires the use of clever indexing data-structures.

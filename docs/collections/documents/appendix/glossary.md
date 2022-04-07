@@ -1,4 +1,7 @@
-# Glossary
+---
+sidebar_position: 1
+title: Glossary
+---
 
 This page contains a list of defined terms used by Macrometa.
 
@@ -18,7 +21,7 @@ Macrometa GDN uses 64-bit unsigned integer values to maintain collection IDs. Wh
 
 ## collection name
 
-A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](../../naming-conventions/) for more information on valid collection names.
+A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](../naming-conventions) for more information on valid collection names.
 
 ## document
 
@@ -38,7 +41,7 @@ A document key is a string that uniquely identifies a document in a given collec
 
 If you do not specify a `_key` value, Macrometa GDN auto-generates a document key. You can change this default behavior on a per-collection basis by creating collections with the `keyOptions` attribute. You can also use `keyOptions` to disallow user-specified keys completely or enforce a standard for auto-generating the `_key` values.
 
-There are some restrictions for user-defined keys. For more information, see [Naming Conventions for document keys](../../naming-conventions/#document-keys).
+There are some restrictions for user-defined keys. For more information, see [Naming Conventions for document keys](../naming-conventions#document-keys).
 
 ## document revision
 

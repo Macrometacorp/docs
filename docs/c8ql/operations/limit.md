@@ -1,9 +1,7 @@
 ---
 sidebar_position: 7
+title: LIMIT
 ---
-
-LIMIT
-=====
 
 The `LIMIT` statement allows slicing the result array using an offset and a count. It reduces the number of elements in the result to at most the specified number. Two general forms of `LIMIT` are followed:
 

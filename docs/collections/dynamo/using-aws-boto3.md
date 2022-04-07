@@ -1,8 +1,7 @@
 ---
 sidebar_position: 4
+title: Using AWS Boto3
 ---
-
-# Using AWS Boto3 with Macrometa
 
 ## Prerequistes
 

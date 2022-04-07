@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
-title: Quick Start
+title: Quickstart
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Quick Start with Stream Processing
+# Quickstart with Stream Processing
 
 Macrometa GDN allows you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
  

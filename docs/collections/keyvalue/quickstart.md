@@ -6,8 +6,6 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Quick Start with Key Value Store
-
 Macrometa GDN is a geodistributed real-time coordination-free materialized views engine that supports multiple data models. You can use GDN as a geo-replicated real-time key-value datastore or database. 
 
 If you are new to Macrometa GDN, start by reading the [essentials](../../essentials/overview) of Macrometa GDN.

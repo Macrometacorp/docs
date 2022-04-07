@@ -1,8 +1,7 @@
 ---
 sidebar_position: 10
+title: Miscellaneous Functions
 ---
-
-# Miscellaneous functions
 
 ## Control flow functions
 

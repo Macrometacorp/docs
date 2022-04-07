@@ -1,8 +1,7 @@
 ---
 sidebar_position: 9
+title: Projections & Filters
 ---
-
-# Projections and filters
 
 ## Returning unaltered documents
 

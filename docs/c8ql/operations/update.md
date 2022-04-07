@@ -1,9 +1,7 @@
 ---
 sidebar_position: 11
+title: UPDATE
 ---
-
-UPDATE
-======
 
 The `UPDATE` keyword can be used to partially update documents in a collection. On a single server, updates are executed transactionally in an all-or-nothing fashion. 
 

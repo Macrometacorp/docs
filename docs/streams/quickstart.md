@@ -6,8 +6,6 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Quickstart with Streams
-
 ## Overview
 
 Globally distributed applications need a geo distributed fast data platform that can transparently replicate the data anywhere in the world to enable the applications to operate on a copy of the data that's close to its users. Similarly the applications need geo-replicated as well as local streams to handle pub-sub, ETL and real-time updates from the fast data platform.

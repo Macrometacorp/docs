@@ -1,8 +1,7 @@
 ---
 sidebar_position: 3
+title: Views
 ---
-
-# Views
 
 We provide *Views* that enable you to perform fast and sophisticated full-text search queries for unstructured data in documents across multiple linked collections. You can filter by document attributes, sort the results by relevance, and rank results by their similarity using popular scoring algorithms.
 
@@ -68,9 +67,9 @@ By default, array elements are indexed individually as if each element is the va
 
 You can manage Views by using:
 
-* The Web UI
-* [An HTTP API](../cep/reference/extensions/io/http.md)
-* [JavaScript API](../../search/js-api)
+* [The Web UI](https://auth.paas.macrometa.io/)
+* [An HTTP API](https://macrometa.com/docs/api/)
+* [JavaScript API](https://github.com/Macrometacorp/jsC8)
 
 You can query views with C8QL using the [SEARCH operation](../c8ql/operations/search).
 

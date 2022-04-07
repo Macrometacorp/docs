@@ -1,8 +1,7 @@
 ---
 sidebar_position: 4
+title: Data Cleansing
 ---
-
-# Cleansing the Events
 
 ## Value based Filtering
 

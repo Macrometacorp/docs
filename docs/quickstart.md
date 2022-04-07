@@ -1,8 +1,7 @@
 ---
 sidebar_position: 1
+title: Quickstart
 ---
-
-# Quickstart
 
 ### Address Book App _Quickstart_
 

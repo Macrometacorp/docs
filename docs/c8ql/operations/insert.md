@@ -1,9 +1,7 @@
 ---
 sidebar_position: 13
+title: INSERT
 ---
-
-INSERT
-======
 
 The `INSERT` keyword can be used to insert new documents into a collection. On a single server, an insert operation is executed transactionally in an all-or-nothing fashion. 
 

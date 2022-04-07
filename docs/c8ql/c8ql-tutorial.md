@@ -1,8 +1,7 @@
 ---
 sidebar_position: 2
+title: C8QL Tutorial
 ---
-
-# C8QL Tutorial
 
 This is an introduction to GDN's query language C8QL, built around a small dataset of characters from the novel and fantasy drama television series Game of Thrones (as of season 1). It includes character traits in two languages, some family relations, and last but not least a small set of filming locations, which makes for an interesting mix of data to work with.
 
@@ -1134,7 +1133,7 @@ Visualization of the coordinates on a map with their labels:
 
 ### Geospatial index
 
-To query based on coordinates, a [geo index](../../Manual/Indexing/Geo.html) is required. It determines which fields contain the latitude and longitude values.
+To query based on coordinates, a [geo index](../collections/documents/geospatial/concepts#geojson-supported-index) is required. It determines which fields contain the latitude and longitude values.
 
 - Go to *COLLECTIONS*
 - Click on the *Locations* collection

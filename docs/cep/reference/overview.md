@@ -1,8 +1,7 @@
 ---
 sidebar_position: 1
+title: Overview
 ---
-
-# Overview
 
 Macrometa GDN allows you to integrate streaming data and take action based on streaming data. Typically the stream processing use cases involve collecting, analyzing and, integrate or acting on data generated during business activities by various sources i.e.,
  
@@ -48,7 +47,7 @@ Macromete stream processing engine  allows you to write rich & complex stream pr
 | Consume & Publish Events | [Consume](query-guide.md#source) and [Publish](query-guide.md#sink) events via `Kafka`, `HTTP`, `TCP`, `MQTT`, `Amazon SQS`, `Google Pub/Sub`, `WebSocket`, `S3` and `Google Cloud Storage` |
 | Data Filtering | [Filter](query-guide.md) events based on conditions such as value ranges, string matching, regex, and others.|
 | Data Cleansing | Filter out corrupted, inaccurate or irrelevant data from a data stream based on one or more conditions. Modify or replace content to hide/remove unwanted data parts from a message (`e.g., obscuring`). Clean data by setting defaults, and handling nulls, using `default`, `if-then-else` functions, and many others. |
-| Data Transformations | Support `data extraction` and `reconstruction of messages` using inline [mathematical and logical operations](query-guide.md),  inbuilt [functions](./extensions/available-extensions) and custom functions in [`JavaScript`](query-guide.md) for processing `JSON`, `string`, `time`, `math`, `regex`, and others.|
+| Data Transformations | Support `data extraction` and `reconstruction of messages` using inline [mathematical and logical operations](query-guide.md),  inbuilt [functions](./functions) and custom functions in [`JavaScript`](query-guide.md) for processing `JSON`, `string`, `time`, `math`, `regex`, and others.|
 | Data Enrichment | Enrich the data received in the stream with data from c8db or another data stream, or an external service to derive an expected result |
 | Data Summarization | [Aggregate data](query-guide.md#aggregate-function) using `sum`, `count`, average (`avg`), `min`, `max`, `distinctCount`, and standard deviation (`StdDev`) operators. Summarize events based on time intervals like `sliding time`, `tumbling/batch time` [windows](query-guide.md#window) and based on number of events like `sliding length`, and `tumbling/batch length` [windows](query-guide.md#window). Support for data summarization based on `sessions` and `uniqueness`. Support for `named aggregation` and aggregation of data based on `group by fields`, `having` conditions. Sort & limit the aggregated output using `order by` and `limit` keywords.|
 | Scripting | Write custom functions in [`JavaScript`](query-guide.md#script) and use within streaming queries. |
@@ -58,6 +57,6 @@ Macromete stream processing engine  allows you to write rich & complex stream pr
 | Data Pipelines | Periodically trigger data pipelines based on time intervals, and cron expression using `triggers`. Support for calling `HTTP`services in a non-blocking manner to fetch data and enrich events. Handle responses accordingly for different response status codes. Divert the events to error stream to handle the errors gracefully.|
 | Geo Replicated Data Store | Query, modify, and join the data stored in [tables](query-guide.md#table) which support primary key constraints and indexing. |
 | Rule Processing | Execution of rules based on single event using [`filter`](query-guide.md#filter) operator, `if-then-else` and `match` [functions](query-guide.md#function), and many others. Rules based on collection of events using [data summarization](query-guide.md#aggregate-function), and joins with [streams](query-guide.md#join-stream), [tables](query-guide.md#join-table), [windows](query-guide.md#join-named-window) or [aggregations](query-guide.md#join-named-aggregation). Rules to detect event occurrence patterns, trends, or non-occurrence of a critical events using complex event processing constructs such as [`pattern`](query-guide.md#pattern), and [`sequence`](query-guide.md#sequence). |
-| Realtime Decisions as Service | Provide [REST APIs](../rest-guides/on-demand-query-api/) to [query](query-guide.md#on-demand-query) `multi-modal geo-replicated tables`, `windows` and `named-aggregations` to make decisions based on the state of the system. |
+| Realtime Decisions as Service | Provide REST APIs to [query](query-guide.md#on-demand-query) `multi-modal geo-replicated tables`, `windows` and `named-aggregations` to make decisions based on the state of the system. |
 
 These features allows you to build robust global data processing and integration pipelines at the edge by combining powerful stream processing, multi-model database and geo-replicated streams capabilities.

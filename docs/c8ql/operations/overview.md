@@ -1,8 +1,7 @@
 ---
 sidebar_position: 1
+title: Overview
 ---
-
-# Overview
 
 ## High-level operations
 

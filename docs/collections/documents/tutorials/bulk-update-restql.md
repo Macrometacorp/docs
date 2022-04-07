@@ -6,8 +6,6 @@ title: Bulk Update with RestQL
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Bulk Update Document with RestQL
-
 This tutorial is about using RestQL to bulk update `document` Collection data. 
 
 :::note

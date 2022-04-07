@@ -1,8 +1,7 @@
 ---
 sidebar_position: 9
+title: Fashion Store
 ---
-
-# Fashion Store
 
 Fashion store Demo is a full-stack sample web application that creates a storefront (and backend) for customers to shop for clothes. You can `browse` and `search` for clothes, look at `recommendations` and `best sellers`, `manage` your cart, `checkout`, `view` your orders, and more.
 

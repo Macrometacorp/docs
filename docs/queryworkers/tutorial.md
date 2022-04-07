@@ -6,8 +6,6 @@ title: Tutorials
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Query Workers
-
 This tutorial is about using C8QL queries as API (aka Query Workers) in Macrometa GDN with low latencies across the globe.
 
 For this example, we use the following credentials:

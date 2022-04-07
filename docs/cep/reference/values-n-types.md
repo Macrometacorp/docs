@@ -1,8 +1,7 @@
 ---
 sidebar_position: 3
+title: Values & Types
 ---
-
-# Values & Types
 
 ## Basic Types
 

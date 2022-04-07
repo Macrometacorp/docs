@@ -1,8 +1,7 @@
 ---
 sidebar_position: 7
+title: Data Queries
 ---
-
-# Data Queries
 
 ## Data Access Queries
 

@@ -3,8 +3,6 @@ sidebar_position: 2
 title: AWS Javascript SDK (browser)
 ---
 
-# Using AWS Javascript SDK with Macrometa
-
 Macrometa GDN can be used as the data store for apps written for AWS DynamoDB. Switch to using GDN by just changing the `connection URL`, `accessKey` and `secretKey`. You can continue using aws dynamodb sdk and cli you are familiar with.
 
 :::note

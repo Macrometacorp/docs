@@ -1,8 +1,7 @@
 ---
 sidebar_position: 14
+title: Query Language Syntax Update
 ---
-
-# Query Language Syntax Update
 
 We updated the query language syntax for Stream QL applications to be more consistent with the industry standard. This section describes the differences between the updated syntax (version 2) and the old syntax (version 1), and how to update your applications from version 1 to version 2. Updating to version 2 is not necessary as version 1 applications are still supported. Applications provided by Macrometa are automatically updated.
 

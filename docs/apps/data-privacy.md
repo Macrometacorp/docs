@@ -1,8 +1,7 @@
 ---
 sidebar_position: 6
+title: Data Privacy User Management Portal
 ---
-
-# Data Privacy User Management Portal
 
 Macrometa User Management Portal is a fullstack `admin` and `user` portal to showcase the data privacy capabilities of GDN.
 
@@ -13,7 +12,7 @@ Macrometa User Management Portal is a fullstack `admin` and `user` portal to sho
 | ----------------------------------------------------- | -------------------------------------- | ------------- |--------------|
 | [Global Data Network](https://gdn.paas.macrometa.io/) | demo@macrometa.io | `xxxx`    | [User Management Portal](https://pii.macrometa.io/) |
 
-**Dataset: [pii-users.csv](../demos/datasets/pii-users.csv)**
+**Dataset: [pii-users.csv](/datasets/pii-users.csv)**
 
 
 ## Solution

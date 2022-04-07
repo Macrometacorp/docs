@@ -1,11 +1,10 @@
 ---
 sidebar_position: 2
+title: Authentication
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-# Authentication
 
 There are multiple ways users can access their Macrometa GDN account:
 

@@ -1,8 +1,7 @@
 ---
 sidebar_position: 4
+title: Integrating Plugins
 ---
-
-# Integrating Plugins
 
 You can use plugins in your tenants to extend the functionality of your streams.
 

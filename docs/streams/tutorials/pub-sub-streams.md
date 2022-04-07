@@ -6,8 +6,6 @@ title: Pub-Sub with Streams
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Pub-Sub with Streams
-
 This is about how to create geo-replicated streams and do queues & pub-sub messaging with local latencies across the globe.
 
 ## Pre-requisite

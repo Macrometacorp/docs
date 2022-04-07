@@ -3,8 +3,6 @@ sidebar_position: 3
 title: Working with Indexes
 ---
 
-# Working with Indexes
-
 ## Indexing Attributes & Sub-Attributes
 
 Top-level as well as nested attributes can be indexed. For attributes at the top level, the attribute names alone are required. To index a single field, pass an array with a single element (string of the attribute key) to the *fields* parameter of the ensureIndex() method. 

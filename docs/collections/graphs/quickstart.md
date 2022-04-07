@@ -1,12 +1,10 @@
 ---
 sidebar_position: 1
-title: Quick Start
+title: Quickstart
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-# Quick Start with Graphs
 
 ## Overview
 

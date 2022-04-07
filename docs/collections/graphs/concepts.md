@@ -3,8 +3,6 @@ sidebar_position: 2
 title: Concepts
 ---
 
-# Graphs, Vertices & Edges
-
 ## Introduction
 
 A Graph consists of `vertices` and `edges`. Edges are stored as documents in `edge collections`.
@@ -204,7 +202,7 @@ with the travel time for both directions as edge weight.
 
 ![Train Connection Map](/img/train_map.png)
 
-See the [k Shortest Paths page](../documents/c8ql/query-patterns/graphs-kshortest-paths) for query examples.
+See the [Shortest Paths](./tutorials/graph-queries/#shortest-path) page for query examples.
 
 ### The World Graph
 
@@ -216,7 +214,7 @@ It is used to demonstrate raw traversal operations.
 
 ### The Mps Graph
 
-This graph was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries. Therefore the graph is named after the [**m**ultiple **p**ath **s**earch](../documents/c8ql/query-patterns/multiple-path-search) use case.
+This graph was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries. Therefore the graph is named after the [**m**ultiple **p**ath **s**earch](../../c8ql/examples/#multiple-path-search) use case.
 
 ![Mps Graph](/img/mps_graph.png)
 

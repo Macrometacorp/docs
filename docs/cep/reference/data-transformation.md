@@ -1,8 +1,7 @@
 ---
 sidebar_position: 5
+title: Data Transformation
 ---
-
-# Transforming Data
 
 ## Math & Logical Operations
 

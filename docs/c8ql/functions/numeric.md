@@ -1,9 +1,7 @@
 ---
 sidebar_position: 3
+title: Numeric Functions
 ---
-
-# Numeric functions
-
 
 C8QL offers some numeric functions for calculations. The following functions are supported:
 

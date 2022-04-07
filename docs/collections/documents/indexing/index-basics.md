@@ -3,8 +3,6 @@ sidebar_position: 2
 title: Index Basics
 ---
 
-# Index basics
-
 Indexes allow users to quickly access documents by using indexed attributes with their queries. While GDN automatically indexes some system attributes, you can create extra indexes on non-system attributes of documents.
 
 You can create user-defined indexes on collections. You can create indexes by specifying the names of the index attributes. Some index types (such as full-text) can only index one attribute, while others allow indexing multiple attributes.
@@ -30,7 +28,7 @@ GDN provides the following index types:
 
 ## Primary Index
 
-Each collection has a *primary index* that stores the [document keys](glossary#document-key) (`_key` attribute) for all documents in the collection. The primary index allows you to quickly select documents using the `_key` or `_id` attributes. C8QL queries automatically use primary indexes for equality lookups on `_key` or `_id`. 
+Each collection has a *primary index* that stores the [document keys](../appendix/glossary#document-key) (`_key` attribute) for all documents in the collection. The primary index allows you to quickly select documents using the `_key` or `_id` attributes. C8QL queries automatically use primary indexes for equality lookups on `_key` or `_id`. 
 
 You can use a dedicated function to find a document with its `_key` or `_id` using the primary index:
 
@@ -44,7 +42,7 @@ The primary index is an unsorted hash index, so it cannot be used for sorting or
 
 ## Edge Index
 
-Each [edge collection](glossary#edge-collection) automatically creates an *edge index*. The edge index provides quick access to documents by either their `_from` or `_to` attributes. You can use an edge index to quickly find connections between vertex documents. Queries use edge indexes when referring to the connecting edges of a vertex.
+Each [edge collection](../appendix/glossary#edge-collection) automatically creates an *edge index*. The edge index provides quick access to documents by either their `_from` or `_to` attributes. You can use an edge index to quickly find connections between vertex documents. Queries use edge indexes when referring to the connecting edges of a vertex.
 
 C8QL uses edge indexes when performing equality lookups on `_from` or `_to` values in an edge collection. You can use a dedicated function to find edges with their `_from` or `_to` values using the edge index:
 
@@ -90,7 +88,7 @@ The following types of indexes each have different characteristics:
 
 	This type of index is not sparse. Documents that do not contain the index attributes or that have a value of `null` in the index attributes will still be indexed. A key value of `null` may only occur once in the index, so this type of index cannot be used for optional attributes due to unique constraint violations.
 
-	The unique option can also be used to ensure that [no duplicate edges](indexing-hash.html#ensure-uniqueness-of-relations-in-edge-collections) are created, by adding a combined index for the fields `_from` and `_to` to an edge collection.
+	The unique option can also be used to ensure that no duplicate edges are created, by adding a combined index for the fields `_from` and `_to` to an edge collection.
 
 - *Unique, sparse hash index*: All documents in the collection must have different values for the attributes covered by the unique index. This index does not include documents with an attribute not set or set to `null`. No documents in a collection will have duplicate keys if the indexed attributes are set. This index can be used for optional attributes.
 

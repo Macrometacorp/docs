@@ -1,4 +1,7 @@
-# Which Index to use when
+---
+sidebar_position: 4
+title: Which Index
+---
 
 GDN automatically indexes the `_key` attribute in each collection. There is no need to index this attribute separately. Please note that a document's `_id` attribute is derived from the `_key` attribute, and is thus implicitly indexed, too.
 

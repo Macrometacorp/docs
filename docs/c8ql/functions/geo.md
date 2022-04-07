@@ -1,8 +1,7 @@
 ---
 sidebar_position: 7
+title: Geo Functions
 ---
-
-# Geo functions
 
 ## Geo utility functions
 
