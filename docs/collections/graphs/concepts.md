@@ -204,7 +204,7 @@ with the travel time for both directions as edge weight.
 
 ![Train Connection Map](/img/train_map.png)
 
-See the [k Shortest Paths page](../documents/c8ql/query-patterns/graphs-kshortest-paths) for query examples.
+See the [Shortest Paths](./tutorials/graph-queries/#shortest-path) page for query examples.
 
 ### The World Graph
 

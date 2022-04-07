@@ -766,7 +766,7 @@ So, for each user we pick the list of their friends and count them. The ones whe
 
 ### Index usage
 
-Especially on joins you should make sure indices can be used to [speed up your query](execution-and-performance-explaining-queries.html). Please note that sparse indices don't qualify for joins:
+Especially on joins you should make sure indices can be used to speed up your query. Please note that sparse indices don't qualify for joins:
 
 In joins you typically would also want to join documents not containing the property you join with. However sparse indices don't contain references to documents that don't contain the indexed attributes - thus they would be missing from the join operation. For that reason you should provide non-sparse indices. 
 
