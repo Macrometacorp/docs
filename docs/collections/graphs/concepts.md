@@ -216,7 +216,7 @@ It is used to demonstrate raw traversal operations.
 
 ### The Mps Graph
 
-This graph was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries. Therefore the graph is named after the [**m**ultiple **p**ath **s**earch](../documents/c8ql/query-patterns/multiple-path-search) use case.
+This graph was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries. Therefore the graph is named after the [**m**ultiple **p**ath **s**earch](../../c8ql/examples/#multiple-path-search) use case.
 
 ![Mps Graph](/img/mps_graph.png)
 
