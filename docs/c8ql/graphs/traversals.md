@@ -465,7 +465,7 @@ Please note that the direction can't be passed in by a bind parameter.
 
 ## Query explainer for optimizations
 
-Let's have a look what the optimizer does behind the curtain and inspect traversal queries using [the explainer](execution-and-performance-optimizer.html):
+Let's have a look what the optimizer does behind the curtain and inspect traversal queries using the explainer:
 
 ```js
     FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
