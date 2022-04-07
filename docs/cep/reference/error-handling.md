@@ -59,7 +59,7 @@ This example shows how errors are handled at Sink level by `wait and retry` mode
 
 In this mode, publishing threads wait in back-off and re-trying mode, and only send the events when the connection is re-established. During this time the threads will not consume any new messages causing the systems to introduce back pressure on the systems that publish to it.
 
-Refer to the [stream query guide](../query-guide/#error-handling) for more information.
+Refer to the [stream query guide](../query-guide#error-handling) for more information.
 
 
 ```sql
