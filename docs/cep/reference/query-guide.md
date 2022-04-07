@@ -1029,7 +1029,7 @@ from TempStream#window.time(1 min)
 ```
 
 :::note
-This is just to illustrate how expired events work, it is recommended to use [delay](../api/latest/#delay-window) window for usecases where we need to delay events by a given time period.
+This is just to illustrate how expired events work, it is recommended to use [delay](../reference/functions#delay-window) window for usecases where we need to delay events by a given time period.
 :::
 
 ### Aggregate Function
