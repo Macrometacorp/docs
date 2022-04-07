@@ -1134,7 +1134,7 @@ Visualization of the coordinates on a map with their labels:
 
 ### Geospatial index
 
-To query based on coordinates, a [geo index](../../Manual/Indexing/Geo.html) is required. It determines which fields contain the latitude and longitude values.
+To query based on coordinates, a [geo index](../collections/documents/geospatial/concepts#geojson-supported-index) is required. It determines which fields contain the latitude and longitude values.
 
 - Go to *COLLECTIONS*
 - Click on the *Locations* collection
