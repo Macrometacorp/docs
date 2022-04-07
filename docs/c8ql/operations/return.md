@@ -45,7 +45,7 @@ FOR u IN users
   RETURN { name: u.name, age: u.age }
 ```
 
-Note: `RETURN` will close the current scope and eliminate all local variables in it. This is important to remember when working with [subqueries](examples-combining-queries.html).
+Note: `RETURN` will close the current scope and eliminate all local variables in it. This is important to remember when working with [subqueries](../examples/#subqueries).
 
 [Dynamic attribute names](../fundamentals#data-types) are
 supported as well:

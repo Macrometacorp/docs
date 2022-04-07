@@ -90,7 +90,7 @@ The following types of indexes each have different characteristics:
 
 	This type of index is not sparse. Documents that do not contain the index attributes or that have a value of `null` in the index attributes will still be indexed. A key value of `null` may only occur once in the index, so this type of index cannot be used for optional attributes due to unique constraint violations.
 
-	The unique option can also be used to ensure that [no duplicate edges](indexing-hash.html#ensure-uniqueness-of-relations-in-edge-collections) are created, by adding a combined index for the fields `_from` and `_to` to an edge collection.
+	The unique option can also be used to ensure that no duplicate edges are created, by adding a combined index for the fields `_from` and `_to` to an edge collection.
 
 - *Unique, sparse hash index*: All documents in the collection must have different values for the attributes covered by the unique index. This index does not include documents with an attribute not set or set to `null`. No documents in a collection will have duplicate keys if the indexed attributes are set. This index can be used for optional attributes.
 
