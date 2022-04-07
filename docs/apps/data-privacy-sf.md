@@ -6,7 +6,7 @@ Macrometa Lead Management Portal is a lead management `admin` and `user` portal 
 ## Setup
 
 * **Dashboard: https://sf-pii.macrometa.io/**
-* **Dataset: [sf-pii-users.csv](../demos/datasets/sf-pii-users.csv)**
+* **Dataset: [sf-pii-users.csv](/datasets/sf-pii-users.csv)**
 
 
 | **Federation**                                        | **Email**                              | **Passsword** |
