@@ -26,16 +26,4 @@ This command generates static content into the `build` directory and can be serv
 
 ### Deployment
 
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+When making updates to the docs, please pull the latest from `master` and branch off before publishing. To publish your changes, create a Pull Request and wait for all checks to pass before merging into `master`.
