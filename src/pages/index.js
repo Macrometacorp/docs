@@ -21,7 +21,7 @@ export default function Homepage() {
         />
         <link rel="canonical" href="https://macrometa.com/docs" />
       </Head>
-      <Redirect to={`${siteConfig.baseUrl}docs/quickstart`} />
+      <Redirect to={`${siteConfig.baseUrl}quickstart`} />
     </>
   );
 }
