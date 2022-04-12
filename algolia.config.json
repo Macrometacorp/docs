@@ -53,8 +53,12 @@
         "url": "https://macrometa.com/docs/apps/address-book",
         "tags": ["Sample Apps"]
       },
+      {
+        "url": "https://macrometa.com/docs/api#/",
+        "tags": ["REST API"]
+      },
       "https://macrometa.com/docs",
-      "https://macrometa.com/docs/api#"
+      "https://macrometa.com/docs/api"
     ],
     "sitemap_urls": ["https://macrometa.com/docs/sitemap.xml"],
     "sitemap_alternate_links": true,
