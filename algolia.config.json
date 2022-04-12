@@ -2,16 +2,16 @@
     "index_name": "prod_DOCS",
     "start_urls": [
       {
-        "url": "https://macrometacorp.github.io/docs-new/docs/quickstart/",
+        "url": "https://macrometacorp.github.io/docs/docs/quickstart/",
         "tags": ["Quickstart"]
       },
       {
-        "url": "https://macrometacorp.github.io/docs-new/docs/essentials/overview",
+        "url": "https://macrometacorp.github.io/docs/docs/essentials/overview",
         "tags": ["Essentials"]
       },
-      "https://macrometacorp.github.io/docs-new/docs/"
+      "https://macrometacorp.github.io/docs/docs/"
     ],
-    "sitemap_urls": ["https://macrometacorp.github.io/docs-new/sitemap.xml"],
+    "sitemap_urls": ["https://macrometacorp.github.io/docs/sitemap.xml"],
     "sitemap_alternate_links": true,
     "stop_urls": [],
     "selectors": {
