@@ -49,7 +49,7 @@ HTTP sink publishes messages via HTTP or HTTPS protocols using methods such as `
 Syntax:
 
 ```js
-    @sink(type="http", publisher.url="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", tls.store.type="<STRING>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>", @map(...)))
+    CREATE SINK <name> WITH (type="http", publisher.url="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", tls.store.type="<STRING>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>", map.type="<STRING>")
 ```
 
 QUERY PARAMETERS
@@ -103,10 +103,8 @@ SYSTEM PARAMETERS:
 
 EXAMPLE:1
 
-```js
-@sink(type = 'http', publisher.url = 'http://stocks.com/stocks',
-      @map(type = 'json'))
-define stream StockStream (symbol string, price float, volume long);
+```
+CREATE SINK StockStream WITH (type = 'http', publisher.url = 'http://stocks.com/stocks', map.type = 'json') (symbol string, price float, volume long);
 ```
 
 Events arriving on the StockStream will be published to the HTTP endpoint `http://stocks.com/stocks` using `POST` method with Content-Type `application/json` by converting those events to the default JSON format as following:
@@ -122,13 +120,7 @@ Events arriving on the StockStream will be published to the HTTP endpoint `http:
 EXAMPLE:2
 
 ```js
-@sink(type='http', publisher.url = 'http://localhost:8009/foo',
-      client.bootstrap.configurations = "'client.bootstrap.socket.timeout:20'",
-      max.pool.active.connections = '1', headers = "{{headers}}",
-      @map(type='xml', @payload("""<stock>
-{{payloadBody}}
-</stock>""")))
-define stream FooStream (payloadBody String, headers string);
+CREATE SINK FooStream WITH (type='http', publisher.url = 'http://localhost:8009/foo', client.bootstrap.configurations = "'client.bootstrap.socket.timeout:20'", max.pool.active.connections = '1', headers = "{{headers}}", map.type='xml', map.payload="""<stock>{{payloadBody}}</stock>""") (payloadBody String, headers string);
 ```
 
 Events arriving on FooStream will be published to the HTTP endpoint `http://localhost:8009/foo` using ``POST`` method with Content-Type `application/xml` and setting `payloadBody` and `header` attribute values.
@@ -167,7 +159,7 @@ The http-call sink publishes messages to endpoints via HTTP or HTTPS protocols u
 Syntax:
 
 ```js
-@sink(type="http-call", publisher.url="<STRING>", sink.id="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", downloading.enabled="<BOOL>", download.path="<STRING>", blocking.io="<BOOL>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>", @map(...)))
+CREATE SINK <name> WITH (type="http-call", publisher.url="<STRING>", sink.id="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", downloading.enabled="<BOOL>", download.path="<STRING>", blocking.io="<BOOL>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>", map.type="<STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -523,15 +515,9 @@ SYSTEM PARAMETERS:
 EXAMPLE 1:
 
 ```js
-    @sink(type='http-call', sink.id='foo',
-        publisher.url='http://localhost:8009/foo',
-        @map(type='xml', @payload('{{payloadBody}}')))
-    define stream FooStream (payloadBody string);
+    CREATE SINK FooStream WITH (type='http-call', sink.id='foo', publisher.url='http://localhost:8009/foo', map.type='xml', map.payload='{{payloadBody}}') (payloadBody string);
 
-    @source(type='http-call-response', sink.id='foo',
-            @map(type='text', regex.A='((.|\n)*)',
-                @attributes(headers='trp:headers', message='A[1]')))
-    define stream ResponseStream(message string, headers string);
+    CREATE SOURCE ResponseStream WITH (type='http-call-response', sink.id='foo', map.type='text', regex.A='((.|\n)*)', map.attributes="headers='trp:headers'", message='A[1]') (message string, headers string);
 ```
 
 When events arrive in `FooStream`, http-call sink makes calls to endpoint on url `http://localhost:8009/foo` with ``POST`` method and Content-Type `application/xml`.
@@ -554,21 +540,11 @@ When endpoint sends a response it will be consumed by the corresponding http-cal
 EXAMPLE 2:
 
 ```js
-    @sink(type='http-call', publisher.url='http://localhost:8005/files/{{name}}'
-        downloading.enabled='true', download.path='{{downloadPath}}{{name}}',
-        method='`GET`', sink.id='download', @map(type='json'))
-    define stream DownloadRequestStream(name String, id int, downloadPath string);
+    CREATE SINK DownloadRequestStream WITH (type='http-call', publisher.url='http://localhost:8005/files/{{name}}', downloading.enabled='true', download.path='{{downloadPath}}{{name}}', method='`GET`', sink.id='download', map.type='json') (name String, id int, downloadPath string);
 
-    @source(type='http-call-response', sink.id='download',
-            http.status.code='2\\d+',
-            @map(type='text', regex.A='((.|\n)*)',
-                @attributes(name='trp:name', id='trp:id', file='A[1]')))
-    define stream ResponseStream2xx(name string, id string, file string);
+    CREATE SOURCE ResponseStream2xx WITH (type='http-call-response', sink.id='download', http.status.code='2\\d+', map.type='text', regex.A='((.|\n)*)', map.attributes="name='trp:name'", id='trp:id', file='A[1]') (name string, id string, file string);
 
-    @source(type='http-call-response', sink.id='download',
-            http.status.code='4\\d+',
-            @map(type='text', regex.A='((.|\n)*)', @attributes(errorMsg='A[1]')))
-    define stream ResponseStream4xx(errorMsg string);
+    CREATE SOURCE ResponseStream4xx WITH (type='http-call-response', sink.id='download', http.status.code='4\\d+', map.type='text', map.regex.A='((.|\n)*)', map.attributes="errorMsg='A[1]'") (errorMsg string);
 ```
 
 When events arrive in `DownloadRequestStream` with `name`:`foo.txt`, `id`:`75` and `downloadPath`:`/user/download/` the http-call sink sends a `GET` request to the url `http://localhost:8005/files/foo.txt` to download the file to the given path `/user/download/foo.txt` and capture the response via its corresponding http-call-response source based on the response status code.
@@ -580,10 +556,7 @@ If the response status code is in the range of 400 then the message will be rece
 EXAMPLE 3:
 
 ```js
-    @sink(type='http-call', method='GET', sink.id='foo',
-        publisher.url='http://localhost:8009/foo',
-        @map(type='query', @payload('{{payloadBody}}')))
-    define stream FooStream (payloadBody string);
+    CREATE SINK FooStream WITH (type='http-call', method='GET', sink.id='foo', publisher.url='http://localhost:8009/foo', map.type='query', map.payload="'{{payloadBody}}'") (payloadBody string);
 ```
 
 When events arrive in `FooStream`, http-call sink makes calls to endpoint on url `http://localhost:8009/foo` with ``GET`` method. The `Content-Type` will not be set. All the attributes in the payload  will be sent to url as query parameters.
@@ -606,7 +579,7 @@ The http-service-response sink send responses of the requests consumed by its co
 Syntax:
 
 ```js
-    @sink(type="http-service-response", source.id="<STRING>", message.id="<STRING>", headers="<STRING>", @map(...)))
+    CREATE SINK <name> WITH (type="http-service-response", source.id="<STRING>", message.id="<STRING>", headers="<STRING>", map.type="<STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -649,23 +622,14 @@ QUERY PARAMETERS:
 EXAMPLE:1
 
 ```js
+    CREATE SOURCE AddStream WITH (type='http-service', receiver.url='http://localhost:5005/add', source.id='adder', map.type='json', map.attributes="messageId='trp:messageId', value1='$.event.value1', value2='$.event.value2'") (messageId string, value1 long, value2 long);
 
-    @source(type='http-service', receiver.url='http://localhost:5005/add',
-            source.id='adder',
-            @map(type='json, @attributes(messageId='trp:messageId',
-                                        value1='$.event.value1',
-                                        value2='$.event.value2')))
-    define stream AddStream (messageId string, value1 long, value2 long);
-
-    @sink(type='http-service-response', source.id='adder',
-        message.id='{{messageId}}', @map(type = 'json'))
-    define stream ResultStream (messageId string, results long);
+    CREATE SINK ResultStream WITH (type='http-service-response', source.id='adder', message.id='{{messageId}}', map.type='json') (messageId string, results long);
 
     @info(name = 'query1')
-    from AddStream 
-    select messageId, value1 + value2 as results 
-    insert into ResultStream;
-
+    insert into ResultStream
+    select messageId, value1 + value2 as results
+    from AddStream ;
 ```
 
 The http-service source on stream `AddStream` listens on url `http://localhost:5005/stocks` for JSON messages with format:
@@ -703,9 +667,7 @@ The request headers and properties can be accessed via transport properties in t
 Syntax:
 
 ```js
-
-    @source(type="http", receiver.url="<STRING>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>", @map(...)))
-
+    CREATE SOURCE <name> WITH (type="http", receiver.url="<STRING>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>", map.type="<STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -887,8 +849,7 @@ EXAMPLE:1
 ```js
     @app.name('StockProcessor')
 
-    @source(type='http', @map(type = 'json'))
-    define stream StockStream (symbol string, price float, volume long);
+    CREATE SOURCE StockStream WITH (type='http', map.type='json') (symbol string, price float, volume long);
 
 ```
 
@@ -909,9 +870,7 @@ It maps the incoming messages and sends them to `StockStream` for processing.
 EXAMPLE:2
 
 ```js
-@source(type='http', receiver.url='http://localhost:5005/stocks',
-        @map(type = 'xml'))
-define stream StockStream (symbol string, price float, volume long);
+CREATE SOURCE StockStream WITH (type='http', receiver.url='http://localhost:5005/stocks', map.type = 'xml') (symbol string, price float, volume long);
 
 ```
 
@@ -940,7 +899,7 @@ It allows accessing the attributes of the event that initiated the call, and the
 Syntax:
 
 ```js
-@source(type="http-call-response", sink.id="<STRING>", http.status.code="<STRING>", allow.streaming.responses="<BOOL>", @map(...)))
+CREATE SOURCE <name> WITH (type="http-call-response", sink.id="<STRING>", http.status.code="<STRING>", allow.streaming.responses="<BOOL>", map.type="<STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -984,24 +943,11 @@ QUERY PARAMETERS:
 EXAMPLE:1
 
 ```js
-@sink(type='http-call', method='`POST`',
-      publisher.url='http://localhost:8005/registry/employee',
-      sink.id='employee-info', @map(type='json')) 
-define stream EmployeeRequestStream (name string, id int);
+CREATE SINK EmployeeRequestStream WITH (type='http-call', method='`POST`', publisher.url='http://localhost:8005/registry/employee', sink.id='employee-info', map.type='json') (name string, id int);
 
-@source(type='http-call-response', sink.id='employee-info',
-        http.status.code='2\\d+',
-        @map(type='json',
-             @attributes(name='trp:name', id='trp:id',
-                         location='$.town', age='$.age')))
-define stream EmployeeResponseStream(name string, id int,
-                                     location string, age int);
+CREATE SOURCE EmployeeResponseStream WITH (type='http-call-response', sink.id='employee-info', http.status.code='2\\d+', map.type='json', map.attributes="name='trp:name', id='trp:id', location='$.town', age='$.age'") (name string, id int, location string, age int);
 
-@source(type='http-call-response', sink.id='employee-info',
-        http.status.code='4\\d+',
-        @map(type='text', regex.A='((.|\n)*)',
-             @attributes(error='A[1]')))
-define stream EmployeeErrorStream(error string);
+CREATE SOURCE EmployeeErrorStream WITH (type='http-call-response', sink.id='employee-info', http.status.code='4\\d+', map.type='text', map.regex.A='((.|\n)*)', map.attributes="error='A[1]'") (error string);
 ```
 
 When events arrive in `EmployeeRequestStream`, http-call sink makes calls to endpoint on url `http://localhost:8005/registry/employee` with ``POST`` method and Content-Type `application/json`.
@@ -1043,7 +989,7 @@ It also supports basic authentication to ensure events are received from authori
 Syntax:
 
 ```js
-    @source(type="http-service", receiver.url="<STRING>", source.id="<STRING>", connection.timeout="<INT>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>", @map(...)))
+    CREATE SOURCE <name> WITH (type="http-service", receiver.url="<STRING>", source.id="<STRING>", connection.timeout="<INT>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>", map.type="<STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -1239,21 +1185,14 @@ SYSTEM PARAMETERS:
 EXAMPLE:1
 
 ```js
-    @source(type='http-service', receiver.url='http://localhost:5005/add',
-            source.id='adder',
-            @map(type='json, @attributes(messageId='trp:messageId',
-                                        value1='$.event.value1',
-                                        value2='$.event.value2')))
-    define stream AddStream (messageId string, value1 long, value2 long);
+    CREATE SOURCE AddStream WITH (type='http-service', receiver.url='http://localhost:5005/add', source.id='adder', map.type='json', map.attributes="messageId='trp:messageId', value1='$.event.value1', value2='$.event.value2'") (messageId string, value1 long, value2 long);
 
-    @sink(type='http-service-response', source.id='adder',
-        message.id='{{messageId}}', @map(type = 'json'))
-    define stream ResultStream (messageId string, results long);
+    CREATE SINK ResultStream WITH (type='http-service-response', source.id='adder', message.id='{{messageId}}', map.type = 'json') (messageId string, results long);
 
     @info(name = 'query1')
-    from AddStream 
-    select messageId, value1 + value2 as results 
-    insert into ResultStream;
+    insert into ResultStream
+    select messageId, value1 + value2 as results
+    from AddStream;
 ```
 
 Above sample listens events on `http://localhost:5005/stocks` url for JSON messages on the format:

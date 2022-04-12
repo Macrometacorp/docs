@@ -22,12 +22,11 @@ The `Event to Key-Value Map` output mapper extension allows you to convert event
 
 Syntax
 
-    @sink(..., @map(type="keyvalue")
+    CREATE SINK <name> WITH (type="keyvalue")
 
 EXAMPLE 1
 
-    @sink(type='inMemory', topic='stock', @map(type='keyvalue'))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue') (symbol string, price float, volume long);
 
 This query performs a default Key-Value output mapping. The expected
 output is something similar to the following:
@@ -37,8 +36,7 @@ volume: 100L
 
 EXAMPLE 2
 
-    @sink(type='inMemory', topic='stock', @map(type='keyvalue', @payload(a='symbol',b='price',c='volume')))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', map.payload="a='symbol',b='price',c='volume'") (symbol string, price float, volume long)
 
 This query performs a custom Key-Value output mapping where values are
 passed as objects. Values for `symbol`, `price`, and `volume` attributes
@@ -50,8 +48,7 @@ c: 100L
 
 EXAMPLE 3
 
-    @sink(type='inMemory', topic='stock', @map(type='keyvalue', @payload(a='{{symbol}} is here',b='`price`',c='volume')))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', map.payload="a='{{symbol}} is here',b='`price`',c='volume'") (symbol string, price float, volume long);
 
 This query performs a custom Key-Value output mapping where the values
 of the `a` and `b` attributes are strings and c is object. The expected
@@ -66,7 +63,7 @@ c: 100L
 
 Syntax
 
-    @source(..., @map(type="keyvalue", fail.on.missing.attribute="<BOOL>")
+    CREATE SOURCE <name> WITH (type="keyvalue", fail.on.missing.attribute="<BOOL>")
 
 QUERY PARAMETERS
 
@@ -76,8 +73,7 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    @source(type='inMemory', topic='stock', @map(type='keyvalue'))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue') 
 
 This query performs a default key value input mapping. The expected
 input is a map similar to the following:
@@ -87,7 +83,7 @@ volume: 100
 
 EXAMPLE 2
 
-    @source(type='inMemory', topic='stock', @map(type='keyvalue', fail.on.missing.attribute='true', @attributes(symbol = 's', price = 'p', volume = 'v')))define stream FooStream (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', fail.on.missing.attribute='true', map.attributes="symbol = 's', price = 'p', volume = 'v'") (symbol string, price float, volume long);
 
 This query performs a custom key value input mapping. The matching keys
 for the `symbol`, `price` and `volume` attributes are be `s`, `p`, and
