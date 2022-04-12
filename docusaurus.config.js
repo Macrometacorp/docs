@@ -64,6 +64,8 @@ const config = {
           alt: 'Macrometa Logo',
           src: 'img/logo.svg',
           srcDark: 'img/logo-white.svg',
+          href: 'https://macrometa.com',
+          target: '_self'
         },
         items: [
           {
