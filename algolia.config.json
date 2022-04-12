@@ -2,8 +2,56 @@
     "index_name": "prod_DOCS",
     "start_urls": [
       {
-        "url": "https://macrometacorp.github.io/docs/quickstart/",
+        "url": "https://macrometa.com/docs/essentials/overview",
         "tags": ["Quickstart"]
+      },
+      {
+        "url": "https://macrometa.com/docs/collections/keyvalue/quickstart",
+        "tags": ["Key Value"]
+      },
+      {
+        "url": "https://macrometa.com/docs/collections/documents/quickstart",
+        "tags": ["Documents"]
+      },
+      {
+        "url": "https://macrometa.com/docs/collections/dynamo/using-aws-cli",
+        "tags": ["DynamoMode"]
+      },
+      {
+        "url": "https://macrometa.com/docs/collections/graphs/quickstart",
+        "tags": ["Graphs"]
+      },
+      {
+        "url": "https://macrometa.com/docs/collections/graphs/quickstart",
+        "tags": ["Graphs"]
+      },
+      {
+        "url": "https://macrometa.com/docs/search/overview",
+        "tags": ["Search"]
+      },
+      {
+        "url": "https://macrometa.com/docs/queryworkers/concepts",
+        "tags": ["Query Workers"]
+      },
+      {
+        "url": "https://macrometa.com/docs/streams/quickstart",
+        "tags": ["Streams"]
+      },
+      {
+        "url": "https://macrometa.com/docs/cep/quickstart",
+        "tags": ["Stream Workers"]
+      },
+      {
+        "url": "https://macrometa.com/docs/c8ql/introduction",
+        "tags": ["C8QL"]
+      },
+      {
+        "url": "https://macrometa.com/docs/tutorials/cloudflare-workers",
+        "tags": ["Tutorials"]
+      },
+      {
+        "url": "https://macrometa.com/docs/apps/address-book",
+        "tags": ["Sample Apps"]
       },
       "https://macrometa.com/docs",
       "https://macrometa.com/docs/api#"
