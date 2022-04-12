@@ -33,7 +33,8 @@ If you want to return unescaped HTML, use the triple mustache `{{{` instead of d
 
 Syntax
 
-    @sink(..., @map(type="text", event.grouping.enabled="<BOOL>", delimiter="<STRING>", new.line.character="<STRING>", mustache.enabled="<BOOL>")
+    CREATE SINK <name> WITH (type="text", event.grouping.enabled="<BOOL>", delimiter="<STRING>", new.line.character="<STRING>", mustache.enabled="<BOOL>")
+
 
 QUERY PARAMETERS
 
@@ -46,8 +47,7 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    @sink(type='inMemory', topic='stock', @map(type='text'))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text') (symbol string, price float, volume long);
 
 This query performs a default text input mapping. The expected output is
 as follows:
@@ -58,8 +58,7 @@ as follows:
 
 EXAMPLE 2
 
-    @sink(type='inMemory', topic='stock', @map(type='text', event.grouping.enabled='true'))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', event.grouping.enabled='true') (symbol string, price float, volume long);
 
 This query performs a default text input mapping with event grouping.
 The expected output is as follows:
@@ -74,8 +73,7 @@ The expected output is as follows:
 
 EXAMPLE 3
 
-    @sink(type='inMemory', topic='stock', @map(type='text',  @payload("SensorID : {{symbol}}/{{volume}}, SensorPrice : Rs{{price}}/=, Value : {{volume}}ml")))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text',  map.payload="SensorID : {{symbol}}/{{volume}}, SensorPrice : Rs{{price}}/=, Value : {{volume}}ml") (symbol string, price float, volume long);
 
 This query performs a custom text mapping. The expected output is as
 follows:
@@ -90,8 +88,7 @@ for the following stream processor event.
 
 EXAMPLE 4
 
-    @sink(type='inMemory', topic='stock', @map(type='text', event.grouping.enabled='true', @payload("Stock price of {{symbol}} is {{price}}")))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', event.grouping.enabled='true', payload="Stock price of {{symbol}} is {{price}}") (symbol string, price float, volume long);
 
 This query performs a custom text mapping with event grouping. The
 expected output is as follows:
@@ -108,8 +105,8 @@ for the following stream processor event.
 
 EXAMPLE 5
 
-    @sink(type='inMemory', topic='stock', @map(type='text', mustache.enabled='true',  @payload("SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml")))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.mustache.enabled='true',  map.payload="SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml") (symbol string, price float, volume long);
+
 
 This query performs a custom text mapping to return unescaped HTML. The
 expected output is as follows:
@@ -128,7 +125,8 @@ This extension is a text to event input mapper. Transports that accept text mess
 
 Syntax
 
-    @source(..., @map(type="text", regex.groupid="<STRING>", fail.on.missing.attribute="<BOOL>", event.grouping.enabled="<BOOL>", delimiter="<STRING>", new.line.character="<STRING>")
+    CREATE SOURCE <name> WITH (type="text", map.regex.groupid="<STRING>", map.fail.on.missing.attribute="<BOOL>", map.event.grouping.enabled="<BOOL>", map.delimiter="<STRING>", map.new.line.character="<STRING>")
+
 
 QUERY PARAMETERS
 
@@ -142,8 +140,7 @@ QUERY PARAMETERS
 
 Examples EXAMPLE 1
 
-    @source(type='inMemory', topic='stock', @map(type='text'))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='text') (symbol string, price float, volume long);
 
 This query performs a default text input mapping. The expected input is
 as follows:
@@ -170,8 +167,8 @@ If group events is enabled then input should be as follows:
 
 EXAMPLE 2
 
-    @source(type='inMemory', topic='stock', @map(type='text', fail.on.missing.attribute = 'true', regex.A='(\w+)\s([-0-9]+)',regex.B='volume\s([-0-9]+)', @attributes(symbol = 'A[1]',price = 'A[2]',volume = 'B')))
-    define stream FooStream (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='text', map.fail.on.missing.attribute = 'true', map.regex.A='(\w+)\s([-0-9]+)', map.regex.B='volume\s([-0-9]+)', map.attributes="symbol = 'A[1]',price = 'A[2]',volume = 'B'") (symbol string, price float, volume long);
+
 
 This query performs a custom text mapping. The expected input is as
 follows:

@@ -31,15 +31,7 @@ To configure a sink to use the Kafka transport, the `type` parameter should have
 Syntax:
 
 ```js
-@sink(type="kafka", 
-        bootstrap.servers="<STRING>", 
-        topic="<STRING>", 
-        partition.no="<INT>", 
-        sequence.id="<STRING>", 
-        key="<STRING>", 
-        is.binary.message="<BOOL>", 
-        optional.configuration="<STRING>", 
-        @map(...)))
+CREATE SINK <name> WITH (type="kafka",  bootstrap.servers="<STRING>",  topic="<STRING>",  partition.no="<INT>", sequence.id="<STRING>", key="<STRING>", is.binary.message="<BOOL>", optional.configuration="<STRING>", map.type="<STRING>"...)
 ```
 
 QUERY PARAMETERS:
@@ -59,20 +51,15 @@ EXAMPLE 1:
 ```js
 @App:name('TestExecutionPlan') 
 
-define stream FooStream (symbol string, price float, volume long);
+CREATE STREAM FooStream (symbol string, price float, volume long);
 
 @info(name = 'query1') 
-@sink(
-    type='kafka',
-    topic='topic_with_partitions',
-    partition.no='0',
-    bootstrap.servers='localhost:9092',
-    @map(type='json'))
-define stream BarStream (symbol string, price float, volume long);
 
+CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
+
+insert into BarStream
 select symbol, price, volume 
-from FooStream 
-insert into BarStream;
+from FooStream;
 ```
 
 This Kafka sink configuration publishes to `0th` partition of the topic named `topic_with_partitions`.
@@ -82,20 +69,14 @@ EXAMPLE 2:
 ```js
 @App:name('TestExecutionPlan') 
 
-define stream FooStream (symbol string, price float, volume long); 
+CREATE STREAM FooStream (symbol string, price float, volume long); 
 
 @info(name = 'query1') 
-@sink(
-    type='kafka',
-    topic='{{symbol}}',
-    partition.no='{{volume}}',
-    bootstrap.servers='localhost:9092',
-    @map(type='json'))
-define stream BarStream (symbol string, price float, volume long);
+CREATE SINK BarStream WITH (type='kafka', topic='{{symbol}}', partition.no='{{volume}}', bootstrap.servers='localhost:9092', map.type='json')) (symbol string, price float, volume long);
 
+insert into BarStream
 select symbol, price, volume 
-from FooStream 
-insert into BarStream;
+from FooStream ;
 ```
 
 This query publishes dynamic topic and partitions that are taken from the GDN stream worker event. The value for `partition.no` is taken from the `volume attribute`, and the `topic` value is taken from the `symbol` attribute.
@@ -107,7 +88,7 @@ This sink is used to request replay of specific range of events on a specified p
 Syntax:
 
 ```js
-@sink(type="kafka-replay-request", sink.id="<STRING>", @map(...)))
+CREATE SINK <name> WITH (type="kafka-replay-request", sink.id="<STRING>", @map.type="<STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -122,19 +103,16 @@ EXAMPLE 1:
 ```js
 @App:name('TestKafkaReplay')
 
-@sink(type='kafka-replay-request', sink.id='1')
-define stream BarStream (topicForReplay string, partitionForReplay string, startOffset string, endOffset string);
+CREATE SINK BarStream WITH (type='kafka-replay-request', sink.id='1') (topicForReplay string, partitionForReplay string, startOffset string, endOffset string);
 
 @info(name = 'query1')
-@source(type='kafka-replay-response',  group.id='group', threading.option='single.thread', bootstrap.servers='localhost:9092', sink.id='1', @map(type='json'))
-define stream FooStream (symbol string, amount double);
+CREATE SOURCE FooStream WITH (type='kafka-replay-response', group.id='group', threading.option='single.thread', bootstrap.servers='localhost:9092', sink.id='1', map.type='json') (symbol string, amount double);
 
-@sink(type='log')
-define stream logStream(symbol string, amount double);
+CREATE SINK logStream (type='log') (symbol string, amount double);
 
+insert into logStream
 select * 
-from FooStream 
-insert into logStream;
+from FooStream;
 ```
 
 In this app we can send replay request events into BarStream and observe the replayed events in the logStream.
@@ -148,19 +126,7 @@ A Kafka source receives events to be processed by GDN stream worker from a topic
 Syntax:
 
 ```js
-@source(type="kafka", 
-        bootstrap.servers="<STRING>", 
-        topic.list="<STRING>", 
-        group.id="<STRING>", 
-        threading.option="<STRING>", 
-        partition.no.list="<STRING>", 
-        seq.enabled="<BOOL>", 
-        is.binary.message="<BOOL>", 
-        topic.offsets.map="<STRING>", 
-        enable.offsets.commit="<BOOL>", 
-        enable.async.commit="<BOOL>", 
-        optional.configuration="<STRING>", 
-        @map(...)))
+CREATE SOURCE <name> WITH (type="kafka",  bootstrap.servers="<STRING>", topic.list="<STRING>", group.id="<STRING>", threading.option="<STRING>", partition.no.list="<STRING>", seq.enabled="<BOOL>", is.binary.message="<BOOL>", topic.offsets.map="<STRING>", enable.offsets.commit="<BOOL>", enable.async.commit="<BOOL>", optional.configuration="<STRING>", map.type="<STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -184,24 +150,15 @@ EXAMPLE 1:
 
 ```js
 @App:name('TestExecutionPlan') 
-define stream BarStream (symbol string, price float, volume long); 
+CREATE STREAM BarStream (symbol string, price float, volume long); 
 
 @info(name = 'query1') 
 
-@source(
-    type='kafka', 
-    topic.list='kafka_topic,kafka_topic2', 
-    group.id='test', 
-    threading.option='partition.wise', 
-    bootstrap.servers='localhost:9092', 
-    partition.no.list='0,1', 
-    @map(type='json'))
-define stream FooStream (symbol string, price float, volume long);
+CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic,kafka_topic2', group.id='test', threading.option='partition.wise', bootstrap.servers='localhost:9092', partition.no.list='0,1', map.type='json') (symbol string, price float, volume long);
 
+insert into BarStream
 select symbol, price, volume 
-from FooStream 
-insert into BarStream;
-
+from FooStream;
 ```
 
 This kafka source configuration listens to the `kafka_topic` and `kafka_topic2` topics with 0 and 1 partitions. A thread is created for each topic and partition combination. The events are received in the json format, mapped to a GDN stream worker event, and sent to a stream named `FooStream`.
@@ -210,23 +167,15 @@ EXAMPLE 2:
 
 ```js
 @App:name('TestExecutionPlan') 
-define stream BarStream (symbol string, price float, volume long); 
+CREATE STREAM BarStream (symbol string, price float, volume long); 
 
 @info(name = 'query1') 
 
-@source(
-    type='kafka', 
-    topic.list='kafka_topic',
-    group.id='test', 
-    threading.option='single.thread',
-    bootstrap.servers='localhost:9092',
-    @map(type='json'))
+CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic', group.id='test', threading.option='single.thread', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
 
-define stream FooStream (symbol string, price float, volume long);
-
+insert into BarStream
 select symbol, price, volume
-from FooStream 
-insert into BarStream;
+from FooStream;
 ```
 
 This Kafka source configuration listens to the `kafka_topic` topic for the default partition because no `partition.no.list` is defined. Only one thread is created for the topic. The events are received in the JSON format, mapped to a GDN stream worker event, and sent to a stream named `FooStream`.
@@ -235,42 +184,12 @@ EXAMPLE 3:
 
 ```js
 @App:name('TestExecutionPlan')
-@source(type='kafka',
-        topic.list='trp_topic',
-        partition.no.list='0',
-        threading.option='single.thread',
-        group.id='group',
-        bootstrap.servers='localhost:9092',
-        @map(type='json', 
-                enclosing.element='//events',
-                @attributes(symbol ='symbol', 
-                            price = 'price', 
-                            volume = 'volume',
-                            partition = 'trp:partition',
-                            topic = 'trp:topic', 
-                            key = 'trp:key',
-                            recordTimestamp = 'trp:record.timestamp',
-                            eventTimestamp = 'trp:event.timestamp',
-                            checkSum = 'trp:check.sum', 
-                            topicOffset = 'trp:offset'
-                        )
-            )
-        )
 
-define stream FooStream (symbol string, 
-                        price float, 
-                        volume long, 
-                        partition string,
-                        topic string, 
-                        key string,
-                        recordTimestamp string,
-                        eventTimestamp string, 
-                        checkSum string,
-                        topicOffset string);
+CREATE SOURCE FooStream WITH (type='kafka', topic.list='trp_topic', partition.no.list='0', threading.option='single.thread', group.id='group', bootstrap.servers='localhost:9092', map.type='json', enclosing.element='//events', map.attributes="symbol ='symbol', price = 'price', volume = 'volume', partition = 'trp:partition', topic = 'trp:topic', key = 'trp:key', recordTimestamp = 'trp:record.timestamp', eventTimestamp = 'trp:event.timestamp', checkSum = 'trp:check.sum', topicOffset = 'trp:offset'") (symbol string, price float, volume long, partition string, topic string, key string, recordTimestamp string, eventTimestamp string, checkSum string, topicOffset string);
 
+insert into BarStream
 select * 
-from FooStream 
-insert into BarStream;
+from FooStream;
 ```
 
 This Kafka source configuration listens to the `trp_topic` topic for the default partition because no `partition.no.list` is defined.
@@ -284,12 +203,7 @@ This source is used to listen to replayed events requested from `kafka-replay-re
 Syntax:
 
 ```js
-@source(type="kafka-replay-response", 
-        bootstrap.servers="<STRING>", 
-        group.id="<STRING>", 
-        threading.option="<STRING>", 
-        sink.id="<INT>", 
-        @map(...)))
+CREATE SOURCE <name> WITH (type="kafka-replay-response", bootstrap.servers="<STRING>", group.id="<STRING>", threading.option="<STRING>", sink.id="<INT>", map.type="<STRING>")
 ```
 
 QUERY PARAMETERS:
@@ -307,19 +221,16 @@ EXAMPLE 1:
 ```js
 @App:name('TestKafkaReplay')
 
-@sink(type='kafka-replay-request', sink.id='1')
-define stream BarStream (topicForReplay string, partitionForReplay string, startOffset string, endOffset string);
+CREATE SINK BarStream WITH (type='kafka-replay-request', sink.id='1') (topicForReplay string, partitionForReplay string, startOffset string, endOffset string);
 
 @info(name = 'query1')
-@source(type='kafka-replay-response',  group.id='group', threading.option='single.thread', bootstrap.servers='localhost:9092', sink.id='1', @map(type='json'))
-define stream FooStream (symbol string, amount double);
+CREATE SOURCE FooStream WITH (type='kafka-replay-response',  group.id='group', threading.option='single.thread', bootstrap.servers='localhost:9092', sink.id='1', map.type='json') (symbol string, amount double);
 
-@sink(type='log')
-define stream logStream(symbol string, amount double);
+CREATE SINK logStream WITH (type='log') (symbol string, amount double);
 
+insert into logStream
 select * 
-from FooStream 
-insert into logStream;
+from FooStream;
 ```
 
 In this app we can send replay request events into BarStream and observe the replayed events in the logStream.

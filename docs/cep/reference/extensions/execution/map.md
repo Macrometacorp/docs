@@ -141,9 +141,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
+    insert into OutputStream
     select map:collect(symbol, price) as stockDetails
-    from StockStream#window.lengthBatch(10)
-    insert into OutputStream;
+    from StockStream#window.lengthBatch(10);
 
 For the window expiry of 10 events, the collect() function will collect
 attributes of `key` and `value` to a single map and return as
@@ -166,9 +166,9 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
+    insert into OutputStream
     select map:merge(map) as stockDetails
-    from StockStream#window.lengthBatch(2)    
-    insert into OutputStream;
+    from StockStream#window.lengthBatch(2);
 
 For the window expiry of 2 events, the merge() function will collect
 attributes of `map` and merge them to a single map, returned as
@@ -731,15 +731,15 @@ Extra Return Attributes
 
 EXAMPLE 1
 
-    define stream StockStream(symbol string, price float);
+    CREATE STREAM StockStream (symbol string, price float);
 
+    insert into TempStream
     select map:collect(symbol, price) as symbolPriceMap
-    from StockStream#window.lengthBatch(2)
-    insert into TempStream;
+    from StockStream#window.lengthBatch(2);
 
+    insert into SymbolStream
     select key, value
-    from TempStream#map:tokenize(customMap)
-    insert into SymbolStream;
+    from TempStream#map:tokenize(customMap);
 
 Based on the length batch window, `symbolPriceMap` will collect two
 events, and the map will then again tokenized to give 2 events with key
