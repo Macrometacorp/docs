@@ -59,13 +59,17 @@ const config = {
           content: 'Macrometa Docs'
         },
         {
-          name: 'og:url',
-          content: 'https://macrometa.com/docs'
-        },
-        {
           name: 'og:description',
           content: 'Powering the next generation of apps and APIs. Build performant apps on the edge with our lightning-fast, stateful serverless global data platform'
         },
+        {
+          name: 'og:url',
+          content: 'https://macrometa.com/docs/'
+        },
+        {
+          name: 'og:image',
+          content: 'https://assets-global.website-files.com/5fa9e94bc848ae335afdd627/601af89de27f422a1c090b14_mm-map.png'
+        }
       ],
       algolia: {
         appId: 'GHXKYI4VEC', // public + read only and safe to commit
