@@ -52,6 +52,21 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: 'img/map.png',
+      metadata: [
+        {
+          name: 'og:title',
+          content: 'Macrometa Docs'
+        },
+        {
+          name: 'og:url',
+          content: 'https://macrometa.com/docs'
+        },
+        {
+          name: 'og:description',
+          content: 'Powering the next generation of apps and APIs. Build performant apps on the edge with our lightning-fast, stateful serverless global data platform'
+        },
+      ],
       algolia: {
         appId: 'GHXKYI4VEC', // public + read only and safe to commit
         apiKey: '89c79be3419cb93594c775fa808715ee', // public + read only and safe to commit
