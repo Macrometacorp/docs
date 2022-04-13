@@ -108,18 +108,35 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Quick Start',
-                to: '/docs/quickstart',
+                label: 'Quickstart',
+                to: '/quickstart',
+              },
+              {
+                label: 'Essentials',
+                to: '/essentials/overview',
+              }
+            ],
+          },
+          {
+            title: 'SDKs & Tools',
+            items: [
+              {
+                label: 'Javascript',
+                href: 'https://github.com/Macrometacorp/jsC8',
+              },
+              {
+                label: 'Python',
+                href: 'https://github.com/Macrometacorp/pyC8',
+              },
+              {
+                label: 'CLI',
+                href: 'https://www.npmjs.com/package/gdnsl',
               },
             ],
           },
           {
             title: 'Community',
             items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/macrometa',
-              },
               {
                 label: 'Twitter',
                 href: 'https://twitter.com/macrometa',
