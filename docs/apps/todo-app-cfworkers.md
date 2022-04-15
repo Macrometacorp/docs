@@ -49,13 +49,13 @@ Macrometa's global data service (GDN) offers `Key Value`, `Dynamo Mode`, `Docume
     wrangler preview --watch
     ```
 
-5. [Configure]((https://developers.cloudflare.com/workers/tooling/wrangler/commands/#config)) your global Cloudflare user. This is an interactive command that will prompt you for your API token.
+5. [Configure](https://developers.cloudflare.com/workers/cli-wrangler/commands/) your global Cloudflare user. This is an interactive command that will prompt you for your API token.
 
     ```bash
     wrangler config [--api-key]
     ```
 
-6. [Publish](https://developers.cloudflare.com/workers/tooling/wrangler/commands/#publish) your Worker to Cloudflare. Several keys in your `wrangler.toml` determine whether you are publishing to a `workers.dev` subdomain or your own registered domain, proxied through Cloudflare.
+6. [Publish](https://developers.cloudflare.com/workers/cli-wrangler/commands/#publish) your Worker to Cloudflare. Several keys in your `wrangler.toml` determine whether you are publishing to a `workers.dev` subdomain or your own registered domain, proxied through Cloudflare.
 
     ```bash
     wrangler publish [--env $ENVIRONMENT_NAME]
