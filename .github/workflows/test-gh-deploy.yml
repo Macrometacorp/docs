@@ -1,0 +1,25 @@
+name: Test GH Page Deploy
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test-deploy:
+    name: Test docusaurus build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+        
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install
+      - name: Test build
+        run: yarn build
