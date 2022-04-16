@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy GH Pages
 
 on:
   push:
@@ -25,7 +25,6 @@ jobs:
         run: |
           yarn install 
           yarn build
-
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
