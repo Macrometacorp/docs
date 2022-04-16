@@ -1,4 +1,4 @@
-name: Test GH Page Deploy
+name: Test GH Pages Deploy
 
 on:
   pull_request:
