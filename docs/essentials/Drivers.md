@@ -1,6 +1,7 @@
 ---
 sidebar_position: 6
 title: Drivers
+slug: drivers
 ---
 
 import Tabs from '@theme/Tabs';

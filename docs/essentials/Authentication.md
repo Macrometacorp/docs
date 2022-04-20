@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Authentication
+slug: authentication
 ---
 
 import Tabs from '@theme/Tabs';
