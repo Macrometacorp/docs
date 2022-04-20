@@ -49,7 +49,7 @@ Macrometa's global data service (GDN) offers `Key Value`, `Dynamo Mode`, `Docume
     wrangler preview --watch
     ```
 
-5. [Configure]((https://developers.cloudflare.com/workers/tooling/wrangler/commands/#config)) your global Cloudflare user. This is an interactive command that will prompt you for your API token.
+5. [Configure](https://developers.cloudflare.com/workers/cli-wrangler/commands/#config) your global Cloudflare user. This is an interactive command that will prompt you for your API token.
 
     ```bash
     wrangler config [--api-key]

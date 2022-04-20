@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
 title: Troubleshooting
+slug: troubleshooting
 ---
 
 If you are unable to access your tenant's global URL, you can try flushing your DNS cache. Use the following procedure for your OS:
