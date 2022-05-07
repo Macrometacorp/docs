@@ -23,6 +23,12 @@ Macrometa GDN uses 64-bit unsigned integer values to maintain collection IDs. Wh
 
 A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](../naming-conventions) for more information on valid collection names.
 
+## confirm all writes
+
+All write operations are asynchronous by default, meaning the caller receives a confirmation as soon as the write arrives at the database, but has not yet been committed to storage. If a write is accepted by the database and has not yet been written to storage, there is a chance of data loss in an event of power failure.
+
+If you enable **Confirm All Writes**, we delay the confirmation response until the operation has been fully synced to storage. This verifies that you only receive an acknowledgment after a successful write to storage, and no acknowledgment in the case of a power failure.
+
 ## document
 
 Documents in Macrometa GDN are JSON objects. These objects can be nested to any depth and might contain arrays. Each document is uniquely identified by its document handle.
