@@ -12,7 +12,7 @@ The following table shows rate limits for free developer accounts and metered ac
 | Name 							| Free Tier Quota 	| Metered Tier Quota |
 |------							|-----------------	|-----------------	|
 | Requests per Day				| 20000				| No limit			|
-| Requests per Minute  			| 500				| 2000				|
+| Requests per Minute  			| 4500 (500/PoP)	| 18000 (2000/PoP)	|
 | Storage per Day				| 200 MB			| No limit			|
 | Document Size					| 500 KB			| 500 KB			|
 | Documents per Query			| 1000				| 1000				|
