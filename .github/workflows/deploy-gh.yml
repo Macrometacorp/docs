@@ -7,10 +7,19 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  NODE_ENV: production
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: ${{ env.NODE_ENV }}
+      ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+      ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+      POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+      POSTHOG_API_URL: ${{ secrets.POSTHOG_API_URL }}
     steps:
       - name: Check out repo
         uses: actions/checkout@v2

@@ -5,10 +5,19 @@ on:
     branches:
       - master
 
+env:
+  NODE_ENV: production
+
 jobs:
   test-deploy:
     name: Test docusaurus build
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: ${{ env.NODE_ENV }}
+      ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+      ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+      POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+      POSTHOG_API_URL: ${{ secrets.POSTHOG_API_URL }}
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
