@@ -83,8 +83,8 @@ const config = {
         searchParameters: {},
       },
       posthog: {
-        apiKey: process.env.POSTHOG_API_KEY,
-        appUrl: process.env.POSTHOG_API_URL,
+        apiKey: process.env.POSTHOG_API_KEY || "DEV",
+        appUrl: process.env.POSTHOG_API_URL || "https://posthog.prod.macrometa.io",
         enableInDevelopment: false
       },
       navbar: {
