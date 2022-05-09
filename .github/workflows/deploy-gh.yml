@@ -7,9 +7,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  NODE_ENV: production
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   publish:
@@ -26,7 +23,6 @@ jobs:
 
       - name: Build docs website
         env:
-          NODE_ENV: ${{ env.NODE_ENV }}
           POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
           POSTHOG_API_URL: ${{ secrets.POSTHOG_API_URL }}
         run: |
@@ -44,7 +40,6 @@ jobs:
       - name: Run Docsearch scraper
         uses: darrenjennings/algolia-docsearch-action@master
         with:
-          NODE_ENV: ${{ env.NODE_ENV }}
           algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
           algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
           file: 'algolia.config.json'
