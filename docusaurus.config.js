@@ -99,7 +99,7 @@ const config = {
             href: '/api'
           },
           {
-            href: 'https://github.com/macrometacorp/',
+            href: 'https://github.com/macrometacorp/docs',
             label: 'GitHub',
             position: 'left',
           },
