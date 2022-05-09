@@ -14,12 +14,6 @@ env:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    env:
-      NODE_ENV: ${{ env.NODE_ENV }}
-      ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-      ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-      POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
-      POSTHOG_API_URL: ${{ secrets.POSTHOG_API_URL }}
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
@@ -31,6 +25,10 @@ jobs:
           cache: yarn
 
       - name: Build docs website
+        env:
+          NODE_ENV: ${{ env.NODE_ENV }}
+          POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+          POSTHOG_API_URL: ${{ secrets.POSTHOG_API_URL }}
         run: |
           yarn install 
           yarn build
@@ -46,6 +44,7 @@ jobs:
       - name: Run Docsearch scraper
         uses: darrenjennings/algolia-docsearch-action@master
         with:
+          NODE_ENV: ${{ env.NODE_ENV }}
           algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
           algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
           file: 'algolia.config.json'
