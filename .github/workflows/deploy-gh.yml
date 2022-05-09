@@ -22,6 +22,9 @@ jobs:
           cache: yarn
 
       - name: Build docs website
+        env:
+          POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+          POSTHOG_API_URL: ${{ secrets.POSTHOG_API_URL }}
         run: |
           yarn install 
           yarn build
