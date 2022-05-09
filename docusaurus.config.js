@@ -31,8 +31,9 @@ const config = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          //path: 'docs/main',
-          //id: 'default',
+          path: 'docs',
+          editUrl: ({ docPath }) =>
+            `https://github.com/macrometacorp/docs/edit/master/docs/${docPath}`,
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: true,
@@ -107,7 +108,7 @@ const config = {
             href: '/api'
           },
           {
-            href: 'https://github.com/macrometacorp/',
+            href: 'https://github.com/macrometacorp/docs',
             label: 'GitHub',
             position: 'left',
           },
