@@ -1,6 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+require("dotenv").config();
+
 const {
   tailwindPlugin,
   webpackPlugin,
@@ -48,6 +50,7 @@ const config = {
   plugins: [
     tailwindPlugin,
     webpackPlugin,
+    'posthog-docusaurus'
   ],
 
   themeConfig:
@@ -78,6 +81,11 @@ const config = {
         indexName: 'prod_DOCS',
         contextualSearch: true,
         searchParameters: {},
+      },
+      posthog: {
+        apiKey: process.env.POSTHOG_API_KEY || "DEV",
+        appUrl: process.env.POSTHOG_API_URL || "https://posthog.prod.macrometa.io",
+        enableInDevelopment: false
       },
       navbar: {
         logo: {
