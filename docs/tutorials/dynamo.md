@@ -55,7 +55,7 @@ title: Dynamo Mode
             AttributeName=Artist,KeyType=HASH \
             AttributeName=SongTitle,KeyType=RANGE \
         --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Create local table
@@ -70,7 +70,7 @@ title: Dynamo Mode
             AttributeName=Artist,KeyType=HASH \
             AttributeName=SongTitle,KeyType=RANGE \
         --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo \
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo \
         --tags Key=Local,Value=True
 ```
 
@@ -82,13 +82,13 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
 ### List global tables
 
 ```bash
-    aws dynamodb list-global-tables --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+    aws dynamodb list-global-tables --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### List local tables
 
 ```bash
-    aws dynamodb list-tables --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+    aws dynamodb list-tables --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 :::note
@@ -103,7 +103,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
         --item '{"Artist": {"S": "Obscure Indie Band"}, "SongTitle": {"S": "Call Me Today"}}' \
         --condition-expression "attribute_not_exists(Artist)" \
         --return-values ALL_NEW \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ```bash
@@ -112,7 +112,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
         --item '{"Artist": {"S": "Luke Combs"}, "SongTitle": {"S": "Tequila"}}' \
         --condition-expression "attribute_not_exists(Artist)" \
         --return-values ALL_NEW \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Batch get item
@@ -121,7 +121,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
     aws dynamodb batch-get-item \
         --request-items '{"Music": {"Keys": [{"Artist": {"S": "Obscure Indie Band"},"SongTitle": {"S": "Call Me Today"}},{"Artist": {"S": "Luke Combs"},"SongTitle": {"S": "Tequila"}}],"ProjectionExpression":"Artist"}}' \
         --return-consumed-capacity TOTAL \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Batch write item
@@ -131,7 +131,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
      --request-items '{"Music": [{"PutRequest": {"Item": {"Artist": {"S": "TestName1"},"SongTitle": {"S": "The Best1"}}}},{"PutRequest": {"Item": {"Artist": {"S": "TestName2"},"SongTitle": {"S": "The Best2"}}}}]}' \
      --return-consumed-capacity INDEXES \
      --return-item-collection-metrics SIZE \
-     --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+     --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Scan
@@ -143,7 +143,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
        --projection-expression "#ST, #AT" \
        --expression-attribute-names '{"#ST": "SongTitle","#AT":"Artist"}' \
        --expression-attribute-values '{":a": {"S": "TestName1"}}' \
-       --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+       --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Query items
@@ -153,7 +153,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
 ```bash
     aws dynamodb query \
         --table-name Music \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 **Query By Artist Name:**
@@ -163,7 +163,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
         --table-name Music \
         --key-condition-expression "Artist == :name" \
         --expression-attribute-values  '{":name":{"S":"Luke Combs"}}' \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 **Query By complex conditions:**
@@ -173,7 +173,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
         --table-name Music \
         --key-condition-expression "Artist == :n1 OR begins_with(Artist, :n2)" \
         --expression-attribute-values  '{":n1":{"S":"Luke Combs"}, ":n2":{"S":"Obscure"}}' \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo  
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo  
 ```
 
 ```bash
@@ -183,7 +183,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
         --filter-expression "#a <> :n1" \
         --expression-attribute-names '{"#a": "Artist"}' \
         --expression-attribute-values  '{":n1":{"S":"Luke Combs"}, ":n2":{"S":"Obscure"}}' \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Count items
@@ -192,7 +192,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
     aws dynamodb query \
         --table-name Music \
         --select COUNT \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Update item
@@ -204,7 +204,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
         --update-expression "SET Year = :y, SongTitle = :t" \
         --expression-attribute-values  '{":y":{"N":"2020"}, ":t":{"S":"Happy Day"}}' \
         --return-values ALL_NEW \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Query all items
@@ -212,7 +212,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
 ```bash
     aws dynamodb query \
         --table-name Music \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Delete item
@@ -222,7 +222,7 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
         --table-name Music \
         --key '{"Artist": {"S": "Luke Combs"}, "SongTitle": {"S": "Happy Day"}}' \
         --return-values ALL_OLD \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Delete table
@@ -230,5 +230,5 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
 ```bash
     aws dynamodb delete-table \
         --table-name Music \
-        --endpoint-url https://api-gdn.macrometa.io/_api/dynamo
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
