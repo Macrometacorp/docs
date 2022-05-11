@@ -38,11 +38,3 @@ To delete a GeoFabric:
 3. Click **Delete** on the row of the GeoFabric you want to delete.
 
 You must type the name of the GeoFabric to verify its deletion.
-
-## Enable Unique URLs
-
-To enable unique URLs for each GeoFabric:
-
-1. Log into an administrator account in the `_system` GeoFabric.
-2. Click **TENANTS** to navigate to the Tenants management page.
-3. On the **Platform Limits** tab, select the **Enable Tenant URLs** check box.
