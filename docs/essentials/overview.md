@@ -126,11 +126,11 @@ All documents contain special attributes:
 
 The value of the `_key` attribute can be specified by the user when creating a document. `_id` and `_key` values are immutable once the document has been created. The `_rev` value is maintained by GDN automatically.
 
-**Document Handle:**
+#### Document Handle
 
 A document handle uniquely identifies a document in the database. It is a string and consists of the collection's name and the document key (`_key` attribute) separated by `/`.
 
-**Document Key:**
+#### Document Key
 
 A document key uniquely identifies a document in the collection it is stored in. It can and should be used by clients when specific documents are queried. The document key is stored in the `_key` attribute of each document. The key values are automatically indexed by C8DB in a collection's primary index. Thus looking up a document by its key is a fast operation. The `_key` value of a document is immutable once the document has been created. 
 
@@ -140,7 +140,7 @@ This behavior can be changed on a per-collection level by creating collections w
 
 Using `keyOptions` it is possible to disallow user-specified keys completely, or to force a specific regime for auto-generating the `_key` values.
 
-**Document Revision:**
+#### Document Revision
 
 As GDN supports MVCC (Multiple Version Concurrency Control), documents can exist in more than one revision. The document revision is the MVCC token used to specify a particular revision of a document (identified by its `_rev`). It is fully managed by the server and read-only for the user.
 
@@ -160,13 +160,13 @@ The `_rev` attribute can be used as a pre-condition for queries, to avoid lost u
 :::
 In order to find a particular revision of a document, you need the document handle or key, and the document revision.
 
-**Multiple Documents in Single call:**
+####  Multiple Documents in Single call
 
 The basic document API has been designed to handle not only single documents but multiple documents in a single command. This is crucial for performance, in that it reduces the overhead of individual network round trips between the client and the server.
 
 The general idea to perform multiple document operations in a single command is to use JSON arrays of objects in the place of a single document. As a consequence, document keys, handles and revisions for preconditions have to be supplied embedded in the individual documents given. Multiple document operations are restricted to a single document or edge collection.
 
-**Working with Monetary Data:**
+#### Working with Monetary Data
 
 Applications that handle monetary data often require to capture fractional units of currency and need to emulate decimal rounding without precision loss. Compared to relational databases, JSON does not support arbitrary precision out-of-the-box but there are suitable workarounds.
 
@@ -176,7 +176,7 @@ There are two ways to handle monetary data:
 
 * **Monetary data as string:** If you only want to store and retrieve monetary data you can do so without any precision loss by storing this data as string. However, when using strings for monetary data values it will not be possible to do calculations on them on the server. Calculations have to happen in application logic that is capable of doing arithmetic on string-encoded integers.
 
-**Data Retrieval:**
+#### Data Retrieval
 
 **Queries** are used to filter documents based on certain criteria, to compute new data, as well as to manipulate or delete existing documents. Queries can be as simple as a "query by example" or as complex as "joins" using many collections or traversing graph structures. They are written in the [C8 Query Language (C8QL)](c8ql/introduction.md).
 
