@@ -740,7 +740,7 @@ The select clause in stream query defines the output event attributes of the que
 
 ### Function
 
-Function are pre-configured operations that can consumes zero, or more parameters and always produce a single value as result. It can be used anywhere an attribute can be used.
+Functions are pre-configured operations that can consumes zero, or more parameters and always produce a single value as result. It can be used anywhere an attribute can be used.
 
 **Purpose**
 
@@ -2646,7 +2646,7 @@ select concatFn(roomNo,'-',deviceID) as id, temp
 from TempStream;
 ```
 
-## Store Query
+## Store
 
 Stream store queries are a set of on-demand queries that can be used to perform operations on Stream tables, windows, and aggregators.
 
