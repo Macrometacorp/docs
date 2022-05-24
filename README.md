@@ -67,7 +67,7 @@ This section describes how you can get the Macrometa docs up and running on your
 1. Clone the repo
 
 ```bash
-git clone git@github.com:Macrometacorp/docs.git
+git clone git@github.com:Macrometacorp/docs.git && cd docs
 ```
 
 2. Install dependencies
