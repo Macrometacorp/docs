@@ -7,7 +7,7 @@ title: Quickstart
 
 Let’s take **5 minutes** to create a stateful-serverless backend for a simple Address Book. It's going to run globally distributed with local read-write latencies around 50ms.
 
-We are going to walk through 4 steps:
+We are going to walk through four steps:
 
 - Create a collection and add some data to it.
 - Query that data.
