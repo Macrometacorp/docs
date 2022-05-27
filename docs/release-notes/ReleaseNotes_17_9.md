@@ -11,9 +11,7 @@ This document describes what has changed in Macrometa release 17.9.
 
 * API-179 - Fixed issues with API server latency.
 * STRM-296 / STRM-160 / STRM-215 - Fixed an issue where a metadata error in streams caused duplicate messages.
-* DEPL-168 / STRM-274 / STRM-255 - Timeout issues no longer cause probe failures in Zookeeper.
+* DEPL-168 / STRM-274 / STRM-255 - A timeout issue occasionally caused probe failures in Zookeeper.
 * DB-1340 - 
-* DB-1442 - Adding documents to a collection from different regions no longer fails when a unique key is claimed by another document.
-* DB-1444 - 
-* SEC-210 - 
-
+* DB-1442 / DB-1444 - If you added documents to a collection from different regions, occasionally a document would fail to add after trying to use a unique key claimed by another document.
+* GUI-798 - Fixed an issue where the GDN GUI would occasionally display improperly.
