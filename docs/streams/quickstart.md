@@ -14,13 +14,13 @@ Macrometa global data network (GDN) is a fully managed realtime materialzed view
 
 This article is an introduction to using streams with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) drivers.
 
-GDN streams are a high-performance solution for server-to-server messaging. It provides,
+GDN streams are a high-performance solution for server-to-server messaging. It provides:
 
-- Seamless geo-replication of messages across regions,
-- Very low publish and end-to-end latency,
-- Seamless scalability to over a million topics.
-- Multiple subscription modes (`exclusive`, `shared`, and `failover`) for streams.
-- Guaranteed message delivery with persistent message storage.
+- Seamless geo-replication of messages across regions
+- Very low publish and end-to-end latency
+- Seamless scalability to over a million topics
+- Multiple subscription modes (`exclusive`, `shared`, and `failover`) for streams
+- Guaranteed message delivery with persistent message storage
 
 `Streams` are built on the _publish-subscribe_ pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
 
