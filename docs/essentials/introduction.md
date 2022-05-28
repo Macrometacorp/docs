@@ -46,7 +46,7 @@ A GeoFabric is a collection of edge data centers linked together as a single hig
 
 Each GeoFabric contains collections (key-value and documents), graphs, streams, stream processors and search capabilities. Data written to a GeoFabric is pinned to the locations that are part of the GeoFabric.
 
-A tenant can have multiple GeoFabrics. Different GeoFabrics isolate the data inside them (collections, documents etc.) from one another. 
+A tenant can have multiple GeoFabrics. Each GeoFabric isolates its contained data (collections, documents etc.) from other GeoFabrics. 
 
 A GeoFabric contains the following:
 
