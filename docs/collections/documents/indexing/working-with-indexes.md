@@ -10,25 +10,25 @@ Top-level as well as nested attributes can be indexed. For attributes at the top
 To create an index:
 
 ```cURL
-curl -X POST "https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=c1" 
--H "Authorization: bearer <token>" 
--d "{ \"fields\": [ \"name\" ], \"sparse\": true, \"type\": \"hash\", \"unique\": true}"
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+-H 'Authorization: bearer <token>'                                                  \ 0
+-d '{ "fields": [ "name" ], "sparse": true, "type": "hash", "unique": true}'
 ```
 
 To create a combined index over multiple fields, add more members to the *fields* array. For example:
 
 ```cURL
-curl -X POST "https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=c1"
--H "Authorization: bearer <token>" 
--d "{ \"fields\": [ \"name\", \"age\" ], \"sparse\": true, \"type\": \"hash\", \"unique\": true}"
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+-H 'Authorization: bearer <token>'                                                  \ 
+-d '{ "fields": [ "name", "age" ], "sparse": true, "type": "hash", "unique": true}'
 ```
 
 To index sub-attributes, specify the attribute path using the dot notation:
 
 ```cURL
-curl -X POST "https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=c1" 
--H "Authorization: bearer <token>" 
--d "{ \"fields\": [ \"name.first\", \"name.last\" ], \"type\": \"hash\"}"
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+-H 'Authorization: bearer <token>'                                                  \   
+-d '{ "fields": [ "name.first", "name.last" ], "type": "hash"}'
 ```
 
 ## Indexing Array Values
@@ -40,9 +40,9 @@ To make an index insert the individual array members into the index instead of t
 The following example creates an array hash index on the `tags` attribute in a collection named `posts`:
 
 ```cURL
-curl -X POST "https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1" 
--H "Authorization: bearer <token>"
--d "{ \"tags\" : [ \"foobar\", \"baz\", \"quux\" ]}"
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1' \
+-H 'Authorization: bearer <token>'                                                 \
+-d '{ "tags" : [ "foobar", "baz", "quux" ]}'
 ```
 
 This array index can then be used for looking up individual `tags` values from C8QL queries via the `IN` operator:
@@ -74,9 +74,9 @@ FILTER 'foobar' == doc.tags
 It is also possible to create an index on subattributes of array values. This makes sense if the index attribute is an array of objects, e.g.
 
 ```cURL
-curl -X POST "https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1" 
--H "Authorization: bearer <token>"
--d "{ \"tags\": [ { \"name\": \"foobar\" }, { \"name\": \"baz\" }, { \"name\": \"quux\" } ] }"
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1' \
+-H 'Authorization: bearer <token>'                                                 \
+-d '{ "tags": [ { "name": "abc" }, { "name": "baz" }, { "name": "quux" } ] }'
 ```
 
 The following query will then use the array index (this does require the [array expansion operator](working-with-indexes.md)):
@@ -91,14 +91,19 @@ If you store a document having the array which does contain elements not having 
 
 GDN supports creating array indexes with a single <i>[\*]</i> operator per index attribute. For example, creating an index as follows is *not* supported:
 
-```js
-posts.ensureIndex({ type: "hash", fields: [ "tags[*].name[*].value" ] });
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=c1' \
+ -H 'Authorization: bearer <token>'                                                             \ 
+ -d '{ "fields": ["tags[*].name[*].value" ], "type" : "hash"}'
 ```
+
 
 Array values will automatically be de-duplicated before being inserted into an array index. For example, if the following document is inserted into the collection, the duplicate array value `bar` will be inserted only once:
 
-```js
-posts.insert({ tags: [ "foobar", "bar", "bar" ] });
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ tags: [ "foobar", "bar", "bar" ] }'
 ```
 
 This is done to avoid redudant storage of the same index value for the same document, which would not provide any benefit.
@@ -109,47 +114,107 @@ It will always fail if the index already contains an instance of the `bar` value
 
 To turn off the deduplication of array values, it is possible to set the **deduplicate** attribute on the array index to `false`. The default value for **deduplicate** is `true` however, so de-duplication will take place if not explicitly turned off.
 
-```js
-posts.ensureIndex({ type: "hash", fields: [ "tags[*]" ], deduplicate: false });
-
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "fields": [ "tags[*]" ], "type" : "hash", "deduplicate": false}'
+ 
 // will fail now
-posts.insert({ tags: [ "foobar", "bar", "bar" ] }); 
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ tags: [ "foobar", "bar", "bar" ] }'
 ```
 
 If an array index is declared and you store documents that do not have an array at the specified attribute this document will not be inserted in the index. Hence the following objects will not be indexed:
 
-```js
-posts.ensureIndex({ type: "hash", fields: [ "tags[*]" ] });
-posts.insert({ something: "else" });
-posts.insert({ tags: null });
-posts.insert({ tags: "this is no array" });
-posts.insert({ tags: { content: [1, 2, 3] } });
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "fields": [ "tags[*]" ], "type" : "hash"}'
+ 
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "something": "else" }'
+
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": null }'
+ 
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": "this is no array"  }'
+ 
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": { content: [1, 2, 3] }  }'
 ```
 
 An array index is able to index explicit `null` values. When queried for `null`values, it will only return those documents having explicitly `null` stored in the array, it will not return any documents that do not have the array at all.
 
-```js
-posts.ensureIndex({ type: "hash", fields: [ "tags[*]" ] });
-posts.insert({tags: null}) // Will not be indexed
-posts.insert({tags: []})  // Will not be indexed
-posts.insert({tags: [null]}); // Will be indexed for null
-posts.insert({tags: [null, 1, 2]}); // Will be indexed for null, 1 and 2
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "fields": [ "tags[*]" ], "type" : "hash"}'
+ 
+// Will not be indexed
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": null }'
+
+// Will not be indexed
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": []  }'
+
+// Will be indexed for null
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": [null]  }'
+
+// Will be indexed for null, 1 and 2
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": { content: [null, 2, 3] }  }'
 ```
 
 Declaring an array index as **sparse** does not have an effect on the array part of the index, this in particular means that explicit `null` values are also indexed in the **sparse** version.
 
 If an index is combined from an array and a normal attribute the sparsity will apply for the attribute e.g.:
 
-```js
-posts.ensureIndex({ type: "hash", fields: [ "tags[*]", "name" ], sparse: true });
-posts.insert({tags: null, name: "alice"}) // Will not be indexed
-posts.insert({tags: [], name: "alice"}) // Will not be indexed
-posts.insert({tags: [1, 2, 3]}) // Will not be indexed
-posts.insert({tags: [1, 2, 3], name: null}) // Will not be indexed
-posts.insert({tags: [1, 2, 3], name: "alice"})
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "fields": [ "tags[*]", "name" ], "type" : "hash", "sparse": true}'
+ 
+// Will not be indexed
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \ 
+ -d '{ "tags": null, "name: "alice" }'
+
+// Will not be indexed
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": [], "name": "alice" }'
+
+// Will not be indexed
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": [1, 2, 3]  }'
+
+// Will not be indexed
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": [1, 2, 3], "name" : null }'
+ 
 // Will be indexed for [1, "alice"], [2, "alice"], [3, "alice"]
-posts.insert({tags: [null], name: "bob"})
-// Will be indexed for [null, "bob"] 
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": [1, 2, 3], "name" : "alice"  }'
+ 
+// Will be indexed for [null, "bob"]
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
+ -H 'Authorization: bearer <token>'                                                 \
+ -d '{ "tags": [null], "name" : "blob"  }'
 ```
 
 :::note
@@ -169,15 +234,23 @@ Creating a new document or updating a document will fail if the uniqueness is vi
 ### Accessing Persistent Indexes
 
 Ensures that a unique persistent index exists
-`collection.ensureIndex({ type: "persistent", fields: [ "field1", ..., "fieldn" ], unique: true })`
+
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                              \    
+ -d '{ "fields": [ "type" : "persistent", "fields::["field1", ..., "fieldn" ], "unique": true}'
+```
 
 Creates a unique persistent index on all documents using *field1*, ... *fieldn* as attribute paths. At least one attribute path has to be given. The index will be non-sparse by default.
 
 All documents in the collection must differ in terms of the indexed attributes. Creating a new document or updating an existing document will will fail if the attribute uniqueness is violated. 
 
 To create a sparse unique index, set the *sparse* attribute to `true`:
-
-`collection.ensureIndex({ type: "persistent", fields: [ "field1", ..., "fieldn" ], unique: true, sparse: true })`
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectioName'  \
+ -H 'Authorization: bearer <token>'                                                                               \
+ -d '{ "fields": [ "type" : "persistent", "fields: ["field1", ..., "fieldn" ], "unique": true, "sparse" : true}'
+```
 
 In a sparse index all documents will be excluded from the index that do not contain at least one of the specified index attributes or that have a value of `null` in any of the specified index attributes. Such documents will not be indexed, and not be taken into account for uniqueness checks.
 
@@ -187,7 +260,11 @@ In case that the index was successfully created, an object with the index detail
 
 
 To ensure that a non-unique persistent index exists
-`collection.ensureIndex({ type: "persistent", fields: [ "field1", ..., "fieldn" ] })`
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                              \
+ -d '{ "fields": [ "type" : "persistent", "fields::["field1", ..., "fieldn" ]}'
+```
 
 Creates a non-unique persistent index on all documents using *field1*, ... *fieldn* as attribute paths. At least one attribute path has to be given. The index will be non-sparse by default.
 
@@ -259,8 +336,10 @@ One use case supported by TTL indexes is to remove documents at a fixed duration
 
 Let's assume the index attribute is set to "creationDate", and the `expireAfter` attribute of the index was set to 600 seconds (10 minutes).
 
-```js
-    collection.ensureIndex({ type: "ttl", fields: ["creationDate"], expireAfter: 600 });
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                       \
+ -d '{ "fields": [ "type" : "ttl", ."fields": ["creationDate"],  "expireAfter": 600}'
 ```
 
 Let's further assume the following document now gets inserted into the collection:
@@ -291,8 +370,10 @@ Another use case is to specify a per-document expiration/removal point in time, 
 
 Let's assume the index attribute is set to "expireDate", and the `expireAfter` attribute of the index was set to 0 seconds (immediately when wall clock time reaches the value specified in `expireDate`).
 
-```js
-    collection.ensureIndex({ type: "ttl", fields: ["expireDate"], expireAfter: 0 });
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectioName' \ 
+ -H 'Authorization: bearer <token>'                                                                       \
+ -d '{ "fields": [ "type" : "ttl", ."fields": ["expireDate"],  "expireAfter": 0}'
 ```
 
 When storing the following document in the collection, it will expire at the point in time specified in the document itself:
@@ -356,7 +437,11 @@ There are limited number of background threads for performing the removal of exp
 
 Ensures that a TTL index exists:
 
-`collection.ensureIndex({ type: "ttl", fields: [ "field" ], expireAfter: 600 })`
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                       \
+ -d '{ "fields": [ "type" : "ttl", ."fields": ["field"],  "expireAfter": 600}'
+```
 
 Creates a TTL index on all documents using *field* as attribute path. Exactly one attribute path has to be given. The index will be sparse in all cases.
 
@@ -392,8 +477,12 @@ If the index attribute is neither a string, an object or an array, its contents 
 ### Accessing Fulltext Indexes
 
 Ensures that a fulltext index exists:
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                            \
+ -d '{ "fields": [ "type" : "fulltext", ."fields": ["field"],  "minLength": <minLength> }'
+```
 
-`collection.ensureIndex({ type: "fulltext", fields: [ "field" ], minLength: minLength })`
 
 Creates a fulltext index on all documents on attribute *field*.
 
@@ -407,11 +496,6 @@ The minimum length of words that are indexed can be specified via the *minLength
 
 In case that the index was successfully created, an object with the index details is returned.
 
-Looks up a fulltext index:
-
-`collection.lookupFulltextIndex(attribute, minLength)`
-
-Checks whether a fulltext index on the given attribute *attribute* exists.
 
 ### Fulltext C8QL Functions
 
@@ -431,8 +515,10 @@ This index assumes coordinates with the latitude between -90 and 90 degrees and 
 
 To create an index in GeoJSON mode execute:
 
-```js
-collection.ensureIndex({ type: "geo", fields: [ "geometry" ], geoJson:true })
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName'  \
+ -H 'Authorization: bearer <token>'                                                                        \
+ -d '{ "fields": [ "type" : "geo", ."fields": ["geometry"],  "geoJson": true }'
 ```
 
 This creates the index on all documents and uses _geometry_ as the attributed field where the value is either a [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1){:target="_blank"} **or** a _coordinate array_. 
@@ -449,13 +535,21 @@ This index mode exclusively supports indexing on coordinate arrays. Values that 
 
 To create a geo-spatial index on all documents using *latitude* and *longitude* as separate attribute paths, two paths need to be specified in the *fields* array:
 
-`collection.ensureIndex({ type: "geo", fields: [ "latitude", "longitude" ] })`
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                       \  
+ -d '{ "fields": [ "type" : "geo", ."fields": ["latitude", "longitude"] }'
+```
 
 The first field is always defined to be the _latitude_ and the second is the _longitude_. The `geoJson` flag is implicitly _false_ in this mode.
 
 Alternatively you can specify only one field:
 
-`collection.ensureIndex({ type: "geo", fields: [ "location" ], geoJson:false })`
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                       \
+ -d '{ "fields": [ "type" : "geo", ."fields": ["location"],  "geoJson": false }'
+```
 
 It creates a geospatial index on all documents using *location* as the path to the coordinates. The value of the attribute has to be an array with at least two numeric values. The array must contain the latitude (first value) and the longitude (second value).
 
@@ -720,8 +814,12 @@ Example with two polygons, the second one with a hole:
 #### Examples
 
 ensures that a geo index exists
-`collection.ensureIndex({ type: "geo", fields: [ "location" ] })`
 
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                       \
+ -d '{ "fields": [ "type" : "geo", ."fields": ["location"]}'
+```
 Creates a geospatial index on all documents using *location* as the path to the coordinates. The value of the attribute has to be an array with at least two numeric values. The array must contain the latitude (first value) and the longitude (second value).
 
 All documents, which do not have the attribute path or have a non-conforming value in it, are excluded from the index.
@@ -732,17 +830,29 @@ In case that the index was successfully created, an object with the index detail
 
 To create a geo index on an array attribute that contains longitude first, set the *geoJson* attribute to `true`. This corresponds to the format described in [RFC 7946 Position](https://tools.ietf.org/html/rfc7946#section-3.1.1){:target="_blank"}
 
-`collection.ensureIndex({ type: "geo", fields: [ "location" ], geoJson: true })`
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                       \
+ -d '{ "fields": [ "type" : "geo", ."fields": ["location"],  "geoJson": true }'
+```
 
 To create a geo-spatial index on all documents using *latitude* and *longitude* as separate attribute paths, two paths need to be specified in the *fields* array:
 
-`collection.ensureIndex({ type: "geo", fields: [ "latitude", "longitude" ] })`
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName'  \
+ -H 'Authorization: bearer <token>'                                                                        \
+ -d '{ "fields": [ "type" : "geo", ."fields": ["latitude", "longitude" ] }'
+```
 
 In case that the index was successfully created, an object with the index details, including the index-identifier, is returned.
 
 
 ensures that a geo index exists
-`collection.ensureIndex({ type: "geo", fields: [ "location" ] })`
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                       \
+ -d '{ "fields": [ "type" : "geo", ."fields": [ "location" ] }'
+```
 
 This method is an alias for *ensureGeoIndex* since geo indexes are always sparse, meaning that documents that do not contain the index attributes or has non-numeric values in the index attributes will not be indexed. *ensureGeoConstraint* is deprecated and *ensureGeoIndex* should be used instead.
 
@@ -760,9 +870,12 @@ One can create sorted indexes (type "skiplist" and "persistent") that index the 
 
 For example, to create a vertex centric index of the above type, you would simply do
 
-```js
-edges.ensureIndex({"type":"skiplist", "fields": ["_from", "timestamp"]});
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                            \
+ -d '{ "fields": [ "type" : "skiplist", ."fields": [ "_from", "timestamp" ] }'
 ```
+
 
 Then, queries like
 
@@ -774,35 +887,16 @@ FOR v, e, p IN 1..1 OUTBOUND "V/1" edges
 
 will be considerably faster in case there are many edges originating in vertex `"V/1"` but only few with a recent time stamp.
 
-## Index Identifiers & Handles
 
-An `index handle` uniquely identifies an index in the database. It is a string and consists of the collection name and an `index identifier` separated by a `/`. The index identifier part is a numeric value that is auto-generated by GDN.
-
-A specific index of a collection can be accessed using its *index handle* or *index identifier* as follows:
-
-```js
-collection.index("<index-handle>");
-collection.index("<index-identifier>");
-_index("<index-handle>");
-```
-
-For example: Assume that the index handle, which is stored in the `_id` attribute of the index, is `demo/362549736` and the index was created in a collection named `demo`. Then this index can be accessed as:
-
-```js
-demo.index("demo/362549736");
-```
-
-Because the index handle is unique within the database, you can leave out the *collection* and use the shortcut:
-
-```js
-_index("demo/362549736");
-```
-
-## Collection Methods
+## Collection index operations
 
 **Listing all indexes of a collection:**
 
-`getIndexes()` -  returns information about the indexes
+// Returns information about the indexes
+```cURL
+curl -X 'GET' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index?collection=collectionName' \
+ -H 'Authorization: bearer <token>' 
+```
 
 Returns an array of all indexes defined for the collection. Note that `_key` implicitly has an index assigned to it.
 
@@ -811,7 +905,11 @@ Returns an array of all indexes defined for the collection. Note that `_key` imp
 Indexes should be created using the general method `ensureIndex`. 
 
 ensures that an index exists
-`collection.ensureIndex(index-description)`
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/<indexType>?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                            \
+ -d '{ <Index description> }'
+```
 
 Ensures that an index according to the `index-description` exists. A new index will be created if none exists with the given description.
 
@@ -837,40 +935,23 @@ Calling this method returns an index object. Whether or not the index object exi
 **deduplicate** can be `true` or `false` and is supported by array indexes of type `hash` or `skiplist`. It controls whether inserting duplicate index values from the same document into a unique array index will lead to a unique constraint error or not. The default value is `true`, so only a single instance of each non-unique index value will be inserted into the index per document. Trying to insert a value into the index that already exists in the index will always fail, regardless of the value of this attribute.
 
 **Examples**
+```cURL
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                        \
+ -d '{ "type": "hash", "fields": [ "a" ], "sparse": true }'
+ 
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                        \
+ -d '{ "type": "hash", "fields": [ "a", "b"], "unique": true }'
+```
 
-```bash
-test.ensureIndex({ type: "hash", fields: [ "a" ], sparse: true });
-test.ensureIndex({ type: "hash", fields: [ "a", "b" ], unique: true });
 ```
 
 **Dropping an index:**
-
-drops an index `collection.dropIndex(index)`
+curl -X 'DELETE' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/<collectionName>/<indexName>' \
+ -H 'Authorization: bearer <token>'
 
 Drops the index. If the index does not exist, then `false` is returned. If the index existed and was dropped, then `true` is returned. Note that you cannot drop some special indexes (e.g. the primary index of a collection or the edge index of an edge collection).
-
-`collection.dropIndex(index-handle)`
-
-Same as above. Instead of an index an index handle can be given.
-
-## GeoFabric Methods
-
-**Fetching an index by handle**
-
-finds an index `_index(index-handle)`
-
-Returns the index with `index-handle` or null if no such index exists.
-
-**Dropping an index:**
-
-drops an index
-`_dropIndex(index)`
-
-Drops the `index`.  If the index does not exist, then `false` is returned. If the index existed and was dropped, then `true` is returned.
-
-`_dropIndex(index-handle)`
-
-Drops the index with `index-handle`.
 
 **Revalidating whether an index is used:**
 
@@ -889,18 +970,35 @@ Indexes can also be created in "background", not using an exclusive lock during 
 To create an index in the background, just specify `inBackground: true`, like in the following examples:
 
 ```js
+
+```cURL
 // create the hash index in the background
-collection.ensureIndex({ type: "hash", fields: [ "value" ], unique: false, inBackground: true });
-collection.ensureIndex({ type: "hash", fields: [ "email" ], unique: true, inBackground: true });
-
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                        \
+ -d '{ "type": "hash", "fields": [ "value" ], "unique": false, "inBackground": true }'
+ 
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                        \
+ -d '{ "type": "hash", "fields": [ "email" ], "unique": true, "inBackground": true }'
+ 
+ 
 // skiplist indexes work also of course
-collection.ensureIndex({ type :"skiplist", fields: ["abc", "cdef"], unique: true, inBackground: true });
-collection.ensureIndex({ type :"skiplist", fields: ["abc", "cdef"], sparse: true, inBackground: true });
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                            \
+ -d '{ "type": "skiplist", "fields": [ "abc", "def" ], "unique": true, "inBackground": true }'
 
-// also supported on fulltext indexes
-collection.ensureIndex({ type: "geo", fields: [ "latitude", "longitude"], inBackground: true });
-collection.ensureIndex({ type: "geo", fields: [ "latitude", "longitude"], inBackground: true });
-collection.ensureIndex({ type: "fulltext", fields: [ "text" ], minLength: 4, inBackground: true })
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                            \
+ -d '{ "type": "skiplist", "fields": [ "abc", "def" ], "sparse": true, "inBackground": true }'
+
+// also supported on fulltext and Geo indexes
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                            \
+ -d '{ "type": "fulltext", "fields": [ "text" ], "minLength": 4, "inBackground": true }'
+ 
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+ -H 'Authorization: bearer <token>'                                                                            \
+ -d '{ "type": "geo", "fields": [ "latitude", "longitude" ], "minLength": 4, "inBackground": true }'
 ```
 
 **Behavior:**
@@ -918,26 +1016,13 @@ Building an index is always a write heavy operation (internally), it is always a
 
 ## Troubleshooting
 
-When in doubt about whether and which indexes will be used for executing a given C8QL query, click the `Explain` button in the web interface in the `Queries` view or use the `explain()` method for the statement as follows:
-
-```js
-var query = "FOR doc IN collection FILTER doc.value > 42 RETURN doc";
-var stmt = createStatement(query);
-stmt.explain();
-```
-
-The `explain()` command will return a detailed JSON representation of the query's execution plan. The JSON explain output is intended to be used by code. To get a human-readable and much more compact explanation of the query, there is an explainer tool:
-
-```js
-var query = "FOR doc IN collection FILTER doc.value > 42 RETURN doc";
-require("@c8db_db/c8ql/explainer").explain(query);
-```
+When in doubt about whether and which indexes will be used for executing a given C8QL query, click the `Execution Plan` button in the web interface in the `Queries`view.
 
 If any of the explain methods shows that a query is not using indexes, the following steps may help:
 
 * check if the attribute names in the query are correctly spelled. In a schema-free database, documents in the same collection can have varying structures. There is no such thing as a `non-existing attribute` error. A query that refers to attribute names not present in any of the documents will not return an error, and obviously will not benefit from indexes.
 
-* check the return value of the `getIndexes()` method for the collections used in the query and validate that indexes are actually present on the attributes used in the query's filter conditions. 
+* check the value of the `Indexes Used` method for the collections used in the query and validate that indexes are actually present on the attributes used in the query's filter conditions. 
 
 * if indexes are present but not used by the query, the indexes may have the wrong type. For example, a hash index will only be used for equality comparisons (i.e. `==`) but not for other comparison types such as `<`, `<=`, `>`, `>=`. Additionally hash indexes will only be used if all of the index attributes are used in the query's FILTER conditions. A skiplist index will only be used if at least its first attribute is used in a FILTER condition. If additionally of the skiplist index attributes are specified in the query (from left-to-right), they may also be used and allow to filter more documents.
 
