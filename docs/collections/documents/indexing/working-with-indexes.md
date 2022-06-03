@@ -1022,7 +1022,7 @@ If any of the explain methods shows that a query is not using indexes, the follo
 
 * check if the attribute names in the query are correctly spelled. In a schema-free database, documents in the same collection can have varying structures. There is no such thing as a `non-existing attribute` error. A query that refers to attribute names not present in any of the documents will not return an error, and obviously will not benefit from indexes.
 
-* check the value of the `Indexes Used` method for the collections used in the query and validate that indexes are actually present on the attributes used in the query's filter conditions. 
+* check the value of the `Indexes Used` method for the collections used in the query and validate that indexes are actually present on the attributes used in the query filter conditions. 
 
 * if indexes are present but not used by the query, the indexes may have the wrong type. For example, a hash index will only be used for equality comparisons (i.e. `==`) but not for other comparison types such as `<`, `<=`, `>`, `>=`. Additionally hash indexes will only be used if all of the index attributes are used in the query's FILTER conditions. A skiplist index will only be used if at least its first attribute is used in a FILTER condition. If additionally of the skiplist index attributes are specified in the query (from left-to-right), they may also be used and allow to filter more documents.
 
