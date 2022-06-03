@@ -888,7 +888,7 @@ FOR v, e, p IN 1..1 OUTBOUND "V/1" edges
 will be considerably faster in case there are many edges originating in vertex `"V/1"` but only few with a recent time stamp.
 
 
-## Collection index operations
+## Collection Index Operations
 
 **Listing all indexes of a collection:**
 
