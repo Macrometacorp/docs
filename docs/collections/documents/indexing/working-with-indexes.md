@@ -991,7 +991,7 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skip
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "skiplist", "fields": [ "abc", "def" ], "sparse": true, "inBackground": true }'
 
-// also supported on fulltext and Geo indexes
+// Also supported on fulltext and Geo indexes
 curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectioName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "fulltext", "fields": [ "text" ], "minLength": 4, "inBackground": true }'
