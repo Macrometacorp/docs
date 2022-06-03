@@ -236,7 +236,7 @@ Creating a new document or updating a document will fail if the uniqueness is vi
 Ensures that a unique persistent index exists
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                              \    
  -d '{ "fields": [ "type" : "persistent", "fields::["field1", ..., "fieldn" ], "unique": true}'
 ```
@@ -247,7 +247,7 @@ All documents in the collection must differ in terms of the indexed attributes. 
 
 To create a sparse unique index, set the *sparse* attribute to `true`:
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectioName'  \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName'  \
  -H 'Authorization: bearer <token>'                                                                               \
  -d '{ "fields": [ "type" : "persistent", "fields: ["field1", ..., "fieldn" ], "unique": true, "sparse" : true}'
 ```
@@ -261,7 +261,7 @@ In case that the index was successfully created, an object with the index detail
 
 To ensure that a non-unique persistent index exists
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                              \
  -d '{ "fields": [ "type" : "persistent", "fields::["field1", ..., "fieldn" ]}'
 ```
@@ -337,7 +337,7 @@ One use case supported by TTL indexes is to remove documents at a fixed duration
 Let's assume the index attribute is set to "creationDate", and the `expireAfter` attribute of the index was set to 600 seconds (10 minutes).
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "ttl", ."fields": ["creationDate"],  "expireAfter": 600}'
 ```
@@ -371,7 +371,7 @@ Another use case is to specify a per-document expiration/removal point in time, 
 Let's assume the index attribute is set to "expireDate", and the `expireAfter` attribute of the index was set to 0 seconds (immediately when wall clock time reaches the value specified in `expireDate`).
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectioName' \ 
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectionName' \ 
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "ttl", ."fields": ["expireDate"],  "expireAfter": 0}'
 ```
@@ -438,7 +438,7 @@ There are limited number of background threads for performing the removal of exp
 Ensures that a TTL index exists:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "ttl", ."fields": ["field"],  "expireAfter": 600}'
 ```
@@ -478,7 +478,7 @@ If the index attribute is neither a string, an object or an array, its contents 
 
 Ensures that a fulltext index exists:
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "fields": [ "type" : "fulltext", ."fields": ["field"],  "minLength": <minLength> }'
 ```
@@ -516,7 +516,7 @@ This index assumes coordinates with the latitude between -90 and 90 degrees and 
 To create an index in GeoJSON mode execute:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName'  \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName'  \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "fields": [ "type" : "geo", ."fields": ["geometry"],  "geoJson": true }'
 ```
@@ -536,7 +536,7 @@ This index mode exclusively supports indexing on coordinate arrays. Values that 
 To create a geo-spatial index on all documents using *latitude* and *longitude* as separate attribute paths, two paths need to be specified in the *fields* array:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \  
  -d '{ "fields": [ "type" : "geo", ."fields": ["latitude", "longitude"] }'
 ```
@@ -546,7 +546,7 @@ The first field is always defined to be the _latitude_ and the second is the _lo
 Alternatively you can specify only one field:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "geo", ."fields": ["location"],  "geoJson": false }'
 ```
@@ -816,7 +816,7 @@ Example with two polygons, the second one with a hole:
 ensures that a geo index exists
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "geo", ."fields": ["location"]}'
 ```
@@ -831,7 +831,7 @@ In case that the index was successfully created, an object with the index detail
 To create a geo index on an array attribute that contains longitude first, set the *geoJson* attribute to `true`. This corresponds to the format described in [RFC 7946 Position](https://tools.ietf.org/html/rfc7946#section-3.1.1){:target="_blank"}
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "geo", ."fields": ["location"],  "geoJson": true }'
 ```
@@ -839,7 +839,7 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?
 To create a geo-spatial index on all documents using *latitude* and *longitude* as separate attribute paths, two paths need to be specified in the *fields* array:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName'  \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName'  \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "fields": [ "type" : "geo", ."fields": ["latitude", "longitude" ] }'
 ```
@@ -849,7 +849,7 @@ In case that the index was successfully created, an object with the index detail
 
 ensures that a geo index exists
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "geo", ."fields": [ "location" ] }'
 ```
@@ -871,7 +871,7 @@ One can create sorted indexes (type "skiplist" and "persistent") that index the 
 For example, to create a vertex centric index of the above type, you would simply do
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "fields": [ "type" : "skiplist", ."fields": [ "_from", "timestamp" ] }'
 ```
@@ -906,7 +906,7 @@ Indexes should be created using the general method `ensureIndex`.
 
 ensures that an index exists
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/<indexType>?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/<indexType>?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ <Index description> }'
 ```
@@ -936,11 +936,11 @@ Calling this method returns an index object. Whether or not the index object exi
 
 **Examples**
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "type": "hash", "fields": [ "a" ], "sparse": true }'
  
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "type": "hash", "fields": [ "a", "b"], "unique": true }'
 ```
@@ -973,30 +973,30 @@ To create an index in the background, just specify `inBackground: true`, like in
 
 ```cURL
 // create the hash index in the background
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "type": "hash", "fields": [ "value" ], "unique": false, "inBackground": true }'
  
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "type": "hash", "fields": [ "email" ], "unique": true, "inBackground": true }'
  
  
 // skiplist indexes work also of course
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "skiplist", "fields": [ "abc", "def" ], "unique": true, "inBackground": true }'
 
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "skiplist", "fields": [ "abc", "def" ], "sparse": true, "inBackground": true }'
 
 // Also supported on fulltext and Geo indexes
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "fulltext", "fields": [ "text" ], "minLength": 4, "inBackground": true }'
  
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectioName' \
+curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "geo", "fields": [ "latitude", "longitude" ], "minLength": 4, "inBackground": true }'
 ```
