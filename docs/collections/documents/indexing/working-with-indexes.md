@@ -1016,7 +1016,7 @@ Building an index is always a write heavy operation (internally), it is always a
 
 ## Troubleshooting
 
-When in doubt about whether and which indexes will be used for executing a given C8QL query, click the `Execution Plan` button in the web interface in the `Queries`view.
+When in doubt about whether and which indexes will be used for executing a given C8QL query, click **Execution Plan** in the web interface in the Queries view.
 
 If any of the explain methods shows that a query is not using indexes, the following steps may help:
 
