@@ -106,7 +106,7 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c
  -d '{ tags: [ "foobar", "bar", "bar" ] }'
 ```
 
-This is done to avoid redudant storage of the same index value for the same document, which would not provide any benefit.
+This is done to avoid redundant storage of the same index value for the same document, which would not provide any benefit.
 
 If an array index is declared **unique**, the de-duplication of array values will happen before inserting the values into the index, so the above insert operation with two identical values `bar` will not necessarily fail
 
