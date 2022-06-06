@@ -3,6 +3,14 @@ import { Redirect } from '@docusaurus/router';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
+import '@fontsource/fira-code'
+import '@fontsource/lato/400.css'
+import '@fontsource/lato/700.css'
+import '@fontsource/open-sans/400.css'
+import '@fontsource/open-sans/500.css'
+import '@fontsource/open-sans/600.css'
+import '@fontsource/open-sans/700.css'
+
 export default function Homepage() {
   const { siteConfig } = useDocusaurusContext();
 

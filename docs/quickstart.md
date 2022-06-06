@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Quickstart
 ---
 
-### Address Book App _Quickstart_
+## Address Book App Quickstart
 
 Let’s take **5 minutes** to create a stateful-serverless backend for a simple Address Book. It's going to run globally distributed with local read-write latencies around 50ms.
 
@@ -16,7 +16,7 @@ We are going to walk through four steps:
 
 First things first, if you don't already have a Macrometa account go create a [free](https://auth.paas.macrometa.io/signup) one and mosey on back.
 
-## Step 1: Create a Collection
+### Step 1: Create a Collection
 
 Let’s start by clicking the `COLLECTIONS` tab in the left nav and then `New Collection` on the right. Select the `Document` option, give it the name `addresses`, and save it.
 
@@ -24,7 +24,7 @@ Note: The collection `addresses` that you just created is now distributed to eve
 
 ![create-collection](/img/create-doc-view.png)
 
-## Step 2: Add some data to your new collection and query it
+### Step 2: Add some data to your new collection and query it
 
 
 Now, click the `QUERIES` tab in the left nav to open the `C8QL` query editor. Copy and paste the query below into the editor and click `Run Query` a couple times. 
@@ -54,7 +54,7 @@ You should see the data you just saved returned.
 
 Ok, now we are going to save this query. Saving it will turn it into a `Query Worker`.
 
-## Step 3: Save the Query
+### Step 3: Save the Query
 
 Click the `Save Query` button and name the saved query `getAddresses`
 
@@ -62,13 +62,13 @@ Now, in **around 50ms**, you have a globally distributed stateful-serverless end
 
 ![dashboard](/img/dashboard.png)
 
-## Step 4: Execute the Query Worker
+### Step 4: Execute the Query Worker
 
 Now that you've saved the query click on the `API Usage` button, and we automatically generate a Query Worker (Exactly like a serverless function, but a save query instead of a function)!
 
 ![create-query-worker](/img/query-worker.png)
 
-## Next Steps
+### Next Steps
 
 Nice job you totally rocked that quickstart! 
 
