@@ -6,7 +6,7 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In GDN, each document stored in a collection contains a `_key`, and the rest of the document is its *value*. The only key-value operations available are key lookups (single & batch) and key-value pair insertions and updates. If no sharding attribute is specified, `_key` is used for sharding the data instead.
+In GDN, each document stored in a collection contains a `_key`, and the rest of the document is its *value*. The only key-value operations available are key lookups (single and batch) and key-value pair insertions and updates. If no sharding attribute is specified, `_key` is used for sharding the data instead.
 
 Key-value collections are always global. You can specify time_to_live (TTL) during creation. 
 
