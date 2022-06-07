@@ -1,4 +1,7 @@
-# Collections
+---
+sidebar_position: 1
+title: Quickstart
+---
 
 A collection can be empty or contain documents. Macrometa GDN is *schemaless*, so you do not need to define valid document attributes. Documents with completely different structures can be stored in the same collection.
 
