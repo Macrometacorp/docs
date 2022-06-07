@@ -212,6 +212,14 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
   @apply leading-6;
 }
 
+.menu__caret {
+  margin: 0;
+}
+
+.menu__caret:before {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.25rem 1.25rem;
+}
+
 /* Optional style for only one link which acts as nav section header */
 
 .navbar__toggle {
