@@ -76,7 +76,7 @@ The number of shards is fixed at `16`. There is no option for user to configure 
 !!! note
     If you change the shard keys from their default ["_key"], then finding a document in the collection by its primary key involves a request to every single shard. Furthermore, in this case one can no longer prescribe the primary key value of a new document but must use the automatically generated one. This latter restriction comes from the fact that ensuring uniqueness of the primary key would be very inefficient if the user could specify the primary key.
 
-On which node in a cluster a particular shard is kept is decided by the system. There is no option to users to configure an affinity based on certain shard keys.
+GDN automatically distributes shards across nodes in a cluster.
 
 Unique indexes (hash, skiplist, persistent) on sharded collections are only allowed if the fields used to determine the shard key are also included in the list of attribute paths for the index:
 
