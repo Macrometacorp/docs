@@ -85,7 +85,7 @@ GDN provides the following methods of data retrieval:
 * Indexes can speed up your searches. Refer to the [Indexing](indexing/overview.md) section for more information.
 
 
-# Example
+## Example
 
 Assume the following credentials for this example:
 

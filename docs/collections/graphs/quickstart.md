@@ -22,14 +22,14 @@ Edges have a direction, with their relations `_from` and `_to` pointing from one
 * INBOUND: `_from` ← `_to`
 * ANY: `_from` ↔ `_to`.
 
-# Example
+## Example
 
 For this example, assume the following credentials:
 
 * Tenant name is `nemo@nautilus.com`.
 * User password is `xxxxxx`.
 
-## Driver download
+### Driver download
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -75,7 +75,7 @@ For this example, assume the following credentials:
   </TabItem>
 </Tabs>  
 
-## Connect to GDN
+### Connect to GDN
 
 The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you sepcified.
 
@@ -110,7 +110,7 @@ The first step in using GDN is to establish a connection to a local region. When
   </TabItem>
 </Tabs>  
 
-## Get GeoFabric Details
+### Get GeoFabric Details
 
 To get details of fabric,
 
@@ -157,7 +157,7 @@ To get details of fabric,
   </TabItem>
 </Tabs>  
 
-## Create Collection
+### Create Collection
 
 We can now create collection in the fabric. To do this, first you connect to fabric and then create a collection called `employees`.
 
@@ -208,7 +208,7 @@ The below example shows the steps.
   </TabItem>
 </Tabs>  
 
-## Create Edge Collection
+### Create Edge Collection
 
 An **edge collection** contains edge documents and shares its namespace with all other types of collections. You can manage edge documents via standard collection API wrappers, but using edge collection API wrappers provides additional safeguards:
 
@@ -265,7 +265,7 @@ An **edge collection** contains edge documents and shares its namespace with all
 
 You can manage edges via graph API wrappers also, but you must use document IDs instead of keys where applicable.
 
-## Insert Documents
+### Insert Documents
 
 Let's insert documents to the employees collection as shown below.
 
@@ -319,7 +319,7 @@ Let's insert documents to the employees collection as shown below.
   </TabItem>
 </Tabs>  
 
-## Create Graph
+### Create Graph
 
 A graph consists of vertices and edges. Vertices are stored as documents in vertex collections and edges stored as documents in edge collections. The collections used in a graph and their relations are specified with edge definitions.
 
@@ -375,7 +375,7 @@ A graph consists of vertices and edges. Vertices are stored as documents in vert
   </TabItem>
 </Tabs>  
 
-## Graph Traversals
+### Graph Traversals
 
 A graph consists of `vertices` and `edges`. Vertices are stored as documents in vertex collections and edges stored as documents in edge collections. The collections used in a graph and their relations are specified with edge definitions.
 
@@ -795,7 +795,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
   </TabItem>
 </Tabs>  
 
-#### Outbound Traversal
+##### Outbound Traversal
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -818,7 +818,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
   </TabItem>
 </Tabs>  
 
-#### Inbound Traversal
+##### Inbound Traversal
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -840,7 +840,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
   </TabItem>
 </Tabs>  
 
-## Delete Graph
+### Delete Graph
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">

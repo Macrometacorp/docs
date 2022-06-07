@@ -45,14 +45,14 @@ Messages are the basic "unit" of Streams. They're what producers publish to stre
 | Event Time           | An optional timestamp that applications can attach to the message representing when something happened, e.g. when the message was processed. The event time of a message is 0 if none is explicitly set. |
 
 
-# Example
+## Example
 
 Assume the following credentials:
 
 - tenant name is `nemo@nautilus.com`.
 - user password is `xxxxxx`.
 
-## Installation
+### Installation
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -100,7 +100,7 @@ Once the installation process is finished, you can begin developing applications
 </TabItem>
 </Tabs>  
 
-## Connect to GDN
+### Connect to GDN
 
 The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you sepcified.
 
@@ -127,19 +127,19 @@ const client = new jsc8("https://gdn.paas.macrometa.io");
 from c8 import C8Client
 
 print("--- Connecting to C8")
-# Simple Way
+## Simple Way
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 
-# To use advanced options
+## To use advanced options
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
 ```
 
 </TabItem>
 </Tabs>  
 
-## Get GeoFabric Details
+### Get GeoFabric Details
 
 To get details of fabric,
 
@@ -189,7 +189,7 @@ print(client.get_fabric_details())
 </TabItem>
 </Tabs>  
 
-## Create Global & Local Streams
+### Create Global & Local Streams
 
 The streams in GDN can be either a local stream or could be a geo-replicated stream.
 
@@ -257,7 +257,7 @@ print("Get Streams: ", client.get_streams())
 </TabItem>
 </Tabs>  
 
-## Publish Messages
+### Publish Messages
 
 Example to publish documents to a stream. The stream can be either a local stream or could be a geo-replicated stream.
 
@@ -333,7 +333,7 @@ print("--- Connecting to C8")
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
-#--------------------------------------------------------------
+##--------------------------------------------------------------
 print("publish messages to stream...")
 producer = client.create_stream_producer("demostream", local=False)
 
@@ -348,7 +348,7 @@ for i in range(10):
 </TabItem>
 </Tabs>  
 
-## Subscribe to Stream
+### Subscribe to Stream
 
 Example to subscribe documents from a stream. The stream can be either a local stream or could be a geo-replicated stream.
 
@@ -424,7 +424,7 @@ async function getDCList() {
 </TabItem>
 </Tabs>  
 
-## Auto Reconnect streams
+### Auto Reconnect streams
 
 Write a wrapper class to keep the connection alive.
 Following is an example for the wrapper class
@@ -697,7 +697,7 @@ var producer;
 </TabItem>
 </Tabs>  
 
-## Pub-Sub with streams in browser
+### Pub-Sub with streams in browser
 
 Example to publish messages on a stream and subscribe to that stream to receive messages, with a simple UI
 

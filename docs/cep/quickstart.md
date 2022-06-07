@@ -34,14 +34,14 @@ You can process streams to perform the following actions with your data:
 * Extract, transform, and load (ETL) collections, tailing files, and scraping HTTP endpoints.
 * Integrating stream data and trigger actions based on the data. This can be a single service request or a complex enterprise integration flow.
 
-# Example
+## Example
 
 Assume the following credentials:
 
 * Tenant name: `nemo@nautilus.com`
 * Password: `xxxxxx`
 
-## Driver Download
+### Driver Download
 
 Download the appropriate drivers for your preferred language.
 
@@ -91,7 +91,7 @@ Download the appropriate drivers for your preferred language.
   </TabItem>
 </Tabs>
 
-## Connect to GDN
+### Connect to GDN
 
 Establish a connection to a local region. When this code runs, it initializes the server connection to the region URL you specified.
 
@@ -125,7 +125,7 @@ Establish a connection to a local region. When this code runs, it initializes th
  </TabItem>
 </Tabs> 
 
-## Validate Stream Application
+### Validate Stream Application
 
 Validate the stream application for syntax errors before saving.
 
@@ -226,7 +226,7 @@ Validate the stream application for syntax errors before saving.
  </TabItem>
  </Tabs>
 
-## Save Stream Application
+### Save Stream Application
 
 By default, the stream application saves in the local region. Optionally, you can use `dclist` (domain component list) to deploy the stream application in other specified regions or all regions.
 
@@ -251,7 +251,7 @@ By default, the stream application saves in the local region. Optionally, you ca
   </TabItem>
 </Tabs>  
 
-## Enable or Disable Stream Application
+### Enable or Disable Stream Application
 
 
 
@@ -281,7 +281,7 @@ By default, the stream application saves in the local region. Optionally, you ca
 To operate on created applications, you need to create an instance of the stream application.
 
 
-## Example: Update Stream Application
+### Example: Update Stream Application
 
 In this example, we update a stream application to store the input data into itself and another collection called `SampleCargoAppDestTable`. 
 
@@ -391,7 +391,7 @@ Now, the code to update an Stream Application will look like
     console.log("--- Updating Stream Application `Sample-Cargo-App`");
     result = await app.updateApplication([], updatedAppDefinition);
 ```
-## Run an Adhoc Query
+### Run an Adhoc Query
 
 Available in the advanced operations of python driver.
 Refer example at the end of the page.
@@ -424,7 +424,7 @@ Refer example at the end of the page.
   </TabItem>  
 </Tabs>
 
-## Delete Stream Application
+### Delete Stream Application
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -444,7 +444,7 @@ Refer example at the end of the page.
   </TabItem>
 </Tabs>  
 
-## Get Sample Stream Applications
+### Get Sample Stream Applications
 
 You can try out several Stream Apps which are preloaded and ready to run.
 
@@ -467,7 +467,7 @@ You can try out several Stream Apps which are preloaded and ready to run.
   </TabItem>
 </Tabs>  
 
-## Complete Example
+### Complete Example
 
 The following example uses the code snippets provided in this tutorial.
 
