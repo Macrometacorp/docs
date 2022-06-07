@@ -6,15 +6,9 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Macrometa GDN is a geodistributed real-time coordination-free materialized views engine that supports multiple data models. You can use GDN as a geo-replicated real-time key-value datastore or database. 
+In GDN, each document stored in a collection contains a `_key`, and the rest of the document is its *value*. The only key-value operations available are key lookups (single & batch) and key-value pair insertions and updates. If no sharding attribute is specified, `_key` is used for sharding the data instead.
 
-If you are new to Macrometa GDN, start by reading the [essentials](../../essentials/overview) of Macrometa GDN.
-
-Each document stored in a *collection* (or table) contains a primary key `_key`. The rest of the document is considered a value. The collection behaves like a simple *key-value* (KV) store if it has no secondary indexes.
-
-The key-value store has no query languages. The permissible operations are key look-ups (single & batch) and key-value pair insertions, updates and deletions. If you don't specify a sharding attribute, we use `_key` to shard the data. The simplicity of this model makes a key-value store fast, easy to use, scalable, portable, and flexible.
-
-You can enable `time_to_live` (TTL) during collection creation and add an `expireAt` value to specify the expiration time for each document in the KV collection. 
+Key-value collections are always global. You can specify time_to_live (TTL) during creation. 
 
 For the following examples, assume these credentials:
 

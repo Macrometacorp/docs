@@ -6,15 +6,21 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Overview
-
-Globally distributed applications need a geo distributed fast data platform that can transparently replicate the data anywhere in the world to enable the applications to operate on a copy of the data that's close to its users. Similarly the applications need geo-replicated as well as local streams to handle pub-sub, ETL and real-time updates from the fast data platform.
-
-Macrometa global data network (GDN) is a fully managed realtime materialzed view engine that provides access to data instantly to Apps & APIs in a simple & single interface.  
-
 This article is an introduction to using streams with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) drivers.
 
-GDN streams are a high-performance solution for server-to-server messaging. It provides:
+Streams are a type of collection in GDN to capture `data-in-motion`. Messages are sent via streams by publishers to consumers who then do something with the message. Streams can be created via client drivers (pyC8, jsC8), REST API or the web console.
+
+Streams unifies `queuing` and `pub-sub messaging` into a unified messaging model that provides a lot of flexibility to users to consume messages in a way that is best for the use case at hand.
+
+> producer --> stream --> subscription --> consumer
+
+A stream is a named channel for sending messages. Each stream is backed by a `distributed append-only` log and can be `local` (at one edge location only) or `global` (across all edge locations in the Fabric).
+
+Messages from publishers are only stored once on a stream, and can be consumed as many times as necessary by consumers. The stream is the source of truth for consumption. Although messages are only stored once on the stream, there can be different ways of consuming these messages.
+
+Consumers are grouped together for consuming messages. Each group of consumers is a subscription on a stream. Each consumer group can have its own way of consuming the messages: exclusively, shared, or failover.
+
+Streams provide:
 
 - Seamless geo-replication of messages across regions
 - Very low publish and end-to-end latency
@@ -22,7 +28,7 @@ GDN streams are a high-performance solution for server-to-server messaging. It p
 - Multiple subscription modes (`exclusive`, `shared`, and `failover`) for streams
 - Guaranteed message delivery with persistent message storage
 
-`Streams` are built on the _publish-subscribe_ pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
+Streams are built on the *publish-subscribe* pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
 
 Once a subscription has been created, all messages will be retained by Streams, even if the consumer gets disconnected Retained messages will be discarded only when a consumer acknowledges that they've been successfully processed.
 
@@ -38,14 +44,12 @@ Messages are the basic "unit" of Streams. They're what producers publish to stre
 | Publish Time         | The timestamp of when the message was published (automatically applied by the producer) |
 | Event Time           | An optional timestamp that applications can attach to the message representing when something happened, e.g. when the message was processed. The event time of a message is 0 if none is explicitly set. |
 
-:::note
-If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../essentials/overview.md)** of Macrometa GDN.
-:::
-## Pre-requisite
 
-Let's assume your
+# Example
 
-- tenant name is `nemo@nautilus.com` and
+Assume the following credentials:
+
+- tenant name is `nemo@nautilus.com`.
 - user password is `xxxxxx`.
 
 ## Installation

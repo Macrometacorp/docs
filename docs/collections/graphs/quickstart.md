@@ -6,73 +6,27 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Overview
-
-Today’s applications are required to be highly responsive and always online. They need to be deployed in datacenters closer to their users and can access data instantly across the globe. 
-
-Macrometa global data network (GDN) is a fully managed realtime materialzed view engine that provides access to data instantly to Apps & APIs in a simple & single interface. 
-
 This article is an introduction to working with documents in GDN with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) drivers.
 
-In the drivers, a **document** is a dictionary/object that is JSON serializable with the following properties:
+*Graphs* enable you to group your data and perform more powerful queries across connected documents. A graph consists of *vertices* and *edges*. Vertices are stored in collections and linked by an edge document. Edges are stored as documents in edge collections, and vertices can be a document or an edge. 
 
-* Contains the `_key` field, which identifies the document uniquely within a specific collection.
-* Contains the `_id` field (also called the handle), which identifies the document uniquely across all collections within a fabric. This ID is a combination of the collection name and the document key using the format `{collection}/{key}` (see example below).
-* Contains the `_rev` field. GDN supports MVCC (Multiple Version Concurrency Control) and is capable of storing each document in multiple revisions. Latest revision of a document is indicated by this field. The field is populated by GDN and is not required as input unless you want to validate a document against its current revision.
+The *edge definition* determines which collections are used in a named graph. A named graph must contain at least one edge definition. 
 
-Here is an example of a valid document:
+ You can turn documents into graph structures for semantic queries with nodes, edges, and properties. Graphs directly connect data items between different collections. You can use graphs to refer to documents in different tables without a nested join. Graphs can also find patterns of document connections, such as the shortest path between two vertices in a graph.
 
-```json
-    {
-        '_id': 'students/bruce',
-        '_key': 'bruce',
-        '_rev': '_Wm3dzEi--_',
-        'first_name': 'Bruce',
-        'last_name': 'Wayne',
-        'address': {
-            'street' : '1007 Mountain Dr.',
-            'city': 'Gotham',
-            'state': 'NJ'
-        },
-        'is_rich': True,
-        'friends': ['robin', 'gordon']
-    }
-```
+Edges in one edge collection may point to several vertex collections. You can add attributes to edges to do things like labelling connections.
 
-**Edge documents (edges)** are similar to standard documents but with two additional required fields `_from` and `_to`. Values of these fields must be the handles of "from" and "to" vertex documents linked by the edge document in question. Here is an example of a valid edge document:
-
-```json
-    {
-        '_id': 'friends/001',
-        '_key': '001',
-        '_rev': '_Wm3dyle--_',
-        '_from': 'students/john',
-        '_to': 'students/jane',
-        'closeness': 9.5
-    }
-```
-
-A **Graph** consists of vertices and edges. Edges are stored as documents in edge collections. A vertex can be a document of a document collection or of an edge collection (so edges can be used as vertices). Which collections are used within a named graph is defined via edge definitions. A `named graph` can contain more than one edge definition, at least one is needed. Graphs allow you to structure your models in line with your domain and group them logically in collections and giving you the power to query them in the same graph queries.
-
-In SQL you commonly have the construct of a relation table to store `n:m` relations between two data tables. An `edge collection` is somewhat similar to these relation tables. `Vertex collections` resemble the data tables with the objects to connect. 
-
-While simple graph queries with fixed number of hops via the relation table may be doable in SQL with several nested joins, graph databases can handle an arbitrary number of these hops over edge collections - this is called `traversal`. Also edges in one edge collection may point to several vertex collections. Its common to have attributes attached to edges, i.e. a label naming this interconnection. 
-
-Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. In queries you can define in which directions the edge relations may be followed i.e., 
+Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. In queries you can define in which directions the edge relations may be followed:
 
 * OUTBOUND: `_from` → `_to`
 * INBOUND: `_from` ← `_to`
 * ANY: `_from` ↔ `_to`.
 
-:::note
-If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../essentials/overview.md)** of Macrometa GDN.
-:::
+# Example
 
-## Pre-requisite
+For this example, assume the following credentials:
 
-Let's assume your
-
-* Tenant name is `nemo@nautilus.com` and 
+* Tenant name is `nemo@nautilus.com`.
 * User password is `xxxxxx`.
 
 ## Driver download

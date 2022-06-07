@@ -6,9 +6,13 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Quickstart with Stream Processing
-
 Macrometa GDN allows you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
+
+!!! note
+    Stream Workers are currently an Enterprise-only feature. We will be rolling it out to all users in Q1 of 2022.
+
+    Contact support@macrometa.com if you have any questions.
+
  
 | Stage | Description |
 |-------|-------------|
@@ -16,8 +20,6 @@ Macrometa GDN allows you to integrate streaming data and take appropriate action
 | *Analyze* | Analyze data to identify interesting patterns and extract information. |
 | *Act* | Take actions based on the findings. For example, running simple code, calling an external service, or triggering a complex integration. |
 | *Integrate* | Provide processed data for consumer consumption. |
-
-If you are new to Macrometa GDN, start by reading the [essentials](../essentials/overview.md) of Macrometa GDN.
 
 ![GDN Essentials](/img/gdn-cep-overview.png)
 
@@ -29,13 +31,15 @@ You can process streams to perform the following actions with your data:
 * Clean data by filtering it and by modifying the content in messages. For example, obfuscating sensitive information.
 * Derive insights by identifying event patterns in data streams.
 * Summarize data with time windows and incremental aggregations.
-* Real-time ETL for collections, tailing files, and scraping HTTP endpoints.
+* Extract, transform, and load (ETL) collections, tailing files, and scraping HTTP endpoints.
 * Integrating stream data and trigger actions based on the data. This can be a single service request or a complex enterprise integration flow.
 
-For the following examples, assume these credentials:
+# Example
 
-* Tenant name: nemo@nautilus.com
-* Password: xxxxxx
+Assume the following credentials:
+
+* Tenant name: `nemo@nautilus.com`
+* Password: `xxxxxx`
 
 ## Driver Download
 
