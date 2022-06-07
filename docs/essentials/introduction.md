@@ -11,7 +11,6 @@ When you choose a database or stream processing system, you're actually choosing
     
     In systems like these, features are integrated across all layers. For example, an index provided by a data model is automatically integrated into the storage and query language.
 
-
 Document databases, graph databases, key-value stores, pub-sub streams, and queues make sense in the right context, and different parts of an application might call for different choices. This creates a tough decision: Use a whole new database or new streaming system to support a new data model, or try to shoehorn data into your existing database or messaging system.
 
 Macrometa GDN decouples its data storage technology from its data model. You can efficiently adapt and remap real-time materialized views and log storage technology to a broad array of rich data models and streams.
