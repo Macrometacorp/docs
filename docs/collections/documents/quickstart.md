@@ -82,7 +82,7 @@ GDN provides the following methods of data retrieval:
 
 * Cursors are used to iterate over the result of queries, so that you get easily processable batches instead of one big hunk.
 
-* Indexes can speed up your searches. Refer to the [Indexing](documents/indexing/overview.md) section for more information.
+* Indexes can speed up your searches. Refer to the [Indexing](indexing/overview.md) section for more information.
 
 
 # Example
