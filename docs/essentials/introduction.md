@@ -64,7 +64,7 @@ Each RestQL is exposed as its own endpoint and is protected. The RestQLs are org
 
 For more information, refer to the [C8 Query Language](../c8ql/introduction.md) section.
 
-## Sharding & Replication
+## Sharding and Replication
 
 ### Sharding
 
