@@ -84,3 +84,9 @@ yarn start
 ```
 
 > 💡 When using the `start` command, the docs will be available at `http://localhost:3000`.
+
+### Troubleshooting
+
+If you get a bunch of errors when you do a local build, first try updating your dependencies by running `yarn` in the top level of the `docs` directory.
+
+You might also need to update yarn. If you do, follow the instructions displayed in the terminal.
