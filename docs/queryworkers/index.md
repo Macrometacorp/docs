@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: Concepts
+title: Query Workers
 ---
 
-GDN stores named and parameterized C8QL queries called *query workers* (or *query as API*), which can be executed from a dedicated REST endpoint. C8QL is a mix of SQL & JavaScript and provides a rich set of primitives to query & update GDN.
+GDN stores named and parameterized C8QL queries called *query workers* (or *query as API*), which can be executed from a dedicated REST endpoint. C8QL is a mix of SQL & JavaScript and provides a rich set of primitives to query and update GDN.
 
 :::note
 * When the user saves a query worker, the query is automatically converted to an API and is deployed globally to serve the users from the region closest to them with local latencies.
