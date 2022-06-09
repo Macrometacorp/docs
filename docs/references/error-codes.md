@@ -77,45 +77,24 @@ For errors that occur because of a programming error.
 | 1008    | ERROR_C8DB_RECOVERY                      | Occurs when an error occurred during WAL log file recovery.                            |
 | 1009    | ERROR_C8DB_DATAFILE_STATISTICS_NOT_FOUND | Occurs when a required datafile statistics object was not found.                       |
 
-## External C8 Errors
+## External C8 Errors (1100-1199)
 
 For errors that occur because of an outside event.
 
-1100 - ERROR_C8DB_CORRUPTED_DATAFILE
-  Occurs when a corruption is detected in a datafile.
-
-1101 - ERROR_C8DB_ILLEGAL_PARAMETER_FILE
-  Occurs if a parameter file is corrupted or cannot be read.
-
-1102 - ERROR_C8DB_CORRUPTED_COLLECTION
-  Occurs when a collection contains one or more corrupted data files.
-
-1103 - ERROR_C8DB_MMAP_FAILED
-  Occurs when the system call mmap failed.
-
-1104 - ERROR_C8DB_FILESYSTEM_FULL
-  Occurs when the filesystem is full.
-
-1105 - ERROR_C8DB_NO_JOURNAL
-  Occurs when a journal cannot be created.
-
-1106 - ERROR_C8DB_DATAFILE_ALREADY_EXISTS
-  Occurs when the datafile cannot be created or renamed because a file of the same name already exists.
-
-1107 - ERROR_C8DB_DATADIR_LOCKED
-  Occurs when the database directory is locked by a different process.
-
-1108 - ERROR_C8DB_COLLECTION_DIRECTORY_ALREADY_EXISTS
-  Occurs when the collection cannot be created because a directory of the same name already exists.
-
-1109 - ERROR_C8DB_MSYNC_FAILED
-  Occurs when the system call msync failed.
-
-1110 - ERROR_C8DB_DATADIR_UNLOCKABLE
-  Occurs when the server cannot lock the database directory on startup.
-
-1111 - ERROR_C8DB_SYNC_TIMEOUT
-  Occurs when the server waited too long for a datafile to be synced to disk.
+| Error # | Error Name                                     | Description                                                                                           |
+| ------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| 1100    | ERROR_C8DB_CORRUPTED_DATAFILE                  | Occurs when a corruption is detected in a datafile.                                                   |
+| 1101    | ERROR_C8DB_ILLEGAL_PARAMETER_FILE              | Occurs if a parameter file is corrupted or cannot be read.                                            |
+| 1102    | ERROR_C8DB_CORRUPTED_COLLECTION                | Occurs when a collection contains one or more corrupted data files.                                   |
+| 1103    | ERROR_C8DB_MMAP_FAILED                         | Occurs when the system call mmap failed.                                                              |
+| 1104    | ERROR_C8DB_FILESYSTEM_FULL                     | Occurs when the filesystem is full.                                                                   |
+| 1105    | ERROR_C8DB_NO_JOURNAL                          | Occurs when a journal cannot be created.                                                              |
+| 1106    | ERROR_C8DB_DATAFILE_ALREADY_EXISTS             | Occurs when the datafile cannot be created or renamed because a file of the same name already exists. |
+| 1107    | ERROR_C8DB_DATADIR_LOCKED                      | Occurs when the database directory is locked by a different process.                                  |
+| 1108    | ERROR_C8DB_COLLECTION_DIRECTORY_ALREADY_EXISTS | Occurs when the collection cannot be created because a directory of the same name already exists.     |
+| 1109    | ERROR_C8DB_MSYNC_FAILED                        | Occurs when the system call msync failed.                                                             |
+| 1110    | ERROR_C8DB_DATADIR_UNLOCKABLE                  | Occurs when the server cannot lock the database directory on startup.                                 |
+| 1111    | ERROR_C8DB_SYNC_TIMEOUT                        | Occurs when the server waited too long for a datafile to be synced to disk.                           |
 
 ## General C8 errors
 
