@@ -10,12 +10,14 @@ Macrometa Global Data Network (GDN) is a geo-distributed, real-time, coordinatio
 
 When you choose a database or stream processing system, you're actually choosing three technologies: storage, a data model, and an API and query language.
 
-:::example
-    If you choose Postgres, you are choosing the Postgres storage engine, a relational data model, and the SQL query language. 
+:::note Example
+
+If you choose Postgres, you are choosing the Postgres storage engine, a relational data model, and the SQL query language. 
     
-    If you choose MongoDB, you are choosing the MongoDB distributed storage engine, a document data model, and the MongoDB API. 
+If you choose MongoDB, you are choosing the MongoDB distributed storage engine, a document data model, and the MongoDB API. 
     
-    In systems like these, features are integrated across all layers. For example, an index provided by a data model is automatically integrated into the storage and query language.
+In systems like these, features are integrated across all layers. For example, an index provided by a data model is automatically integrated into the storage and query language.
+
 :::
 
 Document databases, graph databases, key-value stores, pub-sub streams, and queues make sense in the right context, and different parts of an application might call for different choices. This creates a tough decision: Use a whole new database or new streaming system to support a new data model, or try to shoehorn data into your existing database or messaging system.
