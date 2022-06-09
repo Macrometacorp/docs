@@ -8,10 +8,13 @@ import TabItem from '@theme/TabItem';
 
 Macrometa GDN allows you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
 
-!!! note
-    Stream Workers are currently an Enterprise-only feature. We will be rolling it out to all users in Q1 of 2022.
+:::note
 
-    Contact support@macrometa.com if you have any questions.
+Stream Workers are currently an Enterprise-only feature. We will be rolling it out to all users in Q1 of 2022.
+
+Contact support@macrometa.com if you have any questions.
+
+:::
 
  
 | Stage | Description |
