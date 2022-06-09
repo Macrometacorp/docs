@@ -232,3 +232,8 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
         --table-name Music \
         --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
+
+## Reference
+
+For more information, refer to the [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamodb-api.pdf#API_Operations_Amazon_DynamoDB) documentation.
+
