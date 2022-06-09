@@ -5,61 +5,34 @@ title: Error Codes
 
 This page describes error codes you might encounter while using Macrometa.
 
-## General Errors
+## General Errors 0-99
 
-| Error # | Error Name | Description |
-| ------- | ---------- | ----------- |
-| 0        | ERROR_NO_ERROR           | No error has occurred.            |
-| 1        | ERROR_FAILED           | Will be raised when a general error occurred.            |
-| 2        | ERROR_SYS_ERROR           | Will be raised when operating system error occurred.            |
-| 3        | ERROR_OUT_OF_MEMORY           | Will be raised when there is a memory shortage.            |
-|         |            |             |
-|         |            |             |
-|         |            |             |
-|         |            |             |
-|         |            |             |
-|         |            |             |
-|         |            |             |
-|         |            |             |
-
- - 
-  
-
-4 - ERROR_INTERNAL
-  Will be raised when an internal error occurred.
-
-5 - ERROR_ILLEGAL_NUMBER
-  Will be raised when an illegal representation of a number was given.
-
-6 - ERROR_NUMERIC_OVERFLOW
-  Will be raised when a numeric overflow occurred.
-
-7 - ERROR_ILLEGAL_OPTION
-  Will be raised when an unknown option was supplied by the user.
-
-8 - ERROR_DEAD_PID
-  Will be raised when a PID without a living process was found.
-
-9 - ERROR_NOT_IMPLEMENTED
-  Will be raised when hitting an unimplemented feature.
-
-10 - ERROR_BAD_PARAMETER
-  Will be raised when the parameter does not fulfill the requirements.
-
-11 - ERROR_FORBIDDEN
-  Will be raised when you are missing permission for the operation.
-
-12 - ERROR_OUT_OF_MEMORY_MMAP
-  Will be raised when there is a memory shortage.
-
-13 - ERROR_CORRUPTED_CSV
-  Will be raised when encountering a corrupt csv line.
-
-14 - ERROR_FILE_NOT_FOUND
-  Will be raised when a file is not found.
-
-15 - ERROR_CANNOT_WRITE_FILE
-  Will be raised when a file cannot be written.
+| Error # | Error Name               | Description                                                          |
+| ------- | ------------------------ | -------------------------------------------------------------------- |
+| 0       | ERROR_NO_ERROR           | No error has occurred.                                               |
+| 1       | ERROR_FAILED             | Will be raised when a general error occurred.                        |
+| 2       | ERROR_SYS_ERROR          | Will be raised when operating system error occurred.                 |
+| 3       | ERROR_OUT_OF_MEMORY      | Will be raised when there is a memory shortage.                      |
+| 4       | ERROR_INTERNAL           | Will be raised when an internal error occurred.                      |
+| 5       | ERROR_ILLEGAL_NUMBER     | Will be raised when an illegal representation of a number was given. |
+| 6       | ERROR_NUMERIC_OVERFLOW   | Will be raised when a numeric overflow occurred.                     |
+| 7       | ERROR_ILLEGAL_OPTION     | Will be raised when an unknown option was supplied by the user.      |
+| 8       | ERROR_DEAD_PID           | Will be raised when a PID without a living process was found.        |
+| 9       | ERROR_NOT_IMPLEMENTED    | Will be raised when hitting an unimplemented feature.                |
+| 10      | ERROR_BAD_PARAMETER      | Will be raised when the parameter does not fulfill the requirements. |
+| 11      | ERROR_FORBIDDEN          | Will be raised when you are missing permission for the operation.    |
+| 12      | ERROR_OUT_OF_MEMORY_MMAP | Will be raised when there is a memory shortage.                      |
+| 13      | ERROR_CORRUPTED_CSV      | Will be raised when encountering a corrupt CSV line.                 |
+| 14      | ERROR_FILE_NOT_FOUND     | Will be raised when a file is not found.                             |
+| 15      | ERROR_CANNOT_WRITE_FILE  | Will be raised when a file cannot be written.                        |
+|         |                          |                                                                      |
+|         |                          |                                                                      |
+|         |                          |                                                                      |
+|         |                          |                                                                      |
+|         |                          |                                                                      |
+|         |                          |                                                                      |
+|         |                          |                                                                      |
+|         |                          |                                                                      |
 
 16 - ERROR_CANNOT_OVERWRITE_FILE
   Will be raised when an attempt is made to overwrite an existing file.
