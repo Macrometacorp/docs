@@ -100,426 +100,172 @@ For errors that occur because of an outside event.
 
 For errors that occur when fulfilling a user request.
 
-1200 - ERROR_C8DB_CONFLICT
-  Occurs when updating or deleting a document and a conflict has been detected.
+| Error # | Error Name                                  | Description                                                                                                                                           |
+| ------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1200    | ERROR_C8DB_CONFLICT                         | Occurs when updating or deleting a document and a conflict has been detected.                                                                         |
+| 1201    | ERROR_C8DB_DATADIR_INVALID                  | Occurs when a non-existing database directory was specified when starting the database.                                                               |
+| 1202    | ERROR_C8DB_DOCUMENT_NOT_FOUND               | Occurs when a document with a given identifier or handle is unknown.                                                                                  |
+| 1203    | ERROR_C8DB_COLLECTION_NOT_FOUND             | Occurs when a collection with the given identifier or name is unknown.                                                                                |
+| 1204    | ERROR_C8DB_COLLECTION_PARAMETER_MISSING     | Occurs when the collection parameter is missing.                                                                                                      |
+| 1205    | ERROR_C8DB_DOCUMENT_HANDLE_BAD              | Occurs when a document handle is corrupt.                                                                                                             |
+| 1206    | ERROR_C8DB_MAXIMAL_SIZE_TOO_SMALL           | Occurs when the maximal size of the journal is too small.                                                                                             |
+| 1207    | ERROR_C8DB_DUPLICATE_NAME                   | Occurs when a name duplicate is detected.                                                                                                             |
+| 1208    | ERROR_C8DB_ILLEGAL_NAME                     | Occurs when an illegal name is detected.                                                                                                              |
+| 1209    | ERROR_C8DB_NO_INDEX                         | Occurs when no suitable index for the query is known.                                                                                                 |
+| 1210    | ERROR_C8DB_UNIQUE_CONSTRAINT_VIOLATED       | Occurs when there is a unique constraint violation.                                                                                                   |
+| 1211    | ERROR_C8DB_VIEW_NOT_FOUND                   | Occurs when a view with the given identifier or name is unknown.                                                                                      |
+| 1212    | ERROR_C8DB_INDEX_NOT_FOUND                  | Occurs when an index with a given identifier is unknown.                                                                                              |
+| 1213    | ERROR_C8DB_CROSS_COLLECTION_REQUEST         | Occurs when a cross-collection is requested.                                                                                                          |
+| 1214    | ERROR_C8DB_INDEX_HANDLE_BAD                 | Occurs when a index handle is corrupt.                                                                                                                |
+| 1216    | ERROR_C8DB_DOCUMENT_TOO_LARGE               | Occurs when the document cannot fit into any datafile because of it is too large.                                                                     |
+| 1217    | ERROR_C8DB_COLLECTION_NOT_UNLOADED          | Occurs when a collection should be unloaded, but has a different status.                                                                              |
+| 1218    | ERROR_C8DB_COLLECTION_TYPE_INVALID          | Occurs when an invalid collection type is used in a request.                                                                                          |
+| 1219    | ERROR_C8DB_VALIDATION_FAILED                | Occurs when the validation of an attribute of a structure failed.                                                                                     |
+| 1220    | ERROR_C8DB_ATTRIBUTE_PARSER_FAILED          | Occurs when parsing an attribute name definition failed.                                                                                              |
+| 1221    | ERROR_C8DB_DOCUMENT_KEY_BAD                 | Occurs when a document key is corrupt.                                                                                                                |
+| 1222    | ERROR_C8DB_DOCUMENT_KEY_UNEXPECTED          | Occurs when a user-defined document key is supplied for collections with auto key generation.                                                         |
+| 1224    | ERROR_C8DB_DATADIR_NOT_WRITABLE             | Occurs when the server's database directory is not writable for the current user.                                                                     |
+| 1225    | ERROR_C8DB_OUT_OF_KEYS                      | Occurs when a key generator runs out of keys.                                                                                                         |
+| 1226    | ERROR_C8DB_DOCUMENT_KEY_MISSING             | Occurs when a document key is missing.                                                                                                                |
+| 1227    | ERROR_C8DB_DOCUMENT_TYPE_INVALID            | Occurs when there is an attempt to create a document with an invalid type.                                                                            |
+| 1228    | ERROR_C8DB_DATABASE_NOT_FOUND               | Occurs when a non-existing database is accessed.                                                                                                      |
+| 1229    | ERROR_C8DB_DATABASE_NAME_INVALID            | Occurs when an invalid database name is used.                                                                                                         |
+| 1230    | ERROR_C8DB_USE_SYSTEM_DATABASE              | Occurs when an operation is requested in a database other than the system database.                                                                   |
+| 1231    | ERROR_C8DB_ENDPOINT_NOT_FOUND               | Occurs when there is an attempt to delete a non-existing endpoint.                                                                                    |
+| 1232    | ERROR_C8DB_INVALID_KEY_GENERATOR            | Occurs when an invalid key generator description is used.                                                                                             |
+| 1233    | ERROR_C8DB_INVALID_EDGE_ATTRIBUTE           | Occurs when the _from or _to values of an edge are undefined or contain an invalid value.                                                             |
+| 1234    | ERROR_C8DB_INDEX_DOCUMENT_ATTRIBUTE_MISSING | Occurs when an attempt to insert a document into an index is caused by in the document not having one or more attributes which the index is built on. |
+| 1235    | ERROR_C8DB_INDEX_CREATION_FAILED            | Occurs when an attempt to create an index has failed.                                                                                                 |
+| 1239    | ERROR_C8DB_DOCUMENT_REV_BAD                 | Occurs when a document revision is corrupt or is missing where needed.                                                                                |
+| 1238    | ERROR_C8DB_COLLECTION_NOT_LOADED            | Occurs when a collection is accessed that is not yet loaded.                                                                                          |
+| 1237    | ERROR_C8DB_COLLECTION_TYPE_MISMATCH         | Occurs when a collection has a different type from what has been expected.                                                                            |
+| 1236    | ERROR_C8DB_WRITE_THROTTLE_TIMEOUT           | Occurs when the server is write-throttled and a write operation has waited too long for the server to process queued operations.                      |
 
-1201 - ERROR_C8DB_DATADIR_INVALID
-  Occurs when a non-existing database directory was specified when starting the database.
-
-1202 - ERROR_C8DB_DOCUMENT_NOT_FOUND
-  Occurs when a document with a given identifier or handle is unknown.
-
-1203 - ERROR_C8DB_COLLECTION_NOT_FOUND
-  Occurs when a collection with the given identifier or name is unknown.
-
-1204 - ERROR_C8DB_COLLECTION_PARAMETER_MISSING
-  Occurs when the collection parameter is missing.
-
-1205 - ERROR_C8DB_DOCUMENT_HANDLE_BAD
-  Occurs when a document handle is corrupt.
-
-1206 - ERROR_C8DB_MAXIMAL_SIZE_TOO_SMALL
-  Occurs when the maximal size of the journal is too small.
-
-1207 - ERROR_C8DB_DUPLICATE_NAME
-  Occurs when a name duplicate is detected.
-
-1208 - ERROR_C8DB_ILLEGAL_NAME
-  Occurs when an illegal name is detected.
-
-1209 - ERROR_C8DB_NO_INDEX
-  Occurs when no suitable index for the query is known.
-
-1210 - ERROR_C8DB_UNIQUE_CONSTRAINT_VIOLATED
-  Occurs when there is a unique constraint violation.
-
-1211 - ERROR_C8DB_VIEW_NOT_FOUND
-  Occurs when a view with the given identifier or name is unknown.
-
-1212 - ERROR_C8DB_INDEX_NOT_FOUND
-  Occurs when an index with a given identifier is unknown.
-
-1213 - ERROR_C8DB_CROSS_COLLECTION_REQUEST
-  Occurs when a cross-collection is requested.
-
-1214 - ERROR_C8DB_INDEX_HANDLE_BAD
-  Occurs when a index handle is corrupt.
-
-1216 - ERROR_C8DB_DOCUMENT_TOO_LARGE
-  Occurs when the document cannot fit into any datafile because of it is too large.
-
-1217 - ERROR_C8DB_COLLECTION_NOT_UNLOADED
-  Occurs when a collection should be unloaded, but has a different status.
-
-1218 - ERROR_C8DB_COLLECTION_TYPE_INVALID
-  Occurs when an invalid collection type is used in a request.
-
-1219 - ERROR_C8DB_VALIDATION_FAILED
-  Occurs when the validation of an attribute of a structure failed.
-
-1220 - ERROR_C8DB_ATTRIBUTE_PARSER_FAILED
-  Occurs when parsing an attribute name definition failed.
-
-1221 - ERROR_C8DB_DOCUMENT_KEY_BAD
-  Occurs when a document key is corrupt.
-
-1222 - ERROR_C8DB_DOCUMENT_KEY_UNEXPECTED
-  Occurs when a user-defined document key is supplied for collections with auto key generation.
-
-1224 - ERROR_C8DB_DATADIR_NOT_WRITABLE
-  Occurs when the server's database directory is not writable for the current user.
-
-1225 - ERROR_C8DB_OUT_OF_KEYS
-  Occurs when a key generator runs out of keys.
-
-1226 - ERROR_C8DB_DOCUMENT_KEY_MISSING
-  Occurs when a document key is missing.
-
-1227 - ERROR_C8DB_DOCUMENT_TYPE_INVALID
-  Occurs when there is an attempt to create a document with an invalid type.
-
-1228 - ERROR_C8DB_DATABASE_NOT_FOUND
-  Occurs when a non-existing database is accessed.
-
-1229 - ERROR_C8DB_DATABASE_NAME_INVALID
-  Occurs when an invalid database name is used.
-
-1230 - ERROR_C8DB_USE_SYSTEM_DATABASE
-  Occurs when an operation is requested in a database other than the system database.
-
-1231 - ERROR_C8DB_ENDPOINT_NOT_FOUND
-  Occurs when there is an attempt to delete a non-existing endpoint.
-
-1232 - ERROR_C8DB_INVALID_KEY_GENERATOR
-  Occurs when an invalid key generator description is used.
-
-1233 - ERROR_C8DB_INVALID_EDGE_ATTRIBUTE
-  Occurs when the _from or _to values of an edge are undefined or contain an invalid value.
-
-1234 - ERROR_C8DB_INDEX_DOCUMENT_ATTRIBUTE_MISSING
-  Occurs when an attempt to insert a document into an index is caused by in the document not having one or more attributes which the index is built on.
-
-1235 - ERROR_C8DB_INDEX_CREATION_FAILED
-  Occurs when an attempt to create an index has failed.
-
-1236 - ERROR_C8DB_WRITE_THROTTLE_TIMEOUT
-  Occurs when the server is write-throttled and a write operation has waited too long for the server to process queued operations.
-
-1237 - ERROR_C8DB_COLLECTION_TYPE_MISMATCH
-  Occurs when a collection has a different type from what has been expected.
-
-1238 - ERROR_C8DB_COLLECTION_NOT_LOADED
-  Occurs when a collection is accessed that is not yet loaded.
-
-1239 - ERROR_C8DB_DOCUMENT_REV_BAD
-  Occurs when a document revision is corrupt or is missing where needed.
-
-## Checked C8 errors
+## Checked C8 errors (1300-1399)
 
 For errors that occur but are anticipated.
 
-1300 - ERROR_C8DB_DATAFILE_FULL
-  Occurs when the datafile reaches its limit.
-
-1301 - ERROR_C8DB_EMPTY_DATADIR
-  Occurs when encountering an empty server database directory.
-
-1302 - ERROR_C8DB_TRY_AGAIN
-  Occurs when an operation should be retried.
-
-1303 - ERROR_C8DB_BUSY
-  Occurs when storage engine is busy.
-
-1304 - ERROR_C8DB_MERGE_IN_PROGRESS
-  Occurs when storage engine has a datafile merge in progress and cannot complete the operation.
-
-1305 - ERROR_C8DB_IO_ERROR
-  Occurs when storage engine encounters an I/O error.
-
-## C8 replication errors
-
-1400 - ERROR_REPLICATION_NO_RESPONSE
-  Occurs when the replication applier does not receive any or an incomplete response from the master.
-
-1401 - ERROR_REPLICATION_INVALID_RESPONSE
-  Occurs when the replication applier receives an invalid response from the master.
-
-1402 - ERROR_REPLICATION_MASTER_ERROR
-  Occurs when the replication applier receives a server error from the master.
-
-1403 - ERROR_REPLICATION_MASTER_INCOMPATIBLE
-  Occurs when the replication applier connects to a master that has an incompatible version.
-
-1404 - ERROR_REPLICATION_MASTER_CHANGE
-  Occurs when the replication applier connects to a different master than before.
-
-1405 - ERROR_REPLICATION_LOOP
-  Occurs when the replication applier is asked to connect to itself for replication.
-
-1406 - ERROR_REPLICATION_UNEXPECTED_MARKER
-  Occurs when an unexpected marker is found in the replication log stream.
-
-1407 - ERROR_REPLICATION_INVALID_APPLIER_STATE
-  Occurs when an invalid replication applier state file is found.
-
-1408 - ERROR_REPLICATION_UNEXPECTED_TRANSACTION
-  Occurs when an unexpected transaction id is found.
-
-1410 - ERROR_REPLICATION_INVALID_APPLIER_CONFIGURATION
-  Occurs when the configuration for the replication applier is invalid.
-
-1411 - ERROR_REPLICATION_RUNNING
-  Occurs when there is an attempt to perform an operation while the replication applier is running.
-
-1412 - ERROR_REPLICATION_APPLIER_STOPPED
-  Special error code used to indicate the replication applier was stopped by a user.
-
-1413 - ERROR_REPLICATION_NO_START_TICK
-  Occurs when the replication applier is started without a known start tick value.
-
-1414 - ERROR_REPLICATION_START_TICK_NOT_PRESENT
-  Occurs when the replication applier fetches data using a start tick, but that start tick is not present on the logger server anymore.
-
-1416 - ERROR_REPLICATION_WRONG_CHECKSUM
-  Occurs when a new born follower submits a wrong checksum
-
-1417 - ERROR_REPLICATION_SHARD_NONEMPTY
-  Occurs when a shard is not empty and the follower tries a shortcut
-
-## C8 cluster errors
-
-1450 - ERROR_CLUSTER_NO_AGENCY
-  Occurs when none of the agency servers can be connected to.
-
-1451 - ERROR_CLUSTER_NO_COORDINATOR_HEADER
-  Occurs when a DB server in a cluster receives a HTTP request without a coordinator header.
-
-1452 - ERROR_CLUSTER_COULD_NOT_LOCK_PLAN
-  Occurs when a coordinator in a cluster cannot lock the Plan hierarchy in the agency.
-
-1453 - ERROR_CLUSTER_COLLECTION_ID_EXISTS
-  Occurs when a coordinator in a cluster tries to create a collection and the collection ID already exists.
-
-1454 - ERROR_CLUSTER_COULD_NOT_CREATE_COLLECTION_IN_PLAN
-  Occurs when a coordinator in a cluster cannot create an entry for a new collection in the Plan hierarchy in the agency.
-
-1455 - ERROR_CLUSTER_COULD_NOT_READ_CURRENT_VERSION
-  Occurs when a coordinator in a cluster cannot read the Version entry in the Current hierarchy in the agency.
-
-1456 - ERROR_CLUSTER_COULD_NOT_CREATE_COLLECTION
-  Occurs when a coordinator in a cluster notices that some DBServers report problems when creating shards for a new collection.
-
-1457 - ERROR_CLUSTER_TIMEOUT
-  Occurs when a coordinator in a cluster runs into a timeout for some cluster wide operation.
-
-1458 - ERROR_CLUSTER_COULD_NOT_REMOVE_COLLECTION_IN_PLAN
-  Occurs when a coordinator in a cluster cannot remove an entry for a collection in the Plan hierarchy in the agency.
-
-1459 - ERROR_CLUSTER_COULD_NOT_REMOVE_COLLECTION_IN_CURRENT
-  Occurs when a coordinator in a cluster cannot remove an entry for a collection in the Current hierarchy in the agency.
-
-1460 - ERROR_CLUSTER_COULD_NOT_CREATE_DATABASE_IN_PLAN
-  Occurs when a coordinator in a cluster cannot create an entry for a new database in the Plan hierarchy in the agency.
-
-1461 - ERROR_CLUSTER_COULD_NOT_CREATE_DATABASE
-  Occurs when a coordinator in a cluster notices that some DBServers report problems when creating databases for a new cluster wide database.
-
-1462 - ERROR_CLUSTER_COULD_NOT_REMOVE_DATABASE_IN_PLAN
-  Occurs when a coordinator in a cluster cannot remove an entry for a database in the Plan hierarchy in the agency.
-
-1463 - ERROR_CLUSTER_COULD_NOT_REMOVE_DATABASE_IN_CURRENT
-  Occurs when a coordinator in a cluster cannot remove an entry for a database in the Current hierarchy in the agency.
-
-1464 - ERROR_CLUSTER_SHARD_GONE
-  Occurs when a coordinator in a cluster cannot determine the shard that is responsible for a given document.
-
-1465 - ERROR_CLUSTER_CONNECTION_LOST
-  Occurs when a coordinator in a cluster loses an HTTP connection to a DBserver in the cluster whilst transferring data.
-
-1466 - ERROR_CLUSTER_MUST_NOT_SPECIFY_KEY
-  Occurs when a coordinator in a cluster finds that the _key attribute was specified in a sharded collection the uses not only _key as sharding attribute.
-
-1467 - ERROR_CLUSTER_GOT_CONTRADICTING_ANSWERS
-  Occurs if a coordinator in a cluster gets conflicting results from different shards, which should never happen.
-
-1468 - ERROR_CLUSTER_NOT_ALL_SHARDING_ATTRIBUTES_GIVEN
-  Occurs if a coordinator tries to find out which shard is responsible for a partial document, but cannot do this because not all sharding attributes are specified.
-
-1469 - ERROR_CLUSTER_MUST_NOT_CHANGE_SHARDING_ATTRIBUTES
-  Occurs if there is an attempt to update the value of a shard attribute.
-
-1470 - ERROR_CLUSTER_UNSUPPORTED
-  Occurs when there is an attempt to carry out an operation that is not supported in the context of a sharded collection.
-
-1471 - ERROR_CLUSTER_ONLY_ON_COORDINATOR
-  Occurs if there is an attempt to run a coordinator-only operation on a different type of node.
-
-1472 - ERROR_CLUSTER_READING_PLAN_AGENCY
-  Occurs if a coordinator or DBserver cannot read the Plan in the agency.
-
-1473 - ERROR_CLUSTER_COULD_NOT_TRUNCATE_COLLECTION
-  Occurs if a coordinator cannot truncate all shards of a cluster collection.
-
-1474 - ERROR_CLUSTER_C8QL_COMMUNICATION
-  Occurs if the internal communication of the cluster for C8QL produces an error.
-
-1475 - ERROR_C8DB_DOCUMENT_NOT_FOUND_OR_SHARDING_ATTRIBUTES_CHANGED
-  Occurs when a document with a given identifier or handle is unknown, or if the sharding attributes have been changed in a REPLACE operation in the cluster.
-
-1476 - ERROR_CLUSTER_COULD_NOT_DETERMINE_ID
-  Occurs if a cluster server at startup could not determine its own ID from the local info provided.
-
-1477 - ERROR_CLUSTER_ONLY_ON_DBSERVER
-  Occurs if there is an attempt to run a DBserver-only operation on a different type of node.
-
-1478 - ERROR_CLUSTER_BACKEND_UNAVAILABLE
-  Occurs if a required db server can't be reached.
-
-1479 - ERROR_CLUSTER_UNKNOWN_CALLBACK_ENDPOINT
-  An endpoint couldn't be found
-
-1480 - ERROR_CLUSTER_AGENCY_STRUCTURE_INVALID
-  The structure in the agency is invalid
-
-1481 - ERROR_CLUSTER_C8QL_COLLECTION_OUT_OF_SYNC
-  Occurs if a collection needed during query execution is out of sync. This currently can only happen when using satellite collections
-
-1482 - ERROR_CLUSTER_COULD_NOT_CREATE_INDEX_IN_PLAN
-  Occurs when a coordinator in a cluster cannot create an entry for a new index in the Plan hierarchy in the agency.
-
-1483 - ERROR_CLUSTER_COULD_NOT_DROP_INDEX_IN_PLAN
-  Occurs when a coordinator in a cluster cannot remove an index from the Plan hierarchy in the agency.
-
-1484 - ERROR_CLUSTER_CHAIN_OF_DISTRIBUTESHARDSLIKE
-  Occurs if one tries to create a collection with a distributeShardsLike attribute which points to another collection that also has one.
-
-1485 - ERROR_CLUSTER_MUST_NOT_DROP_COLL_OTHER_DISTRIBUTESHARDSLIKE
-  Occurs if one tries to drop a collection to which another collection points with its distributeShardsLike attribute.
-
-1486 - ERROR_CLUSTER_UNKNOWN_DISTRIBUTESHARDSLIKE
-  Occurs if one tries to create a collection which points to an unknown collection in its distributeShardsLike attribute.
-
-1487 - ERROR_CLUSTER_INSUFFICIENT_DBSERVERS
-  Occurs if one tries to create a collection with a replicationFactor greater than the available number of DBServers.
-
-1488 - ERROR_CLUSTER_COULD_NOT_DROP_FOLLOWER
-  Occurs if a follower that ought to be dropped could not be dropped in the agency (under Current).
-
-1489 - ERROR_CLUSTER_SHARD_LEADER_REFUSES_REPLICATION
-  Occurs if a replication operation is refused by a shard leader.
-
-1490 - ERROR_CLUSTER_SHARD_FOLLOWER_REFUSES_OPERATION
-  Occurs if a non-replication operation is refused by a shard follower.
-
-1491 - ERROR_CLUSTER_SHARD_LEADER_RESIGNED
-  Occurs if a non-replication operation is refused by a former shard leader that has found out that it is no longer the leader.
-
-1492 - ERROR_CLUSTER_AGENCY_COMMUNICATION_FAILED
-  Occurs if after various retries an agency operation could not be performed successfully.
-
-1493 - ERROR_CLUSTER_DISTRIBUTE_SHARDS_LIKE_REPLICATION_FACTOR
-  Occurs if intended replication factor does not match that of the prototype shard given in distributeShardsLike parameter.
-
-1494 - ERROR_CLUSTER_DISTRIBUTE_SHARDS_LIKE_NUMBER_OF_SHARDS
-  Occurs if intended number of shards does not match that of the prototype shard given in distributeShardsLike parameter.
-
-1495 - ERROR_CLUSTER_LEADERSHIP_CHALLENGE_ONGOING
-  Occurs when servers are currently competing for leadership, and the result is still unknown.
-
-1496 - ERROR_CLUSTER_NOT_LEADER
-  Occurs when an operation is sent to a non-leading server.
-
-## C8 query errors
-
-1500 - ERROR_QUERY_KILLED
-  Occurs when a running query is killed by an explicit admin command.
-
-1501 - ERROR_QUERY_PARSE
-  Occurs when query is parsed and is found to be syntactically invalid.
-
-1502 - ERROR_QUERY_EMPTY
-  Occurs when an empty query is specified.
-
-1503 - ERROR_QUERY_SCRIPT
-  Occurs when a runtime error is caused by the query.
-
-1504 - ERROR_QUERY_NUMBER_OUT_OF_RANGE
-  Occurs when a number is outside the expected range.
-
-1510 - ERROR_QUERY_VARIABLE_NAME_INVALID
-  Occurs when an invalid variable name is used.
-
-1511 - ERROR_QUERY_VARIABLE_REDECLARED
-  Occurs when a variable gets re-assigned in a query.
-
-1512 - ERROR_QUERY_VARIABLE_NAME_UNKNOWN
-  Occurs when an unknown variable is used or the variable is undefined the context it is used.
-
-1521 - ERROR_QUERY_COLLECTION_LOCK_FAILED
-  Occurs when a read lock on the collection cannot be acquired.
-
-1522 - ERROR_QUERY_TOO_MANY_COLLECTIONS
-  Occurs when the number of collections in a query is beyond the allowed value.
-
-1530 - ERROR_QUERY_DOCUMENT_ATTRIBUTE_REDECLARED
-  Occurs when a document attribute is re-assigned.
-
-1540 - ERROR_QUERY_FUNCTION_NAME_UNKNOWN
-  Occurs when an undefined function is called.
-
-1541 - ERROR_QUERY_FUNCTION_ARGUMENT_NUMBER_MISMATCH
-  Occurs when the number of arguments used in a function call does not match the expected number of arguments for the function.
-
-1542 - ERROR_QUERY_FUNCTION_ARGUMENT_TYPE_MISMATCH
-  Occurs when the type of an argument used in a function call does not match the expected argument type.
-
-1543 - ERROR_QUERY_INVALID_REGEX
-  Occurs when an invalid regex argument value is used in a call to a function that expects a regex.
-
-1550 - ERROR_QUERY_BIND_PARAMETERS_INVALID
-  Occurs when the structure of bind parameters passed has an unexpected format.
-
-1551 - ERROR_QUERY_BIND_PARAMETER_MISSING
-  Occurs when a bind parameter was declared in the query but the query is being executed with no value for that parameter.
-
-1552 - ERROR_QUERY_BIND_PARAMETER_UNDECLARED
-  Occurs when a value gets specified for an undeclared bind parameter.
-
-1553 - ERROR_QUERY_BIND_PARAMETER_TYPE
-  Occurs when a bind parameter has an invalid value or type.
-
-1560 - ERROR_QUERY_INVALID_LOGICAL_VALUE
-  Occurs when a non-boolean value is used in a logical operation.
-
-1561 - ERROR_QUERY_INVALID_ARITHMETIC_VALUE
-  Occurs when a non-numeric value is used in an arithmetic operation.
-
-1562 - ERROR_QUERY_DIVISION_BY_ZERO
-  Occurs when there is an attempt to divide by zero.
-
-1563 - ERROR_QUERY_ARRAY_EXPECTED
-  Occurs when a non-array operand is used for an operation that expects an array argument operand.
-
-1569 - ERROR_QUERY_FAIL_CALLED
-  Occurs when the function FAIL() is called from inside a query.
-
-1570 - ERROR_QUERY_GEO_INDEX_MISSING
-  Occurs when a geo restriction was specified but no suitable geo index is found to resolve it.
-
-1571 - ERROR_QUERY_FULLTEXT_INDEX_MISSING
-  Occurs when a fulltext query is performed on a collection without a suitable fulltext index.
-
-1572 - ERROR_QUERY_INVALID_DATE_VALUE
-  Occurs when a value cannot be converted to a date.
-
-1573 - ERROR_QUERY_MULTI_MODIFY
-  Occurs when an C8QL query contains more than one data-modifying operation.
-
-1574 - ERROR_QUERY_INVALID_AGGREGATE_EXPRESSION
-  Occurs when an C8QL query contains an invalid aggregate expression.
-
-1575 - ERROR_QUERY_COMPILE_TIME_OPTIONS
-  Occurs when an C8QL data-modification query contains options that cannot be figured out at query compile time.
+| Error # | Error Name                   | Description                                                                                    |
+| ------- | ---------------------------- | ---------------------------------------------------------------------------------------------- |
+| 1300    | ERROR_C8DB_DATAFILE_FULL     | Occurs when the datafile reaches its limit.                                                    |
+| 1301    | ERROR_C8DB_EMPTY_DATADIR     | Occurs when encountering an empty server database directory.                                   |
+| 1302    | ERROR_C8DB_TRY_AGAIN         | Occurs when an operation should be retried.                                                    |
+| 1303    | ERROR_C8DB_BUSY              | Occurs when storage engine is busy.                                                            |
+| 1304    | ERROR_C8DB_MERGE_IN_PROGRESS | Occurs when storage engine has a datafile merge in progress and cannot complete the operation. |
+| 1305    | ERROR_C8DB_IO_ERROR          | Occurs when storage engine encounters an I/O error.                                            |
+
+## C8 replication errors (1400-1449)
+
+| Error # | Error Name                                      | Description                                                                                                                           |
+| ------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| 1400    | ERROR_REPLICATION_NO_RESPONSE                   | Occurs when the replication applier does not receive any or an incomplete response from the master.                                   |
+| 1401    | ERROR_REPLICATION_INVALID_RESPONSE              | Occurs when the replication applier receives an invalid response from the master.                                                     |
+| 1402    | ERROR_REPLICATION_MASTER_ERROR                  | Occurs when the replication applier receives a server error from the master.                                                          |
+| 1403    | ERROR_REPLICATION_MASTER_INCOMPATIBLE           | Occurs when the replication applier connects to a master that has an incompatible version.                                            |
+| 1404    | ERROR_REPLICATION_MASTER_CHANGE                 | Occurs when the replication applier connects to a different master than before.                                                       |
+| 1405    | ERROR_REPLICATION_LOOP                          | Occurs when the replication applier is asked to connect to itself for replication.                                                    |
+| 1406    | ERROR_REPLICATION_UNEXPECTED_MARKER             | Occurs when an unexpected marker is found in the replication log stream.                                                              |
+| 1407    | ERROR_REPLICATION_INVALID_APPLIER_STATE         | Occurs when an invalid replication applier state file is found.                                                                       |
+| 1408    | ERROR_REPLICATION_UNEXPECTED_TRANSACTION        | Occurs when an unexpected transaction id is found.                                                                                    |
+| 1410    | ERROR_REPLICATION_INVALID_APPLIER_CONFIGURATION | Occurs when the configuration for the replication applier is invalid.                                                                 |
+| 1411    | ERROR_REPLICATION_RUNNING                       | Occurs when there is an attempt to perform an operation while the replication applier is running.                                     |
+| 1412    | ERROR_REPLICATION_APPLIER_STOPPED               | Special error code used to indicate the replication applier was stopped by a user.                                                    |
+| 1413    | ERROR_REPLICATION_NO_START_TICK                 | Occurs when the replication applier is started without a known start tick value.                                                      |
+| 1414    | ERROR_REPLICATION_START_TICK_NOT_PRESENT        | Occurs when the replication applier fetches data using a start tick, but that start tick is not present on the logger server anymore. |
+| 1416    | ERROR_REPLICATION_WRONG_CHECKSUM                | Occurs when a new born follower submits a wrong checksum.                                                                             |
+| 1417    | ERROR_REPLICATION_SHARD_NONEMPTY                | Occurs when a shard is not empty and the follower tries a shortcut.                                                                   |
+
+## C8 cluster errors (1450-1499)
+
+| Error # | Error Name                                           | Description                                                                                                                   |
+| ------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| 1450    | ERROR_CLUSTER_NO_AGENCY                              | Occurs when none of the agency servers can be connected to.                                                                   |
+| 1451    | ERROR_CLUSTER_NO_COORDINATOR_HEADER                  | Occurs when a DB server in a cluster receives a HTTP request without a coordinator header.                                    |
+| 1452    | ERROR_CLUSTER_COULD_NOT_LOCK_PLAN                    | Occurs when a coordinator in a cluster cannot lock the Plan hierarchy in the agency.                                          |
+| 1453    | ERROR_CLUSTER_COLLECTION_ID_EXISTS                   | Occurs when a coordinator in a cluster tries to create a collection and the collection ID already exists.                     |
+| 1454    | ERROR_CLUSTER_COULD_NOT_CREATE_COLLECTION_IN_PLAN    | Occurs when a coordinator in a cluster cannot create an entry for a new collection in the Plan hierarchy in the agency.       |
+| 1455    | ERROR_CLUSTER_COULD_NOT_READ_CURRENT_VERSION         | Occurs when a coordinator in a cluster cannot read the Version entry in the Current hierarchy in the agency.                  |
+| 1456    | ERROR_CLUSTER_COULD_NOT_CREATE_COLLECTION            | Occurs when a coordinator in a cluster notices that some DBServers report problems when creating shards for a new collection. |
+| 1457    | ERROR_CLUSTER_TIMEOUT                                | Occurs when a coordinator in a cluster runs into a timeout for some cluster wide operation.                                   |
+| 1458    | ERROR_CLUSTER_COULD_NOT_REMOVE_COLLECTION_IN_PLAN    | Occurs when a coordinator in a cluster cannot remove an entry for a collection in the Plan hierarchy in the agency.           |
+| 1459    | ERROR_CLUSTER_COULD_NOT_REMOVE_COLLECTION_IN_CURRENT | Occurs when a coordinator in a cluster cannot remove an entry for a collection in the Current hierarchy in the agency.        |
+| 1460        | ERROR_CLUSTER_COULD_NOT_CREATE_DATABASE_IN_PLAN           | Occurs when a coordinator in a cluster cannot create an entry for a new database in the Plan hierarchy in the agency.            |
+| 1461        | ERROR_CLUSTER_COULD_NOT_CREATE_DATABASE           | Occurs when a coordinator in a cluster notices that some DBServers report problems when creating databases for a new cluster wide database.            |
+| 1462        | ERROR_CLUSTER_COULD_NOT_REMOVE_DATABASE_IN_PLAN           | Occurs when a coordinator in a cluster cannot remove an entry for a database in the Plan hierarchy in the agency.            |
+| 1463        | ERROR_CLUSTER_COULD_NOT_REMOVE_DATABASE_IN_CURRENT           | Occurs when a coordinator in a cluster cannot remove an entry for a database in the Current hierarchy in the agency. |
+| 1464        | ERROR_CLUSTER_SHARD_GONE           | Occurs when a coordinator in a cluster cannot determine the shard that is responsible for a given document.            |
+| 1465        | ERROR_CLUSTER_CONNECTION_LOST           | Occurs when a coordinator in a cluster loses an HTTP connection to a DBserver in the cluster while transferring data.            |
+| 1466        | ERROR_CLUSTER_MUST_NOT_SPECIFY_KEY           | Occurs when a coordinator in a cluster finds that the _key attribute was specified in a sharded collection the uses not only _key as sharding attribute.            |
+| 1467        | ERROR_CLUSTER_GOT_CONTRADICTING_ANSWERS           | Occurs if a coordinator in a cluster gets conflicting results from different shards, which should never happen.            |
+| 1468        | ERROR_CLUSTER_NOT_ALL_SHARDING_ATTRIBUTES_GIVEN           | Occurs if a coordinator tries to find out which shard is responsible for a partial document, but cannot do this because not all sharding attributes are specified.            |
+| 1469        | ERROR_CLUSTER_MUST_NOT_CHANGE_SHARDING_ATTRIBUTES           | Occurs if there is an attempt to update the value of a shard attribute.            |
+| 1470        | ERROR_CLUSTER_UNSUPPORTED           | Occurs when there is an attempt to carry out an operation that is not supported in the context of a sharded collection.            |
+| 1471        | ERROR_CLUSTER_ONLY_ON_COORDINATOR           | Occurs if there is an attempt to run a coordinator-only operation on a different type of node.            |
+| 1472        | ERROR_CLUSTER_READING_PLAN_AGENCY           | Occurs if a coordinator or DB server cannot read the Plan in the agency.            |
+| 1473        | ERROR_CLUSTER_COULD_NOT_TRUNCATE_COLLECTION           | Occurs if a coordinator cannot truncate all shards of a cluster collection.            |
+| 1474        | ERROR_CLUSTER_C8QL_COMMUNICATION           | Occurs if the internal communication of the cluster for C8QL produces an error.            |
+| 1475        | ERROR_C8DB_DOCUMENT_NOT_FOUND_OR_SHARDING_ATTRIBUTES_CHANGED           | Occurs when a document with a given identifier or handle is unknown, or if the sharding attributes have been changed in a REPLACE operation in the cluster.            |
+| 1476        | ERROR_CLUSTER_COULD_NOT_DETERMINE_ID           | Occurs if a cluster server at startup could not determine its own ID from the local info provided.            |
+| 1477        | ERROR_CLUSTER_ONLY_ON_DBSERVER           | Occurs if there is an attempt to run a DBserver-only operation on a different type of node.            |
+| 1478        | ERROR_CLUSTER_BACKEND_UNAVAILABLE           | Occurs if a required DB server can't be reached.            |
+| 1479        | ERROR_CLUSTER_UNKNOWN_CALLBACK_ENDPOINT           | Could not find an endpoint.            |
+| 1480        | ERROR_CLUSTER_AGENCY_STRUCTURE_INVALID           | The structure in the agency is invalid.            |
+| 1481        | ERROR_CLUSTER_C8QL_COLLECTION_OUT_OF_SYNC           | Occurs if a collection needed during query execution is out of sync. This currently can only happen when using satellite collections.            |
+| 1482        | ERROR_CLUSTER_COULD_NOT_CREATE_INDEX_IN_PLAN           | Occurs when a coordinator in a cluster cannot create an entry for a new index in the Plan hierarchy in the agency.            |
+| 1483        | ERROR_CLUSTER_COULD_NOT_DROP_INDEX_IN_PLAN           | Occurs when a coordinator in a cluster cannot remove an index from the Plan hierarchy in the agency.            |
+| 1484        | ERROR_CLUSTER_CHAIN_OF_DISTRIBUTESHARDSLIKE           | Occurs if one tries to create a collection with a distributeShardsLike attribute which points to another collection that also has one.            |
+| 1485        | ERROR_CLUSTER_MUST_NOT_DROP_COLL_OTHER_DISTRIBUTESHARDSLIKE           | Occurs if one tries to drop a collection to which another collection points with its distributeShardsLike attribute.            |
+| 1486        | ERROR_CLUSTER_UNKNOWN_DISTRIBUTESHARDSLIKE           | Occurs if one tries to create a collection which points to an unknown collection in its distributeShardsLike attribute.            |
+| 1487        | ERROR_CLUSTER_INSUFFICIENT_DBSERVERS           | Occurs if one tries to create a collection with a replicationFactor greater than the available number of DB servers.            |
+| 1488        | ERROR_CLUSTER_COULD_NOT_DROP_FOLLOWER           | Occurs if a follower that ought to be dropped could not be dropped in the agency (under Current).            |
+| 1489        | ERROR_CLUSTER_SHARD_LEADER_REFUSES_REPLICATION           | Occurs if a replication operation is refused by a shard leader.            |
+| 1490        | ERROR_CLUSTER_SHARD_FOLLOWER_REFUSES_OPERATION           | Occurs if a non-replication operation is refused by a shard follower.            |
+| 1491        | ERROR_CLUSTER_SHARD_LEADER_RESIGNED           | Occurs if a non-replication operation is refused by a former shard leader that has found out that it is no longer the leader.            |
+| 1492        | ERROR_CLUSTER_AGENCY_COMMUNICATION_FAILED           | Occurs if after various retries an agency operation could not be performed successfully.            |
+| 1493        | ERROR_CLUSTER_DISTRIBUTE_SHARDS_LIKE_REPLICATION_FACTOR           | Occurs if intended replication factor does not match that of the prototype shard given in distributeShardsLike parameter.            |
+| 1494        | ERROR_CLUSTER_DISTRIBUTE_SHARDS_LIKE_NUMBER_OF_SHARDS           | Occurs if intended number of shards does not match that of the prototype shard given in distributeShardsLike parameter.            |
+| 1495        | ERROR_CLUSTER_LEADERSHIP_CHALLENGE_ONGOING           | Occurs when servers are currently competing for leadership, and the result is still unknown.            |
+| 1496        | ERROR_CLUSTER_NOT_LEADER           | Occurs when an operation is sent to a non-leading server.            |
+  
+## C8 query errors (1500-1579)
+
+| Error # | Error Name | Description |
+| ------- | ---------- | ----------- |
+| 1500        | ERROR_QUERY_KILLED           | Occurs when a running query is killed by an explicit admin command.            |
+| 1501        | ERROR_QUERY_PARSE           | Occurs when query is parsed and is found to be syntactically invalid.            |
+| 1502        | ERROR_QUERY_EMPTY           | Occurs when an empty query is specified.            |
+| 1503        | ERROR_QUERY_SCRIPT           | Occurs when a runtime error is caused by the query.            |
+| 1504        | ERROR_QUERY_NUMBER_OUT_OF_RANGE           | Occurs when a number is outside the expected range.            |
+| 1510        | ERROR_QUERY_VARIABLE_NAME_INVALID           | Occurs when an invalid variable name is used.            |
+| 1511        | ERROR_QUERY_VARIABLE_REDECLARED           | Occurs when a variable gets re-assigned in a query.            |
+| 1512        | ERROR_QUERY_VARIABLE_NAME_UNKNOWN           | Occurs when an unknown variable is used or the variable is undefined the context it is used.            |
+| 1521        | ERROR_QUERY_COLLECTION_LOCK_FAILED           | Occurs when a read lock on the collection cannot be acquired.            |
+| 1522        | ERROR_QUERY_TOO_MANY_COLLECTIONS           | Occurs when the number of collections in a query is beyond the allowed value.            |
+| 1530        | ERROR_QUERY_DOCUMENT_ATTRIBUTE_REDECLARED           | Occurs when a document attribute is re-assigned.            |
+| 1540        | ERROR_QUERY_FUNCTION_NAME_UNKNOWN           | Occurs when an undefined function is called.            |
+| 1541        | ERROR_QUERY_FUNCTION_ARGUMENT_NUMBER_MISMATCH           | Occurs when the number of arguments used in a function call does not match the expected number of arguments for the function.            |
+| 1542        | ERROR_QUERY_FUNCTION_ARGUMENT_TYPE_MISMATCH           | Occurs when the type of an argument used in a function call does not match the expected argument type.            |
+| 1543        | ERROR_QUERY_INVALID_REGEX           | Occurs when an invalid regex argument value is used in a call to a function that expects a regex.            |
+| 1550        | ERROR_QUERY_BIND_PARAMETERS_INVALID           | Occurs when the structure of bind parameters passed has an unexpected format.            |
+| 1551        | ERROR_QUERY_BIND_PARAMETER_MISSING           | Occurs when a bind parameter was declared in the query but the query is being executed with no value for that parameter.            |
+| 1552        | ERROR_QUERY_BIND_PARAMETER_UNDECLARED           | Occurs when a value gets specified for an undeclared bind parameter.            |
+| 1553        | ERROR_QUERY_BIND_PARAMETER_TYPE           | Occurs when a bind parameter has an invalid value or type.            |
+| 1560        | ERROR_QUERY_INVALID_LOGICAL_VALUE           | Occurs when a non-boolean value is used in a logical operation.            |
+| 1561        | ERROR_QUERY_INVALID_ARITHMETIC_VALUE           | Occurs when a non-numeric value is used in an arithmetic operation.            |
+| 1562        | ERROR_QUERY_DIVISION_BY_ZERO           | Occurs when there is an attempt to divide by zero.            |
+| 1563        | ERROR_QUERY_ARRAY_EXPECTED           | Occurs when a non-array operand is used for an operation that expects an array argument operand.            |
+| 1569        | ERROR_QUERY_FAIL_CALLED           | Occurs when the function FAIL() is called from inside a query.            |
+| 1570        | ERROR_QUERY_GEO_INDEX_MISSING           | Occurs when a geo restriction was specified but no suitable geo index is found to resolve it.            |
+| 1571        | ERROR_QUERY_FULLTEXT_INDEX_MISSING           | Occurs when a fulltext query is performed on a collection without a suitable fulltext index.            |
+| 1572        | ERROR_QUERY_INVALID_DATE_VALUE           | Occurs when a value cannot be converted to a date.            |
+| 1573        | ERROR_QUERY_MULTI_MODIFY           | Occurs when an C8QL query contains more than one data-modifying operation.            |
+| 1574        | ERROR_QUERY_INVALID_AGGREGATE_EXPRESSION           | Occurs when an C8QL query contains an invalid aggregate expression.            |
+| 1575        | ERROR_QUERY_COMPILE_TIME_OPTIONS           | Occurs when an C8QL data-modification query contains options that cannot be figured out at query compile time.            |
+|         |            |             |
+|         |            |             |
+|         |            |             |
+|         |            |             |
+  
 
 1576 - ERROR_QUERY_EXCEPTION_OPTIONS
   Occurs when an C8QL data-modification query contains an invalid options specification.
@@ -697,97 +443,55 @@ For errors that occur but are anticipated.
 1951 - ERROR_SESSION_EXPIRED
   Occurs when a session is expired.
 
-## Communicator Errors
+## Communicator Errors (2100-2199)
 
-2100 - COMMUNICATOR_REQUEST_ABORTED
-  Request was aborted.
+| Error # | Error Name                   | Description                 |
+| ------- | ---------------------------- | --------------------------- |
+| 2100    | COMMUNICATOR_REQUEST_ABORTED | Request was aborted.        |
+| 2101    | COMMUNICATOR_DISABLED        | Communication was disabled. |
 
-2101 - COMMUNICATOR_DISABLED
-  Communication was disabled.
+## Cluster Repair Errors (5000-5099)
 
+| Error # | Error Name                                        | Description                                                                                                                                                                         |
+| ------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 5000    | ERROR_CLUSTER_REPAIRS_FAILED                      | General error during cluster repairs                                                                                                                                                |
+| 5001    | ERROR_CLUSTER_REPAIRS_NOT_ENOUGH_HEALTHY          | Occurs when, during repairDistributeShardsLike, there must be a free DB server to move a shard, but there is no candidate or none is healthy.                                       |
+| 5002    | ERROR_CLUSTER_REPAIRS_REPLICATION_FACTOR_VIOLATED | Occurs on various inconsistencies regarding the replication factor.                                                                                                                 |
+| 5003    | ERROR_CLUSTER_REPAIRS_NO_DBSERVERS                | Occurs if a collection that is fixed has some shard without DB servers.                                                                                                             |
+| 5004    | ERROR_CLUSTER_REPAIRS_MISMATCHING_LEADERS         | Occurs if a shard in collection and its prototype in the corresponding distributeShardsLike collection have mismatching leaders (when they should already have been fixed).         |
+| 5005    | ERROR_CLUSTER_REPAIRS_MISMATCHING_FOLLOWERS       | Occurs if a shard in collection and its prototype in the corresponding distributeShardsLike collection don't have the same followers (when they should already have been adjusted). |
+| 5006    | ERROR_CLUSTER_REPAIRS_INCONSISTENT_ATTRIBUTES     | Occurs if a collection that is fixed does (not) have distributeShardsLike when it is expected, or does (not) have repairingDistributeShardsLike when it is expected.                |
+| 5007    | ERROR_CLUSTER_REPAIRS_MISMATCHING_SHARDS          | Occurs if in a collection and its distributeShardsLike prototype collection some shard and its prototype have an unequal number of DB servers.                                      |
+| 5008    | ERROR_CLUSTER_REPAIRS_JOB_FAILED                  | Occurs if a move shard job in the agency failed during cluster repairs.                                                                                                             |
+| 5009    | ERROR_CLUSTER_REPAIRS_JOB_DISAPPEARED             | Occurs if a move shard job in the agency cannot be found anymore before it finished.                                                                                                |
+| 5010    | ERROR_CLUSTER_REPAIRS_OPERATION_FAILED            | Occurs if an agency transaction failed during either sending or executing it.                                                                                                       |
 
-## Cluster Repair Errors
+## Agency Errors (20000-20099)
 
-5000 - ERROR_CLUSTER_REPAIRS_FAILED
-  General error during cluster repairs
+| Error # | Error Name                                    | Description                                                                      |
+| ------- | --------------------------------------------- | -------------------------------------------------------------------------------- |
+| 20001   | ERROR_AGENCY_INQUIRY_SYNTAX                   | Inquiry handles a list of string clientIds: [clientId, ...].                     |
+| 20011   | ERROR_AGENCY_INFORM_MUST_BE_OBJECT            | The inform message in the agency must be an object.                              |
+| 20012   | ERROR_AGENCY_INFORM_MUST_CONTAIN_TERM         | The inform message in the agency must contain a uint parameter 'term'.           |
+| 20013   | ERROR_AGENCY_INFORM_MUST_CONTAIN_ID           | The inform message in the agency must contain a string parameter 'id'.           |
+| 20014   | ERROR_AGENCY_INFORM_MUST_CONTAIN_ACTIVE       | The inform message in the agency must contain an array 'active'.                 |
+| 20015   | ERROR_AGENCY_INFORM_MUST_CONTAIN_POOL         | The inform message in the agency must contain an object 'pool'.                  |
+| 20016   | ERROR_AGENCY_INFORM_MUST_CONTAIN_MIN_PING     | The inform message in the agency must contain an object 'min ping'.              |
+| 20017   | ERROR_AGENCY_INFORM_MUST_CONTAIN_MAX_PING     | The inform message in the agency must contain an object 'max ping'.              |
+| 20018   | ERROR_AGENCY_INFORM_MUST_CONTAIN_TIMEOUT_MULT | The inform message in the agency must contain an object 'timeoutMult'.           |
+| 20020   | ERROR_AGENCY_INQUIRE_CLIENT_ID_MUST_BE_STRING | Inquiry by clientId failed.                                                      |
+| 20021   | ERROR_AGENCY_CANNOT_REBUILD_DBS               | Occurs if the readDB or the spearHead cannot be rebuilt from the replicated log. |
 
-5001 - ERROR_CLUSTER_REPAIRS_NOT_ENOUGH_HEALTHY
-  Occurs when, during repairDistributeShardsLike, there must be a free db server to move a shard, but there is no candidate or none is healthy.
+## Supervision Errors (20500-20599)
 
-5002 - ERROR_CLUSTER_REPAIRS_REPLICATION_FACTOR_VIOLATED
-  Occurs on various inconsistencies regarding the replication factor
+| Error # | Error Name                        | Description                  |
+| ------- | --------------------------------- | ---------------------------- |
+| 20501   | ERROR_SUPERVISION_GENERAL_FAILURE | General supervision failure. |
 
-5003 - ERROR_CLUSTER_REPAIRS_NO_DBSERVERS
-  Occurs if a collection that is fixed has some shard without DB Servers
+## Dispatcher Errors (21000-21099)
 
-5004 - ERROR_CLUSTER_REPAIRS_MISMATCHING_LEADERS
-  Occurs if a shard in collection and its prototype in the corresponding distributeShardsLike collection have mismatching leaders (when they should already have been fixed)
-
-5005 - ERROR_CLUSTER_REPAIRS_MISMATCHING_FOLLOWERS
-  Occurs if a shard in collection and its prototype in the corresponding distributeShardsLike collection don't have the same followers (when they should already have been adjusted)
-
-5006 - ERROR_CLUSTER_REPAIRS_INCONSISTENT_ATTRIBUTES
-  Occurs if a collection that is fixed does (not) have distributeShardsLike when it is expected, or does (not) have repairingDistributeShardsLike when it is expected
-
-5007 - ERROR_CLUSTER_REPAIRS_MISMATCHING_SHARDS
-  Occurs if in a collection and its distributeShardsLike prototype collection some shard and its prototype have an unequal number of DB Servers
-
-5008 - ERROR_CLUSTER_REPAIRS_JOB_FAILED
-  Occurs if a move shard job in the agency failed during cluster repairs
-
-5009 - ERROR_CLUSTER_REPAIRS_JOB_DISAPPEARED
-  Occurs if a move shard job in the agency cannot be found anymore before it finished
-
-5010 - ERROR_CLUSTER_REPAIRS_OPERATION_FAILED
-  Occurs if an agency transaction failed during either sending or executing it.
-
-## Agency Errors
-
-20001 - ERROR_AGENCY_INQUIRY_SYNTAX
-  Inquiry handles a list of string clientIds: [clientId, ...]
-
-20011 - ERROR_AGENCY_INFORM_MUST_BE_OBJECT
-  The inform message in the agency must be an object.
-
-20012 - ERROR_AGENCY_INFORM_MUST_CONTAIN_TERM
-  The inform message in the agency must contain a uint parameter 'term'.
-
-20013 - ERROR_AGENCY_INFORM_MUST_CONTAIN_ID
-  The inform message in the agency must contain a string parameter 'id'.
-
-20014 - ERROR_AGENCY_INFORM_MUST_CONTAIN_ACTIVE
-  The inform message in the agency must contain an array 'active'.
-
-20015 - ERROR_AGENCY_INFORM_MUST_CONTAIN_POOL
-  The inform message in the agency must contain an object 'pool'.
-
-20016 - ERROR_AGENCY_INFORM_MUST_CONTAIN_MIN_PING
-  The inform message in the agency must contain an object 'min ping'.
-
-20017 - ERROR_AGENCY_INFORM_MUST_CONTAIN_MAX_PING
-  The inform message in the agency must contain an object 'max ping'.
-
-20018 - ERROR_AGENCY_INFORM_MUST_CONTAIN_TIMEOUT_MULT
-  The inform message in the agency must contain an object 'timeoutMult'.
-
-20020 - ERROR_AGENCY_INQUIRE_CLIENT_ID_MUST_BE_STRING
-  Inquiry by clientId failed
-
-20021 - ERROR_AGENCY_CANNOT_REBUILD_DBS
-  Occurs if the readDB or the spearHead cannot be rebuilt from the replicated log.
-
-## Supervision Errors
-
-20501 - ERROR_SUPERVISION_GENERAL_FAILURE
-  General supervision failure.
-
-## Dispatcher Errors
-
-21001 - ERROR_DISPATCHER_IS_STOPPING
-  Will be returned if a shutdown is in progress.
-
-21002 - ERROR_QUEUE_UNKNOWN
-  Will be returned if a queue with this name does not exist.
-
-21003 - ERROR_QUEUE_FULL
-  Will be returned if a queue with this name is full.
+| Error # | Error Name                   | Description                                                |
+| ------- | ---------------------------- | ---------------------------------------------------------- |
+| 21001   | ERROR_DISPATCHER_IS_STOPPING | Will be returned if a shutdown is in progress.             |
+| 21002   | ERROR_QUEUE_UNKNOWN          | Will be returned if a queue with this name does not exist. |
+| 21003   | ERROR_QUEUE_FULL             | Will be returned if a queue with this name is full.        |
