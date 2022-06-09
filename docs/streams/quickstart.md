@@ -697,7 +697,7 @@ var producer;
 </TabItem>
 </Tabs>  
 
-### Pub-Sub with streams in browser
+### Pub-Sub with Streams in Browser
 
 Example to publish messages on a stream and subscribe to that stream to receive messages, with a simple UI
 

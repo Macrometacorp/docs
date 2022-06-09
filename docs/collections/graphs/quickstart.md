@@ -29,7 +29,7 @@ For this example, assume the following credentials:
 * Tenant name is `nemo@nautilus.com`.
 * User password is `xxxxxx`.
 
-### Driver download
+### Driver Download
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
