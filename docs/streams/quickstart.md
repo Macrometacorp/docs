@@ -6,15 +6,21 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Overview
-
-Globally distributed applications need a geo distributed fast data platform that can transparently replicate the data anywhere in the world to enable the applications to operate on a copy of the data that's close to its users. Similarly the applications need geo-replicated as well as local streams to handle pub-sub, ETL and real-time updates from the fast data platform.
-
-Macrometa global data network (GDN) is a fully managed realtime materialzed view engine that provides access to data instantly to Apps & APIs in a simple & single interface.  
-
 This article is an introduction to using streams with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) drivers.
 
-GDN streams are a high-performance solution for server-to-server messaging. It provides:
+Streams are a type of collection in GDN to capture `data-in-motion`. Messages are sent via streams by publishers to consumers who then do something with the message. Streams can be created via client drivers (pyC8, jsC8), REST API or the web console.
+
+Streams unifies `queuing` and `pub-sub messaging` into a unified messaging model that provides a lot of flexibility to users to consume messages in a way that is best for the use case at hand.
+
+> producer --> stream --> subscription --> consumer
+
+A stream is a named channel for sending messages. Each stream is backed by a `distributed append-only` log and can be `local` (at one edge location only) or `global` (across all edge locations in the Fabric).
+
+Messages from publishers are only stored once on a stream, and can be consumed as many times as necessary by consumers. The stream is the source of truth for consumption. Although messages are only stored once on the stream, there can be different ways of consuming these messages.
+
+Consumers are grouped together for consuming messages. Each group of consumers is a subscription on a stream. Each consumer group can have its own way of consuming the messages: exclusively, shared, or failover.
+
+Streams provide:
 
 - Seamless geo-replication of messages across regions
 - Very low publish and end-to-end latency
@@ -22,7 +28,7 @@ GDN streams are a high-performance solution for server-to-server messaging. It p
 - Multiple subscription modes (`exclusive`, `shared`, and `failover`) for streams
 - Guaranteed message delivery with persistent message storage
 
-`Streams` are built on the _publish-subscribe_ pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
+Streams are built on the *publish-subscribe* pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
 
 Once a subscription has been created, all messages will be retained by Streams, even if the consumer gets disconnected Retained messages will be discarded only when a consumer acknowledges that they've been successfully processed.
 
@@ -38,17 +44,15 @@ Messages are the basic "unit" of Streams. They're what producers publish to stre
 | Publish Time         | The timestamp of when the message was published (automatically applied by the producer) |
 | Event Time           | An optional timestamp that applications can attach to the message representing when something happened, e.g. when the message was processed. The event time of a message is 0 if none is explicitly set. |
 
-:::note
-If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../essentials/overview.md)** of Macrometa GDN.
-:::
-## Pre-requisite
 
-Let's assume your
+## Example
 
-- tenant name is `nemo@nautilus.com` and
+Assume the following credentials:
+
+- tenant name is `nemo@nautilus.com`.
 - user password is `xxxxxx`.
 
-## Installation
+### Installation
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -96,7 +100,7 @@ Once the installation process is finished, you can begin developing applications
 </TabItem>
 </Tabs>  
 
-## Connect to GDN
+### Connect to GDN
 
 The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you sepcified.
 
@@ -123,19 +127,19 @@ const client = new jsc8("https://gdn.paas.macrometa.io");
 from c8 import C8Client
 
 print("--- Connecting to C8")
-# Simple Way
+## Simple Way
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 
-# To use advanced options
+## To use advanced options
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
 ```
 
 </TabItem>
 </Tabs>  
 
-## Get GeoFabric Details
+### Get GeoFabric Details
 
 To get details of fabric,
 
@@ -185,7 +189,7 @@ print(client.get_fabric_details())
 </TabItem>
 </Tabs>  
 
-## Create Global & Local Streams
+### Create Global & Local Streams
 
 The streams in GDN can be either a local stream or could be a geo-replicated stream.
 
@@ -253,7 +257,7 @@ print("Get Streams: ", client.get_streams())
 </TabItem>
 </Tabs>  
 
-## Publish Messages
+### Publish Messages
 
 Example to publish documents to a stream. The stream can be either a local stream or could be a geo-replicated stream.
 
@@ -329,7 +333,7 @@ print("--- Connecting to C8")
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
-#--------------------------------------------------------------
+##--------------------------------------------------------------
 print("publish messages to stream...")
 producer = client.create_stream_producer("demostream", local=False)
 
@@ -344,7 +348,7 @@ for i in range(10):
 </TabItem>
 </Tabs>  
 
-## Subscribe to Stream
+### Subscribe to Stream
 
 Example to subscribe documents from a stream. The stream can be either a local stream or could be a geo-replicated stream.
 
@@ -420,7 +424,7 @@ async function getDCList() {
 </TabItem>
 </Tabs>  
 
-## Auto Reconnect streams
+### Auto Reconnect streams
 
 Write a wrapper class to keep the connection alive.
 Following is an example for the wrapper class
@@ -693,7 +697,7 @@ var producer;
 </TabItem>
 </Tabs>  
 
-## Pub-Sub with streams in browser
+### Pub-Sub with Streams in Browser
 
 Example to publish messages on a stream and subscribe to that stream to receive messages, with a simple UI
 
