@@ -26,11 +26,11 @@ Macrometa GDN decouples its data storage technology from its data model. You can
 
 ![GDN Internals](/img/macrometa-internals.png)
 
-In a single datacenter, GDN is a *geo-distributed CP master/master* model with no single point of failure:
+In a single datacenter, GDN is a _geo-distributed CP master/master_ model with no single point of failure:
 
-* *Geo-distributed* means data is replicated between multiple regions, enabling clients to send requests to any region and view the same results after any latency.
-* *CP* means GDN prefers consistency and partition tolerance over availability, verifying that all incoming data is processed properly before being made available to users. For more information, refer to [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem).
-* *Master/master* means we use [multi-master replication](https://en.wikipedia.org/wiki/Multi-master_replication), enabling clients to send requests to an arbitrary node in a data center and view the same results. This means there is no single point of failure, so the cluster can continue to serve requests even if one machine fails completely.
+* _Geo-distributed_ means data is replicated between multiple regions, enabling clients to send requests to any region and view the same results after any latency.
+* _CP_ means GDN prefers consistency and partition tolerance over availability, verifying that all incoming data is processed properly before being made available to users. For more information, refer to [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem).
+* _Master/master_ means we use [multi-master replication](https://en.wikipedia.org/wiki/Multi-master_replication), enabling clients to send requests to an arbitrary node in a data center and view the same results. This means there is no single point of failure, so the cluster can continue to serve requests even if one machine fails completely.
 
 This section gives a short outline of the GDN architecture for a single data center.
 
@@ -83,11 +83,14 @@ Collection data is stored in shards. Shards are configured per collection so mul
 
 The number of shards is fixed at `16` and cannot be changed. You can specify the `shard key` as part of the collection creation.
 
-!!! note
-    If you change the shard keys from their default (`_key`), the following limitations apply:
+:::note
+
+If you change the shard keys from their default (`_key`), the following limitations apply:
     
-    * Any queries will need to send a request to every shard in the collection. 
-    * For new documents, you must use an automatically generated `_key`.
+* Any queries will need to send a request to every shard in the collection. 
+* For new documents, you must use an automatically generated `_key`.
+
+:::
 
 GDN automatically distributes shards across nodes in a cluster.
 
