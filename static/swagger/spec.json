@@ -15260,7 +15260,7 @@
     "/_fabric/{fabric}/_api/index/fulltext": {
       "post": {
         "description": "Create full-text index, if it does not already exist.",
-        "operationId": "createIndex#fulltext",
+        "operationId": "createIndex:fulltext",
         "parameters": [
           {
             "in": "path",
@@ -15390,7 +15390,7 @@
     "/_fabric/{fabric}/_api/index/geo": {
       "post": {
         "description": "Create a geo index.\n\n**Note**: Geo indexes are always sparse, meaning that documents that do not contain the index attributes or have non-numeric values in the index attributes are not indexed.",
-        "operationId": "createIndex#geo",
+        "operationId": "createIndex:geo",
         "parameters": [
           {
             "in": "path",
