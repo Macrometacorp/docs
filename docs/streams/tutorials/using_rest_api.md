@@ -11,7 +11,7 @@ Today’s applications are required to be highly responsive and always online. T
 Macrometa global data network (GDN) is a fully managed realtime materialzed view engine that provides access to data instantly to Apps & APIs in a simple & single interface. 
 
 :::note
-If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../essentials/overview.md)** of Macrometa GDN.
+If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../essentials/index.md)** of Macrometa GDN.
 :::
 ## Pre-Requiste
 

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 This tutorial is about using RestQL to bulk update `document` Collection data. 
 
 :::note
-If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../../essentials/overview.md)** of Macrometa GDN.
+If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../../essentials/index.md)** of Macrometa GDN.
 :::
 
 ## Pre-requisite

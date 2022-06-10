@@ -4,7 +4,7 @@ title: Overview
 ---
 
 :::note
-If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../../essentials/overview.md)** of Macrometa GDN.
+If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../../essentials/index.md)** of Macrometa GDN.
 :::
 
 Following tutorials cover various user scenarios using Macrometa GDN.

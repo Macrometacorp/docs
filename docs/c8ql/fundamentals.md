@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Fundamentals
 ---
+
 # C8QL Fundamentals
 
 |   Section    |    Description    |
@@ -146,7 +147,7 @@ FOR f IN ´filter´
 
 Collection names can be used in queries as they are. If a collection happens to have the same name as a keyword, the name must be enclosed in backticks.
 
-Please refer to the [Naming Conventions](../collections/documents/naming-conventions.md) about collection naming conventions.
+Refer to the [Naming Conventions](../essentials/naming-conventions.md) about collection naming conventions.
 
 C8QL currently has a limit of up to 256 collections used in one C8QL query. This limit applies to the sum of all involved document and edge collections.
 
@@ -154,7 +155,7 @@ C8QL currently has a limit of up to 256 collections used in one C8QL query. This
 
 When referring to attributes of documents from a collection, the fully qualified attribute name must be used. This is because multiple collections with ambiguous attribute names may be used in a query.  To avoid any ambiguity, it is not allowed to refer to an unqualified attribute name.
 
-Please refer to the [Naming Conventions](../collections/documents/naming-conventions.md) for more information about the attribute naming conventions.
+Please refer to the [Naming Conventions](../essentials/naming-conventions.md) for more information about the attribute naming conventions.
 
 ```js
 FOR u IN users
