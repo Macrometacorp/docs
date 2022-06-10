@@ -1,10 +1,8 @@
 ---
 sidebar_position: 1
-title: Introduction
-slug: introduction
+title: Essentials
+slug: essentials
 ---
-
-# Introduction
 
 Macrometa Global Data Network (GDN) is a geo-distributed, real-time, coordination-free materialized views engine. GDN supports multiple data models, making it flexible and compatible with many database types.
 
