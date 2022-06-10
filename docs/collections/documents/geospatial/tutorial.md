@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Tutorial
+title: Geo Spatial Tutorial
 ---
 
 import Tabs from '@theme/Tabs';
