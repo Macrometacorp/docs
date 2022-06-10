@@ -3,8 +3,6 @@ sidebar_position: 3
 title: Examples
 ---
 
-## Overview
-
 These pages contain some common query patterns with examples. For better understandability the query results are also included directly below each query.
 
 Normally, you would want to run queries on data stored in collections. This section will provide several examples for that.
@@ -16,11 +14,10 @@ Some of the following example queries are executed on a collection 'users' with 
 :::note
 All documents created in any collections will automatically get the following server-generated attributes:
 :::
+
 - `_id`: A unique id, consisting of collection name and a server-side sequence value
 - `_key`: The server sequence value
 - `_rev`: The document's revision id
-
-
 
 Whenever you run queries on the documents in collections, don't be surprised if these additional attributes are returned as well.
 
@@ -2007,4 +2004,46 @@ A traversal depth of `3..3` would return `A -> E -> F -> C` and `2..3` all three
 
 :::note
 Two separate queries are required to compute the shortest path length and to do the pattern matching based on the shortest path length (minus 1), because min and max depth can't be expressions (they have to be known in advance, so either be number literals or bind parameters.
-:::    
+:::
+
+## Sample Queries
+
+Here are some sample C8QL queries.
+
+### Assumptions
+
+- Collection Name (should exist): `demo_queries`
+
+### Sample Queries
+
+* Insert 10 documents into the `demo_queries` collection, using a bindvar to pass in a name prefix for the `name` field of the data in the new documents to be inserted:
+
+    ```js
+    FOR i IN 1..10 
+        INSERT { name: CONCAT(@user_prefix, i), gender: (i % 2 == 0 ? "f" : "m"), likes: ROUND(RAND()*100), follows: ROUND(RAND() * 100) } 
+        INTO demo_queries
+	```
+
+* View all the docs in the collection, sorted in ascending order of the document key:
+
+    ```js
+    FOR doc IN demo_queries 
+        SORT doc._key 
+        RETURN {"Key":doc._key, "Name":doc.name, "Gender":doc.gender, "Likes":doc.likes, "Follows":doc.follows} 
+	```
+
+* Update all documents in the `demo_queries` collection. The `gender`, `likes` and `follows` fields are updated with values accepted from the bindvars. If no bindvar values are specified, the fields are blanked. All documents will be updated to have the same value for these fields.
+
+    ```js
+    FOR doc IN demo_queries 
+        UPDATE { _key:doc._key, gender:@gender, likes:@likes, follows:@follows} 
+        IN demo_queries
+	```
+
+* Remove all documents in the `demo_queries` collection. The collection will continue to exist but will be empty.
+
+    ```js
+    FOR doc IN demo_queries 
+        REMOVE doc 
+        IN demo_queries
+	```
