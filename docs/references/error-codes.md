@@ -277,154 +277,79 @@ For errors that occur but are anticipated.
 
 ## C8QL Query Registry Errors (1590-1599)
 
-| Error # | Error Name | Description |
-| ------- | ---------- | ----------- |
-| 1590        | ERROR_QUERY_BAD_JSON_PLAN           | Occurs when an HTTP API for a query got an invalid JSON object.            |
-| 1591        | ERROR_QUERY_NOT_FOUND           | Occurs when an Id of a query is not found by the HTTP API.            |
-| 1592        | ERROR_QUERY_IN_USE           | Occurs when an Id of a query is found by the HTTP API but the query is in use.            |
+| Error # | Error Name                | Description                                                                    |
+| ------- | ------------------------- | ------------------------------------------------------------------------------ |
+| 1590    | ERROR_QUERY_BAD_JSON_PLAN | Occurs when an HTTP API for a query got an invalid JSON object.                |
+| 1591    | ERROR_QUERY_NOT_FOUND     | Occurs when an Id of a query is not found by the HTTP API.                     |
+| 1592    | ERROR_QUERY_IN_USE        | Occurs when an Id of a query is found by the HTTP API but the query is in use. |
 
 ## C8 Cursor Errors (1600-1699)
 
-| Error # | Error Name | Description |
-| ------- | ---------- | ----------- |
-| 1600        | ERROR_CURSOR_NOT_FOUND           | Occurs when a cursor is requested via its id but a cursor with that ID cannot be found.            |
-| 1601        | ERROR_CURSOR_BUSY           | Occurs when a cursor is requested via its id but a concurrent request is still using the cursor.            | 
+| Error # | Error Name             | Description                                                                                      |
+| ------- | ---------------------- | ------------------------------------------------------------------------------------------------ |
+| 1600    | ERROR_CURSOR_NOT_FOUND | Occurs when a cursor is requested via its id but a cursor with that ID cannot be found.          |
+| 1601    | ERROR_CURSOR_BUSY      | Occurs when a cursor is requested via its id but a concurrent request is still using the cursor. |
 
 ## User Management Errors (1700-1799)
 
-1700 - ERROR_USER_INVALID_NAME
-  Occurs when an invalid user name is used.
+| Error # | Error Name                  | Description                                                 |
+| ------- | --------------------------- | ----------------------------------------------------------- |
+| 1700    | ERROR_USER_INVALID_NAME     | Occurs when an invalid user name is used.                   |
+| 1701    | ERROR_USER_INVALID_PASSWORD | Occurs when an invalid password is used.                    |
+| 1702    | ERROR_USER_DUPLICATE        | Occurs when a user name already exists.                     |
+| 1703    | ERROR_USER_NOT_FOUND        | Occurs when a user name is updated that does not exist.     |
+| 1704    | ERROR_USER_CHANGE_PASSWORD  | Occurs when the user must change his password.              |
+| 1705    | ERROR_USER_EXTERNAL         | Occurs when the user is authenicated by an external server. |
 
-1701 - ERROR_USER_INVALID_PASSWORD
-  Occurs when an invalid password is used.
+## Task Errors (1850-1859)
 
-1702 - ERROR_USER_DUPLICATE
-  Occurs when a user name already exists.
+| Error # | Error Name              | Description                                                  |
+| ------- | ----------------------- | ------------------------------------------------------------ |
+| 1850    | ERROR_TASK_INVALID_ID   | Occurs when a task is created with an invalid ID.            |
+| 1851    | ERROR_TASK_DUPLICATE_ID | Occurs when a task ID is created with a duplicate ID.        |
+| 1852    | ERROR_TASK_NOT_FOUND    | Occurs when a task with the specified ID could not be found. |
 
-1703 - ERROR_USER_NOT_FOUND
-  Occurs when a user name is updated that does not exist.
+## Graph and Traversal Errors (1900-1949)
 
-1704 - ERROR_USER_CHANGE_PASSWORD
-  Occurs when the user must change his password.
+| Error # | Error Name                                      | Description                                                                 |
+| ------- | ----------------------------------------------- | --------------------------------------------------------------------------- |
+| 1901    | ERROR_GRAPH_INVALID_GRAPH                       | Occurs when an invalid name is passed to the server.                        |
+| 1902    | ERROR_GRAPH_COULD_NOT_CREATE_GRAPH              | Occurs when an invalid name, vertices, or edges are passed to the server.   |
+| 1903    | ERROR_GRAPH_INVALID_VERTEX                      | Occurs when an invalid vertex ID is passed to the server.                   |
+| 1904    | ERROR_GRAPH_COULD_NOT_CREATE_VERTEX             | Occurs when the vertex could not be created.                                |
+| 1905    | ERROR_GRAPH_COULD_NOT_CHANGE_VERTEX             | Occurs when the vertex could not be changed.                                |
+| 1906    | ERROR_GRAPH_INVALID_EDGE                        | Occurs when an invalid edge ID is passed to the server.                     |
+| 1907    | ERROR_GRAPH_COULD_NOT_CREATE_EDGE               | Occurs when the edge could not be created.                                  |
+| 1908    | ERROR_GRAPH_COULD_NOT_CHANGE_EDGE               | Occurs when the edge could not be changed.                                  |
+| 1909    | ERROR_GRAPH_TOO_MANY_ITERATIONS                 | Occurs when too many iterations are done in a graph traversal.              |
+| 1910    | ERROR_GRAPH_INVALID_FILTER_RESULT               | Occurs when an invalid filter result is returned in a graph traversal.      |
+| 1920    | ERROR_GRAPH_COLLECTION_MULTI_USE                | An edge collection may only be used once in one edge definition of a graph. |
+| 1921    | ERROR_GRAPH_COLLECTION_USE_IN_MULTI_GRAPHS      | Collection is already used by another graph in a different edge definition. |
+| 1922    | ERROR_GRAPH_CREATE_MISSING_NAME                 | A graph name is required to create a graph.                                 |
+| 1923    | ERROR_GRAPH_CREATE_MALFORMED_EDGE_DEFINITION    | The edge definition is malformed. It has to be an array of objects.         |
+| 1924    | ERROR_GRAPH_NOT_FOUND                           | A graph with this name could not be found.                                  |
+| 1925    | ERROR_GRAPH_DUPLICATE                           | A graph with this name already exists.                                      |
+| 1926    | ERROR_GRAPH_VERTEX_COL_DOES_NOT_EXIST           | The specified vertex collection does not exist or is not part of the graph. |
+| 1927    | ERROR_GRAPH_WRONG_COLLECTION_TYPE_VERTEX        | The collection is not a vertex collection.                                  |
+| 1928    | ERROR_GRAPH_NOT_IN_ORPHAN_COLLECTION            | Vertex collection not in orphan collection of the graph.                    |
+| 1929    | ERROR_GRAPH_COLLECTION_USED_IN_EDGE_DEF         | The collection is already used in an edge definition of the graph.          |
+| 1930    | ERROR_GRAPH_EDGE_COLLECTION_NOT_USED            | The edge collection is not used in any edge definition of the graph.        |
+| 1932    | ERROR_GRAPH_NO_GRAPH_COLLECTION                 | Collection _graphs does not exist.                                          |
+| 1933    | ERROR_GRAPH_INVALID_EXAMPLE_ARRAY_OBJECT_STRING | Invalid example type. Has to be String, Array, or Object.                   |
+| 1934    | ERROR_GRAPH_INVALID_EXAMPLE_ARRAY_OBJECT        | Invalid example type. Has to be Array or Object.                            |
+| 1935    | ERROR_GRAPH_INVALID_NUMBER_OF_ARGUMENTS         | Invalid number of arguments.                                                |
+| 1936    | ERROR_GRAPH_INVALID_PARAMETER                   | Invalid parameter type.                                                     |
+| 1937    | ERROR_GRAPH_INVALID_ID                          | Invalid ID.                                                                 |
+| 1938    | ERROR_GRAPH_COLLECTION_USED_IN_ORPHANS          | The collection is already used in the orphans of the graph.                 |
+| 1939    | ERROR_GRAPH_EDGE_COL_DOES_NOT_EXIST             | The specified edge collection does not exist or is not part of the graph.   |
+| 1940    | ERROR_GRAPH_EMPTY                               | The requested graph has no edge collections.                                |
 
-1705 - ERROR_USER_EXTERNAL
-  Occurs when the user is authenicated by an external server.
+## Session Errors (1950-1999)
 
-## Task errors
-
-1850 - ERROR_TASK_INVALID_ID
-  Occurs when a task is created with an invalid id.
-
-1851 - ERROR_TASK_DUPLICATE_ID
-  Occurs when a task id is created with a duplicate id.
-
-1852 - ERROR_TASK_NOT_FOUND
-  Occurs when a task with the specified id could not be found.
-
-## Graph / traversal errors
-
-1901 - ERROR_GRAPH_INVALID_GRAPH
-  Occurs when an invalid name is passed to the server.
-
-1902 - ERROR_GRAPH_COULD_NOT_CREATE_GRAPH
-  Occurs when an invalid name, vertices or edges is passed to the server.
-
-1903 - ERROR_GRAPH_INVALID_VERTEX
-  Occurs when an invalid vertex id is passed to the server.
-
-1904 - ERROR_GRAPH_COULD_NOT_CREATE_VERTEX
-  Occurs when the vertex could not be created.
-
-1905 - ERROR_GRAPH_COULD_NOT_CHANGE_VERTEX
-  Occurs when the vertex could not be changed.
-
-1906 - ERROR_GRAPH_INVALID_EDGE
-  Occurs when an invalid edge id is passed to the server.
-
-1907 - ERROR_GRAPH_COULD_NOT_CREATE_EDGE
-  Occurs when the edge could not be created.
-
-1908 - ERROR_GRAPH_COULD_NOT_CHANGE_EDGE
-  Occurs when the edge could not be changed.
-
-1909 - ERROR_GRAPH_TOO_MANY_ITERATIONS
-  Occurs when too many iterations are done in a graph traversal.
-
-1910 - ERROR_GRAPH_INVALID_FILTER_RESULT
-  Occurs when an invalid filter result is returned in a graph traversal.
-
-1920 - ERROR_GRAPH_COLLECTION_MULTI_USE
-  an edge collection may only be used once in one edge definition of a graph.,
-
-1921 - ERROR_GRAPH_COLLECTION_USE_IN_MULTI_GRAPHS
-   is already used by another graph in a different edge definition.,
-
-1922 - ERROR_GRAPH_CREATE_MISSING_NAME
-  a graph name is required to create a graph.,
-
-1923 - ERROR_GRAPH_CREATE_MALFORMED_EDGE_DEFINITION
-  the edge definition is malformed. It has to be an array of objects.,
-
-1924 - ERROR_GRAPH_NOT_FOUND
-  a graph with this name could not be found.,
-
-1925 - ERROR_GRAPH_DUPLICATE
-  a graph with this name already exists.,
-
-1926 - ERROR_GRAPH_VERTEX_COL_DOES_NOT_EXIST
-  the specified vertex collection does not exist or is not part of the graph.,
-
-1927 - ERROR_GRAPH_WRONG_COLLECTION_TYPE_VERTEX
-  the collection is not a vertex collection.,
-
-1928 - ERROR_GRAPH_NOT_IN_ORPHAN_COLLECTION
-  Vertex collection not in orphan collection of the graph.,
-
-1929 - ERROR_GRAPH_COLLECTION_USED_IN_EDGE_DEF
-  The collection is already used in an edge definition of the graph.,
-
-1930 - ERROR_GRAPH_EDGE_COLLECTION_NOT_USED
-  The edge collection is not used in any edge definition of the graph.,
-
-1932 - ERROR_GRAPH_NO_GRAPH_COLLECTION
-  collection _graphs does not exist.,
-
-1933 - ERROR_GRAPH_INVALID_EXAMPLE_ARRAY_OBJECT_STRING
-  Invalid example type. Has to be String, Array or Object.,
-
-1934 - ERROR_GRAPH_INVALID_EXAMPLE_ARRAY_OBJECT
-  Invalid example type. Has to be Array or Object.,
-
-1935 - ERROR_GRAPH_INVALID_NUMBER_OF_ARGUMENTS
-  Invalid number of arguments. Expected: ,
-
-1936 - ERROR_GRAPH_INVALID_PARAMETER
-  Invalid parameter type.,
-
-1937 - ERROR_GRAPH_INVALID_ID
-  Invalid id,
-
-1938 - ERROR_GRAPH_COLLECTION_USED_IN_ORPHANS
-  The collection is already used in the orphans of the graph.,
-
-1939 - ERROR_GRAPH_EDGE_COL_DOES_NOT_EXIST
-  the specified edge collection does not exist or is not part of the graph.,
-
-1940 - ERROR_GRAPH_EMPTY
-  The requested graph has no edge collections.
-
-## Session Errors (1959-1999)
-
-| Error # | Error Name | Description |
-| ------- | ---------- | ----------- |
-|         |            |             |
-|         |            |             |
-
-1950 - ERROR_SESSION_UNKNOWN
-  Occurs when an invalid/unknown session id is passed to the server.
-
-1951 - ERROR_SESSION_EXPIRED
-  Occurs when a session is expired.
+| Error # | Error Name            | Description                                                        |
+| ------- | --------------------- | ------------------------------------------------------------------ |
+| 1950    | ERROR_SESSION_UNKNOWN | Occurs when an invalid/unknown session ID is passed to the server. |
+| 1951    | ERROR_SESSION_EXPIRED | Occurs when a session is expired.                                  |
 
 ## Communicator Errors (2100-2199)
 
