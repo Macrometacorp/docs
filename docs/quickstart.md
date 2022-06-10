@@ -14,13 +14,19 @@ You must have a Macrometa account in order to complete this quickstart. If you a
 1. If you don't already have a Macrometa account, go [https://www.macrometa.com/](https://www.macrometa.com/) and then click **Get Started**.
 2. Enter your **Email Address** and **Password**, then click **Sign up**.
 
-### Step 1: Create a Collection
+### Step 2: Create a Collection.
 
-Let’s start by clicking the `COLLECTIONS` tab in the left nav and then `New Collection` on the right. Select the `Document` option, give it the name `addresses`, and save it.
+A _collection_ is a group of documents with a unique name and identifier. For the address book, you will create a document collection that contains names and addresses.
 
-Note: The collection `addresses` that you just created is now distributed to every location in the fabric!
+1. On the side menu, click **COLLECTIONS**.
+2. Click **New Collection**.
+3. Click **Document Store**.
+4. In **Collection Name**, enter `addresses`.
+5. Click **Create**.
 
-![create-collection](/img/create-doc-view.png)
+![Create a collection](/img/create-doc-view.png)
+
+Macrometa distributes this collection to every location in the global fabric. However, it's empty. Let's fix that.
 
 ### Step 2: Add some data to your new collection and query it
 
