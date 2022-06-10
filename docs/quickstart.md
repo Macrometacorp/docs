@@ -3,18 +3,16 @@ sidebar_position: 1
 title: Quickstart
 ---
 
-## Address Book App Quickstart
+Get started with Macrometa by creating a simple address book. It demonstrates how you can use our stateless-serverless backend to run a globally distributed database with local read-write latencies around 50ms.
 
-Let’s take **5 minutes** to create a stateful-serverless backend for a simple Address Book. It's going to run globally distributed with local read-write latencies around 50ms.
+**Estimated time to completion:** 5 minutes
 
-We are going to walk through four steps:
+## Step 1: Create a Macrometa account or log in.
 
-- Create a collection and add some data to it.
-- Query that data.
-- Save the query (A saved query is called a Query Worker).
-- Execute the Query Worker!
+You must have a Macrometa account in order to complete this quickstart. If you already have a Macrometa account, then go to [https://www.macrometa.com/](https://www.macrometa.com/) and log in.
 
-First things first, if you don't already have a Macrometa account go create a [free](https://auth.paas.macrometa.io/signup) one and mosey on back.
+1. If you don't already have a Macrometa account, go [https://www.macrometa.com/](https://www.macrometa.com/) and then click **Get Started**.
+2. Enter your **Email Address** and **Password**, then click **Sign up**.
 
 ### Step 1: Create a Collection
 
