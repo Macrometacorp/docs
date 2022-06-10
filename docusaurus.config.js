@@ -125,7 +125,7 @@ const config = {
               },
               {
                 label: 'Essentials',
-                to: '/essentials/introduction',
+                to: '/essentials/index',
               }
             ],
           },

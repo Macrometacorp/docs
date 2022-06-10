@@ -105,4 +105,4 @@ IN addresses
 
 Sweet, so now you have a full functional API for your app. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
 
-Now that you've build your app, full stack, you can dig into the docs and see all the rad things Macrometa can help you build >> **[Essentials](essentials/overview.md)** guide.
+Now that you've build your app, full stack, you can dig into the docs and see all the rad things Macrometa can help you build >> **[Essentials](essentials/index.md)** guide.

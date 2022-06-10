@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Quickstart
+title: Stream Workers
 ---
 
 import Tabs from '@theme/Tabs';

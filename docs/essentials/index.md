@@ -55,7 +55,7 @@ Each GeoFabric contains the following:
 
 * [Collections](../collections/quickstart.md) are groups of JSON documents. A GeoFabric can store unlimited collections, and collections can store unlimited documents. A collection can be a `kv` or `document` collection.
 * [Graphs](../collections/graphs/quickstart.md) consist of vertices and edges. Edges are stored as documents in edge collections. A vertex can be a document of a document collection or of an edge collection (so edges can be used as vertices).
-* [Search](../search/Overview.md) is a full-text search engine for information retrieval on one or more linked collections. Also referred to as `views`.
+* [Search](../search/index.md) is a full-text search engine for information retrieval on one or more linked collections. Also referred to as `views`.
 * [Streams](../streams/quickstart.md) are a type of collection that capture data in motion. Streams support both pub-sub and queuing models. Messages are sent via streams by publishers to consumers who then do something with the message.
 * [Stream workers](../cep/quickstart.md) perform complex event processing in real-time on streams.
 
