@@ -6,9 +6,16 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Quickstart with Stream Processing
-
 Macrometa GDN allows you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
+
+:::note
+
+Stream Workers are currently an Enterprise-only feature. We will be rolling it out to all users in Q1 of 2022.
+
+Contact support@macrometa.com if you have any questions.
+
+:::
+
  
 | Stage | Description |
 |-------|-------------|
@@ -16,8 +23,6 @@ Macrometa GDN allows you to integrate streaming data and take appropriate action
 | *Analyze* | Analyze data to identify interesting patterns and extract information. |
 | *Act* | Take actions based on the findings. For example, running simple code, calling an external service, or triggering a complex integration. |
 | *Integrate* | Provide processed data for consumer consumption. |
-
-If you are new to Macrometa GDN, start by reading the [essentials](../essentials/overview.md) of Macrometa GDN.
 
 ![GDN Essentials](/img/gdn-cep-overview.png)
 
@@ -29,15 +34,17 @@ You can process streams to perform the following actions with your data:
 * Clean data by filtering it and by modifying the content in messages. For example, obfuscating sensitive information.
 * Derive insights by identifying event patterns in data streams.
 * Summarize data with time windows and incremental aggregations.
-* Real-time ETL for collections, tailing files, and scraping HTTP endpoints.
+* Extract, transform, and load (ETL) collections, tailing files, and scraping HTTP endpoints.
 * Integrating stream data and trigger actions based on the data. This can be a single service request or a complex enterprise integration flow.
 
-For the following examples, assume these credentials:
+## Example
 
-* Tenant name: nemo@nautilus.com
-* Password: xxxxxx
+Assume the following credentials:
 
-## Driver Download
+* Tenant name: `nemo@nautilus.com`
+* Password: `xxxxxx`
+
+### Driver Download
 
 Download the appropriate drivers for your preferred language.
 
@@ -87,7 +94,7 @@ Download the appropriate drivers for your preferred language.
   </TabItem>
 </Tabs>
 
-## Connect to GDN
+### Connect to GDN
 
 Establish a connection to a local region. When this code runs, it initializes the server connection to the region URL you specified.
 
@@ -121,7 +128,7 @@ Establish a connection to a local region. When this code runs, it initializes th
  </TabItem>
 </Tabs> 
 
-## Validate Stream Application
+### Validate Stream Application
 
 Validate the stream application for syntax errors before saving.
 
@@ -222,7 +229,7 @@ Validate the stream application for syntax errors before saving.
  </TabItem>
  </Tabs>
 
-## Save Stream Application
+### Save Stream Application
 
 By default, the stream application saves in the local region. Optionally, you can use `dclist` (domain component list) to deploy the stream application in other specified regions or all regions.
 
@@ -247,7 +254,7 @@ By default, the stream application saves in the local region. Optionally, you ca
   </TabItem>
 </Tabs>  
 
-## Enable or Disable Stream Application
+### Enable or Disable Stream Application
 
 
 
@@ -277,7 +284,7 @@ By default, the stream application saves in the local region. Optionally, you ca
 To operate on created applications, you need to create an instance of the stream application.
 
 
-## Example: Update Stream Application
+### Example: Update Stream Application
 
 In this example, we update a stream application to store the input data into itself and another collection called `SampleCargoAppDestTable`. 
 
@@ -387,7 +394,7 @@ Now, the code to update an Stream Application will look like
     console.log("--- Updating Stream Application `Sample-Cargo-App`");
     result = await app.updateApplication([], updatedAppDefinition);
 ```
-## Run an Adhoc Query
+### Run an Adhoc Query
 
 Available in the advanced operations of python driver.
 Refer example at the end of the page.
@@ -420,7 +427,7 @@ Refer example at the end of the page.
   </TabItem>  
 </Tabs>
 
-## Delete Stream Application
+### Delete Stream Application
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -440,7 +447,7 @@ Refer example at the end of the page.
   </TabItem>
 </Tabs>  
 
-## Get Sample Stream Applications
+### Get Sample Stream Applications
 
 You can try out several Stream Apps which are preloaded and ready to run.
 
@@ -463,7 +470,7 @@ You can try out several Stream Apps which are preloaded and ready to run.
   </TabItem>
 </Tabs>  
 
-## Complete Example
+### Complete Example
 
 The following example uses the code snippets provided in this tutorial.
 

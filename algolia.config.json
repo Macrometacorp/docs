@@ -2,7 +2,7 @@
     "index_name": "prod_DOCS",
     "start_urls": [
       {
-        "url": "https://macrometa.com/docs/essentials/overview",
+        "url": "https://macrometa.com/docs/essentials/introduction",
         "tags": ["Quickstart"]
       },
       {
