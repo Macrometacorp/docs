@@ -1,15 +1,24 @@
+---
+sidebar_position: 1
+title: Introduction
+slug: introduction
+---
+
 # Introduction
 
 Macrometa Global Data Network (GDN) is a geo-distributed, real-time, coordination-free materialized views engine. GDN supports multiple data models, making it flexible and compatible with many database types.
 
 When you choose a database or stream processing system, you're actually choosing three technologies: storage, a data model, and an API and query language.
 
-!!! example
-    If you choose Postgres, you are choosing the Postgres storage engine, a relational data model, and the SQL query language. 
+:::note Example
+
+If you choose Postgres, you are choosing the Postgres storage engine, a relational data model, and the SQL query language. 
     
-    If you choose MongoDB, you are choosing the MongoDB distributed storage engine, a document data model, and the MongoDB API. 
+If you choose MongoDB, you are choosing the MongoDB distributed storage engine, a document data model, and the MongoDB API. 
     
-    In systems like these, features are integrated across all layers. For example, an index provided by a data model is automatically integrated into the storage and query language.
+In systems like these, features are integrated across all layers. For example, an index provided by a data model is automatically integrated into the storage and query language.
+
+:::
 
 Document databases, graph databases, key-value stores, pub-sub streams, and queues make sense in the right context, and different parts of an application might call for different choices. This creates a tough decision: Use a whole new database or new streaming system to support a new data model, or try to shoehorn data into your existing database or messaging system.
 
@@ -17,11 +26,11 @@ Macrometa GDN decouples its data storage technology from its data model. You can
 
 ![GDN Internals](/img/macrometa-internals.png)
 
-In a single datacenter, GDN is a *geo-distributed CP master/master* model with no single point of failure:
+In a single datacenter, GDN is a _geo-distributed CP master/master_ model with no single point of failure:
 
-* *Geo-distributed* means data is replicated between multiple regions, enabling clients to send requests to any region and view the same results after any latency.
-* *CP* means GDN prefers consistency and partition tolerance over availability, verifying that all incoming data is processed properly before being made available to users. For more information, refer to [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem).
-* *Master/master* means we use [multi-master replication](https://en.wikipedia.org/wiki/Multi-master_replication), enabling clients to send requests to an arbitrary node in a data center and view the same results. This means there is no single point of failure, so the cluster can continue to serve requests even if one machine fails completely.
+* _Geo-distributed_ means data is replicated between multiple regions, enabling clients to send requests to any region and view the same results after any latency.
+* _CP_ means GDN prefers consistency and partition tolerance over availability, verifying that all incoming data is processed properly before being made available to users. For more information, refer to [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem).
+* _Master/master_ means we use [multi-master replication](https://en.wikipedia.org/wiki/Multi-master_replication), enabling clients to send requests to an arbitrary node in a data center and view the same results. This means there is no single point of failure, so the cluster can continue to serve requests even if one machine fails completely.
 
 This section gives a short outline of the GDN architecture for a single data center.
 
@@ -74,11 +83,14 @@ Collection data is stored in shards. Shards are configured per collection so mul
 
 The number of shards is fixed at `16` and cannot be changed. You can specify the `shard key` as part of the collection creation.
 
-!!! note
-    If you change the shard keys from their default (`_key`), the following limitations apply:
+:::note
+
+If you change the shard keys from their default (`_key`), the following limitations apply:
     
-    * Any queries will need to send a request to every shard in the collection. 
-    * For new documents, you must use an automatically generated `_key`.
+* Any queries will need to send a request to every shard in the collection. 
+* For new documents, you must use an automatically generated `_key`.
+
+:::
 
 GDN automatically distributes shards across nodes in a cluster.
 
