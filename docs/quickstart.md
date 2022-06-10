@@ -24,7 +24,7 @@ A _collection_ is a group of documents with a unique name and identifier. For th
 4. In **Collection Name**, enter `addresses`.
 5. Click **Create**.
 
-![Create a collection](/img/create-doc-view.png)
+![Create a collection](/img/quickstart/create-doc-view.png)
 
 Macrometa distributes this collection to every location in the global fabric. However, it's empty. Let's fix that.
 
