@@ -7,7 +7,7 @@ Dynamo tables are always created globally and written to the `_system` GeoFabric
 
 For more information about Dynamo Mode, refer to the [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamodb-api.pdf#API_Operations_Amazon_DynamoDB) documentation.
 
-## Prerequistes
+## Prerequisites
 
 1. Create an API Key
     * Login to your tenant account on https://gdn.paas.macrometa.io
