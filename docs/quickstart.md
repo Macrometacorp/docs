@@ -98,7 +98,7 @@ That query is useful. Macrometa allows you to save a useful query as a [Query Wo
 
 Now that you've saved the query click on the `API Usage` button, and we automatically generate a Query Worker (Exactly like a serverless function, but a save query instead of a function)!
 
-![Create a Query Worker](/img/tutorial/create-query-worker.png)
+![Create a Query Worker](/img/quickstart/create-query-worker.png)
 
 ## Step 8: Test the API.
 
