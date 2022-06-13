@@ -95,18 +95,23 @@ That query is useful. Macrometa allows you to save a useful query as a [Query Wo
 3. Click **Run Query**.
 4. Click **API Endpoint**.
 
-
-Now that you've saved the query click on the `API Usage` button, and we automatically generate a Query Worker (Exactly like a serverless function, but a save query instead of a function)!
+Macrometa displays a `curl` command you can use to access this endpoint from anywhere in the world in under 50ms.
 
 ![Create a Query Worker](/img/quickstart/create-query-worker.png)
 
-## Step 8: Test the API.
+## Step 8: Finish the API.
 
-Nice job you totally rocked that quickstart! 
+In the previous step, you created the `getAddresses` Query Worker, which is basically the READ in a CRUD API (Create, Read, Update, Delete). Build the rest of the API by creating a Query Worker for each of the following queries.
 
-Now let's build out the _REST_ of our CRUD API. Just create a `Query Worker` for each of these queries.
+1. In **QUERIES**, click **New**.
+2. Copy and paste a code block.
+3. Save the query using the name with each code block.
+4. Run the query.
+5. Click **API Endpoint** and record the API Usage information.
 
-**SaveContact**
+### Create a new record.
+
+**Name:** saveContact
 ```sql
 INSERT {firstname:@firstName,
         lastname:@lastName,
@@ -114,20 +119,20 @@ INSERT {firstname:@firstName,
 INTO addresses
 ```
 
-**ReadContact**
+### Read all records.
+
+**Name:** readContacts
 ```sql
 FOR entry 
 IN addresses 
 RETURN entry
 ```
 
-**RemoveContact**
-```sql
-REMOVE @_key 
-IN addresses
-```
+### Update a record.
 
-**UpdateContact**
+If you run this query as-is, with no key, you will see an error message if no key is entered. This is necessary to create the API endpoint. API calls would provide a specific key.
+
+**Name:** updateContact
 ```sql
 UPDATE @_key WITH { firstname:@firstName, 
                     lastname:@lastName, 
@@ -135,8 +140,18 @@ UPDATE @_key WITH { firstname:@firstName,
 IN addresses
 ```
 
-Sweet, so now you have a full functional API for your app. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
+### Delete a record.
+
+If you run this query as-is, with no key, you will see an error message if no key is entered. This is necessary to create the API endpoint. API calls would provide a specific key.
+
+**Name:** removeContact
+```sql
+REMOVE @_key 
+IN addresses
+```
+
+You have a full functional API for your app. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
 
 ## Next Steps
 
-Now that you've build your app, full stack, you can dig into the docs and see all the rad things Macrometa can help you build >> **[Essentials](essentials/index.md)** guide.
+Now that you've build your app, full stack, you can dig into the docs and see what else Macrometa can help you build [Essentials](essentials/index.md) guide.
