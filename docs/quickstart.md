@@ -3,33 +3,39 @@ sidebar_position: 1
 title: Quickstart
 ---
 
-Get started with Macrometa by creating a simple address book. It demonstrates how you can use our stateless-serverless backend to run a globally distributed database with local read-write latencies around 50ms.
+Get started with Macrometa by creating a simple address book. This tutorial is Macrometa's version of "Hello, world!" It is simplistic by design, intended to demonstrate how you can quickly use our stateless-serverless backend to run a globally distributed database with local read-write latencies around 50ms.
 
 ## Step 1: Create a Macrometa account or log in.
 
 You must have a Macrometa account in order to complete this quickstart. If you already have a Macrometa account, then go to [https://www.macrometa.com/](https://www.macrometa.com/) and log in.
 
 1. If you don't already have a Macrometa account, go [https://www.macrometa.com/](https://www.macrometa.com/) and then click **Get Started**.
-2. Enter your **Email Address** and **Password**, then click **Sign up**.
+1. Enter your **Email Address** and **Password**, then click **Sign up**.
 
 ## Step 2: Create a collection.
 
 A _collection_ is a group of documents with a unique name and identifier. For the address book, you will create a document collection that contains names and addresses.
 
 1. On the side menu, click **COLLECTIONS**.
-2. Click **New Collection**.
-3. Click **Document Store**.
-4. In **Collection Name**, enter `addresses`.
-5. Click **Create**.
+1. Click **New Collection**.
+1. Click **Document Store**.
+1. In **Collection Name**, enter `addresses`.
+1. Click **Create**.
 
 ![Create a collection](/img/quickstart/create-doc-view.png)
 
-Macrometa distributes this collection to every location in the global fabric. However, it's empty. Let's fix that.
+Macrometa distributes this collection to every location in the global fabric. If you're curious about the locations, click **GEO FABRICS** to see the default fabric locations.
+
+![dashboard](/img/dashboard.png)
+
+Great, our collection is accessible worldwide! However, it's empty. Let's fix that.
 
 ## Step 3: Add data to your new collection with a query.
 
+There are several ways to get data into a collection, including importing CSV or JSON files. For this quickstart, we'll use a query to insert records.
 
-Now, click the `QUERIES` tab in the left nav to open the `C8QL` query editor. Copy and paste the query below into the editor and click `Run Query` a couple times. 
+1. On the side menu, click **QUERIES**.
+2. The code block below contains six names and email addresses. Copy and paste it in the code editor on line 1.
 
 ```sql
 // Query to insert addresses
@@ -44,35 +50,55 @@ FOR persons IN [
   INSERT persons INTO addresses
 ```
 
-Your `Query Result` will be empty brackets, but if you click on `Profile` button you can checkout what just happened along with some performance details. Your data was just written to the location you're currently logged into and replicated across all of the nodes in your fabric.
+3. Click **Run Query**. This inserts the records into the `addresses` collection you made earlier and returns a query result. The result will be empty brackets, because we're inserting data, not reading anything back.
+4. (Optional) Click **Query Profile** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
+5. Click **Run Query** two more times. Every click adds the six records again so the collection has more records to work with. You can keep clicking if you want more records, or change values in the code block if you want different records.
 
-## Step 4: View the documents in the collection
+## Step 4: View the documents in the collection.
+
+Return to the collection and see what the query did.
+
+1. Click **COLLECTIONS**.
+2. Click **addresses**.
+
+Macrometa displays a list of keys and content for each record in the collection. Now you can:
+- Click a record to view it. While viewing a record, edit it by typing changes and then click **Save**.
+- Click the red circle next to a record to delete it.
+- Click the funnel at the top to filter records. Try entering the following (case-sensitive):
+  - **Attribute name:** firstname
+  - **Attribute value:** Captain
+
+When you are done experimenting with records, continue to the next step.
 
 ## Step 5: Query the documents in the collection
 
-Now, let's query the data you just added to your collection. Copy the below query and replace the `INSERT` query currently in the editor with it.
+Now, let's query the data you just added to your collection. 
+
+1. Click **QUERIES**.
+2. Click **New** to clear the code editor.
+3. Copy the code block below and paste it into the code editor.
 
 ```sql
 FOR docs IN addresses RETURN docs 
 ```
 
-You should see the data you just saved returned.
+4. Click **Run Query**.
 
-Ok, now we are going to save this query. Saving it will turn it into a `Query Worker`.
+Macrometa returns all records in the collection. You can view it as a table or as JSON by clicking Query Result options. And as before. you can click **Query Profile** to see detailed performance metrics.
 
-## Step 6: Save the query.
+## Step 6: Save the query as an API endpoint.
 
-Click the `Save Query` button and name the saved query `getAddresses`
+That query is useful. Macrometa allows you to save a useful query as a [Query Worker](queryworkers/index.md).
 
-Now, in **around 50ms**, you have a globally distributed stateful-serverless endpoint.
+1. Click **Save Query**.
+2. Name the query **getAddresses** and then click **Save**. This saves the query so you can use it again.
+3. Click **Run Query**.
+4. Click **API Endpoint**.
 
-![dashboard](/img/dashboard.png)
-
-## Step 7: Create an API.
 
 Now that you've saved the query click on the `API Usage` button, and we automatically generate a Query Worker (Exactly like a serverless function, but a save query instead of a function)!
 
-![create-query-worker](/img/query-worker.png)
+![Create a Query Worker](/img/tutorial/create-query-worker.png)
 
 ## Step 8: Test the API.
 
