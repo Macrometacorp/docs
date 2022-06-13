@@ -106,8 +106,12 @@ In the previous step, you created the `getAddresses` Query Worker, which is basi
 1. In **QUERIES**, click **New**.
 2. Copy and paste a code block.
 3. Save the query using the name with each code block.
-4. Run the query.
-5. Click **API Endpoint** and record the API Usage information.
+4. Click **API Endpoint** and record the API Usage information.
+5. Test the query.
+
+To test a query, enter any necessary information and then click **Run Query** or use the `curl` API call.
+
+![Test a query](/img/quickstart/test-query.png)
 
 ### Create a new record.
 
@@ -119,14 +123,7 @@ INSERT {firstname:@firstName,
 INTO addresses
 ```
 
-### Read all records.
 
-**Name:** readContacts
-```sql
-FOR entry 
-IN addresses 
-RETURN entry
-```
 
 ### Update a record.
 
@@ -142,13 +139,13 @@ IN addresses
 
 ### Delete a record.
 
-If you run this query as-is, with no key, you will see an error message if no key is entered. This is necessary to create the API endpoint. API calls would provide a specific key.
-
 **Name:** removeContact
 ```sql
 REMOVE @_key 
 IN addresses
 ```
+
+If you run this query as-is, with no key, you will see an error message if no key is entered. This is necessary to create the API endpoint. API calls would provide a specific key.
 
 You have a full functional API for your app. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
 
