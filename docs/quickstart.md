@@ -109,9 +109,14 @@ In the previous step, you created the `getAddresses` Query Worker, which is basi
 4. Click **API Endpoint** and record the API Usage information.
 5. Test the query.
 
-To test a query, enter any necessary information and then click **Run Query** or use the `curl` API call.
+To test a query, enter any necessary information in the [bind parameters](c8ql/fundamentals.md#bind-parameters) and then click **Run Query** or use the `curl` API call. The screenshot below shows how to enter information for testing.
 
 ![Test a query](/img/quickstart/test-query.png)
+
+
+:::note
+If you run a query that requires a key without entering one in the bind parameters, then you will see an error.
+:::
 
 ### Create a new record.
 
@@ -123,11 +128,7 @@ INSERT {firstname:@firstName,
 INTO addresses
 ```
 
-
-
 ### Update a record.
-
-If you run this query as-is, with no key, you will see an error message if no key is entered. This is necessary to create the API endpoint. API calls would provide a specific key.
 
 **Name:** updateContact
 ```sql
@@ -144,8 +145,6 @@ IN addresses
 REMOVE @_key 
 IN addresses
 ```
-
-If you run this query as-is, with no key, you will see an error message if no key is entered. This is necessary to create the API endpoint. API calls would provide a specific key.
 
 You have a full functional API for your app. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
 
