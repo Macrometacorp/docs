@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Overview
+title: c8 Query Language
 ---
 
 ## Usual Query Patterns Examples
@@ -10,7 +10,6 @@ These pages contain some common query patterns with examples. For better underst
 Normally, you would want to run queries on data stored in collections. This section will provide several examples for that.
 
 Some of the following example queries are executed on a collection 'users' with the data provided here below.
-
 
 ## Things to consider when running queries on collections
 
