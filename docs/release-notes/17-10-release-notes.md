@@ -7,5 +7,5 @@ This document describes what has changed in Macrometa release 17.10. To check wh
 
 ## Bug Fixes
 
-- BILL-261 - Corrected billing issues relating to underreported usage.
+- BILL-261 - Corrected billing issues relating to usage reporting.
 - GUI-876 - Fixed the **Index Storage** value and removed **Replication metrics** from the dashboard.
