@@ -1,9 +1,7 @@
 ---
 sidebar_position: 1
-title: Overview
+title: Operations
 ---
-
-## High-level operations
 
 The following high-level operations are described here after:
 
