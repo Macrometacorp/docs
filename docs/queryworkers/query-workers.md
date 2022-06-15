@@ -1,4 +1,7 @@
-
+---
+sidebar_position: 20
+title: Query Workers
+---
 
 You can create and update query workers with the GDN console or by using the REST API. Each Query Worker is tied to a specific query text and parameter set. You can set optional or mandatory default values for query parameters.
 
