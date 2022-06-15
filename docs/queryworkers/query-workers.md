@@ -9,3 +9,4 @@ Each Query Worker is protected and exposed as its own endpoint. Query Workers ar
 
 save query
 saved queries and that UI
+Update Saved query
