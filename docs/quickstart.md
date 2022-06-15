@@ -24,7 +24,7 @@ A _collection_ is a group of documents with a unique name and identifier. For th
 
 ![Create a collection](/img/quickstart/create-doc-view.png)
 
-Macrometa distributes this collection to every location in the GeoFabric. If you're curious about the locations, click **GEO FABRICS** to see the default GeoFabric locations.
+Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **GEO FABRICS** to see the default [GeoFabric](essentials/geofabrics.md) locations.
 
 ![dashboard](/img/dashboard.png)
 
@@ -91,9 +91,9 @@ Macrometa returns all records in the collection. You can view it as a table or a
 Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
 
 1. Click **Save Query**.
-2. Name the query **getAddresses** and click **Save**. This saves the query so you can use it again.
-3. Click **Run Query**.
-4. Click **API Endpoint**.
+1. Name the query **getAddresses** and click **Save**. This saves the query so you can use it again.
+1. Click **Run Query**.
+1. Click **API Endpoint**.
 
 Macrometa displays a `curl` command you can use to access this endpoint from anywhere in the world in under 50ms.
 
@@ -146,7 +146,7 @@ REMOVE @_key
 IN addresses
 ```
 
-You have a full functional API for your application. [We made a front-end for you to take your new back-end for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
+You have a full functional API for your application. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
 
 ## Next Steps
 
