@@ -3,6 +3,8 @@ sidebar_position: 1
 title: c8 Query Language
 ---
 
+The c8 Query Language, or C8QL, is the language Macrometa uses for queries and Query Workers.  C8QL is a mix of SQL and JavaScript and provides a rich set of primitives to query and update GDN.
+
 ## Usual Query Patterns Examples
 
 These pages contain some common query patterns with examples. For better understandability the query results are also included directly below each query.
