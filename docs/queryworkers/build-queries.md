@@ -5,15 +5,17 @@ title: Build and Run Queries
 
 Query Builder
 Syntax
-bind parameters
-run query
-    - run query with curl
-    - run query with bind parameters
-update query
+bind parameters - separate topic
 execution plan
-Query results
-- query profile
-- JSON vs Table view, clear, download csv
+
 
 Running Queries page
 Slow Query History
+
+run query
+    - run query with curl
+    - run query with bind parameters
+
+Query results
+- query profile
+- JSON vs Table view, clear, download csv
