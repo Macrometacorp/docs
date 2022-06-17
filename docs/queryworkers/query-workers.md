@@ -21,7 +21,7 @@ When you save a query, it becomes a query worker.
 
 So view saved queries, click **Saved Queries**.
 
-Macrometa displays a list of system-defined queries and user-defined queries. You cannot delete or overwrite system-defined queries, so they display fewer options than user-defined queries. In the screenshot below, the user selected a system query.
+Macrometa displays a list of default queries and user-defined queries. You cannot delete or overwrite default queries. In the following screenshot, the user selected a default query:
 
 ![Saved queries](/img/queries/saved-queries.png)
 
