@@ -46,7 +46,7 @@ Click the red minus sign to permanently delete the query worker.
 To edit a query worker:
 
 1. In **Queries**, click **Saved Queries**.
-2. Double-click the Query Worker that you want to change. Macrometa opens that Query Worker in the Editor tab.
+2. Double-click the query worker that you want to change. Macrometa opens it in the Editor tab.
 3. Make any changes to the query and then click **Update Query**.
 
 ## Import Query Workers
