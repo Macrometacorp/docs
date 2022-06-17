@@ -11,7 +11,7 @@ Each query worker functions as an endpoint. Query workers exist on the GeoFabric
 
 ## Create a New Query Worker
 
-When you save a query, it becomes a Query Worker.
+When you save a query, it becomes a query worker.
 
 1. Write a [C8QL](../c8ql/) query.
 2. Click **Save Query**.
