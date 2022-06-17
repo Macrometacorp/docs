@@ -28,6 +28,6 @@ You can use any unsaved query as an API endpoint, but best practice is to use sa
 
 You cannot run a query with empty bind parameter values. Otherwise, the query fails with an error.
 
-For Query Workers used as API endpoints, that is actually desired behavior. Often, you want to leave the placeholder so that your user or app can enter whatever values are needed in a specific API call. If you enter the values in the saved query, then the API Endpoint will only every use those values.
+With query workers, you can add placeholder bind parameters with empty values and enable a user or application to add values as needed. If you enter values in the saved query, the API Endpoint only uses those values.
 
 However, sometimes you do want the API call to always use specific values, perhaps because they always access and edit one specific record. If so, then be sure and enter the correct value next to the bind parameter key.
