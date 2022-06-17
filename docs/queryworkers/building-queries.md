@@ -25,14 +25,8 @@ In the screenshot below, the user typed **in**.
 
 ![Syntax helper](/img/queries/syntax-helper.png)
 
-## Execution Plan
+## Next Steps
 
-Shows a detailed breakdown of the query compilation and execution pipeline.
-
-Details given can also be helpful when tuning or debugging complex queries.
-
-## Save Query
-
-Save Query:
-
-To complete the creation of the query worker click "Save Query". Query Workers are saved with a custom name, let’s save our query as “queryWorker”. When you save your Query Worker a new option, “Update Query”, will appear. Use this to save changes to existing Query Workers.
+After you write a query, you can do the following:
+- [Run the query.](running-queries.md)
+- Save the query as a [Query Worker](query-workers.md).
