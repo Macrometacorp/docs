@@ -13,7 +13,7 @@ To write a query, log into Macromenta and navigate to the Editor tab of the QUER
 
 ## Bind Parameters
 
-[Bind parameters](fundamentals.md#bind-parameters), created with the '@' symbol, display fields for the corresponding Key and Value on the right-hand side. You can use this to pass values to your query or query worker in the Query Builder.
+[Bind parameters](fundamentals.md#bind-parameters) are created with the '@' symbol and display fields for the corresponding key and value. You can use this to pass values to your query or query worker in the Query Builder.
 
 ![Bind parameters](/img/queries/bind-parameters.png)
 
