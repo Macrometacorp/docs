@@ -5,6 +5,7 @@ title: API Endpoints
 
 Any query or Query Worker can be used as an API endpoint.
 
+
 ## Create and API Endpoint
 
 You can create a REST API endpoint from a query or Query Worker.
