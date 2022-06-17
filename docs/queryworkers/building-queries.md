@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Building Queries
 ---
 
-This page explains how to enter a query in Macrometa. To learn more about what you can do with queries and the language for writing them, refer to [C8 Query Language](c8ql/../index.md).
+This page explains how to create a query in Macrometa. To learn more about what you can do with queries and the language for writing them, refer to [C8 Query Language](c8ql/../index.md).
 
 ## Query Builder
 
