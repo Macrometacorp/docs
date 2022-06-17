@@ -21,7 +21,7 @@ Macrometa GDN uses 64-bit unsigned integer values to maintain collection IDs. Wh
 
 ## collection name
 
-A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](../naming-conventions) for more information on valid collection names.
+A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](../essentials/naming-conventions.md) for more information on valid collection names.
 
 ## confirm all writes
 
@@ -85,7 +85,7 @@ A GeoFabric contains its own collections which cannot be accessed from other Geo
 
 By default, there is always at least one GeoFabric in Macrometa GDN named `_system`. This GeoFabric cannot be dropped, and provides special operations for creating, dropping, and enumerating GeoFabrics. You can create GeoFabrics and give them unique names to access them later. GeoFabric management operations can only be performed in the `_system` GeoFabric.
 
-For more information about GeoFabrics, refer to our blog post [Introducing GeoFabrics](https://www.macrometa.com/blog/introducing-GeoFabrics).
+For more information about GeoFabrics, refer to our blog post [Introducing GeoFabrics](https://www.macrometa.com/blog/introducing-geofabrics).
 
 ## GeoFabric name
 
