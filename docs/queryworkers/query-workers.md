@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Query Workers
 ---
 
-After you build a query, you can save it to create a _Query Worker_. A query worker is cached across all locations in the fabric and can be edited without updating production code.
+After you build a query, you can save it to create a _Query Worker_, similar to a SQL specialized process. A query worker is cached across all locations in the fabric and can be edited without updating production code.
 
 You can create and update query workers with the GDN console or by using the REST API. Each Query Worker is tied to a specific query text and parameter set. You can set optional or mandatory default values for query parameters.
 
