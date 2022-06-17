@@ -6,7 +6,7 @@ slug: geofabrics
 
 GeoFabrics enable you to create region-based subsets within your tenants. Each GeoFabric represents a group of collections, processes, and data that cannot be accessed from other GeoFabrics. You must log into the `_system` GeoFabric to create, modify, or delete GeoFabrics. Each GeoFabric has a unique URL that enables access to permissed users.
 
-Refer to the [glossary](../collections/documents/appendix/glossary) or [Introducing Geofabrics](https://www.macrometa.com/blog/introducing-geofabrics) for more details.
+Refer to the [glossary](../references/glossary.md) or [Introducing Geofabrics](https://www.macrometa.com/blog/introducing-geofabrics) for more details.
 
 ## Prerequisites
 

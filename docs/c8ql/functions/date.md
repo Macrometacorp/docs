@@ -44,7 +44,7 @@ DATE_HOUR( 2 * 60 * 60 * 1000 ) // 2
 DATE_HOUR("1970-01-01T02:00:00") // 2
 ```
 
-You are free to store age determinations of specimens, incomplete or fuzzy dates and the like in different, more appropriate ways of course. C8QL's date functions will most certainly not be of any help for such dates, but you can still use language constructs like [SORT](../operations/sort.md) (which also supports sorting of arrays) and [indexes](../../collections/search/index.md) like skiplists.
+You are free to store age determinations of specimens, incomplete or fuzzy dates and the like in different, more appropriate ways of course. C8QL's date functions will most certainly not be of any help for such dates, but you can still use language constructs like [SORT](../operations/sort.md) (which also supports sorting of arrays) and indexes like skiplists.
 
 ## Current date and time
 
