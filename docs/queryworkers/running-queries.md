@@ -27,7 +27,7 @@ After you write a query, click **Execution Plan** to see a detailed breakdown of
 
 ## Query Result
 
-Query results vary based on the query. Queries that return information display that information. Queries that do not, perhaps because they are entering or deleting information, just display empty brackets `[]`. The screenshot below shows query results with information returned.
+Query results vary based on the query. Queries that return information display that information. Queries that do not, perhaps because they are entering or deleting information, just display empty brackets `[]`. The following screenshot shows a query with information returned.
 
 ![Query Result](/img/queries/query-result.png)
 
