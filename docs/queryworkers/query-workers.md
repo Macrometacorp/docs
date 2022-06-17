@@ -39,7 +39,7 @@ Click the play icon to run the query.
 
 ### Delete a Query Worker
 
-Click the red minus sign to permanently delete the Query Worker.
+Click the red minus sign to permanently delete the query worker.
 
 ## Edit a Query Worker
 
