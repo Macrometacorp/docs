@@ -51,4 +51,21 @@ To edit a Query Worker, do the following.
 
 ## Import Query Workers
 
+You can import custom queries from a saved file.
+
+1. In Macrometa, navigate to **Queries**.
+2. Click **Saved Queries**.
+3. Click **Import Queries**.
+4. Select a file and then click **Import**.
+
+:::note
+The file must be a JSON file matching the format on the screen, otherwise Macrometa cannot understand the query.
+:::
+
 ## Export Query Workers
+
+You can export custom queries and download them as a JSON file.
+
+1. In Macrometa, navigate to **Queries**.
+2. Click **Saved Queries**.
+3. Click **Export Queries**.
