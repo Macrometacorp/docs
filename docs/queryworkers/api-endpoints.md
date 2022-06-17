@@ -20,7 +20,7 @@ Macrometa displays the cURL (Client URL) command that you can use in the termina
 
 ## Query vs. Query Worker Endpoints
 
-While you _can_ use any unsaved query as an API endpoint, there are several reasons that we recommend you use Query Workers instead.
+You can use any unsaved query as an API endpoint, but best practice is to use saved queries (query workers) for the following reasons:
 - Query Workers have hard-coded URL paths. Queries all use the same generic `/feature/option/data` path.
 - A Query Worker is cached across all locations in the fabric and can be edited without updating production code. If you use a generic API call you would have to redeploy the application to update the query.
 
