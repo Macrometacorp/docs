@@ -3,11 +3,11 @@ sidebar_position: 20
 title: Running Queries
 ---
 
-After you [build a query](building-queries.md), you might want to run it. You might run a query to perform an action on your data (such as INSERT or DELETE), or you might test a query that you intend to save as a [Query Worker](query-workers.md).
+After you [build a query](building-queries.md), you might want to run it. You might run a query to perform an action on your data (such as INSERT or DELETE), or you might test a query that you intend to save as a [query worker](query-workers.md).
 
 ## Run a Query
 
-To run a query, perform the following steps.
+To run a query:
 
 1. Write a [C8QL](../c8ql/) query.
 2. Enter any required [bind parameter](fundamentals.md#bind-parameters) values.

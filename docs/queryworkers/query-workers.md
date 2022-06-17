@@ -43,15 +43,15 @@ Click the red minus sign to permanently delete the query worker.
 
 ## Edit a Query Worker
 
-To edit a Query Worker, do the following.
+To edit a query worker:
 
 1. In **Queries**, click **Saved Queries**.
-2. Double-click the Query Worker that you want to change. Macrometa opens that Query Worker in the Editor tab.
+2. Double-click the query worker that you want to change. Macrometa opens it in the Editor tab.
 3. Make any changes to the query and then click **Update Query**.
 
 ## Import Query Workers
 
-You can import custom queries from a saved file.
+To import custom queries from a saved file:
 
 1. In Macrometa, navigate to **Queries**.
 2. Click **Saved Queries**.
@@ -64,7 +64,7 @@ The file must be a JSON file matching the format on the screen, otherwise Macrom
 
 ## Export Query Workers
 
-You can export custom queries and download them as a JSON file.
+To export custom queries and download them as a JSON file:
 
 1. In Macrometa, navigate to **Queries**.
 2. Click **Saved Queries**.
