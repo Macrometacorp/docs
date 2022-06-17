@@ -14,7 +14,7 @@ You can create a REST API endpoint from a query or Query Worker.
 1. Add [bind parameter](fundamentals.md#bind-parameters) values if needed.
 1. Click **API Endpoint**.
 
-Macrometa displays the cURL (Client URL) command that can be used in the terminal or command line to make an API call to execute the query.
+Macrometa displays the cURL (Client URL) command that you can use in the terminal or command line to make an API call and run the query.
 
 ![API Endpoint](/img/queries/api-endpoint.png)
 
