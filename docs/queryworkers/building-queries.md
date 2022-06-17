@@ -7,7 +7,7 @@ This page explains how to create a query in Macrometa. To learn more about what 
 
 ## Query Builder
 
-To write a query, log in to Macromenta and then navigate to the QUERIES section. Enter queries in the Query Builder on the Editor tab, starting with line 1.
+To write a query, log into Macromenta and navigate to the Editor tab of the QUERIES section. Type the content for queries starting with Line 1 of the Query Builder.
 
 ![Query Builder](/img/queries/query-builder.png)
 
