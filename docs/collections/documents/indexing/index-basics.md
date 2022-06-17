@@ -17,18 +17,18 @@ For potentially long running index creation, GDN supports creating indexes in th
 
 GDN provides the following index types:
 
-* [Primary index](#primary-index)
-* [Edge index](#edge-index)
-* [Persistent index](#persistent-index)
-* [Hash index](#hash-index)
-* [Skiplist index](#skiplist-index)
-* [TTL (time-to-live) index](#ttl-index)
-* [Geo index](#geo-index)
-* [Full-text index](#full-text-index)
+- [Primary Index](#primary-index)
+- [Edge Index](#edge-index)
+- [Persistent Index](#persistent-index)
+- [Hash Index](#hash-index)
+- [Skiplist Index](#skiplist-index)
+- [TTL Index](#ttl-index)
+- [Geo Index](#geo-index)
+- [Full-text Index](#full-text-index)
 
 ## Primary Index
 
-Each collection has a *primary index* that stores the [document keys](../appendix/glossary#document-key) (`_key` attribute) for all documents in the collection. The primary index allows you to quickly select documents using the `_key` or `_id` attributes. C8QL queries automatically use primary indexes for equality lookups on `_key` or `_id`. 
+Each collection has a *primary index* that stores the [document keys](../../../references/glossary.md#document-key) (`_key` attribute) for all documents in the collection. The primary index allows you to quickly select documents using the `_key` or `_id` attributes. C8QL queries automatically use primary indexes for equality lookups on `_key` or `_id`. 
 
 You can use a dedicated function to find a document with its `_key` or `_id` using the primary index:
 
@@ -37,12 +37,11 @@ collection.document("<document-key>");
 _document("<document-id>");
 ```
 
-The primary index is an unsorted hash index, so it cannot be used for sorting or non-equality range queries.  You cannot change, remove, or create a primary index. 
-
+The primary index is an unsorted hash index, so it cannot be used for sorting or non-equality range queries.  You cannot change, remove, or create a primary index.
 
 ## Edge Index
 
-Each [edge collection](../appendix/glossary#edge-collection) automatically creates an *edge index*. The edge index provides quick access to documents by either their `_from` or `_to` attributes. You can use an edge index to quickly find connections between vertex documents. Queries use edge indexes when referring to the connecting edges of a vertex.
+Each [edge collection](../../../references/glossary.md#edge-collection) automatically creates an *edge index*. The edge index provides quick access to documents by either their `_from` or `_to` attributes. You can use an edge index to quickly find connections between vertex documents. Queries use edge indexes when referring to the connecting edges of a vertex.
 
 C8QL uses edge indexes when performing equality lookups on `_from` or `_to` values in an edge collection. You can use a dedicated function to find edges with their `_from` or `_to` values using the edge index:
 
