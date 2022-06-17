@@ -7,13 +7,20 @@ After you [build a query](building-queries.md), you might want to run it. You mi
 
 ## Run a Query
 
-To run a query:
+You can run a query in the Macrometa console, from the Macrometa CLI, or using an [API endpoint](api-endpoints.md).
+
+### Run a Query in the Console
 
 1. Write a [C8QL](../c8ql/) query.
-2. Enter any required [bind parameter](fundamentals.md#bind-parameters) values.
-3. Click **Run Query**.
+1. Enter any required [bind parameter](fundamentals.md#bind-parameters) values.
+1. Click **Run Query**.
 
 Macrometa runs the query and displays the [Query Result](#query-result) for that query. Each query you run displays another Query Result unless you navigate away from the page or clear the results.
+
+### Run a Query with CLI
+
+1. Install the CLI as described in [Install gdnsl](../essentials/CLI/overview.md#install-gdnsl).
+1. Enter queries using `gdnsl query`. For more information and examples, refer to the CLI [Queries](../essentials/CLI/commands.md#queries-gdnsl-query) documentation.
 
 ## API Endpoint
 
