@@ -51,7 +51,7 @@ To edit a query worker:
 
 ## Import Query Workers
 
-You can import custom queries from a saved file.
+To import custom queries from a saved file:
 
 1. In Macrometa, navigate to **Queries**.
 2. Click **Saved Queries**.
