@@ -19,7 +19,7 @@ When you save a query, it becomes a query worker.
 
 ## Saved Queries
 
-So view saved queries, click **Saved Queries**.
+To view saved queries, click **Saved Queries**.
 
 Macrometa displays a list of default queries and user-defined queries. You cannot delete or overwrite default queries. In the following screenshot, the user selected a default query:
 
