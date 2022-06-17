@@ -29,4 +29,4 @@ In the following screenshot, the user typed **in**.
 
 After you write a query, you can do the following:
 - [Run the query](running-queries.md).
-- Save the query as a [Query Worker](query-workers.md).
+- Save the query as a [query worker](query-workers.md).
