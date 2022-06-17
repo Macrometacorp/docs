@@ -31,7 +31,7 @@ Click the stacked pages to copy any query worker and edit it in the Query Builde
 
 ### Explain a Query Worker
 
-Click the chat bubbles to display the [Execution Plan](running-queries.md#execution-plan) of the Query Worker without running the query.
+Click the chat bubbles to display the [Execution Plan](running-queries.md#execution-plan) of the query worker without running the query.
 
 ### Run a Query Worker
 
