@@ -19,7 +19,7 @@ To write a query, log into Macromenta and navigate to the Editor tab of the QUER
 
 ## Syntax Helper
 
-Macrometa has a built-in tool to help you with C8QL syntax. Click **Syntax**, then start typing to see a list of available options.
+Macrometa has a built-in tool to help you with C8QL syntax. Click **Syntax** and start typing to see a list of available options.
 
 In the screenshot below, the user typed **in**.
 
