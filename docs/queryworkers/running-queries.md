@@ -45,7 +45,7 @@ If your query returned results, then you can click **Download CSV** to download 
 
 ### Clear results
 
-To clear a specific result, click **Clear** next to that result.
+To clear a specific result, click **Clear** next to the result.
 
 To clear all results, click **Clear All** under the Query Builder.
 
