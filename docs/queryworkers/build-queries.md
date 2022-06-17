@@ -13,7 +13,6 @@ Running Queries page
 Slow Query History
 
 run query
-    - run query with curl
     - run query with bind parameters
 
 Query results
