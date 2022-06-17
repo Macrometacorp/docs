@@ -1,0 +1,22 @@
+{
+  "redirects": [
+    {
+      "source": "/docs/relay",
+      "has": [
+          {
+          "type": "query",
+          "key": "id",
+          "value": "123"
+          }
+      ],
+      "destination": "/docs/collections", 
+      "permanent": true
+    },
+    {
+      "source": "/docs/essentials/overview",
+      "destination": "/docs/essentials",
+      "permanent": true
+    }
+  ],
+  "trailingSlash": false
+}
