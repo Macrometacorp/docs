@@ -64,7 +64,7 @@ The file must be a JSON file matching the format on the screen, otherwise Macrom
 
 ## Export Query Workers
 
-You can export custom queries and download them as a JSON file.
+To export custom queries and download them as a JSON file:
 
 1. In Macrometa, navigate to **Queries**.
 2. Click **Saved Queries**.
