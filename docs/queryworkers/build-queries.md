@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Build and Run Queries
+title: Build Queries
 ---
 
 Query Builder
