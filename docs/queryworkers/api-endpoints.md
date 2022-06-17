@@ -10,7 +10,7 @@ Any query or Query Worker can be used as an API endpoint.
 You can create a REST API endpoint from a query or query worker.
 
 1. Navigate to **Queries**.
-1. Write a query or display a Query Worker.
+1. Write a query or display a query worker.
 1. Add [bind parameter](fundamentals.md#bind-parameters) values if needed.
 1. Click **API Endpoint**.
 
@@ -20,14 +20,14 @@ Macrometa displays the cURL (Client URL) command that you can use in the termina
 
 ## Query vs. Query Worker Endpoints
 
-While you _can_ use any unsaved query as an API endpoint, there are several reasons that we recommend you use Query Workers instead.
-- Query Workers have hard-coded URL paths. Queries all use the same generic `/feature/option/data` path.
-- A Query Worker is cached across all locations in the fabric and can be edited without updating production code. If you use a generic API call you would have to redeploy the application to update the query.
+You can use any unsaved query as an API endpoint, but best practice is to use saved queries (query workers) for the following reasons:
+- Query workers have hard-coded URLs, while queries use a generic `/feature/option/data` path.
+- Query workers are cached across all GeoFabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.
 
-## Bind Parameters Values vs. Placeholders
+## Bind Parameter Values vs. Placeholders
 
-When you add bind parameter placeholders to a query and don't enter values, then you get an error when you run it, because it is missing values.
+You cannot run a query with empty bind parameter values. Otherwise, the query fails with an error.
 
-For Query Workers used as API endpoints, that is actually desired behavior. Often, you want to leave the placeholder so that your user or app can enter whatever values are needed in a specific API call. If you enter the values in the saved query, then the API Endpoint will only every use those values.
+With query workers, you can add placeholder bind parameters with empty values and enable a user or application to add values as needed. If you enter values in the saved query, the API Endpoint only uses those values.
 
 However, sometimes you do want the API call to always use specific values, perhaps because they always access and edit one specific record. If so, then be sure and enter the correct value next to the bind parameter key.
