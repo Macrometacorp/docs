@@ -27,7 +27,7 @@ Macrometa displays a list of default queries and user-defined queries. You canno
 
 ### Copy a Query Worker
 
-Click the stacked pages to copy any Query Worker and then edit it in the Query Builder. This is useful if you need to make a similar Query Worker.
+Click the stacked pages to copy any query worker and edit it in the Query Builder.
 
 ### Explain a Query Worker
 
