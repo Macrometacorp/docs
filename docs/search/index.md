@@ -20,8 +20,8 @@ C8Search provides the following capabilities:
 
 We provide *Views* and *Analyzers* that boost the efficiency of your search queries:
 
-* A [View](../../docs/Search/Views) is a virtual collection that provides fast full-text searching over multiple linked collections.
-* An [Analyzer](../../docs/Search/Analyzers) parses input values and transforms them into sets of sub-values for the following use cases:
+* A [View](../../docs/search/Views) is a virtual collection that provides fast full-text searching over multiple linked collections.
+* An [Analyzer](../../docs/search/Analyzers) parses input values and transforms them into sets of sub-values for the following use cases:
 	* Tokenization (splitting text into words and normalizing them).
 	* Language-specific word stemming.
 	* Case conversion.
