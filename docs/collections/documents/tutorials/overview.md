@@ -12,7 +12,7 @@ Following tutorials cover various user scenarios using Macrometa GDN.
 ## Documents
 
 * [Working with Documents](working-with-documents.md)
-* [Using C8QL](../../../c8ql/fundamentals.md)
+* [Using C8QL](../../../queryworkers/fundamentals.md)
 * [Coming from SQL](../../../c8ql/coming-from-sql.md)
 <!-- * [Using Spot Collections](using-spotcollections.md) -->
 * [Using Realtime DB](using-realtime-updates.md)

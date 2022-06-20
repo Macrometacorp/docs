@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-title: Tutorials
+sidebar_position: 70
+title: Tutorial
 ---
 
 import Tabs from '@theme/Tabs';
