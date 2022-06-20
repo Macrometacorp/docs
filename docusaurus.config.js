@@ -77,7 +77,7 @@ const config = {
       ],
       algolia: {
         appId: 'GHXKYI4VEC', // public + read only and safe to commit
-        apiKey: '89c79be3419cb93594c775fa808715ee', // public + read only and safe to commit
+        apiKey: '91737ee0cdeab53f4cc7a1c650eee730', // public + read only and safe to commit
         indexName: 'prod_DOCS',
         contextualSearch: true,
         searchParameters: {},
