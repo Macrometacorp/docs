@@ -1506,9 +1506,6 @@ Syntax
 
 window.timeLength(2 sec, 10) holds the last 10 events that arrived during last 2 seconds and gets updated for every event arrival and expiration.
 
-Js
---
-
 ###### eval (Function)
 
 This extension evaluates a given string and return the output according to the user specified data type.
