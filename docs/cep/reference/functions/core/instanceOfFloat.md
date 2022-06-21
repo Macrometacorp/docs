@@ -1,5 +1,4 @@
 ---
-sidebar_position: 23
 title: instanceOfFloat (Function)
 ---
 
