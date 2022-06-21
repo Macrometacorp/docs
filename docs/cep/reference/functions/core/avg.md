@@ -25,4 +25,4 @@ EXAMPLE 1
     from fooStream WINDOW TUMBLING_TIME;
 ```
 
-avg(temp) returns the average temp value for all the events based on their arrival and expiry.
+avg(temp) returns the average temp value for all the events based on their arrival and expiration.

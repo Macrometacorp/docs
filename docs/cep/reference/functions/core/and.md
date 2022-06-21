@@ -25,4 +25,4 @@ EXAMPLE 1
     from cscStream WINDOW TUMBLING_LENGTH(10);
 ```
 
-This will returns the result for AND operation of isFraud values as a boolean value for event chunk expiry by window length batch.
+This will returns the result for AND operation of isFraud values as a boolean value for event chunk expiration by window length batch.

@@ -29,7 +29,7 @@ EXAMPLE 1
     from cscStream WINDOW TUMBLING_LENGTH(10);
 ```
 
-This will returns the result for AND operation of isFraud values as a boolean value for event chunk expiry by window length batch.
+This will returns the result for AND operation of isFraud values as a boolean value for event chunk expiration by window length batch.
 
 ### avg (Aggregate Function)
 
@@ -55,7 +55,7 @@ EXAMPLE 1
     from fooStream WINDOW TUMBLING_TIME;
 ```
 
-avg(temp) returns the average temp value for all the events based on their arrival and expiry.
+avg(temp) returns the average temp value for all the events based on their arrival and expiration.
 
 ### count (Aggregate Function)
 
@@ -144,7 +144,7 @@ EXAMPLE 1
     from fooStream WINDOW TUMBLING_TIME(10 sec);
 ```
 
-max(temp) returns the maximum temp value recorded for all the events based on their arrival and expiry.
+max(temp) returns the maximum temp value recorded for all the events based on their arrival and expiration.
 
 ### maxForever (Aggregate Function)
 
@@ -196,7 +196,7 @@ EXAMPLE 1
     from inputStream;
 ```
 
-min(temp) returns the minimum temp value recorded for all the events based on their arrival and expiry.
+min(temp) returns the minimum temp value recorded for all the events based on their arrival and expiration.
 
 ### minForever (Aggregate Function)
 
@@ -248,7 +248,7 @@ EXAMPLE 1
     from cscStream WINDOW TUMBLING_LENGTH(10);
 ```
 
-This will returns the result for OR operation of isFraud values as a boolean value for event chunk expiry by window length batch.
+This will returns the result for OR operation of isFraud values as a boolean value for event chunk expiration by window length batch.
 
 ### stdDev (Aggregate Function)
 
@@ -274,7 +274,7 @@ EXAMPLE 1
     from inputStream;
 ```
 
-stddev(temp) returns the calculated standard deviation of temp for all the events based on their arrival and expiry.
+stddev(temp) returns the calculated standard deviation of temp for all the events based on their arrival and expiration.
 
 ### sum (Aggregate Function)
 
@@ -298,7 +298,7 @@ EXAMPLE 1
     from inputStream;
 ```
 
-This will returns the sum of volume values as a long value for each event arrival and expiry.
+This will returns the sum of volume values as a long value for each event arrival and expiration.
 
 ### unionSet (Aggregate Function)
 
@@ -1182,7 +1182,7 @@ This will returns the 2 latest events with the most frequently appeared card num
 
 ### length (Window)
 
-A sliding length window that holds the last `window.length` events at a given time, and gets updated for each arrival and expiry.
+A sliding length window that holds the last `window.length` events at a given time, and gets updated for each arrival and expiration.
 
 Syntax
 
@@ -1355,7 +1355,7 @@ EXAMPLE 2
     from PurchaseEventStream WINDOW SESSION(5 sec, user, 2 sec)
     group by user;
 
-From the events arriving at the PurchaseEventStream, a session window with 5 seconds session gap is processed based on `user` attribute as the session group identification key. This session window is kept active for 2 seconds after the session expiry to capture late (out of order) event arrivals. If the event timestamp falls in to the last session the session is reactivated. Then all events falling into the same session are aggregated based on `user` attribute, and outputted to the OutputStream.
+From the events arriving at the PurchaseEventStream, a session window with 5 seconds session gap is processed based on `user` attribute as the session group identification key. This session window is kept active for 2 seconds after the session expiration to capture late (out of order) event arrivals. If the event timestamp falls in to the last session the session is reactivated. Then all events falling into the same session are aggregated based on `user` attribute, and outputted to the OutputStream.
 
 ### sort (Window)
 
@@ -1393,7 +1393,7 @@ sort(5, price, `asc`) keeps the events sorted by price in the ascending order. T
 
 ### time (Window)
 
-A sliding time window that holds events that arrived during the last windowTime period at a given time, and gets updated for each event arrival and expiry.
+A sliding time window that holds events that arrived during the last windowTime period at a given time, and gets updated for each event arrival and expiration.
 
 Syntax
 
@@ -1479,7 +1479,7 @@ This uses an defined window to process events arrived every 20 seconds as a batc
 
 ### timeLength (Window)
 
-A sliding time window that, at a given time holds the last window.length events that arrived during last window.time period, and gets updated for every event arrival and expiry.
+A sliding time window that, at a given time holds the last window.length events that arrived during last window.time period, and gets updated for every event arrival and expiration.
 
 Syntax
 
@@ -1505,7 +1505,7 @@ EXAMPLE 1
     insert all events into outputStream
     from cseEventWindow select symbol, price, volume;
 
-window.timeLength(2 sec, 10) holds the last 10 events that arrived during last 2 seconds and gets updated for every event arrival and expiry.
+window.timeLength(2 sec, 10) holds the last 10 events that arrived during last 2 seconds and gets updated for every event arrival and expiration.
 
 Js
 --
@@ -2120,7 +2120,7 @@ EXAMPLE 1
     select list:collect(symbol) as stockSymbols
     from StockStream WINDOW TUMBLING_LENGTH(10);
 
-For the window expiry of 10 events, the collect() function will collect attributes of `symbol` to a single list and return as stockSymbols.
+For the window expiration of 10 events, the collect() function will collect attributes of `symbol` to a single list and return as stockSymbols.
 
 ### merge (Aggregate Function)
 
@@ -2144,7 +2144,7 @@ EXAMPLE 1
     select list:merge(list) as stockSymbols
     from StockStream WINDOW TUMBLING_LENGTH(2);
 
-For the window expiry of 2 events, the merge() function will collect attributes of `list` and merge them to a single list, returned as stockSymbols.
+For the window expiration of 2 events, the merge() function will collect attributes of `list` and merge them to a single list, returned as stockSymbols.
 
 ### add (Function)
 
@@ -2624,7 +2624,7 @@ EXAMPLE 1
     select map:collect(symbol, price) as stockDetails
     from StockStream WINDOW TUMBLING_LENGTH(10);
 
-For the window expiry of 10 events, the collect() function will collectattributes of `key` and `value` to a single map and return as stockDetails.
+For the window expiration of 10 events, the collect() function will collectattributes of `key` and `value` to a single map and return as stockDetails.
 
 ### merge (Aggregate Function)
 
@@ -2646,7 +2646,7 @@ EXAMPLE 1
     select map:merge(map) as stockDetails
     from StockStream WINDOW TUMBLING_LENGTH(2);
 
-For the window expiry of 2 events, the merge() function will collect attributes of `map` and merge them to a single map, returned as stockDetails.
+For the window expiration of 2 events, the merge() function will collect attributes of `map` and merge them to a single map, returned as stockDetails.
 
 ### clear (Function)
 
@@ -9313,7 +9313,7 @@ symbol,as a batch, and returns all the events to the `OutputStream`.
 ### length (Window)
 
 This is a sliding length window that holds the events of the latest
-window length with the unique key and gets updated for the expiry and
+window length with the unique key and gets updated for the expiration and
 arrival of each event. When a new event arrives with the key that is
 already there in the window, then the previous event expires and new
 event is kept within the window.
@@ -9388,7 +9388,7 @@ stream.
 This is a sliding time window that holds the latest unique events that
 arrived during the previous time window. The unique events are
 determined based on the value for a specified unique key parameter. The
-window is updated with the arrival and expiry of each event. When a new
+window is updated with the arrival and expiration of each event. When a new
 event that arrives within a window time period has the same value for
 the unique key parameter as an existing event in the window, the
 previous event is replaced by the new event.
