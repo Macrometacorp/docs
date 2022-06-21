@@ -99,7 +99,7 @@ Macrometa displays a `curl` command you can use to access this endpoint from any
 
 ![Create a Query Worker](/img/quickstart/create-query-worker.png)
 
-## Step 8: Finish the API.
+## Step 7: Finish the API.
 
 In the previous step, you created the `getAddresses` Query Worker, which is basically the READ in a CRUD API (Create, Read, Update, Delete). Build the rest of the API by creating a Query Worker for each of the following queries.
 
