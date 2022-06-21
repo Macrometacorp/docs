@@ -17,7 +17,7 @@ QUERY PARAMETERS
 |------|----------------------------------------------------------------|---------------|-----------------------|----------|---------|
 | arg  | The value that needs to be compared to find the minimum value. |               | INT LONG DOUBLE FLOAT | No       | Yes     |
 
-EXAMPLE 1
+## Example 1
 
 ```js
     insert into outputStream

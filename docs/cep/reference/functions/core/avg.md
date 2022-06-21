@@ -17,7 +17,7 @@ QUERY PARAMETERS
 |------|-------------------------------------|---------------|-----------------------|----------|---------|
 | arg  | The value that need to be averaged. |               | INT LONG DOUBLE FLOAT | No       | Yes     |
 
-EXAMPLE 1
+## Example 1
 
 ```js
     insert into barStream

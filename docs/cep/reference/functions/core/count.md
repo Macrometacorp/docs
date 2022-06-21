@@ -18,7 +18,7 @@ QUERY PARAMETERS
 |------|---------------------------------------------------------------------------------------|---------------|------------------------------------------|----------|---------|
 | arg  | This function accepts one parameter. It can belong to any one of the available types. |               | INT LONG DOUBLE FLOAT STRING BOOL OBJECT | Yes      | Yes     |
 
-EXAMPLE 1
+## Example 1
 
 ```js
     insert into barStream

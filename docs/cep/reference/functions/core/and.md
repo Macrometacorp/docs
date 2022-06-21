@@ -17,7 +17,7 @@ QUERY PARAMETERS
 |------|-------------------------------------------|---------------|---------------------|----------|---------|
 | arg  | The value that needs to be AND operation. |               | BOOL                | No       | Yes     |
 
-EXAMPLE 1
+## Example 1
 
 ```js
     insert into alertStream

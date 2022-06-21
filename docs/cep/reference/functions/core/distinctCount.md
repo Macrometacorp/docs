@@ -17,7 +17,7 @@ QUERY PARAMETERS
 |------|-----------------------------------------------------------------------------|---------------|------------------------------|----------|---------|
 | arg  | The object for which the number of distinct occurences needs to be counted. |               | INT LONG DOUBLE FLOAT STRING | No       | Yes     |
 
-EXAMPLE 1
+## Example 1
 
 ```js
     insert into barStream
