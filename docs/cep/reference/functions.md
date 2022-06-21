@@ -2091,8 +2091,6 @@ If the input `json` is `{name:'John', enrolledSubjects:['Mathematics', 'Physics'
 
 If the input `json` is `{name:'John', age:25}`,and the `path` is passed as `$.salary` then the system will produce `('$.salary', null)`, as the `fail.on.missing.attribute` is `true` and there are no matching element for `$.salary`.
 
-List
-----
 
 ###### collect (Aggregate Function)
 
