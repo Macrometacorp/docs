@@ -10,7 +10,7 @@ Macrometa GDN allows you to integrate streaming data and take appropriate action
 
 :::note
 
-Stream Workers are currently an Enterprise-only feature. We will be rolling it out to all users in Q1 of 2022.
+Stream Workers are currently an Enterprise-only feature.
 
 Contact support@macrometa.com if you have any questions.
 
