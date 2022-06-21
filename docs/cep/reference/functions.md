@@ -2167,7 +2167,7 @@ Function returns the updated list after adding the value `IBM` in the last index
 
     list:add(stockSymbols, 'IBM', 0)
 
-Function returns the updated list after adding the value `IBM` in the 0th index\`.
+Function returns the updated list after adding the value `IBM` in the 0th index`.
 
 ###### addAll (Function)
 
@@ -2451,8 +2451,7 @@ Syntax
 
     list:removeAll(stockSymbols, latestStockSymbols)
 
-This returns the updated list, stockSymbols after removing all the
-values in latestStockSymbols.
+This returns the updated list, stockSymbols after removing all the values in latestStockSymbols.
 
 ###### removeByIndex (Function)
 
