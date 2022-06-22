@@ -5,7 +5,8 @@ title: Dynamo Mode
 
 Dynamo tables are always created globally and written to the `_system` GeoFabric regardless of which GeoFabric received the API call.
 
-For more information about Dynamo Mode, refer to the [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamodb-api.pdf#API_Operations_Amazon_DynamoDB) documentation.
+For more information about Dynamo Mode, refer to the [Amazon 
+DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamodb-api.pdf#API_Operations_Amazon_DynamoDB) documentation.
 
 ## Prerequisites
 
@@ -62,42 +63,11 @@ For more information about Dynamo Mode, refer to the [Amazon DynamoDB](https://d
         --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
-### Create local table
-
-```bash
-    aws dynamodb create-table \
-        --table-name Music \
-        --attribute-definitions \
-            AttributeName=Artist,AttributeType=S \
-            AttributeName=SongTitle,AttributeType=S \
-        --key-schema \
-            AttributeName=Artist,KeyType=HASH \
-            AttributeName=SongTitle,KeyType=RANGE \
-        --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
-        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo \
-        --tags Key=Local,Value=True
-```
-
-:::note
-Local tables are allowed only if flag `dynamo_local_tables=true` for the `fabric`. 
-This flag can be set in `_guestDBs` collection for the corresponding geofabric.
-:::
-
 ### List global tables
 
 ```bash
     aws dynamodb list-global-tables --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
-
-### List local tables
-
-```bash
-    aws dynamodb list-tables --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
-```
-
-:::note
-`list-tables` will return local tables when `dynamo_local_tables` flag is `True`.
-:::
 
 ### Put items
 
@@ -123,7 +93,8 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
 
 ```bash
     aws dynamodb batch-get-item \
-        --request-items '{"Music": {"Keys": [{"Artist": {"S": "Obscure Indie Band"},"SongTitle": {"S": "Call Me Today"}},{"Artist": {"S": "Luke Combs"},"SongTitle": {"S": "Tequila"}}],"ProjectionExpression":"Artist"}}' \
+        --request-items '{"Music": {"Keys": [{"Artist": {"S": "Obscure Indie Band"},"SongTitle": {"S": "Call Me Today"}},{"Artist": {"S": "Luke Combs"},"SongTitle": {"S": 
+"Tequila"}}],"ProjectionExpression":"Artist"}}' \
         --return-consumed-capacity TOTAL \
         --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
@@ -132,13 +103,30 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
 
 ```bash
    aws dynamodb batch-write-item \
-     --request-items '{"Music": [{"PutRequest": {"Item": {"Artist": {"S": "TestName1"},"SongTitle": {"S": "The Best1"}}}},{"PutRequest": {"Item": {"Artist": {"S": "TestName2"},"SongTitle": {"S": "The Best2"}}}}]}' \
+     --request-items '{"Music": [{"PutRequest": {"Item": {"Artist": {"S": "TestName1"},"SongTitle": {"S": "The Best1"}}}},{"PutRequest": {"Item": {"Artist": {"S": 
+"TestName2"},"SongTitle": {"S": "The Best2"}}}}]}' \
      --return-consumed-capacity INDEXES \
      --return-item-collection-metrics SIZE \
      --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
 ### Scan
+
+**Retrieve All Items:**
+
+```bash
+    aws dynamodb scan \
+        --table-name Music \
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
+```
+**Count All Items:**
+```bash
+    aws dynamodb scan \
+        --table-name Music \
+        --select "COUNT" \
+        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
+```
+**Filter Items:**
 
 ```bash
     aws dynamodb scan \
@@ -151,14 +139,6 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
 ```
 
 ### Query items
-
-**Query All Items:**
-
-```bash
-    aws dynamodb query \
-        --table-name Music \
-        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
-```
 
 **Query By Artist Name:**
 
@@ -174,29 +154,22 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
 
 ```bash
     aws dynamodb query \
-        --table-name Music \
-        --key-condition-expression "Artist == :n1 OR begins_with(Artist, :n2)" \
-        --expression-attribute-values  '{":n1":{"S":"Luke Combs"}, ":n2":{"S":"Obscure"}}' \
-        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo  
+      --table-name Music \
+      --key-condition-expression "Artist = :n1 AND begins_with(SongTitle, :n2)" \
+      --expression-attribute-values  '{":n1": {"S": "Luke Combs"}, ":n2": {"S": "Tequila"}}' \
+      --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
+
 ```
 
 ```bash
     aws dynamodb query \
-        --table-name Music \
-        --key-condition-expression "Artist == :n1 OR begins_with(Artist, :n2)" \
-        --filter-expression "#a <> :n1" \
-        --expression-attribute-names '{"#a": "Artist"}' \
-        --expression-attribute-values  '{":n1":{"S":"Luke Combs"}, ":n2":{"S":"Obscure"}}' \
-        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
-```
-
-### Count items
-
-```bash
-    aws dynamodb query \
-        --table-name Music \
-        --select COUNT \
-        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
+      --table-name Music \
+      --key-condition-expression "Artist = :n1 AND begins_with(SongTitle, :n2)" \
+      --filter-expression "#a = :n1 and  #b = :n2" \
+      --expression-attribute-names '{"#a": "Artist", "#b": "SongTitle"}' \
+      --expression-attribute-values  '{":n1":{"S":"Luke Combs"}, ":n2":{"S":"Tequila"}}' \
+      --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
+      
 ```
 
 ### Update item
@@ -208,14 +181,6 @@ This flag can be set in `_guestDBs` collection for the corresponding geofabric.
         --update-expression "SET Year = :y, SongTitle = :t" \
         --expression-attribute-values  '{":y":{"N":"2020"}, ":t":{"S":"Happy Day"}}' \
         --return-values ALL_NEW \
-        --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
-```
-
-### Query all items
-
-```bash
-    aws dynamodb query \
-        --table-name Music \
         --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
