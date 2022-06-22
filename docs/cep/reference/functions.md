@@ -3215,7 +3215,7 @@ Syntax
     select math:abs(inValue) as absValue
     from InValueStream;
 
-Irrespective of whether the `invalue` in the input stream holds a value of abs(3) or abs(-3),the function returns 3 since the absolute value of both 3 and -3 is 3. The result directed to OutMediationStream stream.
+Regardless of whether the `invalue` in the input stream holds a value of abs(3) or abs(-3),the function returns 3 since the absolute value of both 3 and -3 is 3. The result directed to OutMediationStream stream.
 
 ###### acos (Function)
 
@@ -3267,7 +3267,9 @@ If the `inValue` in the input stream is given, the function calculates the arc-s
 
 ###### atan (Function)
 
-1\. If a single `p1` is received, this function returns the arc-tangent (inverse tangent) value of `p1`. 2. If `p1` is received along with an optional `p1`, it considers them as x and y coordinates and returns the arc-tangent (inverse tangent) value. The returned value is in radian scale. This function wraps the `java.lang.Math.atan()` function.
+If a single `p1` is received, this function returns the arc-tangent (inverse tangent) value of `p1`.
+
+If `p1` is received along with an optional `p1`, it considers them as x and y coordinates and returns the arc-tangent (inverse tangent) value. The returned value is in radian scale. This function wraps the `java.lang.Math.atan()` function.
 
 Syntax
 
