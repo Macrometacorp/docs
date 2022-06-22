@@ -3107,8 +3107,7 @@ If `company` is a map with key-value pairs, (`symbol` : `gdn`),(`volume` : 100),
 
     toXML(company)
 
-If `company` is a map with key-value pairs, (`symbol` : `gdn`), (`volume` : 100), and (`price` : 200), this function returns XML without root element as a string,
-`<symbol>gdn</symbol><volume><100></volume><price>200</price>`.
+If `company` is a map with key-value pairs, (`symbol` : `gdn`), (`volume` : 100), and (`price` : 200), this function returns XML without root element as a string, `<symbol>gdn</symbol><volume><100></volume><price>200</price>`.
 
 ###### values (Function)
 
