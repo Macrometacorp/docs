@@ -5,8 +5,7 @@ title: Dynamo Mode
 
 Dynamo tables are always created globally and written to the `_system` GeoFabric regardless of which GeoFabric received the API call.
 
-For more information about Dynamo Mode, refer to the [Amazon 
-DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamodb-api.pdf#API_Operations_Amazon_DynamoDB) documentation.
+For more information about Dynamo Mode, refer to the [Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamodb-api.pdf#API_Operations_Amazon_DynamoDB) documentation.
 
 ## Prerequisites
 
@@ -47,6 +46,8 @@ DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamod
     :::
 
 ## Operations
+
+This section provides calls you can use for general management operations using Dynamo Mode.
 
 ### Create global table
 
@@ -112,21 +113,26 @@ DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamod
 
 ### Scan
 
-**Retrieve All Items:**
+This section provides calls you can use to view all data or widely filtered data in Dynamo Mode.
+
+#### Retrieve All Items
 
 ```bash
     aws dynamodb scan \
         --table-name Music \
         --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
-**Count All Items:**
+
+#### Count All Items
+
 ```bash
     aws dynamodb scan \
         --table-name Music \
         --select "COUNT" \
         --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
-**Filter Items:**
+
+#### Filter Items
 
 ```bash
     aws dynamodb scan \
@@ -140,7 +146,9 @@ DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamod
 
 ### Query items
 
-**Query By Artist Name:**
+This section provides calls you can use for querying specific items in Dynamo Mode.
+
+#### Query By Artist Name
 
 ```bash
     aws dynamodb query \
@@ -150,7 +158,7 @@ DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/dynamod
         --endpoint-url https://api-gdn.paas.macrometa.io/_api/dynamo
 ```
 
-**Query By complex conditions:**
+#### Query By complex conditions
 
 ```bash
     aws dynamodb query \
