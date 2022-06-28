@@ -292,13 +292,15 @@ async function streams() {
       const stream = client.stream("my-stream", true);
       await stream.createStream();
 
-      const producer = stream.producer("test.macrometa.io");
-
+      const producerOTP = await stream.getOtp();
+      const producer = await stream.producer("gdn.paas.macrometa.io", {
+        otp: producerOTP,
+    });
       producer.on("open", () => {
         // If you message is an object, convert the obj to string.
         // e.g. const message = JSON.stringify({message:'Hello World'});
         const message = "Hello World";
-        const payloadObj = { payload: Buffer.from(str).toString("base64") };
+        const payloadObj = { payload: Buffer.from(message).toString("base64") };
         producer.send(JSON.stringify(payloadObj));
       });
 
