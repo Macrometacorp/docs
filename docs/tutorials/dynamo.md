@@ -113,7 +113,7 @@ This section provides calls you can use for general management operations using 
 
 ### Scan
 
-This section provides calls you can use to view all data or widely filtered data in Dynamo Mode.
+This section provides calls you can use to view all data or broadly filtered data in Dynamo Mode.
 
 #### Retrieve All Items
 
