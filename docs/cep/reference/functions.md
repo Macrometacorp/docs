@@ -4129,10 +4129,7 @@ Syntax
     from InValueStream
     select math:tanh(inValue) as tanhValue;
 
-If the `inVaue` in the input stream is given, this function calculates
-the hyperbolic tangent value of the same and directs the output to
-`OutMediationStream` stream. For example, tanh(6d) returns
-0.9999877116507956.
+If the `inVaue` in the input stream is given, this function calculates the hyperbolic tangent value of the same and directs the output to `OutMediationStream` stream. For example, tanh(6d) returns 0.9999877116507956.
 
 ###### toDegrees (Function)
 
@@ -4157,9 +4154,7 @@ Syntax
     from InValueStream
     select math:toDegrees(inValue) as degreesValue;
 
-The function converts the `inValue` in the input stream from radians
-to degrees and directs the output to `OutMediationStream` output
-stream. For example, toDegrees(6d) returns 343.77467707849394.
+The function converts the `inValue` in the input stream from radians to degrees and directs the output to `OutMediationStream` output stream. For example, toDegrees(6d) returns 343.77467707849394.
 
 ###### toRadians (Function)
 
