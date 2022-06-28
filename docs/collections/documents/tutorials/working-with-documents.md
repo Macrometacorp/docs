@@ -1,10 +1,13 @@
 ---
 sidebar_position: 2
-title: Working with Documents
+title: Quickstart
 ---
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+# Quickstart - Document Collections
+
+This page guides you through quickly getting started with document collections.
 
 ## Pre-requisite
 
