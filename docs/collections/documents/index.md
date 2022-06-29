@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Documents
+title: Document Store
 ---
 
 import Tabs from '@theme/Tabs';
@@ -53,7 +53,7 @@ If you do not specify a key, one is automatically created. An automatic key is o
 
 A *document revision* (`_rev`) is the MVCC (Multiple Version Concurrency Control) token that specifies a revision of a document. Revisions are read-only.
 
-The `_rev` string is a timestamp that uses the local clock of the database. If different servers in a cluster have a time skew, the timestamps will not be comparable. The database automatically verifies that messages are consistently timestamped on both servers. 
+The `_rev` string is a timestamp that uses the local clock of the database. If different servers in a cluster have a time skew, the timestamps will not be comparable. The database automatically verifies that messages are consistently timestamped on both servers.
 
 If there is causality between events on different servers, timestamps increase from cause to effect. The server might occasionally use a timestamp in the future to maintain consistency.
 
