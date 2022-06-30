@@ -26,7 +26,8 @@ Users can authenticate with Macrometa GDN via `email and password`, an `API Key`
 ```js
 const jsc8 = require("jsc8");
 const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "", fabricName: '_system'});
-await client.login("nemo@nautilus.com", "xxxxxx");
+async function login() {
+  return await client.login("nemo@nautilus.com", "xxxxxx")}
 ```
 
 </TabItem>
