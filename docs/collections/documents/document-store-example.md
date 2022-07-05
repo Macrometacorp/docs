@@ -3,6 +3,9 @@ title: Document Store Example
 sidebar_position: 40
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 This page provides an example of how to create and use a document store using code.
 
 Assume the following credentials for this example:
