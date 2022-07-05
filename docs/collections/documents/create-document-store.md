@@ -12,8 +12,6 @@ This page explains how to create a new Document Store Collection.
 
 ## Create Collection with Code
 
-We can now create collection in the fabric. To do this, first you connect to fabric and then create a collection called `employees`.
-
 The below example shows the steps for connecting a fabric and then creating a collection called `employees`.
 
 <Tabs groupId="operating-systems">
@@ -38,7 +36,7 @@ The below example shows the steps for connecting a fabric and then creating a co
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
   // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
+  // Or use Email and Password to Authenticate client instance
   const client = new jsc8("https://gdn.paas.macrometa.io");
 
   await client.login("nemo@nautilus.com", "xxxxxx");
