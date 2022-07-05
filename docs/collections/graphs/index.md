@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Concepts
+title: Graph Edge
 ---
 
 A Graph consists of `vertices` and `edges`. Edges are stored as documents in `edge collections`.
