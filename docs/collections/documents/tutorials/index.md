@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Overview
+title: Tutorials
 ---
 
 :::note
@@ -17,23 +17,14 @@ Following tutorials cover various user scenarios using Macrometa GDN.
 <!-- * [Using Spot Collections](using-spotcollections.md) -->
 * [Using Realtime DB](using-realtime-updates.md)
 
-## Geo Spatial
-
-* [GeoJSON and Geo Spatial Queries](overview.md)
-
 ## Graphs
 
-* [Working with Graphs](overview.md)
+* [Working with Graphs](../../graphs/quickstart.md)
 * [Graph Queries](../../graphs/tutorials/graph-queries.md)
-
-## Queries as API
-
-* [Working with RESTQL](overview.md)
 
 ## Global Streams
 
 * [Pub-Sub with Streams](../../../streams/tutorials/pub-sub-streams.md)
-* [Streams as Message Queues](overview.md)
 
 ## Stream Processing
 
