@@ -226,7 +226,7 @@ All of the above examples are rather small so they are easier to comprehend and 
 
 A lot of graph functions accept a vertex (or edge) example as parameter as defined in the next sections.
 
-Examples will explain the API on the [the city graph](concepts.md#the-city-graph):
+Examples will explain the API on the [the city graph](#the-city-graph):
 
 ![Social Example Graph](/img/cities_graph.png)
 
