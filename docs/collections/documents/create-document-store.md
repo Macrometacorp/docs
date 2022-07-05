@@ -1,6 +1,6 @@
 ---
-sidebar_position: 20
 title: Create a Document Store
+sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
