@@ -1,7 +1,6 @@
 ---
 sidebar_position: 5
 title: Tenant Quotas & Limits
-slug: quotas
 ---
 
 This page describes the rate limits for all PaaS GDN customers. Each quota applies on a per-Region basis unless otherwise specified. Contact support@macrometa.com if you would like to request higher metered tier limits or learn about [dedicated fabrics](https://www.macrometa.com/enterprise).
