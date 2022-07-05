@@ -4440,9 +4440,7 @@ The query reorders events based on the `eventTime` attribute value and optimises
 
 ###### kslack (Stream Processor)
 
-Stream processor performs reordering of out-of-order events using
-\[K-Slack
-algorithm\](https://www2.informatik.uni-erlangen.de/publication/download/IPDPS2013.pdf).
+Stream processor performs reordering of out-of-order events using K-Slack algorithm.
 
 Syntax
 
@@ -4471,9 +4469,7 @@ Syntax
     select eventTime, symbol, volume
     from StockStream#reorder:kslack(eventTime, 5000);
 
-The query reorders events based on the `eventTime` attribute value,
-and it forcefully flushes all the events who have arrived older than the
-given `timeout` value (`5000` milliseconds) every second.
+The query reorders events based on the `eventTime` attribute value, and it forcefully flushes all the events who have arrived older than the given `timeout` value (`5000` milliseconds) every second.
 
 Script
 ------
@@ -4497,30 +4493,14 @@ Syntax
      return res;
     };
 
-This JS function will consume 3 var variables, concatenate them and will
-return as a string
+This JS function will consume 3 var variables, concatenate them and will return as a string
 
 Sink
 ----
 
 ###### email (Sink)
 
-The email sink uses the `smtp` server to publish events via emails.
-The events can be published in `text`, `xml` or `json` formats.
-The user can define email sink parameters in either the
-`\<SP_HOME>/conf/<PROFILE>/deployment yaml` file or in the stream
-definition. The email sink first checks the stream definition for
-parameters, and if they are no configured there, it checks the
-`deployment.yaml` file. If the parameters are not configured in either
-place, default values are considered for optional parameters. If you
-need to configure server system parameters that are not provided as
-options in the stream definition, then those parameters need to be
-defined them in the `deployment.yaml` file under `email sink
-properties`. For more information about the SMTP server parameters, see
-https://javaee.github.io/javamail/SMTP-Transport. Further, some email
-accounts are required to enable the `access to less secure apps`
-option. For gmail accounts, you can enable this option via
-https://myaccount.google.com/lesssecureapps.
+The email sink uses the `smtp` server to publish events via emails. The events can be published in `text`, `xml` or `json` formats. The user can define email sink parameters in either the `\<SP_HOME>/conf/<PROFILE>/deployment yaml` file or in the stream definition. The email sink first checks the stream definition for parameters, and if they are no configured there, it checks the `deployment.yaml` file. If the parameters are not configured in either place, default values are considered for optional parameters. If you need to configure server system parameters that are not provided as options in the stream definition, then those parameters need to be defined them in the `deployment.yaml` file under `email sink properties`. For more information about the SMTP server parameters, see https://javaee.github.io/javamail/SMTP-Transport. Some email accounts require the `access to less secure apps` option. For GMail accounts, you can enable this option via https://myaccount.google.com/lesssecureapps.
 
 Syntax
 
@@ -4546,7 +4526,7 @@ Syntax
 | attachments          | File paths of the files that need to be attached to the email. These paths should be absolute paths. They can be either directories or files . If the path is to a directory, all the files located at the first level (i.e., not within another sub directory) are attached. | None                                                       | STRING              | Yes      | Yes     |
 | connection.pool.size | Number of concurrent Email client connections.                                                                                                                                                                                                                                | 1                                                          | INT                 | Yes      | No      |
 
-System Parameters
+## System Parameters
 
 | Name                              | Description                                                                                                                                                                                                                                                                                                                                                                           | Default Value                                                   | Possible Parameters                                                                                                                               |
 |-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4588,62 +4568,31 @@ System Parameters
 
     CREATE SINK FooStream WITH (type='email', map.type ='json', username='sender.account', address='sender.account@gmail.com',password='account.password',subject='Alerts from gdn Stream Processor',to='{{email}}') (email string, loginId int, name string);
 
-This example illustrates how to publish events via an email sink based
-on the values provided for the mandatory parameters. As shown in the
-example, it publishes events from the `FooStream` in `json` format
-as emails to the specified `to` recipients via the email sink. The
-email is sent from the `sender.account@gmail.com` email address via a
-secure connection.
+This example illustrates how to publish events via an email sink based on the values provided for the mandatory parameters. As shown in the example, it publishes events from the `FooStream` in `json` format as emails to the specified `to` recipients via the email sink. The email is sent from the `sender.account@gmail.com` email address via a secure connection.
 
 ## Example 2
 
     CREATE SINK FooStream WITH type='email', map.type ='json', subject='Alerts from gdn Stream Processor',to='{{email}}') (email string, loginId int, name string);
 
-This example illustrates how to configure the ## Query Parameters and the
-system parameters in the `deployment.yaml` file. 
+This example illustrates how to configure the ## Query Parameters and the system parameters in the `deployment.yaml` file. 
 
-As shown in the example, events from the
-FooStream are published in `json` format via the email sink as emails
-to the given `to` recipients. The email is sent from the
-`sender.account@gmail.com` address via a secure connection.
+As shown in the example, events from the FooStream are published in `json` format via the email sink as emails to the given `to` recipients. The email is sent from the `sender.account@gmail.com` address via a secure connection.
 
 ## Example 3
 
     CREATE SINK FooStream WITH (type='email', map.type ='json', username='sender.account', address='sender.account@gmail.com',password='account.password',host='smtp.gmail.com',port='465',ssl.enable='true',auth='true',content.type='text/html',subject='Alerts from gdn Stream Processor-{{name}}',to='to1.account@gmail.com, to2.account@gmail.com',cc='cc1.account@gmail.com, cc2.account@gmail.com',bcc='bcc1.account@gmail.com) (name string, age int, country string);
 
-This example illustrates how to publish events via the email sink.
-Events from the `FooStream` stream are published in `xml` format via
-the email sink as a text/html message and sent to the specified `to`,
-`cc`, and `bcc` recipients via a secure connection. The `name`
-namespace in the `subject` attribute is the value of the `name`
-parameter in the corresponding output event.
+This example illustrates how to publish events via the email sink. Events from the `FooStream` stream are published in `xml` format via the email sink as a text/html message and sent to the specified `to`, `cc`, and `bcc` recipients via a secure connection. The `name` namespace in the `subject` attribute is the value of the `name` parameter in the corresponding output event.
 
 ## Example 4
     
     CREATE SINK FooStream WITH (type='email', map.type ='json', username='sender.account', address='sender.account@gmail.com',password='account.password',host='smtp.gmail.com',port='465',ssl.enable='true',auth='true',content.type='text/html',subject='Alerts from gdn Stream Processor-{{name}}',to='to1.account@gmail.com, to2.account@gmail.com',cc='cc1.account@gmail.com, cc2.account@gmail.com',bcc='bcc1.account@gmail.comattachments= '{{attachments}}') (name string, age int, country string, attachments string);
 
-This example illustrates how to publish events via the email sink. Here,
-the email also contains attachments. Events from the FooStream are
-published in `xml` format via the email sink as a `text/html`
-message to the specified `to`,`cc`, and `bcc` recipients via a
-secure connection. The `name` namespace in the `subject` attribute
-is the value for the `name` parameter in the corresponding output
-event. The attachments included in the email message are the local files
-available in the path specified as the value for the `attachments`
-attribute.
+This example illustrates how to publish events via the email sink. Here, the email also contains attachments. Events from the FooStream are published in `xml` format via the email sink as a `text/html` message to the specified `to`,`cc`, and `bcc` recipients via a secure connection. The `name` namespace in the `subject` attribute is the value for the `name` parameter in the corresponding output event. The attachments included in the email message are the local files available in the path specified as the value for the `attachments` attribute.
 
 ###### grpc (Sink)
 
-This extension publishes event data encoded into GRPC Classes as defined
-in the user input jar. This extension has a default gRPC service classes
-added. The default service is called "EventService".
-If we want to use our custom gRPC services, we have to pack
-auto-generated gRPC service classes and protobuf classes into a jar file
-and add it into the project classpath (or to the `jars` folder in the
-`stream processor-tooling` folder if we use it with `stream processor-tooling`).
-This grpc sink is used for scenarios where we send a request and don't
-expect a response back. I.e getting a google.protobuf.Empty response
-back.
+This extension publishes event data encoded into GRPC Classes as defined in the user input jar. This extension has a default gRPC service classes added. The default service is called "EventService". If we want to use our custom gRPC services, we have to pack auto-generated gRPC service classes and protobuf classes into a jar file and add it into the project classpath (or to the `jars` folder in the `stream processor-tooling` folder if we use it with `stream processor-tooling`). This grpc sink is used for scenarios where we send a request and don't expect a response back. I.e getting a google.protobuf.Empty response back.
 
 Syntax
 
@@ -4678,76 +4627,41 @@ Syntax
 
     CREATE SINK FooStream WITH (type='grpc', map.type='JSON', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.EventService/consume') (message String);
 
-Here a stream named FooStream is defined with grpc sink. A grpc server
-should be running at 194.23.98.100 listening to port 8080. sink.id is
-set to 1 here. So we can write a source with sink.id 1 so that it will
-listen to responses for requests published from this stream. Note that
-since we are using EventService/consume the sink will be operating in
-default mode
+Here a stream named FooStream is defined with grpc sink. A grpc server should be running at 194.23.98.100 listening to port 8080. sink.id is set to 1 here. So we can write a source with sink.id 1 so that it will listen to responses for requests published from this stream. Note that since we are using EventService/consume the sink will be operating in default mode
 
 ## Example 2
 
     CREATE SINK FooStream WITH (type='grpc', map.type='JSON', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.EventService/consume', headers='{{headers}}', map.payload='{{message}}') (message String, headers String);
 
-A similar example to above but with headers. Headers are also send into
-the stream as a data. In the sink headers dynamic property reads the
-value and sends it as MetaData with the request
+A similar example to above but with headers. Headers are also send into the stream as a data. In the sink headers dynamic property reads the value and sends it as MetaData with the request
 
 ## Example 3
 
     CREATE SINK FooStream WITH (type='grpc', map.type='protobuf', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.MyService/send') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
 
-Here a stream named FooStream is defined with grpc sink. A grpc server
-should be running at 134.23.43.35 listening to port 8080 since there is
-no mapper provided, attributes of stream definition should be as same as
-the attributes of protobuf message definition.
+Here a stream named FooStream is defined with grpc sink. A grpc server should be running at 134.23.43.35 listening to port 8080 since there is no mapper provided, attributes of stream definition should be as same as the attributes of protobuf message definition.
 
 ## Example 4
 
     CREATE SINK FooStream WITH (type='grpc', map.type='protobuf', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.MyService/testMap') (stringValue string, intValue int,map object);
 
-Here a stream named FooStream is defined with grpc sink. A grpc server
-should be running at 134.23.43.35 listening to port 8080. The `map
-object` in the stream definition defines that this stream is going to
-use Map object with grpc service. We can use any map object that extends
-`java.util.AbstractMap` class.
+Here a stream named FooStream is defined with grpc sink. A grpc server should be running at 134.23.43.35 listening to port 8080. The `map object` in the stream definition defines that this stream is going to use Map object with grpc service. We can use any map object that extends `java.util.AbstractMap` class.
 
 ## Example 5
 
     CREATE SINK FooStream WITH (type='grpc', map.type='protobuf', publisher.url = 'grpc://134.23.43.35:8080/org.gdn.grpc.MyService/testMap', map.payload="stringValue='a',longValue='b',intValue='c',booleanValue='d',floatValue = 'e', doubleValue = 'f'"') (a string, b long, c int,d bool,e float,f double);
 
-Here a stream named FooStream is defined with grpc sink. A grpc server
-should be running at 194.23.98.100 listening to port 8080. `map.payload` is
-provided in this stream, therefore we can use any name for the
-attributes in the stream definition, but we should correctly map those
-names with protobuf message attributes. If we are planning to send
-metadata within a stream we should use `map.payload` to map attributes to
-identify the metadata attribute and the protobuf attributes separately.
+Here a stream named FooStream is defined with grpc sink. A grpc server should be running at 194.23.98.100 listening to port 8080. `map.payload` is provided in this stream, therefore we can use any name for the attributes in the stream definition, but we should correctly map those names with protobuf message attributes. If we are planning to send metadata within a stream we should use `map.payload` to map attributes to identify the metadata attribute and the protobuf attributes separately.
 
 ## Example 6
 
     CREATE SINK FooStream WITH (type='grpc', map.type='protobuf', publisher.url = 'grpc://194.23.98.100:8888/org.gdn.grpc.test.StreamService/clientStream') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
 
-Here in the `grpc` sink, we are sending a stream of requests to the server
-that runs on 194.23.98.100 and port 8888. When we need to send a stream
-of requests from the grpc sink we have to define a client stream RPC
-method.Then the stream processor will identify whether it's a unary method or a
-stream method and send requests according to the method type.
+Here in the `grpc` sink, we are sending a stream of requests to the server that runs on 194.23.98.100 and port 8888. When we need to send a stream of requests from the grpc sink we have to define a client stream RPC method.Then the stream processor will identify whether it's a unary method or a stream method and send requests according to the method type.
 
 ###### grpc-call (Sink)
 
-This extension publishes event data encoded into GRPC Classes as defined
-in the user input jar. This extension has a default gRPC service classes
-jar added. The default service is called "EventService".
-If we want to use our custom gRPC services, we have to pack
-auto-generated gRPC service classes and protobuf classes into a jar file
-and add it into the project classpath (or to the `jars` folder in the
-`stream processor-tooling` folder if we use it with `stream processor-tooling`).
-This grpc-call sink is used for scenarios where we send a request out
-and expect a response back. In default mode this will use EventService
-process method. grpc-call-response source is used to receive the
-responses. A unique sink.id is used to correlate between the sink and
-its corresponding source.
+This extension publishes event data encoded into GRPC Classes as defined in the user input jar. This extension has a default gRPC service classes jar added. The default service is called "EventService". If we want to use our custom gRPC services, we have to pack auto-generated gRPC service classes and protobuf classes into a jar file and add it into the project classpath (or to the `jars` folder in the `stream processor-tooling` folder if we use it with `stream processor-tooling`). This grpc-call sink is used for scenarios where we send a request out and expect a response back. In default mode this will use EventService process method. grpc-call-response source is used to receive the responses. A unique sink.id is used to correlate between the sink and its corresponding source.
 
 Syntax
 
@@ -4787,12 +4701,7 @@ Syntax
 
     CREATE SOURCE BarStream WITH (type='grpc-call-response', sink.id= '1') (message String);
 
-Here a stream named FooStream is defined with grpc sink. A grpc server
-should be running at 194.23.98.100 listening to port 8080. sink.id is
-set to 1 here. So we can write a source with sink.id 1 so that it will
-listen to responses for requests published from this stream. Note that
-since we are using EventService/process the sink will be operating in
-default mode
+Here a stream named FooStream is defined with grpc sink. A grpc server should be running at 194.23.98.100 listening to port 8080. sink.id is set to 1 here. So we can write a source with sink.id 1 so that it will listen to responses for requests published from this stream. Note that since we are using EventService/process the sink will be operating in default mode
 
 ## Example 2
 
@@ -4800,9 +4709,7 @@ default mode
 
     CREATE SOURCE BarStream WITH (type='grpc-call-response', sink.id= '1') (message String);
 
-Here with the same FooStream definition we have added a BarStream which
-has a grpc-call-response source with the same sink.id 1. So the
-responses for calls sent from the FooStream will be added to BarStream.
+Here with the same FooStream definition we have added a BarStream which has a grpc-call-response source with the same sink.id 1. So the responses for calls sent from the FooStream will be added to BarStream.
 
 ## Example 3
 
@@ -4810,17 +4717,7 @@ responses for calls sent from the FooStream will be added to BarStream.
 
     CREATE SOURCE FooStream WITH (type='grpc-call-response', map.type='protobuf', receiver.url = 'grpc://localhost:8888/org.gdn.grpc.MyService/process', sink.id= '1',) (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
 
-Here a stream named FooStream is defined with grpc sink. A grpc server
-should be running at 194.23.98.100 listening to port 8080. We have added
-another stream called BarStream which is a grpc-call-response source
-with the same sink.id 1 and as same as FooStream definition. So the
-responses for calls sent from the FooStream will be added to BarStream.
-Since there is no mapping available in the stream definition attributes
-names should be as same as the attributes of the protobuf message
-definition. (Here the only reason we provide receiver.url in the
-grpc-call-response source is for protobuf mapper to map Response into a
-stream processor event, we can give any address and any port number in the URL,
-but we should provide the service name and the method name correctly)
+Here a stream named FooStream is defined with grpc sink. A grpc server should be running at 194.23.98.100 listening to port 8080. We have added another stream called BarStream which is a grpc-call-response source with the same sink.id 1 and as same as FooStream definition. So the responses for calls sent from the FooStream will be added to BarStream. Since there is no mapping available in the stream definition attributes names should be as same as the attributes of the protobuf message definition. (Here the only reason we provide receiver.url in the grpc-call-response source is for protobuf mapper to map Response into a stream processor event, we can give any address and any port number in the URL, but we should provide the service name and the method name correctly)
 
 ## Example 4
 
@@ -4828,20 +4725,11 @@ but we should provide the service name and the method name correctly)
 
     CREATE SOURCE FooStream WITH (type='grpc-call-response', map.type='protobuf', receiver.url = 'grpc://localhost:8888/org.gdn.grpc.test.MyService/process', sink.id= '1', map.attributes="a = 'stringValue', b = 'intValue', c = 'longValue',d = 'booleanValue', e ='floatValue', f ='doubleValue'") (a string, b int,c long,d bool,e float,f double);
 
-Here with the same FooStream definition we have added a BarStream which
-has a grpc-call-response source with the same sink.id 1. So the
-responses for calls sent from the FooStream will be added to BarStream.
-In this stream we provided mapping for both the sink and the source. so
-we can use any name for the attributes in the stream definition, but we
-have to map those attributes with correct protobuf attributes. As same
-as the grpc-sink, if we are planning to use metadata we should map the
-attributes.
+Here with the same FooStream definition we have added a BarStream which has a grpc-call-response source with the same sink.id 1. So the responses for calls sent from the FooStream will be added to BarStream. In this stream we provided mapping for both the sink and the source. so we can use any name for the attributes in the stream definition, but we have to map those attributes with correct protobuf attributes. As same as the grpc-sink, if we are planning to use metadata we should map the attributes.
 
 ###### grpc-service-response (Sink)
 
-This extension is used to send responses back to a gRPC client after
-receiving requests through grpc-service source. This correlates with the
-particular source using a unique source.id
+This extension is used to send responses back to a gRPC client after receiving requests through grpc-service source. This correlates with the particular source using a unique `source.id`.
 
 Syntax
 
@@ -4863,17 +4751,11 @@ Syntax
     select *
     from FooStream;
 
-The grpc requests are received through the grpc-service sink. Each
-received event is sent back through grpc-service-source. This is just a
-passthrough as we are selecting everything from FooStream
-and inserting into BarStream.
+The grpc requests are received through the grpc-service sink. Each received event is sent back through grpc-service-source. This is just a passthrough as we are selecting everything from FooStream and inserting into BarStream.
 
 ###### http (Sink)
 
-HTTP sink publishes messages via HTTP or HTTPS protocols using methods
-such as POST, GET, PUT, and DELETE on formats `text`, `XML` and `JSON`.
-It can also publish to endpoints protected by basic authentication or
-OAuth 2.0.
+HTTP sink publishes messages via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats `text`, `XML` and `JSON`. It can also publish to endpoints protected by basic authentication or OAuth 2.0.
 
 Syntax
 
@@ -4972,11 +4854,7 @@ and HTTP headers: `Content-Length:xxx`, `Content-Location:'xxx'`,
 
 ###### http-call (Sink)
 
-The http-call sink publishes messages to endpoints via HTTP or HTTPS
-protocols using methods such as POST, GET, PUT, and DELETE on formats
-`text`, `XML` or `JSON` and consume responses through its corresponding
-http-call-response source. It also supports calling endpoints protected
-with basic authentication or OAuth 2.0.
+The http-call sink publishes messages to endpoints via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats `text`, `XML` or `JSON` and consume responses through its corresponding http-call-response source. It also supports calling endpoints protected with basic authentication or OAuth 2.0.
 
 Syntax
 
@@ -5024,7 +4902,7 @@ Syntax
 | exhausted.action                | Action that should be taken when the maximum number of active connections are being used. This action should be indicated as an int and possible action values are following. 0 - Fail the request. 1 - Block the request, until a connection returns to the pool. 2 - Grow the connection pool size.                                                                                                                                                                                                                                                                                                        | 1 (Block when exhausted)                                     | INT                 | Yes      | No      |
 | hostname.verification.enabled   | Enable hostname verification                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | true                                                         | BOOL                | Yes      | No      |
 
-System Parameters
+## System Parameters
 
 | Name                           | Description                                                                                                                             | Default Value                                                | Possible Parameters                     |
 |--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|-----------------------------------------|
@@ -5040,10 +4918,7 @@ System Parameters
 
     CREATE SOURCE ResponseStream WITH (type='http-call-response', sink.id='foo', map.type='text', regex.A='((.|\n)*)', map.attributes="headers='trp:headers', message='A[1]'") (message string, headers string);
 
-When events arrive in `FooStream`, http-call sink makes calls to
-endpoint on url `http://localhost:8009/foo` with `POST` method and
-Content-Type `application/xml`. If the event `payloadBody` attribute
-contains following XML:
+When events arrive in `FooStream`, http-call sink makes calls to endpoint on url `http://localhost:8009/foo` with `POST` method and Content-Type `application/xml`. If the event `payloadBody` attribute contains following XML:
 
     <item>
         <name>apple</name>
@@ -5051,12 +4926,7 @@ contains following XML:
         <quantity>5</quantity>
     </item>
 ```
-the http-call sink maps that and sends it to the endpoint. When endpoint
-sends a response it will be consumed by the corresponding
-http-call-response source correlated via the same `sink.id` `foo` and
-that will map the response message and send it via `ResponseStream`
-steam by assigning the message body as `message` attribute and response
-headers as `headers` attribute of the event.
+the http-call sink maps that and sends it to the endpoint. When endpoint sends a response it will be consumed by the corresponding http-call-response source correlated via the same `sink.id` `foo` and that will map the response message and send it via `ResponseStream` steam by assigning the message body as `message` attribute and response headers as `headers` attribute of the event.
 
 ## Example 2
 ```
@@ -5066,22 +4936,7 @@ headers as `headers` attribute of the event.
 
     CREATE SOURCE ResponseStream4xx WITH (type='http-call-response', sink.id='download', http.status.code='4\\d+', map.type='text', map.regex.A='((.|\n)*)', map.attributes="errorMsg='A[1]'") (errorMsg string);
 ```
-When events arrive in `DownloadRequestStream` with `name`:`foo.txt`,
-`id`:`75` and `downloadPath`:`/user/download/` the http-call sink sends
-a GET request to the url `http://localhost:8005/files/foo.txt` to
-download the file to the given path `/user/download/foo.txt` and capture
-the response via its corresponding http-call-response source based on
-the response status code. If the response status code is in the range of
-200 the message will be received by the http-call-response source
-associated with the `ResponseStream2xx` stream which expects
-`http.status.code` with regex `2\\d+` while downloading the file to the
-local file system on the path `/user/download/foo.txt` and mapping the
-response message having the absolute file path to event's `file`
-attribute. If the response status code is in the range of 400 then the
-message will be received by the http-call-response source associated
-with the `ResponseStream4xx` stream which expects `http.status.code`
-with regex `4\\d+` while mapping the error response to the `errorMsg`
-attribute of the event.
+When events arrive in `DownloadRequestStream` with `name`:`foo.txt`, `id`:`75` and `downloadPath`:`/user/download/` the http-call sink sends a GET request to the url `http://localhost:8005/files/foo.txt` to download the file to the given path `/user/download/foo.txt` and capture the response via its corresponding http-call-response source based on the response status code. If the response status code is in the range of 200 the message will be received by the http-call-response source associated with the `ResponseStream2xx` stream which expects `http.status.code` with regex `2\\d+` while downloading the file to the local file system on the path `/user/download/foo.txt` and mapping the response message having the absolute file path to event's `file` attribute. If the response status code is in the range of 400 then the message will be received by the http-call-response source associated with the `ResponseStream4xx` stream which expects `http.status.code` with regex `4\\d+` while mapping the error response to the `errorMsg` attribute of the event.
 
 ###### ~~http-request (Sink)~~
 
@@ -5257,9 +5112,7 @@ produced by the http-request to the respective http-response sink.
 
 ###### http-service-response (Sink)
 
-The http-service-response sink send responses of the requests consumed
-by its corresponding http-service source, by mapping the response
-messages to formats such as `text`, `XML` and `JSON`.
+The http-service-response sink send responses of the requests consumed by its corresponding http-service source, by mapping the response messages to formats such as `text`, `XML` and `JSON`.
 
 Syntax
 
@@ -5285,8 +5138,7 @@ Syntax
     select messageId, value1 + value2 as results
     insert into ResultStream;
 
-The http-service source on stream `AddStream` listens on url
-`http://localhost:5005/stocks` for JSON messages with format:
+The http-service source on stream `AddStream` listens on url `http://localhost:5005/stocks` for JSON messages with format:
 
     {
       "event": {
@@ -5295,10 +5147,7 @@ The http-service source on stream `AddStream` listens on url
       }
     }
 
-and when events arrive it maps to `AddStream` events and pass them to
-query `query1` for processing. The query results produced on
-`ResultStream` are sent as a response via http-service-response sink
-with format:
+and when events arrive it maps to `AddStream` events and pass them to query `query1` for processing. The query results produced on `ResultStream` are sent as a response via http-service-response sink with format:
 
     {
       "event": {
@@ -5306,9 +5155,7 @@ with format:
       }
     }
 
-Here the request and response are correlated by passing the `messageId`
-produced by the http-service to the respective http-service-response
-sink.
+Here the request and response are correlated by passing the `messageId` produced by the http-service to the respective http-service-response sink.
 
 ###### inMemory (Sink)
 
@@ -5332,8 +5179,7 @@ Here the `StocksStream` uses inMemory sink to emit the Stream App events to all 
 
 ###### jms (Sink)
 
-JMS Sink allows users to subscribe to a JMS broker and publish JMS
-messages.
+JMS Sink allows users to subscribe to a JMS broker and publish JMS messages.
 
 Syntax
 
@@ -5362,18 +5208,11 @@ This example shows how to publish to an ActiveMQ topic.
 
     CREATE SINK inputStream WITH (type='jms', map.type='xml', factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST') (name string, age int, country string);
 
-This example shows how to publish to an ActiveMQ queue. Note that we are
-not providing properties like connection factory type
+This example shows how to publish to an ActiveMQ queue. Note that we are not providing properties like connection factory type
 
 ###### kafka (Sink)
 
-A Kafka sink publishes events processed by gdn SP to a topic with a
-partition for a Kafka cluster. The events can be published in the `TEXT`
-`XML` `JSON` or `Binary` format. If the topic is not already created in
-the Kafka cluster, the Kafka sink creates the default partition for the
-given topic. The publishing topic and partition can be a dynamic value
-taken from the Stream App event. To configure a sink to use the Kafka
-transport, the `type` parameter should have `kafka` as its value.
+A Kafka sink publishes events processed by gdn SP to a topic with  partition for a Kafka cluster. The events can be published in the `TEXT `XML` `JSON` or `Binary` format. If the topic is not already created i the Kafka cluster, the Kafka sink creates the default partition for th given topic. The publishing topic and partition can be a dynamic valu taken from the Stream App event. To configure a sink to use the Kafk transport, the `type` parameter should have `kafka` as its value.
 
 Syntax
 
@@ -5403,8 +5242,7 @@ Syntax
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
-This Kafka sink configuration publishes to 0th partition of the topic
-named `topic_with_partitions`.
+This Kafka sink configuration publishes to 0th partition of the topic named `topic_with_partitions`.
 
 ## Example 2
 
@@ -5417,22 +5255,11 @@ named `topic_with_partitions`.
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
-This query publishes dynamic topic and partitions that are taken from
-the Stream App event. The value for `partition.no` is taken from the
-`volume` attribute, and the topic value is taken from the `symbol`
-attribute.
+This query publishes dynamic topic and partitions that are taken from the Stream App event. The value for `partition.no` is taken from the `volume` attribute, and the topic value is taken from the `symbol` attribute.
 
 ###### kafkaMultiDC (Sink)
 
-A Kafka sink publishes events processed by gdn SP to a topic with a
-partition for a Kafka cluster. The events can be published in the `TEXT`
-`XML` `JSON` or `Binary` format. If the topic is not already created in
-the Kafka cluster, the Kafka sink creates the default partition for the
-given topic. The publishing topic and partition can be a dynamic value
-taken from the Stream App event. To configure a sink to publish events via
-the Kafka transport, and using two Kafka brokers to publish events to
-the same topic, the `type` parameter must have `kafkaMultiDC` as its
-value.
+A Kafka sink publishes events processed by gdn SP to a topic with a partition for a Kafka cluster. The events can be published in the `TEXT` `XML` `JSON` or `Binary` format. If the topic is not already created in the Kafka cluster, the Kafka sink creates the default partition for the given topic. The publishing topic and partition can be a dynamic value taken from the Stream App event. To configure a sink to publish events via the Kafka transport, and using two Kafka brokers to publish events to the same topic, the `type` parameter must have `kafkaMultiDC` as its value.
 
 Syntax
 
@@ -5461,13 +5288,11 @@ Syntax
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
-This query publishes to the default (i.e., 0th) partition of the brokers
-in two data centers
+This query publishes to the default (i.e., 0th) partition of the brokers in two data centers
 
 ###### log (Sink)
 
-This is a sink that can be used as a logger. This will log the output
-events in the output stream with user specified priority and a prefix
+This is a sink that can be used as a logger. This will log the output events in the output stream with user specified priority and a prefix
 
 Syntax
 
@@ -5485,35 +5310,29 @@ Syntax
 
     CREATE SINK BarStream WITH (type='log', prefix='My Log', priority='DEBUG') (symbol string, price float, volume long)
 
-In this example BarStream uses log sink and the prefix is given as My
-Log. Also the priority is set to DEBUG.
+In this example BarStream uses log sink and the prefix is given as My Log. Also the priority is set to DEBUG.
 
 ## Example 2
 
     CREATE SINK BarStream WITH (type='log', priority='DEBUG') (symbol string, price float, volume long)
 
-In this example BarStream uses log sink and the priority is set to
-DEBUG. User has not specified prefix so the default prefix will be in
-the form \<Stream App App Name\> : \<Stream Name\>
+In this example BarStream uses log sink and the priority is set to DEBUG. User has not specified prefix so the default prefix will be in the form \<Stream App App Name\> : \<Stream Name\>
 
 ## Example 3
 
     CREATE SINK BarStream WITH (type='log', prefix='My Log') (symbol string, price float, volume long)
 
-In this example BarStream uses log sink and the prefix is given as My
-Log. User has not given a priority so it will be set to default INFO.
+In this example BarStream uses log sink and the prefix is given as My Log. User has not given a priority so it will be set to default INFO.
 
 ## Example 4
 
     CREATE SINK BarStream WITH (type='log') (symbol string, price float, volume long)
 
-In this example BarStream uses log sink. The user has not given prefix
-or priority so they will be set to their default values.
+In this example BarStream uses log sink. The user has not given prefix or priority so they will be set to their default values.
 
 ###### nats (Sink)
 
-NATS Sink allows users to subscribe to a NATS broker and publish
-messages.
+NATS Sink allows users to subscribe to a NATS broker and publish messages.
 
 Syntax
 
@@ -5532,33 +5351,17 @@ Syntax
 
     CREATE SINK outputStream WITH (type='nats', map.type='xml', destination='SP_NATS_OUTPUT_TEST', bootstrap.servers='nats://localhost:4222',client.id='nats_client',server.id='test-cluster') (name string, age int, country string);
 
-This example shows how to publish to a NATS subject with all supporting
-configurations. With the following configuration the sink identified as
-`nats-client` will publish to a subject named as
-`SP_NATS_OUTPUT_TEST` which resides in a nats instance with a
-cluster id of `test-cluster`, running in localhost and listening to
-the port 4222 for client connection.
+This example shows how to publish to a NATS subject with all supporting configurations. With the following configuration the sink identified as `nats-client` will publish to a subject named as `SP_NATS_OUTPUT_TEST` which resides in a nats instance with a cluster id of `test-cluster`, running in localhost and listening to the port 4222 for client connection.
 
 ## Example 2
 
     CREATE SINK outputStream WITH (type='nats', map.type='xml', destination='SP_NATS_OUTPUT_TEST') (name string, age int, country string);
 
-This example shows how to publish to a NATS subject with mandatory
-configurations. With the following configuration the sink identified
-with an auto generated client id will publish to a subject named as
-`SP_NATS_OUTPUT_TEST` which resides in a nats instance with a
-cluster id of `test-cluster`, running in localhost and listening to
-the port 4222 for client connection.
+This example shows how to publish to a NATS subject with mandatory configurations. With the following configuration the sink identified with an auto generated client id will publish to a subject named as `SP_NATS_OUTPUT_TEST` which resides in a nats instance with a cluster id of `test-cluster`, running in localhost and listening to the port 4222 for client connection.
 
 ###### prometheus (Sink)
 
-This sink publishes events processed by Stream App into Prometheus metrics
-and exposes them to the Prometheus server at the specified URL. The
-created metrics can be published to Prometheus via `server` or
-`pushGateway`, depending on your preference.  The metric types that
-are supported by the Prometheus sink are `counter`, `gauge`,
-`histogram`, and `summary`. The values and labels of the Prometheus
-metrics can be updated through the events.
+This sink publishes events processed by Stream App into Prometheus metrics and exposes them to the Prometheus server at the specified URL. The created metrics can be published to Prometheus via `server` or `pushGateway`, depending on your preference.  The metric types that are supported by the Prometheus sink are `counter`, `gauge`, `histogram`, and `summary`. The values and labels of the Prometheus metrics can be updated through the events.
 
 Syntax
 
@@ -5582,7 +5385,7 @@ Syntax
 | push.operation  | This parameter defines the mode for pushing metrics to the pushGateway. The available push operations are `push` and `pushadd`. The operations differ according to the existing metrics in pushGateway where `push` operation replaces the existing metrics, and `pushadd` operation only updates the newly created metrics.                                                                            | pushadd               | STRING              | Yes      | No      |
 | grouping.key    | This parameter specifies the grouping key of created metrics in key-value pairs. The grouping key is used only in pushGateway mode in order to distinguish the metrics from already existing metrics. The expected format of the grouping key is as follows:  "`key1:value1`,`key2:value2`"                                                                                                               |                       | STRING              | Yes      | No      |
 
-System Parameters
+## System Parameters
 
 | Name        | Description                                                                                                                                                                                                                                                                                                         | Default Value         | Possible Parameters                         |
 |-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|---------------------------------------------|
@@ -5596,22 +5399,17 @@ System Parameters
 
     CREATE SINK FooCountStream WITH (type='prometheus',job='fooOrderCount', server.url ='http://localhost:9080', publish.mode='server', metric.type='counter', metric.help= 'Number of foo orders', map.type='keyvalue') (Name String, quantity int, value int);
 
-In the above example, the Prometheus-sink creates a counter metric with
-the stream name and defined attributes as labels. The metric is exposed
-through an HTTP server at the target URL.
+In the above example, the Prometheus-sink creates a counter metric with the stream name and defined attributes as labels. The metric is exposed through an HTTP server at the target URL.
 
 ## Example 2
 
     CREATE SINK InventoryLevelStream WITH (type='prometheus',job='inventoryLevel', push.url='http://localhost:9080', publish.mode='pushGateway', metric.type='gauge', metric.help= 'Current level of inventory', map.type='keyvalue') (Name String, value int);
 
-In the above example, the Prometheus-sink creates a gauge metric with
-the stream name and defined attributes as labels.The metric is pushed to
-the Prometheus pushGateway at the target URL.
+In the above example, the Prometheus-sink creates a gauge metric with the stream name and defined attributes as labels.The metric is pushed to the Prometheus pushGateway at the target URL.
 
 ###### rabbitmq (Sink)
 
-The rabbitmq sink pushes the events into a rabbitmq broker using the
-AMQP protocol
+The rabbitmq sink pushes the events into a rabbitmq broker using the AMQP protocol
 
 Syntax
 
@@ -5658,8 +5456,7 @@ Syntax
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
-This query publishes events to the `direct` exchange with the `direct`
-exchange type and the `directTest` routing key.
+This query publishes events to the `direct` exchange with the `direct` exchange type and the `directTest` routing key.
 
 ###### s3 (Sink)
 
@@ -5689,14 +5486,11 @@ Syntax
 
     CREATE SINK UserStream WITH (type='s3', bucket.name='user-stream-bucket',object.path='bar/users', credential.provider='software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider', flush.size='3', map.type='json', enclosing.element='$.user', map.payload=""""{"name": "{{name}}", "age": {{age}}}"""") (name string, age int);  
 
-This creates a S3 bucket named `user-stream-bucket`. Then this will
-collect 3 events together and create a JSON object and save that in S3.
+This creates a S3 bucket named `user-stream-bucket`. Then this will collect 3 events together and create a JSON object and save that in S3.
 
 ###### tcp (Sink)
 
-A Stream App application can be configured to publish events via the TCP
-transport by adding the `type='tcp'` annotation at the top of
-an event stream definition.
+A Stream App application can be configured to publish events via the TCP transport by adding the `type='tcp'` annotation at the top of an event stream definition.
 
 Syntax
 
@@ -5717,22 +5511,14 @@ Syntax
 
     CREATE SINK Foo WITH (type = 'tcp', url='tcp://localhost:8080/abc', sync='true' map.type='binary') (attribute1 string, attribute2 int);
 
-A sink of type `tcp` has been defined. All events arriving at Foo
-stream via TCP transport will be sent to the url
-tcp://localhost:8080/abc in a synchronous manner.
+A sink of type `tcp` has been defined. All events arriving at Foo stream via TCP transport will be sent to the url `tcp://localhost:8080/abc` in a synchronous manner.
 
 Sinkmapper
 ----------
 
 ###### avro (Sink Mapper)
 
-This extension is a Stream App Event to Avro Message output
-mapper.Transports that publish messages to Avro sink can utilize this
-extension to convert Stream App events to Avro messages.  You can either
-specify the Avro schema or provide the schema registry URL and the
-schema reference ID as parameters in the stream definition. If no Avro
-schema is specified, a flat Avro schema of the `record` type is
-generated with the stream attributes as schema fields.
+This extension is a Stream App Event to Avro Message output mapper.Transports that publish messages to Avro sink can utilize this extension to convert Stream App events to Avro messages.  You can either specify the Avro schema or provide the schema registry URL and the schema reference ID as parameters in the stream definition. If no Avro schema is specified, a flat Avro schema of the `record` type is generated with the stream attributes as schema fields.
 
 Syntax
 
@@ -5751,21 +5537,17 @@ Syntax
 
     CREATE SINK StockStream WITH (type='inMemory', topic='stock', map.type='avro', map.schema.def = """{"type":"record","name":"stock","namespace":"stock.example","fields":[{"name":"symbol","type":"string"},{"name":"price","type":"float"},{"name":"volume","type":"long"}]}""") (symbol string, price float, volume long);
 
-The above configuration performs a default Avro mapping that generates
-an Avro message as an output ByteBuffer.
+The above configuration performs a default Avro mapping that generates an Avro message as an output ByteBuffer.
 
 ## Example 2
 
     CREATE SINK StockStream WITH (type='inMemory', topic='stock', map.type='avro', map.schema.registry = 'http://localhost:8081', map.schema.id ='22', map.payload=""""{"Symbol":{{symbol}},"Price":{{price}},"Volume":{{volume}}}"""") (symbol string, price float, volume long);
 
-The above configuration performs a custom Avro mapping that generates an
-Avro message as an output ByteBuffer. The Avro schema is retrieved from
-the given schema registry (localhost:8081) using the schema ID provided.
+The above configuration performs a custom Avro mapping that generates an Avro message as an output ByteBuffer. The Avro schema is retrieved from the given schema registry (localhost:8081) using the schema ID provided.
 
 ###### binary (Sink Mapper)
 
-This section explains how to map events processed via Stream App in order to
-publish them in the `binary` format.
+This section explains how to map events processed via Stream App in order to publish them in the `binary` format.
 
 Syntax
 
@@ -5781,11 +5563,7 @@ This will publish Stream App event in binary format.
 
 ###### csv (Sink Mapper)
 
-This output mapper extension allows you to convert Stream App events
-processed by the gdn SP to CSV message before publishing them. You can
-either use custom placeholder to map a custom CSV message or use
-pre-defined CSV format where event conversion takes place without extra
-configurations.
+This output mapper extension allows you to convert Stream App events processed by the gdn SP to CSV message before publishing them. You can either use custom placeholder to map a custom CSV message or use pre-defined CSV format where event conversion takes place without extra configurations.
 
 Syntax
 
@@ -5812,10 +5590,7 @@ If header is true and delimiter is "-", then the output will be as follows: `sym
 
     CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='csv', map.header='true', map.delimiter='-', map.payload="symbol='0',price='2',volume='1'") (symbol string, price float,volume long);
 
-Above configuration will perform a custom CSV mapping. Here, user can
-add custom place order in the @payload. The place order indicates that
-where the attribute name's value will be appear in the output message,
-The output will be produced output as follows: gdn,100,55.6 
+Above configuration will perform a custom CSV mapping. Here, user can add custom place order in the @payload. The place order indicates that where the attribute name's value will be appear in the output message, The output will be produced output as follows: gdn,100,55.6 
 
 If header is true and delimiter is "-", then the output will be as follows: `price-volume-symbol 55.6-100-gdn` 
 
@@ -5823,10 +5598,7 @@ If event grouping is enabled, then the output is as follows: `price-volume-symbo
 
 ###### json (Sink Mapper)
 
-This extension is an Event to JSON output mapper. Transports that
-publish messages can utilize this extension to convert Stream App events to
-JSON messages. You can either send a pre-defined JSON format or a custom
-JSON message.
+This extension is an Event to JSON output mapper. Transports that publish messages can utilize this extension to convert Stream App events to JSON messages. You can either send a pre-defined JSON format or a custom JSON message.
 
 Syntax
 
@@ -5852,11 +5624,7 @@ Syntax
 
 ###### keyvalue (Sink Mapper)
 
-The `Event to Key-Value Map` output mapper extension allows you to
-convert Stream App events processed by gdn SP to key-value map events
-before publishing them. You can either use pre-defined keys where
-conversion takes place without extra configurations, or use custom keys
-with which the messages can be published.
+The `Event to Key-Value Map` output mapper extension allows you to convert Stream App events processed by gdn SP to key-value map events before publishing them. You can either use pre-defined keys where conversion takes place without extra configurations, or use custom keys with which the messages can be published.
 
 Syntax
 
@@ -5866,32 +5634,23 @@ Syntax
 
     CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue') (symbol string, price float, volume long);
 
-This query performs a default Key-Value output mapping. The expected
-output is something similar to the following: symbol:`gdn` price :
-55.6f volume: 100L
+This query performs a default Key-Value output mapping. The expected output is something similar to the following: symbol:`gdn` price : 55.6f volume: 100L
 
 ## Example 2
 
     CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', map.payload="a='symbol',b='price',c='volume'") (symbol string, price float, volume long);
 
-This query performs a custom Key-Value output mapping where values are
-passed as objects. Values for `symbol`, `price`, and `volume` attributes
-are published with the keys `a`, `b` and `c` respectively. The expected
-output is a map similar to the following: a:`gdn` b : 55.6f c: 100L
+This query performs a custom Key-Value output mapping where values are passed as objects. Values for `symbol`, `price`, and `volume` attributes are published with the keys `a`, `b` and `c` respectively. The expected output is a map similar to the following: a:`gdn` b : 55.6f c: 100L
 
 ## Example 3
 
     CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', map.payload="a='{{symbol}} is here',b='`price`',c='volume'") (symbol string, price float, volume long);
 
-This query performs a custom Key-Value output mapping where the values
-of the `a` and `b` attributes are strings and c is object. The expected
-output should be a Map similar to the following: a:`gdn is here` b :
-`price` c: 100L
+This query performs a custom Key-Value output mapping where the values of the `a` and `b` attributes are strings and c is object. The expected output should be a Map similar to the following: a:`gdn is here` b : `price` c: 100L
 
 ###### passThrough (Sink Mapper)
 
-Pass-through mapper passed events (Event\[\]) through without any
-mapping or modifications.
+Pass-through mapper passed events (Event\[\]) through without any mapping or modifications.
 
 Syntax
 
@@ -5901,19 +5660,11 @@ Syntax
 
     CREATE SINK BarStream WITH (type='inMemory', map.type='passThrough') (symbol string, price float, volume long);
 
-In the following example BarStream uses passThrough outputmapper which
-emit Stream App event directly without any transformation into sink.
+In the following example BarStream uses passThrough outputmapper which emit Stream App event directly without any transformation into sink.
 
 ###### protobuf (Sink Mapper)
 
-This output mapper allows you to convert Events to protobuf messages
-before publishing them. To work with this mapper you have to add
-auto-generated protobuf classes to the project classpath. When you use
-this output mapper, you can either define stream attributes as the same
-names as the protobuf message attributes or you can use custom mapping
-to map stream definition attributes with the protobuf attributes.
-When you use this mapper with `stream processor-io-grpc` you don't have to
-provide the protobuf message class in the `class` parameter.
+This output mapper allows you to convert Events to protobuf messages before publishing them. To work with this mapper you have to add auto-generated protobuf classes to the project classpath. When you use this output mapper, you can either define stream attributes as the same names as the protobuf message attributes or you can use custom mapping to map stream definition attributes with the protobuf attributes. When you use this mapper with `stream processor-io-grpc` you don't have to provide the protobuf message class in the `class` parameter.
 
 Syntax
 
@@ -5930,17 +5681,13 @@ Syntax
 
     CREATE SINK BarStream WITH (type='inMemory', topic='test01', map.type='protobuf', map.class='io.streamprocessor.extension.map.protobuf.autogenerated.Request') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double);
 
-This will map `BarStream` values into
-`io.streamprocessor.extension.map.protobuf.autogenerated.Request` protobuf
-message type.
+This will map `BarStream` values into `io.streamprocessor.extension.map.protobuf.autogenerated.Request` protobuf message type.
 
 ## Example 2
 
     CREATE SINK BarStream WITH (type='grpc', publisher.url='grpc://localhost:2000/org.gdn.grpc.test.MyService/process, map.type='protobuf') (stringValue string, intValue int,longValue long,booleanValue bool,floatValue float,doubleValue double)
 
-Above definition will map `BarStream` values into the protobuf messages.
-Since this is a `grpc` sink, protobuf mapper will get the type of the
-protobuf class by the `publisher.url`.
+Above definition will map `BarStream` values into the protobuf messages. Since this is a `grpc` sink, protobuf mapper will get the type of the protobuf class by the `publisher.url`.
 
 ## Example 3
 
@@ -5960,10 +5707,7 @@ class
 
     CREATE SINK BarStream WITH (type='inMemory', topic='test01', map.type='protobuf', map.class='io.streamprocessor.extension.map.protobuf.autogenerated.RequestWithList') (stringValue string,intValue int,stringList object, intList object);
 
-This will map `BarStream` values into
-`io.streamprocessor.extension.map.protobuf.autogenerated.RequestWithList`. If you
-want to map data types other than the scalar data types, you have to use
-`object` as the data type as shown in above(`stringList object`).
+This will map `BarStream` values into `io.streamprocessor.extension.map.protobuf.autogenerated.RequestWithList`. If you want to map data types other than the scalar data types, you have to use `object` as the data type as shown in above(`stringList object`).
 
 ###### text (Sink Mapper)
 
@@ -10041,8 +9785,7 @@ Syntax
 
     unitconversion:kmTomm(1)
 
-The kilometer value `1` is converted into millimeters as `1000000.0`
-.
+The kilometer value `1` is converted into millimeters as `1000000.0`.
 
 ###### kmTonm (Function)
 
