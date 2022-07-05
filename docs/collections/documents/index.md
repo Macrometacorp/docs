@@ -33,19 +33,19 @@ For example:
 
 All documents contain special attributes:
 
-* The [document handle](#document-handle) (`_id`).
-* The [document's primary key](#document-key) (`_key`).
-* The [document revision](#document-revision) (`_rev` ).
+- The [document handle](#document-handle) (`_id`).
+- The [document's primary key](#document-key) (`_key`).
+- The [document revision](#document-revision) (`_rev` ).
 
 You can specify a `_key` value when you create a document. `_id` and `_key` values are unchangeable once the document has been created. The `_rev` value is automatically updated.
 
 ## Document Handle
 
-A *document handle* is a string (`_id`) that identifies a document in the GeoFabric database. The string value consists of the collection's name and the document's `_key` separated by a slash `/`.
+A _document handle_ is a string (`_id`) that identifies a document in the GeoFabric database. The string value consists of the collection's name and the document's `_key` separated by a slash `/`.
 
 ## Document Key
 
-A *document key* is an attribute (`_key`) that identifies a document in its collection and is primarily used for querying. Each document's `_key` is unchangeable.
+A _document key_ is an attribute (`_key`) that identifies a document in its collection and is primarily used for querying. Each document's `_key` is unchangeable.
 
 If you do not specify a key, one is automatically created. An automatic key is only unique within its collection or sharded collections in a cluster. Automatic keys might not be unique across different GeoFabrics. Each collection has a `keyOptions` that can disallow user-specified keys completely or use a specific template for automatically creating keys.
 
@@ -57,11 +57,11 @@ The `_rev` string is a timestamp that uses the local clock of the database. If d
 
 If there is causality between events on different servers, timestamps increase from cause to effect. The server might occasionally use a timestamp in the future to maintain consistency.
 
-GDN uses 64-bit unsigned integer values to maintain document revisions internally. We do not document the exact format of the revision values. When returning document revisions to clients, we put them into a string to verify that the revision is not clipped by clients that do not support large integers. 
+GDN uses 64-bit unsigned integer values to maintain document revisions internally. We do not document the exact format of the revision values. When returning document revisions to clients, we put them into a string to verify that the revision is not clipped by clients that do not support large integers.
 
 :::note example
 
-You can use the `_rev` attribute as a precondition for queries to avoid losing updates. If a client modifies a document locally without adjusting the revision value, then commits the changes *after* another user modifies the same document, the first user's operation is cancelled by the server. Otherwise, the first user would inadvertently overwrite the second user's changes
+You can use the `_rev` attribute as a precondition for queries to avoid losing updates. If a client modifies a document locally without adjusting the revision value, then commits the changes _after_ another user modifies the same document, the first user's operation is cancelled by the server. Otherwise, the first user would inadvertently overwrite the second user's changes
 
 :::
 
