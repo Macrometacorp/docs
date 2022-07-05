@@ -4233,12 +4233,7 @@ events are inserted into an output stream named `RecordStream`.
     select numRecords
     from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName=? where customerName=?", changedName, previousName);
 
-This query updates the events from the input stream named
-`TriggerStream` with an additional attribute named `numRecords`, of
-which the value indicates the number of records manipulated. The updated
-events are inserted into an output stream named `RecordStream`. Here
-the values of attributes changedName and previousName in the event will
-be set to the query.
+This query updates the events from the input stream named `TriggerStream` with an additional attribute named `numRecords`, of which the value indicates the number of records manipulated. The updated events are inserted into an output stream named `RecordStream`. Here the values of attributes changedName and previousName in the event will be set to the query.
 
 ###### query (Stream Processor)
 
@@ -4323,14 +4318,11 @@ subsequence exists.
 ```
     regex:find('\d\d(.*)gdn', '21 products are produced by gdn.', 4)
 ```
-This method attempts to find the subsequence of the input.sequence that
-matches the regex pattern, `\d\d(.*)gdn` starting from index `4`. It
-returns `false` as subsequence does not exists.
+This method attempts to find the subsequence of the input.sequence that matches the regex pattern, `\d\d(.*)gdn` starting from index `4`. It returns `false` as subsequence does not exists.
 
 ###### group (Function)
 
-Returns the subsequence captured by the given group during the regex
-match operation.
+Returns the subsequence captured by the given group during the regex match operation.
 
 Syntax
 
@@ -4349,14 +4341,11 @@ Syntax
     regex:group('\d\d(.*)(gdn.*)(gdn.*)', '21 products are produced within 10 years by gdn currently by gdn employees', 3)
 ```
 
-Function returns `gdn employees`, the subsequence captured by the
-groupID 3 according to the regex pattern, `\d\d(.*)(gdn.*)(gdn.*)`.
+Function returns `gdn employees`, the subsequence captured by the groupID 3 according to the regex pattern, `\d\d(.*)(gdn.*)(gdn.*)`.
 
 ###### lookingAt (Function)
 
-Matches the input.sequence from the beginning against the regex pattern,
-and unlike
-`regex:matches() it does not require that the entire input.sequence be matched.`
+Matches the input.sequence from the beginning against the regex pattern, and unlike `regex:matches() it does not require that the entire input.sequence be matched.`
 
 Syntax
 
@@ -4373,17 +4362,13 @@ Syntax
 
     regex:lookingAt('\d\d(.*)(gdn.*)', '21 products are produced by gdn currently in Sri Lanka')
 
-Function matches the input.sequence against the regex pattern,
-`\d\d(.*)(gdn.*)` from the beginning, and as it matches it returns
-`true`.
+Function matches the input.sequence against the regex pattern, `\d\d(.*)(gdn.*)` from the beginning, and as it matches it returns `true`.
 
 ## Example 2
 
     regex:lookingAt('gdn(.*)middleware(.*)', 'sample test string and gdn is situated in trace and it's a middleware company')
 
-Function matches the input.sequence against the regex pattern,
-`gdn(.*)middleware(.*)` from the beginning, and as it does not match it
-returns `false`.
+Function matches the input.sequence against the regex pattern, `gdn(.*)middleware(.*)` from the beginning, and as it does not match it returns `false`.
 
 ###### matches (Function)
 
@@ -4404,28 +4389,21 @@ Syntax
 
     regex:matches('gdn(.*)middleware(.*)', 'gdn is situated in trace and its a middleware company')
 
-Function matches the entire input.sequence against
-`gdn(.*)middleware(.*)` regex pattern, and as it matches it returns
-`true`.
+Function matches the entire input.sequence against `gdn(.*)middleware(.*)` regex pattern, and as it matches it returns `true`.
 
 ## Example 2
 ```
     regex:matches('gdn(.*)middleware', 'gdn is situated in trace and its a middleware company')
 ```
 
-Function matches the entire input.sequence against `gdn(.*)middleware`
-regex pattern. As it does not match it returns `false`.
+Function matches the entire input.sequence against `gdn(.*)middleware` regex pattern. As it does not match it returns `false`.
 
 Reorder
 -------
 
 ###### akslack (Stream Processor)
 
-Stream processor performs reordering of out-of-order events optimized
-for a givenparameter using \[AQ-K-Slack
-algorithm\](http://dl.acm.org/citation.cfm?doid=2675743.2771828). This
-is best for reordering events on attributes those are used for
-aggregations.data .
+Stream processor performs reordering of out-of-order events optimized for a givenparameter using \[AQ-K-Slack algorithm\](http://dl.acm.org/citation.cfm?doid=2675743.2771828). This is best for reordering events on attributes those are used for aggregations.data .
 
 Syntax
 
@@ -4458,9 +4436,7 @@ Syntax
     select eventTime, symbol, sum(volume) as total
     from StockStream#reorder:akslack(eventTime, volume, 20) WINDOW SLIDING_TIME(5 min);
 
-The query reorders events based on the `eventTime` attribute value and
-optimises for aggregating `volume` attribute considering last 20
-events.
+The query reorders events based on the `eventTime` attribute value and optimises for aggregating `volume` attribute considering last 20 events.
 
 ###### kslack (Stream Processor)
 
