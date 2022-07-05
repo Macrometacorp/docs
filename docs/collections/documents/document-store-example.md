@@ -1,6 +1,6 @@
 ---
-sidebar_position: 40
 title: Document Store Example
+sidebar_position: 40
 ---
 
 This page provides an example of how to create and use a document store using code.
