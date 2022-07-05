@@ -70,7 +70,7 @@ The example below shows how to use Python or JavaScript to insert documents into
 ```js
   const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
+  // Create an authenticated instance with a token or API key.
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
   // await console.log("Authentication done!!...");
