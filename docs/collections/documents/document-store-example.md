@@ -124,7 +124,7 @@ To get details of fabric,
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
   // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
+  // Or use Email and Password to Authenticate client instance
   const client = new jsc8("https://gdn.paas.macrometa.io");
 
   await client.login("nemo@nautilus.com", "xxxxxx");
@@ -173,7 +173,7 @@ The below example shows the steps.
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
   // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
+  // Or use Email and Password to Authenticate client instance
   const client = new jsc8("https://gdn.paas.macrometa.io");
 
   await client.login("nemo@nautilus.com", "xxxxxx");
@@ -223,7 +223,7 @@ Let's add a `hash_index` called emails to our collection employees. Please refer
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
   // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
+  // Or use Email and Password to Authenticate client instance
   const client = new jsc8("https://gdn.paas.macrometa.io");
 
   await client.login("nemo@nautilus.com", "xxxxxx");
@@ -508,7 +508,7 @@ Query as API (aka RESTQL) enables developers to quickly convert saved C8QL queri
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
   // await console.log("Authentication done!!...");
 
-  // Or use Email & Password to Authenticate client instance
+  // Or use Email and Password to Authenticate client instance
   const client = new jsc8("https://gdn.paas.macrometa.io");
 
   await client.login("nemo@nautilus.com", "xxxxxx");
