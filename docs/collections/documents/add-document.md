@@ -16,7 +16,7 @@ Follow these instructions to add documents to an existing document collection us
 
 1. Log in to your Macrometa account.
 1. Click **COLLECTIONS**.
-1. In the collection list, click the name of the document collection that you want to add a document to. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
+1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
 1. Click **New Document**.
 1. Enter a `_key` if you want to and then click **Create**.
 
