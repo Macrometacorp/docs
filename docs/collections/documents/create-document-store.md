@@ -6,7 +6,9 @@ title: Create Document Store
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create a new Document Store Collection.
+This page explains how to create a new Document Store collection.
+
+## Create a Collection with the Console
 
 
 
