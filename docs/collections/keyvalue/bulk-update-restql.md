@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
 title: Bulk Update with RestQL
+sidebar_position: 60
 ---
 
 import Tabs from '@theme/Tabs';
