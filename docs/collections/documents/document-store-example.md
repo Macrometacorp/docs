@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Document Store Example
 ---
 
-This page provides
+This page provides an example of how to create and use a document store using code.
 
 Assume the following credentials for this example:
 
