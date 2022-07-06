@@ -14,7 +14,7 @@ This page explains how to add a key-value pair to a Key-Value Store collection.
 ## Add Key-Value Pairs from a File
 
 
-## Insert Key Value Pairs with Code
+## Insert Key-Value Pairs with Code
 
 The code examples below show how to insert key-value pairs into the collection.
 
@@ -27,10 +27,11 @@ The code examples below show how to insert key-value pairs into the collection.
   key = "<your-api-key>"
   collection_name = "students"
 
-  # Create a connection to gdn
+  # Create a connection to GDN
   client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
   apikey=key)
-  # Insert Key Value pairs
+
+  # Insert key-value pairs
   data = [
     {
       "_key": "John",
@@ -55,14 +56,14 @@ The code examples below show how to insert key-value pairs into the collection.
   ]
 
   client.insert_key_value_pair(collection_name, data)
-  print("KV Pairs Inserted")
+  print("Key-value pairs inserted")
 ```
 
   </TabItem>
   <TabItem value="js" label="Javascript">
 
 ```js
-  // Insert Key-Value pairs
+  // Insert key-value pairs
   var data = [
     {
       "_key": "John",
@@ -87,10 +88,10 @@ The code examples below show how to insert key-value pairs into the collection.
   ]
   try{
       await client.insertKVPairs(collectionName, data);
-      console.log("Key Value pairs inserted successfully.");
+      console.log("Key-value pairs inserted successfully.");
   }
   catch(e){
-      console.log("Key Value Pairs not inserted due to " + e);
+      console.log("Key-value Pairs not inserted due to " + e);
   }
 ```
 
