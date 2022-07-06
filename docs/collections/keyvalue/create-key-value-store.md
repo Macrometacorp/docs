@@ -24,3 +24,44 @@ Follow these instructions to create a new collection using the GDN console web U
    - **Wait for sync -** Synchronize to disk before completing record creation or update.
 
 ## Create Key-Value Store Collection with Code
+
+This code example shows how to create a collection for saving the key-value pairs.
+
+<Tabs groupId="operating-systems">
+<TabItem value="py" label="Python">
+
+```py
+  from c8 import C8Client
+
+  key = "<your-api-key>"
+  collection_name = "students"
+
+  # Create a connection to gdn
+  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  apikey=key)
+
+  # Create a new collection if it does not exist
+  if client.has_collection(collection_name):
+      print("Collection exists")
+  else:
+      client.create_collection_kv(name=collection_name)
+```
+
+</TabItem>
+<TabItem value="js" label="Javascript">
+
+```js
+  // Add this snippet in previously created main function
+  let coll = await client.getKVCollections();
+  console.log("Existing Collections: ", coll.result);
+  try{
+      await client.createKVCollection(collectionName);
+      console.log("Collection Created Successfully");
+  }
+  catch(e){
+      console.log("Collection creation did not succeed due to " + e);
+  }
+```
+
+</TabItem>
+</Tabs>
