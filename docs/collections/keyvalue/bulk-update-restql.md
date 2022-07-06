@@ -10,8 +10,8 @@ The following example bulk updates key-value collection data via RestQL.
 
 Assume these credentials:
 
-* Tenant name: nemo@nautilus.com
-* Password: xxxxxx
+- Tenant name: nemo@nautilus.com
+- Password: xxxxxx
 
 ## Driver download
 
