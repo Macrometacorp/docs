@@ -10,6 +10,21 @@ This page explains how to add a key-value pair to a Key-Value Store collection.
 
 ## Add a Key-Value Pair with the Console
 
+Follow these instructions to add documents to an existing document collection using the GDN console web UI.
+
+1. Log in to your Macrometa account.
+1. Click **COLLECTIONS**.
+1. In the collection list, click the name of the key-value collection to which you want to add a key-value pair. If you aren't sure which collections are key-value collections, then you can click **Key-Value** at the top of the page to see just key-value collections.
+1. Click **New Pair**.
+1. (Optional) Enter information in fields.
+
+   - **_key -** Optional. If left blank, then Macrometa automatically generates a key.
+   - **Value -** Enter an individual value.
+   - **Expiration -** Required if expiration was enabled when the collection was created.
+
+1. Click **Create**.
+
+   Macrometa creates the new key-value record.
 
 ## Add Key-Value Pairs from a File
 
