@@ -26,9 +26,6 @@ Follow these instructions to add documents to an existing document collection us
 
    Macrometa creates the new key-value record.
 
-## Add Key-Value Pairs from a File
-
-
 ## Insert Key-Value Pairs with Code
 
 The code examples below show how to insert key-value pairs into the collection.
