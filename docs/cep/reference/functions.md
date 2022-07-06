@@ -6022,7 +6022,7 @@ Syntax
 | content.type           | The content type of the email. It can be either `text/plain` or `text/html.`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | text/plain                                                                                                                                           | STRING              | Yes      | No      |
 | ssl.enable             | If this is set to `true`, a secure port is used to establish the connection. The possible values are `true` and `false`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | true                                                                                                                                                 | BOOL                | Yes      | No      |
 
-System Parameters
+## System Parameters
 
 | Name                              | Description                                                                                                                                                                                                                                                                                                                                                                                                           | Default Value                                                           | Possible Parameters       |
 |-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------|
@@ -6381,7 +6381,7 @@ Syntax
 | server.bootstrap.configurations        | Server bootstrap configurations in format `"'<key>:<value>','<key>:<value>'"`. Some supported configurations :  - Server connect timeout in millis: `'server.bootstrap.connect.timeout:15000'`  - Server socket timeout in seconds: `'server.bootstrap.socket.timeout:15'`  - Enable TCP no delay: `'server.bootstrap.nodelay:true'`  - Enable server keep alive: `'server.bootstrap.keepalive:true'`  - Send buffer size: `'server.bootstrap.sendbuffersize:1048576'`  - Receive buffer size: `'server.bootstrap.recievebuffersize:1048576'`  - Number of connections queued: `'server.bootstrap.socket.backlog:100'`                                                                                                                                                                                                                             | \-                        | STRING              | Yes      | No      |
 | trace.log.enabled                      | Enable trace log for traffic monitoring.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | false                     | BOOL                | Yes      | No      |
 
-System Parameters
+## System Parameters
 
 | Name                           | Description                                                                                                                             | Default Value                                         | Possible Parameters         |
 |--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|-----------------------------|
@@ -6998,7 +6998,7 @@ Syntax
 | instance                   | This property defines the instance of the exported Prometheus metrics that needs to be fetched.                                                                                                                                                                                                                                                                  |               | STRING              | Yes      | No      |
 | grouping.key               | This parameter specifies the grouping key of the required metrics in key-value pairs. The grouping key is used if the metrics are exported by Prometheus `pushGateway` in order to distinguish those metrics from already existing metrics.  The expected format of the grouping key is as follows: "`key1:value1`,`key2:value2`"                        |               | STRING              | Yes      | No      |
 
-System Parameters
+## System Parameters
 
 | Name               | Description                                                                                                                                                                                                                                                                                                                          | Default Value                                            | Possible Parameters                    |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|----------------------------------------|
@@ -8039,7 +8039,7 @@ Syntax
     length("Hello World")
 
 This outputs the length of the provided string. In this scenario, the,
-output is `11` .
+output is `11`.
 
 ###### lower (Function)
 
@@ -8948,19 +8948,11 @@ Syntax
     insert into UniqueIps 
     from LoginEvents WINDOW UNIQUE:first(ip);
 
-This returns the first set of unique items that arrive from the
-`LoginEvents` stream, and returns them to the `UniqueIps` stream.
-The unique events are only those with a unique value for the `ip`
-attribute.
+This returns the first set of unique items that arrive from the `LoginEvents` stream, and returns them to the `UniqueIps` stream. The unique events are only those with a unique value for the `ip` attribute.
 
 ###### firstLengthBatch (Window)
 
-This is a batch (tumbling) window that holds a specific number of unique
-events (depending on which events arrive first). The unique events are
-selected based on a specific parameter that is considered as the unique
-key. When a new event arrives with a value for the unique key parameter
-that matches the same of an existing event in the window, that event is
-not processed by the window.
+This is a batch (tumbling) window that holds a specific number of unique events (depending on which events arrive first). The unique events are selected based on a specific parameter that is considered as the unique key. When a new event arrives with a value for the unique key parameter that matches the same of an existing event in the window, that event is not processed by the window.
 
 Syntax
 
@@ -8981,18 +8973,11 @@ Syntax
     select symbol, price, volume
     insert all events into OutputStream ;
 
-The window in this configuration holds the first unique events from the
-`CseEventStream` stream every second, and outputs them all into the
-the `OutputStream` stream. All the events in a window during a given
-second should have a unique value for the `symbol` attribute.
+The window in this configuration holds the first unique events from the `CseEventStream` stream every second, and outputs them all into the the `OutputStream` stream. All the events in a window during a given second should have a unique value for the `symbol` attribute.
 
 ###### firstTimeBatch (Window)
 
-A batch-time or tumbling window that holds the unique events according
-to the unique key parameters that have arrived within the time period of
-that window and gets updated for each such time window. When a new event
-arrives with a key which is already in the window, that event is not
-processed by the window.
+A batch-time or tumbling window that holds the unique events according to the unique key parameters that have arrived within the time period of that window and gets updated for each such time window. When a new event arrives with a key which is already in the window, that event is not processed by the window.
 
 Syntax
 
@@ -9015,17 +9000,11 @@ Syntax
      select symbol, price, volume
     insert all events into OutputStream ;
 
-This holds the first unique events that arrive from the
-`cseEventStream` input stream during each second, based on the
-symbol,as a batch, and returns all the events to the `OutputStream`.
+This holds the first unique events that arrive from the `cseEventStream` input stream during each second, based on the symbol,as a batch, and returns all the events to the `OutputStream`.
 
 ###### length (Window)
 
-This is a sliding length window that holds the events of the latest
-window length with the unique key and gets updated for the expiration and
-arrival of each event. When a new event arrives with the key that is
-already there in the window, then the previous event expires and new
-event is kept within the window.
+This is a sliding length window that holds the events of the latest window length with the unique key and gets updated for the expiration and arrival of each event. When a new event arrives with the key that is already there in the window, then the previous event expires and new event is kept within the window.
 
 Syntax
 
@@ -9046,23 +9025,11 @@ Syntax
     select symbol, price, volume
     insert all events into OutputStream;
 
-In this configuration, the window holds the latest 10 unique events. The
-latest events are selected based on the symbol attribute. If the
-`CseEventStream` receives an event for which the value for the symbol
-attribute is the same as that of an existing event in the window, the
-existing event is replaced by the new event. All the events are returned
-to the `OutputStream` event stream once an event expires or is added
-to the window.
+In this configuration, the window holds the latest 10 unique events. The latest events are selected based on the symbol attribute. If the `CseEventStream` receives an event for which the value for the symbol attribute is the same as that of an existing event in the window, the existing event is replaced by the new event. All the events are returned to the `OutputStream` event stream once an event expires or is added to the window.
 
 ###### lengthBatch (Window)
 
-This is a batch (tumbling) window that holds a specified number of
-latest unique events. The unique events are determined based on the
-value for a specified unique key parameter. The window is updated for
-every window length, i.e., for the last set of events of the specified
-number in a tumbling manner. When a new event arrives within the window
-length having the same value for the unique key parameter as an existing
-event in the window, the previous event is replaced by the new event.
+This is a batch (tumbling) window that holds a specified number of latest unique events. The unique events are determined based on the value for a specified unique key parameter. The window is updated for every window length, i.e., for the last set of events of the specified number in a tumbling manner. When a new event arrives within the window length having the same value for the unique key parameter as an existing event in the window, the previous event is replaced by the new event.
 
 Syntax
 
@@ -9083,24 +9050,11 @@ Syntax
     select symbol, price, volume
     insert expired events into OutputStream ;
 
-In this query, the window at any give time holds the last 10 unique
-events from the `CseEventStream` stream. Each of the 10 events within
-the window at a given time has a unique value for the symbol attribute.
-If a new event has the same value for the symbol attribute as an
-existing event within the window length, the existing event expires and
-it is replaced by the new event. The query returns expired individual
-events as well as expired batches of events to the `OutputStream`
-stream.
+In this query, the window at any give time holds the last 10 unique events from the `CseEventStream` stream. Each of the 10 events within the window at a given time has a unique value for the symbol attribute. If a new event has the same value for the symbol attribute as an existing event within the window length, the existing event expires and it is replaced by the new event. The query returns expired individual events as well as expired batches of events to the `OutputStream` stream.
 
 ###### time (Window)
 
-This is a sliding time window that holds the latest unique events that
-arrived during the previous time window. The unique events are
-determined based on the value for a specified unique key parameter. The
-window is updated with the arrival and expiration of each event. When a new
-event that arrives within a window time period has the same value for
-the unique key parameter as an existing event in the window, the
-previous event is replaced by the new event.
+This is a sliding time window that holds the latest unique events that arrived during the previous time window. The unique events are determined based on the value for a specified unique key parameter. The window is updated with the arrival and expiration of each event. When a new event that arrives within a window time period has the same value for the unique key parameter as an existing event in the window, the previous event is replaced by the new event.
 
 Syntax
 
@@ -9121,21 +9075,11 @@ Syntax
     select symbol, price, volume
     insert expired events into OutputStream ;
 
-In this query, the window holds the latest unique events that arrived
-within the last second from the `CseEventStream`, and returns the
-expired events to the `OutputStream` stream. During any given second,
-each event in the window should have a unique value for the `symbol`
-attribute. If a new event that arrives within the same second has the
-same value for the symbol attribute as an existing event in the window,
-the existing event expires.
+In this query, the window holds the latest unique events that arrived within the last second from the `CseEventStream`, and returns the expired events to the `OutputStream` stream. During any given second, each event in the window should have a unique value for the `symbol` attribute. If a new event that arrives within the same second has the same value for the symbol attribute as an existing event in the window, the existing event expires.
 
 ###### timeBatch (Window)
 
-This is a batch (tumbling) time window that is updated with the latest
-events based on a unique key parameter. If a new event that arrives
-within the time period of a windowhas a value for the key parameter
-which matches that of an existing event, the existing event expires and
-it is replaced by the latest event.
+This is a batch (tumbling) time window that is updated with the latest events based on a unique key parameter. If a new event that arrives within the time period of a windowhas a value for the key parameter which matches that of an existing event, the existing event expires and it is replaced by the latest event.
 
 Syntax
 
@@ -9158,19 +9102,11 @@ Syntax
     select symbol, price, volume
     insert all events into OutputStream ;
 
-This window holds the latest unique events that arrive from the
-`CseEventStream` at a given time, and returns all the events to the
-`OutputStream` stream. It is updated every second based on the latest
-values for the `symbol` attribute.
+This window holds the latest unique events that arrive from the `CseEventStream` at a given time, and returns all the events to the `OutputStream` stream. It is updated every second based on the latest values for the `symbol` attribute.
 
 ###### timeLengthBatch (Window)
 
-This is a batch or tumbling time length window that is updated with the
-latest events based on a unique key parameter. The window tumbles upon
-the elapse of the time window, or when a number of unique events have
-arrived. If a new event that arrives within the period of the window has
-a value for the key parameter which matches the value of an existing
-event, the existing event expires and it is replaced by the new event.
+This is a batch or tumbling time length window that is updated with the latest events based on a unique key parameter. The window tumbles upon the elapse of the time window, or when a number of unique events have arrived. If a new event that arrives within the period of the window has a value for the key parameter which matches the value of an existing event, the existing event expires and it is replaced by the new event.
 
 Syntax
 
@@ -9194,10 +9130,7 @@ Syntax
     select symbol, price, volume
     insert all events into OutputStream;
 
-This window holds the latest unique events that arrive from the
-`CseEventStream` at a given time, and returns all the events to the
-`OutputStream` stream. It is updated every second based on the latest
-values for the `symbol` attribute.
+This window holds the latest unique events that arrive from the `CseEventStream` at a given time, and returns all the events to the `OutputStream` stream. It is updated every second based on the latest values for the `symbol` attribute.
 
 Unitconversion
 --------------
@@ -9220,7 +9153,7 @@ Syntax
 
     unitconversion:MmTokm(1)
 
-The megameter value `1` is converted into kilometers as `1000.0` .
+The megameter value `1` is converted into kilometers as `1000.0`.
 
 ###### cmToft (Function)
 
@@ -9240,7 +9173,7 @@ Syntax
 
     unitconversion:cmToft(100)
 
-The centimeters value `100` is converted into feet as `3.280` .
+The centimeters value `100` is converted into feet as `3.280`.
 
 ###### cmToin (Function)
 
@@ -9300,7 +9233,7 @@ Syntax
 
     unitconversion:cmTom(100)
 
-The centimeters value `100` is converted into meters as `1.0` .
+The centimeters value `100` is converted into meters as `1.0`.
 
 ###### cmTomi (Function)
 
@@ -9320,7 +9253,7 @@ Syntax
 
     unitconversion:cmTomi(10000)
 
-The centimeters value `10000` is converted into miles as `0.062` .
+The centimeters value `10000` is converted into miles as `0.062`.
 
 ###### cmTomm (Function)
 
@@ -9340,7 +9273,7 @@ Syntax
 
     unitconversion:cmTomm(1)
 
-The centimeter value `1` is converted into millimeters as `10.0` .
+The centimeter value `1` is converted into millimeters as `10.0`.
 
 ###### cmTonm (Function)
 
@@ -9382,7 +9315,7 @@ Syntax
     unitconversion:cmToum(100)
 
 The centimeters value `100` is converted into micrometers as
-`1000000.0` .
+`1000000.0`.
 
 ###### cmToyd (Function)
 
@@ -9402,7 +9335,7 @@ Syntax
 
     unitconversion:cmToyd(1)
 
-The centimeter value `1` is converted into yards as `0.01` .
+The centimeter value `1` is converted into yards as `0.01`.
 
 ###### dToh (Function)
 
@@ -9442,7 +9375,7 @@ Syntax
 
     unitconversion:gTokg(1000)
 
-The grams value `1000` is converted into kilogram as `1.0` .
+The grams value `1000` is converted into kilogram as `1.0`.
 
 ###### gTomg (Function)
 
@@ -9462,7 +9395,7 @@ Syntax
 
     unitconversion:gTomg(1)
 
-The gram value `1` is converted into milligrams as `1000.0` .
+The gram value `1` is converted into milligrams as `1000.0`.
 
 ###### gToug (Function)
 
@@ -9482,7 +9415,7 @@ Syntax
 
     unitconversion:gToug(1)
 
-The gram value `1` is converted into micrograms as `1000000.0` .
+The gram value `1` is converted into micrograms as `1000000.0`.
 
 ###### hTom (Function)
 
@@ -9502,7 +9435,7 @@ Syntax
 
     unitconversion:hTom(1)
 
-The hour value `1` is converted into minutes as `60.0` .
+The hour value `1` is converted into minutes as `60.0`.
 
 ###### hTos (Function)
 
@@ -9543,7 +9476,7 @@ Syntax
     unitconversion:kgToLT(1000)
 
 The kilograms value `1000` is converted into imperial tons as
-`0.9842` .
+`0.9842`.
 
 ###### kgToST (Function)
 
@@ -9563,7 +9496,7 @@ Syntax
 
     unitconversion:kgToST(1000)
 
-The kilograms value `1000` is converted into US tons as `1.10` .
+The kilograms value `1000` is converted into US tons as `1.10`.
 
 ###### kgTog (Function)
 
@@ -9603,7 +9536,7 @@ Syntax
 
     unitconversion:kgTolb(1)
 
-The kilogram value `1` is converted into pounds as `2.2` .
+The kilogram value `1` is converted into pounds as `2.2`.
 
 ###### kgTooz (Function)
 
@@ -9623,7 +9556,7 @@ Syntax
 
     unitconversion:kgTooz(1)
 
-The kilogram value `1` is converted into ounces as ` 35.274` .
+The kilogram value `1` is converted into ounces as ` 35.274`.
 
 ###### kgTost (Function)
 
@@ -9664,7 +9597,7 @@ Syntax
 
     unitconversion:kgTot(1)
 
-The kilogram value `1` is converted into tonnes as `0.001` .
+The kilogram value `1` is converted into tonnes as `0.001`.
 
 ###### kmTocm (Function)
 
@@ -9705,7 +9638,7 @@ Syntax
 
     unitconversion:kmToft(1)
 
-The kilometer value `1` is converted into feet as `3280.8` .
+The kilometer value `1` is converted into feet as `3280.8`.
 
 ###### kmToin (Function)
 
@@ -9725,7 +9658,7 @@ Syntax
 
     unitconversion:kmToin(1)
 
-The kilometer value `1` is converted into inches as `39370.08` .
+The kilometer value `1` is converted into inches as `39370.08`.
 
 ###### kmTom (Function)
 
@@ -9745,7 +9678,7 @@ Syntax
 
     unitconversion:kmTom(1)
 
-The kilometer value `1` is converted into meters as `1000.0` .
+The kilometer value `1` is converted into meters as `1000.0`.
 
 ###### kmTomi (Function)
 
@@ -9765,7 +9698,7 @@ Syntax
 
     unitconversion:kmTomi(1)
 
-The kilometer value `1` is converted into miles as `0.621` .
+The kilometer value `1` is converted into miles as `0.621`.
 
 ###### kmTomm (Function)
 
@@ -9806,7 +9739,7 @@ Syntax
     unitconversion:kmTonm(1)
 
 The kilometer value `1` is converted into nanometers as
-`1000000000000.0` .
+`1000000000000.0`.
 
 ###### kmToum (Function)
 
@@ -9827,7 +9760,7 @@ Syntax
     unitconversion:kmToum(1)
 
 The kilometer value `1` is converted into micrometers as
-`1000000000.0` .
+`1000000000.0`.
 
 ###### kmToyd (Function)
 
@@ -9847,7 +9780,7 @@ Syntax
 
     unitconversion:kmToyd(1)
 
-The kilometer value `1` is converted into yards as `1093.6` .
+The kilometer value `1` is converted into yards as `1093.6`.
 
 ###### lTom3 (Function)
 
@@ -9867,7 +9800,7 @@ Syntax
 
     unitconversion:lTom3(1000)
 
-The liters value `1000` is converted into cubic meters as `1` .
+The liters value `1000` is converted into cubic meters as `1`.
 
 ###### lToml (Function)
 
@@ -9887,7 +9820,7 @@ Syntax
 
     unitconversion:lToml(1)
 
-The liter value `1` is converted into milliliters as `1000.0` .
+The liter value `1` is converted into milliliters as `1000.0`.
 
 ###### m3Tol (Function)
 
@@ -9907,7 +9840,7 @@ Syntax
 
     unitconversion:m3Tol(1)
 
-The cubic meter value `1` is converted into liters as `1000.0` .
+The cubic meter value `1` is converted into liters as `1000.0`.
 
 ###### mTocm (Function)
 
@@ -9927,7 +9860,7 @@ Syntax
 
     unitconversion:mTocm(1)
 
-The meter value `1` is converted to centimeters as `100.0` .
+The meter value `1` is converted to centimeters as `100.0`.
 
 ###### mToft (Function)
 
@@ -9947,7 +9880,7 @@ Syntax
 
     unitconversion:mToft(1)
 
-The meter value `1` is converted into feet as `3.280` .
+The meter value `1` is converted into feet as `3.280`.
 
 ###### mTomm (Function)
 
@@ -9967,7 +9900,7 @@ Syntax
 
     unitconversion:mTomm(1)
 
-The meter value `1` is converted into millimeters as `1000.0` .
+The meter value `1` is converted into millimeters as `1000.0`.
 
 ###### mTos (Function)
 
@@ -9987,7 +9920,7 @@ Syntax
 
     unitconversion:mTos(1)
 
-The minute value `1` is converted into seconds as `60.0` .
+The minute value `1` is converted into seconds as `60.0`.
 
 ###### mToyd (Function)
 
@@ -10007,7 +9940,7 @@ Syntax
 
     unitconversion:mToyd(1)
 
-The meter value `1` is converted into yards as `1.093` .
+The meter value `1` is converted into yards as `1.093`.
 
 ###### miTokm (Function)
 
@@ -10027,7 +9960,7 @@ Syntax
 
     unitconversion:miTokm(1)
 
-The mile value `1` is converted into kilometers as `1.6` .
+The mile value `1` is converted into kilometers as `1.6`.
 
 ###### mlTol (Function)
 
@@ -10067,7 +10000,7 @@ Syntax
 
     unitconversion:sToms(1)
 
-The second value `1` is converted into milliseconds as `1000.0` .
+The second value `1` is converted into milliseconds as `1000.0`.
 
 ###### sTons (Function)
 
@@ -10108,7 +10041,7 @@ Syntax
 
     unitconversion:sTous(1)
 
-The second value `1` is converted into microseconds as `1000000.0` .
+The second value `1` is converted into microseconds as `1000000.0`.
 
 ###### tTog (Function)
 
@@ -10128,7 +10061,7 @@ Syntax
 
     unitconversion:tTog(1)
 
-The tonne value `1` is converted into grams as `1000000.0` .
+The tonne value `1` is converted into grams as `1000000.0`.
 
 ###### tTokg (Function)
 
@@ -10148,7 +10081,7 @@ Syntax
 
     unitconversion:tTokg(inValue)
 
-The tonne value is converted into kilograms as `1000.0` .
+The tonne value is converted into kilograms as `1000.0`.
 
 ###### yTod (Function)
 
@@ -10168,4 +10101,4 @@ Syntax
 
     unitconversion:yTod(1)
 
-The year value `1` is converted into days as `365.2525` .
+The year value `1` is converted into days as `365.2525`.
