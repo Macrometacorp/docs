@@ -15,6 +15,7 @@ Follow these instructions to create a new collection using the GDN console web U
 1. Log in to your Macrometa account.
 1. Click **COLLECTIONS**.
 1. Click **New Collection**.
+1. Click **Document Store**.
 1. Enter information about the collection and then click **Create**.
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
@@ -22,7 +23,7 @@ Follow these instructions to create a new collection using the GDN console web U
    - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
    - **Wait for sync -** Synchronize to disk before completing document creation or update.
 
-## Create Collection with Code
+## Create a Document Store Collection with Code
 
 The below example shows the steps for connecting a fabric and then creating a collection called `employees`.
 
