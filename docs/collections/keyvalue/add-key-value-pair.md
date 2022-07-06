@@ -62,7 +62,7 @@ The code examples below show how to insert key-value pairs into the collection.
   <TabItem value="js" label="Javascript">
 
 ```js
-  // Insert Key Value pairs
+  // Insert Key-Value pairs
   var data = [
     {
       "_key": "John",
