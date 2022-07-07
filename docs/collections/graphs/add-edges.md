@@ -14,15 +14,13 @@ Follow these instructions to add documents to an existing document collection us
 
 1. Log in to your Macrometa account.
 1. Click **COLLECTIONS**.
-1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Edge** at the top of the page to see just document collections.
-1. Click **New Document**.
-2. Enter information in the fields.
-   - 
-3. Click **Create**.
-
-   Macrometa creates the new document that contains no data.
-
-4. Add any data desired and then click **Save**.
+2. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
+3. Click **New Document**.
+4. Enter information in the fields.
+   - **_from -** Document _id from which the relationship originates.
+   - **_to -** Document _id to which the relationship is defined.
+   - **_key -** Optional. If left blank, then Macrometa automatically generates a key.
+5. Click **Create**.
 
 ## Add Edges from a File
 
@@ -32,7 +30,7 @@ Follow these instructions to add documents to an existing document collection fr
 
 1. Log in to your Macrometa account.
 1. Click **COLLECTIONS**.
-1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
+1. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
 1. Click the import icon, which is a down arrow pointing to a file box.
 1. Click **Choose File**, then browse to the file containing the documents you want to import.
 1. Fill out any desired options and then click **Import Documents**.
