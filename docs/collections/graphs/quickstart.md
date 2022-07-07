@@ -326,7 +326,7 @@ Let's insert documents to the employees collection as shown below.
     insertDoc();
 ```
 
-  </TabItem>
+</TabItem>
 </Tabs>  
 
 ### Create Graph
