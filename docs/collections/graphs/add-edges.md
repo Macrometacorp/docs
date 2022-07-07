@@ -6,4 +6,91 @@ sidebar_position: 30
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to add a edges to a Graph Edge collection.
+This page explains how to add edges to a Graph Edge collection.
+
+## Add an Edge with the Console
+
+Follow these instructions to add documents to an existing document collection using the GDN console web UI.
+
+1. Log in to your Macrometa account.
+1. Click **COLLECTIONS**.
+1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Edge** at the top of the page to see just document collections.
+1. Click **New Document**.
+2. Enter information in the fields.
+   - 
+3. Click **Create**.
+
+   Macrometa creates the new document that contains no data.
+
+4. Add any data desired and then click **Save**.
+
+## Add Edges from a File
+
+Follow these instructions to add documents to an existing document collection from a JSON or CSV file.
+
+![Import a Document](/img/collections/import-docs.png)
+
+1. Log in to your Macrometa account.
+1. Click **COLLECTIONS**.
+1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
+1. Click the import icon, which is a down arrow pointing to a file box.
+1. Click **Choose File**, then browse to the file containing the documents you want to import.
+1. Fill out any desired options and then click **Import Documents**.
+
+   - **Select Primary Key -** Macrometa can autogenerate your primary key, or you can select one from the file.
+   - **Replace docs -** Select this option to overwrite any existing documents with the same `_key`.
+
+## Add Documents with Code
+
+The example below shows how to use Python or JavaScript to insert documents into an `employees` collection.
+
+<Tabs groupId="operating-systems">
+  <TabItem value="py" label="Python">
+
+```py
+    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                            email='nemo@nautilus.com', password="xxxxxx",
+                            geofabric='_system')
+    client.insert_document(collection_name='employees', document={'_key':'Jean', 'firstname': 'Jean', 'lastname':'Picard', 'email':'jean.picard@macrometa.io'})
+
+    docs = [
+      {'_kefabricy':'James', 'firstname': 'James', 'lastname':'Kirk', 'email':'james.kirk@mafabriccrometa.io'},
+      {'_kefabricy': 'Han', 'firstname': 'Han', 'lastname':'Solo', 'email':'han.solo@macrfabricometa.io'},
+      {'_kefabricy': 'Bruce', 'firstname': 'Bruce', 'lastname':'Wayne', 'email':'bruce.wayne@mfabricacrometa.io'}
+    ]
+
+    client.insert_document(collection_name='employees', document=docs)
+```
+
+  </TabItem>
+  <TabItem value="js" label="Javascript">
+
+```js
+    const jsc8 = require("jsc8");
+
+    // Crete a authenticated instance with Token / Apikey
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // await console.log("Authentication done!!...");
+
+    // Or use Email and Password to Authenticate client instance
+    const client = new jsc8("https://gdn.paas.macrometa.io");
+
+    await client.login("nemo@nautilus.com", "xxxxxx");
+
+    async function insertDoc() {
+        try{
+          await client.insertDocumentMany(
+            "employees",
+            [{ firstname: 'Jean', lastname: 'Picard' },{ firstname: 'Bruce', lastname: 'Wayne' }]
+          );
+        } catch(e){
+          await console.log("Document could not be inserted because "+ e);
+        }
+    }
+
+    insertDoc();
+```
+
+</TabItem>
+</Tabs>
