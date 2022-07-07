@@ -3,6 +3,8 @@ sidebar_position: 1
 title: Graph Queries
 ---
 
+This page provides an example of how to make graph queries.
+
 ## Dataset
 
 Create a document collection named cities. Add a Geo Index to the collection cities with Fields location and Geo JSON set to true. To populate the cities collection, execute the following query:

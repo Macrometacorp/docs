@@ -59,7 +59,7 @@ INSERT {
 } INTO Characters
 ```
 
-The syntax is `INSERT document INTO collectionName`. The document is an object like you may know it from JavaScript or JSON, which is comprised of attribute key and value pairs. The quotes around the attribute keys are optional in C8QL. Keys are always character sequences (strings), whereas attribute values can have [different types](fundamentals#data-types):
+The syntax is `INSERT document INTO collectionName`. The document is an object like you may know it from JavaScript or JSON, which is comprised of attribute key and value pairs. The quotes around the attribute keys are optional in C8QL. Keys are always character sequences (strings), whereas attribute values can have different types:
 
 - null
 - boolean (true, false)
