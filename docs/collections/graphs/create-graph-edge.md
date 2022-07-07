@@ -16,14 +16,9 @@ Follow these instructions to create a new collection using the GDN console web U
 1. Enter information about the collection and then click **Create**.
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
-
-
-Collection name:
-A unique name to distinguish the collection.
-Geo Distribution:
-Selection for Global or Local data storage.
-Enable Collection Stream:
-Checkbox to enable collection stream.
+   - **Geo Distribution -** Select whether to store data globally or locally.
+   - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
+   - **Wait for sync -** Synchronize to disk before completing document creation or update.
 
 ## Create a Document Store Collection with Code
 
