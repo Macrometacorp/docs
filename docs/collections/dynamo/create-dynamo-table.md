@@ -3,7 +3,9 @@ title: Create a Dynamo Table
 sidebar_position: 10
 ---
 
-Dynamo Table collection is available for AWS Dynamo Database users. Macrometa’s platform can be used as a data store to acquire Global data distribution within milliseconds. To switch to GDN, the user need to change the connection URL, AccessKey, and SecretKey. AWS Dynamo DB SDK and CLI are compatible. Geo Distribution is set to Global by default.
+AWS Dynamo Database users can create Dynamo Table collections. You can use Macrometa as a datastore and achieve global data distribution within milliseconds. 
+
+To switch to GDN, you must change the connection URL, `AccessKey`, and `SecretKey`. AWS Dynamo DB SDK and CLI are compatible. Geo-distribution is global by default.
 
 ## Create a Dynamo Table Collection  with the Console
 
