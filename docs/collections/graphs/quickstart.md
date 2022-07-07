@@ -10,7 +10,7 @@ This article is an introduction to working with documents in GDN with [pyC8](htt
 
 *Graphs* enable you to group your data and perform more powerful queries across connected documents. A graph consists of *vertices* and *edges*. Vertices are stored in collections and linked by an edge document. Edges are stored as documents in edge collections, and vertices can be a document or an edge. 
 
-The *edge definition* determines which collections are used in a named graph. A named graph must contain at least one edge definition. 
+The *edge definition* determines which collections are used in a named graph. A named graph must contain at least one edge definition.
 
  You can turn documents into graph structures for semantic queries with nodes, edges, and properties. Graphs directly connect data items between different collections. You can use graphs to refer to documents in different tables without a nested join. Graphs can also find patterns of document connections, such as the shortest path between two vertices in a graph.
 
