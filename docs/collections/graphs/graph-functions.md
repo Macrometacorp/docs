@@ -9,7 +9,7 @@ Examples will explain the API on the [the city graph](#the-city-graph):
 
 ![Social Example Graph](/img/cities_graph.png)
 
-### Get vertex *from* of an edge
+## Get vertex *from* of an edge
 
 Get the source vertex of an edge
 
@@ -21,7 +21,7 @@ Returns the vertex defined with the attribute *_from* of the edge with *edgeId* 
 
  * edgeId (required) *_id* attribute of the edge
 
-### Get vertex *to* of an edge
+## Get vertex *to* of an edge
 
 Get the target vertex of an edge
 
@@ -33,7 +33,7 @@ Returns the vertex defined with the attribute *_to* of the edge with *edgeId* as
 
  * edgeId (required) *_id* attribute of the edge
 
-### Get Neighbors
+## Get Neighbors
 
 Get `all neighbors` of the vertices defined by the example
 
@@ -55,7 +55,7 @@ The complexity of this method is **O(n\*m^x)** with *n* being the vertices defin
     - *minDepth*: Defines the minimal number of intermediate steps to neighbors (default is 1).
     - *maxDepth*: Defines the maximal number of intermediate steps to neighbors (default is 1).
 
-### Get Common Neighbors
+## Get Common Neighbors
 
 Get all `common neighbors` of the vertices defined by the examples.
 
@@ -75,7 +75,7 @@ Get the amount of common neighbors of the vertices defined by the examples.
 
 Similar to [_commonNeighbors](#get-common-neighbors) but returns count instead of the elements.
 
-### Get Common Properties
+## Get Common Properties
 
 Get the vertices of the graph that share `common properties`.
 
@@ -94,7 +94,7 @@ The complexity of this method is **O(n)** with *n* being the maximal amount of v
     - *vertex2CollectionRestriction* : One or a list of vertex-collection names that should be searched for compare vertices.
     - *ignoreProperties* : One or a list of attribute names of a document that should be ignored.
 
-### Count Common Properties
+## Count Common Properties
 
 Get the amount of vertices of the graph that share common properties.
 
@@ -102,7 +102,7 @@ Get the amount of vertices of the graph that share common properties.
 
 Similar to [_commonProperties](#get-common-properties) but returns count instead of the objects.
 
-### Get Paths
+## Get Paths
 
 The `_paths` function returns all paths of a graph.
 
@@ -120,7 +120,7 @@ The complexity of this method is **O(n\*n\*m)** with *n* being the amount of ver
     - *minLength* (optional): Defines the minimal length a path must have to be returned (default is 0).
     - *maxLength* (optional): Defines the maximal length a path must have to be returned (default is 10).
 
-### Get Shortest Path
+## Get Shortest Path
 
 The `_shortestPath` function returns all shortest paths of a graph.
 
@@ -144,7 +144,7 @@ The length of a path is by default the amount of edges from one start vertex to 
     If an edge does not have the attribute named as defined in option *weight* this default is used as length.
     If no default is supplied the default would be positive Infinity so the path could not be calculated.
 
-### Get Distance To
+## Get Distance To
 
 The `_distanceTo` function returns all paths and there distance within a graph.
 
@@ -152,7 +152,7 @@ The `_distanceTo` function returns all paths and there distance within a graph.
 
 This function is a wrapper of [graph._shortestPath](#get-shortest-path). It does not return the actual path but only the distance between two vertices.
 
-### Absolute Eccentricity
+## Absolute Eccentricity
  
 Get the [eccentricity](http://en.wikipedia.org/wiki/Distance_%28graph_theory%29){:target="_blank"} of the vertices defined by the examples.
 
@@ -174,7 +174,7 @@ The function accepts an id, an example, a list of examples or even an empty exam
     If an edge does not have the attribute named as defined in option *weight* this default is used as weight.
     If no default is supplied the default would be positive infinity so the path and hence the eccentricity can not be calculated.
 
-### Get Eccentricity
+## Get Eccentricity
 
 Get the normalized [eccentricity](http://en.wikipedia.org/wiki/Distance_%28graph_theory%29){:target="_blank"}
 of the vertices defined by the examples.
@@ -183,7 +183,7 @@ of the vertices defined by the examples.
 
 Similar to [_absoluteEccentricity](#get-absolute-eccentricity) but returns a normalized result.
 
-### Get Absolute Closeness
+## Get Absolute Closeness
 
 Get the [closeness](http://en.wikipedia.org/wiki/Centrality#Closeness_centrality) of the vertices defined by the examples.
 
@@ -204,7 +204,7 @@ The function accepts an id, an example, a list of examples or even an empty exam
     If an edge does not have the attribute named as defined in option *weight* this default is used as weight.
     If no default is supplied the default would be positive infinity so the path and hence the closeness can not be calculated.
 
-### Get Closeness
+## Get Closeness
 
 Get the normalized [closeness](http://en.wikipedia.org/wiki/Centrality#Closeness_centrality){:target="_blank"}
 of graphs vertices.
@@ -213,7 +213,7 @@ of graphs vertices.
 
 Similar to [_absoluteCloseness](#get-absolute-closeness) but returns a normalized value.
 
-### Get Absolute Betweenness
+## Get Absolute Betweenness
 
 Get the [betweenness](http://en.wikipedia.org/wiki/Betweenness_centrality){:target="_blank"}
 of all vertices in the graph.
@@ -230,7 +230,7 @@ of all vertices in the graph.
     If an edge does not have the attribute named as defined in option *weight* this default is used as weight.
     If no default is supplied the default would be positive infinity so the path and hence the betweenness can not be calculated.
 
-### Get Betweenness
+## Get Betweenness
 
 Get the normalized [betweenness](http://en.wikipedia.org/wiki/Betweenness_centrality) of graphs vertices.
 
@@ -238,7 +238,7 @@ Get the normalized [betweenness](http://en.wikipedia.org/wiki/Betweenness_centra
 
 Similar to [_absoluteBetweenness](#get-absolute-betweenness) but returns normalized values.
 
-### Get Radius
+## Get Radius
 
 Get the [radius](http://en.wikipedia.org/wiki/Eccentricity_%28graph_theory%29) of a graph.
 
@@ -251,7 +251,7 @@ Get the [radius](http://en.wikipedia.org/wiki/Eccentricity_%28graph_theory%29) o
     If an edge does not have the attribute named as defined in option *weight* this default is used as weight.
     If no default is supplied the default would be positive infinity so the path and hence the radius can not be calculated.
 
-### Get Diameter
+## Get Diameter
 
 Get the [diameter](http://en.wikipedia.org/wiki/Eccentricity_%28graph_theory%29){:target="_blank"}
 of a graph.
