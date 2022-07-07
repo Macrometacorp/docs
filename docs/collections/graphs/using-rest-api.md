@@ -12,7 +12,7 @@ Today’s applications are required to be highly responsive and always online. T
 If you are new to Macrometa GDN, we strongly recommend reading [Essentials](../../../essentials/index.md) of Macrometa GDN.
 :::
 
-## Pre-Requiste
+## Pre-Requisite
 
 A tenant account (and credentials) with Macrometa GDN.
 
