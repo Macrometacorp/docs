@@ -1,5 +1,5 @@
 ---
-title: Quickstart
+title: Graph Edge Quickstart
 sidebar_position: 1
 ---
 
