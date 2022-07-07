@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
 title: Using Rest APIs
+sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,13 +8,12 @@ import TabItem from '@theme/TabItem';
 
 For the following examples, assume these credentials:
 
-* Tenant name: nemo@nautilus.com
-* Password: xxxxxx
-
+- Tenant name: nemo@nautilus.com
+- Password: xxxxxx
 
 ## API Browser
 
-Your best friend when working with REST APIs is the REST API browser availabel in [GDN](https://gdn.paas.macrometa.io) GUI. From there, you can execute various rest apis and see exactly what the inputs and outputs are.
+Your best friend when working with REST APIs is the REST API browser available in the [GDN](https://gdn.paas.macrometa.io) GUI. From there, you can execute various rest apis and see exactly what the inputs and outputs are.
 
 ![GDN API Browser](/img/gdn-api-browser.png)
 

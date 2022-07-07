@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
 title: Bulk Update with RestQL
+sidebar_position: 60
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,8 +10,8 @@ The following example bulk updates key-value collection data via RestQL.
 
 Assume these credentials:
 
-* Tenant name: nemo@nautilus.com
-* Password: xxxxxx
+- Tenant name: nemo@nautilus.com
+- Password: xxxxxx
 
 ## Driver download
 
