@@ -7,7 +7,7 @@ AWS Dynamo Database users can create Dynamo Table collections. You can use Macro
 
 To switch to GDN, you must change the connection URL, `AccessKey`, and `SecretKey`. AWS Dynamo DB SDK and CLI are compatible. Geo-distribution is global by default.
 
-## Create a Dynamo Table Collection  with the Console
+## Create a Dynamo Table Collection with the Console
 
 Follow these instructions to create a new collection using the GDN console web UI.
 
