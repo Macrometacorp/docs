@@ -59,25 +59,6 @@ To change edge endpoints you would need to remove old document/edge and insert n
 
 > Edges are normal documents that always contain a `_from` and a `_to` attribute.
 
-## Querying graphs
-
-Storing (and retrieving) a graph is one thing, but the actual problems only begin when we want to query information about a graph.
-
-Finding the neighbours of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when we deal with graphs (or relations) in practice, we usually have a lot more questions, here we just mention a few that come to mind:
-
-1. Find all neighbours of a `vertex` only using `edges` with a given `property` or `label`.
-2. Find all neighbours of a `vertex` with a given `property` or `label`.
-3. Find all paths with a fixed length L in the graph starting at some given `vertex`.
-4. Find the shortest (or lightest when working with weights) path from vertex `V` to vertex `W`.
-5. Find the distances between any two vertices in the graph.
-6. Perform a depth first search for some vertex starting at a given vertex.
-7. Perform a breadth first search for some vertex starting at a given vertex.
-8. Find a minimal spanning tree for the graph.
-9. Perform any map-reduce like computation as is possible in the Pregel framework by Google, for example “Pagerank” or “Find connected components”.
-10. Solve the traveling salesman problem in the graph.
-
-GDN provides several [Graph Functions](graph-functions.md) for working with edges and vertices, to analyze them and their relations.
-
 ## Manipulating graph collections with regular document functions
 
 The underlying collections of the graphs are still accessible using the standard methods for collections. However GDN graph module adds an additional layer on top of these collections giving you the following guarantees:
