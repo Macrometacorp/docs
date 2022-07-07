@@ -6,7 +6,9 @@ title: Document Store
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Documents are grouped into collections. Each document follows the JSON format and are stored in a binary format called `VelocyPack`. 
+A document collection is a NoSQL database that stores data in JSON format (JavaScript Object Notation). Unlike traditional Relational Database Management Systems, document databases do not require a schema or a pre-defined structure with fixed tables and attributes. This is why they are also known as “non-relational” databases.
+
+A document is based on the concept of a “Key-Value” store. Every key has a corresponding value, different documents have unique keys which help with CRUD operations - Create, Read, Update, and Delete. No two documents can have common primary keys. Multiple documents gathered in one structure is known as a _document collection_.
 
 ## Document Attibutes
 
