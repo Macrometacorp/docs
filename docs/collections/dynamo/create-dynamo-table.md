@@ -9,7 +9,7 @@ To switch to GDN, you must change the connection URL, `AccessKey`, and `SecretKe
 
 ## Create a Dynamo Table Collection with the Console
 
-Follow these instructions to create a new collection using the GDN console web UI.
+To create a Dynamo Table collection:
 
 1. Log in to your Macrometa account.
 1. Click **COLLECTIONS**.
