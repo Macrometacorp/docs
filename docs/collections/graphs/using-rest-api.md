@@ -1,17 +1,15 @@
 ---
-sidebar_position: 1
 title: Using Rest API
+sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Today’s applications are required to be highly responsive and always online. They need to be deployed in datacenters closer to their users and can access data instantly across the globe. 
-
-Macrometa global data network (GDN) is a fully managed realtime materialzed view engine that provides access to data instantly to Apps & APIs in a simple & single interface. 
+Today’s applications are required to be highly responsive and always online. They need to be deployed in datacenters closer to their users and can access data instantly across the globe.
 
 :::note
-If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../../essentials/index.md)** of Macrometa GDN.
+If you are new to Macrometa GDN, we strongly recommend reading [Essentials](../../../essentials/index.md) of Macrometa GDN.
 :::
 
 ## Pre-Requiste
@@ -24,10 +22,9 @@ Your best friend when working with REST APIs is the REST API browser available i
 
 ![GDN API Browser](/img/gdn-api-browser.png)
 
-
 ## Working with Graphs
 
-**Edge documents (edges)** are similar to standard documents but with two additional required fields `_from` and `_to`. Values of these fields must be the handles of "from" and "to" vertex documents linked by the edge document in question. Here is an example of a valid edge document:
+_Edge documents (edges)_ are similar to standard documents but with two additional required fields `_from` and `_to`. Values of these fields must be the handles of "from" and "to" vertex documents linked by the edge document in question. Here is an example of a valid edge document:
 
 ```json
 {
@@ -40,7 +37,7 @@ Your best friend when working with REST APIs is the REST API browser available i
 }
 ```
 
-A **Graph** consists of vertices and edges. Edges are stored as documents in edge collections. A vertex can be a document of a document collection or of an edge collection (so edges can be used as vertices). Which collections are used within a named graph is defined via edge definitions. A `named graph` can contain more than one edge definition, at least one is needed. Graphs allow you to structure your models in line with your domain and group them logically in collections and giving you the power to query them in the same graph queries.
+A _graph_ consists of _vertices_ and _edges_. Edges are stored as documents in edge collections. A vertex can be a document of a document collection or of an edge collection (so edges can be used as vertices). Which collections are used within a named graph is defined via edge definitions. A `named graph` can contain more than one edge definition, at least one is needed. Graphs allow you to structure your models in line with your domain and group them logically in collections and giving you the power to query them in the same graph queries.
 
 In SQL you commonly have the construct of a relation table to store `n:m` relations between two data tables. An `edge collection` is somewhat similar to these relation tables. `Vertex collections` resemble the data tables with the objects to connect.
 
@@ -52,7 +49,7 @@ Edges have a direction, with their relations `_from` and `_to` pointing from one
 - INBOUND: `_from` ← `_to`
 - ANY: `_from` ↔ `_to`.
 
-An **edge collection** contains edge documents and shares its namespace with all other types of collections. You can manage edge documents via standard collection API wrappers, but using edge collection API wrappers provides additional safeguards:
+An _edge collection_**_ contains edge documents and shares its namespace with all other types of collections. You can manage edge documents via standard collection API wrappers, but using edge collection API wrappers provides additional safeguards:
 
 - All modifications are executed in transactions.
 - Edge documents are checked against the edge definitions on insert.
@@ -251,6 +248,7 @@ To create `edge collection` use same endpoint `/_fabric/{fabric_name}/_api/colle
     result = json.loads(resp.text)
     print("Graph and Collections Deleted: ", result)
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -304,6 +302,7 @@ To create `edge collection` use same endpoint `/_fabric/{fabric_name}/_api/colle
       }
     }
     TBD
-```    
+```
+
   </TabItem>
 </Tabs>  
