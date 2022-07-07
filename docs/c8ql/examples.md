@@ -1924,7 +1924,7 @@ That will give us document-specific attribute names like this:
 
 ### Finding the start vertex via a geo query
 
-Our first example will locate the start vertex for a graph traversal via [a geo index](../collections/documents/indexing/index-basics#geo-index).
+Our first example will locate the start vertex for a graph traversal via [a geo index](../collections/indexing/index-basics#geo-index).
 
 We use the city graph and its geo indices: ![cities_graph\(1\)](/img/cities_graph.png){height="" width=""}
 
