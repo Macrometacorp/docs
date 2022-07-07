@@ -108,4 +108,4 @@ The example below shows how to use Python or JavaScript to insert documents into
 ```
 
 </TabItem>
-</Tabs>  
+</Tabs>
