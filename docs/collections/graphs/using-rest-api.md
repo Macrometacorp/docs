@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
 title: Using Rest API
+sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
