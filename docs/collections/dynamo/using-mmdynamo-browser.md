@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 60
 title: Using mmDynamo Javascript SDK
 ---
 ## Browser(Javascript) NPM
