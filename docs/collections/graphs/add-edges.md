@@ -18,7 +18,7 @@ To add edge documents to a collection:
 3. Click **New Document**.
 4. Enter information in the fields.
    - **_from -** Document _id from which the relationship originates.
-   - **_to -** Document _id to which the relationship is defined.
+   - **_to -** Document `_id` to which the relationship is defined.
    - **_key -** Optional. If left blank, then Macrometa automatically generates a key.
 5. Click **Create**.
 
