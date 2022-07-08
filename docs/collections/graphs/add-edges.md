@@ -24,7 +24,7 @@ To add edge documents to a collection:
 
 ## Add Edges from a File
 
-Follow these instructions to add documents to an existing document collection from a JSON or CSV file.
+To add edge documents to a collection from a JSON or CSV file:
 
 ![Import a Document](/img/collections/import-docs.png)
 
