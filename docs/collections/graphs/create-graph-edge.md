@@ -5,9 +5,9 @@ sidebar_position: 20
 
 The Graph Edge collection is a form of document collection. It is used define relationships between two documents by using the **_from** and **_to** system attributes and the document **_id** system attribute.
 
-## Create a Document Store Collection with the Console
+## Create a Graph Edge Collection with the Console
 
-To create a collection:
+Follow these instructions to create a new collection using the GDN console web UI.
 
 1. Log in to your Macrometa account.
 1. Click **COLLECTIONS**.
