@@ -10,7 +10,7 @@ This page explains how to add edges to a Graph Edge collection.
 
 ## Add an Edge with the Console
 
-Follow these instructions to add documents to an existing document collection using the GDN console web UI.
+To add edge documents to a collection:
 
 1. Log in to your Macrometa account.
 1. Click **COLLECTIONS**.
