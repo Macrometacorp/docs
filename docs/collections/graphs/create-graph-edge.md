@@ -7,7 +7,7 @@ The Graph Edge collection is a form of document collection. It is used define re
 
 ## Create a Document Store Collection with the Console
 
-Follow these instructions to create a new collection using the GDN console web UI.
+To create a collection:
 
 1. Log in to your Macrometa account.
 1. Click **COLLECTIONS**.
