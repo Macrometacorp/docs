@@ -71,7 +71,7 @@ The example below shows how to use Python or JavaScript to insert documents into
     // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
-    // Or use Email and Password to Authenticate client instance
+    // Or use email and password to authenticate client instance.
     const client = new jsc8("https://gdn.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
