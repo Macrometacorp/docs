@@ -36,7 +36,7 @@ This small collection of 8 filming locations comes with two attributes, a *name*
 
 ### Create documents
 
-Before we can insert documents with C8QL, we need a place to put them in - a collection. Collections can be managed via the web interface, c8sh or a driver. It is not possible to do so with C8QL however.
+Before we can insert documents with C8QL, we need a place to put them in - a collection. Collections can be managed via the web interface, c8sh or SDK. It is not possible to do so with C8QL however.
 
 ![Collection_Add](/img/Collection_Add-GUI.png)
 
