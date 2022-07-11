@@ -25,6 +25,6 @@ In its purpose, C8QL is similar to the Structured Query Language (SQL). C8QL sup
 
 It is a pure data manipulation language (DML), not a data definition language (DDL) or a data control language (DCL). The syntax of C8QL queries is different to SQL, even if some keywords overlap. Nevertheless, C8QL should be easy to understand for anyone with an SQL background.
 
-We have SDKs for [JavaScript](https://github.com/Macrometacorp/jsC8) & [Python](https://github.com/Macrometacorp/pyC8)
+We have SDKs for [JavaScript](https://github.com/Macrometacorp/jsC8) and [Python](https://github.com/Macrometacorp/pyC8)
 
 For some example queries, please refer to [Data Queries](data-queries.md), [Data Query Patterns](../c8ql/examples/), and [Tutorial](../c8ql/data-queries.md).
