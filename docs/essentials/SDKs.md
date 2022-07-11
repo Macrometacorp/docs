@@ -26,7 +26,7 @@ yarn add jsc8
 (or)
 npm install jsc8
 
-If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
+If you want to use the SDK outside of the current directory, then you can also install it globally using the `--global` flag:
 
 npm install --global jsc8
 
