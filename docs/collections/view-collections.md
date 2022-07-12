@@ -24,7 +24,7 @@ Displays the type of each collection.
 
 ### Stream Enabled
 
-Shows whether a collection stream is enabled (Yes) or not enabled (No). You can change this in the collection settings.
+Shows whether a collection stream is enabled (Yes) or not enabled (No). You can change this in the collection Data tab.
 
 ### Distribution
 
