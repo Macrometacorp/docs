@@ -14,3 +14,7 @@ There are two types of collections:
   - A _global collection_ replicates its data and maintains state and consistency across all regions in the GeoFabric.
 
 - _Edge collections_ store _edge documents_ (or _edges_) that define a relationship between other documents with the `_from` and `_to` values.
+
+## Global or Local Collections
+
+## Collection Types
