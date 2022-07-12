@@ -9,9 +9,9 @@ Assume the following credentials:
 * Tenant name: `nemo@nautilus.com`
 * Password: `xxxxxx`
 
-## Driver Download
+## SDK Download
 
-Download the appropriate drivers for your preferred language.
+Download the appropriate SDK for your preferred language.
 
 <Tabs groupId="operating-systems">
   <TabItem value="js" label="Javascript">
@@ -23,7 +23,7 @@ Download the appropriate drivers for your preferred language.
         (or)
         npm install jsc8
 
-    If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+    If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
         npm install --global jsc8
 
@@ -361,7 +361,7 @@ Now, the code to update an Stream Application will look like
 ```
 ## Run an Adhoc Query
 
-Available in the advanced operations of python driver.
+Available in the advanced operations of python SDK.
 Refer example at the end of the page.
 
 <Tabs groupId="operating-systems">

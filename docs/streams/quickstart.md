@@ -6,9 +6,9 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This article is an introduction to using streams with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) drivers.
+This article is an introduction to using streams with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-Streams are a type of collection in GDN to capture `data-in-motion`. Messages are sent via streams by publishers to consumers who then do something with the message. Streams can be created via client drivers (pyC8, jsC8), REST API or the web console.
+Streams are a type of collection in GDN to capture `data-in-motion`. Messages are sent via streams by publishers to consumers who then do something with the message. Streams can be created via client SDKs (pyC8, jsC8), REST API or the web console.
 
 Streams unifies `queuing` and `pub-sub messaging` into a unified messaging model that provides a lot of flexibility to users to consume messages in a way that is best for the use case at hand.
 
@@ -64,7 +64,7 @@ With Yarn or NPM
     (or)
     npm install jsc8
 
-If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
     npm install --global jsc8
 
