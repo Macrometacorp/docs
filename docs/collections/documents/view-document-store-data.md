@@ -1,5 +1,5 @@
 ---
-title: View Document Store
+title: Document Store Data
 sidebar_position: 40
 ---
 
