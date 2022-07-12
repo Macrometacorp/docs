@@ -124,8 +124,8 @@ const config = {
                 to: '/quickstart',
               },
               {
-                label: 'Essentials',
-                to: '/essentials/index',
+                label: 'What is Macrometa',
+                to: '/what-is-macrometa',
               }
             ],
           },

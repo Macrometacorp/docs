@@ -189,7 +189,7 @@ Insert the following parameters into the provided [template](#template) to creat
 | jdbc.url			| STRING		| N/A				| No		| No		| The JDBC URL used to access the RDBMS data store. |
 | username			| STRING		| N/A				| No		| No		| The username used to access the RDBMS data store. |
 | password			| STRING		| N/A				| No		| No		| The password used to access the RDBMS data store. |
-| jdbc.driver.name	| STRING		| N/A				| No		| No		| The name of the JDBC driver used to access the RDBMS data store. |
+| jdbc.driver.name	| STRING		| N/A				| No		| No		| The name of the JDBC SDK used to access the RDBMS data store. |
 | datasource 		| STRING		| N/A				| No		| No		| If you want to use a Carbon data source, specify the name of the datasource on which to run the query. |
 | jndi.resource 	| STRING		| null				| Yes		| No		| If you want to use JNDI look-up, specify the name of the JNDI resource through which you want to attempt connection. If you use a datasource, this is not used. |
 | pool.properties	| STRING		| null				| Yes		| No		| Use key-value pairs to specify any pool parameters for the database connection. If you use a datasource or jndi.resource, this is not used. |
@@ -204,7 +204,7 @@ Insert the following parameters into the provided [template](#template) to creat
 Use the following template to create a Store function:
 
 ```sql
-@Store(type="rdbms", jdbc.url="STRING", username="STRING", password="STRING", jdbc.driver.name="STRING", pool.properties="STRING", jndi.resource="STRING", datasource="STRING", table.name="STRING", field.length="STRING", table.check.query="STRING", use.collation="BOOL", allow.null.values="BOOL")
+@Store(type="rdbms", jdbc.url="STRING", username="STRING", password="STRING", jdbc.SDK.name="STRING", pool.properties="STRING", jndi.resource="STRING", datasource="STRING", table.name="STRING", field.length="STRING", table.check.query="STRING", use.collation="BOOL", allow.null.values="BOOL")
 @PrimaryKey("PRIMARY_KEY")
 @Index("INDEX")
 ```
@@ -261,7 +261,7 @@ Insert the following parameters into the provided [template](#template) to creat
 |-------------------------------|---------------|-------------------|-----------|-----------|-------------|
 | url							| STRING		| N/A				| No		| No		| Database URL. Format: `jdbc:mysql://:/<database_name>` |
 | mode							| STRING		| `listening`		| Yes		| No		| Change data capture mode. Choose `polling` or `listening`. |
-| jdbc.driver.name				| STRING		| N/A				| Yes		| No		| Driver class name for database connection. Required if you are using polling mode. |
+| jdbc.driver.name				| STRING		| N/A				| Yes		| No		| SDK class name for database connection. Required if you are using polling mode. |
 | username						| STRING		| N/A				| No		| No		| The user that accesses the database needs these permissions in the `table.name` field: `SELECT`, `RELOAD`, `SHOW DATABASES`, `REPLICATION SLAVE`, and `REPLICATION CLIENT`. |
 | password						| STRING		| N/A				| No		| No		| Password for the user accessing the database. |
 | pool.properties				| STRING		| N/A				| Yes		| No		| You can use key-value pairs for pool parameters. | 
@@ -310,7 +310,7 @@ This example polls for row insertions:
 CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = 'id', jdbc.driver.name = 'com.mysql.jdbc.Driver', url = 'jdbc:mysql://localhost:3306/SimpleDB', username = 'user', password = 'password', table.name = 'students', map.type='keyvalue', attributes.id = 'id', attributes.name = 'name') (id int, name string);
 ```
 
-The `polling.column` field is set to `id`, indicating that polling will be tracked with an incremental sequence of numbers. Connection requires a URL, username, password, and JDBC driver name.
+The `polling.column` field is set to `id`, indicating that polling will be tracked with an incremental sequence of numbers. Connection requires a URL, username, password, and JDBC SDK name.
 
 
 #### Example 3

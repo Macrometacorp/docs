@@ -6,7 +6,7 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This article is an introduction to working with documents in GDN with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) drivers.
+This article is an introduction to working with documents in GDN with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
 _Graphs_ enable you to group your data and perform more powerful queries across connected documents. A graph consists of _vertices_ and _edges_. Vertices are stored in collections and linked by an edge document. Edges are stored as documents in edge collections, and vertices can be a document or an edge.
 
@@ -29,7 +29,7 @@ For this example, assume the following credentials:
 - Tenant name is `nemo@nautilus.com`.
 - User password is `xxxxxx`.
 
-### Driver Download
+### SDK Download
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -62,7 +62,7 @@ For this example, assume the following credentials:
         (or)
         npm install jsc8
 
-    If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+    If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
         npm install --global jsc8
 

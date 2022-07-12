@@ -15,9 +15,9 @@ For the following examples, assume these credentials:
 - Tenant name: nemo@nautilus.com
 - Password: xxxxxx
 
-## Driver download
+## SDK download
 
-Download the appropriate drivers for Python or JavaScript.
+Download the appropriate SDK for Python or JavaScript.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
@@ -50,7 +50,7 @@ Download the appropriate drivers for Python or JavaScript.
       (or)
       npm install jsc8
 
-  If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+  If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
       npm install --global jsc8
 
