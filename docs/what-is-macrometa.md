@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
-title: Essentials
+sidebar_position: 3
+title: What is Macrometa
 ---
 
 Macrometa Global Data Network (GDN) is a geo-distributed, real-time, coordination-free materialized views engine. GDN supports multiple data models, making it flexible and compatible with many database types.
@@ -60,13 +60,13 @@ Each GeoFabric contains the following:
 
 For more information about GeoFabrics, refer to the [GeoFabrics](geofabrics.md) section.
 
-## RestQL (Query as API)
+## Query Workers (Query as API)
 
-A RestQL is set of named, parameterized C8QL queries stored in GDN that you can run from a dedicated REST endpoint. The RestQL will be created automatically globally and is available from the region closest to the user. We recommend using RestQL to build applications backed by GDN as opposed to querying with raw C8QL directly from application code or setting up a centralized middleware.
+A Query Worker is set of named, parameterized C8QL queries stored in GDN that you can run from a dedicated REST endpoint. The Query Worker will be created automatically globally and is available from the region closest to the user. We recommend using Query Workers to build applications backed by GDN as opposed to querying with raw C8QL directly from application code or setting up a centralized middleware.
 
-RestQLs can be created and updated using the GDN Console or by using the REST API directly. Each RestQL is tied to a specific query text and parameter set. You can set default values for query parameters (making them optional during runs of your RestQL), or you can make them mandatory for each run (failing to pass along will result in an error).
+Query Workers can be created and updated using the GDN Console or by using the REST API directly. Each Query Worker is tied to a specific query text and parameter set. You can set default values for query parameters (making them optional during runs of your Query Worker), or you can make them mandatory for each run (failing to pass along will result in an error).
 
-Each RestQL is exposed as its own endpoint and is protected. The RestQLs are organized by the GeoFabric (or database) enabling you to have different RestQLs for different geo-regions as well as for different fabrics within same region.
+Each Query Worker is exposed as its own endpoint and is protected. The Query Workers are organized by the GeoFabric (or database) enabling you to have different Query Workers for different geo-regions as well as for different fabrics within same region.
 
 For more information, refer to the [C8 Query Language](../c8ql/index.md) section.
 
