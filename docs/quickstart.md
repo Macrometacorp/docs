@@ -24,7 +24,7 @@ A _collection_ is a group of documents with a unique name and identifier. For th
 
 ![Create a collection](/img/quickstart/create-doc-view.png)
 
-Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **GEO FABRICS** to see the default [GeoFabric](essentials/geofabrics.md) locations.
+Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **GEO FABRICS** to see the default [GeoFabric](geofabrics.md) locations.
 
 ![dashboard](/img/dashboard.png)
 
@@ -150,4 +150,4 @@ You have a full functional API for your application. [We made a front-end for yo
 
 ## Next Steps
 
-Now that you've build your application, you can dig into the docs and see what else Macrometa can help you build [Essentials](essentials/index.md) guide.
+Now that you've build your application, you can dig into the docs and see what else Macrometa can help you build [What is Macrometa](what-is-macrometa.md) guide.

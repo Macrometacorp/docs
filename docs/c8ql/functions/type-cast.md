@@ -207,7 +207,7 @@ Check whether *value* is a string that can be used in a date function. This incl
 
 `IS_KEY(str) → bool`
 
-Check whether *value* is a string that can be used as a document key, i.e. as the value of the *_key* attribute. See [Naming Conventions for Document Keys](../../essentials/naming-conventions.md#document-keys).
+Check whether *value* is a string that can be used as a document key, i.e. as the value of the *_key* attribute. See [Naming Conventions for Document Keys](../../references/naming-conventions.md#document-keys).
 
 - **str** (string): document key to test
 - returns **bool** (boolean): whether *str* can be used as document key
