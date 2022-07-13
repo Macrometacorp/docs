@@ -12,7 +12,7 @@ This page explains how to add edges to a Graph Edge collection.
 
 To add edge documents to a collection:
 
-1. Log in to your Macrometa account.
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **COLLECTIONS**.
 2. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
 3. Click **New Document**.
@@ -28,7 +28,7 @@ To add edge documents to a collection from a JSON or CSV file:
 
 ![Import a Document](/img/collections/import-docs.png)
 
-1. Log in to your Macrometa account.
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **COLLECTIONS**.
 1. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
 1. Click the import icon, which is a down arrow pointing to a file box.
