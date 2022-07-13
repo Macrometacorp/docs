@@ -1,6 +1,6 @@
 ---
 title: Document Store Example
-sidebar_position: 40
+sidebar_position: 90
 ---
 
 import Tabs from '@theme/Tabs';
