@@ -19,7 +19,7 @@ Number of results per page. Default is 10. Click the drop-down arrow to select a
 
 ## Move Documents between Collections
 
-Move documents from one collection to another. Click the **Edit Documents** (finger) icon to select and then move documents.
+Move documents from one collection to another or delete multiple documents. Click the **Edit Documents** (finger) icon to select and then move or delete documents.
 
 ## Import Documents
 
