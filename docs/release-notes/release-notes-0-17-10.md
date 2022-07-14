@@ -28,6 +28,13 @@ Description of update.
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
+### API Updates
+
+| DB-1588  | Removed one fabric parameter from Users API.  |
+DB-1606	Allow * in all below user apis for collections and fabrics
+
+DFP Note - This list is incomplete. Need to find what else might have changed.
+
 ## Known Issues
 
 The following known issues were introduced in this release.
@@ -39,6 +46,10 @@ Explain the problem and the workaround.
 ## Defect Fixes
 
 The following defects were fixed in this release.
+
+:::note
+This last release cycle, our CEO challenged our engineers to try to "break" Macrometa as part of our internal quality and reliability improvement efforts. As a result, we found a lot of (occasionally weird) bugs, and then fixed them. The results are below and will contribute to a more stable and reliable Global Data Network going forward.
+:::
 
 | Defect #  | Description  |
 |---|---|
@@ -60,6 +71,35 @@ The following defects were fixed in this release.
 | BILL-247  | Label parameter should allow space in creating or modifying plan.  |
 | BILL-264  | Wrong metrics type configuration in plans.  |
 | BILL-267  | Add graph-indexStorage to INDEX_STORAGE usage calculation.  |
+| DB-1156  | User must mention the field names in Search definition even if 'includeAllFields' is set to `true`.  |
+| DB-1223  | Unusually long time for a response on truncate API call.  |
+| DB-1287  | Unauthorized read access to protected collections gained via API key.  |
+| DB-1413  | Failed sync puts the region in unusable state. |
+| DB-1433  | [Search View] Search logs do not honour c8db `--log.level` parameter.  |
+| DB-1439  | The fabric created after taking the backup of a region (eu-west) did not get synced up after restore.  |
+| DB-1442  | Due to _key collision, failed to insert document in collection.  |
+| DB-1444  | Data discrepancy in two regions when documents were created with the same key but different content.  |
+| DB-1446  | Allow query batch size to take values above 1,000.  |
+| DB-1453  | [Add Datacenter] sync views operation is not triggered if collections sync fails for any collection.  |
+| DB-1456  | Delete region from federation removes random regions.  |
+| DB-1457  | Bypassed GeoFabric per-tenant limit on free tier account. Correct limit is two.  |
+| DB-1463  | Able to have inconsistent documents on two different regions with same key in the same collection.  |
+| DB-1470  | Error trying to truncate records for a collection stream.  |
+| DB-1471  | Admin user cannot retrieve permissions for another tenant.  |
+| DB-1493  | Getting connection not established error on a stream console.  |
+| DB-1498  | GET _api/features/tenant/{tenant} returns HTTP 401 when called with Admin user API key.  |
+| DB-1519  | "Unauthorized" error is seen after navigation to regions.  |
+| DB-1527  | API reference for creating collections contains parameters that users should not be able to access.  |
+| DB-1552  | When creating a user, password constrains are not validated in API.  |
+| DB-1577  | [Backup & Restore] Catch-up does not sync regions correctly.  |
+| DB-1580  | Cannot create more than 100 KV collections.  |
+| DB-1585  | Database is crashing when wrong parameter is passed in user patch API call.  |
+| DB-1595  | Non-root user with read-only fabric permissions can set and clear streams access level.  |
+| DB-1615  | Validate API continues to validate JWT token even when user has been deleted.  |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
 |   |   |
 |   |   |
 |   |   |
@@ -68,48 +108,7 @@ The following defects were fixed in this release.
 |   |   |
 |   |   |
 	
-	
-	
-DB-1156	c8db-> It is mandatory to mention the field names in Search definition even if 'includeAllFields' is specified as true
-DB-1223	Long time for a response on truncate API call
-DB-1287	Unauthorized read access to protected collections gained via apikey
-DB-1330	Tenant creation issue on multiple regions
-DB-1336	Fix log level
-DB-1367	C8db pod getting OOM on gdn-pass ap-west2 and ap-south2
-DB-1413	[PQRS]  Failed sync puts the region in unusable state
-DB-1433	[Search View] Search logs do not honour c8db --log.level parameter
-DB-1435	Tenant creation not working for more than 1 region
-DB-1437	Ensure limits don't break consistency between regions
-DB-1439	[PQRS] [Backup&Restore] The fabric created after taking the backup of a region (eu-west) did not get synced up after restore
-DB-1442	Due to _key collision, failed to insert document in collection 
-DB-1443	C8DB restarts with OOMKilled on `smoke1-eu-west` London region
-DB-1444	[Bharat] Data discrepancy in 2 regions
-DB-1446	Allow query batch size to take values above 1000
-DB-1450	Replication broken at the end of region sync on bharath.paas.macrometa.io
-DB-1453	[PQRS] [Add Datacenter] sync views operation is not triggered  if collections sync fails for any collection 
-DB-1456	Delete region from federation removes random regions
-DB-1457	Bypassing Geo Fabric per tenant limit on free tier account
-DB-1463	Able to have inconsistent documents on 2 different regions with same key in the same collection
-DB-1470	Getting error on trying to truncate records for a collection stream
-DB-1471	Admin user cannot retrieve permissions for another tenant
-DB-1493	Getting connection not established error on a stream console
-DB-1495	Tenant creation failed with error "c8db query execution failed"
-DB-1498	GET _api/features/tenant/{tenant} return HTTP 401 when called with apikey of Admin user
-DB-1504	Getting alerts for deleted tenants  
-DB-1510	Investigate configuration of AUTOMATION6695, tentest121817390019zkbrw_macrometa.io tenants on GDN PAAS
-DB-1519	"Unauthorized" error is seen after navigation to regions
-DB-1524	Remove the log message tenant::getDetails from C8DB
-DB-1527	API Reference for creating collections contains parameters that users should not be able to access
-DB-1552	Password constrains are not validated in API, while creating a user
-DB-1577	[Backup&Restore] Catchup does not sync regions correctly
-DB-1580	Cannot create more than 100 KV collections
-DB-1585	Db is crashing when wrong parameter is passed in user patch api call
-DB-1588	Get rid of one fabric parameter from Users API
-DB-1595	Non root user with ro fabric permissions can set and clear streams access level
-DB-1604	Tenants deleted when Broker is unavailable will never get deleted from c8streams
-DB-1606	Allow * in all below user apis for collections and fabrics
-DB-1613	c8db is crashing after redeployment
-DB-1615	Validate API continues to validate JWT token even when user has been deleted
+
 MET-136	[metricscollector] Remove "search-diskStorage" metrics from metrics-collector filter
 MET-148	coxedgeuat metric-collector pod crashing after the patch update 0.17.7
 MET-149	API [ADMINISTRATION] Get metrics names error in response
