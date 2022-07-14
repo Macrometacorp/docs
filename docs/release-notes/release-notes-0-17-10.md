@@ -96,36 +96,23 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | DB-1585  | Database is crashing when wrong parameter is passed in user patch API call.  |
 | DB-1595  | Non-root user with read-only fabric permissions can set and clear streams access level.  |
 | DB-1615  | Validate API continues to validate JWT token even when user has been deleted.  |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-	
-
-MET-136	[metricscollector] Remove "search-diskStorage" metrics from metrics-collector filter
-MET-148	coxedgeuat metric-collector pod crashing after the patch update 0.17.7
-MET-149	API [ADMINISTRATION] Get metrics names error in response
-MET-150	gdn-eu-central metrics are failing
-MET-153	Metricscollector crash with segfault on gdn-eu-centra.
-MET-154	Replace boost::beast with curl in getToken.
-MET-156	Replace boost::beast with curl in KubernetesCaller::call.
-MET-162	Metrics not get updated on nightly run
-MET-163	Metric API fails because of low memory 
-MET-173	Metricscollector /query endpoint became slower with time
-MET-190	MetricsCollector log contains large number of warning logs about a parsing error.
-MET-191	Fix rocksdb metrics names format.
-MET-199	Reduce the number of # TYPE lines in prometheus exporter
-MET-202	MetricsCollector does not provide up-to-date c8db metrics
-MET-208	If an http endpoint is invoked by chrome browser all immediate http requests get delayed.
-MET-216	metrics endpoint does not export large values with correct precision
-MET-218	API Administration - metrics query: invalid json
-MET-52	Metrics: indexStorage metric is not reinitialized when collections are deleted
-MET-68	MetricsCollector: All graphs delete call are not taken into account by MC if graph does not exist
-MET-90	Dynamo Read metrics not taken into account
+| MET-52  | `indexStorage` metric is not reinitialized when collections are deleted.  |
+| MET-68  | All graphs delete call are not taken into account by MetricsCollector if graph does not exist.  |
+| MET-90  | Dynamo Read metrics not taken into account for the count metric.  |
+| MET-136  | Remove "search-diskStorage" metrics from metrics-collector filter.  |
+| MET-148  | oxedgeuat metric-collector pod crashing after the patch update 0.17.7.  |
+| MET-149  | Get metrics names returns result as a string instead of JSON (list).  |
+| MET-150  | gdn-eu-central metrics are failing.  |
+| MET-153  | Metricscollector crash with segfault on gdn-eu-central.  |
+| MET-154  | Replace boost::beast with curl in getToken.  |
+| MET-156  | Replace boost::beast with curl in KubernetesCaller::call.  |
+| MET-162  | Metrics not get updated on nightly run.  |
+| MET-163  | Metric API fails because of low memory.  |
+| MET-173  | MetricsCollector /query endpoint became slower with time.  |
+| MET-190  | MetricsCollector log contains large number of warning logs about a parsing error.  |
+| MET-191  | Fix rocksdb metrics names format.  |
+| MET-199  | Reduce the number of # TYPE lines in Prometheus exporter.  |
+| MET-202  | MetricsCollector does not provide up-to-date c8db metrics.  |
+| MET-208  | If an HTTP endpoint is invoked by chrome browser all immediate http requests get delayed.  |
+| MET-216  | Metrics endpoint does not export large values with correct precision.  |
+| MET-218  | API Administration - metrics query: invalid JSON. |
