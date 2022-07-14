@@ -23,7 +23,7 @@ Are there other UI changes?
 Description of update.
 - New invoice
 - Redesigned billing tab
-- Fixed a bunch of billing-related defects
+- Fixed a bunch of billing-related defects on the backend.
 
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
@@ -47,9 +47,19 @@ The following defects were fixed in this release.
 | API-210  | Payment and Invoice APIs are accessible by non-root user using JWT token.  |
 | APIDOC-56  | API response is not showing properly.  |
 | BILL-204  | If usageDaily job is missed, then next day's job need to consider all data instead of 24 records for usageDaily calculation.  |
-| BILL-207  | API operation usage is not getting uploaded on strip.  |
 | BILL-208  | Pricing page need update in Query RAM section.  |
 | BILL-210  | Unable to update contact details with specific parameters. Error unless all parameters are updated.  |
+| BILL-213  | Usage API should show invalid tenant error for deleted, invalid, or non-existing tenant.  |
+| BILL-220  | /_api/billing/usage API should error out when tenant provided as null.  |
+| BILL-223  | Stripe 409/404/403/402/401/400 error code we return as a 500 in c8billing API.  |
+| BILL-224  | Clarified states the Stripe account must have when subscription is created.  |
+| BILL-226  | Improper response code for invalid parameter given to 'limit' of /_api/billing/payments. |
+| BILL-227  | /_api/billing/payments - Improper response code when tenant name is not provided. |
+| BILL-229  | Failing to upgrade when non-root user tried to upgrade account from free to metered tier. |
+| BILL-246  | Cannot modify plan with single attribute.  |
+| BILL-247  | Label parameter should allow space in creating or modifying plan.  |
+| BILL-264  | Wrong metrics type configuration in plans.  |
+| BILL-267  | Add graph-indexStorage to INDEX_STORAGE usage calculation.  |
 |   |   |
 |   |   |
 |   |   |
@@ -57,25 +67,9 @@ The following defects were fixed in this release.
 |   |   |
 |   |   |
 |   |   |
-|   |   |
-|   |   |
-
-	[PQRS]
-	[PQRS][Billing]
-	[PQRS]
 	
-BILL-213	Usage API should show invalid tenant error for deleted, invalid, or non-existing tenant.
-BILL-217	Create tenant returns incorrect/strange error when Stripe returns 429.
-BILL-220	/_api/billing/usage API should error out when tenant provided as null
-BILL-223	Stripe 409/404/403/402/401/400 error code we return as a 500 in c8billing API
-BILL-224	In what state is the Stripe account when subscription fail to be created
-BILL-226	Improper response code for invalid parameter given to 'limit' of /_api/billing/payments
-BILL-227	/_api/billing/payments - Improper response code when tenant name is not provided
-BILL-229	Failing to upgrade from free to metered tier
-BILL-246	Cannot modify with single attribute
-BILL-247	label parameter should allow space in creating or modifying plan
-BILL-264	Wrong metrics type configuration in plans
-BILL-267	Add graph-indexStorage to INDEX_STORAGE usage calculation.
+	
+	
 DB-1156	c8db-> It is mandatory to mention the field names in Search definition even if 'includeAllFields' is specified as true
 DB-1223	Long time for a response on truncate API call
 DB-1287	Unauthorized read access to protected collections gained via apikey
