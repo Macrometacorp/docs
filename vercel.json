@@ -1,20 +1,13 @@
 {
   "redirects": [
     {
-      "source": "/docs/relay",
-      "has": [
-          {
-          "type": "query",
-          "key": "id",
-          "value": "123"
-          }
-      ],
-      "destination": "/docs/collections", 
+      "source": "/essentials",
+      "destination": "/",
       "permanent": true
     },
     {
-      "source": "/docs/essentials/overview",
-      "destination": "/docs/essentials",
+      "source": "/essentials/(.*)",
+      "destination": "/",
       "permanent": true
     }
   ],
