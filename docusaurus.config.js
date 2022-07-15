@@ -11,13 +11,14 @@ const {
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
-const isDev = process.env.NODE_ENV === 'development';
+const host = process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview' ? `https://${process.env.VERCEL_URL}` : 'https://macrometa.com';
+const isDev = process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV !== 'production';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Macrometa',
   tagline: 'Macrometa GDN Documentation',
-  url: 'https://macrometa.com',
+  url: host,
   baseUrl: isDev ? '/' : '/docs/',
   onBrokenLinks: 'error',
   onBrokenMarkdownLinks: 'error',
@@ -68,7 +69,7 @@ const config = {
         },
         {
           name: 'og:url',
-          content: 'https://macrometa.com/docs/'
+          content: `${host}/docs/`
         },
         {
           name: 'og:image',
