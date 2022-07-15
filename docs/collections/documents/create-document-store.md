@@ -10,9 +10,8 @@ This page explains how to create a new Document Store collection.
 
 Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
 
-### Create a Document Store Collection with an SDK or in the web console.
+### Create a Document Store Collection
 
-The below example shows the steps for connecting a fabric and then creating a collection called `employees`.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
