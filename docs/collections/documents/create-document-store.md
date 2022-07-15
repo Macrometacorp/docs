@@ -8,11 +8,9 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to create a new Document Store collection.
 
-## Create a Document Store Collection with the API
-
 Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
 
-## Create a Document Store Collection with an SDK
+### Create a Document Store Collection with an SDK
 
 The below example shows the steps for connecting a fabric and then creating a collection called `employees`.
 
@@ -62,7 +60,7 @@ The below example shows the steps for connecting a fabric and then creating a co
 </TabItem>
 </Tabs>  
 
-## Create a Document Store Collection with the Console
+### Create a Document Store Collection with the Console
 
 Follow these instructions to create a new collection using the GDN console web UI.
 
