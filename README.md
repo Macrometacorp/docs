@@ -77,16 +77,26 @@ git clone git@github.com:Macrometacorp/docs.git && cd docs
 yarn install
 ```
 
-3. Run the docs
+3. Run the docs in developer mode. This mode updates the build whenever you save a change, but it doesn't always make broken links obvious. Docs will be available at `http://localhost:3000`.
 
 ```bash
 yarn start
 ```
 
-> 💡 When using the `start` command, the docs will be available at `http://localhost:3000`.
+4. Before you push a PR, run the production build command. This will create a build and provide an extensive list of any broken links or any other issues that need to be addressed. Make any necessary fixes, then run this command again. Repeat until you do not see any errors in your build.
 
+ ```bash
+ yarn run build
+ ```
+ 
+ 5. Display the production build. This serves the build you made in the previous step to `http://localhost:3000`. Unlike the developer mode, this build will not automatically update when you make a change.
+ 
+ ```bash
+ yarn run serve
+ ```
+ 
 ### Troubleshooting
 
-If you get a bunch of errors when you do a local build, first try updating your dependencies by running `yarn` in the top level of the `docs` directory.
+If you get a bunch of errors when you do a local build, first try updating your dependencies by running `yarn` in the top level of the `docs` directory. You must do this every time dependencies change.
 
 You might also need to update yarn. If you do, follow the instructions displayed in the terminal.
