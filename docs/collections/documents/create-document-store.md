@@ -35,6 +35,7 @@ Follow these instructions to create a new collection using the GDN console web U
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
+
 ```py
   # Simple Approach
   client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
