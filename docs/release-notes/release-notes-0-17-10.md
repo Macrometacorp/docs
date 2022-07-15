@@ -9,12 +9,23 @@ This document describes what has changed in Macrometa release 0.17.10. All accou
 
 The following features are included in this release.
 
-### SOC 2 - Can now update name and email
+### UI Updates
 
-Description of feature.
+This release included a complete overhaul of the Macrometa UI. A few section names changed, but no overall functionality changed as a result of this new feature.
 
-Do we want to tell users about SOC 2 compliance?
-Are there other UI changes?
+- Overall update to look and feel of console UI.
+- Changed order of items in the side menu.
+- User icon and log in/out and settings moved from upper right to lower left corner.
+- Search changed to Search Views.
+- Queries changed to Query Workers.
+
+Various screenshots and instructions were updated to reflect the new UI.
+
+JAMES - Need link to new dashboard topic.
+
+### Update Name and Email on User Accounts
+
+You can now update names and email addresses on user accounts. If you are a `root` user or have admin permissions, then you can update names and email addresses on user accounts that you administer.
 
 [Topic name](link) was added as a result of this feature.
 
