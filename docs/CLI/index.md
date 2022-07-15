@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Overview
+title: Command Line Interface
 ---
 
 Macrometa Command Line Interface (CLI) is a command line interface that enables developers to:
