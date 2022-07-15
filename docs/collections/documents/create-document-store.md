@@ -15,7 +15,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 The below example shows the steps for connecting a fabric and then creating a collection called `employees`.
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Web Console">
+<TabItem value="console" label="Web Console">
 
 ```
 Follow these instructions to create a new collection using the GDN console web UI.
