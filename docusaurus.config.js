@@ -21,8 +21,8 @@ const config = {
   tagline: 'Macrometa GDN Documentation',
   url: host,
   baseUrl: isDev ? '/' : '/docs/',
-  onBrokenLinks: 'error',
-  onBrokenMarkdownLinks: 'error',
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'macrometacorp', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
