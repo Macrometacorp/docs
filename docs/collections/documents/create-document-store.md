@@ -10,7 +10,7 @@ This page explains how to create a new Document Store collection.
 
 ## Create a Document Store Collection with the API
 
-Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
+Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](/api#/operations/handleCommandPost:CreateCollection). 
 
 ## Create a Document Store Collection with an SDK
 
