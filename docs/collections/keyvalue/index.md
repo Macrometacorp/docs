@@ -1,23 +1,23 @@
 ---
-sidebar_position: 1
 title: Key-Value
+sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In GDN, each document stored in a collection contains a `_key`, and the rest of the document is its *value*. The only key-value operations available are key lookups (single and batch) and key-value pair insertions and updates. If no sharding attribute is specified, `_key` is used for sharding the data instead.
+In GDN, each document stored in a collection contains a `_key`, and the rest of the document is its _value_. The only key-value operations available are key lookups (single and batch) and key-value pair insertions and updates. If no sharding attribute is specified, `_key` is used for sharding the data instead.
 
-Key-value collections are always global. You can specify time_to_live (TTL) during creation. 
+Key-value collections are always global. You can specify time_to_live (TTL) during creation.
 
 For the following examples, assume these credentials:
 
-* Tenant name: nemo@nautilus.com
-* Password: xxxxxx
+- Tenant name: nemo@nautilus.com
+- Password: xxxxxx
 
-## Driver download
+## SDK download
 
-Download the appropriate drivers for Python or JavaScript.
+Download the appropriate SDK for Python or JavaScript.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
@@ -50,7 +50,7 @@ Download the appropriate drivers for Python or JavaScript.
       (or)
       npm install jsc8
 
-  If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+  If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
       npm install --global jsc8
 

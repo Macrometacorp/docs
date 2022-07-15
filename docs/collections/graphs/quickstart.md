@@ -1,16 +1,16 @@
 ---
+title: Graph Edge Quickstart
 sidebar_position: 1
-title: Quickstart
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This article is an introduction to working with documents in GDN with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) drivers.
+This article is an introduction to working with documents in GDN with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-*Graphs* enable you to group your data and perform more powerful queries across connected documents. A graph consists of *vertices* and *edges*. Vertices are stored in collections and linked by an edge document. Edges are stored as documents in edge collections, and vertices can be a document or an edge. 
+_Graphs_ enable you to group your data and perform more powerful queries across connected documents. A graph consists of _vertices_ and _edges_. Vertices are stored in collections and linked by an edge document. Edges are stored as documents in edge collections, and vertices can be a document or an edge.
 
-The *edge definition* determines which collections are used in a named graph. A named graph must contain at least one edge definition. 
+The _edge definition_ determines which collections are used in a named graph. A named graph must contain at least one edge definition.
 
  You can turn documents into graph structures for semantic queries with nodes, edges, and properties. Graphs directly connect data items between different collections. You can use graphs to refer to documents in different tables without a nested join. Graphs can also find patterns of document connections, such as the shortest path between two vertices in a graph.
 
@@ -18,18 +18,18 @@ Edges in one edge collection may point to several vertex collections. You can ad
 
 Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. In queries you can define in which directions the edge relations may be followed:
 
-* OUTBOUND: `_from` → `_to`
-* INBOUND: `_from` ← `_to`
-* ANY: `_from` ↔ `_to`.
+- OUTBOUND: `_from` → `_to`
+- INBOUND: `_from` ← `_to`
+- ANY: `_from` ↔ `_to`.
 
 ## Example
 
 For this example, assume the following credentials:
 
-* Tenant name is `nemo@nautilus.com`.
-* User password is `xxxxxx`.
+- Tenant name is `nemo@nautilus.com`.
+- User password is `xxxxxx`.
 
-### Driver Download
+### SDK Download
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -51,6 +51,7 @@ For this example, assume the following credentials:
 
     Once the installation process is finished, you can begin developing applications in Python.
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -61,7 +62,7 @@ For this example, assume the following credentials:
         (or)
         npm install jsc8
 
-    If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+    If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
         npm install --global jsc8
 
@@ -72,6 +73,7 @@ For this example, assume the following credentials:
         npm install
         npm run dist
 ```
+
   </TabItem>
 </Tabs>  
 
@@ -92,6 +94,7 @@ The first step in using GDN is to establish a connection to a local region. When
     # To use advanced options
     client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -106,7 +109,8 @@ The first step in using GDN is to establish a connection to a local region. When
 
     // To use advanced options
     const client = new jsc8("https://gdn.paas.macrometa.io");
-```     
+```
+
   </TabItem>
 </Tabs>  
 
@@ -125,6 +129,7 @@ To get details of fabric,
     print("Get geo fabric details...")
     print(client.get_fabric_details())
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -153,7 +158,8 @@ To get details of fabric,
     }
 
     getFabric();
-```    
+```
+
   </TabItem>
 </Tabs>  
 
@@ -172,6 +178,7 @@ The below example shows the steps.
                             geofabric='_system')
     client.create_collection(name='employees')
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -183,7 +190,7 @@ The below example shows the steps.
     // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
-    // Or use Email & Password to Authenticate client instance
+    // Or use Email and Password to Authenticate client instance
     const client = new jsc8("https://gdn.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
@@ -204,7 +211,8 @@ The below example shows the steps.
     }
 
     createColl();
-```    
+```
+
   </TabItem>
 </Tabs>  
 
@@ -212,9 +220,8 @@ The below example shows the steps.
 
 An **edge collection** contains edge documents and shares its namespace with all other types of collections. You can manage edge documents via standard collection API wrappers, but using edge collection API wrappers provides additional safeguards:
 
-* All modifications are executed in transactions.
-* Edge documents are checked against the edge definitions on insert.
-
+- All modifications are executed in transactions.
+- Edge documents are checked against the edge definitions on insert.
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -230,6 +237,7 @@ An **edge collection** contains edge documents and shares its namespace with all
     else:
       print("Create: ", client.create_graph(graph_name='school'))
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -260,7 +268,8 @@ An **edge collection** contains edge documents and shares its namespace with all
 
     createEdgeColl();
 ```
-  </TabItem>
+
+</TabItem>
 </Tabs>  
 
 You can manage edges via graph API wrappers also, but you must use document IDs instead of keys where applicable.
@@ -268,7 +277,6 @@ You can manage edges via graph API wrappers also, but you must use document IDs 
 ### Insert Documents
 
 Let's insert documents to the employees collection as shown below.
-
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -287,6 +295,7 @@ Let's insert documents to the employees collection as shown below.
 
     client.insert_document(collection_name='employees', document=docs)
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -298,7 +307,7 @@ Let's insert documents to the employees collection as shown below.
     // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
-    // Or use Email & Password to Authenticate client instance
+    // Or use Email and Password to Authenticate client instance
     const client = new jsc8("https://gdn.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
@@ -315,8 +324,9 @@ Let's insert documents to the employees collection as shown below.
     }
 
     insertDoc();
-```    
-  </TabItem>
+```
+
+</TabItem>
 </Tabs>  
 
 ### Create Graph
@@ -344,6 +354,7 @@ A graph consists of vertices and edges. Vertices are stored as documents in vert
     else:
         school = client.create_graph('school')
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -355,7 +366,7 @@ A graph consists of vertices and edges. Vertices are stored as documents in vert
     // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
-    // Or use Email & Password to Authenticate client instance
+    // Or use Email and Password to Authenticate client instance
     const client = new jsc8("https://gdn.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
@@ -372,7 +383,8 @@ A graph consists of vertices and edges. Vertices are stored as documents in vert
 
     createGraph();
 ```
-  </TabItem>
+
+</TabItem>
 </Tabs>  
 
 ### Graph Traversals
@@ -572,6 +584,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     #peopleCol.truncate()
     client.delete_graph(collection_graph, drop_collections=False)
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -586,7 +599,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
-    // Or use Email & Password to Authenticate client instance
+    // Or use Email and Password to Authenticate client instance
     const client = new jsc8("https://gdn.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
@@ -792,6 +805,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
       await deleteData();
     })();
 ```
+
   </TabItem>
 </Tabs>  
 
@@ -807,6 +821,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     docs = [document for document in cursor]
     pp.pprint(docs)
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -815,6 +830,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     let result = await client.executeQuery(graph_traversal1);
     console.log(result);
 ```
+
   </TabItem>
 </Tabs>  
 
@@ -829,6 +845,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     docs = [document for document in cursor]
     pp.pprint(docs)
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -836,7 +853,8 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     console.log(`5b. GRAPH_TRAVERSAL: Find inbound calls FROM: ${person}`);
     result = await client.executeQuery(graph_traversal2);
     console.log(result);
-```    
+```
+
   </TabItem>
 </Tabs>  
 
@@ -855,7 +873,8 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
 
     # This returns an API wrapper for "school" graph and deletes the graph
     client.delete_graph('school')
-```    
+```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -877,6 +896,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     }
 
     DeleteGraph();
-```    
+```
+
   </TabItem>
 </Tabs>  

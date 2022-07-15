@@ -1,5 +1,7 @@
 {
     "MD004": { "style": "dash" },
+    "MD010": false,
     "MD013": false,
+    "MD033": { "allowed_elements": [ "Tabs", "TabItem" ] },
     "MD049": { "style": "underscore" }
 }

@@ -15,7 +15,7 @@ Let's assume your
 * Tenant name is `nemo@nautilus.com` and
 * User password is `xxxxxx`.
 
-## Driver download
+## SDK download
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -27,7 +27,7 @@ With Yarn or NPM
     (or)
     npm install jsc8
 
-If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
     npm install --global jsc8
 

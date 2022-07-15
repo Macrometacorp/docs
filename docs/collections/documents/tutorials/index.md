@@ -4,7 +4,7 @@ title: Tutorials
 ---
 
 :::note
-If you are new to Macrometa GDN, we strongly recommend reading **[Essentials](../../../essentials/index.md)** of Macrometa GDN.
+If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../../what-is-macrometa.md)**.
 :::
 
 Following tutorials cover various user scenarios using Macrometa GDN.

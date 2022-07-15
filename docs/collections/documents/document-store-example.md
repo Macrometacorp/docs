@@ -1,6 +1,6 @@
 ---
 title: Document Store Example
-sidebar_position: 40
+sidebar_position: 90
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,7 +13,7 @@ Assume the following credentials for this example:
 - Tenant name is `nemo@nautilus.com`.
 - User password is `xxxxxx`.
 
-## Driver download
+## SDK download
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
@@ -46,7 +46,7 @@ Assume the following credentials for this example:
       (or)
       npm install jsc8
 
-  If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+  If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
       npm install --global jsc8
 

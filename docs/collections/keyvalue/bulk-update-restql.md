@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
 title: Bulk Update with RestQL
+sidebar_position: 60
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,12 +10,12 @@ The following example bulk updates key-value collection data via RestQL.
 
 Assume these credentials:
 
-* Tenant name: nemo@nautilus.com
-* Password: xxxxxx
+- Tenant name: nemo@nautilus.com
+- Password: xxxxxx
 
-## Driver download
+## SDK download
 
-Download the appropriate drivers for Python or JavaScript.
+Download the appropriate SDK for Python or JavaScript.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
@@ -50,7 +50,7 @@ With NPM:
 
     npm install jsc8
 
-If you want to use the driver outside of the current directory, you can also install it globally using the `--global` flag:
+If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
     npm install --global jsc8
 
