@@ -16,7 +16,6 @@ Use our interactive API Reference with code generation in 18 programming languag
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-```
 Follow these instructions to create a new collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
@@ -29,8 +28,6 @@ Follow these instructions to create a new collection using the GDN console web U
    - **Geo Distribution -** Select whether to store data globally or locally.
    - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
    - **Wait for sync -** Synchronize to disk before completing document creation or update.
-
-```
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
