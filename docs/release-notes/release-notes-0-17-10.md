@@ -37,6 +37,8 @@ Description of update.
 - Various performance improvements.
 - Fixed a bunch of billing-related defects on the backend.
 
+BILL-256 Character limitation for (attribution+name) while creating a billing plan
+
 Epic - Updates to Billing and Invoices
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
@@ -86,6 +88,7 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | BILL-264  | Wrong metrics type configuration in plans.  |
 | BILL-267  | Add graph-indexStorage to INDEX_STORAGE usage calculation.  |
 | DB-1156  | User must mention the field names in Search definition even if 'includeAllFields' is set to `true`.  |
+| DB-1181  | C8Search: Analyzers can only be created for _system    |
 | DB-1223  | Unusually long time for a response on truncate API call.  |
 | DB-1287  | Unauthorized read access to protected collections gained via API key.  |
 | DB-1413  | Failed sync puts the region in unusable state. |
