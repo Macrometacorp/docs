@@ -13,15 +13,14 @@ The following features are included in this release.
 
 This release included a complete overhaul of the Macrometa UI. A few section names changed, but no overall functionality changed as a result of this new feature.
 
-- Overall update to look and feel of console UI.
+- Updated the overall look and feel of the web console UI.
 - Changed order of items in the side menu.
-- User icon and log in/out and settings moved from upper right to lower left corner.
-- Search changed to Search Views.
-- Queries changed to Query Workers.
+- User icon and log in/out and settings moved from the upper right to lower left corner.
+- SEARCH changed to Search Views.
+- QUERIES changed to Query Workers.
+- Query Profile changed to Query Info.
 
 Various screenshots and instructions were updated to reflect the new UI.
-
-JAMES - Need link to new dashboard topic.
 
 ### Update Name and Email on User Accounts
 
