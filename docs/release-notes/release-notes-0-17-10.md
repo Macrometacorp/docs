@@ -48,6 +48,8 @@ Epic - Updates to Billing and Invoices
 | DB-1588  | Removed one fabric parameter from Users API.  |
 DB-1606	Allow * in all below user apis for collections and fabrics
 API-178	Add region URL to the API Response
+DB-1500 Add CEP Limits: maxWorkersCpuSecondsPerMinute, maxWorkersLogsLengthKBPerMinute
+DB-1592 Make "GET /_api/collection/{collection-name}/figures" API public
 
 DFP Note - This list is incomplete. Need to find what else might have changed.
 
@@ -56,6 +58,7 @@ DFP Note - This list is incomplete. Need to find what else might have changed.
 DB-1539 Disable unique index option for newly created indices for global collections
 DB-1661 Disable SEARCH feature for FREE plan tenants
 DB-1486 Views isolation between tenants
+DB-1523 Make expiration of JWT for service user configurable
 
 ## Known Issues
 
