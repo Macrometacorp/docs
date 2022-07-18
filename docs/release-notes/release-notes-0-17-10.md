@@ -21,8 +21,6 @@ This release included a complete overhaul of the Macrometa UI. A few section nam
 
 Various screenshots and instructions were updated to reflect the new UI.
 
-JAMES - Need link to new dashboard topic.
-
 ### Update Name and Email on User Accounts
 
 You can now update names and email addresses on user accounts. If you are a `root` user or have admin permissions, then you can update names and email addresses on user accounts that you administer.
