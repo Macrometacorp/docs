@@ -4,7 +4,7 @@ title: Document Functions
 ---
 
 
-C8QL provides below listed functions to operate on objects / document values. Also see [object access](../fundamentals.md#objects--documents) for additional language constructs.
+C8QL provides below listed functions to operate on objects / document values. Also see [object access](../../queryworkers/fundamentals.md#objects--documents) for additional language constructs.
 
 ## ATTRIBUTES()
 

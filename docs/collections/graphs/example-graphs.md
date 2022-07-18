@@ -63,7 +63,7 @@ with the travel time for both directions as edge weight.
 
 ![Train Connection Map](/img/train_map.png)
 
-See the [Shortest Paths](./tutorials/graph-queries/#shortest-path) page for query examples.
+See the [Shortest Paths](graph-queries.md#shortest-path) page for query examples.
 
 ## The World Graph
 

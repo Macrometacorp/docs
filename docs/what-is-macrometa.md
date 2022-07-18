@@ -52,11 +52,11 @@ A tenant can have multiple GeoFabrics. Each GeoFabric isolates its contained dat
 
 Each GeoFabric contains the following:
 
-* [Collections](../collections/index.md) are groups of JSON documents. A GeoFabric can store unlimited collections, and collections can store unlimited documents. A collection can be a `kv` or `document` collection.
-* [Graphs](../collections/graphs/quickstart.md) consist of vertices and edges. Edges are stored as documents in edge collections. A vertex can be a document of a document collection or of an edge collection (so edges can be used as vertices).
-* [Search](../search/index.md) is a full-text search engine for information retrieval on one or more linked collections. Also referred to as `views`.
-* [Streams](../streams/quickstart.md) are a type of collection that capture data in motion. Streams support both pub-sub and queuing models. Messages are sent via streams by publishers to consumers who then do something with the message.
-* [Stream workers](../cep/index.md) perform complex event processing in real-time on streams.
+* [Collections](collections/index.md) are groups of JSON documents. A GeoFabric can store unlimited collections, and collections can store unlimited documents. A collection can be a `kv` or `document` collection.
+* [Graphs](collections/graphs/quickstart.md) consist of vertices and edges. Edges are stored as documents in edge collections. A vertex can be a document of a document collection or of an edge collection (so edges can be used as vertices).
+* [Search](search/index.md) is a full-text search engine for information retrieval on one or more linked collections. Also referred to as `views`.
+* [Streams](streams/quickstart.md) are a type of collection that capture data in motion. Streams support both pub-sub and queuing models. Messages are sent via streams by publishers to consumers who then do something with the message.
+* [Stream workers](cep/index.md) perform complex event processing in real-time on streams.
 
 For more information about GeoFabrics, refer to the [GeoFabrics](geofabrics.md) section.
 
@@ -68,7 +68,7 @@ Query Workers can be created and updated using the GDN Console or by using the R
 
 Each Query Worker is exposed as its own endpoint and is protected. The Query Workers are organized by the GeoFabric (or database) enabling you to have different Query Workers for different geo-regions as well as for different fabrics within same region.
 
-For more information, refer to the [C8 Query Language](../c8ql/index.md) section.
+For more information, refer to the [C8 Query Language](c8ql/index.md) section.
 
 ## Sharding and Replication
 
