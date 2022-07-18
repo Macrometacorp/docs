@@ -60,7 +60,7 @@ FOR doc IN users
 Operations do not have to occur in a fixed order and that their order can influence the result significantly. Limiting the number of documents before a filter is usually not what you want, because it easily misses a lot of documents that would fulfill the filter criterion, but are ignored because of a premature `LIMIT` clause.  Because of the aforementioned reasons, `LIMIT` is usually put at the very end, after `FILTER`, `SORT` and other operations.
 :::
 
-See the [High Level Operations](operations.md) chapter for more details.
+See the [High Level Operations](operations/) chapter for more details.
 
 ## Data Modification Queries
 
@@ -72,7 +72,7 @@ C8QL supports the following data-modification operations:
 - **REMOVE**: remove existing documents from a collection
 - **UPSERT**: conditionally insert or update documents in a collection
 
-Below you find some simple example queries that use these operations. The operations are detailed in the chapter [High Level Operations](operations/.md).
+Below you find some simple example queries that use these operations. The operations are detailed in the chapter [High Level Operations](operations/).
 
 
 ## Modifying a single document
