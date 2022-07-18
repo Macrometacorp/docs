@@ -16,7 +16,7 @@ You must have a Macrometa account to complete this quickstart. If you already ha
 
 A _collection_ is a group of documents with a unique name and identifier. For the address book, you will create a document collection that contains names and addresses.
 
-1. On the side menu, click **COLLECTIONS**.
+1. On the side menu, click **Collections**.
 1. Click **New Collection**.
 1. Click **Document Store**.
 1. In **Collection Name**, enter `addresses`.
@@ -58,7 +58,7 @@ FOR persons IN [
 
 Return to the collection and see what the query did.
 
-1. Click **COLLECTIONS**.
+1. Click **Collections**.
 1. Click **addresses**.
 
 Macrometa displays a list of keys and content for each record in the collection. Now you can:
