@@ -34,8 +34,10 @@ You can now update names and email addresses on user accounts. If you are a `roo
 Description of update.
 - New invoice
 - Redesigned billing tab
+- Various performance improvements.
 - Fixed a bunch of billing-related defects on the backend.
 
+Epic - Updates to Billing and Invoices
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
@@ -43,6 +45,7 @@ Description of update.
 
 | DB-1588  | Removed one fabric parameter from Users API.  |
 DB-1606	Allow * in all below user apis for collections and fabrics
+API-178	Add region URL to the API Response
 
 DFP Note - This list is incomplete. Need to find what else might have changed.
 
