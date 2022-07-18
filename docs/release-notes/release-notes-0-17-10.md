@@ -9,12 +9,23 @@ This document describes what has changed in Macrometa release 0.17.10. All accou
 
 The following features are included in this release.
 
-### SOC 2 - Can now update name and email
+### UI Updates
 
-Description of feature.
+This release included a complete overhaul of the Macrometa UI. A few section names changed, but no overall functionality changed as a result of this new feature.
 
-Do we want to tell users about SOC 2 compliance?
-Are there other UI changes?
+- Overall update to look and feel of console UI.
+- Changed order of items in the side menu.
+- User icon and log in/out and settings moved from upper right to lower left corner.
+- Search changed to Search Views.
+- Queries changed to Query Workers.
+
+Various screenshots and instructions were updated to reflect the new UI.
+
+JAMES - Need link to new dashboard topic.
+
+### Update Name and Email on User Accounts
+
+You can now update names and email addresses on user accounts. If you are a `root` user or have admin permissions, then you can update names and email addresses on user accounts that you administer.
 
 [Topic name](link) was added as a result of this feature.
 
@@ -96,7 +107,7 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | DB-1585  | Database is crashing when wrong parameter is passed in user patch API call.  |
 | DB-1595  | Non-root user with read-only fabric permissions can set and clear streams access level.  |
 | DB-1615  | Validate API continues to validate JWT token even when user has been deleted.  |
-| MET-52  | `indexStorage` metric is not reinitialized when collections are deleted.  |
+| MET-52  | Some metrics were not reinitialized when collections were deleted.  |
 | MET-68  | All graphs delete call are not taken into account by MetricsCollector if graph does not exist.  |
 | MET-90  | Dynamo Read metrics not taken into account for the count metric.  |
 | MET-136  | Remove "search-diskStorage" metrics from metrics-collector filter.  |
@@ -109,9 +120,6 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | MET-162  | Metrics not get updated on nightly run.  |
 | MET-163  | Metric API fails because of low memory.  |
 | MET-173  | MetricsCollector /query endpoint became slower with time.  |
-| MET-190  | MetricsCollector log contains large number of warning logs about a parsing error.  |
-| MET-191  | Fix rocksdb metrics names format.  |
-| MET-199  | Reduce the number of # TYPE lines in Prometheus exporter.  |
 | MET-202  | MetricsCollector does not provide up-to-date c8db metrics.  |
 | MET-208  | If an HTTP endpoint is invoked by chrome browser all immediate http requests get delayed.  |
 | MET-216  | Metrics endpoint does not export large values with correct precision.  |
