@@ -38,9 +38,9 @@ Query results vary based on the query. Queries that return information display t
 
 ![Query Result](/img/queries/query-result.png)
 
-### Query Profile
+### Query Info
 
-Click **Query Profile** to display detailed performance information about the query.
+Click **Query Info** to display detailed performance information about the query.
 
 ### View options
 

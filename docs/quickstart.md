@@ -51,7 +51,7 @@ FOR persons IN [
 ```
 
 3. Click **Run Query**. This inserts the records into the `addresses` collection you made earlier and returns a query result. The result will be empty brackets because we're inserting data, not reading anything back.
-4. (Optional) Click **Query Profile** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
+4. (Optional) Click **Query Info** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
 5. Click **Run Query** two more times. Every click adds the six records again so the collection has more records to work with. You can keep clicking if you want more records or change values in the code block if you want different records.
 
 ## Step 4: View the documents in the collection.
@@ -84,7 +84,7 @@ FOR docs IN addresses RETURN docs
 
 4. Click **Run Query**.
 
-Macrometa returns all records in the collection. You can view it as a table or as JSON by clicking **Query Result options**. You can also click **Query Profile** to see detailed performance metrics.
+Macrometa returns all records in the collection. You can view it as a table or as JSON by clicking **Query Result options**. You can also click **Query Info** to see detailed performance metrics.
 
 ## Step 6: Save the query as an API endpoint.
 
