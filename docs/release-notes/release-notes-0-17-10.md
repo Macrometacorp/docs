@@ -25,8 +25,6 @@ Various screenshots and instructions were updated to reflect the new UI.
 
 You can now update names and email addresses on user accounts. If you are a `root` user or have admin permissions, then you can update names and email addresses on user accounts that you administer.
 
-[Topic name](link) was added as a result of this feature.
-
 ### Billing Updates
 
 Description of update.
