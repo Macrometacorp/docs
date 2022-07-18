@@ -13,7 +13,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 const host = process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview' ? `https://${process.env.VERCEL_URL}` : 'https://macrometa.com';
-const isDev = process.env.NODE_ENV === 'development' || (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production');
+const isDev = process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -21,8 +21,8 @@ const config = {
   tagline: 'Macrometa GDN Documentation',
   url: host,
   baseUrl: isDev ? '/' : '/docs/',
-  onBrokenLinks: 'error',
-  onBrokenMarkdownLinks: 'error',
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'macrometacorp', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
