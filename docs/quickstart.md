@@ -34,7 +34,7 @@ Our collection is now accessible worldwide! However, it's empty. Let's fix that.
 
 There are several ways to add data to a collection, including importing CSV or JSON files. For this quickstart, we'll use a query to insert records.
 
-1. On the side menu, click **QUERIES**.
+1. On the side menu, click **Query Workers**.
 2. The code block below contains six names and email addresses. Copy and paste it in the code editor on line 1.
 
 ```sql
@@ -74,7 +74,7 @@ When you are done experimenting with records, continue to the next step.
 
 Now, let's query the data you just added to your collection. 
 
-1. Click **QUERIES**.
+1. Click **Query Workers**.
 2. Click **New** to clear the code editor.
 3. Copy the code block below and paste it into the code editor.
 
@@ -103,7 +103,7 @@ Macrometa displays a `curl` command you can use to access this endpoint from any
 
 In the previous step, you created the `getAddresses` Query Worker, which is basically the READ in a CRUD API (Create, Read, Update, Delete). Build the rest of the API by creating a Query Worker for each of the following queries.
 
-1. In **QUERIES**, click **New**.
+1. In **Query Workers**, click **New**.
 1. Copy and paste a code block.
 1. Save the query using the name with each code block.
 1. Click **API Endpoint** and record the API Usage information.
