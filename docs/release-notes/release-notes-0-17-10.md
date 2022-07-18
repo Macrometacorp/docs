@@ -51,6 +51,12 @@ API-178	Add region URL to the API Response
 
 DFP Note - This list is incomplete. Need to find what else might have changed.
 
+### Miscellaneous Changes
+
+DB-1539 Disable unique index option for newly created indices for global collections
+DB-1661 Disable SEARCH feature for FREE plan tenants
+DB-1486 Views isolation between tenants
+
 ## Known Issues
 
 The following known issues were introduced in this release.
@@ -73,44 +79,26 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | API-196  | Users are allowed to request removing datacenter even if GeoFabric has only two datacenters.  |
 | API-210  | Payment and Invoice APIs are accessible by non-root user using JWT token.  |
 | APIDOC-56  | API response is not showing properly.  |
-| BILL-204  | If usageDaily job is missed, then next day's job need to consider all data instead of 24 records for usageDaily calculation.  |
 | BILL-208  | Pricing page need update in Query RAM section.  |
 | BILL-210  | Unable to update contact details with specific parameters. Error unless all parameters are updated.  |
-| BILL-213  | Usage API should show invalid tenant error for deleted, invalid, or non-existing tenant.  |
 | BILL-220  | /_api/billing/usage API should error out when tenant provided as null.  |
-| BILL-223  | Stripe 409/404/403/402/401/400 error code we return as a 500 in c8billing API.  |
-| BILL-224  | Clarified states the Stripe account must have when subscription is created.  |
 | BILL-226  | Improper response code for invalid parameter given to 'limit' of /_api/billing/payments. |
 | BILL-227  | /_api/billing/payments - Improper response code when tenant name is not provided. |
 | BILL-229  | Failing to upgrade when non-root user tried to upgrade account from free to metered tier. |
-| BILL-246  | Cannot modify plan with single attribute.  |
-| BILL-247  | Label parameter should allow space in creating or modifying plan.  |
-| BILL-264  | Wrong metrics type configuration in plans.  |
-| BILL-267  | Add graph-indexStorage to INDEX_STORAGE usage calculation.  |
 | DB-1156  | User must mention the field names in Search definition even if 'includeAllFields' is set to `true`.  |
 | DB-1181  | C8Search: Analyzers can only be created for _system    |
 | DB-1223  | Unusually long time for a response on truncate API call.  |
-| DB-1287  | Unauthorized read access to protected collections gained via API key.  |
-| DB-1413  | Failed sync puts the region in unusable state. |
-| DB-1433  | [Search View] Search logs do not honour c8db `--log.level` parameter.  |
 | DB-1439  | The fabric created after taking the backup of a region (eu-west) did not get synced up after restore.  |
 | DB-1442  | Due to _key collision, failed to insert document in collection.  |
 | DB-1444  | Data discrepancy in two regions when documents were created with the same key but different content.  |
 | DB-1446  | Allow query batch size to take values above 1,000.  |
-| DB-1453  | [Add Datacenter] sync views operation is not triggered if collections sync fails for any collection.  |
-| DB-1456  | Delete region from federation removes random regions.  |
 | DB-1457  | Bypassed GeoFabric per-tenant limit on free tier account. Correct limit is two.  |
 | DB-1463  | Able to have inconsistent documents on two different regions with same key in the same collection.  |
 | DB-1470  | Error trying to truncate records for a collection stream.  |
-| DB-1471  | Admin user cannot retrieve permissions for another tenant.  |
 | DB-1493  | Getting connection not established error on a stream console.  |
-| DB-1498  | GET _api/features/tenant/{tenant} returns HTTP 401 when called with Admin user API key.  |
 | DB-1519  | "Unauthorized" error is seen after navigation to regions.  |
-| DB-1527  | API reference for creating collections contains parameters that users should not be able to access.  |
 | DB-1552  | When creating a user, password constrains are not validated in API.  |
-| DB-1577  | [Backup & Restore] Catch-up does not sync regions correctly.  |
 | DB-1580  | Cannot create more than 100 KV collections.  |
-| DB-1585  | Database is crashing when wrong parameter is passed in user patch API call.  |
 | DB-1595  | Non-root user with read-only fabric permissions can set and clear streams access level.  |
 | DB-1615  | Validate API continues to validate JWT token even when user has been deleted.  |
 | MET-52  | Some metrics were not reinitialized when collections were deleted.  |
