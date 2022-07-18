@@ -19,7 +19,7 @@ Macrometa runs the query and displays the [Query Result](#query-result) for that
 
 ### Run a Query with CLI
 
-1. Install the CLI as described in [Install gdnsl](../CLI/overview.md#install-gdnsl).
+1. Install the CLI as described in [Install gdnsl](../CLI/#install-gdnsl).
 1. Enter queries using `gdnsl query`. For more information and examples, refer to the CLI [Queries](../CLI/commands.md#queries-gdnsl-query) documentation.
 
 ## API Endpoint

@@ -53,7 +53,7 @@ FOR doc IN posts
   RETURN doc
 ```
 
-It is possible to add the [array expansion operator](../../../c8ql/array-operators.md#array-expansion) <i>[\*]</i>, but it is not mandatory. You may use it to indicate that an array index is used, it is purely cosmetic however:
+It is possible to add the [array expansion operator](../../c8ql/array-operators.md#array-expansion) <i>[\*]</i>, but it is not mandatory. You may use it to indicate that an array index is used, it is purely cosmetic however:
 
 ```js
 FOR doc IN posts
@@ -499,7 +499,7 @@ In case that the index was successfully created, an object with the index detail
 
 ### Fulltext C8QL Functions
 
-Fulltext C8QL functions are detailed in [Fulltext functions](../../../c8ql/functions/fulltext.md).
+Fulltext C8QL functions are detailed in [Fulltext functions](../../c8ql/functions/fulltext.md).
 
 ## Geo-Spatial Indexes
 
