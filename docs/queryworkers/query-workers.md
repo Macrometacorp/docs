@@ -17,17 +17,17 @@ When you save a query, it becomes a query worker.
 2. Click **Save Query**.
 3. Enter a **Name** and then click **Save**.
 
-## Saved Queries
+## View Query Workers
 
-To view saved queries, click **Saved Queries**.
+To view query workers, click **Query Workers**.
 
 Macrometa displays a list of default queries and user-defined queries. You cannot delete or overwrite default queries. In the following screenshot, the user selected a default query:
 
-![Saved queries](/img/queries/saved-queries.png)
+![Query Workers](/img/queries/saved-queries.png)
 
 ### Copy a Query Worker
 
-Click the stacked pages to copy any query worker and edit it in the Query Builder.
+Click the stacked pages to copy any query worker and edit it in the Query Editor.
 
 ### Explain a Query Worker
 
