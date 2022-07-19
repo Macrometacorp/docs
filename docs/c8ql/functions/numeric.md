@@ -254,7 +254,7 @@ LOG10(0) // null
 
 `MAX(anyArray) → max`
 
-Return the greatest element of *anyArray*. The array is not limited to numbers. Also see [type and value order](../fundamentals.md#type-and-value-order).
+Return the greatest element of *anyArray*. The array is not limited to numbers. Also see [type and value order](../../queryworkers/fundamentals.md#type-and-value-order).
 
 - **anyArray** (array): an array of numbers, *null* values are ignored
 - returns **max** (any\|null): the element with the greatest value. If the array is empty or contains *null* values only, the function will return *null*.
@@ -287,7 +287,7 @@ MEDIAN( [ 999, 80, 4, 4, 4, 3, 3, 3 ] ) // 4
 
 `MIN(anyArray) → min`
 
-Return the smallest element of *anyArray*. The array is not limited to numbers. Also see [type and value order](../fundamentals.md#type-and-value-order).
+Return the smallest element of *anyArray*. The array is not limited to numbers. Also see [type and value order](../../queryworkers/fundamentals.md#type-and-value-order).
 
 - **anyArray** (array): an array of numbers, *null* values are ignored
 - returns **min** (any\|null): the element with the smallest value. If the array is empty or contains *null* values only, the function will return *null*.

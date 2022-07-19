@@ -105,13 +105,13 @@ For some of the examples, we'll also use a collection `relations` to store relat
 
 ## Counting
 
-To return the count of documents that currently exist in a collection, you can call the [LENGTH() function](functions/array#length):
+To return the count of documents that currently exist in a collection, you can call the [LENGTH() function](functions/array.md#length):
 
 ```bash
     RETURN LENGTH(collection)
 ```
 
-Internally, [COLLECTION_COUNT()](functions/miscellaneous#count) is called.
+Internally, [COLLECTION_COUNT()](functions/miscellaneous.md#count) is called.
 
 ## Data Modifications
 
@@ -1113,7 +1113,7 @@ written.save("authors/2938210813", "books/2980088317", { pages: "11-20" })
 }
 ```
 
-In order to get all books with their authors you can use a [graph traversal](./graphs/traversals#working-with-collection-sets)
+In order to get all books with their authors you can use a [graph traversal](graphs/traversals.md#working-with-collection-sets)
 
 ```js
 FOR b IN books
@@ -1700,7 +1700,7 @@ RETURN ( RETURN 1 )
 [ [ 1 ] ]
 ```
 
-To avoid such a nested data structure,  [FIRST()](./functions/array#first) can be used for example:
+To avoid such a nested data structure,  [FIRST()](functions/array.md#first) can be used for example:
 
 ```js
 RETURN FIRST( RETURN 1 )
@@ -1839,7 +1839,7 @@ FOR doc IN documents
 
 The subquery will only let attribute names pass that contain the letter `a`. The results of the subquery are then made available to the main query and will be returned. But the attribute names in the result are still `name` and `value`, so we're not there yet.
 
-So let us also employ C8QL's [ZIP()](./functions/document#zip) function, which can create an object from two arrays:
+So let us also employ C8QL's [ZIP()](functions/document.md#zip) function, which can create an object from two arrays:
 
 - the first parameter to `ZIP()` is an array with the attribute names
 - the second parameter to `ZIP()` is an array with the attribute values
@@ -1924,7 +1924,7 @@ That will give us document-specific attribute names like this:
 
 ### Finding the start vertex via a geo query
 
-Our first example will locate the start vertex for a graph traversal via [a geo index](../collections/indexing/index-basics#geo-index).
+Our first example will locate the start vertex for a graph traversal via [a geo index](../collections/indexing/index-basics.md#geo-index).
 
 We use the city graph and its geo indices: ![cities_graph\(1\)](/img/cities_graph.png){height="" width=""}
 

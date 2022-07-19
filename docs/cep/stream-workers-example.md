@@ -3,6 +3,8 @@ sidebar_position: 10
 title: Stream Workers Example
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Assume the following credentials:
 
@@ -629,7 +631,7 @@ The following example uses the code snippets provided in this tutorial.
             @info(name='Dump')
             INSERT INTO SampleCargoAppDestTable
             SELECT weight
-            FROM SampleCargoAppInputTable;
+            FROM SampleCargoAppInputTable;`
       
             const app = client.streamApp("Sample-Cargo-App");
             ressult = await app.retriveApplication();
