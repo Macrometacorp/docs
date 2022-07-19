@@ -22,6 +22,8 @@ This release included a complete overhaul of the Macrometa UI. A few section nam
 
 Various screenshots and instructions were updated to reflect the new UI.
 
+![Redesigned UI](/img/release-notes/17-10-new-ui.png)
+
 ### Billing Updates
 
 This release includes an overhaul of the billing functionality, including:
@@ -41,7 +43,7 @@ You can now update names and email addresses on user accounts. If you are a `roo
 
 ### API Updates
 
-This release includes the following API changes:
+This release includes the following API changes.
 
 | Issue #  | Description  |
 |---|---|
@@ -53,10 +55,20 @@ This release includes the following API changes:
 
 ### Miscellaneous Changes
 
-DB-1539 Disable unique index option for newly created indices for global collections
-DB-1661 Disable SEARCH feature for FREE plan tenants
+This release includes the following changes that do not fit into a larger category.
+
+
 DB-1486 Views isolation between tenants
+    Looks like they made some major changes to Search Views. Is Search Views new compared to Search?
+
 DB-1523 Make expiration of JWT for service user configurable
+    Definitely user-facing, need explanation. Maybe update Token-based Authentication, but not sure how. 
+
+DB-1539 Disable unique index option for newly created indices for global collections
+    Definitely user-facing, there were GUI changes. Need this explained.
+
+DB-1661 Disable SEARCH feature for FREE plan tenants
+    Looks like this one might not be user-facing. Need to confirm.
 
 ## Defect Fixes
 
