@@ -36,8 +36,6 @@ Description of update.
 - Various performance improvements.
 - Fixed a bunch of billing-related defects on the backend.
 
-BILL-256 Character limitation for (attribution+name) while creating a billing plan
-
 Epic - Updates to Billing and Invoices
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
