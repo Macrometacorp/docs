@@ -21,7 +21,7 @@ To write a query, log into Macromenta and navigate to the Editor tab of the Quer
 
 Macrometa has a built-in tool to help you with C8QL syntax. Click **Syntax** and start typing to see a list of available options.
 
-In the following screenshot, the user typed **in**.
+In the following screenshot, the user typed **min**.
 
 ![Syntax helper](/img/queries/syntax-helper.png)
 
