@@ -20,24 +20,22 @@ This release included a complete overhaul of the Macrometa UI. A few section nam
 - Queries changed to Query Workers.
 
 Various screenshots and instructions were updated to reflect the new UI.
+### Billing Updates
+
+This release includes an overhaul of the billing functionality, including:
+
+- New invoice design.
+- Redesigned billing tab, with graphs and metrics to help you understand usage.
+- Various performance improvements.
+- A bunch of billing-related defect fixes on the backend.
+
+If you have a paid Macrometa plan, then you can view the new billing screen in your account Overview tab.
+
+![New billing tab](/img/release-notes/17-10-new-billing-tab.png)
 
 ### Update Name and Email on User Accounts
 
 You can now update names and email addresses on user accounts. If you are a `root` user or have admin permissions, then you can update names and email addresses on user accounts that you administer.
-
-### Billing Updates
-
-Description of update.
-- New invoice
-- Redesigned billing tab
-- Various performance improvements.
-- Fixed a bunch of billing-related defects on the backend.
-
-BILL-256 Character limitation for (attribution+name) while creating a billing plan
-
-Epic - Updates to Billing and Invoices
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
 
 ### API Updates
 
@@ -57,14 +55,6 @@ DB-1539 Disable unique index option for newly created indices for global collect
 DB-1661 Disable SEARCH feature for FREE plan tenants
 DB-1486 Views isolation between tenants
 DB-1523 Make expiration of JWT for service user configurable
-
-## Known Issues
-
-The following known issues were introduced in this release.
-
-### Problem
-
-Explain the problem and the workaround.
 
 ## Defect Fixes
 
