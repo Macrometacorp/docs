@@ -26,8 +26,6 @@ A _collection_ is a group of documents with a unique name and identifier. For th
 
 Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics.md) locations.
 
-![dashboard](/img/dashboard.png)
-
 Our collection is now accessible worldwide! However, it's empty. Let's fix that.
 
 ## Step 3: Add data to your new collection with a query
