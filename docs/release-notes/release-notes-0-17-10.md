@@ -56,14 +56,6 @@ DB-1661 Disable SEARCH feature for FREE plan tenants
 DB-1486 Views isolation between tenants
 DB-1523 Make expiration of JWT for service user configurable
 
-## Known Issues
-
-The following known issues were introduced in this release.
-
-### Problem
-
-Explain the problem and the workaround.
-
 ## Defect Fixes
 
 The following defects were fixed in this release.
