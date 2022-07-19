@@ -21,13 +21,9 @@ This release included a complete overhaul of the Macrometa UI. A few section nam
 
 Various screenshots and instructions were updated to reflect the new UI.
 
-JAMES - Need link to new dashboard topic.
-
 ### Update Name and Email on User Accounts
 
 You can now update names and email addresses on user accounts. If you are a `root` user or have admin permissions, then you can update names and email addresses on user accounts that you administer.
-
-[Topic name](link) was added as a result of this feature.
 
 ### Billing Updates
 
@@ -45,13 +41,15 @@ Epic - Updates to Billing and Invoices
 
 ### API Updates
 
-| DB-1588  | Removed one fabric parameter from Users API.  |
-DB-1606	Allow * in all below user apis for collections and fabrics
-API-178	Add region URL to the API Response
-DB-1500 Add CEP Limits: maxWorkersCpuSecondsPerMinute, maxWorkersLogsLengthKBPerMinute
-DB-1592 Make "GET /_api/collection/{collection-name}/figures" API public
+This release includes the following API changes:
 
-DFP Note - This list is incomplete. Need to find what else might have changed.
+| Issue #  | Description  |
+|---|---|
+| API-178  | Add region URL to the API response.  |
+| DB-1500  | Add new database limits: `maxWorkersCpuSecondsPerMinute` (default value is 20 seconds/minute of CPU time), `maxWorkersLogsLengthKBPerMinute` (default value is 10 KB/minute of logs length).  |
+| DB-1588  | Removed one fabric parameter from Users API, because having two parameters was confusing. Now consistent with other APIs.  |
+| DB-1592  | Make `GET /_api/collection/{collection-name}/figures` API public. This allows users to view metadata such as how many indexes and views a collection has, total collection size, and how many documents a collection has. |
+| DB-1606  | Allow `*` in certain User APIs for collections and fabrics. APIs are: GET, DELETE, and PUT for `/_fabric/{fabric}/_api/user/{user}/database/{geofabric}` and GET, DELETE, and PUT for `/_fabric/{fabric}/_api/user/{user}/database/{geofabric}/collection/{collection}`. |
 
 ### Miscellaneous Changes
 
