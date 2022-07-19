@@ -46,10 +46,6 @@ Click **Query Info** to display detailed performance information about the query
 
 If your query returned results, then you can display them in **Table** or **JSON** format. Default is **Table**.
 
-### Download results
-
-If your query returned results, then you can click **Download CSV** to download them as a comma-separated variable file.
-
 ### Clear results
 
 To clear a specific result, click **Clear** next to the result.
