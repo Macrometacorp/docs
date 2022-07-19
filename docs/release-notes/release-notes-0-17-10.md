@@ -20,6 +20,7 @@ This release included a complete overhaul of the Macrometa UI. A few section nam
 - Queries changed to Query Workers.
 
 Various screenshots and instructions were updated to reflect the new UI.
+
 ### Billing Updates
 
 This release includes an overhaul of the billing functionality, including:
@@ -39,7 +40,7 @@ You can now update names and email addresses on user accounts. If you are a `roo
 
 ### API Updates
 
-This release includes the following API changes:
+This release includes the following API changes.
 
 | Issue #  | Description  |
 |---|---|
