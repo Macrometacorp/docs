@@ -20,7 +20,7 @@ The following table shows rate limits for free developer accounts and metered ac
 | Memory per Query				| 256 MB			| 256 MB			|
 | Collections per Fabric		| 10				| 1000				|
 | Graphs per Fabric				| 2					| 500				|
-| Views per Fabric 				| 2  				| 100				|
+| Views per Fabric 				| N/A 				| 100				|
 | Indexes per Fabric 			| 10 				| 100				|
 | Geo Fabrics per Tenant 		| 2					| 50				|
 
