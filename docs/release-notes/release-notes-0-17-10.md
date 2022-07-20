@@ -51,10 +51,21 @@ This release includes the following API changes:
 
 ### Miscellaneous Changes
 
-DB-1539 Disable unique index option for newly created indices for global collections
-DB-1661 Disable SEARCH feature for FREE plan tenants
+This release includes the following changes that do not fit into a larger category.
+
+
 DB-1486 Views isolation between tenants
+    Looks like they made some major changes to Search Views. Is Search Views new compared to Search?
+    - Issues with Search was affecting platform performance
+    - Made a bunch of changes to decrease amount of resources used by Search, backend changes to improve overall performance.
+
 DB-1523 Make expiration of JWT for service user configurable
+    Definitely user-facing, need explanation. Maybe update Token-based Authentication, but not sure how.
+    - Can now configure it to last any number of minutes
+    - Via the API, new parameter
+
+DB-1539 Disable unique index option for newly created indices for global collections
+    Definitely user-facing, there were GUI changes. Need this explained.
 
 ## Defect Fixes
 
@@ -95,17 +106,5 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | MET-52  | Some metrics were not reinitialized when collections were deleted.  |
 | MET-68  | All graphs delete call are not taken into account by MetricsCollector if graph does not exist.  |
 | MET-90  | Dynamo Read metrics not taken into account for the count metric.  |
-| MET-136  | Remove "search-diskStorage" metrics from metrics-collector filter.  |
-| MET-148  | oxedgeuat metric-collector pod crashing after the patch update 0.17.7.  |
 | MET-149  | Get metrics names returns result as a string instead of JSON (list).  |
-| MET-150  | gdn-eu-central metrics are failing.  |
-| MET-153  | Metricscollector crash with segfault on gdn-eu-central.  |
-| MET-154  | Replace boost::beast with curl in getToken.  |
-| MET-156  | Replace boost::beast with curl in KubernetesCaller::call.  |
-| MET-162  | Metrics not get updated on nightly run.  |
-| MET-163  | Metric API fails because of low memory.  |
-| MET-173  | MetricsCollector /query endpoint became slower with time.  |
-| MET-202  | MetricsCollector does not provide up-to-date c8db metrics.  |
-| MET-208  | If an HTTP endpoint is invoked by chrome browser all immediate http requests get delayed.  |
-| MET-216  | Metrics endpoint does not export large values with correct precision.  |
-| MET-218  | API Administration - metrics query: invalid JSON. |
+| MET-208  | If an HTTP endpoint is invoked by Chrome browser all immediate http requests get delayed.  |
