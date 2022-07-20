@@ -13,13 +13,17 @@ The following features are included in this release.
 
 This release included a complete overhaul of the Macrometa UI. A few section names changed, but no overall functionality changed as a result of this new feature.
 
-- Overall update to look and feel of console UI.
+- Updated the overall look and feel of the web console UI.
 - Changed order of items in the side menu.
-- User icon and log in/out and settings moved from upper right to lower left corner.
-- Search changed to Search Views.
-- Queries changed to Query Workers.
+- User icon and log in/out and settings moved from the upper right to lower left corner.
+- SEARCH changed to Search Views.
+- QUERIES changed to Query Workers.
+- Query Profile changed to Query Info.
 
 Various screenshots and instructions were updated to reflect the new UI.
+
+![Redesigned UI](/img/release-notes/17-10-new-ui.png)
+
 ### Billing Updates
 
 This release includes an overhaul of the billing functionality, including:
@@ -39,7 +43,7 @@ You can now update names and email addresses on user accounts. If you are a `roo
 
 ### API Updates
 
-This release includes the following API changes:
+This release includes the following API changes.
 
 | Issue #  | Description  |
 |---|---|
