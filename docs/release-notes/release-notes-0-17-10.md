@@ -13,13 +13,17 @@ The following features are included in this release.
 
 This release included a complete overhaul of the Macrometa UI. A few section names changed, but no overall functionality changed as a result of this new feature.
 
-- Overall update to look and feel of console UI.
+- Updated the overall look and feel of the web console UI.
 - Changed order of items in the side menu.
-- User icon and log in/out and settings moved from upper right to lower left corner.
-- Search changed to Search Views.
-- Queries changed to Query Workers.
+- User icon and log in/out and settings moved from the upper right to lower left corner.
+- SEARCH changed to Search Views.
+- QUERIES changed to Query Workers.
+- Query Profile changed to Query Info.
 
 Various screenshots and instructions were updated to reflect the new UI.
+
+![Redesigned UI](/img/release-notes/17-10-new-ui.png)
+
 ### Billing Updates
 
 This release includes an overhaul of the billing functionality, including:
@@ -39,7 +43,7 @@ You can now update names and email addresses on user accounts. If you are a `roo
 
 ### API Updates
 
-This release includes the following API changes:
+This release includes the following API changes.
 
 | Issue #  | Description  |
 |---|---|
@@ -51,10 +55,20 @@ This release includes the following API changes:
 
 ### Miscellaneous Changes
 
-DB-1539 Disable unique index option for newly created indices for global collections
-DB-1661 Disable SEARCH feature for FREE plan tenants
+This release includes the following changes that do not fit into a larger category.
+
+
 DB-1486 Views isolation between tenants
+    Looks like they made some major changes to Search Views. Is Search Views new compared to Search?
+
 DB-1523 Make expiration of JWT for service user configurable
+    Definitely user-facing, need explanation. Maybe update Token-based Authentication, but not sure how. 
+
+DB-1539 Disable unique index option for newly created indices for global collections
+    Definitely user-facing, there were GUI changes. Need this explained.
+
+DB-1661 Disable SEARCH feature for FREE plan tenants
+    Looks like this one might not be user-facing. Need to confirm.
 
 ## Defect Fixes
 

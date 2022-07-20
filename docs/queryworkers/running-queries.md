@@ -38,23 +38,19 @@ Query results vary based on the query. Queries that return information display t
 
 ![Query Result](/img/queries/query-result.png)
 
-### Query Profile
+### Query Info
 
-Click **Query Profile** to display detailed performance information about the query.
+Click **Query Info** to display detailed performance information about the query.
 
 ### View options
 
 If your query returned results, then you can display them in **Table** or **JSON** format. Default is **Table**.
 
-### Download results
-
-If your query returned results, then you can click **Download CSV** to download them as a comma-separated variable file.
-
 ### Clear results
 
 To clear a specific result, click **Clear** next to the result.
 
-To clear all results, click **Clear All** under the Query Builder.
+To clear all results, click **Clear All** under the Query Editor.
 
 ## Running Queries tab
 
