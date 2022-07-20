@@ -18,7 +18,8 @@ This release included a complete overhaul of the Macrometa UI. A few section nam
 - User icon and log in/out and settings moved from the upper right to lower left corner.
 - SEARCH changed to Search Views.
 - QUERIES changed to Query Workers.
-- Query Profile changed to Query Info.
+- Query Profile changed to Query Info in Query Results.
+- **Download CSV** temporarily removed from Query Results. This feature will return when we have a better CSV solution.
 
 Various screenshots and instructions were updated to reflect the new UI.
 
