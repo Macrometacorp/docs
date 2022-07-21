@@ -64,11 +64,6 @@ DB-1486 Views isolation between tenants
     - Issues with Search was affecting platform performance
     - Made a bunch of changes to decrease amount of resources used by Search, backend changes to improve overall performance.
 
-DB-1523 Make expiration of JWT for service user configurable
-    Definitely user-facing, need explanation. Maybe update Token-based Authentication, but not sure how.
-    - Can now configure it to last any number of minutes
-    - Via the API, new parameter
-
 DB-1539 Disable unique index option for newly created indices for global collections
     Definitely user-facing, there were GUI changes. Need this explained.
 
