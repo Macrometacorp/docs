@@ -22,7 +22,6 @@ Get commands related to stream workers.
 
   # Submit an ad hoc Stream query and get the result records from a store.
   gdnsl stream-worker TestStream --query "SELECT * FROM TestStreamTable"
-
 ```
 
 **Options:**
@@ -39,7 +38,6 @@ Get commands related to stream workers.
 
 ```bash
       --config string       gdnsl config file (default is ./gdnsl.yaml)
- 
 ```
 
 ## gdnsl stream-worker create
@@ -53,7 +51,6 @@ Create a stream worker.
 **Examples:**
 
 ```bash
-
   # Create a simple stream worker.
    gdnsl stream-worker create 
       --name "cargo-stream-worker" 
@@ -148,7 +145,6 @@ Create a stream worker.
 
   # Create a stream worker using advanced mode
    gdnsl stream-worker create --advanced"@App:name('Sample-Adhoc-Query')\n@App:description(\"This application demonstrates how to send adhoc queries and fetch data from Stores and named windows.\")\n@App:qlVersion('2')\n\n/**\nTesting the Stream Application:\n    1. Upload following data into `SampleAdhocQueryInputTable` C8DB Collection\n        {\"sensorId\":\"sensor A1234\",\"temperature\":18}\n        {\"sensorId\":\"sensor A1234\",\"temperature\":-32.2}\n        {\"sensorId\":\"sensor FR45\",\"temperature\":20.9}\n        {\"sensorId\":\"sensor meter1\",\"temperature\":49.6}\n\n    2. This application accumulates all the data for one minute in the named window `SampleAdhocQueryInputTableOneMinTimeWindow`\n        Named window allows other application to query data in realtime.\n\n    3. Run the adhoc query on the `SampleAdhocQueryInputTableOneMinTimeWindow` (Refer [1] for running adhoc queries.)\n        Query:\n            select * from SampleAdhocQueryInputTableOneMinTimeWindow\n\n        Output:\n            [\n                [\"sensor A1234\",18],\n                [\"sensor A1234\",-32.2],\n                [\"sensor FR45\",20.9],\n                [\"sensor meter1\",49.6]\n            ]\n\n    4. Similar to Named Windows one can run adhoc queries on the stores as well. Running adhoc query on \n        `SampleAdhocQuerySensorA1234DestTable` C8DB Collection should produce below result\n\n        Query: Store the result if sensorId is equal to \"sensor A1234\"\n            SELECT * FROM SampleAdhocQuerySensorA1234DestTable\n\n        Output:\n            [\n                [\"sensor A1234\",18],\n                [\"sensor A1234\",-32.2]\n            ]\n\n    [1] https://macrometa.dev/cep/quickstart/#run-an-adhoc-query\n*/\n\n-- Defines `SampleAdhocQueryInputTable` collection to process events having `sensorId` and `temperature`(F).\nCREATE SOURCE SampleAdhocQueryInputTable WITH(type = 'database', collection = \"SampleAdhocQueryInputTable\", collection.type=\"doc\" , replication.type=\"global\", map.type='json') (sensorId string, temperature double);\n\n-- Named Window\nCREATE WINDOW SampleAdhocQueryInputTableOneMinTimeWindow (sensorId string, temperature double) SLIDING_TIME(1 min);\n\n-- Table\nCREATE TABLE SampleAdhocQuerySensorA1234DestTable(sensorId string, temperature double);\n\n@info(name = 'Insert-to-window')\nINSERT INTO SampleAdhocQueryInputTableOneMinTimeWindow\nSELECT *\nFROM SampleAdhocQueryInputTable;\n\n@info(name = 'EqualsFilter')\n-- Note: Filter out events with `sensorId` equalling `sensor A1234`\nINSERT INTO SampleAdhocQuerySensorA1234DestTable\nSELECT *\nFROM SampleAdhocQueryInputTable\nWHERE sensorId == 'sensor A1234';\n" --regions "gdn-us-west,gdn-ap-west"
-
 ```
 
 **Options:**
@@ -176,7 +172,6 @@ Create a stream worker.
 
 ```bash
       --config string  gdnsl config file (default is ./gdnsl.yaml)
- 
 ```
 
 ## gdnsl stream-worker delete
@@ -190,7 +185,6 @@ Delete a stream worker.
 **Examples:**
 
 ```bash
-
   # Delete a stream worker.
   gdnsl stream-worker delete TestStreamWorker
 
@@ -201,14 +195,12 @@ Delete a stream worker.
 ```bash
   -h, --help                  Help to describe stream workers.
   --fabric                    Name of the fabric to use.
-
 ```
 
 **Options inherited:**
 
 ```bash
       --config string         gdnsl config file (default is ./gdnsl.yaml)
- 
 ```
 
 ## gdnsl stream-worker describe
@@ -272,7 +264,6 @@ List stream workers.
 
 ```bash
       --config string         gdnsl config file (default is ./gdnsl.yaml)
- 
 ```
 
 ## gdnsl stream-worker update
@@ -405,5 +396,4 @@ Update a stream worker.
 
 ```bash
       --config string         gdnsl config file (default is ./gdnsl.yaml)
- 
 ```
