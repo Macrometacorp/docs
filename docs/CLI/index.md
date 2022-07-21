@@ -6,12 +6,12 @@ title: Command Line Interface
 Macrometa Command Line Interface (CLI) is a command line interface that enables developers to:
 
 1. Deploy serverless microservices and functions.
-2. Script serverless workflows via GitHub.
-3. Easily learn commands with consistent verbs, nouns, and flags.
+1. Script serverless workflows via GitHub.
+1. Easily learn commands with consistent verbs, nouns, and flags.
 
 ## Prerequisites
 
-* Install Node.js and npm. We recommend using a version manager such as [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) (Node Version Manager).
+Install Node.js and npm. We recommend using a version manager such as [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) (Node Version Manager).
 
 ## Install `gdnsl`
 
@@ -23,13 +23,14 @@ npm install -g gdnsl
 gdnsl init
 ```
 
-### Sample gdnsl.yaml:
-    ```yaml
-    url: gdn.paas.macrometa.io
-    tenant: demo@macrometa.io
-    apikey: "xxxxxxx"
-    regions: [ ] # Valid values - LOCAL, ALL, comma separated list of regions.
-    ```
+Sample gdnsl.yaml:
+
+  ```yaml
+  url: gdn.paas.macrometa.io
+  tenant: demo@macrometa.io
+  apikey: "xxxxxxx"
+  regions: [ ] # Valid values - LOCAL, ALL, comma separated list of regions.
+  ```
 
 ## Usage
 
