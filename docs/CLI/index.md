@@ -13,7 +13,7 @@ Macrometa Command Line Interface (CLI) is a command line interface that enables 
 
 Install Node.js and npm. We recommend using a version manager such as [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) (Node Version Manager).
 
-## Install `gdnsl`
+## Install `gdnsl` CLI
 
 `gdnsl` is built with Node.js and installable via npm:
 
