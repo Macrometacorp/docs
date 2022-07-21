@@ -90,6 +90,7 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | DB-1156  | User must mention the field names in Search definition even if 'includeAllFields' is set to `true`.  |
 | DB-1181  | C8Search: Analyzers can only be created for _system    |
 | DB-1223  | Unusually long time for a response on truncate API call.  |
+| DB-1242  | Insert query with overwrite: true fails for a collection that has multiple unique indexes.   |
 | DB-1439  | The fabric created after taking the backup of a region (eu-west) did not get synced up after restore.  |
 | DB-1442  | Due to _key collision, failed to insert document in collection.  |
 | DB-1444  | Data discrepancy in two regions when documents were created with the same key but different content.  |
