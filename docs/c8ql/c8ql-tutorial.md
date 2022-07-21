@@ -5,13 +5,13 @@ title: C8QL Tutorial
 
 This is an introduction to GDN's query language C8QL, built around a small dataset of characters from the novel and fantasy drama television series Game of Thrones (as of season 1). It includes character traits in two languages, some family relations, and last but not least a small set of filming locations, which makes for an interesting mix of data to work with.
 
-There is no need to import the data before you start. It is provided as part of the C8QL queries in this tutorial. 
+There is no need to import the data before you start. It is provided as part of the C8QL queries in this tutorial.
 
 ## Dataset
 
 ### Characters
 
-The dataset features 43 characters with their name, surname, age, alive status and trait references. The surname and age properties are not always present. The column *traits (resolved)* is not part of the actual data used in this tutorial, but included for your convenience.
+The dataset features 43 characters with their name, surname, age, alive status and trait references. The surname and age properties are not always present. The column _traits (resolved)_ is not part of the actual data used in this tutorial, but included for your convenience.
 
 ![Characters_Table](/img/Characters_Table.png)
 
@@ -23,7 +23,7 @@ There are 18 unique traits. Each trait has a random letter as document key. The 
 
 ### Locations
 
-This small collection of 8 filming locations comes with two attributes, a *name* and a *coordinate*. The coordinates are modeled as number arrays, comprised of a latitude and a longitude value each.
+This small collection of eight filming locations comes with two attributes, a _name_ and a _coordinate_. The coordinates are modeled as number arrays, comprised of a latitude and a longitude value each.
 
 ![Locations_Table](/img/Locations_Table.png)
 
@@ -36,18 +36,17 @@ This small collection of 8 filming locations comes with two attributes, a *name*
 
 ### Create documents
 
-Before we can insert documents with C8QL, we need a place to put them in -- a collection. Collections can be managed via the web interface, c8sh, or SDK. It is not possible to do so with C8QL however.
+Before we can insert documents with C8QL, we need a place to put them in: a collection. Collections can be managed via the web interface, c8sh, or SDK. It is not possible to do so with C8QL, however.
 
 ![Collection_Add](/img/Collection_Add-GUI.png)
 
 ![Create Characters_Collection](/img/Characters_Collection_Creation.png)
 
-Click on `COLLECTIONS`in the web interface, then *Add Collection* and type `Characters` as name. Confirm with *Save*. The new collection should appear in the list.
+Click on `COLLECTIONS`in the web interface, then _Add Collection_ and type `Characters` as name. Confirm with _Save_. The new collection should appear in the list.
 
-Next, click on `QUERIES`. To create the first document for collection with C8QL, use the following C8QL query, which you can paste into the query textbox and run by clicking *Execute*:
+Next, click on `QUERIES`. To create the first document for collection with C8QL, use the following C8QL query, which you can paste into the query textbox and run by clicking _Execute_:
 
 ![Insert query in query editor](/img/Query_Insert.png)
-
 
 ```js
 INSERT {
@@ -122,9 +121,9 @@ FOR d IN data
     INSERT d INTO Characters
 ```
 
-The `LET` keyword defines a variable with name *data* and an array of objects as value, so `LET variableName = valueExpression` and the expression being a literal array definition like `[ {...}, {...}, ... ]`.
+The `LET` keyword defines a variable with name _data_ and an array of objects as value, so `LET variableName = valueExpression` and the expression being a literal array definition like `[ {...}, {...}, ... ]`.
 
-`FOR variableName IN expression` is used to iterate over each element of the *data* array. In each loop, one element is assigned to the variable *d*. This variable is then used in the `INSERT` statement instead of a literal object definition. What is does is basically:
+`FOR variableName IN expression` is used to iterate over each element of the _data_ array. In each loop, one element is assigned to the variable _d_. This variable is then used in the `INSERT` statement instead of a literal object definition. What is does is basically:
 
 ```js
 INSERT {
@@ -151,16 +150,16 @@ C8QL does not permit multiple `INSERT` operations that target the same collectio
 
 ### Read documents
 
-There are a couple of documents in the *Characters* collection by now. We can retrieve them all using a `FOR` loop again. This time however, we use it to go through all documents in the collection instead of an array:
+There are a couple of documents in the _Characters_ collection by now. We can retrieve them all using a `FOR` loop again. This time however, we use it to go through all documents in the collection instead of an array:
 
 ```js
 FOR c IN Characters
     RETURN c
 ```
 
-The syntax of the loop is `FOR variableName IN collectionName`. For each document in the collection, *c* is assigned a document, which is then returned as per the loop body. The query returns all characters we previously stored.
+The syntax of the loop is `FOR variableName IN collectionName`. For each document in the collection, _c_ is assigned a document, which is then returned as per the loop body. The query returns all characters we previously stored.
 
-Among them should be *Ned Stark*, similar to this example:
+Among them should be _Ned Stark_, similar to this example:
 
 ```json
   {
@@ -342,7 +341,7 @@ FOR c IN Characters
     RETURN c
 ```
 
-The filter condition reads like: "the attribute *name* of a character document must be equal to the string *Ned*". If the condition applies, character document gets returned. This works with any attribute likewise:
+The filter condition reads like: "the attribute _name_ of a character document must be equal to the string _Ned_". If the condition applies, character document gets returned. This works with any attribute likewise:
 
 ```js
 FOR c IN Characters
@@ -378,7 +377,7 @@ FOR c IN Characters
 ]
 ```
 
-The operator `>=` stands for *greater-or-equal*, so every character of age 13 or older is returned (only their name in the example). We can return names and age of all characters younger than 13 by changing the operator to *less-than* and using the object syntax to define a subset of attributes to return:
+The operator `>=` stands for _greater-or-equal_, so every character of age 13 or older is returned (only their name in the example). We can return names and age of all characters younger than 13 by changing the operator to _less-than_ and using the object syntax to define a subset of attributes to return:
 
 ```js
 FOR c IN Characters
@@ -466,7 +465,7 @@ FOR c IN Characters
 ]
 ```
 
-`LIMIT` is followed by a number for the maximum document count. There is a second syntax however, which allows you to skip a certain amount of record and return the next *n* documents:
+`LIMIT` is followed by a number for the maximum document count. There is a second syntax however, which allows you to skip a certain amount of record and return the next _n_ documents:
 
 ```js
 FOR c IN Characters
@@ -568,7 +567,7 @@ FOR c IN Characters
 ]
 ```
 
-Overall, the documents are sorted by last name. If the *surname* is the same for two characters, the *name* values are compared and the result sorted.
+Overall, the documents are sorted by last name. If the _surname_ is the same for two characters, the _name_ values are compared and the result sorted.
 
 Note that a filter is applied before sorting, to only let documents through, that actually feature a surname value (many don't have it and would cause `null` values in the result).
 
@@ -608,10 +607,9 @@ See the [SORT operation](operations/sort.md) and [LIMIT operation](operations/li
 
 ## Joining together
 
-
 ### References to other documents
 
-The character data we imported has an attribute *traits* for each character, which is an array of strings. It does not store character features directly however:
+The character data we imported has an attribute _traits_ for each character, which is an array of strings. It does not store character features directly however:
 
 ```json
 {
@@ -623,7 +621,7 @@ The character data we imported has an attribute *traits* for each character, whi
 }
 ```
 
-It is rather a list of letters without an apparent meaning. The idea here is that *traits* is supposed to store documents keys of another collection, which we can use to resolve the letters to labels such as "strong". The benefit of using another collection for the actual traits is, that we can easily query for all existing traits later on and store labels in multiple languages for instance in a central place. If we would embed traits directly...
+It is rather a list of letters without an apparent meaning. The idea here is that _traits_ is supposed to store documents keys of another collection, which we can use to resolve the letters to labels such as "strong". The benefit of using another collection for the actual traits is, that we can easily query for all existing traits later on and store labels in multiple languages for instance in a central place. If we would embed traits directly...
 
 ```json
 {
@@ -664,7 +662,7 @@ It is rather a list of letters without an apparent meaning. The idea here is tha
 
 Below you find the traits data. Follow the pattern shown in [Create documents](c8ql-tutorial.md) to import it:
 
-- Create a document collection *Traits*
+- Create a document collection _Traits_
 - Assign the data to a variable in C8QL, `LET data = [ ... ]`
 - Use a `FOR` loop to iterate over each array element of the data
 - `INSERT` the element `INTO Traits`
@@ -713,7 +711,7 @@ FOR c IN Characters
 
 Also see the [Fundamentals of Objects / Documents](../queryworkers/fundamentals.md#objects-documents) about attribute access.
 
-We can use the *traits* array together with the `DOCUMENT()` function to use the elements as document keys and look up them up in the *Traits* collection:
+We can use the _traits_ array together with the `DOCUMENT()` function to use the elements as document keys and look up them up in the _Traits_ collection:
 
 ```js
 FOR c IN Characters
@@ -856,7 +854,7 @@ FOR c IN Characters
 ]
 ```
 
-The `MERGE()` functions merges objects together. Because we used an object `{ traits: ... }` which has the same attribute name *traits* as the original character attribute, the latter is overwritten by the merge.
+The `MERGE()` functions merges objects together. Because we used an object `{ traits: ... }` which has the same attribute name _traits_ as the original character attribute, the latter is overwritten by the merge.
 
 ## Graph Traversal
 
@@ -889,9 +887,9 @@ Visualized as graph:
 
 ### Creating the edges
 
-To create the required edge documents to store these relations in the database, we can run a query that combines joining and filtering to match up the right character documents, then use their `_id` attribute to insert an edge into an edge collection *ChildOf*.
+To create the required edge documents to store these relations in the database, we can run a query that combines joining and filtering to match up the right character documents, then use their `_id` attribute to insert an edge into an edge collection _ChildOf_.
 
-First off, create a new collection with the name *ChildOf* and make sure you change the collection type to **Edge**.
+First off, create a new collection with the name _ChildOf_ and make sure you change the collection type to **Edge**.
 
 ![ChildOf_Collection_Creation](/img/ChildOf_Collection_Creation.png)
 
@@ -972,7 +970,7 @@ INSERT { _from: "Characters/robb", _to: "Characters/ned" } INTO ChildOf
 
 However, creating the edges programmatically based on character names is a good excercise. Breakdown of the query:
 
-- Assign the relations in form of an array of objects with a *parent* and a *child* attribute each, both with sub-attributes *name* and *surname*, to a variable `data`
+- Assign the relations in form of an array of objects with a _parent_ and a _child_ attribute each, both with sub-attributes _name_ and _surname_, to a variable `data`
 - For each element in this array, assign a relation to a variable `rel` and execute the subsequent instructions
 - Assign the result of an expression to a variable `parentId`
   - Take the first element of a sub-query result (sub-queries are enclosed by parentheses, but here they are also a function call)
@@ -1106,10 +1104,9 @@ Geospatial coordinates consisting of a latitude and longitude value can be store
 
 ### Locations data
 
-Let us insert some filming locations into a new collection *Locations*, which you need to create first, then run below C8QL query:
+Let us insert some filming locations into a new collection _Locations_, which you need to create first, then run below C8QL query:
 
 ![Locations_Collection_Creation](/img/Locations_Collection_Creation.png)
-
 
 ```js
 LET places = [
@@ -1135,13 +1132,13 @@ Visualization of the coordinates on a map with their labels:
 
 To query based on coordinates, a [geo index](../collections/documents/geospatial/geojson#geojson-supported-index) is required. It determines which fields contain the latitude and longitude values.
 
-- Go to *COLLECTIONS*
-- Click on the *Locations* collection
-- Switch to the *Indexes* tab at top
+- Go to _COLLECTIONS_
+- Click on the _Locations_ collection
+- Switch to the _Indexes_ tab at top
 - Click the green button with a plus on the right-hand side
-- Change the type to *Geo Index*
-- Enter `coordinate` into the *Fields* field
-- Click *Create* to confirm
+- Change the type to _Geo Index_
+- Enter `coordinate` into the _Fields_ field
+- Click _Create_ to confirm
 
 ![Create geospatial index on coordinate attribute](/img/Locations_GeoIndex_Creation.png)
 
@@ -1149,7 +1146,7 @@ To query based on coordinates, a [geo index](../collections/documents/geospatial
 
 ### Find nearby locations
 
-A `FOR` loop is used again, but this time to iterate over the results of a function call to `NEAR()` to find the *n* closest coordinates to a reference point, and return the documents with the nearby locations. The default for *n* is 100, which means 100 documents are returned at most, the closest matches first.
+A `FOR` loop is used again, but this time to iterate over the results of a function call to `NEAR()` to find the _n_ closest coordinates to a reference point, and return the documents with the nearby locations. The default for *n* is 100, which means 100 documents are returned at most, the closest matches first.
 
 In below example, the limit is set to 3. The origin (the reference point) is a coordinate somewhere downtown in Dublin, Ireland:
 
@@ -1249,5 +1246,4 @@ FOR loc IN NEAR(Locations, 53.35, -6.26, 3, "distance")
 ]
 ```
 
-The extra attribute, here called *distance*, is returned as part of the *loc* variable, as if it was part of the location document. The value is divided by 1000 in the example query, to convert the unit to kilometers, simply to make it better readable.
-
+The extra attribute, here called _distance_, is returned as part of the _loc_ variable, as if it was part of the location document. The value is divided by 1000 in the example query, to convert the unit to kilometers, simply to make it better readable.
