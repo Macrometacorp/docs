@@ -25,8 +25,9 @@ gdnsl [flags]
 This command prints shell autocompletion code which needs to be evaluated to provide interactive autocompletion.
 
 Supported Shells:
- - bash
- - zsh
+
+- bash
+- zsh
 
 ```bash
 gdnsl autocomplete [SHELL] [flags]
@@ -35,13 +36,13 @@ gdnsl autocomplete [SHELL] [flags]
 **Examples:**
 
 ```bash
-  $ gdnsl autocomplete
+  gdnsl autocomplete
 
-  $ gdnsl autocomplete bash
+  gdnsl autocomplete bash
 
-  $ gdnsl autocomplete zsh
+  gdnsl autocomplete zsh
 
-  $ gdnsl autocomplete --refresh-cache
+  gdnsl autocomplete --refresh-cache
 ```
 
 **Options:**
@@ -50,7 +51,6 @@ gdnsl autocomplete [SHELL] [flags]
   -h, --help            Help for autocompletion.
   -r, --refresh-cache   Refresh cache. (ignores displaying instructions)
 ```
-
 
 ## Account Details (gdnsl account)
 
@@ -96,7 +96,6 @@ Print account details.
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
 ## API Keys (gdnsl apikey)
 
 API key commands.
@@ -124,6 +123,7 @@ API key commands.
   # Delete api key.
   gdnsl apikey --key-id testKey --delete   
 ```
+
 **Options:**
 
 ```bash
@@ -134,13 +134,13 @@ API key commands.
 
 
 ```
+
 **Options inherited:**
 
 ```bash
       --config string         gdnsl config file (default is ./gdnsl.yaml)
  
 ```
-
 
 ### gdnsl apikey get
 
@@ -188,6 +188,7 @@ Gets the access levels for the api key with keyid.
 	gdnsl apikey  get --key-id testKey --attributes 
 
 ```
+
 **Options:**
 
 ```bash
@@ -204,6 +205,7 @@ Gets the access levels for the api key with keyid.
       --param             key=value pair as equal separated string.
 
 ```
+
 **Options inherited:**
 
 ```bash
@@ -213,7 +215,7 @@ Gets the access levels for the api key with keyid.
 
 **Note:**
 
-If access level for stream is not set then default("*") access level will be use. If default("*") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
+If access level for stream is not set then default("_") access level will be use. If default("_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
 
 ### gdnsl apikey set
 
@@ -270,6 +272,7 @@ Sets the access levels for the api key with keyid.
   gdnsl apikey set --attributes --key-id testKey --param "key1=Value1" --param "key2=Value2"
 
 ```
+
 **Options:**
 
 ```bash
@@ -284,6 +287,7 @@ Sets the access levels for the api key with keyid.
       --permissions       Permission flag for all the streams, collections, fabric and billing.
 
 ```
+
 **Options inherited:**
 
 ```bash
@@ -293,7 +297,7 @@ Sets the access levels for the api key with keyid.
 
 **Note:**
 
-If access level for stream is not set then default("*") access level will be use. If default("*") access level is also not set then database access level will be use. You need the Administrate server access level in order to execute this command.
+If access level for stream is not set then default("_") access level will be use. If default("_") access level is also not set then database access level will be use. You need the Administrate server access level in order to execute this command.
 
 ### gdnsl apikey clear
 
@@ -322,6 +326,7 @@ Gets the access levels for the api key with keyid.
   # Delete a specific  attribute of keyid.
   gdnsl apikey clear  --key-id  testKey --attributes name
 ```
+
 **Options:**
 
 ```
@@ -337,6 +342,7 @@ Gets the access levels for the api key with keyid.
 
 
 ```
+
 **Options inherited:**
 
 ```
@@ -345,8 +351,7 @@ Gets the access levels for the api key with keyid.
 
 **Note:**
 
-If access level for stream is not set then default("*") access level will be use. If default("*") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
-
+If access level for stream is not set then default("_") access level will be use. If default("_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
 
 ## Users (gdnsl user)
 
@@ -378,6 +383,7 @@ User commands
     # Remove user.
     gdnsl user --fabric '_system' --username 'anurag' --delete   
 ```
+
 **Options:**
 
 ```
@@ -396,13 +402,13 @@ User commands
 
 
 ```
+
 **Options inherited:**
 
 ```
       --config string       gdnsl config file (default is ./gdnsl.yaml)
  
 ```
-
 
 ### gdnsl user get
 
@@ -454,6 +460,7 @@ Gets the access levels for the user.
     
 
 ```
+
 **Options:**
 
 ```
@@ -469,6 +476,7 @@ Gets the access levels for the user.
       --full              Return the full set of access levels for all databases and all collections.
       --param             Key=value pair as equal separated string.
 ```
+
 **Options inherited:**
 
 ```
@@ -478,7 +486,7 @@ Gets the access levels for the user.
 
 **Note:**
 
-If access level for stream is not set then default("*") access level will be use. If default("*") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
+If access level for stream is not set then default("_") access level will be use. If default("_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
 
 ### gdnsl user set
 
@@ -534,6 +542,7 @@ Sets the access levels for the user.
   gdnsl user set --attributes --username  anurag --param "key1=Value1" --param "key2=Value2"
 
 ```
+
 **Options:**
 
 ```
@@ -549,6 +558,7 @@ Sets the access levels for the user.
 
 
 ```
+
 **Options inherited:**
 
 ```
@@ -558,7 +568,7 @@ Sets the access levels for the user.
 
 **Note:**
 
-If access level for stream is not set then default("*") access level will be use. If default("*") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
+If access level for stream is not set then default("_") access level will be use. If default("_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
 
 ### gdnsl user clear
 
@@ -588,6 +598,7 @@ Clear the access levels for the user.
 	gdnsl user clear --username anurag --attributes = 'name'
 
 ```
+
 **Options:**
 
 ```
@@ -602,6 +613,7 @@ Clear the access levels for the user.
 
 
 ```
+
 **Options inherited:**
 
 ```
@@ -611,12 +623,9 @@ Clear the access levels for the user.
 
 **Note:**
 
-If access level for stream is not set then default("*") access level will be use. If default("*") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
+If access level for stream is not set then default("_") access level will be use. If default("_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
 
 ## Import-Export
-
-
-
 
 ### gdnsl import
 
@@ -695,7 +704,7 @@ gdnsl import COLLECTION-NAME [flags]
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-### gdnsl export 
+### gdnsl export
 
 Export data from a collection or via a query.
 
@@ -759,8 +768,6 @@ gdnsl export [flags]
 ```
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
-
-
 
 ## Queries (gdnsl query)
 
@@ -914,7 +921,6 @@ gdnsl query cursor CURSOR-IDENTIFIER [flags]
 ```
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
-
 
 ## Key-Value (gdnsl kv)
 
@@ -1156,7 +1162,6 @@ gdnsl kv set [flags] NAME
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
 ## Collections (gdnsl collection)
 
 Commands to work with document and edge collections.
@@ -1394,8 +1399,6 @@ gdnsl collection update [flags] NAME
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
-
 ## Indexes (gdnsl index)
 
 Commands to work with indexes.
@@ -1424,7 +1427,6 @@ gdnsl index [flags]
 ```
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
-
 
 ### gdnsl index create
 
@@ -1586,7 +1588,6 @@ gdnsl index describe COLLECTION_NAME INDEX_NAME
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
 ## Graphs (gdnsl graph)
 
 Commands to work with graphs.
@@ -1614,8 +1615,6 @@ gdnsl graph GRAPH-NAME [flags]
 ```
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
-
-
 
 ### gdnsl graph create
 
@@ -1886,10 +1885,7 @@ If set, must be an object like this:
       --fabric                Name of the fabric to use.
 ```
 
-
 ## Graph Edges (gdnsl graph edge)
-
-
 
 ### gdnsl graph edge create
 
@@ -2033,7 +2029,6 @@ gdnsl graph edge list [flags]
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
 ### gdnsl graph edge replace
 
 Replaces the data of an edge in the collection.
@@ -2110,8 +2105,6 @@ gdnsl graph edge update GRAPH-NAME [flags]
 ```
 
 ## Graph Vertices (gdnsl graph vertex)
-
-
 
 ### gdnsl graph vertex create
 
@@ -2298,7 +2291,6 @@ be returned within the response object. Default is false.
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
 ## Search (gdnsl search)
 
 Run search query on a collection.
@@ -2352,8 +2344,6 @@ gdnsl search <search_query> [flags]
   --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
-
 ### gdnsl search analyzer
 
 Commands for search analyzers.
@@ -2388,8 +2378,6 @@ gdnsl search analyzer [flags]
   --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
-
 ## Search Views (gdnsl view)
 
 Get commands related to search views.
@@ -2409,7 +2397,6 @@ gdnsl view [flags]
 ```
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
-
 
 ### gdnsl view create
 
@@ -2630,10 +2617,7 @@ gdnsl view delete <view-name> [flags]
     --config string           gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
 ## Streams (gdnsl streams)
-
-
 
 ### gdnsl streams publish
 
@@ -2669,7 +2653,6 @@ Publish message to a stream.
  
 ```
 
-
 ### gdnsl streams create
 
 Create a stream.
@@ -2689,6 +2672,7 @@ Create a stream.
   gdnsl streams create testStream
 
 ```
+
 **Options:**
 
 ```
@@ -2696,6 +2680,7 @@ Create a stream.
       --global                Is stream global or not.
       --fabric                Name of the fabric to use.
 ```
+
 **Options inherited:**
 
 ```
@@ -2730,11 +2715,10 @@ gdnsl stream delete <stream-name> [flags]
 
 **Options inherited:**
 
-```    
+```
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 
 ```
-
 
 ### gdnsl streams list
 
@@ -2804,7 +2788,7 @@ Describe a stream.
       -h, --help              Help to describe a stream.
           --subscription      Subscription for a particular stream.
           --backlog           Backlog for a particular stream.
-          --stats             Stats for a particular stream. 
+          --stats             Stats for a particular stream.
           --global            Global stream. ( default is local )
           --fabric            Name of the fabric to use.
 **Options inherited:**
@@ -2861,6 +2845,7 @@ Delete backlog for a subscription.
 ```bash
 gdnsl streams backlog [flags]
 ```
+
 **Examples:**
 
 ```bash
@@ -2951,7 +2936,6 @@ gdnsl streams ttl [flags]
       --config string         gdnsl config file (default is ./gdnsl.yaml)
  
 ```
-
 
 ## Fabrics (gdnsl fabric)
 
@@ -3071,7 +3055,6 @@ gdnsl fabric delete <geo_fabric_name> [flags]
   --config string           gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
 ### gdnsl fabric update
 
 Update GeoFabric metadata.
@@ -3129,8 +3112,6 @@ gdnsl fabric describe <geo_fabric_name> [flags]
   --config string   gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
-
 ## Query Workers (gdnsl query-worker )
 
 Get commands related to query workers.
@@ -3159,7 +3140,6 @@ gdnsl query-worker [flags]
 ```
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
-
 
 ### gdnsl query-worker create
 
@@ -3277,6 +3257,7 @@ Describe a query worker.
   gdnsl query-worker describe TestStreamWorker
 
 ```
+
 **Options:**
 
 ```
@@ -3284,6 +3265,7 @@ Describe a query worker.
   --fabric              Name of the fabric to use.
 
 ```
+
 **Options inherited:**
 
 ```
@@ -3395,7 +3377,6 @@ gdnsl query-worker next CURSOR-IDENTIFIER
       --config string       gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-
 ## Stream Workers (gdnsl stream-worker)
 
 Get commands related to stream workers.
@@ -3418,6 +3399,7 @@ Get commands related to stream workers.
   gdnsl stream-worker TestStream --query "SELECT * FROM TestStreamTable"
 
 ```
+
 **Options:**
 
 ```
@@ -3427,6 +3409,7 @@ Get commands related to stream workers.
       --disable               Disable a stream worker.
       --fabric                Name of the fabric to use.
 ```
+
 **Options inherited:**
 
 ```
@@ -3542,6 +3525,7 @@ Create a stream worker.
    gdnsl stream-worker create --advanced"@App:name('Sample-Adhoc-Query')\n@App:description(\"This application demonstrates how to send adhoc queries and fetch data from Stores and named windows.\")\n@App:qlVersion('2')\n\n/**\nTesting the Stream Application:\n    1. Upload following data into `SampleAdhocQueryInputTable` C8DB Collection\n        {\"sensorId\":\"sensor A1234\",\"temperature\":18}\n        {\"sensorId\":\"sensor A1234\",\"temperature\":-32.2}\n        {\"sensorId\":\"sensor FR45\",\"temperature\":20.9}\n        {\"sensorId\":\"sensor meter1\",\"temperature\":49.6}\n\n    2. This application accumulates all the data for one minute in the named window `SampleAdhocQueryInputTableOneMinTimeWindow`\n        Named window allows other application to query data in realtime.\n\n    3. Run the adhoc query on the `SampleAdhocQueryInputTableOneMinTimeWindow` (Refer [1] for running adhoc queries.)\n        Query:\n            select * from SampleAdhocQueryInputTableOneMinTimeWindow\n\n        Output:\n            [\n                [\"sensor A1234\",18],\n                [\"sensor A1234\",-32.2],\n                [\"sensor FR45\",20.9],\n                [\"sensor meter1\",49.6]\n            ]\n\n    4. Similar to Named Windows one can run adhoc queries on the stores as well. Running adhoc query on \n        `SampleAdhocQuerySensorA1234DestTable` C8DB Collection should produce below result\n\n        Query: Store the result if sensorId is equal to \"sensor A1234\"\n            SELECT * FROM SampleAdhocQuerySensorA1234DestTable\n\n        Output:\n            [\n                [\"sensor A1234\",18],\n                [\"sensor A1234\",-32.2]\n            ]\n\n    [1] https://macrometa.dev/cep/quickstart/#run-an-adhoc-query\n*/\n\n-- Defines `SampleAdhocQueryInputTable` collection to process events having `sensorId` and `temperature`(F).\nCREATE SOURCE SampleAdhocQueryInputTable WITH(type = 'database', collection = \"SampleAdhocQueryInputTable\", collection.type=\"doc\" , replication.type=\"global\", map.type='json') (sensorId string, temperature double);\n\n-- Named Window\nCREATE WINDOW SampleAdhocQueryInputTableOneMinTimeWindow (sensorId string, temperature double) SLIDING_TIME(1 min);\n\n-- Table\nCREATE TABLE SampleAdhocQuerySensorA1234DestTable(sensorId string, temperature double);\n\n@info(name = 'Insert-to-window')\nINSERT INTO SampleAdhocQueryInputTableOneMinTimeWindow\nSELECT *\nFROM SampleAdhocQueryInputTable;\n\n@info(name = 'EqualsFilter')\n-- Note: Filter out events with `sensorId` equalling `sensor A1234`\nINSERT INTO SampleAdhocQuerySensorA1234DestTable\nSELECT *\nFROM SampleAdhocQueryInputTable\nWHERE sensorId == 'sensor A1234';\n" --regions "gdn-us-west,gdn-ap-west"
 
 ```
+
 **Options:**
 
 ```
@@ -3562,6 +3546,7 @@ Create a stream worker.
       --validate              Validate stream worker definition. Stream worker will not be created.
       --fabric                Name of the fabric to use
 ```
+
 **Options inherited:**
 
 ```
@@ -3585,6 +3570,7 @@ Delete a stream worker.
   gdnsl stream-worker delete TestStreamWorker
 
 ```
+
 **Options:**
 
 ```
@@ -3592,6 +3578,7 @@ Delete a stream worker.
   --fabric                    Name of the fabric to use.
 
 ```
+
 **Options inherited:**
 
 ```
@@ -3615,6 +3602,7 @@ Describe a stream worker.
   gdnsl stream-worker describe TestStreamWorker
 
 ```
+
 **Options:**
 
 ```
@@ -3622,6 +3610,7 @@ Describe a stream worker.
       --fabric                Name of the fabric to use.
 
 ```
+
 **Options inherited:**
 
 ```
@@ -3648,6 +3637,7 @@ List stream workers.
   gdnsl stream-worker list --sample
 
 ```
+
 **Options:**
 
 ```
@@ -3655,6 +3645,7 @@ List stream workers.
       --sample                List sample stream workers.
       --fabric                Name of the fabric to use.
 ```
+
 **Options inherited:**
 
 ```
@@ -3766,6 +3757,7 @@ Update a stream worker.
    # Update a stream worker from a file.
    gdnsl stream-worker update --file "cargo-stream-worker.json" --regions "gdn-us-west,gdn-ap-west"
 ```
+
 **Options:**
 
 ```
@@ -3786,13 +3778,13 @@ Update a stream worker.
       --validate              Validate stream worker definition. Stream worker will not be updated.
       --fabric                Name of the fabric to use.
 ```
+
 **Options inherited:**
 
 ```
       --config string         gdnsl config file (default is ./gdnsl.yaml)
  
 ```
-
 
 ## Billing (gdnsl billing )
 
@@ -4054,13 +4046,9 @@ gdnsl billing contact <tenant-name> [flags]
       --config string       gdnsl config file. (default is ./gdnsl.yaml)
 ```
 
-
-
-
 ## Config Map (gdnsl configmap )
 
 Create and manage config maps.
-
 
 ```bash
 gdnsl configmap [flags]
@@ -4160,7 +4148,6 @@ List config maps.
 
 ### gdnsl configmap describe
 
-
 Display details of config map.
 
 ```bash
@@ -4247,8 +4234,6 @@ Delete config map
       --config string       gdnsl config file (default is ./gdnsl.yaml)
       --log-http            Log http traffic.
 ```
-
-
 
 ## Service (gdnsl service)
 
@@ -4537,7 +4522,6 @@ gdnsl service delete NAME [flags]
       --log-http            log http traffic
 ```
 
-
 ## Route (gdnsl route)
 
 Route command group.
@@ -4621,7 +4605,6 @@ gdnsl route describe NAME [flags]
       --config string        gdnsl config file (default is ./gdnsl.yaml)
       --log-http             Log http traffic.
 ```
-
 
 ## Revision (gdnsl revision)
 
