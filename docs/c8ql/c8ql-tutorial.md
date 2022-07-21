@@ -38,10 +38,6 @@ This small collection of eight filming locations comes with two attributes, a _n
 
 Before we can insert documents with C8QL, we need a place to put them in: a collection. Collections can be managed via the web interface, c8sh, or SDK. It is not possible to do so with C8QL, however.
 
-![Collection_Add](/img/Collection_Add-GUI.png)
-
-![Create Characters_Collection](/img/Characters_Collection_Creation.png)
-
 Click on `COLLECTIONS`in the web interface, then _Add Collection_ and type `Characters` as name. Confirm with _Save_. The new collection should appear in the list.
 
 Next, click on `QUERIES`. To create the first document for collection with C8QL, use the following C8QL query, which you can paste into the query textbox and run by clicking _Execute_:
