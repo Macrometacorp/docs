@@ -54,15 +54,7 @@ This release includes the following API changes.
 | DB-1592  | Make `GET /_api/collection/{collection-name}/figures` API public. This allows users to view metadata such as how many indexes and views a collection has, total collection size, and how many documents a collection has. |
 | DB-1606  | Allow `*` in certain User APIs for collections and fabrics. APIs are: GET, DELETE, and PUT for `/_fabric/{fabric}/_api/user/{user}/database/{geofabric}` and GET, DELETE, and PUT for `/_fabric/{fabric}/_api/user/{user}/database/{geofabric}/collection/{collection}`. |
 
-### Miscellaneous Changes
-
-This release includes the following changes that do not fit into a larger category.
-
-
-DB-1486 Views isolation between tenants
-    Looks like they made some major changes to Search Views. Is Search Views new compared to Search?
-    - Issues with Search was affecting platform performance
-    - Made a bunch of changes to decrease amount of resources used by Search, backend changes to improve overall performance.
+### Unique Index Option Change
 
 DB-1539 Disable unique index option for newly created indices for global collections
     Definitely user-facing, there were GUI changes. Need this explained.
