@@ -36,27 +36,36 @@ This small collection of eight filming locations comes with two attributes, a _n
 
 ### Create documents
 
-Before we can insert documents with C8QL, we need a place to put them in: a collection. Collections can be managed via the web interface, c8sh, or SDK. It is not possible to do so with C8QL, however.
+Before we can insert documents with C8QL, we need a place to put them in: a collection. Collections can be managed via the web interface, c8sh, or SDK.
 
-![Collection_Add](/img/Collection_Add-GUI.png)
+#### Create a collection
 
-![Create Characters_Collection](/img/Characters_Collection_Creation.png)
+For this tutorial, create a [Document Store collection](../collections/documents/index.md) in the console. For more information about collections, refer to [Collections](../collections/index.md).
 
-Click on `COLLECTIONS`in the web interface, then _Add Collection_ and type `Characters` as name. Confirm with _Save_. The new collection should appear in the list.
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **Collections**.
+1. Click **New Collection**.
+1. Click **Document Store**.
+1. Name the collection **Characters** and then click **Create**.
 
-Next, click on `QUERIES`. To create the first document for collection with C8QL, use the following C8QL query, which you can paste into the query textbox and run by clicking _Execute_:
+#### Add documents to the collection
 
-![Insert query in query editor](/img/Query_Insert.png)
+We will add documents to the collection with a query.
 
-```js
-INSERT {
-    "name": "Ned",
-    "surname": "Stark",
-    "alive": true,
-    "age": 41,
-    "traits": ["A","H","C","N","P"]
-} INTO Characters
-```
+1. Click **Query Workers**.
+1. To create the first document for collection with C8QL, copy and paste the following C8QL query into the query editor. For more information about queries, refer to [Queries and Query Workers](../queryworkers/index.md).
+
+  ```js
+  INSERT {
+      "name": "Ned",
+      "surname": "Stark",
+      "alive": true,
+      "age": 41,
+      "traits": ["A","H","C","N","P"]
+  } INTO Characters
+  ```
+
+1. Click **Run Query**.
 
 The syntax is `INSERT document INTO collectionName`. The document is an object like you may know it from JavaScript or JSON, which is comprised of attribute key and value pairs. The quotes around the attribute keys are optional in C8QL. Keys are always character sequences (strings), whereas attribute values can have different types:
 
@@ -662,12 +671,10 @@ It is rather a list of letters without an apparent meaning. The idea here is tha
 
 Below you find the traits data. Follow the pattern shown in [Create documents](c8ql-tutorial.md) to import it:
 
-- Create a document collection _Traits_
-- Assign the data to a variable in C8QL, `LET data = [ ... ]`
-- Use a `FOR` loop to iterate over each array element of the data
-- `INSERT` the element `INTO Traits`
-
-![Create Traits_Collection](/img/Traits_Collection_Creation.png)
+- Create a document collection named **Traits**.
+- Assign the data to a variable in C8QL, `LET data = [ ... ]`.
+- Use a `FOR` loop to iterate over each array element of the data.
+- `INSERT` the element `INTO Traits`.
 
 ```json
 [
@@ -889,11 +896,18 @@ Visualized as graph:
 
 To create the required edge documents to store these relations in the database, we can run a query that combines joining and filtering to match up the right character documents, then use their `_id` attribute to insert an edge into an edge collection _ChildOf_.
 
-First off, create a new collection with the name _ChildOf_ and make sure you change the collection type to **Edge**.
+#### Create a Graph Edge collection
 
-![ChildOf_Collection_Creation](/img/ChildOf_Collection_Creation.png)
+Create a new [Graph Edge collection](../collections/graphs/index.md) called **ChildOf**.
 
-Then run the following query:
+1. Click **Collections**.
+1. Click **New Collection**.
+1. Click **Graph Edge**.
+1. Name the collection **ChildOf** and then click **Create**.
+
+#### Run query
+
+Then run the following query in **Queries**:
 
 ```js
 LET data = [
@@ -968,7 +982,7 @@ The character documents don't have user-defined keys. If they had, it would allo
 INSERT { _from: "Characters/robb", _to: "Characters/ned" } INTO ChildOf
 ```
 
-However, creating the edges programmatically based on character names is a good excercise. Breakdown of the query:
+However, creating the edges programmatically based on character names is a good exercise. Breakdown of the query:
 
 - Assign the relations in form of an array of objects with a _parent_ and a _child_ attribute each, both with sub-attributes _name_ and _surname_, to a variable `data`
 - For each element in this array, assign a relation to a variable `rel` and execute the subsequent instructions
@@ -1104,9 +1118,10 @@ Geospatial coordinates consisting of a latitude and longitude value can be store
 
 ### Locations data
 
-Let us insert some filming locations into a new collection _Locations_, which you need to create first, then run below C8QL query:
+Let us insert some filming locations into a new collection _Locations_.
 
-![Locations_Collection_Creation](/img/Locations_Collection_Creation.png)
+1. Create a Document Store collection called **Locations**.
+1. Run below C8QL query:
 
 ```js
 LET places = [
@@ -1132,17 +1147,13 @@ Visualization of the coordinates on a map with their labels:
 
 To query based on coordinates, a [geo index](../collections/documents/geospatial/geojson#geojson-supported-index) is required. It determines which fields contain the latitude and longitude values.
 
-- Go to _COLLECTIONS_
-- Click on the _Locations_ collection
-- Switch to the _Indexes_ tab at top
-- Click the green button with a plus on the right-hand side
-- Change the type to _Geo Index_
-- Enter `coordinate` into the _Fields_ field
-- Click _Create_ to confirm
-
-![Create geospatial index on coordinate attribute](/img/Locations_GeoIndex_Creation.png)
-
-![Indexes of Locations collection](/img/Locations_Indexes.png)
+1. Click **Collections**.
+1. Click **Locations**.
+1. Click the **Indexes** tab.
+1. Click the plus icon to add a new index.
+1. In **Type** select **Geo Index**.
+1. In **Fields**, enter **coordinate**.
+1. Click **Create**
 
 ### Find nearby locations
 
