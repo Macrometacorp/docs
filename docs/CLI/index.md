@@ -9,6 +9,8 @@ Macrometa Command Line Interface (CLI) is a command line interface that enables 
 1. Script serverless workflows via GitHub.
 1. Easily learn commands with consistent verbs, nouns, and flags.
 
+You can use commands with the GDN Command Line Interface (CLI) to perform the same actions you can perform in the GUI or API.
+
 ## Prerequisites
 
 Install Node.js and npm. We recommend using a version manager such as [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) (Node Version Manager).
