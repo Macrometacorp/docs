@@ -15,7 +15,7 @@ const redirectsPlugin = [
       },
       {
         from: '/essentials/CLI/commands',
-        to: '/cli/'
+        to: '/CLI/'
       },
       {
         from: '/essentials/geofabrics',
