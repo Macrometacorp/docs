@@ -12,7 +12,7 @@ When performing read operations, here you want to read the latest copy of your d
 
 :::note
 
-Spot Collections are currently an Enterprise-only feature.
+Spot Collections are only available on Enterprise customer accounts.
 
 Contact support@macrometa.com if you have any questions.
 
