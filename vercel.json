@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/essentials",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/essentials/(.*)",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "trailingSlash": false
+}
