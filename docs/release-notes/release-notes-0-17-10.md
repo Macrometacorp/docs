@@ -3,7 +3,7 @@ title: Release Notes 0.17.10
 sidebar_position: 99
 ---
 
-This document describes what has changed in Macrometa release 0.17.10. All accounts will be updated by August 18, 2022. To check what version of GDN you are using, use the [Client Version](https://macrometa.com/docs/essentials/CLI/commands#client-version-gdnsl) command in the CLI or the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
+This document describes what has changed in Macrometa release 0.17.10. All accounts will be updated by August 18, 2022. To check what version of GDN you are using, use the [Client Version](https://macrometa.com/docs/cli/client-version-cli.md) command in the CLI or the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
 
 ## Features
 
