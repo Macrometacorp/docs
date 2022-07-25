@@ -280,4 +280,4 @@ Following tutorials cover various user scenarios using Macrometa Stream Processi
 - [Correlating Data](correlating-data.md)
 - [Summarizing Data](summarizing-data.md)
 
-Refer to [Reference](../reference/overview.md) for additional stream processing examples.
+Refer to [Reference](../reference/index.md) for additional stream processing examples.
