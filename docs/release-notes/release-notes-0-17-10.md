@@ -38,6 +38,10 @@ If you have a paid Macrometa plan, then you can view the new billing screen in y
 
 ![New billing tab](/img/release-notes/17-10-new-billing-tab.png)
 
+### Kafka Enabled on Macrometa
+
+Kafka is now enabled on Macrometa.
+
 ### Update Name and Email on User Accounts
 
 You can now update names and email addresses on user accounts. If you are a `root` user or have admin permissions, then you can update names and email addresses on user accounts that you administer.
@@ -56,8 +60,7 @@ This release includes the following API changes.
 
 ### Unique Index Option Change
 
-DB-1539 Disable unique index option for newly created indices for global collections
-    Definitely user-facing, there were GUI changes. Need this explained.
+- Due to defect DB-1242, the unique index option has been temporarily turned off for new global collections. This option will be available when the longer-term solution is ready.
 
 ## Defect Fixes
 
