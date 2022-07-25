@@ -60,7 +60,7 @@ This release includes the following API changes.
 
 ### Unique Index Option Change
 
-- Due to defect DB-1242, the unique index option has been temporarily turned off for new global collections. This option will be available when the longer-term solution is ready.
+Due to defect DB-1242, the unique index option has been temporarily turned off for new global collections. This option will be available when the longer-term solution is ready.
 
 ## Defect Fixes
 
