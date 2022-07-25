@@ -1,8 +1,11 @@
 ---
 title: Graph Edge Commands
+sidebar_position: 10
 ---
 
 # Graph Edges (gdnsl graph edge)
+
+This page contains information about the `gdnsl graph edge` CLI command.
 
 ## gdnsl graph edge create
 
