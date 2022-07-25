@@ -67,7 +67,7 @@ Due to defect DB-1242, the unique index option has been temporarily turned off f
 The following defects were fixed in this release.
 
 :::note
-This last release cycle, our CEO challenged our engineers to try to "break" Macrometa as part of our internal quality and reliability improvement efforts. As a result, we found a lot of (occasionally weird) bugs, and then fixed them. The results are below and will contribute to a more stable and reliable Global Data Network going forward.
+This last release cycle, our CEO challenged our engineers to try to "break" Macrometa as part of our internal quality and reliability improvement efforts. The results are below and will contribute to a more stable and reliable Global Data Network going forward.
 :::
 
 | Defect #  | Description  |
