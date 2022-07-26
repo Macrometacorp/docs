@@ -24,7 +24,7 @@ GDN provides the following index types:
 - [Skiplist Index](#skiplist-index)
 - [TTL Index](#ttl-index)
 - [Geo Index](#geo-index)
-- [Full-text Index](#full-text-index)
+- [Fulltext Index](#fulltext-index)
 
 ## Primary Index
 
@@ -210,7 +210,7 @@ Geo indexes provide operations to do the following:
 
 You can access these operations with dedicated functions in C8QL or simple queries. They are also automatically applied to SORT or FILTER when used with the distance function.
 
-## Full-text Index
+## Fulltext Index
 
 A full-text index can be used to find words, or prefixes of words inside documents. A full-text index can be created on a single attribute only, and will index all words contained in documents that have a textual value in that attribute. Only words with a (specifiable) minimum length are indexed. Word tokenization is done using the word boundary analysis provided by libicu, which is taking into account the selected language provided at server start. Words are indexed in their lower-cased form. The index supports complete match queries (full words) and prefix queries, plus basic logical operations such as `and`, `or` and `not` for combining partial results.
 
