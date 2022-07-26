@@ -1,5 +1,5 @@
 ---
-sidebar_position: 70
+sidebar_position: 50
 title: Geo Indexes
 ---
 
@@ -12,6 +12,22 @@ C8QL's geospatial functions and GeoJSON constructors are described in [Geo funct
 The geospatial index supports containment and intersection queries for various geometric 2D shapes. You should be mainly using AQL queries to perform these types of operations. The index can operate in **two different modes**, depending on if you want to use the GeoJSON data-format or not. The modes are mainly toggled by using the `geoJson` field when creating the index.
 
 This index assumes coordinates with the latitude between -90 and 90 degrees and the longitude between -180 and 180 degrees. A geo index will ignore all documents which do not fulfill these requirements.
+
+## Create Geo Index in GDN Console
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **COLLECTIONS**.
+1. Click the collection that you want to create an index for.
+1. Click **Indexes**.
+1. In **Type**, select **Geo Index**.
+1. Enter the following information:
+
+   - **Fields -** Choose between one or two attribute paths, latitude and/or longitude, from the collection.
+   - **Name -** The name of the index. If left blank, then Macrometa autogenerates the name.
+   - **Geo JSON -** Set to true if attributes are stored in arrays []. Otherwise, set it to false. For more information, refer to [GeoJSON Mode](#geojson-mode) and [Non-GeoJSON Mode](#non-geojson-mode).
+   - **Create in Background -** If true, will create an index in the background rather than lock the collection while the index is created. This allows for basic CRUD operations to occur while the index is created. For more information, refer to [Create Index in Background](create-index-in-background.md).
+
+1. Click **Create**.
 
 ## GeoJSON Mode
 
