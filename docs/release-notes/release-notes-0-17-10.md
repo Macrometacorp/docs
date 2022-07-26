@@ -62,6 +62,10 @@ This release includes the following API changes.
 
 Due to defect DB-1242, the unique index option has been temporarily turned off for new global collections. This option will be available when the longer-term solution is ready.
 
+### Collection Truncation Messages
+
+When you truncate a collection with streams enabled, you will now only see one message rather than multiple delete messages.
+
 ## Defect Fixes
 
 The following defects were fixed in this release.
