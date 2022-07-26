@@ -1,5 +1,5 @@
 ---
 title: Document Store Settings
-sidebar_position: 60
+sidebar_position: 70
 ---
 
