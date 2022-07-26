@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Overview
+title: Reference
 ---
 
 Macrometa GDN allows you to integrate streaming data and take action based on streaming data. Typically the stream processing use cases involve collecting, analyzing and, integrate or acting on data generated during business activities by various sources i.e.,

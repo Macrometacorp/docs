@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Tenant Quotas & Limits
+title: Tenant Quotas and Limits
 ---
 
 This page describes the rate limits for all PaaS GDN customers. Each quota applies on a per-Region basis unless otherwise specified. [Dedicated fabrics](https://www.macrometa.com/enterprise) can handle up to 350,000 operations per second. Reach out to support to learn more, contact support@macrometa.com.
