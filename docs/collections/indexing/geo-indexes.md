@@ -27,6 +27,8 @@ This index assumes coordinates with the latitude between -90 and 90 degrees and 
    - **Geo JSON -** Set to true if attributes are stored in arrays []. Otherwise, set it to false. For more information, refer to [GeoJSON Mode](#geojson-mode) and [Non-GeoJSON Mode](#non-geojson-mode).
    - **Create in Background -** If true, will create the index in the background. For more information, refer to [Create Index in Background](create-index-in-background.md).
 
+1. Click **Create**.
+
 ## GeoJSON Mode
 
 To create an index in GeoJSON mode execute:
