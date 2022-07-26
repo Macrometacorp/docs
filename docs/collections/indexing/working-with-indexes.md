@@ -950,7 +950,7 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash
 **Dropping an index:**
 curl -X 'DELETE' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/<collectionName>/<indexName>' \
  -H 'Authorization: bearer <token>'
-
+```
 Drops the index. If the index does not exist, then `false` is returned. If the index existed and was dropped, then `true` is returned. Note that you cannot drop some special indexes (e.g. the primary index of a collection or the edge index of an edge collection).
 
 **Revalidating whether an index is used:**
