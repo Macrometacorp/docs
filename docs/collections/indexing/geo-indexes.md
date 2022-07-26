@@ -22,10 +22,10 @@ This index assumes coordinates with the latitude between -90 and 90 degrees and 
 1. In **Type**, select **Geo Index**.
 1. Enter the following information:
 
-  - **Fields -** Choose between one or two attribute paths, latitude and/or longitude, from the collection.
-  - **Name -** The name of the index. If left blank, then Macrometa autogenerates the name.
-  - **Geo JSON -** Set to true if attributes are stored in arrays []. Otherwise, set it to false. For more information, refer to [GeoJSON Mode](#geojson-mode) and [Non-GeoJSON Mode](#non-geojson-mode).
-  - **Create in Background -** If true, will create the index in the background. For more information, refer to [Create Index in Background](create-index-in-background.md).
+   - **Fields -** Choose between one or two attribute paths, latitude and/or longitude, from the collection.
+   - **Name -** The name of the index. If left blank, then Macrometa autogenerates the name.
+   - **Geo JSON -** Set to true if attributes are stored in arrays []. Otherwise, set it to false. For more information, refer to [GeoJSON Mode](#geojson-mode) and [Non-GeoJSON Mode](#non-geojson-mode).
+   - **Create in Background -** If true, will create the index in the background. For more information, refer to [Create Index in Background](create-index-in-background.md).
 
 ## GeoJSON Mode
 
