@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-title: Patterns & Trends
+title: Patterns and Trends
 ---
 
 ## Simple Pattern

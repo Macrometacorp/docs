@@ -1,6 +1,6 @@
 ---
 sidebar_position: 70
-title: Tutorial
+title: Query Worker Tutorial
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,8 +10,8 @@ This tutorial is about using C8QL queries as API (aka Query Workers) in Macromet
 
 For this example, we use the following credentials:
 
-* Tenant name: `nemo@nautilus.com`
-* User password: `xxxxxx`.
+- Tenant name: `nemo@nautilus.com`
+- User password: `xxxxxx`.
 
 ## Installation
 

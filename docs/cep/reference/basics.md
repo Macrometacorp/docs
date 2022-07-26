@@ -5,13 +5,14 @@ title: Basics
 
 In this we cover basics of `streams`, `queries`, and how queries can be chained to one another. Similarly basics on `sources` and `sink` that are used to consume and publish events. Also about c8db `tables` aka collections that can be used to store and query events. Finally an introduction to the concept of `Stream Application`.
 
-## Streams & Queries
+## Streams and Queries
 
 This section provides introduction to `streams` and `queries`, and how multiple queries can be chained to one another.
 
 There are multiple type of queries such as `window query`, `join query`, `pattern query`, etc. Below example explains how `pass-through` and `selection queries` work. For more info refer the [Stream Query Guide](query-guide.md).
 
 ### Example
+
 Following is an example annotated with descriptive comments.
 
 ```sql

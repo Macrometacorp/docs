@@ -1,9 +1,9 @@
 ---
 sidebar_position: 5
-title: Tenant Quotas & Limits
+title: Tenant Quotas and Limits
 ---
 
-This page describes the rate limits for all PaaS GDN customers. Each quota applies on a per-Region basis unless otherwise specified. Contact support@macrometa.com if you would like to request higher metered tier limits or learn about [dedicated fabrics](https://www.macrometa.com/enterprise).
+This page describes the rate limits for all PaaS GDN customers. Each quota applies on a per-Region basis unless otherwise specified. [Dedicated fabrics](https://www.macrometa.com/enterprise) can handle up to 350,000 operations per second. Reach out to support to learn more, contact support@macrometa.com.
 
 The following table shows rate limits for free developer accounts and metered accounts. API calls will be denied once you reach the limit. Quotas are reset every 24 hours.
 
@@ -20,7 +20,7 @@ The following table shows rate limits for free developer accounts and metered ac
 | Memory per Query				| 256 MB			| 256 MB			|
 | Collections per Fabric		| 10				| 1000				|
 | Graphs per Fabric				| 2					| 500				|
-| Views per Fabric 				| 2  				| 100				|
+| Views per Fabric 				| N/A 				| 100				|
 | Indexes per Fabric 			| 10 				| 100				|
 | Geo Fabrics per Tenant 		| 2					| 50				|
 

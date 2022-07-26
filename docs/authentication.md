@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 There are multiple ways users can access their Macrometa GDN account:
 
 * User Authentication
-* Token based Authentication
+* Token-based Authentication
 * API Keys
 
 ## User Authentication
@@ -42,9 +42,9 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
 </TabItem>
 </Tabs>  
 
-## Token based Authentication
+## Token-based Authentication
 
-Users can also authenticate with Macrometa GDN via `Json web tokens`. The `JWT Tokens` in GDN expire after 12 hours unless renewed. So it is best to use API Keys for access by your apps & apis.
+Users can also authenticate with Macrometa GDN via `Json web tokens`. The `JWT Tokens` in GDN expire after 12 hours unless renewed. So it is best to use API Keys for access by your apps and APIs.
 
 **Code Samples:**
 
@@ -74,7 +74,7 @@ Most APIs today use an API Key to authenticate legitimate clients. API Keys are 
 
 * Get an API key from the service (in essence a shared secret).
 * Add the key to an Authorization header.
-* Call the API.
+* Call the API with `api-` plus your base URL. Example: `https://api-seastar-9b9d9999.paas.macrometa.io/`
 
 API keys never expire.
 
