@@ -28,7 +28,7 @@ GDN provides the following index types:
 
 ## Primary Index
 
-Each collection has a *primary index* that stores the [document keys](../../references/glossary.md#document-key) (`_key` attribute) for all documents in the collection. The primary index allows you to quickly select documents using the `_key` or `_id` attributes. C8QL queries automatically use primary indexes for equality lookups on `_key` or `_id`. 
+Each collection has a _primary index_ that stores the [document keys](../../references/glossary.md#document-key) (`_key` attribute) for all documents in the collection. The primary index allows you to quickly select documents using the `_key` or `_id` attributes. C8QL queries automatically use primary indexes for equality lookups on `_key` or `_id`.
 
 You can use a dedicated function to find a document with its `_key` or `_id` using the primary index:
 
@@ -41,7 +41,7 @@ The primary index is an unsorted hash index, so it cannot be used for sorting or
 
 ## Edge Index
 
-Each [edge collection](../../references/glossary.md#edge-collection) automatically creates an *edge index*. The edge index provides quick access to documents by either their `_from` or `_to` attributes. You can use an edge index to quickly find connections between vertex documents. Queries use edge indexes when referring to the connecting edges of a vertex.
+Each [edge collection](../../references/glossary.md#edge-collection) automatically creates an _edge index_. The edge index provides quick access to documents by either their `_from` or `_to` attributes. You can use an edge index to quickly find connections between vertex documents. Queries use edge indexes when referring to the connecting edges of a vertex.
 
 C8QL uses edge indexes when performing equality lookups on `_from` or `_to` values in an edge collection. You can use a dedicated function to find edges with their `_from` or `_to` values using the edge index:
 
@@ -59,6 +59,7 @@ The edge index is a hash index that stores the union of all `_from` and `_to` at
 :::note
 You cannot remove or change an edge index.
 :::
+
 ## Persistent Index
 
 Persistent index entries are written to disk when documents are stored or updated, so the entries do not need to be rebuilt when the server is restarted or the indexed collection is loaded. Persistent indexes can reduce collection loading times. You can only use persistent indexes in addition to another primary index.
@@ -67,9 +68,8 @@ The index implementation uses the RocksDB engine and provides logarithmic comple
 
 Persistent indexes are sorted and can be used for point lookups, range queries, and sorting operations if you provide one of the following in the query:
 
-* All index attributes.
-* A leftmost prefix of the index attributes.
-
+- All index attributes.
+- A leftmost prefix of the index attributes.
 
 ## Hash Index
 
@@ -83,27 +83,27 @@ You can create a hash index on one or more document attributes. A query only use
 
 The following types of indexes each have different characteristics:
 
-- *Unique hash index*: All documents in the collection must have different values for the attributes covered by the unique index. You cannot insert a document with the same key value as an already existing document. 
+- _Unique hash index_: All documents in the collection must have different values for the attributes covered by the unique index. You cannot insert a document with the same key value as an already existing document.
 
 	This type of index is not sparse. Documents that do not contain the index attributes or that have a value of `null` in the index attributes will still be indexed. A key value of `null` may only occur once in the index, so this type of index cannot be used for optional attributes due to unique constraint violations.
 
 	The unique option can also be used to ensure that no duplicate edges are created, by adding a combined index for the fields `_from` and `_to` to an edge collection.
 
-- *Unique, sparse hash index*: All documents in the collection must have different values for the attributes covered by the unique index. This index does not include documents with an attribute not set or set to `null`. No documents in a collection will have duplicate keys if the indexed attributes are set. This index can be used for optional attributes.
+- _Unique, sparse hash index_: All documents in the collection must have different values for the attributes covered by the unique index. This index does not include documents with an attribute not set or set to `null`. No documents in a collection will have duplicate keys if the indexed attributes are set. This index can be used for optional attributes.
 
-- *Non-unique hash index*: All documents in the collection are indexed. This type of index is not sparse. Documents that do not contain the index attributes or that have a value of `null` in the index attribute(s) are still indexed. Duplicate key values can occur and do not lead to unique constraint violations.
- 
-- *Non-unique, sparse hash index*: Only indexes documents that have all indexed attributes set to a value other than `null`. This index can be used for optional attributes.
+- _Non-unique hash index_: All documents in the collection are indexed. This type of index is not sparse. Documents that do not contain the index attributes or that have a value of `null` in the index attribute(s) are still indexed. Duplicate key values can occur and do not lead to unique constraint violations.
 
-The amortized complexity of lookup, insert, update, and removal operations in unique hash indexes is O(1). 
+- _Non-unique, sparse hash index_: Only indexes documents that have all indexed attributes set to a value other than `null`. This index can be used for optional attributes.
 
-Non-unique hash indexes have an amortized complexity of O(1) for insert, update, and removal operations. That means non-unique hash indexes can be used on attributes with low cardinality. 
+The amortized complexity of lookup, insert, update, and removal operations in unique hash indexes is O(1).
+
+Non-unique hash indexes have an amortized complexity of O(1) for insert, update, and removal operations. That means non-unique hash indexes can be used on attributes with low cardinality.
 
 If a hash index is created on an attribute that is missing in all or many of the documents, the index takes these actions:
 
 - If the index is sparse, the documents missing the attribute are not indexed and do not use index memory. These documents do not influence the update or removal performance for the index.
 
-- If the index is non-sparse, the documents missing the attribute are contained in the index with a key value of `null`. 
+- If the index is non-sparse, the documents missing the attribute are contained in the index with a key value of `null`.
 
 Hash indexes support [indexing array values](#indexing-array-values) if the index attribute name is extended with a `[*]`.
 
@@ -117,8 +117,8 @@ A skiplist is a sorted index structure. It can be used to quickly find documents
 
 Skiplist indexes are sorted and can be used for point lookups, range queries, and sorting operations if you provide one of the following in the query:
 
-* All index attributes.
-* A leftmost prefix of the index attributes.
+- All index attributes.
+- A leftmost prefix of the index attributes.
 
 For example, if a skiplist index is created on attributes `value1` and `value2`, the following filter conditions can use the index (the `<=` and `>=` operators are omitted here for brevity):
 
@@ -133,7 +133,7 @@ FILTER doc.value1 == ... && doc.value2 > ...
 FILTER doc.value1 == ... && doc.value2 > ... && doc.value2 < ...
 ```
 
-To use a skiplist index for sorting, you must specify the index attributes in the `SORT` clause of the query in the same order as the index definition. Skiplist indexes are always created in ascending order, but they can also be accessed in descending order. For a *combined index* (an index on multiple attributes), the sort orders in the `SORT` clause must be either all ascending (optionally omitted as ascending is default) or all descending. 
+To use a skiplist index for sorting, you must specify the index attributes in the `SORT` clause of the query in the same order as the index definition. Skiplist indexes are always created in ascending order, but they can also be accessed in descending order. For a _combined index_ (an index on multiple attributes), the sort orders in the `SORT` clause must be either all ascending (optionally omitted as ascending is default) or all descending.
 
 For example, if the skiplist index is created on attributes `value1` and `value2` in order, the following sorts clauses can use the index for sorting:
 
@@ -157,24 +157,23 @@ Skiplists can optionally be declared unique, disallowing the same value from bei
 
 The following types of indexes each have different characteristics:
 
-- *Unique skiplist index*: All documents in the collection must have different values for the attributes covered by the unique index. You cannot insert a document with the same key value as an already existing document. 
+- _Unique skiplist index_: All documents in the collection must have different values for the attributes covered by the unique index. You cannot insert a document with the same key value as an already existing document.
 
 	This type of index is not sparse. Documents that do not contain the index attributes or that have a value of `null` in the index attributes will still be indexed. A key value of `null` may only occur once in the index, so this type of index cannot be used for optional attributes due to unique constraint violations.
 
-- *Unique, sparse skiplist index*: All documents in the collection must have different values for the attributes covered by the unique index. This index does not include documents with an attribute not set or set to `null`. No documents in a collection will have duplicate keys if the indexed attributes are set. This index can be used for optional attributes.
+- _Unique, sparse skiplist index_: All documents in the collection must have different values for the attributes covered by the unique index. This index does not include documents with an attribute not set or set to `null`. No documents in a collection will have duplicate keys if the indexed attributes are set. This index can be used for optional attributes.
 
-- *Non-unique skiplist index*: All documents in the collection are indexed. This type of index is not sparse. Documents that do not contain the index attributes or that have a value of `null` in the index attribute(s) are still indexed. Duplicate key values can occur and do not lead to unique constraint violations.
- 
-- *Non-unique, sparse skiplist index*: Only indexes documents that have all indexed attributes set to a value other than `null`. This index can be used for optional attributes.
+- _Non-unique skiplist index_: All documents in the collection are indexed. This type of index is not sparse. Documents that do not contain the index attributes or that have a value of `null` in the index attribute(s) are still indexed. Duplicate key values can occur and do not lead to unique constraint violations.
+
+- _Non-unique, sparse skiplist index_: Only indexes documents that have all indexed attributes set to a value other than `null`. This index can be used for optional attributes.
 
 The operational amortized complexity for skiplist indexes is logarithmically correlated with the number of documents in the index.
 
 Skiplist indexes support [indexing array values](#indexing-array-values) if the index attribute name is extended with a `[*]``.
 
-
 ## TTL Index
 
-A TTL (time-to-live) index automatically removes expired documents from a collection. 
+A TTL (time-to-live) index automatically removes expired documents from a collection.
 
 You can create a TTL index by setting an `expireAfter` value and picking a single document attribute that contains the documents' creation date and time. Documents are expired after `expireAfter` seconds after their creation time. The creation time is specified as either a numeric timestamp (Unix timestamp) or a date string in format `YYYY-MM-DDTHH:MM:SS`. All date strings will be interpreted as UTC dates.
 
@@ -186,14 +185,14 @@ This document will be indexed with a creation date time value of `1550165973`, w
 
 There is no guarantee when exactly the removal of expired documents will be carried out, so queries may still find and return documents that have already expired. These will eventually be removed when the background thread kicks in and has capacity to remove the expired documents. Only documents that are past their expiration time will actually be removed.
   
-:::note 
+:::note
 You can specify the numeric date time values for the index attribute in milliseconds since January 1st 1970 (Unix timestamp). We round this value down to the nearest second. To calculate the current timestamp from JavaScript in this format, there is `Date.now() / 1000`. To calculate it from an arbitrary Date instance, there is `Date.getTime() / 1000`.
 :::
 
 Alternatively, the index attribute values can be specified as a date string in format `YYYY-MM-DDTHH:MM:SS`. All date strings will be interpreted as UTC dates.
-    
+
 The above example document using a date string attribute value would be
- 
+
     { "creationDate" : "2019-02-14T17:39:33Z" }
 
 In case the index attribute does not contain a numeric value or a proper date string, the document will not be stored in the TTL index and thus will not become a candidate for expiration and removal. Providing either a non-numeric value or even no value for the index attribute is a supported way of keeping documents from being expired and removed.
@@ -206,8 +205,8 @@ The geo index stores two-dimensional coordinates. You can create two separate do
 
 Geo indexes provide operations to do the following:
 
-* Find documents with coordinates nearest to a given comparison coordinate
-* Find documents with coordinates that are within a specifiable radius around a comparison coordinate.
+- Find documents with coordinates nearest to a given comparison coordinate
+- Find documents with coordinates that are within a specifiable radius around a comparison coordinate.
 
 You can access these operations with dedicated functions in C8QL or simple queries. They are also automatically applied to SORT or FILTER when used with the distance function.
 
