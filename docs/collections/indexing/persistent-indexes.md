@@ -3,11 +3,30 @@ sidebar_position: 60
 title: Persistent Indexes
 ---
 
-This is an introduction to C8DB persistent indexes.
+This is an introduction to C8DB persistent indexes. In a persistent index, the index entries are written to disk when documents are stored or updated.
 
 It is possible to define a persistent index on one or more attributes (or paths) of documents. The index is then used in queries to locate documents within a given range. If the index is declared unique, then no two documents are allowed to have the same set of attribute values.
 
-Creating a new document or updating a document will fail if the uniqueness is violated. If the index is declared sparse, a document will be excluded from the index and no uniqueness checks will be performed if any index attribute value is not set or has a value of `null`. 
+Creating a new document or updating a document will fail if the uniqueness is violated. If the index is declared sparse, a document will be excluded from the index and no uniqueness checks will be performed if any index attribute value is not set or has a value of `null`.
+
+## Create Persistent Index in GDN Console
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **COLLECTIONS**.
+1. Click the collection that you want to create an index for.
+1. Click **Indexes**.
+1. In **Type**, select **Persistent Index**.
+1. Enter the following information:
+
+   - **Fields -** Choose one or more attributes from the collection.
+   - **Name -** The name of the index. If left blank, then Macrometa autogenerates the name.
+   - **Unique -** If true, will create a unique index.
+   - **Sparse -** If true, will create the sparse index.
+   - **Deduplicate Array Values -** If selected, duplicate index values from the same document into a
+unique array index.
+   - **Create in Background -** If true, will create the index in the background. For more information, refer to [Create Index in Background](create-index-in-background.md).
+
+1. Click **Create**.
 
 ## Accessing Persistent Indexes
 
