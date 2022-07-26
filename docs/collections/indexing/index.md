@@ -13,7 +13,7 @@ You cannot use the system attribute `_id` in user-defined indexes, but you can u
 
 Creating new indexes is done under an exclusive collection lock by default. When you create a new index, the collection is not available during creation. Creating indexes in the foreground is undesirable if you have to perform it on a live system without a dedicated maintenance window.
 
-For potentially long running index creation, GDN supports creating indexes in the background. The collection remains mostly available during the index creation. Refer to [Creating Indexes in Background](#creating-indexes-in-background) for more information.
+For potentially long-running index creation, GDN supports creating indexes in the background. The collection remains mostly available during the index creation.
 
 GDN provides the following index types:
 
