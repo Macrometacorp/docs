@@ -5,7 +5,7 @@ title: Working with Indexes
 
 ## Indexing Attributes & Sub-Attributes
 
-Top-level as well as nested attributes can be indexed. For attributes at the top level, the attribute names alone are required. To index a single field, pass an array with a single element (string of the attribute key) to the *fields* parameter of the ensureIndex() method. 
+Top-level as well as nested attributes can be indexed. For attributes at the top level, the attribute names alone are required. To index a single field, pass an array with a single element (string of the attribute key) to the _fields_ parameter of the ensureIndex() method.
 
 To create an index:
 
@@ -15,7 +15,7 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c
 -d '{ "fields": [ "name" ], "sparse": true, "type": "hash", "unique": true}'
 ```
 
-To create a combined index over multiple fields, add more members to the *fields* array. For example:
+To create a combined index over multiple fields, add more members to the _fields_ array. For example:
 
 ```cURL
 curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c1'  \
@@ -33,7 +33,7 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/document/c
 
 ## Indexing Array Values
 
-If an index attribute contains an array, GDN will store the entire array as the index value by default. Accessing individual members of the array via the index is not possible this way. 
+If an index attribute contains an array, GDN will store the entire array as the index value by default. Accessing individual members of the array via the index is not possible this way.
 
 To make an index insert the individual array members into the index instead of the entire array value, a special array index needs to be created for the attribute. Array indexes can be set up like regular hash or skiplist indexes using the `collection.ensureIndex()` function. To make a hash or skiplist index an array index, the index attribute name needs to be extended with <i>[\*]</i> when creating the index and when filtering in a C8QL query using the `IN` operator.
 
@@ -61,7 +61,7 @@ FOR doc IN posts
   RETURN doc
 ```
 
-The following FILTER conditions will *not* use the array index:
+The following FILTER conditions will _not_ use the array index:
 
 ```js
 FILTER doc.tags ANY == 'foobar'
@@ -89,7 +89,7 @@ FOR doc IN posts
 
 If you store a document having the array which does contain elements not having the subattributes this document will also be indexed with the value `null`, which in GDN is equal to attribute not existing.
 
-GDN supports creating array indexes with a single <i>[\*]</i> operator per index attribute. For example, creating an index as follows is *not* supported:
+GDN supports creating array indexes with a single <i>[\*]</i> operator per index attribute. For example, creating an index as follows is _not_ supported:
 
 ```cURL
 curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=c1' \
@@ -253,6 +253,7 @@ will be considerably faster in case there are many edges originating in vertex `
 **Listing all indexes of a collection:**
 
 // Returns information about the indexes
+
 ```cURL
 curl -X 'GET' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index?collection=collectionName' \
  -H 'Authorization: bearer <token>' 
@@ -262,9 +263,10 @@ Returns an array of all indexes defined for the collection. Note that `_key` imp
 
 **Creating an index:**
 
-Indexes should be created using the general method `ensureIndex`. 
+Indexes should be created using the general method `ensureIndex`.
 
 ensures that an index exists
+
 ```cURL
 curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/<indexType>?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
@@ -290,11 +292,12 @@ For `hash`, and *`skiplist` the sparsity can be controlled, `fulltext` and `geo`
 
 **unique** can be `true` or `false` and is supported by `hash` or `skiplist`
 
-Calling this method returns an index object. Whether or not the index object existed before the call is indicated in the return attribute *isNewlyCreated*.
+Calling this method returns an index object. Whether or not the index object existed before the call is indicated in the return attribute _isNewlyCreated_.
 
 **deduplicate** can be `true` or `false` and is supported by array indexes of type `hash` or `skiplist`. It controls whether inserting duplicate index values from the same document into a unique array index will lead to a unique constraint error or not. The default value is `true`, so only a single instance of each non-unique index value will be inserted into the index per document. Trying to insert a value into the index that already exists in the index will always fail, regardless of the value of this attribute.
 
 **Examples**
+
 ```cURL
 curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                        \
@@ -311,6 +314,7 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash
 curl -X 'DELETE' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/<collectionName>/<indexName>' \
  -H 'Authorization: bearer <token>'
 ```
+
 Drops the index. If the index does not exist, then `false` is returned. If the index existed and was dropped, then `true` is returned. Note that you cannot drop some special indexes (e.g. the primary index of a collection or the edge index of an edge collection).
 
 **Revalidating whether an index is used:**
@@ -325,7 +329,7 @@ You can use explain to verify whether **skiplists** or **hash indexes** are used
 
 Creating new indexes is by default done under an exclusive collection lock. This means that the collection (or the respective shards) are not available for write operations as long as the index is created. This "foreground" index creation can be undesirable, if you have to perform it on a live system without a dedicated maintenance window.
 
-Indexes can also be created in "background", not using an exclusive lock during the entire index creation. The collection remains basically available, so that other CRUD operations can run on the collection while the index is being created. This can be achieved by setting the *inBackground* attribute when creating an index.
+Indexes can also be created in "background", not using an exclusive lock during the entire index creation. The collection remains basically available, so that other CRUD operations can run on the collection while the index is being created. This can be achieved by setting the _inBackground_ attribute when creating an index.
 
 To create an index in the background, just specify `inBackground: true`, like in the following examples:
 
@@ -363,7 +367,7 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?
 
 **Behavior:**
 
-Indexes that are still in the build process will not be visible via the GDN APIs. Nevertheless it is not possible to create the same index twice via the *ensureIndex* API while an index is still begin created. AQL queries also will not use these indexes until the index reports back as fully created. Note that the initial *ensureIndex* call or HTTP request will still block until the index is completely ready. Existing single-threaded client programs can thus safely set the *inBackground* option to *true* and continue to work as before.
+Indexes that are still in the build process will not be visible via the GDN APIs. Nevertheless it is not possible to create the same index twice via the _ensureIndex_ API while an index is still begin created. AQL queries also will not use these indexes until the index reports back as fully created. Note that the initial _ensureIndex_ call or HTTP request will still block until the index is completely ready. Existing single-threaded client programs can thus safely set the _inBackground_ option to _true_ and continue to work as before.
 
 :::info
 Should you be building an index in the background you cannot rename or drop the collection. These operations will block until the index creation is finished. This is equally the case with foreground indexing.
