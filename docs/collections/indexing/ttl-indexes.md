@@ -5,7 +5,7 @@ title: TTL Indexes
 
 # TTL (time-to-live) Indexes
 
-The TTL index type provided by GDN can be used for removing expired documents from a collection.
+The TTL index type provided by GDN can be used to automatically removing expired documents from a collection.
 
 The TTL index is set up by setting an `expireAfter` value and by selecting a single document attribute which contains a reference point in time. For each document, that reference point in time can then be specified as a numeric timestamp (Unix timestamp) or a date string in format `YYYY-MM-DDTHH:MM:SS` with an optional timezone offset.
 
@@ -129,3 +129,19 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/ttl?
 Creates a TTL index on all documents using *field* as attribute path. Exactly one attribute path has to be given. The index will be sparse in all cases.
 
 In case that the index was successfully created, an object with the index details, including the index-identifier, is returned.
+
+## Create TTL Index in GDN Console
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **COLLECTIONS**.
+1. Click the collection that you want to create an index for.
+1. Click **Indexes**.
+1. In **Type**, select **TTL Index**.
+1. Enter the following information:
+
+   - **Fields -** Choose between one or two attribute paths, latitude and/or longitude, from the collection.
+   - **Name -** The name of the index. If left blank, then Macrometa autogenerates the name.
+   - **Documents expire after (s) -** A number of seconds to be added to the timestamp attribute value of each document.
+   - **Create in Background -** If true, will create an index in the background rather than lock the collection while the index is created. This allows for basic CRUD operations to occur while the index is created. For more information, refer to [Create Index in Background](create-index-in-background.md).
+
+1. Click **Create**.
