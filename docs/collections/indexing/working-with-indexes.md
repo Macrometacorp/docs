@@ -97,7 +97,6 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash
  -d '{ "fields": ["tags[*].name[*].value" ], "type" : "hash"}'
 ```
 
-
 Array values will automatically be de-duplicated before being inserted into an array index. For example, if the following document is inserted into the collection, the duplicate array value `bar` will be inserted only once:
 
 ```cURL
