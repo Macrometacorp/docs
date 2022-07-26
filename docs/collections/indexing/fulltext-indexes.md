@@ -51,3 +51,19 @@ In case that the index was successfully created, an object with the index detail
 ## Fulltext C8QL Functions
 
 Fulltext C8QL functions are detailed in [Fulltext functions](../../c8ql/functions/fulltext.md).
+
+## Create Fulltext Index in GDN Console
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **COLLECTIONS**.
+1. Click the collection that you want to create an index for.
+1. Click **Indexes**.
+1. In **Type**, select **Fulltext Index**.
+1. Enter the following information:
+
+   - **Fields -** Single attribute path.
+   - **Name -** The name of the index. If left blank, then Macrometa autogenerates the name.
+   - **Min. length -** The minimum character of words in the index.
+   - **Create in Background -** If true, will create an index in the background rather than lock the collection while the index is created. This allows for basic CRUD operations to occur while the index is created. For more information, refer to [Create Index in Background](create-index-in-background.md).
+
+1. Click **Create**.

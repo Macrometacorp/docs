@@ -24,7 +24,7 @@ Creating a new document or updating a document will fail if the uniqueness is vi
    - **Sparse -** If true, will create the sparse index.
    - **Deduplicate Array Values -** If selected, duplicate index values from the same document into a
 unique array index.
-   - **Create in Background -** If true, will create the index in the background. For more information, refer to [Create Index in Background](create-index-in-background.md).
+   - **Create in Background -** If true, will create an index in the background rather than lock the collection while the index is created. This allows for basic CRUD operations to occur while the index is created. For more information, refer to [Create Index in Background](create-index-in-background.md).
 
 1. Click **Create**.
 
