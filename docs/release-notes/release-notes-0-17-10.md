@@ -58,6 +58,12 @@ This release includes the following API changes.
 | DB-1592  | Make `GET /_api/collection/{collection-name}/figures` API public. This allows users to view metadata such as how many indexes and views a collection has, total collection size, and how many documents a collection has. |
 | DB-1606  | Allow `*` in certain User APIs for collections and fabrics. APIs are: GET, DELETE, and PUT for `/_fabric/{fabric}/_api/user/{user}/database/{geofabric}` and GET, DELETE, and PUT for `/_fabric/{fabric}/_api/user/{user}/database/{geofabric}/collection/{collection}`. |
 
+### New CLI Release
+
+GDN CLI (`gdnsl`) version 0.0.45 is now available! If you use the Macrometa CLI, be sure to update as soon as possible.
+
+For more information, refer to [Command Line Interface](../cli).
+
 ### Unique Index Option Change
 
 Due to defect DB-1242, the unique index option has been temporarily turned off for new global collections. This option will be available when the longer-term solution is ready.
