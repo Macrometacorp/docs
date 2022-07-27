@@ -26,7 +26,7 @@ View active indexes for a collection on the Indexes tab. The section explains wh
 - **Type -** The index type.
 - **Unique -** If `true`, then no two documents are allowed to have the same set of attribute values. Default is `true` for primary keys and indexes, and default is `false` is for all other keys and indexes.
 - **Sparse -** Indicates whether the index is sparse or not. If the index is declared sparse, then a document will be excluded from the index and no uniqueness checks are performed if any index attribute value is not set or has a value of null.
-- **Deduplicate -** Controls whether inserting duplicate index values from the same document into a unique array index will lead to a unique constraint error or not. Default is **true**, meaning that only a single instance of each non-unique index value will be inserted into the index per document. If **false**, then each instance of a non-unique index value will be inserted into the index per document.
+- **Deduplicate -** If `true` (default), GDN only inserts each non-unique index value once per document. Attempting to insert duplicate values results in an error. If `false`, GDN inserts each instance of the value into the index per document.
 - **Extras -** Extra conditions of the index definition, such as minimum length for fulltext index.
 - **Selectivity Est -** An estimate indicating the percentage of documents affected by the indexed attributes.
 - **Fields -** The attributes on which the index is created.
