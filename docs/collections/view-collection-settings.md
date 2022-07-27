@@ -19,10 +19,20 @@ Different types of collections have different settings. Specific settings are li
 
 Document Store collections and Graph Edge collections have the same settings.
 
+- **ID -** System-generated ID of the selected collection.
+- **Type -** The type of data model of the selected collection.
+- **Status -** Current status of the selected collection.
+- **Synchronous Writes -** Select the checkbox to enable synchronous writes.
 
+In the Settings tab, you can [Delete](delete-collection.md) or [Truncate](truncate-collection.md) the collection.
 
 ### Key-Value Store Settings
 
+Key-Value stores only have one settings option.
+
+- **Synchronous Writes -** Select the checkbox to enable synchronous writes.
+
+In the Settings tab, you can [Delete](delete-collection.md) or [Truncate](truncate-collection.md) the collection.
 
 ### Dynamo Table Settings
 
