@@ -15,6 +15,7 @@ All collections have settings that you can look at in the Settings tab.
 ## Collection Settings
 
 Different types of collections have different settings. Specific settings are listed in the sections below.
+
 ### Document Store and Graph Edge Settings
 
 Document Store collections and Graph Edge collections have the same settings.
