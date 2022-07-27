@@ -26,7 +26,7 @@ You can access the following information on the Stream tab.
 - **Average Msg Size -** Size of an average data packet in KB.
 - **Storage Size -** Total storage size in KB.
 - **Stream -** Name of the enabled stream for collection (same as collection name).
-- **Replication -** Local or Global, only local streams are selected for collection streams.
+- **Replication -** Local or Global. Only local streams are selected for collection streams.
 - **Type -** Stream type for collections-enabled stream.
 - **Region -** The region in which the collection was created.
 - **WebSocket URL -** Weblink of the stream’s API.
