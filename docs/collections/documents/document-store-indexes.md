@@ -22,7 +22,7 @@ View active indexes for a collection on the Indexes tab. The section explains wh
 
 ![Document Store Data Tab](/img/collections/doc-store-indexes.png)
 
-- **ID -** This is a primary key for the indexes - no two documents can have the same ID.
+- **ID -** This is a unique primary key for the indexes.
 - **Type -** The index type.
 - **Unique -** If the index is declared unique, then no two documents are allowed to have the same set of attribute values. The **true** option is the default value for primary keys/indexes while **false** is specified for all other keys/indexes.
 - **Sparse -** Indicates whether the index is sparse or not. If the index is declared sparse, then a document will be excluded from the index and no uniqueness checks are performed if any index attribute value is not set or has a value of null.
