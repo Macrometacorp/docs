@@ -1,7 +1,6 @@
 ---
 sidebar_position: 10
 title: Views
-slug: views
 ---
 
 We provide *Views* that enable you to perform fast and sophisticated full-text search queries for unstructured data in documents across multiple linked collections. You can filter by document attributes, sort the results by relevance, and rank results by their similarity using popular scoring algorithms.
