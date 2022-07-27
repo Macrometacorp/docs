@@ -3,7 +3,7 @@ title: Document Store Indexes
 sidebar_position: 50
 ---
 
-Indexes allow fast access to documents, provided the indexed attributes are used in a query, they speed up searches. For more informatin about indexes, refer to [Indexing](../indexing/index.md).
+Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../indexing/index.md).
 
 ## Document Store Indexes
 
