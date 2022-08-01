@@ -25,6 +25,8 @@ You can use any unsaved query as an API endpoint, but best practice is to use sa
 - Query workers have hard-coded URLs, while queries use a generic `/feature/option/data` path.
 - Query workers are cached across all GeoFabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.
 
+Using query workers instead of unsaved query endpoints does not impact your billing.
+
 ## Bind Parameter Values vs. Placeholders
 
 You cannot run a query with empty bind parameter values. Otherwise, the query fails with an error.
