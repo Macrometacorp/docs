@@ -108,7 +108,7 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | DB-1580  | Cannot create more than 100 KV collections.  |
 | DB-1595  | Non-root user with read-only fabric permissions can set and clear streams access level.  |
 | DB-1615  | Validate API continues to validate JWT token even when user has been deleted.  |
-| MET-52  | Some metrics were not reinitialized when collections were deleted.  |
+| MET-52  | Some metrics were not reinitialized when deleting collections.  |
 | MET-68  | All graphs delete call are not taken into account by MetricsCollector if graph does not exist.  |
 | MET-90  | Dynamo Read metrics not taken into account for the count metric.  |
 | MET-149  | Get metrics names returns result as a string instead of JSON (list).  |
