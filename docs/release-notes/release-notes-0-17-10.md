@@ -31,7 +31,7 @@ This release includes an overhaul of the billing functionality, including:
 
 - New invoice design.
 - Redesigned billing tab with graphs and metrics to help you understand usage.
-- Various performance improvements.
+- Various performance improvements and back-end defect fixes related to billing.
 - A bunch of billing-related defect fixes on the backend.
 
 If you have a paid Macrometa plan, then you can view the new billing screen in your account Overview tab.
