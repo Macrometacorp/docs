@@ -16,7 +16,7 @@ title: Crypto Trading Bot
 |  `demo@macrometa.io` | `_system` | `crypto-trading-app` | [**Crypto Trading GUI**](https://macrometacorp.github.io/demo-crypto-trading-5g/) |
 
 :::note
-Stream Workers is currently an Enterprise only feature. We will be rolling it out to all users in Q1 of 2022.
+Stream Workers is currently an Enterprise only feature. 
 Please contact support@macrometa.com if you have any questions.
 :::
 
