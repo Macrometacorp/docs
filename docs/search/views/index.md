@@ -31,7 +31,7 @@ Views guarantee the best execution plan (merge join) when querying multiple attr
 
 A View represents all documents available in a specified set of source collections. Each View is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the View implementation and can be as simple as an identity transformation. 
 
-A Search View combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the *terms* of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](#analyzers) to boost value analysis with tokenization.
+A Search View combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the _terms_ of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](#analyzers) to boost value analysis with tokenization.
 
 The document vectors that are closer to a query vector are more relevant. The closeness is expressed as the cosine of the angle between two vectors ([cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity)). We evaluate the following expression to define how relevant document `d` is to query `q`:
 
@@ -41,21 +41,21 @@ The document vectors that are closer to a query vector are more relevant. The cl
 * `|d|` is the norm of vector `d`
 * `|q|` is the norm of vector `q`
 
-The vector components must be computed up front. Since space is formed by terms, you can use *term weights* as coordinates. The following probability and statistical weighting models are implemented in C8Search:
+The vector components must be computed up front. Since space is formed by terms, you can use _term weights_ as coordinates. The following probability and statistical weighting models are implemented in C8Search:
 
 * [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25)
 * [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
 
 Both models rely on two components:
 
-* *Term frequency* (TF): The number of times term `t` appears in document `d`.
-* *Inverse document frequency* (IDF): How common or rare the term is across all documents.
+* _Term frequency_ (TF): The number of times term `t` appears in document `d`.
+* _Inverse document frequency_ (IDF): How common or rare the term is across all documents.
 
 Searching and ranking capabilities are provided by the [IResearch library](https://github.com/iresearch-toolkit/iresearch)
 
 ## Integration
 
-To use collections as a data source, you must *link* them to a View. A link is a one-way data flow from a GDN collection to a Search View that determines how incoming data is made available to the user. A View can have multiple links that are each connected to a different collection, and each collection can be linked to multiple Views.
+To use collections as a data source, you must _link_ them to a View. A link is a one-way data flow from a GDN collection to a Search View that determines how incoming data is made available to the user. A View can have multiple links that are each connected to a different collection, and each collection can be linked to multiple Views.
 
 To minimize performance reduction, we do not constantly synchronize Search Views as the linked collections change. You can change the consolidation policy to increase or decrease the rate at which Search Views synchronize with linked collections.
 
