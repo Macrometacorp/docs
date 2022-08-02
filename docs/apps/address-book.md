@@ -18,8 +18,7 @@ title: Global Address Book
 | demo@macrometa.io | `xxxxxxxx`    | \_system       | `addresses`    | [AddressBook](https://macrometacorp.github.io/addressbook-streams-wavelength/) |
 
 :::note
-Stream Workers is currently an Enterprise only feature. We will be rolling it out to all users in Q1 of 2022.
-Please contact support@macrometa.com if you have any questions.
+Stream Workers is currently an Enterprise only feature. Please contact support@macrometa.com if you have any questions.
 :::
 
 Populate `addresses` collection with data:
