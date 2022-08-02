@@ -102,7 +102,7 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | DB-1457  | Bypassed GeoFabric per-tenant limit on free tier account. Correct limit is two.  |
 | DB-1463  | Able to have inconsistent documents on two different regions with same key in the same collection.  |
 | DB-1470  | Error trying to truncate records for a collection stream.  |
-| DB-1493  | Getting connection not established error on a stream console.  |
+| DB-1493  | Connection not established error on a stream console.  |
 | DB-1519  | "Unauthorized" error is seen after navigation to regions.  |
 | DB-1552  | When creating a user, password constrains are not validated in API.  |
 | DB-1580  | Cannot create more than 100 KV collections.  |
