@@ -15,7 +15,7 @@ This release included a complete overhaul of the Macrometa UI. A few section nam
 
 - Updated the overall look and feel of the web console UI.
 - Changed order of items in the side menu.
-- User icon and log in/out and settings moved from the upper right to lower left corner.
+- User icon, log in/out, and settings moved from the upper right to lower left corner.
 - SEARCH changed to Search Views.
 - QUERIES changed to Query Workers.
 - Query Profile changed to Query Info in Query Results.
