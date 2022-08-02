@@ -5,7 +5,7 @@ title: Views
 
 Macrometa provides _search views_ that enable you to perform fast and sophisticated full-text search queries for unstructured data in documents across multiple linked collections. You can filter by document attributes, sort the results by relevance, and rank results by their similarity using popular scoring algorithms.
 
-Each View represents an inverted index that contains the search configuration and all document attributes in the linked collections. A Search View index consists of multiple segments that are each treated as a standalone index. Search Views are the only officially supported Views implementation, but you can create your own Search Views to further customize the way index and query data.
+Each search view represents an inverted index that contains the search configuration and all document attributes in the linked collections. A search view index consists of multiple segments that are each treated as a standalone index. search views are the only officially supported Views implementation, but you can create your own search views to further customize the way index and query data.
 
 The following table shows a comparison between search views and a full-text index:
 
@@ -31,7 +31,7 @@ Views guarantee the best execution plan (merge join) when querying multiple attr
 
 A View represents all documents available in a specified set of source collections. Each View is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the View implementation and can be as simple as an identity transformation. 
 
-A Search View combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the _terms_ of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](#analyzers) to boost value analysis with tokenization.
+A search view combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the _terms_ of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](#analyzers) to boost value analysis with tokenization.
 
 The document vectors that are closer to a query vector are more relevant. The closeness is expressed as the cosine of the angle between two vectors ([cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity)). We evaluate the following expression to define how relevant document `d` is to query `q`:
 
@@ -55,11 +55,11 @@ Searching and ranking capabilities are provided by the [IResearch library](https
 
 ## Integration
 
-To use collections as a data source, you must _link_ them to a View. A link is a one-way data flow from a GDN collection to a Search View that determines how incoming data is made available to the user. A View can have multiple links that are each connected to a different collection, and each collection can be linked to multiple Views.
+To use collections as a data source, you must _link_ them to a View. A link is a one-way data flow from a GDN collection to a search view that determines how incoming data is made available to the user. A View can have multiple links that are each connected to a different collection, and each collection can be linked to multiple Views.
 
-To minimize performance reduction, we do not constantly synchronize Search Views as the linked collections change. You can change the consolidation policy to increase or decrease the rate at which Search Views synchronize with linked collections.
+To minimize performance reduction, we do not constantly synchronize search views as the linked collections change. You can change the consolidation policy to increase or decrease the rate at which search views synchronize with linked collections.
 
-You can link documents and edge collections to Search Views so your graphs can be treated as both flat and interconnected data structures. For example, you can find the most relevant vertices by searching and sorting with a View, then perform a regular tree search on each vertex.
+You can link documents and edge collections to search views so your graphs can be treated as both flat and interconnected data structures. For example, you can find the most relevant vertices by searching and sorting with a View, then perform a regular tree search on each vertex.
 
 Edit the [View definition](#view-definition) to manage links between Views and collections. You can index any attribute at any depth, including nested attributes, and define Analyzers to process values for each field. To produce results, Analyzers you specify in the query must be defined in the View.
 
@@ -76,13 +76,13 @@ You can query views with C8QL using the [SEARCH operation](../c8ql/operations/se
 
 ## Primary Sort Order
 
-When you create a Search View, you can choose a primary sort order for each uniquely named attribute, enabling better optimization for iterated C8QL queries that sort by one or more attributes. If the fields match the sorting directions, the View can read data from the index without a sorting operation. 
+When you create a search view, you can choose a primary sort order for each uniquely named attribute, enabling better optimization for iterated C8QL queries that sort by one or more attributes. If the fields match the sorting directions, the View can read data from the index without a sorting operation. 
 
 To customize the primary sort order, you must create the View with HTTP or JavaScript API. You cannot change the `primarySort` option after creating a View. 
 
-The following example shows a Search View definition paired with a C8QL query.
+The following example shows a search view definition paired with a C8QL query.
 
-* Search View definition:
+* Search view definition:
 
 ```json
 {
@@ -162,7 +162,7 @@ In this example, we optimize a View query to sort by text and by descending date
 
 ## View Definition
 
-A Search View is defined by an object that contains the following:
+A search view is defined by an object that contains the following:
 
 * A set of View configuration directives.
 * A map of link configuration directives.
@@ -231,7 +231,7 @@ You can use the following property to set up a [primary sort order](#primary-sor
 ### Commit, Consolidate, Cleanup
 
 
-Each Search Views inverted index consists of segments that are each treated as standalone indexes. 
+Each search view's inverted index consists of segments that are each treated as standalone indexes. 
 
 You can use the following properties to control the frequency at which C8Search commits, consolidates, and cleans up index segments.
 

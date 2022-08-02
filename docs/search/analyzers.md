@@ -4,7 +4,7 @@ title: Analyzers
 slug: analyzers
 ---
 
-*Analyzers* enable you to break search inputs into sets of sub-values that C8Search can use for improved searching and sorting. When you use an Analyzer in a View, C8Search gathers the attributes of all documents in collections linked to the view, and creates appropriate sub-values and metadata. We provide built-in Analyzers and enable you to create custom Analyzers to suit the needs of your application.
+_Analyzers_ enable you to break search inputs into sets of sub-values that C8Search can use for improved searching and sorting. When you use an Analyzer in a View, C8Search gathers the attributes of all documents in collections linked to the view, and creates appropriate sub-values and metadata. We provide built-in Analyzers and enable you to create custom Analyzers to suit the needs of your application.
 
 You can use the [`TOKENS()` function](../c8ql/functions/search#tokens) to tokenize phrases and turn them into strings for C8QL search queries.
 
@@ -20,7 +20,7 @@ Sub-nested elements of arrays are also unpacked and indexed individually, and al
 Refer to the following links for more information about value handling:
 
 * [SEARCH operation](../c8ql/operations/search): How to query indexed values such as numbers and nested values.
-* [Search Views](../../docs/search/views): How we index compound data types (`arrays`, `objects`).
+* [Search views](../../docs/search/views): How we index compound data types (`arrays`, `objects`).
 
 ## Naming Conventions
 
@@ -169,9 +169,9 @@ By default, the value of the environment variable `IRESEARCH_TEXT_STOPWORD_PATH`
 
 ## Features
 
-An Analyzer's *features* determine the available term matching capabilities. These features are not applicable with custom Views.
+An Analyzer's _features_ determine the available term matching capabilities. These features are not applicable with custom Views.
 
-We support the following features for Search Views:
+We support the following features for search views:
 
 * `frequency`: How often a term is seen. Required for `PHRASE()`.
 * `norm`:  The [normalization constant](https://en.wikipedia.org/wiki/Normalizing_constant) of the term.
@@ -216,6 +216,7 @@ C8DB only supports UTF-8 encoding.
 :::note
 C8Search does not acknowledge the alphabetical order of characters in different languages. For example, a range query performed against a View will not follow language rules defined in the Analyzer locale.
 :::
+
 [Snowball](https://snowballstem.org/) provides stemming capabilities and supports the following languages:
 
 Code  | Language
