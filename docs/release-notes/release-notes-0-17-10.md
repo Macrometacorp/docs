@@ -30,7 +30,7 @@ Various screenshots and instructions were updated to reflect the new UI.
 This release includes an overhaul of the billing functionality, including:
 
 - New invoice design.
-- Redesigned billing tab, with graphs and metrics to help you understand usage.
+- Redesigned billing tab with graphs and metrics to help you understand usage.
 - Various performance improvements.
 - A bunch of billing-related defect fixes on the backend.
 
