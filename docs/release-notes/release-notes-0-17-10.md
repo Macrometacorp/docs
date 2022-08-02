@@ -112,4 +112,4 @@ This last release cycle, our CEO challenged our engineers to try to "break" Macr
 | MET-68  | All graphs delete call are not taken into account by MetricsCollector if graph does not exist.  |
 | MET-90  | Dynamo Read metrics not taken into account for the count metric.  |
 | MET-149  | Get metrics names returns result as a string instead of JSON (list).  |
-| MET-208  | If an HTTP endpoint is invoked by Chrome browser all immediate http requests get delayed.  |
+| MET-208  | If an HTTP endpoint is invoked by Chrome browser, all immediate HTTP requests get delayed.  |
