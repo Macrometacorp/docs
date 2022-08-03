@@ -37,10 +37,6 @@ If you have a paid Macrometa plan, then you can view the new billing screen in y
 
 ![New billing tab](/img/release-notes/17-10-new-billing-tab.png)
 
-### Kafka Enabled on Macrometa
-
-Kafka is now enabled on Macrometa.
-
 ### Update Name and Email on User Accounts
 
 You can now update names and email addresses on user accounts. If you are a `root` user or have admin permissions, then you can update names and email addresses on user accounts that you administer.
