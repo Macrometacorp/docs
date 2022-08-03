@@ -17,6 +17,7 @@ C8Search provides the following capabilities:
 * Combinable search queries with multiple supported data models & access patterns
 * Geo-replicated search indexes for instant results
 
+![Architecture of GDN Search](/img/search/architecture.jpg)
 
 We provide *Views* and *Analyzers* that boost the efficiency of your search queries:
 
