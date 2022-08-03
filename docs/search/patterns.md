@@ -103,7 +103,7 @@ RETURN review.Property_Name
 
 #### Matching with Negations
 
-One can search for items that do not have exact matching with specified criteria using the negations. In this scenario inequality can be checked with != operator to return everything from the view index except the documents which do not satisfy the criterion.
+You can search for items that do not have exact matching with specified criteria using the negations. In this scenario inequality can be checked with the `!=` operator to return everything from the view index except the documents which do not satisfy the criterion.
 
 ```sql
 FOR review IN sample1_view1
@@ -121,7 +121,9 @@ FOR review IN sample1_view1
 
 #### Matching Multiple Strings
 
-Exact value matching can be conducted considering several item values. There are three approaches to do this - either via using the logical OR operator, using the IN operator, and using the bind parameters.
+Exact value matching can be conducted considering several item values. You can use the logical `OR` operator, `IN` operator, or bind parameters.
+
+The following examples query the same results:
 
 ```sql
 FOR review IN sample1_view1
@@ -129,15 +131,11 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-The same query can be specified using the IN operator as shown in Listing 7. 
-
 ```sql
 FOR review IN sample1_view1
   SEARCH ANALYZER(review.Property_Name IN ["Apex London Wall Hotel", "Corinthia Hotel London"], "identity")
   RETURN review.Property_Name
 ```
-
-The third approach specifies a bind parameter as shown in Listing 8.
 
 ```sql
 {
@@ -148,7 +146,7 @@ The third approach specifies a bind parameter as shown in Listing 8.
 }
 ```
 
-Once the bind parameter has been specified the multiple strings matching query can be written as shown in Listing 9. 
+For the following example, you must specify the bind parameter:
 
 ```sql
 FOR review IN sample1_view1
@@ -156,7 +154,7 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-In all these three approaches it results in a list of items (1860 items in total) as shown below.
+These examples query a list of items (1860 items in total) as shown below.
 
 | Property_Name |
 | --- |
@@ -168,9 +166,9 @@ In all these three approaches it results in a list of items (1860 items in total
 
 ### Prefix Matching
 
-Many search scenarios can be found where someone is interested in knowing all the strings which start with a particular prefix. Finding the longest matching prefix from a collection of keywords is a long-studied problem with multiple applications such as dictionary searches, computational geometry, [Internet packet routing](https://dl.acm.org/doi/abs/10.1145/502912.502914), [DNA Sequencing](https://drops.dagstuhl.de/opus/volltexte/2017/7617/pdf/LIPIcs-SEA-2017-14.pdf), etc. Searching for strings or tokens which start with one or more substrings is accomplished via the prefix search facility of the Macrometa GDN.
+You can search for strings or tokens that start with one or more substrings with the _prefix_ feature of Macrometa GDN.
 
-Prefix matching can be performed at different levels of complexity. If one needs to do exact prefix matching, then indexing strings with the identity analyzer is adequate. Let's take the scenario of finding all the hotel names which start with the term "The". The corresponding search query can be written as shown in Listing 10.
+In the following example, we want to find all hotels starting with the word `The `.
 
 ```sql
 FOR review IN sample1_view1
@@ -178,7 +176,7 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-This should result in a list of 3963 records as shown below.
+This example queries a list of 3963 records as shown below.
 
 | Property_Name |
 | --- |
@@ -188,7 +186,7 @@ This should result in a list of 3963 records as shown below.
 | The Savoy |
 | ... |
 
-Prefix matching can also be done considering multiple prefix terms. If one needs to find all the reviews made for hotel names starting from either "The " or "Hotel " that can be accomplished using the following query. The results should indicate there are 4524 reviews that satisfy these criteria.
+You can also include multiple prefixes. In the following example, we want to find all hotels starting with `The ` or `Hotel ``
 
 ```sql
 FOR review IN sample1_view1
@@ -196,7 +194,9 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-The following example in Listing 12 shows how prefix matching is conducted on multiple attributes. In this scenario, we are interested in finding hotel names that start with "The " and the review titles that start with "Awesome ".
+This example queries a list of 4524 reviews that satisfy these criteria.
+
+The following example shows how prefix matching is conducted on multiple attributes. In this scenario, we want to find all hotels starting with `The ` and the review titles that start with `Awesome `.
 
 ```sql
 FOR review IN sample1_view1
@@ -207,7 +207,7 @@ FOR review IN sample1_view1
   }
 ```
 
-This should result in the following three reviews.
+This should result in the following three reviews:
 
 | Property_Name | Review_Title |
 | --- | --- |
@@ -247,8 +247,6 @@ curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sa
 #### Comparing to a Number
 
 Let's take the scenario where we want to select all the hotel reviews which have a rating of 5. This can be accomplished using the following query.
-
- 
 
 ```sql
 FOR review IN sample1_view1
@@ -384,7 +382,7 @@ curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' 
 '
 ```
 
-Once the view is ready we can specify a token search query which searches for the occurrence of at least one of the praising words _Awesome_ or _Excellent_ or _Lovely_ in a review text and select its review score as the result as shown in Listing 22,
+Once the view is ready we can specify a token search query which searches for the occurrence of at least one of the praising words `Awesome` or `Excellent` or `Lovely` in a review text and select its review score as the result as shown in the following example.
 
 ```sql
 FOR review IN sample1_view8
@@ -392,7 +390,7 @@ FOR review IN sample1_view8
   RETURN review.Review_Rating
 ```
 
-When executed this should list 3803 review ratings as the results as shown below,
+This should query 3803 review ratings:
 
 | Review_Rating |
 | --- |
@@ -406,7 +404,7 @@ When executed this should list 3803 review ratings as the results as shown below
 
 Phrase search allows for searching for phrases and nearby words in full text. One may also specify how many arbitrary tokens may occur between the defined tokens for word proximity searches. We can use the same search view defined in the previous section here as well.
 
-Let's search for hotel review comments which say "rooms are small" and select the hotel names and their review ratings.
+Let's search for hotel review comments which say `rooms are small` and select the hotel names and their review ratings.
 
 ```sql
 FOR review IN sample1_view8
