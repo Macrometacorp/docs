@@ -46,11 +46,13 @@ curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/import/hotel_
 
 ## Patterns
 
-This section lists seven different search patterns that are frequently found in GDN.
+This section lists different search patterns that are frequently found in GDN.
 
 ### Exact Value Matching
 
-In the most basic version of search one could try to match the presence of an exact value. The exact value can be either strings, numbers, number ranges, or booleans. Here we can index and search strings using an identity analyzer. The view used for exact value matching can be defined as shown in Listing 2.
+In the most basic version of search is to match the presence of an exact value. The exact value can be either strings, numbers, number ranges, or booleans. Here we can index and search strings using an identity analyzer. 
+
+The view used for exact value matching can be defined as shown in the following example:
 
 ```bash
 curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sample1_view1/properties' \
@@ -75,7 +77,7 @@ curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sa
 '
 ```
 
-After defining the search view we can get the list of reviews made for the _Rhodes Hotel_ as follows,
+After defining the search view, we can retrieve the list of _Rhodes Hotel_ reviews:
 
 ```sql
 FOR review IN sample1_view1
