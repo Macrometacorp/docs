@@ -75,7 +75,7 @@ You **remove** a `map`, usng following C8QL statement:
 ```
 
 :::note
-Please see [C8QL Tutorial](../../../c8ql/c8ql-tutorial.md) and [C8QL Examples](../../../c8ql/examples.md) for more examples on how you can use C8QL.
+Please see [C8QL Tutorial](../../../c8ql/c8ql-tutorial.md) and [C8QL Examples](../../../c8ql/examples/index.md) for more examples on how you can use C8QL.
 :::
 
 ## Sets
