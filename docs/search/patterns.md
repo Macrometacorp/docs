@@ -93,7 +93,7 @@ FOR review IN sample1_view1
 | Rhodes Hotel |
 | ... |
 
-It should be noted that since the default Analyzer is the identity it is not necessary to set the Analyzer context with the ANALYZER() function here. Therefore, exactly the same results can be obtained by executing the query shown in Listing 4.
+It should be noted that since the default Analyzer is the identity it is not necessary to set the Analyzer context with the ANALYZER() function here. Therefore, exactly the same results can be obtained by running the following query:.
 
 ```sql
 FOR review IN sample1_view1
