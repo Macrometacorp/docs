@@ -15,6 +15,5 @@ Fleet management demo demonstrates how you can monitor and take actions to keep 
 
 ![Fleet Management Architecture](/img/fleet-management-architecture.png)
 <br/><br/>
+
 ![Fleet Management](/img/fleet-management.png)
-
-
