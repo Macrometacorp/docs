@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 10
 title: Search
 slug: search
 ---
@@ -8,27 +8,28 @@ Macrometa GDN Search (or *C8Search*) is a full-text search engine that supports 
 
 C8Search provides the following capabilities:
 
-* Complex searches with Boolean operators
-* Relevance-based matching
-* Phrase and prefix matching
-* Custom ranking and relevance tuning
-* Configurable analyzers and tokenization
-* Retrieval of both documents and projections of documents
-* Combinable search queries with multiple supported data models & access patterns
-* Geo-replicated search indexes for instant results
+- Complex searches with Boolean operators
+- Relevance-based matching
+- Phrase and prefix matching
+- Custom ranking and relevance tuning
+- Configurable analyzers and tokenization
+- Retrieval of both documents and projections of documents
+- Combinable search queries with multiple supported data models & access patterns
+- Geo-replicated search indexes for instant results
 
+![Architecture of GDN Search](/img/search/architecture.jpg)
 
-We provide *Views* and *Analyzers* that boost the efficiency of your search queries:
+We provide _Views_ and _Analyzers_ that boost the efficiency of your search queries:
 
-* A [View](../../docs/search/views) is a virtual collection that provides fast full-text searching over multiple linked collections.
-* An [Analyzer](../../docs/search/analyzers) parses input values and transforms them into sets of sub-values for the following use cases:
-	* Tokenization (splitting text into words and normalizing them).
-	* Language-specific word stemming.
-	* Case conversion.
-	* Removal of diacritical (accent) marks.
+- A [View](../../docs/search/views) is a virtual collection that provides fast full-text searching over multiple linked collections.
+- An [Analyzer](../../docs/search/analyzers) parses input values and transforms them into sets of sub-values for the following use cases:
+	- Tokenization (splitting text into words and normalizing them).
+	- Language-specific word stemming.
+	- Case conversion.
+	- Removal of diacritical (accent) marks.
 
 C8Search features are integrated into C8QL as a SEARCH operation and a set of C8QL functions. Some use cases include:
 
-* Perform federated full-text searches over product descriptions in a web shop with product documents stored in collections.
-* Retrieve information in a research database and rank it by relevance based on term frequency (TF-IDF) using case and accent insensitive stemmed phrases with irrelevant terms filtered out.
-* Query a data set of movies for titles with words in a particular order and optional wild cards. Sort the results by best matching (BM25) but favor movies with longer duration.
+- Perform federated full-text searches over product descriptions in a web shop with product documents stored in collections.
+- Retrieve information in a research database and rank it by relevance based on term frequency (TF-IDF) using case and accent insensitive stemmed phrases with irrelevant terms filtered out.
+- Query a data set of movies for titles with words in a particular order and optional wild cards. Sort the results by best matching (BM25) but favor movies with longer duration.
