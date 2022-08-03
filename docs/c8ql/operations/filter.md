@@ -37,7 +37,7 @@ Order of operations
 -------------------
 
 :::note
-The positions of `FILTER` statements can influence the result of a query. There are 16 active users in the [test data](../examples.md#example-data) for instance:
+The positions of `FILTER` statements can influence the result of a query. There are 16 active users in the [test data](../examples/index.md#example-data) for instance:
 :::
 
 ```js
