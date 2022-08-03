@@ -415,7 +415,7 @@ FOR review IN sample1_view8
   }
 ```
 
-This should result in 75 review comments as shown below,
+This should query 75 review comments:
 
 | Property_Name | Review_Rating |
 | --- | --- |
@@ -425,7 +425,7 @@ This should result in 75 review comments as shown below,
 | Hotel Xenia, Autograph Collection | 5 |
 | ... | ... |
 
-The PHRASE() function allows for specifying tokens and the number of wild card tokens in alternating order. This can be effectively utilized for two words with one arbitrary word in between the two words. For example, one could search for review comments specifying the number of nights the reviewer has stayed in the hotel as follows,
+The `PHRASE()` function allows for specifying tokens and the number of wild card tokens in alternating order. This can be effectively utilized for two words with one arbitrary word in between the two words. For example, one could search for review comments specifying the number of nights the reviewer has stayed in the hotel as follows,
 
 ```sql
 FOR review IN sample1_view8
@@ -436,7 +436,7 @@ FOR review IN sample1_view8
   }
 ```
 
-Execution of the above query should result in 859 results.
+This example should query 859 results.
 
 ## Faceted Search
 
@@ -550,7 +550,7 @@ curl --location --request POST 'https://<HOST>/_fabric/SeattleSchools/_api/impor
 }'
 ```
 
-Note that Listing 30 shows insertion of only one data item using the CURL command for the illustration purposes. However, one needs to replace [] of "data" element with the content from the schools file before running the following sample queries. Furthermore, <HOST> and <BEARER_TOKEN> values have to be replaced similar to the previous examples.
+The following example shows insertion of only one data item using the CURL command for the illustration purposes. However, one needs to replace [] of "data" element with the content from the schools file before running the following sample queries. Furthermore, `HOST` and BEARER_TOKEN` values have to be replaced similar to the previous examples.
 
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/SeattleSchools/_api/import/city' \
@@ -565,7 +565,7 @@ curl --location --request POST 'https://<HOST>/_fabric/SeattleSchools/_api/impor
 }'
 ```
 
-Similar to Listing 30 before proceeding with executing the CURL command in Listing 31 we need to replace the label <DATA> with the complete content from Seattle's council districts data file.
+Before running the next CURL example, we need to replace the label `DATA` with the complete content from Seattle's council districts data file.
 
 First, we will execute a query to identify all the schools which are located within 1000 meters of Saint George Church. This can be specified as follows, 
 
