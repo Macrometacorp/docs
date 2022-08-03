@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Examples
+title: Common Patterns
 ---
 
 These pages contain some common query patterns with examples. For better understandability the query results are also included directly below each query.
@@ -22,9 +22,9 @@ All documents created in any collections will automatically get the following se
 Whenever you run queries on the documents in collections, don't be surprised if these additional attributes are returned as well.
 
 :::note
-* With real-world data, you might want to create additional indexes on the data (left out here for brevity). Adding indexes on attributes that are used in `FILTER` statements may considerably speed up queries.
-* Also, instead of using attributes such as `id`, `from` and *to*, you might want to use the built-in `_id`, `_from` and `_to` attributes.
-* Finally, `edge collections` provides a nice way of establishing references / links between documents. These features have been left out here for brevity as well.
+- With real-world data, you might want to create additional indexes on the data (left out here for brevity). Adding indexes on attributes that are used in `FILTER` statements may considerably speed up queries.
+- Also, instead of using attributes such as `id`, `from` and _to_, you might want to use the built-in `_id`, `_from` and `_to` attributes.
+- Finally, `edge collections` provides a nice way of establishing references / links between documents. These features have been left out here for brevity as well.
 :::
 
 ## Example data
@@ -180,7 +180,7 @@ FOR u IN users
 
 The above query will fail if there are documents in collection users that are not in collection backup yet. In this case, the query would attempt to replace documents that do not exist. If such case is detected while executing the query, the query will abort. In single-server mode, all changes made by the query will also be rolled back.
 
-To make the query succeed for such case, use the *ignoreErrors* query option:
+To make the query succeed for such case, use the _ignoreErrors_ query option:
 
 ```js
 FOR u IN users
@@ -189,7 +189,7 @@ FOR u IN users
 
 ### Removing documents
 
-Deleting documents can be achieved with the *REMOVE* operation. To remove all users within a certain age range, we can use the following query:
+Deleting documents can be achieved with the _REMOVE_ operation. To remove all users within a certain age range, we can use the following query:
 
 ```js
 FOR u IN users
@@ -199,7 +199,7 @@ FOR u IN users
 
 ### Creating documents
 
-To create new documents, there is the *INSERT* operation. It can also be used to generate copies of existing documents from other collections, or to create synthetic documents (e.g. for testing purposes). The following query creates 1000 test users in collection users with some attributes set:
+To create new documents, there is the _INSERT_ operation. It can also be used to generate copies of existing documents from other collections, or to create synthetic documents (e.g. for testing purposes). The following query creates 1000 test users in collection users with some attributes set:
 
 ```js
 FOR i IN 1..1000
@@ -214,7 +214,7 @@ FOR i IN 1..1000
 
 ### Copying data from one collection into another
 
-To copy data from one collection into another, an *INSERT* operation can be used:
+To copy data from one collection into another, an _INSERT_ operation can be used:
 
 ```js
 FOR u IN users
@@ -227,7 +227,7 @@ To make such copy operation work in all cases, the target collection can be empt
 
 ### Handling errors
 
-In some cases it might be desirable to continue execution of a query even in the face of errors (e.g. "document not found"). To continue execution of a query in case of errors, there is the *ignoreErrors* option.
+In some cases it might be desirable to continue execution of a query even in the face of errors (e.g. "document not found"). To continue execution of a query in case of errors, there is the _ignoreErrors_ option.
 
 To use it, place an `OPTIONS` keyword directly after the data modification part of the query, e.g.
 
@@ -462,7 +462,7 @@ FOR u IN users
     RETURN age
 ```
 
-This is grouping without tracking the group values, but just the group criterion (*age*) value.
+This is grouping without tracking the group values, but just the group criterion (_age_) value.
 
 Grouping can also be done on multiple levels using `COLLECT`:
 
@@ -506,7 +506,7 @@ FOR u IN users
 ]
 ```
 
-The query will put all users together by their *age* attribute. There will be one result document per distinct *age* value (let aside the `LIMIT`). For each group, we have access to the matching document via the `usersByAge` variable introduced in the `COLLECT` statement.
+The query will put all users together by their _age_ attribute. There will be one result document per distinct *age* value (let aside the `LIMIT`). For each group, we have access to the matching document via the `usersByAge` variable introduced in the `COLLECT` statement.
 
 ### Variable Expansion
 
@@ -622,16 +622,15 @@ FOR u IN users
 
 We have used the aggregate functions `LENGTH` here (it returns the length of an array). This is the equivalent to SQL's `SELECT g, COUNT(*) FROM ... GROUP BY g`. In addition to `LENGTH` C8QL also provides `MAX`, `MIN`, `SUM` and `AVERAGE`, `VARIANCE_POPULATION`, `VARIANCE_SAMPLE`, `STDDEV_POPULATION` and `STDDEV_SAMPLE` as basic aggregation functions.
 
-In C8QL all aggregation functions can be run on arrays only. If an aggregation function is run on anything that is not an array, a warning will be produced and the result will be *null*.
+In C8QL all aggregation functions can be run on arrays only. If an aggregation function is run on anything that is not an array, a warning will be produced and the result will be _null_.
 
 Using an `AGGREGATE` clause will ensure the aggregation is run while the groups are built in the collect operation. This is normally more efficient than collecting all group values for all groups and then doing a post-aggregation.
-
 
 ### Post-aggregation
 
 Aggregation can also be performed after a `COLLECT` operation using other C8QL constructs, though performance-wise this is often inferior to using `COLLECT` with `AGGREGATE`.
 
-The same query as before can be turned into a post-aggregation query as shown below. Note that this query will build and pass on all group values for all groups inside the variable *g*, and perform the aggregation at the latest possible stage:
+The same query as before can be turned into a post-aggregation query as shown below. Note that this query will build and pass on all group values for all groups inside the variable _g_, and perform the aggregation at the latest possible stage:
 
 ```js
 FOR u IN users
@@ -669,7 +668,6 @@ FOR u IN users
 ```
 
 This is in constrast to the previous query that used an `AGGREGATE` clause to perform the aggregation during the collect operation, at the earliest possible stage.
-
 
 ### Post-filtering aggregated data
 
@@ -743,9 +741,9 @@ The two common scenarios when you want to join documents of collections are:
 
 Unlike many NoSQL databases, GDN does support joins in C8QL queries. This is similar to the way traditional relational databases handle this. However, because documents allow for more flexibility, joins are also more flexible. The following sections provide solutions for common questions.
 
-So far we have only dealt with one collection (*users*) at a time. We also have a collection *relations* that stores relationships between users. We will now use this extra collection to create a result from two collections.
+So far we have only dealt with one collection (_users_) at a time. We also have a collection _relations_ that stores relationships between users. We will now use this extra collection to create a result from two collections.
 
-First of all, we'll query a few users together with their friends' ids. For that, we'll use all *relations* that have a value of *friend* in their *type* attribute. Relationships are established by using the *friendOf* and *thisUser* attributes in the *relations* collection, which point to the *userId* values in the *users* collection.
+First of all, we'll query a few users together with their friends' ids. For that, we'll use all _relations_ that have a value of _friend_ in their _type_ attribute. Relationships are established by using the _friendOf_ and _thisUser_ attributes in the *relations* collection, which point to the _userId_ values in the _users_ collection.
 
 ### One-To-Many
 
@@ -1353,7 +1351,7 @@ We will start with a SQL-ish result set and return each tuple (user name, friend
     }
 ```
 
-We iterate over the collection users. Only the 'active' users will be examined. For each of these users we will search for up to 4 friends. We locate friends by comparing the *userId* of our current user with the *friendOf* attribute of the *relations* document. For each of those relations found we return the users name and the userId of the friend.
+We iterate over the collection users. Only the 'active' users will be examined. For each of these users we will search for up to 4 friends. We locate friends by comparing the _userId_ of our current user with the _friendOf_ attribute of the _relations_ document. For each of those relations found we return the users name and the userId of the friend.
 
 ### Horizontal lists
 
@@ -1407,11 +1405,11 @@ FOR u IN users
 ]
 ```
 
-In this query we are still iterating over the users in the *users* collection and for each matching user we are executing a subquery to create the matching list of related users.
+In this query we are still iterating over the users in the _users_ collection and for each matching user we are executing a subquery to create the matching list of related users.
 
 ### Self joins
 
-To not only return friend ids but also the names of friends, we could "join" the *users* collection once more (something like a "self join"):
+To not only return friend ids but also the names of friends, we could "join" the _users_ collection once more (something like a "self join"):
 
 ```js
 FOR u IN users
@@ -1491,13 +1489,13 @@ FOR user IN users
 ]
 ```
 
-So, for each user we pick the list of their friends and count them. The ones where count equals zero are the lonely people. Using *RETURN 1* in the subquery saves even more precious CPU cycles and gives the optimizer more alternatives.
+So, for each user we pick the list of their friends and count them. The ones where count equals zero are the lonely people. Using _RETURN 1_ in the subquery saves even more precious CPU cycles and gives the optimizer more alternatives.
 
 ### Index usage
 
 Especially on joins you should make sure indices can be used to speed up your query). Please note that sparse indices don't qualify for joins:
 
-In joins you typically would also want to join documents not containing the property you join with. However sparse indices don't contain references to documents that don't contain the indexed attributes - thus they would be missing from the join operation. For that reason you should provide non-sparse indices. 
+In joins you typically would also want to join documents not containing the property you join with. However sparse indices don't contain references to documents that don't contain the indexed attributes - thus they would be missing from the join operation. For that reason you should provide non-sparse indices.
 
 ### Pitfalls
 
@@ -1805,6 +1803,7 @@ This will return:
 :::note
 Attribute name expressions and regular, unquoted attribute names can be mixed.
 :::
+
 ### Subquery solution
 
 A generalized solution is to let a subquery or another function produce the dynamic attribute names, and finally pass them through the `ZIP()` function to create an object from them.
@@ -1924,7 +1923,7 @@ That will give us document-specific attribute names like this:
 
 ### Finding the start vertex via a geo query
 
-Our first example will locate the start vertex for a graph traversal via [a geo index](../collections/indexing/index-basics.md#geo-index).
+Our first example will locate the start vertex for a graph traversal via [a geo index](../collections/indexing/index.md#geo-index).
 
 We use the city graph and its geo indices: ![cities_graph\(1\)](/img/cities_graph.png){height="" width=""}
 
@@ -1988,7 +1987,7 @@ You can use the efficient shortest path algorithm however, to determine the shor
     )   
 ```
 
-The result is 3 for the example graph (includes the start vertex). Now, subtract 1 to get the edge count / traversal depth. 
+The result is 3 for the example graph (includes the start vertex). Now, subtract 1 to get the edge count / traversal depth.
 
 You can run a pattern matching traversal to find all paths with this length (or longer ones by increasing the min and max depth). Starting point is **A** again, and a filter on the document ID of v (or p.vertices[-1]) ensures that we only retrieve paths that end at point **C**.
 
@@ -2016,7 +2015,7 @@ Here are some sample C8QL queries.
 
 ### Sample Queries
 
-* Insert 10 documents into the `demo_queries` collection, using a bindvar to pass in a name prefix for the `name` field of the data in the new documents to be inserted:
+- Insert 10 documents into the `demo_queries` collection, using a bindvar to pass in a name prefix for the `name` field of the data in the new documents to be inserted:
 
     ```js
     FOR i IN 1..10 
@@ -2024,7 +2023,7 @@ Here are some sample C8QL queries.
         INTO demo_queries
 	```
 
-* View all the docs in the collection, sorted in ascending order of the document key:
+- View all the docs in the collection, sorted in ascending order of the document key:
 
     ```js
     FOR doc IN demo_queries 
@@ -2032,7 +2031,7 @@ Here are some sample C8QL queries.
         RETURN {"Key":doc._key, "Name":doc.name, "Gender":doc.gender, "Likes":doc.likes, "Follows":doc.follows} 
 	```
 
-* Update all documents in the `demo_queries` collection. The `gender`, `likes` and `follows` fields are updated with values accepted from the bindvars. If no bindvar values are specified, the fields are blanked. All documents will be updated to have the same value for these fields.
+- Update all documents in the `demo_queries` collection. The `gender`, `likes` and `follows` fields are updated with values accepted from the bindvars. If no bindvar values are specified, the fields are blanked. All documents will be updated to have the same value for these fields.
 
     ```js
     FOR doc IN demo_queries 
@@ -2040,7 +2039,7 @@ Here are some sample C8QL queries.
         IN demo_queries
 	```
 
-* Remove all documents in the `demo_queries` collection. The collection will continue to exist but will be empty.
+- Remove all documents in the `demo_queries` collection. The collection will continue to exist but will be empty.
 
     ```js
     FOR doc IN demo_queries 
