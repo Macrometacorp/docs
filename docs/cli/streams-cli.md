@@ -77,7 +77,7 @@ Create a stream.
 Delete a stream.
 
 ```bash
-gdnsl stream delete <stream-name> [flags]
+gdnsl streams delete <stream-name> [flags]
 ```
 
 **Examples:**
@@ -85,10 +85,10 @@ gdnsl stream delete <stream-name> [flags]
 ```bash
 
   # Delete a stream of type global
-  gdnsl stream delete testStream --global
+  gdnsl streams delete testStream --global
 
   # Delete a stream of type local
-  gdnsl stream delete testStream
+  gdnsl streams delete testStream
 
 ```
 
