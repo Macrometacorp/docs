@@ -176,7 +176,7 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-This example queries a list of 3963 records as shown below.
+This example queries a list of 3,963 records as shown below.
 
 | Property_Name |
 | --- |
