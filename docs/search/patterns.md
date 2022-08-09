@@ -154,7 +154,7 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-These examples query a list of items (1860 items in total) as shown below.
+These examples query a list of items (1,860 items in total) as shown below.
 
 | Property_Name |
 | --- |
@@ -176,7 +176,7 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-This example queries a list of 3963 records as shown below.
+This example queries a list of 3,963 records as shown below.
 
 | Property_Name |
 | --- |
@@ -194,7 +194,7 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-This example queries a list of 4524 reviews that satisfy these criteria.
+This example queries a list of 4,524 reviews that satisfy these criteria.
 
 The following example shows how prefix matching is conducted on multiple attributes. In this scenario, we want to find all hotels starting with `The ` and the review titles that start with `Awesome `.
 
