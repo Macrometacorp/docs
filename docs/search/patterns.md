@@ -20,9 +20,9 @@ This example uses the London-based hotel reviews [dataset](https://github.com/Ma
 
 ![Schema of a hotel review](/img/search/schema.jpg)
 
-You can download the dataset [here](https://raw.githubusercontent.com/Macrometacorp/datasets/master/hotel-reviews/hotels.json). After downloading the JSON file, copy its content between the empty array definition of the data item in the following command. The dataset can be imported to your GDN federation by using the CURL command on a terminal as shown in the following example. 
+You can download the dataset [here](https://raw.githubusercontent.com/Macrometacorp/datasets/master/hotel-reviews/hotels.json). After downloading the JSON file, copy its content between the empty array definition of the data item in the following command. The dataset can be imported to your GDN federation by using the cURL command on a terminal as shown in the following example. 
 
-Before running the example CURL, create a fabric named _Hotels_ in your GDN federation and then create a document collection called _hotel\_reviews_ within that fabric.
+Before running the example cURL, create a fabric named _Hotels_ in your GDN federation and then create a document collection called _hotel\_reviews_ within that fabric.
 
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/import/hotel_reviews' \
@@ -221,7 +221,7 @@ Range queries allow for searching data that are above, below, or between a minim
 
 Range queries can be specified comparing to a number, comparing to a numeric range, as well as comparing between strings. 
 
-When developing range queries in GDN we need not specify any Analyzers. This is because range queries deal with numeric values and those are not processed by Analyzers. Hence we first need to remove the identity analyzer which we created in Section 2.1. This can be achieved via the following CURL command.
+When developing range queries in GDN we need not specify any Analyzers. This is because range queries deal with numeric values and those are not processed by Analyzers. We first need to remove the identity analyzer which we created in the [Exact Value Matching](#exact-value-matching) section. This can be achieved via the following cURL command:
 
 ```bash
 curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sample1_view1/properties' \
@@ -331,7 +331,7 @@ When executed the above query should result in 7035 records.
 
 #### Comparing Strings
 
-The examples in the previous subsection were purely based on numeric values. However, range comparisons can be made on strings using the standard comparison operators as well as the `IN_RANGE()` function. Before running such string comparison identity search Analyzer has to be defined by invoking the CURL command shown in Listing 2. For example, the following query selects all the hotel names which start with Apex until (exclusive of) hotel names which start with the letter D.
+The examples in the previous subsection were purely based on numeric values. However, range comparisons can be made on strings using the standard comparison operators as well as the `IN_RANGE()` function. Before running such string comparison identity search Analyzer has to be defined by invoking the cURL command shown in Listing 2. For example, the following query selects all the hotel names which start with Apex until (exclusive of) hotel names which start with the letter D.
 
 ```sql
 FOR review IN sample1_view1
@@ -356,7 +356,7 @@ When searching strings it is highly useful to search for tokens in full-text whi
 
 ### Token Search
 
-This approach searches for token which can appear in any order. The words that are searched for has to be contained in the source string. First, a text analyzer view has to be defined via invoking a CURL command as follows,
+This approach searches for token which can appear in any order. The words that are searched for has to be contained in the source string. First, a text analyzer view has to be defined via invoking a cURL command as follows,
 
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' \
@@ -440,7 +440,7 @@ This example should query 859 results.
 
 ## Faceted Search
 
-Faceted search allows for combining aggregation with search queries to retrieve how frequently values occur overall. We need to first define a view using the identity analyzer as follows,
+Faceted search allows for combining aggregation with search queries to retrieve how frequently values occur overall. We need to first define a view using the identity analyzer as follows:
 
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' \
@@ -550,7 +550,7 @@ curl --location --request POST 'https://<HOST>/_fabric/SeattleSchools/_api/impor
 }'
 ```
 
-The following example shows insertion of only one data item using the CURL command for the illustration purposes. However, one needs to replace [] of "data" element with the content from the schools file before running the following sample queries. Furthermore, `HOST` and BEARER_TOKEN` values have to be replaced similar to the previous examples.
+The following example shows insertion of only one data item using the cURL command for the illustration purposes. However, one needs to replace [] of "data" element with the content from the schools file before running the following sample queries. Furthermore, `HOST` and BEARER_TOKEN` values have to be replaced similar to the previous examples.
 
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/SeattleSchools/_api/import/city' \
@@ -565,9 +565,9 @@ curl --location --request POST 'https://<HOST>/_fabric/SeattleSchools/_api/impor
 }'
 ```
 
-Before running the next CURL example, we need to replace the label `DATA` with the complete content from Seattle's council districts data file.
+Before running the next cURL example, we need to replace the label `DATA` with the complete content from Seattle's council districts data file.
 
-First, we will execute a query to identify all the schools which are located within 1000 meters of Saint George Church. This can be specified as follows, 
+First, we will execute a query to identify all the schools which are located within 1,000 meters of Saint George Church. This can be specified as follows, 
 
 ```sql
 LET loc = GEO_POINT(-122.31551191249362, 47.55458207164884)
