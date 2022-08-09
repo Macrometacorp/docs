@@ -154,7 +154,7 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-These examples query a list of items (1860 items in total) as shown below.
+These examples query a list of items (1,860 items in total) as shown below.
 
 | Property_Name |
 | --- |
