@@ -173,7 +173,7 @@ if __name__ == '__main__':
     print(f"\n1. CONNECT: federation: {GLOBAL_URL},  user: {EMAIL}")
     client = C8Client(protocol='https', host=GLOBAL_URL, port=443, apikey="", geofabric=FABRIC)
 
-    # Step2: Create a collection if not exists
+    # Step 2: Create a collection if one does not exist
     print(f"\n2. CREATE_COLLECTION: region: {GLOBAL_URL},  collection: {COLLECTION_NAME}")
     if client.has_collection(COLLECTION_NAME):
         collection = client.collection(COLLECTION_NAME)
