@@ -138,67 +138,60 @@ import base64
 import six
 
 # Variables
-global_url = "gdn.paas.macrometa.io" # The request will be automatically routed to closest location.
-email = "guest1@macrometa.io"
-password = "guest1"
-geo_fabric = "testfabric"
-stream_name = "stream"+ str(random.randint(1, 10000))
+URL = "gdn.paas.macrometa.io"  # The request will be automatically routed to closest location.
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxxxxx"
+FABRIC = "_system"
+STREAM_NAME = "stream" + str(random.randint(1, 10000))
+
 
 def create_subscriber():
     print("\n ------- SUBSCRIBE TOPIC  ------")
 
-    print("Subscribe to stream: {}".format(stream_name))
-    subscriber1 = client.subscribe(stream=stream_name, local=True, subscription_name="subscriber1",
-    consumer_type=client.CONSUMER_TYPES.EXCLUSIVE)
+    print(f"Subscribe to stream: {STREAM_NAME}")
+    subscriber1 = client.subscribe(stream=STREAM_NAME, local=True, subscription_name="subscriber1",
+                                   consumer_type=client.CONSUMER_TYPES.EXCLUSIVE)
 
-    #receive: read the published messages over stream.
+    # Receive: Read the published messages over stream.
     for i in range(10):
-        response = json.loads(subscriber1.recv())
-        msg = base64.b64decode(response["payload"])
-        print("Received Message:", msg)
-        if response["messageId"]:
-            # print("Acknowledging msg: ", response["messageId"])
-            subscriber1.send(json.dumps(
-                {"payload": base64.b64encode(six.b(
-                    response["messageId"])).decode("utf-8")}))
+        response1 = json.loads(subscriber1.recv())
+        msg1 = base64.b64decode(six.b(response1["payload"]))
+        print("Received Message:", msg1)
+        if response1["messageId"]:
+            print("Acknowledging msg: ", response1["messageId"])
+            subscriber1.send(json.dumps({'messageId': response1['messageId']}))
+
 
 if __name__ == '__main__':
 
     print("\n ------- CONNECTION SETUP  ------")
-    print("user: {}, geofabric:{}".format(email, geo_fabric))
-    print("\n1. CONNECT: federation: {},  user: {}".format(global_url, email))
-    client = C8Client(protocol='https', host=global_url, port=443,
-                    email=email, password=password,
-                    geofabric=geo_fabric)    
+    print(f"user: {EMAIL}, geofabric: {FABRIC}")
+    print(f"\n1. CONNECT: federation: {URL},  user: {EMAIL}")
+    client = C8Client(protocol='https', host=URL, port=443, email=EMAIL, password=PASSWORD, geofabric=FABRIC)
 
     print("\n ------- CREATE STREAM  (local/geo-replicated) ------")
-    client.create_stream(stream_name, local=True)  # set local=False for geo-replicated stream available in all regions.
-    print("Created stream: {}".format(stream_name))
-    time.sleep(10)  # to account for network latencies in replication
+    client.create_stream(STREAM_NAME, local=True)   # Set local=False for geo-replicated stream available in all regions
+    print(f"Created stream: {STREAM_NAME}")
+    time.sleep(10)  # To account for network latencies in replication
 
     print("\n ------- CREATE SUBSCRIBER  ------")
     subscriber_thread = threading.Thread(target=create_subscriber)
     subscriber_thread.start()
 
     print("\n ------- CREATE PRODUCER  ------")
-    print("Create producer on stream: {}".format(stream_name))
-    producer = client.create_stream_producer(stream_name, local=True)
+    print(f"Create producer on stream: {STREAM_NAME}")
+    producer = client.create_stream_producer(stream=STREAM_NAME, local=True)
     print(producer.__dict__)
     print("\n ------- PUBLISH MESSAGES  ------")
-    print("Publish 10 messages to stream: {}".format(stream_name))
+    print(f"Publish 10 messages to stream: {STREAM_NAME}")
     for i in range(10):
-        print(i)
-        msg = "Hello from  user--" + "(" + str(i) + ")"
+        msg = f"Hello from user--({str(i)})"
         data = {
-                "payload": base64.b64encode(six.b(msg)).decode("utf-8"),
+            "payload": msg,
         }
         try:
             producer.send(json.dumps(data))
-            response =  json.loads(producer.recv())
-            if response['result'] == 'ok':
-              print('Message published successfully')
-            else:
-              print('Failed to publish message:', response)
+            response = json.loads(producer.recv())
         except Exception as e:
             m = "Producer failed to send message due to Pulsar Error - %s" % e
             print(m)
