@@ -6,12 +6,21 @@ title: SDKs
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+This section demonstrates some of the tasks that you can complete with Macrometa SDKs. Macrometa offers the following SDKs:
+
+- c84j - Java SDK
+- jsC8 - JavaScript SDK
+- pyC8 - Python SDK
+- VueC8 - VueJS SDK
+
+The topics in this section focus primarily on the Python and JavaScript drivers, showing how to perform the tasks with SDKs or with APIs and the appropriate calls Python or JavaScript calls.
+
+Read through the complete example below, or refer to the specific subsections.
+
 ## Pre-requisite
 
-Let's assume your
-
-- tenant name is `nemo@nautilus.com` and
-- user password is `xxxxx`.
+- Assume your tenant name is `nemo@nautilus.com` and user password is `xxxxx`.
+- Download the appropriate SDK.
 
 ## SDK download
 
