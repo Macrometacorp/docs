@@ -105,7 +105,7 @@ Validate the stream application for syntax errors before saving.
 stream_app_definition = """
 @App:name('Sample-Cargo-App')
 @App:qlVersion("2")
-@App:description('Basic Stream application to demonstrate reading data from inputstream and store it in the collection. The stream and collections will be createdautomatically if they do not already exist.')
+@App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
 /**
 Testing the Stream Application:
     1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
