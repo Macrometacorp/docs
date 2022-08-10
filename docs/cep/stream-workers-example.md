@@ -312,7 +312,7 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 """
 
-#incase you want to specify the comma separated list of regions where stream app needs to be deployed
+# Optionally, specify a comma separated list of regions where stream application needs to be deployed
 regions = []
 print("--- Updating Stream Application `Sample-Cargo-App`")
 result = app.update(data, regions)
