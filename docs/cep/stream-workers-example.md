@@ -494,7 +494,7 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
 stream_app_definition = """
     @App:name('Sample-Cargo-App')
     @App:qlVersion("2")
-    @App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
+    @App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
     /**
     Testing the Stream Application:
         1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
