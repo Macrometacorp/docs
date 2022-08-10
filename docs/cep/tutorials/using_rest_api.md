@@ -32,154 +32,147 @@ Macrometa Stream Processing allows you to integrate streaming data and take appr
  <TabItem value="py" label="Python">
 
 ```py
-    import requests
-    import json
-    from websocket import create_connection
-    import base64
-    import six
-    import time
-    # Constants
+import requests
+import json
+import base64
+import six
+import time
+from websocket import create_connection
 
-    FEDERATION = "api-gdn-us-west1.prod.macrometa.io"
-    FED_URL = "https://{}".format(FEDERATION)
-    EMAIL = "nemo@nautilus.com"
-    PASSWORD = "xxxxxx"
-    FABRIC = "_system"
-    AUTH_TOKEN = "bearer "
-    TENANT_NAME = "xxxxxx"
-    STREAM_NAME = "tutorialAppInputStream"
-    STREAM_APP_NAME = "stream_app_tutorial"
-    STREAM_APP ='''
-      @App:name('stream_app_tutorial')
-      @App:qlVersion("2")
+# Constants  
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxxx"
+FABRIC = "_system"
+AUTH_TOKEN = "bearer "
+TENANT_NAME = "nemo_nautilus.com"
 
-      CREATE FUNCTION concatFn[javascript] return string {
-          var str1 = data[0];
-          var str2 = data[1];
-          var str3 = data[2];
-          var response = str1 + str2 + str3;
-          return response;
-      };
+STREAM_NAME = "tutorialAppInputStream"
+STREAM_APP_NAME = "stream_app_tutorial"
+STREAM_APP ="""
+  @App:name('stream_app_tutorial')
+  @App:qlVersion("2")
+  CREATE FUNCTION concatFn[javascript] return string {
+      var str1 = data[0];
+      var str2 = data[1];
+      var str3 = data[2];
+      var response = str1 + str2 + str3;
+      return response;
+  };
+  -- Stream
+  CREATE STREAM tutorialAppInputStream (deviceID string, roomNo int, temperature double);
+  -- Table
+  CREATE TABLE tutorialAppOutputTable (id string, temperature double);
+  @info(name='Query')
+  INSERT INTO tutorialAppOutputTable
+  SELECT concatFn(roomNo,'-',deviceID) as id, temperature
+  FROM tutorialAppInputStream;
+"""
 
-      -- Stream
-      CREATE STREAM tutorialAppInputStream (deviceID string, roomNo int, temperature double);
+INPUT_DATA = [
+      {
+        "deviceID": "AD11",
+        "roomNo": 200,
+        "temperature": 18,
+      },
+      { "deviceID": "AD11",
+        "roomNo": 201,
+        "temperature": 47 },
+    ]
 
-      -- Table
-      CREATE TABLE tutorialAppOutputTable (id string, temperature double);
+SELECT_QUERY = "FOR doc IN tutorialAppOutputTable return doc"
 
-      @info(name='Query')
-      INSERT INTO tutorialAppOutputTable
-      SELECT concatFn(roomNo,'-',deviceID) as id, temperature
-      FROM tutorialAppInputStream;
-    '''
-    INPUT_DATA = [
-          {
-            "deviceID": "AD11",
-            "roomNo": 200,
-            "temperature": 18,
-          },
-          { "deviceID": "AD11",
-            "roomNo": 201,
-            "temperature": 47 },
-        ]
-    SELECT_QUERY = "FOR doc IN tutorialAppOutputTable return doc"
-
-    # Create a HTTPS Session
-
-    url = "{}/_open/auth".format(FED_URL)
-    payload = {
-        'email':EMAIL,
-        'password':PASSWORD
-        }
-    headers = {
-        'content-type': 'application/json'
-        }
-
-    response = requests.post(url, data = json.dumps(payload), headers = headers)
-
-    if response.status_code == 200:
-        resp_body = json.loads(response.text)
-        AUTH_TOKEN += resp_body["jwt"]
-        TENANT = resp_body["tenant"]
-    else:
-        raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
-
-
-    session = requests.session()
-    session.headers.update({"content-type": 'application/json'})
-    session.headers.update({"authorization": AUTH_TOKEN})
-
-    # Create a Stream Application
-
-    url = FED_URL + "/_api/streamapps"
-    payload = {
-      "definition": STREAM_APP,
-      "regions": ["gdn-us-west1"]
+# Create a HTTPS Session
+url = f"{FED_URL}/_open/auth"
+payload = {
+    'email':EMAIL,
+    'password':PASSWORD
+    }
+headers = {
+    'content-type': 'application/json'
     }
 
-    resp = session.post(url, data=json.dumps(payload))
-    result = json.loads(resp.text)
-    print("\nStream App Created: ", result)
+response = requests.post(url, data = json.dumps(payload), headers = headers)
+if response.status_code == 200:
+    resp_body = json.loads(response.text)
+    AUTH_TOKEN += resp_body["jwt"]
+    TENANT = resp_body["tenant"]
+else:
+    raise Exception(f"Error while getting auth token. Code:{response.status_code}, Reason:{response.reason}")
 
-    # Activate Stream Application
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
 
-    url = FED_URL + "/_api/streamapps/" + STREAM_APP_NAME + "/active?active=true"
-    resp = session.patch(url)
-    result = json.loads(resp.text)
-    print("\nStream App Activated: ", result)
+# Create a Stream Application
+url = f"{FED_URL}/_fabric/_system/_api/streamapps"
+payload = {
+  "definition": STREAM_APP,
+  "regions": []
+}
 
-    # Wait for all inputs and outputs to initialize
-    time.sleep(20)
+resp = session.post(url, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("FED URL:", FED_URL)
+print("\nStream App Created: ", result)
 
-    # Publish Messages to the input stream
-    stream_type = "c8local"
-    producerurl = "wss://" + FEDERATION + "/_ws/ws/v2/producer/persistent/" + TENANT_NAME +\
-                    "/" + stream_type + "." + FABRIC + "/" + stream_type + "s." + STREAM_NAME
+# Activate Stream Application
+url = f"{FED_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}/active?active=true"
+resp = session.patch(url)
+result = json.loads(resp.text)
+print("\nStream App Activated: ", result)
 
-    ws = create_connection(producerurl)
-    payload = {
-                    "payload": base64.b64encode(
-                        six.b(json.dumps(INPUT_DATA[0]))
-                    ).decode("utf-8")
-                }
-    ws.send(json.dumps(payload))
-    response = json.loads(ws.recv())
-    if response['result'] == 'ok':
-        print('Message published successfully')
-    else:
-        print('Failed to publish message:', response)
+# Wait for all inputs and outputs to initialize
+time.sleep(5)
+# Publish Messages to the input stream
+stream_type = "c8local"
+producerurl = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{stream_type}.{FABRIC}/{stream_type}s.{STREAM_NAME}"
+ws = create_connection(producerurl,header={"content-type": 'application/json', 'authorization': AUTH_TOKEN})
+payload = {
+                "payload": base64.b64encode(
+                    six.b(json.dumps(INPUT_DATA[0]))
+                ).decode("utf-8")
+            }
 
-    payload = {
-                    "payload": base64.b64encode(
-                        six.b(json.dumps(INPUT_DATA[1]))
-                    ).decode("utf-8")
-                }
-    ws.send(json.dumps(payload))
-    response = json.loads(ws.recv())
-    if response['result'] == 'ok':
-        print('Message published successfully')
-    else:
-        print('Failed to publish message:', response)
+ws.send(json.dumps(payload))
 
-    ws.close()
+response = json.loads(ws.recv())
+if response['result'] == 'ok':
+    print('Message published successfully')
+else:
+    print('Failed to publish message:', response)
 
-    # Verify results from the collection
+payload = {
+                "payload": base64.b64encode(
+                    six.b(json.dumps(INPUT_DATA[1]))
+                ).decode("utf-8")
+            }
+ws.send(json.dumps(payload))
 
-    url = FED_URL + "/_api/cursor"
-    payload= {
-      "id": "tutorialStreamAppQuery",
-      "query": SELECT_QUERY,
-      "bindVars": {},
-    }
-    resp = session.post(url, data=json.dumps(payload))
-    result = json.loads(resp.text)
-    print("\nStream App Results: ", result)
-    # Delete Stream Apllication
+response = json.loads(ws.recv())
+if response['result'] == 'ok':
+    print('Message published successfully')
+else:
+    print('Failed to publish message:', response)
+ws.close()
 
-    url = FED_URL + "/_api/streamapps/" + STREAM_APP_NAME
-    resp = session.delete(url)
-    result = json.loads(resp.text)
-    print("\nStream App Deleted: ", result)
+# Verify results from the collection
+url = f"{FED_URL}/_fabric/_system/_api/cursor"
+payload= {
+  "id": "tutorialStreamAppQuery",
+  "query": SELECT_QUERY,
+  "bindVars": {},
+}
+resp = session.post(url, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nStream App Results: ", result)
+
+# Delete Stream Application
+url = f"{FED_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}"
+resp = session.delete(url)
+result = json.loads(resp.text)
+print("\nStream App Deleted: ", result)
 ```
  </TabItem>
 <TabItem value="js" label="Javascript">
