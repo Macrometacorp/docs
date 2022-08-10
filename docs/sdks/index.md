@@ -8,10 +8,10 @@ import TabItem from '@theme/TabItem';
 
 This section demonstrates some of the tasks that you can complete with Macrometa SDKs. Macrometa offers the following SDKs:
 
-- c84j - Java SDK
-- jsC8 - JavaScript SDK
-- pyC8 - Python SDK
-- VueC8 - VueJS SDK
+- [c84j](https://github.com/Macrometacorp/c84j) - Java SDK
+- [jsC8](https://github.com/Macrometacorp/jsC8) - JavaScript SDK
+- [pyC8](https://github.com/Macrometacorp/pyC8) - Python SDK
+- [VueC8](https://github.com/Macrometacorp/VueC8) - VueJS SDK
 
 The topics in this section focus primarily on the Python and JavaScript drivers, showing how to perform the tasks with SDKs or with APIs and the appropriate calls Python or JavaScript calls.
 
