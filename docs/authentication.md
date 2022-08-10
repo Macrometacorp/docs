@@ -1,5 +1,5 @@
 ---
-sidebar_position: 60
+sidebar_position: 6
 title: Authentication
 slug: authentication
 ---

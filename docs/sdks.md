@@ -1,5 +1,5 @@
 ---
-sidebar_position: 40
+sidebar_position: 4
 title: SDKs
 slug: sdks
 ---
