@@ -20,7 +20,7 @@ This example uses the London-based hotel reviews [dataset](https://github.com/Ma
 
 ![Schema of a hotel review](/img/search/schema.jpg)
 
-You can download the dataset from the [Macrometa GitHub dataset repository](https://raw.githubusercontent.com/Macrometacorp/datasets/master/hotel-reviews/hotels.json). After downloading the JSON file, copy its content between the empty array definition of the data item in the following command. The dataset can be imported to your GDN federation by using the cURL command on a terminal as shown in the following example. 
+You can download the dataset from the [Macrometa dataset repository](https://raw.githubusercontent.com/Macrometacorp/datasets/master/hotel-reviews/hotels.json). After downloading the JSON file, copy its content between the empty array definition of the data item in the following command. The dataset can be imported to your GDN federation by using the cURL command on a terminal as shown in the following example. 
 
 Before running the example cURL, create a fabric named _Hotels_ in your GDN federation and then create a document collection called _hotel\_reviews_ within that fabric.
 
