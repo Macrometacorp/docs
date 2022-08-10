@@ -413,7 +413,7 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, emai
 
 # To operate on created apps, you need to create an instance of the app
 app = client._fabric.stream_app("Sample-Cargo-App")
-# fire query on app using
+# Run query on application
 q = "select * from SampleCargoAppDestTable limit 2"
 result = app.query(q)
 print(result)
