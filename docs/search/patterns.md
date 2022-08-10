@@ -390,7 +390,7 @@ FOR review IN sample1_view8
   RETURN review.Review_Rating
 ```
 
-This should query 3803 review ratings:
+This should query 3,803 review ratings:
 
 | Review_Rating |
 | --- |
