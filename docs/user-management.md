@@ -1,5 +1,5 @@
 ---
-sidebar_position: 65
+sidebar_position: 6
 title: User Management
 ---
 
