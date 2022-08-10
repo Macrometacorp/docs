@@ -10,8 +10,8 @@ import TabItem from '@theme/TabItem';
 
 Let's assume your
 
-* tenant name is `nemo@nautilus.com` and 
-* user password is `xxxxx`.
+- tenant name is `nemo@nautilus.com` and
+- user password is `xxxxx`.
 
 ## SDK download
 
@@ -178,9 +178,9 @@ else:
 print("API Key Created: ", resp)
 ```
 
-</TabItem>    
+</TabItem>
 </Tabs>
-    
+
 ## Get Accessible Resources
 
 <Tabs groupId="operating-systems">
@@ -265,9 +265,9 @@ else:
 ## Set Permissions
 
 :::note
-* Use `rw` to set the access level to `Administrate`.
-* Use `ro` to set the access level to `Read Only`.
-* Use `none` to set the access level to `No access`.
+- Use `rw` to set the access level to `Administrate`.
+- Use `ro` to set the access level to `Read Only`.
+- Use `none` to set the access level to `No access`.
 :::
 
 <Tabs groupId="operating-systems">
@@ -385,10 +385,9 @@ if resp['error'] is True:
 else:
     print("Set Stream Access Level: ", resp)
 ```
-    
+
 </TabItem>
 </Tabs>
-
 
 ## Get Access Levels
 
@@ -471,10 +470,11 @@ else:
     print("Get Collection Access Level: ", resp)
 ```
 
-</TabItem>            
+</TabItem>
 </Tabs>
 
 ## Clear Access Level
+
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
@@ -555,10 +555,11 @@ else:
     print("Clear Stream Access Level: ", resp)
 ```
 
-</TabItem>        
+</TabItem>
 </Tabs>
 
 ## Remove an API Key
+
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
@@ -575,7 +576,7 @@ catch(e){
 </TabItem>
 <TabItem value="py" label="Python">
 
-```py 
+```py
 from c8 import C8Client
 
 # Create a connection to gdn
@@ -604,12 +605,13 @@ if resp['error'] is True:
     print("ERROR: " , resp)
 else:
     print("API Key Deleted: ", resp)
-``` 
+```
 
-</TabItem>        
+</TabItem>
 </Tabs>
 
 ## Complete Example
+
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
@@ -977,7 +979,7 @@ else:
     print("API Key Deleted: ", resp)
 ```
 
-</TabItem> 
+</TabItem>
 <TabItem value="RA js" label="Rest API (javascript)">
 
 ```js
@@ -1205,5 +1207,5 @@ console.error(e);
 run();
 ```
 
-</TabItem>    
+</TabItem>
 </Tabs>
