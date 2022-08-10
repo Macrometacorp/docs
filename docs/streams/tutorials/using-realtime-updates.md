@@ -180,7 +180,7 @@ if __name__ == '__main__':
     else:
         collection = client.create_collection(COLLECTION_NAME, stream=True)
 
-    # Subscriber to receive events when changes are made to collection.
+    # Subscribe to be notified when changes are made to collection.
 
     def create_callback():
         def callback_fn(event):
