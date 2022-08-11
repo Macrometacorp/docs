@@ -24,6 +24,7 @@ The Macrometa docs are powered by [Docusaurus](https://docusaurus.io/), a static
 ## Contributing
 
 This section describes how you can get make contributions to the Macrometa docs.
+
 ### Reporting an Issue
 
 Opening an [issue](https://github.com/Macrometacorp/docs/issues) is an effective way to contribute because many users might also be impacted. We'll make sure to fix it quickly if it's technically feasible and doesn't have significant side effects for other users.
@@ -51,12 +52,14 @@ All pull requests should have:
 
 After you've submitted your pull request:
 
-- Automatic checks will be run 
+- Automatic checks will be run
 - A team member will review the pull request
 - Your contribution will be merged
+
 ## Building
 
 This section describes how you can get the Macrometa docs up and running on your machine.
+
 ### Prerequisites
 
 - [Node](https://nodejs.dev/) – Using a version manager like [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) or [Volta](https://volta.sh/) is recommended.
@@ -71,7 +74,6 @@ git clone git@github.com:Macrometacorp/docs.git && cd docs
 ```
 
 2. Install dependencies
-
 
 ```bash
 yarn install
@@ -88,13 +90,13 @@ yarn start
  ```bash
  yarn run build
  ```
- 
+
  5. Display the production build. This serves the build you made in the previous step to `http://localhost:3000`. Unlike the developer mode, this build will not automatically update when you make a change.
- 
+
  ```bash
  yarn run serve
  ```
- 
+
 ### Troubleshooting
 
 If you get a bunch of errors when you do a local build, first try updating your dependencies by running `yarn` in the top level of the `docs` directory. You must do this every time dependencies change.
