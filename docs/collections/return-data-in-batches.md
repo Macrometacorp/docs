@@ -9,6 +9,10 @@ The Macrometa GDN is a multi-tenant architecture for Free and Metered tier users
 
 ## SDK download
 
+:::note
+This solution is not currently supported in the pyc8 SDK
+:::
+
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
