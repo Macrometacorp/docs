@@ -3,7 +3,7 @@ import { Redirect } from '@docusaurus/router';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-import '@fontsource/fira-code'
+import '@fontsource/source-code-pro'
 import '@fontsource/lato/400.css'
 import '@fontsource/lato/700.css'
 import '@fontsource/open-sans/400.css'

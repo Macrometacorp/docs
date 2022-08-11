@@ -62,7 +62,7 @@
     --ifm-link-color: var(--color-primary-500);
     --ifm-link-decoration: none;
 
-    --ifm-font-family-monospace: 'Fira Code', ui-monospace, SFMono-Regular,
+    --ifm-font-family-monospace: 'Source Code Pro', ui-monospace, SFMono-Regular,
       Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     --font-code: var(--ifm-font-family-monospace) !important;
     --font-mono: var(--ifm-font-family-monospace) !important;
