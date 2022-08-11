@@ -2688,11 +2688,6 @@
   resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-6.0.0.tgz#b613ebf5f5ebb2ab987afb567d8b7fe860199c13"
   integrity sha512-10zLCKhp3YEmBuko71ivcMoIZcCLXgQVck6aNswX+AWwaek/L8S3yz9i8m3tHigRkcF6F2vI+qtdtyySHK+bGA==
 
-"@fontsource/fira-code@^4.5.9":
-  version "4.5.9"
-  resolved "https://registry.yarnpkg.com/@fontsource/fira-code/-/fira-code-4.5.9.tgz#8ca3e6020f9d3c340a643c5c0a12b2ebf37dc7a6"
-  integrity sha512-moi9UVTOfQFXjiUAITy5W727dIP6c0K5TGPN+wTaFHn+/5flc/V0Uq9cKTs39yGrPUOneTbuAe8C8q7CzUP4Aw==
-
 "@fontsource/lato@^4.5.8":
   version "4.5.8"
   resolved "https://registry.yarnpkg.com/@fontsource/lato/-/lato-4.5.8.tgz#20acb60d0895cc82723b4999492c70b1f9816460"
@@ -2702,6 +2697,11 @@
   version "4.5.10"
   resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.10.tgz#c4269c54d6f5f8661322facb5946d8188fadc7f2"
   integrity sha512-MrtTDfWb1Tu9YxVh2KaKmsKBn6O3KL/lHZS0KRKK58jgqvdwuiDt4QW4udmW4FQf0XOWgnZ+4vKUF80F3SqBAA==
+
+"@fontsource/source-code-pro@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/source-code-pro/-/source-code-pro-4.5.11.tgz#1a4aaf8d8631ad0acd54f26d4e69a6f80ba81c3d"
+  integrity sha512-SzVV/w+Es+I9JMEzH9ePTaFhgxYKnRBtxrJ8q67yHmSMkHRD5OpPlQR+kMCOt2AaCDcKFjDlyNk/uyRB8dA8hA==
 
 "@fortawesome/fontawesome-common-types@6.1.1":
   version "6.1.1"
