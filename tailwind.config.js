@@ -17,7 +17,7 @@ module.exports = {
       fontFamily: {
         body: ['"Open Sans"', defaultTheme.fontFamily.body],
         display: ['"Lato"', defaultTheme.fontFamily.display],
-        mono: ['"Fira Code"', defaultTheme.fontFamily.mono],
+        mono: ['"Source Code Pro"', defaultTheme.fontFamily.mono],
       },
       fontSize: {
         'base': '0.9375rem'
