@@ -25,7 +25,7 @@
     "@fontsource/open-sans": "^4.5.10",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@mdx-js/react": "^1.6.21",
-    "@stoplight/elements": "^7.5.13",
+    "@stoplight/elements": "7.6.3",
     "@types/react": "^17.0.1",
     "clsx": "^1.1.1",
     "dotenv": "^16.0.0",
