@@ -1,20 +1,23 @@
 ---
-sidebar_position: 10
-title: SDKs
+sidebar_position: 70
+title: Remove API Key
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+## Remove an API Key
+
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
 ```js
+// Remove an api key
 try{
-await client.createApiKey(keyid);
+    await client.removeApiKey(keyid);
 }
 catch(e){
-console.log('API Creation Failed: ', e);
+    console.log('API Deletion Failed: ', e);   
 }
 ```
 
@@ -24,34 +27,32 @@ console.log('API Creation Failed: ', e);
 ```py
 from c8 import C8Client
 
-# Create a connection to gdn
+# Create a connection to GDN
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                    email='nemo@nautilus.com', password='xxxxx',
-                    geofabric='_system')
+                        email='nemo@nautilus.com', password='xxxxx',
+                        geofabric='_system')
 
-# Create an api key
-print("Create API Key: ", client.create_api_key('id1'))
+# Remove api key
+remove = client.remove_api_key('id1')
+
+print(remove)
 ```
 
 </TabItem>
 <TabItem value="RA" label="Rest API">
 
 ```js
-# Create an API Key
 FEDERATION = "api-gdn.macrometa.io"
 FED_URL = "https://{}".format(FEDERATION)
 keyid = "id1"
-url = FED_URL + "/_api/key"
-payload= {
-"keyid": keyid
-}
-
-resp = session.post(url, data = json.dumps(payload))
+# Delete an API Key
+url = FED_URL + "/_api/key/"+ keyid
+resp = session.delete(url, data = json.dumps(payload))
 resp = json.loads(resp.text)
 if resp['error'] is True:
-print("ERROR: " , resp)
+    print("ERROR: " , resp)
 else:
-print("API Key Created: ", resp)
+    print("API Key Deleted: ", resp)
 ```
 
 </TabItem>
