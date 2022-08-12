@@ -1,9 +1,7 @@
 ---
-sidebar_position: 11
+sidebar_position: 10
 title: Query Guide
 ---
-
-## Introduction
 
 Macrometa Stream QL is designed to process streams of events. It can be used to implement streaming data integration, streaming analytics, rule based and
 adaptive decision making use cases. It is an evolution of Complex Event Processing (CEP) and Stream Processing systems, hence it can also be used to process stateful computations, detecting of complex event patterns, and sending notifications in real-time.
@@ -24,7 +22,7 @@ StreamApp provides an isolated execution environment for your processing logic t
 
 The following diagram depicts some of the key Stream QL elements of Stream Application and how **event flows** through the elements.
 
-:::tip 
+:::tip
 "Have different business use cases in separate Stream Applications."
 This is recommended as it allows users to selectively deploy the applications based their on business needs. It is also recommended to move the repeated steam processing logic that exist in multiple Stream Applications such as message retrieval and preprocessing, to a common Stream Application, whereby reducing code duplication and improving maintainability. In this case, to pass the events from one Stream App to another, configure them using a common stream or collection using `stream` Sink and `stream` Source.
 :::
@@ -77,7 +75,7 @@ group by roomNo;
 
 ## Stream
 
-A stream is a logical series of events ordered in time. Its schema is defined via the *stream definition*. A stream definition contains the stream name and a set of attributes with specific types and uniquely identifiable names within the stream. All events associated to the stream will have the same schema (i.e., have the same attributes in the same order).
+A stream is a logical series of events ordered in time. Its schema is defined via the _stream definition_. A stream definition contains the stream name and a set of attributes with specific types and uniquely identifiable names within the stream. All events associated to the stream will have the same schema (i.e., have the same attributes in the same order).
 
 Stream processor groups common types of events together with a schema. This helps in various ways such as, processing all events together in queries and performing data format transformations together when they are consumed and published via sources and sinks.
 
@@ -104,14 +102,13 @@ To make the stream process events with multi-threading and asynchronously, we ad
 
 This example creates a stream called `TempStream` with the following attributes:
 
-+ `deviceID` of type `long`
-+ `roomNo` of type `int`
-+ `temp` of type `double`
+- `deviceID` of type `long`
+- `roomNo` of type `int`
+- `temp` of type `double`
 
 ```sql
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 ```
-
 
 ### Source
 
@@ -122,7 +119,6 @@ A source configuration allows to define a mapping in order to convert each incom
 **Purpose**
 
 Source provides a way to consume events from internal & external services and convert them to be processed by the associated stream.
-
 
 **Syntax**
 
@@ -162,12 +158,14 @@ For detailed information about the parameters see the documentation of the relev
 
 There are two ways to configure `attributes`. In both cases, add the attributes in parentheses after the query:
 
-* Define attribute names as keys, and mapping configurations as values:
+- Define attribute names as keys, and mapping configurations as values:
+
   ```
   ... ( <attribute1>='<mapping>', <attributeN>='<mapping>')
   ```
 
-* Define the mapping configurations in the same order as the attributes defined in stream definition:
+- Define the mapping configurations in the same order as the attributes defined in stream definition:
+
   ```
   ... ( '<mapping for attribute1>', '<mapping for attributeN>')
   ```
@@ -256,7 +254,7 @@ The sink syntax is as follows:
 CREATE SINK <stream name> WITH (sink.type='<sink type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.payload'<payload mapping>')) (<attribute1> <type>, <attributeN> <type>);
 ```
 
-:::note 
+:::note
 "Dynamic Properties"
 The sink and sink mapper properties that are categorized as `dynamic` have the ability to absorb attribute values
 dynamically from the Stream events of their associated streams. This can be configured by enclosing the relevant
@@ -264,9 +262,9 @@ attribute names in double curly braces as`{{...}}`, and using it within the prop
 
 Some valid dynamic properties values are:
 
-* `'{{attribute1}}'`
-* `'This is {{attribute1}}'`
-* `{{attribute1}} > {{attributeN}}`  
+- `'{{attribute1}}'`
+- `'This is {{attribute1}}'`
+- `{{attribute1}} > {{attributeN}}`  
 
 Here the attribute names in the double curly braces will be replaced with the values from the events before they are published.
 :::
@@ -336,14 +334,18 @@ For detailed information about the parameters see the documentation of the relev
 
 There are two ways you to configure `map.payload` annotation.
 
-1. Some mappers such as `XML`, `JSON`, and `Test` only accept one output payload: 
+1. Some mappers such as `XML`, `JSON`, and `Test` only accept one output payload:
+
   ```
   map.payload='This is a test message from {{user}}.'
   ```
-2. Some mappers such `key-value` accept series of mapping values: 
+
+2. Some mappers such `key-value` accept series of mapping values:
+
   ```
   map.payload= key1='mapping_1', 'key2'='user : {{user}}'
   ```
+
   Here, the keys of payload mapping can be defined using the dot notation as ```a.b.c```, or using any constant string value as `'$abc'`.
 
 **Supported Sink Mapping Types**
@@ -471,7 +473,7 @@ The `action` parameter of the `OnError` property defines the action to be execut
 
 The following actions can be specified to `OnError` property to handle erroneous scenarios.
 
-* `STREAM`: Creates a fault stream and redirects the event and the error to it. The created fault stream will have all the attributes defined in the base stream to capture the error causing event, and in addition it also contains `_error` attribute of type `object` to containing the error information. The fault stream can be referred by adding `!` in front of the base stream name as `!<stream name>`.
+- `STREAM`: Creates a fault stream and redirects the event and the error to it. The created fault stream will have all the attributes defined in the base stream to capture the error causing event, and in addition it also contains `_error` attribute of type `object` to containing the error information. The fault stream can be referred by adding `!` in front of the base stream name as `!<stream name>`.
 
 **Example**
 
@@ -484,7 +486,6 @@ CREATE STREAM TempStream WITH(OnError.action="STREAM") (deviceID long, roomNo in
 ```
 
 Stream infers and automatically defines the fault stream of `TempStream` as given below.
-
 
 ```
 CREATE STREAM !TempStream (deviceID long, roomNo int, temp double, _error object);
@@ -523,9 +524,9 @@ CREATE SINK <stream name> WITH (sink.type='<sink type>', on.error.action='<on er
 
 The following actions can be specified to `on.error` parameter of `sink.type` annotation to handle erroneous scenarios.
 
-* `WAIT` : Publishing threads wait in `back-off and re-trying` mode, and only send the events when the connection is re-established. During this time the threads will not consume any new messages causing the systems to introduce back pressure on the systems that publishes to it.
+- `WAIT` : Publishing threads wait in `back-off and re-trying` mode, and only send the events when the connection is re-established. During this time the threads will not consume any new messages causing the systems to introduce back pressure on the systems that publishes to it.
 
-* `STREAM`: Pushes the failed events with the corresponding error to the associated fault stream the sink belongs to.
+- `STREAM`: Pushes the failed events with the corresponding error to the associated fault stream the sink belongs to.
 
 **Example 1**
 
@@ -601,6 +602,7 @@ from RoomTempStream;
 :::tip "Inferred Stream"
 Here, the `RoomTempStream` and `AnotherRoomTempStream` streams are an inferred streams, which means their stream definitions are inferred from the queries and they can be used same as any other defined stream without any restrictions.  
 :::
+
 ### Value
 
 Values are typed data, that can be manipulated, transferred and stored. Values can be referred by the attributes defined in definitions such as streams, and tables.
@@ -642,7 +644,7 @@ The syntax of each type and their example use as a constant value is as follows,
     </tr>
     <tr>
         <td>string</td>
-        <td>`'(&lt;char&gt;* !('|"|"""|&ltnew line&gt))'` or  `"(&lt;char&gt;* !("|"""|&ltnew line&gt))"` or `"""(&lt;char&gt;* !("""))"""` </td>
+        <td>`'(&lt;char&gt;*!('|"|"""|&ltnew line&gt))'` or  `"(&lt;char&gt;* !("|"""|&ltnew line&gt))"` or `"""(&lt;char&gt;* !("""))"""` </td>
         <td>`'Any text.'`, `"Text with 'single' quotes."`, <pre>"""
 Text with 'single' quotes,
 "double" quotes, and new lines.
@@ -736,7 +738,6 @@ Time is a special type of `LONG` value that denotes time using digits and their 
 ### Select
 
 The select clause in stream query defines the output event attributes of the query. Following are some basic query projection operations supported by select.
-
 
 ### Function
 
@@ -884,7 +885,6 @@ Following are some inbuilt Stream windows, for more windows refer [execution ext
 | [externalTime](../reference/functions#externalTime-window) | Retains events based on event time value passed as a parameter in a sliding manner.|
 | [externalTimeBatch](../reference/functions#externaltimebatch-window) | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
 | [delay](../reference/functions#delay-window) | Retains events and delays the output by the given time period in a sliding manner.|
-
 
 **Example 1**
 
@@ -1189,7 +1189,7 @@ These provide a way to select the number of events (via limit) from the desired 
 
 **Purpose**
 
-Limit & Offset helps to output only the selected set of events from large event batches. This will be more useful with `Order By` clause where one can order the output for topK, bottomK, or even to paginate through the dataset by obtaining a set of events from the middle.   
+Limit & Offset helps to output only the selected set of events from large event batches. This will be more useful with `Order By` clause where one can order the output for topK, bottomK, or even to paginate through the dataset by obtaining a set of events from the middle.
 
 **Syntax**
 
@@ -1294,11 +1294,11 @@ from TempStream[temp > 30.0]#window.time(1 min) as T
 
 Following are the supported operations of a join clause.
 
- *  **Inner join (join)**
+- **Inner join (join)**
 
     This is the default behaviour of a join operation. `join` is used as the keyword to join both the streams. The output is generated only if there is a matching event in both the streams.
 
- *  **Left outer join**
+- **Left outer join**
 
     The `left outer join` operation allows you to join two streams to be merged based on a condition. `left outer join` is used as the keyword to join both the streams.
 
@@ -1317,12 +1317,12 @@ Following are the supported operations of a join clause.
       on S.symbol== T.symbol
     insert into outputStream ;    </pre>
 
- *  **Right outer join**
+- **Right outer join**
 
     This is similar to a left outer join. `Right outer join` is used as the keyword to join both the streams.
     It returns all the events of the right stream even if there are no matching events in the left stream.
 
- *  **Full outer join**
+- **Full outer join**
 
     The full outer join combines the results of left outer join and right outer join. `full outer join` is used as the keyword to join both the streams.
     Here, output event are generated for each incoming event even if there are no matching events in the other stream.
@@ -1333,12 +1333,11 @@ Following are the supported operations of a join clause.
     match for the `symbol` attribute in the other stream or not.
 
     <pre>
-    insert into outputStream 
+    insert into outputStream
     select S.symbol as symbol, T.tweet, S.price
     from StockStream#window.time(1 min) as S
       full outer join TwitterStream#window.length(1) as T
       on S.symbol== T.symbol;    </pre>
-
 
 ### Patterns
 
@@ -1414,9 +1413,9 @@ Square brackets can be used to indicate the event index where `1` can be used as
  for the `last` available event in the event collection. If you provide an index greater then the last event index,
  the system returns `null`. The following are some valid examples.
 
-+ `e1[3]` refers to the 3rd event.
-+ `e1[last]` refers to the last event.
-+ `e1[last - 1]` refers to the event before the last event.
+- `e1[3]` refers to the 3rd event.
+- `e1[last]` refers to the last event.
+- `e1[last - 1]` refers to the event before the last event.
 
 **Example**
 
@@ -1471,7 +1470,7 @@ Pattern|Detected Scenario
 `not A for <time period> or B`|After system start up, either event A does not occur within `<time period>`, or event B occurs at some point in time.  e.g., Generating an alert if the taxi has not reached its destination within 30 minutes, or if the passenger has marked that he/she is in danger at some point in time.
 `not A for <time period 1> or not B for <time period 2>`|After system start up, either event A does not occur within `<time period 1>`, or event B occurs within `<time period 2>`.  e.g., Generating an alert to indicate that the SDK is not on an expected route if the taxi has not reached destination A within 20 minutes, or reached destination B within 30 minutes.
 `A → not B for <time period>`|Event B does not occur within `<time period>` after the occurrence of event A. e.g., Generating an alert if the taxi has reached its destination, but this was not followed by a payment record.
-`P* → not A for <time period> and B`|After the occurrence of P*, event A does not occur within `<time period>`, and event B occurs at some point in time. 
+`P* → not A for <time period> and B`|After the occurrence of P*, event A does not occur within `<time period>`, and event B occurs at some point in time.
 `P* → not A for <time period 1> and not B for <time period 2>`|After the occurrence of P*, event A does not occur within `<time period 1>`, and event B does not occur within `<time period 2>`.
 `P* → not A for <time period> or B`|After the occurrence of P*, either event A does not occur within `<time period>`, or event B occurs at some point in time.
 `P* → not A for <time period 1> or not B for <time period 2>`|After the occurrence of P*, either event A does not occur within `<time period 1>`, or event B does not occur within `<time period 2>`.
@@ -1482,7 +1481,6 @@ Pattern|Detected Scenario
 `not A for <time period 1> or not B for <time period 2> → P*`|After system start up, either event A does not occur within `<time period 1>`, or event B does not occur within `<time period 2>`. Then P*  occurs after both `<time period 1>` and `<time period 2>` have elapsed.
 `not A and B`|Event A does not occur before event B.
 `A and not B`|Event B does not occur before event A.
-
 
 **Example**
 
@@ -1551,7 +1549,6 @@ from (every)? <event reference>=<input stream>[<filter condition>],
 | `(within <time gap>)?` | The `within` clause is optional. It defines the time duration within which all the matching events should occur. |
 | `every` | `every` is an optional keyword. This defines whether the matching event should be triggered for every event that arrives at the specified stream with the matching condition.  When this keyword is not used, the matching is carried out only once. |
 
-
 **Example**
 
 This query generates an alert if the increase in the temperature between two consecutive temperature events exceeds one degree.
@@ -1588,7 +1585,6 @@ from (every)? <event reference>=<input stream>[<filter condition>](+|*|?)?,
 | `+` | Optional |This matches **one or more** events to the given condition. |
 | `*` | Optional |This matches **zero or more** events to the given condition. |
 | `?` | Optional |This matches **zero or one** events to the given condition. |
-
 
 **Example**
 
@@ -1662,13 +1658,13 @@ Snapshot based output | `snapshot every <time interval>`| This outputs all event
 
 Here the `<output event>` specifies the event(s) that should be returned as the output of the query.
 The possible values are as follows:
-* `first` : Only the first event processed by the query during the specified time interval/sliding window is emitted.
-* `last` : Only the last event processed by the query during the specified time interval/sliding window is emitted.
-* `all` : All the events processed by the query during the specified time interval/sliding window are emitted. **When no `<output event>` is defined, `all` is used by default.**
+- `first` : Only the first event processed by the query during the specified time interval/sliding window is emitted.
+- `last` : Only the last event processed by the query during the specified time interval/sliding window is emitted.
+- `all` : All the events processed by the query during the specified time interval/sliding window are emitted. **When no `<output event>` is defined, `all` is used by default.**
 
 **Examples**
 
-+ Returning events based on the number of events
+- Returning events based on the number of events
 
     Here, events are emitted every time the specified number of events arrive. You can also specify whether to emit only the first event/last event, or all the events out of the events that arrived.
 
@@ -1681,7 +1677,7 @@ The possible values are as follows:
     group by deviceID
     output last every 10 events;    </pre>
 
-+ Returning events based on time
+- Returning events based on time
 
     Here events are emitted for every predefined time interval. You can also specify whether to emit only the first event, last event, or all events out of the events that arrived during the specified time interval.
 
@@ -1692,7 +1688,7 @@ The possible values are as follows:
     from TempStreamoutput
     output every 10 sec;    </pre>
 
-+ Returning a periodic snapshot of events
+- Returning a periodic snapshot of events
 
     This method works best with windows. When an input stream is connected to a window, snapshot rate limiting emits all the current events that have arrived and do not have corresponding expired events for every predefined time interval.
     If the input stream is not connected to a window, only the last current event for each predefined time interval is emitted.
@@ -1703,7 +1699,6 @@ The possible values are as follows:
     insert into SnapshotTempStream
     from TempStream#window.time(5 sec)
     output snapshot every 1 sec;    </pre>
-
 
 ## Partition
 
@@ -1719,14 +1714,14 @@ Partitions allow you to process the events groups in isolation so that event pro
 
 A partition key can be generated in the following two methods:
 
-* Partition by value
+- Partition by value
 
     This is created by generating unique values using input stream attributes.
 
     **Syntax**
 
     <pre>
-    partition with ( &lt;expression> of &lt;stream name>, 
+    partition with ( &lt;expression> of &lt;stream name>,
                      &lt;expression> of &lt;stream name>, ... )
     begin
         &lt;query>
@@ -1747,13 +1742,13 @@ A partition key can be generated in the following two methods:
     end;
     </pre>
 
-* Partition by range
+- Partition by range
 
     This is created by mapping each partition key to a range condition of the input streams numerical attribute.
 
     **Syntax**
     <pre>
-    partition with ( &lt;condition> as &lt;partition key> or 
+    partition with ( &lt;condition> as &lt;partition key> or
                      &lt;condition> as &lt;partition key> or ... of &lt;stream name>,
                      ... )
     begin
@@ -1879,7 +1874,6 @@ The following parameters are configured in a table definition:
 | `table name`      | The name of the table defined. (`PascalCase` is used for table name as a convention.) |
 | `attribute name`   | The schema of the table is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
 | `attribute type`   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.     |
-
 
 **Example**
 
@@ -2019,17 +2013,17 @@ from TempStream join RoomTypeTable
 
 Table join supports following join operations.
 
- *  **Inner join (join)**
+- **Inner join (join)**
 
     This is the default behaviour of a join operation. `join` is used as the keyword to join the stream with the table. The output is generated only if there is a matching event in both the stream and the table.
 
- *  **Left outer join**
+- **Left outer join**
 
     The `left outer join` operation allows you to join a stream on left side with a table on the right side based on a condition.
     Here, it returns all the events of left stream even if there are no matching events in the right table by
     having null values for the attributes of the right table.
 
- *  **Right outer join**
+- **Right outer join**
 
     This is similar to a `left outer join`. `right outer join` is used as the keyword to join a stream on right side with a table on the left side based on a condition.
     It returns all the events of the right stream even if there are no matching events in the left table.
@@ -2166,6 +2160,7 @@ from <input stream>[<condition> in <table>]
 ```
 
 The `condition` element specifies the basis on which events are selected to be compared. When constructing the `condition`, the table attribute must be always referred to with the table name as shown below:
+
 ```
 <table>.<attibute name>
 ```
@@ -2187,7 +2182,7 @@ from TempStream[ServerRoomTable.roomNo == roomNo in ServerRoomTable];
 Named aggregation allows you to obtain aggregates in an incremental manner for a specified set of time periods.
 
 This not only allows you to calculate aggregations with varied time granularity, but also allows you to access them in an interactive
- manner for reports, dashboards, and for further processing. Its schema is defined via the *aggregation definition*.
+ manner for reports, dashboards, and for further processing. Its schema is defined via the _aggregation definition_.
 
 **Purpose**
 
@@ -2207,6 +2202,7 @@ select <attribute name>, <aggregate function>(<attribute name>) as <attribute na
     group by <attribute name>
     aggregate by <timestamp attribute> every <time periods> ;
 ```
+
 The above syntax includes the following:
 
 |Item                          |Description
@@ -2274,7 +2270,6 @@ Item | Description
 ------|------
 `@artitionById` | If the property is given, then the distributed aggregation is enabled. Further this can be disabled by using `enable` element, `PartitionById.enable='false'`.
 
-
 Further, following system properties are also available,
 
 System Property| Description| Possible Values | Optional | Default Value
@@ -2311,7 +2306,7 @@ Apart from constructs of [table join](#join-table) this includes the following. 
 
 Item|Description
 ---------|---------
-`within  <time range>`| This allows you to specify the time interval for which the aggregate values need to be retrieved. This can be specified by providing the start and end time separated by a comma as `string` or `long` values, or by using the wildcard `string` specifying the data range. For details refer examples.            
+`within  <time range>`| This allows you to specify the time interval for which the aggregate values need to be retrieved. This can be specified by providing the start and end time separated by a comma as `string` or `long` values, or by using the wildcard `string` specifying the data range. For details refer examples.
 `per <time granularity>`|This specifies the time granularity by which the aggregate values must be grouped and returned. e.g., If you specify `days`, the retrieved aggregate values are grouped for each day within the selected time interval.
 
 `within` and `per` clauses also accept attribute values from the stream.
@@ -2374,21 +2369,20 @@ from StockStream as S join TradeAggregation as T
 
 Aggregation join supports following join operations.
 
- *  **Inner join (join)**
+- **Inner join (join)**
 
     This is the default behaviour of a join operation. `join` is used as the keyword to join the stream with the aggregation. The output is generated only if there is a matching event in the stream and the aggregation.
 
- *  **Left outer join**
+- **Left outer join**
 
     The `left outer join` operation allows you to join a stream on left side with a aggregation on the right side based on a condition.
     Here, it returns all the events of left stream even if there are no matching events in the right aggregation by
     having null values for the attributes of the right aggregation.
 
- *  **Right outer join**
+- **Right outer join**
 
     This is similar to a `left outer join`. `right outer join` is used as the keyword to join a stream on right side with a aggregation on the left side based on a condition.
     It returns all the events of the right stream even if there are no matching events in the left aggregation.
-
 
 ## Named Window
 
@@ -2412,10 +2406,9 @@ The following parameters are configured in a table definition:
 | `<window type>(<parameter>, ...)`   | The window type associated with the window and its parameters.     |
 | `output <event type>` | This is optional. Keywords such as `current events`, `expired events` and `all events` (the default) can be used to specify when the window output should be exposed. For more information, see [Event Type](#event-type).
 
-
 **Examples**
 
-+ Returning all output when events arrive and when events expire from the window.
+- Returning all output when events arrive and when events expire from the window.
 
     In this query, the event type is not specified. Therefore, it returns both current and expired events as the output.
 
@@ -2423,7 +2416,7 @@ The following parameters are configured in a table definition:
     CREATE WINDOW SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second);
     ```
 
-+ Returning an output only when events expire from the window.
+- Returning an output only when events expire from the window.
 
     In this query, the event type of the window is `expired events`. Therefore, it only returns the events that have expired from the window as the output.
 
@@ -2499,22 +2492,22 @@ from CheckStream as C join TwoMinTempWindow as T
 
 Window join supports following operations of a join clause.
 
- *  **Inner join (join)**
+- **Inner join (join)**
 
     This is the default behaviour of a join operation. `join` is used as the keyword to join two windows or a stream with a window. The output is generated only if there is a matching event in both stream/window.
 
- *  **Left outer join**
+- **Left outer join**
 
     The `left outer join` operation allows you to join two windows or a stream with a window to be merged based on a condition.
     Here, it returns all the events of left stream/window even if there are no matching events in the right stream/window by
     having null values for the attributes of the right stream/window.
 
- *  **Right outer join**
+- **Right outer join**
 
     This is similar to a left outer join. `Right outer join` is used as the keyword to join two windows or a stream with a window.
     It returns all the events of the right stream/window even if there are no matching events in the left stream/window.
 
- *  **Full outer join**
+- **Full outer join**
 
     The full outer join combines the results of `left outer join` and `right outer join`. `full outer join` is used as the keyword to join two windows or a stream with a window.
     Here, output event are generated for each incoming event even if there are no matching events in the other stream/window.
@@ -2578,10 +2571,9 @@ The following types of triggeres are currently supported:
 |`every <time interval>`| An event is triggered periodically at the given time interval.
 |`'<cron expression>'`| An event is triggered periodically based on the given cron expression. For configuration details, see <a target="_blank" href="http://www.quartz-scheduler.org/documentation/quartz-2.1.7/tutorials/tutorial-lesson-06.html">quartz-scheduler</a>.
 
-
 **Examples**
 
-+ Triggering events regularly at specific time intervals
+- Triggering events regularly at specific time intervals
 
     The following query triggers events every 5 minutes.
 
@@ -2589,7 +2581,7 @@ The following types of triggeres are currently supported:
     CREATE TRIGGER FiveMinTriggerStream at every 5 min;
     ```
 
-+ Triggering events at a specific time on specified days
+- Triggering events at a specific time on specified days
 
     The following query triggers an event at 10.15 AM on every weekdays.
 
@@ -2656,27 +2648,25 @@ Store queries allow you to execute the following operations on Stream tables, wi
 
 Queries supported for tables:
 
-* INSERT
-* SELECT
-* DELETE
-* UPDATE
-* UPDATE OR INSERT
+- INSERT
+- SELECT
+- DELETE
+- UPDATE
+- UPDATE OR INSERT
 
 Queries supported for windows and aggregators:
 
-* SELECT
+- SELECT
 
 This is be done by submitting the store query to the Stream application runtime using its `query()` method.
 
 In order to execute store queries, the Stream application of the Stream application runtime you are using, should have a store defined, which contains the table that needs to be queried.
-
 
 **Example**
 
 If you need to query the table named `RoomTypeTable` the it should have been defined in the Stream application.
 
 In order to execute a store query on `RoomTypeTable`, you need to submit the store query using `query()` method.
-
 
 ### _(Table/Window)_ Select
 
@@ -2771,7 +2761,6 @@ select <attribute name>, <attribute name>, ...;
 
 This store query inserts a new record to the table `RoomOccupancyTable`, with the specified attribute values.
 
-
 ```
 insert into RoomOccupancyTable
 select 10 as roomNo, 2 as people
@@ -2792,7 +2781,7 @@ on <conditional expresssion>
 The `condition` element specifies the basis on which records are selected to be deleted.
 
 :::note
-Table attributes must always be referred to with the table name as shown below: 
+Table attributes must always be referred to with the table name as shown below:
 `<table name>.<attibute name>`.
 :::
 
@@ -2828,9 +2817,8 @@ The `condition` element specifies the basis on which records are selected to be 
 
 You can use the `set` keyword to update selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute, and the one specified in the right can be a stream/table attribute a mathematical operation, or other. When the `set` clause is not provided, all the attributes in the table are updated.
 
-
 :::note
-Table attributes must always be referred to with the table name as shown below: 
+Table attributes must always be referred to with the table name as shown below:
 `<table name>.<attibute name>`.
 :::
 
@@ -2864,12 +2852,13 @@ update or insert into <table>
     set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
     on <condition>
 ```
+
 The `condition` element specifies the basis on which records are selected for update. When specifying the `condition`, table attributes should be referred to with the table name. If a record that matches the condition does not already exist in the table, the arriving event is inserted into the table.
 
 The `set` clause is only used when an update is performed during the insert/update operation. When `set` clause is used, the attribute to the left is always a table attribute, and the attribute to the right can be a stream/table attribute, mathematical operation or other. The attribute to the left (i.e., the attribute in the event table) is updated with the value of the attribute to the right if the given condition is met. When the `set` clause is not provided, all the attributes in the table are updated.
 
 :::note
-Table attributes must always be referred to with the table name as shown below: 
+Table attributes must always be referred to with the table name as shown below:
 `<table name>.<attibute name>`.
 :::
 
