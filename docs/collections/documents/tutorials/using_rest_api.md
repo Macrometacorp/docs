@@ -53,134 +53,124 @@ For example:
 <TabItem value="py" label="Python">
 
 ```py
-  import requests
-  import json
+ import json
+import requests
 
-  # Set constants
+# Set constants
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
+COLLECTION_NAME = 'testcollection'
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxx"
+AUTH_TOKEN = "bearer "
+FABRIC = "_system"
+URL = f"{FED_URL}/_open/auth"
+payload = {
+    'email': EMAIL,
+    'password': PASSWORD,
 
-  FEDERATION = "api-gdn.paas.macrometa.io"
-  FED_URL = "https://{}".format(FEDERATION)
-  EMAIL = "nemo@nautilus.com"
-  PASSWORD = "xxxxxx"
-  COLLECTION_NAME = "testcollection"
-  AUTH_TOKEN = "bearer "
+}
+headers = {
+    'content-type': 'application/json'
+}
 
-  # Create HTTPS session
+response = requests.post(URL, data=json.dumps(payload), headers=headers)
 
-  url = "{}/_open/auth".format(FED_URL)
-  payload = {
-      'email':EMAIL,
-      'password':PASSWORD
-      }
-  headers = {
-      'content-type': 'application/json'
-      }
+if response.status_code == 200:
+    resp_body = json.loads(response.text)
+    AUTH_TOKEN += resp_body["jwt"]
+    TENANT = resp_body["tenant"]
+else:
+    raise Exception(f"Error while getting auth token. "
+                    f"Code:{response.status_code}, Reason:{response.reason}")
 
-  response = requests.post(url, data = json.dumps(payload), headers = headers)
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
 
-  if response.status_code == 200:
-      resp_body = json.loads(response.text)
-      AUTH_TOKEN += resp_body["jwt"]
-      TENANT = resp_body["tenant"]
-  else:
-      raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
+# Get list of all regions
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/datacenter/all"
+dcl_resp = session.get(URL)
+dcl_list = json.loads(dcl_resp.text)
+regions = []
+for dcl in dcl_list:
+    dcl_url = dcl['tags']['url']
+    regions.append(dcl_url)
+print("\nList of regions: ", regions)
 
-
-  session = requests.session()
-  session.headers.update({"content-type": 'application/json'})
-  session.headers.update({"authorization": AUTH_TOKEN})
-
-  # Get list of all regions
-
-  url = FED_URL + "/_api/datacenter/all"
-  dcl_resp = session.get(url)
-  dcl_list = json.loads(dcl_resp.text)
-  regions = []
-  for dcl in dcl_list:
-      dcl_url = dcl['tags']['url']
-      regions.append(dcl_url)
-  print("\nList of regions: ",regions)
-
-  # Create a document collection
+# Create a document collection
 # Note: Create a test collection. Set "type" to 2 for documents or 3 for edges
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+payload = {
+    "name": COLLECTION_NAME,
+    "type": 2
+}
+resp = session.post(URL, data=json.dumps(payload))
+resp = json.loads(resp.text)
+if 'error' in resp and resp['error']:
+    print("ERROR: " + resp["errorMessage"])
+else:
+    print("\nCollection created: ", resp['name'])
 
-  url = FED_URL + "/_api/collection"
-  payload = {
-      "name": COLLECTION_NAME,
-      "type": 2
-  }
-  resp = session.post(url, data = json.dumps(payload))
-  resp = json.loads(resp.text)
-  if 'error' in resp and resp['error']:
-      print("ERROR: " + resp["errorMessage"])
-  else:
-      print("\nCollection created: ", resp['name'])
+# Insert a document into a collection
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
+payload = {'GPA': 3.5, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'}
+resp = session.post(URL, data=json.dumps(payload))
+print("\nDocument inserted: ", resp.text)
 
+# Data can either be a single document or a list of documents
+# Insert multiple documents
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
+data = [
+    {'GPA': 3.2, 'first': 'Abby', 'last': 'Page', '_key': 'Abby'},
+    {'GPA': 3.6, 'first': 'John', 'last': 'Kim', '_key': 'John'},
+    {'GPA': 4.0, 'first': 'Emma', 'last': 'Park', '_key': 'Emma'}
+]
+resp = session.post(URL, data=json.dumps(data))
+print("\nMultiple documents inserted: ", resp.text)
 
-  # Insert a document into a collection
+# Read a document with its ID
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}" + "/Lola"
+resp = session.get(URL)
+print("\nDocument with ID Lola is: ", resp.text)
 
-  url = FED_URL + "/_api/document/" + COLLECTION_NAME
-  payload = {'GPA': 3.5, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'}
-  resp = session.post(url, data = json.dumps(payload))
-  print("\nDocument inserted: ", resp.text)
+# Read multiple documents
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/simple/lookup-by-keys"
+payload = {"collection": COLLECTION_NAME,
+           "keys": ["Abby", "John", "Emma"]}
+resp = session.put(URL, data=json.dumps(payload))
+resp = json.loads(resp.text)
+print("\nDocuments: ", resp["documents"])
 
-  # Data can either be a single document or a list of documents
-  # Insert multiple documents
+# Update a single document with its ID
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}/John"
+payload = {'GPA': 3.6, 'first': 'John', 'last': 'Andrews', '_key': 'John'}
+resp = session.patch(URL, data=json.dumps(payload))
+print("\nUpdated document with ID John: ", resp.text)
 
-  url = FED_URL + "/_api/document/" + COLLECTION_NAME
-  data = [
-      {'GPA': 3.2, 'first': 'Abby', 'last': 'Page', '_key': 'Abby'},
-      {'GPA': 3.6, 'first': 'John', 'last': 'Kim', '_key': 'John'},
-      {'GPA': 4.0, 'first': 'Emma', 'last': 'Park', '_key': 'Emma'}
-  ]
-  resp = session.post(url, data = json.dumps(data))
-  print("\nMultiple documents inserted: ", resp.text)
+# Update  documents
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
+payload = [
+    {'GPA': 4.6, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'},
+    {'GPA': 3.2, 'first': 'Abby', 'last': 'Stutguard', '_key': 'Abby'}
+]
+resp = session.patch(URL, data=json.dumps(payload))
+print("\nUpdated documents: ", resp.text)
 
-  # Read a document with its ID
+# Remove single document with its ID
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}/John"
+resp = session.delete(URL)
+print("\nDeleted document with ID John: ", resp.text)
 
-  url = FED_URL + "/_api/document/" + COLLECTION_NAME + "/Lola"
-  resp = session.get(url)
-  print("\nDocument with ID Lola is: ",resp.text)
-
-  # Read multiple documents
-
-  url = FED_URL + "/_api/simple/lookup-by-keys"
-  payload = {"collection": COLLECTION_NAME,
-              "keys": ["Abby", "John", "Emma"] }
-  resp = session.put(url, data = json.dumps(payload))
-  resp = json.loads(resp.text)
-  print("\nDocuments: ", resp["documents"])
-
-  # Update a single document with its ID
-  url = FED_URL + "/_api/document/" + COLLECTION_NAME + "/John"
-  payload =     {'GPA': 3.6, 'first': 'John', 'last': 'Andrews', '_key': 'John'},
-
-  resp = session.patch(url, data = json.dumps(payload))
-  print("\nUpdated document with ID Lola: ",resp.text)
-
-  # Update  documents
-  url = FED_URL + "/_api/document/" + COLLECTION_NAME
-  payload = [
-      {'GPA': 4.6, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'},
-      {'GPA': 3.2, 'first': 'Abby', 'last': 'Stutguard', '_key': 'Abby'}
-  ]
-  resp = session.patch(url, data = json.dumps(payload))
-  print("\nUpdated documents: ", resp.text)
-
-  # Remove single document with its ID
-  url = FED_URL + "/_api/document/" + COLLECTION_NAME + "/John"
-  resp = session.delete(url)
-  print("\nDeleted document with ID John: ", resp.text)
-
-
-  # Remove a multiple document
-  url = FED_URL + "/_api/document/" + COLLECTION_NAME
-  payload = [
-      {'GPA': 4.6, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'},
-      {'GPA': 3.2, 'first': 'Abby', 'last': 'Stutguard', '_key': 'Abby'}
-  ]
-  resp = session.delete(url, data = json.dumps(payload))
-  print("\nDeleted Documents: ", resp.text)
+# Remove a multiple document
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
+payload = [
+    {'GPA': 4.6, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'},
+    {'GPA': 3.2, 'first': 'Abby', 'last': 'Stutguard', '_key': 'Abby'},
+    {'GPA': 4.0, 'first': 'Emma', 'last': 'Park', '_key': 'Emma'}
+]
+resp = session.delete(URL, data=json.dumps(payload))
+print("\nDeleted Documents: ", resp.text)
 ```
 
 </TabItem>
@@ -340,64 +330,73 @@ You can use C8QL to run CRUD Operations.
 <TabItem value="py" label="Python">
 
 ```py
-  #Using C8QL
+#Using C8QL
+import json
+import requests
 
-  import requests
-  import json
-
-  FEDERATION = "api-gdn.paas.macrometa.io"
-  FED_URL = "https://{}".format(FEDERATION)
-  EMAIL = "nemo@nautilus.com"
-  PASSWORD = "xxxxxx"
-  AUTH_TOKEN = "bearer "
-
-  # Create HTTPS session
-
-  url = "{}/_open/auth".format(FED_URL)
-  payload = {
-      'email':EMAIL,
-      'password':PASSWORD
-      }
-  headers = {
-      'content-type': 'application/json'
-      }
-
-  response = requests.post(url, data = json.dumps(payload), headers = headers)
-
-  if response.status_code == 200:
-      resp_body = json.loads(response.text)
-      AUTH_TOKEN += resp_body["jwt"]
-      TENANT = resp_body["tenant"]
-  else:
-      raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
+# Constants
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxx"
+AUTH_TOKEN = "bearer "
 
 
-  session = requests.session()
-  session.headers.update({"content-type": 'application/json'})
-  session.headers.update({"authorization": AUTH_TOKEN})
+# Create HTTPS session
+url = f"{FED_URL}/_open/auth"
+payload = {
+    'email': EMAIL,
+    'password': PASSWORD
+}
+headers = {
+    'content-type': 'application/json'
+}
+
+response = requests.post(url, data=json.dumps(payload), headers=headers)
+if response.status_code == 200:
+    resp_body = json.loads(response.text)
+    AUTH_TOKEN += resp_body["jwt"]
+    TENANT = resp_body["tenant"]
+else:
+    raise Exception(f"Error while getting auth token. "
+                    f"Code:{response.status_code}, Reason:{response.reason}")
+
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
+url = f"{FED_URL}/_fabric/_system/_api/cursor"
 
 
+# Insert documents to the collection
+resp = session.post(url, json={
+    "query": "INSERT{'name' : 'Julie', 'company' : 'ABC', '_key' : 'Julie'}" \
+             "INTO testcollection"
+})
 
-  # Insert documents to the collection
-  resp = session.post(url, json={
-      "query": "INSERT{'name' : 'Julie', 'company' : 'ABC', '_key' : 'Julie'}" \
-              "INTO testcollection"
-  })
+# Read from the collection
+resp = session.post(url, json={
+    "query": "FOR doc IN testcollection RETURN doc"
+})
+print(resp.text)
 
-  # Read from the collection
-  resp = session.post(url, json={
-      "query": "FOR doc IN testcollection RETURN doc"
-  })
+# Update documents in the collection
+resp = session.post(url, json={
+    "query": "FOR c IN testcollection UPDATE c WITH{'company':'XYZ'} IN testcollection"
+})
+print(resp.text)
+# Upsert documents in the collection
+resp = session.post(url, json={
+    "query": "UPSERT {name: 'John'} INSERT "
+             "{_key:'John', name: 'John', logins:1, updatedAt: DATE_NOW()}"
+             " UPDATE {'logins': OLD.logins + 1, updatedAt: DATE_NOW()} IN testcollection"
+})
+print(resp.text)
+# Delete documents in the collection
+resp = session.post(url, json={
+    "query": "FOR c IN testcollection REMOVE c IN testcollection"
+})
+print(resp.text)
 
-  # Update documents in the collection
-  resp = session.post(url, json={
-      "query": "FOR c IN testcollection UPDATE {'company':'XYZ'} IN testcollection"
-  })
-
-  # Delete documents in the collection
-  resp = session.post(url, json={
-      "query": "FOR c IN testcollection REMOVE c IN testcollection"
-  })
 ```  
 </TabItem>
 </Tabs>
@@ -420,102 +419,91 @@ Streams provide:
 <TabItem value="py" label="Python">
 
 ```py
-  import requests
-  import json
-  from websocket import create_connection
-  import base64
-  import six
+import json
+import base64
+import requests
+from websocket import create_connection
+import six
 
-  # Constants
+# Constants
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxx"
+FABRIC = "_system"
+STREAM_NAME = "teststream"
+AUTH_TOKEN = "bearer "
+TENANT_NAME = ""
+CONSUMER_NAME = "testconsumer"
+STREAM_TYPE = "c8global"
 
-  FEDERATION = "api-gdn.paas.macrometa.io"
-  FED_URL = "https://{}".format(FEDERATION)
-  EMAIL = "nemo@nautilus.com"
-  PASSWORD = "xxxxxx"
-  FABRIC = "_system"
-  STREAM_NAME = "teststream"
-  AUTH_TOKEN = "bearer "
-  TENANT_NAME = "xxxxxx"
-  CONSUMER_NAME = "testconsumer"
+# Create HTTPS session with auth endpoint
+url = f"{FED_URL}/_open/auth"
+payload = {
+    'email': EMAIL,
+    'password': PASSWORD
+}
+headers = {
+    'content-type': 'application/json'
+}
+response = requests.post(url, data=json.dumps(payload), headers=headers)
+if response.status_code == 200:
+    resp_body = json.loads(response.text)
+    AUTH_TOKEN += resp_body["jwt"]
+    TENANT = resp_body["tenant"]
+else:
+    raise Exception(f"Error while getting auth token. "
+                    f"Code:{response.status_code}, Reason:{response.reason}")
 
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
 
-  # Create HTTPS session
-
-  url = "{}/_open/auth".format(FED_URL)
-  payload = {
-      'email':EMAIL,
-      'password':PASSWORD
-      }
-  headers = {
-      'content-type': 'application/json'
-      }
-
-  response = requests.post(url, data = json.dumps(payload), headers = headers)
-
-  if response.status_code == 200:
-      resp_body = json.loads(response.text)
-      AUTH_TOKEN += resp_body["jwt"]
-      TENANT = resp_body["tenant"]
-  else:
-      raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
-
-
-  session = requests.session()
-  session.headers.update({"content-type": 'application/json'})
-  session.headers.update({"authorization": AUTH_TOKEN})
-
-  # Create a stream
+# Create a stream
 # Set global=true for a global stream or global=false for a local stream
+url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_NAME}?global=true"
+resp = session.post(url)
+print("\nStream created: ", resp.text)
 
-  url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "?global=true"
-  resp = session.post(url)
-  print("\nStream created: ", resp.text)
+# Publish messages, Send message in body
+url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}/publish?global=true"
+resp = session.post(url, data="Message")
+print("\nStream received message: ", resp.text)
 
-  # Publish messages
-  # Send message in body
-  url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "/publish?global=true"
-  resp = session.post(url)
-  print("\nStream created: ", resp.text)
+# or using web sockets
+PRODUCER_URL = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}"
+ws = create_connection(PRODUCER_URL, header=[f"authorization: {AUTH_TOKEN}"])
 
-  # or
+payload = {
+    "payload": base64.b64encode(
+        six.b("Hello World")
+    ).decode("utf-8")
+}
+ws.send(json.dumps(payload))
+response = json.loads(ws.recv())
 
-  stream_type = "c8local"
-  producerurl = "wss://" + FEDERATION + "/_ws/ws/v2/producer/persistent/" + TENANT_NAME +\
-                  "/" + stream_type + "." + FABRIC + "/" + stream_type + "s." + STREAM_NAME
+if response['result'] == 'ok':
+    print('Message published successfully')
+else:
+    print('Failed to publish message:', response)
+ws.close()
 
-  ws = create_connection(producerurl)
-  payload = {
-                  "payload": base64.b64encode(
-                      six.b("Hello World")
-                  ).decode("utf-8")
-              }
-  ws.send(json.dumps(payload))
-  response = json.loads(ws.recv())
-  if response['result'] == 'ok':
-      print('Message published successfully')
-  else:
-      print('Failed to publish message:', response)
-  ws.close()
+# Subscribe
+CONSUMER_URL = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}/{CONSUMER_NAME}"
+ws = create_connection(CONSUMER_URL, header=[f"authorization: {AUTH_TOKEN}"])
+while True:
+    msg = json.loads(ws.recv())
+    if msg:
+        print(f"received: {base64.b64decode(msg['payload'])}")
+        # Acknowledge successful processing
+        ws.send(json.dumps({'messageId': msg['messageId']}))
+        break
+ws.close()
 
-  # Subscribe
-
-  consumerurl = "wss://" + FEDERATION + "/_ws/ws/v2/consumer/persistent/" + TENANT_NAME +\
-                  "/" + stream_type + "." + FABRIC + "/" + stream_type + "s." + STREAM_NAME +\
-                  "/" + CONSUMER_NAME
-  ws = create_connection(consumerurl)
-  while True:
-      msg = json.loads(ws.recv())
-      if msg:
-          print("received: {}".format(base64.b64decode(msg['payload'])))
-# Acknowledge successful processing
-          ws.send(json.dumps({'messageId': msg['messageId']}))
-          break
-  ws.close()
-
-  # Delete subscription (unsubscribe)
-  url = FED_URL + "/_api/streams/unsubscribe/" + CONSUMER_NAME
-  resp = session.post(url, data = json.dumps(payload))
-  print("Subsrcription deleted: ", resp.text)
+# Delete Subscription (unsubscribe)
+url = f"{FED_URL}/_api/streams/subscription/{CONSUMER_NAME}"
+resp = session.delete(url)
+print("Subscription deleted: ", resp.text)
 ```
 
 </TabItem>
@@ -729,166 +717,180 @@ Macrometa GDN provides turnkey global distribution and transparent multi-master 
 <TabItem value="py" label="Python">
 
 ```py
-  # Using RESTQL
-  import requests
-  import json
+# Using RESTQL
+import json
+import time
 
-  # Set constants
+import requests
 
-  FEDERATION = "api-gdn.paas.macrometa.io"
-  FED_URL = "https://{}".format(FEDERATION)
-  EMAIL = "nemo@nautilus.com"
-  PASSWORD = "xxxxxx"
-  FABRIC = "_system"
-  AUTH_TOKEN = "bearer "
-  READ_QUERY = "FOR doc IN @@collection RETURN doc"
-  QUERY_NAME = "read"
-  QUERY_PARAMS = {"@collection": "api_query_tutorial"}
-  INSERT_QUERY =  "FOR i IN 1..100 INSERT { result: i } INTO @@collection"
-  UPDATE_QUERY =  "FOR doc IN @@collection FILTER doc.result >= 35 UPDATE doc._key WITH { qualified :true } IN @@collection"
-  DELETE_QUERY =  "FOR c IN @@collection REMOVE c IN @@collection"
+# Set constants
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxx"
+FABRIC = "_system"
+AUTH_TOKEN = "bearer "
+READ_QUERY = "FOR doc IN @@collection RETURN doc"
+QUERY_NAME = "read"
+COLLECTION_NAME = "api_query_tutorial"
+QUERY_PARAMS = {"@collection": f"{COLLECTION_NAME}"}
+INSERT_QUERY = "FOR i IN 1..100 INSERT { result: i } INTO @@collection"
+UPDATE_QUERY = "FOR doc IN @@collection FILTER doc.result >= 35 " \
+               "UPDATE doc._key WITH { qualified :true } IN @@collection"
+DELETE_QUERY = "FOR c IN @@collection REMOVE c IN @@collection"
+UPDATE_READ_QUERY = "FOR doc IN @@collection FILTER doc.result < 10 RETURN doc"
 
+# Create HTTPS session
 
-  # Create HTTPS session
+URL = f"{FED_URL}/_open/auth"
+payload = {
+    'email': EMAIL,
+    'password': PASSWORD
+}
+headers = {
+    'content-type': 'application/json'
+}
 
-  url = "{}/_open/auth".format(FED_URL)
-  payload = {
-      'email':EMAIL,
-      'password':PASSWORD
-      }
-  headers = {
-      'content-type': 'application/json'
-      }
+response = requests.post(URL, data=json.dumps(payload), headers=headers)
 
-  response = requests.post(url, data = json.dumps(payload), headers = headers)
+if response.status_code == 200:
+    resp_body = json.loads(response.text)
+    AUTH_TOKEN += resp_body["jwt"]
+    TENANT = resp_body["tenant"]
+else:
+    raise Exception(f"Error while getting auth token. Code:"
+                    f"{response.status_code}, Reason:{response.reason}")
 
-  if response.status_code == 200:
-      resp_body = json.loads(response.text)
-      AUTH_TOKEN += resp_body["jwt"]
-      TENANT = resp_body["tenant"]
-  else:
-      raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
 
+# Create a document collection
+# Note: Create a test collection. Set "type" to 2 for documents or 3 for edges
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+payload = {
+    "name": COLLECTION_NAME,
+    "type": 2
+}
+resp = session.post(URL, data=json.dumps(payload))
+resp = json.loads(resp.text)
+if 'error' in resp and resp['error']:
+    print("ERROR: " + resp["errorMessage"])
+else:
+    print("\nCollection created: ", resp['name'])
 
-  session = requests.session()
-  session.headers.update({"content-type": 'application/json'})
-  session.headers.update({"authorization": AUTH_TOKEN})
+# Create RESTQL
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql"
 
-  # Create RESTQL
-  url = FED_URL + "/_api/restql"
-
-  # Save read query
-  payload = {
+# Save read query
+payload = {
     "query": {
-      "name": QUERY_NAME,
-      "parameter": QUERY_PARAMS,
-      "value": READ_QUERY
+        "name": QUERY_NAME,
+        "parameter": QUERY_PARAMS,
+        "value": READ_QUERY
     }
-  }
+}
 
-  resp = session.post(url, data = json.dumps(payload))
-  print("\nRead query saved: ", resp.text)
-
-  # Save insert query
-  payload = {
+resp = session.post(URL, data=json.dumps(payload))
+print("\nRead query saved: ", resp.text)
+time.sleep(1)
+# Save insert query
+payload = {
     "query": {
-      "name": "insert",
-      "value": INSERT_QUERY,
-      "parameter": QUERY_PARAMS,
-
-    }
-  }
-
-  resp = session.post(url, data = json.dumps(payload))
-  print("\nInsert query saved: ", resp.text)
-
-  # Save update query
-  payload = {
-    "query": {
-      "name": "update",
-      "value": UPDATE_QUERY,
-      "parameter": QUERY_PARAMS,
-
-    }
-  }
-
-  resp = session.post(url, data = json.dumps(payload))
-  print("\nUpdate query saved: ", resp.text)
-
-  payload = {
-    "query": {
-      "name": "delete",
-      "value": DELETE_QUERY,
-      "parameter": QUERY_PARAMS,
+        "name": "insert",
+        "value": INSERT_QUERY,
+        "parameter": QUERY_PARAMS,
 
     }
-  }
+}
 
-  resp = session.post(url, data = json.dumps(payload))
-  print("\nDelete query saved: ", resp.text)
-
-
-  # Execute saved query
-
-  url = FED_URL + "/_api/restql/execute/insert"
-  payload = {
-            "bindVars": QUERY_PARAMS,
-          }
-  resp = session.post(url, data = json.dumps(payload))
-  print("\nInsert query executed: ", resp.text)
-
-  url = FED_URL + "/_api/restql/execute/" + QUERY_NAME
-  payload = {
-            "bindVars": QUERY_PARAMS,
-          }
-  resp = session.post(url, data = json.dumps(payload))
-  print("\nRead query executed: ", resp.text)
-
-  url = FED_URL + "/_api/restql/execute/update"
-  payload = {
-            "bindVars": QUERY_PARAMS,
-          }
-  resp = session.post(url, data = json.dumps(payload))
-  print("\nUpdate query executed: ", resp.text)
-
-  url = FED_URL + "/_api/restql/execute/delete"
-  payload = {
-            "bindVars": QUERY_PARAMS,
-          }
-  resp = session.post(url, data = json.dumps(payload))
-  print("\nDelete query executed: ", resp.text)
-
-
-  # Update saved query
-  url = FED_URL + "/_api/restql/" + QUERY_NAME
-
-  payload = {
+resp = session.post(URL, data=json.dumps(payload))
+print("\nInsert query saved: ", resp.text)
+time.sleep(1)
+# Save update query
+payload = {
     "query": {
-      "parameter": QUERY_PARAMS,
-      "value": READ_QUERY
+        "name": "update",
+        "value": UPDATE_QUERY,
+        "parameter": QUERY_PARAMS,
+
     }
-  }
+}
 
-  resp = session.put(url, data = json.dumps(payload))
-  print("Query updated: ", resp.text)
+resp = session.post(URL, data=json.dumps(payload))
+print("\nUpdate query saved: ", resp.text)
+time.sleep(1)
+# Save delete query
+payload = {
+    "query": {
+        "name": "delete",
+        "value": DELETE_QUERY,
+        "parameter": QUERY_PARAMS,
 
-  # Delete saved queries
-
-  url = FED_URL + "/_api/restql/" + QUERY_NAME
-  resp = session.delete(url)
-  print("Read query deleted: ", resp.text)
-
-  url = FED_URL + "/_api/restql/insert"
-  resp = session.delete(url)
-  print("Insert query deleted: ", resp.text)
-
-  url = FED_URL + "/_api/restql/update"
-  resp = session.delete(url)
-  print("Update query deleted: ", resp.text)
-
-  url = FED_URL + "/_api/restql/delete"
-  resp = session.delete(url)
-  print("Delete query deleted: ", resp.text)
+    }
+}
+resp = session.post(URL, data=json.dumps(payload))
+print("\nDelete query saved: ", resp.text)
+time.sleep(1)
+# Execute insert query
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/execute/insert"
+payload = {
+    "bindVars": QUERY_PARAMS,
+}
+resp = session.post(URL, data=json.dumps(payload))
+print("\nInsert query executed: ", resp.text)
+time.sleep(1)
+# Execute read query
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/execute/" + QUERY_NAME
+payload = {
+    "bindVars": QUERY_PARAMS,
+}
+resp = session.post(URL, data=json.dumps(payload))
+print("\nRead query executed: ", resp.text)
+time.sleep(1)
+# Execute update query
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/execute/update"
+payload = {
+    "bindVars": QUERY_PARAMS,
+}
+resp = session.post(URL, data=json.dumps(payload))
+print("\nUpdate query executed: ", resp.text)
+time.sleep(1)
+# Update saved query
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/" + QUERY_NAME
+payload = {
+    "query": {
+        "parameter": QUERY_PARAMS,
+        "value": UPDATE_READ_QUERY
+    }
+}
+resp = session.put(URL, data=json.dumps(payload))
+print("Query updated: ", resp.text)
+time.sleep(1)
+# Execute delete query
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/execute/delete"
+payload = {
+    "bindVars": QUERY_PARAMS,
+}
+resp = session.post(URL, data=json.dumps(payload))
+print("\nDelete query executed: ", resp.text)
+time.sleep(1)
+# Delete saved queries
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/{QUERY_NAME}"
+resp = session.delete(URL)
+print("Read query deleted: ", resp.text)
+time.sleep(1)
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/insert"
+resp = session.delete(URL)
+print("Insert query deleted: ", resp.text)
+time.sleep(1)
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/update"
+resp = session.delete(URL)
+print("Update query deleted: ", resp.text)
+time.sleep(1)
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/delete"
+resp = session.delete(URL)
+print("Delete query deleted: ", resp.text)
 ```
 
 </TabItem>
@@ -1132,198 +1134,192 @@ To create `edge collection` use same endpoint `/_fabric/{fabric_name}/_api/colle
 <TabItem value="py" label="Python">
 
 ```py
-  import requests
-  import json
+import json
+import requests
 
-  # Constants
+# Constants
 
-  FEDERATION = "api-gdn.paas.macrometa.io"
-  FED_URL = "https://{}".format(FEDERATION)
-  EMAIL = "nemo@nautilus.com"
-  PASSWORD = "xxxxxx"
-  FABRIC = "_system"
-  AUTH_TOKEN = "bearer "
-  TENANT_NAME = "xxxxxx"
-  COLLECTION_NAME_1 = "teachers"
-  COLLECTION_NAME_2 = "lectures"
-  EDGE_COLL_NAME = "teach"
-  GRAPH_NAME = "lectureteacher"
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxx"
+FABRIC = "_system"
+AUTH_TOKEN = "bearer "
+TENANT_NAME = ""
+COLLECTION_NAME_1 = "teachers"
+COLLECTION_NAME_2 = "lectures"
+EDGE_COLL_NAME = "teach"
+GRAPH_NAME = "lectureteacher"
+
+# Create HTTPS session
+
+URL = f"{FED_URL}/_open/auth"
+payload = {
+    'email': EMAIL,
+    'password': PASSWORD
+}
+headers = {
+    'content-type': 'application/json'
+}
+
+response = requests.post(URL, data=json.dumps(payload), headers=headers)
+
+if response.status_code == 200:
+    resp_body = json.loads(response.text)
+    AUTH_TOKEN += resp_body["jwt"]
+    TENANT = resp_body["tenant"]
+else:
+    raise Exception(f"Error while getting auth token. "
+                    f"Code:{response.status_code}, Reason:{response.reason}")
+
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
+
+# Create document collections and insert data
 
 
-  # Create HTTPS session
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+payload = {'name': COLLECTION_NAME_1}
 
-  url = "{}/_open/auth".format(FED_URL)
-  payload = {
-      'email':EMAIL,
-      'password':PASSWORD
-      }
-  headers = {
-      'content-type': 'application/json'
-      }
+resp = session.post(URL, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocument collection 1 created: ", result)
 
-  response = requests.post(url, data = json.dumps(payload), headers = headers)
+payload = {'name': COLLECTION_NAME_2}
 
-  if response.status_code == 200:
-      resp_body = json.loads(response.text)
-      AUTH_TOKEN += resp_body["jwt"]
-      TENANT = resp_body["tenant"]
-  else:
-      raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
+resp = session.post(URL, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocument collection 2 created: ", result)
 
+payload = [
+    {
+        '_key': 'Jean',
+        'firstname': 'Jean',
+        'lastname': 'Picard',
+        'email': 'jean.picard@macrometa.io'
+    },
+    {
+        '_key': 'James',
+        'firstname': 'James',
+        'lastname': 'Kirk',
+        'email': 'james.kirk@macrometa.io'
+    },
+    {
+        '_key': 'Han',
+        'firstname': 'Han',
+        'lastname': 'Solo',
+        'email': 'han.solo@macrometa.io'
+    },
+    {
+        '_key': 'Bruce',
+        'firstname': 'Bruce',
+        'lastname': 'Wayne',
+        'email': 'bruce.wayne@macrometa.io'
+    }
+]
 
-  session = requests.session()
-  session.headers.update({"content-type": 'application/json'})
-  session.headers.update({"authorization": AUTH_TOKEN})
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME_1}"
+resp = session.post(URL, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocuments inserted: ", result)
 
-  # Create document collections and insert data
+payload = [
+    {'_id': 'lectures/CSC101', 'difficulty': 'easy', '_key': 'CSC101', 'firstname': 'Jean'},
+    {'_id': 'lectures/CSC102', 'difficulty': 'hard', '_key': 'CSC102', 'firstname': 'Jean'},
+    {'_id': 'lectures/CSC103', 'difficulty': 'hard', '_key': 'CSC103', 'firstname': 'Jean'},
+    {'_id': 'lectures/CSC104', 'difficulty': 'moderate', '_key': 'CSC104', 'firstname': 'Jean'}
 
+]
 
-  url = FED_URL + "/_api/collection"
-  payload = { 'name': COLLECTION_NAME_1 }
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME_2}"
+resp = session.post(URL, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocuments inserted: ", result)
 
-  resp = session.post(url,data=json.dumps(payload))
-  result = json.loads(resp.text)
-  print("\nDocument collection 1 created: ",result)
+# Create edge collection
+payload = {'name': EDGE_COLL_NAME, "type": 3}
 
-  payload = { 'name': COLLECTION_NAME_2 }
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+resp = session.post(URL, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nEdge collection created: ", result)
+payload = [
+    {
+        '_key': 'Jean-CSC101',
+        '_from': 'teachers/Jean',
+        '_to': 'lectures/CSC101',
+        'online': False
+    },
+    {
+        '_key': 'Jean-CSC102',
+        '_from': 'teachers/Jean',
+        '_to': 'lectures/CSC102',
+        'online': True
+    },
+    {
+        '_key': 'Jean-CSC103',
+        '_from': 'teachers/Jean',
+        '_to': 'lectures/CSC103',
+        'online': False
+    },
+    {
+        '_key': 'Bruce-CSC101',
+        '_from': 'teachers/Bruce',
+        '_to': 'lectures/CSC101',
+        'online': True
+    }
 
-  resp = session.post(url,data=json.dumps(payload))
-  result = json.loads(resp.text)
-  print("\nDocument collection 2 created: ",result)
+]
 
-  payload = [
-      {
-          '_key':'Jean',
-          'firstname': 'Jean',
-          'lastname':'Picard',
-          'email':'jean.picard@macrometa.io'
-      },
-      {
-          '_key':'James',
-          'firstname': 'James',
-          'lastname':'Kirk',
-          'email':'james.kirk@macrometa.io'
-      },
-      {
-          '_key': 'Han',
-          'firstname': 'Han',
-          'lastname':'Solo',
-          'email':'han.solo@macrometa.io'
-      },
-      {
-          '_key': 'Bruce',
-          'firstname': 'Bruce',
-          'lastname':'Wayne',
-          'email':'bruce.wayne@macrometa.io'
-      }
-  ]
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{EDGE_COLL_NAME}"
+resp = session.post(URL, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocuments inserted: ", result)
 
-  url = FED_URL + "/_api/document/" + COLLECTION_NAME_1
-  resp = session.post(url,data=json.dumps(payload))
-  result = json.loads(resp.text)
-  print("\nDocuments inserted: ",result)
-
-  payload = [
-      {'_id': 'lectures/CSC101', 'difficulty': 'easy', '_key':'CSC101', 'firstname':'Jean'},
-      {'_id': 'lectures/CSC102', 'difficulty': 'hard', '_key':'CSC102','firstname':'Jean'},
-      {'_id': 'lectures/CSC103', 'difficulty': 'hard', '_key':'CSC103','firstname':'Jean'},
-      {'_id': 'lectures/CSC104', 'difficulty': 'moderate', '_key':'CSC104','firstname':'Jean'}
-
-  ]
-
-  url = FED_URL + "/_api/document/" + COLLECTION_NAME_2
-  resp = session.post(url,data=json.dumps(payload))
-  result = json.loads(resp.text)
-  print("\nDocuments inserted: ",result)
-
-  # Create edge collection
-
-  payload = { 'name': EDGE_COLL_NAME, "type":3 }
-
-  url = FED_URL + "/_api/collection"
-  resp = session.post(url,data=json.dumps(payload))
-  result = json.loads(resp.text)
-  print("\nEdge collection created: ",result)
-  payload = [
-      {
-      '_key': 'Jean-CSC101',
-      '_from': 'teachers/Jean',
-      '_to': 'lectures/CSC101',
-      'online': False
-      },
-      {
-      '_key': 'Jean-CSC102',
-      '_from': 'teachers/Jean',
-      '_to': 'lectures/CSC102',
-      'online': True
-      },
-      {
-      '_key': 'Jean-CSC103',
-      '_from': 'teachers/Jean',
-      '_to': 'lectures/CSC103',
-      'online': False
-      },
-      {
-      '_key': 'Bruce-CSC101',
-      '_from': 'teachers/Bruce',
-      '_to': 'lectures/CSC101',
-      'online': True
-      }
-
-  ]
-
-  url = FED_URL + "/_api/document/" + EDGE_COLL_NAME
-  resp = session.post(url,data=json.dumps(payload))
-  result = json.loads(resp.text)
-  print("\nDocuments inserted: ",result)
-
-  # Create a graph
-
-  payload ={
+# Create a graph
+payload = {
     "edgeDefinitions": [
-      {
-        "collection": EDGE_COLL_NAME,
-        "from": [
-          "teachers"
-        ],
-        "to": [
-          "lectures"
-        ]
-      }
+        {
+            "collection": EDGE_COLL_NAME,
+            "from": [
+                "teachers"
+            ],
+            "to": [
+                "lectures"
+            ]
+        }
     ],
     "name": GRAPH_NAME,
     "options": {}
-  }
+}
 
-  url = FED_URL + "/_api/graph"
-  resp = session.post(url,data=json.dumps(payload))
-  result = json.loads(resp.text)
-  print("\nGraph created: ",result)
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/graph"
+resp = session.post(URL, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nGraph created: ", result)
 
-  # Graph traversal
-  # To use outbound traversal, set direction to `out`. To use inbound traversal, set direction to `in`.
+# Graph traversal
+# To use outbound traversal, set direction to `out`.
+# To use inbound traversal, set direction to `in`.
+params = {
+    "vertex": "teachers/Jean",
+    "direction": "out"
+}
 
-  params = {
-      "vertex": "Jean",
-      "direction": "out"
-  }
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/edges/{EDGE_COLL_NAME}"
 
-  url = FED_URL + "/_api/edges/" + EDGE_COLL_NAME
+resp = session.get(URL, params=params)
+result = json.loads(resp.text)
+print("\nGraph traversal: ", result)
 
-  resp = session.get(url,params=params)
-  result = json.loads(resp.text)
-  print("\nGraph traversal: ",result)
-
-  # Delete graph and collections
+# Delete graph and collections
 # To delete the graph and save the collections, set dropCollection to `false`.
-
-  params = {"dropCollection": True}
-
-  url = FED_URL + "/_api/graph/" + GRAPH_NAME
-
-  resp = session.delete(url,params=params)
-  result = json.loads(resp.text)
-  print("Graph and collections deleted: ", result)
+params = {"dropCollections": True}
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/graph/{GRAPH_NAME}"
+resp = session.delete(URL, params=params)
+result = json.loads(resp.text)
+print("Graph and collections deleted: ", result)
 ```
 
 </TabItem>
@@ -1400,155 +1396,159 @@ Macrometa Stream processing enables you to integrate streaming data into your te
 <TabItem value="py" label="Python">
 
 ```py
-  import requests
-  import json
-  from websocket import create_connection
-  import base64
-  import six
-  import time
+import json
+import time
+import base64
+import requests
+from websocket import create_connection
+import six
 
-  # Set constants
+# Set constants
 
-  FEDERATION = "api-gdn-us-west.prod.macrometa.io"
-  FED_URL = "https://{}".format(FEDERATION)
-  EMAIL = "nemo@nautilus.com"
-  PASSWORD = "xxxxxx"
-  FABRIC = "_system"
-  AUTH_TOKEN = "bearer "
-  TENANT_NAME = "xxxxxx"
-  STREAM_NAME = "tutorialAppInputStream"
-  STREAM_APP_NAME = "stream_app_tutorial"
-  STREAM_APP ='''
-    @App:name('stream_app_tutorial')
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxx"
+FABRIC = "_system"
+AUTH_TOKEN = "bearer "
+TENANT_NAME = ""
+STREAM_NAME = "tutorialAppInputStream"
+STREAM_APP_NAME = "stream_app_tutorial"
+STREAM_APP = '''
+      @App:name('stream_app_tutorial')
+      @App:qlVersion("2")
+      CREATE FUNCTION concatFn[javascript] return string {
+          var str1 = data[0];
+          var str2 = data[1];
+          var str3 = data[2];
+          var response = str1 + str2 + str3;
+          return response;
+      };
+      -- Stream
+      CREATE SOURCE STREAM tutorialAppInputStream (deviceID string, roomNo int, temperature double);
+      -- Table
+      CREATE TABLE tutorialAppOutputTable (id string, temperature double);
+      @info(name='Query')
+      INSERT INTO tutorialAppOutputTable
+      SELECT concatFn(roomNo,'-',deviceID) as id, temperature
+      FROM tutorialAppInputStream;
+ '''
+INPUT_DATA = [
+    {
+        "deviceID": "AD11",
+        "roomNo": 200,
+        "temperature": 18,
+    },
+    {"deviceID": "AD11",
+     "roomNo": 201,
+     "temperature": 47},
+]
+SELECT_QUERY = "FOR doc IN tutorialAppOutputTable return doc"
 
-    define function concatFn[javascript] return string {
-        var str1 = data[0];
-        var str2 = data[1];
-        var str3 = data[2];
-        var response = str1 + str2 + str3;
-        return response;
-    };
+# Create HTTPS session
 
-    -- Stream
-    define stream tutorialAppInputStream (deviceID string, roomNo int, temperature double);
+URL = f"{FED_URL}/_open/auth"
+payload = {
+    'email': EMAIL,
+    'password': PASSWORD
+}
+headers = {
+    'content-type': 'application/json'
+}
 
-    -- Table
-    define table tutorialAppOutputTable (id string, temperature double);
+response = requests.post(URL, data=json.dumps(payload), headers=headers)
 
-    @info(name='Query')
-    select concatFn(roomNo,'-',deviceID) as id, temperature
-    from tutorialAppInputStream
-    insert into tutorialAppOutputTable;
-  '''
-  INPUT_DATA = [
-        {
-          "deviceID": "AD11",
-          "roomNo": 200,
-          "temperature": 18,
-        },
-        { "deviceID": "AD11",
-          "roomNo": 201,
-          "temperature": 47 },
-      ]
-  SELECT_QUERY = "FOR doc IN tutorialAppOutputTable return doc"
+if response.status_code == 200:
+    resp_body = json.loads(response.text)
+    AUTH_TOKEN += resp_body["jwt"]
+    TENANT = resp_body["tenant"]
+else:
+    raise Exception(f"Error while getting auth token. "
+                    f"Code:{response.status_code}, Reason:{response.reason}")
 
-  # Create HTTPS session
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
 
-  url = "{}/_open/auth".format(FED_URL)
-  payload = {
-      'email':EMAIL,
-      'password':PASSWORD
-      }
-  headers = {
-      'content-type': 'application/json'
-      }
+# Create stream application
 
-  response = requests.post(url, data = json.dumps(payload), headers = headers)
-
-  if response.status_code == 200:
-      resp_body = json.loads(response.text)
-      AUTH_TOKEN += resp_body["jwt"]
-      TENANT = resp_body["tenant"]
-  else:
-      raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
-
-
-  session = requests.session()
-  session.headers.update({"content-type": 'application/json'})
-  session.headers.update({"authorization": AUTH_TOKEN})
-
-  # Create stream application
-
-  url = FED_URL + "/_api/streamapps"
-  payload = {
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/streamapps"
+payload = {
     "definition": STREAM_APP,
-    "regions": ["gdn-us-west1"]
-  }
+    "regions": ["devsuccess2-us-east", "devsuccess2-us-central", "devsuccess2-ap-west"]
 
-  resp = session.post(url, data=json.dumps(payload))
-  result = json.loads(resp.text)
-  print("\nStream application created: ", result)
+}
 
-  # Activate stream application
+resp = session.post(URL, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nStream application created: ", result)
 
-  url = FED_URL + "/_api/streamapps/" + STREAM_APP_NAME + "/active?active=true"
-  resp = session.patch(url)
-  result = json.loads(resp.text)
-  print("\nStream application activated: ", result)
+# Activate stream application
 
-  # Wait for all inputs and outputs to initialize
-  time.sleep(20)
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/streamapps/{STREAM_APP_NAME}/active?active=true"
+resp = session.patch(URL)
+result = json.loads(resp.text)
+print("\nStream application activated: ", result)
 
-  # Publish messages to the input stream
-  stream_type = "c8local"
-  producerurl = "wss://" + FEDERATION + "/_ws/ws/v2/producer/persistent/" + TENANT_NAME +\
-                  "/" + stream_type + "." + FABRIC + "/" + stream_type + "s." + STREAM_NAME
+# Wait for all inputs and outputs to initialize
+time.sleep(20)
 
-  ws = create_connection(producerurl)
-  payload = {
-                  "payload": base64.b64encode(
-                      six.b(json.dumps(INPUT_DATA[0]))
-                  ).decode("utf-8")
-              }
-  ws.send(json.dumps(payload))
-  response = json.loads(ws.recv())
-  if response['result'] == 'ok':
-      print('Message published successfully')
-  else:
-      print('Failed to publish message:', response)
+# Publish messages to the input stream
+STREAM_TYPE = "c8local"
+PRODUCER_URL = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}"
 
-  payload = {
-                  "payload": base64.b64encode(
-                      six.b(json.dumps(INPUT_DATA[1]))
-                  ).decode("utf-8")
-              }
-  ws.send(json.dumps(payload))
-  response = json.loads(ws.recv())
-  if response['result'] == 'ok':
-      print('Message published successfully')
-  else:
-      print('Failed to publish message:', response)
+ws = create_connection(PRODUCER_URL, header=[f"Authorization:{AUTH_TOKEN}"])
+payload = {
+    "payload": base64.b64encode(
+        six.b(json.dumps(INPUT_DATA[0]))
+    ).decode("utf-8")
+}
+ws.send(json.dumps(payload))
+response = json.loads(ws.recv())
+if response['result'] == 'ok':
+    print('Message published successfully')
+else:
+    print('Failed to publish message:', response)
 
-  ws.close()
+payload = {
+    "payload": base64.b64encode(
+        six.b(json.dumps(INPUT_DATA[1]))
+    ).decode("utf-8")
+}
+ws.send(json.dumps(payload))
+response = json.loads(ws.recv())
+if response['result'] == 'ok':
+    print('Message published successfully')
+else:
+    print('Failed to publish message:', response)
 
-  # Verify results from the collection
+ws.close()
 
-  url = FED_URL + "/_api/cursor"
-  payload= {
+# Verify results from the collection
+
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/cursor"
+payload = {
     "id": "tutorialStreamAppQuery",
     "query": SELECT_QUERY,
     "bindVars": {},
-  }
-  resp = session.post(url, data=json.dumps(payload))
-  result = json.loads(resp.text)
-  print("\nStream application results: ", result)
+}
+resp = session.post(URL, data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nStream application results: ", result)
 
-  # Delete stream application
+# Delete stream application
 
-  url = FED_URL + "/_api/streamapps/" + STREAM_APP_NAME
-  resp = session.delete(url)
-  result = json.loads(resp.text)
-  print("\nStream application deleted: ", result)
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/streamapps/{STREAM_APP_NAME}"
+resp = session.delete(URL)
+result = json.loads(resp.text)
+print("\nStream application deleted: ", result)
+
+# Delete stream
+
+URL = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}"
+resp = session.delete(URL)
+result = json.loads(resp.text)
+print("\nStream deleted: ", result)
 ```
 
 </TabItem>
