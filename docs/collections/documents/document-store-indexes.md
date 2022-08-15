@@ -20,7 +20,7 @@ Refer to each index type for more information about the index and for instructio
 
 View active indexes for a collection on the Indexes tab. The section explains what each element of the tab means.
 
-![Document Store Data Tab](/img/collections/doc-store-indexes.png)
+![Document Store Indexes Tab](/img/collections/doc-store-indexes.png)
 
 - **ID -** This is a unique primary key for the indexes.
 - **Type -** The index type.
