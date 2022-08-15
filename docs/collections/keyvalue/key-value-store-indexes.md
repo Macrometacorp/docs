@@ -7,7 +7,7 @@ Indexes enable you to create searchable attributes to speed up your queries. For
 
 ## Key-Value Store Indexes
 
-Key-value stores come with two indexes: a primary and a [TTL index](../indexing/ttl-indexes.md).
+Key-value stores come with two indexes: a primary and a [TTL index](../indexing/ttl-indexes.md). TTL indexes are the only type that you can create for a key-value store collection.
 
 ## View Indexes
 
