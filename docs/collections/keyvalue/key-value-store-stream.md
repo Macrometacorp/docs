@@ -1,5 +1,5 @@
 ---
-title: Document Store Stream
+title: Key-Value Store Stream
 sidebar_position: 60
 ---
 
