@@ -16,9 +16,9 @@ For the stream processor to consume events, the following is required.
 
 A source configuration consists of the following:
   
-- `source.type`: This annotation defines the source type via which the messages are consumed, and allows you to configure the source parameters (which change depending on the source type). For the complete list of supported source types, see [Streams Query Guide - Source](../../cep/reference/query-guide.md#source)
+- `source.type`: This annotation defines the source type via which the messages are consumed, and allows you to configure the source parameters (which change depending on the source type). For the complete list of supported source types, see [Streams Query Guide - Source](../query-guide/stream.md#source)
 
-- `map.type`: This annotation specifies the format in which messages are consumed, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Streams Query Guide - Source Mapper](../../cep/reference/query-guide.md#source-mapper)
+- `map.type`: This annotation specifies the format in which messages are consumed, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Streams Query Guide - Source Mapper](../query-guide/stream#source-mapper)
 
 - `attributes`: This annotation specifies a custom mapping based on which events to be selected into the stream processing flow are identified. This is useful when the attributes of the incoming messages you want the stream processor to consume are different to the corresponding attribute name in the stream definition.
 
