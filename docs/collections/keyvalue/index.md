@@ -1,5 +1,5 @@
 ---
-title: Key-Value
+title: Key-Value Store
 sidebar_position: 1
 ---
 
