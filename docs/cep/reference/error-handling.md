@@ -10,7 +10,7 @@ Errors in stream apps can be handled at the Streams and in the Sinks. This examp
 There can be cases where external systems becoming unavailable or coursing errors when the events are published to them.
 By default sinks log and drop the events causing event losses, and this can be handled gracefully by adding `OnError.action="<action>",` to the `WITH()` property for creating a sink.
 
-Refer to the [stream query guide](./query-guide#error-handling) for more information.
+Refer to the [stream query guide](../query-guide/stream.md#error-handling) for more information.
 
 In the following example, we attempt to publish abnormal Glucose reading events to an unavailable HTTP endpoint, and the error is recorded to the logs.
 
@@ -58,7 +58,7 @@ This example shows how errors are handled at Sink level by `wait and retry` mode
 
 In this mode, publishing threads wait in back-off and re-trying mode, and only send the events when the connection is re-established. During this time the threads will not consume any new messages causing the systems to introduce back pressure on the systems that publish to it.
 
-Refer to the [stream query guide](./query-guide#error-handling) for more information.
+Refer to the [stream query guide](../query-guide/stream.md#error-handling) for more information.
 
 
 ```sql

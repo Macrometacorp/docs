@@ -234,7 +234,7 @@ select LocationStream.taxiID, LocationStream.driverID, 'Unexpected Delay' as mes
 from not LocationStream[latitude == 44.0096 and longitude == 81.2735] for 15 minutes or not LocationStream[latitude == 43.0096 and longitude == 81.2737] for 15 minutes;
 ```
 
-For the complete list of methods in which you can apply patterns to detect non occuring events, see [Stream Query Guide - Detecting Non-Occurring Events](../reference/query-guide#detecting-non-occurring-events).
+For the complete list of methods in which you can apply patterns to detect non occuring events, see [Stream Query Guide - Detecting Non-Occurring Events](../query-guide/query.md#detecting-non-occurring-events).
 
 ## Correlating events to find a trend(sequence)
 
