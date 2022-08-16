@@ -15,6 +15,6 @@ Key-Value stores only have one settings option.
 
 - **Synchronous Writes -** Select the checkbox to enable synchronous writes.
 
-In the Settings tab, you can [Delete](delete-collection.md) or [Truncate](truncate-collection.md) the collection.
+In the Settings tab, you can [Delete](../delete-collection.md) or [Truncate](../truncate-collection.md) the collection.
 
 ![Key-Value Store Settings Tab](/img/collections/key-value-store-settings.png)
