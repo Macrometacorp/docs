@@ -200,7 +200,7 @@ pp.pprint(docs)
 
 #-------------------------------------------------------------------#
 
-# # Step7: Delete Data
+# Step 7: Delete data.
 print(f"\n7. DELETE_DATA: region: {URL}, collections: {collection_shops}, {collection_transit}")
 shopCol.truncate()
 transitCol.truncate()
