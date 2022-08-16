@@ -32,10 +32,23 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 
-# Remove api key
-remove = client.remove_api_key('id1')
+# Check wether the chosen_api_key exists or not, comparing it to the list elements
+for apiElement in apiKeyIds:
+    if apiElement == CHOSEN_API_KEY_ID:
+        API_ACTIVE = True
+        break
 
-print(remove)
+# Checks if the API already exists and acts accordingly
+if API_ACTIVE:
+    # Remove the chosen API key
+    try:
+        print("Remove API Key: ", client.remove_api_key(CHOSEN_API_KEY_ID))
+    except Exception as err:
+        print("Error removing the API key")
+        print(err)
+else:
+    # Display message that the eky does not exists
+    print("Can't remove a non-existent key")
 ```
 
 </TabItem>
