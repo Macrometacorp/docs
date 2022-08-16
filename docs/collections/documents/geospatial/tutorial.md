@@ -129,11 +129,11 @@ transit_data = [
 
 pp = pprint.PrettyPrinter(indent=4)
 
-# Step1: Open connection to GDN. You will be routed to closest region.
+# Step 1: Open connection to GDN. You will be routed to closest region.
 print(f"\n1. CONNECT: federation: {URL},  user: {API_KEY}")
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric=GEO_FABRIC)
 
-# Step2: Create a collection and geo index if not exists
+# Step 2: Create a collection and geo index if not exists.
 print(f"\n2. CREATE_COLLECTION: region: {URL},  collection: {collection_shops}")
 if client.has_collection(collection_shops):
     shopCol = client.collection(collection_shops)
@@ -141,12 +141,12 @@ else:
     shopCol = client.create_collection(collection_shops)
     client.add_geo_index(collection_shops, fields=["coordinate"], ordered=False)
 
-# Step3: Insert data into collection.
+# Step 3: Insert data into collection.
 print(f"\n3. INSERT_SHOP_DATA: in region: {URL}")
 #shopCol.insert_many(shops_data)
 client.insert_document(collection_name=collection_shops, document=shops_data)
 
-# Step3a: Find shops closer to given location
+# Step 3a: Find shops closer to given location.
 lat1 = 37.43007055731992 # McCarthy Blvd, Milpitas
 long1 = -121.92344167914754 # McCarthy Blvd, Milpitas
 radius = 10 * 1000 # meters
@@ -157,7 +157,7 @@ cursor = client.execute_query(within_query)
 docs = [document for document in cursor]
 pp.pprint(docs)
 
-# Step3b: Find shop closest to given location
+# Step 3b: Find shop closest to given location.
 print(f"\n3b. FIND_NEAREST_SHOP for request: ({lat1}, {long1})")
 near_query = f"FOR loc IN NEAR ({collection_shops}, {lat1}, {long1}, 1) RETURN loc"
 cursor = client.execute_query(near_query)
@@ -166,7 +166,7 @@ pp.pprint(docs)
 
 #-------------------------------------------------------------------#
 
-# Step4: Create a collection & geoindex if not exists
+# Step 4: Create a collection & geoindex if not exists.
 print(f"\n4. CREATE_COLLECTION: region: {URL},  collection: {collection_transit}")
 if client.has_collection(collection_transit):
     transitCol = client.collection(collection_transit)
@@ -174,11 +174,11 @@ else:
     transitCol = client.create_collection(collection_transit)
     client.add_geo_index(collection_transit, fields=["coordinate"], ordered=False)
 
-# Step5: Insert data into collection.
+# Step 5: Insert data into collection.
 print(f"\n5. INSERT_TRANSIT_DATA: in region: {URL}")
 client.insert_document(collection_name=collection_transit, document=transit_data)
 
-# Step6a: Find buses currently within given rectangular fence
+# Step 6a: Find buses currently within given rectangular fence.
 lat1 = 37.38905593900322
 long1 = -122.14426630984782
 lat2 = 37.332401582858324
@@ -191,7 +191,7 @@ cursor = client.execute_query(within_query)
 docs = [document for document in cursor]
 pp.pprint(docs)
 
-# Step6b: Find shop closest to given location
+# Step 6b: Find shop closest to given location.
 print(f"\n6b. FIND_NEAREST_BUS for given location: ({lat1}, {long1})")
 near_query = f"FOR loc IN NEAR ({collection_transit}, {lat1}, {long1}, 1) RETURN loc"
 cursor = client.execute_query(near_query)
