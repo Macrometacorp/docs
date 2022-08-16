@@ -29,8 +29,23 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                     email='nemo@nautilus.com', password='xxxxx',
                     geofabric='_system')
 
-# Create an API key
-print("Create API Key: ", client.create_api_key('id1'))
+# Check wether the chosen_api_key exists or not, comparing it to the list elements
+for apiElement in apiKeyIds:
+    if apiElement == CHOSEN_API_KEY_ID:
+        API_ACTIVE = True
+        break
+
+# Checks if the API key already exists and acts accordingly
+if API_ACTIVE:
+    # Send message that the key already exists
+    print("Remove API Key: ", client.remove_api_key(CHOSEN_API_KEY_ID))
+else:
+    # Create a new API key
+    try:
+        print("Create API Key: ", client.create_api_key(CHOSEN_API_KEY_ID))
+    except Exception as err:
+        print("Error generating the API key")
+        print(err)
 ```
 
 </TabItem>
