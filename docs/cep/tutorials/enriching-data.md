@@ -198,7 +198,7 @@ To understand how this is done, consider a scenario where you receive informatio
         having w.amount > d.amount * 0.95;
         ```
 
-For the different types of joins you can perform via streams, see [Stream Query Guide - Join](../reference/query-guide.md#join-stream)
+For the different types of joins you can perform via streams, see [Stream Query Guide - Join](../query-guide/query.md#join-stream)
 
 ## Enrich data with External Services
 

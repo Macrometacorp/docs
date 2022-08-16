@@ -10,17 +10,17 @@ The stream processor allows you to perform a wide range of transformations to th
 
 ## Transform data using Operators
 
-The operators that you can configure inline within Stream applications in order to carry out data transformations are listed in the [Stream Processor Query Guide - Inbuild Aggregation Functions section](../reference/query-guide.md).
+The operators that you can configure inline within Stream applications in order to carry out data transformations are listed in the [Stream Query Guide](../query-guide/index.md).
 
 To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
 the temperature of a room every second are transformed to indicate the average temperature and the average humidity as at each second.
 
 1. Open the GUI. Click the **Stream Apps** tab.
-1. Click **New** to define a new stream application.
-1. Type a **Name**. For example, `TemperatureApp`.
-1. Type a **Description**.
-1. Add the following sample stream application.
-1. Let's define the input stream to define the schema based on which data is selected to the streaming integration flow.
+2. Click **New** to define a new stream application.
+3. Type a **Name**. For example, `TemperatureApp`.
+4. Type a **Description**.
+5. Add the following sample stream application.
+6. Let's define the input stream to define the schema based on which data is selected to the streaming integration flow.
 
     In this example, let's assume that each event indicates the device ID, the room ID, and the temperature. Therefore, let's define an input stream as follows:
 
