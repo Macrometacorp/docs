@@ -133,7 +133,7 @@ pp = pprint.PrettyPrinter(indent=4)
 print(f"\n1. CONNECT: federation: {URL},  user: {API_KEY}")
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric=GEO_FABRIC)
 
-# Step2: Create a collection & geoindex if not exists
+# Step2: Create a collection and geo index if not exists
 print(f"\n2. CREATE_COLLECTION: region: {URL},  collection: {collection_shops}")
 if client.has_collection(collection_shops):
     shopCol = client.collection(collection_shops)
