@@ -60,193 +60,196 @@ To create `edge collection` use same endpoint `/_fabric/{fabric_name}/_api/colle
   <TabItem value="py" label="Python">
 
 ```py
-    import requests
-    import json
+""" This file is a demo on using edge collections and graphs """
+import json
+import requests
 
-    # Constants
+# Constants
 
-    FEDERATION = "api-gdn.paas.macrometa.io"
-    FED_URL = "https://{}".format(FEDERATION)
-    EMAIL = "nemo@nautilus.com"
-    PASSWORD = "xxxxxx"
-    AUTH_TOKEN = "bearer "
-    COLLECTION_NAME_1 = "teachers"
-    COLLECTION_NAME_2 = "lectures"
-    EDGE_COLL_NAME = "teach"
-    GRAPH_NAME = "lectureteacher"
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
+GEO_FABRIC = "_system"
+API_KEY = "my IP key" #Change to my API key
+#EMAIL = "my email"
+#PASSWORD = "my password"
+#AUTH_TOKEN = "bearer " #do not change
+
+COLLECTION_NAME_1 = "teachers"
+COLLECTION_NAME_2 = "lectures"
+EDGE_COLL_NAME = "teach"
+GRAPH_NAME = "lectureteacher"
+
+# Create a HTTPS Session Part 1
+# This part is needed when getting access through email/pass instead of API key or JWT token
+"""""
+url = f"{FED_URL}/_open/auth"
+payload = {
+    'email':EMAIL,
+    'password':PASSWORD
+}
+headers = {
+    'content-type': 'application/json'
+}
+
+response = requests.post(url, data = json.dumps(payload), headers = headers)
+print("Response code:", response.status_code)
+if response.status_code == 200:
+    resp_body = json.loads(response.text)
+    AUTH_TOKEN += resp_body["jwt"]
+    TENANT = resp_body["tenant"]
+else:
+    raise Exception(f"Error while getting auth token. Code:{response.status_code},
+        Reason:{response.reason}")
+print("Auth token:", AUTH_TOKEN)
+
+"""
+# Create a HTTPS Session Part 2
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": "apikey " + API_KEY})
+
+# Create Doc Collections and Insert Data to Document Collections
 
 
-    # Create a HTTPS Session
+url = f"{FED_URL}/_fabric/{GEO_FABRIC}/_api/collection"
+payload = { 'name': COLLECTION_NAME_1 }
 
-    url = "{}/_open/auth".format(FED_URL)
-    payload = {
-        'email':EMAIL,
-        'password':PASSWORD
-        }
-    headers = {
-        'content-type': 'application/json'
-        }
+resp = session.post(url,data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocument Collection1 Created: ",result)
 
-    response = requests.post(url, data = json.dumps(payload), headers = headers)
+payload = { 'name': COLLECTION_NAME_2 }
 
-    if response.status_code == 200:
-        resp_body = json.loads(response.text)
-        AUTH_TOKEN += resp_body["jwt"]
-        TENANT = resp_body["tenant"]
-    else:
-        raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
+resp = session.post(url,data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocument Collection2 Created: ",result)
 
-
-    session = requests.session()
-    session.headers.update({"content-type": 'application/json'})
-    session.headers.update({"authorization": AUTH_TOKEN})
-
-    # Create Doc Collections and Insert Data to Document Collections
-
-
-    url = FED_URL + "/_api/collection"
-    payload = { 'name': COLLECTION_NAME_1 }
-
-    resp = session.post(url,data=json.dumps(payload))
-    result = json.loads(resp.text)
-    print("\nDocument Collection1 Created: ",result)
-
-    payload = { 'name': COLLECTION_NAME_2 }
-
-    resp = session.post(url,data=json.dumps(payload))
-    result = json.loads(resp.text)
-    print("\nDocument Collection2 Created: ",result)
-
-    payload = [
-        {
-            '_key':'Jean',
-            'firstname': 'Jean',
-            'lastname':'Picard',
-            'email':'jean.picard@macrometa.io'
-        },
-        {
-            '_key':'James',
-            'firstname': 'James',
-            'lastname':'Kirk',
-            'email':'james.kirk@macrometa.io'
-        },
-        {
-            '_key': 'Han',
-            'firstname': 'Han',
-            'lastname':'Solo',
-            'email':'han.solo@macrometa.io'
-        },
-        {
-            '_key': 'Bruce',
-            'firstname': 'Bruce',
-            'lastname':'Wayne',
-            'email':'bruce.wayne@macrometa.io'
-        }
-    ]
-
-    url = FED_URL + "/_api/document/" + COLLECTION_NAME_1
-    resp = session.post(url,data=json.dumps(payload))
-    result = json.loads(resp.text)
-    print("\nDocuments Inserted: ",result)
-
-    payload = [
-        {'_id': 'lectures/CSC101', 'difficulty': 'easy', '_key':'CSC101', 'firstname':'Jean'},
-        {'_id': 'lectures/CSC102', 'difficulty': 'hard', '_key':'CSC102','firstname':'Jean'},
-        {'_id': 'lectures/CSC103', 'difficulty': 'hard', '_key':'CSC103','firstname':'Jean'},
-        {'_id': 'lectures/CSC104', 'difficulty': 'moderate', '_key':'CSC104','firstname':'Jean'}
-
-    ]
-
-    url = FED_URL + "/_api/document/" + COLLECTION_NAME_2
-    resp = session.post(url,data=json.dumps(payload))
-    result = json.loads(resp.text)
-    print("\nDocuments Inserted: ",result)
-
-    # Create Edge Collection
-
-    payload = { 'name': EDGE_COLL_NAME, "type":3 }
-
-    url = FED_URL + "/_api/collection"
-    resp = session.post(url,data=json.dumps(payload))
-    result = json.loads(resp.text)
-    print("\nEdge Collection Created: ",result)
-    payload = [
-        {
-        '_key': 'Jean-CSC101',
-        '_from': 'teachers/Jean',
-        '_to': 'lectures/CSC101',
-        'online': False
-        },
-        {
-        '_key': 'Jean-CSC102',
-        '_from': 'teachers/Jean',
-        '_to': 'lectures/CSC102',
-        'online': True
-        },
-        {
-        '_key': 'Jean-CSC103',
-        '_from': 'teachers/Jean',
-        '_to': 'lectures/CSC103',
-        'online': False
-        },
-        {
-        '_key': 'Bruce-CSC101',
-        '_from': 'teachers/Bruce',
-        '_to': 'lectures/CSC101',
-        'online': True
-        }
-
-    ]
-
-    url = FED_URL + "/_api/document/" + EDGE_COLL_NAME
-    resp = session.post(url,data=json.dumps(payload))
-    result = json.loads(resp.text)
-    print("\nDocuments Inserted: ",result)
-    # Create a Graph
-    payload ={
-      "edgeDefinitions": [
-        {
-          "collection": EDGE_COLL_NAME,
-          "from": [
-            "teachers"
-          ],
-          "to": [
-            "lectures"
-          ]
-        }
-      ],
-      "name": GRAPH_NAME,
-      "options": {}
+payload = [
+    {
+    '_key':'Jean',
+    'firstname': 'Jean',
+    'lastname':'Picard',
+    'email':'jean.picard@macrometa.io'
+    },
+    {
+    '_key':'James',
+    'firstname': 'James',
+    'lastname':'Kirk',
+    'email':'james.kirk@macrometa.io'
+    },
+    {
+    '_key': 'Han',
+    'firstname': 'Han',
+    'lastname':'Solo',
+    'email':'han.solo@macrometa.io'
+    },
+    {
+    '_key': 'Bruce',
+    'firstname': 'Bruce',
+    'lastname':'Wayne',
+    'email':'bruce.wayne@macrometa.io'
     }
+]
 
-    url = FED_URL + "/_api/graph"
-    resp = session.post(url,data=json.dumps(payload))
-    result = json.loads(resp.text)
-    print("\nGraph Created: ",result)
+url = f"{FED_URL}/_api/document/{COLLECTION_NAME_1}"
+resp = session.post(url,data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocuments Inserted: ",result)
 
-    # Graph Traversal
-    # Note :- To use Outbound Traversal use direction: out and direction: in for Inbound Traversal
-    params = {
-        "vertex": "Jean",
-        "direction": "out"
+payload = [
+    {'_id': 'lectures/CSC101', 'difficulty': 'easy', '_key':'CSC101', 'firstname':'Jean'},
+    {'_id': 'lectures/CSC102', 'difficulty': 'hard', '_key':'CSC102','firstname':'Jean'},
+    {'_id': 'lectures/CSC103', 'difficulty': 'hard', '_key':'CSC103','firstname':'Jean'},
+    {'_id': 'lectures/CSC104', 'difficulty': 'moderate', '_key':'CSC104','firstname':'Jean'}
+]
+
+url = f"{FED_URL}/_api/document/{COLLECTION_NAME_2}"
+resp = session.post(url,data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocuments Inserted: ",result)
+
+# Create Edge Collection
+
+payload = { 'name': EDGE_COLL_NAME, "type":3 }
+
+url = f"{FED_URL}/_fabric/{GEO_FABRIC}/_api/collection"
+resp = session.post(url,data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nEdge Collection Created: ",result)
+
+payload = [
+    {
+    '_key': 'Jean-CSC101',
+    '_from': 'teachers/Jean',
+    '_to': 'lectures/CSC101',
+    'online': False
+    },
+    {
+    '_key': 'Jean-CSC102',
+    '_from': 'teachers/Jean',
+    '_to': 'lectures/CSC102',
+    'online': True
+    },
+    {
+    '_key': 'Jean-CSC103',
+    '_from': 'teachers/Jean',
+    '_to': 'lectures/CSC103',
+    'online': False
+    },
+    {
+    '_key': 'Bruce-CSC101',
+    '_from': 'teachers/Bruce',
+    '_to': 'lectures/CSC101',
+    'online': True
     }
+]
 
-    url = FED_URL + "/_api/edges/" + EDGE_COLL_NAME
+url = f"{FED_URL}/_api/document/{EDGE_COLL_NAME}"
+resp = session.post(url,data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nDocuments Inserted: ",result)
+# Create a Graph
+payload = {
+    "edgeDefinitions": [
+    {
+    "collection": EDGE_COLL_NAME,
+    "from": [ "teachers" ],
+    "to": [ "lectures" ]
+    }
+    ],
+    "name": GRAPH_NAME,
+    "options": {}
+}
 
-    resp = session.get(url,params=params)
-    result = json.loads(resp.text)
-    print("\nGraph Traversal: ",result)
+url = f"{FED_URL}/_api/graph"
+resp = session.post(url,data=json.dumps(payload))
+result = json.loads(resp.text)
+print("\nGraph Created: ",result)
 
-    # Delete Graph and Collections
-    # Note:- If you want to delete just the graph and keep collections then
-    # set dropCollection to False
-    params = {"dropCollection": True}
+# Graph Traversal
+# Note :- To use Outbound Traversal use direction: out and direction: in for Inbound Traversal
+params = {
+    "vertex": "teachers/Jean",
+    "direction": "out"
+}
 
-    url = FED_URL + "/_api/graph/" + GRAPH_NAME
+url = f"{FED_URL}/_api/edges/{EDGE_COLL_NAME}"
 
-    resp = session.delete(url,params=params)
-    result = json.loads(resp.text)
-    print("Graph and Collections Deleted: ", result)
+resp = session.get(url,params=params)
+result = json.loads(resp.text)
+print("\nGraph Traversal: ",result)
+
+
+# Delete Graph and Collections
+# Note:- If you want to delete just the graph and keep collections then
+# set dropCollection to False
+params = {"dropCollections": True}
+
+url = f"{FED_URL}/_api/graph/{GRAPH_NAME}"
+
+resp = session.delete(url,params=params)
+result = json.loads(resp.text)
+print("Graph and Collections Deleted: ", result)
 ```
 
   </TabItem>
