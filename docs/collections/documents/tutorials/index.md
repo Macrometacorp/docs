@@ -20,7 +20,7 @@ Following tutorials cover various user scenarios using Macrometa GDN.
 ## Graphs
 
 * [Working with Graphs](../../graphs/quickstart.md)
-* [Graph Queries](../../graphs/tutorials/graph-queries.md)
+* [Graph Queries](../../graphs/graph-queries.md)
 
 ## Global Streams
 

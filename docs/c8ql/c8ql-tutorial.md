@@ -395,7 +395,7 @@ FOR c IN Characters
 ]
 ```
 
-You may notice that it returns name and age of 30 characters, most with an age of `null`. The reason for this is, that `null` is the fallback value if an attribute is requested by the query, but no such attribute exists in the document, and the `null` is compares to numbers as lower (see [Type and value order](fundamentals#type-value-order)). Hence, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`).
+You may notice that it returns name and age of 30 characters, most with an age of `null`. The reason for this is, that `null` is the fallback value if an attribute is requested by the query, but no such attribute exists in the document, and the `null` is compares to numbers as lower (see [Type and value order](../queryworkers/fundamentals.md#type-value-order)). Hence, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`).
 
 ### Multiple conditions
 
@@ -711,7 +711,7 @@ FOR c IN Characters
 ]
 ```
 
-Also see the [Fundamentals of Objects / Documents](fundamentals#objects-documents) about attribute access.
+Also see the [Fundamentals of Objects / Documents](../queryworkers/fundamentals.md#objects-documents) about attribute access.
 
 We can use the *traits* array together with the `DOCUMENT()` function to use the elements as document keys and look up them up in the *Traits* collection:
 
@@ -1133,12 +1133,12 @@ Visualization of the coordinates on a map with their labels:
 
 ### Geospatial index
 
-To query based on coordinates, a [geo index](../collections/documents/geospatial/concepts#geojson-supported-index) is required. It determines which fields contain the latitude and longitude values.
+To query based on coordinates, a [geo index](../collections/documents/geospatial/geojson#geojson-supported-index) is required. It determines which fields contain the latitude and longitude values.
 
 - Go to *COLLECTIONS*
 - Click on the *Locations* collection
 - Switch to the *Indexes* tab at top
-- Click the green button with a plus on the right-hand side
+- Click the blue button with a plus on the right-hand side
 - Change the type to *Geo Index*
 - Enter `coordinate` into the *Fields* field
 - Click *Create* to confirm

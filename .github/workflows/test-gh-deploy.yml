@@ -25,4 +25,5 @@ jobs:
         env:
           POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
           POSTHOG_API_URL: ${{ secrets.POSTHOG_API_URL }}
+          GTAG_TRACKING_ID: ${{ secrets.GTAG_TRACKING_ID }}
         run: yarn build

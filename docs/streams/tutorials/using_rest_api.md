@@ -11,7 +11,7 @@ Today’s applications are required to be highly responsive and always online. T
 Macrometa global data network (GDN) is a fully managed realtime materialzed view engine that provides access to data instantly to Apps & APIs in a simple & single interface. 
 
 :::note
-If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../../what-is-macrometa.md)**.
+If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../what-is-macrometa.md)**.
 :::
 ## Pre-Requiste
 
@@ -245,8 +245,8 @@ import six
 
 # Constants
 
-FEDERATION = "gdn.paas.macrometa.io"
-FED_URL = "https://api-{}".format(FEDERATION)
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
 FABRIC = "_system"
@@ -255,82 +255,81 @@ AUTH_TOKEN = "bearer "
 TENANT_NAME = "xxxxxx"
 CONSUMER_NAME = "testconsumer"
 
-
 # Create a HTTPS Session
 
-url = "{}/_open/auth".format(FED_URL)
+url = f"{FED_URL}/_open/auth"
 payload = {
-    'email':EMAIL,
-    'password':PASSWORD
-    }
+    'email': EMAIL,
+    'password': PASSWORD
+}
 headers = {
     'content-type': 'application/json'
-    }
+}
 
-response = requests.post(url, data = json.dumps(payload), headers = headers)
+response = requests.post(url, data=json.dumps(payload), headers=headers)
 
 if response.status_code == 200:
     resp_body = json.loads(response.text)
     AUTH_TOKEN += resp_body["jwt"]
     TENANT = resp_body["tenant"]
 else:
-    raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
-
+    raise Exception(f"Error while getting auth token. Code:{response.status_code}, Reason:{response.reason}")
 
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
+
 # Create a stream
 # Note:- For a global stream pass global=true and global=false for local stream
-url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "?global=true"
+url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_NAME}?global=true"
 resp = session.post(url)
 print("\nStream Created: ", resp.text)
 
 # Publish Messages
 # Send message in body
-url = FED_URL + "/_fabric/" + FABRIC + "/streams/" + STREAM_NAME + "/publish?global=true"
-resp = session.post(url)
-print("\nStream Created: ", resp.text)
+STREAM_TYPE = "c8global"
+
+url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}/publish?global=true"
+resp = session.post(url, data="Hello")
+print("\nMessage Posted: ", resp.text)
 
 # or
 
-stream_type = "c8local"
-producerurl = "wss://" + FEDERATION + "/_ws/ws/v2/producer/persistent/" + TENANT_NAME +\
-                "/" + stream_type + "." + FABRIC + "/" + stream_type + "s." + STREAM_NAME
+producerurl = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}"
 
-ws = create_connection(producerurl)
+
+ws = create_connection(producerurl, header=[f"Authorization: {AUTH_TOKEN}"])
 payload = {
-                "payload": base64.b64encode(
-                    six.b("Hello World")
-                ).decode("utf-8")
-            }
+    "payload": base64.b64encode(
+        six.b("Hello World")
+    ).decode("utf-8")
+}
 ws.send(json.dumps(payload))
 response = json.loads(ws.recv())
 if response['result'] == 'ok':
-    print('Message published successfully')
+    print("Message published successfully")
 else:
-    print('Failed to publish message:', response)
+    print(f"Failed to publish message: {response}")
 ws.close()
 
-# Subscribe
+# # # Subscribe
 
-consumerurl = "wss://" + FEDERATION + "/_ws/ws/v2/consumer/persistent/" + TENANT_NAME +\
-                "/" + stream_type + "." + FABRIC + "/" + stream_type + "s." + STREAM_NAME +\
-                "/" + CONSUMER_NAME
-ws = create_connection(consumerurl)
+consumerurl = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}/{CONSUMER_NAME}"
+
+ws = create_connection(consumerurl, header=[f"Authorization: {AUTH_TOKEN}"])
 while True:
     msg = json.loads(ws.recv())
     if msg:
-        print("received: {}".format(base64.b64decode(msg['payload'])))
+        print(f"received: {base64.b64decode(msg['payload'])}")
         # Acknowledge successful processing
         ws.send(json.dumps({'messageId': msg['messageId']}))
         break
 ws.close()
 
 # Delete Subscription/ Unsubscribe
-url = FED_URL + "/_api/streams/unsubscribe/" + CONSUMER_NAME
-resp = session.post(url, data = json.dumps(payload))
+url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}/subscriptions/{CONSUMER_NAME}?global=true"
+resp = session.delete(url)
 print("Subsrcription Deleted: ", resp.text)
 ```
 

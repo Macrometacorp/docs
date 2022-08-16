@@ -56,15 +56,15 @@ To create a stream application follow the steps below:
 1. Type a **Description**.
 1. Add the following sample stream application.
 
-```sql
-CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', map.type='json') (name string, amount double);
+	```sql
+	CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', map.type='json') (name string, amount double);
 
-CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json'
+	CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json') (name string, amount double);
 
-INSERT INTO ProductionAlertStream
-SELECT *
-FROM SweetProductionStream;
-```
+	INSERT INTO ProductionAlertStream
+	SELECT *
+	FROM SweetProductionStream;
+	```
 
 1. Click `Save` to save the stream app.
 1. Select all the regions to deploy your application in.
@@ -78,9 +78,7 @@ Syntax:
 
 	CREATE SOURCE SourceName WITH (type="stream", stream.list="STRING", replication.type="STRING", map.type='type') (strings);
 
-
 Example:
-
 
 	CREATE SOURCE OrderStream WITH (type="stream", stream.list="OrderStream", replication.type="local", map.type='json') (product_id string, quantity integer);
 
@@ -122,13 +120,12 @@ Syntax:
 
 	CREATE SOURCE SourceName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type') (strings);
 
-
 Example:
 
 	CREATE SOURCE SweetProductionStream WITH (type="database", map.type='json') (name string, amount double);
 
 Query Parameters:
-    
+
 <table>
 <thead>
 <tr class="header">
@@ -174,9 +171,8 @@ Syntax:
     @sink(type="c8streams", stream="<STRING>", replication.type="<STRING>", @map(...)))
 
 Example:
-    
-	CREATE SINK ProductionAlertStream WITH (type="stream", stream='ProductionAlertStream', map.type='json`) (name string, amount double);
 
+	CREATE SINK ProductionAlertStream WITH (type="stream", stream='ProductionAlertStream', map.type='json`) (name string, amount double);
 
 Query Parameters:
 
@@ -215,14 +211,13 @@ Query Parameters:
 Syntax:
 
 	CREATE STORE StoreName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type', from="STRING", to="STRING") (strings);
-    
 
 Example:
 
 	CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="local", map.type='json') (strings);
 
-Stream applications will use the c8db with the default query parameters explained in the chart below. 
-    
+Stream applications will use the c8db with the default query parameters explained in the chart below.
+
 <table>
 <thead>
 <tr class="header">
@@ -276,14 +271,13 @@ Stream applications will use the c8db with the default query parameters explaine
 
 Following tutorials cover various user scenarios using Macrometa Stream Processing.
 
-* [Publishing Data](publishing-data.md)
-* [Consuming Data](consuming-data.md)
-* [Filtering Data](filtering-data.md)
-* [Transforming Data](transforming-data.md)
-* [Enriching Data](enriching-data.md)
-* [Executing Scripts](executing-scripts.md)
-* [Correlating Data](correlating-data.md)
-* [Summarizing Data](summarizing-data.md)
+- [Publishing Data](publishing-data.md)
+- [Consuming Data](consuming-data.md)
+- [Filtering Data](filtering-data.md)
+- [Transforming Data](transforming-data.md)
+- [Enriching Data](enriching-data.md)
+- [Executing Scripts](executing-scripts.md)
+- [Correlating Data](correlating-data.md)
+- [Summarizing Data](summarizing-data.md)
 
-
-Refer to [Reference](../reference/overview.md) for additional stream processing examples.
+Refer to [Reference](../reference/index.md) for additional stream processing examples.

@@ -3,6 +3,8 @@ sidebar_position: 10
 title: Stream Workers Example
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Assume the following credentials:
 
@@ -67,12 +69,11 @@ Establish a connection to a local region. When this code runs, it initializes th
   <TabItem value="py" label="Python">
 
 ```py
-    from c8 import C8Client
-
-    print("--- Connecting to C8")
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password='xxxxx',
-                            geofabric='_system')
+from c8 import C8Client
+print("--- Connecting to C8")
+client = C8Client(protocol='https', host='gdn.paasmacrometa.io', port=443,
+                        email='nemo@nautilus.com', password='xxxxx',
+                        geofabric='_system')
 ```
 
  </TabItem>
@@ -101,47 +102,42 @@ Validate the stream application for syntax errors before saving.
   <TabItem value="py" label="Python">
 
 ```py
-    stream_app_definition = """
-    @App:name('Sample-Cargo-App')
-    @App:qlVersion("2")
-    @App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
+stream_app_definition = """
+@App:name('Sample-Cargo-App')
+@App:qlVersion("2")
+@App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
+/**
+Testing the Stream Application:
+    1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
+    2. Upload following data into SampleCargoAppInputTable C8DB Collection
+        {"weight": 1}
+        {"weight": 2}
+        {"weight": 3}
+        {"weight": 4}
+        {"weight": 5}
+    3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
+        [2021-08-27T14:12:15.795Z] {"weight":1}
+        [2021-08-27T14:12:15.799Z] {"weight":2}
+        [2021-08-27T14:12:15.805Z] {"weight":3}
+        [2021-08-27T14:12:15.809Z] {"weight":4}
+        [2021-08-27T14:12:15.814Z] {"weight":5}
+*/
 
-    /**
-    Testing the Stream Application:
-        1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
+-- Create Table SampleCargoAppInputTable to process events.
+CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection ="SampleCargoAppInputTable", collection.type="doc", replication.type="global", maptype='json') (weight int);
 
-        2. Upload following data into SampleCargoAppInputTable C8DB Collection
-            {"weight": 1}
-            {"weight": 2}
-            {"weight": 3}
-            {"weight": 4}
-            {"weight": 5}
+-- Create Stream SampleCargoAppDestStream
+CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream ="SampleCargoAppDestStream", replication.type="local") (weight int);
 
-        3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
-            [1]
-            [2]
-            [3]
-            [4]
-            [5]
-    	*/
+-- Data Processing
+@info(name='Query')
+INSERT INTO SampleCargoAppDestStream
+SELECT weight
+FROM SampleCargoAppInputTable;
+"""
 
-    	-- Create Table SampleCargoAppInputTable to process events having sensorId and temperature(F).
-	CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
-
-
-    	-- Create Stream SampleCargoAppDestStream
-	CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
-
-
-    -- Data Processing
-    @info(name='Query')
-    INSERT INTO SampleCargoAppDestStream
-    SELECT weight
-    FROM SampleCargoAppInputTable;
-	"""
-
-    print("--- Validating Stream Application Definition")
-    print(client.validate_stream_app(data=stream_app_definition))
+print("--- Validating Stream Application Definition")
+print(client.validate_stream_app(data=stream_app_definition))
 ```
 
  </TabItem>
@@ -202,8 +198,8 @@ By default, the stream application saves in the local region. Optionally, you ca
   <TabItem value="py" label="Python">
 
 ```py
-    print("--- Creating Stream Application")
-    print(client.create_stream_app(data=stream_app_definition))
+print("--- Creating Stream Application")
+print(client.create_stream_app(data=stream_app_definition))
 ```
 
   </TabItem>
@@ -227,9 +223,9 @@ By default, the stream application saves in the local region. Optionally, you ca
   <TabItem value="py" label="Python">
 
 ```py
-    print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 
-    print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
+print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
 ```
 
   </TabItem>
@@ -257,30 +253,72 @@ In this example, we update a stream application to store the input data into its
   <TabItem value="py" label="Python">
 
 ```py
-    from c8 import C8Client
+from c8 import C8Client
+from c8.fabric import StandardFabric
 
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxx', geofabric='_system')
+print("--- Connecting to C8")
+client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
 
-    # To operate on created apps, you need to create an instance of the app
-    app = client.stream_app("Sample-Cargo-App")
+# To operate on created apps, you need to create an instance of the app
+app = client._fabric.stream_app("Sample-Cargo-App")
 
-    # Update the app using
-    data = """@App:name('Sample-Cargo-App') @App:qlVersion('2')
+# Update the app using
+data = """
+@App:name('Sample-Cargo-App')
+@App:qlVersion("2")
+@App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
+/**
+    Testing the Stream Application:
+    1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
+    2. Upload following data into SampleCargoAppInputTable C8DB Collection
+        {"weight": 1}
+        {"weight": 2}
+        {"weight": 3}
+        {"weight": 4}
+        {"weight": 5}
+    3. Following messages would be shown on the `SampleCargoAppDestStream` Stream Console.
+        [2021-08-27T14:12:15.795Z] {"weight":1}
+        [2021-08-27T14:12:15.799Z] {"weight":2}
+        [2021-08-27T14:12:15.805Z] {"weight":3}
+        [2021-08-27T14:12:15.809Z] {"weight":4}
+        [2021-08-27T14:12:15.814Z] {"weight":5}
+    4. Following messages would be stored into SampleCargoAppDestTable
+        {"weight":1}
+        {"weight":2}
+        {"weight":3}
+        {"weight":4}
+        {"weight":5}
+*/
 
-        -- Stream
-    CREATE SOURCE STREAM srcCargoStream (weight int);
+-- Defines Table SampleCargoAppInputTable
+CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
 
-        -- Table
-    CREATE TABLE destCargoTable (weight int, totalWeight long);
+-- Define Stream SampleCargoAppDestStream
+CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
 
-        -- Data Processing
-    @info(name='Query')
-    INSERT INTO destCargoTable
-    SELECT weight, sum(weight) as totalWeight
-    FROM srcCargoStream;"""
-    regions = []
-    result = fabric.update(data,regions)
-    print(result)
+-- Defining a Destination table to dump the data from the stream
+CREATE STORE SampleCargoAppDestTable WITH (type = 'database', stream = "SampleCargoAppDestTable") (weight int);
+
+-- Data Processing
+@info(name='Query')
+INSERT INTO SampleCargoAppDestStream
+SELECT weight
+FROM SampleCargoAppInputTable;
+
+-- Data Processing
+@info(name='Dump')
+INSERT INTO SampleCargoAppDestTable
+SELECT weight
+FROM SampleCargoAppInputTable;
+"""
+
+# Optionally, specify a comma separated list of regions where stream application needs to be deployed
+regions = []
+print("--- Updating Stream Application `Sample-Cargo-App`")
+result = app.update(data, regions)
+
+#To Enable the stream app
+print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 ```
 
   </TabItem>
@@ -361,22 +399,24 @@ Now, the code to update an Stream Application will look like
 ```
 ## Run an Adhoc Query
 
-Available in the advanced operations of python SDK.
-Refer example at the end of the page.
+In this example, we run an adhoc query on the store `SampleCargoAppDestTable` used in Stream Application. It should get records which you inserted into `SampleCargoAppInputTable`.
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
 
 ```py
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxx', geo_fabric='_system')
+from c8 import C8Client
+from c8.fabric import StandardFabric
 
-    # To operate on created apps, you need to create an instance of the app
-    app = client.create_stream_app("Sample-Cargo-App")
+print("--- Connecting to C8")
+client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
 
-    # fire query on app using
-    q = "select * from SampleCargoAppDestTable limit 3"
-    result = app.query(q)
-    print(result)
+# To operate on created apps, you need to create an instance of the app
+app = client._fabric.stream_app("Sample-Cargo-App")
+# Run query on application
+q = "select * from SampleCargoAppDestTable limit 2"
+result = app.query(q)
+print(result)
 ```    
   </TabItem>
   <TabItem value="js" label="Javascript">
@@ -398,8 +438,8 @@ Refer example at the end of the page.
   <TabItem value="py" label="Python">
 
 ```py
-    print("--- Deleting Stream Application `Sample-Cargo-App`")
-    result = client.delete_stream_app('Sample-Cargo-App')
+print("--- Deleting Stream Application `Sample-Cargo-App`")
+result = client.delete_stream_app('Sample-Cargo-App')
 ```    
   </TabItem>
 
@@ -420,8 +460,8 @@ You can try out several Stream Apps which are preloaded and ready to run.
   <TabItem value="py" label="Python">
 
 ```py
-    print("--- You can try out several stream applications which are pre-loaded and ready to run.")
-    print("Samples", client.get_stream_app_samples())
+print("--- You can try out several stream applications which are pre-loaded and ready to run.")
+print("Samples", client.get_stream_app_samples())
 ```    
   </TabItem>
   <TabItem value="js" label="Javascript">
@@ -443,68 +483,62 @@ The following example uses the code snippets provided in this tutorial.
   <TabItem value="py" label="Python">
 
 ```py
-    import time
-    import traceback
-    from c8 import C8Client
+import time
+import traceback
+from c8 import C8Client
+# Simple Approach
+print("--- Connecting to C8")
+client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+                        email='nemo@nautilus.com', password='xxxxx',
+                        geofabric='_system')
+stream_app_definition = """
+    @App:name('Sample-Cargo-App')
+    @App:qlVersion("2")
+    @App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
+    /**
+    Testing the Stream Application:
+        1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
+        2. Upload following data into SampleCargoAppInputTable C8DB Collection
+            {"weight": 1}
+            {"weight": 2}
+            {"weight": 3}
+            {"weight": 4}
+            {"weight": 5}
+        3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
+            [2021-08-27T14:12:15.795Z] {"weight":1}
+            [2021-08-27T14:12:15.799Z] {"weight":2}
+            [2021-08-27T14:12:15.805Z] {"weight":3}
+            [2021-08-27T14:12:15.809Z] {"weight":4}
+            [2021-08-27T14:12:15.814Z] {"weight":5}
+    */
+    -- Create Table SampleCargoAppInputTable to process events.
+	CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
 
-    # Simple Approach
-    print("--- Connecting to C8")
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password='xxxxx',
-                            geofabric='_system')
+    -- Create Stream SampleCargoAppDestStream
+	CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
 
-    stream_app_definition = """
-        @App:name('Sample-Cargo-App')
-        @App:qlVersion("2")
-        @App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
-
-        /**
-        Testing the Stream Application:
-            1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
-
-            2. Upload following data into SampleCargoAppInputTable C8DB Collection
-                {"weight": 1}
-                {"weight": 2}
-                {"weight": 3}
-                {"weight": 4}
-                {"weight": 5}
-
-            3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
-                [1]
-                [2]
-                [3]
-                [4]
-                [5]
-        */
-
-        -- Create Table SampleCargoAppInputTable to process events having sensorId and temperature(F).
-		CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
-
-        -- Create Stream SampleCargoAppDestStream
-		CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
-
-        -- Data Processing
-        @info(name='Query')
-        INSERT INTO SampleCargoAppDestStream
-        SELECT weight
-        FROM SampleCargoAppInputTable;
-        """
-    # Create a stream application
-    print(client.create_stream_app(data=stream_app_definition))
-    # Validate a stream application
-    print(client.validate_stream_app(data=stream_app_definition))
-    # Retrive a stream application
-    print("Retrive", client.retrieve_stream_app())
-    # Get a stream application handle for advanced operations
-    print("Get App", client.get_stream_app('Sample-Cargo-App'))
-    # Deactivate a stream application
-    print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
-    # Activate a stream application
-    print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
-    # Delete a stream application
-    print(client.delete_stream_app('Sample-Cargo-App'))
-    # Get stream application samples
-    print("Samples", client.get_stream_app_samples())
+    -- Data Processing
+    @info(name='Query')
+    INSERT INTO SampleCargoAppDestStream
+    SELECT weight
+    FROM SampleCargoAppInputTable;
+    """
+# Validate a stream application
+print(client.validate_stream_app(data=stream_app_definition))
+# Create a stream application
+print(client.create_stream_app(data=stream_app_definition))
+# Retrive a stream application
+print("Retrive", client.retrieve_stream_app())
+# Get a stream application handle for advanced operations
+print("Get App", client.get_stream_app('Sample-Cargo-App'))
+# Deactivate a stream application
+print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
+# Activate a stream application
+print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+# Delete a stream application
+print(client.delete_stream_app('Sample-Cargo-App'))
+# Get stream application samples
+print("Samples", client.get_stream_app_samples())
 ```
   </TabItem>
   <TabItem value="js" label="Javascript">
@@ -629,7 +663,7 @@ The following example uses the code snippets provided in this tutorial.
             @info(name='Dump')
             INSERT INTO SampleCargoAppDestTable
             SELECT weight
-            FROM SampleCargoAppInputTable;
+            FROM SampleCargoAppInputTable;`
       
             const app = client.streamApp("Sample-Cargo-App");
             ressult = await app.retriveApplication();

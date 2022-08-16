@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 Today’s applications are required to be highly responsive and always online. They need to be deployed in datacenters closer to their users and can access data instantly across the globe.
 
 :::note
-If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../../what-is-macrometa.md)**.
+If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../what-is-macrometa.md)**.
 :::
 
 ## Pre-Requisite

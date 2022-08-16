@@ -31,13 +31,13 @@ FOR u IN users
   RETURN u
 ```
 
-In the above example, all array elements of *users*  that have an attribute *active* with value *true* and that have an attribute *age* with a value less than *39* (including *null* ones) will be included in the result. All other elements of *users* will be skipped and not be included in the result produced by `RETURN`. You may refer to the chapter [Accessing Data from Collections](../fundamentals.md#accessing-data) for a description of the impact of non-existent or null attributes.
+In the above example, all array elements of *users*  that have an attribute *active* with value *true* and that have an attribute *age* with a value less than *39* (including *null* ones) will be included in the result. All other elements of *users* will be skipped and not be included in the result produced by `RETURN`. You may refer to the chapter [Accessing Data from Collections](../../queryworkers/fundamentals.md#accessing-data) for a description of the impact of non-existent or null attributes.
 
 Order of operations
 -------------------
 
 :::note
-The positions of `FILTER` statements can influence the result of a query. There are 16 active users in the [test data](../examples.md#example-data) for instance:
+The positions of `FILTER` statements can influence the result of a query. There are 16 active users in the [test data](../examples/index.md#example-data) for instance:
 :::
 
 ```js

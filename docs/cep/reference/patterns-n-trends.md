@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-title: Patterns & Trends
+title: Patterns and Trends
 ---
 
 ## Simple Pattern
@@ -51,7 +51,7 @@ After processing the above input events, the event arriving at `HighTempAlertStr
 
 Counting patterns allow to match multiple events that may have been received for the same matching condition. The number of events matched per condition can be limited via condition postfixes.
 
-Refer the [stream query guide](query-guide.md) for more information.
+Refer the [Stream Query Guide](../query-guide/index.md) for more information.
 
 
 ```sql
@@ -102,7 +102,7 @@ After processing the above input events, the event arriving at `TemperatureDiffS
 
 Logical patterns match events that arrive in temporal order and correlate them with logical relationships such as `and`, `or` and `not`.
 
-Refer the [stream query guide](query-guide.md) for more information.
+Refer the [Stream Query Guide](../query-guide/index.md) for more information.
 
 
 ```sql
@@ -155,7 +155,7 @@ Non occurrence patterns identifies the absence of events when detecting a patter
 
 Stream Processor detects non-occurrence of events using the not keyword, and its effective non-occurrence checking period is bounded either by fulfillment of a condition associated by and or via an expiry time using `<time period>`.
 
-Refer the [stream query guide](query-guide.md) for more information.
+Refer the [Stream Query Guide](../query-guide/index.md) for more information.
 
 
 ```sql
@@ -195,7 +195,7 @@ After processing the above input event, there will be an alert event arriving at
 
 Sequence is a state machine implementation that detects consecutive event occurrences from events arrived via one or more event streams over time. Here all matching events need to arrive consecutively, and there should not be any non-matching events in between the matching sequence of events.
 
-Refer the [stream query guide](query-guide.md) for more information.
+Refer the [Stream Query Guide](../query-guide/index.md) for more information.
 
 
 ```sql
@@ -240,7 +240,7 @@ After processing the above input events, the event arriving at `PeakStockRateStr
 
 Sequence query does expect the matching events to occur immediately after each other, and it can successfully correlate the events who do not have other events in between. Here, sequence can count event occurrences.
 
-Refer the [stream query guide](query-guide.md) for more information.
+Refer the [Stream Query Guide](../query-guide/index.md) for more information.
 
 
 ```sql
@@ -292,7 +292,7 @@ After processing the above input events, the event arriving at `PeakTemperatureS
 
 The sequence can repetitively match event `sequences` and use logical event ordering (using `and`, `or`, and `not`).
 
-Refer the [stream query guide](query-guide.md) for more information.
+Refer the [Stream Query Guide](../query-guide/index.md) for more information.
 
 
 ```sql

@@ -62,7 +62,7 @@
     --ifm-link-color: var(--color-primary-500);
     --ifm-link-decoration: none;
 
-    --ifm-font-family-monospace: 'Fira Code', ui-monospace, SFMono-Regular,
+    --ifm-font-family-monospace: 'Source Code Pro', ui-monospace, SFMono-Regular,
       Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     --font-code: var(--ifm-font-family-monospace) !important;
     --font-mono: var(--ifm-font-family-monospace) !important;
@@ -76,7 +76,7 @@
 
     --ifm-heading-color: var(--color-neutral-800);
     --ifm-heading-font-family: 'Lato', sans-serif;
-    
+
     --ifm-background-color: var(--color-white);
 
     --ifm-menu-color-background-hover: var(--color-primary-100);
@@ -117,6 +117,7 @@
     --docsearch-highlight-color: var(--ifm-color-primary-lightest);
 
     --doc-mobile-toc-background: var(--color-primary-50);
+    --image-background-color: var(--color-white);
   }
 
   html[data-theme='dark'] {
@@ -160,6 +161,8 @@
     --ifm-footer-link-hover-color: var(--color-neutral-100);
 
     --doc-mobile-toc-background: var(--color-primary-700);
+
+    --image-background-color: var(--color-neutral-700);
   }
 }
 
@@ -548,6 +551,15 @@ code {
 strong,
 b {
   @apply font-extrabold;
+}
+
+article img {
+  background-color: var(--image-background-color);
+  border: 1px solid var(--docs-color-border);
+  border-radius: 0.25rem;
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
 }
 
 .prism-code > code {

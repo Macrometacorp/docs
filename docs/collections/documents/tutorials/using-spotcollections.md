@@ -10,6 +10,14 @@ There are some use cases that call for strong consistency across all regions. Fo
 
 When performing read operations, here you want to read the latest copy of your data in **global** order. It provides the ability to read the latest change to your data across rows, regions and continents.
 
+:::note
+
+Spot Collections are only available on Enterprise customer accounts.
+
+Contact support@macrometa.com if you have any questions.
+
+:::
+
 ## Pre-requisite
 
 Let's assume your
