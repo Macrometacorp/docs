@@ -18,4 +18,4 @@ Key-Value stores only have one settings option.
 
 In the Settings tab, you can [Delete](delete-collection.md) or [Truncate](truncate-collection.md) the collection.
 
-![Key-Value Store Settings Tab](/img/collections/doc-store-settings.png)
+![Key-Value Store Settings Tab](/img/collections/key-value-store-settings.png)
