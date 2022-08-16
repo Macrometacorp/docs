@@ -1,17 +1,21 @@
 ---
-title: Document Store Settings
+title: Key-Value Store Settings
 sidebar_position: 50
 ---
 
 import ViewCollectionSettings from '../_view-collection-settings.md';
 import DocAndGraphSettings from '../_doc-and-graph-settings.mdx';
 
-You can view and update document store collection settings in the Settings tab.
+You can view and update key-value store collection settings in the Settings tab.
 
 <ViewCollectionSettings />
 
-## Document Store Settings
+## Key-Value Store Settings
 
-<DocAndGraphSettings collection='Document store' />
+Key-Value stores only have one settings option.
 
-![Document Store Settings Tab](/img/collections/doc-store-settings.png)
+- **Synchronous Writes -** Select the checkbox to enable synchronous writes.
+
+In the Settings tab, you can [Delete](delete-collection.md) or [Truncate](truncate-collection.md) the collection.
+
+![Key-Value Store Settings Tab](/img/collections/doc-store-settings.png)
