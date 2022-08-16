@@ -75,130 +75,137 @@ Let's assume your
 <TabItem value="py" label="Python">
 
 ```py
-  from c8 import C8Client
-  import pprint
+""" This file is a demo of using geoLocations on collections """
+import pprint
+from c8 import C8Client
 
-  if __name__ == '__main__':
+# Variables - Connection
+URL = "gdn.paas.macrometa.io"
+API_KEY = "my API key" #Change to my API key
+GEO_FABRIC = "_system"
 
-    # Variables - URLs
-    global_url = "gdn.paas.macrometa.io"
-  
 
-    # Variables - DB
-    email = "nemo@nautilus.com"
-    password = "xxxx"
-    geo_fabric = "_system"
-    collection_transit = "transit"
-    collection_shops = "shops"
+# Variables - DB
+collection_transit = "transit"
+collection_shops = "shops"
 
-    # Variable - Requests locations
-    
-    latitude2 = 37.3972452334285 # Sunnyvale Elementary School
-    longitude2 = -121.99073796514953 # Sunnyvale Elementary School
+# Variable - Requests locations
+latitude2 = 37.3972452334285 # Sunnyvale Elementary School
+longitude2 = -121.99073796514953 # Sunnyvale Elementary School
 
-    # Variables - Data
-    shops_data = [
-      { "shop": "Walgreens", "address": "San Jose, CA", "coordinate": [ 37.2333253, -121.6846349 ] },
-      { "shop": "Costco", "address": "San Jose, CA", "coordinate": [ 37.4282724, -121.9066238 ] },
-      { "shop":"Walmart", "address": "San Jose, CA", "coordinate": [ 37.3361905, -121.8905833 ] },
-      { "shop": "Bed Bath & Beyond", "address": "Mountain View, CA", "coordinate": [ 37.4443293, -122.1598465] },
-      { "shop":"Best Buy", "address": "Mountain View, CA", "coordinate": [ 37.35992431640625,-122.06830596923828 ] },
-      { "shop": "Target", "address": "Mountain View, CA", "coordinate": [ 37.4443293, -122.1598465] },
-      { "shop": "Walgreens", "address": "Fremont, CA", "coordinate": [ 37.48849288005677, -121.94342916254486 ] },
-      { "shop": "Costco", "address": "Almeda, CA", "coordinate": [ 37.766039418486855, -122.2430211806723 ] },
-      { "shop": "Sweet Greens", "address": "San Francisco, CA", "coordinate": [ 38.621725, -92.571271 ] }
-    ]
+# Variables - Data
+shops_data = [
+    { "shop": "Walgreens", "address": "San Jose, CA", "coordinate": [ 37.2333253, -121.6846349 ] },
+    { "shop": "Costco", "address": "San Jose, CA", "coordinate": [ 37.4282724, -121.9066238 ] },
+    { "shop":"Walmart", "address": "San Jose, CA", "coordinate":
+        [ 37.3361905, -121.8905833 ] },
+    { "shop": "Bed Bath & Beyond", "address": "Mountain View, CA", "coordinate":
+        [ 37.4443293, -122.1598465] },
+    { "shop":"Best Buy", "address": "Mountain View, CA", "coordinate":
+        [ 37.35992431640625,-122.06830596923828 ] },
+    { "shop": "Target", "address": "Mountain View, CA", "coordinate":
+        [ 37.4443293, -122.1598465] },
+    { "shop": "Walgreens", "address": "Fremont, CA", "coordinate":
+        [ 37.48849288005677, -121.94342916254486 ] },
+    { "shop": "Costco", "address": "Almeda, CA", "coordinate":
+        [ 37.766039418486855, -122.2430211806723 ] },
+    { "shop": "Sweet Greens", "address": "San Francisco, CA", "coordinate":
+        [ 38.621725, -92.571271 ] }
+ ]
 
-    transit_data = [
-      { "bus": "CA123", "stop": "Santa Clara, CA", "coordinate": [ 37.2333253, -121.6846349 ] },
-      { "bus": "CA233", "stop": "Milpitas, CA", "coordinate": [ 37.4282724, -121.9066238 ] },
-      { "bus": "CA433", "stop": "San Jose, CA", "coordinate": [ 37.3361905, -121.8905833 ] },
-      { "bus": "CA323", "stop": "Palo Alto, CA", "coordinate": [ 37.4443293, -122.1598465] },
-      { "bus": "CA523", "stop": "Mountain View, CA", "coordinate": [ 37.35992431640625,-122.06830596923828 ] },
-      { "bus": "CA143", "stop": "Fremont, CA", "coordinate": [ 37.48849288005677, -121.94342916254486 ] },
-      { "bus": "CA423", "stop": "Almeda, CA", "coordinate": [ 37.766039418486855, -122.2430211806723 ] },
-      { "bus": "CA129", "stop": "San Francisco, CA", "coordinate": [ 38.621725, -92.571271 ] }
-    ]
+transit_data = [
+    { "bus": "CA123", "stop": "Santa Clara, CA", "coordinate": [ 37.2333253, -121.6846349 ] },
+    { "bus": "CA233", "stop": "Milpitas, CA", "coordinate": [ 37.4282724, -121.9066238 ] },
+    { "bus": "CA433", "stop": "San Jose, CA", "coordinate": [ 37.3361905, -121.8905833 ] },
+    { "bus": "CA323", "stop": "Palo Alto, CA", "coordinate": [ 37.4443293, -122.1598465] },
+    { "bus": "CA523", "stop": "Mountain View, CA", "coordinate":
+        [ 37.35992431640625,-122.06830596923828 ] },
+    { "bus": "CA143", "stop": "Fremont, CA", "coordinate":
+        [ 37.48849288005677, -121.94342916254486 ] },
+    { "bus": "CA423", "stop": "Almeda, CA", "coordinate":
+        [ 37.766039418486855, -122.2430211806723 ] },
+    { "bus": "CA129", "stop": "San Francisco, CA", "coordinate": [ 38.621725, -92.571271 ] }
+]
 
-    pp = pprint.PrettyPrinter(indent=4)
+pp = pprint.PrettyPrinter(indent=4)
 
-    # Step1: Open connection to GDN. You will be routed to closest region.
-    print("\n1. CONNECT: federation: {},  user: {}".format(global_url, email))
-    client = C8Client(protocol='https', host=global_url, port=443,
-                      email=email, password=password,
-                      geofabric=geo_fabric)
-    
+# Step1: Open connection to GDN. You will be routed to closest region.
+print(f"\n1. CONNECT: federation: {URL},  user: {API_KEY}")
+client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric=GEO_FABRIC)
 
-    # Step2: Create a collection & geoindex if not exists
-    print("\n2. CREATE_COLLECTION: region: {},  collection: {}".format(global_url, collection_shops))
-    if client.has_collection(collection_shops):
-        shopCol = client.collection(collection_shops)
-    else:
-        shopCol = client.create_collection(collection_shops)
-        client.add_geo_index(collection_shops, fields=["coordinate"], ordered=False)
+# Step2: Create a collection & geoindex if not exists
+print(f"\n2. CREATE_COLLECTION: region: {URL},  collection: {collection_shops}")
+if client.has_collection(collection_shops):
+    shopCol = client.collection(collection_shops)
+else:
+    shopCol = client.create_collection(collection_shops)
+    client.add_geo_index(collection_shops, fields=["coordinate"], ordered=False)
 
-    # Step3: Insert data into collection.
-    print("\n3. INSERT_SHOP_DATA: in region: {}".format(global_url))
-    #shopCol.insert_many(shops_data)
-    client.insert_document(collection_name=collection_shops, document=shops_data)
+# Step3: Insert data into collection.
+print(f"\n3. INSERT_SHOP_DATA: in region: {URL}")
+#shopCol.insert_many(shops_data)
+client.insert_document(collection_name=collection_shops, document=shops_data)
 
-  # Step3a: Find shops closer to given location
-    lat1 = 37.43007055731992 # McCarthy Blvd, Milpitas
-    long1 = -121.92344167914754 # McCarthy Blvd, Milpitas
-    radius = 10 * 1000 # meters
-    print("\n3a. FIND_NEAR_BY_SHOPS for request: ({}, {})".format(lat1, long1))
-    within_query = "FOR loc IN WITHIN ({}, {}, {}, {}) SORT loc._distance ASC RETURN loc".format(collection_shops, lat1, long1, radius)
-    cursor = client.execute_query(within_query)
-    docs = [document for document in cursor]
-    pp.pprint(docs)
+# Step3a: Find shops closer to given location
+lat1 = 37.43007055731992 # McCarthy Blvd, Milpitas
+long1 = -121.92344167914754 # McCarthy Blvd, Milpitas
+radius = 10 * 1000 # meters
+print(f"\n3a. FIND_NEAR_BY_SHOPS for request: ({lat1}, {long1})")
+within_query = (f"FOR loc IN WITHIN ({collection_shops}, {lat1}, {long1}, {radius})"
+    f"SORT loc._distance ASC RETURN loc")
+cursor = client.execute_query(within_query)
+docs = [document for document in cursor]
+pp.pprint(docs)
 
-  # Step3b: Find shop closest to given location
-    print("\n3b. FIND_NEAREST_SHOP for request: ({}, {})".format(lat1, long1))
-    near_query = "FOR loc IN NEAR ({}, {}, {}, 1) RETURN loc".format(collection_shops, lat1, long1)
-    cursor = client.execute_query(near_query)
-    docs = [document for document in cursor]
-    pp.pprint(docs)
+# Step3b: Find shop closest to given location
+print(f"\n3b. FIND_NEAREST_SHOP for request: ({lat1}, {long1})")
+near_query = f"FOR loc IN NEAR ({collection_shops}, {lat1}, {long1}, 1) RETURN loc"
+cursor = client.execute_query(near_query)
+docs = [document for document in cursor]
+pp.pprint(docs)
 
-  #-------------------------------------------------------------------#
+#-------------------------------------------------------------------#
 
-    # Step2: Create a collection & geoindex if not exists
-    print("\n4. CREATE_COLLECTION: region: {},  collection: {}".format(global_url, collection_transit))
-    if client.has_collection(collection_transit):
-        transitCol = client.collection(collection_transit)
-    else:
-        transitCol = client.create_collection(collection_transit)
-        client.add_geo_index(collection_transit, fields=["coordinate"], ordered=False)
+# Step4: Create a collection & geoindex if not exists
+print(f"\n4. CREATE_COLLECTION: region: {URL},  collection: {collection_transit}")
+if client.has_collection(collection_transit):
+    transitCol = client.collection(collection_transit)
+else:
+    transitCol = client.create_collection(collection_transit)
+    client.add_geo_index(collection_transit, fields=["coordinate"], ordered=False)
 
-    # Step5: Insert data into collection.
-    print("\n5. INSERT_TRANSIT_DATA: in region: {}".format(global_url))
-    client.insert_document(collection_name=collection_transit, document=transit_data)
+# Step5: Insert data into collection.
+print(f"\n5. INSERT_TRANSIT_DATA: in region: {URL}")
+client.insert_document(collection_name=collection_transit, document=transit_data)
 
-  # Step6a: Find buses currently within given rectangular fence
-    lat1 = 37.38905593900322 
-    long1 = -122.14426630984782 
-    lat2 = 37.332401582858324 
-    long2 = -121.80235913612003 
-    
-    print("\n6a. FIND_BUSES available within RECTANGULAR fence: ({}, {}, {}, {}) sorted by distance".format(lat1, long1, lat2, long2))
-    within_query = "FOR loc IN WITHIN_RECTANGLE ({}, {}, {}, {}, {}) SORT loc._distance ASC RETURN loc".format(collection_transit, lat1, long1, lat2, long2)
-    cursor = client.execute_query(within_query)
-    docs = [document for document in cursor]
-    pp.pprint(docs)
+# Step6a: Find buses currently within given rectangular fence
+lat1 = 37.38905593900322
+long1 = -122.14426630984782
+lat2 = 37.332401582858324
+long2 = -121.80235913612003
 
-  # Step6b: Find shop closest to given location
-    print("\n6b. FIND_NEAREST_BUS for given location: ({}, {})".format(lat1, long1))
-    near_query = "FOR loc IN NEAR ({}, {}, {}, 1) RETURN loc".format(collection_transit, lat1, long1)
-    cursor = client.execute_query(near_query)
-    docs = [document for document in cursor]
-    pp.pprint(docs)
+print(f"\n6a. FIND_BUSES available within RECTANGULAR fence: ({lat1}, {long1}, {lat2}, {long2})")
+within_query = (f"FOR loc IN WITHIN_RECTANGLE("
+    f"{collection_transit}, {lat1}, {long1}, {lat2}, {long2}) RETURN loc")
+cursor = client.execute_query(within_query)
+docs = [document for document in cursor]
+pp.pprint(docs)
 
-  #-------------------------------------------------------------------#
-  
-    # # Step7: Delete Data
-    print("\n7. DELETE_DATA: region: {}, collections: {}, {}".format(global_url, collection_shops, collection_transit))
-    shopCol.truncate()
-    transitCol.truncate()
-    #client.delete_collection(collection_name)
+# Step6b: Find shop closest to given location
+print(f"\n6b. FIND_NEAREST_BUS for given location: ({lat1}, {long1})")
+near_query = f"FOR loc IN NEAR ({collection_transit}, {lat1}, {long1}, 1) RETURN loc"
+cursor = client.execute_query(near_query)
+docs = [document for document in cursor]
+pp.pprint(docs)
+
+#-------------------------------------------------------------------#
+
+# # Step7: Delete Data
+print(f"\n7. DELETE_DATA: region: {URL}, collections: {collection_shops}, {collection_transit}")
+shopCol.truncate()
+transitCol.truncate()
+client.delete_collection(collection_transit)
+client.delete_collection(collection_shops)
 ```
 
 </TabItem>
