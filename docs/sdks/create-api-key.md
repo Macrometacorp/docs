@@ -38,7 +38,7 @@ for apiElement in apiKeyIds:
 # Checks if the API key already exists and acts accordingly
 if API_ACTIVE:
     # Send message that the key already exists
-    print("Remove API Key: ", client.remove_api_key(CHOSEN_API_KEY_ID))
+    print("Can't create an already existing key")
 else:
     # Create a new API key
     try:
