@@ -5,8 +5,8 @@ sidebar_position: 18
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import ViewCollectionSettings from '../_view-collection-settings.md';
-import CollectionSettingsApi from '../_collection-settings-api.md';
+import ViewCollectionSettings from '../_partials/_view-collection-settings.md';
+import CollectionSettingsApi from '../_partials/_collection-settings-api.md';
 
 <Tabs groupId="operating-systems">
 <TabItem value="ui" label="UI">
@@ -68,6 +68,8 @@ Results will be similar to this code block:
   "collectionModel": "DYNAMO"
 }
 ```
+
+Use [gdnsl collection update](../../cli/collections-cli.md#gdnsl-collection-update) to change collection settings.
 
 </TabItem>
 <TabItem value="api" label="API">

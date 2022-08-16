@@ -3,8 +3,8 @@ title: Key-Value Store Settings
 sidebar_position: 50
 ---
 
-import ViewCollectionSettings from '../_view-collection-settings.md';
-import CollectionSettingsApi from '../_collection-settings-api.md';
+import ViewCollectionSettings from '../_partials/_view-collection-settings.md';
+import CollectionSettingsApi from '../_partials/_collection-settings-api.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -50,6 +50,8 @@ Results will be similar to this code block:
   "collectionModel": "KV"
 }
 ```
+
+Use [gdnsl collection update](../../cli/collections-cli.md#gdnsl-collection-update) to change collection settings.
 
 </TabItem>
 <TabItem value="api" label="API">
