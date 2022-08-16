@@ -144,7 +144,7 @@ Let's assume your
     # Step6: Read Data from other regions.
     print("6. Check again if IP is allowed globally")
     for region_url in region_urls:
-      print("\n IS_IP_ALLOWED...cheking from region: {}".format(region_url))
+      print("\n IS_IP_ALLOWED...checking from region: {}".format(region_url))
       clientx = C8Client(protocol='https', host=region_url, port=443, email=email, password=password,
                           geofabric=geo_fabric)
       cursorx = clientx.execute_query(read_query)
