@@ -7,7 +7,7 @@ The Key-Value Store Data tab is the primary section for viewing individual colle
 
 ![Key-Value Store Data Tab](/img/collections/kv-store-data.png)
 
-This is a complex tab, which contains the following items.
+This is a complex tab which contains the following items.
 
 ## Collection Name
 
