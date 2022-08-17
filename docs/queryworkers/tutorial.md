@@ -242,32 +242,32 @@ PARAMETER = {"firstname": "", "lastname": "", "email": "", "zipcode": ""}
 INSERT_DATA = {
     "query": {
         "name": "insertRecord",
-        "value": "INSERT {'firstname':@firstname, 'lastname':@lastname, 'email':@email, 'zipcode':@zipcode, '_key': 'abc'} IN %s" % COLLECTION_NAME,
+        "value": f"INSERT {{'firstname':@firstname, 'lastname':@lastname, 'email':@email, 'zipcode':@zipcode, '_key': 'abc'}} IN {COLLECTION_NAME}",
         "parameter": PARAMETER
     }
 }
 GET_DATA = {
     "query": {
         "name": "getRecords",
-        "value": "FOR doc IN %s RETURN doc" % COLLECTION_NAME
+        "value": f"FOR doc IN {COLLECTION_NAME} RETURN doc"
     }
 }
 UPDATE_DATA = {
     "query": {
         "name": "updateRecord",
-        "value": "UPDATE 'abc' WITH { \"lastname\": \"cena\" } IN %s" % COLLECTION_NAME
+        "value": f"UPDATE 'abc' WITH {{ \"lastname\": \"cena\" }} IN {COLLECTION_NAME}"
     }
 }
 DELETE_DATA = {
     "query": {
         "name": "deleteRecord",
-        "value": "REMOVE 'abc' IN %s" % COLLECTION_NAME
+        "value": f"REMOVE 'abc' IN {COLLECTION_NAME}"
     }
 }
 GET_COUNT = {
     "query": {
         "name": "countRecords",
-        "value": "RETURN COUNT(FOR doc IN %s RETURN 1)" % COLLECTION_NAME
+        "value": f"RETURN COUNT(FOR doc IN {COLLECTION_NAME} RETURN 1)"
     }
 }
 
