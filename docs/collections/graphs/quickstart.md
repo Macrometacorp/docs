@@ -97,7 +97,7 @@ The first step in using GDN is to establish a connection to a local region. When
     client = C8Client(protocol='https', host=HOST, port=443,
                       email=EMAIL, password=PASSWORD,
                       geofabric=GEO_FABRIC)
-
+```
   </TabItem>
   <TabItem value="js" label="Javascript">
 
