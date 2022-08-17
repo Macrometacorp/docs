@@ -35,7 +35,7 @@ Displays the value corresponding to the key.
 
 ## Expire At
 
-The exact time when the time to live (TTL) index expires (date and time). Expiration is not required, so the value might be N/A.
+The exact time when the time-to-live (TTL) index expires (date and time). Expiration is not required, so the value might be N/A.
 
 ## Edit a Pair
 
