@@ -34,7 +34,7 @@ apiKeyIds = []
 for api in client.list_all_api_keys():
     apiKeyIds.append(api["keyid"])
 
-# Check wether the chosen_api_key exists or not, comparing it to the list elements
+# Check wether the chosen_api_key exists or not, comparing it to the API key list
 for apiElement in apiKeyIds:
     if apiElement == CHOSEN_API_KEY_ID:
         API_ACTIVE = True
