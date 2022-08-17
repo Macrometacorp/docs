@@ -69,10 +69,10 @@ import requests
 FEDERATION = "api-gdn.paas.macrometa.io"
 FED_URL = f"https://{FEDERATION}"
 GEO_FABRIC = "_system"
-API_KEY = "my IP key" #Change to my API key
+API_KEY = "my IP key" # Change to your API key
 #EMAIL = "my email"
 #PASSWORD = "my password"
-#AUTH_TOKEN = "bearer " #do not change
+#AUTH_TOKEN = "bearer " # Do not change
 
 COLLECTION_NAME_1 = "teachers"
 COLLECTION_NAME_2 = "lectures"
@@ -80,7 +80,7 @@ EDGE_COLL_NAME = "teach"
 GRAPH_NAME = "lectureteacher"
 
 # Create a HTTPS Session Part 1
-# This part is needed when getting access through email/pass instead of API key or JWT token
+# The following is required when accessing Macrometa with your email and password instead of an API key or JWT token
 """""
 url = f"{FED_URL}/_open/auth"
 payload = {
@@ -108,7 +108,7 @@ session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": "apikey " + API_KEY})
 
-# Create Doc Collections and Insert Data to Document Collections
+# Create Document Collections and Insert Data
 
 
 url = f"{FED_URL}/_fabric/{GEO_FABRIC}/_api/collection"
@@ -227,7 +227,7 @@ result = json.loads(resp.text)
 print("\nGraph Created: ",result)
 
 # Graph Traversal
-# Note :- To use Outbound Traversal use direction: out and direction: in for Inbound Traversal
+# Set `direction` to `out` or `in` for outbound or inbound traversal.
 params = {
     "vertex": "teachers/Jean",
     "direction": "out"
@@ -241,7 +241,7 @@ print("\nGraph Traversal: ",result)
 
 
 # Delete Graph and Collections
-# Note:- If you want to delete just the graph and keep collections then
+# Set `dropCollection` to `False` if you want to delete the graph but keep the collections.
 # set dropCollection to False
 params = {"dropCollections": True}
 
