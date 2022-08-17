@@ -1,6 +1,6 @@
 ---
 title: Graph Queries
-sidebar_position: 40
+sidebar_position: 60
 ---
 
 This page provides an example of how to make graph queries.
