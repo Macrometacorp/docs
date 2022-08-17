@@ -38,16 +38,16 @@ for apiElement in apiKeyIds:
         API_ACTIVE = True
         break
 
-# Checks if the API already exists and acts accordingly
+# Checks the specified API key
 if API_ACTIVE:
-    # Remove the chosen API key
+    # Removes the chosen API key
     try:
         print("Remove API Key: ", client.remove_api_key(CHOSEN_API_KEY_ID))
     except Exception as err:
         print("Error removing the API key")
         print(err)
 else:
-    # Display message that the eky does not exists
+    # Displays a message that the key does not exist
     print("Can't remove a non-existent key")
 ```
 
