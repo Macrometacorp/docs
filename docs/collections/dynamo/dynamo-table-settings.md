@@ -17,7 +17,7 @@ You can view and update key-value store collection settings in the Settings tab.
 
 ## Dynamo Table Settings
 
-Dynamo Table settings are displayed as a table schema, similar to the following code block.
+Dynamo Table settings are displayed as a table schema similar to the following code block.
 
 ```json
 {
