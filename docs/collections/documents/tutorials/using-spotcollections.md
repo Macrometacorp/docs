@@ -111,23 +111,23 @@ data = [
 pp = pprint.PrettyPrinter(indent=4)
 
 
-# Step1: Open connection to GDN. You will be routed to closest region.
+# Step 1: Open connection to GDN. You will be routed to closest region.
 print(f"1. CONNECT: federation: {URL},  user: {API_KEY}")
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric=GEO_FABRIC)
 
 #print("The connection was successful:", client.get_collections())
 
-# Step 1.5: Assign a spot region
+# Step 1.5: Assign a spot region.
 spot_region = client.tenant(apikey = API_KEY)
 dcl = spot_region.dclist(detail=False)
 fabric = spot_region.useFabric(GEO_FABRIC)
 
 if fabric.has_fabric(spot_gf_name):
-    print("Fabric", spot_gf_name, "already exists")
+    print("Fabric", spot_gf_name, "already exists.")
 else:
     fabric.create_fabric(spot_gf_name, dclist=dcl,spot_creation_type=
         fabric.SPOT_CREATION_TYPES.SPOT_REGION, spot_dc='eu-west.paas.macrometa.io')
-    print("Fabric", spot_gf_name, "has been created successfully")
+    print("Fabric", spot_gf_name, "has been created successfully.")
 
 client.set_database_access_level(API_KEY_ID, spot_gf_name, "rw")
 
@@ -137,16 +137,16 @@ client = spot_region.useFabric(spot_gf_name)
 
 spot_region_status = client.properties().get("options", {}).get("spotDc")
 if spot_region_status == "":
-    print("The fabric does not have a spot region registered")
-    print("Please remove the fabric and create a new fabric with a spot region")
-    print("Stopping program")
+    print("The fabric does not have a spot region registered.")
+    print("Please remove the fabric and create a new fabric with a spot region.")
+    print("Stopping program.")
     exit()
 else:
     print("Spot region for the fabric", spot_gf_name, "is: ", spot_region_status)
     print("Continuing...")
 
 
-# Step2: Create or assign a spot collection
+# Step 2: Create or assign a spot collection.
 # getCollectionDetails
 def isSpotCollection():
     """ This function checks if the given collection already exists and if true,
@@ -162,24 +162,24 @@ if client.has_collection(collection_name):
         print("Continuing...")
         collection = client.collection(collection_name)
     else:
-        print(collection_name, "is NOT a spot collection")
-        print("Remove the collection and create a new one as a spot collection")
-        print("Stopping program")
+        print(collection_name, "is not a spot collection")
+        print("Remove the collection and create a new one as a spot collection.")
+        print("Stopping program.")
         exit()
 else:
     collection = client.create_collection(collection_name, spot_collection=True)
     print(collection_name, "has been created successfully")
 
 
-# Step3: Insert data into collection.
+# Step 3: Insert data into collection.
 #get_keys = client.execute_restql("accounts_keys")
 print(f"3. INSERT_DATA: region: {URL}, collection: {collection_name}")
 #collection.insert_many(data)
-print("Data has been inserted successfully inserted (duplicating data was avoided)")
+print("Data has been inserted successfully inserted (duplicating data was avoided).")
 
 
 
-# Step4: Create a new query worker or look for the existing one, and read data from the collection
+# Step 4: Create a new query worker or look for the existing one, and read data from the collection.
 print(f"4. READ_DATA: region: {URL}, collection: {collection_name}")
 all_saved_queries = client.get_all_restql()
 
@@ -191,16 +191,16 @@ for i in all_saved_queries:
 
 if not query_exists:
     client.save_restql(read_query)
-    print("The NEW query has been saved")
+    print("The NEW query has been saved.")
 else:
-    print("Query already exists")
+    print("Query already exists.")
 
 
 print(client.execute_restql(read_query_name))
 #print(client.execute_query("FOR account IN accounts RETURN account"))
 
 
-# Step5: Read Data from other regions.
+# Step 5: Read data from other regions.
 for region_url in region_urls:
     print(f"\n5. DATA_MOBILITY: Reading from region: {region_url}")
     #clientx = C8Client(protocol='https', host=region_url, port=443, geofabric=
@@ -208,16 +208,16 @@ for region_url in region_urls:
     print(client.execute_restql(read_query_name))
 
 
-# Step6: Delete Data
+# Step 6: Delete data.
 print(f"6. DELETE_DATA: fabric: {spot_gf_name}, collection: {collection_name}")
 try:
     collection.truncate()
     client.delete_collection(collection_name)
     client = spot_region.useFabric(GEO_FABRIC)
     client.delete_fabric(spot_gf_name)
-    print("Spot collection and fabric have been deleted successfully")
+    print("Spot collection and fabric have been deleted successfully.")
 except Exception as e:
-    print("There was an error while deleting the spot collection or fabric")
+    print("There was an error while deleting the spot collection or fabric.")
     print("Details:", e)
 ```
 
