@@ -401,10 +401,10 @@ subscriber = client.subscribe(stream=demo_stream, local=prefixBool,
     subscription_name="test-subscription-1")
 for i in range(10):
     print("In ",i)
-    m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving msg's
+    m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
     msg1 = base64.b64decode(m1["payload"])
-    print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received msg
-    subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received msg
+    print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received message
+    subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
 ```
 
 </TabItem>
@@ -434,7 +434,7 @@ warnings.filterwarnings("ignore")
 
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "my API key" #Change this to my API key
+API_KEY = "my API key" # Change this to your API key
 prefixText = ""
 prefixBool = False
 demo_stream = 'streamQuickstart'
@@ -480,10 +480,10 @@ def receiveData():
         subscription_name="test-subscription-1")
     for i in range(10):
         print("In ",i)
-        m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving msg's
+        m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
         msg1 = base64.b64decode(m1["payload"])
-        print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received msg
-        subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received msg
+        print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received message
+        subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
 
 
 createStream()
