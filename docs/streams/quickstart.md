@@ -414,12 +414,6 @@ for i in range(10):
 ## Full demo quickstart file
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript"> 
-
-```js
-```
-
-</TabItem>
 <TabItem value="py" label="Python"> 
 
 ```py
