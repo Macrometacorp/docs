@@ -226,47 +226,48 @@ async function deleteRestQL() {
 ```py
 from c8 import C8Client
 import pprint
+import time
 
 # Variables - URLs
-global_url = "gdn.paas.macrometa.io"
+GLOBAL_URL = "gdn.paas.macrometa.io"
 
 # Variables - DB
-email = "nemo@nautilus.com"
-password = "xxxxxx"
-geo_fabric = "_system"
-collection_name = "address"
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxxx"
+GEO_FABRIC = "_system"
+COLLECTION_NAME = "address"
 
 # Variables - Query Workers
-parameter = {"firstname": "", "lastname": "", "email": "", "zipcode": ""}
-insert_data = {
+PARAMETER = {"firstname": "", "lastname": "", "email": "", "zipcode": ""}
+INSERT_DATA = {
     "query": {
         "name": "insertRecord",
-        "value": "INSERT {'firstname':@firstname, 'lastname':@lastname, 'email':@email, 'zipcode':@zipcode, '_key': 'abc'} IN %s" % collection_name,
-        "parameter": parameter
+        "value": "INSERT {'firstname':@firstname, 'lastname':@lastname, 'email':@email, 'zipcode':@zipcode, '_key': 'abc'} IN %s" % COLLECTION_NAME,
+        "parameter": PARAMETER
     }
 }
-get_data = {
+GET_DATA = {
     "query": {
         "name": "getRecords",
-        "value": "FOR doc IN %s RETURN doc" % collection_name
+        "value": "FOR doc IN %s RETURN doc" % COLLECTION_NAME
     }
 }
-update_data = {
+UPDATE_DATA = {
     "query": {
         "name": "updateRecord",
-        "value": "UPDATE 'abc' WITH { \"lastname\": \"cena\" } IN %s" % collection_name
+        "value": "UPDATE 'abc' WITH { \"lastname\": \"cena\" } IN %s" % COLLECTION_NAME
     }
 }
-delete_data = {
+DELETE_DATA = {
     "query": {
         "name": "deleteRecord",
-        "value": "REMOVE 'abc' IN %s" % collection_name
+        "value": "REMOVE 'abc' IN %s" % COLLECTION_NAME
     }
 }
-get_count = {
+GET_COUNT = {
     "query": {
         "name": "countRecords",
-        "value": "RETURN COUNT(FOR doc IN %s RETURN 1)" % collection_name
+        "value": "RETURN COUNT(FOR doc IN %s RETURN 1)" % COLLECTION_NAME
     }
 }
 
@@ -275,29 +276,30 @@ pp = pprint.PrettyPrinter(indent=4)
 if __name__ == '__main__':
 
 # Step1: Open connection to GDN. You will be routed to closest region.
-    print("1. CONNECT: federation: {},  user: {}".format(global_url, email))
-    client = C8Client(protocol='https', host=global_url, port=443,
-                        email=email, password=password,
-                        geofabric=geo_fabric)      
+    print(f"1. CONNECT: federation: {GLOBAL_URL},  user: {EMAIL}")
+    client = C8Client(protocol='https', host=GLOBAL_URL, port=443,
+                        email=EMAIL, password=PASSWORD,
+                        geofabric=GEO_FABRIC)
 
     # Step2: Create a collection if not exists
-    print("2. CREATE_COLLECTION: region: {},  collection: {}".format(global_url, collection_name))
-    if client.has_collection(collection_name):
-        collection = client.collection(collection_name)
+    print(f"2. CREATE_COLLECTION: region: {GLOBAL_URL},  collection: {COLLECTION_NAME}")
+    if client.has_collection(COLLECTION_NAME):
+        collection = client.collection(COLLECTION_NAME)
     else:
-        collection = client.create_collection(collection_name)
+        collection = client.create_collection(COLLECTION_NAME)
 
     # Step3: Create RestQLs
-    print("3. CREATE_RESTQLs: region: {}".format(global_url))
-    client.create_restql(insert_data)  # name: insertRecord
-    client.create_restql(get_data)  # name: getRecords
-    client.create_restql(update_data)  # name: updateRecord
-    client.create_restql(delete_data)  # name: deleteRecord
-    client.create_restql(get_count)  # name: countRecords
+    print(f"3. CREATE_RESTQLs: region: {GLOBAL_URL}")
+    client.create_restql(INSERT_DATA)  # name: insertRecord
+    client.create_restql(GET_DATA)  # name: getRecords
+    client.create_restql(UPDATE_DATA)  # name: updateRecord
+    client.create_restql(DELETE_DATA)  # name: deleteRecord
+    client.create_restql(GET_COUNT)  # name: countRecords
     pp.pprint(client.get_restqls())
 
+    time.sleep(5)
     # Step4: Execute Query Workers
-    print("4. EXECUTE_RESTQLs: region: {}".format(global_url))
+    print(f"4. EXECUTE_RESTQLs: region: {GLOBAL_URL}")
 
     print("\t a. Insert data....")
     response = client.execute_restql(
@@ -323,7 +325,7 @@ if __name__ == '__main__':
     print("\t f. Delete data....")
     response = client.execute_restql("deleteRecord")
 
-    print("5. DELETE_RESTQLs: region: {}".format(global_url))
+    print(f"5. DELETE_RESTQLs: region: {GLOBAL_URL}")
     client.delete_restql("insertRecord")
     client.delete_restql("getRecords")
     client.delete_restql("updateRecord")
