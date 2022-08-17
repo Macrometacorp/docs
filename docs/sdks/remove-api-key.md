@@ -37,7 +37,7 @@ apiKeyIds = []
 for api in client.list_all_api_keys():
     apiKeyIds.append(api["keyid"])
 
-# Check wether the chosen_api_key exists or not, comparing it to the API key list
+# Check whether the chosen_api_key exists or not, comparing it to the API key list
 for apiElement in apiKeyIds:
     if apiElement == CHOSEN_API_KEY_ID:
         API_ACTIVE = True
@@ -47,7 +47,7 @@ for apiElement in apiKeyIds:
 if API_ACTIVE:
     # Removes the chosen API key
     try:
-        print("Remove API Key: ", client.remove_api_key(CHOSEN_API_KEY_ID))
+        print("Remove API key: ", client.remove_api_key(CHOSEN_API_KEY_ID))
     except Exception as err:
         print("Error removing the API key")
         print(err)
