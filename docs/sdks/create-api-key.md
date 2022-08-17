@@ -35,9 +35,9 @@ for apiElement in apiKeyIds:
         API_ACTIVE = True
         break
 
-# Checks if the API key already exists and acts accordingly
+# Checks if the API key exists
 if API_ACTIVE:
-    # Send message that the key already exists
+    # Display a message that the key already exists
     print("Can't create an already existing key")
 else:
     # Create a new API key
