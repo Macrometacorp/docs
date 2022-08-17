@@ -85,15 +85,18 @@ The first step in using GDN is to establish a connection to a local region. When
   <TabItem value="py" label="Python">
 
 ```py
-    print("--- Connecting to C8")
-    # Simple Way
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password="xxxxxx",
-                            geofabric='_system')
+    from c8 import C8Client
 
-    # To use advanced options
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
-```
+    EMAIL = 'nemo@nautilus.com'
+    PASSWORD = 'xxxxx'
+    HOST = 'gdn.paas.macrometa.io'
+    GEO_FABRIC = '_system'
+
+    print("--- Connecting to C8")
+
+    client = C8Client(protocol='https', host=HOST, port=443,
+                      email=EMAIL, password=PASSWORD,
+                      geofabric=GEO_FABRIC)
 
   </TabItem>
   <TabItem value="js" label="Javascript">
@@ -123,10 +126,20 @@ To get details of fabric,
 
 ```py
     from c8 import C8Client
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password="xxxxxx",
-                            geofabric='_system')
+
+    EMAIL = 'nemo@nautilus.com'
+    PASSWORD = 'xxxxx'
+    HOST = 'gdn.paas.macrometa.io'
+    GEO_FABRIC = '_system'
+
+    print("--- Connecting to C8")
+
+    client = C8Client(protocol='https', host=HOST, port=443,
+                      email=EMAIL, password=PASSWORD,
+                      geofabric=GEO_FABRIC)
+
     print("Get geo fabric details...")
+
     print(client.get_fabric_details())
 ```
 
@@ -173,9 +186,19 @@ The below example shows the steps.
   <TabItem value="py" label="Python">
 
 ```py
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password="xxxxxx",
-                            geofabric='_system')
+    from c8 import C8Client
+
+    EMAIL = 'nemo@nautilus.com'
+    PASSWORD = 'xxxxx'
+    HOST = 'gdn.paas.macrometa.io'
+    GEO_FABRIC = '_system'
+
+    print("--- Connecting to C8")
+
+    client = C8Client(protocol='https', host=HOST, port=443,
+                      email=EMAIL, password=PASSWORD,
+                      geofabric=GEO_FABRIC)
+                        
     client.create_collection(name='employees')
 ```
 
@@ -227,15 +250,23 @@ An **edge collection** contains edge documents and shares its namespace with all
   <TabItem value="py" label="Python">
 
 ```py
-    # Simple Approach
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password="xxxxxx",
-                            geofabric='_system')
-    client.create_collection(name='employees')
+    from c8 import C8Client
+
+    EMAIL = 'nemo@nautilus.com'
+    PASSWORD = 'xxxxx'
+    HOST = 'gdn.paas.macrometa.io'
+    GEO_FABRIC = '_system'
+
+    print("--- Connecting to C8")
+
+    client = C8Client(protocol='https', host=HOST, port=443,
+                      email=EMAIL, password=PASSWORD,
+                      geofabric=GEO_FABRIC)
+
     if client.has_graph('school'):
-      print("Graph exists")
+          print("Graph exists")
     else:
-      print("Create: ", client.create_graph(graph_name='school'))
+          print("Create: ", client.create_graph(graph_name='school'))
 ```
 
   </TabItem>
@@ -282,15 +313,26 @@ Let's insert documents to the employees collection as shown below.
   <TabItem value="py" label="Python">
 
 ```py
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password="xxxxxx",
-                            geofabric='_system')
-    client.insert_document(collection_name='employees', document={'_key':'Jean', 'firstname': 'Jean', 'lastname':'Picard', 'email':'jean.picard@macrometa.io'})
+    from c8 import C8Client
+
+    EMAIL = 'nemo@nautilus.com'
+    PASSWORD = 'xxxxx'
+    HOST = 'gdn.paas.macrometa.io'
+    GEO_FABRIC = '_system'
+
+    print("--- Connecting to C8")
+
+    client = C8Client(protocol='https', host=HOST, port=443,
+                      email=EMAIL, password=PASSWORD,
+                      geofabric=GEO_FABRIC)
+
+    client.insert_document(collection_name='employees', document={'_key': 'Jean', 'firstname': 'Jean', 'lastname': 'Picard',
+                                                              'email': 'jean.picard@macrometa.io'})
 
     docs = [
-      {'_kefabricy':'James', 'firstname': 'James', 'lastname':'Kirk', 'email':'james.kirk@mafabriccrometa.io'},
-      {'_kefabricy': 'Han', 'firstname': 'Han', 'lastname':'Solo', 'email':'han.solo@macrfabricometa.io'},
-      {'_kefabricy': 'Bruce', 'firstname': 'Bruce', 'lastname':'Wayne', 'email':'bruce.wayne@mfabricacrometa.io'}
+        {'_kefabricy': 'James', 'firstname': 'James', 'lastname': 'Kirk', 'email': 'james.kirk@mafabriccrometa.io'},
+        {'_kefabricy': 'Han', 'firstname': 'Han', 'lastname': 'Solo', 'email': 'han.solo@macrfabricometa.io'},
+        {'_kefabricy': 'Bruce', 'firstname': 'Bruce', 'lastname': 'Wayne', 'email': 'bruce.wayne@mfabricacrometa.io'}
     ]
 
     client.insert_document(collection_name='employees', document=docs)
@@ -339,18 +381,23 @@ A graph consists of vertices and edges. Vertices are stored as documents in vert
 ```py
     from c8 import C8Client
 
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password="xxxxxx",
-                            geofabric='_system')
+    EMAIL = 'nemo@nautilus.com'
+    PASSWORD = 'xxxxx'
+    HOST = 'gdn.paas.macrometa.io'
+    GEO_FABRIC = '_system'
 
+    print("--- Connecting to C8")
+
+    client = C8Client(protocol='https', host=HOST, port=443,
+                      email=EMAIL, password=PASSWORD,
+                      geofabric=GEO_FABRIC)
 
     # List existing graphs in the fabric.
     client.get_graphs()
 
     # Create a new graph named "school" if it does not already exist.
-    # This returns an API wrapper for "school" graph.
-    iif client.has_graph('school'):
-        school = client.graph('school')
+    if client.has_graph('school'):
+        school = client.get_graph('school')
     else:
         school = client.create_graph('school')
 ```
@@ -399,190 +446,192 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     import pprint
 
     # Variables - Queries
-    global_url = "gdn.paas.macrometa.io"
-    email = "nemo@nautilus.com"
-    password = "xxxxxx"
-    geo_fabric = "_system"
-    collection_people = "CDRpeople"
-    collection_calls = "CDRcalls"
-    collection_cellsites = "CDRcellsites"
-    collection_graph = "CDRgraphdocs"
-    read_people = "FOR person IN CDRpeople RETURN person"
-    read_calls = "FOR call IN CDRcalls RETURN call"
-    person = "Lou Feaveer"
-    graph_traversal1 = "FOR c IN CDRpeople FILTER c.full_name == \"{}\" FOR v IN 1..1 INBOUND c CDRcalls RETURN v".format(person)
-    graph_traversal2 = "FOR c IN CDRpeople FILTER c.full_name == \"{}\" FOR v IN 1..1 OUTBOUND c CDRcalls RETURN v".format(person)
+    GLOBAL_URL = "gdn.pass.macrometa.io"
+    EMAIL = "nemo@nautilus.com"
+    PASSWORD = "xxxxxx"
+    GEO_FABRIC = "_system"
+    COLLECTION_PEOPLE = "CDRpeople"
+    COLLECTION_CALLS = "CDRcalls"
+    COLLECTION_CELL_SITES = "CDRcellsites"
+    COLLECTION_GRAPH = "CDRgraphdocs"
+    READ_PEOPLE = "FOR person IN CDRpeople RETURN person"
+    READ_CALLS = "FOR call IN CDRcalls RETURN call"
+    PERSON = "Lou Feaveer"
+    GRAPH_TRAVERSAL_1 = f"FOR c IN CDRpeople FILTER c.full_name == \"{PERSON}\" FOR v IN 1..1 INBOUND c CDRcalls RETURN v"
+    GRAPH_TRAVERSAL_2 = f"FOR c IN CDRpeople FILTER c.full_name == \"{PERSON}\" FOR v IN 1..1 OUTBOUND c CDRcalls RETURN v"
 
     pp = pprint.PrettyPrinter(indent=4)
 
     # Initialize the C8 Data Fabric client.
     # Step1: Open connection to GDN. You will be routed to closest region.
-    print("1. CONNECT: federation: {},  user: {}".format(global_url, email))
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email=email, password=password,
-                            geofabric=geo_fabric)
-
+    print(f"1. CONNECT: federation: {GLOBAL_URL},  user: {EMAIL}")
+    
+    client = C8Client(protocol='https', host=GLOBAL_URL, port=443,
+                      email=EMAIL, password=PASSWORD,
+                      geofabric=GEO_FABRIC)
 
     # Step2: Create collections if not exists
-    print("2a. CREATE_PEOPLE_VERTEX_COLLECTION: region: {},  collection: {}".format(global_url, collection_people))
-    if client.has_collection(collection_people):
-        peopleCol = client.collection(collection_people)
-    else:
-        peopleCol = client.create_collection(collection_people)
+    print(f"2a. CREATE_PEOPLE_VERTEX_COLLECTION: region: {GLOBAL_URL}, collection: {COLLECTION_PEOPLE}")
 
-    print("2b. CREATE_CALLS_EDGE_COLLECTION: region: {},  collection: {}".format(global_url, collection_calls))
-    if client.has_collection(collection_calls):
-        callsCol = client.collection(collection_calls)
+    if client.has_collection(COLLECTION_PEOPLE):
+        peopleCol = client.collection(COLLECTION_PEOPLE)
     else:
-        callsCol = client.create_collection(collection_calls, edge=True)
+        peopleCol = client.create_collection(COLLECTION_PEOPLE)
+
+    print(f"2b. CREATE_CALLS_EDGE_COLLECTION: region: {GLOBAL_URL},  collection: {COLLECTION_CALLS}")
+
+    if client.has_collection(COLLECTION_CALLS):
+        callsCol = client.collection(COLLECTION_CALLS)
+    else:
+        callsCol = client.create_collection(COLLECTION_CALLS, edge=True)
 
     # Step3: Insert data into collections.
-    print("3a. INSERT_PEOPLE_DATA: region: {}, collection: {}".format(global_url, collection_people))
+    print(f"3a. INSERT_PEOPLE_DATA: region: {GLOBAL_URL}, collection: {COLLECTION_PEOPLE}")
 
     # insert documents into the collection
     docs = [
-      {
-        "full_name": "Kiel Dummer",
-        "first_name": "Kiel",
-        "last_name": "Dummer",
-        "city": "Burbank",
-        "state": "CA",
-        "address": "40317 5th Crossing",
-        "calling_nbr": "757-697-9065",
-        "_key": "757-697-9065"
-      },
-      {
-        "full_name": "Pernell Winspare",
-        "first_name": "Pernell",
-        "last_name": "Winspare",
-        "city": "San Diego",
-        "state": "CA",
-        "address": "596 Packers Pass",
-        "calling_nbr": "718-208-8096",
-        "_key": "718-208-8096"
-      },
-      {
-        "full_name": "Ava Kermath",
-        "first_name": "Ava",
-        "last_name": "Kermath",
-        "city": "Berkeley",
-        "state": "CA",
-        "address": "2 Doe Crossing Junction",
-        "calling_nbr": "765-623-5328",
-        "_key": "765-623-5328"
-      },
-      {
-        "full_name": "Tremain McGrah",
-        "first_name": "Tremain",
-        "last_name": "McGrah",
-        "city": "Torrance",
-        "state": "CA",
-        "address": "079 Russell Street",
-        "calling_nbr": "859-783-3227",
-        "_key": "859-783-3227"
-      },
-      {
-        "full_name": "Vidovik Boddam",
-        "first_name": "Vidovik",
-        "last_name": "Boddam",
-        "city": "Los Angeles",
-        "state": "CA",
-        "address": "3 Brentwood Crossing",
-        "calling_nbr": "703-265-1313",
-        "_key": "703-265-1313"
-      },
-      {
-        "full_name": "Oralie Goward",
-        "first_name": "Oralie",
-        "last_name": "Goward",
-        "city": "Los Angeles",
-        "state": "CA",
-        "address": "922 Columbus Park",
-        "calling_nbr": "617-815-8610",
-        "_key": "617-815-8610"
-      },
-      {
-        "full_name": "Lou Feaveer",
-        "first_name": "Lou",
-        "last_name": "Feaveer",
-        "city": "San Jose",
-        "state": "CA",
-        "address": "55223 Hooker Crossing",
-        "calling_nbr": "716-463-8993",
-        "_key": "716-463-8993"
-      },
-      {
-        "full_name": "Peria King",
-        "first_name": "Peria",
-        "last_name": "King",
-        "city": "Stockton",
-        "state": "CA",
-        "address": "8 Troy Plaza",
-        "calling_nbr": "713-707-8699",
-        "_key": "713-707-8699"
-      }
+        {
+            "full_name": "Kiel Dummer",
+            "first_name": "Kiel",
+            "last_name": "Dummer",
+            "city": "Burbank",
+            "state": "CA",
+            "address": "40317 5th Crossing",
+            "calling_nbr": "757-697-9065",
+            "_key": "757-697-9065"
+        },
+        {
+            "full_name": "Pernell Winspare",
+            "first_name": "Pernell",
+            "last_name": "Winspare",
+            "city": "San Diego",
+            "state": "CA",
+            "address": "596 Packers Pass",
+            "calling_nbr": "718-208-8096",
+            "_key": "718-208-8096"
+        },
+        {
+            "full_name": "Ava Kermath",
+            "first_name": "Ava",
+            "last_name": "Kermath",
+            "city": "Berkeley",
+            "state": "CA",
+            "address": "2 Doe Crossing Junction",
+            "calling_nbr": "765-623-5328",
+            "_key": "765-623-5328"
+        },
+        {
+            "full_name": "Tremain McGrah",
+            "first_name": "Tremain",
+            "last_name": "McGrah",
+            "city": "Torrance",
+            "state": "CA",
+            "address": "079 Russell Street",
+            "calling_nbr": "859-783-3227",
+            "_key": "859-783-3227"
+        },
+        {
+            "full_name": "Vidovik Boddam",
+            "first_name": "Vidovik",
+            "last_name": "Boddam",
+            "city": "Los Angeles",
+            "state": "CA",
+            "address": "3 Brentwood Crossing",
+            "calling_nbr": "703-265-1313",
+            "_key": "703-265-1313"
+        },
+        {
+            "full_name": "Oralie Goward",
+            "first_name": "Oralie",
+            "last_name": "Goward",
+            "city": "Los Angeles",
+            "state": "CA",
+            "address": "922 Columbus Park",
+            "calling_nbr": "617-815-8610",
+            "_key": "617-815-8610"
+        },
+        {
+            "full_name": "Lou Feaveer",
+            "first_name": "Lou",
+            "last_name": "Feaveer",
+            "city": "San Jose",
+            "state": "CA",
+            "address": "55223 Hooker Crossing",
+            "calling_nbr": "716-463-8993",
+            "_key": "716-463-8993"
+        },
+        {
+            "full_name": "Peria King",
+            "first_name": "Peria",
+            "last_name": "King",
+            "city": "Stockton",
+            "state": "CA",
+            "address": "8 Troy Plaza",
+            "calling_nbr": "713-707-8699",
+            "_key": "713-707-8699"
+        }
     ]
     peopleCol.insert_many(docs)
 
-    print("3a. INSERT_CALL_RECORDS_DATA: region: {}, collection: {}".format(global_url, collection_calls))
+    print(f"3a. INSERT_CALL_RECORDS_DATA: region: {GLOBAL_URL}, collection: {COLLECTION_CALLS}")
+
     docs = [
-            {
-        "calling_nbr": "757-697-9065",
-        "called_nbr": "716-463-8993",
-        "_from": "CDRpeople/757-697-9065",
-        "_to": "CDRpeople/716-463-8993",
-        "call_date": "1/4/2020",
-        "call_time": "13:33",
-        "call_duration": 30,
-        "cell_site": 4044703906
-      },
-      {
-        "calling_nbr": "716-463-8993",
-        "called_nbr": "713-707-8699",
-        "_from": "CDRpeople/716-463-8993",
-        "_to": "CDRpeople/713-707-8699",
-        "call_date": "1/28/2020",
-        "call_time": "3:02",
-        "call_duration": 18,
-        "cell_site": 2289973823
-      },
-      {
-        "calling_nbr": "765-623-5328",
-        "called_nbr": "713-707-8699",
-        "_from": "CDRpeople/765-623-5328",
-        "_to": "CDRpeople/713-707-8699",
-        "call_date": "1/28/2020",
-        "call_time": "3:02",
-        "call_duration": 18,
-        "cell_site": 2289973823
-      }
-        ]
+        {
+            "calling_nbr": "757-697-9065",
+            "called_nbr": "716-463-8993",
+            "_from": "CDRpeople/757-697-9065",
+            "_to": "CDRpeople/716-463-8993",
+            "call_date": "1/4/2020",
+            "call_time": "13:33",
+            "call_duration": 30,
+            "cell_site": 4044703906
+        },
+        {
+            "calling_nbr": "716-463-8993",
+            "called_nbr": "713-707-8699",
+            "_from": "CDRpeople/716-463-8993",
+            "_to": "CDRpeople/713-707-8699",
+            "call_date": "1/28/2020",
+            "call_time": "3:02",
+            "call_duration": 18,
+            "cell_site": 2289973823
+        },
+        {
+            "calling_nbr": "765-623-5328",
+            "called_nbr": "713-707-8699",
+            "_from": "CDRpeople/765-623-5328",
+            "_to": "CDRpeople/713-707-8699",
+            "call_date": "1/28/2020",
+            "call_time": "3:02",
+            "call_duration": 18,
+            "cell_site": 2289973823
+        }
+    ]
     callsCol.insert_many(docs)
 
-    #Step4: Create a graph
+    # Step4: Create a graph
     print("4. CREATE_GRAPH...CDRgraph")
-    graph = client.create_graph(collection_graph)
+
+    graph = client.create_graph(COLLECTION_GRAPH)
     register = graph.create_edge_definition(
-            edge_collection=collection_calls,
-            from_vertex_collections=[collection_people],
-            to_vertex_collections=[collection_people]
-        )
+    edge_collection=COLLECTION_CALLS,
+    from_vertex_collections=[COLLECTION_PEOPLE],
+    to_vertex_collections=[COLLECTION_PEOPLE]
+    )
 
     # Step5: Read Data
-    print("5a. GRAPH_TRAVERSAL: Find outbound calls TO: {}".format(person))
-    cursor = client.execute_query(graph_traversal1)
-    docs = [document for document in cursor]
+    print(f"5a. GRAPH_TRAVERSAL: Find outbound calls TO: {PERSON}")
+    cursor = client.execute_query(GRAPH_TRAVERSAL_1)
+    docs = list(document for document in cursor)
     pp.pprint(docs)
-    print("5b. GRAPH_TRAVERSAL: Find inbound calls FROM: {}".format(person))
-    cursor = client.execute_query(graph_traversal2)
-    docs = [document for document in cursor]
+    print(f"5b. GRAPH_TRAVERSAL: Find inbound calls FROM: {PERSON}")
+    cursor = client.execute_query(GRAPH_TRAVERSAL_2)
+    docs = list(document for document in cursor)
     pp.pprint(docs)
 
     # Step6: Delete Data
     print("6. DELETE_DATA...")
-    #callsCol.truncate()
-    #peopleCol.truncate()
-    client.delete_graph(collection_graph, drop_collections=False)
+    client.delete_graph(COLLECTION_GRAPH, drop_collections=False)
 ```
 
   </TabItem>
@@ -815,10 +864,9 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
   <TabItem value="py" label="Python">
 
 ```py
-    # Step4: Read Data
-    print("4a. GRAPH_TRAVERSAL: Find outbound calls TO: {}".format(person))
-    cursor = client.execute_query(graph_traversal1)
-    docs = [document for document in cursor]
+    print(f"4a. GRAPH_TRAVERSAL: Find outbound calls TO: {person}")
+    cursor = client.execute_query(GRAPH_TRAVERSAL_1)
+    docs = list(document for document in cursor)
     pp.pprint(docs)
 ```
 
@@ -840,9 +888,9 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
   <TabItem value="py" label="Python">
 
 ```py
-    print("4b. GRAPH_TRAVERSAL: Find inbound calls FROM: {}".format(person))
-    cursor = client.execute_query(graph_traversal2)
-    docs = [document for document in cursor]
+    print(f"4b. GRAPH_TRAVERSAL: Find inbound calls FROM: {person}")
+    cursor = client.execute_query(GRAPH_TRAVERSAL_2)
+    docs = list(document for document in cursor)
     pp.pprint(docs)
 ```
 
@@ -866,12 +914,17 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
 ```py
     from c8 import C8Client
 
-    # Initialize the C8 Data Fabric client.
-    client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password="xxxxxx",
-                            geofabric='_system')
+    EMAIL = 'nemo@nautilus.com'
+    PASSWORD = 'xxxxx'
+    HOST = 'gdn.paas.macrometa.io'
+    GEO_FABRIC = '_system'
 
-    # This returns an API wrapper for "school" graph and deletes the graph
+    print("--- Connecting to C8")
+
+    client = C8Client(protocol='https', host=HOST, port=443,
+                            email=EMAIL, password=PASSWORD,
+                            geofabric=GEO_FABRIC)
+
     client.delete_graph('school')
 ```
 
