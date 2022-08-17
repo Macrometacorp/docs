@@ -1,4 +1,4 @@
-Each collection in the GDN can be a stream. Collection streams use the WebSocket protocol to emit event messages for operations performed on the collection.
+Each collection in Macrometa GDN can be a stream. Collection streams use the WebSocket protocol to emit event messages for operations performed on the collection.
 
 The Stream tab is only displayed if streams are enabled on that collection.
 
