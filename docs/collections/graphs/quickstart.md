@@ -98,6 +98,7 @@ The first step in using GDN is to establish a connection to a local region. When
                       email=EMAIL, password=PASSWORD,
                       geofabric=GEO_FABRIC)
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 

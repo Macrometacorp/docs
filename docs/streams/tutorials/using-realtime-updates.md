@@ -187,13 +187,13 @@ if __name__ == '__main__':
             pp.pprint(event)
             return
 
-        client.on_change(COLLECTION_NAME, callback=callback_fn)
+        client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
 
     # Step3: Subscribe to receive documents in realtime (PUSH model)
     print(f"\n3. SUBSCRIBE_COLLECTION: region: {GLOBAL_URL},  collection: {COLLECTION_NAME}")
     rt_thread = threading.Thread(target=create_callback)
     rt_thread.start()
-    time.sleep(2)
+    time.sleep(10)
     print(f"Callback registered for collection: {COLLECTION_NAME}")
 
     # Step4: Subscribe to receive documents in realtime (PUSH model)
