@@ -31,6 +31,11 @@ from c8 import C8Client
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
+                        
+# Get a list of all the API key ID's names
+apiKeyIds = []
+for api in client.list_all_api_keys():
+    apiKeyIds.append(api["keyid"])
 
 # Check wether the chosen_api_key exists or not, comparing it to the list elements
 for apiElement in apiKeyIds:
