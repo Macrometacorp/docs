@@ -15,13 +15,13 @@ persistent://tenant/geofabric/stream-name
 
 |Stream name component | Description |
 |--------------------|---------------|
-|`persistent` | This identifies the type of stream. GDN currently supports only persistent streams. With persistent streams, all messages are durably persistedon disk (that means on multiple disks).
+|`persistent` | This identifies the type of stream. GDN currently supports only persistent streams. With persistent streams, all messages are durably persisted on disk (that means on multiple disks).
 |`tenant`             | The stream tenant within the instance. Tenants are essential to multi-tenancy in GDN |
 |`geofabric`          | The administrative unit of the stream, which acts as a grouping and geo-fencing mechanism for related streams. Stream configuration is performed at the geofabric level. Each tenant can have multiple geofabrics. |
 |`stream`              | The final part of the name. Stream names are freeform. |
 
 :::note
-Every collection within a geofabric is also a stream with same name.
+Every collection within a geofabric is also a stream with the same name.
 :::
 A geofabric is a geo-fenced grouping within a tenant. A tenant can create multiple geofabrics. For instance, a tenant with different applications can create a separate geofabric for each application. A geofabric allows the application to create and manage a hierarchy of streams. The stream `my-tenant/app1` is a geofabric for the application `app1` for `my-tenant`. You can create any number of `streams` under the geofabric.
 
@@ -31,7 +31,7 @@ Messages are the basic `unit` of GDN streams. They're what producers publish to 
 
 |Component | Purpose|
 |---------|--------|
-| Value / data payload | The data carried by the message. All GDN stream messages carry raw bytes, although message data can also conform to data schemas in future |
+| Value / data payload | The data carried by the message. All GDN stream messages carry raw bytes, although message data can also conform to data schemas in the future |
 | Key | Messages can optionally be tagged with keys, which can be useful for things like stream compaction|
 | Properties | An optional key/value map of user-defined properties |
 | Producer name | The name of the producer that produced the message (producers are automatically given default names, but you can apply your own explicitly as well) |
