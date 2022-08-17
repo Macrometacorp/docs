@@ -75,7 +75,7 @@ Let's assume your
 <TabItem value="py" label="Python">
 
 ```py
-""" This file is a demo of using geoLocations on collections """
+""" This file is a demo of using Geo Locations on collections """
 import pprint
 from c8 import C8Client
 
