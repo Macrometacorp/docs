@@ -81,8 +81,8 @@ GRAPH_NAME = "lectureteacher"
 
 # Create a HTTPS Session Part 1
 # The following is required when accessing Macrometa with your email and password instead of an API key or JWT token
-"""""
-url = f"{FED_URL}/_open/auth"
+"""
+URL = f"{FED_URL}/_open/auth"
 payload = {
     'email':EMAIL,
     'password':PASSWORD
@@ -91,18 +91,18 @@ headers = {
     'content-type': 'application/json'
 }
 
-response = requests.post(url, data = json.dumps(payload), headers = headers)
+response = requests.post(URL, data = json.dumps(payload), headers = headers)
 print("Response code:", response.status_code)
 if response.status_code == 200:
     resp_body = json.loads(response.text)
     AUTH_TOKEN += resp_body["jwt"]
     TENANT = resp_body["tenant"]
 else:
-    raise Exception(f"Error while getting auth token. Code:{response.status_code},
-        Reason:{response.reason}")
+    raise Exception(f"Error while getting auth token. Code:{response.status_code},"
+        f"Reason:{response.reason}")
 print("Auth token:", AUTH_TOKEN)
-
 """
+
 # Create a HTTPS Session Part 2
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
