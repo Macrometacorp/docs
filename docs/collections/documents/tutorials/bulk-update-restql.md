@@ -229,7 +229,7 @@ run();
 from c8 import C8Client
 import time
 
-FED_URL = "gdn.paas.macrometa.i"
+FED_URL = "gdn.paas.macrometa.io"
 GUEST_MAIL = "nemo@nautilus.com"
 GUEST_PASSWORD = "xxxxxx"
 GEO_FABRIC = "_system"
