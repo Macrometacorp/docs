@@ -7,7 +7,7 @@ This section explains how to view users and interpret the provided information. 
 
 ## View Users
 
-Once you log in to a Macrometa account, you can view all users if you have read permissions for the GeoFabric.
+You can view all users of any GeoFabric for which you have read permissions.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Account**.
