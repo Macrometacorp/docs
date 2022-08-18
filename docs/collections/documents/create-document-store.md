@@ -8,16 +8,29 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to create a new Document Store collection.
 
-## Create a Document Store Collection with the API
+Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
+
+### Create a Document Store Collection
+
+
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to create a new collection using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **COLLECTIONS**.
+1. Click **New Collection**.
+1. Click **Document Store**.
+1. Enter information about the collection and then click **Create**.
+
 
 Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](/api#/operations/handleCommandPost:CreateCollection). 
 
-## Create a Document Store Collection with an SDK
+</TabItem>
+<TabItem value="py" label="Python SDK">
 
 The below example shows the steps for connecting a fabric and then creating a collection called `employees`.
-
-<Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
 
 ```py
   # Simple Approach
@@ -28,7 +41,7 @@ The below example shows the steps for connecting a fabric and then creating a co
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="Javascript SDK">
 
 ```js
   const jsc8 = require("jsc8");
