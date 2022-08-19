@@ -1,6 +1,5 @@
 ---
 title: Graph Edge Commands
-sidebar_position: 10
 ---
 
 # Graph Edges (gdnsl graph edge)
