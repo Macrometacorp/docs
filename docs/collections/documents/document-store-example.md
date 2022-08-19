@@ -425,7 +425,7 @@ print(f"Response from Query: {docs}")
 
 Example for real-time updates from a collection in fabric:
 :::note
-The 'Stream' parameter should be enabled within the collection to get realtime updates
+Enable the 'Stream' parameter within the collection to get real-time updates.
 :::
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
