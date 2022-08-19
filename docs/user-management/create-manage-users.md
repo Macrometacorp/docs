@@ -25,7 +25,7 @@ On the **Users** tab, you can select a user to access their details and change t
 1. Click **Account**.
 1. On the **Users** tab, select the user whose password you want to change.
 1. Click **Edit** in the **Password** field.
-1. Enter and confirm the new password, and click **Save**.
+1. Enter and confirm the new password, then click **Save**.
 
 ## Delete User
 
