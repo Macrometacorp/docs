@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: User Management
+title: Account Management
 ---
 
 This section explains how to view users and interpret the provided information. Refer to [Authentication](../authentication.md) for information about accessing your Macrometa account.
@@ -11,10 +11,8 @@ You can view all users of any GeoFabric for which you have read permissions.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Account**.
-
-Macrometa displays the Users tab which lists all user accounts. Type a query in the **Filter users** field to narrow the search and find a user by their ID, email address, tenant, or username.
-
-You can click a user's ID to view more details about the user. The following columns show information about each user.
+1. (Optional) Type a query in the **Filter users** field to narrow the search and find a user by their ID, email address, tenant, or username.
+1. (Optional) Click a user's ID to view more details about the user. The following columns show information about each user.
 
 ### ID
 
@@ -41,8 +39,7 @@ Users are created as active or inactive, and you can activate or deactivate them
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Account**.
 1. Click the **API Keys** tab.
-
-You can click the ID of an API key to view its details. The following columns show information about each API key.
+1. (Optional) Click the ID of an API key to view its details. The following columns show information about each API key.
 
 ### ID
 
