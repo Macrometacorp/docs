@@ -107,8 +107,8 @@ You can search for items that do not have exact matching with specified criteria
 
 ```sql
 FOR review IN sample1_view1
-  SEARCH ANALYZER(review.Property_Name != "Rhodes Hotel", "identity")
-  RETURN review.Property_Name
+SEARCH ANALYZER(review.Property_Name != "Rhodes Hotel", "identity")
+RETURN review.Property_Name
 ```
 
 | Property_Name |
