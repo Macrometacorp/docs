@@ -68,16 +68,18 @@ The first step in using GDN is to establish a connection to a region. When this 
 <TabItem value="py" label="Python">
 
 ```py
-  from c8 import C8Client
+from c8 import C8Client
 
-  print("--- Connecting to C8")
-  # Simple Way
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password='xxxxx',
-                          geofabric='_system')
+HOST = 'gdn.paas.macrometa.io'
+EMAIL ='nemo@nautilus.com'
+PASSWORD = 'xxxxx'
+GEOFABRIC = '_system'
 
-  # To use advanced options
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
+print("--- Connecting to C8")
+
+client = C8Client(protocol='https', host=HOST, port=443,
+                          email=EMAIL, password=PASSWORD,
+                          geofabric=GEOFABRIC)
 ```
 
 </TabItem>
@@ -108,12 +110,21 @@ To get details of fabric,
 <TabItem value="py" label="Python">
 
 ```py
-  from c8 import C8Client
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password='xxxxx',
-                          geofabric='_system')
-  print("Get geo fabric details...")
-  print(client.get_fabric_details())
+from c8 import C8Client
+
+HOST = 'gdn.paas.macrometa.io'
+EMAIL = 'nemo@nautilus.com'
+PASSWORD = 'xxxxx'
+GEOFABRIC = '_system'
+
+print("--- Connecting to C8")
+
+client = C8Client(protocol='https', host=HOST, port=443,
+                          email=EMAIL, password=PASSWORD,
+                          geofabric=GEOFABRIC)
+
+print("Getting GeoFabric details...")
+print(client.get_fabric_details())
 ```
 
 </TabItem>
@@ -158,11 +169,23 @@ The below example shows the steps.
 <TabItem value="py" label="Python">
 
 ```py
-  # Simple Approach
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password='xxxxx',
-                          geofabric='_system')
-  client.create_collection(name='employees')
+from c8 import C8Client
+
+HOST = 'gdn.paas.macrometa.io'
+EMAIL = 'nemo@nautilus.com'
+PASSWORD = 'xxxxx'
+GEOFABRIC = '_system'
+COLLECTION_NAME = 'employees'
+
+print("--- Connecting to C8")
+
+client = C8Client(protocol='https', host=HOST, port=443,
+                          email=EMAIL, password=PASSWORD,
+                          geofabric=GEOFABRIC)
+
+print("Creating collection…")
+
+client.create_collection(name=COLLECTION_NAME, stream=True)
 ```
 
 </TabItem>
@@ -208,12 +231,24 @@ Let's add a `hash_index` called emails to our collection employees. Please refer
 <TabItem value="py" label="Python">
 
 ```py
-  # Simple Approach
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password='xxxxx',
-                          geofabric='_system')
-  print("Add Hash Index", client.add_hash_index('employees', fields=['continent', 'country'], unique=True)
-  )        
+from c8 import C8Client
+
+HOST = 'gdn.paas.macrometa.io'
+EMAIL = 'nemo@nautilus.com'
+PASSWORD = 'xxxxx'
+GEOFABRIC = '_system'
+COLLECTION_NAME = 'employees'
+FIELDS = ['email', 'name']
+
+print("--- Connecting to C8")
+
+client = C8Client(protocol='https', host=HOST, port=443,
+                          email=EMAIL, password=PASSWORD,
+                          geofabric=GEOFABRIC)
+
+print("Adding hash index...")
+
+client.add_hash_index(COLLECTION_NAME, fields=FIELDS, unique=False)      
 ```              
 </TabItem>
 <TabItem value="js" label="Javascript">
@@ -258,19 +293,28 @@ Let's insert documents to the employees collection as shown below.
 <TabItem value="py" label="Python">
 
 ```py
-  # Simple Approach
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password='xxxxx',
-                          geofabric='_system')
-  client.insert_document(collection_name='employees', document={'_key':'Jean', 'firstname': 'Jean', 'lastname':'Picard', 'email':'jean.picard@macrometa.io'})
+from c8 import C8Client
 
-  docs = [
-    {'_kefabricy':'James', 'firstname': 'James', 'lastname':'Kirk', 'email':'james.kirk@mafabriccrometa.io'},
-    {'_kefabricy': 'Han', 'firstname': 'Han', 'lastname':'Solo', 'email':'han.solo@macrfabricometa.io'},
-    {'_kefabricy': 'Bruce', 'firstname': 'Bruce', 'lastname':'Wayne', 'email':'bruce.wayne@mfabricacrometa.io'}
+HOST = 'gdn.paas.macrometa.io'
+EMAIL = 'nemo@nautilus.com'
+PASSWORD = 'xxxxx'
+GEOFABRIC = '_system'
+COLLECTION_NAME = 'employees'
+DOCS = [
+    {'_key':'James', 'firstname': 'James', 'lastname':'Kirk', 'email':'james.kirk@macrometa.io'},
+    {'_key': 'Han', 'firstname': 'Han', 'lastname':'Solo', 'email':'han.solo@macrometa.io'},
+    {'_key': 'Bruce', 'firstname': 'Bruce', 'lastname':'Wayne', 'email':'bruce.wayne@macrometa.io'}
   ]
 
-  client.insert_document(collection_name='employees', document=docs)
+print("--- Connecting to C8")
+
+client = C8Client(protocol='https', host=HOST, port=443,
+                          email=EMAIL, password=PASSWORD,
+                          geofabric=GEOFABRIC)
+
+print("Inserting documents...")
+
+client.insert_document(collection_name=COLLECTION_NAME, document=DOCS)
 ```
 
 </TabItem>
@@ -330,12 +374,21 @@ The query `FOR employee IN employees RETURN employee` is equivalent to SQL's SEL
 <TabItem value="py" label="Python">
 
 ```py
-  # Simple Approach
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password='xxxxx',
-                          geofabric='_system')
+from c8 import C8Client
 
-  client.execute_query('FOR employee IN employees RETURN employee')
+HOST = 'gdn.paas.macrometa.io'
+EMAIL = 'nemo@nautilus.com'
+PASSWORD = 'xxxxx'
+GEOFABRIC = '_system'
+QUERY = 'FOR employee IN employees RETURN employee'
+
+client = C8Client(protocol='https', host=HOST, port=443,
+                          email=EMAIL, password=PASSWORD,
+                          geofabric=GEOFABRIC)
+
+cursor = client.execute_query(QUERY)
+docs = [document for document in cursor]
+print(f"Response from Query: {docs}")
 ```
 
 </TabItem>
@@ -371,21 +424,29 @@ The query `FOR employee IN employees RETURN employee` is equivalent to SQL's SEL
 ## Get realtime updates
 
 Example for real-time updates from a collection in fabric:
-
+:::note
+Enable the 'Stream' parameter within the collection to get real-time updates.
+:::
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
 
 ```py
-  # Simple Approach
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                          email='nemo@nautilus.com', password='xxxxx',
-                          geofabric='_system')
+from c8 import C8Client
 
-  #--------------------------------------------------------------
-  def callback_fn(event):
-      print(event)
-  #--------------------------------------------------------------
-  client.on_change("employees", callback=callback_fn)    
+HOST = 'gdn.paas.macrometa.io'
+EMAIL = 'nemo@nautilus.com'
+PASSWORD = 'xxxxx'
+GEOFABRIC = '_system'
+COLLECTION_NAME = 'employees'
+
+client = C8Client(protocol='https', host=HOST, port=443,
+                          email=EMAIL, password=PASSWORD,
+                          geofabric=GEOFABRIC)
+
+def callback_fn(event):
+    print(event)
+
+client.on_change(COLLECTION_NAME, callback=callback_fn)
 ```
 
 </TabItem>
@@ -433,71 +494,84 @@ Query as API (aka RESTQL) enables developers to quickly convert saved C8QL queri
 <TabItem value="py" label="Python">
 
 ```py
-  from c8 import C8Client
+import time
+from c8 import C8Client
 
-  fed_url = "gdn.paas.macrometa.io"
-  guest_mail = "nemo@nautilus.com"
-  guest_password = "xxxxxx"
-  geo_fabric = "_system"
-  collection_name = "person"
+FED_URL = "gdn.paas.macrometa.io"
+GUEST_MAIL = "nemo@nautilus.com"
+GUEST_PASSWORD = "xxxxxx"
+GEO_FABRIC = "_system"
+COLLECTION_NAME = "person"
 
-  value = "INSERT {'firstname':@firstname, 'lastname':@lastname, 'email':@email, 'zipcode':@zipcode, '_key': 'abc'} IN %s" % collection_name
-  parameter = {"firstname": "", "lastname": "", "email": "", "zipcode": ""}
+VALUE = "INSERT {'firstname':@firstname, 'lastname':@lastname, 'email':@email, 'zipcode':@zipcode, '_key': 'abc'} IN %s" % COLLECTION_NAME
+PARAMETER = {"firstname": "", "lastname": "", "email": "", "zipcode": ""}
 
-  insert_data = {"query": {"name": "insertRecord", "parameter": parameter, "value": value}} 
-  get_data = {"query": {"name": "getRecords", "value": "FOR doc IN %s RETURN doc" % collection_name}}
-  update_data = {"query": {"name": "updateRecord", "value": "UPDATE 'abc' WITH { \"lastname\": \"cena\" } IN %s" % collection_name }}
-  delete_data= {"query": {"name": "deleteRecord", "value": "REMOVE 'abc' IN %s" % collection_name}}
-  get_count = {"query": {"name": "countRecords", "value": "RETURN COUNT(FOR doc IN %s RETURN 1)" % collection_name}}
+INSERT_DATA = {"query": {"name": "insertRecord", "parameter": PARAMETER, "value": VALUE}} 
+GET_DATA = {"query": {"name": "getRecords", "value": "FOR doc IN %s RETURN doc" % COLLECTION_NAME}}
+UPDATE_DATA = {"query": {"name": "updateRecord", "value": "UPDATE 'abc' WITH { \"lastname\": \"cena\" } IN %s" % COLLECTION_NAME }}
+DELETE_DATA = {"query": {"name": "deleteRecord", "value": "REMOVE 'abc' IN %s" % COLLECTION_NAME}}
+GET_COUNT = {"query": {"name": "countRecords", "value": "RETURN COUNT(FOR doc IN %s RETURN 1)" % COLLECTION_NAME}}
 
-  if __name__ == '__main__':
+if __name__ == '__main__':
 
-      print("\n ------- CONNECTION SETUP  ------")
-      print("tenant: {}, geofabric:{}".format(guest_mail, geo_fabric))
-      client = C8Client(protocol='https', host=fed_url, port=443,
-                      email=guest_mail, password=guest_password,
-                      geofabric=geo_fabric)    
+    print("\n ------- CONNECTION SETUP  ------")
+    print(f"tenant: {GUEST_MAIL}, geofabric:{GEO_FABRIC}")
+    client = C8Client(protocol='https', host=FED_URL, port=443,
+                    email=GUEST_MAIL, password=GUEST_PASSWORD,
+                    geofabric=GEO_FABRIC)    
 
-      print("\n ------- CREATE GEO-REPLICATED COLLECTION  ------")
-      if client.has_collection(collection_name):
+    print("\n ------- CREATE GEO-REPLICATED COLLECTION  ------")
+    if client.has_collection(COLLECTION_NAME):
         print("Collection exists")
-      else:
-        employees = client.create_collection(collection_name)
-      print("Created collection: {}".format(collection_name))
+    else:
+        employees = client.create_collection(COLLECTION_NAME, stream=True)
+    print(f"Created collection: {COLLECTION_NAME}")
 
-      print("\n ------- CREATE RESTQLs  ------")
-      client.create_restql(insert_data)  # name: insertRecord
-      client.create_restql(get_data)  # name: getRecords
-      client.create_restql(update_data)  # name: updateRecord
-      client.create_restql(delete_data)  # name: deleteRecord
-      client.create_restql(get_count)  # name: countRecords
-      print("Created RESTQLs:{}".format(client.get_restqls()))
+    print("\n ------- CREATE RESTQLs  ------")
+    client.create_restql(INSERT_DATA)  # name: insertRecord
+    client.create_restql(GET_DATA)  # name: getRecords
+    client.create_restql(UPDATE_DATA)  # name: updateRecord
+    client.create_restql(DELETE_DATA)  # name: deleteRecord
+    client.create_restql(GET_COUNT)  # name: countRecords
+    print(f"Created RESTQLs:{client.get_restqls}")
 
-      print("\n ------- EXECUTE RESTQLs ------")
-      print("Insert data....")
-      response = client.execute_restql(
-          "insertRecord",
-          {"bindVars": {"firstname": "john", "lastname": "doe",
-                        "email": "john.doe@macrometa.io", "zipcode": "511037"}})
-      print("Get data....")
-      response = client.execute_restql("getRecords")
-      print("Update data....")
-      response = client.execute_restql("updateRecord")
-      print("Get data....")
-      response = client.execute_restql("getRecords")
-      print("Count records....")
-      response = client.execute_restql("countRecords")
-      print("Delete data....")
-      response = client.execute_restql("deleteRecord")
+    time.sleep(3)
+    print("\n ------- EXECUTE RESTQLs ------")
+    print("Insert data....")
+    response = client.execute_restql(
+        "insertRecord",
+        {"bindVars": {"firstname": "john", "lastname": "doe",
+                      "email": "john.doe@macrometa.io", "zipcode": "511037"}})
+    print(response)
 
-      print("\n ------- DELETE RESTQLs ------")
-      client.delete_restql("insertRecord")
-      client.delete_restql("getRecords")
-      client.delete_restql("updateRecord")
-      client.delete_restql("countRecords")
-      client.delete_restql("deleteRecord")
+    print("Get data....")
+    response = client.execute_restql("getRecords")
+    print(response)
 
-      print("\n ------- DONE  ------")
+    print("Update data....")
+    response = client.execute_restql("updateRecord")
+    print(response)
+
+    print("Get data....")
+    response = client.execute_restql("getRecords")
+    print(response)
+
+    print("Count records....")
+    response = client.execute_restql("countRecords")
+    print(response)
+
+    print("Delete data....")
+    response = client.execute_restql("deleteRecord")
+    print(response)
+
+    print("\n ------- DELETE RESTQLs ------")
+    client.delete_restql("insertRecord")
+    client.delete_restql("getRecords")
+    client.delete_restql("updateRecord")
+    client.delete_restql("countRecords")
+    client.delete_restql("deleteRecord")
+
+    print("\n ------- DONE  ------")
 ```
 
 </TabItem>
