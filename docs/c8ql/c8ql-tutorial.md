@@ -1138,7 +1138,7 @@ To query based on coordinates, a [geo index](../collections/documents/geospatial
 - Go to *COLLECTIONS*
 - Click on the *Locations* collection
 - Switch to the *Indexes* tab at top
-- Click the green button with a plus on the right-hand side
+- Click the blue button with a plus on the right-hand side
 - Change the type to *Geo Index*
 - Enter `coordinate` into the *Fields* field
 - Click *Create* to confirm

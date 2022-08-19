@@ -4,7 +4,7 @@ title: Search
 slug: search
 ---
 
-Macrometa GDN Search (or *C8Search*) is a full-text search engine that supports key values, documents, and graphs as data models. Compared to a a [full-text index](../collections/indexing/working-with-indexes#fulltext-indexes) C8Search is more configurable and customizable, combining Boolean and generalized ranking retrieval techniques to refine your search results. All Boolean-approved results are ranked by relevance to the respective query using the Vector Space Model in conjunction with BM25 or TF-IDF weighting schemes.
+Macrometa GDN Search (or _C8Search_) is a full-text search engine that supports key values, documents, and graphs as data models. Compared to a a [full-text index](../collections/indexing/working-with-indexes#fulltext-indexes) C8Search is more configurable and customizable, combining Boolean and generalized ranking retrieval techniques to refine your search results. All Boolean-approved results are ranked by relevance to the respective query using the Vector Space Model in conjunction with BM25 or TF-IDF weighting schemes.
 
 C8Search provides the following capabilities:
 
@@ -17,8 +17,9 @@ C8Search provides the following capabilities:
 * Combinable search queries with multiple supported data models & access patterns
 * Geo-replicated search indexes for instant results
 
+![Architecture of GDN Search](/img/search/architecture.jpg)
 
-We provide *Views* and *Analyzers* that boost the efficiency of your search queries:
+We provide _Views_ and _Analyzers_ that boost the efficiency of your search queries:
 
 * A [View](../../docs/search/views) is a virtual collection that provides fast full-text searching over multiple linked collections.
 * An [Analyzer](../../docs/search/analyzers) parses input values and transforms them into sets of sub-values for the following use cases:

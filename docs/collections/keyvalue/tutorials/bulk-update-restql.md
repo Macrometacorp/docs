@@ -226,91 +226,121 @@ run();
 <TabItem value="py" label="Python">
 
 ```py
+import time
 from c8 import C8Client
 
-fed_url = "gdn.paas.macrometa.io"
-guest_mail = "nemo@nautilus.com"
-guest_password = "xxxxxx"
-geo_fabric = "_system"
-collection_name = "superhero"
+FED_URL = "gdn.paas.macrometa.io"
+GUEST_MAIL = "nemo@nautilus.com"
+GUEST_PASSWORD = "xxxxxx"
+GEO_FABRIC = "_system"
+COLLECTION_NAME = "superhero"
 
-inputDocs = [
-    { "_key": "james.kirk@mafabriccrometa.io", "value": "James"},
-    { "_key": "han.solo@macrfabricometa.io", "value": "Han"},
-    { "_key": "bruce.wayne@mfabricacrometa.io", "value": "Bruce"}
+INPUT_DOCS = [
+    { "_key": "james.kirk@macrometa.io", "value": "James"},
+    { "_key": "han.solo@macrometa.io", "value": "Han"},
+    { "_key": "bruce.wayne@macrometa.io", "value": "Bruce"}
 ]
 
-updateKeys = ["james.kirk@mafabriccrometa.io", "bruce.wayne@mfabricacrometa.io"]
-updateKeyValue = {
-    "bruce.wayne@mfabricacrometa.io": { "key": "bruce.wayne@mfabricacrometa.io",  "value": "Bruce Wayne"},
-    "james.kirk@mafabriccrometa.io": { "key": "james.kirk@mafabriccrometa.io", "value": "James T Kirk"}
+UPDATE_KEYS = ["james.kirk@macrometa.io", "bruce.wayne@macrometa.io"]
+UPDATE_KEY_VALUE = {
+    "bruce.wayne@macrometa.io": { "key": "bruce.wayne@macrometa.io",  "value": "Bruce Wayne"},
+    "james.kirk@macrometa.io": { "key": "james.kirk@macrometa.io", "value": "James T Kirk"}
 }
 
-insert_data_query = (
-    "FOR doc in @InputDocs INSERT {'_key': doc._key, 'value': doc.value} IN %s"
-    % collection_name
+INSERT_DATA_QUERY = (
+    f"FOR doc in @InputDocs INSERT {{'_key': doc._key, 'value': doc.value}} IN {COLLECTION_NAME}"
 )
-get_data_query = "FOR doc IN %s RETURN doc" % collection_name
-update_data_query = (
-    "FOR i IN %s FILTER i._key IN @updateKeys UPDATE i with { value: (i._key == @updateKeyValue[i._key].key) ? @updateKeyValue[i._key].value : i.value } IN %s"
-    % (collection_name, collection_name)
+GET_DATA_QUERY = f"FOR doc IN {COLLECTION_NAME} RETURN doc"
+UPDATE_DATA_QUERY = (
+    f"FOR i IN {COLLECTION_NAME} FILTER i._key IN @updateKeys UPDATE i with {{ value: (i._key == @updateKeyValue[i._key].key) ? @updateKeyValue[i._key].value : i.value }} IN {COLLECTION_NAME}"
+)
+UPDATED_INSERT_QUERY = (
+    f"INSERT {{'_key': 'barry.allen@macrometa.io', 'value': 'Barry Allen'}} IN {COLLECTION_NAME}"
 )
 
-insert_data = {
+INSERT_DATA = {
     "query": {
         "name": "insertRecord",
-        "value": insert_data_query,
+        "value": INSERT_DATA_QUERY,
     }
 }
-get_data = {"query": {"name": "getRecords", "value": get_data_query}}
-update_data = {"query": {"name": "updateRecord", "value": update_data_query}}
+GET_DATA = {"query": {"name": "getRecords", "value": GET_DATA_QUERY}}
+UPDATE_DATA = {"query": {"name": "updateRecord", "value": UPDATE_DATA_QUERY}}
+UPDATED_INSERT_DATA = {
+    "query": {
+        "value": UPDATED_INSERT_QUERY,
+    }
+}
 
 if __name__ == "__main__":
 
     print("\n ------- CONNECTION SETUP  ------")
-    print("tenant: {}, geofabric:{}".format(guest_mail, geo_fabric))
+    print(f"tenant: {GUEST_MAIL}, geofabric:{GEO_FABRIC}")
     client = C8Client(
         protocol="https",
-        host=fed_url,
+        host=FED_URL,
         port=443,
-        email=guest_mail,
-        password=guest_password,
-        geofabric=geo_fabric,
+        email=GUEST_MAIL,
+        password=GUEST_PASSWORD,
+        geofabric=GEO_FABRIC
     )
 
     print("\n ------- CREATE GEO-REPLICATED COLLECTION  ------")
-    if client.has_collection(collection_name):
+    if client.has_collection(COLLECTION_NAME):
         print("Collection exists")
     else:
-        employees = client.create_collection_kv(collection_name)
-    print("Created collection: {}".format(collection_name))
+        employees = client.create_collection_kv(COLLECTION_NAME)
+    print(f"Created collection: {COLLECTION_NAME}")
 
     print("\n ------- CREATE RESTQLs  ------")
-    client.create_restql(insert_data)
-    client.create_restql(get_data)
-    client.create_restql(update_data)
-    print("Created RESTQLs:{}".format(client.get_restqls()))
+    client.create_restql(INSERT_DATA)
+    client.create_restql(GET_DATA)
+    client.create_restql(UPDATE_DATA)
+    print("Created RESTQLs:{client.get_restqls()}")
+
+    #Wait for all inputs and outputs to initialize
+    time.sleep(2)
 
     print("\n ------- RUN RESTQLs ------")
     print("Insert data....")
-    response = client.execute_restql(
-        "insertRecord", {"bindVars": {"InputDocs": inputDocs}}
+    try:
+        response = client.execute_restql(
+        "insertRecord", {"bindVars": {"InputDocs": INPUT_DOCS}}
     )
+    except:
+        print("Failed to insert the document because it already exists")
 
     print("Get data....")
     response = client.execute_restql("getRecords")
     print(response)
 
     print("Update data....")
-    response = client.execute_restql(
+    try:
+        response = client.execute_restql(
         "updateRecord",
-        {"bindVars": {"updateKeys": updateKeys, "updateKeyValue": updateKeyValue}},
-    )
+        {"bindVars": {"updateKeys": UPDATE_KEYS, "updateKeyValue": UPDATE_KEY_VALUE}},
+        )
+    except:
+        print("Failed to update the document because it already exists")
 
     print("Get data....")
     response = client.execute_restql("getRecords")
     print(response)
 
+    #Updating restqls
+    client.update_restql("insertRecord",UPDATED_INSERT_DATA)
+    time.sleep(2)
+
+    print("Inserting updated data....")
+    try:
+        response = client.execute_restql("insertRecord")
+    except:
+        print("Failed to insert the document because it already exists")
+
+    #Deleting RestQls
+    client.delete_restql("insertRecord")
+    client.delete_restql("getRecords")
+    client.delete_restql("updateRecord")
     print("\n ------- DONE  ------")
 ```
 
