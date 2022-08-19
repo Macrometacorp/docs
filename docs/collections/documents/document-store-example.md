@@ -246,7 +246,7 @@ client = C8Client(protocol='https', host=HOST, port=443,
                           email=EMAIL, password=PASSWORD,
                           geofabric=GEOFABRIC)
 
-print("Adding Hash Index...")
+print("Adding hash index...")
 
 client.add_hash_index(COLLECTION_NAME, fields=FIELDS, unique=False)      
 ```              
