@@ -248,17 +248,14 @@ UPDATE_KEY_VALUE = {
 }
 
 INSERT_DATA_QUERY = (
-    "FOR doc in @InputDocs INSERT {'_key': doc._key, 'value': doc.value} IN %s"
-    % COLLECTION_NAME
+    f"FOR doc in @InputDocs INSERT {{'_key': doc._key, 'value': doc.value}} IN {COLLECTION_NAME}"
 )
-GET_DATA_QUERY = "FOR doc IN %s RETURN doc" % COLLECTION_NAME
+GET_DATA_QUERY = f"FOR doc IN {COLLECTION_NAME} RETURN doc"
 UPDATE_DATA_QUERY = (
-    "FOR i IN %s FILTER i._key IN @updateKeys UPDATE i with { value: (i._key == @updateKeyValue[i._key].key) ? @updateKeyValue[i._key].value : i.value } IN %s"
-    % (COLLECTION_NAME, COLLECTION_NAME)
+    f"FOR i IN {COLLECTION_NAME} FILTER i._key IN @updateKeys UPDATE i with {{ value: (i._key == @updateKeyValue[i._key].key) ? @updateKeyValue[i._key].value : i.value }} IN {COLLECTION_NAME}"
 )
 UPDATED_INSERT_QUERY = (
-    "INSERT {'_key': 'barry.allen@macrometa.io', 'value': 'Barry Allen'} IN %s"
-    % COLLECTION_NAME
+    f"INSERT {{'_key': 'barry.allen@macrometa.io', 'value': 'Barry Allen'}} IN {COLLECTION_NAME}"
 )
 
 INSERT_DATA = {
@@ -306,19 +303,25 @@ if __name__ == "__main__":
 
     print("\n ------- RUN RESTQLs ------")
     print("Insert data....")
-    response = client.execute_restql(
+    try:
+        response = client.execute_restql(
         "insertRecord", {"bindVars": {"InputDocs": INPUT_DOCS}}
     )
+    except:
+        print("Failed to insert the document because it already exists")
 
     print("Get data....")
     response = client.execute_restql("getRecords")
     print(response)
 
     print("Update data....")
-    response = client.execute_restql(
+    try:
+        response = client.execute_restql(
         "updateRecord",
         {"bindVars": {"updateKeys": UPDATE_KEYS, "updateKeyValue": UPDATE_KEY_VALUE}},
-    )
+        )
+    except:
+        print("Failed to update the document because it already exists")
 
     print("Get data....")
     response = client.execute_restql("getRecords")
@@ -329,7 +332,10 @@ if __name__ == "__main__":
     time.sleep(2)
 
     print("Inserting updated data....")
-    response = client.execute_restql("insertRecord")
+    try:
+        response = client.execute_restql("insertRecord")
+    except:
+        print("Failed to insert the document because it already exists")
 
     #Deleting RestQls
     client.delete_restql("insertRecord")

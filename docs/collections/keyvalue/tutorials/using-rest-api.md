@@ -466,68 +466,64 @@ Delete collection.
 <TabItem value="py" label="Python">
 
 ```py
-  import requests
-  import json
+import requests
+import json
 
-  # Constants
+# Constants
 
-  FEDERATION = "api-gdn.paas.macrometa.io"
-  FED_URL = "https://{}".format(FEDERATION)
-  EMAIL = "nemo@nautilus.com"
-  PASSWORD = "xxxxxx"
-  FABRIC = "_system"
-  AUTH_TOKEN = "bearer "
-  COLLECTION_NAME = "students"
+FEDERATION = "api-gdn.paas.macrometa.io"
+FED_URL = f"https://{FEDERATION}"
+EMAIL = "nemo@nautilus.com"
+PASSWORD = "xxxxxx"
+FABRIC = "_system"
+AUTH_TOKEN = "bearer "
+COLLECTION_NAME = "students"
 
-  # Create HTTPS session
+# Create HTTPS session
 
-  url = "{}/_open/auth".format(FED_URL)
-  payload = {
+url = f"{FED_URL}/_open/auth"
+payload = {
       'email':EMAIL,
       'password':PASSWORD
       }
-  headers = {
+headers = {
       'content-type': 'application/json'
       }
-
-  response = requests.post(url, data = json.dumps(payload), headers = headers)
-
-  if response.status_code == 200:
+response = requests.post(url, data = json.dumps(payload), headers = headers)
+if response.status_code == 200:
       resp_body = json.loads(response.text)
       AUTH_TOKEN += resp_body["jwt"]
       TENANT = resp_body["tenant"]
-  else:
-      raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
+else:
+      raise Exception(f"Error while getting auth token. Code:{response.status_code}, Reason:{response.reason}")
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
 
+# Get list of all regions
 
-  session = requests.session()
-  session.headers.update({"content-type": 'application/json'})
-  session.headers.update({"authorization": AUTH_TOKEN})
-
-  # Get list of all regions
-
-  url = FED_URL + "/_api/datacenter/all"
-  dcl_resp = session.get(url)
-  dcl_list = json.loads(dcl_resp.text)
-  regions = []
-  for dcl in dcl_list:
+url = FED_URL + "/_api/datacenter/all"
+dcl_resp = session.get(url)
+dcl_list = json.loads(dcl_resp.text)
+regions = []
+for dcl in dcl_list:
       dcl_url = dcl['tags']['url']
       regions.append(dcl_url)
-  print("\nList of Regions: ",regions)
+print("\nList of Regions: ",regions)
 
-  # Create a collection
+# Create a collection
 
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME
-
-  resp = session.post(url, data = json.dumps(payload))
-  resp = json.loads(resp.text)
-  if "error" in resp.keys():
+url = FED_URL + "/_api/kv/" + COLLECTION_NAME
+resp = session.post(url, data = json.dumps(payload))
+resp = json.loads(resp.text)
+if 'error' in resp and resp['error']:
       print("ERROR: " + resp['errorMessage'])
-  else:
-      print("\nCollection Created: ", resp.text)
+else:
+      print("\nCollection Created: ", resp["name"])
 
-  # Insert KV pairs in a Collection
-  data = [
+# Insert KV pairs in a Collection
+
+data = [
     {
       "_key": "John",
       "value": "Science",
@@ -549,57 +545,59 @@ Delete collection.
       "expireAt": 0
     }
   ]
+url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
+print(url)
+resp = session.put(url, data = json.dumps(data))
+print("\nMultiple Documents Inserted: ", resp.text)
 
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
-  print(url)
-  resp = session.put(url, data = json.dumps(data))
-  print("\nMultiple Documents Inserted: ", resp.text)
+# Get value for a given key
 
-  # Get value for a given key
+KEY = "Monika"
+url = FED_URL + "/_api/kv/" + COLLECTION_NAME + "/value/" + KEY
+resp = session.get(url)
+print("\nDocument with specified Key is: ",resp.text)
 
-  KEY = "Monika"
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME + "/value/" + KEY
-  resp = session.get(url)
-  print("\nDocument with specified Key is: ",resp.text)
+# Get collection count
 
-  # Get collection count
+url = FED_URL + "/_api/kv/" + COLLECTION_NAME + "/count"
+resp = session.get(url)
+print("\nNumber of kv pairs in your collection: ",resp.text)
 
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME + "/count"
-  resp = session.get(url)
-  print("\nNumber of kv pairs in your collection: ",resp.text)
+# Update value for a key
 
-  # Update value for a key
-  data =  {
+data =  {
       "_key": "Monika",
       "value": "Biology",
       "expireAt": 0
     }
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
-  resp = session.put(url, data = json.dumps(data))
-  print("\nDocument Updated: ", resp.text)
+url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
+resp = session.put(url, data = json.dumps(data))
+print("\nDocument Updated: ", resp.text)
 
-  # Delete value for a key
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value/" + KEY
-  resp = session.delete(url)
-  print("\nDocument with specified Key Deleted: ", resp.text)
+# Delete value for a key
 
-  # Delete value for multiple keys
-  data = ["Alex", "Alice", "John"]
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/values"
-  resp = session.delete(url, data = json.dumps(data))
-  print("\nDocument with specified Key Deleted: ", resp.text)
+url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value/" + KEY
+resp = session.delete(url)
+print("\nDocument with specified Key Deleted: ", resp.text)
 
-  # Get collections
-  url = FED_URL + "/_api/kv"
-  resp = session.get(url)
-  print("\nCollections : ",resp.text)
+# Delete value for multiple keys
 
+data = ["Alex", "Alice", "John"]
+url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/values"
+resp = session.delete(url, data = json.dumps(data))
+print("\nDocument with specified Key Deleted: ", resp.text)
 
-  # Delete collection
+# Get collections
 
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME 
-  resp = session.delete(url)
-  print("\nCollection Deleted: ", resp.text)
+url = FED_URL + "/_api/kv"
+resp = session.get(url)
+print("\nCollections : ",resp.text)
+
+# Delete collection
+
+url = FED_URL + "/_api/kv/" + COLLECTION_NAME
+resp = session.delete(url)
+print("\nCollection Deleted: ", resp.text)
 ```
 
 </TabItem>

@@ -1,0 +1,1 @@
+For information about API calls, refer to [Get information about collection](https://macrometa.com/docs/api#/operations/handleCommandGet:collectionGetProperties) and [Update collection properties](https://macrometa.com/docs/api#/operations/handleCommandPut:modifyProperties).
