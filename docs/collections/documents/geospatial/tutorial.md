@@ -129,7 +129,7 @@ transit_data = [
 
 pp = pprint.PrettyPrinter(indent=4)
 
-# Step 1: Open connection to GDN. You will be routed to closest region.
+# Step 1: Open connection to GDN. You will be routed to the closest region.
 print(f"\n1. CONNECT: federation: {URL},  user: {API_KEY}")
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric=GEO_FABRIC)
 
@@ -166,7 +166,7 @@ pp.pprint(docs)
 
 #-------------------------------------------------------------------#
 
-# Step 4: Create a collection & geoindex if not exists.
+# Step 4: Create a collection and geoindex if none exists.
 print(f"\n4. CREATE_COLLECTION: region: {URL},  collection: {collection_transit}")
 if client.has_collection(collection_transit):
     transitCol = client.collection(collection_transit)
