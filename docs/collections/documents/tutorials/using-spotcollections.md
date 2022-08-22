@@ -179,7 +179,7 @@ print("Data has been inserted successfully inserted (duplicating data was avoide
 
 
 
-# Step 4: Create a new query worker or look for the existing one, and read data from the collection.
+# Step 4: Create a new query worker or look for the existing one, then read data from the collection.
 print(f"4. READ_DATA: region: {URL}, collection: {collection_name}")
 all_saved_queries = client.get_all_restql()
 
