@@ -80,7 +80,7 @@ FOR u IN users
 If a query does not produce any results because no matching data can be found, it will produce an empty result array:
 
 ```json
-[ ]
+[]
 ```
 
 ### Query Profile
