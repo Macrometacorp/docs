@@ -128,7 +128,7 @@ Gets the access levels for the user.
 ```
 
 :::note
-If access level for stream is not set then default("_") access level will be use. If default("_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
+If access level for stream is not set then default("\_") access level will be use. If default("\_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
 :::
 
 ## gdnsl user set
@@ -207,7 +207,7 @@ Sets the access levels for the user.
 ```
 
 :::note
-If access level for stream is not set then default("_") access level will be use. If default("_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
+If access level for stream is not set then default("\_") access level will be use. If default("\_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
 :::
 
 ## gdnsl user clear
@@ -258,5 +258,5 @@ Clear the access levels for the user.
 ```
 
 :::note
-If access level for stream is not set then default("_") access level will be use. If default("_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
+If access level for stream is not set then default("\_") access level will be use. If default("\_") access level is also not set then database access level will be use.You need the Administrate server access level in order to execute this command.
 :::
