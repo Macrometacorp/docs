@@ -23,7 +23,7 @@ A C8QL query must either return a result (indicated by usage of the `RETURN` key
 
 The C8QL parser will return an error if it detects more than one data-modification operation in the same query or if it cannot figure out if the query is meant to be a data retrieval or a modification operation.
 
-C8QL only allows *one* query in a single query string; thus semicolons to indicate the end of one query and separate multiple queries (as seen in SQL) are not allowed.
+C8QL only allows _one_ query in a single query string; thus semicolons to indicate the end of one query and separate multiple queries (as seen in SQL) are not allowed.
 
 ### Whitespace
 
@@ -134,7 +134,7 @@ FOR f IN `filter`
   RETURN f.`sort`
 ```
 
-Due to the backticks, *filter* and *sort* are interpreted as names and not as keywords here.
+Due to the backticks, _filter_ and _sort_ are interpreted as names and not as keywords here.
 
 The example can alternatively written as:
 
@@ -164,7 +164,7 @@ FOR u IN users
     RETURN u.name
 ```
 
-In the above example, the attribute names *active*, *name*, *id*, and *userId* are qualified using the collection names they belong to (*u* and *f* respectively).
+In the above example, the attribute names _active_, _name_, _id_, and _userId_ are qualified using the collection names they belong to (_u_ and _f_ respectively).
 
 ### Variable Names
 
@@ -176,9 +176,9 @@ FOR u IN users
   RETURN { "name" : u.name, "friends" : friends }
 ```
 
-In the above query, *users* is a collection name, and both *u* and *friends* are variable names. This is because the *FOR* and *LET* operations need target variables to store their intermediate results.
+In the above query, _users_ is a collection name, and both _u_ and _friends_ are variable names. This is because the _FOR_ and _LET_ operations need target variables to store their intermediate results.
 
-Allowed characters in variable names are the letters *a* to *z* (both in lower and upper case), the numbers *0* to *9*, the underscore (*_*) symbol and the dollar (*$*) sign. A variable name must not start with a number. If a variable name starts with the underscore character, the underscore must be followed by least one letter (a-z or A-Z) or digit (0-9).
+Allowed characters in variable names are the letters _a_ to _z_ (both in lower and upper case), the numbers _0_ to _9_, the underscore (___) symbol and the dollar (_$_) sign. A variable name must not start with a number. If a variable name starts with the underscore character, the underscore must be followed by least one letter (a-z or A-Z) or digit (0-9).
 
 The dollar sign can be used only as the very first character in a variable name.
 
@@ -187,14 +187,14 @@ The dollar sign can be used only as the very first character in a variable name.
 C8QL supports both primitive and compound data types. The following types are available:
 
 - **Primitive types**: Consisting of exactly one value
-    * `null`: An empty value, also, the absence of a value
-    * `bool`: Boolean truth value with possible values *false* and *true*
-    * `number`: Signed (real) number
-    * `string`: UTF-8 encoded text value
+  - `null`: An empty value, also, the absence of a value
+  - `bool`: Boolean truth value with possible values _false_ and _true_
+  - `number`: Signed (real) number
+  - `string`: UTF-8 encoded text value
 
 - **Compound types**: Consisting of multiple values
-    * `array`: Sequence of values, referred to by their positions
-    * `object / document`: Sequence of values, referred to by their names
+  - `array`: Sequence of values, referred to by their positions
+  - `object / document`: Sequence of values, referred to by their names
 
 ### Primitive types
 
@@ -245,7 +245,7 @@ C8QL supports two compound types:
 
 The first supported compound type is the array type. Arrays are effectively sequences of (unnamed / anonymous) values. Individual array elements can be accessed by their positions. The order of elements in an array is important.
 
-An *array-declaration* starts with the *[* symbol and ends with the *]* symbol. An *array-declaration* contains zero or many *expression*s, separated from each other with the *,* symbol.
+An _array-declaration_ starts with the _[_ symbol and ends with the _]_ symbol. An *array-declaration* contains zero or many _expression_s, separated from each other with the _,_ symbol.
 
 In the easiest case, an array is empty and thus looks like:
 
@@ -253,7 +253,7 @@ In the easiest case, an array is empty and thus looks like:
 [ ]
 ```
 
-Array elements can be any legal *expression* values. Nesting of arrays is supported.
+Array elements can be any legal _expression_ values. Nesting of arrays is supported.
 
 ```json
 [ 1, 2, 3 ]
@@ -261,7 +261,7 @@ Array elements can be any legal *expression* values. Nesting of arrays is suppor
 [ [ "fox", "marshal" ] ]
 ```
 
-Individual array values can later be accessed by their positions using the *[]* accessor. The position of the accessed element must be a numeric value. Positions start at 0. It is also possible to use negative index values to access array values starting from the end of the array. This is convenient if the length of the array is unknown and access to elements at the end of the array is required.
+Individual array values can later be accessed by their positions using the _[]_ accessor. The position of the accessed element must be a numeric value. Positions start at 0. It is also possible to use negative index values to access array values starting from the end of the array. This is convenient if the length of the array is unknown and access to elements at the end of the array is required.
 
 ```js
 // access 1st array element (elements start at index 0)
@@ -281,7 +281,7 @@ u.friends[-2]
 
 The other supported compound type is the object (or document) type. Objects are a composition of zero to many attributes. Each attribute is a name/value pair. Object attributes can be accessed individually by their names.
 
-Object declarations start with the *{* symbol and end with the *}* symbol. An object contains zero to many attribute declarations, separated from each other with the *,* symbol.  In the simplest case, an object is empty. Its declaration would then be:
+Object declarations start with the _{_ symbol and end with the _}_ symbol. An object contains zero to many attribute declarations, separated from each other with the _,_ symbol.  In the simplest case, an object is empty. Its declaration would then be:
 
 ```json
 { }
@@ -352,6 +352,7 @@ u[attr1][0][attr2][ CONCAT("fir", "st") ]
 :::note
 If a non-existing attribute is accessed in one or the other way, the result will be `null`, without error or warning.
 :::
+
 ## Bind parameters
 
 C8QL supports the usage of bind parameters, thus allowing to separate the query text from literal values used in the query. It is good practice to separate the query text from the literal values because this will prevent (malicious) injection of keywords and other collection names into an existing query. This injection would be dangerous because it may change the meaning of an existing query.
@@ -366,7 +367,7 @@ FOR u IN users
   RETURN u
 ```
 
-The bind parameter values need to be passed along with the query when it is executed, but not as part of the query text itself. In the web interface, there is a pane next to the query editor where the bind parameters can be entered. 
+The bind parameter values need to be passed along with the query when it is executed, but not as part of the query text itself. In the web interface, there is a pane next to the query editor where the bind parameters can be entered.
 
 ```json
 {
@@ -425,9 +426,9 @@ RETURN doc.@attr
 { "attr": [ "a", "b", "c" ] }
 ```
 
-The example query returns `[ 1 ]` as result. Note that `{ "attr": "a.b.c" }` would return the value of an attribute called *a.b.c*, not the value of attribute *c* with the parents *a* and *b* as `[ "a", "b", "c" ]` would.
+The example query returns `[ 1 ]` as result. Note that `{ "attr": "a.b.c" }` would return the value of an attribute called _a.b.c_, not the value of attribute _c_ with the parents _a_ and _b_ as `[ "a", "b", "c" ]` would.
 
-A special type of bind parameter exists for injecting collection names. This type of bind parameter has a name prefixed with an additional *@* symbol (thus when using the bind parameter in a query, two *@* symbols must be used).
+A special type of bind parameter exists for injecting collection names. This type of bind parameter has a name prefixed with an additional _@_ symbol (thus when using the bind parameter in a query, two *@* symbols must be used).
 
 ```js
 FOR u IN @@collection
@@ -514,8 +515,8 @@ For compound, types the following special rules are applied:
 
 Two array values are compared by comparing their individual elements position by position, starting at the first element. For each position, the element types are compared first.
 
-* If the types are not equal, the comparison result is determined, and the comparison is finished. 
-* If the types are equal, then the values of the two elements are compared.  If one of the arrays is finished and the other array still has an element at a compared position, then *null* will be used as the element value of the fully traversed array.
+- If the types are not equal, the comparison result is determined, and the comparison is finished.
+- If the types are equal, then the values of the two elements are compared.  If one of the arrays is finished and the other array still has an element at a compared position, then _null_ will be used as the element value of the fully traversed array.
 
 If an array element is itself a compound value (an array or an object / document), then the comparison algorithm will check the element's sub values recursively. The element's sub-elements are compared recursively.
 
@@ -530,7 +531,7 @@ If an array element is itself a compound value (an array or an object / document
 
 Two object / documents operands are compared by checking attribute names and value. The attribute names are compared first. Before attribute names are compared, a combined array of all attribute names from both operands is created and sorted lexicographically.  This means that the order in which attributes are declared in an object / document is not relevant when comparing two objects / documents.
 
-The combined and sorted array of attribute names is then traversed, and the respective attributes from the two compared operands are then looked up. If one of the objects / documents does not have an attribute with the sought name, its attribute value is considered to be *null*.  
+The combined and sorted array of attribute names is then traversed, and the respective attributes from the two compared operands are then looked up. If one of the objects / documents does not have an attribute with the sought name, its attribute value is considered to be _null_.  
 
 Finally, the attribute value of both objects / documents is compared using the before mentioned data type and value comparison. The comparisons are performed for all object / document attributes until there is an unambiguous comparison result. If an unambiguous comparison result is found, the comparison is finished. If there is no unambiguous comparison result, the two compared objects / documents are considered equal.
 
@@ -544,11 +545,11 @@ Finally, the attribute value of both objects / documents is compared using the b
     { "a" : 1, "b" : 2 } == { "b" : 2, "a" : 1 }
 ```
 
-## Accessing Data 
+## Accessing Data
 
-Collection data can be accessed by specifying a collection name in a query.  A collection can be understood as an array of documents, and that is how they are treated in C8QL. 
+Collection data can be accessed by specifying a collection name in a query.  A collection can be understood as an array of documents, and that is how they are treated in C8QL.
 
-Documents from collections are normally accessed using the `FOR` keyword. 
+Documents from collections are normally accessed using the `FOR` keyword.
 
 :::note
 When iterating over documents from a collection, the order of documents is undefined. To traverse documents in an explicit and deterministic order, the `SORT` keyword should be used in addition.)
@@ -556,7 +557,7 @@ When iterating over documents from a collection, the order of documents is undef
 
 Data in collections is stored in documents, with each document potentially having different attributes than other documents. This is true even for documents of the same collection.
 
-It is therefore quite normal to encounter documents that do not have some or all of the attributes that are queried in a C8QL query. In this case, the non-existing attributes in the document will be treated as if they would exist with a value of `null`. 
+It is therefore quite normal to encounter documents that do not have some or all of the attributes that are queried in a C8QL query. In this case, the non-existing attributes in the document will be treated as if they would exist with a value of `null`.
 
 That means that comparing a document attribute to `null` will return true if the document has the particular attribute and the attribute has a value of `null`, or that the document does not have the particular attribute at all.
 
@@ -635,7 +636,7 @@ If a query passes the parsing stage, all collections referenced in the query wil
 
 Under some circumstances, executing a query may also produce run-time errors that cannot be predicted from inspecting the query text alone. This is because queries may use data from collections that may also be inhomogeneous.  Some examples that will cause run-time errors are:
 
-- `Division by zero`: Will be triggered when an attempt is made to use the value *0* as the divisor in an arithmetic division or modulus operation
+- `Division by zero`: Will be triggered when an attempt is made to use the value _0_ as the divisor in an arithmetic division or modulus operation
 
 - `Invalid operands for arithmetic operations`: Will be triggered when an attempt is made to use any non-numeric values as operands in arithmetic operations. This includes unary (unary minus, unary plus) and binary operations (plus, minus, multiplication, division, and modulus)
 
