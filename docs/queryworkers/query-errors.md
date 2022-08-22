@@ -1,6 +1,5 @@
 ---
 title: Query Errors
-sidebar_position: 
 ---
 
 This page describes errors that might occur during the C8QL parsing or execution.

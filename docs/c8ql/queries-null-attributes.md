@@ -1,6 +1,5 @@
 ---
 title: Queries and Null Attributes
-sidebar_position: 
 ---
 
 This page describes the impact of non-existent or null attributes for selection queries.

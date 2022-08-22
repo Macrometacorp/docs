@@ -1,6 +1,5 @@
 ---
 title: Type and Value Order
-sidebar_position: 
 ---
 
 When checking for equality or inequality or when determining the sort order of values, C8QL uses a deterministic algorithm that takes both the data types and the actual values into account.
