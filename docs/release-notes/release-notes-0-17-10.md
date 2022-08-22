@@ -47,7 +47,8 @@ This release includes the following API changes.
 
 | Issue #  | Description  |
 |---|---|
-| API-178  | Add region URL to the API response.  |
+| API-173  | Add x-gdn-requestid to the API response headers.  |
+| API-178  | Add x-gdn-region URL to the API response headers.  |
 | DB-1500  | Add new database limits: `maxWorkersCpuSecondsPerMinute` (default value is 20 seconds/minute of CPU time), `maxWorkersLogsLengthKBPerMinute` (default value is 10 KB/minute of logs length).  |
 | DB-1588  | Removed one fabric parameter from Users API, because having two parameters was confusing. Now consistent with other APIs.  |
 | DB-1592  | Make `GET /_api/collection/{collection-name}/figures` API public. This allows users to view metadata such as how many indexes and views a collection has, total collection size, and how many documents a collection has. |
