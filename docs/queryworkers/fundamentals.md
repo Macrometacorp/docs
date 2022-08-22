@@ -12,7 +12,7 @@ title: Fundamentals
 | [Bind Parameters](#bind-parameters) | C8QL supports the usage of bind parameters. This allows to separate the query text from literal values used in the query. |
 | [Type and Value order](#type-and-value-order) | C8QL uses a set of rules (using values and types) for  equality checks and comparisons. |
 | [Accessing Data](#accessing-data) | Describes the impact of non-existent or null attributes for selection queries. |
-| [Query Results](#query-results) | The result of a C8QL query is an array of values.|
+
 
 
 ## Query Syntax
@@ -581,49 +581,3 @@ For example, the following query will return all documents from the collection `
 
 This behavior should always be taken into account when writing queries.
 
-## Query Results
-
-The result of a C8QL query is an array of values. The individual values in the result array may or may not have a homogeneous structure, depending on what is actually queried.
-
-For example, when returning data from a collection with inhomogeneous documents (the individual documents in the collection have different attribute names) without modification, the result values will as well have an inhomogeneous structure. Each result value itself is a document:
-
-```js
-FOR u IN users
-    RETURN u
-```
-
-```json
-[ { "id": 1, "name": "John", "active": false }, 
-  { "age": 32, "id": 2, "name": "Vanessa" }, 
-  { "friends": [ "John", "Vanessa" ], "id": 3, "name": "Amy" } ]
-```
-
-However, if a fixed set of attributes from the collection is queried, then the query result values will have a homogeneous structure. Each result value is still a document:
-
-```js
-FOR u IN users
-    RETURN { "id": u.id, "name": u.name }
-```
-
-```json
-[ { "id": 1, "name": "John" }, 
-  { "id": 2, "name": "Vanessa" }, 
-  { "id": 3, "name": "Amy" } ]
-```
-
-It is also possible to query just scalar values. In this case, the result set is an array of scalars, and each result value is a scalar value:
-
-```js
-FOR u IN users
-    RETURN u.id
-```
-
-```json
-[ 1, 2, 3 ]
-```
-
-If a query does not produce any results because no matching data can be found, it will produce an empty result array:
-
-```json
-[ ]
-```
