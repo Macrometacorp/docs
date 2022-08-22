@@ -12,7 +12,7 @@ You can run a query in the Macrometa console, from the Macrometa CLI, or using a
 ### Run a Query in the Console
 
 1. Write a [C8QL](../c8ql/) query.
-1. Enter any required [bind parameter](fundamentals.md#bind-parameters) values.
+1. Enter any required [bind parameter](bind-parameters.md) values.
 1. Click **Run Query**.
 
 Macrometa runs the query and displays the [Query Result](#query-result) for that query. Each query you run displays another Query Result unless you navigate away from the page or clear the results.
