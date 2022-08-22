@@ -711,8 +711,6 @@ FOR c IN Characters
 ]
 ```
 
-Also see the [Fundamentals of Objects / Documents](../queryworkers/fundamentals.md#objects-documents) about attribute access.
-
 We can use the *traits* array together with the `DOCUMENT()` function to use the elements as document keys and look up them up in the *Traits* collection:
 
 ```js
