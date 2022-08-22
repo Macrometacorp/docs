@@ -12,7 +12,7 @@ You can run a query in the Macrometa console, from the Macrometa CLI, or using a
 ### Run a Query in the Console
 
 1. Write a [C8QL](../c8ql/) query.
-1. Enter any required [bind parameter](fundamentals.md#bind-parameters) values.
+1. Enter any required [bind parameter](bind-parameters.md) values.
 1. Click **Run Query**.
 
 Macrometa runs the query and displays the [Query Result](#query-result) for that query. Each query you run displays another Query Result unless you navigate away from the page or clear the results.
@@ -34,11 +34,56 @@ After you write a query, click **Execution Plan** to see a detailed breakdown of
 
 ## Query Result
 
-Query results vary based on the query. Queries that return information display that information. Queries that do not, perhaps because they are entering or deleting information, just display empty brackets `[]`. The following screenshot shows a query with information returned.
+Query results vary based on the query. Queries that return information display that information. Queries that do not, perhaps because they are entering or deleting information, just display empty brackets `[]`. The following screenshot shows a query with information returned when running it in the UI.
 
 ![Query Result](/img/queries/query-result.png)
 
-### Query Info
+The result of a C8QL query is an array of values. The individual values in the result array might have a homogeneous structure, depending on what is actually queried.
+
+For example, when returning data from a collection with inhomogeneous documents (the individual documents in the collection have different attribute names) without modification, the result values will as well have an inhomogeneous structure. Each result value itself is a document:
+
+```js
+FOR u IN users
+    RETURN u
+```
+
+```json
+[ { "id": 1, "name": "John", "active": false }, 
+  { "age": 32, "id": 2, "name": "Vanessa" }, 
+  { "friends": [ "John", "Vanessa" ], "id": 3, "name": "Amy" } ]
+```
+
+However, if a fixed set of attributes from the collection is queried, then the query result values will have a homogeneous structure. Each result value is still a document:
+
+```js
+FOR u IN users
+    RETURN { "id": u.id, "name": u.name }
+```
+
+```json
+[ { "id": 1, "name": "John" }, 
+  { "id": 2, "name": "Vanessa" }, 
+  { "id": 3, "name": "Amy" } ]
+```
+
+It is also possible to query just scalar values. In this case, the result set is an array of scalars, and each result value is a scalar value:
+
+```js
+FOR u IN users
+    RETURN u.id
+```
+
+```json
+[ 1, 2, 3 ]
+```
+
+If a query does not produce any results because no matching data can be found, it will produce an empty result array:
+
+```json
+[]
+```
+
+### Query Profile
 
 Click **Query Info** to display detailed performance information about the query.
 

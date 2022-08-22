@@ -403,7 +403,7 @@ FOR c IN Characters
 ]
 ```
 
-You may notice that it returns name and age of 30 characters, most with an age of `null`. The reason for this is, that `null` is the fallback value if an attribute is requested by the query, but no such attribute exists in the document, and the `null` is compares to numbers as lower (see [Type and value order](../queryworkers/fundamentals.md#type-value-order)). Hence, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`).
+You may notice that it returns name and age of 30 characters, most with an age of `null`. The reason for this is, that `null` is the fallback value if an attribute is requested by the query, but no such attribute exists in the document, and the `null` is compares to numbers as lower (refer to [Type and Value Order](type-and-value-order.md)). Hence, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`).
 
 ### Multiple conditions
 
@@ -715,8 +715,6 @@ FOR c IN Characters
     ...
 ]
 ```
-
-Also see the [Fundamentals of Objects / Documents](../queryworkers/fundamentals.md#objects-documents) about attribute access.
 
 We can use the _traits_ array together with the `DOCUMENT()` function to use the elements as document keys and look up them up in the _Traits_ collection:
 
@@ -1157,7 +1155,7 @@ To query based on coordinates, a [geo index](../collections/documents/geospatial
 
 ### Find nearby locations
 
-A `FOR` loop is used again, but this time to iterate over the results of a function call to `NEAR()` to find the _n_ closest coordinates to a reference point, and return the documents with the nearby locations. The default for *n* is 100, which means 100 documents are returned at most, the closest matches first.
+A `FOR` loop is used again, but this time to iterate over the results of a function call to `NEAR()` to find the _n_ closest coordinates to a reference point, and return the documents with the nearby locations. The default for _n_ is 100, which means 100 documents are returned at most, the closest matches first.
 
 In below example, the limit is set to 3. The origin (the reference point) is a coordinate somewhere downtown in Dublin, Ireland:
 
