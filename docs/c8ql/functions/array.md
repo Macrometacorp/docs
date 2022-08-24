@@ -7,7 +7,7 @@ C8QL provides functions for higher-level array manipulation. Also see the [numer
 
 Apart from that, C8QL also offers several language constructs:
 
-- simple [array access](../../queryworkers/fundamentals.md#arrays--lists) of individual elements,
+- simple [array access](../data-types.md#arrays--lists) of individual elements,
 - [array operators](../array-operators.md) for array expansion and contraction, optionally with inline filter, limit and projection,
 - [array comparison operators](../operators.md#array-comparison-operators) to compare each element in an array to a value or the elements of another array,
 - loop-based operations on arrays using [FOR](../operations/for.md),
