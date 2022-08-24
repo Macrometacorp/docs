@@ -26,10 +26,11 @@ from c8 import C8Client
   
 API_ACTIVE = False
 CHOSEN_API_KEY_ID = "myNewKey"
-API_KEY = "my API key" # Change this to my key
+EMAIL = 'nemo@nautilus.com'
+PASSWORD = 'xxxxx'
 URL = "gdn.paas.macrometa.io"
 
-client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY)
+client = C8Client(protocol='https', host=URL, port=443, email=EMAIL, password=PASSWORD)
 
 
 # Get a list of all the API key ID's names
