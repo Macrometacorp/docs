@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 20
 title: Views
 slug: views
 ---
@@ -215,9 +215,15 @@ You can set the following optional properties for links:
 
 Optional properties for Views are divided into the following categories:
 
-* [Primary Sorting](#primary-sorting)
-* [Commit, Consolidate, Cleanup](#commit-consolidate-cleanup)
-* [Write Buffers](#write-buffers)
+- [Concepts](#concepts)
+- [Integration](#integration)
+- [Primary Sort Order](#primary-sort-order)
+- [View Definition](#view-definition)
+- [Link Properties](#link-properties)
+- [View Properties](#view-properties)
+	- [Primary Sorting](#primary-sorting)
+	- [Commit, Consolidate, Cleanup](#commit-consolidate-cleanup)
+	- [Write Buffers](#write-buffers)
 
 ### Primary Sorting
 
