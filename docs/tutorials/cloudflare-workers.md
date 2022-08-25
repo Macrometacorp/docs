@@ -3,9 +3,9 @@ sidebar_position: 15
 title: Working with Cloudflare Workers
 ---
 
-This brief tutorial will show you have to authenticate to the GDN using it's REST API and Cloudflare workers. It will then create a collection! 
+This brief tutorial will show you have to authenticate to the GDN using it's REST API and Cloudflare workers. It will then create a collection!
 
-## Auth and create first collection:
+## Auth and create first collection
 
 ```js
 const macrometaHost = "https://api-gdn.paas.macrometa.io"
@@ -47,7 +47,7 @@ addEventListener("fetch", event => {
 
 ![Workers](/img/worker-console.png)
 
-### Response to collection creation:
+### Response to collection creation
 
 ```json
 {
