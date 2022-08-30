@@ -447,7 +447,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     import pprint
 
     # Variables - Queries
-    GLOBAL_URL = "gdn.pass.macrometa.io"
+    GLOBAL_URL = "gdn.paas.macrometa.io"
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
     GEO_FABRIC = "_system"
