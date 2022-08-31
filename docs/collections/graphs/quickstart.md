@@ -457,9 +457,9 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     READ_PEOPLE = f"FOR person IN {COLLECTION_PEOPLE} RETURN person"
     READ_CALLS = f"FOR call IN {COLLECTION_CALLS} RETURN call"
     PERSON = "Lou Feaveer"
-    GRAPH_TRAVERSAL_1 = (f"FOR c IN {COLLECTION_PEOPLE} FILTER c.full_name == {PERSON}"
+    GRAPH_TRAVERSAL_1 = (f"FOR c IN {COLLECTION_PEOPLE} FILTER c.full_name == "\{PERSON}""
         f"FOR v IN 1..1 INBOUND c {COLLECTION_CALLS} RETURN v")
-    GRAPH_TRAVERSAL_2 = (f"FOR c IN {COLLECTION_PEOPLE} FILTER c.full_name == {PERSON}"
+    GRAPH_TRAVERSAL_2 = (f"FOR c IN {COLLECTION_PEOPLE} FILTER c.full_name == "\{PERSON}""
         f"FOR v IN 1..1 OUTBOUND c {COLLECTION_CALLS} RETURN v")
 
     pp = pprint.PrettyPrinter(indent=4)
