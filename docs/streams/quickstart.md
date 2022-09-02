@@ -1000,12 +1000,12 @@ Example to publish messages on a stream and subscribe to that stream to receive 
 
         // FOR gdn use the below snippet
         // const url = IS_GLOBAL
-        // ? FEDERATION_NAME;
+        // ? FEDERATION_NAME
         // : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
 
         // #URL_REVIEW : If you have changed your FEDERATION_NAME please review the below code and make required changes to the URL
         const url = IS_GLOBAL
-          ? FEDERATION_NAME;
+          ? FEDERATION_NAME
           : `api-${streamApp.streamApps[0].regions[0]}.macrometa.io`
 
         const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}`;
