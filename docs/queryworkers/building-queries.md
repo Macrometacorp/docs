@@ -5,11 +5,11 @@ title: Building Queries
 
 This page explains how to create a query in Macrometa. To learn more about what you can do with queries and the language for writing them, refer to [C8 Query Language](c8ql/../index.md).
 
-## Query Builder
+## Query Editor
 
-To write a query, log into Macromenta and navigate to the Editor tab of the QUERIES section. Type the content for queries starting with Line 1 of the Query Builder.
+To write a query, log into Macromenta and navigate to the Editor tab of the Query Workers section. Type the content for queries starting with Line 1 of the Query Editor.
 
-![Query Builder](/img/queries/query-builder.png)
+![Query Editor](/img/queries/query-builder.png)
 
 ## Bind Parameters
 
@@ -21,12 +21,13 @@ To write a query, log into Macromenta and navigate to the Editor tab of the QUER
 
 Macrometa has a built-in tool to help you with C8QL syntax. Click **Syntax** and start typing to see a list of available options.
 
-In the following screenshot, the user typed **in**.
+In the following screenshot, the user typed **min**.
 
 ![Syntax helper](/img/queries/syntax-helper.png)
 
 ## Next Steps
 
 After you write a query, you can do the following:
+
 - [Run the query](running-queries.md).
 - Save the query as a [query worker](query-workers.md).

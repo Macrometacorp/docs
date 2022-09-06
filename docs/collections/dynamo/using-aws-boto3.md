@@ -196,7 +196,7 @@ def update_movie(dynamodb=None):
                 ":r": {"N":"5.5"},
                 ":p": {"S":"Everything happens all at once."},
             },
-            ReturnValues= "UPDATED_OLD"
+            ReturnValues= "ALL_NEW"
         )
         print("Update movie: ", resp)
 
