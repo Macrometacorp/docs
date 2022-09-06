@@ -3,17 +3,15 @@ sidebar_position: 2
 title: C8QL Tutorial
 ---
 
-This is an introduction to GDN's query language C8QL, built around a small dataset of characters from the novel and fantasy drama television series Game of Thrones (as of season 1). It includes character traits in two languages, some family relations, and last but not least a small set of filming locations, which makes for an interesting mix of data to work with.
+This tutorial is an introduction to C8QL, the GDN query language, built around a small dataset of characters from the novel and fantasy drama television series Game of Thrones (as of season 1). It includes character traits in two languages, some family relations, and last but not least a small set of filming locations, which makes for an interesting mix of data to work with.
 
 There is no need to import the data before you start. It is provided as part of the C8QL queries in this tutorial.
 
 ## Dataset
 
-### Characters
+The dataset features 43 characters with their name, surname, age, alive status, and trait references. The surname and age properties are not always present. The column _traits (resolved)_ is not part of the actual data used in this tutorial, but included for your convenience.
 
-The dataset features 43 characters with their name, surname, age, alive status and trait references. The surname and age properties are not always present. The column _traits (resolved)_ is not part of the actual data used in this tutorial, but included for your convenience.
-
-![Characters_Table](/img/Characters_Table.png)
+![Characters_Table](/img/c8ql/tutorial/Characters_Table.png)
 
 ### Traits
 
