@@ -17,13 +17,13 @@ The dataset features 43 characters with their name, surname, age, alive status, 
 
 There are 18 unique traits. Each trait has a random letter as document key. The trait labels come in English and German.
 
-![Traits_Table](/img/Traits_Table.png)
+![Traits_Table](/img/c8ql/tutorial/Traits_Table.png)
 
 ### Locations
 
 This small collection of eight filming locations comes with two attributes, a _name_ and a _coordinate_. The coordinates are modeled as number arrays, comprised of a latitude and a longitude value each.
 
-![Locations_Table](/img/Locations_Table.png)
+![Locations_Table](/img/c8ql/tutorial/Locations_Table.png)
 
 ## CRUD
 
@@ -663,7 +663,7 @@ It is rather a list of letters without an apparent meaning. The idea here is tha
 
 ... it becomes really hard to maintain traits. If you were to rename or translate one of them, you would need to find all other character documents with the same trait and perform the changes there too. If we only refer to a trait in another collection, it is as easy as updating a single document.
 
-![Comparison_DataModels](/img/Comparison_DataModels.png)
+![Comparison_DataModels](/img/c8ql/tutorial/Comparison_DataModels.png)
 
 ### Importing traits
 
@@ -886,7 +886,7 @@ Our characters have the following relations between parents and children (first 
 
 Visualized as graph:
 
-![ChildOf graph visualization](/img/ChildOf_Graph.png)
+![ChildOf graph visualization](/img/c8ql/tutorial/ChildOf_Graph.png)
 
 ### Creating the edges
 
@@ -1078,7 +1078,7 @@ FOR c IN Characters
 
 It might be a bit unexpected, that Joffrey is returned twice. However, if you look at the graph visualization, you can see that multiple paths lead from Joffrey (bottom right) to Tywin:
 
-![ChildOf_Graph](/img/ChildOf_Graph.png)
+![ChildOf_Graph](/img/c8ql/tutorial/ChildOf_Graph.png)
 
 ```js
 Tywin <- Jaime <- Joffrey
@@ -1137,7 +1137,7 @@ FOR place IN places
 
 Visualization of the coordinates on a map with their labels:
 
-![Locations_Map](/img/Locations_Map.png)
+![Locations_Map](/img/c8ql/tutorial/Locations_Map.png)
 
 ### Geospatial index
 
