@@ -1,11 +1,11 @@
 ---
 sidebar_position: 2
-title: C8QL Tutorial
+title: C8QL GoT Tutorial
 ---
 
-This tutorial is an introduction to C8QL, the GDN query language. The tutorial is built around a small dataset of characters from the novel and fantasy drama television series Game of Thrones (as of season 1).
+This tutorial is an introduction to C8QL, the GDN query language. This tutorial assumes no pre-existing knowledge, starting with basic operations and working up to more advanced.
 
-There is no need to import the data before you start. It is provided as part of the C8QL queries in this tutorial.
+The tutorial is built around a small dataset of characters from the novel and fantasy drama television series Game of Thrones (as of season 1). There is no need to import the data before you start. It is provided as part of the C8QL queries in this tutorial.
 
 ## Objectives
 
@@ -14,6 +14,12 @@ By the end of this tutorial, you will:
 - Understand how to use C8QL to create, read, update, and delete documents in a collection.
 - Be able to search, sort, and filter content with C8QL queries.
 - Understand the basics of Graph Edge collections.
+
+:::note
+Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../cli/index.md), [API](https://macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
+
+If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../cli/queries-cli.md) command.
+:::
 
 ## Prerequisites
 
@@ -37,18 +43,9 @@ This small collection of eight locations comes with two attributes, a _name_ and
 
 ![Locations_Table](/img/c8ql/tutorial/Locations_Table.png)
 
-## CRUD
+## Create the Characters Collection
 
-- [Create documents](#create-documents)
-- [Read documents](#read-documents)
-- [Update documents](#update-documents)
-- [Delete documents](#delete-documents)
-
-### Create documents
-
-Before we can insert documents with C8QL, we need a place to put them in: a collection. Collections can be managed via the web interface, c8sh, or SDK.
-
-#### Create a collection
+Before we can insert documents with C8QL, we need a place to put them in: a collection.
 
 For this tutorial, create a [Document Store collection](../collections/documents/index.md) in the console. For more information about collections, refer to [Collections](../collections/index.md).
 
@@ -57,6 +54,22 @@ For this tutorial, create a [Document Store collection](../collections/documents
 1. Click **New Collection**.
 1. Click **Document Store**.
 1. Name the collection **Characters** and then click **Create**.
+
+## Basic Document Tasks
+
+This section shows you how to perform basic 
+
+- [Create documents](#create-documents)
+- [Read documents](#read-documents)
+- [Update documents](#update-documents)
+- [Delete documents](#delete-documents)
+
+### Create documents
+
+
+
+#### Create a collection
+
 
 #### Add documents to the collection
 
