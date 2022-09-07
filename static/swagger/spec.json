@@ -10221,6 +10221,9 @@
   "paths": {
     "/_api/key/validate": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Requires a JSON object with these properties:\n\n  - **apikey**: The API key as a string.\n  Requires administrator permissions.\n\n  - **jwt**: The JWT token as a string.\n  Requires administrator permissions.",
         "operationId": "ValidateApiKey",
         "parameters": [
@@ -10311,6 +10314,9 @@
     },
     "/_api/key": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Requires a JSON object with these properties:\n\n  - **keyid**: The id of the API key.\nYou can create API keys only for yourself.",
         "operationId": "CreateApiKey",
         "parameters": [
@@ -10649,6 +10655,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Requires a JSON object with these properties:\n\n  - **grant**: Use \"rw\" to set the database access level to *Administrate*.\n   Use \"ro\" to set the database access level to *Access*.\n   Use \"none\" to set the database access level to *No access*.\n\nSets the database access levels for the database *dbname* of API key with *keyid*. This call requires *Administrate* server access.",
         "operationId": "SetTheDatabaseAccessLevelForApiKey",
         "parameters": [
@@ -10911,6 +10920,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Requires a JSON object with these properties:\n\n  - **grant**: Use \"rw\" to set the collection level access to *Read/Write*. Use \"ro\" to set the collection level access to  *Read Only*. Use \"none\" to set the collection level access to *No access*.\n\n - **collection**: Use \"&#42;\" to set default access level for all collections.\n\nIf access level for collection is not set then default(\"&#42;\") access level is used. If default(\"&#42;\") access level is also not set then database access level is used.\n\nSets the collection access level for the *collection* in the database *dbname* for API key with *keyid*. This call requires *Administrate* server access.",
         "operationId": "SetTheCollectionAccessLevelForApiKey",
         "parameters": [
@@ -11182,6 +11194,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Requires a JSON object with these properties:\n\n  - **grant**: Use \"ro\" to set the stream access level to Subscribe.\n   Use \"wo\" to set the stream access level to Publish.\n Use \"rw\" to set the stream access level to Publish and Subscribe.\n  Use \"none\" to set the stream access level to *No access*.\n\n - **stream**: Use \"&#42;\" to set default access level for all streams.\n\nIf access level for stream is not set then default(\"&#42;\") access level is used. If default(\"&#42;\") access level is also not set then database access level is used.\n\n Sets the stream access levels for the *stream* of API key with *keyid*. This call requires *Administrate* server access.",
         "operationId": "SetTheStreamAccessLevelForApiKey",
         "parameters": [
@@ -11349,6 +11364,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Requires a JSON object with these properties:\n\n  - **grant**: Use \"rw\" to set the billing access level to *Administrate*.\n   Use \"ro\" to set the billing access level to *Access*.\n   Use \"none\" to set the billing access level to *No access*.\n\nSets the billing access levels for API key with *keyid*. This call requires *Administrate* server access.",
         "operationId": "SetTheBillingAccessLevelForApiKey",
         "parameters": [
@@ -11460,6 +11478,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Requires a JSON object with key-value pairs.\n\nThis call requires *Administrate* server access.",
         "operationId": "UpdateTheAttributesForApiKey",
         "parameters": [
@@ -11610,6 +11631,9 @@
     },
     "/_open/auth": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Obtain a JWT Authentication for a user. After obtaining the token, REST API\ncalls may be invoked by passing the obtained token in the REST header.\nEither email or both tenant and username are required.\nAdd the following to your header when you make REST calls:\n*\"Authorization: bearer TOKEN\"*\n\n\nA JSON object with these properties is required:\n\n  - **username**: Name of the user for whom we want the auth token.\n  - **password**: User password as a string. \n  - **email**: Email of the user for whom we want the auth token.\n  - **tenant**: Name of the tenant for whose user we want the auth token.",
         "parameters": [
           {
@@ -11814,6 +11838,9 @@
     },
     "/_fabric/{fabric}/_api/kv/{collection}": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Create key-value collection.",
         "operationId": "CreateNamespace",
         "parameters": [
@@ -12051,6 +12078,9 @@
     },
     "/_fabric/{fabric}/_api/kv/{collection}/values": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Get key-value pairs from collection.\nOptional list of keys.  Max limit is 100 keys per request.",
         "operationId": "GetValues",
         "parameters": [
@@ -12122,6 +12152,9 @@
         ]
       },
       "delete": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Remove key-value pairs. Requires a list of keys.  Max limit is 1000 keys per request.",
         "parameters": [
           {
@@ -12192,6 +12225,9 @@
     },
     "/_fabric/{fabric}/_api/kv/{collection}/value": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Set one or more key-value pairs in key-value collection. \nIf the input is an array of objects then key-value pairs are created in batch.\nIf the key does not exist the key-value pairs are created.  Otherwise the entry for the key is updated.\nSpecify expiration in UTC timestamp.\n\n**Note:** \n  Max limit is **100** key-value pairs per request.",
         "parameters": [
           {
@@ -12310,6 +12346,9 @@
     },
     "/_api/dynamo": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Dynamo-like API interface.\n\nSet your JWT token or APIKEY as a aws_access_key_id (ex. '*bearer XXXXX*' or '*apikey XXXXX*').\n\nCurrently supported Dynamo actions (set as *'x-amz-target'* header tag): \n\n  - **CreateTable**\n  - **CreateGlobalTable**\n  - **DeleteItem**\n  - **DeleteTable**\n  - **DescribeGlobalTable**\n  - **DescribeTable**\n  - **DescribeTimeToLive**\n  - **GetItem**\n  - **ListGlobalTables**\n  - **ListTables**\n  - **PutItem**\n  - **Query**\n  - **UpdateItem**\n  - **UpdateTable**\n  - **UpdateTimeToLive**\n  - **Scan**\n  - **BatchGetItem**\n  - **BatchWriteItem**",
         "operationId": "DynamoLikeInterfaceAPI",
         "parameters": [
@@ -12513,6 +12552,9 @@
     },
     "/_fabric/{fabric}/_api/document/{collection}": {
       "delete": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "The body of the request is an array consisting of selectors for documents. A selector can either be a string with a key or a string with a document handle or an object with a *_key* attribute. \n\nThis API call removes all specified documents from *collection*. If the selector is an object and has a *_rev* attribute, it is a precondition that the actual revision of the removed document in the collection is the specified one.\n\nThe body of the response is an array of the same length as the input array. For each input selector, the output contains a JSON object with the information about the outcome of the operation. If no error occurred, an object is built in which the attribute *_id* contains the known *document-handle* of the removed document, *_key* contains the key which uniquely identifies a document in a given collection, and the attribute *_rev* contains the document revision. \n\nIn case of an error, an object with the attribute *error* set to *true* and *errorCode* set to the error code is built. If the query parameter *returnOld* is *true*, then the previous revision of the document is returned under the *old* attribute in the result.\n\nNote that if any precondition is violated or an error occurred with some of the documents, the return code is still 200 or 202, but the additional HTTP header *X-C8-Error-Codes* is set, which contains a map of the error codes that occurred together with their multiplicities, as in: *1200:17,1205:10* which means that in 17 cases the error 1200 \"revision conflict\" and in 10 cases the error 1205 \"illegal document handle\" has happened.",
         "operationId": "removeDocument",
         "parameters": [
@@ -12609,6 +12651,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Partially updates documents. The *_key* attributes in the body specify which documents should be updated. The body of the request must contain a JSON array of document updates with the attributes to patch (the patch documents). All attributes from the patch documents are added to the existing documents if they do not yet exist and overwritten in the existing documents if they do exist.\n\nSetting an attribute value to *null* in the patch documents causees a value of *null* to be saved for the attribute.\n\nIf *ignoreRevs* is *false* and there is a *_rev* attribute in a document in the body and its value does not match the revision of the corresponding document in the database, the precondition is violated.\n\nIf the document exists and can be updated, then an *HTTP 201* or an *HTTP 202* is returned (depending on *waitForSync*, see below).\n\nThe body of the response contains a JSON array of the same length as the input array with the information about the handle and the revision of the updated documents. In each entry:\n - *_id* contains the known *document-handle* of each updated document.\n - *_key* contains the key that uniquely identifies a document.\n - *_rev* contains the new document revision.\n\nIn case of an error or violated precondition, an error object with the attribute *error* set to *true* and the attribute *errorCode* set to the error code is built.\n\nIf the query parameter *returnOld* is *true*, then, for each generated document, the previous revision of the document is returned under the *old* attribute in the result.\n\nIf the query parameter *returnNew* is *true*, then, for each generated document, the new document is returned under the *new* attribute in the result.\n\nNote that if any precondition is violated or an error occurred with some of the documents, the return code is still 201 or 202, but the additional HTTP header *X-C8-Error-Codes* is set, which contains a map of the error codes that occurred together with their multiplicities, as in: *1200:17,1205:10* which means that in 17 cases the error 1200 \"revision conflict\" and in 10 cases the error 1205 \"illegal document handle\" has happened.\n\n",
         "operationId": "updateDocument",
         "parameters": [
@@ -12737,6 +12782,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a new document from the document given in the body, unless there is already a document with the *_key* given. If no *_key* is given, a new unique *_key* is generated automatically.\n\nThe body can be an array of documents, in which case all documents in the array are inserted with the same semantics as for a single document. The result body will contain a JSON array of the same length as the input array, and each entry contains the result of the operation for the corresponding input. In case of an error the entry is a document with attributes *error* set to *true* and errorCode set to the error code that has happened.\n\nPossibly given *_id* and *_rev* attributes in the body are always ignored, the URL part or the query parameter collection respectively counts.\n\nIf the document is created successfully, then the *Location* header contains the path to the newly created document. The *Etag* header field contains the revision of the document. Both are only set in the single document case.\n\nIf *silent* is not set to *true*, the body of the response contains a JSON object (single document case) with the following attributes:\n\n - *_id* contains the document handle of the newly created document.\n - *_key* contains the document key.\n - *_rev* contains the document revision.\n\nIn the multi case the body is an array of such objects. If the query parameter *returnNew* is *true*, then, for each generated document, the new document is returned under the *new* attribute in the result.",
         "operationId": "insertDocument",
         "parameters": [
@@ -12760,7 +12808,7 @@
           {
             "description": "A JSON representation of a single document or of an array of documents.",
             "in": "body",
-            "name": "JSON Request Body",
+            "name": "JSON Request Body.",
             "required": true,
             "schema": {
               "type": "array",
@@ -12875,6 +12923,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Replaces multiple documents in the specified collection with the ones in the body. The replaced documents are specified by the *_key* attributes in the body documents.\n\nIf *ignoreRevs* is *false*,, a *_rev* attribute in each document body must match the revision of the corresponding document in the database. Otherwise, the call fails\n\nIf the document exists and can be updated, then a *HTTP 201* or a *HTTP 202* is returned (depending on *waitForSync*, see below).\n\nThe body of the response contains a JSON array of the same length as the input array with the information about the handle and the revision of the replaced documents. In each entry:\n - *_id* contains the known *document-handle* of each updated document.\n - *_key* contains the key which uniquely identifies a document.\n - *_rev* contains the new document revision.\n\nIn case of an error or violated precondition, an error object with the attribute *error* set to *true* and the attribute *errorCode* set to the error code.\n\nIf the query parameter *returnOld* is *true*, for each generated document the previous revision of the document is returned under the *old* attribute in the result.\n\nIf the query parameter *returnNew* is *true*, for each generated document the new document is returned under the *new* attribute in the result.\n\nNote that if any precondition is violated or an error occurred with some of the documents, the return code is still 201 or 202, but the additional HTTP header *X-C8-Error-Codes* is set, that contains a map of the error codes that occurred together with their multiplicities, as in: *1200:17,1205:10* which means that in 17 cases the error 1200 \"revision conflict\" and in 10 cases the error 1205 \"illegal document handle\" has happened.",
         "operationId": "replaceDocument:multiple",
         "parameters": [
@@ -13228,6 +13279,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Partially updates the document identified by *key*. The body of the request must contain a JSON document with the attributes to patch (the patch document). All attributes from the patch document are added to the existing document if they do not yet exist, and overwritten in the existing document if they do exist there.\n\nSetting an attribute value to *null* in the patch document causes a value of *null* to be saved for the attribute by default.\n\nIf the *If-Match* header is specified and the revision of the document in the database is unequal to the given revision, the precondition is violated.\n\nIf *If-Match* is not given and *ignoreRevs* is *false*, a *_rev* attribute in each document bodymust match the revision of the corresponding document in the database. Otherwise, the call fails.\n\nIf a precondition is violated, a *HTTP 412* is returned.\n\nIf the document exists and can be updated, then a *HTTP 201* or a *HTTP 202* is returned, the *Etag* header field contains the new revision of the document (in double quotes) and the *Location* header contains a URL under which the document can be queried.\n\nIf *silent* is set to *false*, the body of the response contains a JSON object with the information about the handle and the revision.\n - *_id* contains the known *document-handle* of the updated document.\n - *_key* contains the key that uniquely identifies a document.\n - *_rev* contains the new document revision.\n\nIf the query parameter *returnOld* is *true*, then the previous revision of the document is returned under the *old* attribute in the result.\n\nIf the query parameter *returnNew* is *true*, then the new document is returned under the *new* attribute in the result.\n\nIf the document does not exist, then a *HTTP 404* is returned and the body of the response contains an error document.",
         "operationId": "updateDocument2",
         "parameters": [
@@ -13370,6 +13424,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Replaces the document with key <key> with the one in the body, provided there is such a document and no precondition is violated.\n\nIf the *If-Match* header is specified and the revision of the document in the database is unequal to the given revision, the precondition is violated.\n\nIf *If-Match* is not given and *ignoreRevs* is *false*, a *_rev* attribute in each document body must match the revision of the corresponding document in the database. Otherwise, the call fails.\n\nIf a precondition is violated, a *HTTP 412* is returned.\n\nIf the document exists and can be updated, then a *HTTP 201* or a *HTTP 202* is returned (depending on *waitForSync*, see below), the *Etag* header field contains the new revision of the document and the *Location* header contains a URL under which the document can be queried.\n\nIf *silent* is set to *false*, the body of the response contains a JSON object with the information about the handle and the revision.\n - *_id* contains the known *document-handle* of each document.\n - *_key* contains the key that uniquely identifies a document.\n - *_rev* contains the new document revision.\n\nIf the query parameter *returnOld* is *true*, then the previous revision of the document is returned under the *old* attribute in the result.\n\nIf the query parameter *returnNew* is *true*, then the new document is returned under the *new* attribute in the result.\n\nIf the document does not exist, then a *HTTP 404* is returned and the body of the response contains an error document.",
         "operationId": "replaceDocument",
         "parameters": [
@@ -13538,6 +13595,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Create collection.\nRequires a JSON object with these properties:\n- **name**: The name of the collection.\n - **keyOptions**:\n    - **allowUserKeys**: If set to *true*, you can supply a key value in the *_key* attribute of a document. If set to *false*, the key generator creates keys, and an error occurs if you add a *_key* value.\n    - **type**: Choose the type of key generator:\n      - **traditional**: generates numerical keys in ascending order.\n      - **autoincrement:** generates numerical keys in ascending order with configurable initial offset and spacing.\n      - **padded:** generates keys of a fixed length (16 bytes) in ascending lexicographical sort order.\n      - **uuid64**: generates universally unique keys.\n    - **increment**: increment value for *autoincrement* key generator. Not used for other key generator types.\n    - **offset**: Initial offset value for *autoincrement* key generator. Not used for other key generator types.\n  - **isSystem**: If *true*, create a system collection. The *collection-name* must start with an underscore. Not Applicable for *end-users*. (The default is *false*)\n  - **isLocal**: If *true*, create a local collection. For a local collection data is not replicated across regions. (The default is *false*)\n - **type**: The type of the collection to be created.\n The following values for *type* are valid (The default is *2*):\n    - *2*: document collection\n    - *3*: edge collection.\n  - **stream**: If *true*, create a local stream for collection. (The default is *false*)\n  - **shardKeys**: The specified shard key determines in which shard a given document is to be stored. Choosing the right shard key can have significant impact on your performance can reduce network traffic and increase performance.",
         "operationId": "handleCommandPost:CreateCollection",
         "parameters": [
@@ -13804,6 +13864,9 @@
     },
     "/_fabric/{fabric}/_api/collection/{collection-name}/properties": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Changes the properties of a collection.\n Requires a JSON object with these properties:\n- **hasStream**: *True* if creating a live collection stream.\n- **waitForSync**: *True* if waiting for documents to be synchronized to storage.\nThe call returns a JSON object with at least the following attributes on success:\n- **id**: The identifier of the collection.\n - **name**: The name of the collection.\n - **status**: The status of the collection as number.\n   - 1: new born collection\n   - 2: unloaded\n   - 3: loaded\n    - 4: in the process of being unloaded\n   - 5: deleted\n   - 6: loading\n    - Every other status indicates a corrupted collection.\n- **type**: The type of the collection as number.\n  - 2: document collection (normal case)\n  - 3: edges collection\n- **isSystem**: *True* then the collection is a system collection.\n- **stream**: *True* if the collection has a local streams associate with it.\n**Note**: except for *waitForSync* and *hasStream*, collection properties **cannot be changed** once a collection is created.",
         "operationId": "handleCommandPut:modifyProperties",
         "parameters": [
@@ -13861,6 +13924,9 @@
     },
     "/_fabric/{fabric}/_api/cursor": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "The query details include the query string plus query options and bind parameters. These values need to be passed in a JSON representation in the body of the POST request.",
         "operationId": "createQueryCursor",
         "parameters": [
@@ -14019,6 +14085,9 @@
     },
     "/_fabric/{fabric}/_api/query": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "This endpoint is for query validation only. To query the database, see `/api/cursor`.",
         "operationId": "parseQuery",
         "parameters": [
@@ -14104,6 +14173,9 @@
     },
     "/_fabric/{fabric}/_api/query/explain": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "To explain how an C8QL query would run on the server, the query string can be sent to the server via an HTTP POST request. The server validates the query and creates an execution plan for it. The execution plan is returned, but the query does not run.\n\nThe execution plan that is returned by the server can be used to estimate the probable performance of the query. Though the actual performance will depend on many different factors, the execution plan normally can provide some rough estimates on the amount of work the server needs to do in order to run the query.\n\nBy default, the explain operation returns the optimal plan as chosen by the query optimizer. The optimal plan is the plan with the lowest total estimated cost. The response object contains the plan as a *plan* attribute. If the option *allPlans* is specified in the request, the result will contain all plans created by the optimizer. The plans will then be returned in the attribute *plans*.\n\nThe result also contains an attribute *warnings*, that is an array of warnings that occurred during optimization or execution of plan creation. Additionally, the result contains a *stats* attribute with optimizer statistics. If *allPlans* is set to *false*, the result contains an attribute *cacheable* that states whether the query results can be cached on the server if the query result cache were used. The *cacheable* attribute is not present when *allPlans* is set to *true*.\n\nEach plan in the result is a JSON object with the following attributes:\n- *nodes*: the array of execution nodes of the plan.  \n- *estimatedCost*: the total estimated cost for the plan. If there are multiple plans, the optimizer chooses the plan with the lowest total cost. \n- *collections*: an array of collections used in the query \n- *rules*: an array of rules the optimizer applied.  \n- *variables*: array of variables used in the query.",
         "operationId": "explainQuery",
         "parameters": [
@@ -14230,6 +14302,9 @@
     },
     "/_fabric/{fabric}/_api/restql": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Save a query for a user for a fabric.",
         "operationId": "SaveRestqlByName",
         "parameters": [
@@ -14273,6 +14348,9 @@
     },
     "/_fabric/{fabric}/_api/restql/execute/{name}": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Run a saved query for a given fabric.  If there are more that 100 records, the *hasMore* flag is set to *true* and the *id* is set.  This *id* is used to query subsequent records.",
         "operationId": "ExecuteRestqlByName",
         "parameters": [
@@ -14464,6 +14542,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update a saved query for a fabric.",
         "operationId": "UpdateRestqlByName",
         "parameters": [
@@ -14594,6 +14675,9 @@
     },
     "/_fabric/{fabric}/_api/index/fulltext": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates fulltext index, if it does not already exist.\n Requires a JSON object with these properties:\n  - **fields**: An array of attribute names. Currently, the array is limited\n   to exactly one attribute.\n  - **type**: Must be equal to *\"fulltext\"*.\n  - **minLength**: Minimum character length of words to index.Default take server-defined value if unspecified. Thus it is recommended to set this value explicitly when creating the index.",
         "operationId": "createIndex#fulltext",
         "parameters": [
@@ -14656,6 +14740,9 @@
     },
     "/_fabric/{fabric}/_api/index/general": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a new index.\nRequires a JSON object with these properties:\n  - **fields**: An array of attribute names as array of strings.\n   to exactly one attribute.\n  - **type**: Type of index.\n  -  **name**: Name of the index.\n - **unique**: *True* if the index is unique.\n **Note**: Unique indexes on non-shard keys are not supported in a cluster.\n The following index types do not support uniqueness, and using the *unique* attribute with these types may lead to an error:\n   - geo indexes\n   - fulltext indexes \n - **sparse**: *True* if the index is sparse type.\n**Note**: Hash, skiplist and persistent indexes can optionally be created in a sparse variant.  Sparse indexes do not index documents for which any of the index attributes is either not set or is null. \n - **deduplicate**: *True* then it controls whether inserting duplicate index values from the same document into a unique array index will lead to a unique constraint error or not. (The default is *true*, so only a single instance of each non-unique index value will be inserted into the index per document.)\n\n **Note**: Indexing the system attribute _id is not supported for user-defined indexes. Manually creating an index using _id as an index attribute fails with an error.",
         "operationId": "createIndex:general",
         "parameters": [
@@ -14725,6 +14812,9 @@
     },
     "/_fabric/{fabric}/_api/index/geo": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a geo index.\nRequires a JSON object with these properties:\n - **fields** (string): An array with one or two attribute paths. If it is an array with one attribute path *location*, then a geo-spatial index on all documents is created using *location* as path to the coordinates. The value of the attribute must be an array with at least two double values. The array must contain the latitude (first value) and the longitude (second value).\n **Note**: All documents, which do not have the attribute path or with value that are not suitable, are ignored.If it is an array with two attribute paths *latitude* and *longitude*, then a geo-spatial index on all documents is created using *latitude* and *longitude* as paths the latitude and the longitude. The value of the attribute *latitude* and of the attribute *longitude* must be a double. All documents, which do not have the attribute paths or which values are not suitable, are ignored.\n  - **type**: Must be equal to *\"geo\"*.\n  - **geoJson**: If a geo-spatial index on a *location* is constructed and *geoJson* is *true*, then the order within the array is longitude followed by latitude. This corresponds to the format described in http://geojson.org/geojson-spec.html#positions\n\n **Note**: Geo indexes are always sparse, meaning that documents that do not contain the index attributes or have non-numeric values in the index attributes will not be indexed.",
         "operationId": "createIndex#geo",
         "parameters": [
@@ -14793,6 +14883,9 @@
     },
     "/_fabric/{fabric}/_api/index/hash": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a hash index.\nRequires a JSON object with these properties:\n - **fields** (string): An array of attribute paths.\n  - **unique**: *True* if the index is unique.\n  - **type**: Must be equal to *\"hash\"*.\n  - **sparse**: *True* if the index is sparse type.\n  - **deduplicate**: *False* if the deduplication of array values is turned off.\n\n **Note**: \n- In a sparse index all documents are excluded from the index that do not contain at least one of the specified index attributes (i.e. *fields*) or that have a value of *null* in any of the specified index attributes. Such documents are not indexed and are not taken into account for uniqueness checks if the *unique* flag is set.\n\n - In a non-sparse index, these documents are indexed (for non-present indexed attributes, a value of *null* is used) and are taken into account for uniqueness checks if the *unique* flag is set.\n -  Unique indexes on non-shard keys are not supported in a cluster.",
         "operationId": "createIndex:hash",
         "parameters": [
@@ -14861,6 +14954,9 @@
     },
     "/_fabric/{fabric}/_api/index/persistent": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a hash index.\nRequires a JSON object with these properties:\n - **fields** (string): An array of attribute paths.\n  - **unique**: *True* if the index is unique.\n  - **type**: Must be equal to *\"persistent\"*.\n  - **sparse**: *True* if the index is sparse type.\n  - **deduplicate**: It controls whether inserting duplicate index values from the same document into a unique array index will lead to a unique constraint error or not. (The default is *true*)\n\n **Note**: \n - In a sparse index all documents are excluded from the index that do not contain at least one of the specified index attributes (i.e. *fields*) or that have a value of *null* in any of the specified index attributes. Such documents are not indexed and are not taken into account for uniqueness checks if the unique flag is set.\n\n - In a non-sparse index, these documents are indexed (for non-present indexed attributes, a value of *null* is used) and are taken into account for uniqueness checks if the *unique* flag is set.\n - unique indexes on non-shard keys are not supported in a cluster.",
         "operationId": "createIndex:persistent",
         "parameters": [
@@ -14929,6 +15025,9 @@
     },
     "/_fabric/{fabric}/_api/index/skiplist": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a hash index.\nRequires a JSON object with these properties:\n - **fields** (string): An array of attribute paths.\n  - **unique**: *True* if index is unique.\n  - **type**: Must be equal to *\"skiplist\"*.\n  - **sparse**: *True* if the index is sparse type.\n  - **deduplicate**: *False* if the deduplication of array values is turned off.\n\n\n **Note**: \n - In a sparse index all documents are excluded from the index that do not contain at least one of the specified index attributes (i.e. *fields*) or that have a value of *null* in any of the specified index attributes. Such documents are not indexed and are not taken into account for uniqueness checks if the *unique* flag is set.\n\n - In a non-sparse index, these documents are indexed (for non-present indexed attributes, a value of *null* is used) and are taken into account for uniqueness checks if the *unique* flag is set.\n\n - Unique indexes on non-shard keys are not supported in a cluster.",
         "operationId": "createIndex:skiplist",
         "parameters": [
@@ -14997,6 +15096,9 @@
     },
     "/_fabric/{fabric}/_api/index/ttl": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a hash index.\nRequires a JSON object with these properties:\n  - **fields** (string): An array with exactly one attribute path.\n  - **type**: Must be equal to *\"ttl\"*.\n  - **expireAfter**: The time (in seconds) after a document's creation after which the documents count as \"expired\".",
         "operationId": "createIndex:ttl",
         "parameters": [
@@ -15219,6 +15321,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "The creation of a graph requires the name of the graph and a definition of its edges.\n\n**Note**: Requires *Administrator* permissions to access the GeoFabric and *Read Only* access on every collection used within this graph.",
         "operationId": "CreateAGraph",
         "parameters": [
@@ -15457,6 +15562,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Adds an additional edge definition to the graph.\n\nThis edge definition has to contain a *collection* and an array of each *from* and *to* vertex collections.  An edge definition can only be added if this definition is either not used in any other graph, or it is used with exactly the same definition. It is not possible to store a definition \"e\" from \"v1\" to \"v2\" in the one graph, and \"e\" from \"v2\" to \"v1\" in the other graph.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "AddEdgedefinition",
         "parameters": [
@@ -15529,6 +15637,9 @@
     },
     "/_fabric/{fabric}/_api/graph/{graph}/edge/{edgeCollection}": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a new edge in the collection.\n\n**Note:** Requires *Read Only* permissions on the GeoFabric and *Write* access on the collection.",
         "operationId": "CreateAnEdge",
         "parameters": [
@@ -15614,6 +15725,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Change one specific edge definition.\n\nThis modifies all occurrences of this definition in all graphs known to your GeoFabric.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "ReplaceAnEdgedefinition",
         "parameters": [
@@ -15962,6 +16076,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Updates the data of the specific edge in the collection.\n\n**Note:** Requires *Read Only* permissions on the GeoFabric and *Write* access on the collection.",
         "operationId": "ModifyAnEdge",
         "parameters": [
@@ -16082,6 +16199,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Replaces the data of an edge in the collection.\n\n**Note:** Requires *Read Only* permissions on the GeoFabric and *Write* access on the collection.",
         "operationId": "ReplaceAnEdge",
         "parameters": [
@@ -16386,6 +16506,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Adds a vertex to the given collection.\n\n**Note:** Requires *Read Only* permissions to access the GeoFabric and *Write* permissions to access the collection.",
         "operationId": "CreateAVertex",
         "parameters": [
@@ -16662,6 +16785,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Updates the data of the specific vertex in the collection.\n\n**Note:** Requires *Read Only* permissions to access the GeoFabric and *Write* permissions to access the collection.",
         "operationId": "UpdateAVertex",
         "parameters": [
@@ -16782,6 +16908,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Replaces the data of a vertex in a collection.\n\n**Note:** Requires *Read Only* permissions to access the GeoFabric and *Write* permissions to access the collection.",
         "operationId": "ReplaceAVertex",
         "parameters": [
@@ -16962,6 +17091,9 @@
     },
     "/_fabric/{fabric}/_api/graphs/traversal": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\nStarts a traversal starting from a given vertex and following. edges contained in a given edgeCollection. The request must contain the following attributes.\n\nA JSON object with these properties is required:\n\n  - **sort**: body (JavaScript) code of a custom comparison function for the edges. The signature of this function is *(l, r) -> integer* (where l and r are edges) and must return -1 if l is smaller than, +1 if l is greater than, and 0 if l and r are equal. The reason for this is the following: The order of edges returned for a certain vertex is undefined. This is because there is no natural order of edges for a vertex with multiple connected edges. To explicitly define the order in which edges on the vertex are followed, you can specify an edge comparator function with this attribute. Note that the value here has to be a string to conform to the JSON standard, which in turn is parsed as function body on the server side. Furthermore note that this attribute is only used for the standard expanders. If you use your custom expander you have to do the sorting yourself within the expander code.\n  - **direction**: direction for traversal\n   - *if set*, must be either *\"outbound\"*, *\"inbound\"*, or *\"any\"*\n   - *if not set*, the *expander* attribute must be specified\n  - **minDepth**: ANDed with any existing filters): visits only nodes in at least the given depth\n  - **startVertex**: id of the startVertex, e.g. *\"users/foo\"*.\n  - **visitor**: body (JavaScript) code of custom visitor function function signature: *(config, result, vertex, path, connected) -> void* The visitor function can do anything, but its return value is ignored. To populate a result, use the *result* variable by reference. Note that the *connected* argument is only populated when the *order* attribute is set to *\"preorder-expander\"*.\n  - **itemOrder**: item iteration order can be *\"forward\"* or *\"backward\"*\n  - **strategy**: traversal strategy can be *\"depthfirst\"* or *\"breadthfirst\"*\n  - **filter**: default is to include all nodes: body (JavaScript code) of custom filter function function signature: *(config, vertex, path) -> mixed* can return four different string values:\n   - *\"exclude\"* -> this vertex will not be visited.\n   - *\"prune\"* -> the edges of this vertex will not be followed.\n   - *\"\"* or *undefined* -> visit the vertex and follow its edges.\n   - *Array* -> containing any combination of the above. If there is at least one *\"exclude\"* or *\"prune\"* respectively is contained, it's effect will occur.\n  - **init**: body (JavaScript) code of custom result initialization function function signature: *(config, result) -> void* initialize any values in result with what is required\n  - **maxIterations**: Maximum number of iterations in each traversal. This number can be set to prevent endless loops in traversal of cyclic graphs. When a traversal performs as many iterations as the *maxIterations* value, the traversal will abort with an error. If *maxIterations* is not set, a server-defined value may be used.\n  - **maxDepth**: ANDed with any existing filters visits only nodes in at most the given depth\n  - **uniqueness**: specifies uniqueness for vertices and edges visited.\n   If set, must be an object like this:\n   `\"uniqueness\": {\"vertices\": \"none\"|\"global\"|\"path\", \"edges\": \"none\"|\"global\"|\"path\"}`\n  - **order**: traversal order can be *\"preorder\"*, *\"postorder\"* or *\"preorder-expander\"*\n  - **graphName**: name of the graph that contains the edges. Either *edgeCollection* or *graphName* has to be given. In case both values are set the *graphName* is preferred.\n  - **expander**: body (JavaScript) code of custom expander function *must* be set if *direction* attribute is **not** set function signature: *(config, vertex, path) -> array* expander must return an array of the connections for *vertex* each connection is an object with the attributes *edge* and *vertex*\n  - **edgeCollection**: name of the collection that contains the edges.\n\nIf the Traversal is successfully executed *HTTP 200* will be returned.\n\nAdditionally the *result* object will be returned by the traversal.\n\nFor successful traversals, the returned JSON object has the following properties:\n- *error*: boolean flag to indicate if an error occurred (*false* in this case)\n- *code*: the HTTP status code\n- *result*: the return value of the traversal\nIf the traversal specification is either missing or malformed, the server will respond with *HTTP 400*.\n\nThe body of the response will then contain a JSON object with additional error details. The object has the following attributes:\n\n- *error*: boolean flag to indicate that an error occurred (*true* in this case)\n- *code*: the HTTP status code\n- *errorNum*: the server error number\n- *errorMessage*: a descriptive error message\n\n",
         "operationId": "executesATraversal",
         "parameters": [
@@ -17215,6 +17347,9 @@
     },
     "/_fabric/{fabric}/_api/streams/{stream}/publish": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Publish message in stream.\n\n",
         "operationId": "PublishStreamMessage",
         "parameters": [
@@ -17912,6 +18047,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a new source definition.\n\n",
         "operationId": "CreateSourceDefinition",
         "parameters": [
@@ -17965,6 +18103,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Updates a source definition.\n\n",
         "operationId": "UpdateSourceDefinition",
         "parameters": [
@@ -18781,6 +18922,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a new sink definition.\n\n",
         "operationId": "CreateSinkDefinition",
         "parameters": [
@@ -18834,6 +18978,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Updates a sink definition.\n\n",
         "operationId": "UpdateSinkDefinition",
         "parameters": [
@@ -19913,6 +20060,9 @@
     },
     "/_fabric/{fabric}/_api/search": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Search a collection for string matches.\n\nThe specified search query is executed for the collection. If there are too many results, the cursor *id* is set and can be used to obtain the remaining results.\n\n **Note**: This API is applicable for collections with search capability enabled. For user created views, use C8QL query to execute search operation.",
         "operationId": "SearchView",
         "parameters": [
@@ -20199,6 +20349,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Changes the properties of search view.\n\nRequires a JSON object with these properties:\n - **type**: The type of the search view. Must be equal to *search*.\n  - **name**: The name of the search view.\n  - **primarySort**: The default sorting order for the search .\n   - **links**:\n     - **[collection-name]**:\n       - **analyzers** (string): The list of analyzers to be used for indexing of string values (default is [\"identity\"]).\n       - **fields**:\n         - **field-name** (object): This is a recursive structure for the specific attribute path, potentially containing any of the following attributes:\n      *analyzers*, *includeAllFields*, *trackListPositions*, *storeValues*\n      Any attributes not specified are inherited from the parent.\n       - **includeAllFields**: The flag determines whether or not to index all fields on a particular level of\n     depth (default is false).\n       - **trackListPositions**: The flag determines whether or not values in a lists should be treated separate\n     (default is false).\n       - **storeValues**: How should the search view track the attribute values, this setting allows for additional value retrieval optimizations, one of:\n          - *none*: Do not store values by the search view\n         - *id*: Store only information about value presence, to allow use of the EXISTS() function(default is *none*).\n\nThe call returns a JSON object with at least the following attributes on success:\n- **id**: The identifier of the search view\n- **name**: The name of the search view\n- **type**: The search view type\n- all additional search view implementation specific properties\n\n",
         "operationId": "modifyViewPut",
         "parameters": [
@@ -20262,6 +20415,9 @@
     },
     "/_fabric/{fabric}/_api/search/view/{view-name}/rename": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Renames a search view.\n\n Requires a JSON object with these properties:\n- **name**: The new search view name\n\nThe call returns a JSON object with at least the following attributes on success:\n- **id**: The identifier of the search view.\n- **name**: The new name of the search view.\n- **type**: The search view type.\n\n**Note**: This method is not available in a cluster.",
         "operationId": "modifyView:rename",
         "parameters": [
@@ -20370,6 +20526,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a search view.\n\n Requires a JSON object with these properties:\n - **type**: The type of the search view. Must be equal to *search*.\n  - **name**: The name of the search view.\n  - **primarySort**: The default sorting order for the search view.\n   - **links**:\n     - **[collection-name]**:\n       - **analyzers** (string): The list of analyzers to be used for indexing of string values (default is [\"identity\"]).\n       - **fields**:\n         - **field-name** (object): This is a recursive structure for the specific attribute path, potentially containing any of the following attributes:\n      *analyzers*, *includeAllFields*, *trackListPositions*, *storeValues*\n      Any attributes not specified are inherited from the parent.\n       - **includeAllFields**: The flag determines whether or not to index all fields on a particular level of\n     depth (default is false).\n       - **trackListPositions**: The flag determines whether or not values in a lists should be treated separate\n     (default is false).\n       - **storeValues**: How should the search view track the attribute values, this setting allows for additional value retrieval optimizations, one of:\n          - *none*: Do not store values by the search view\n         - *id*: Store only information about value presence, to allow use of the EXISTS() function(default is *none*).\n\n **Note**: Search view can't be created with the links. Please use PUT/PATCH for links management.",
         "operationId": "createView",
         "parameters": [
@@ -20477,6 +20636,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a analyzer.\n\nRequires a JSON object with these properties:\n  - **features** (string): The set of features to set on the analyzer generated fields (default value is an empty array).\n  - **type**: The analyzer type.\n  - **name**: The analyzer name.\n  - **properties**: The properties used to configure the specified type.  Value may be a string, an object or null(default value is *null*).\n\n**Note**: Requires administrator permissions.\n",
         "operationId": "RestAnalyzerHandler:Create",
         "parameters": [
@@ -20689,6 +20851,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a new GeoFabric.\n\n A JSON object with these properties is required:\n\n  - **name**: has to contain a valid GeoFabric name. \n  - **tenant**: name of the tenant to associate with the GeoFabric. This option is applicable only when system tenant _mm invokes the API. Other tenants need not specify this option, the tenant invoking the API shall be associated with the geoGeoFabricfabric.\n  - **options**:\n\n    - **spotDc**: the Edge Location (Datacenter) where on-spot operations for the given GeoFabric is performed. By default a random data center is chosen from those which are capable.\n    - **metadata**: an optional JSON object with user defined key-value pairs.\n  - **users**: enter an array of usernames that will have admin access to the new GeoFabric. If this field is left blank, the default user *root* will have admin access.\n\nFor instance, if one of your Edge Location URL is *http://myfederation-us-east-1.dev.aws.macrometa.io*, then the corresponding value of spotDC is *myfederation-us-east-1*.\n\n**Note**: creating a new GeoFabric is only possible from within the *_system* fabric.",
         "operationId": "CreateGeo-fabric",
         "parameters": [
@@ -20852,6 +21017,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "A JSON object with following properties is required:\n\n- *metadata*: a JSON object with user defined key-value pairs.",
         "operationId": "SetMetadataInformationOfTheGeo-fabric",
         "parameters": [
@@ -20907,6 +21075,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "A JSON object with following properties is required:\n\n- *metadata*: a JSON object with user defined key-value pairs to be updated or added in existing metadata.",
         "operationId": "UpdateMetadataInformationOfTheGeo-fabric",
         "parameters": [
@@ -20993,6 +21164,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "A JSON object with these properties is required:\n\n  - **name**: contains a valid environment name. \n  - **tenant**: name of the tenant to associate with the environment. This option is applicable only when system tenant _mm invokes the API. Other tenants need not specify this option as the tenant invoking the API shall be associated with environment.\n  - **options**:\n    - **spotDc**: the Edge Location (Datacenter) where on-spot operations for the given environment are to be performed. By default a random geoFabric is chosen from those which are capable.\n    - **metadata**: an optional JSON object with user defined key-value pairs.\n  - **users**: enter an array of usernames that are given admin access to the new environment. If this field is left blank, the default user *root* will have admin access.\n\nCreates a new environment. The response is a JSON object with the attribute *result* set to *true*.\n\n**Note**: Requires administrator permissions.",
         "operationId": "CreateEnvironment",
         "parameters": [
@@ -21156,6 +21330,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "A JSON object with following properties is required:\n\n- *metadata*: a JSON object with user defined key-value pairs.",
         "operationId": "SetMetadataInformationOfTheEnvironment",
         "parameters": [
@@ -21211,6 +21388,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "A JSON object with following properties is required:\n\n- *metadata*: a JSON object with user defined key-value pairs to be updated or added in existing metadata.",
         "operationId": "UpdateMetadataInformationOfTheEnvironment",
         "parameters": [
@@ -21289,6 +21469,9 @@
     },
     "/_fabric/{fabric}/_api/user": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Create a new user.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "CreateUser",
         "parameters": [
@@ -21620,6 +21803,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update the data of an existing user.",
         "operationId": "ModifyUser",
         "parameters": [
@@ -21687,6 +21873,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Replace the data of an existing user.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "ReplaceUser",
         "parameters": [
@@ -21944,6 +22133,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Set the access levels for the GeoFabric *geoname* of user *user*.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "SetTheDatabaseAccessLevel",
         "parameters": [
@@ -22251,6 +22443,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Set the collection access level for the *collection* in the GeoFabric *geoname* for user *user*.\n\nIf access level for collection is not set then default(\"&#42;\") access level is used. If default(\"&#42;\") access level is also not set then GeoFabric access level is used.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "SetTheCollectionAccessLevel",
         "parameters": [
@@ -22571,6 +22766,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Set the stream access levels for the *stream* of API key with *keyid*.\n\nIf access level for stream is not set the default(\"&#42;\") access level is used. If default(\"&#42;\") access level is also not set the GeoFabric access level is used.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "SetTheStreamAccessLevel",
         "parameters": [
@@ -22777,6 +22975,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Set the billing access levels for user *user*.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "SetTheBillingAccessLevel",
         "parameters": [
@@ -22910,6 +23111,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update the attributes for the user.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "CreateTheAttributesForUser",
         "parameters": [
@@ -23159,6 +23363,9 @@
     },
     "/_api/billing/contact": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update contact details for given tenant name.\n - **tenant**: name of the tenant is sent as a HTTP header. This is an optional field, if left unprovided it will use the tenant invoking the request.\n\n\n Following attributes are provided as part of JSON request body.\n - **firstname**: first name\n - **lastname**: last name\n - **company**: name of the company\n - **email**: email address\n - **phone**: phone number\n - **line1**: address Line 1 \n - **line2**: address Line 2\n - **city**: city\n - **state**: state \n - **country**: name of the country\n - **zipcode**: zip code\n\n **Note**: this API is not applicable for system tenants.",
         "operationId": "UpdateContactDetails",
         "parameters": [
@@ -23219,6 +23426,9 @@
     },
     "/_api/billing/paymentsettings": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update payment settings for given tenant\n - **tenant**: name of the tenant is sent as a HTTP header. This is an optional field, if left unprovided it will use the tenant invoking the request.\n - **payment_method_id**: the payment method ID is sent in the body of a request as a key-value pair.\n\n **Note**: this API is not applicable for system tenants `_mm` and `demo`.",
         "operationId": "UpdatePaymentSettings",
         "parameters": [
@@ -23575,6 +23785,9 @@
     },
     "/_fabric/{fabric}/_api/export": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Execute the **query** and return list of result documents. **Query** cannot contain the following keywords: **INSERT**, **UPDATE**, **REPLACE**, **REMOVE** and **UPSERT**.",
         "operationId": "ExportQueryData",
         "parameters": [
@@ -23711,6 +23924,9 @@
     },
     "/_fabric/{fabric}/_api/import/{collection}": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Create documents in the collection identified by collection parameter.",
         "operationId": "ImportCollectionData",
         "parameters": [
@@ -25009,6 +25225,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Updates the clusters in federation.",
         "operationId": "JoinFederationOfClusters",
         "parameters": [
@@ -25124,6 +25343,9 @@
     },
     "/_api/tenant": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Create a new tenant\n\n**A JSON object with these properties is required:**\n\n  - **name**: The name of the tenant as a string. This is not mandatory.\n   - **email**: The email address of the tenant as a string. This is mandatory.\n   - **passwd**: The user password as a string. If no password is specified, an empty string is used.\n  - **plan**: The name of the tenant billing plan as a string. This is mandatory.\n  - **attribution**: The attribution of the tenant as a string. This is mandatory.\n   - **dcList**: A comma-separated string containing the data center names on which this tenant is to create. (default: the tenant is assumed to be global to the federation and is create on all current data centers in the federation).\n    - **metadata**: The metadata of the tenant as a JSON object. This is non mandotory\n - **contact**: Contact details of the user account. An optional JSON object with detailed contact information of the user.  This is field is non mandotory for **FREE**, **ENTERPRISE** and other **Demo** plans.\n\n**Note**: Requires *Administrator* permissions.",
         "operationId": "CreateTenant(requiresSuperuserPrivileges)",
         "parameters": [
@@ -25270,6 +25492,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update a tenant.\n\nRequires a JSON object with these properties:\n\n  - **active**: *True* if then tenant is active.\n  - **status**: Status of tenant. **Valid values**: *`active, expired, delinquent, inactive`* \n  - **metadata**: The metadata of the tenant as a JSON object.\n\n**Note**: Requires *Administrator* permissions",
         "operationId": "ModifyTenant",
         "parameters": [
@@ -25359,6 +25584,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Create a new billing plan.\n\n Requires a JSON object with these properties:\n - **name**: Billing plan name as a string.\n - **planId**: Billing plan ID as a string.\n - **description**: (Optional) Description of the billing plan as a string.\n - **featureGates**: A list of strings containing the enabled feature gates for the billing plan.\n - **attribution**: (Optional) Billing plan attribution.\n - **label**: (Optional) Display label as a string.\n - **isBundle**: (Optional) True indicates the billing plan is a bundle, false indicates the billing plan is not a bundle(Default is false).\n - **metadata**: (Optional) Metadata of the billing plan as a set of key-value pairs.\n - **metrics** : (Optional) List of metrics applicable to this billing plan.\n - **active**: Specifies if the billing plan is active.\n - **demo**: (Optional) Specifies if the billing plan is a demo billing plan.",
         "operationId": "CreatePlan",
         "parameters": [
@@ -25461,6 +25689,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update the billing plan.\n\n Requires a JSON object with these properties:\n - **name**: Billing plan name as a string.\n - **planId**: Billing plan ID as a string.\n - **description**: (Optional) Description of the billing plan as a string.\n - **featureGates**: A list of strings containing the enabled feature gates for the billing plan.\n - **attribution**: (Optional) Billing plan attribution.\n - **label**: (Optional) Display label as a string.\n - **isBundle**: (Optional) True indicates the billing plan is a bundle, false indicates the billing plan is not a bundle(Default is false).\n - **metadata**: (Optional) Metadata of the billing plan as a set of key-value pairs.\n - **metrics** : (Optional) List of metrics applicable to this billing plan.\n - **active**: Specifies if the billing plan is active.",
         "operationId": "ModifyPlan",
         "parameters": [
@@ -25565,6 +25796,9 @@
     },
     "/_api/plan/update": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update the billing plan for a tenant.\n\n **Note**: If tenant name is not specified, then tenant who is invoking API is used to update billing plan.\n\n Requires a JSON object with these properties:\n\n - **attribution**: Attribution of the billing plan.\n - **plan**: Name of the billing plan.\n  - **tenant**: (Optional) Name of the tenant.\n  - **payment_method_id**: (Optional) Stripe payment method ID which should be associated account.",
         "operationId": "UpdateTenantPlan",
         "parameters": [
@@ -25660,6 +25894,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Set the default tenant limits.\n\n **Note**: If data fields are omitted, then they are set to GDN defined default values.",
         "operationId": "SetDefaultTenantLimits",
         "parameters": [
@@ -25719,6 +25956,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Updates default tenant limits.\n\n **Note**: Omitted data fields keep their current value.",
         "operationId": "UpdateDefaultTenantLimits",
         "parameters": [
@@ -26048,6 +26288,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Set the tenant limits.\n\n **Note**: If data fields are omitted, then they are set to GDN defined default values.",
         "operationId": "SetTenantLimits",
         "parameters": [
@@ -26123,6 +26366,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Updates tenant limits.\n\n **Note**: Omitted data fields keep their current value.",
         "operationId": "UpdateTenantLimits",
         "parameters": [
@@ -26411,6 +26657,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Set the billing plan limits.\n\n **Note**: If data fields are omitted, then they are set to GDN defined default values.",
         "operationId": "SetPlanLimits",
         "parameters": [
@@ -26492,6 +26741,9 @@
         ]
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Updates billing plan limits.\n\n **Note**: Omitted data fields keep their current value.",
         "operationId": "UpdatePlanLimits",
         "parameters": [
@@ -26847,6 +27099,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Set the features for a tenant.",
         "operationId": "UpdateFeaturesForATenant",
         "parameters": [
@@ -26908,6 +27163,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Updates the features for a tenant.",
         "operationId": "UpdateFeaturesForSpecifiedTenant",
         "parameters": [
@@ -27748,6 +28006,9 @@
     },
     "/_fabric/{fabric}/_api/events": {
       "delete": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Removes one or more events by _id.",
         "operationId": "DeleteEvent",
         "parameters": [
@@ -27810,6 +28071,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Create an event.\n\n Requires a JSON object with these properties: \n\n  - **status**: The activity status. Allowed values `OK, WARN, ERROR`.\n  - **description**: Event description.\n  - **entityName**: The entity name of the event. Ex: name of collection; name of user etc\n  - **entityType**: The entity type of the event. Allowed values `COLLECTION, GRAPH, PIPELINE, AUTH, STREAM, GEOFABRIC`.\n  - **details**: Additional activity info. Ex: error message.\n  - **action**: The activity of the event. Allowed action `CREATE, UPDATE, DELETE, EXECUTE, LOGIN`.\n  - **attributes**: Object of attributes.",
         "operationId": "CreateEvent",
         "parameters": [
@@ -27974,6 +28238,9 @@
     },
     "/_fabric/{fabric}/_api/metrics/query": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Query user metrics.\n\n Requires a JSON object with these properties:\n\n  - **metrics** (string): Array of strings containing the metric names we want to receive.\n  - **since**: Unix timestamp in milliseconds of oldest entry we want to receive.\n  - **limit**: Number of results we want to receive.\n  - **querytype**: \n     - *list*:  Return a list of all available metrics.\n      - *get*: Return all the requested metrics.\n     - *sum*:  Return sum of all records for each of the requested metrics. \n  - **GeoFabric**: GeoFabric name.",
         "operationId": "query",
         "parameters": [
@@ -28079,6 +28346,9 @@
     },
     "/_api/repair/check": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Returns an array of all metrics names.\n\n",
         "operationId": "repairCheckCollections",
         "parameters": [
@@ -28263,6 +28533,9 @@
     },
     "/_api/trigger/zendesk": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Creates a new support ticket.",
         "operationId": "zendeskAPI",
         "parameters": [
