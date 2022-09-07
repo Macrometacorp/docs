@@ -98,19 +98,19 @@ Let's assume your
     # Variables - Queries
     READ_QUERY = f"FOR device in ddoslist FILTER device.ip == {IP_ADDRESS} RETURN" + "{IP:device.ip, IsAllowed:device.action}"
 
-    INSERT_QUERY = "INSERT { \"ip\" : \"" + IP_ADDRESS + "\", \"action\": \"block\", \"rule\":\"blacklistA\"} INTO ddoslist"
+    INSERT_QUERY = "INSERT { \"ip\" : \"" + IP_ADDRESS + "\", \"action\": \"block\", \"rule\":\"blocklistA\"} INTO ddoslist"
 
     # Variables - Data
     DATA = [
-      {"ip": "10.1.1.1", "action": "block", "rule": "blacklistA"},
-      {"ip": "20.1.1.2", "action": "block", "rule": "blacklistA"},
-      {"ip": "30.1.1.3", "action": "block", "rule": "blacklistB"},
-      {"ip": "40.1.1.4", "action": "block", "rule": "blacklistA"},
-      {"ip": "50.1.1.5", "action": "block", "rule": "blacklistB"},
-      {"ip": "20.1.1.3", "action": "allow", "rule": "whitelistA"},
-      {"ip": "20.1.1.4", "action": "allow", "rule": "whitelistA"},
-      {"ip": "30.1.1.4", "action": "allow", "rule": "whitelistB"},
-      {"ip": "30.1.1.5", "action": "allow", "rule": "whitelistB"}
+      {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
+      {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
+      {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
+      {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
+      {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
+      {"ip": "20.1.1.3", "action": "allow", "rule": "allowlistA"},
+      {"ip": "20.1.1.4", "action": "allow", "rule": "allowlistA"},
+      {"ip": "30.1.1.4", "action": "allow", "rule": "allowlistB"},
+      {"ip": "30.1.1.5", "action": "allow", "rule": "allowlistB"}
     ]
     pp = pprint.PrettyPrinter(indent=4)
 
@@ -140,8 +140,8 @@ Let's assume your
     else:
       pp.pprint(docs)
 
-    # Step5: Blacklist IP Address
-    print(f"5. BLACKLIST the IP...from region: {GLOBAL_URL}, ip: {IP_ADDRESS}")
+    # Step5: Blocklist IP Address
+    print(f"5. BLOCKLIST the IP...from region: {GLOBAL_URL}, ip: {IP_ADDRESS}")
     cursor = client.execute_query(INSERT_QUERY)
     time.sleep(0.3)
 
@@ -194,19 +194,19 @@ Let's assume your
   // Variables - Queries
   const read_query = `FOR device in ddoslist FILTER device.ip == "${ip_address}" RETURN { IP:device.ip, IsAllowed:device.action}`;
 
-  const insert_query = "INSERT { \"ip\" : \"" + ip_address + "\", \"action\": \"block\", \"rule\":\"blacklistA\"} INTO ddoslist";
+  const insert_query = "INSERT { \"ip\" : \"" + ip_address + "\", \"action\": \"block\", \"rule\":\"blocklistA\"} INTO ddoslist";
 
   // Variables - Data
   const data = [
-    {"ip": "10.1.1.1", "action": "block", "rule": "blacklistA"},
-    {"ip": "20.1.1.2", "action": "block", "rule": "blacklistA"},
-    {"ip": "30.1.1.3", "action": "block", "rule": "blacklistB"},
-    {"ip": "40.1.1.4", "action": "block", "rule": "blacklistA"},
-    {"ip": "50.1.1.5", "action": "block", "rule": "blacklistB"},
-    {"ip": "20.1.1.3", "action": "allow", "rule": "whitelistA"},
-    {"ip": "20.1.1.4", "action": "allow", "rule": "whitelistA"},
-    {"ip": "30.1.1.4", "action": "allow", "rule": "whitelistB"},
-    {"ip": "30.1.1.5", "action": "allow", "rule": "whitelistB"}
+    {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
+    {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
+    {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
+    {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
+    {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
+    {"ip": "20.1.1.3", "action": "allow", "rule": "allowlistA"},
+    {"ip": "20.1.1.4", "action": "allow", "rule": "allowlistA"},
+    {"ip": "30.1.1.4", "action": "allow", "rule": "allowlistB"},
+    {"ip": "30.1.1.5", "action": "allow", "rule": "allowlistB"}
   ];
 
   async function createCollection() {
@@ -239,7 +239,7 @@ Let's assume your
       console.log(result);
     }
 
-    console.log(`\n 5. BLACKLIST the IP...from region: ${global_url}, ip: ${ip_address}`);
+    console.log(`\n 5. BLOCKLIST the IP...from region: ${global_url}, ip: ${ip_address}`);
     result = await client.executeQuery(insert_query);
   }
 

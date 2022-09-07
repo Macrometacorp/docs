@@ -510,6 +510,7 @@ print("Subscription deleted: ", resp.text)
 <TabItem value="js" label="Javascript">
 
 ```js
+  const WebSocket = require('ws');
   class APIRequest {
     _headers = {
       Accept: "application/json",
@@ -579,27 +580,51 @@ print("Subscription deleted: ", resp.text)
       console.log("Logged in successfully using", tenant);
       /* ------------------------------ Create stream ----------------------------- */
 
-      const stream = await connection.req(
-        `/_fabric/_system/streams/${STREAM_NAME}?global=${IS_GLOBAL}`,
-        {
-          body: { name: STREAM_NAME },
-          method: "POST",
+      try {
+        const stream = await connection.req(
+          `/_fabric/_system/streams/${STREAM_NAME}?global=${IS_GLOBAL}`,
+          {
+            body: { name: STREAM_NAME },
+            method: "POST",
+          }
+        );
+        console.log("STREAM CREATED SUCCESSFULLY");
+      } catch (e) {
+        if (e.status == 409) {
+          console.log("Stream already exists, skipping creation of stream");
         }
-      );
+        else {
+          console.log("Error while creating stream");
+          throw e;
+        }
+      }
 
-      console.log("STREAM CREATED SUCCESSFULLY", stream);
-
-      /* ----------------- Publish and subscribe message to stream ---------------- */
+      /* ----------------- Publish and Subscribe message to stream ---------------- */
 
       const region = IS_GLOBAL ? "c8global" : "c8local";
       const streamName = `${region}s.${STREAM_NAME}`;
+
+      // Fetching local url incase the stream is local
+      const localDcDetails = await connection.req(`/datacenter/local`, {
+        method: "GET",
+      });
+
+      const dcUrl = localDcDetails.tags.url;
+
       const url = IS_GLOBAL
-        ? FEDERATION_NAME;
-        : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
+        ? FEDERATION_NAME
+        : `api-${dcUrl}`;
 
-      const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}`;
+      const otpConsumer = await connection.req(`/apid/otp`, {
+        method: "POST",
+      });
+      const otpProducer = await connection.req(`/apid/otp`, {
+        method: "POST",
+      });
 
-      const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}`;
+      const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}?otp=${otpConsumer.otp}`;
+
+      const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
       var consumer;
       var producer;
@@ -1555,6 +1580,7 @@ print("\nStream deleted: ", result)
 <TabItem value="js" label="Javascript">
 
 ```js
+  const WebSocket = require('ws');
   class APIRequest {
     _headers = {
       Accept: "application/json",
@@ -1608,10 +1634,10 @@ print("\nStream deleted: ", result)
   const FEDERATION_NAME = "api-gdn.prod.macrometa.io";
   const FEDERATION_URL = `https://${FEDERATION_NAME}`;
 
-  const IS_GLOBAL = true;
+  const IS_GLOBAL = false;
   const STREAM_NAME = `tutorialAppInputStream`;
-  const STREAM_APP_NAME = `strean_app_tutorial`;
-  const STREAM_APP = `@App:name('strean_app_tutorial')
+  const STREAM_APP_NAME = `stream_app_tutorial`;
+  const STREAM_APP = `@App:name('stream_app_tutorial')
     @App:description('This application demonstrates how to use user defined function in the stream app')
 
     define function concatFn[javascript] return string {
@@ -1644,15 +1670,24 @@ print("\nStream deleted: ", result)
       console.log("Logged in successfully using", tenant);
 
       /* ---------------------------- Create StreamApp ---------------------------- */
-      const streamApp = await connection.req("/_fabric/_system/_api/streamapps", {
-        body: {
-          definition: STREAM_APP,
-          regions: [],
-        },
-        method: "POST",
-      });
-
-      console.log("STREAM APP CREATED SUCCESSFULLY", streamApp);
+      try {
+        const streamApp = await connection.req("/_fabric/_system/_api/streamapps", {
+            body: {
+            definition: STREAM_APP,
+            regions: [],
+            },
+            method: "POST",
+        });
+        console.log("STREAM APP CREATED SUCCESSFULLY", streamApp);
+      } catch (e) {
+        if (e.status == 409) {
+          console.log("Stream App already exists, skipping creation of stream app");
+        }
+        else {
+          console.log("Error while creating stream app");
+          throw e;
+        }
+      }
 
       /* --------------------------- Activate StreamApp --------------------------- */
 
@@ -1672,11 +1707,23 @@ print("\nStream deleted: ", result)
       /* ------------------ Publish messages to sample StreamApp ------------------ */
       const region = IS_GLOBAL ? "c8global" : "c8local";
       const streamName = `${region}s.${STREAM_NAME}`;
+  
+      // Fetching local url incase the stream is local (which is defined in the streamapp)
+      const localDcDetails = await connection.req(`/datacenter/local`, {
+        method: "GET",
+      });
+  
+      const dcUrl = localDcDetails.tags.url;
+  
       const url = IS_GLOBAL
-        ? FEDERATION_NAME;
-        : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
+        ? FEDERATION_NAME
+        : `api-${dcUrl}`;
 
-      const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}`;
+      const otpProducer = await connection.req(`/apid/otp`, {
+        method: "POST",
+      });
+
+      const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
       /* -------------------------- Initalize producer -------------------------- */
 

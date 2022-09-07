@@ -41,6 +41,7 @@ It provides,
 <TabItem value="js" label="Javascript">
 
 ```js
+const WebSocket = require('ws');
 class APIRequest {
   _headers = {
     Accept: "application/json",
@@ -110,26 +111,51 @@ const run = async function () {
     console.log("Login Successfully using", tenant);
     /* ------------------------------ Create Stream ----------------------------- */
 
-    const stream = await connection.req(
-      `/_fabric/_system/streams/${STREAM_NAME}?global=${IS_GLOBAL}`,
-      {
-        body: { name: STREAM_NAME },
-        method: "POST",
+    try {
+      const stream = await connection.req(
+        `/_fabric/_system/streams/${STREAM_NAME}?global=${IS_GLOBAL}`,
+        {
+          body: { name: STREAM_NAME },
+          method: "POST",
+        }
+      );
+      console.log("STREAM CREATED SUCCESSFULLY");
+    } catch (e) {
+      if (e.status == 409) {
+        console.log("Stream already exists, skipping creation of stream");
       }
-    );
-
-    console.log("STREAM CREATED SUCCESSFULLY", stream);
+      else {
+        console.log("Error while creating stream");
+        throw e;
+      }
+    }
 
     /* ----------------- Publish and Subscribe message to stream ---------------- */
 
     const region = IS_GLOBAL ? "c8global" : "c8local";
     const streamName = `${region}s.${STREAM_NAME}`;
+
+    // Fetching local url incase the stream is local
+    const localDcDetails = await connection.req(`/datacenter/local`, {
+      method: "GET",
+    });
+
+    const dcUrl = localDcDetails.tags.url;
+
     const url = IS_GLOBAL
-      ? FEDERATION_NAME : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
+      ? FEDERATION_NAME
+      : `api-${dcUrl}`;
 
-    const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}`;
+    const otpConsumer = await connection.req(`/apid/otp`, {
+      method: "POST",
+    });
+    const otpProducer = await connection.req(`/apid/otp`, {
+      method: "POST",
+    });
 
-    const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}`;
+    const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}?otp=${otpConsumer.otp}`;
+
+    const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
     var consumer;
     var producer;

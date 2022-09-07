@@ -788,11 +788,11 @@ Example to publish messages on a stream and subscribe to that stream to receive 
     />
     <link
       rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css"
     />
     <link
       rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css"
     />
     <style rel="stylesheet">
       #console {
@@ -980,37 +980,54 @@ Example to publish messages on a stream and subscribe to that stream to receive 
 
         const { tenant } = await connection.login(EMAIL, PASSWORD);
 
-        print("Login Successfully using");
+        print("Login Successfully using " + tenant);
         /* ------------------------------ Create Stream ----------------------------- */
 
-        const stream = await connection.req(
-          `/_fabric/_system/streams/${STREAM_NAME}?global=${IS_GLOBAL}`,
-          {
-            body: { name: STREAM_NAME },
-            method: "POST",
+        try {
+          const stream = await connection.req(
+            `/_fabric/_system/streams/${STREAM_NAME}?global=${IS_GLOBAL}`,
+            {
+              body: { name: STREAM_NAME },
+              method: "POST",
+            }
+          );
+          print("STREAM CREATED SUCCESSFULLY");
+        } catch (e) {
+          if (e.status == 409) {
+            print("Stream already exists, skipping creation of stream");
           }
-        );
-
-        print("STREAM CREATED SUCCESSFULLY");
+          else {
+            print("Error while creating stream");
+            throw e;
+          }
+        }
 
         /* ----------------- Publish and Subscribe message to stream ---------------- */
 
         const region = IS_GLOBAL ? "c8global" : "c8local";
         const streamName = `${region}s.${STREAM_NAME}`;
 
-        // FOR gdn use the below snippet
-        // const url = IS_GLOBAL
-        // ? FEDERATION_NAME
-        // : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
+        // Fetching local url incase the stream is local
+        const localDcDetails = await connection.req(`/datacenter/local`, {
+          method: "GET",
+        });
 
-        // #URL_REVIEW : If you have changed your FEDERATION_NAME please review the below code and make required changes to the URL
+        const dcUrl = localDcDetails.tags.url;
+
         const url = IS_GLOBAL
           ? FEDERATION_NAME
-          : `api-${streamApp.streamApps[0].regions[0]}.macrometa.io`
+          : `api-${dcUrl}`;
 
-        const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}`;
+        const otpConsumer = await connection.req(`/apid/otp`, {
+          method: "POST",
+        });
+        const otpProducer = await connection.req(`/apid/otp`, {
+          method: "POST",
+        });
 
-        const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}`;
+        const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}?otp=${otpConsumer.otp}`;
+
+        const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
         /* -------------------------- Initalizing Consumer -------------------------- */
 
