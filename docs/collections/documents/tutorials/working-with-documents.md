@@ -114,24 +114,24 @@ Let's assume your
     ]
     pp = pprint.PrettyPrinter(indent=4)
 
-    # Step1: Open connection to GDN. You will be routed to closest region.
+    # Step 1: Open connection to GDN. You will be routed to closest region.
     print(f"1. CONNECT: federation: {GLOBAL_URL},  user: {EMAIL}")
     client = C8Client(protocol = 'https', host = GLOBAL_URL, port = 443,
                       email = EMAIL, password = PASSWORD,
                       geofabric = GEO_FABRIC)
 
-    # Step2: Create a collection if not exists
+    # Step 2: Create a collection if not exists
     print(f"2. CREATE_COLLECTION: region: {GLOBAL_URL},  collection: {COLLECTION_NAME}")
     if client.has_collection(COLLECTION_NAME):
         collection = client.collection(COLLECTION_NAME)
     else:
         collection = client.create_collection(COLLECTION_NAME)
 
-    # Step3: Insert data into collection.
+    # Step 3: Insert data into collection.
     print(f"3. INSERT_DDOS_DATA: in region: {GLOBAL_URL}")
     client.insert_document(COLLECTION_NAME, document = DATA)
 
-    # Step4: Read Data
+    # Step 4: Read Data
     print(f"4. IS_IP_ALLOWED...from region: {GLOBAL_URL}")
     cursor = client.execute_query(READ_QUERY)
     docs = [document for document in cursor]
@@ -140,12 +140,12 @@ Let's assume your
     else:
       pp.pprint(docs)
 
-    # Step5: Blocklist IP Address
+    # Step 5: Blocklist IP Address
     print(f"5. BLOCKLIST the IP...from region: {GLOBAL_URL}, ip: {IP_ADDRESS}")
     cursor = client.execute_query(INSERT_QUERY)
     time.sleep(0.3)
 
-    # Step6: Read Data from other regions.
+    # Step 6: Read Data from other regions.
     print("6. Check again if IP is allowed globally")
     for region_url in REGION_URLS:
       print(f"\n IS_IP_ALLOWED...cheking from region: {region_url}")
@@ -155,7 +155,7 @@ Let's assume your
       docs = [document for document in cursorx]
       pp.pprint(docs[0])
 
-    # Step7: Delete Data
+    # Step 7: Delete Data
     print(f"\n7. DELETE_DATA: region: {GLOBAL_URL}, collection: {COLLECTION_NAME}")
     collection.truncate()
     #client.delete_collection(COLLECTION_NAME)
