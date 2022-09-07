@@ -61,7 +61,6 @@ This example shows aggregating events over time in a batch (tumbling) manner.
 
 To aggregate events in a sliding manner, based on events, or by session, refer other the examples in Data Summarization section. For more information information on [windows](../query-guide/query.md#window) refer to [Stream Query Guide](../query-guide/index.md).
 
-
 ```sql
 CREATE STREAM TemperatureStream(sensorId string, temperature double);
 

@@ -50,7 +50,7 @@ Save as .html and open the file in your browser.
             ":p": "Everything happens all at once.",
             ":a": ["Larry", "Moe", "Curly"],
           },
-          ReturnValues: "UPDATED_NEW",
+          ReturnValues: "ALL_NEW",
         };
 
         docClient.update(params, function (err, data) {
@@ -133,7 +133,7 @@ function updateItem() {
       ":p": "Everything happens all at once.",
       ":a": ["Larry", "Moe", "Curly"],
     },
-    ReturnValues: "UPDATED_NEW",
+    ReturnValues: "ALL_NEW",
   };
 
   console.log("Updating the item...");

@@ -27,4 +27,4 @@ It is a pure data manipulation language (DML), not a data definition language (D
 
 We have SDKs for [JavaScript](https://github.com/Macrometacorp/jsC8) and [Python](https://github.com/Macrometacorp/pyC8)
 
-For some example queries, please refer to [Data Queries](data-queries.md), [Data Query Patterns](../c8ql/examples/), and [Tutorial](../c8ql/data-queries.md).
+For some example queries, please refer to [Queries and Query Workers](../queryworkers/index.md), [Examples](../c8ql/examples/), and [C8QL Tutorial](c8ql-tutorial.md).

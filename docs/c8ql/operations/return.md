@@ -11,7 +11,7 @@ The general syntax for `RETURN` is:
 RETURN expression
 ```
 
-The *expression* returned by `RETURN` is produced for each iteration in the block the `RETURN` statement is placed in. That means the result of a `RETURN` statement is **always an array**. This includes an empty array if no documents matched the query and a single return value returned as array with one element.
+The _expression_ returned by `RETURN` is produced for each iteration in the block the `RETURN` statement is placed in. That means the result of a `RETURN` statement is **always an array**. This includes an empty array if no documents matched the query and a single return value returned as array with one element.
 
 To return all elements from the currently iterated array without modification, the following simple form can be used:
 
@@ -22,14 +22,14 @@ FOR variableName IN expression
 
 As `RETURN` allows specifying an expression, arbitrary computations can be performed to calculate the result elements. Any of the variables valid in the scope the `RETURN` is placed in can be used for the computations.
 
-To iterate over all documents of a collection called *users* and return the full documents, you can write:
+To iterate over all documents of a collection called _users_ and return the full documents, you can write:
 
 ```js
 FOR u IN users
   RETURN u
 ```
 
-In each iteration of the for-loop, a document of the *users* collection is assigned to a variable *u* and returned unmodified in this example. To return only one attribute of each document, you could use a different return expression:
+In each iteration of the for-loop, a document of the _users_ collection is assigned to a variable _u_ and returned unmodified in this example. To return only one attribute of each document, you could use a different return expression:
 
 ```js
 FOR u IN users
@@ -45,15 +45,14 @@ FOR u IN users
 
 Note: `RETURN` will close the current scope and eliminate all local variables in it. This is important to remember when working with [subqueries](../examples/#subqueries).
 
-[Dynamic attribute names](../../queryworkers/fundamentals.md#data-types) are
-supported as well:
+[Dynamic attribute names](../data-types.md) are supported as well:
 
 ```js
 FOR u IN users
   RETURN { [ u._id ]: u.age }
 ```
 
-The document *_id* of every user is used as expression to compute the attribute key in this example:
+The document __id_ of every user is used as expression to compute the attribute key in this example:
 
 ```json
 [
