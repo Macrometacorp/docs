@@ -3,13 +3,25 @@ sidebar_position: 2
 title: C8QL Tutorial
 ---
 
-This tutorial is an introduction to C8QL, the GDN query language, built around a small dataset of characters from the novel and fantasy drama television series Game of Thrones (as of season 1). It includes character traits in two languages, some family relations, and last but not least a small set of filming locations, which makes for an interesting mix of data to work with.
+This tutorial is an introduction to C8QL, the GDN query language. The tutorial is built around a small dataset of characters from the novel and fantasy drama television series Game of Thrones (as of season 1).
 
 There is no need to import the data before you start. It is provided as part of the C8QL queries in this tutorial.
 
+## Objectives
+
+By the end of this tutorial, you will:
+
+- Understand how to use C8QL to create, read, update, and delete documents in a collection.
+- Be able to search, sort, and filter content with C8QL queries.
+- Understand the basics of Graph Edge collections.
+
+## Prerequisites
+
+You must have a Macrometa account with the permissions necessary to create collections.
+
 ## Dataset
 
-The dataset features 43 characters with their name, surname, age, alive status, and trait references. The surname and age properties are not always present. The column _traits (resolved)_ is not part of the actual data used in this tutorial, but included for your convenience.
+The dataset features 43 characters with their name, surname, age, alive status, and trait references. The surname and age properties are not always present. The column _traits (resolved)_ is not part of the actual data used in this tutorial, but is included for your convenience.
 
 ![Characters_Table](/img/c8ql/tutorial/Characters_Table.png)
 
@@ -21,7 +33,7 @@ There are 18 unique traits. Each trait has a random letter as document key. The 
 
 ### Locations
 
-This small collection of eight filming locations comes with two attributes, a _name_ and a _coordinate_. The coordinates are modeled as number arrays, comprised of a latitude and a longitude value each.
+This small collection of eight locations comes with two attributes, a _name_ and a _coordinate_. The coordinates are modeled as number arrays, each including a latitude and a longitude value.
 
 ![Locations_Table](/img/c8ql/tutorial/Locations_Table.png)
 
@@ -1254,3 +1266,5 @@ FOR loc IN NEAR(Locations, 53.35, -6.26, 3, "distance")
 ```
 
 The extra attribute, here called _distance_, is returned as part of the _loc_ variable, as if it was part of the location document. The value is divided by 1000 in the example query, to convert the unit to kilometers, simply to make it better readable.
+
+## Summary
