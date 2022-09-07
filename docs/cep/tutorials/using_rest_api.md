@@ -178,6 +178,7 @@ print("\nStream App Deleted: ", result)
 <TabItem value="js" label="Javascript">
 
 ```js
+    const WebSocket = require('ws');
     class APIRequest {
       _headers = {
         Accept: "application/json",
@@ -231,10 +232,10 @@ print("\nStream App Deleted: ", result)
     const FEDERATION_NAME = "api-gdn.prod.macrometa.io";
     const FEDERATION_URL = `https://${FEDERATION_NAME}`;
 
-    const IS_GLOBAL = true;
+    const IS_GLOBAL = false;
     const STREAM_NAME = `tutorialAppInputStream`;
-    const STREAM_APP_NAME = `strean_app_tutorial`;
-    const STREAM_APP = `@App:name('strean_app_tutorial')
+    const STREAM_APP_NAME = `stream_app_tutorial`;
+    const STREAM_APP = `@App:name('stream_app_tutorial')
       @App:description('This application demonstrates how to use user defined functions in the stream app')
       @App:qlVersion("2")
 
@@ -268,15 +269,24 @@ print("\nStream App Deleted: ", result)
         console.log("Login Successfully using", tenant);
 
         /* ---------------------------- Create StreamApp ---------------------------- */
-        const streamApp = await connection.req("/_fabric/_system/_api/streamapps", {
-          body: {
-            definition: STREAM_APP,
-            regions: [],
-          },
-          method: "POST",
-        });
-
-        console.log("STREAM APP CREATED SUCCESSFULLY", streamApp);
+        try {
+          const streamApp = await connection.req("/_fabric/_system/_api/streamapps", {
+              body: {
+              definition: STREAM_APP,
+              regions: [],
+              },
+              method: "POST",
+          });
+          console.log("STREAM APP CREATED SUCCESSFULLY", streamApp);
+        } catch (e) {
+          if (e.status == 409) {
+            console.log("Stream app already exists, skipping creation of stream app");
+          }
+          else {
+            console.log("Error while creating stream app");
+            throw e;
+          }
+        }
 
         /* --------------------------- Activate StreamApp --------------------------- */
 
@@ -296,11 +306,23 @@ print("\nStream App Deleted: ", result)
         /* ------------------ Publish messages to Sample StreamApp ------------------ */
         const region = IS_GLOBAL ? "c8global" : "c8local";
         const streamName = `${region}s.${STREAM_NAME}`;
+    
+        // Fetching local URL in case the stream is local (which is defined in the streamapp)
+        const localDcDetails = await connection.req(`/datacenter/local`, {
+          method: "GET",
+        });
+    
+        const dcUrl = localDcDetails.tags.url;
+    
         const url = IS_GLOBAL
-          ? FEDERATION_NAME;
-          : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
-
-        const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}`;
+          ? FEDERATION_NAME
+          : `api-${dcUrl}`;
+  
+        const otpProducer = await connection.req(`/apid/otp`, {
+          method: "POST",
+        });
+  
+        const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
         /* -------------------------- Initalizing Producer -------------------------- */
 
