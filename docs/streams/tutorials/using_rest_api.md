@@ -130,7 +130,7 @@ const run = async function () {
       }
     }
 
-    /* ----------------- Publish and Subscribe message to stream ---------------- */
+    /* ----------------- Publish and subscribe message to stream ---------------- */
 
     const region = IS_GLOBAL ? "c8global" : "c8local";
     const streamName = `${region}s.${STREAM_NAME}`;
