@@ -8,21 +8,21 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to create a new Document Store collection.
 
-Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
-
-### Create a Document Store Collection
-
-
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
 Follow these instructions to create a new collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **COLLECTIONS**.
-1. Click **New Collection**.
-1. Click **Document Store**.
-1. Enter information about the collection and then click **Create**.
+2. Click **COLLECTIONS**.
+3. Click **New Collection**.
+4. Click **Document Store**.
+5. Enter information about the collection and then click **Create**.
+
+   - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
+   - **Geo Distribution -** Select whether to store data globally or locally.
+   - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
+   - **Wait for sync -** Synchronize to disk before completing document creation or update.
 
 
 Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](/api#/operations/handleCommandPost:CreateCollection). 
@@ -73,19 +73,14 @@ The below example shows the steps for connecting a fabric and then creating a co
 ```
 
 </TabItem>
+<TabItem value="apo" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl collection](../../cli/collections-cli.md) CLI command to create a Document Store collection.
+
+</TabItem>
 </Tabs>  
-
-## Create a Document Store Collection with the Console
-
-Follow these instructions to create a new collection using the GDN console web UI.
-
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Collections**.
-1. Click **New Collection**.
-1. Click **Document Store**.
-1. Enter information about the collection and then click **Create**.
-
-   - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
-   - **Geo Distribution -** Select whether to store data globally or locally.
-   - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
-   - **Wait for sync -** Synchronize to disk before completing document creation or update.
