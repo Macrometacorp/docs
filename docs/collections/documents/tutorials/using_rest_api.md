@@ -1681,7 +1681,7 @@ print("\nStream deleted: ", result)
         console.log("STREAM APP CREATED SUCCESSFULLY", streamApp);
       } catch (e) {
         if (e.status == 409) {
-          console.log("Stream App already exists, skipping creation of stream app");
+          console.log("Stream app already exists, skipping creation of stream app");
         }
         else {
           console.log("Error while creating stream app");
