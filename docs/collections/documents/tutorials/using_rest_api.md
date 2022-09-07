@@ -1638,7 +1638,7 @@ print("\nStream deleted: ", result)
   const STREAM_NAME = `tutorialAppInputStream`;
   const STREAM_APP_NAME = `stream_app_tutorial`;
   const STREAM_APP = `@App:name('stream_app_tutorial')
-    @App:description('This application demonstrates how to use user defined function in the stream app')
+    @App:description('This application demonstrates how to use user-defined functions in a stream app')
 
     define function concatFn[javascript] return string {
         var str1 = data[0];
