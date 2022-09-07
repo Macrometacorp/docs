@@ -521,7 +521,7 @@ Copy the following program and paste it into a file named `MoviesItemOps03.html`
                 ":p":"Everything happens all at once.",
                 ":a":["Larry", "Moe", "Curly"]
             },
-            ReturnValues:"UPDATED_NEW"
+            ReturnValues:"ALL_NEW"
         };
 
         docClient.update(params, function(err, data) {
@@ -547,7 +547,7 @@ Copy the following program and paste it into a file named `MoviesItemOps03.html`
 
 :::note
 * This program uses UpdateExpression to describe all updates you want to perform on the specified item.
-* The ReturnValues parameter instructs Amazon DynamoDB to return only the updated attributes ("UPDATED_NEW").
+* The ReturnValues parameter instructs Amazon DynamoDB to return all the attributes of the item, as they appear after the update operation ("ALL_NEW").
 :::
 
 Open the `MoviesItemOps03.html` file in your browser and choose `Update Item`.
@@ -612,7 +612,7 @@ Copy the following program and paste it into a file named `MoviesItemOps04.html`
             ExpressionAttributeValues:{
                 ":val":1
             },
-            ReturnValues:"UPDATED_NEW"
+            ReturnValues:"ALL_NEW"
         };
 
         docClient.update(params, function(err, data) {
@@ -701,7 +701,7 @@ Copy the following program and paste it into a file named `MoviesItemOps05.html`
                 ExpressionAttributeValues:{
                     ":num":3
                 },
-                ReturnValues:"UPDATED_NEW"
+                ReturnValues:"ALL_NEW"
             };
     
             docClient.update(params, function(err, data) {

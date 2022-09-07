@@ -23,11 +23,15 @@ console.log('API Creation Failed: ', e);
 
 ```py
 from c8 import C8Client
+  
+API_ACTIVE = False
+CHOSEN_API_KEY_ID = "myNewKey"
+EMAIL = 'nemo@nautilus.com'
+PASSWORD = 'xxxxx'
+URL = "gdn.paas.macrometa.io"
 
-# Create a connection to GDN
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                    email='nemo@nautilus.com', password='xxxxx',
-                    geofabric='_system')
+client = C8Client(protocol='https', host=URL, port=443, email=EMAIL, password=PASSWORD)
+
 
 # Get a list of all the API key ID's names
 apiKeyIds = []

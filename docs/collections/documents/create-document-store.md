@@ -80,7 +80,7 @@ The below example shows the steps for connecting a fabric and then creating a co
 Follow these instructions to create a new collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **COLLECTIONS**.
+1. Click **Collections**.
 1. Click **New Collection**.
 1. Click **Document Store**.
 1. Enter information about the collection and then click **Create**.
