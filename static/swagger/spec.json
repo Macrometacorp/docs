@@ -22,6 +22,12 @@
       "ApiKeyAuth": []
     }
   ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "definitions": {
     "document_get_412": {
       "properties": {
@@ -10218,12 +10224,6 @@
     "title": "Macrometa GDN API",
     "version": ""
   },
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
   "paths": {
     "/_api/key/validate": {
       "post": {
