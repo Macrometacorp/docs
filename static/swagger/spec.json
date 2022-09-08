@@ -10218,6 +10218,12 @@
     "title": "Macrometa GDN API",
     "version": ""
   },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/_api/key/validate": {
       "post": {
