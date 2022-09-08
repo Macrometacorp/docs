@@ -6,7 +6,7 @@ title: View Collections
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This section page in detail the features available in the GDN console and how to work with your collections.
+This section describes the features available in the GDN console and how to work with your collections.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
