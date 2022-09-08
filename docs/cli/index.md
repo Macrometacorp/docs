@@ -15,9 +15,9 @@ You can use commands with the GDN Command Line Interface (CLI) to perform the sa
 
 Install Node.js and npm. We recommend using a version manager such as [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) (Node Version Manager).
 
-## Install `gdnsl` CLI
+## Install GDN CLI
 
-`gdnsl` is built with Node.js and installable via npm:
+`gdnsl` is built with Node.js. You can install it with `npm`. If you are on an Apple or Linux system, then you might need to use `sudo`.
 
 ```bash
 npm install -g gdnsl
@@ -33,6 +33,14 @@ Sample gdnsl.yaml:
   apikey: "xxxxxxx"
   regions: [ ] # Valid values - LOCAL, ALL, comma separated list of regions.
   ```
+
+## Update GDN CLI
+
+To update `gdnsl`, we recommend that you completely uninstall the app and then reinstall it. If you are on an Apple or Linux system, then you might need to use `sudo`.
+
+```bash
+npm uninstall -g gdnsl
+```
 
 ## Usage
 
