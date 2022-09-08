@@ -18,37 +18,23 @@ Once you log in to a Macrometa account, you can view all collections that you ha
 
 Macrometa dispays a list of collections. The following columns show information about each collection.
 
-### Collection Name
+| Field Name  | Description  |
+|---|---|
+| Collection Name  | The list of all collections you have access to, sorted alphabetically.  |
+| Data Model  | Displays the type of each collection.  |
+| Stream Enabled  | Shows whether a collection stream is enabled (Yes) or not enabled (No). You can change this in the collection Data tab.  |
+| Distribution  | When a collection is created, it can be locally or globally distributed across Macrometa servers. This section displays the distribution type for your collections - Local or Global.  |
+| Filter Collections | If you have many collections, then it can be helpful to filter your collection list so that you have fewer to sort through. |
 
-The list of all collections you have access to, sorted alphabetically.
-
-### Data Model
-
-Displays the type of each collection.
-
-### Stream Enabled
-
-Shows whether a collection stream is enabled (Yes) or not enabled (No). You can change this in the collection Data tab.
-
-### Distribution
-
-When a collection is created, it can be locally or globally distributed across Macrometa servers. This section displays the distribution type for your collections - Local or Global.
-
-## Filter Collections
-
-If you have many collections, then it can be helpful to filter your collection list so that you have fewer to sort through.
+**Filter Collections**
 
 You can filter collections by _name_ or by _type_.
 
-### Filter Collections by Name
+- **Filter Collections by Name :** To filter collections by name, start typing in the search field that says **Filter collections**. Macrometa begins to filter the list as soon as you start typing.
 
-To filter collections by name, start typing in the search field that says **Filter collections**. Macrometa begins to filter the list as soon as you start typing.
+- **Filter Collections by Type :** To filter collections by type, click one of the collection types next to **All**. Macrometa displays only collections matching the selected type.
 
-### Filter Collections by Type
-
-To filter collections by type, click one of the collection types next to **All**. Macrometa displays only collections matching the selected type.
-
-## New Collection
+**New Collection**
 
 When viewing your collections, you can click **New Collection** to create a new collection. For full instructions, refer to the following topics:
 
