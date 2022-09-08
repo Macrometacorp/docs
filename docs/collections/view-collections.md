@@ -3,9 +3,13 @@ sidebar_position: 10
 title: View Collections
 ---
 
-This section describes in detail the features available in the GDN console and how to work with your collections in the Macrometa console.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## View Your Collections
+This section page in detail the features available in the GDN console and how to work with your collections.
+
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
 
 Once you log in to a Macrometa account, you can view all collections that you have access to.
 
@@ -52,3 +56,55 @@ When viewing your collections, you can click **New Collection** to create a new 
 - [Create a Key-Value Store](keyvalue/create-key-value-store.md)
 - [Create a Dynamo Table](dynamo/create-dynamo-table.md)
 - [Create a Graph Edge](graphs/create-graph-edge.md)
+
+</TabItem>
+<TabItem value="apo" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to:
+
+- [List All Collections](https://macrometa.com/docs/api#/operations/handleCommandGet)
+- [Get Information About a Collection](https://macrometa.com/docs/api#/operations/handleCommandGet:collectionGetProperties)
+- [Get Number of Documents in a Collection](https://macrometa.com/docs/api#/operations/handleCommandGet:getCollectionCount)
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl collection list](../cli/collections-cli.md#gdnsl-collection-list) CLI command to see what collections exist.
+
+Use the [gdnsl collection describe](../cli/collections-cli.md#gdnsl-collection-describe) CLI command to learn more about a specific collection.
+
+Output from these commands looks similar to the following:
+
+```bash
+MacBook-Pro ~ % gdnsl collection list
+┌────────┐
+│ Name   │
+├────────┤
+│ edges  │
+│ docs   │
+│ dynamo │
+│ kv     │
+└────────┘
+
+MacBook-Pro ~ % gdnsl collection describe kv
+
+{
+  "error": false,
+  "code": 200,
+  "waitForSync": false,
+  "name": "kv",
+  "isSystem": false,
+  "isSpot": false,
+  "isLocal": false,
+  "status": 3,
+  "searchEnabled": false,
+  "id": "27025010960",
+  "type": 2,
+  "hasStream": true,
+  "globallyUniqueId": "hC835CABCFA79/27025010960",
+  "collectionModel": "KV"
+}
+```
+
+</TabItem>
+</Tabs>
