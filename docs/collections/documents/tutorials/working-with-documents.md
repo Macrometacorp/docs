@@ -75,86 +75,90 @@ Let's assume your
   if __name__ == '__main__':
 
     # Variables - URLs
-    global_url = "gdn.paas.macrometa.io"
-    region_urls = [
-        "https://gdn-sfo2.prod.macrometa.io",
-        "https://gdn-us-west1.prod.macrometa.io",
-        "https://gdn-nyc1.prod.macrometa.io"
+    GLOBAL_URL = "gdn.paas.macrometa.io"
+    REGION_URLS = [
+        "gdn-us-west.paas.macrometa.io",
+        "gdn-us-east.paas.macrometa.io",
+        "gdn-us-central.paas.macrometa.io"
+        "gdn-eu-west.paas.macrometa.io",
+        "gdn-eu-central.paas.macrometa.io",
+        "gdn-ap-west.paas.macrometa.io",
+        "gdn-ap-south.paas.macrometa.io",
+        "gdn-ap-northeast.paas.macrometa.io",
+        "gdn-ap-sydney.paas.macrometa.io",
     ]
 
     # Variables - DB
-    email = "nemo@nautilus.com"
-    password = "xxxxx"
-    geo_fabric = "_system"
-    collection_name = "ddoslist"
-    ip_address = "20.1.1.9"
+    EMAIL = "nemo@nautilus.com"
+    PASSWORD = "xxxxx"
+    GEO_FABRIC = "_system"
+    COLLECTION_NAME = "ddoslist"
+    IP_ADDRESS = "20.1.1.9"
 
     # Variables - Queries
-    read_query = "FOR device in ddoslist " + "FILTER device.ip == \"" + ip_address + "\"RETURN { IP:device.ip, IsAllowed:device.action}"
+    READ_QUERY = f"FOR device in ddoslist FILTER device.ip == {IP_ADDRESS} RETURN" + "{IP:device.ip, IsAllowed:device.action}"
 
-    insert_query = "INSERT { \"ip\" : \"" + ip_address + "\", \"action\": \"block\", \"rule\":\"blacklistA\"} INTO ddoslist"
-
+    INSERT_QUERY = "INSERT { \"ip\" : \"" + IP_ADDRESS + "\", \"action\": \"block\", \"rule\":\"blocklistA\"} INTO ddoslist"
 
     # Variables - Data
-    data = [
-      {"ip": "10.1.1.1", "action": "block", "rule": "blacklistA"},
-      {"ip": "20.1.1.2", "action": "block", "rule": "blacklistA"},
-      {"ip": "30.1.1.3", "action": "block", "rule": "blacklistB"},
-      {"ip": "40.1.1.4", "action": "block", "rule": "blacklistA"},
-      {"ip": "50.1.1.5", "action": "block", "rule": "blacklistB"},
-      {"ip": "20.1.1.3", "action": "allow", "rule": "whitelistA"},
-      {"ip": "20.1.1.4", "action": "allow", "rule": "whitelistA"},
-      {"ip": "30.1.1.4", "action": "allow", "rule": "whitelistB"},
-      {"ip": "30.1.1.5", "action": "allow", "rule": "whitelistB"}
+    DATA = [
+      {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
+      {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
+      {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
+      {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
+      {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
+      {"ip": "20.1.1.3", "action": "allow", "rule": "allowlistA"},
+      {"ip": "20.1.1.4", "action": "allow", "rule": "allowlistA"},
+      {"ip": "30.1.1.4", "action": "allow", "rule": "allowlistB"},
+      {"ip": "30.1.1.5", "action": "allow", "rule": "allowlistB"}
     ]
     pp = pprint.PrettyPrinter(indent=4)
 
-    # Step1: Open connection to GDN. You will be routed to closest region.
-    print("1. CONNECT: federation: {},  user: {}".format(global_url, email))
-    client = C8Client(protocol='https', host=global_url, port=443,
-                      email=email, password=password,
-                      geofabric=geo_fabric)    
+    # Step 1: Open connection to GDN. You will be routed to closest region.
+    print(f"1. CONNECT: federation: {GLOBAL_URL},  user: {EMAIL}")
+    client = C8Client(protocol = 'https', host = GLOBAL_URL, port = 443,
+                      email = EMAIL, password = PASSWORD,
+                      geofabric = GEO_FABRIC)
 
-    # Step2: Create a collection if not exists
-    print("2. CREATE_COLLECTION: region: {},  collection: {}".format(global_url, collection_name))
-    if client.has_collection(collection_name):
-        collection = client.collection(collection_name)
+    # Step 2: Create a collection if not exists
+    print(f"2. CREATE_COLLECTION: region: {GLOBAL_URL},  collection: {COLLECTION_NAME}")
+    if client.has_collection(COLLECTION_NAME):
+        collection = client.collection(COLLECTION_NAME)
     else:
-        collection = client.create_collection(collection_name)
+        collection = client.create_collection(COLLECTION_NAME)
 
-    # Step3: Insert data into collection.
-    print("3. INSERT_DDOS_DATA: in region: {}".format(global_url))
-    client.insert_document(collection_name, document=data)
+    # Step 3: Insert data into collection.
+    print(f"3. INSERT_DDOS_DATA: in region: {GLOBAL_URL}")
+    client.insert_document(COLLECTION_NAME, document = DATA)
 
-    # Step4: Read Data
-    print("4. IS_IP_ALLOWED...from region: {}".format(global_url))
-    cursor = client.execute_query(read_query)
+    # Step 4: Read Data
+    print(f"4. IS_IP_ALLOWED...from region: {GLOBAL_URL}")
+    cursor = client.execute_query(READ_QUERY)
     docs = [document for document in cursor]
     if docs == []:
-      print("IP: {}, IsAllowed: {}\n".format(ip_address, "'allow'"))
+      print(f"IP: {IP_ADDRESS}" + "IsAllowed: {"'allow'"}\n")
     else:
       pp.pprint(docs)
 
-
-    # Step5: Blacklist IP Address
-    print("5. BLACKLIST the IP...from region: {}, ip: {}".format(global_url, ip_address))
-    cursor = client.execute_query(insert_query)
+    # Step 5: Blocklist IP Address
+    print(f"5. BLOCKLIST the IP...from region: {GLOBAL_URL}, ip: {IP_ADDRESS}")
+    cursor = client.execute_query(INSERT_QUERY)
     time.sleep(0.3)
 
-    # Step6: Read Data from other regions.
+    # Step 6: Read Data from other regions.
     print("6. Check again if IP is allowed globally")
-    for region_url in region_urls:
-      print("\n IS_IP_ALLOWED...checking from region: {}".format(region_url))
-      clientx = C8Client(protocol='https', host=region_url, port=443, email=email, password=password,
-                          geofabric=geo_fabric)
-      cursorx = clientx.execute_query(read_query)
+    for region_url in REGION_URLS:
+      print(f"\n IS_IP_ALLOWED...cheking from region: {region_url}")
+      clientx = C8Client(protocol = 'https', host = region_url, port = 443, email = EMAIL, password = PASSWORD,
+                          geofabric = GEO_FABRIC)
+      cursorx = clientx.execute_query(READ_QUERY)
       docs = [document for document in cursorx]
       pp.pprint(docs[0])
 
-    # Step7: Delete Data
-    print("\n7. DELETE_DATA: region: {}, collection: {}".format(global_url, collection_name))
+    # Step 7: Delete Data
+    print(f"\n7. DELETE_DATA: region: {GLOBAL_URL}, collection: {COLLECTION_NAME}")
     collection.truncate()
-    #client.delete_collection(collection_name)
+    #client.delete_collection(COLLECTION_NAME)
 ```
 
 </TabItem>
@@ -190,19 +194,19 @@ Let's assume your
   // Variables - Queries
   const read_query = `FOR device in ddoslist FILTER device.ip == "${ip_address}" RETURN { IP:device.ip, IsAllowed:device.action}`;
 
-  const insert_query = "INSERT { \"ip\" : \"" + ip_address + "\", \"action\": \"block\", \"rule\":\"blacklistA\"} INTO ddoslist";
+  const insert_query = "INSERT { \"ip\" : \"" + ip_address + "\", \"action\": \"block\", \"rule\":\"blocklistA\"} INTO ddoslist";
 
   // Variables - Data
   const data = [
-    {"ip": "10.1.1.1", "action": "block", "rule": "blacklistA"},
-    {"ip": "20.1.1.2", "action": "block", "rule": "blacklistA"},
-    {"ip": "30.1.1.3", "action": "block", "rule": "blacklistB"},
-    {"ip": "40.1.1.4", "action": "block", "rule": "blacklistA"},
-    {"ip": "50.1.1.5", "action": "block", "rule": "blacklistB"},
-    {"ip": "20.1.1.3", "action": "allow", "rule": "whitelistA"},
-    {"ip": "20.1.1.4", "action": "allow", "rule": "whitelistA"},
-    {"ip": "30.1.1.4", "action": "allow", "rule": "whitelistB"},
-    {"ip": "30.1.1.5", "action": "allow", "rule": "whitelistB"}
+    {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
+    {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
+    {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
+    {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
+    {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
+    {"ip": "20.1.1.3", "action": "allow", "rule": "allowlistA"},
+    {"ip": "20.1.1.4", "action": "allow", "rule": "allowlistA"},
+    {"ip": "30.1.1.4", "action": "allow", "rule": "allowlistB"},
+    {"ip": "30.1.1.5", "action": "allow", "rule": "allowlistB"}
   ];
 
   async function createCollection() {
@@ -235,7 +239,7 @@ Let's assume your
       console.log(result);
     }
 
-    console.log(`\n 5. BLACKLIST the IP...from region: ${global_url}, ip: ${ip_address}`);
+    console.log(`\n 5. BLOCKLIST the IP...from region: ${global_url}, ip: ${ip_address}`);
     result = await client.executeQuery(insert_query);
   }
 
