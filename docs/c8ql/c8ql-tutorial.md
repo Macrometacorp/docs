@@ -57,7 +57,7 @@ For this tutorial, create a [Document Store collection](../collections/documents
 
 ## Basic Document Tasks
 
-This section shows you how to perform basic 
+Now you can perform basic document tasks (CRUD tasks).
 
 - [Create documents](#create-documents)
 - [Read documents](#read-documents)
@@ -66,17 +66,14 @@ This section shows you how to perform basic
 
 ### Create documents
 
+You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](operations/insert.md) operation and [Queries and Query Workers](../queryworkers/index.md).
 
+#### Add one document to the collection
 
-#### Create a collection
-
-
-#### Add documents to the collection
-
-We will add documents to the collection with a query.
+Add one document to the collection with a query.
 
 1. Click **Query Workers**.
-1. To create the first document for collection with C8QL, copy and paste the following C8QL query into the query editor. For more information about queries, refer to [Queries and Query Workers](../queryworkers/index.md).
+1. Copy and paste the following C8QL query into the query editor on the Editor tab.
 
   ```js
   INSERT {
@@ -90,7 +87,13 @@ We will add documents to the collection with a query.
 
 1. Click **Run Query**.
 
-The syntax is `INSERT document INTO collectionName`. The document is an object like you may know it from JavaScript or JSON, which is comprised of attribute key and value pairs. The quotes around the attribute keys are optional in C8QL. Keys are always character sequences (strings), whereas attribute values can have different types:
+Macrometa returns an empty list, because the query did not [RETURN](operations/return.md) anything. We'll do that in a later step.
+
+If you want to see your new record, click **Collections** and then click **Characters**. Your brand new Ned Stark record is right there.
+
+#### Explanation
+
+The syntax for this query is `INSERT document INTO collectionName`. The document is an object like you may know it from JavaScript or JSON, which is comprised of attribute key and value pairs. The quotes around the attribute keys are optional in C8QL. Keys are always character sequences (strings), whereas attribute values can have different types:
 
 - null
 - boolean (true, false)
@@ -101,57 +104,69 @@ The syntax is `INSERT document INTO collectionName`. The document is an object l
 
 Name and surname of the character document we inserted are both string values. The alive state uses a boolean. Age is a numeric value. The traits are an array of strings. The entire document is an object.
 
-Let's add a bunch of other characters in a single query:
+#### Add multiple document to the collection
 
-```js
-LET data = [
-    { "name": "Robert", "surname": "Baratheon", "alive": false, "traits": ["A","H","C"] },
-    { "name": "Jaime", "surname": "Lannister", "alive": true, "age": 36, "traits": ["A","F","B"] },
-    { "name": "Catelyn", "surname": "Stark", "alive": false, "age": 40, "traits": ["D","H","C"] },
-    { "name": "Cersei", "surname": "Lannister", "alive": true, "age": 36, "traits": ["H","E","F"] },
-    { "name": "Daenerys", "surname": "Targaryen", "alive": true, "age": 16, "traits": ["D","H","C"] },
-    { "name": "Jorah", "surname": "Mormont", "alive": false, "traits": ["A","B","C","F"] },
-    { "name": "Petyr", "surname": "Baelish", "alive": false, "traits": ["E","G","F"] },
-    { "name": "Viserys", "surname": "Targaryen", "alive": false, "traits": ["O","L","N"] },
-    { "name": "Jon", "surname": "Snow", "alive": true, "age": 16, "traits": ["A","B","C","F"] },
-    { "name": "Sansa", "surname": "Stark", "alive": true, "age": 13, "traits": ["D","I","J"] },
-    { "name": "Arya", "surname": "Stark", "alive": true, "age": 11, "traits": ["C","K","L"] },
-    { "name": "Robb", "surname": "Stark", "alive": false, "traits": ["A","B","C","K"] },
-    { "name": "Theon", "surname": "Greyjoy", "alive": true, "age": 16, "traits": ["E","R","K"] },
-    { "name": "Bran", "surname": "Stark", "alive": true, "age": 10, "traits": ["L","J"] },
-    { "name": "Joffrey", "surname": "Baratheon", "alive": false, "age": 19, "traits": ["I","L","O"] },
-    { "name": "Sandor", "surname": "Clegane", "alive": true, "traits": ["A","P","K","F"] },
-    { "name": "Tyrion", "surname": "Lannister", "alive": true, "age": 32, "traits": ["F","K","M","N"] },
-    { "name": "Khal", "surname": "Drogo", "alive": false, "traits": ["A","C","O","P"] },
-    { "name": "Tywin", "surname": "Lannister", "alive": false, "traits": ["O","M","H","F"] },
-    { "name": "Davos", "surname": "Seaworth", "alive": true, "age": 49, "traits": ["C","K","P","F"] },
-    { "name": "Samwell", "surname": "Tarly", "alive": true, "age": 17, "traits": ["C","L","I"] },
-    { "name": "Stannis", "surname": "Baratheon", "alive": false, "traits": ["H","O","P","M"] },
-    { "name": "Melisandre", "alive": true, "traits": ["G","E","H"] },
-    { "name": "Margaery", "surname": "Tyrell", "alive": false, "traits": ["M","D","B"] },
-    { "name": "Jeor", "surname": "Mormont", "alive": false, "traits": ["C","H","M","P"] },
-    { "name": "Bronn", "alive": true, "traits": ["K","E","C"] },
-    { "name": "Varys", "alive": true, "traits": ["M","F","N","E"] },
-    { "name": "Shae", "alive": false, "traits": ["M","D","G"] },
-    { "name": "Talisa", "surname": "Maegyr", "alive": false, "traits": ["D","C","B"] },
-    { "name": "Gendry", "alive": false, "traits": ["K","C","A"] },
-    { "name": "Ygritte", "alive": false, "traits": ["A","P","K"] },
-    { "name": "Tormund", "surname": "Giantsbane", "alive": true, "traits": ["C","P","A","I"] },
-    { "name": "Gilly", "alive": true, "traits": ["L","J"] },
-    { "name": "Brienne", "surname": "Tarth", "alive": true, "age": 32, "traits": ["P","C","A","K"] },
-    { "name": "Ramsay", "surname": "Bolton", "alive": true, "traits": ["E","O","G","A"] },
-    { "name": "Ellaria", "surname": "Sand", "alive": true, "traits": ["P","O","A","E"] },
-    { "name": "Daario", "surname": "Naharis", "alive": true, "traits": ["K","P","A"] },
-    { "name": "Missandei", "alive": true, "traits": ["D","L","C","M"] },
-    { "name": "Tommen", "surname": "Baratheon", "alive": true, "traits": ["I","L","B"] },
-    { "name": "Jaqen", "surname": "H'ghar", "alive": true, "traits": ["H","F","K"] },
-    { "name": "Roose", "surname": "Bolton", "alive": true, "traits": ["H","E","F","A"] },
-    { "name": "The High Sparrow", "alive": true, "traits": ["H","M","F","O"] }
-]
+Let's add the rest of our characters with a single query. If you are familiar with FOR loops iterating through lists, this will be very familiar.
 
-FOR d IN data
-    INSERT d INTO Characters
-```
+1. Click **Query Workers** (if you are not already in that section).
+1. Click **New Query**.
+1. Copy and paste the following C8QL query into the query editor on the Editor tab.
+
+  ```js
+  LET data = [
+      { "name": "Robert", "surname": "Baratheon", "alive": false, "traits": ["A","H","C"] },
+      { "name": "Jaime", "surname": "Lannister", "alive": true, "age": 36, "traits": ["A","F","B"] },
+      { "name": "Catelyn", "surname": "Stark", "alive": false, "age": 40, "traits": ["D","H","C"] },
+      { "name": "Cersei", "surname": "Lannister", "alive": true, "age": 36, "traits": ["H","E","F"] },
+      { "name": "Daenerys", "surname": "Targaryen", "alive": true, "age": 16, "traits": ["D","H","C"] },
+      { "name": "Jorah", "surname": "Mormont", "alive": false, "traits": ["A","B","C","F"] },
+      { "name": "Petyr", "surname": "Baelish", "alive": false, "traits": ["E","G","F"] },
+      { "name": "Viserys", "surname": "Targaryen", "alive": false, "traits": ["O","L","N"] },
+      { "name": "Jon", "surname": "Snow", "alive": true, "age": 16, "traits": ["A","B","C","F"] },
+      { "name": "Sansa", "surname": "Stark", "alive": true, "age": 13, "traits": ["D","I","J"] },
+      { "name": "Arya", "surname": "Stark", "alive": true, "age": 11, "traits": ["C","K","L"] },
+      { "name": "Robb", "surname": "Stark", "alive": false, "traits": ["A","B","C","K"] },
+      { "name": "Theon", "surname": "Greyjoy", "alive": true, "age": 16, "traits": ["E","R","K"] },
+      { "name": "Bran", "surname": "Stark", "alive": true, "age": 10, "traits": ["L","J"] },
+      { "name": "Joffrey", "surname": "Baratheon", "alive": false, "age": 19, "traits": ["I","L","O"] },
+      { "name": "Sandor", "surname": "Clegane", "alive": true, "traits": ["A","P","K","F"] },
+      { "name": "Tyrion", "surname": "Lannister", "alive": true, "age": 32, "traits": ["F","K","M","N"] },
+      { "name": "Khal", "surname": "Drogo", "alive": false, "traits": ["A","C","O","P"] },
+      { "name": "Tywin", "surname": "Lannister", "alive": false, "traits": ["O","M","H","F"] },
+      { "name": "Davos", "surname": "Seaworth", "alive": true, "age": 49, "traits": ["C","K","P","F"] },
+      { "name": "Samwell", "surname": "Tarly", "alive": true, "age": 17, "traits": ["C","L","I"] },
+      { "name": "Stannis", "surname": "Baratheon", "alive": false, "traits": ["H","O","P","M"] },
+      { "name": "Melisandre", "alive": true, "traits": ["G","E","H"] },
+      { "name": "Margaery", "surname": "Tyrell", "alive": false, "traits": ["M","D","B"] },
+      { "name": "Jeor", "surname": "Mormont", "alive": false, "traits": ["C","H","M","P"] },
+      { "name": "Bronn", "alive": true, "traits": ["K","E","C"] },
+      { "name": "Varys", "alive": true, "traits": ["M","F","N","E"] },
+      { "name": "Shae", "alive": false, "traits": ["M","D","G"] },
+      { "name": "Talisa", "surname": "Maegyr", "alive": false, "traits": ["D","C","B"] },
+      { "name": "Gendry", "alive": false, "traits": ["K","C","A"] },
+      { "name": "Ygritte", "alive": false, "traits": ["A","P","K"] },
+      { "name": "Tormund", "surname": "Giantsbane", "alive": true, "traits": ["C","P","A","I"] },
+      { "name": "Gilly", "alive": true, "traits": ["L","J"] },
+      { "name": "Brienne", "surname": "Tarth", "alive": true, "age": 32, "traits": ["P","C","A","K"] },
+      { "name": "Ramsay", "surname": "Bolton", "alive": true, "traits": ["E","O","G","A"] },
+      { "name": "Ellaria", "surname": "Sand", "alive": true, "traits": ["P","O","A","E"] },
+      { "name": "Daario", "surname": "Naharis", "alive": true, "traits": ["K","P","A"] },
+      { "name": "Missandei", "alive": true, "traits": ["D","L","C","M"] },
+      { "name": "Tommen", "surname": "Baratheon", "alive": true, "traits": ["I","L","B"] },
+      { "name": "Jaqen", "surname": "H'ghar", "alive": true, "traits": ["H","F","K"] },
+      { "name": "Roose", "surname": "Bolton", "alive": true, "traits": ["H","E","F","A"] },
+      { "name": "The High Sparrow", "alive": true, "traits": ["H","M","F","O"] }
+  ]
+
+  FOR d IN data
+      INSERT d INTO Characters
+  ```
+
+1. Click **Run Query**.
+
+Macrometa returns an empty list.
+
+#### Explanation
 
 The `LET` keyword defines a variable with name _data_ and an array of objects as value, so `LET variableName = valueExpression` and the expression being a literal array definition like `[ {...}, {...}, ... ]`.
 
