@@ -6,7 +6,7 @@ title: Stream Worker Query Guide
 Macrometa Stream QL is designed to process streams of events. It can be used to implement streaming data integration, streaming analytics, rule based and
 adaptive decision making use cases. It is an evolution of Complex Event Processing (CEP) and Stream Processing systems, hence it can also be used to process stateful computations, detecting of complex event patterns, and sending notifications in real-time.
 
-Stream QL uses SQL like syntax, and annotations to consume events from diverse event sources with various data formats, process then using stateful and stateless operators and send outputs to multiple endpoints according to their accepted event formats. It also supports exposing rule based and adaptive decision making as service endpoints such that external programs and systems can synchronously get decision support form Stream.  
+Stream QL uses SQL like syntax, and annotations to consume events from diverse event sources with various data formats, process them using stateful and stateless operators and send outputs to multiple endpoints according to their accepted event formats. It also supports exposing rule based and adaptive decision making as service endpoints so that external programs and systems can synchronously get decision support from streams.  
 
 The following sections explains how to write processing logic using Stream QL.
 
@@ -14,21 +14,21 @@ The following sections explains how to write processing logic using Stream QL.
 
 The processing logic for your program can be written using the Streaming SQL and put together as a single declarative spec called as the `Stream Application` or the `StreamApp`.
 
-StreamApps are named by adding `@app:name('<name>')` annotation on the top of the StreamApp spec. When the annotation is not added stream processor assigns a random UUID as the name of the StreamApp.
+StreamApps are named by adding `@app:name('<name>')` annotation on the top of the StreamApp spec. When the annotation is not added, the stream processor assigns a random UUID as the name of the StreamApp.
 
 ## StreamApp Purpose
 
-StreamApp provides an isolated execution environment for your processing logic that allows you to deploy and execute processing logic independent of other StreamApps in the system. Therefore it's always recommended to have a processing logic related to single use case in a single StreamApp. This will help you to group processing logic and easily manage addition and removal of various use cases.
+StreamApp provides an isolated execution environment for your processing logic that allows you to deploy and execute processing logic independent of other StreamApps in the system. Therefore, it's always recommended to have processing logic related to a single use case in a single StreamApp. This will help you to group processing logic and easily manage addition and removal of various use cases.
 
-The following diagram depicts some of the key Stream QL elements of Stream Application and how **event flows** through the elements.
+The following diagram depicts some of the key Stream QL elements of Stream Application and how **events flow** through the elements.
 
 :::tip
 "Have different business use cases in separate Stream Applications."
-This is recommended as it allows users to selectively deploy the applications based their on business needs. It is also recommended to move the repeated steam processing logic that exist in multiple Stream Applications such as message retrieval and preprocessing, to a common Stream Application, whereby reducing code duplication and improving maintainability. In this case, to pass the events from one Stream App to another, configure them using a common stream or collection using `stream` Sink and `stream` Source.
+This is recommended as it allows users to selectively deploy the applications based their on business needs. It is also recommended to move the repeated steam processing logic that exists in multiple Stream Applications, such as message retrieval and preprocessing, to a common Stream Application, whereby reducing code duplication and improving maintainability. In this case, to pass the events from one Stream App to another, configure them using a common stream or collection using `stream` Sink and `stream` Source.
 :::
 ![Event Flow](/img/event-flow.png?raw=true "Event Flow")
 
-Below table provides brief description of a few key elements in the Stream QL Language.
+The table below provides a brief description of a few key elements in the Stream QL Language.
 
 | Elements     | Description |
 | ------------- |-------------|
@@ -58,7 +58,7 @@ High level syntax of StreamApp is as follows.
         ;
 ```
 
-For example, this stream application with name `Temperature-Analytics` creates a stream named `TempStream` and a query named `5minAvgQuery`.
+For example, this stream application with the name `Temperature-Analytics` creates a stream named `TempStream` and a query named `5minAvgQuery`.
 
 ```js
 @app:name('Temperature-Analytics')
