@@ -25,25 +25,25 @@ Create a JSON object with these fields:
 
     - `analyzers` (array of strings): The list of analyzers to be used for indexing of string values (default: ["identity"]).
 
-    - fields (object):
+    - `fields` (object):
 
-      - field-name (object/string): This is a recursive structure for the specific attribute path, potentially containing any of the following attributes: analyzers, include all fields, trackListPositions, storeValuesAny attributes not specified are inherited from the parent.
+      - `field-name` (object/string): This is a recursive structure for the specific attribute path, potentially containing any of the following attributes: analyzers, include all fields, trackListPositions, storeValuesAny attributes not specified are inherited from the parent.
 
-  - includeAllFields (boolean): A flag that determines whether or not to index all fields on a particular level of depth (default: false).
+  - `includeAllFields` (boolean): A flag that determines whether or not to index all fields on a particular level of depth (default: false).
 
-  - trackListPositions (boolean): A flag that determines whether or not values in a list should be treated separately (default: false).
+  - `trackListPositions` (boolean): A flag that determines whether or not values in a list should be treated separately (default: false).
 
-  - storeValues: How should the view track the attribute values, this setting allows for additional value retrieval optimizations, one of:
+  - `storeValues`: How should the view track the attribute values, this setting allows for additional value retrieval optimizations, one of:
 
-  - none: Do not store values by the view
+  - `none`: Do not store values by the view
 
-  - id: Store only information about value presence, to allow the use of the EXISTS() function(default "none")
+  - `id`: Store only information about value presence, to allow the use of the EXISTS() function(default "none")
 
-- name (string): The name of the view.
+- `name` (string): The name of the view.
 
-- primarySort (array of strings): The default sort for the view.
+- `primarySort` (array of strings): The default sort for the view.
 
-- type: The type of the view. The value must be "search".
+- `type`: The type of the view. The value must be "search".
 
 
 
@@ -82,8 +82,8 @@ There are two options for accessing the nested data.
   "topLevelField": {
     "fields": {
       "subLevelField": {}
-  }
-  }
+      }
+    }
   }
   ```
 
@@ -91,4 +91,32 @@ There are two options for accessing the nested data.
 
 ## Example
 
-The following example 
+The following example shows a complete cURL request to create the nested search field.
+
+```cURL
+curl -X 'POST' \
+  'https://api-gdn.paas.macrometa.io/_fabric/<your-fabric-name>/_api/search/view' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: bearer <JWT_TOKEN>' \
+  -d '{
+  "links": { 
+    "testCollection": { 
+      "analyzers": [ "text_en" ],
+      "fields": { 
+        "parties": { 
+          "fields": { 
+            "name": {} 
+        } 
+      } 
+    },
+    "includeAllFields": false, 
+    "storeValues": "none",
+    "trackListPositions": false
+  } 
+ },
+ "name": "testView", 
+ "primarySort": [],
+ "type": "search" 
+}'
+```
