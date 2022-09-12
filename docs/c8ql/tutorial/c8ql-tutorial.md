@@ -16,9 +16,9 @@ By the end of this tutorial, you will:
 - Understand the basics of Graph Edge collections.
 
 :::note
-Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../cli/index.md), [API](https://macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
+Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../cli/index.md), [API](https://macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
 
-If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../cli/queries-cli.md) command.
+If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../../cli/queries-cli.md) command.
 :::
 
 ## Prerequisites
@@ -47,7 +47,7 @@ This small collection of eight locations comes with two attributes, a _name_ and
 
 Before we can insert documents with C8QL, we need a place to put them in: a collection.
 
-For this tutorial, [Create a Document Store collection](../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../collections/index.md).
+For this tutorial, [Create a Document Store collection](../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../collections/index.md).
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Collections**.
@@ -66,9 +66,9 @@ Now you can perform basic document tasks (CRUD tasks).
 
 ### Create Documents
 
-You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](operations/insert.md) operation and [Queries and Query Workers](../queryworkers/index.md).
+You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](../operations/insert.md) operation and [Queries and Query Workers](../../queryworkers/index.md).
 
-For more information about this task, refer to [Add Documents to a Collection](../collections/documents/add-document.md).
+For more information about this task, refer to [Add Documents to a Collection](../../collections/documents/add-document.md).
 
 #### Add One Document to the Collection
 
@@ -89,7 +89,7 @@ Add one document to the collection with a query.
 
 1. Click **Run Query**.
 
-Macrometa returns an empty list, because the query did not [RETURN](operations/return.md) anything. We'll do that in a later step.
+Macrometa returns an empty list, because the query did not [RETURN](../operations/return.md) anything. We'll do that in a later step.
 
 If you want to see your new record, click **Collections** and then click **Characters**. Your brand new Ned Stark record is right there.
 
@@ -242,7 +242,7 @@ All three system attributes starting with an underscore `_` are read-only. The `
 
 #### Read Specific Documents
 
-You can use either the document key or the document ID to retrieve a specific document with the help of a C8QL function [DOCUMENT()](functions/document.md).
+You can use either the document key or the document ID to retrieve a specific document with the help of a C8QL function [DOCUMENT()](../functions/document.md).
 
 :::note
 Document keys will be different for you. Update the queries accordingly.
@@ -324,7 +324,7 @@ Macrometa returns something like this:
 ]
 ```
 
-For more information, refer to the [DOCUMENT()](functions/document.md) function documentation.
+For more information, refer to the [DOCUMENT()](../functions/document.md) function documentation.
 
 ### Update Documents
 
@@ -453,7 +453,7 @@ You can also use `REMOVE` in a loop body to effectively truncate a collection, r
 Macrometa deletes all documents and returns an empty list. To view the results, navigate to the Colections screen and click your collection or run the query to view all documents.
 
 :::important
-Re-run the [insert queries](#create-documents) at the top with all character documents before you continue with the next chapter, to have data to work with again.
+Re-run the [insert queries](#create-documents) at the top with all character documents before you continue with the next chapter, to have data to work with again. And don't forget good, old Ned Stark! We're not through picking on him.
 :::
 
 ## Match and Filter Documents
@@ -523,7 +523,7 @@ FOR c IN Characters
 ]
 ```
 
-You may notice that it returns name and age of 30 characters, most with an age of `null`. The reason for this is, that `null` is the fallback value if an attribute is requested by the query, but no such attribute exists in the document, and the `null` is compares to numbers as lower (refer to [Type and Value Order](type-and-value-order.md)). Hence, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`).
+You may notice that it returns name and age of 30 characters, most with an age of `null`. The reason for this is, that `null` is the fallback value if an attribute is requested by the query, but no such attribute exists in the document, and the `null` is compares to numbers as lower (refer to [Type and Value Order](../type-and-value-order.md)). Hence, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`).
 
 ### Multiple conditions
 
@@ -570,7 +570,7 @@ FOR c IN Characters
 ]
 ```
 
-See more details about [Filter operations](operations/filter.md).
+See more details about [Filter operations](../operations/filter.md).
 
 ## Sorting and limiting
 
@@ -732,7 +732,7 @@ FOR c IN Characters
 
 A filter is applied to avoid documents without age attribute. The remaining documents are sorted by age in ascending order, and the name and age of the ten youngest characters are returned.
 
-See the [SORT operation](operations/sort.md) and [LIMIT operation](operations/limit.md) documentation for more details.
+See the [SORT operation](../operations/sort.md) and [LIMIT operation](../operations/limit.md) documentation for more details.
 
 ## Joining together
 
@@ -789,7 +789,7 @@ It is rather a list of letters without an apparent meaning. The idea here is tha
 
 ### Importing traits
 
-Below you find the traits data. Follow the pattern shown in [Create documents](c8ql-tutorial.md) to import it:
+Below you find the traits data. Follow the pattern shown in [Create documents](#create-documents) to import it:
 
 - Create a document collection named **Traits**.
 - Assign the data to a variable in C8QL, `LET data = [ ... ]`.
@@ -909,7 +909,7 @@ FOR c IN Characters
 ]
 ```
 
-This is a bit too much information, so let's only return English labels using the [array expansion](array-operators.md#array-expansion) notation:
+This is a bit too much information, so let's only return English labels using the [array expansion](../array-operators.md#array-expansion) notation:
 
 ```js
 FOR c IN Characters
@@ -1016,7 +1016,7 @@ To create the required edge documents to store these relations in the database, 
 
 #### Create a Graph Edge collection
 
-Create a new [Graph Edge collection](../collections/graphs/index.md) called **ChildOf**.
+Create a new [Graph Edge collection](../../collections/graphs/index.md) called **ChildOf**.
 
 1. Click **Collections**.
 1. Click **New Collection**.
@@ -1118,14 +1118,14 @@ However, creating the edges programmatically based on character names is a good 
 
 ### Traverse to the parents
 
-Now that edges link character documents (vertices), we have a graph we can query to find out who the parents are of another character &ndash; or in graph terms, we want to start at a vertex and follow the edges to other vertices in . A [C8QL graph traversal](graphs/traversals.md):
+Now that edges link character documents (vertices), we have a graph we can query to find out who the parents are of another character &ndash; or in graph terms, we want to start at a vertex and follow the edges to other vertices in . A [C8QL graph traversal](../graphs/traversals.md):
 
 ```js
 FOR v IN 1..1 OUTBOUND "Characters/2901776" ChildOf
     RETURN v.name
 ```
 
-This `FOR` loop doesn't iterate over a collection or an array, it walks the graph and iterates over the connected vertices it finds, with the vertex document assigned to a variable (here: `v`). It can also emit the edges it walked as well as the full path from start to end to [another two variables](graphs/traversals.md#syntax).
+This `FOR` loop doesn't iterate over a collection or an array, it walks the graph and iterates over the connected vertices it finds, with the vertex document assigned to a variable (here: `v`). It can also emit the edges it walked as well as the full path from start to end to [another two variables](../graphs/traversals.md#syntax).
 
 In above query, the traversal is restricted to a minimum and maximum traversal depth of 1 (how many steps to take from the start vertex), and to only follow edges in `OUTBOUND` direction. Our edges point from child to parent, and the parent is one step away from the child, thus it gives us the parents of the child we start at. `"Characters/2901776"` is that start vertex. Note that the document ID will be different for you, so please adjust it to your document ID of e.g. the Bran Stark document:
 
@@ -1207,7 +1207,7 @@ Tywin <- Jaime <- Joffrey
 Tywin <- Cersei <- Joffrey
 ```
 
-As a quick fix, change the last line of the query to `RETURN DISTINCT v.name` to return each value only once. Keep in mind though, that there are [traversal options](graphs/traversals.md#syntax) to suppress duplicate vertices early on.
+As a quick fix, change the last line of the query to `RETURN DISTINCT v.name` to return each value only once. Keep in mind though, that there are [traversal options](../graphs/traversals.md#syntax) to suppress duplicate vertices early on.
 
 ### Traverse with variable depth
 
@@ -1232,7 +1232,7 @@ If we had deeper family trees, it would only be a matter of changing the depth v
 
 ## Geospatial queries
 
-Geospatial coordinates consisting of a latitude and longitude value can be stored either as two separate attributes, or as a single attribute in the form of an array with both numeric values. C8 can [index such coordinates](./functions/geo.md) for fast geospatial queries.
+Geospatial coordinates consisting of a latitude and longitude value can be stored either as two separate attributes, or as a single attribute in the form of an array with both numeric values. C8 can [index such coordinates](../functions/geo.md) for fast geospatial queries.
 
 ### Locations data
 
@@ -1263,7 +1263,7 @@ Visualization of the coordinates on a map with their labels:
 
 ### Geospatial index
 
-To query based on coordinates, a [geo index](../collections/documents/geospatial/geojson#geojson-supported-index) is required. It determines which fields contain the latitude and longitude values.
+To query based on coordinates, a [geo index](../../collections/documents/geospatial/geojson#geojson-supported-index) is required. It determines which fields contain the latitude and longitude values.
 
 1. Click **Collections**.
 1. Click **Locations**.
