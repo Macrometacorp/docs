@@ -43,4 +43,15 @@ This small collection of eight locations comes with two attributes, a _name_ and
 
 ![Locations_Table](/img/c8ql/tutorial/Locations_Table.png)
 
+## About this Tutorial
 
+This tutorial guides you through several sets of tasks. To get the most out of this tutorial, complete the sections in order. Many tasks build on earlier steps, so they are necessary to sucessfully complete the full tutorial.
+
+Enjoy and have fun!
+
+- [Part 1 - Basic Document Tasks](c8ql-crud.md)
+- [Part 2 - Match and Filter Documents]
+- [Part 3 - Sorting and Limiting]
+- [Part 4 - Joining]
+- [Part 5 - Graph Traversal]
+- [Part 6 - Geospatial Queries]
