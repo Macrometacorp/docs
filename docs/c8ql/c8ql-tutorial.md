@@ -363,7 +363,7 @@ REPLACE "2861650" WITH {
 
 #### Update All Documents
 
-To add a new attribute to all documents, you might run the previous command for updating a single document with a FOR loop.
+To add a new attribute to all documents, you might run the previous command for updating a single document with a FOR loop. A variable is used instead of a literal document key, to update each document. The query adds an attribute `season` to the documents' top-level.
 
 1. Click **New Query**.
 1. Copy and paste the following command in the editor.
@@ -373,7 +373,9 @@ To add a new attribute to all documents, you might run the previous command for 
       UPDATE c WITH { season: 1 } IN Characters
   ```
 
-A variable is used instead of a literal document key, to update each document. The query adds an attribute `season` to the documents' top-level. You can inspect the result by re-running the query that returns all documents in collection:
+1. Click **Run Query**.
+
+Macrometa returns an empty list. You can inspect the result by re-running the query that returns all documents in collection:
 
 ```js
 FOR c IN Characters
@@ -420,24 +422,41 @@ With C8QL queries, you can delete specific documents or all documents. This sect
 
 #### Delete Specific Documents
 
-To fully remove documents from a collection, there is the `REMOVE` operation. It works similar to the other modification operations, yet without a `WITH` clause:
+To fully remove documents from a collection, there is the `REMOVE` operation. It works similar to the other modification operations, but without a `WITH` clause.
 
-```js
-REMOVE "2861650" IN Characters
-```
+1. Click **New Query**.
+1. Copy and paste the following command in the editor.
 
-It can also be used in a loop body to effectively truncate a collection:
+  ```js
+  REMOVE "2861650" IN Characters
+  ```
 
-```js
-FOR c IN Characters
-    REMOVE c IN Characters
-```
+1. Replace the key in the example with any key from your document collection.
+1. Click **Run Query**.
 
-:::note
+Macrometa deletes the document and returns an empty list.
+
+#### Delete All Documents
+
+You can also use `REMOVE` in a loop body to effectively truncate a collection, removing all records without deleting the collection.
+
+1. Click **New Query**.
+1. Copy and paste the following command in the editor.
+
+  ```js
+  FOR c IN Characters
+      REMOVE c IN Characters
+  ```
+
+1. Click **Run Query**.
+
+Macrometa deletes all documents and returns an empty list. To view the results, navigate to the Colections screen and click your collection or run the query to view all documents.
+
+:::important
 Re-run the [insert queries](#create-documents) at the top with all character documents before you continue with the next chapter, to have data to work with again.
 :::
 
-## Matching documents
+## Match and Filter Documents
 
 So far, we either looked up a single document, or returned the entire character collection. For the lookup, we used the `DOCUMENT()` function, which means we can only find documents by their key or ID.
 
