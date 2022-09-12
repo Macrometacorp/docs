@@ -43,7 +43,7 @@ This small collection of eight locations comes with two attributes, a _name_ and
 
 ![Locations_Table](/img/c8ql/tutorial/Locations_Table.png)
 
-## Create the Characters Collection
+## Create the Characters collection
 
 Before we can insert documents with C8QL, we need a place to put them in: a collection.
 
@@ -93,7 +93,7 @@ Macrometa returns an empty list, because the query did not [RETURN](operations/r
 
 If you want to see your new record, click **Collections** and then click **Characters**. Your brand new Ned Stark record is right there.
 
-#### Explanation
+#### Explanation of adding one document
 
 The syntax for this query is `INSERT document INTO collectionName`. The document is an object like you may know it from JavaScript or JSON, which is comprised of attribute key and value pairs. The quotes around the attribute keys are optional in C8QL. Keys are always character sequences (strings), whereas attribute values can have different types:
 
@@ -166,9 +166,9 @@ Let's add the rest of our characters with a single query. If you are familiar wi
 
 1. Click **Run Query**.
 
-Macrometa returns an empty list.
+Macrometa returns an empty list. As before, you can manually look at the records in the **Collections** screen, or retrieve them with queries in the next section.
 
-#### Explanation
+#### Explanation of adding multiple documents
 
 The `LET` keyword defines a variable with name _data_ and an array of objects as value, so `LET variableName = valueExpression` and the expression being a literal array definition like `[ {...}, {...}, ... ]`.
 
@@ -194,19 +194,32 @@ INSERT {
 ```
 
 :::note
-C8QL does not permit multiple `INSERT` operations that target the same collection in a single query. It is allowed as body of a `FOR` loop however, inserting multiple documents like we did with above query.
+C8QL does not permit multiple `INSERT` operations that target the same collection in a single query. It is allowed as body of a `FOR` loop however, inserting multiple documents like you did in the above query.
 :::
 
 ### Read documents
 
-There are a couple of documents in the _Characters_ collection by now. We can retrieve them all using a `FOR` loop again. This time however, we use it to go through all documents in the collection instead of an array:
+With C8QL queries, you can retrieve all documents or specific documents. This section demonstrates both methods.
 
-```js
-FOR c IN Characters
-    RETURN c
-```
+#### Read all documents
 
-The syntax of the loop is `FOR variableName IN collectionName`. For each document in the collection, _c_ is assigned a document, which is then returned as per the loop body. The query returns all characters we previously stored.
+You can retrieve documents (characters) in the _Characters_ collection by using a `FOR` loop again. This time however, we use it to go through all documents in the collection instead of an array.
+
+1. Click **New Query**.
+1. In the Query Workers screen, paste the following code block in the editor:
+
+  ```js
+  FOR c IN Characters
+      RETURN c
+  ```
+
+1. Click **Run Query**.
+
+Macrometa lists all records in the Query Result.
+
+#### Explanation of reading all documents
+
+The syntax of the loop is `FOR variableName IN collectionName`. For each document in the collection, _c_ is assigned a document, which is then returned as per the loop body. The query returns all characters that were previously stored.
 
 Among them should be _Ned Stark_, similar to this example:
 
@@ -223,17 +236,33 @@ Among them should be _Ned Stark_, similar to this example:
   },
 ```
 
-The document features the five attributes we stored, plus three more added by the database system. Each document needs a unique `_key`, which identifies it within a collection. The `_id` is a computed property, a concatenation of the collection name, a forward slash `/` and the document key. It uniquely identies a document within a database. `_rev` is a revision ID managed by the system.
+The document features the five attributes you stored, plus three more added by the database system. Each document needs a unique `_key`, which identifies it within a collection. Document keys can be provided by the user upon document creation, or a unique value is assigned automatically. Once created, document keys cannot be changed.
 
-Document keys can be provided by the user upon document creation, or a unique value is assigned automatically. It can not be changed later. All three system attributes starting with an underscore `_` are read-only.
+All three system attributes starting with an underscore `_` are read-only. The `_id` is a computed property, a concatenation of the collection name, a forward slash `/` and the document key. It uniquely identies a document within a database. `_rev` is a revision ID managed by the system.
 
-We can use either the document key or the document ID to retrieve a specific document with the help of a C8QL function `DOCUMENT()`:
+#### Read specific documents
 
-```js
-RETURN DOCUMENT("Characters", "2861650")
-// --- or ---
-RETURN DOCUMENT("Characters/2861650")
-```
+You can use either the document key or the document ID to retrieve a specific document with the help of a C8QL function [DOCUMENT()](functions/document.md).
+
+:::note
+Document keys will be different for you. Update the queries accordingly.
+:::  
+
+##### Read one specific document
+
+1. Click **New Query**.
+2. Copy and paste one of the following commands in the editor. Notice that the command includes the collection name and a document key.
+
+  ```js
+  RETURN DOCUMENT("Characters", "2861650")
+  // --- or ---
+  RETURN DOCUMENT("Characters/2861650")
+  ```
+
+1. Replace the document key with one from the results of the previous query.
+1. Click **Run Query**.
+
+Macrometa returns something like this:
 
 ```json
 [
@@ -250,17 +279,23 @@ RETURN DOCUMENT("Characters/2861650")
 ]
 ```
 
-:::note
-Document keys will be different for you. Change the queries accordingly. Here, `"2861650"` is the key for the `Ned Stark` document, and `"2861653"` for `Catelyn Stark`.
-:::  
+##### Read multiple specific documents
 
-The `DOCUMENT()` function also allows to fetch multiple documents at once:
+The `DOCUMENT()` function also allows you to fetch multiple documents at once.
 
-```js
-RETURN DOCUMENT("Characters", ["2861650", "2861653"])
-// --- or ---
-RETURN DOCUMENT(["Characters/2861650", "Characters/2861653"])
-```
+1. Click **New Query**.
+1. Copy and paste one of the following commands in the editor.
+
+  ```js
+  RETURN DOCUMENT("Characters", ["2861650", "2861653"])
+  // --- or ---
+  RETURN DOCUMENT(["Characters/2861650", "Characters/2861653"])
+  ```
+
+1. Replace the document keys with keys from the results of the previous query.
+1. Click **Run Query**.
+
+Macrometa returns something like this:
 
 ```json
 [
@@ -289,11 +324,17 @@ RETURN DOCUMENT(["Characters/2861650", "Characters/2861653"])
 ]
 ```
 
-See the [`DOCUMENT()`](./functions/miscellaneous#document) documentation for more details.
+For more information, refer to the [DOCUMENT()](functions/document.md) function documentation.
 
 ### Update documents
 
-According to our `Ned Stark` document, he is alive. When we get to know that he died, we need to change the `alive` attribute. Let us modify the existing document:
+With C8QL queries, you can update specific documents or all documents. This section demonstrates both methods.
+
+#### Update a single document
+
+According to the `Ned Stark` document, he is alive. Because he died by the end of the season, you need to change the `alive` attribute in the existing document.
+
+1. 
 
 ```js
 UPDATE "2861650" WITH { alive: false } IN Characters
