@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 10
 title: C8QL Tutorial Part 2
 ---
 
