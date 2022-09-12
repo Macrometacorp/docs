@@ -408,3 +408,7 @@ Macrometa deletes all documents and returns an empty list. To view the results, 
 :::important
 Re-run the [insert queries](#create-documents) at the top with all character documents before you continue with the next chapter, to have data to work with again. And don't forget good, old Ned Stark! We're not through picking on him.
 :::
+
+## Next Steps
+
+Great job! You have created a collection and performed basic CRUD operations. When you're ready, continue the tutorial in [Part 2 - Match and Filter Documents](match-and-filter.md).
