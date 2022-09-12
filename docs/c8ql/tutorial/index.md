@@ -43,14 +43,4 @@ This small collection of eight locations comes with two attributes, a _name_ and
 
 ![Locations_Table](/img/c8ql/tutorial/Locations_Table.png)
 
-## Create the Characters Collection
 
-Before we can insert documents with C8QL, we need a place to put them in: a collection.
-
-For this tutorial, [Create a Document Store collection](../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../collections/index.md).
-
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Collections**.
-3. Click **New Collection**.
-4. Click **Document Store**.
-5. Name the collection **Characters** and then click **Create**.

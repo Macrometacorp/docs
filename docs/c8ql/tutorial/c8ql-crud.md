@@ -1,24 +1,29 @@
 ---
 sidebar_position: 10
-title: C8QL Tutorial Part 2
+title: Part 1 - Basic Document Tasks
 ---
 
-# C8QL Tutorial Part 2: Basic Document Tasks
+You can perform basic document tasks such as create, read, update, and delete (CRUD) on documents in a collection. This portion of the tutorial guides you through those tasks.
 
-Now you can perform basic document tasks (CRUD tasks).
+## Create the Characters Collection
 
-- [Create documents](#create-documents)
-- [Read documents](#read-documents)
-- [Update documents](#update-documents)
-- [Delete documents](#delete-documents)
+Before we can insert documents with C8QL, we need a place to put them in: a collection.
 
-### Create Documents
+For this tutorial, [Create a Document Store collection](../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../collections/index.md).
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **Collections**.
+1. Click **New Collection**.
+1. Click **Document Store**.
+1. Name the collection **Characters** and then click **Create**.
+
+## Create Documents
 
 You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](../operations/insert.md) operation and [Queries and Query Workers](../../queryworkers/index.md).
 
 For more information about this task, refer to [Add Documents to a Collection](../../collections/documents/add-document.md).
 
-#### Add One Document to the Collection
+### Add One Document to the Collection
 
 Add one document to the collection with a query.
 
@@ -41,7 +46,7 @@ Macrometa returns an empty list, because the query did not [RETURN](../operation
 
 If you want to see your new record, click **Collections** and then click **Characters**. Your brand new Ned Stark record is right there.
 
-#### Explanation of Adding One Document
+### Explanation of Adding One Document
 
 The syntax for this query is `INSERT document INTO collectionName`. The document is an object like you may know it from JavaScript or JSON, which is comprised of attribute key and value pairs. The quotes around the attribute keys are optional in C8QL. Keys are always character sequences (strings), whereas attribute values can have different types:
 
@@ -54,7 +59,7 @@ The syntax for this query is `INSERT document INTO collectionName`. The document
 
 Name and surname of the character document we inserted are both string values. The alive state uses a boolean. Age is a numeric value. The traits are an array of strings. The entire document is an object.
 
-#### Add Multiple Documents to the Collection
+### Add Multiple Documents to the Collection
 
 Let's add the rest of our characters with a single query. If you are familiar with FOR loops iterating through lists, this will be very familiar.
 
@@ -116,7 +121,7 @@ Let's add the rest of our characters with a single query. If you are familiar wi
 
 Macrometa returns an empty list. As before, you can manually look at the records in the **Collections** screen, or retrieve them with queries in the next section.
 
-#### Explanation of Adding Multiple Documents
+### Explanation of Adding Multiple Documents
 
 The `LET` keyword defines a variable with name _data_ and an array of objects as value, so `LET variableName = valueExpression` and the expression being a literal array definition like `[ {...}, {...}, ... ]`.
 
@@ -145,11 +150,11 @@ INSERT {
 C8QL does not permit multiple `INSERT` operations that target the same collection in a single query. It is allowed as body of a `FOR` loop however, inserting multiple documents like you did in the above query.
 :::
 
-### Read Documents
+## Read Documents
 
 With C8QL queries, you can retrieve all documents or specific documents. This section demonstrates both methods.
 
-#### Read All Documents
+### Read All Documents
 
 You can retrieve documents (characters) in the _Characters_ collection by using a `FOR` loop again. This time however, we use it to go through all documents in the collection instead of an array.
 
@@ -165,7 +170,7 @@ You can retrieve documents (characters) in the _Characters_ collection by using 
 
 Macrometa lists all records in the Query Result.
 
-#### Explanation of Reading All Documents
+### Explanation of Reading All Documents
 
 The syntax of the loop is `FOR variableName IN collectionName`. For each document in the collection, _c_ is assigned a document, which is then returned as per the loop body. The query returns all characters that were previously stored.
 
@@ -188,7 +193,7 @@ The document features the five attributes you stored, plus three more added by t
 
 All three system attributes starting with an underscore `_` are read-only. The `_id` is a computed property, a concatenation of the collection name, a forward slash `/` and the document key. It uniquely identies a document within a database. `_rev` is a revision ID managed by the system.
 
-#### Read Specific Documents
+### Read Specific Documents
 
 You can use either the document key or the document ID to retrieve a specific document with the help of a C8QL function [DOCUMENT()](../functions/document.md).
 
@@ -196,7 +201,7 @@ You can use either the document key or the document ID to retrieve a specific do
 Document keys will be different for you. Update the queries accordingly.
 :::  
 
-##### Read One Specific Document
+#### Read One Specific Document
 
 1. Click **New Query**.
 2. Copy and paste one of the following commands in the editor. Notice that the command includes the collection name and a document key.
@@ -227,7 +232,7 @@ Macrometa returns something like this:
 ]
 ```
 
-##### Read Multiple Specific Documents
+#### Read Multiple Specific Documents
 
 The `DOCUMENT()` function also allows you to fetch multiple documents at once.
 
@@ -274,11 +279,11 @@ Macrometa returns something like this:
 
 For more information, refer to the [DOCUMENT()](../functions/document.md) function documentation.
 
-### Update Documents
+## Update Documents
 
 With C8QL queries, you can update specific documents or all documents. This section demonstrates both methods.
 
-#### Update a Single Document
+### Update a Single Document
 
 According to the `Ned Stark` document, he is alive. Because he died by the end of the season, you need to change the `alive` attribute in the existing document.
 
@@ -295,7 +300,7 @@ According to the `Ned Stark` document, he is alive. Because he died by the end o
 
 Macrometa updates the record and returns an empty list. To see the update, you can run one of the read queries from the previous section.
 
-#### Explanation of Updating a Single Document
+### Explanation of Updating a Single Document
 
 The syntax is `UPDATE documentKey WITH object IN collectionName`. It updates the specified document with the attributes listed (or adds them if they don't exist), but leaves the rest untouched. To replace the entire document content, you can use `REPLACE` instead of `UPDATE`:
 
@@ -309,7 +314,7 @@ REPLACE "2861650" WITH {
 } IN Characters
 ```
 
-#### Update All Documents
+### Update All Documents
 
 To add a new attribute to all documents, you might run the previous command for updating a single document with a FOR loop. A variable is used instead of a literal document key, to update each document. The query adds an attribute `season` to the documents' top-level.
 
@@ -364,11 +369,11 @@ Records now have a `season` attribute.
 ]
 ```
 
-### Delete Documents
+## Delete Documents
 
 With C8QL queries, you can delete specific documents or all documents. This section demonstrates both methods.
 
-#### Delete Specific Documents
+### Delete Specific Documents
 
 To fully remove documents from a collection, there is the `REMOVE` operation. It works similar to the other modification operations, but without a `WITH` clause.
 
@@ -384,7 +389,7 @@ To fully remove documents from a collection, there is the `REMOVE` operation. It
 
 Macrometa deletes the document and returns an empty list.
 
-#### Delete All Documents
+### Delete All Documents
 
 You can also use `REMOVE` in a loop body to effectively truncate a collection, removing all records without deleting the collection.
 
