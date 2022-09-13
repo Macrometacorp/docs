@@ -1,12 +1,6 @@
-
-
 ## Basic Document Tasks
 
-
-
 ## Match and Filter Documents
-
-
 
 ## Sorting and limiting
 
