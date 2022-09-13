@@ -13,7 +13,7 @@ For more information, refer to [FILTER](../operations/filter.md) operation docum
 
 In the previous section, we provided step-by-step instructions for every query. In this section, we provide code blocks that you can experiment with. You can paste them in your query editor as-is, but we encourage you to experiment with them. You will learn more if you play around and try your own queries based on our examples.
 
-### Equality condition
+### Equality Condition
 
 The first condition we will explore is equality. You can write a query to return documents that exactly match criteria.
 
@@ -56,7 +56,7 @@ This query returns a much more manageable list:
 
 For fun, run the above query again, but return `{ name: c.name, age: c.age }` instead of `c.name`.
 
-### Range conditions
+### Range Conditions
 
 You can also search for documents with attributes that fall within a range of values. For example, you could ask for all older characters:
 
@@ -109,9 +109,9 @@ You might notice that it returns name and age of 30 characters, most with an age
 
 Because `null` compares to numbers as lower, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`). For more information, refer to [Type and Value Order](../type-and-value-order.md).
 
-### Multiple conditions
+### Multiple Conditions
 
-To not let documents pass the filter without an age attribute, we can add a second criterion:
+Those null values are really messing up the query. You can filter out documents without an age attribute if you add a second criterion:
 
 ```js
 FOR c IN Characters
@@ -120,6 +120,8 @@ FOR c IN Characters
     RETURN { name: c.name, age: c.age }
 ```
 
+The results of this query do not contain any null ages.
+
 ```json
 [
   { "name": "Arya", "age": 11 },
@@ -127,7 +129,7 @@ FOR c IN Characters
 ]
 ```
 
-This could equally be written with a boolean `AND` operator as:
+You can get the same results with a boolean `AND` operator:
 
 ```js
 FOR c IN Characters
@@ -135,9 +137,17 @@ FOR c IN Characters
     RETURN { name: c.name, age: c.age }
 ```
 
-And the second condition could as well be `c.age > null`.
+Or you could write it as:
 
-### Alternative conditions
+```js
+FOR c IN Characters
+    FILTER c.age < 13 AND c.age > null
+    RETURN { name: c.name, age: c.age }
+```
+
+Try this out! Maybe write a query with a lower age limit and an upper age limit?
+
+### Alternative Conditions
 
 If you want documents to fulfill one or another condition, possibly for different attributes as well, use `OR`:
 
@@ -147,6 +157,8 @@ FOR c IN Characters
     RETURN { name: c.name, surname: c.surname }
 ```
 
+This returns characters named Jon or named Joffrey.
+
 ```json
 [
   { "name": "Joffrey", "surname": "Baratheon" },
@@ -154,14 +166,8 @@ FOR c IN Characters
 ]
 ```
 
-See more details about [Filter operations](../operations/filter.md).
-
-
-
-
-
-
+For more informations, refer to [Filter operations](../operations/filter.md).
 
 ## Next Steps
 
-Great job! You have XXX. When you're ready, continue the tutorial in [Part 3 - xxx](sort-and-limit.md).
+Great job! You can now query your collection for documents based on conditions. When you're ready, continue the tutorial in [Part 3 - Sort and Limit](sort-and-limit.md).
