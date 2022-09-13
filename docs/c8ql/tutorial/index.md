@@ -50,8 +50,8 @@ This tutorial guides you through several sets of tasks. To get the most out of t
 Enjoy and have fun!
 
 - [Part 1 - Basic Document Tasks](c8ql-crud.md)
-- [Part 2 - Match and Filter Documents](match-and-filter.md)
-- [Part 3 - Sorting and Limiting]
+- [Part 2 - Match and Filter](match-and-filter.md)
+- [Part 3 - Sort and Limit](sort-and-limit.md)
 - [Part 4 - Joining]
 - [Part 5 - Graph Traversal]
 - [Part 6 - Geospatial Queries]
