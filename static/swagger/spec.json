@@ -22,6 +22,12 @@
       "ApiKeyAuth": []
     }
   ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "definitions": {
     "document_get_412": {
       "properties": {
@@ -12627,7 +12633,6 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "type": "object",
               "example": [
                 {
                   "_key": "key1",
@@ -12763,10 +12768,6 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "object"
-              },
               "example": [
                 {
                   "item1": "data1"
@@ -12893,7 +12894,6 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "type": "object",
               "example": [
                 {
                   "_key": "key1",
@@ -13246,7 +13246,6 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "type": "object",
               "example": {
                 "_key": "key1",
                 "item1": "data1"
@@ -13388,7 +13387,6 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "type": "object",
               "example": {
                 "item1": "data1"
               }
@@ -16034,7 +16032,6 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "type": "object",
               "example": {
                 "data": 1234
               }
@@ -16428,7 +16425,6 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "type": "object",
               "example": {
                 "collection": "demo1"
               }
@@ -16734,7 +16730,6 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "type": "object",
               "example": {
                 "data": "demo1"
               }
@@ -16854,7 +16849,6 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "type": "object",
               "example": {
                 "data": "demo1"
               }
