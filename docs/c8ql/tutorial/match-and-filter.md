@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-title: Part 2 - Match and Filter Documents
+title: Part 2 - Match and Filter
 ---
 
 This section explains how to query for documents based on certain conditions.
