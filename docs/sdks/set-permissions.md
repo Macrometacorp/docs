@@ -18,44 +18,92 @@ Set permissions for various assets.
 <TabItem value="js" label="Javascript">
 
 ```js
-// Set Access Level for an API Key
-// Create Colleciton
-var coll = await client.getCollections();
-var collectionName = 'testCollection'
-var streamName = 'testStream'
-console.log("Existing Collections: ", coll.result)
-try{
-    await client.createCollection(collectionName);
-    console.log("Collection Created Successfully")
+const jsc8 = require("jsc8");
+
+// Email and Password to Authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const keyid = "id1";
+const collectionName = "testCollection";
+const streamName = "testStream";
+
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with a API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
 }
-catch(e){
-    console.log("Collection creation did not succeed due to " + e)
+async function main () {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => error);
+
+  console.log("\n2. Listing Collections");
+  await client
+    .getCollections()
+    .then((collections) => {
+      console.log(collections);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n3. Creating Collection");
+  await client
+    .createCollection(collectionName)
+    .then((collection) => {
+      console.log("Collection Created Successfully");
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n4. Setting collection access level access level to read write");
+  await client
+    .setCollectionAccessLevel(keyid, fabric, collectionName, "rw")
+    .then((collectionAccessLevel) => {
+      console.log(collectionAccessLevel);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n5. Creating Stream " + streamName);
+  await client
+    .createStream(streamName)
+    .then((stream) => console.log(stream))
+    .catch((error) => messageHandler(error));
+
+  console.log(
+    "\n6. Setting Stream " + streamName + " access level to read only"
+  );
+  await client
+    .setStreamAccessLevel(keyid, fabric, "c8globals." + streamName, "ro")
+    .then((streamAccessLevel) => console.log(streamAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log(
+    "\n7. Setting Database " +
+      fabric +
+      " access level to read write for Key_ID " +
+      keyid
+  );
+  await client
+    .setDatabaseAccessLevel(keyid, fabric, "rw")
+    .then((databaseAccessLevel) => console.log(databaseAccessLevel))
+    .catch((error) => messageHandler(error));
 }
-try{
-    await client.setCollectionAccessLevel(keyid, '_system', collectionName, 'rw')
-}
-catch(e){
-    console.log("Failed to set Collection Access Level: ",e)
-}
-// Create stream
-try{
-    await client.createStream(streamName)
-}
-catch(e){
-    console.log("Stream Creation Failed: ",e)
-}
-try{
-    await client.setStreamAccessLevel(keyid, '_system', "c8globals."+streamName, 'ro')
-}
-catch(e){
-    console.log("Failed to set Stream Access Level: ",e)
-}
-try{
-    await client.setDatabaseAccessLevel(keyid, '_system', 'rw')
-}
-catch(e){
-    console.log("Failed to set Database Access Level: ",e)
-}
+
+main()
+  .then()
+  .catch((error) => console.log(error));
+
 ```
 
 </TabItem>
