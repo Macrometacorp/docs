@@ -12,26 +12,65 @@ import TabItem from '@theme/TabItem';
 Get all accessible resources.
 
 ```js
-//Fetch accessible databases
-try{
-    var databases = await client.listAccessibleDatabases(keyid)
-    console.log("Accessible Databases")
-    console.log(databases.result)
-}
-catch(e){
-    console.log('Failed to fetch accessible dataases: ', e);
+const jsc8 = require("jsc8");
 
-}
-// Fetch accessible streams
-try{
-    streams = await client.listAccessibleStreams(keyid, '_system', full=false)
-    console.log("Accessible Streams")
-    console.log(streams.result)
-}
-catch(e){
-    console.log('Failed to fetch accessible streams: ', e);
+// Email and Password to Authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const keyid = "id1";
 
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with a API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+function messageHandler(error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
 }
+async function main() {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => error);
+
+  console.log("\n2. Listing accessible Databases for Key_ID = " + keyid);
+  await client
+    .listAccessibleDatabases(keyid)
+    .then((databases) => {
+      console.log(databases.result);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n3. Listing accesible Streams for Key_ID = " + keyid);
+  await client
+    .listAccessibleStreams(keyid, fabric, (full = false))
+    .then((streams) => {
+      console.log(streams.result);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n4. Listing accesible Collections for Key_ID = " + keyid);
+  await client
+    .listAccessibleCollections(keyid, fabric, (full = false))
+    .then((collections) => {
+      console.log(collections.result);
+    })
+    .catch((error) => messageHandler(error));
+}
+
+main()
+  .then()
+  .catch((error) => console.log(error));
+
 ```
 
 </TabItem>
