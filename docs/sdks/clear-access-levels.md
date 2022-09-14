@@ -10,26 +10,63 @@ import TabItem from '@theme/TabItem';
 <TabItem value="js" label="Javascript">
 
 ```js
-// Clear Access Level
-try{
-    await client.clearDatabaseAccessLevel(keyid, '_system')
-}
-catch(e){
-    console.log("Clearing Access Level for Database Failed: ",e)
-}
-try{
-    await client.clearStreamAccessLevel(keyid, '_system', "c8globals."+streamName)
+const jsc8 = require("jsc8");
 
+// Email and Password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const keyid = "id1";
+const collectionName = "testCollection";
+const streamName = "testStream";
+
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with a API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
 }
-catch(e){
-    console.log("Clearing Access Level for Stream Failed: ",e)
+
+async function main () {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => error);
+
+  console.log("\n2. Deleting database access level for Key_ID = " + keyid);
+  await client
+    .clearDatabaseAccessLevel(keyid, fabric)
+    .then((databaseAccessLevel) => console.log(databaseAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n3. Deleting stream access level for Key_ID = " + keyid);
+  await client
+    .clearStreamAccessLevel(keyid, fabric, "c8globals." + streamName)
+    .then((streamAccessLevel) => console.log(streamAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n4. Deleting collection access level for Key_ID = " + keyid);
+  await client
+    .clearCollectionAccessLevel(keyid, fabric, collectionName)
+    .then((collectionAccessLevel) => console.log(collectionAccessLevel))
+    .catch((error) => messageHandler(error));
 }
-try{
-    await client.clearCollectionAccessLevel(keyid, '_system', collectionName)
-}
-catch(e){
-    console.log("Clearing Access Level for Collection Failed: ",e)
-}
+
+main()
+  .then()
+  .catch((error) => console.log(error));
 ```
 
 </TabItem>
