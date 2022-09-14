@@ -81,7 +81,7 @@ There are two options for accessing the nested data.
   }
   ```
 
-  This option is more optimized because it will only index on the specified fields, `subLevelField` in this case. The first option could be a good choice if you may add more sub-fields in the future.
+  This option is more optimized because it only indexes the specified fields, `subLevelField` in this case. The first option could be a good choice if you may add more sub-fields in the future.
 
 ## Example
 
