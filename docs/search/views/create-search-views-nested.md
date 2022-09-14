@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Create a Search View with Nested Fields
 ---
 
-In the GDN console, you can only create search views for top-level fields. If you want to create search views for lower-level fields, you can use the GDN API with JSON.
+If you want to create search views for lower-level fields, you can use the GDN API with JSON.
 
 :::note
 
@@ -19,9 +19,9 @@ Create a search view by making a call to this GDN API endpoint:
 
 Create a JSON object with these fields:
 
-- `links` (object):
+- `links` (object): An array with the following values:
 
-  - `collection-name` (string): 
+  - `testCollection` (string): Replace `testCollection` with the a name for your collection.
 
     - `analyzers` (array of strings): The list of analyzers to be used for indexing of string values (default: ["identity"]).
 
@@ -29,21 +29,17 @@ Create a JSON object with these fields:
 
       - `field-name` (object/string): This is a recursive structure for the specific attribute path, potentially containing any of the following attributes: analyzers, include all fields, trackListPositions, storeValuesAny attributes not specified are inherited from the parent.
 
-  - `includeAllFields` (boolean): A flag that determines whether or not to index all fields on a particular level of depth (default: false).
+  - `includeAllFields` (boolean): A flag that determines whether or not to index all fields on a particular level of depth (default: `false`).
 
-  - `trackListPositions` (boolean): A flag that determines whether or not values in a list should be treated separately (default: false).
+  - `trackListPositions` (boolean): A flag that determines whether or not values in a list should be treated separately (default: `false`).
 
-  - `storeValues`: How should the view track the attribute values, this setting allows for additional value retrieval optimizations, one of:
+  - `storeValues`: Method of tracking attribute values. Set to `id` to store values and enable the `EXISTS()` function, or set to `none` to disable (default: `none`).
 
-  - `none`: Do not store values by the view
-
-  - `id`: Store only information about value presence, to allow the use of the EXISTS() function(default "none")
-
-- `name` (string): The name of the view.
+- `name` (string): The name of the search view.
 
 - `primarySort` (array of strings): The default sort for the view.
 
-- `type`: The type of the view. The value must be "search".
+- `type`: Must be `search`.
 
 
 
@@ -70,11 +66,9 @@ Create a JSON object with these fields:
 }
 ```
 
-## 
-
 There are two options for accessing the nested data.
 
-- Use the top-level field and set the includeAllFields parameter to true. When the view is created all sub-fields of the top-level field will be included. As previously stated, the default value is false.
+- Use the top-level field and set the `includeAllFields` parameter to `true`. Once created, the seach view will include all sub-fields of the top-level field.
   `"includeAllFields": true`
 - Set a path to the sub-field. The following example demonstrates how to set a path to the following nested field `topLevelField.subLevelField`.
   ```json
