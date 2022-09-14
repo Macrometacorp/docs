@@ -44,32 +44,58 @@ The below example shows the steps for connecting a fabric and then creating a co
 <TabItem value="js" label="Javascript SDK">
 
 ```js
-  const jsc8 = require("jsc8");
+const jsc8 = require("jsc8");
 
-  // Create an authenticated instance with a token or API key.
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Email and Password to Authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const collectionName = "employees";
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
 
-  // Or use Email and Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with a API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
+}
 
-  async function createCollection() {
-    await console.log("Creating the collection employees under demoFabric...");
-    let collectionDetails;
-    try{
-      collectionDetails = await client.createCollection('employees'); 
-      await console.log("The collection details are: ", collectionDetails);
-    } catch(e){
-      return "Collection creation did not succeed due to " + e;
-    }
+async function createCollection () {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => error);
 
-    return "Collection " + collectionDetails.name + " created successfully";  
-  }
+  console.log("2. Creating collection employees in " + fabric + " fabric");
+  await client
+    .createCollection(collectionName, {
+      stream: true,
+      waitForSync: false,
+      isLocal: false
+    })
+    .then((collectionDetails) => {
+      console.log(
+        "Collection " + collectionDetails.name + " created successfully"
+      );
+      console.log(collectionDetails);
+    })
+    .catch((error) => messageHandler(error));
+}
 
-  createCollection().then(console.log);
+createCollection()
+  .then()
+  .catch((error) => console.log(error));
 ```
 
 </TabItem>
