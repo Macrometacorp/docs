@@ -162,7 +162,7 @@ async function main () {
     })
     .catch((error) => messageHandler(error));
 
-  console.log("\n8. Creating Stream " + streamName);
+  console.log("\n8. Creating stream " + streamName);
   await client
     .createStream(streamName)
     .then((stream) => console.log(stream))
