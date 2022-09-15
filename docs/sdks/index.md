@@ -91,7 +91,7 @@ const client = new jsc8({
   fabricName: fabric
 });
 
-// Or Create an authenticated instance with a token or API key.
+// Or create an authenticated instance with a token or API key.
 // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: fabric});
 // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: fabric});
 // console.log("Authentication done!");
