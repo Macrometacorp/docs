@@ -52,7 +52,7 @@ async function main () {
     .then((e) => console.log("1. User authentication done!"))
     .catch((error) => error);
 
-  console.log("\n2. Listing Collections");
+  console.log("\n2. Listing collections");
   await client
     .getCollections()
     .then((collections) => {
