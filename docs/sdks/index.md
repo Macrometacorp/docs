@@ -130,7 +130,7 @@ async function main () {
     })
     .catch((error) => messageHandler(error));
 
-  console.log("\n4. Listing accesible Streams for Key_ID = " + keyid);
+  console.log("\n4. Listing accessible streams for Key_ID = " + keyid);
   await client
     .listAccessibleStreams(keyid, fabric, (full = false))
     .then((streams) => {
