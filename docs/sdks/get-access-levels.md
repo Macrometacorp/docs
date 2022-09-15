@@ -19,7 +19,7 @@ const keyid = "id1";
 const collectionName = "testCollection";
 const streamName = "testStream";
 
-// Email and Password to authenticate client instance
+// Email and password to authenticate client instance
 const client = new jsc8({
   url: "https://gdn.paas.macrometa.io",
   fabricName: fabric
