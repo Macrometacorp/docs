@@ -5,7 +5,7 @@ title: Part 3 - Sort and Limit
 
 This section explains how to sort and limit your query results.
 
-## Cap the result count
+## Limit the Result Count
 
 It might not always be necessary to return all documents that a `FOR` loop would normally return. In those cases, you can limit the amount of documents with a `LIMIT()` operation. For more information, refer to [LIMIT()](../operations/limit.md) operation documentation.
 
@@ -49,7 +49,7 @@ The second query skips the first two names and returns the next five. Both resul
 ]
 ```
 
-## Sort by name
+## Sort by Name
 
 The order in which matching records were returned by the queries shown until now was basically random. To return them in a defined order, you can add a `SORT()` operation. It can have a big impact on the result if combined with a `LIMIT()`, because the result becomes predictable if you sort first. For more information, refer to [SORT()](../operations/sort.md) operation documentation.
 
@@ -107,7 +107,7 @@ The list of ten names is returned in descending order, which means you get the f
 
 The first sort was ascending, which is the default order. Because it is the default, it is not required to explicitly ask for `ASC` order.
 
-## Sort by multiple attributes
+## Sort by Multiple Attributes
 
 What if you want to sort by surname? Many of the characters share a surname. The result order among characters with the same surname is undefined. You can first sort by surname, then name to determine the order:
 
@@ -141,7 +141,7 @@ Overall, the documents are sorted by last name. If the _surname_ is the same for
 
 Note that a filter is applied before sorting, to only let documents through, that actually feature a surname value (many don't have it and would cause `null` values in the result).
 
-## Sort by age
+## Sort by Age
 
 The order can also be determined by a numeric value, such as the age:
 
