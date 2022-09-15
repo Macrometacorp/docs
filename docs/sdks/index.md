@@ -177,7 +177,7 @@ async function main () {
     .catch((error) => messageHandler(error));
 
   console.log(
-    "\n10. Setting Database " + fabric + " access level to read write for Key_ID " +
+    "\n10. Setting database " + fabric + " access level to read write for Key_ID " +
       keyid
   );
   await client
