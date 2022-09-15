@@ -110,7 +110,7 @@ async function main () {
     .login(email, password)
     .then((e) => console.log("User authentication done!"))
     .catch((error) => error);
-  console.log("1. Creating API Key with KeyID = " + keyid);
+  console.log("1. Creating API key with KeyID = " + keyid);
   await client
     .createApiKey(keyid)
     .then((apiKey) => console.log(apiKey))
