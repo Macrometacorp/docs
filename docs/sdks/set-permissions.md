@@ -83,7 +83,7 @@ async function main () {
     .catch((error) => messageHandler(error));
 
   console.log(
-    "\n6. Setting Stream " + streamName + " access level to read only"
+    "\n6. Setting stream " + streamName + " access level to read only"
   );
   await client
     .setStreamAccessLevel(keyid, fabric, "c8globals." + streamName, "ro")
