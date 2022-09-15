@@ -5,28 +5,26 @@ title: Part 4 - Import and Merge
 
 This section explains how to use queries to combine information in collections.
 
-## References to other documents
+## References to Other Documents
 
-The character data we imported has an attribute _traits_ for each character, which is an array of strings. It does not store character features directly however:
+The character data you imported has an attribute _traits_ for each character, which is an array of strings. It does not store character features directly, however. Instead, it lists letters that represent traits. For example, Ned Stark has five traits.
 
 ```json
 {
     "name": "Ned",
-    "surname": "Stark",
-    "alive": false,
-    "age": 41,
+    ...
     "traits": ["A","H","C","N","P"]
 }
 ```
 
-It is rather a list of letters without an apparent meaning. The idea here is that _traits_ is supposed to store documents keys of another collection, which we can use to resolve the letters to labels such as "strong". The benefit of using another collection for the actual traits is, that we can easily query for all existing traits later on and store labels in multiple languages for instance in a central place. If we would embed traits directly...
+The idea here is that _traits_ is supposed to store documents keys of another collection, which you can use to resolve the letters to labels such as "strong". By using another collection for the actual traits, you can easily query for all existing traits later on and store labels in multiple languages for instance in a central place. If you embedded traits directly, it becomes unmanageable.
+
+Here's Ned Stark with his traits written out:
 
 ```json
 {
     "name": "Ned",
-    "surname": "Stark",
-    "alive": false,
-    "age": 41,
+    ...
     "traits": [
         {
             "de": "stark",
@@ -52,18 +50,18 @@ It is rather a list of letters without an apparent meaning. The idea here is tha
 }
 ```
 
-... it becomes really hard to maintain traits. If you were to rename or translate one of them, you would need to find all other character documents with the same trait and perform the changes there too. If we only refer to a trait in another collection, it is as easy as updating a single document.
+ If you were to rename or translate one trait, then you would need to find all other character documents with the same trait and perform the changes there too. If you only refer to a trait in another collection, then you just need to update one record in a single document.
 
 ![Comparison_DataModels](/img/c8ql/tutorial/Comparison_DataModels.png)
 
-## Importing traits
+## Import Traits Data
 
-Below you find the traits data. Follow the pattern shown in [Create documents](#create-documents) to import it:
+Below you find the traits data. Follow the pattern shown in [Create Documents](c8ql-crud.md#create-documents) to import it:
 
-- Create a document collection named **Traits**.
-- Assign the data to a variable in C8QL, `LET data = [ ... ]`.
-- Use a `FOR` loop to iterate over each array element of the data.
-- `INSERT` the element `INTO Traits`.
+1. Create a document collection named **Traits**.
+1. Assign the data to a variable in C8QL, `LET data = [ ... ]`.
+1. Use a `FOR` loop to iterate over each array element of the data.
+1. `INSERT` the element `INTO Traits`.
 
 ```json
 [
@@ -88,7 +86,7 @@ Below you find the traits data. Follow the pattern shown in [Create documents](#
 ]
 ```
 
-## Resolving traits
+## Resolving Traits
 
 Let's start simple by returning only the traits attribute of each character:
 
@@ -105,12 +103,14 @@ FOR c IN Characters
 ]
 ```
 
-We can use the _traits_ array together with the `DOCUMENT()` function to use the elements as document keys and look up them up in the _Traits_ collection:
+You can use the _traits_ array together with the `DOCUMENT()` function to use the elements as document keys and look up them up in the _Traits_ collection:
 
 ```js
 FOR c IN Characters
     RETURN DOCUMENT("Traits", c.traits)
 ```
+
+The results return a Trait document with all fields for each trait for each character. Here is part of the first one:
 
 ```json
 [
@@ -159,20 +159,6 @@ FOR c IN Characters
       "en": "beautiful",
       "de": "schön"
     },
-    {
-      "_key": "H",
-      "_id": "Traits/H",
-      "_rev": "_V5oRUS6--E",
-      "en": "powerful",
-      "de": "einflussreich"
-    },
-    {
-      "_key": "C",
-      "_id": "Traits/C",
-      "_rev": "_V5oRUS6--_",
-      "en": "loyal",
-      "de": "loyal"
-    }
   ],
   ...
 ]
@@ -184,6 +170,8 @@ This is a bit too much information, so let's only return English labels using th
 FOR c IN Characters
     RETURN DOCUMENT("Traits", c.traits)[*].en
 ```
+
+The results list just the English labels for each character:
 
 ```json
 [
@@ -203,7 +191,7 @@ FOR c IN Characters
 ]
 ```
 
-## Merging characters and traits
+## Merging Characters and Traits
 
 Great, we resolved the letters to meaningful traits! But we also need to know to which character they belong. Thus, we need to merge both the character document and the data from trait document:
 
