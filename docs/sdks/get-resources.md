@@ -24,6 +24,8 @@ const client = new jsc8({
   url: "https://gdn.paas.macrometa.io",
   fabricName: fabric
 });
+// Choose one of the following authentication methods and remove the commenting.
+
 // Create an authenticated instance with a JWT token.
 // const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with a API key.
