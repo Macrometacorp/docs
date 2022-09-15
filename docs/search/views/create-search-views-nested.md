@@ -66,7 +66,7 @@ Create a JSON object with these fields:
 }
 ```
 
-There are two options for accessing the nested data.
+There are two options for accessing the nested data:
 
 - Use the top-level field and set the `includeAllFields` parameter to `true`. Once created, the seach view will include all sub-fields of the top-level field.
   `"includeAllFields": true`
