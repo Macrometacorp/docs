@@ -1,6 +1,6 @@
 ---
 sidebar_position: 40
-title: Part 4 - Import and Merge
+title: Part 4 - Import Traits and Merge
 ---
 
 This section explains how to use queries to combine information in collections.
