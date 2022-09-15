@@ -5,7 +5,7 @@ title: Part 4 - Import and Merge
 
 This section explains how to use queries to combine information in collections.
 
-## References to Other Documents
+## References to Other Document Collections
 
 The character data you imported has an attribute _traits_ for each character, which is an array of strings. It does not store character features directly, however. Instead, it lists letters that represent traits. For example, Ned Stark has five traits.
 
@@ -86,7 +86,7 @@ Below you find the traits data. Follow the pattern shown in [Create Documents](c
 ]
 ```
 
-## Resolving Traits
+## Resolve Traits
 
 Let's start simple by returning only the traits attribute of each character:
 
@@ -103,7 +103,7 @@ FOR c IN Characters
 ]
 ```
 
-You can use the _traits_ array together with the `DOCUMENT()` function to use the elements as document keys and look up them up in the _Traits_ collection:
+You can use the _traits_ array together with the `DOCUMENT()` function to use the elements as document keys and look up them up in the Traits collection:
 
 ```js
 FOR c IN Characters
@@ -191,14 +191,16 @@ The results list just the English labels for each character:
 ]
 ```
 
-## Merging Characters and Traits
+## Merge Characters and Traits
 
-Great, we resolved the letters to meaningful traits! But we also need to know to which character they belong. Thus, we need to merge both the character document and the data from trait document:
+Great, you resolved the letters to meaningful traits! But which character do they belong to? With the `MERGE()` operation, you can combine the character document and the data from trait document:
 
 ```js
 FOR c IN Characters
     RETURN MERGE(c, { traits: DOCUMENT("Traits", c.traits)[*].en } )
 ```
+
+Results will be similar to the following:
 
 ```json
 [
@@ -236,14 +238,10 @@ FOR c IN Characters
 ]
 ```
 
-The `MERGE()` functions merges objects together. Because we used an object `{ traits: ... }` which has the same attribute name _traits_ as the original character attribute, the latter is overwritten by the merge.
+Because you used an object `{ traits: ... }` which has the same attribute name _traits_ as the original character attribute, the latter is overwritten by the merge.
 
-
-
-
-
-
+For more information, refer to [MERGE()](../functions/document.md#merge).
 
 ## Next Steps
 
-Great job! You can now sort and limit your query results. When you're ready, continue the tutorial in [Part 4 - Joining Together](join.md).
+Great job! You can now combine data from different collections. When you're ready, continue the tutorial in [Part 5 - Graph Traversal](graph-traversal.md).
