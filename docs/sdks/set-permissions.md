@@ -64,7 +64,7 @@ async function main () {
   await client
     .createCollection(collectionName)
     .then((collection) => {
-      console.log("Collection Created Successfully");
+      console.log("Collection created successfully");
     })
     .catch((error) => messageHandler(error));
 
