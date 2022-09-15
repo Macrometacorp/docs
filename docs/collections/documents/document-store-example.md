@@ -851,7 +851,7 @@ async function restqldemo () {
   await client
     .executeRestql("getData")
     .then((res) => {
-      console.log("\n10. Output of get data query after update: ");
+      console.log("\n10. Updated getData query output: ");
       console.log(res.result);
     })
     .catch((error) => messageHandler(error));
