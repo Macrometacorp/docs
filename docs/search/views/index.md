@@ -25,7 +25,7 @@ Indexed collections                 | Unlimited    | 1
 
 Search views guarantee the best execution plan (merge join) when querying multiple attributes.
 
-## Concepts
+## What is a Search View?
 
 A search view represents all documents available in a specified set of source collections. Each search view is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the search view implementation and can be as simple as an identity transformation. 
 
