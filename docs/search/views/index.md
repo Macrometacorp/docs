@@ -8,6 +8,8 @@ We provide _search views_ that enable you to perform fast and sophisticated full
 
 Each search view represents an inverted index that contains the search configuration and all document attributes in the linked collections. A search view index consists of multiple segments that are each treated as a standalone index.
 
+## Search View vs. Full-Text Index
+
 The following table shows a comparison between search views and a full-text index:
 
 Feature                             | Search       | Full-text Index
