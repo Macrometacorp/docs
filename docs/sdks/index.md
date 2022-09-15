@@ -78,7 +78,7 @@ Once the installation process is finished, you can begin developing applications
 ```js
 const jsc8 = require("jsc8");
 
-// Email and Password to Authenticate client instance
+// Email and password to authenticate client instance
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
 const fabric = "_system";
