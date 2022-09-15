@@ -138,7 +138,7 @@ async function main () {
     })
     .catch((error) => messageHandler(error));
 
-  console.log("\n5. Listing Collections");
+  console.log("\n5. Listing collections");
   await client
     .getCollections()
     .then((collections) => {
