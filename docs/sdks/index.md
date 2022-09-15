@@ -116,7 +116,7 @@ async function main () {
     .then((apiKey) => console.log(apiKey))
     .catch((error) => messageHandler(error));
 
-  console.log("\n2. Getting available API Keys");
+  console.log("\n2. Getting available API keys");
   await client
     .getAvailableApiKeys()
     .then((apiKeys) => console.log(apiKeys.result))
