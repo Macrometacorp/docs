@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Create a Search View with Nested Fields
 ---
 
-If you want to create search views for lower-level fields, you can use the GDN API with JSON.
+If you want to create search views for lower-level fields, then you can use the GDN API with JSON.
 
 :::note
 
