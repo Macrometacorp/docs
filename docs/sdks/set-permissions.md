@@ -60,7 +60,7 @@ async function main () {
     })
     .catch((error) => messageHandler(error));
 
-  console.log("\n3. Creating Collection");
+  console.log("\n3. Creating collection");
   await client
     .createCollection(collectionName)
     .then((collection) => {
