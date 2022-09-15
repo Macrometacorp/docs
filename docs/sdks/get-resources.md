@@ -60,7 +60,7 @@ async function main() {
     })
     .catch((error) => messageHandler(error));
 
-  console.log("\n4. Listing accesible Collections for Key_ID = " + keyid);
+  console.log("\n4. Listing accessible collections for Key_ID = " + keyid);
   await client
     .listAccessibleCollections(keyid, fabric, (full = false))
     .then((collections) => {
