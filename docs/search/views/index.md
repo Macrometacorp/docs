@@ -210,7 +210,6 @@ You can set the following optional properties for links:
 	* Type: `boolean`
 	* Default: `false`
 
-
 ## View Properties
 
 Optional properties for Views are divided into the following categories:
