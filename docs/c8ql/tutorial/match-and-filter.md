@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-title: Part 2 - Match and Filter
+title: Part 2 - Filter Results
 ---
 
 This section explains how to query for documents based on certain conditions.
@@ -13,7 +13,7 @@ For more information, refer to [FILTER](../operations/filter.md) operation docum
 
 In the previous section, we provided step-by-step instructions for every query. In this section, we provide code blocks that you can experiment with. You can paste them in your query editor as-is, but we encourage you to experiment with them. You will learn more if you play around and try your own queries based on our examples.
 
-### Equality Condition
+### Filter by Equality Condition
 
 The first condition we will explore is equality. You can write a query to return documents that exactly match criteria.
 
@@ -56,7 +56,7 @@ This query returns a much more manageable list:
 
 For fun, run the above query again, but return `{ name: c.name, age: c.age }` instead of `c.name`.
 
-### Range Conditions
+### Filter by Range Conditions
 
 You can also search for documents with attributes that fall within a range of values. For example, you could ask for all older characters:
 
@@ -109,7 +109,7 @@ You might notice that it returns name and age of 30 characters, most with an age
 
 Because `null` compares to numbers as lower, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`). For more information, refer to [Type and Value Order](../type-and-value-order.md).
 
-### Multiple Conditions
+### Filter by Multiple Conditions
 
 Those null values are really messing up the query. You can filter out documents without an age attribute if you add a second criterion:
 
@@ -147,7 +147,7 @@ FOR c IN Characters
 
 Try this out! Maybe write a query with a lower age limit and an upper age limit?
 
-### Alternative Conditions
+### Filter Alternative Conditions
 
 If you want documents to fulfill one or another condition, possibly for different attributes as well, use `OR`:
 
