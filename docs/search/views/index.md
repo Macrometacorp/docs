@@ -4,7 +4,7 @@ title: Views
 slug: views
 ---
 
-We provide *Views* that enable you to perform fast and sophisticated full-text search queries for unstructured data in documents across multiple linked collections. You can filter by document attributes, sort the results by relevance, and rank results by their similarity using popular scoring algorithms.
+We provide *Search Views* that enable you to perform fast and sophisticated full-text search queries for unstructured data in documents across multiple linked collections. You can filter by document attributes, sort the results by relevance, and rank results by their similarity using popular scoring algorithms.
 
 Each View represents an inverted index that contains the search configuration and all document attributes in the linked collections. A Search View index consists of multiple segments that are each treated as a standalone index. Search Views are the only officially supported Views implementation, but you can create your own Search Views to further customize the way index and query data.
 
