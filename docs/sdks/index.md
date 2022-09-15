@@ -77,131 +77,171 @@ Once the installation process is finished, you can begin developing applications
 
 ```js
 const jsc8 = require("jsc8");
-const client = new jsc8("https://gdn.paas.macrometa.io");
 
-async function main(){
-    const keyid="id1";
-    await client.login("nemo@nautilus.com", "xxxxxx");
-    // Create an api key
-    try{
-        await client.createApiKey(keyid);
-    }
-    catch(e){
-        console.log('API Creation Failed: ', e);
-    }
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const collectionName = "testCollection";
+const streamName = "testStream";
+const keyid = "id1";
 
-    //Fetch accessible databases
-    try{
-        var databases = await client.listAccessibleDatabases(keyid)
-        console.log("Accessible Databases")
-        console.log(databases.result)
-    }
-    catch(e){
-        console.log('Failed to fetch accessible dataases: ', e);
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
 
-    }
-    // Fetch accessible streams
-    try{
-        streams = await client.listAccessibleStreams(keyid, '_system', full=false)
-        console.log("Accessible Streams")
-        console.log(streams.result)
-    }
-    catch(e){
-        console.log('Failed to fetch accessible streams: ', e);
+// Or create an authenticated instance with a token or API key.
+// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: fabric});
+// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: fabric});
+// console.log("Authentication done!");
 
-    }
-
-    // Set Access Level for an API Key
-    // Create Colleciton
-    var coll = await client.getCollections();
-    var collectionName = 'testCollection'
-    var streamName = 'testStream'
-    console.log("Existing Collections: ", coll.result)
-    try{
-        await client.createCollection(collectionName);
-        console.log("Collection Created Successfully")
-    }
-    catch(e){
-        console.log("Collection creation did not succeed due to " + e)
-    }
-    try{
-        await client.setCollectionAccessLevel(keyid, '_system', collectionName, 'rw')
-    }
-    catch(e){
-        console.log("Failed to set Collection Access Level: ",e)
-    }
-    // Create stream
-    try{
-        await client.createStream(streamName)
-    }
-    catch(e){
-        console.log("Stream Creation Failed: ",e)
-    }
-    try{
-        await client.setStreamAccessLevel(keyid, '_system', "c8globals."+streamName, 'ro')
-    }
-    catch(e){
-        console.log("Failed to set Stream Access Level: ",e)
-    }
-    try{
-        await client.setDatabaseAccessLevel(keyid, '_system', 'rw')
-    }
-    catch(e){
-        console.log("Failed to set Database Access Level: ",e)
-    }
-
-    // Get Access Levels
-    try{
-        await client.getCollectionAccessLevel(keyid, '_system', collectionName)
-    }
-    catch(e){
-        console.log("Failed to Get Access Level for the Collection: ",e)
-    }
-    try{
-        await client.getStreamAccessLevel(keyid, '_system', "c8globals."+streamName)
-    }
-    catch(e){
-        console.log("Failed to Get Access Level for the Stream: ",e)
-    }
-    try{
-        await client.getDatabaseAccessLevel(keyid, '_system')
-
-    }
-    catch(e){
-        console.log("Failed to Get Access Level for the Database: ",e)
-    }
-    // Clear Access Level
-    try{
-        await client.clearDatabaseAccessLevel(keyid, '_system')
-    }
-    catch(e){
-        console.log("Clearing Access Level for Database Failed: ",e)
-    }
-    try{
-        await client.clearStreamAccessLevel(keyid, '_system', "c8globals."+streamName)
-
-    }
-    catch(e){
-        console.log("Clearing Access Level for Stream Failed: ",e)
-    }
-    try{
-        await client.clearCollectionAccessLevel(keyid, '_system', collectionName)
-    }
-    catch(e){
-        console.log("Clearing Access Level for Collection Failed: ",e)
-
-    }
-    // Remove an api key
-    try{
-        await client.removeApiKey(keyid);
-    }
-    catch(e){
-        console.log('API Deletion Failed: ', e);
-
-    }
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
 }
 
-main();
+async function main () {
+  await client
+    .login(email, password)
+    .then((e) => console.log("User authentication done!"))
+    .catch((error) => error);
+  console.log("1. Creating API key with KeyID = " + keyid);
+  await client
+    .createApiKey(keyid)
+    .then((apiKey) => console.log(apiKey))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n2. Getting available API keys");
+  await client
+    .getAvailableApiKeys()
+    .then((apiKeys) => console.log(apiKeys.result))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n3. Listing accessible databases for Key_ID = " + keyid);
+  await client
+    .listAccessibleDatabases(keyid)
+    .then((databases) => {
+      console.log(databases.result);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n4. Listing accessible streams for Key_ID = " + keyid);
+  await client
+    .listAccessibleStreams(keyid, fabric, (full = false))
+    .then((streams) => {
+      console.log(streams.result);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n5. Listing collections");
+  await client
+    .getCollections()
+    .then((collections) => {
+      console.log(collections);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n6. Creating collection");
+  await client
+    .createCollection(collectionName)
+    .then((collection) => {
+      console.log("Collection created successfully");
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n7. Setting collection access level");
+  await client
+    .setCollectionAccessLevel(keyid, fabric, collectionName, "rw")
+    .then((collectionAccessLevel) => {
+      console.log(collectionAccessLevel);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n8. Creating stream " + streamName);
+  await client
+    .createStream(streamName)
+    .then((stream) => console.log(stream))
+    .catch((error) => messageHandler(error));
+
+  console.log(
+    "\n9. Setting stream " + streamName + " access level to read only"
+  );
+  await client
+    .setStreamAccessLevel(keyid, fabric, "c8globals." + streamName, "ro")
+    .then((streamAccessLevel) => console.log(streamAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log(
+    "\n10. Setting database " + fabric + " access level to read write for Key_ID " +
+      keyid
+  );
+  await client
+    .setDatabaseAccessLevel(keyid, fabric, "rw")
+    .then((databaseAccessLevel) => console.log(databaseAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n11. Getting collection" + collectionName + " access levels");
+  await client
+    .getCollectionAccessLevel(keyid, fabric, collectionName)
+    .then((collectionAccessLevel) => console.log(collectionAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n12. Getting stream" + streamName + " access levels");
+  await client
+    .getStreamAccessLevel(keyid, fabric, "c8globals." + streamName)
+    .then((streamAccessLevel) => console.log(streamAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n13. Getting database " + fabric + " access levels");
+  await client
+    .getDatabaseAccessLevel(keyid, fabric)
+    .then((databaseAccessLevel) => console.log(databaseAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n14. Deleting database access level for Key_ID = " + keyid);
+  await client
+    .clearDatabaseAccessLevel(keyid, fabric)
+    .then((databaseAccessLevel) => console.log(databaseAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n15. Deleting stream access level for Key_ID = " + keyid);
+  await client
+    .clearStreamAccessLevel(keyid, fabric, "c8globals." + streamName)
+    .then((streamAccessLevel) => console.log(streamAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n16. Deleting collection access level for Key_ID = " + keyid);
+  await client
+    .clearCollectionAccessLevel(keyid, fabric, collectionName)
+    .then((collectionAccessLevel) => console.log(collectionAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n17. Deleting " + keyid);
+  await client
+    .removeApiKey(keyid)
+    .then((removeApiKey) => console.log(removeApiKey))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n18. Deleting stream " + streamName);
+  await client
+    .deleteStream("c8globals." + streamName)
+    .then((stream) => console.log(stream))
+    .catch((error) => messageHandler(error));
+  
+  console.log("\n19. Deleting collection " + collectionName);
+  await client
+    .deleteCollection(collectionName)
+    .then((collection) => console.log(collection))
+    .catch((error) => messageHandler(error));
+}
+main()
+  .then()
+  .catch((error) => console.log(error));
 ```
 
 </TabItem>
