@@ -44,7 +44,7 @@ async function main() {
     .then((e) => console.log("1. User authentication done!"))
     .catch((error) => error);
 
-  console.log("\n2. Listing accessible Databases for Key_ID = " + keyid);
+  console.log("\n2. Listing accessible databases for Key_ID = " + keyid);
   await client
     .listAccessibleDatabases(keyid)
     .then((databases) => {
