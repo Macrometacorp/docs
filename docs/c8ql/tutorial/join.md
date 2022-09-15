@@ -3,7 +3,9 @@ sidebar_position: 40
 title: Part 4 - Joining Together
 ---
 
-### References to other documents
+This section explains how to use queries to combine information in collections.
+
+## References to other documents
 
 The character data we imported has an attribute _traits_ for each character, which is an array of strings. It does not store character features directly however:
 
@@ -54,7 +56,7 @@ It is rather a list of letters without an apparent meaning. The idea here is tha
 
 ![Comparison_DataModels](/img/c8ql/tutorial/Comparison_DataModels.png)
 
-### Importing traits
+## Importing traits
 
 Below you find the traits data. Follow the pattern shown in [Create documents](#create-documents) to import it:
 
@@ -86,7 +88,7 @@ Below you find the traits data. Follow the pattern shown in [Create documents](#
 ]
 ```
 
-### Resolving traits
+## Resolving traits
 
 Let's start simple by returning only the traits attribute of each character:
 
@@ -201,7 +203,7 @@ FOR c IN Characters
 ]
 ```
 
-### Merging characters and traits
+## Merging characters and traits
 
 Great, we resolved the letters to meaningful traits! But we also need to know to which character they belong. Thus, we need to merge both the character document and the data from trait document:
 
