@@ -4,9 +4,9 @@ title: Views
 slug: views
 ---
 
-We provide *Search Views* that enable you to perform fast and sophisticated full-text search queries for unstructured data in documents across multiple linked collections. You can filter by document attributes, sort the results by relevance, and rank results by their similarity using popular scoring algorithms.
+We provide *search views* that enable you to perform fast and sophisticated full-text search queries for unstructured data in documents across multiple linked collections. You can filter by document attributes, sort the results by relevance, and rank results by their similarity using popular scoring algorithms.
 
-Each View represents an inverted index that contains the search configuration and all document attributes in the linked collections. A Search View index consists of multiple segments that are each treated as a standalone index. Search Views are the only officially supported Views implementation, but you can create your own Search Views to further customize the way index and query data.
+Each search view represents an inverted index that contains the search configuration and all document attributes in the linked collections. A search view index consists of multiple segments that are each treated as a standalone index. Search Views are the only officially supported Views implementation, but you can create your own Search Views to further customize the way index and query data.
 
 The following table shows a comparison between C8Search Views and a full-text index:
 
@@ -30,9 +30,9 @@ Views guarantee the best execution plan (merge join) when querying multiple attr
 
 ## Concepts
 
-A View represents all documents available in a specified set of source collections. Each View is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the View implementation and can be as simple as an identity transformation. 
+A search view represents all documents available in a specified set of source collections. Each search view is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the search view implementation and can be as simple as an identity transformation. 
 
-A Search View combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the *terms* of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](#analyzers) to boost value analysis with tokenization.
+A search view combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the *terms* of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](#analyzers) to boost value analysis with tokenization.
 
 The document vectors that are closer to a query vector are more relevant. The closeness is expressed as the cosine of the angle between two vectors ([cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity)). We evaluate the following expression to define how relevant document `d` is to query `q`:
 
@@ -56,13 +56,13 @@ Searching and ranking capabilities are provided by the [IResearch library](https
 
 ## Integration
 
-To use collections as a data source, you must *link* them to a View. A link is a one-way data flow from a GDN collection to a Search View that determines how incoming data is made available to the user. A View can have multiple links that are each connected to a different collection, and each collection can be linked to multiple Views.
+To use collections as a data source, you must *link* them to a search view. A link is a one-way data flow from a GDN collection to a search view that determines how incoming data is made available to the user. A search view can have multiple links that are each connected to a different collection, and each collection can be linked to multiple Views.
 
 To minimize performance reduction, we do not constantly synchronize Search Views as the linked collections change. You can change the consolidation policy to increase or decrease the rate at which Search Views synchronize with linked collections.
 
-You can link documents and edge collections to Search Views so your graphs can be treated as both flat and interconnected data structures. For example, you can find the most relevant vertices by searching and sorting with a View, then perform a regular tree search on each vertex.
+You can link documents and edge collections to Search Views so your graphs can be treated as both flat and interconnected data structures. For example, you can find the most relevant vertices by searching and sorting with a search view, then perform a regular tree search on each vertex.
 
-Edit the [View definition](#view-definition) to manage links between Views and collections. You can index any attribute at any depth, including nested attributes, and define Analyzers to process values for each field. To produce results, Analyzers you specify in the query must be defined in the View.
+Edit the [search view definition](#view-definition) to manage links between Views and collections. You can index any attribute at any depth, including nested attributes, and define Analyzers to process values for each field. To produce results, Analyzers you specify in the query must be defined in the search view.
 
 By default, array elements are indexed individually as if each element is the value of the source attribute. You can use Analyzers to transform strings into multiple tokens that are handled similarly to an array of strings. Refer to [C8QL SEARCH operation](../c8ql/operations/search.md) for details. Primitive values other than strings (`null`, `true`, `false`, numbers) are indexed unchanged. You can choose to index nested object values under the respective attribute path, including objects in arrays.
 
@@ -77,13 +77,13 @@ You can query views with C8QL using the [SEARCH operation](../c8ql/operations/se
 
 ## Primary Sort Order
 
-When you create a Search View, you can choose a primary sort order for each uniquely named attribute, enabling better optimization for iterated C8QL queries that sort by one or more attributes. If the fields match the sorting directions, the View can read data from the index without a sorting operation. 
+When you create a search view, you can choose a primary sort order for each uniquely named attribute, enabling better optimization for iterated C8QL queries that sort by one or more attributes. If the fields match the sorting directions, the search view can read data from the index without a sorting operation. 
 
-To customize the primary sort order, you must create the View with HTTP or JavaScript API. You cannot change the `primarySort` option after creating a View. 
+To customize the primary sort order, you must create the search view with HTTP or JavaScript API. You cannot change the `primarySort` option after creating a search view. 
 
-The following example shows a Search View definition paired with a C8QL query.
+The following example shows a search view definition paired with a C8QL query.
 
-* Search View definition:
+* Search view definition:
 
 ```json
 {
@@ -157,29 +157,29 @@ To define multiple sort attributes, add sub-objects to the `primarySort` array. 
   ]
 ```
 
-In this example, we optimize a View query to sort by text and by descending date (`SORT doc.date DESC, doc.text`). Priority is given to the first field, so queries that sort by text only are ineligible (`SORT doc.text`). This is conceptually similar to a skiplist index, except the View index does not provide inverted sorting directions (`SORT doc.date, doc.text DESC`).
+In this example, we optimize a search view query to sort by text and by descending date (`SORT doc.date DESC, doc.text`). Priority is given to the first field, so queries that sort by text only are ineligible (`SORT doc.text`). This is conceptually similar to a skiplist index, except the search view index does not provide inverted sorting directions (`SORT doc.date, doc.text DESC`).
 
 
 
-## View Definition
+## search view Definition
 
-A Search View is defined by an object that contains the following:
+A search view is defined by an object that contains the following:
 
-* A set of View configuration directives.
+* A set of search view configuration directives.
 * A map of link configuration directives.
 
 Different directives apply during creation and modification of Views. 
 
-* Creating a View applies these directives:
-	* **name** (string, immutable): The name of the View.
+* Creating a search view applies these directives:
+	* **name** (string, immutable): The name of the search view.
 	* **type** (string, immutable): The value `"search"`.
-	* Any directives from [View Properties](#view-properties).
+	* Any directives from [search view Properties](#view-properties).
 
-* Modifying a View applies these directives:
+* Modifying a search view applies these directives:
 	* **links** (object, optional): A mapping of `collection-name` / `collection-identifier` to one of the following:
 		* Link creation: Link definition according to [Link properties](#link-properties).
 		* Link removal: JSON keyword `null` (e.g. nullify a link if present).
-	* Any directives from [View Properties](#view-properties).
+	* Any directives from [search view Properties](#view-properties).
 
 ## Link Properties
 
@@ -202,15 +202,20 @@ You can set the following optional properties for links:
 	* Type: `boolean`
 	* Default: `false`
 
-* **storeValues**: Set `id` if you want to store information about attribute values in the View and enable the `EXISTS()` function.
+* **storeValues**: Set `id` if you want to store information about attribute values in the search view and enable the `EXISTS()` function.
 	* Type: string
 	* Default: `"none"`
 
-* **inBackground**: When set `true`, View indexes will be created without an exclusive lock so they remain available.
+* **inBackground**: When set `true`, search view indexes will be created without an exclusive lock so they remain available.
 	* Type: `boolean`
 	* Default: `false`
 
+<<<<<<< Updated upstream
 ## View Properties
+=======
+
+## search view Properties
+>>>>>>> Stashed changes
 
 Optional properties for Views are divided into the following categories:
 
@@ -222,7 +227,7 @@ Optional properties for Views are divided into the following categories:
 
 You can use the following property to set up a [primary sort order](#primary-sort-order) to optimize C8QL queries:
 
-**primarySort**: If the query attempts to retrieve all documents in a View, and the sorting attributes, fields, and direction match the `primarySort` definition, we ignore this operation for being redundant. This value is immutable once the View is created.
+**primarySort**: If the query attempts to retrieve all documents in a search view, and the sorting attributes, fields, and direction match the `primarySort` definition, we ignore this operation for being redundant. This value is immutable once the search view is created.
 
 * Type: `array`
 * Default: `[]`
@@ -302,7 +307,7 @@ If you choose `"tier"`, the following optional sub-properties are available:
 
 ### Write Buffers
 
-A C8Search index contains writer objects that are mapped to processed segments. You can set up a *pool* of writers by using `writebuffer*` properties to limit memory usage. These options are immutable once a View is created.
+A C8Search index contains writer objects that are mapped to processed segments. You can set up a *pool* of writers by using `writebuffer*` properties to limit memory usage. These options are immutable once a search view is created.
 
 
 * **writebufferIdle**: Maximum number of writers cached in the pool. To disable, set `0`.
@@ -326,7 +331,7 @@ Each search view represents an inverted index that contains the search configura
 
 The following table shows a comparison between search views and a full-text index:
 
-Feature                             | Search View  | Full-text Index
+Feature                             | Search search view  | Full-text Index
 :-----------------------------------|:-------------|:---------------
 Term search                         | Yes          | Yes
 Prefix search                       | Yes          | Yes
@@ -343,7 +348,7 @@ Views guarantee the best execution plan (merge join) when querying multiple attr
 
 ## Concepts
 
-A View represents all documents available in a specified set of source collections. Each View is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the View implementation and can be as simple as an identity transformation.
+A search view represents all documents available in a specified set of source collections. Each search view is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the search view implementation and can be as simple as an identity transformation.
 
 A search view combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the _terms_ of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](#analyzers) to boost value analysis with tokenization.
 
@@ -369,13 +374,13 @@ Searching and ranking capabilities are provided by the [IResearch library](https
 
 ## Integration
 
-To use collections as a data source, you must _link_ them to a View. A link is a one-way data flow from a GDN collection to a search view that determines how incoming data is made available to the user. A View can have multiple links that are each connected to a different collection, and each collection can be linked to multiple Views.
+To use collections as a data source, you must _link_ them to a search view. A link is a one-way data flow from a GDN collection to a search view that determines how incoming data is made available to the user. A search view can have multiple links that are each connected to a different collection, and each collection can be linked to multiple Views.
 
 To minimize performance reduction, we do not constantly synchronize search views as the linked collections change. You can change the consolidation policy to increase or decrease the rate at which search views synchronize with linked collections.
 
-You can link documents and edge collections to search views so your graphs can be treated as both flat and interconnected data structures. For example, you can find the most relevant vertices by searching and sorting with a View, then perform a regular tree search on each vertex.
+You can link documents and edge collections to search views so your graphs can be treated as both flat and interconnected data structures. For example, you can find the most relevant vertices by searching and sorting with a search view, then perform a regular tree search on each vertex.
 
-Edit the [View definition](#view-definition) to manage links between Views and collections. You can index any attribute at any depth, including nested attributes, and define Analyzers to process values for each field. To produce results, Analyzers you specify in the query must be defined in the View.
+Edit the [search view definition](#view-definition) to manage links between Views and collections. You can index any attribute at any depth, including nested attributes, and define Analyzers to process values for each field. To produce results, Analyzers you specify in the query must be defined in the search view.
 
 By default, array elements are indexed individually as if each element is the value of the source attribute. You can use Analyzers to transform strings into multiple tokens that are handled similarly to an array of strings. Refer to [C8QL SEARCH operation](../c8ql/operations/search.md) for details. Primitive values other than strings (`null`, `true`, `false`, numbers) are indexed unchanged. You can choose to index nested object values under the respective attribute path, including objects in arrays.
 
@@ -389,9 +394,9 @@ You can query views with C8QL using the [SEARCH operation](../c8ql/operations/se
 
 ## Primary Sort Order
 
-When you create a search view, you can choose a primary sort order for each uniquely named attribute, enabling better optimization for iterated C8QL queries that sort by one or more attributes. If the fields match the sorting directions, the View can read data from the index without a sorting operation.
+When you create a search view, you can choose a primary sort order for each uniquely named attribute, enabling better optimization for iterated C8QL queries that sort by one or more attributes. If the fields match the sorting directions, the search view can read data from the index without a sorting operation.
 
-To customize the primary sort order, you must create the View with HTTP or JavaScript API. You cannot change the `primarySort` option after creating a View.
+To customize the primary sort order, you must create the search view with HTTP or JavaScript API. You cannot change the `primarySort` option after creating a search view.
 
 The following example shows a search view definition paired with a C8QL query.
 
@@ -468,27 +473,27 @@ To define multiple sort attributes, add sub-objects to the `primarySort` array. 
   ]
 ```
 
-In this example, we optimize a View query to sort by text and by descending date (`SORT doc.date DESC, doc.text`). Priority is given to the first field, so queries that sort by text only are ineligible (`SORT doc.text`). This is conceptually similar to a skiplist index, except the View index does not provide inverted sorting directions (`SORT doc.date, doc.text DESC`).
+In this example, we optimize a search view query to sort by text and by descending date (`SORT doc.date DESC, doc.text`). Priority is given to the first field, so queries that sort by text only are ineligible (`SORT doc.text`). This is conceptually similar to a skiplist index, except the search view index does not provide inverted sorting directions (`SORT doc.date, doc.text DESC`).
 
-## View Definition
+## search view Definition
 
 A search view is defined by an object that contains the following:
 
-- A set of View configuration directives.
+- A set of search view configuration directives.
 - A map of link configuration directives.
 
 Different directives apply during creation and modification of Views.
 
-- Creating a View applies these directives:
-  - **name** (string, immutable): The name of the View.
+- Creating a search view applies these directives:
+  - **name** (string, immutable): The name of the search view.
   - **type** (string, immutable): The value `"search"`.
-  - Any directives from [View Properties](#view-properties).
+  - Any directives from [search view Properties](#view-properties).
 
-- Modifying a View applies these directives:
+- Modifying a search view applies these directives:
   - **links** (object, optional): A mapping of `collection-name` / `collection-identifier` to one of the following:
     - Link creation: Link definition according to [Link properties](#link-properties).
     - Link removal: JSON keyword `null` (e.g. nullify a link if present).
-  - Any directives from [View Properties](#view-properties).
+  - Any directives from [search view Properties](#view-properties).
 
 ## Link Properties
 
@@ -511,24 +516,24 @@ You can set the following optional properties for links:
   - Type: `boolean`
   - Default: `false`
 
-- **storeValues**: Set `id` if you want to store information about attribute values in the View and enable the `EXISTS()` function.
+- **storeValues**: Set `id` if you want to store information about attribute values in the search view and enable the `EXISTS()` function.
   - Type: string
   - Default: `"none"`
 
-- **inBackground**: When set `true`, View indexes will be created without an exclusive lock so they remain available.
+- **inBackground**: When set `true`, search view indexes will be created without an exclusive lock so they remain available.
   - Type: `boolean`
   - Default: `false`
 
-## View Properties
+## search view Properties
 
 Optional properties for Views are divided into the following categories:
 
 - [Concepts](#concepts)
 - [Integration](#integration)
 - [Primary Sort Order](#primary-sort-order)
-- [View Definition](#view-definition)
+- [search view Definition](#view-definition)
 - [Link Properties](#link-properties)
-- [View Properties](#view-properties)
+- [search view Properties](#view-properties)
 	- [Primary Sorting](#primary-sorting)
 	- [Commit, Consolidate, Cleanup](#commit-consolidate-cleanup)
 	- [Write Buffers](#write-buffers)
@@ -537,7 +542,7 @@ Optional properties for Views are divided into the following categories:
 
 You can use the following property to set up a [primary sort order](#primary-sort-order) to optimize C8QL queries:
 
-**primarySort**: If the query attempts to retrieve all documents in a View, and the sorting attributes, fields, and direction match the `primarySort` definition, we ignore this operation for being redundant. This value is immutable once the View is created.
+**primarySort**: If the query attempts to retrieve all documents in a search view, and the sorting attributes, fields, and direction match the `primarySort` definition, we ignore this operation for being redundant. This value is immutable once the search view is created.
 
 - Type: `array`
 - Default: `[]`
@@ -613,7 +618,7 @@ If you choose `"tier"`, the following optional sub-properties are available:
 
 ### Write Buffers
 
-A C8Search index contains writer objects that are mapped to processed segments. You can set up a _pool_ of writers by using `writebuffer*` properties to limit memory usage. These options are immutable once a View is created.
+A C8Search index contains writer objects that are mapped to processed segments. You can set up a _pool_ of writers by using `writebuffer*` properties to limit memory usage. These options are immutable once a search view is created.
 
 - **writebufferIdle**: Maximum number of writers cached in the pool. To disable, set `0`.
   - Type: `integer`
