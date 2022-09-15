@@ -29,7 +29,7 @@ const clientUsingJwt = new jsc8({
   token: "XXXX",
   fabricName: fabric
 });
-// Or create an authenticated instance with a API key.
+// Or create an authenticated instance with an API key.
 const clientUsingApiKey = new jsc8({
   url: "https://gdn.paas.macrometa.io",
   apiKey: "XXXX",
