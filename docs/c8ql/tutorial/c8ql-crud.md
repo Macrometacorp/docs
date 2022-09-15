@@ -411,4 +411,4 @@ Re-run the [insert queries](#create-documents) at the top with all character doc
 
 ## Next Steps
 
-Great job! You have created a collection and performed basic CRUD operations. When you're ready, continue the tutorial in [Part 2 - Match and Filter Documents](match-and-filter.md).
+Great job! You have created a collection and performed basic CRUD operations. When you're ready, continue the tutorial in [Part 2 - Filter Results](match-and-filter.md).
