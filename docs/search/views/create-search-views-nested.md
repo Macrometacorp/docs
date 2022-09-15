@@ -83,7 +83,7 @@ There are two options for accessing the nested data:
 
   This option is more optimized because it only indexes the specified fields, `subLevelField` in this case. The first option could be a good choice if you may add more sub-fields in the future.
 
-## Example
+## Example cURL Request
 
 The following example shows a complete cURL request to create the nested search field.
 
