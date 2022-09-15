@@ -146,7 +146,7 @@ async function main () {
     })
     .catch((error) => messageHandler(error));
 
-  console.log("\n6. Creating Collection");
+  console.log("\n6. Creating collection");
   await client
     .createCollection(collectionName)
     .then((collection) => {
