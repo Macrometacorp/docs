@@ -175,4 +175,4 @@ A filter is applied to avoid documents without age attribute. The remaining docu
 
 ## Next Steps
 
-Great job! You can now sort and limit your query results. When you're ready, continue the tutorial in [Part 4 - Import and Merge](import-and-merge.md).
+Great job! You can now sort and limit your query results. When you're ready, continue the tutorial in [Part 4 - Import Traits and Merge](import-and-merge.md).
