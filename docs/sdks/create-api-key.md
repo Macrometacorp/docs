@@ -42,7 +42,7 @@ async function main () {
     .then((e) => console.log("1. User authentication done!"))
     .catch((error) => error);
 
-  console.log("2. Creating API Key with KeyID = " + keyid);
+  console.log("2. Creating API key with KeyID = " + keyid);
   await client
     .createApiKey(keyid)
     .then((apiKey) => console.log(apiKey))
