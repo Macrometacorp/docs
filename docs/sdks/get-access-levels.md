@@ -10,25 +10,61 @@ import TabItem from '@theme/TabItem';
 <TabItem value="js" label="Javascript">
 
 ```js
-try{
-    await client.getCollectionAccessLevel(keyid, '_system', collectionName)
-}
-catch(e){
-    console.log("Failed to Get Access Level for the Collection: ",e)
-}
-try{
-    await client.getStreamAccessLevel(keyid, '_system', "c8globals."+streamName)
-}
-catch(e){
-    console.log("Failed to Get Access Level for the Stream: ",e)
-}
-try{
-    await client.getDatabaseAccessLevel(keyid, '_system')
+const jsc8 = require("jsc8");
 
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const keyid = "id1";
+const collectionName = "testCollection";
+const streamName = "testStream";
+
+// Email and password to authenticate client instance
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
 }
-catch(e){
-    console.log("Failed to Get Access Level for the Database: ",e)
+async function main () {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => error);
+
+  console.log("\n2. Getting collection " + collectionName + " access levels");
+  await client
+    .getCollectionAccessLevel(keyid, fabric, collectionName)
+    .then((collectionAccessLevel) => console.log(collectionAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n3. Getting stream " + streamName + " access levels");
+  await client
+    .getStreamAccessLevel(keyid, fabric, "c8globals." + streamName)
+    .then((streamAccessLevel) => console.log(streamAccessLevel))
+    .catch((error) => messageHandler(error));
+
+  console.log("\n4. Getting database " + fabric + " access levels");
+  await client
+    .getDatabaseAccessLevel(keyid, fabric)
+    .then((databaseAccessLevel) => console.log(databaseAccessLevel))
+    .catch((error) => messageHandler(error));
 }
+
+main()
+  .then()
+  .catch((error) => console.log(error));
 ```
 
 </TabItem>
