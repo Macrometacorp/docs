@@ -322,7 +322,7 @@ const run = async function () {
 
     const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
-    /* -------------------------- Initalizing Producer -------------------------- */
+    /* -------------------------- Initalizing producer -------------------------- */
 
     const producer = new WebSocket(producerUrl);
 
