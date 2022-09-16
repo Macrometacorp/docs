@@ -178,7 +178,7 @@ print("\nStream App Deleted: ", result)
 <TabItem value="js" label="Javascript">
 
 ```js
-// If you are using Node. js version less than 17.5 then run "npm install node-fetch" and comment out the line below.
+// If you are using Node.js version less than 17.5, then run `npm install node-fetch` and comment out the line below.
 // const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
 
 const WebSocket = require('ws');
