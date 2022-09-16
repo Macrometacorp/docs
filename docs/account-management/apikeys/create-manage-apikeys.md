@@ -19,4 +19,4 @@ After creating the API key, best practice is to save the automatically generated
 
 ## Delete API Key
 
-On the **API Keys** tab, click the trash icon next to an API key and then click **Delete**.
+On the API Keys tab, click the trash icon next to an API key and then click **Delete**.
