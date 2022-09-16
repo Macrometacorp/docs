@@ -264,7 +264,7 @@ const run = async function () {
             method: "DELETE"
         });
 
-        console.log("------- Deleting the RestQls insertData, getData, updateData  ------");
+        console.log("------- Deleting the insertData, getData, and updateData queries ------");
         await deleteRestQl("insertData");
         await deleteRestQl("getData");
         await deleteRestQl("updateData");
