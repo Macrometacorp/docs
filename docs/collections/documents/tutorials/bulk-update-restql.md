@@ -483,7 +483,7 @@ async function restqldemo () {
     console.log("Saved Queries Successfully\n");
 
     /* Execute RestQl Queries */
-    console.log("------- Executing the queries  ------");
+    console.log("------- Running the queries  ------");
 
     await sleep(2000);
     await client.executeRestql("insertData", {
