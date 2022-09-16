@@ -245,7 +245,7 @@ const run = async function () {
                 method: "PUT"
             });
 
-        console.log("------- Updating the insertData RestQl  ------");
+        console.log("------- Updating the insertData query  ------");
         await updateRestQlQuery("insertData", updatedInsertData, {});
         console.log("Query updated successfully");
 
