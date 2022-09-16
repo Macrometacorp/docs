@@ -473,7 +473,7 @@ async function restqldemo () {
       }
     }
 
-    /* Save RestQl Queries */
+    /* Save queries */
     console.log("------- SAVING THE QUERIES  ------");
 
     await client.createRestql("insertData", insertData, {});
