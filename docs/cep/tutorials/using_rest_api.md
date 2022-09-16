@@ -301,7 +301,8 @@ const run = async function () {
 
     console.log("Stream app activated successfully");
 
-    /* ------------------ Publish messages to Sample StreamApp ------------------ */
+    /* ------------------ Publish messages to sample StreamApp ------------------ */
+    
     const region = isGlobal ? "c8global" : "c8local";
     const streamName = `${region}s.${stream}`;
 
