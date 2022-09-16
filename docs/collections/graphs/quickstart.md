@@ -447,19 +447,20 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     import pprint
 
     # Variables - Queries
-    GLOBAL_URL = "gdn.pass.macrometa.io"
+    GLOBAL_URL = "gdn.paas.macrometa.io"
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
     GEO_FABRIC = "_system"
     COLLECTION_PEOPLE = "CDRpeople"
     COLLECTION_CALLS = "CDRcalls"
-    COLLECTION_CELL_SITES = "CDRcellsites"
     COLLECTION_GRAPH = "CDRgraphdocs"
-    READ_PEOPLE = "FOR person IN CDRpeople RETURN person"
-    READ_CALLS = "FOR call IN CDRcalls RETURN call"
+    READ_PEOPLE = f"FOR person IN {COLLECTION_PEOPLE} RETURN person"
+    READ_CALLS = f"FOR call IN {COLLECTION_CALLS} RETURN call"
     PERSON = "Lou Feaveer"
-    GRAPH_TRAVERSAL_1 = f"FOR c IN CDRpeople FILTER c.full_name == \"{PERSON}\" FOR v IN 1..1 INBOUND c CDRcalls RETURN v"
-    GRAPH_TRAVERSAL_2 = f"FOR c IN CDRpeople FILTER c.full_name == \"{PERSON}\" FOR v IN 1..1 OUTBOUND c CDRcalls RETURN v"
+    GRAPH_TRAVERSAL_1 = (f"FOR c IN {COLLECTION_PEOPLE} FILTER c.full_name == \"{PERSON}\""
+        f"FOR v IN 1..1 INBOUND c {COLLECTION_CALLS} RETURN v")
+    GRAPH_TRAVERSAL_2 = (f"FOR c IN {COLLECTION_PEOPLE} FILTER c.full_name == \"{PERSON}\""
+        f"FOR v IN 1..1 OUTBOUND c {COLLECTION_CALLS} RETURN v")
 
     pp = pprint.PrettyPrinter(indent=4)
 
@@ -657,17 +658,16 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     //Variables
     const collection_people = "CDRpeople";
     const collection_calls = "CDRcalls";
-    const collection_cellsites = "CDRcellsites";
     const collection_graph = "CDRgraphdocs";
     const person = "Lou Feaveer";
 
     let datalist = [];
 
     // Variables - Queries
-    const read_people = "FOR person IN CDRpeople RETURN person";
-    const read_calls = "FOR call IN CDRcalls RETURN call";
-    const graph_traversal1 = `FOR c IN CDRpeople FILTER c.full_name == \"${person}\" FOR v IN 1..1 INBOUND c CDRcalls RETURN v`;
-    const graph_traversal2 = `FOR c IN CDRpeople FILTER c.full_name == \"${person}\" FOR v IN 1..1 OUTBOUND c CDRcalls RETURN v`;
+    const read_people = "FOR person IN ${collection_people} RETURN person";
+    const read_calls = "FOR call IN ${collection_calls} RETURN call";
+    const graph_traversal1 = `FOR c IN ${collection_people} FILTER c.full_name == \"${person}\" FOR v IN 1..1 INBOUND c ${collection_calls} RETURN v`;
+    const graph_traversal2 = `FOR c IN ${collection_people} FILTER c.full_name == \"${person}\" FOR v IN 1..1 OUTBOUND c ${collection_calls} RETURN v`;
     
     async function createCollection() {
     

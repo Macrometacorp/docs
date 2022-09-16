@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 70
 title: GeoFabrics
 slug: geofabrics
 ---
@@ -10,7 +10,7 @@ Refer to the [glossary](references/glossary.md) or [Introducing Geofabrics](http
 
 ## Prerequisites
 
-* You must be logged into the `_system` GeoFabric to create, modify, or delete GeoFabrics.
+You must be logged into the `_system` GeoFabric to create, modify, or delete GeoFabrics.
 
 ## Create or Delete GeoFabrics
 

@@ -414,11 +414,13 @@ Copy the following program and paste it into a file named `MoviesItemOps03.js`.
             "year": year,
             "title": title
         },
-        UpdateExpression: "set info = :rpa",
+        UpdateExpression: "set info.rating = :r, info.plot=:p, info.actors=:a",
         ExpressionAttributeValues:{
-            ":rpa": {actors: ["Larry", "Moe", "Curly"], rating: 5.5, plot: "Everything happens all at once."}
+            ":r": 6.5,
+            ":p": "Everything happens all at once.",
+            ":a": ["Larry", "Moe", "Curly"],
         },
-        ReturnValues:"UPDATED_NEW"
+        ReturnValues:"ALL_NEW"
     };
 
     console.log("Updating the item...");
@@ -433,7 +435,7 @@ Copy the following program and paste it into a file named `MoviesItemOps03.js`.
 
 :::note
 * This program uses `UpdateExpression` to describe all updates you want to perform on the specified item.
-* The `ReturnValues` parameter instructs Amazon DynamoDB to return only the updated attributes ("UPDATED_NEW").
+* The `ReturnValues` parameter instructs Amazon DynamoDB to return all the attributes of the item, as they appear after the update operation ("ALL_NEW").
 :::
 
 To run the program, enter the following command.
@@ -492,7 +494,7 @@ Copy the following program and paste it into a file named `MoviesItemOps04.js`.
         ExpressionAttributeValues:{
             ":val": 1
         },
-        ReturnValues:"UPDATED_NEW"
+        ReturnValues:"ALL_NEW"
     };
 
     console.log("Updating the item...");
@@ -562,7 +564,7 @@ Copy the following program and paste it into a file named `MoviesItemOps05.js`.
         ExpressionAttributeValues:{
             ":num": 3
         },
-        ReturnValues:"UPDATED_NEW"
+        ReturnValues:"ALL_NEW"
     };
 
     console.log("Attempting a conditional update...");

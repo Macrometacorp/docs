@@ -13,7 +13,40 @@ The first step in using GDN is to establish a connection to a local region. When
 
 ```js
 const jsc8 = require("jsc8");
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "xxxx", fabricName: '_system'});
+
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
+// Or create an authenticated instance with a JWT token.
+const clientUsingJwt = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  token: "XXXX",
+  fabricName: fabric
+});
+// Or create an authenticated instance with an API key.
+const clientUsingApiKey = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  apiKey: "XXXX",
+  fabricName: fabric
+});
+
+async function main() {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => error);
+}
+
+main()
+  .then()
+  .catch((error) => console.log(error));
+
 ```
 
 </TabItem>

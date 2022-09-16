@@ -27,15 +27,37 @@ catch(e){
 ```py
 from c8 import C8Client
 
-# Create a connection to GDN
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                        email='nemo@nautilus.com', password='xxxxx',
-                        geofabric='_system')
+API_ACTIVE = False
+CHOSEN_API_KEY_ID = "myNewKey"
+API_KEY = "my API key" # Change this to my key
+URL = "gdn.paas.macrometa.io"
 
-# Remove api key
-remove = client.remove_api_key('id1')
+# Create a connection to GDN. Replace apikey with username and password if needed
+client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY)
 
-print(remove)
+                        
+# Get a list of all the API key ID's names
+apiKeyIds = []
+for api in client.list_all_api_keys():
+    apiKeyIds.append(api["keyid"])
+
+# Checks if the API key exists
+for apiElement in apiKeyIds:
+    if apiElement == CHOSEN_API_KEY_ID:
+        API_ACTIVE = True
+        break
+
+# Checks the specified API key
+if API_ACTIVE:
+    # Removes the chosen API key
+    try:
+        print("Remove API key: ", client.remove_api_key(CHOSEN_API_KEY_ID))
+    except Exception as err:
+        print("Error removing the API key.")
+        print(err)
+else:
+    # Displays a message that the key does not exist
+    print("Can't remove a non-existent key.")
 ```
 
 </TabItem>
