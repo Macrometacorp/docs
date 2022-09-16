@@ -109,7 +109,7 @@ const run = async function () {
     const { tenant } = await connection.login(email, password);
 
     console.log("Login Successfully using", tenant);
-    /* ------------------------------ Create Stream ----------------------------- */
+    /* ------------------------------ Create stream ----------------------------- */
 
     try {
       await connection.req(
