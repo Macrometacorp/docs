@@ -233,7 +233,7 @@ const run = async function () {
         console.log(dataAfterUpdate.result);
         console.log("\n");
 
-        /* ------------------------ Saving a Restql Query ----------------------- */
+        /* ------------------------ Saving a RestQL Query ----------------------- */
         const updateRestQlQuery = (queryName, query, parameters) =>
             connection.req(`/_fabric/${fabricName}/_api/restql/${queryName}`, {
                 body: {
