@@ -119,7 +119,7 @@ const run = async function () {
           method: "POST"
         }
       );
-      console.log("STREAM CREATED SUCCESSFULLY");
+      console.log("Stream created successfully");
     } catch (e) {
       if (e.status === 409) {
         console.log("Stream already exists, skipping creation of stream");
