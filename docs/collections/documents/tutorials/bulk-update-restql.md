@@ -253,7 +253,7 @@ const run = async function () {
         await executeRestql("insertData", {
             barryKey
         });
-        console.log("New Data Inserted as per the updated insertData RestQl\n");
+        console.log("New data inserted with the updated insertData query\n");
 
         const resultAfterUpdate = await executeRestql("getData");
         console.log(resultAfterUpdate.result);
