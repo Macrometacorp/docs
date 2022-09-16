@@ -239,7 +239,7 @@ const run = async function () {
       }
     );
     console.log(
-      `${consumerName} UNSUBSCRIBED SUCCESSFULLY`,
+      `${consumerName} unsubscribed successfully`,
       consumerUnsubscribe
     );
     /* ------------------------------ Delete topic ------------------------------ */
