@@ -231,7 +231,7 @@ const run = async function () {
     producer.close();
     console.log("PRODUCER CLOSING...");
     await new Promise((resolve) => setTimeout(resolve, 5000));
-    /* ------------------------ Unsubscribe from stream. ------------------------ */
+    /* ------------------------ Unsubscribe from stream ------------------------ */
     const consumerUnsubscribe = await connection.req(
       `/_fabric/_system/_api/streams/subscription/${consumerName}`,
       {
