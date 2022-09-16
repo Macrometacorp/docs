@@ -271,7 +271,7 @@ const run = async function () {
         console.log("RestQls deleted successfully");
 
     } catch (e) {
-        console.log("Error caught while executing RestQl Demo: ");
+        console.log("Error caught while executing RestQL demo: ");
         console.error(e);
     }
 };
