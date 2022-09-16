@@ -239,7 +239,7 @@ const isGlobal = false;
 const stream = "tutorialAppInputStream";
 const streamAppName = "stream_app_tutorial";
 const streamAppDef = `@App:name('stream_app_tutorial')
-  @App:description('This application demonstrates how to use user defined functions in the stream app')
+  @App:description('This application demonstrates how to use user-defined functions in the stream app.')
   @App:qlVersion("2")
   CREATE FUNCTION concatFn[javascript] return string {
       var str1 = data[0];
