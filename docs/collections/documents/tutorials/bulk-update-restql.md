@@ -179,7 +179,7 @@ const run = async function () {
             }
         }
 
-        /* ------------------------ Saving a Restql Query ----------------------- */
+        /* ------------------------ Saving a query ----------------------- */
         const saveRestQlQuery = (queryName, query, parameters) =>
             connection.req(`/_fabric/${fabricName}/_api/restql`, {
                 body: {
@@ -192,14 +192,14 @@ const run = async function () {
                 method: "POST"
             });
 
-        console.log("------- Save the RestQl Queries  ------");
+        console.log("------- Save the Queries  ------");
         await saveRestQlQuery("insertData", insertData, {});
         await saveRestQlQuery("getData", getData, {});
         await saveRestQlQuery("updateData", updateData, {});
 
         console.log("Queries Saved Successfully");
 
-        /* ----------------------- Executing a Restql Query ---------------------- */
+        /* ----------------------- Executing a query ---------------------- */
         const executeRestql = (queryName, parameter) =>
             connection.req(`/_fabric/${fabricName}/_api/restql/execute/${queryName}`, {
                 body: {
@@ -209,7 +209,7 @@ const run = async function () {
             });
 
         await sleep(2000);
-        console.log("------- Execute the RestQl Queries  ------");
+        console.log("------- Execute the Queries  ------");
 
         await executeRestql("insertData", {
             InputDocs: inputDocs
@@ -233,7 +233,7 @@ const run = async function () {
         console.log(dataAfterUpdate.result);
         console.log("\n");
 
-        /* ------------------------ Saving a RestQL Query ----------------------- */
+        /* ------------------------ Updating a query ----------------------- */
         const updateRestQlQuery = (queryName, query, parameters) =>
             connection.req(`/_fabric/${fabricName}/_api/restql/${queryName}`, {
                 body: {
@@ -455,11 +455,11 @@ const sleep = (milliseconds) => {
 async function restqldemo () {
   try {
     /* Authenticate client instance with username and password */
-    console.log("------- AUTHENTICATE CLIENT INSTANCE WITH USERNAME AND PASSWORD  ------");
+    console.log("------- Authenticate client instance with username AND password  ------");
     await client.login(email, password);
 
     /* Create collection */
-    console.log("------- CREATE GEO-REPLICATED COLLECTION  ------");
+    console.log("------- Create geo-replicated collection  ------");
 
     try {
       const collection = await client.createCollection(collectionName);
@@ -474,7 +474,7 @@ async function restqldemo () {
     }
 
     /* Save queries */
-    console.log("------- SAVING THE QUERIES  ------");
+    console.log("------- Saving the queries  ------");
 
     await client.createRestql("insertData", insertData, {});
     await client.createRestql("getData", getData, {});
@@ -483,7 +483,7 @@ async function restqldemo () {
     console.log("Saved Queries Successfully\n");
 
     /* Execute RestQl Queries */
-    console.log("------- EXECUTING THE QUERIES  ------");
+    console.log("------- Executing the queries  ------");
 
     await sleep(2000);
     await client.executeRestql("insertData", {
@@ -528,7 +528,7 @@ async function restqldemo () {
 
     res = await client.getRestqls();
 
-    console.log("List of all available Saved Queries: ");
+    console.log("List of all available query workers: ");
     console.log(res.result);
 
     console.log("Deleting saved queries - insertData, getData, updateData");
@@ -538,7 +538,7 @@ async function restqldemo () {
 
     res = await client.getRestqls();
 
-    console.log("List of all available Saved Queries after deletion:");
+    console.log("List of all available query workers after deletion:");
     console.log(res.result);
   } catch (e) {
     console.log("Error caught while executing RestQl Demo: ");
