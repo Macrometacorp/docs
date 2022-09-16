@@ -267,7 +267,7 @@ const run = async function () {
 
     console.log("Log in successful using: ", tenant);
 
-    /* ---------------------------- Create StreamApp ---------------------------- */
+    /* ---------------------------- Create stream app ---------------------------- */
     try {
       const streamApp = await connection.req("/_fabric/_system/_api/streamapps", {
         body: {
@@ -276,7 +276,7 @@ const run = async function () {
         },
         method: "POST"
       });
-      console.log("STREAM APP CREATED SUCCESSFULLY", streamApp);
+      console.log("Stream app created successfully", streamApp);
     } catch (e) {
       if (e.status === 409) {
         console.log("Stream app already exists, skipping creation");
@@ -286,7 +286,7 @@ const run = async function () {
       }
     }
 
-    /* --------------------------- Activate StreamApp --------------------------- */
+    /* --------------------------- Activate stream app --------------------------- */
 
     await connection.req(
       `/_fabric/_system/_api/streamapps/${streamAppName}/active?active=true`,
@@ -301,12 +301,12 @@ const run = async function () {
 
     console.log("Stream app activated successfully");
 
-    /* ------------------ Publish messages to sample StreamApp ------------------ */
+    /* ------------------ Publish messages to sample stream app ------------------ */
     
     const region = isGlobal ? "c8global" : "c8local";
     const streamName = `${region}s.${stream}`;
 
-    // Fetching local URL in case the stream is local (which is defined in the streamapp)
+    // Fetching local URL in case the stream is local (which is defined in the stream app)
     const localDcDetails = await connection.req(`/datacenter/local`, {
       method: "GET"
     });
@@ -376,7 +376,7 @@ const run = async function () {
 
     /* ----------------------------- Verify results ----------------------------- */
 
-    const selectQuery = "FOR doc IN tutorialAppOutputTable return doc";
+    const selectQuery = "FOR doc IN tutorialAppOutputTable RETURN doc";
 
     const result = await connection.req(`/_fabric/_system/_api/cursor`, {
       body: {
@@ -390,7 +390,7 @@ const run = async function () {
     console.log("Input sent --->", inputData);
     console.log("Output received --->", result.result);
 
-    /* ---------------------------- Delete StreamApp ---------------------------- */
+    /* ---------------------------- Delete stream app ---------------------------- */
     const deletion = await connection.req(
       `/_fabric/_system/_api/streamapps/${streamAppName}`,
       {
