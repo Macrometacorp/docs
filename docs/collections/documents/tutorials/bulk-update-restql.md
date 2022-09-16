@@ -546,7 +546,7 @@ async function restqldemo () {
   }
 }
 
-restqldemo().then(console.log("Starting execution"));
+restqldemo().then(console.log("Running queries"));
 ```
 
 </TabItem>
