@@ -160,7 +160,7 @@ const run = async function () {
     let producer;
     let producerInterval;
 
-    /* -------------------------- Initalizing Consumer -------------------------- */
+    /* -------------------------- Initalizing consumer -------------------------- */
 
     const initConsumer = () => {
       return new Promise((resolve) => {
