@@ -1,5 +1,5 @@
 ---
-sidebar_position: 30
+sidebar_position: 10
 title: Create and Manage API Keys
 ---
 
@@ -19,4 +19,4 @@ After creating the API key, best practice is to save the automatically generated
 
 ## Delete API Key
 
-On the API Keys tab, click the trash icon next to an API key and then click **Delete**.
+On the **API Keys** tab, click the trash icon next to an API key and then click **Delete**.
