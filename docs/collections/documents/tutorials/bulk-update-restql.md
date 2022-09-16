@@ -458,7 +458,7 @@ async function restqldemo () {
     console.log("------- AUTHENTICATE CLIENT INSTANCE WITH USERNAME AND PASSWORD  ------");
     await client.login(email, password);
 
-    /* Create Collection */
+    /* Create collection */
     console.log("------- CREATE GEO-REPLICATED COLLECTION  ------");
 
     try {
