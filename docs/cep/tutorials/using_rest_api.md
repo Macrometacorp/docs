@@ -261,7 +261,7 @@ const run = async function () {
   try {
     const connection = new APIRequest(federationUrl);
 
-    /* -------------------- Login (nemo@nautilus.com/xxxxxx) -------------------- */
+    /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
 
     const { tenant } = await connection.login(email, password);
 
