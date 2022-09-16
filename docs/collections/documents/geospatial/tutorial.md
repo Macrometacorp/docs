@@ -212,136 +212,160 @@ client.delete_collection(collection_shops)
 <TabItem value="js" label="Javascript">
 
 ```js
-  'use strict'
+const jsc8 = require("jsc8");
 
-  const jsc8 = require('jsc8');
+// Variables - DB
+const globalUrl = "https://gdn.paas.macrometa.io";
 
-  // Variables - DB
-  const global_url = "https://gdn.paas.macrometa.io";
+// Create a authenticated instance with Token / Apikey
+// const client = new jsc8({ url: globalUrl, token: "XXXX", fabricName: '_system' });
+// Step 1: Open connection to GDN. You will be routed to the closest region.
+console.log(`\n1. Connect to federation: ${globalUrl}`);
+const client = new jsc8({ url: globalUrl, apiKey: "XXXXX", fabricName: "_system" });
+console.log("Connected: Authentication done!!...");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: global_url, token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: global_url, apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Or use Email & Password to Authenticate client instance
+// const client = new jsc8(globalUrl);
+// await client.login("nemo@nautilus.com", "xxxxx");
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8(global_url);
+// Variables
+const collectionShops = "shops";
+const collectionTransit = "transit";
 
-  await client.login("nemo@nautilus.com", "xxxxx");
+// Variable - Requests locations
+// const latitude2 = 37.3972452334285; // Sunnyvale Elementary School
+// const longitude2 = -121.99073796514953; // Sunnyvale Elementary School
+let lat1, long1;
 
-  //Variables
-  const collection_shops = "shops";
-  const collection_transit = "transit";
+// Variables - Data
+const shopsDataValue = [
+  { shop: "Walgreens", address: "San Jose, CA", coordinate: [37.2333253, -121.6846349] },
+  { shop: "Costco", address: "San Jose, CA", coordinate: [37.4282724, -121.9066238] },
+  { shop: "Walmart", address: "San Jose, CA", coordinate: [37.3361905, -121.8905833] },
+  { shop: "Bed Bath & Beyond", address: "Mountain View, CA", coordinate: [37.4443293, -122.1598465] },
+  { shop: "Best Buy", address: "Mountain View, CA", coordinate: [37.35992431640625, -122.06830596923828] },
+  { shop: "Target", address: "Mountain View, CA", coordinate: [37.4443293, -122.1598465] },
+  { shop: "Walgreens", address: "Fremont, CA", coordinate: [37.48849288005677, -121.94342916254486] },
+  { shop: "Costco", address: "Almeda, CA", coordinate: [37.766039418486855, -122.2430211806723] },
+  { shop: "Sweet Greens", address: "San Francisco, CA", coordinate: [38.621725, -92.571271] }
+];
 
-  // Variable - Requests locations
-  const latitude2 = 37.3972452334285; // Sunnyvale Elementary School
-  const longitude2 = -121.99073796514953; // Sunnyvale Elementary School
+const transitDataValue = [
+  { bus: "CA123", stop: "Santa Clara, CA", coordinate: [37.2333253, -121.6846349] },
+  { bus: "CA233", stop: "Milpitas, CA", coordinate: [37.4282724, -121.9066238] },
+  { bus: "CA433", stop: "San Jose, CA", coordinate: [37.3361905, -121.8905833] },
+  { bus: "CA323", stop: "Palo Alto, CA", coordinate: [37.4443293, -122.1598465] },
+  { bus: "CA523", stop: "Mountain View, CA", coordinate: [37.35992431640625, -122.06830596923828] },
+  { bus: "CA143", stop: "Fremont, CA", coordinate: [37.48849288005677, -121.94342916254486] },
+  { bus: "CA423", stop: "Almeda, CA", coordinate: [37.766039418486855, -122.2430211806723] },
+  { bus: "CA129", stop: "San Francisco, CA", coordinate: [38.621725, -92.571271] }
+];
 
-  // Variables - Data
-  const shops_data = [
-    { "shop": "Walgreens", "address": "San Jose, CA", "coordinate": [37.2333253, -121.6846349 ] },
-    { "shop": "Costco", "address": "San Jose, CA", "coordinate": [ 37.4282724,-121.9066238 ] },
-    { "shop":"Walmart", "address": "San Jose, CA", "coordinate": [ 37.3361905,-121.8905833 ] },
-    { "shop": "Bed Bath & Beyond", "address": "Mountain View, CA","coordinate": [ 37.4443293, -122.1598465] },
-    { "shop":"Best Buy", "address": "Mountain View, CA", "coordinate": [37.35992431640625,-122.06830596923828 ] },
-    { "shop": "Target", "address": "Mountain View, CA", "coordinate": [37.4443293, -122.1598465] },
-    { "shop": "Walgreens", "address": "Fremont, CA", "coordinate": [37.48849288005677, -121.94342916254486 ] },
-    { "shop": "Costco", "address": "Almeda, CA", "coordinate": [37.766039418486855, -122.2430211806723 ] },
-    { "shop": "Sweet Greens", "address": "San Francisco, CA", "coordinate": [38.621725, -92.571271 ] }
-  ];
+async function createCollection () {
+  console.log("\n2. Create collections:");
 
-  const transit_data = [
-    { "bus": "CA123", "stop": "Santa Clara, CA", "coordinate": [ 37.2333253,-121.6846349 ] },
-    { "bus": "CA233", "stop": "Milpitas, CA", "coordinate": [ 37.4282724,-121.9066238 ] },
-    { "bus": "CA433", "stop": "San Jose, CA", "coordinate": [ 37.3361905,-121.8905833 ] },
-    { "bus": "CA323", "stop": "Palo Alto, CA", "coordinate": [ 37.4443293,-122.1598465] },
-    { "bus": "CA523", "stop": "Mountain View, CA", "coordinate": [37.35992431640625,-122.06830596923828 ] },
-    { "bus": "CA143", "stop": "Fremont, CA", "coordinate": [ 37.48849288005677 -121.94342916254486 ] },
-    { "bus": "CA423", "stop": "Almeda, CA", "coordinate": [ 37.766039418486855 -122.2430211806723 ] },
-    { "bus": "CA129", "stop": "San Francisco, CA", "coordinate": [ 38.621725,-92.571271 ] }
-  ];
-
-  async function createCollection() {
-    console.log("\n 2. CREATE_COLLECTIONS");
-
-    try{
-      console.log("Creating the collection shops...");
-        const exists_shops = await client.hasCollection(collection_shops);
-        if (exists_shops === false) {
-              await client.createCollection(collection_shops)
-              await client.addGeoIndex(collection_shops, ['coordinate'],{geoJson : false});
-        }
-
-        console.log("Creating the collection transit...");
-        const exists_transit = await client.hasCollection(collection_transit);
-        if (exists_transit === false) {
-              await client.createCollection(collection_transit)
-              await client.addGeoIndex(collection_transit, ['coordinate'],{geoJson : false});
-        }
+  try {
+    console.log(`Creating the collection ${collectionShops}...`);
+    const existsShops = await client.hasCollection(collectionShops);
+    if (!existsShops) {
+      await client.createCollection(collectionShops);
+      await client.addGeoIndex(collectionShops, ["coordinate"], { geoJson: false });
+      console.log("Collection created and geo-indexed successfully.");
+    } else {
+      console.log(`Collection ${collectionShops} already exists.`);
     }
-    catch (e) {
-      await console.log("Collection creation did not succeed due to " + e);
+
+    console.log(`Creating the collection ${collectionTransit}...`);
+    const existsTransit = await client.hasCollection(collectionTransit);
+    if (!existsTransit) {
+      await client.createCollection(collectionTransit);
+      await client.addGeoIndex(collectionTransit, ["coordinate"], { geoJson: false });
+      console.log("Collection created and geo-indexed successfully.");
+    } else {
+      console.log(`Collection ${collectionTransit} already exists.`);
     }
+  } catch (e) {
+    console.error("Collection creation did not succeed due to: " + e);
+  }
+}
+
+async function insertData (shopsDataValue, transitDataValue) {
+  try {
+    console.log(`\n3a. Insert shop data in region ${globalUrl}`);
+    await client.insertDocumentMany(collectionShops, shopsDataValue);
+  } catch (e) {
+    console.log(`Cannot insert documents to collection ${collectionShops} due to ${e}`);
   }
 
-  async function insertData(shops_data, transit_data) {
-    console.log(`\n 3a. INSERT_SHOP_DATA in region ${global_url}`);
-    await client.insertDocumentMany(collection_shops, shops_data);
-
-    console.log(`\n 3b. INSERT_TRANSIT_DATA in region ${global_url}`);
-    await client.insertDocumentMany(collection_transit, transit_data);
+  try {
+    console.log(`\n3b. Insert transit data in region ${globalUrl}`);
+    await client.insertDocumentMany(collectionTransit, transitDataValue);
+  } catch (e) {
+    console.log(`Cannot insert documents to collection ${collectionTransit} due to ${e}`);
   }
+}
 
-  async function deleteData(){
-    console.log("\n 5. DELETE_DATA");
-    await client.deleteCollection(collection_shops);
-    await client.deleteCollection(collection_transit);
-  }
+async function findData () {
+  console.log("\n4. Find data:");
 
-  async function findData(){
-    console.log("\n 4. FIND_DATA");
+  // Find shops closer to given location
+  lat1 = 37.43007055731992; // McCarthy Blvd, Milpitas
+  long1 = -121.92344167914754; // McCarthy Blvd, Milpitas
+  const radius = 10 * 1000; // meters
+  let withinQuery = `FOR loc IN WITHIN (${collectionShops}, ${lat1}, ${long1}, ${radius}) SORT loc._distance ASC RETURN loc`;
+  console.log(`\n4a. Find nearby shops for request: (${lat1}, ${long1})`);
+  let result = await client.executeQuery(withinQuery);
+  console.log(result);
 
-    // Find shops closer to given location
-    let lat1 = 37.43007055731992; // McCarthy Blvd, Milpitas
-    let long1 = -121.92344167914754; // McCarthy Blvd, Milpitas
-    let radius = 10 * 1000; // meters
-    console.log(`\n 4a. FIND_NEAR_BY_SHOPS for request: (${lat1}, ${long1})`);
-    let within_query = `FOR loc IN WITHIN (${collection_shops}, ${lat1}, ${long1}, ${radius
-    }) SORT loc._distance ASC RETURN loc`;
-    let result = await client.executeQuery(within_query);
-    console.log(result);
+  // Find shop closest to given location
+  console.log(`\n4b. Find nearest for request: (${lat1}, ${long1})`);
+  let nearQuery = `FOR loc IN NEAR (${collectionShops}, ${lat1}, ${long1}, 1) RETURN loc`;
+  result = await client.executeQuery(nearQuery);
+  console.log(result);
 
-    // Find shop closest to given location
-    console.log(`\n 4b. FIND_NEAREST_SHOP for request: (${lat1}, ${long1})`);
-    let near_query = `FOR loc IN NEAR (${collection_shops}, ${lat1}, ${long1}, 1) RETURN loc`;
-    result = await client.executeQuery(near_query);
-    console.log(result);
-    
-    // Find buses currently within given rectangular fence
-    lat1 = 37.38905593900322; 
-    long1 = -122.14426630984782; 
-    let lat2 = 37.332401582858324; 
-    let long2 = -121.80235913612003; 
+  // Find buses currently within given rectangular fence
+  lat1 = 37.38905593900322;
+  long1 = -122.14426630984782;
+  const lat2 = 37.332401582858324;
+  const long2 = -121.80235913612003;
 
-    console.log(`\n 4c. FIND_BUSES available within RECTANGULAR fence: (${lat1}, ${long1}, ${lat2}, ${long2}) sorted by distance`);
-    
-    within_query = `FOR loc IN WITHIN_RECTANGLE (${collection_transit}, ${lat1}, ${long1}, ${lat2}, ${long2}) SORT loc._distance ASC RETURN loc`;
-    result = await client.executeQuery(within_query);
-    console.log(result);  
+  console.log(`\n4c. Find buses available within rectangular fence: (${lat1}, ${long1}, ${lat2}, ${long2})`);
+
+  withinQuery = `FOR loc IN WITHIN_RECTANGLE (${collectionTransit}, ${lat1}, ${long1}, ${lat2}, ${long2}) RETURN loc`;
+  result = await client.executeQuery(withinQuery);
+  console.log(result);
 
   // Find Bus closest to given location
-    console.log(`\n 4d. FIND_NEAREST_BUS for given location: (${lat1}, ${long1})`);
-    near_query = `FOR loc IN NEAR (${collection_transit}, ${lat1}, ${long1}, 1) RETURN loc`;
-    result = await client.executeQuery(near_query);
-    console.log(result); 
+  console.log(`\n4d. Find nearest bus for given location: (${lat1}, ${long1})`);
+  nearQuery = `FOR loc IN NEAR (${collectionTransit}, ${lat1}, ${long1}, 1) RETURN loc`;
+  result = await client.executeQuery(nearQuery);
+  console.log(result);
+}
+
+async function deleteData () {
+  console.log("\n5. Delete data:");
+
+  if (await client.hasCollection(collectionShops)) {
+    await client.deleteCollection(collectionShops);
+    console.log(`Collection ${collectionShops} has been deleted successfully`);
+  } else {
+    console.log(`Cannot delete non-existent collection ${collectionShops}`);
   }
 
-  (async function() {
-    await createCollection();
-    await insertData(shops_data, transit_data);
-    await findData();
-    await deleteData();
-  })();
+  if (await client.hasCollection(collectionTransit)) {
+    await client.deleteCollection(collectionTransit);
+    console.log(`Collection ${collectionTransit} has been deleted successfully`);
+  } else {
+    console.log(`Cannot delete non-existent collection ${collectionTransit}`);
+  }
+}
+
+(async function () {
+  await createCollection();
+  await insertData(shopsDataValue, transitDataValue);
+  await findData();
+  await deleteData();
+})();
 ```
 
 </TabItem>
