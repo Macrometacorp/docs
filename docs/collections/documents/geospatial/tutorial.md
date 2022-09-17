@@ -217,14 +217,14 @@ const jsc8 = require("jsc8");
 // Variables - DB
 const globalUrl = "https://gdn.paas.macrometa.io";
 
-// Create a authenticated instance with Token / Apikey
+// Create a authenticated instance with token or API key
 // const client = new jsc8({ url: globalUrl, token: "XXXX", fabricName: '_system' });
 // Step 1: Open connection to GDN. You will be routed to the closest region.
 console.log(`\n1. Connect to federation: ${globalUrl}`);
 const client = new jsc8({ url: globalUrl, apiKey: "XXXXX", fabricName: "_system" });
 console.log("Connected: Authentication done!!...");
 
-// Or use Email & Password to Authenticate client instance
+// Or use email and password to authenticate client instance
 // const client = new jsc8(globalUrl);
 // await client.login("nemo@nautilus.com", "xxxxx");
 
