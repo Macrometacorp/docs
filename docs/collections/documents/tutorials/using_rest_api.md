@@ -542,7 +542,7 @@ const run = async function () {
   /* ---------------------------- Read documents ---------------------------- */
   console.log("7. Reading data from collection " + collectionName);
   await runningQueryFromCursor(readQuery);
-  /* ---------------------------- Delete documents ---------------------------- */
+  /* ---------------------------- Delete documents --------------------------- */
   console.log("8. Delete data from collection " + collectionName);
   await runningQueryFromCursor(deleteDocumentsQuery);
   /* ---------------------------- Delete collection ---------------------------- */
