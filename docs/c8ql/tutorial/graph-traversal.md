@@ -114,7 +114,17 @@ FOR rel in data
     RETURN NEW
 ```
 
-When you run the query, it returns a graph that won't make much sense. Read on for an explanation of what the query did. Later sections explain how to better visualize this information.
+When you run the query, it returns a graph with data structures similar to those shown earlier and below. However, your graph has system-defined keys whereas the one shown here have user-defined keys.
+
+![ChildOf_Graph](/img/c8ql/tutorial/ChildOf_Graph.png)
+
+:::note
+Sometimes the two family structures generate overlapping one another. To separate them, click the **Start layout animation** play icon in the lower right corner of the Query Result. Click Stop after the diagrams separate.
+:::
+
+Your results should look similar to this graph.
+
+![Separated Graphs](/img/c8ql/tutorial/graphs-separate.png)
 
 ### Explanation of Graph Edge Query
 
@@ -275,7 +285,7 @@ FOR c IN Characters
 
 It might be a bit unexpected, that Joffrey is returned twice. However, if you look at the graph visualization, you can see that multiple paths lead from Joffrey (bottom right) to Tywin:
 
-![ChildOf_Graph](/img/c8ql/tutorial/ChildOf_Graph.png)
+
 
 ```js
 Tywin <- Jaime <- Joffrey
