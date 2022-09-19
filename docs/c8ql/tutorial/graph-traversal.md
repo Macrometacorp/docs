@@ -1,6 +1,6 @@
 ---
 sidebar_position: 50
-title: Part 4 - Graph Traversal
+title: Part 5 - Graph Traversal
 ---
 
 
