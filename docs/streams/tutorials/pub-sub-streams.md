@@ -71,56 +71,120 @@ Once the installation process is finished, you can begin developing applications
 <TabItem value="js" label="Javascript">
 
 ```js
-const jsc8 = require('jsc8');
+const jsc8 = require("jsc8");
+const readline = require("readline");
+const globalUrl = "https://gdn.paas.macrometa.io";
 
-const gdnUrl = "https://gdn.paas.macrometa.io";
+// Crete a authenticated instance with token / apikey
+// const client = new jsc8({ url: gdnUrl, token: "XXXX", fabricName: "_system" });
+const client = new jsc8({
+  url: globalUrl,
+  apiKey:
+    "XXXX",
+  fabricName: "_system"
+});
 
-// Crete a authenticated instance with Token / Apikey
-// const client = new jsc8({url: gdnUrl, token: "XXXX", fabricName: '_system'});
-// const client = new jsc8({url: gdnUrl, apiKey: "XXXX", fabricName: '_system'});
-// await console.log("Authentication done!!...");
+// Or use email and password to authenticate client instance
+// const client = new jsc8(globalUrl);
+// await client.login("nemo@nautilus.com", "xxxxxx");
 
-// Or use Email & Password to Authenticate client instance
-const client = new jsc8(gdnUrl);
+// Variables
+const stream = "streamQuickstart";
+let prefixText = "";
+const prefixBool = false;
 
-await client.login("nemo@nautilus.com", "xxxxxx");
-
-//Variables
-const msgs = ["message 1", "message 2", "message 3"];
-let numberOfMessages = 0;
-
-async function getDCList() {
-  let dcListAll = await client.listUserFabrics();
-  let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
-  return dcListObject.options.dcList.split(",");
+// Get the right prefix for the stream
+if (prefixBool) {
+  prefixText = "c8locals.";
+} else {
+  prefixText = "c8globals.";
 }
 
-
-async function publish(stream) {
-  console.log("\n ------- PUBLISH MESSAGES  ------");
-  const publisher = await client.createStreamProducer("testStream");
-}
-
-async function receive(stream) {
-  const consumer = await client.createStreamReader("testStream", "my-subscription");
-  consumer.on("message", (msg) => {
-    console.log(msg);
+async function getDCList () {
+  const dcListAll = await client.listUserFabrics();
+  const dcListObject = await dcListAll.find(function (o) {
+    return o.name === "_system";
   });
+  const dcList = dcListObject.options.dcList.split(",");
+  console.log("dcList: ", dcList);
 }
 
-(async function() {
-  const dcList = await getDCList();
-  await console.log("dcList: ", dcList);
+async function createMyStream () {
+  let streamName = { "stream-id": "" };
+  if (await client.hasStream(stream, prefixBool)) {
+    console.log("Stream already exists");
+    streamName["stream-id"] = prefixText + stream;
+    console.log(`OLD Producer = ${streamName["stream-id"]}`);
+  } else {
+    streamName = await client.createStream(stream, prefixBool);
+    console.log(`NEW Producer = ${streamName.result["stream-id"]}`);
+  }
+}
 
-  await client.createStream("testStream", false);
-  //Here the last boolean value tells if the stream is local or global. false means that it is global.
+async function sendData () {
+  console.log("\n ------- PUBLISH MESSAGES  ------");
+  const producer = await client.createStreamProducer(stream);
 
+  producer.on("open", () => {
+    for (let i = 0; i < 10; i++) {
+      const msg1 = `Persistent hello from (${JSON.stringify(i)})`;
+      const data = {
+        payload: Buffer.from(msg1).toString("base64")
+      };
 
-  // publishing streams
-  await receive();
+      console.log(`Stream: ${msg1}`);
+      producer.send(JSON.stringify(data));
+    }
+  });
+  producer.onclose = function (e) {
+    console.log("Closed WebSocket:Producer connection for " + streamName);
+  };
+}
 
-  await publish();
+async function receiveData () {
+  console.log("\n ------- RECEIVE MESSAGES  ------");
+  const consumer = await client.createStreamReader(
+    stream,
+    "test-subscription-1"
+  );
 
+  consumer.on("message", (msg) => {
+    const { payload, messageId } = JSON.parse(msg);
+    console.log(Buffer.from(payload, "base64").toString("ascii"));
+    // Send message acknowledgement
+    consumer.send(JSON.stringify({ messageId }));
+  });
+  consumer.onclose = function () {
+    console.log("Closed WebSocket:Consumer connection for " + stream);
+  };
+}
+
+async function selectAction () {
+  const input = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  input.question(
+    "Type 'w' or '1' to write data. Type 'r' or '0' to read data: ",
+    (userInput) => {
+      if (userInput === "w" || userInput === "1") {
+        sendData();
+      } else if (userInput === "r" || userInput === "0") {
+        receiveData();
+      } else {
+        console.log("Invalid user input. Stopping program.");
+        return false;
+      }
+      input.close();
+    }
+  );
+}
+
+(async function () {
+  await getDCList();
+  await createMyStream();
+  await selectAction();
 })();
 ```
 
@@ -129,79 +193,80 @@ async function receive(stream) {
 <TabItem value="py" label="Python">
 
 ```py
-from c8 import C8Client
-import random
-import threading
-import time
-import json
+""" This file is a demo to send data to/from a stream """
+from operator import concat
 import base64
+import json
+import warnings
+from c8 import C8Client
 import six
+warnings.filterwarnings("ignore")
 
-# Variables
-URL = "gdn.paas.macrometa.io"  # The request will be automatically routed to closest location.
-EMAIL = "nemo@nautilus.com"
-PASSWORD = "xxxxxxxx"
-FABRIC = "_system"
-STREAM_NAME = "stream" + str(random.randint(1, 10000))
+URL = "gdn.paas.macrometa.io"
+GEO_FABRIC = "_system"
+API_KEY = "my API key" # Change this to your API key
+prefixText = ""
+prefixBool = False
+demo_stream = 'streamQuickstart'
+
+client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
+
+# Get the right prefix for the stream
+if prefixBool:
+    prefixText = "c8locals."
+else:
+    prefixText = "c8globals."
 
 
-def create_subscriber():
-    print("\n ------- SUBSCRIBE TOPIC  ------")
+def createStream():
+    """ This function creates a stream """
+    streamName = {"stream-id": ""}
+    if client.has_stream(demo_stream, local = prefixBool):
+        print("Stream already exists")
+        streamName["stream-id"] = concat(prefixText, demo_stream)
+        print ("OLD Producer =",  streamName["stream-id"])
+    else:
+        #print(client.create_stream(demo_stream, local=prefixBool))
+        streamName = client.create_stream(demo_stream, local=prefixBool)
+        print ("NEW Producer =",  streamName["stream-id"])
 
-    print(f"Subscribe to stream: {STREAM_NAME}")
-    subscriber1 = client.subscribe(stream=STREAM_NAME, local=True, subscription_name="subscriber1",
-                                   consumer_type=client.CONSUMER_TYPES.EXCLUSIVE)
-
-    # Receive: Read the published messages over stream.
+# Creating the producer and sending data
+def sendData():
+    """ This function sends data through a stream """
+    producer = client.create_stream_producer(demo_stream, local=prefixBool)
     for i in range(10):
-        response1 = json.loads(subscriber1.recv())
-        msg1 = base64.b64decode(six.b(response1["payload"]))
-        print("Received Message:", msg1)
-        if response1["messageId"]:
-            print("Acknowledging msg: ", response1["messageId"])
-            subscriber1.send(json.dumps({'messageId': response1['messageId']}))
-
-
-if __name__ == '__main__':
-
-    print("\n ------- CONNECTION SETUP  ------")
-    print(f"user: {EMAIL}, geofabric: {FABRIC}")
-    print(f"\n1. CONNECT: federation: {URL},  user: {EMAIL}")
-    client = C8Client(protocol='https', host=URL, port=443, email=EMAIL, password=PASSWORD, geofabric=FABRIC)
-
-    print("\n ------- CREATE STREAM  (local/geo-replicated) ------")
-    client.create_stream(STREAM_NAME, local=True)   # Set local=False for geo-replicated stream available in all regions
-    print(f"Created stream: {STREAM_NAME}")
-    time.sleep(10)  # To account for network latencies in replication
-
-    print("\n ------- CREATE SUBSCRIBER  ------")
-    subscriber_thread = threading.Thread(target=create_subscriber)
-    subscriber_thread.start()
-
-    print("\n ------- CREATE PRODUCER  ------")
-    print(f"Create producer on stream: {STREAM_NAME}")
-    producer = client.create_stream_producer(stream=STREAM_NAME, local=True)
-    print(producer.__dict__)
-    print("\n ------- PUBLISH MESSAGES  ------")
-    print(f"Publish 10 messages to stream: {STREAM_NAME}")
-    for i in range(10):
-        msg = f"Hello from user--({str(i)})"
+        msg1 = "Persistent Hello from " + "("+ str(i) +")"
         data = {
-            "payload": msg,
+            "payload" : base64.b64encode(six.b(msg1)).decode("utf-8")
         }
-        try:
-            producer.send(json.dumps(data))
-            response = json.loads(producer.recv())
-        except Exception as e:
-            m = "Producer failed to send message due to Pulsar Error - %s" % e
-            print(m)
+        print("Stream: ", msg1)
+        print(producer.send(json.dumps(data)))
 
-    producer.close()
-    print("Publish messages done...")
 
-    print("Wait for subscriber to consume all messages...")
-    subscriber_thread.join()  # Wait for subscriber to consume all messages.
-    print("\n ------- DONE  ------")
+# Creating the subscriber and receiving data
+def receiveData():
+    """ This function receives data from a stream """
+    subscriber = client.subscribe(stream=demo_stream, local=prefixBool,
+        subscription_name="test-subscription-1")
+    for i in range(10):
+        print("In ",i)
+        m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
+        msg1 = base64.b64decode(m1["payload"])
+        print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received message
+        subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
+
+
+createStream()
+
+
+# Select choice
+user_input = input("Type 'w' or '1' to write data. Type 'r' or '0' to read data: ")
+if user_input == "w" or user_input == '1':
+    sendData()
+elif user_input == "r" or user_input == '0':
+    receiveData()
+else:
+    print ("Invalid user input. Stopping program")
 ```
 
 </TabItem>
