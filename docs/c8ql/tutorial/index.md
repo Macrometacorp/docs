@@ -53,5 +53,5 @@ Enjoy and have fun!
 - [Part 2 - Filter Results](filter-results.md)
 - [Part 3 - Sort and Limit](sort-and-limit.md)
 - [Part 4 - Import Traits and Merge](import-and-merge.md)
-- [Part 5 - Graph Traversal]
-- [Part 6 - Geospatial Queries]
+- [Part 5 - Graph Traversal](graph-traversal.md)
+- [Part 6 - Geospatial Queries](geospatial-queries)
