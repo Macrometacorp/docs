@@ -404,7 +404,6 @@ print(resp.text)
 
 ```  
 </TabItem>
-</TabItem>
 <TabItem value="js" label="Javascript">
 
 ```js
