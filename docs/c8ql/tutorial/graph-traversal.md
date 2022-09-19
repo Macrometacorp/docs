@@ -265,9 +265,9 @@ This returns a list of Ned's children:
 ]
 ```
 
-## Traverse to the grandchildren
+## Traverse to the Grandchildren
 
-For the Lannister family, we have relations that span from parent to grandchild. Let's change the traversal depth to return grandchildren, which means to go exactly two steps:
+The Lannister family has relations that span from parent to grandchild. Let's change the traversal depth to return grandchildren, which means to go exactly two steps:
 
 ```js
 FOR c IN Characters
@@ -285,8 +285,6 @@ FOR c IN Characters
 
 It might be a bit unexpected, that Joffrey is returned twice. However, if you look at the graph visualization, you can see that multiple paths lead from Joffrey (bottom right) to Tywin:
 
-
-
 ```js
 Tywin <- Jaime <- Joffrey
 Tywin <- Cersei <- Joffrey
@@ -294,9 +292,9 @@ Tywin <- Cersei <- Joffrey
 
 As a quick fix, change the last line of the query to `RETURN DISTINCT v.name` to return each value only once. Keep in mind though, that there are [traversal options](../graphs/traversals.md#syntax) to suppress duplicate vertices early on.
 
-## Traverse with variable depth
+## Traverse with Variable Depth
 
-To return the parents and grandparents of Joffrey, we can walk edges in `OUTBOUND` direction and adjust the traversal depth to go at least 1 step, and 2 at most:
+To return the parents and grandparents of Joffrey, yo can walk edges in `OUTBOUND` direction and adjust the traversal depth to go at least 1 step, and 2 at most:
 
 ```js
 FOR c IN Characters
@@ -304,6 +302,8 @@ FOR c IN Characters
     FOR v IN 1..2 OUTBOUND c ChildOf
         RETURN DISTINCT v.name
 ```
+
+This returns:
 
 ```json
 [
@@ -313,8 +313,8 @@ FOR c IN Characters
 ]
 ```
 
-If we had deeper family trees, it would only be a matter of changing the depth values to query for great-grandchildren and similar relations.
+If the dataset had deeper family trees, it would only be a matter of changing the depth values to query for great-grandchildren and similar relations.
 
 ## Next Steps
 
-Great job! You can now combine data from different collections. When you're ready, continue the tutorial in [Part 5 - Graph Traversal](graph-traversal.md).
+Great job! You can now create edges and traverse graph relationships. When you're ready, continue the tutorial in [Part 6 - Geospatial Queries](geospatial-queries).
