@@ -87,7 +87,8 @@ Macrometa supports the following data types:
     INTERNET_URL
     INTERNET_UUID
 
-    // Job
+### Job
+
     JOB_FIELD
     JOB_POSITION
     JOB_SENIORITY
