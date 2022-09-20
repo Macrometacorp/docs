@@ -39,7 +39,8 @@ Macrometa supports the following data types:
 
     ID_SSN
 
-    // CreditCard
+### Credit Card
+
     CREDITCARD_CREDITCARDTYPE
     CREDITCARD_CREDITCARDNUMBER
     CREDITCARD_CREDITCARDEXPIRY
