@@ -119,10 +119,12 @@ Macrometa supports the following data types:
 
 Anonymizer uses the following syntax:
 
+```js
 	pii:fake(STRING input.string, String fake.function, BOOL invalidate.cache)
+```
 
-	<invalidation flag> - true, a different fake data will be generated at each call; 
-						  false, once generated the fake data is cached is used for the next calls
+	<invalidate.cache> - true, a different fake data will be generated at each call
+					false, once generated the fake data is cached is used for the next calls
 					  
 					  
 ## Query Parameters
@@ -132,10 +134,10 @@ Anonymizer uses the following syntax:
 |------------------|---------------------------------------------|---------------|---------------------|----------|---------|
 | input.string     | The input name to create a fake one         |               | STRING              | No       | Yes     |
 | fake.function    | The key to be added                         |               | STRING              | No       | Yes     |
-| invalidate.cache | An optional clean up the cache              | false         | BOOL                | Yes      | Yes     |
+| invalidate.cache | An optional clean up cache   flag           | false         | BOOL                | Yes      | Yes     |
 
 
-## Example 1
+## Example
 
 ```js
 CREATE SOURCE patient_local WITH (type='database', collection='patient_local', replication.type="local", map.type='json') (full_name string, ssn string, email string, phone string);
@@ -143,7 +145,7 @@ CREATE SOURCE patient_local WITH (type='database', collection='patient_local', r
 CREATE TABLE patient_public(full_name string, ssn string, email string, phone string);
 
 INSERT INTO patient_public
-SELECT pii:fake(full_name, "ADDRESS_CITY", true)         as full_name,
+SELECT pii:fake(full_name, "NAME_FULLNAME", true)         as full_name,
        pii:fake(ssn, "ID_SSN", false)                    as ssn,
        pii:fake(email, "INTERNET_EMAILADDRESS", false)   as email,
        pii:fake(phone, "PHONENUMBER_PHONENUMBER", false) as phone
