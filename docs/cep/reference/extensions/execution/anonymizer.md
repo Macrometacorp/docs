@@ -101,7 +101,8 @@ Macrometa supports the following data types:
     MEDICAL_MEDICINENAME
     MEDICAL_SYMPTOMS
 
-    // PhoneNumber
+### Phone Number
+
     PHONENUMBER_CELLPHONE
     PHONENUMBER_PHONENUMBER
 
