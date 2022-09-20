@@ -64,7 +64,8 @@ Macrometa supports the following data types:
     DEMOGRAPHIC_MARITALSTATUS
     DEMOGRAPHIC_DEMONYM
 
-    // Education
+### Education
+
     EDUCATOR_CAMPUS
     EDUCATOR_COURSE
     EDUCATOR_SECONDARYSCHOOLS
