@@ -1,4 +1,7 @@
-# Anonymizer
+---
+sidebar_position: XX
+title: Anonymizer
+---
 
 The anonymizer extension provides a function for anonymizing various data types. This function returns a fake value for anonymizing
 
