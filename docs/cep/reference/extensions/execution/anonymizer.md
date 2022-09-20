@@ -106,7 +106,7 @@ Macrometa supports the following data types:
     PHONENUMBER_CELLPHONE
     PHONENUMBER_PHONENUMBER
 
-    // Text
+### Text
     TEXT_CHARACTER
     TEXT_FIXEDSTRING
     TEXT_PARAGRAPH
