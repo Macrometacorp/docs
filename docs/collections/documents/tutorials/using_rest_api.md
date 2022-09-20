@@ -1269,6 +1269,7 @@ const run = async function () {
     /* -------------------  Delete query worker ------------------- */
     await saveQueryWorker(deleteQueryName, deleteQuery, queryParams);
 
+    await new Promise(r => setTimeout(r, 2000));
     console.log("4. Running query workers");
 
     /* ----------------------- Run insert query worker ---------------------- */
