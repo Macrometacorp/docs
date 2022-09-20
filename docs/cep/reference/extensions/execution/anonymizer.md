@@ -57,7 +57,8 @@ Macrometa supports the following data types:
     COMPANY_BIC
     COMPANY_IBAN
 
-    // Demographic
+### Demographic
+
     DEMOGRAPHIC_RACE
     DEMOGRAPHIC_SEX
     DEMOGRAPHIC_MARITALSTATUS
