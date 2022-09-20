@@ -518,7 +518,8 @@ async function createCollection (collection) {
 }
 
 const run = async function () {
-  /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
+ 
+   /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
 
   await connection
     .login(email, password)
