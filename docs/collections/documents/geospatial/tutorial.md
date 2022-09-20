@@ -217,7 +217,7 @@ const jsc8 = require("jsc8");
 // Variables - DB
 const globalUrl = "https://gdn.paas.macrometa.io";
 
-// Create a authenticated instance with token or API key
+// Create an authenticated instance with token or API key
 // const client = new jsc8({ url: globalUrl, token: "XXXX", fabricName: '_system' });
 // Step 1: Open connection to GDN. You will be routed to the closest region.
 console.log(`\n1. Connect to federation: ${globalUrl}`);
@@ -335,7 +335,7 @@ async function findData () {
   result = await client.executeQuery(withinQuery);
   console.log(result);
 
-  // Find Bus closest to given location
+  // Find bus closest to given location
   console.log(`\n4d. Find nearest bus for given location: (${lat1}, ${long1})`);
   nearQuery = `FOR loc IN NEAR (${collectionTransit}, ${lat1}, ${long1}, 1) RETURN loc`;
   result = await client.executeQuery(nearQuery);
