@@ -7,7 +7,7 @@ The anonymizer extension provides a function for anonymizing various data types.
 
 ## Features
 
-Following data types are supported:
+Macrometa supports the following data types:
 
     // Address
     ADDRESS_BUILDINGNUMBER
