@@ -175,13 +175,13 @@ regionUrls = [
   "https://gdn-ap-south.paas.macrometa.io"
 ];
 
-// Crete a authenticated instance with token / apikey
+// Create an authenticated instance with a token or API key
 // const client = new jsc8({url: globalUrl, token: "XXXX", fabricName: '_system'});
 const thisApikey = "XXXXX";
 const client = new jsc8({ url: globalUrl, apiKey: thisApikey, fabricName: "_system" });
 // console.log("Authentication done!!...");
 
-// Or use email and password to Authenticate client instance
+// Or use email and password to authenticate client instance
 // const client = new jsc8(globalUrl);
 // await client.login("nemo@nautilus.com", "xxxx");
 
@@ -253,7 +253,7 @@ async function readDataFromAllRegions () {
   console.log("\n6. Checking if the IP is allowed globally");
   try {
     for (let i = 0; i < regionUrls.length; i++) {
-      // Crete a authenticated instance with Token / Apikey
+      // Create an authenticated instance with a token or API key
       // const regionClient = new jsc8({url: regionUrls[i], token: "XXXX", fabricName: '_system'});
       // const regionClient = new jsc8({url: regionUrls[i], apiKey: "XXXX", fabricName: '_system'});
       // console.log("Authentication done!!...");
