@@ -34,7 +34,8 @@ Macrometa supports the following data types:
     NAME_TITLE
     NAME_USERNAME
 
-    //Id
+### ID
+
     ID_SSN
 
     // CreditCard
