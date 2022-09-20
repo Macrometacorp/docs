@@ -150,7 +150,7 @@ SELECT pii:fake(full_name, "ADDRESS_CITY", true)         as full_name,
 FROM patient_local;
 ```
 
-    1. Insert following data into `patient_local` C8DB Collection
+1. Insert following data into `patient_local` collection:
 {"full_name": "John Doe", "ssn": "123-123-123", "email": "John.Doe@macrometa.com", "phone": "123-123-12345"}
 
 1. Following document would be shown on the `patient_public` collection:
