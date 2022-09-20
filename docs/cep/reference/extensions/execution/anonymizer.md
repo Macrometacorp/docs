@@ -94,7 +94,8 @@ Macrometa supports the following data types:
     JOB_SENIORITY
     JOB_TITLE
 
-    // Medical
+### Medical
+
     MEDICAL_DISEASENAME
     MEDICAL_HOSPITALNAME
     MEDICAL_MEDICINENAME
