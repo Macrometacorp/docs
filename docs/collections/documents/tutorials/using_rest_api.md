@@ -306,7 +306,7 @@ const run = async function () {
     )
     .catch((error) => console.log(error));
 
-  /* --------------------------- Delete collection. --------------------------- */
+  /* --------------------------- Delete collection --------------------------- */
   await connection
     .req(`/_fabric/_system/_api/collection/${collectionName}`, {
       method: "DELETE"
