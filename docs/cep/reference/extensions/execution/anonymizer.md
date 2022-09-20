@@ -71,7 +71,8 @@ Macrometa supports the following data types:
     EDUCATOR_SECONDARYSCHOOLS
     EDUCATOR_UNIVERSITY
 
-    // Internet
+### Internet
+
     INTERNET_DOMAINNAME
     INTERNET_DOMAINSUFFIX
     INTERNET_DOMAINWORD
