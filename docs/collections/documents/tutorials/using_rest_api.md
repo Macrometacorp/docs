@@ -1253,7 +1253,7 @@ const run = async function () {
       .then(() => console.log("\n1. User authentication done!"))
       .catch((error) => console.log(error));
 
-    /* ------------------------ Create Collection ----------------------- */
+    /* ------------------------ Create collection ----------------------- */
     await createCollection(collectionName);
 
     console.log("3. Saving query workers");
