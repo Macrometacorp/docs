@@ -3,7 +3,7 @@ sidebar_position: XX
 title: Anonymizer
 ---
 
-The anonymizer extension provides a function for anonymizing various data types. This function returns a fake value for anonymizing
+The anonymizer extension provides a function for anonymizing various data types. This function returns a fake value for anonymizing which matches the original data. For example, an email would be replaced with a fake email.
 
 ## Features
 
