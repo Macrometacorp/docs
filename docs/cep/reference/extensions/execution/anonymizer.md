@@ -153,6 +153,6 @@ FROM patient_local;
     1. Insert following data into `patient_local` C8DB Collection
         {"full_name": "John Doe", "ssn": "123-123-123", "email": "John.Doe@macrometa.com", "phone": "123-123-12345"}
 
-    2. Following document would be shown on the `patient_public` collection
+1. Following document would be shown on the `patient_public` collection:
         {"full_name": "fake name", "ssn": "fake ssn", "email": "fake email", "phone": "fake phone number"}
 
