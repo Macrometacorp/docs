@@ -763,7 +763,7 @@ const run = async function () {
   const region = isGlobal ? "c8global" : "c8local";
   const streamName = `${region}s.${stream}`;
 
-  // Fetching local URL in case the stream is local
+  // Fetch local URL in case the stream is local
   const localDcDetails = await connection
     .req(`/datacenter/local`, {
       method: "GET"
