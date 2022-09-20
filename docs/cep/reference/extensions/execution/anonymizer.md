@@ -123,7 +123,7 @@ Anonymizer uses the following syntax:
 	pii:fake(STRING input.string, String fake.function, BOOL invalidate.cache)
 ```
 
-	<invalidate.cache> - true, a different fake data will be generated at each call
+		<invalidate.cache> - true, a different fake data will be generated at each call
 					false, once generated the fake data is cached is used for the next calls
 					  
 					  
