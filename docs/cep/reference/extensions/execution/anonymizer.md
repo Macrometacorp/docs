@@ -115,7 +115,9 @@ Macrometa supports the following data types:
 
 
 
-Syntax:
+## Syntax
+
+Anonymizer uses the following syntax:
 
 	pii:fake(STRING input.string, String fake.function, BOOL invalidate.cache)
 
