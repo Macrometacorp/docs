@@ -135,7 +135,7 @@ Anonymizer uses the following syntax:
 | invalidate.cache | An optional clean up the cache              | false         | BOOL                | Yes      | Yes     |
 
 
-EXAMPLE 1:
+## Example 1
 
 ```js
 CREATE SOURCE patient_local WITH (type='database', collection='patient_local', replication.type="local", map.type='json') (full_name string, ssn string, email string, phone string);
