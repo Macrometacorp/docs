@@ -45,7 +45,8 @@ Macrometa supports the following data types:
     CREDITCARD_CREDITCARDNUMBER
     CREDITCARD_CREDITCARDEXPIRY
 
-    // Company
+### Company
+
     COMPANY_DEPARTMENT
     COMPANY_PRODUCTNAME
     COMPANY_PRICE
