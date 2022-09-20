@@ -80,7 +80,7 @@ const client = new jsc8({
 });
 
 // ----- OR -----
-// Create an auth instance with an API Key
+// Create an auth instance with an API key
 const client = new jsc8({
     url: gdnUrl,
     apiKey: "XXXX",
@@ -93,7 +93,7 @@ const client = new jsc8(gdnUrl);
 await client.login("nemo@nautilus.com", "xxxxx");
 */
 
-// Connecting to GDN
+// Connect to GDN
 const client = new jsc8({ url: globalUrl, apiKey: "XXXXX", fabricName: "_system" });
 
 // Variables
@@ -192,15 +192,15 @@ async function createRestQL () {
     await insertQueryWorker(deleteDataValue.query.name.toString(), deleteDataValue.query.value.toString(), {});
     await insertQueryWorker(getCountValue.query.name.toString(), getCountValue.query.value.toString(), {});
 
-    console.log("All query workers are now on the system.");
+    console.log("All query workers are now in the system.");
   } catch (e) {
     console.log("Query workers could not be created due to " + e);
   }
 }
 
 async function executeRestQL () {
-  console.log("\n4. Executing query workers");
-  console.log("\n a. Insert Data");
+  console.log("\n4. Running query workers");
+  console.log("\n a. Insert data");
 
   let resp = await client.executeRestql(insertDataValue.query.name.toString(), {
     firstname: "john",
@@ -210,23 +210,23 @@ async function executeRestQL () {
   }).catch(e => console.log(console.error(e)));
   console.log(resp.result);
 
-  console.log("\n b. Get Data");
+  console.log("\n b. Get data");
   resp = await client.executeRestql(getDataValue.query.name.toString(), {});
   console.log(resp.result);
 
-  console.log("\n c. Update Data");
+  console.log("\n c. Update data");
   resp = await client.executeRestql(updateDataValue.query.name.toString(), {});
   console.log(resp.result);
 
-  console.log("\n d. Get Data");
+  console.log("\n d. Get data");
   resp = await client.executeRestql(getDataValue.query.name.toString(), {});
   console.log(resp.result);
 
-  console.log("\n e. Count Records");
+  console.log("\n e. Count records");
   resp = await client.executeRestql(getCountValue.query.name.toString(), {});
   console.log(resp.result);
 
-  console.log("\n f. Delete Record");
+  console.log("\n f. Delete record");
   resp = await client.executeRestql(deleteDataValue.query.name.toString(), {});
   console.log(resp.result);
 }
@@ -241,7 +241,7 @@ async function deleteRestQL () {
     await client.deleteRestql(getCountValue.query.name.toString());
     await client.deleteRestql(deleteDataValue.query.name.toString());
 
-    console.log("None of the query workers longer exist.");
+    console.log("All query workers deleted.");
   } catch (e) {
     console.log("Could not delete query workers due to " + e);
   }
