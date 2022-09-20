@@ -75,7 +75,7 @@ const jsc8 = require("jsc8");
 const readline = require("readline");
 const globalUrl = "https://gdn.paas.macrometa.io";
 
-// Crete a authenticated instance with token / apikey
+// Create an authenticated instance with a token or API key
 // const client = new jsc8({ url: gdnUrl, token: "XXXX", fabricName: "_system" });
 const client = new jsc8({
   url: globalUrl,
@@ -84,7 +84,7 @@ const client = new jsc8({
   fabricName: "_system"
 });
 
-// Or use email and password to authenticate client instance
+// Or use email and password to authenticate a client instance
 // const client = new jsc8(globalUrl);
 // await client.login("nemo@nautilus.com", "xxxxxx");
 
@@ -122,7 +122,7 @@ async function createMyStream () {
 }
 
 async function sendData () {
-  console.log("\n ------- PUBLISH MESSAGES  ------");
+  console.log("\n ------- Publish Messages  ------");
   const producer = await client.createStreamProducer(stream);
 
   producer.on("open", () => {
@@ -142,7 +142,7 @@ async function sendData () {
 }
 
 async function receiveData () {
-  console.log("\n ------- RECEIVE MESSAGES  ------");
+  console.log("\n ------- Receive Messages  ------");
   const consumer = await client.createStreamReader(
     stream,
     "test-subscription-1"
@@ -228,9 +228,9 @@ def createStream():
     else:
         #print(client.create_stream(demo_stream, local=prefixBool))
         streamName = client.create_stream(demo_stream, local=prefixBool)
-        print ("NEW Producer =",  streamName["stream-id"])
+        print ("New producer =",  streamName["stream-id"])
 
-# Creating the producer and sending data
+# Create the producer and send data
 def sendData():
     """ This function sends data through a stream """
     producer = client.create_stream_producer(demo_stream, local=prefixBool)
@@ -243,7 +243,7 @@ def sendData():
         print(producer.send(json.dumps(data)))
 
 
-# Creating the subscriber and receiving data
+# Create the subscriber and receive data
 def receiveData():
     """ This function receives data from a stream """
     subscriber = client.subscribe(stream=demo_stream, local=prefixBool,
