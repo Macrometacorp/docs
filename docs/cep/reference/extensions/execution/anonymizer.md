@@ -27,7 +27,8 @@ Macrometa supports the following data types:
     ADDRESS_ZIPCODE
     ADDRESS_ZIPCODEBYSTATE
 
-    // Name
+### Name
+
     NAME_FULLNAME
     NAME_FIRSTNAME
     NAME_LASTNAME
