@@ -125,7 +125,7 @@ Anonymizer uses the following syntax:
 						  false, once generated the fake data is cached is used for the next calls
 					  
 					  
-QUERY PARAMETERS
+## Query Parameters
 
 
 | Name             | Description                                 | Default Value | Possible Data Types | Optional | Dynamic |
