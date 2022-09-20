@@ -1720,7 +1720,7 @@ const run = async function () {
     )
     .catch((error) => console.log(error));
 
-  /* -------------------- Create collection -------------------- */
+  /* -------------------- Create lectures collection -------------------- */
   await connection
     .req("/_fabric/_system/_api/collection", {
       body: { name: lecturesCollection },
