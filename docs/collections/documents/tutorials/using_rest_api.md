@@ -527,24 +527,31 @@ const run = async function () {
 
   /* -------------------------- Create document collection ------------------------- */
   await createCollection(collectionName);
+
   /* ---------------------------- Insert documents ---------------------------- */
   console.log("3. Inserting data in collection " + collectionName);
   await runningQueryFromCursor(insertQuery);
+
   /* ---------------------------- Read documents ---------------------------- */
   console.log("4. Reading data from collection " + collectionName);
   await runningQueryFromCursor(readQuery);
+
   /* ---------------------------- Update documents ---------------------------- */
   console.log("5. Update data from collection " + collectionName);
   await runningQueryFromCursor(updateQuery);
+
   /* ---------------------------- Upsert documents ---------------------------- */
   console.log("6. Upsert data from collection " + collectionName);
   await runningQueryFromCursor(upsertQuery);
+
   /* ---------------------------- Read documents ---------------------------- */
   console.log("7. Reading data from collection " + collectionName);
   await runningQueryFromCursor(readQuery);
+
   /* ---------------------------- Delete documents --------------------------- */
   console.log("8. Delete data from collection " + collectionName);
   await runningQueryFromCursor(deleteDocumentsQuery);
+
   /* ---------------------------- Delete collection ---------------------------- */
   await deleteCollection(collectionName);
 };
@@ -1263,6 +1270,7 @@ const run = async function () {
 
     /* -------------------  Insert query worker ------------------- */
     await saveQueryWorker(insertQueryName, insertQuery, queryParams);
+
     /* -------------------  Update query worker ------------------- */
     await saveQueryWorker(updateQueryName, updateQuery, queryParams);
 
@@ -1274,16 +1282,22 @@ const run = async function () {
 
     /* ----------------------- Run insert query worker ---------------------- */
     await runQueryWorker(insertQueryName, queryParams);
+
     /* ----------------------- Run read query worker ---------------------- */
     await runQueryWorker(readQueryName, queryParams);
+
     /* ----------------------- Run update query worker ---------------------- */
     await runQueryWorker(updateQueryName, queryParams);
+
     /* ----------------------- Run read query worker ---------------------- */
     await runQueryWorker(readQueryName, queryParams);
+
     /* ----------------------- Run delete query worker ---------------------- */
     await runQueryWorker(deleteQueryName, queryParams);
+
     /* ----------------------- Update saved query worker ---------------------- */
     await updateSavedQueryWorker(readQueryName, readQueryUpdated, queryParams);
+
 
     /* ----------------------------- Delete query workers ----------------------------- */
     console.log("5. Deleting query workers");
