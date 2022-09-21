@@ -1749,7 +1749,7 @@ const run = async function () {
     )
     .catch((error) => console.log(error));
 
-  //   /* -------------------- Load data to teachers collection -------------------- */
+   /* -------------------- Load data to teachers collection -------------------- */
   await connection
     .req(`/_fabric/_system/_api/document/${teacherCollection}`, {
       body: teachersPayload,
@@ -1758,7 +1758,7 @@ const run = async function () {
     .then((collection) => console.log("4. Documents inserted", collection))
     .catch((error) => console.log(error));
 
-  //   /* -------------------- Load data to lectures collection -------------------- */
+   /* -------------------- Load data to lectures collection -------------------- */
   await connection
     .req(`/_fabric/_system/_api/document/${lecturesCollection}`, {
       body: lecturesPayload,
@@ -1777,7 +1777,8 @@ const run = async function () {
       console.log("6. Edge collection created successfully", collection)
     )
     .catch((error) => console.log(error));
-  //   /* -------------------- Load data to edge collection -------------------- */
+
+  /* -------------------- Load data to edge collection -------------------- */
   await connection
     .req(`/_fabric/_system/_api/document/${teachEdge}`, {
       body: edgePayload,
@@ -1787,8 +1788,8 @@ const run = async function () {
       console.log("7. Documents inserted in edge collection", collection)
     )
     .catch((error) => console.log(error));
-  //   /* -------------------- Create graph -------------------- */
 
+  /* -------------------- Create graph -------------------- */
   await connection
     .req("/_fabric/_system/_api/graph", {
       body: graphPayload,
@@ -1799,8 +1800,7 @@ const run = async function () {
     )
     .catch((error) => console.log(error));
 
-  //   /* -------------------- Load data graph traversal-------------------- */
-
+  /* -------------------- Load data graph traversal-------------------- */
   await connection
     .req(
       `/_fabric/_system/_api/edges/${teachEdge}?` +
@@ -1812,8 +1812,7 @@ const run = async function () {
     .then((collection) => console.log("9. Graph traversal", collection))
     .catch((error) => console.log(error));
 
-  //   /* -------------------- Delete graph and drop collections -------------------- */
-
+  /* -------------------- Delete graph and drop collections -------------------- */
   await connection
     .req(
       `/_fabric/_system/_api/graph/${lectureTracherGraph}?` +
