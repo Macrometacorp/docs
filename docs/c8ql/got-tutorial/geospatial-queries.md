@@ -5,6 +5,11 @@ title: Part 6 - Geospatial Queries
 
 Geospatial coordinates consisting of a latitude and longitude value can be stored either as two separate attributes, or as a single attribute in the form of an array with both numeric values. Macrometa can [index such coordinates](../functions/geo.md) for fast geospatial queries.
 
+
+
+
+
+
 ## Locations data
 
 Let us insert some filming locations into a new collection _Locations_.
