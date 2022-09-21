@@ -765,7 +765,7 @@ const run = async function () {
     }
   }
   console.log("3. Initiation producer and consumer")
-  /* ----------------- Publish and Subscribe message to stream ---------------- */
+  /* ----------------- Publish and subscribe message to stream ---------------- */
 
   const region = isGlobal ? "c8global" : "c8local";
   const streamName = `${region}s.${stream}`;
