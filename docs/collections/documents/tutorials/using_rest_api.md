@@ -1724,7 +1724,7 @@ const run = async function () {
     .then(() => console.log("\n1. User authentication done!"))
     .catch((error) => error);
 
-  /* -------------------- Create collection -------------------- */
+  /* -------------------- Create teachers collection -------------------- */
   await connection
     .req("/_fabric/_system/_api/collection", {
       body: { name: teacherCollection },
