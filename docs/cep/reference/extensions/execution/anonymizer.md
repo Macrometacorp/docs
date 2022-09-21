@@ -124,7 +124,7 @@ Anonymizer uses the following syntax:
 ```
 
 		<invalidate.cache> - true, a different fake data will be generated at each call
-					false, once generated the fake data is cached is used for the next calls
+				false, once generated the fake data is cached is used for the next calls
 					  
 					  
 ## Query Parameters
@@ -145,7 +145,7 @@ CREATE SOURCE patient_local WITH (type='database', collection='patient_local', r
 CREATE TABLE patient_public(full_name string, ssn string, email string, phone string);
 
 INSERT INTO patient_public
-SELECT pii:fake(full_name, "NAME_FULLNAME", true)         as full_name,
+SELECT pii:fake(full_name, "NAME_FULLNAME", true)        as full_name,
        pii:fake(ssn, "ID_SSN", false)                    as ssn,
        pii:fake(email, "INTERNET_EMAILADDRESS", false)   as email,
        pii:fake(phone, "PHONENUMBER_PHONENUMBER", false) as phone
