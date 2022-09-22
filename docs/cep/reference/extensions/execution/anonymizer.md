@@ -136,7 +136,7 @@ Anonymizer uses the following syntax:
 |------------------|---------------------------------------------|---------------|---------------------|----------|---------|
 | input.string     | The input name to create a fake one         |               | STRING              | No       | Yes     |
 | fake.function    | The key to be added                         |               | STRING              | No       | Yes     |
-| invalidate.cache | An optional clean-up cache flag           | false         | BOOL                | Yes      | Yes     |
+| invalidate.cache | An optional clean-up cache flag.true, a different fake data will be generated at each call. false, once generated the fake data is cached is used for the next calls           | false         | BOOL                | Yes      | Yes     |
 
 ## Example
 
@@ -159,3 +159,4 @@ FROM patient_local;
 1. Following document would be shown on the `patient_public` collection:
         {"full_name": "fake name", "ssn": "fake ssn", "email": "fake email", "phone": "fake phone number"}
 
+This example shows how you might anonymize protected patient data. The patient needs to be hidden in the system so that he/she cannot be personally identified with it. Therefore, you need to obfuscate the value for the patient attributes. 
