@@ -108,6 +108,7 @@ Macrometa supports the following data types:
 
 ### Text
 
+
 - TEXT_CHARACTER
 - TEXT_FIXEDSTRING
 - TEXT_PARAGRAPH
