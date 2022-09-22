@@ -137,7 +137,6 @@ Anonymizer uses the following syntax:
 | fake.function    | The key to be added                         |               | STRING              | No       | Yes     |
 | invalidate.cache | An optional clean-up cache flag           | false         | BOOL                | Yes      | Yes     |
 
-
 ## Example
 
 ```js
