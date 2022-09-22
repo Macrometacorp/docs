@@ -52,11 +52,13 @@ To create a geo index:
 
 Macrometa returns a success message and your new index appears in the Indexes list. For more information, refer to [Document Store Indexes](../../collections/documents/document-store-indexes.md).
 
-## Find nearby locations
+## Find Nearby Locations
 
 A `FOR` loop is used again, but this time to iterate over the results of a function call to `NEAR()` to find the _n_ closest coordinates to a reference point, and return the documents with the nearby locations. The default for _n_ is 100, which means 100 documents are returned at most, the closest matches first.
 
-In below example, the limit is set to 3. The origin (the reference point) is a coordinate somewhere downtown in Dublin, Ireland:
+In below example, the limit is set to 3. The origin (the reference point) is a coordinate somewhere downtown in Dublin, Ireland.
+
+If you enter the following query in the Query Editor:
 
 ```js
 FOR loc IN NEAR(Locations, 53.35, -6.26, 3)
@@ -66,6 +68,8 @@ FOR loc IN NEAR(Locations, 53.35, -6.26, 3)
         longitude: loc.coordinate[1]
     }
 ```
+
+Macrometa returns the following data. It might look different if you are viewing query results as a table.
 
 ```json
 [
@@ -87,11 +91,13 @@ FOR loc IN NEAR(Locations, 53.35, -6.26, 3)
 ]
 ```
 
-The query returns the location name, as well as the coordinate. The coordinate is returned as two separate attributes. You may use a simpler `RETURN loc` instead if you want.
+The query returns the location name, as well as the coordinates. The coordinates are returned as two separate attributes. You can use a simpler `RETURN loc` instead if you want. Try replacing the RETURN statement in the query above with `RETURN loc` and compare the results.
 
-## Find locations within radius
+## Find Locations Within a Radius
 
-`NEAR()` can be swapped out with `WITHIN()`, to search for locations within a given radius from a reference point. The syntax is the same as for `NEAR()`, except for the fourth parameter, which specifies the radius instead of a limit. The unit for the radius is meters. The example uses a radius of 200,000 meters (200 kilometers):
+`NEAR()` can be swapped out with `WITHIN()`, to search for locations within a given radius from a reference point. The syntax is the same as for `NEAR()`, except for the fourth parameter, which specifies the radius instead of a limit. The unit for the radius is meters. 
+
+This example uses a radius of 200,000 meters (200 kilometers):
 
 ```js
 FOR loc IN WITHIN(Locations, 53.35, -6.26, 200 * 1000)
@@ -101,6 +107,8 @@ FOR loc IN WITHIN(Locations, 53.35, -6.26, 200 * 1000)
         longitude: loc.coordinate[1]
     }
 ```
+
+Returns two locations:
 
 ```json
 [
@@ -117,9 +125,9 @@ FOR loc IN WITHIN(Locations, 53.35, -6.26, 200 * 1000)
 ]
 ```
 
-## Return the distance
+## Return the Distance
 
-Both `NEAR()` and `WITHIN()` can return the distance to the reference point by adding an optional fifth parameter. It has to be a string, which will be used as attribute name for an additional attribute with the distance in meters:
+Both `NEAR()` and `WITHIN()` can return the distance to the reference point by adding an optional fifth parameter. It has to be a string, which will be used as the attribute name for an additional attribute with the distance in meters:
 
 ```js
 FOR loc IN NEAR(Locations, 53.35, -6.26, 3, "distance")
@@ -130,6 +138,8 @@ FOR loc IN NEAR(Locations, 53.35, -6.26, 3, "distance")
         distance: loc.distance / 1000
     }
 ```
+
+The query returns:
 
 ```json
 [
@@ -154,8 +164,14 @@ FOR loc IN NEAR(Locations, 53.35, -6.26, 3, "distance")
 ]
 ```
 
-The extra attribute, here called _distance_, is returned as part of the _loc_ variable, as if it was part of the location document. The value is divided by 1000 in the example query, to convert the unit to kilometers, simply to make it better readable.
+The extra attribute, here called _distance_, is returned as part of the _loc_ variable, as if it was part of the location document. The value is divided by 1,000 in the example query, to convert the unit to kilometers, to make it better readable.
 
 ## Next Steps
 
-Great job! You can now 
+Great job! You can now use C8QL queries to enter, sort, and manipulate various kinds of data in interesting ways. Here is what you might do next:
+
+- Learn how to turn queries into endpoints with [Query Workers](../../queryworkers/query-workers.md).
+- Read through [C8QL Examples](../examples/index.md) for more ideas about what to do with C8QL.
+- Dig deeper into C8QL [Functions](../functions/index.md) and [Operations](../operations/index.md).
+
+Have fun!
