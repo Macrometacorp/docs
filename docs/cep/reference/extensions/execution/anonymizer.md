@@ -134,7 +134,7 @@ Anonymizer uses the following syntax:
 |------------------|---------------------------------------------|---------------|---------------------|----------|---------|
 | input.string     | The input name to create a fake one         |               | STRING              | No       | Yes     |
 | fake.function    | The key to be added                         |               | STRING              | No       | Yes     |
-| invalidate.cache | An optional clean up cache   flag           | false         | BOOL                | Yes      | Yes     |
+| invalidate.cache | An optional clean-up cache flag           | false         | BOOL                | Yes      | Yes     |
 
 
 ## Example
