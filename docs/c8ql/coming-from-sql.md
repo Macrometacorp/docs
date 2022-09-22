@@ -13,7 +13,6 @@ Though some of the keywords overlap, C8QL syntax differs from SQL. For instance,
 
 Despite few differences, anyone with an SQL background should have no difficulty in learning C8QL.
 
-
 ## Terminology
 
 Below is a table with the terms of both systems.
