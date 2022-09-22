@@ -21,7 +21,7 @@
    import DynamoDB from "aws-sdk/clients/dynamodb";
    ```
 
-3. Initialize Dynamodb with C8 Dynamo
+3. Initialize Dynamodb with Macrometa Dynamo
 
    ```js
    import AWS from "aws-sdk";
@@ -69,7 +69,7 @@ If you want to sign and send AWS requests in a modern browser, or an environment
    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
    ```
 
-2. Initialize Dynamodb with C8 Dynamo
+2. Initialize Dynamodb with Macrometa Dynamo
 
    ```html
    <script type="text/javascript">
