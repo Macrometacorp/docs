@@ -11,7 +11,7 @@ Macrometa supports the following data types:
 
 ### Address
 
-    ADDRESS_BUILDINGNUMBER
+- ADDRESS_BUILDINGNUMBER
     ADDRESS_CITY
     ADDRESS_COUNTRY
     ADDRESS_COUNTRYCODE
