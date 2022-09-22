@@ -5,41 +5,42 @@ title: Part 6 - Geospatial Queries
 
 Geospatial coordinates consisting of a latitude and longitude value can be stored either as two separate attributes, or as a single attribute in the form of an array with both numeric values. Macrometa can [index such coordinates](../functions/geo.md) for fast geospatial queries.
 
+## Create Locations Collection
 
+Let's insert some filming locations into a new collection _Locations_.
 
+1. [Create a Document Store collection](../../collections/documents/create-document-store.md) called **Locations**.
+1. Copy and paste the following query in the Query Editor:
 
+    ```js
+    LET places = [
+        { "name": "Dragonstone", "coordinate": [ 55.167801, -6.815096 ] },
+        { "name": "King's Landing", "coordinate": [ 42.639752, 18.110189 ] },
+        { "name": "The Red Keep", "coordinate": [ 35.896447, 14.446442 ] },
+        { "name": "Yunkai", "coordinate": [ 31.046642, -7.129532 ] },
+        { "name": "Astapor", "coordinate": [ 31.50974, -9.774249 ] },
+        { "name": "Winterfell", "coordinate": [ 54.368321, -5.581312 ] },
+        { "name": "Vaes Dothrak", "coordinate": [ 54.16776, -6.096125 ] },
+        { "name": "Beyond the wall", "coordinate": [ 64.265473, -21.094093 ] }
+    ]
 
+    FOR place IN places
+        INSERT place INTO Locations
+    ```
 
-## Locations data
+1. Run the query.
 
-Let us insert some filming locations into a new collection _Locations_.
+Macrometa returns an empty list in the results, but the records with the locations and coordinates are added to the collection.
 
-1. Create a Document Store collection called **Locations**.
-1. Run below C8QL query:
-
-```js
-LET places = [
-    { "name": "Dragonstone", "coordinate": [ 55.167801, -6.815096 ] },
-    { "name": "King's Landing", "coordinate": [ 42.639752, 18.110189 ] },
-    { "name": "The Red Keep", "coordinate": [ 35.896447, 14.446442 ] },
-    { "name": "Yunkai", "coordinate": [ 31.046642, -7.129532 ] },
-    { "name": "Astapor", "coordinate": [ 31.50974, -9.774249 ] },
-    { "name": "Winterfell", "coordinate": [ 54.368321, -5.581312 ] },
-    { "name": "Vaes Dothrak", "coordinate": [ 54.16776, -6.096125 ] },
-    { "name": "Beyond the wall", "coordinate": [ 64.265473, -21.094093 ] }
-]
-
-FOR place IN places
-    INSERT place INTO Locations
-```
-
-Visualization of the coordinates on a map with their labels:
+For your reference, here is a visualization of the relative locations overlaid on a map of Europe:
 
 ![Locations_Map](/img/c8ql/tutorial/Locations_Map.png)
 
-## Geospatial index
+## Geospatial Index
 
-To query based on coordinates, a [geo index](../../collections/documents/geospatial/geojson#geojson-supported-index) is required. It determines which fields contain the latitude and longitude values.
+To query based on coordinates, you must create a [geo index](../../collections/documents/geospatial/geojson#geojson-supported-index). It determines which fields contain the latitude and longitude values.
+
+To create a geo index:
 
 1. Click **Collections**.
 1. Click **Locations**.
@@ -48,6 +49,8 @@ To query based on coordinates, a [geo index](../../collections/documents/geospat
 1. In **Type** select **Geo Index**.
 1. In **Fields**, enter **coordinate**.
 1. Click **Create**
+
+Macrometa returns a success message and your new index appears in the Indexes list. For more information, refer to [Document Store Indexes](../../collections/documents/document-store-indexes.md).
 
 ## Find nearby locations
 
