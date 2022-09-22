@@ -41,7 +41,7 @@ Users can pick attribute names for document attributes as desired, provided the 
 
 - Attribute names starting with an at-mark (_@_) will need to be enclosed in backticks when used in a C8QL query to tell them apart from bind variables. Therefore we do not encourage the use of attributes starting with at-marks, though they will work when used properly.
 
-- C8 does not enforce a length limit for attribute names. However, long attribute names may use more memory in result sets etc. Therefore the use of long attribute names is discouraged.
+- Macrometa does not enforce a length limit for attribute names. However, long attribute names may use more memory in result sets etc. Therefore the use of long attribute names is discouraged.
 
 - Attribute names are case-sensitive.
 
@@ -59,7 +59,7 @@ Users can define their own keys for documents they save. The document key will b
 
 Keys are case-sensitive, i.e. `myKey` and `MyKEY` are considered to be different keys.
 
-Specifying a document key is optional when creating new documents. If no document key is specified by the user, C8 will create the document key itself as each document is required to have a key.
+Specifying a document key is optional when creating new documents. If no document key is specified by the user, then Macrometa will create the document key itself as each document is required to have a key.
 
 There are no guarantees about the format and pattern of auto-generated document keys other than the above restrictions. Clients should therefore treat auto-generated document keys as opaque values and not rely on their format.
 
