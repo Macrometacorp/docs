@@ -2229,6 +2229,7 @@ const run = async function () {
     console.log("Output data received --->", result.result);
 
     /* ---------------------------- Delete stream app ---------------------------- */
+    
     const deletion = await connection.req(
       `/_fabric/_system/_api/streamapps/${streamAppName}`,
       {
