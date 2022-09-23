@@ -326,23 +326,6 @@ print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 <TabItem value="js" label="Javascript">
 
 ```js  
-	CREATE STORE SampleCargoAppDestTable WITH (type = 'database', stream = "SampleCargoAppDestTable") (weight int);
-
-
-    Also add an query to store all the input data into `SampleCargoAppDestTable`.
-
-    -- Data Processing
-    @info(name='Dump')
-    INSERT INTO SampleCargoAppDestTable
-    SELECT weight
-    FROM SampleCargoAppInputTable;
-```    
-  </TabItem>
-</Tabs>
-
-Now, the code to update an Stream Application will look like
-
-```js
     const updatedAppDefinition = `
     @App:name('Sample-Cargo-App')
     @App:qlVersion("2")
@@ -396,7 +379,10 @@ Now, the code to update an Stream Application will look like
 
     console.log("--- Updating Stream Application `Sample-Cargo-App`");
     result = await app.updateApplication([], updatedAppDefinition);
-```
+```    
+  </TabItem>
+</Tabs>
+
 ## Run an Adhoc Query
 
 In this example, we run an adhoc query on the store `SampleCargoAppDestTable` used in Stream Application. It should get records which you inserted into `SampleCargoAppInputTable`.
@@ -447,7 +433,7 @@ result = client.delete_stream_app('Sample-Cargo-App')
 
 ```js
     console.log("--- Deleting Stream Application `Sample-Cargo-App`");
-    result = await client.deleteStreamApp()'Sample-Cargo-App';
+    result = await client.deleteStreamApp("Sample-Cargo-App");
 ```
   </TabItem>
 </Tabs>  
@@ -544,152 +530,268 @@ print("Samples", client.get_stream_app_samples())
   <TabItem value="js" label="Javascript">
 
 ```js
-    const jsc8 = require("jsc8");
-    console.log("--- Connecting to C8");
+const jsc8 = require("jsc8");
 
-    // Create an authenticated instance with Token / Apikey
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-    // await console.log("Authentication done!!...");
+// Variables
+const streamAppName = "Sample-Cargo-App";
+const sourceCollectionName = "SampleCargoAppInputTable";
+const destinationCollectionName = "SampleCargoAppDestTable";
+const parameter = { weight: "" };
+const globalUrl = "https://gdn.paas.macrometa.io";
+const thisApiKey = "XXXXX";
 
-    // Or use Email & Password to Authenticate client instance
-    const client = new jsc8("https://gdn.paas.macrometa.io");
+const insertDataValue = {
+  query: {
+    name: "insertWeight",
+    value: `INSERT { weight:@weight } IN ${sourceCollectionName}`,
+    parameter
+  }
+};
 
-    await client.login("nemo@nautilus.com", "xxxxxx");
+const queryName = insertDataValue.query.name.toString();
+const queryValue = insertDataValue.query.value.toString();
 
-    async function main() {
-        try {
-            console.log("--- Get geo fabric details");
-            let result = await client.get();
+// App definitions
+const appDefinition =
+  `@App:name('Sample-Cargo-App')
+  @App:qlVersion("2")
+  @App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
 
-            const appDefinition =
-            `@App:name('Sample-Cargo-App')
-            @App:qlVersion("2")
-            @App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
+  -- Defines Table SampleCargoAppInputTable to process events having sensorId and temperature(F). 
+  CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
 
-            /**
-             Testing the Stream Application:
-                1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
+  -- Define Stream SampleCargoAppDestStream
+  CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
 
-                2. Upload following data into SampleCargoAppInputTable C8DB Collection
-                    {"weight": 1}
-                    {"weight": 2}
-                    {"weight": 3}
-                    {"weight": 4}
-                    {"weight": 5}
+  -- Data Processing
+  @info(name='Query')
+  INSERT INTO SampleCargoAppDestStream 
+  SELECT weight
+  FROM SampleCargoAppInputTable;`;
 
-                3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
-                    [1]
-                    [2]
-                    [3]
-                    [4]
-                    [5]
-            */
+const updatedAppDefinition = `
+  @App:name('Sample-Cargo-App')
+  @App:qlVersion("2")
+  @App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
 
-            -- Defines Table SampleCargoAppInputTable to process events having sensorId and temperature(F).
-			CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
+  /**
+  Testing the Stream Application:
+  1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
 
-            -- Define Stream SampleCargoAppDestStream
-			CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
+  2. Upload following data into SampleCargoAppInputTable C8DB Collection
+    {"weight": 1}
+    {"weight": 2}
+    {"weight": 3}
+    {"weight": 4}
+    {"weight": 5}
 
-            -- Data Processing
-            @info(name='Query')
-            INSERT INTO SampleCargoAppDestStream 
-            SELECT weight
-            FROM SampleCargoAppInputTable;`
+  3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
+    [1]
+    [2]
+    [3]
+    [4]
+    [5]
 
-            console.log("--- Validating Stream Application Definition");
-            result = await client.validateStreamApp(appDefinition);
+  4. Following messages would be stored into SampleCargoAppDestTable
+    {"weight":1}
+    {"weight":2}
+    {"weight":3}
+    {"weight":4}
+    {"weight":5}
+  */
 
-            // By default, the stream application is created in the local region. Optionally, you can send dclist to deploy stream
-            // app in all / selected regions
-            console.log("--- Creating Stream Application");
-            result = await client.createStreamApp([], appDefinition);
+  -- Create Table SampleCargoAppInputTable to process events having sensorId and temperature(F).
+  CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
 
-            console.log("--- Getting Stream Application instance `Sample-Cargo-App`");
-            ressult = await client.getStreamApp("Sample-Cargo-App");
+  -- Create Stream SampleCargoAppDestStream
+  CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
 
-            console.log("--- Enable Stream Application `Sample-Cargo-App`");
-            // Enable / Disable app using change_state function
-            // pass true to enable and false to disable the app
-            result = await client.activateStreamApp("Sample-Cargo-App", true);
+  CREATE STORE SampleCargoAppDestTable WITH (type = 'database', stream = "SampleCargoAppDestTable") (weight int);
 
-            const updatedAppDefinition = `
-            @App:name('Sample-Cargo-App')
-            @App:qlVersion("2")
-            @App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
-      
-            /**
-            Testing the Stream Application:
-                1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
-      
-                2. Upload following data into SampleCargoAppInputTable C8DB Collection
-                    {"weight": 1}
-                    {"weight": 2}
-                    {"weight": 3}
-                    {"weight": 4}
-                    {"weight": 5}
-      
-                3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
-                    [1]
-                    [2]
-                    [3]
-                    [4]
-                    [5]
-      
-                4. Following messages would be stored into SampleCargoAppDestTable
-                    {"weight":1}
-                    {"weight":2}
-                    {"weight":3}
-                    {"weight":4}
-                    {"weight":5}
-            */
-      
-            -- Create Table SampleCargoAppInputTable to process events having sensorId and temperature(F).
-			CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json')
-      
-            -- Create Stream SampleCargoAppDestStream
-			CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
-      
-			CREATE STORE SampleCargoAppDestTable WITH (type = 'database', stream = "SampleCargoAppDestTable") (weight int);
-      
-            -- Data Processing
-            @info(name='Query')
-            INSERT INTO SampleCargoAppDestStream
-            SELECT weight
-            FROM SampleCargoAppInputTable;
-      
-            -- Data Processing
-            @info(name='Dump')
-            INSERT INTO SampleCargoAppDestTable
-            SELECT weight
-            FROM SampleCargoAppInputTable;`
-      
-            const app = client.streamApp("Sample-Cargo-App");
-            ressult = await app.retriveApplication();
+  -- Data Processing
+  @info(name='Query')
+  INSERT INTO SampleCargoAppDestStream
+  SELECT weight
+  FROM SampleCargoAppInputTable;
 
-            console.log("--- Updating Stream Application `Sample-Cargo-App`");
-            result = await app.updateApplication([], updatedAppDefinition);
+  -- Data Processing
+  @info(name='Dump')
+  INSERT INTO SampleCargoAppDestTable
+  SELECT weight
+  FROM SampleCargoAppInputTable;`;
 
-            console.log("--- Running adhoc query on the store `SampleCargoAppDestTable` used in Stream Application. It should get all records which you inserted into `SampleCargoAppInputTable`");
-            const q = "select * from SampleCargoAppDestTable limit 3";
-            result = await app.query(q);
-            console.log(result);
+// This is a supporting function
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
+}
 
-            console.log("--- Deleting Stream Application `Sample-Cargo-App`");
-            result = await app.deleteApplication();
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+};
 
-            console.log("--- You can try out several Stream Apps which are pre-loaded and ready to run.");
-            result = await client.getStreamAppSamples();
-            console.log('Sample Stream Applications');
-            console.log(result);
-            
-        } catch (e) {
-            console.log(e);
-        }
+async function main () {
+
+  console.log("--- Connecting to GDN");
+  // email = "";
+  // password = "";
+  // Create an authenticated instance with token or API key
+  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+  const client = new jsc8({ url: globalUrl, apiKey: thisApiKey, fabricName: "_system" });
+  // console.log("Authentication done!!...");
+  
+  // Or use Email & Password to Authenticate client instance
+  // const client = new jsc8("https://gdn.paas.macrometa.io");
+  // await client.login("email", "password");
+  console.log("Connecttion successful");
+  async function hasStreamApp (streamApp) {
+    console.log(`Checking if the stream application ${streamApp} already exists`);
+    try {
+      const temp = await client.getStreamApp(streamApp);
+      console.log(temp);
+      console.log("The stream application already exist.");
+      return true;
+    } catch (e) {
+      if (e.statusCode === 404) {
+        console.log("The stream application does not exist yet.");
+        return false;
+      } else {
+        console.log("Another issue has been detected.");
+        console.log(e);
+      }
     }
+  }
 
-    main();
+  async function hasQueryWorker (queryWorkerName) {
+    try {
+      const res = await client.getRestqls();
+
+      for (i = 0; i < res.result.length; i++) {
+        if (res.result[i].name === queryWorkerName) {
+          console.log(`Query worker ${queryName} already exist.`);
+          return true;
+        }
+      }
+      console.log(`Query worker ${queryName} does not exist yet.`);
+      return false;
+    } catch (e) {
+      console.log(messageHandler(e));
+    }
+  }
+
+  async function creatingQueryWorker () {
+    console.log(`--- Creating insert query worker "${insertDataValue.query.name}" if needed`);
+    if (!await hasQueryWorker(queryName)) {
+      client.createRestql(queryName, queryValue, parameter);
+      console.log(`Query worker ${queryName} has been created successfully.`);
+    }
+  }
+
+  async function creatingStreamApplication () {
+    let result = await client.get();
+
+    console.log("--- Validating stream application definition");
+    result = await client.validateStreamApp(appDefinition);
+    console.log(result);
+    // By default, the stream application is created in the local region. Optionally, you can send dclist to deploy stream
+    // app in all / selected regions
+    console.log("--- Creating stream application");
+    if (await hasStreamApp(streamAppName)) {
+      result = await client.getStreamApp(streamAppName);
+    } else {
+      result = await client.createStreamApp([], appDefinition);
+    }
+    console.log(result);
+
+    console.log("--- Getting stream application instance: " + streamAppName);
+    result = await client.getStreamApp(streamAppName);
+    console.log(result);
+  }
+
+  async function enablingStreamApplication () {
+    console.log("--- Enable stream application " + streamAppName);
+    // Enable app using change_state function
+    const result = await client.activateStreamApp(streamAppName, true);
+    console.log(result);
+    console.log("The connection has been opened.");
+  }
+
+  async function updatingSteamApplication () {
+    const app = await client.streamApp(streamAppName);
+
+    console.log("--- Updating stream application " + streamAppName);
+    await app.updateApplication([], updatedAppDefinition);
+    // Enable app using change_state function
+    await app.activateStreamApplication(true);
+  }
+
+  async function insertingData () {
+    console.log("Waiting for 30 seconds for all the resources to be ready");
+    await sleep(30000);
+    console.log("--- Inserting data to " + sourceCollectionName);
+    for (i = 1; i <= 50; i++) {
+      await client.executeRestql(queryName, { weight: i });
+      console.log(i);
+    }
+  }
+
+  async function disablingStreamApplication () {
+    await client.activateStreamApp(streamAppName, false);
+    console.log("The connection has been closed.");
+  }
+
+  async function displayingResults () {
+    const app = await client.streamApp(streamAppName);
+
+    // As per the query, the result is limited to the first 10 results
+    console.log(`--- Running adhoc query on the store ${destinationCollectionName} used in stream application. 
+      It should get all records which you inserted into ${sourceCollectionName}.`);
+    const q = `select * from ${destinationCollectionName} limit 10`;
+    const result = await app.query(q);
+    console.log(result);
+  }
+
+  async function deletingStreamApplication () {
+    const app = await client.streamApp(streamAppName);
+    console.log(`--- Deleting Stream application ${streamAppName}`);
+    await app.deleteApplication();
+  }
+
+  async function displayingSampleApplications () {
+    console.log("--- You can try out several stream applications which are pre-loaded and ready to run.");
+    const result = await client.getStreamAppSamples();
+    console.log("Sample Stream Applications:");
+    console.log(result);
+  }
+
+  async function run () {
+    try {
+      await creatingQueryWorker();
+      await creatingStreamApplication();
+      await enablingStreamApplication();
+      await updatingSteamApplication();
+      await insertingData();
+      await disablingStreamApplication();
+      await displayingResults();
+
+      // Only the Stream Application is being automatically removed with the code
+      await deletingStreamApplication();
+
+      // Code below can be used to see the sample stream apps
+      // await displayingSampleApplications();
+    } catch (e) {
+      console.log(messageHandler(e));
+    }
+  }
+
+  run();
+}
+
+main();
 ```    
   </TabItem>
 </Tabs>
