@@ -526,6 +526,7 @@ const run = async function () {
     .catch((error) => error);
 
   /* -------------------------- Create document collection ------------------------- */
+  
   await createCollection(collectionName);
 
   /* ---------------------------- Insert documents ---------------------------- */
