@@ -530,6 +530,7 @@ const run = async function () {
   await createCollection(collectionName);
 
   /* ---------------------------- Insert documents ---------------------------- */
+  
   console.log("3. Inserting data in collection " + collectionName);
   await runningQueryFromCursor(insertQuery);
 
