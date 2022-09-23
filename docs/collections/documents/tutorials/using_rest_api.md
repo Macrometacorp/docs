@@ -550,6 +550,7 @@ const run = async function () {
   await runningQueryFromCursor(upsertQuery);
 
   /* ---------------------------- Read documents ---------------------------- */
+  
   console.log("7. Reading data from collection " + collectionName);
   await runningQueryFromCursor(readQuery);
 
