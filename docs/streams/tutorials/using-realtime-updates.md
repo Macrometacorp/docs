@@ -70,70 +70,73 @@ Once the installation process is finished, you can begin developing applications
 <TabItem value="js" label="Javascript">
 
 ```js
-const jsc8 = require('jsc8');
+const jsc8 = require("jsc8");
 
-// Variables - DB
-const global_url = "https://gdn.paas.macrometa.io";
+// Constants - DB
+const globalUrl = "https://gdn.paas.macrometa.io/";
+const email = "nemo@nautilus.com";
+const password = "XXXXXX";
+const client = new jsc8(globalUrl);
 
-// Crete a authenticated instance with Token / Apikey
-// const client = new jsc8({url: global_url, token: "XXXX", fabricName: '_system'});
-// const client = new jsc8({url: global_url, apiKey: "XXXX", fabricName: '_system'});
-// await console.log("Authentication done!!...");
-
-// Or use Email & Password to Authenticate client instance
-const client = new jsc8(global_url);
-
-await client.login("nemo@nautilus.com", "xxxxxx");
-
-//Variables
-const collection_name = "ddos";
-let collectionDetails;
-
-// Variables - Data
+// Variables
+const collectionName = "ddos";
+let listener;
 const data = [
-  {"ip": "10.1.1.1", "action": "block", "rule": "blacklistA"},
-  {"ip": "20.1.1.2", "action": "block", "rule": "blacklistA"},
-  {"ip": "30.1.1.3", "action": "block", "rule": "blacklistB"},
-  {"ip": "40.1.1.4", "action": "block", "rule": "blacklistA"},
-  {"ip": "50.1.1.5", "action": "block", "rule": "blacklistB"},
+  { ip: "10.1.1.1", action: "block", rule: "blocklistA" },
+  { ip: "20.1.1.2", action: "block", rule: "blocklistA" },
+  { ip: "30.1.1.3", action: "block", rule: "blocklistB" },
+  { ip: "40.1.1.4", action: "block", rule: "blocklistA" },
+  { ip: "50.1.1.5", action: "block", rule: "blocklistB" }
 ];
 
-async function createCollection() {
-  console.log("\n 2. CREATE_COLLECTION");
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+};
 
-  try{
-      console.log(`Creating the collection ${collection_name}...`);
-      const exists_coll = await client.hasCollection(collection_name);
-      if (exists_coll === false) {
-          await client.createCollection(collection_name);
-      }
+// Create an authenticated instance with token or API key
 
-      // adding a onChange listner for collection
-        const listener = await client.onCollectionChange(collection_name);
-        listener.on('message',(msg) => console.log("message=>", msg));
-        listener.on('open',() => {
-          this.callback_fn(collection);
-        });
-        listener.on('close',() => console.log("connection closed"));
+// const client = new jsc8({url: globalUrl, token: "XXXX", fabricName: '_system'});
+// const client = new jsc8({url: globalUrl, apiKey: "XXXX", fabricName: '_system'});
+
+// Or use email and password to authenticate client instance
+
+async function createCollection () {
+  console.log("\n1. Log in.");
+  await client.login(email, password);
+  console.log("\n2. Create collection.");
+  try {
+    console.log(`Creating the collection ${collectionName}...`);
+    const existsColl = await client.hasCollection(collectionName);
+    if (existsColl === false) {
+      await client.createCollection(collectionName, { stream: true });
     }
-    catch (e) {
-      await console.log("Collection creation did not succeed due to " + e);
-    }
+    // Adding an onChange listner for collection
+    listener = await client.onCollectionChange(collectionName);
+    // Decode the message printed here in readable format
+    listener.on("message", (msg) => {
+      const receivedMsg = msg && JSON.parse(msg);
+      console.log("message=>", Buffer.from(receivedMsg.payload, "base64").toString("ascii"))
+    });
+    listener.on("open", () => console.log("Connection open"));
+    listener.on("close", () => console.log("Connection closed"));
+  } catch (e) {
+    await console.log("Collection creation did not succeed due to " + e);
+  }
 }
-
-async function insertData() {
-  console.log(`\n 3. INSERT_DATA in region ${global_url}`);
-  await client.insertDocumentMany(collection_name, data);
+async function insertData () {
+  console.log(`\n3. Insert data in region ${globalUrl}`);
+  await client.insertDocumentMany(collectionName, data);
 }
-
-async function deleteData(){
-  console.log("\n 4. DELETE_DATA");
-  await client.deleteCollection(collection_name);
+async function deleteData () {
+  console.log("\n4. Delete data");
+  await client.deleteCollection(collectionName);
 }
-
-(async function(){
+(async function () {
   await createCollection();
+  await sleep(2000);
   await insertData();
+  await sleep(10000);
+  await listener.close();
   await deleteData();
 })();
 ```
