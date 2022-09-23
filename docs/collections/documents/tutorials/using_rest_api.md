@@ -2087,7 +2087,7 @@ const streamApp = `@App:name('stream_app_tutorial')
   define stream tutorialAppInputStream (deviceID string, roomNo int, temperature double);
 
   -- Table
-  define table tutorialAppOutputTable (id string, temperature double);
+  define table tutorialAppOutputTable (ID string, temperature double);
 
   @info(name='Query')
   select concatFn(roomNo,'-',deviceID) as id, temperature
