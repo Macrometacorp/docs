@@ -2105,6 +2105,7 @@ const run = async function () {
     console.log("Logged in successfully using", tenant);
 
     /* ---------------------------- Create stream app ---------------------------- */
+    
     try {
       const app = await connection.req("/_fabric/_system/_api/streamapps", {
         body: {
