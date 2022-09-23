@@ -544,6 +544,7 @@ const run = async function () {
   await runningQueryFromCursor(updateQuery);
 
   /* ---------------------------- Upsert documents ---------------------------- */
+  
   console.log("6. Upsert data from collection " + collectionName);
   await runningQueryFromCursor(upsertQuery);
 
