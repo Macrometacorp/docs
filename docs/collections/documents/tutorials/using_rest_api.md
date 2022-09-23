@@ -555,6 +555,7 @@ const run = async function () {
   await runningQueryFromCursor(readQuery);
 
   /* ---------------------------- Delete documents --------------------------- */
+  
   console.log("8. Delete data from collection " + collectionName);
   await runningQueryFromCursor(deleteDocumentsQuery);
 
