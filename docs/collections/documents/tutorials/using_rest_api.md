@@ -539,6 +539,7 @@ const run = async function () {
   await runningQueryFromCursor(readQuery);
 
   /* ---------------------------- Update documents ---------------------------- */
+  
   console.log("5. Update data from collection " + collectionName);
   await runningQueryFromCursor(updateQuery);
 
