@@ -1818,6 +1818,7 @@ const run = async function () {
     .catch((error) => console.log(error));
 
   /* -------------------- Delete graph and drop collections -------------------- */
+  
   await connection
     .req(
       `/_fabric/_system/_api/graph/${lectureTracherGraph}?` +
