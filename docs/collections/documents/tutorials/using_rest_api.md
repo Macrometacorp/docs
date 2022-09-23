@@ -534,6 +534,7 @@ const run = async function () {
   await runningQueryFromCursor(insertQuery);
 
   /* ---------------------------- Read documents ---------------------------- */
+  
   console.log("4. Reading data from collection " + collectionName);
   await runningQueryFromCursor(readQuery);
 
