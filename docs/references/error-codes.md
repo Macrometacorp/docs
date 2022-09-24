@@ -62,7 +62,7 @@ This page describes error codes you might encounter while using Macrometa.
 | 600     | ERROR_HTTP_CORRUPTED_JSON       | Occurs when a string representation of a JSON object is corrupt. |
 | 601     | ERROR_HTTP_SUPERFLUOUS_SUFFICES | Occurs when the URL contains superfluous suffices.               |
 
-## Internal C8 Errors (1000-1099)
+## Internal Errors (1000-1099)
 
 For errors that occur because of a programming error.
 
@@ -77,7 +77,7 @@ For errors that occur because of a programming error.
 | 1008    | ERROR_C8DB_RECOVERY                      | Occurs when an error occurred during WAL log file recovery.                            |
 | 1009    | ERROR_C8DB_DATAFILE_STATISTICS_NOT_FOUND | Occurs when a required datafile statistics object was not found.                       |
 
-## External C8 Errors (1100-1199)
+## External Errors (1100-1199)
 
 For errors that occur because of an outside event.
 
@@ -96,7 +96,7 @@ For errors that occur because of an outside event.
 | 1110    | ERROR_C8DB_DATADIR_UNLOCKABLE                  | Occurs when the server cannot lock the database directory on startup.                                 |
 | 1111    | ERROR_C8DB_SYNC_TIMEOUT                        | Occurs when the server waited too long for a datafile to be synced to disk.                           |
 
-## General C8 Errors
+## General Errors
 
 For errors that occur when fulfilling a user request.
 
@@ -141,7 +141,7 @@ For errors that occur when fulfilling a user request.
 | 1237    | ERROR_C8DB_COLLECTION_TYPE_MISMATCH         | Occurs when a collection has a different type from what has been expected.                                                                            |
 | 1236    | ERROR_C8DB_WRITE_THROTTLE_TIMEOUT           | Occurs when the server is write-throttled and a write operation has waited too long for the server to process queued operations.                      |
 
-## Checked C8 errors (1300-1399)
+## Checked Errors (1300-1399)
 
 For errors that occur but are anticipated.
 
@@ -154,7 +154,7 @@ For errors that occur but are anticipated.
 | 1304    | ERROR_C8DB_MERGE_IN_PROGRESS | Occurs when storage engine has a datafile merge in progress and cannot complete the operation. |
 | 1305    | ERROR_C8DB_IO_ERROR          | Occurs when storage engine encounters an I/O error.                                            |
 
-## C8 Replication Errors (1400-1449)
+## Replication Errors (1400-1449)
 
 | Error # | Error Name                                      | Description                                                                                                                           |
 | ------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -175,7 +175,7 @@ For errors that occur but are anticipated.
 | 1416    | ERROR_REPLICATION_WRONG_CHECKSUM                | Occurs when a new born follower submits a wrong checksum.                                                                             |
 | 1417    | ERROR_REPLICATION_SHARD_NONEMPTY                | Occurs when a shard is not empty and the follower tries a shortcut.                                                                   |
 
-## C8 Cluster Errors (1450-1499)
+## Cluster Errors (1450-1499)
 
 | Error # | Error Name                                                   | Description                                                                                                                                                        |
 | ------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -227,7 +227,7 @@ For errors that occur but are anticipated.
 | 1495    | ERROR_CLUSTER_LEADERSHIP_CHALLENGE_ONGOING                   | Occurs when servers are currently competing for leadership, and the result is still unknown.                                                                       |
 | 1496    | ERROR_CLUSTER_NOT_LEADER                                     | Occurs when an operation is sent to a non-leading server.                                                                                                          |
   
-## C8 Query Errors (1500-1579)
+## Query Errors (1500-1579)
 
 | Error # | Error Name                                    | Description                                                                                                                   |
 | ------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -266,7 +266,7 @@ For errors that occur but are anticipated.
 | 1578    | ERROR_QUERY_DISALLOWED_DYNAMIC_CALL           | Occurs when a dynamic function call is made to a function that cannot be called dynamically.                                  |
 | 1579    | ERROR_QUERY_ACCESS_AFTER_MODIFICATION         | Occurs when collection data are accessed after a data-modification operation.                                                 |
 
-## C8QL User Function Errors (1580-1589)
+## User Function Errors (1580-1589)
 
 | Error # | Error Name                         | Description                                                     |
 | ------- | ---------------------------------- | --------------------------------------------------------------- |
@@ -275,15 +275,15 @@ For errors that occur but are anticipated.
 | 1582    | ERROR_QUERY_FUNCTION_NOT_FOUND     | Occurs when a user function is accessed but not found.          |
 | 1583    | ERROR_QUERY_FUNCTION_RUNTIME_ERROR | Occurs when a user function throws a runtime exception.         |
 
-## C8QL Query Registry Errors (1590-1599)
+## Query Registry Errors (1590-1599)
 
 | Error # | Error Name                | Description                                                                    |
 | ------- | ------------------------- | ------------------------------------------------------------------------------ |
 | 1590    | ERROR_QUERY_BAD_JSON_PLAN | Occurs when an HTTP API for a query got an invalid JSON object.                |
-| 1591    | ERROR_QUERY_NOT_FOUND     | Occurs when an Id of a query is not found by the HTTP API.                     |
-| 1592    | ERROR_QUERY_IN_USE        | Occurs when an Id of a query is found by the HTTP API but the query is in use. |
+| 1591    | ERROR_QUERY_NOT_FOUND     | Occurs when an ID of a query is not found by the HTTP API.                     |
+| 1592    | ERROR_QUERY_IN_USE        | Occurs when an ID of a query is found by the HTTP API but the query is in use. |
 
-## C8 Cursor Errors (1600-1699)
+## Cursor Errors (1600-1699)
 
 | Error # | Error Name             | Description                                                                                      |
 | ------- | ---------------------- | ------------------------------------------------------------------------------------------------ |
