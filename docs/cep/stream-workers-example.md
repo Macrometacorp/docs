@@ -432,7 +432,7 @@ result = client.delete_stream_app('Sample-Cargo-App')
   <TabItem value="js" label="Javascript">
 
 ```js
-    console.log("--- Deleting Stream Application `Sample-Cargo-App`");
+    console.log("--- Deleting stream application `Sample-Cargo-App`");
     result = await client.deleteStreamApp("Sample-Cargo-App");
 ```
   </TabItem>
