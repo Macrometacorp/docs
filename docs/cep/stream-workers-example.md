@@ -555,7 +555,7 @@ const queryValue = insertDataValue.query.value.toString();
 const appDefinition =
   `@App:name('Sample-Cargo-App')
   @App:qlVersion("2")
-  @App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
+  @App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
 
   -- Defines Table SampleCargoAppInputTable to process events having sensorId and temperature(F). 
   CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
