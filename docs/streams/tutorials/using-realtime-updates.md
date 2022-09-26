@@ -112,6 +112,7 @@ async function createCollection () {
     }
     // Adding an onChange listner for collection
     listener = await client.onCollectionChange(collectionName);
+    
     // Decode the message printed here in readable format
     listener.on("message", (msg) => {
       const receivedMsg = msg && JSON.parse(msg);
