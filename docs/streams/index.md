@@ -3,6 +3,26 @@ sidebar_position: 1
 title: Streams
 ---
 
+Streams are a type of collection in GDN to capture data in motion. Messages are sent via streams by publishers to consumers who then do something with the message. Streams can be created with client SDKs (pyC8, jsC8), REST APIs, or the web console.
+
+Streams unifies `queuing` and `pub-sub messaging` into a unified messaging model that provides a lot of flexibility to users to consume messages in a way that is best for the use case at hand.
+
+> producer --> stream --> subscription --> consumer
+
+A stream is a named channel for sending messages. Each stream is backed by a distributed append-only log and can be local (at one edge location only) or global (across all edge locations in the fabric).
+
+Messages from publishers are only stored once on a stream, and can be consumed as many times as necessary by consumers. The stream is the source of truth for consumption. Although messages are only stored once on the stream, there can be different ways of consuming these messages.
+
+Consumers are grouped together for consuming messages. Each group of consumers is a subscription on a stream. Each consumer group can have its own way of consuming the messages: exclusively, shared, or failover.
+
+Streams provide:
+
+- Seamless geo-replication of messages across regions
+- Very low publish and end-to-end latency
+- Seamless scalability to over a million topics
+- Multiple subscription modes (`exclusive`, `shared`, and `failover`) for streams
+- Guaranteed message delivery with persistent message storage
+
 Streams in GDN is built on the [publish-subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
 
 Once a subscription has been created, all messages will be retained by GDN streams, even if the consumer gets disconnected. Retained messages will be discarded only when a consumer acknowledges that they've been successfully processed.
@@ -23,6 +43,7 @@ persistent://tenant/geofabric/stream-name
 :::note
 Every collection within a geofabric is also a stream with the same name.
 :::
+
 A geofabric is a geo-fenced grouping within a tenant. A tenant can create multiple geofabrics. For instance, a tenant with different applications can create a separate geofabric for each application. A geofabric allows the application to create and manage a hierarchy of streams. The stream `my-tenant/app1` is a geofabric for the application `app1` for `my-tenant`. You can create any number of `streams` under the geofabric.
 
 ## Messages
