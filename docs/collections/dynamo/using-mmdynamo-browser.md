@@ -4,19 +4,19 @@ title: Using mmDynamo Javascript SDK
 ---
 ## Browser(Javascript) NPM
 
-* Install `mmdynamo`
+- Install `mmdynamo`
 
   ```js
   npm install mmdynamo --save
   ```
 
-* Import package
+- Import package
 
   ```js
   import { DynamoDB } from "mmdynamo";
   ```
 
-* Initialize Dynamodb
+- Initialize Dynamodb
 
   ```js
   import { DynamoDB } from "mmdynamo";
@@ -52,13 +52,13 @@ title: Using mmDynamo Javascript SDK
 
 ## Browser(Javascript) as Library
 
-* Add `mmdynamo`
+- Add `mmdynamo`
 
   ```html
   <script src="https://unpkg.com/mmdynamo@0.2.0/dist/mmdynamo.umd.js"></script>
   ```
 
-* Initialize Dynamodb with C8 DynamoMode
+- Initialize Dynamodb with Macrometa DynamoMode
 
   ```html
   <script type="text/javascript">
@@ -93,7 +93,6 @@ title: Using mmDynamo Javascript SDK
     });
   </script>
   ```
-
 
 ## Create a Table
 
@@ -440,8 +439,8 @@ const client = new DynamoDB({
 </html>
 ```
 
-
 ## Query Data
+
 ```html
 
 <html>
@@ -535,6 +534,7 @@ function queryData() {
   </body>
 </html>
 ```
+
 ## Scan Data
 
 ```html

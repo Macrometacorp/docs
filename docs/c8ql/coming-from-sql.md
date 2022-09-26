@@ -13,7 +13,6 @@ Though some of the keywords overlap, C8QL syntax differs from SQL. For instance,
 
 Despite few differences, anyone with an SQL background should have no difficulty in learning C8QL.
 
-
 ## Terminology
 
 Below is a table with the terms of both systems.
@@ -39,7 +38,7 @@ INSERT document
 
 Refer to [INSERT](../c8ql/operations/insert.md) for more details.
 
-### Inserting a single row / document:
+### Inserting a single row / document
 
 SQL:
 
@@ -55,7 +54,7 @@ C8QL:
     INTO users
  ```
 
-### Inserting multiple rows / documents:
+### Inserting multiple rows / documents
 
 SQL:
 
@@ -75,7 +74,7 @@ C8QL:
     INSERT user INTO users
  ```
 
-### Inserting rows / documents from a table / collection:
+### Inserting rows / documents from a table / collection
 
 SQL:
 
@@ -125,8 +124,7 @@ UPDATE keyExpression WITH document IN collection options
 
 Refer to [UPDATE](../c8ql/operations/update.md) for more details.
 
-
-### Updating a single row / document:
+### Updating a single row / document
 
 SQL:
 
@@ -196,7 +194,7 @@ FOR user IN users
 
 ### Adding optional columns / attributes
 
-SQL: 
+SQL:
 
 ```sql
 ALTER TABLE users 
@@ -238,7 +236,7 @@ LET date = DATE_NOW()
       IN users
 ```
 
-### Removing a column / attribute:
+### Removing a column / attribute
 
 SQL:
 
@@ -297,8 +295,7 @@ The REPLACE keyword completely modifies documents in a collection. There are two
 
 Refer to [REPLACE](../c8ql/operations/replace.md) for more details.
 
-
-### Replacing a single row / document:
+### Replacing a single row / document
 
 SQL:
 
@@ -319,7 +316,7 @@ REPLACE { _key: "1" }
   IN users
 ```
 
-### Replacing multiple rows / documents in a table:
+### Replacing multiple rows / documents in a table
 
 SQL:
 
@@ -346,7 +343,7 @@ SQL uses DELETE statements to remove rows from a table. In C8QL, the REMOVE keyw
 
 Refer to [REMOVE](../c8ql/operations/remove.md) for more details.
 
-### Deleting a single row / document:
+### Deleting a single row / document
 
 SQL:
 
@@ -387,8 +384,7 @@ Here, `FOR` iterates over documents in a collection. `RETURN` determines what th
 
 Refer to [FOR](../c8ql/operations/for.md) for more details.
 
-
-### Selecting all rows / documents from a table / collection, with all columns / attributes:
+### Selecting all rows / documents from a table / collection, with all columns / attributes
 
 SQL:
 
@@ -404,7 +400,7 @@ FOR user IN users
   RETURN user
 ```
 
-### Filtering rows / documents from a table / collection, with projection:
+### Filtering rows / documents from a table / collection, with projection
 
 SQL:
 
@@ -415,6 +411,7 @@ SELECT CONCAT(firstName, " ", lastName)
 ```
 
 C8QL:
+
 ```js
 FOR user IN users
   FILTER user.active == 1
@@ -425,7 +422,7 @@ FOR user IN users
   }
 ```
 
-### Sorting rows / documents from a table / collection:
+### Sorting rows / documents from a table / collection
 
 SQL:
 
@@ -450,8 +447,7 @@ There are a series of functions and clauses in both SQL and C8QL to group or fur
 
 Refer to [COLLECT](../c8ql/operations/collect.md) for more details.
 
-
-### Counting rows / documents in a table / collection:
+### Counting rows / documents in a table / collection
 
 Both SQL and C8QL can count the rows or documents in the result-set and tell you how many it finds. C8QL manages counts using the `WITH` keyword to count the documents into a return variable.
 
@@ -476,7 +472,7 @@ FOR user IN users
   }
 ```
 
-### Grouping rows / documents in a table / collection:
+### Grouping rows / documents in a table / collection
 
 In SQL, the `GROUP BY` clauses collects the result-set according to the given column. C8QL replaces this with the `COLLECT` keyword.
 
@@ -509,7 +505,7 @@ FOR user IN users
     }
 ```
 
-### Minimum, maximum calculation of rows / documents in a table / collection:
+### Minimum, maximum calculation of rows / documents in a table / collection
 
 Both SQL and C8QL use functions to find the minimum and maximum values for a given field. In C8QL, it’s handled with the `COLLECT` keyword.
 
@@ -533,9 +529,9 @@ FOR user IN users
   RETURN { minDate, maxDate }
 ```
 
-### Building horizontal lists:
+### Building horizontal lists
 
-SQL: 
+SQL:
 
 ```sql
 SELECT gender, GROUP_CONCAT(id) AS userIds 
@@ -562,9 +558,9 @@ FOR user IN users
 
 ## JOINS
 
-Similar to joins in relational databases, C8 has its own implementation of `JOINS`. Coming from an SQL background, you may find the C8QL syntax very different from your expectations.
+Similar to joins in relational databases, C8QL has its own implementation of `JOINS`. Coming from an SQL background, you might find the C8QL syntax very different from your expectations.
 
-### Inner join:
+### Inner join
 
 SQL:
 
@@ -643,13 +639,13 @@ FOR user IN users
 
 In the main, C8QL is a declarative language. Queries express what results you want but not how you want to get there. C8QL aims to be human-readable, therefore uses keywords from the English language.
 
-It also aims to be client independent, meaning that the language and syntax are the same for all clients, no matter what programming language the clients use. Additionally, it supports complex query patterns and the various data models C8 offers.
+It also aims to be client independent, meaning that the language and syntax are the same for all clients, no matter what programming language the clients use. Additionally, it supports complex query patterns and the various data models Macrometa offers.
 
-C8QL also supports several aggregation and string functions. For more information, see [C8QL Functions](coming-from-sql.md)
+C8QL also supports several aggregation and string functions. For more information, see [C8QL Functions](coming-from-sql.md).
 
 ## How do browse vectors translate into document queries?
 
-In traditional SQL you may either fetch all columns of a table row by row, using `SELECT * FROM table`, or select a subset of the columns. The list of table columns to fetch is commonly called *column list* or *browse vector*:
+In traditional SQL you may either fetch all columns of a table row by row, using `SELECT * FROM table`, or select a subset of the columns. The list of table columns to fetch is commonly called _column list_ or _browse vector_:
 
 ```sql
 SELECT columnA, columnB, columnZ FROM table
@@ -661,13 +657,14 @@ C8QL is thus a little bit more complex than plain SQL at first, but offers much 
 
 ## Composing the documents to be returned
 
-The C8QL `RETURN` statement returns one item per document it is handed. You can return the whole document, or just parts of it. 
+The C8QL `RETURN` statement returns one item per document it is handed. You can return the whole document, or just parts of it.
 
 Given that _oneDocument_ is a document (retrieved like `LET oneDocument = DOCUMENT("myusers/3456789")` for instance), it can be returned as-is like this:
 
 ```js
 RETURN oneDocument
 ```
+
 The above statement returns a document like:
 
 ```json
