@@ -110,7 +110,7 @@ async function createCollection () {
     if (existsColl === false) {
       await client.createCollection(collectionName, { stream: true });
     }
-    // Adding an onChange listner for collection
+    // Add an onChange listener for collection
     listener = await client.onCollectionChange(collectionName);
     
     // Decode the message printed here in readable format
