@@ -383,7 +383,7 @@ print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
   </TabItem>
 </Tabs>
 
-## Run an Adhoc Query
+## Run an Ad Hoc Query
 
 In this example, we run an adhoc query on the store `SampleCargoAppDestTable` used in Stream Application. It should get records which you inserted into `SampleCargoAppInputTable`.
 
