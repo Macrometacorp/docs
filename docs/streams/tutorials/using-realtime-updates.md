@@ -93,7 +93,7 @@ const sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 };
 
-// Create an authenticated instance with token or API key
+// Create an authenticated instance with a token or API key
 
 // const client = new jsc8({url: globalUrl, token: "XXXX", fabricName: '_system'});
 // const client = new jsc8({url: globalUrl, apiKey: "XXXX", fabricName: '_system'});
