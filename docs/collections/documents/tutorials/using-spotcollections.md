@@ -306,7 +306,7 @@ async function main () {
   }
 
   async function insertData () {
-    console.log(`\n 3. Inserting Data`);
+    console.log(`\n 3. Inserting data`);
     await client.insertDocumentMany(collectionName, data);
   }
 
