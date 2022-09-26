@@ -41,7 +41,7 @@ Messages are the basic `unit` of GDN streams. They're what producers publish to 
 
 ## Producers
 
-A producer is a process that attaches to a stream and publishes messages to a C8 for processing.
+A producer is a process that attaches to a stream and publishes messages to a stream for processing.
 
 ### Send modes
 
@@ -54,10 +54,10 @@ Producers can send messages to GDN  either synchronously (sync) or asynchronousl
 
 ### Compression
 
-Messages published by producers can be compressed during transportation in order to save bandwidth. C8 streams currently supports two types of compression:
+Messages published by producers can be compressed during transportation in order to save bandwidth. Macrometa streams currently supports two types of compression:
 
-* [LZ4](https://github.com/lz4/lz4)
-* [ZLIB](https://zlib.net/)
+- [LZ4](https://github.com/lz4/lz4)
+- [ZLIB](https://zlib.net/)
 
 ### Batching
 
@@ -69,7 +69,7 @@ A consumer is a process that attaches to a stream via a subscription and then re
 
 ### Receive modes
 
-Messages can be received from C8  either synchronously (sync) or asynchronously (async).
+Messages can be received from streams either synchronously (sync) or asynchronously (async).
 
 | Mode          | Description  |
 |--------------|---------------------------|
@@ -85,6 +85,7 @@ Messages can be acknowledged either one by one or cumulatively. With cumulative 
 :::note
 Cumulative acknowledgement cannot be used with `shared subscription mode`, because shared mode involves multiple consumers having access to the same subscription.
 :::
+
 ### Listeners
 
 Client libraries can provide their own listener implementations for consumers. In this interface, the `received` method is called whenever a new message is received.
@@ -115,8 +116,8 @@ In the diagram above, **Consumer-B-1** and **Consumer-B-2** are able to subscrib
 
 There are two important things to be aware of when using shared mode:
 
-* Message ordering is not guaranteed.
-* You cannot use cumulative acknowledgment with shared mode.
+- Message ordering is not guaranteed.
+- You cannot use cumulative acknowledgment with shared mode.
 
 ![stream-shared-subscriptions](/img/stream-shared-subscriptions.png)
 
@@ -130,13 +131,12 @@ In the diagram above, **Consumer-C-1** is the master consumer while **Consumer-C
 
 ![stream-failover-subscriptions](/img/stream-failover-subscriptions.png)
 
-
 ## Multi-stream Subscriptions
 
 When a consumer subscribes to a GDN stream, by default it subscribes to one specific stream, such as `persistent://tenant1/fabric1/my-stream`. GDN stream consumers can simultaneously subscribe to multiple streams. You can define a list of streams in two ways:
 
-* On the basis of a [**reg**ular **ex**pression](https://en.wikipedia.org/wiki/Regular_expression) (regex), for example `persistent://tenant1/fabric1/finance-.*`
-* By explicitly defining a list of streams
+- On the basis of a [**reg**ular **ex**pression](https://en.wikipedia.org/wiki/Regular_expression) (regex), for example `persistent://tenant1/fabric1/finance-.*`
+- By explicitly defining a list of streams
 
 :::note
 When subscribing to multiple streams by regex, all streams must be in the same `geofabric`.
@@ -153,8 +153,8 @@ Message queues are essential components of many large-scale data architectures. 
 
 GDN Streams is a great choice for a message queue because:
 
-* it was built with persistent storage in mind
-* it offers automatic load balancing across consumers for messages on a stream
+- it was built with persistent storage in mind
+- it offers automatic load balancing across consumers for messages on a stream
 
 :::note
 You can use the same GDN stream to act as a real-time message bus and as a message queue if you wish (or just one or the other)
@@ -164,13 +164,13 @@ You can set aside some streams for real-time purposes and other streams for mess
 :::
 **Client configuration changes:**
 
-To use a stream as a message queue, you should distribute the receiver load on that topic across several consumers (the optimal number of consumers will depend on the load). 
+To use a stream as a message queue, you should distribute the receiver load on that topic across several consumers (the optimal number of consumers will depend on the load).
 
 Each consumer must:
 
-* Establish a [shared subscription](#shared) and use the same subscription name as the other consumers (otherwise the subscription is not shared and the consumers can't act as a processing ensemble)
+- Establish a [shared subscription](#shared) and use the same subscription name as the other consumers (otherwise the subscription is not shared and the consumers can't act as a processing ensemble)
 
-* If you'd like to have tight control over message dispatching across consumers, set the consumers' **receiver queue** size very low (potentially even to 0 if necessary).
+- If you'd like to have tight control over message dispatching across consumers, set the consumers' **receiver queue** size very low (potentially even to 0 if necessary).
 
 Each Stream has a receiver queue that determines how many messages the consumer will attempt to fetch at a time. A receiver queue of 1000 (the default), for example, means that the consumer will attempt to process 1000 messages from the stream's backlog upon connection. Setting the receiver queue to zero essentially means ensuring that each consumer is only doing one thing at a time.
 
@@ -180,13 +180,13 @@ The downside to restricting the receiver queue size of consumers is that that li
 
 By default, GDN:
 
-* immediately delete `all` messages that have been acknowledged by a consumer, and
-* persistently store all unacknowledged messages in a message backlog for upto 3 days.
+- immediately delete `all` messages that have been acknowledged by a consumer, and
+- persistently store all unacknowledged messages in a message backlog for upto 3 days.
 
 GDN streams has two features, however, that enable you to override this default behavior:
 
-* Message **retention** enables you to store messages that have been acknowledged by a consumer
-* Message **expiry** enables you to set a time to live (TTL) for messages that have not yet been acknowledged
+- Message **retention** enables you to store messages that have been acknowledged by a consumer
+- Message **expiry** enables you to set a time to live (TTL) for messages that have not yet been acknowledged
 
 :::note
 All message retention and expiry is managed at the `geofabric` level.

@@ -464,7 +464,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
 
     pp = pprint.PrettyPrinter(indent=4)
 
-    # Initialize the C8 Data Fabric client.
+    # Initialize the Data Fabric client.
     # Step1: Open connection to GDN. You will be routed to closest region.
     print(f"1. CONNECT: federation: {GLOBAL_URL},  user: {EMAIL}")
     
