@@ -385,7 +385,7 @@ print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 
 ## Run an Ad Hoc Query
 
-In this example, we run an adhoc query on the store `SampleCargoAppDestTable` used in Stream Application. It should get records which you inserted into `SampleCargoAppInputTable`.
+In this example, we run an ad hoc query on the store `SampleCargoAppDestTable` used in a stream application. It should get records which you inserted into `SampleCargoAppInputTable`.
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
