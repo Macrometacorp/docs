@@ -644,7 +644,7 @@ async function main () {
   const client = new jsc8({ url: globalUrl, apiKey: thisApiKey, fabricName: "_system" });
   // console.log("Authentication done!!...");
   
-  // Or use Email & Password to Authenticate client instance
+  // Or use email and password to authenticate a client instance
   // const client = new jsc8("https://gdn.paas.macrometa.io");
   // await client.login("email", "password");
   console.log("Connecttion successful");
