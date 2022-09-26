@@ -446,14 +446,14 @@ You can try out several Stream Apps which are preloaded and ready to run.
   <TabItem value="py" label="Python">
 
 ```py
-print("--- You can try out several stream applications which are pre-loaded and ready to run.")
+print("--- You can try out several stream applications which are pre-loaded and ready to run")
 print("Samples", client.get_stream_app_samples())
 ```    
   </TabItem>
   <TabItem value="js" label="Javascript">
 
 ```js
-    console.log("--- You can try out several Stream Apps which are pre-loaded and ready to run.");
+    console.log("--- You can try out several Stream Apps which are pre-loaded and ready to run");
     result = await client.getStreamAppSamples();
     console.log('Sample Stream Applications');
     console.log(result);
@@ -653,14 +653,14 @@ async function main () {
     try {
       const temp = await client.getStreamApp(streamApp);
       console.log(temp);
-      console.log("The stream application already exist.");
+      console.log("The stream application already exist");
       return true;
     } catch (e) {
       if (e.statusCode === 404) {
-        console.log("The stream application does not exist yet.");
+        console.log("The stream application does not exist yet");
         return false;
       } else {
-        console.log("Another issue has been detected.");
+        console.log("Another issue has been detected");
         console.log(e);
       }
     }
@@ -672,11 +672,11 @@ async function main () {
 
       for (i = 0; i < res.result.length; i++) {
         if (res.result[i].name === queryWorkerName) {
-          console.log(`Query worker ${queryName} already exist.`);
+          console.log(`Query worker ${queryName} already exist`);
           return true;
         }
       }
-      console.log(`Query worker ${queryName} does not exist yet.`);
+      console.log(`Query worker ${queryName} does not exist yet`);
       return false;
     } catch (e) {
       console.log(messageHandler(e));
@@ -687,7 +687,7 @@ async function main () {
     console.log(`--- Creating insert query worker "${insertDataValue.query.name}" if needed`);
     if (!await hasQueryWorker(queryName)) {
       client.createRestql(queryName, queryValue, parameter);
-      console.log(`Query worker ${queryName} has been created successfully.`);
+      console.log(`Query worker ${queryName} has been created successfully`);
     }
   }
 
@@ -717,7 +717,7 @@ async function main () {
     // Enable app using change_state function
     const result = await client.activateStreamApp(streamAppName, true);
     console.log(result);
-    console.log("The connection has been opened.");
+    console.log("The connection has been opened");
   }
 
   async function updatingSteamApplication () {
@@ -741,7 +741,7 @@ async function main () {
 
   async function disablingStreamApplication () {
     await client.activateStreamApp(streamAppName, false);
-    console.log("The connection has been closed.");
+    console.log("The connection has been closed");
   }
 
   async function displayingResults () {
@@ -749,7 +749,7 @@ async function main () {
 
     // As per the query, the result is limited to the first 10 results
     console.log(`--- Running adhoc query on the store ${destinationCollectionName} used in stream application. 
-      It should get all records which you inserted into ${sourceCollectionName}.`);
+      It should get all records which you inserted into ${sourceCollectionName}`);
     const q = `select * from ${destinationCollectionName} limit 10`;
     const result = await app.query(q);
     console.log(result);
@@ -762,7 +762,7 @@ async function main () {
   }
 
   async function displayingSampleApplications () {
-    console.log("--- You can try out several stream applications which are pre-loaded and ready to run.");
+    console.log("--- You can try out several stream applications which are pre-loaded and ready to run");
     const result = await client.getStreamAppSamples();
     console.log("Sample Stream Applications:");
     console.log(result);
