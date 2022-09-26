@@ -255,7 +255,7 @@ const sleep = (milliseconds) => {
 };
 
 async function main () {
-  // Crete a authenticated instance with Token / Apikey
+  // Create an authenticated instance with a token or API key
   // const client = new jsc8({url: globalUrl, token: "XXXX", fabricName: '_system'});
   // const client = new jsc8({url: globalUrl, apiKey: "XXXX", fabricName: '_system'});
 
