@@ -3,9 +3,9 @@ sidebar_position: 1
 title: C8QL
 ---
 
-# C8 query language (C8QL)
+# C8 Query Language (C8QL)
 
-The C8 query language (C8QL) can be used to create, retrieve and modify data that are stored in C8 Geo distributed fast data platform.
+The C8 query language (C8QL) can be used to create, retrieve and modify data that are stored in the Macrometa geo-distributed fast data platform.
 
 :::note
 If this is your first time with C8QL then be sure to check out the [C8QL GoT Tutorial](got-tutorial/index.md) before you head off to the in-depth documentation!
@@ -13,13 +13,13 @@ If this is your first time with C8QL then be sure to check out the [C8QL GoT Tut
 
 The general workflow when executing a query is as follows:
 
-- A client application ships a C8QL query to the C8  fabric. The query text contains everything C8 needs to compile the result set
+- A client application ships a C8QL query to the fabric. The query text contains everything Macrometa needs to compile the result set.
 
-- C8 will parse the query, execute it and compile the results. If the query is invalid or cannot be executed, the server will return an error that the client can process and react to. If the query can be executed successfully, the server will return the query results (if any) to the client
+- Macrometa will parse the query, execute it and compile the results. If the query is invalid or cannot be executed, the server will return an error that the client can process and react to. If the query can be executed successfully, the server will return the query results (if any) to the client.
 
 C8QL is mainly a declarative language, meaning that a query expresses what result should be achieved but not how it should be achieved. C8QL aims to be human-readable and therefore uses keywords from the English language.
 
-Another design goal of C8QL was client independency, meaning that the language and syntax are the same for all clients, no matter what programming language the clients may use.  Further design goals of C8QL were the support of complex query patterns and the different data models C8 offers.
+Another design goal of C8QL was client independency, meaning that the language and syntax are the same for all clients, no matter what programming language the clients may use.  Further design goals of C8QL were the support of complex query patterns and the different data models Macrometa offers.
 
 In its purpose, C8QL is similar to the Structured Query Language (SQL). C8QL supports reading and modifying collection data, but it doesn't support data-definition operations such as creating and dropping databases, collections and indexes.
 
