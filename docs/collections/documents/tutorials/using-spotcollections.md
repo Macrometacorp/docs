@@ -259,7 +259,7 @@ async function main () {
   // const client = new jsc8({url: globalUrl, token: "XXXX", fabricName: '_system'});
   // const client = new jsc8({url: globalUrl, apiKey: "XXXX", fabricName: '_system'});
 
-  // Or use Email & Password to Authenticate client instance
+  // Or use email and password to authenticate a client instance
   const client = new jsc8(globalUrl);
   console.log(`1. Connecting to federation: ${globalUrl}`);
   await client.login("nemo@nautilus.com", "xxxxxx");
