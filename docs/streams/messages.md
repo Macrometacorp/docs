@@ -23,15 +23,10 @@ Message queues are essential components of many large-scale data architectures. 
 
 GDN Streams is a great choice for a message queue because:
 
-- it was built with persistent storage in mind
-- it offers automatic load balancing across consumers for messages on a stream
-
-:::note
-You can use the same GDN stream to act as a real-time message bus and as a message queue if you wish (or just one or the other)
-:::
-:::note
-You can set aside some streams for real-time purposes and other streams for message queue purposes (or use specific geofabrics for either purpose if you wish).
-:::
+- It was built with persistent storage in mind.
+- It offers automatic load balancing across consumers for messages on a stream.
+- You can use the same GDN stream to act as a real-time message bus and as a message queue, or just one or the other.
+- You can set aside some streams for real-time purposes and other streams for message queue purposes, or use specific geofabrics for either purpose.
 
 ### Client Configuration Changes
 
