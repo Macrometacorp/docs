@@ -4,7 +4,7 @@ title: Query Errors
 
 This page describes errors that might occur during the C8QL parsing or execution.
 
-Issuing an invalid query to the server will result in a parse error if the query is syntactically invalid. C8 will detect such errors during query inspection and abort further processing. Instead, the error number and an error message are returned so that the errors can be fixed.
+Issuing an invalid query to the server will result in a parse error if the query is syntactically invalid. Macrometa detects such errors during query inspection and abort further processing. Instead, the error number and an error message are returned so that the errors can be fixed.
 
 If a query passes the parsing stage, all collections referenced in the query will be opened. If any of the referenced collections is not present, query execution will again be aborted and an appropriate error message will be returned.
 
