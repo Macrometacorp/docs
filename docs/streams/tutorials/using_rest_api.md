@@ -45,14 +45,14 @@ const WebSocket = require('ws');
 class APIRequest {
   _headers = {
     Accept: "application/json",
-    "Content-Type": "application/json",
+    "Content-Type": "application/json"
   };
 
   constructor(url) {
     this._url = url;
   }
 
-  login(email, password) {
+  login (email, password) {
     const endpoint = "/_open/auth";
 
     const self = this;
@@ -61,7 +61,7 @@ class APIRequest {
       self
         .req(endpoint, {
           body: { email, password },
-          method: "POST",
+          method: "POST"
         })
         .then(({ jwt, ...data }) => {
           self._headers.authorization = `bearer ${jwt}`;
@@ -71,7 +71,7 @@ class APIRequest {
     });
   }
 
-  _handleResponse(response, resolve, reject) {
+  _handleResponse (response, resolve, reject) {
     if (response.ok) {
       resolve(response.json());
     } else {
@@ -79,52 +79,51 @@ class APIRequest {
     }
   }
 
-  req(endpoint, { body, ...options } = {}) {
+  req (endpoint, { body, ...options } = {}) {
     const self = this;
     return new Promise(function (resolve, reject) {
       fetch(self._url + endpoint, {
         headers: self._headers,
         body: body ? JSON.stringify(body) : undefined,
-        ...options,
+        ...options
       }).then((response) => self._handleResponse(response, resolve, reject));
     });
   }
 }
 
-const EMAIL = "nemo@nautilus.com";
-const PASSWORD = "xxxxxx";
-const FEDERATION_NAME = api-gdn.paas.macrometa.io";
-const FEDERATION_URL = `https://${FEDERATION_NAME}`;
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const federationName = "api-gdn.paas.macrometa.io";
+const federationUrl = `https://${federationName}`;
 
-const STREAM_NAME = "api_tutorial_streams";
-const CONSUMER_NAME = "api_tutorial_streams_consumer";
-const IS_GLOBAL = true;
+const stream = "api_tutorial_streams";
+const consumerName = "api_tutorial_streams_consumer";
+const isGlobal = true;
 
 const run = async function () {
   try {
-    const connection = new APIRequest(FEDERATION_URL);
+    const connection = new APIRequest(federationUrl);
 
-    /* -------------------- Login (nemo@nautilus.com/xxxxxx) -------------------- */
+    /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
 
-    const { tenant } = await connection.login(EMAIL, PASSWORD);
+    const { tenant } = await connection.login(email, password);
 
     console.log("Login Successfully using", tenant);
-    /* ------------------------------ Create Stream ----------------------------- */
+    /* ------------------------------ Create stream ----------------------------- */
 
     try {
-      const stream = await connection.req(
-        `/_fabric/_system/streams/${STREAM_NAME}?global=${IS_GLOBAL}`,
+      await connection.req(
+        `/_fabric/_system/streams/${stream}?global=${isGlobal}`,
         {
-          body: { name: STREAM_NAME },
-          method: "POST",
+          body: { name: stream },
+          method: "POST"
         }
       );
-      console.log("STREAM CREATED SUCCESSFULLY");
+      console.log("Stream created successfully");
     } catch (e) {
-      if (e.status == 409) {
+      if (e.status === 409) {
         console.log("Stream already exists, skipping creation of stream");
-      }
-      else {
+      } else {
         console.log("Error while creating stream");
         throw e;
       }
@@ -132,36 +131,36 @@ const run = async function () {
 
     /* ----------------- Publish and subscribe message to stream ---------------- */
 
-    const region = IS_GLOBAL ? "c8global" : "c8local";
-    const streamName = `${region}s.${STREAM_NAME}`;
+    const region = isGlobal ? "c8global" : "c8local";
+    const streamName = `${region}s.${stream}`;
 
     // Fetching local URL in case the stream is local
     const localDcDetails = await connection.req(`/datacenter/local`, {
-      method: "GET",
+      method: "GET"
     });
 
     const dcUrl = localDcDetails.tags.url;
 
-    const url = IS_GLOBAL
-      ? FEDERATION_NAME
+    const url = isGlobal
+      ? federationName
       : `api-${dcUrl}`;
 
     const otpConsumer = await connection.req(`/apid/otp`, {
-      method: "POST",
+      method: "POST"
     });
     const otpProducer = await connection.req(`/apid/otp`, {
-      method: "POST",
+      method: "POST"
     });
 
-    const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}?otp=${otpConsumer.otp}`;
+    const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${consumerName}?otp=${otpConsumer.otp}`;
 
     const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
-    var consumer;
-    var producer;
-    var producer_interval;
+    let consumer;
+    let producer;
+    let producerInterval;
 
-    /* -------------------------- Initalizing Consumer -------------------------- */
+    /* -------------------------- Initalizing consumer -------------------------- */
 
     const initConsumer = () => {
       return new Promise((resolve) => {
@@ -184,7 +183,7 @@ const run = async function () {
         };
 
         consumer.onmessage = function (message) {
-          var receivedMsg = message.data && JSON.parse(message.data);
+          const receivedMsg = message.data && JSON.parse(message.data);
 
           console.log(
             `WebSocket:Consumer message received at ${new Date()}`,
@@ -204,7 +203,7 @@ const run = async function () {
 
       producer.onopen = function () {
         console.log("WebSocket:Producer is open now for " + streamName);
-        producer_interval = setInterval(function () {
+        producerInterval = setInterval(function () {
           console.log(`WebSocket:Producer message sent at ${new Date()}`);
           producer.send(JSON.stringify({ payload: `test` }));
         }, 10000);
@@ -212,7 +211,7 @@ const run = async function () {
 
       producer.onclose = function (e) {
         console.log("Closed WebSocket:Producer connection for " + streamName);
-        clearInterval(producer_interval);
+        clearInterval(producerInterval);
       };
 
       producer.onerror = function (e) {
@@ -227,28 +226,22 @@ const run = async function () {
     });
 
     await new Promise((resolve) => setTimeout(resolve, 1 * 40 * 1000));
-
     consumer.close();
     console.log("CONSUMER CLOSING...");
     producer.close();
     console.log("PRODUCER CLOSING...");
-
     await new Promise((resolve) => setTimeout(resolve, 5000));
-
-    /* ------------------------ Unsubscribe from stream. ------------------------ */
-
+    /* ------------------------ Unsubscribe from stream ------------------------ */
     const consumerUnsubscribe = await connection.req(
-      `/_fabric/_system/_api/streams/unsubscribe/${CONSUMER_NAME}`,
+      `/_fabric/_system/_api/streams/subscription/${consumerName}`,
       {
-        method: "POST",
+        method: "DELETE"
       }
     );
-
     console.log(
-      `${CONSUMER_NAME} UNSUBSCRIBED SUCCESSFULLY`,
+      `${consumerName} unsubscribed successfully`,
       consumerUnsubscribe
     );
-
     /* ------------------------------ Delete topic ------------------------------ */
   } catch (e) {
     console.error(e);
