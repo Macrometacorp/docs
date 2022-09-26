@@ -647,7 +647,7 @@ async function main () {
   // Or use email and password to authenticate a client instance
   // const client = new jsc8("https://gdn.paas.macrometa.io");
   // await client.login("email", "password");
-  console.log("Connecttion successful");
+  console.log("Connection successful");
   async function hasStreamApp (streamApp) {
     console.log(`Checking if the stream application ${streamApp} already exists`);
     try {
