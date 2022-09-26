@@ -757,7 +757,7 @@ async function main () {
 
   async function deletingStreamApplication () {
     const app = await client.streamApp(streamAppName);
-    console.log(`--- Deleting Stream application ${streamAppName}`);
+    console.log(`--- Deleting stream application ${streamAppName}`);
     await app.deleteApplication();
   }
 
