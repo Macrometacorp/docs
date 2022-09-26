@@ -639,7 +639,7 @@ async function main () {
   console.log("--- Connecting to GDN");
   // email = "";
   // password = "";
-  // Create an authenticated instance with token or API key
+  // Create an authenticated instance with a token or API key
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
   const client = new jsc8({ url: globalUrl, apiKey: thisApiKey, fabricName: "_system" });
   // console.log("Authentication done!!...");
