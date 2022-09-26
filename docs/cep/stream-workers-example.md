@@ -778,7 +778,7 @@ async function main () {
       await disablingStreamApplication();
       await displayingResults();
 
-      // Only the Stream Application is being automatically removed with the code
+      // Only the stream application is removed with the code
       await deletingStreamApplication();
 
       // Code below can be used to see the sample stream apps
