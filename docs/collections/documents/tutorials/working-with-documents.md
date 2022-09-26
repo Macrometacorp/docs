@@ -165,115 +165,131 @@ Let's assume your
 <TabItem value="js" label="Javascript">
 
 ```js
-  'use strict'
+const jsc8 = require("jsc8");
 
-  const jsc8 = require('jsc8');
+// Variables - DB
+globalUrl = "https://gdn.paas.macrometa.io";
+regionUrls = [
+  "https://gdn-us-west.paas.macrometa.io",
+  "https://gdn-eu-central.paas.macrometa.io",
+  "https://gdn-ap-south.paas.macrometa.io"
+];
 
-  // Variables - DB
-  global_url = "https://gdn.paas.macrometa.io";
-  region_urls = [
-    "https://gdn-sfo2.prod.macrometa.io",
-    "https://gdn-us-west1.prod.macrometa.io",
-    "https://gdn-nyc1.prod.macrometa.io"
-  ];
+// Create an authenticated instance with a token or API key
+// const client = new jsc8({url: globalUrl, token: "XXXX", fabricName: '_system'});
+const thisApikey = "XXXXX";
+const client = new jsc8({ url: globalUrl, apiKey: thisApikey, fabricName: "_system" });
+// console.log("Authentication done!!...");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: global_url, token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: global_url, apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Or use email and password to authenticate client instance
+// const client = new jsc8(globalUrl);
+// await client.login("nemo@nautilus.com", "xxxx");
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8(global_url);
+// Variables
+const collectionName = "ddoslist";
+const ipAddress = "20.1.1.9";
 
-  await client.login("nemo@nautilus.com", "xxxx");
+// Variables - Queries
+const readQueryValue = `FOR device in ddoslist FILTER device.ip == "${ipAddress}" RETURN { IP:device.ip, IsAllowed:device.action}`;
+const insertQueryValue = `INSERT { "ip": "${ipAddress}", "action": "block", "rule": "blacklistA"} INTO ddoslist`;
 
-  //Variables
-  const collection_name = "ddoslist";
-  const ip_address = "20.1.1.9";
+// Variables - Data
+const data = [
+  { ip: "10.1.1.1", action: "block", rule: "blacklistA" },
+  { ip: "20.1.1.2", action: "block", rule: "blacklistA" },
+  { ip: "30.1.1.3", action: "block", rule: "blacklistB" },
+  { ip: "40.1.1.4", action: "block", rule: "blacklistA" },
+  { ip: "50.1.1.5", action: "block", rule: "blacklistB" },
+  { ip: "20.1.1.3", action: "allow", rule: "whitelistA" },
+  { ip: "20.1.1.4", action: "allow", rule: "whitelistA" },
+  { ip: "30.1.1.4", action: "allow", rule: "whitelistB" },
+  { ip: "30.1.1.5", action: "allow", rule: "whitelistB" }
+];
 
-  // Variables - Queries
-  const read_query = `FOR device in ddoslist FILTER device.ip == "${ip_address}" RETURN { IP:device.ip, IsAllowed:device.action}`;
+// Step 1: Open connection to GDN. You will be routed to closest region.
+console.log(`1. Connecting: federation: ${globalUrl},  user: ${thisApikey}`);
 
-  const insert_query = "INSERT { \"ip\" : \"" + ip_address + "\", \"action\": \"block\", \"rule\":\"blocklistA\"} INTO ddoslist";
+async function createCollection () {
+  console.log("\n2. Create collections:");
 
-  // Variables - Data
-  const data = [
-    {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
-    {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
-    {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
-    {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
-    {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
-    {"ip": "20.1.1.3", "action": "allow", "rule": "allowlistA"},
-    {"ip": "20.1.1.4", "action": "allow", "rule": "allowlistA"},
-    {"ip": "30.1.1.4", "action": "allow", "rule": "allowlistB"},
-    {"ip": "30.1.1.5", "action": "allow", "rule": "allowlistB"}
-  ];
-
-  async function createCollection() {
-    console.log("\n 2. CREATE_COLLECTION");
-
-    try{
-        console.log(`Creating the collection ${collection_name}...`);
-        const exists_coll = await client.hasCollection(collection_name);
-        if (exists_coll === false) {
-          await client.createCollection(collection_name);
-        }
-    } catch (e) {
-      await console.log("Collection creation did not succeed due to " + e);
+  try {
+    console.log(`Creating the collection ${collectionName}...`);
+    const existsColl = await client.hasCollection(collectionName);
+    if (existsColl === false) {
+      await client.createCollection(collectionName);
+      console.log(`Collection ${collectionName} was created successfully.`);
+    } else {
+      console.log(`Collection ${collectionName} alreasy exists.`);
     }
+  } catch (e) {
+    console.log("Collection creation did not succeed due to " + e);
   }
+}
 
-  async function insertData() {
-    console.log(`\n 3. INSERT_DATA in region ${global_url}`);
-    await client.insertDocumentMany(collection_name, docs);
+async function insertData () {
+  console.log(`\n3. Inserting data in region ${globalUrl}`);
+  try {
+    await client.insertDocumentMany(collectionName, data);
+    console.log("Data has been successfully added to the collection");
+  } catch (e) {
+    console.log("Data could not be inserted due to " + e);
   }
+}
 
-  async function readData(){
-    console.log(`\n 4. READ_DATA in region ${global_url}`);
-    console.log(`\n IS_IP_ALLOWED...from region: ${global_url}`);
-    let result = await client.executeQuery(read_query);
-    if(result.length === 0){
-      console.log(`IP: ${ip_address}, IsAllowed: 'allow'`);
-    }
-    else{
+async function readData () {
+  console.log(`\n4. reading data in region ${globalUrl}`);
+  console.log(`IP is allowed from region: ${globalUrl}`);
+  const result = await client.executeQuery(readQueryValue);
+  console.log(result);
+}
+
+async function blacklistIP () {
+  console.log(`\n5. Blacklisting the IP...from region: ${globalUrl}, ip: ${ipAddress}`);
+  await client.executeQuery(insertQueryValue);
+  console.log("Document added successfully");
+}
+
+async function readDataFromAllRegions () {
+  console.log("\n6. Checking if the IP is allowed globally");
+  try {
+    for (let i = 0; i < regionUrls.length; i++) {
+      // Create an authenticated instance with a token or API key
+      // const regionClient = new jsc8({url: regionUrls[i], token: "XXXX", fabricName: '_system'});
+      // const regionClient = new jsc8({url: regionUrls[i], apiKey: "XXXX", fabricName: '_system'});
+      // console.log("Authentication done!!...");
+      // Or use Email & Password to Authenticate client instance
+      // const regionClient = new jsc8(regionUrls[i]);
+      // await regionClient.login("nemo@nautilus.com", "xxxxxx");
+
+      const regionClient = new jsc8({ url: regionUrls[i], apiKey: thisApikey, fabricName: "_system" });
+
+      console.log(`\n IP is blocked in region : ${regionUrls[i]}`);
+      const result = await regionClient.executeQuery(readQueryValue);
       console.log(result);
     }
-
-    console.log(`\n 5. BLOCKLIST the IP...from region: ${global_url}, ip: ${ip_address}`);
-    result = await client.executeQuery(insert_query);
+  } catch (e) {
+    console.log("Could not read due to " + e);
   }
+}
 
-  async function readDataFromAllRegions(){
-    console.log("\n 6. CHECK_IF_IP_ALLOWED_GLOBALLY");
-    for (let i = 0; i < region_urls.length; i++) { 
-        // Crete a authenticated instance with Token / Apikey
-        // const regionclient = new jsc8({url: region_urls[i], token: "XXXX", fabricName: '_system'});
-        // const regionclient = new jsc8({url: region_urls[i], apiKey: "XXXX", fabricName: '_system'});
-        // await console.log("Authentication done!!...");
-
-        // Or use Email & Password to Authenticate client instance
-        const regionclient = new jsc8(region_urls[i]);
-        await regionclient.login("nemo@nautilus.com", "xxxxxx");
-
-        console.log(`\n 6. Ip allowed in region : ${region_urls[i]}`);
-        let result = await client.executeQuery(read_query);
-        console.log(result);
-    }
-
+async function deleteData () {
+  console.log("\n7. Deleting the data");
+  try {
+    await client.deleteCollection(collectionName);
+    console.log("The collection has been deleted successfully");
+  } catch (e) {
+    console.log("Collection could not be deleted due to " + e);
   }
+}
 
-  async function deleteData(){
-    console.log("\n 6. DELETE_DATA");
-    await client.deleteCollection(collection_name);
-  }
-
-  (async function(){
-    await createCollection();
-    await insertData();
-    await readData();
-    await readDataFromAllRegions();
-    await deleteData();
-  })();
+(async function () {
+  await createCollection();
+  await insertData();
+  await readData();
+  await blacklistIP();
+  await readDataFromAllRegions();
+  await deleteData();
+})();
 ```
 
 </TabItem>
