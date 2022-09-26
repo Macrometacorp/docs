@@ -326,7 +326,7 @@ async function main () {
         // const regionclient = new jsc8({url: regionUrls[i], apiKey: "XXXX", fabricName: '_system'});
         // await console.log("Authentication done!!...");
 
-        // Or use Email & Password to Authenticate client instance
+        // Or use email and password to authenticate a client instance
         console.log(regionUrls[i]);
         const regionclient = new jsc8(`https://${regionUrls[i]}.paas.macrometa.io`);
         await regionclient.login("nemo@nautilus.com", "xxxxxx");
