@@ -347,7 +347,7 @@ async function main () {
 
   async function run () {
     await createSpotRegion();
-    // need to wait some time to get the spot region ready
+    // Need to wait some time to get the spot region ready
     await sleep(10000);
     await createCollection();
     await insertData();
