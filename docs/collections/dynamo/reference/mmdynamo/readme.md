@@ -1,4 +1,4 @@
-# Connect to dynamodb C8 using mmdynamo
+# Connect to dynamodb Macrometa using mmdynamo
 
 ## Browser(Javascript) NPM
 
@@ -56,7 +56,7 @@
    <script src="https://unpkg.com/mmdynamo@0.2.0/dist/mmdynamo.umd.js"></script>
    ```
 
-2. Initialize Dynamodb with C8 Dynamo
+2. Initialize Dynamodb
 
    ```html
    <script type="text/javascript">
