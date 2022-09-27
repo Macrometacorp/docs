@@ -215,7 +215,7 @@ client.create_collection(name=COLLECTION_NAME, stream=True)
 ```js
 const jsC8 = require("jsc8");
 
-// Email and Password to Authenticate client instance
+// Email and password to authenticate client instance
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
 const fabric = "_system";
