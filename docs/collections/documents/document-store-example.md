@@ -464,7 +464,7 @@ async function insertDataInCollection () {
     .insertDocumentMany(collectionName, docs)
     .then((documentsDetails) => {
       console.log(documentsDetails);
-      console.log("Documents inserted in collection " + collectionName);
+      console.log("Documents inserted into collection " + collectionName);
     })
     .catch((error) => messageHandler(error));
 }
