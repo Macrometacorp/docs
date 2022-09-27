@@ -9,6 +9,24 @@ This document describes what has changed in Macrometa release 0.17.11. All accou
 
 The following new features are included in this release.
 
+### SQL Support
+
+Description of feature.
+
+[Topic name](link) was added as a result of this feature.
+
+### Redis Support
+
+Description of feature.
+
+[Topic name](link) was added as a result of this feature.
+
+### Kafka Support
+
+Description of feature.
+
+[Topic name](link) was added as a result of this feature.
+
 ### Feature 1
 
 Description of feature.
@@ -19,11 +37,16 @@ Description of feature.
 
 The following features updates are included in this release.
 
-### Update 1
+### Invite User
 
 Description of update.
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
+
+### Auth Improvements
+
+- We redesigned Macrometa authorization to make our service more efficient and stable.
+- The account signupt and login screens have been updated and improved.
 
 ## Known Issues
 
