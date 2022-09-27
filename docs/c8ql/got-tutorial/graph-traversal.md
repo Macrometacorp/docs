@@ -294,7 +294,7 @@ As a quick fix, change the last line of the query to `RETURN DISTINCT v.name` to
 
 ## Traverse with Variable Depth
 
-To return the parents and grandparents of Joffrey, yo can walk edges in `OUTBOUND` direction and adjust the traversal depth to go at least 1 step, and 2 at most:
+To return the parents and grandparents of Joffrey, you can walk edges in `OUTBOUND` direction and adjust the traversal depth to go at least 1 step, and 2 at most:
 
 ```js
 FOR c IN Characters
