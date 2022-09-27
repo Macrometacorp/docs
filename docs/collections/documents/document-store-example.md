@@ -591,7 +591,7 @@ client.on_change(COLLECTION_NAME, callback=callback_fn)
 ```js
 const jsC8 = require("jsc8");
 
-// Email and Password to Authenticate client instance
+// Email and password to authenticate client instance
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
 const fabric = "_system";
