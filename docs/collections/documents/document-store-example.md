@@ -821,7 +821,7 @@ async function restqldemo () {
     )
     .catch((error) => messageHandler(error));
 
-  console.log("\n------- EXECUTING THE QUERIES  ------");
+  console.log("\n------- RUNNING THE QUERIES  ------");
 
   const bindVars = {
     firstname: "john",
