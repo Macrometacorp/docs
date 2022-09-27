@@ -398,7 +398,7 @@ client.insert_document(collection_name=COLLECTION_NAME, document=DOCS)
 ```js
 const jsc8 = require("jsc8");
 
-// Email and Password to Authenticate client instance
+// Email and password to authenticate client instance
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
 const fabric = "_system";
