@@ -46,7 +46,7 @@ Description of update.
 ### Auth Improvements
 
 - We redesigned Macrometa authorization to make our service more efficient and stable.
-- The account signupt and login screens have been updated and improved.
+- The account signup and login screens have been updated and improved.
 
 ## Known Issues
 
