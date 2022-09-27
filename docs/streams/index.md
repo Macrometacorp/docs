@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Streams
 ---
 
-Streams are a type of collection in GDN to capture data in motion. Messages are sent via streams by publishers to consumers who then do something with the message. Streams can be created with client SDKs (pyC8, jsC8), REST APIs, or the web console.
+Streams are flows of data in GDN to capture data in motion. Messages are sent via streams by publishers to consumers who then do something with the message. Streams can be created with client SDKs (pyC8, jsC8), REST APIs, or the web console.
 
 Streams unifies `queuing` and `pub-sub messaging` into a unified messaging model that provides a lot of flexibility to users to consume messages in a way that is best for the use case at hand.
 
