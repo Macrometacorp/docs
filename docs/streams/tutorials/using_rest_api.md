@@ -13,9 +13,9 @@ Macrometa global data network (GDN) is a fully managed realtime materialzed view
 :::note
 If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../what-is-macrometa.md)**.
 :::
-## Pre-Requiste
+## Pre-Requisites
 
-A tenant account (and credentials) with Macrometa GDN.
+A tenant account and credentials with Macrometa GDN.
 
 ## API Browser
 
