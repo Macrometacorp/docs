@@ -240,7 +240,7 @@ You could also do this in two steps, using the document ID.
         RETURN v.name
     ```
 
-The same result will be returned for Robb, Arya and Sansa as starting point. For Jon Snow, it will only be Ned.
+The same result will be returned for Robb, Arya, and Sansa as starting point. For Jon Snow, it will only be Ned.
 
 ## Traverse to the Children
 
