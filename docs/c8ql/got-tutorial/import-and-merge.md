@@ -17,7 +17,7 @@ The character data you imported has an attribute _traits_ for each character, wh
 }
 ```
 
-The idea here is that _traits_ is supposed to store documents keys of another collection, which you can use to resolve the letters to labels such as "strong". By using another collection for the actual traits, you can easily query for all existing traits later on and store labels in multiple languages for instance in a central place. If you embedded traits directly, it becomes unmanageable.
+The idea here is that _traits_ is supposed to store documents keys of another collection, which you can use to resolve the letters to labels such as `strong`. By using another collection for the actual traits, you can easily query for all existing traits later on and store labels in multiple languages for instance in a central place. If you embedded traits directly, it becomes unmanageable.
 
 Here's Ned Stark with his traits written out:
 
