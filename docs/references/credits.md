@@ -1,12 +1,11 @@
 ---
 sidebar_position: 10
-title: Credits & Acknowledgements
-slug: credits
+title: Credits and Acknowledgements
 ---
 
 Building something as audacious as Macrometa’s GDN cloud would not have been possible without the extraordinary contributions of many people. We are deeply indebted to the following people for the extraordinary body of research work and publications that have enabled us to build Macrometa.
 
-## Conflict Free Replicated Data Types (CRDTs)
+## Conflict-Free Replicated Data Types (CRDTs)
 
 **Christopher Meiklejohn** - Christopher is consulting scientist for Macrometa. Christopher’s research into state and operational Conflict Free Replicated Data Types & implementations such as LASP, Partisan and work on AntidoteDB, enabled us to bring the best ideas from CRDTs to our vision for a geo distributed database. In addition, Chris is just one of the most humble and great people we have had the good fortune of collaborating with.
 [http://christophermeiklejohn.com](http://christophermeiklejohn.com)
@@ -26,6 +25,6 @@ Building something as audacious as Macrometa’s GDN cloud would not have been p
 
 We leverage following open sources in our geo-distributed platform. 
 
-Macrometa utilizes [**ArangoDB**](https://github.com/arangodb/arangodb) query engine and AQL syntax as the foundation for our database query functionality. 
+Macrometa uses [**ArangoDB**](https://github.com/arangodb/arangodb) query engine and AQL syntax as the foundation for our database query functionality. 
 
-Macrometa utilizes [**Apache Siddhi**](https://siddhi.io/) library internally for pipelines processing, [**Apache Bookkeeper**](http://bookkeeper.apache.org/) & [**ZooKeeper**](http://zookeeper.apache.org/) for low-latency append-only log optimized for real-time messaging.
+Macrometa uses [**Apache Siddhi**](https://siddhi.io/) library internally for pipelines processing, [**Apache Bookkeeper**](http://bookkeeper.apache.org/) & [**ZooKeeper**](http://zookeeper.apache.org/) for low-latency append-only log optimized for real-time messaging.

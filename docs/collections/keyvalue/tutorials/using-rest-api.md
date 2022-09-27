@@ -13,7 +13,7 @@ For the following examples, assume these credentials:
 
 ## API Browser
 
-Your best friend when working with REST APIs is the REST API browser available in the [GDN](https://gdn.paas.macrometa.io) GUI. From there, you can execute various rest apis and see exactly what the inputs and outputs are.
+Your main tool when working with REST APIs is the REST API browser available in the [GDN](https://gdn.paas.macrometa.io) GUI. From there, you can execute various REST APIs and see exactly what the inputs and outputs are.
 
 ![GDN API Browser](/img/gdn-api-browser.png)
 
@@ -322,7 +322,6 @@ Get size of the kv collection.
 ## Update Value
 
 Update value for a given key in the collection.
-
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
@@ -750,8 +749,8 @@ class APIRequest {
   );
   
   console.log("KV PAIR UPDATED SUCCESSFULLY", updateValue);
-  /* --------------------------- Delete value for a key ---------------------------- */
   
+    /* --------------------------- Delete value for a key ---------------------------- */
   const deletedValue = await connection.req(
   `/_fabric/_system/_api/kv/${COLLECTION_NAME}/value/${key}`,
   { method: "DELETE" }
