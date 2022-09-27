@@ -50,7 +50,7 @@ Here's Ned Stark with his traits written out:
 }
 ```
 
- If you were to rename or translate one trait, then you would need to find all other character documents with the same trait and perform the changes there too. If you only refer to a trait in another collection, then you just need to update one record in a single document.
+If you were to rename or translate one trait, then you would need to find all other character documents with the same trait and perform the changes there too. If you only refer to a trait in another collection, then you just need to update one record in a single document.
 
 ![Comparison_DataModels](/img/c8ql/tutorial/Comparison_DataModels.png)
 
