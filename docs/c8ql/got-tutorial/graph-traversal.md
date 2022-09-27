@@ -283,7 +283,7 @@ FOR c IN Characters
 ]
 ```
 
-It might be a bit unexpected, that Joffrey is returned twice. However, if you look at the graph visualization, you can see that multiple paths lead from Joffrey (bottom right) to Tywin:
+It might be a bit unexpected that Joffrey is returned twice. However, if you look at the graph visualization, you can see that multiple paths lead from Joffrey (bottom right) to Tywin:
 
 ```js
 Tywin <- Jaime <- Joffrey
