@@ -459,7 +459,7 @@ async function insertDataInCollection () {
     .login(email, password)
     .then((e) => console.log("1. User authentication done!"))
     .catch((error) => messageHandler(error));
-  console.log("2. Insert documents in collection " + collectionName);
+  console.log("2. Insert documents into collection " + collectionName);
   await client
     .insertDocumentMany(collectionName, docs)
     .then((documentsDetails) => {
