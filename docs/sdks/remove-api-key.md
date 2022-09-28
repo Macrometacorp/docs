@@ -12,13 +12,50 @@ import TabItem from '@theme/TabItem';
 <TabItem value="js" label="Javascript">
 
 ```js
-// Remove an api key
-try{
-    await client.removeApiKey(keyid);
+const jsc8 = require("jsc8");
+
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const keyid = "id1";
+
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
+
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
 }
-catch(e){
-    console.log('API Deletion Failed: ', e);   
+
+async function main () {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => error);
+
+  console.log("\n2. Deleting " + keyid);
+  await client
+    .removeApiKey(keyid)
+    .then((removeApiKey) => console.log(removeApiKey))
+    .catch((error) => messageHandler(error));
 }
+
+main()
+  .then()
+  .catch((error) => console.log(error));
 ```
 
 </TabItem>
