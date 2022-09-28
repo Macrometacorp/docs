@@ -86,16 +86,19 @@ client = C8Client(protocol='https', host=HOST, port=443,
 <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+const jsc8 = require("jsc8");
+const fabric = "_system";
 
-  // Simple Way
-  const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // ----- OR -----
-  const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
 
-
-  // To use advanced options
-  const client = new jsc8("https://gdn.paas.macrometa.io"); 
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 ```
 
 </TabItem>
@@ -131,30 +134,48 @@ print(client.get_fabric_details())
 <TabItem value="js" label="Javascript">  
 
 ```js
-  const jsc8 = require("jsc8");
+const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
 
-  // Or use Email and Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
+}
 
-  async function getFabric() {
-      try{
-        await console.log("Getting the fabric details...");
-        let result = await client.get();
+async function getFabric () {
+  await client
+    .login(email, password)
+    .then(() => console.log("1. User authentication done!"))
+    .catch((error) => messageHandler(error));
 
-        await console.log("result is: ", result);
-      } catch(e){
-        await console.log("Fabric details could not be fetched because "+ e);
-      }
-  }
+  console.log("2. Getting the details of fabric: " + fabric);
+  await client
+    .get()
+    .then((fabricDetails) => console.log(fabricDetails))
+    .catch((error) => messageHandler(error));
+}
 
-  getFabric();
+getFabric()
+  .then()
+  .catch((error) => messageHandler(error));
 ```
 </TabItem>
 </Tabs>  
@@ -192,32 +213,60 @@ client.create_collection(name=COLLECTION_NAME, stream=True)
 <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+const jsC8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const collectionName = "employees";
+const client = new jsC8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
 
-  // Or use Email and Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum,
+  };
+  console.log(message);
+}
 
-  async function createCollection() {
-    await console.log("Creating the collection employees under demoFabric...");
-    let collectionDetails;
-    try{
-      collectionDetails = await client.createCollection('employees'); 
-      await console.log("The collection details are: ", collectionDetails);
-    } catch(e){
-      return "Collection creation did not succeed due to " + e;
-    }
+async function createCollection () {
+  await client
+    .login(email, password)
+    .then(() => console.log("1. User authentication done!"))
+    .catch((error) => messageHandler(error));
 
-    return "Collection " + collectionDetails.name + " created successfully";  
-  }
+  console.log(
+    "2. Creating collection " + collectionName + " in " + fabric + " fabric"
+  );
+  await client
+    .createCollection(collectionName, {
+      stream: true,
+      waitForSync: false,
+      isLocal: false
+    })
+    .then((collectionDetails) => {
+      console.log(
+        "Collection " + collectionDetails.name + " created successfully"
+      );
+      console.log(collectionDetails);
+    })
+    .catch((error) => messageHandler(error));
+}
 
-  createCollection().then(console.log);
+createCollection()
+  .then()
+  .catch((error) => messageHandler(error));
 ```
 
 </TabItem>
@@ -254,32 +303,58 @@ client.add_hash_index(COLLECTION_NAME, fields=FIELDS, unique=False)
 <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const collectionName = "employees";
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
 
-  // Or use Email and Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
+}
 
-  async function createIndex() {
-    await console.log("Creating the index on collection employees under demoFabric...");
-    let index;
-    try{
-      index = await client.addHashIndex("employees", ["email", "_key"]); 
-      await console.log("The index details are: ", index);
-    } catch(e){
-      return "Index creation did not succeed due to " + e;
-    }
+async function createIndex () {
+  await client
+    .login(email, password)
+    .then(() => console.log("1. User authentication done!"))
+    .catch((error) => messageHandler(error));
 
-    return "Index created successfully";  
-  }
+  console.log(
+    "2. Creating index on collection " +
+      collectionName +
+      " in " +
+      fabric +
+      " Fabric"
+  );
+  await client
+    .addHashIndex(collectionName, ["email", "_key"])
+    .then((hashIndex) => {
+      console.log("3. Index details: ");
+      console.log(hashIndex);
+    })
+    .catch((error) => messageHandler(error));
+}
 
-  createIndex().then(console.log);
+createIndex()
+  .then()
+  .catch((error) => messageHandler(error));
 ```
 
 </TabItem>
@@ -321,43 +396,82 @@ client.insert_document(collection_name=COLLECTION_NAME, document=DOCS)
 <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const collectionName = "employees";
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+// Variables
+const docJean = {
+  _key: "Jean",
+  firstname: "Jean",
+  lastname: "Picard",
+  email: "jean.picard@macrometa.io"
+};
 
-  //Variables
-  const docJean = {'_key':'Jean', 
-            'firstname': 'Jean', 
-            'lastname':'Picard', 'email':'jean.picard@macrometa.io'};
+const docJames = {
+  _key: "James",
+  firstname: "James",
+  lastname: "Kirk",
+  email: "james.kirk@macrometa.io"
+};
 
-  const docJames = {'_key':'James', 
-                    'firstname': 'James', 'lastname':'Kirk', 'email':'james.kirk@macrometa.io'};
+const docHan = {
+  _key: "Han",
+  firstname: "Han",
+  lastname: "Solo",
+  email: "han.solo@macrometa.io"
+};
 
-  const docHan = {'_key': 'Han', 
-                  'firstname': 'Han',
-                  'lastname':'Solo', 'email':'han.solo@macrometa.io'};
+const docBruce = {
+  _key: "Bruce",
+  firstname: "Bruce",
+  lastname: "Wayne",
+  email: "bruce.wayne@macrometa.io"
+};
 
-  const docBruce = {'_key': 'Bruce',
-                    'firstname': 'Bruce', 'lastname':'Wayne', 'email':'bruce.wayne@macrometa.io'};
+const docs = [docJean, docJames, docHan, docBruce];
 
-  const docs = [docJean, docJames, docHan, docBruce];
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
+}
 
+async function insertDataInCollection () {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => messageHandler(error));
+  console.log("2. Insert documents into collection " + collectionName);
+  await client
+    .insertDocumentMany(collectionName, docs)
+    .then((documentsDetails) => {
+      console.log(documentsDetails);
+      console.log("Documents inserted into collection " + collectionName);
+    })
+    .catch((error) => messageHandler(error));
+}
 
-  async function populate() {
-    await console.log("Creating the collection object to be used and populating with documents...");
-    await client.insertDocumentMany("employees", docs);
-    await console.log("collection populated with documents");
-  }
-
-  populate();
+insertDataInCollection()
+  .then()
+  .catch((error) => messageHandler(error));
 ```
 
 </TabItem>
@@ -395,27 +509,49 @@ print(f"Response from Query: {docs}")
 <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+const jsC8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const query = "FOR employee IN employees RETURN employee";
+const client = new jsC8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
+}
 
-  async function c8Queries() {
-    
-    const result = await client.executeQuery(
-      "FOR employee IN employees RETURN employee"
-    );
-    await console.log(result);
-  }
+async function c8Queries() {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => messageHandler(error));
 
-  c8Queries();
+  console.log("2. Executing query");
+  await client
+    .executeQuery(query)
+    .then((queryResult) => console.log(queryResult))
+    .catch((error) => messageHandler(error));
+}
+
+c8Queries()
+  .then()
+  .catch((error) => messageHandler(error));
 ```
 
 </TabItem>
@@ -453,33 +589,58 @@ client.on_change(COLLECTION_NAME, callback=callback_fn)
 <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require("jsc8");
+const jsC8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const collectionName = "employees";
+const client = new jsC8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric,
+});
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+function messageHandler(error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum,
+  };
+  console.log(message);
+}
 
-  async function callback_fn(collection){
-    await console.log("Connection open on ", collection.name);
-  }
+async function callback_fn(collection) {
+  console.log("Connection open on ", collection.name);
+}
 
-  async function realTimeListener() {
-    const listener = await client.onCollectionChange("employees");
+async function realTimeListener() {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => messageHandler(error));
 
-    listener.on('message',(msg) => console.log("message=>", msg));
-    listener.on('open',() => {
-        this.callback_fn(collection);
+  await client
+    .onCollectionChange(collectionName)
+    .then((listener) => {
+      listener.on("message", (msg) => console.log("message=>", msg));
+      listener.on("open", () => {
+        callback_fn(collectionName).then((e) => console.log(e));
       });
-    listener.on('close',() => console.log("connection closed"));
-  }
+      listener.on("close", () => console.log("connection closed"));
+    })
+    .catch((error) => error);
+}
 
-  realTimeListener();
+realTimeListener()
+  .then()
+  .catch((error) => messageHandler(error));
 ```
 
 </TabItem>
@@ -578,89 +739,139 @@ if __name__ == '__main__':
 <TabItem value="js" label="Javascript">
 
 ```js
-  const jsc8 = require('jsc8');
+ const jsc8 = require("jsc8");
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
 
-  // Or use Email and Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
+// Or use one of the following authentication methods and remove the commenting.
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with an API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
-  await client.login("nemo@nautilus.com", "xxxxxx");
+function messageHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum,
+  };
+  console.log(message);
+}
 
-  //Variables
-  const collection_name = "addresses" + Math.floor(1000 + Math.random() * 9000).toString();
+//Variables
+const collectionName = "employees";
 
-  //Queries
-  const insert_data = "INSERT {'firstname':@firstname, 'lastname':@lastname, 'email':@email, 'zipcode':@zipcode, '_key': 'abc'} IN " + collection_name;
+//Queries
+const insertData =
+  "INSERT {'firstname':@firstname, 'lastname':@lastname, 'email':@email, 'zipcode':@zipcode, '_key': 'abc'} IN " +
+  collectionName;
 
-  const get_data = "FOR doc IN " + collection_name + " RETURN doc";
+const getData = "FOR doc IN " + collectionName + " RETURN doc";
 
-  const update_data = "UPDATE 'abc' WITH {'lastname': @lastname } IN " + collection_name;
+const updateData =
+  "UPDATE 'abc' WITH {'lastname': @lastname } IN " + collectionName;
 
-  const delete_data = "REMOVE 'abc' IN " + collection_name;
+const deleteData = "REMOVE 'abc' IN " + collectionName;
 
-  const get_count = "RETURN COUNT(FOR doc IN " + collection_name + " RETURN 1)";
+const getCount = "RETURN COUNT(FOR doc IN " + collectionName + " RETURN 1)";
 
+async function restqldemo () {
+  await client
+    .login(email, password)
+    .then(() => console.log("\n1. User authentication done!"))
+    .catch((error) => messageHandler(error));
 
-  async function restqldemo() {
-    console.log("------- CREATE GEO-REPLICATED COLLECTION  ------");
+  console.log("\n------- SAVING THE QUERIES  ------");
 
-    const collection = await client.createCollection(collection_name);
+  await client
+    .createRestql("insertData", insertData, {})
+    .then((restQl) => {
+      console.log("2. " + restQl.result.name + "query created.");
+    })
+    .catch((error) => messageHandler(error));
+  await client
+    .createRestql("getData", getData, {})
+    .then((restQl) =>
+      console.log("3. " + restQl.result.name + "query created.")
+    )
+    .catch((error) => messageHandler(error));
+  await client
+    .createRestql("updateData", updateData, {})
+    .then((restQl) =>
+      console.log("4. " + restQl.result.name + "query created.")
+    )
+    .catch((error) => messageHandler(error));
+  await client
+    .createRestql("deleteData", deleteData, {})
+    .then((restQl) =>
+      console.log("5. " + restQl.result.name + "query created.")
+    )
+    .catch((error) => messageHandler(error));
+  await client
+    .createRestql("getCount", getCount, {})
+    .then((restQl) =>
+      console.log("6. " + restQl.result.name + "query created.")
+    )
+    .catch((error) => messageHandler(error));
 
-    console.log("Collection " + collection_name + " created.\n");
+  console.log("\n------- RUNNING THE QUERIES  ------");
 
-    console.log("------- SAVING THE QUERIES  ------");
+  const bindVars = {
+    firstname: "john",
+    lastname: "doe",
+    email: "john.doe@macrometa.io",
+    zipcode: "511037",
+  };
 
-    await client.createRestql("insertData", insert_data, {});
-    await client.createRestql("getData", get_data, {});
-    await client.createRestql("updateData", update_data, {});
-    await client.createRestql("deleteData", delete_data, {});
-    await client.createRestql("getCount", get_count, {});
+  await client
+    .executeRestql("insertData", bindVars)
+    .then(() => console.log("\n7. Data inserted."))
+    .catch((error) => messageHandler(error));
 
-    console.log("Saved Queries Successfully\n");
+  await client
+    .executeRestql("getData")
+    .then((res) => {
+      console.log("\n8. getData query result: ");
+      console.log(res.result);
+    })
+    .catch((error) => messageHandler(error));
 
-    console.log("------- EXECUTING THE QUERIES  ------");
+  await client
+    .executeRestql("updateData", { lastname: "mathews" })
+    .then(() => console.log("\n9. Data updated."))
+    .catch((error) => messageHandler(error));
 
-    const bindVars = {
-      "firstname": "john", "lastname": "doe",
-      "email": "john.doe@macrometa.io", "zipcode": "511037"
-    };
+  await client
+    .executeRestql("getData")
+    .then((res) => {
+      console.log("\n10. Updated getData query output: ");
+      console.log(res.result);
+    })
+    .catch((error) => messageHandler(error));
 
-    await client.executeRestql("insertData", bindVars);
+  await client
+    .executeRestql("getCount")
+    .then((res) => {
+      console.log("\n11. Count: " + res.result);
+    })
+    .catch((error) => messageHandler(error));
 
-    console.log("Data Inserted \n");
+  await client
+    .executeRestql("deleteData")
+    .then(() => console.log("\n12. DeleteData query executed."))
+    .catch((error) => messageHandler(error));
+}
 
-    const res = await client.executeRestql("getData");
-
-    console.log("Output of get data query:");
-    console.log(res.result);
-    console.log("\n");
-
-    await client.executeRestql("updateData", { "lastname": "mathews" });
-
-    console.log("Data updated \n");
-
-    const data = await client.executeRestql("getData");
-
-    console.log("Output of get data query after update:");
-
-    console.log(data.result);
-
-    console.log("\n");
-
-    const count = await client.executeRestql("getCount");
-
-    console.log("Count:");
-
-    console.log(count.result);
-
-    await client.executeRestql("deleteData");
-  }
-
-  restqldemo().then(console.log("Starting Execution"));
+restqldemo()
+  .then(console.log("Starting execution"))
+  .catch((error) => messageHandler(error));
 ```
 
 </TabItem>
