@@ -15,6 +15,15 @@ In the diagram above, only **Consumer-A** is allowed to consume messages.
 
 > Exclusive mode is the default subscription mode.
 
+```java
+Consumer consumer = client.newConsumer()
+		.topic("my-topic")
+		.subscriptionType(SubscriptionType.Exclusive)
+		.subscriptionName("my-subscription-name")
+		.subscriptionInitialPosition(SubscriptionInitialPosition.Earliest)
+		.subscribe();
+```
+
 ![stream-exclusive-subscriptions](/img/stream-exclusive-subscriptions.png)
 
 ### Shared
@@ -30,6 +39,15 @@ There are two important things to be aware of when using shared mode:
 - Message ordering is not guaranteed.
 - You cannot use cumulative acknowledgment with shared mode.
 
+```java
+Consumer consumer = client.newConsumer()
+		.topic("my-topic")
+		.subscriptionType(SubscriptionType.Shared)
+		.subscriptionName("my-subscription-name")
+		.subscriptionInitialPosition(SubscriptionInitialPosition.Earliest)
+		.subscribe();
+```
+
 ![stream-shared-subscriptions](/img/stream-shared-subscriptions.png)
 
 ### Failover
@@ -39,6 +57,15 @@ In `failover` mode, multiple consumers can attach to the same subscription. The 
 When the master consumer disconnects, all (non-acked and subsequent) messages will be delivered to the next consumer in line.
 
 In the diagram above, **Consumer-C-1** is the master consumer while **Consumer-C-2** would be the next in line to receive messages if **Consumer-C-1** disconnected.
+
+```java
+Consumer consumer = client.newConsumer()
+		.topic("my-topic")
+		.subscriptionType(SubscriptionType.Failover)
+		.subscriptionName("my-subscription-name")
+		.subscriptionInitialPosition(SubscriptionInitialPosition.Earliest)
+		.subscribe();
+```
 
 ![stream-failover-subscriptions](/img/stream-failover-subscriptions.png)
 
