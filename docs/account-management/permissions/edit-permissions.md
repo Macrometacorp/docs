@@ -11,6 +11,6 @@ Once you log in to a Macrometa account, you can view all user accounts and API k
 
 1. Log in to Macrometa.
 1. Click **Account**.
-1. If you want to edit permissions for a user, click the **Users** tab and click the user in the list. Alternatively, click the **API Keys** tab and click the API key in the list.
+1. If you want to edit permissions for a user, then click the **Users** tab and click the user in the list. Alternatively, click the **API Keys** tab and click the API key in the list.
 1. On the Permissions tab, select the radio button for the permissions you want to assign.
 1. Save the details for the user.
