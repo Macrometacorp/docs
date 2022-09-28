@@ -150,6 +150,8 @@ SELECT pii:fake(full_name, "NAME_FULLNAME", true)        as full_name,
 FROM patient_local;
 ```
 
+The code block does the following:
+
 1. Insert following data into `patient_local` collection:
 {"full_name": "John Doe", "ssn": "123-123-123", "email": "John.Doe@macrometa.com", "phone": "123-123-12345"}
 
