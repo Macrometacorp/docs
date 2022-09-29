@@ -3,7 +3,7 @@ sidebar_position: 4
 title: Realtime Log Analytics
 ---
 
-This demo shows how to integrate real-time log analytics with Macrometa GDN to monitor the status and activity of Stream workers and Query workers.
+This demo shows how to integrate real-time log analytics with Macrometa GDN to monitor the status and activity of stream workers and query workers.
 
 ## Setup
 
