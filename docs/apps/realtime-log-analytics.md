@@ -49,10 +49,10 @@ unique_visitor_by_country_stats_1m (global)
 4. On the development machine, run the following commands in a console:
 
 ```
-1. git clone git@github.com:Macrometacorp/demo-jsc8-realtime-logs.git
-2. cd demo-jsc8-realtime-logs/react-app
-3. npm install
-4. npm run start
+git clone git@github.com:Macrometacorp/demo-jsc8-realtime-logs.git
+cd demo-jsc8-realtime-logs/react-app
+npm install
+npm run start
 ```
 
 **Sample Log Format:**
