@@ -1,10 +1,8 @@
 ---
-sidebar_position: 6
 title: Document Functions
 ---
 
-
-C8QL provides below listed functions to operate on objects / document values.
+C8QL provides below listed functions to operate on objects and document values.
 
 ## ATTRIBUTES()
 
