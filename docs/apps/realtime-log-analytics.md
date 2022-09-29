@@ -13,7 +13,7 @@ This demo shows how to integrate real-time log analytics with Macrometa GDN to m
 
 ## Solution
 
-1. Create and publish the following Stream Workers in your GDN account:
+1. Create and publish the following stream workers in your GDN account:
 
 ```
 log-generator
