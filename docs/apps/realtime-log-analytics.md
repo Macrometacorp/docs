@@ -21,7 +21,7 @@ http-request-worker
 http-request-stats-1m-worker
 ```
 
-2. Create the following Query Workers in your GDN account:
+2. Create the following query workers in your GDN account:
 
 ```
 GetTopUrl
