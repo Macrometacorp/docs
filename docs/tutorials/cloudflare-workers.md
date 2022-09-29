@@ -13,29 +13,28 @@ const authEndpoint = macrometaHost + "/_open/auth"
 const collectionEndpoint = macrometaHost + "/_fabric/_system/_api/collection"
 const type = "application/json;charset=UTF-8"
 const authInfo = {
-  "email": "captian@nemo.com",
-  "password": "<P@55w0rd>",
-  "tenant": "captian_nemo.com",
-  "username": "root"
+  "email": "nemo@nautilus.com",
+  "password": "xxxxxx"
 }
 
 const newCollection = {
-  "name": "mySecondCollection"
+  "name": "myCollection"
+}
+const getOptions = (requestBody, token) => ({
+  method: 'POST',
+  body: JSON.stringify(requestBody),
+  headers: {
+    authorization: token,
+    "content-type": type
   }
-const getOptions = (requestBody,token) => ({
-method:'POST',
-body:JSON.stringify(requestBody),
-headers: { authorization:token,
-       "content-type": type
-        },
 });
 
-async function handleRequest() { 
-  const jwtRequest = await fetch(authEndpoint,getOptions(authInfo,""))
+async function handleRequest () {
+  const jwtRequest = await fetch(authEndpoint, getOptions(authInfo, ""))
   const jwtResponse = await jwtRequest.json();
-  const jwtToken=`bearer ${jwtResponse.jwt}`
+  const jwtToken = `bearer ${jwtResponse.jwt}`
 
-  const collectionRequest = await fetch(collectionEndpoint,getOptions(newCollection,jwtToken))
+  const collectionRequest = await fetch(collectionEndpoint, getOptions(newCollection, jwtToken))
   const collectionResponse = await collectionRequest.json()
   return new Response(JSON.stringify(collectionResponse))
 }
@@ -43,6 +42,7 @@ async function handleRequest() {
 addEventListener("fetch", event => {
   return event.respondWith(handleRequest())
 })
+
 ```
 
 ![Workers](/img/worker-console.png)

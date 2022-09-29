@@ -2,7 +2,7 @@
 title: Anonymizer
 ---
 
-The anonymizer extension provides a function for anonymizing various data types. This function returns a fake value for anonymizing which matches the original data. For example, an email would be replaced with a fake email.
+The Anonymizer extension provides a function for anonymizing various data types. This function returns a fake value for anonymizing which matches the original data. For example, an email would be replaced with a fake email.
 
 ## Features
 
@@ -148,6 +148,8 @@ SELECT pii:fake(full_name, "NAME_FULLNAME", true)        as full_name,
        pii:fake(phone, "PHONENUMBER_PHONENUMBER", false) as phone
 FROM patient_local;
 ```
+
+The code block does the following:
 
 1. Insert following data into `patient_local` collection:
 {"full_name": "John Doe", "ssn": "123-123-123", "email": "John.Doe@macrometa.com", "phone": "123-123-12345"}
