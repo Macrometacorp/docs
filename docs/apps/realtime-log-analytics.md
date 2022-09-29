@@ -3,38 +3,32 @@ sidebar_position: 4
 title: Realtime Log Analytics
 ---
 
-Realtime Log Analytics integrating logs from Fastly with Macrometa GDN to monitor the status and activity of Stream workers and Query workers. Fastly provides data about HTTP latency, response count, response size, and unique visitor traffic.
-
+This demo shows how to integrate real-time log analytics with Macrometa GDN to monitor the status and activity of Stream workers and Query workers.
 
 ## Setup
 
 | **Federation**                                        | **Email**                              | **Passsword** | **Dashboard**|
 | ----------------------------------------------------- | -------------------------------------- | ------------- |--------------|
-| [Global Data Network](https://gdn.paas.macrometa.io/) | demo-fastly-realtime-logs@macrometa.io | `xxxxxxxx`    | [Dashboard](https://macrometacorp.github.io/demo-fastly-jsc8-realtime-logs) |
-| [Fastly Account](https://manage.fastly.com)           | demo@macrometa.com                     | --            | -- |
-
-
+| [GDN](https://gdn.paas.macrometa.io/) | demo-realtime-logs@macrometa.io | `xxxxxxxx`    | [Dashboard](https://macrometacorp.github.io/demo-jsc8-realtime-logs) |
 
 ## Solution
-
 
 1. Create and publish the following Stream Workers in your GDN account:
 
 ```
-fastly-log-generator
-fastly-http-request-worker
-fastly-http-request-stats-1m-worker
+log-generator
+http-request-worker
+http-request-stats-1m-worker
 ```
 
-
-2. Create the following Query workers in your GDN account:
+2. Create the following Query Workers in your GDN account:
 
 ```
-fastlyGetTopUrl
-fastlyGetStatusCodeRatio
-fastlyGetStatsByCollection
-fastlyGetTopErrorByUrlPath
-fastlyGetUniqueVisitorsByCountry
+GetTopUrl
+GetStatusCodeRatio
+GetStatsByCollection
+GetTopErrorByUrlPath
+GetUniqueVisitorsByCountry
 ```
 
 **Query Workers**
@@ -43,23 +37,22 @@ fastlyGetUniqueVisitorsByCountry
 3. Create the following collections in your GDN account:
 
 ```js
-fastly_users (global)
-fastly_logs (global)
-fastly_http_url_stats_1m (global)
-fastly_http_response_code_stats_1m (global)
-fastly_http_response_latency_stats_1m (global)
-fastly_http_error_response_code_stats_1m (global)
-fasty_unique_visitor_by_country_stats_1m (global)
+users (global)
+logs (global)
+http_url_stats_1m (global)
+http_response_code_stats_1m (global)
+http_response_latency_stats_1m (global)
+http_error_response_code_stats_1m (global)
+unique_visitor_by_country_stats_1m (global)
 ```
 
 4. On the development machine, run the following commands in a console:
 
 ```
-1. git clone git@github.com:Macrometacorp/demo-fastly-jsc8-realtime-logs.git
-2. cd fastly-edgeworker-log-analytics
-3. git fetch
-4. npm install
-5. npm run start
+1. git clone git@github.com:Macrometacorp/demo-jsc8-realtime-logs.git
+2. cd demo-jsc8-realtime-logs/react-app
+3. npm install
+4. npm run start
 ```
 
 **Sample Log Format:**
@@ -77,4 +70,4 @@ fasty_unique_visitor_by_country_stats_1m (global)
 }
 ```
 
-**GitHub** - https://github.com/Macrometacorp/demo-fastly-jsc8-realtime-logs
+**GitHub** - https://github.com/Macrometacorp/demo-jsc8-realtime-logs
