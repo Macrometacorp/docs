@@ -1,5 +1,4 @@
 ---
-sidebar_position: XX
 title: Anonymizer
 ---
 
