@@ -3,7 +3,7 @@ title: Release Notes 0.17.11
 sidebar_position: 98
 ---
 
-This document describes what has changed in Macrometa release 0.17.11. All accounts will be updated by Month XX, YYYY. To check what version of GDN you are using, use the [Client Version](https://macrometa.com/docs/cli/client-version-cli.md) command in the CLI or the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
+This document describes what has changed in Macrometa release 0.17.11. All accounts will be updated by Month XX, YYYY.  To check what version of GDN you are using, use the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
 
 ## New Features
 
