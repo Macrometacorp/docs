@@ -17,7 +17,7 @@ The topics in this section focus primarily on the Python and JavaScript drivers,
 
 Read through the complete example below, or refer to the specific subsections.
 
-## Pre-requisite
+## Pre-requisites
 
 - Assume your tenant name is `nemo@nautilus.com` and user password is `xxxxx`.
 - Download the appropriate SDK.
