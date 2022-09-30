@@ -4,7 +4,7 @@ title: Part 1 - Basic Document Tasks
 ---
 
 You can perform basic document tasks such as create, read, update, and delete (CRUD) on documents in a collection. This portion of the tutorial guides you through those tasks.
-We will firs review the syntax of CRUD commands and then use SDKs to send queries to Macrometa platform.
+We will first review the syntax of CRUD commands and then use SDKs to send queries to Macrometa platform.
 
 ## Create the Characters Collection
 
