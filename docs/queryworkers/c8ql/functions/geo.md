@@ -4,7 +4,7 @@ title: Geo Functions
 
 ## Geo utility functions
 
-The following helper functions **can** use geo indexes, but do not have to in all cases. You can use all of these functions in combination with each other, and if you have configured a geo index it may be utilized, see [Geo Indexing](../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+The following helper functions **can** use geo indexes, but do not have to in all cases. You can use all of these functions in combination with each other, and if you have configured a geo index it may be utilized, see [Geo Indexing](../../../collections/indexing/working-with-indexes#geo-spatial-indexes).
 
 ### DISTANCE()
 
@@ -32,7 +32,7 @@ FOR doc IN doc // e.g. documents returned by a traversal
 
 `GEO_CONTAINS(geoJsonA, geoJsonB) → bool`
 
-Checks whether the [GeoJSON object](../../collections/indexing/working-with-indexes#geojson-mode) `geoJsonA` fully contains `geoJsonB` (Every point in B is also in A). The object `geoJsonA` has to be of type `Polygon` or `MultiPolygon`, other types are not supported because containment is ill defined. This function can be **optimized** by a S2 based [geospatial index](../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+Checks whether the [GeoJSON object](../../../collections/indexing/working-with-indexes#geojson-mode) `geoJsonA` fully contains `geoJsonB` (Every point in B is also in A). The object `geoJsonA` has to be of type `Polygon` or `MultiPolygon`, other types are not supported because containment is ill defined. This function can be **optimized** by a S2 based [geospatial index](../../../collections/indexing/working-with-indexes#geo-spatial-indexes).
 
 - **geoJsonA** (object): first GeoJSON object or coordinate array (in longitude, latitude order)
 - **geoJsonB** (object): second GeoJSON object or coordinate array (in longitude, latitude order)
@@ -42,7 +42,7 @@ Checks whether the [GeoJSON object](../../collections/indexing/working-with-inde
 
 `GEO_DISTANCE(geoJsonA, geoJsonB, ellipsoid) → distance`
 
-Return the distance between two GeoJSON objects, measured from the **centroid** of each shape. For a list of supported types see the [geo index page](../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+Return the distance between two GeoJSON objects, measured from the **centroid** of each shape. For a list of supported types see the [geo index page](../../../collections/indexing/working-with-indexes#geo-spatial-indexes).
 
 - **geoJsonA** (object): first GeoJSON object
 - **geoJsonB** (object): second GeoJSON object

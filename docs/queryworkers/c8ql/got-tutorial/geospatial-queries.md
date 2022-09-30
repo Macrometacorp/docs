@@ -9,7 +9,7 @@ Geospatial coordinates consisting of a latitude and longitude value can be store
 
 Let's insert some filming locations into a new collection _Locations_.
 
-1. [Create a Document Store collection](../../collections/documents/create-document-store.md) called **Locations**.
+1. [Create a Document Store collection](../../../collections/documents/create-document-store.md) called **Locations**.
 1. Copy and paste the following query in the Query Editor:
 
     ```js
@@ -38,7 +38,7 @@ For your reference, here is a visualization of the relative locations overlaid o
 
 ## Geospatial Index
 
-To query based on coordinates, you must create a [geo index](../../collections/documents/geospatial/geojson#geojson-supported-index). It determines which fields contain the latitude and longitude values.
+To query based on coordinates, you must create a [geo index](../../../collections/documents/geospatial/geojson#geojson-supported-index). It determines which fields contain the latitude and longitude values.
 
 To create a geo index:
 
@@ -50,7 +50,7 @@ To create a geo index:
 1. In **Fields**, enter **coordinate**.
 1. Click **Create**
 
-Macrometa returns a success message and your new index appears in the Indexes list. For more information, refer to [Document Store Indexes](../../collections/documents/document-store-indexes.md).
+Macrometa returns a success message and your new index appears in the Indexes list. For more information, refer to [Document Store Indexes](../../../collections/documents/document-store-indexes.md).
 
 ## Find Nearby Locations
 
@@ -170,7 +170,7 @@ The extra attribute, here called _distance_, is returned as part of the _loc_ va
 
 Great job! You can now use C8QL queries to enter, sort, and manipulate various kinds of data in interesting ways. Here is what you might do next:
 
-- Learn how to turn queries into endpoints with [Query Workers](../../queryworkers/query-workers.md).
+- Learn how to turn queries into endpoints with [Query Workers](../../query-workers.md).
 - Read through [C8QL Examples](../examples/index.md) for more ideas about what to do with C8QL.
 - Dig deeper into C8QL [Functions](../functions/index.md) and [Operations](../operations/index.md).
 

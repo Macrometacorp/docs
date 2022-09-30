@@ -4,7 +4,7 @@ title: Date Functions
 
 C8QL offers functionality to work with dates, but it does not have a special data type for dates (neither does JSON, which is usually used as format to ship data into and out of GDN). Instead, dates in C8QL are represented by either numbers or strings.
 
-All date function operations are done in the *Unix time* system. Unix time counts all non leap seconds beginning with January 1st 1970 00:00:00.000 UTC, also know as the Unix epoch. A point in time is called timestamp. A timestamp has the same value at every point on earth. The date functions use millisecond precision for timestamps.
+All date function operations are done in the _Unix time_ system. Unix time counts all non leap seconds beginning with January 1st 1970 00:00:00.000 UTC, also know as the Unix epoch. A point in time is called timestamp. A timestamp has the same value at every point on earth. The date functions use millisecond precision for timestamps.
 
 Time unit definitions:
 
@@ -61,8 +61,7 @@ This function is evaluated on every invocation and may return different values w
 
 ### Conversion
 
-
-*DATE_TIMESTAMP()* and *DATE_ISO8601()* can be used to convert ISO 8601 date time strings to numeric timestamps and numeric timestamps to ISO 8601 date time strings.
+_DATE_TIMESTAMP()_ and _DATE_ISO8601()_ can be used to convert ISO 8601 date time strings to numeric timestamps and numeric timestamps to ISO 8601 date time strings.
 
 Both also support individual date components as separate function arguments, in the following order:
 
@@ -74,9 +73,9 @@ Both also support individual date components as separate function arguments, in 
 - second
 - millisecond
 
-All components following *day* are optional and can be omitted. Note that no time offset can be specified when using separate date components, and UTC / Zulu time will be used.
+All components following _day_ are optional and can be omitted. Note that no time offset can be specified when using separate date components, and UTC / Zulu time will be used.
 
-The following calls to *DATE_TIMESTAMP()* are equivalent and will all return *1399472349522*:
+The following calls to _DATE_TIMESTAMP()_ are equivalent and will all return _1399472349522_:
 
 ```js
 DATE_TIMESTAMP("2014-05-07T14:19:09.522")
@@ -87,7 +86,7 @@ DATE_TIMESTAMP(2014, 5, 7, 14, 19, 9, 522)
 DATE_TIMESTAMP(1399472349522)
 ```
 
-The same is true for calls to *DATE_ISO8601()* that also accepts variable input formats:
+The same is true for calls to _DATE_ISO8601()_ that also accepts variable input formats:
 
 ```js
 DATE_ISO8601("2014-05-07T14:19:09.522Z")
@@ -96,53 +95,53 @@ DATE_ISO8601(2014, 5, 7, 14, 19, 9, 522)
 DATE_ISO8601(1399472349522)
 ```
 
-The above functions are all equivalent and will return *"2014-05-07T14:19:09.522Z"*.
+The above functions are all equivalent and will return _"2014-05-07T14:19:09.522Z"_.
 
 ### DATE_ISO8601()
 
 `DATE_ISO8601(date) → dateString`
 
-Return an ISO 8601 date time string from *date*. The date time string will always use UTC / Zulu time, indicated by the *Z* at its end.
+Return an ISO 8601 date time string from _date_. The date time string will always use UTC / Zulu time, indicated by the _Z_ at its end.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
 - returns **dateString**: date and time expressed according to ISO 8601, in Zulu time
 
 `DATE_ISO8601(year, month, day, hour, minute, second, millisecond) → dateString`
 
-Return a ISO 8601 date time string from *date*, but allows to specify the individual date components separately. All parameters after *day* are optional.
+Return a ISO 8601 date time string from _date_, but allows to specify the individual date components separately. All parameters after _day_ are optional.
 
-- **year** (number): typically in the range 0..9999, e.g. *2017*
+- **year** (number): typically in the range 0..9999, e.g. _2017_
 - **month** (number): 1..12 for January through December
 - **day** (number): 1..31 (upper bound depends on number of days in month)
-- **hour** (number, *optional*): 0..23
-- **minute** (number, *optional*): 0..59
-- **second** (number, *optional*): 0..59
-- **milliseconds** (number, *optional*): 0..999
+- **hour** (number, _optional_): 0..23
+- **minute** (number, _optional_): 0..59
+- **second** (number, _optional_): 0..59
+- **milliseconds** (number, _optional_): 0..999
 - returns **dateString**: date and time expressed according to ISO 8601, in Zulu time
 
 ### DATE_TIMESTAMP()
 
 `DATE_TIMESTAMP(date) → timestamp`
 
-Create a timestamp value from *date*. The return value has millisecond precision. To convert the return value to seconds, divide it by 1000.
+Create a timestamp value from _date_. The return value has millisecond precision. To convert the return value to seconds, divide it by 1000.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
 - returns **timestamp** (number): numeric timestamp
 
 `DATE_TIMESTAMP(year, month, day, hour, minute, second, millisecond) → timestamp`
 
-Create a timestamp value, but allows to specify the individual date components separately. All parameters after *day* are optional.
+Create a timestamp value, but allows to specify the individual date components separately. All parameters after _day_ are optional.
 
-- **year** (number): typically in the range 0..9999, e.g. *2017*
+- **year** (number): typically in the range 0..9999, e.g. _2017_
 - **month** (number): 1..12 for January through December
 - **day** (number): 1..31 (upper bound depends on number of days in month)
-- **hour** (number, *optional*): 0..23
-- **minute** (number, *optional*): 0..59
-- **second** (number, *optional*): 0..59
-- **milliseconds** (number, *optional*): 0..999
+- **hour** (number, _optional_): 0..23
+- **minute** (number, _optional_): 0..59
+- **second** (number, _optional_): 0..59
+- **milliseconds** (number, _optional_): 0..999
 - returns **timestamp** (number): numeric timestamp
 
-Negative values are not allowed, result in *null* and cause a warning. Values greater than the upper range bound overflow to the larger components (e.g. an hour of 26 is automatically turned into an additional day and two hours):
+Negative values are not allowed, result in _null_ and cause a warning. Values greater than the upper range bound overflow to the larger components (e.g. an hour of 26 is automatically turned into an additional day and two hours):
 
 ```js
 DATE_TIMESTAMP(2016, 12, -1) // returns null and issues a warning
@@ -157,7 +156,7 @@ DATE_TIMESTAMP(1970, 1, 1, 26) // returns 93600000, which is January 2nd, 1970, 
 Check if an arbitrary string is suitable for interpretation as date time string.
 
 - **value** (string): an arbitrary string
-- returns **bool** (bool): *true* if *value* is a string that can be used in a date function. This includes partial dates such as *2015* or *2015-10* and strings containing invalid dates such as *2015-02-31*. The function will return *false* for all non-string values, even if some of them may be usable in date functions.
+- returns **bool** (bool): _true_ if _value_ is a string that can be used in a date function. This includes partial dates such as _2015_ or _2015-10_ and strings containing invalid dates such as _2015-02-31_. The function will return _false_ for all non-string values, even if some of them may be usable in date functions.
 
 ## Processing
 
@@ -165,7 +164,7 @@ Check if an arbitrary string is suitable for interpretation as date time string.
 
 `DATE_DAYOFWEEK(date) → weekdayNumber`
 
-Return the weekday number of *date*.
+Return the weekday number of _date_.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
 - returns **weekdayNumber** (number): 0..6 as follows:
@@ -181,96 +180,96 @@ Return the weekday number of *date*.
 
 `DATE_YEAR(date) → year`
 
-Return the year of *date*.
+Return the year of _date_.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **year** (number): the year part of *date* as a number
+- returns **year** (number): the year part of _date_ as a number
 
 ### DATE_MONTH()
 
 `DATE_MONTH(date) → month`
 
-Return the month of *date*.
+Return the month of _date_.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **month** (number): the month part of *date* as a number
+- returns **month** (number): the month part of _date_ as a number
 
 ### DATE_DAY()
 
 `DATE_DAY(date) → day`
 
-Return the day of *date*.
+Return the day of _date_.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **day** (number): the day part of *date* as a number
+- returns **day** (number): the day part of _date_ as a number
 
 ### DATE_HOUR()
 
-Return the hour of *date*.
+Return the hour of _date_.
 
 `DATE_HOUR(date) → hour`
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **hour** (number): the hour part of *date* as a number
+- returns **hour** (number): the hour part of _date_ as a number
 
 ### DATE_MINUTE()
 
 `DATE_MINUTE(date) → minute`
 
-Return the minute of *date*.
+Return the minute of _date_.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **minute** (number): the minute part of *date* as a number
+- returns **minute** (number): the minute part of _date_ as a number
 
 ### DATE_SECOND()
 
 `DATE_SECOND(date) → second`
 
-Return the second of *date*.
+Return the second of _date_.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **second** (number): the seconds part of *date* as a number
+- returns **second** (number): the seconds part of _date_ as a number
 
 ### DATE_MILLISECOND()
 
 `DATE_MILLISECOND(date) → millisecond`
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **millisecond** (number): the milliseconds part of *date* as a number
+- returns **millisecond** (number): the milliseconds part of _date_ as a number
 
 ### DATE_DAYOFYEAR()
 
 `DATE_DAYOFYEAR(date) → dayOfYear`
 
-Return the day of year of *date*.
+Return the day of year of _date_.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **dayOfYear** (number): the day of year number of *date*.
+- returns **dayOfYear** (number): the day of year number of _date_.
   The return values range from 1 to 365, or 366 in a leap year respectively.
 
 ### DATE_ISOWEEK()
 
 `DATE_ISOWEEK(date) → weekDate`
 
-Return the week date of *date* according to ISO 8601.
+Return the week date of _date_ according to ISO 8601.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **weekDate** (number): the ISO week date of *date*. The return values range from 1 to 53. Monday is considered the first day of the week. There are no fractional weeks, thus the last days in December may belong to the first week of the next year, and the first days in January may be part of the previous year's last week.
+- returns **weekDate** (number): the ISO week date of _date_. The return values range from 1 to 53. Monday is considered the first day of the week. There are no fractional weeks, thus the last days in December may belong to the first week of the next year, and the first days in January may be part of the previous year's last week.
 
 ### DATE_LEAPYEAR()
 
 `DATE_LEAPYEAR(date) → leapYear`
 
-Return whether *date* is in a leap year.
+Return whether _date_ is in a leap year.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **leapYear** (bool): *true* if *date* is in a leap year, *false* otherwise
+- returns **leapYear** (bool): _true_ if _date_ is in a leap year, _false_ otherwise
 
 ### DATE_QUARTER()
 
 `DATE_QUARTER(date) → quarter`
 
-Return which quarter *date* belongs to.
+Return which quarter _date_ belongs to.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
 - returns **quarter** (number): the quarter of the given date (1-based):
@@ -281,18 +280,18 @@ Return which quarter *date* belongs to.
 
 ### DATE_DAYS_IN_MONTH()
 
-Return the number of days in the month of *date*.
+Return the number of days in the month of _date_.
 
 `DATE_DAYS_IN_MONTH(date) → daysInMonth`
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- returns **daysInMonth** (number): the number of days in *date*'s month (28..31)
+- returns **daysInMonth** (number): the number of days in _date_'s month (28..31)
 
 ### DATE_TRUNC()
 
 `DATE_TRUNC(date, unit) → isoDate`
 
-Truncates the given date after *unit* and returns the modified date.
+Truncates the given date after _unit_ and returns the modified date.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
 - **unit** (string): either of the following to specify the time unit (case-insensitive):
@@ -334,7 +333,7 @@ DATE_TRUNC('2017-02-03 04:05:06', 'hours') // 2017-02-03 04:00:00.000Z
 Bin a date/time into a set of equal-distance buckets, to be used for grouping.
 
 - **date** (string\|number): a date string or timestamp
-- **amount** (number): number of *unit*s. Must be a positive integer value.
+- **amount** (number): number of _unit_s. Must be a positive integer value.
 - **unit** (string): either of the following to specify the time unit (case-insensitive):
   - d, day, days
   - h, hour, hours
@@ -380,7 +379,7 @@ Format a date according to the given format string.
 - **format** (string): a format string, see below
 - returns **str** (string): a formatted date string
 
-*format* supports the following placeholders (case-insensitive):
+_format_ supports the following placeholders (case-insensitive):
 
 - %t – timestamp, in milliseconds since midnight 1970-01-01
 - %z – ISO date (0000-00-00T00:00:00.000Z)
@@ -420,8 +419,8 @@ Format a date according to the given format string.
 
 Single `%` characters will be ignored. Use `%%` for a literal `%`. To resolve ambiguities like in `%mmonth` (unpadded month number + the string "month") between `%mm` + "onth" and `%m` + "month", use the escape sequence `%&`: `%m%&month`.
 
-:::note 
-*DATE_FORMAT()* is a rather costly operation and may not be suitable for large datasets (like over 1 million dates). If possible, avoid formatting dates on server-side and leave it up to the client to do so. This function should only be used for special date comparisons or to store the formatted dates in the database. For better performance, use the primitive `DATE_*()` functions together with `CONCAT()` if possible.
+:::note
+_DATE_FORMAT()_ is a rather costly operation and may not be suitable for large datasets (like over 1 million dates). If possible, avoid formatting dates on server-side and leave it up to the client to do so. This function should only be used for special date comparisons or to store the formatted dates in the database. For better performance, use the primitive `DATE_*()` functions together with `CONCAT()` if possible.
 :::
 
 Examples:
@@ -440,10 +439,10 @@ DATE_FORMAT("2016-03-01", "%xxx%") // "063", trailing % ignored
 
 `DATE_ADD(date, amount, unit) → isoDate`
 
-Add *amount* given in *unit* to *date* and return the calculated date.
+Add _amount_ given in _unit_ to _date_ and return the calculated date.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- **amount** (number\|string): number of *unit*s to add (positive value) or subtract (negative value). It is recommended to use positive values only, and use [DATE_SUBTRACT()](#date_subtract) for subtractions instead.
+- **amount** (number\|string): number of _unit_s to add (positive value) or subtract (negative value). It is recommended to use positive values only, and use [DATE_SUBTRACT()](#date_subtract) for subtractions instead.
 - **unit** (string): either of the following to specify the time unit to add or subtract (case-insensitive):
   - y, year, years
   - m, month, months
@@ -466,15 +465,16 @@ DATE_ADD(DATE_ADD("2016-02", "month", 1), -1, "day") // last day of February (29
 
 `DATE_ADD(date, isoDuration) → isoDate`
 
-You may also pass an ISO duration string as *amount* and leave out *unit*.
+You may also pass an ISO duration string as _amount_ and leave out _unit_.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- **isoDuration** (string): an ISO 8601 duration string to add to *date*, see below
+- **isoDuration** (string): an ISO 8601 duration string to add to _date_, see below
 - returns **isoDate** (string):  the calculated ISO 8601 date time string
 
 The format is `P_Y_M_W_DT_H_M_._S`, where underscores stand for digits and letters for time intervals - except for the separators `P` (period) and `T` (time).
 
 The meaning of the other letters are:
+
 - Y – years
 - M – months (if before T)
 - W – weeks
@@ -498,12 +498,12 @@ DATE_ADD("2000-01-01", "P1Y2M3W4DT5H6M7.89S" // add a bit of everything
 
 `DATE_SUBTRACT(date, amount, unit) → isoDate`
 
-Subtract *amount* given in *unit* from *date* and return the calculated date.
+Subtract _amount_ given in _unit_ from _date_ and return the calculated date.
 
-It works the same as [DATE_ADD()](#date_add), except that it subtracts. It is equivalent to calling *DATE_ADD()* with a negative amount, except that *DATE_SUBTRACT()* can also subtract ISO durations. Note that negative ISO durations are not supported (i.e. starting with `-P`, like `-P1Y`).
+It works the same as [DATE_ADD()](#date_add), except that it subtracts. It is equivalent to calling _DATE_ADD()_ with a negative amount, except that _DATE_SUBTRACT()_ can also subtract ISO durations. Note that negative ISO durations are not supported (i.e. starting with `-P`, like `-P1Y`).
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- **amount** (number\|string): number of *unit*s to subtract (positive value) or add (negative value). It is recommended to use positive values only, and use [DATE_ADD()](#date_add) for additions instead.
+- **amount** (number\|string): number of _unit_s to subtract (positive value) or add (negative value). It is recommended to use positive values only, and use [DATE_ADD()](#date_add) for additions instead.
 - **unit** (string): either of the following to specify the time unit to add or subtract (case-insensitive):
   - y, year, years
   - m, month, months
@@ -517,13 +517,14 @@ It works the same as [DATE_ADD()](#date_add), except that it subtracts. It is eq
 
 `DATE_SUBTRACT(date, isoDuration) → isoDate`
 
-You may also pass an ISO duration string as *amount* and leave out *unit*.
+You may also pass an ISO duration string as _amount_ and leave out _unit_.
 
 - **date** (number\|string): numeric timestamp or ISO 8601 date time string
-- **isoDuration** (string): an ISO 8601 duration string to subtract from *date*, see below
+- **isoDuration** (string): an ISO 8601 duration string to subtract from _date_, see below
 - returns **isoDate** (string): the calculated ISO 8601 date time string
 
 The format is `P_Y_M_W_DT_H_M_._S`, where underscores stand for digits and letters for time intervals - except for the separators `P` (period) and `T` (time). The meaning of the other letters are:
+
 - Y – years
 - M – months (if before T)
 - W – weeks
@@ -546,7 +547,7 @@ DATE_SUBTRACT(DATE_NOW(), "PT1H3M") // 1 hour and 30 minutes ago
 
 `DATE_DIFF(date1, date2, unit, asFloat) → diff`
 
-Calculate the difference between two dates in given time *unit*, optionally with decimal places.
+Calculate the difference between two dates in given time _unit_, optionally with decimal places.
 
 - **date1** (number\|string): numeric timestamp or ISO 8601 date time string
 - **date2** (number\|string): numeric timestamp or ISO 8601 date time string
@@ -559,7 +560,7 @@ Calculate the difference between two dates in given time *unit*, optionally with
   - i, minute, minutes
   - s, second, seconds
   - f, millisecond, milliseconds
-- **asFloat** (boolean, *optional*): if set to *true*, decimal places will be preserved in the result. The default is *false* and an integer is returned. - returns **diff** (number): the calculated difference as number in *unit*. The value will be negative if *date2* is before *date1*.
+- **asFloat** (boolean, _optional_): if set to _true_, decimal places will be preserved in the result. The default is _false_ and an integer is returned. - returns **diff** (number): the calculated difference as number in _unit_. The value will be negative if _date2_ is before _date1_.
 
 ### DATE_COMPARE()
 
@@ -570,12 +571,12 @@ Check if two partial dates match.
 - **date1** (number\|string): numeric timestamp or ISO 8601 date time string
 - **date2** (number\|string): numeric timestamp or ISO 8601 date time string
 - **unitRangeStart** (string): unit to start from, see below
-- **unitRangeEnd** (string, *optional*):  unit to end with, leave out to only compare the component as specified by *unitRangeStart*. An error is raised if *unitRangeEnd* is a unit before *unitRangeStart*.
-- returns **bool** (bool): *true* if the dates match, *false* otherwise
+- *_unitRangeEnd_* (string, _optional_):  unit to end with, leave out to only compare the component as specified by _unitRangeStart_. An error is raised if *unitRangeEnd* is a unit before _unitRangeStart_.
+- returns **bool** (bool): _true_ if the dates match, _false_ otherwise
 
 The parts to compare are defined by a range of time units. The full range is: years, months, days, hours, minutes, seconds, milliseconds (in this order).
 
-All components of *date1* and *date2* as specified by the range will be compared. You can refer to the units as:
+All components of _date1_ and _date2_ as specified by the range will be compared. You can refer to the units as:
 
 - y, year, years
 - m, month, months
@@ -605,7 +606,7 @@ FOR doc IN coll
     RETURN doc
 ```
 
-Every ISO date on that day is greater than or equal to `2015-05-15` in a string comparison (e.g. `2015-05-15T11:30:00.000Z`). Dates before `2015-05-15` are smaller and therefore filtered out by the first condition. Every date past `2015-05-15` is greater than this date in a string comparison, and therefore filtered out by the second condition. The result is that the time components in the dates you compare with are "ignored". The query will return every document with *date* ranging from `2015-05-15T00:00:00.000Z` to `2015-05-15T23:99:99.999Z`. It would also include `2015-05-15T24:00:00.000Z`, but that date is actually `2015-05-16T00:00:00.000Z` and can only occur if inserted manually (you may want to pass dates through [DATE_ISO8601()](#date_iso8601) to ensure a correct date representation).
+Every ISO date on that day is greater than or equal to `2015-05-15` in a string comparison (e.g. `2015-05-15T11:30:00.000Z`). Dates before `2015-05-15` are smaller and therefore filtered out by the first condition. Every date past `2015-05-15` is greater than this date in a string comparison, and therefore filtered out by the second condition. The result is that the time components in the dates you compare with are "ignored". The query will return every document with _date_ ranging from `2015-05-15T00:00:00.000Z` to `2015-05-15T23:99:99.999Z`. It would also include `2015-05-15T24:00:00.000Z`, but that date is actually `2015-05-16T00:00:00.000Z` and can only occur if inserted manually (you may want to pass dates through [DATE_ISO8601()](#date_iso8601) to ensure a correct date representation).
 
 Leap days in leap years (29th of February) must be always handled manually, if you require so (e.g. birthday checks):
 
@@ -630,15 +631,14 @@ FOR user IN users
 
 ## Working with dates and indices
 
-
 There are two recommended ways to store timestamps in GDN:
 
-  - string: UTC timestamp with [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601){:target="_blank"}
-  - number: [unix timestamp](https://en.wikipedia.org/wiki/Unix_time){:target="_blank"} with millisecond precision
+- string: UTC timestamp with [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601){:target="_blank"}
+- number: [unix timestamp](https://en.wikipedia.org/wiki/Unix_time){:target="_blank"} with millisecond precision
 
 The sort order of both is identical due to the sort properties of ISO date strings. You can't mix both types, numbers and strings, in a single attribute however.
 
-You can use [skiplist indices](../../collections/indexing/index.md#skiplist-index) with both date types. When chosing string representations, you can work with string comparisons (less than, greater than etc.) to express time ranges in your queries while still utilizing skiplist indices:
+You can use [skiplist indices](../../../collections/indexing/index.md#skiplist-index) with both date types. When chosing string representations, you can work with string comparisons (less than, greater than etc.) to express time ranges in your queries while still utilizing skiplist indices:
 
 ```js
     db._create("exampleTime");

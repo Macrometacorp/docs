@@ -79,7 +79,7 @@ GDN APIs can handle multiple documents in a single command, dramatically reducin
 
 GDN provides two ways to handle monetary data if you need to capture fractional units of currency and round decimals without precision loss.
 
-- Integer: You can use a general scale factor for digits up to 252 without precision loss. For example, if you set the scale factor to `100`, GDN automatically converts 19.99 to 1999 before performing calucations and converting it back.
+- Integer: You can use a general scale factor for digits up to 252 without precision loss. For example, if you set the scale factor to `100`, GDN automatically converts 19.99 to 1999 before performing calculations and converting it back.
 
 - String: You can use strings if you only want to store and retrieve monetary data. You cannot perform calculations on monetary data in strings.
 
@@ -87,6 +87,6 @@ GDN provides two ways to handle monetary data if you need to capture fractional 
 
 GDN provides the following methods of data retrieval:
 
-- Queries filter documents based on specified criteria, compute new data, and update or delete existing documents. Queries can be as simple as a "query by example" or as complex as "joins" using many collections or traversing graph structures. GDN queries are written in the [C8 Query Language (C8QL)](c8ql/index.md).
+- Queries filter documents based on specified criteria, compute new data, and update or delete existing documents. Queries can be as simple as a "query by example" or as complex as "joins" using many collections or traversing graph structures. GDN queries are written in the [C8 Query Language (C8QL)](../../queryworkers/c8ql/index.md).
 - Cursors are used to iterate over the result of queries, so that you get easily processable batches instead of one big hunk.
 - Indexes can speed up your searches. Refer to the [Indexing](../indexing/index.md) section for more information.

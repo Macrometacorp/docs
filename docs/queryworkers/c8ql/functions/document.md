@@ -137,7 +137,7 @@ Determine the number of attribute keys of an object / document.
 - **doc** (object): a document / object
 - returns **attrCount** (number): the number of attribute keys in *doc*, regardless of their values
 
-*LENGTH()* can also determine the [number of elements](../functions/array.md#length) in an array, the [amount of documents](../functions/miscellaneous.md#length) in a collection and the [character length](../functions/string.md#length) of a string.
+*LENGTH()* can also determine the [number of elements](../functions/array.md#length) in an array, the [amount of documents](database.md#length) in a collection and the [character length](../functions/string.md#length) of a string.
 
 ## MATCHES()
 

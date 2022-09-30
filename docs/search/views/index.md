@@ -10,7 +10,7 @@ Each search view represents an inverted index that contains the search configura
 
 ## What is a Search View?
 
-A search view represents all documents available in a specified set of source collections. Each search view is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the search view implementation and can be as simple as an identity transformation. 
+A search view represents all documents available in a specified set of source collections. Each search view is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the search view implementation and can be as simple as an identity transformation.
 
 A search view combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the _terms_ of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](../analyzers.md) to boost value analysis with tokenization.
 
@@ -41,18 +41,18 @@ A search view is defined by an object that contains the following:
 - A set of search view configuration directives.
 - A map of link configuration directives.
 
-Different directives apply during creation and modification of search views. 
+Different directives apply during creation and modification of search views.
 
 - Creating a search view applies these directives:
-	- **name** (string, immutable): The name of the search view.
-	- **type** (string, immutable): The value `"search"`.
-	- Any directives from [search view properties](/optional-properties.md#search-view-properties).
+  - **name** (string, immutable): The name of the search view.
+  - **type** (string, immutable): The value `"search"`.
+  - Any directives from [search view properties](optional-properties.md#search-view-properties).
 
 - Modifying a search view applies these directives:
-	- **links** (object, optional): A mapping of `collection-name` / `collection-identifier` to one of the following:
-		- Link creation: Link definition according to [Link properties](/optional-properties.md#link-properties).
-		- Link removal: JSON keyword `null` (e.g. nullify a link if present).
-	- Any directives from [search view properties](/optional-properties.md#search-view-properties).
+  - **links** (object, optional): A mapping of `collection-name` / `collection-identifier` to one of the following:
+    - Link creation: Link definition according to [Link properties](optional-properties.md#link-properties).
+    - Link removal: JSON keyword `null` (e.g. nullify a link if present).
+  - Any directives from [search view properties](optional-properties.md#search-view-properties).
 
 ## Search View vs. Full-Text Index
 
@@ -73,4 +73,4 @@ Indexed collections                 | Unlimited    | 1
 
 Search views guarantee the best execution plan (merge join) when querying multiple attributes.
 
-For more information about full-text indexes, refer to [Indexing](../../collections/indexing/index.md#fulltext-index).
+For more information about full-text indexes, refer to [Indexing](../../collections/indexing/fulltext-indexes.md).
