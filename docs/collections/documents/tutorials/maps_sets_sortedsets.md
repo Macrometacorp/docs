@@ -68,14 +68,14 @@ You can **update** a specific `key` in the `map` (i.e., attribute of a given use
     UPDATE "Ned Stark" WITH { alive: false } IN users
 ```
 
-You **remove** a `map`, usng following C8QL statement:
+You **remove** a `map`, using following C8QL statement:
 
 ```js
     REMOVE "Ned Stark" IN users
 ```
 
 :::note
-Please see [C8QL GoT Tutorial](../../../c8ql/got-tutorial/index.md) and [C8QL Examples](../../../c8ql/examples/index.md) for more examples on how you can use C8QL.
+Please see [C8QL GoT Tutorial](../../../queryworkers/c8ql/got-tutorial/index.md) and [C8QL Examples](../../../queryworkers/c8ql/examples/index.md) for more examples on how you can use C8QL.
 :::
 
 ## Sets

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 70
+sidebar_position: 9
 title: Query Worker Tutorial
 ---
 

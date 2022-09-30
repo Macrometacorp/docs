@@ -13,7 +13,7 @@ This enables you to deliver low-latency data access to your users no matter wher
 
 Similarly GDN provides better data consistency guarantees i.e., `strong consistency` within a region and `strong eventual consistency` across regions utilizing CRDTs and partially ordered logs.
 
-## Prerequistes
+## Prerequisites
 
 1. Create an API Key
     * Login to your tenant account on https://gdn.paas.macrometa.io

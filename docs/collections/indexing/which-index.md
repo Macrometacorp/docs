@@ -15,7 +15,7 @@ Users can define additional indexes on one or multiple document attributes. Seve
 
 Provides quick access to individual documents if (and only if) all indexed attributes are provided in the search query. The index will only be used for equality comparisons. It does not support range queries and cannot be used for sorting.
 
-The hash index is a good candidate if all or most queries on the indexed attribute(s) are equality comparisons. The unique hash index provides an amortized complexity of O(1) for insert, update, remove and lookup operations. The non-unique hash index provides O(1) inserts, updates and removes, and will allow looking up documents by index value with amortized O(n) complexity, with *n* being the number of documents with that index value.
+The hash index is a good candidate if all or most queries on the indexed attribute(s) are equality comparisons. The unique hash index provides an amortized complexity of O(1) for insert, update, remove and lookup operations. The non-unique hash index provides O(1) inserts, updates and removes, and will allow looking up documents by index value with amortized O(n) complexity, with _n_ being the number of documents with that index value.
   
 A non-unique hash index on an optional document attribute should be declared sparse so that it will not index documents for which the index attribute is not set.
 
@@ -27,15 +27,15 @@ Additionally, skiplist indexes allow more use cases (e.g. range queries, sorting
 
 ### persistent index
 
-A persistent index behaves much like the sorted skiplist index, except that all index values are persisted on disk and do not need to be rebuilt in memory when the server is restarted or the indexed collection is reloaded. The operations in a persistent index have logarithmic complexity, but operations have may have a higher constant factor than the operations in a skiplist index, because the persistent index may need to make extra roundtrips to the primary index to fetch the actual documents.
+A persistent index behaves much like the sorted skiplist index, except that all index values are persisted on disk and do not need to be rebuilt in memory when the server is restarted or the indexed collection is reloaded. The operations in a persistent index have logarithmic complexity, but operations have may have a higher constant factor than the operations in a skiplist index, because the persistent index may need to make extra round trips to the primary index to fetch the actual documents.
 
-A persistent index can be used for equality lookups, range queries and for sorting. For high selectivity attributes, persistent indexes will have a higher overhead than skiplist or hash indexes. 
+A persistent index can be used for equality lookups, range queries and for sorting. For high selectivity attributes, persistent indexes will have a higher overhead than skiplist or hash indexes.
 
 Persistent indexes allow more use cases (e.g. range queries, sorting) than hash indexes. Furthermore, they can be used for lookups based on a leftmost prefix of the index attributes. In contrast to the in-memory skiplist indexes, persistent indexes do not need to be rebuilt in-memory so they don't influence the loading time of collections as other in-memory indexes do.
 
 ### ttl index
 
-The TTL index provided by GDN can be used for automatically removing expired documents from a collection. 
+The TTL index provided by GDN can be used for automatically removing expired documents from a collection.
 
 The TTL index is set up by setting an `expireAfter` value and by picking a single document attribute which contains the documents' reference timepoint. Documents are expired `expireAfter` seconds after their reference timepoint has been reached. The documents' reference timepoint is specified as either a numeric timestamp (Unix timestamp) or a date string in format `YYYY-MM-DDTHH:MM:SS` with optional milliseconds. All date strings will be interpreted as UTC dates.
 
@@ -47,7 +47,7 @@ For example, if `expireAfter` is set to 600 seconds (10 minutes) and the index a
 
 This document will be indexed with a creation date time value of `1550165973`, which translates to the human-readable date `2019-02-14T17:39:33.000Z`. The document will expire 600 seconds afterwards, which is at timestamp `1550166573` (or `2019-02-14T17:49:33.000Z` in the human-readable version).
 
-The actual removal of expired documents will not necessarily happen immediately. Expired documents will eventually removed by a background thread that is periodically going through all TTL indexes and removing the expired documents. The frequency for invoking this background thread can be configured using the `--ttl.frequency` startup option. 
+The actual removal of expired documents will not necessarily happen immediately. Expired documents will eventually removed by a background thread that is periodically going through all TTL indexes and removing the expired documents. The frequency for invoking this background thread can be configured using the `--ttl.frequency` startup option.
 
 There is no guarantee when exactly the removal of expired documents will be carried out, so queries may still find and return documents that have already expired. These will eventually be removed when the background thread kicks in and has capacity to remove the expired documents. It is guaranteed however that only documents which are past their expiration time will actually be removed.
 
@@ -63,7 +63,7 @@ The above example document using a date string attribute value would be
 
 In case the index attribute does not contain a numeric value nor a proper date string, the document will not be stored in the TTL index and thus will not become a candidate for expiration and removal. Providing either a non-numeric value or even no value for the index attribute is a supported way of keeping documents from being expired and removed.
 
-TTL indexes are designed exactly for the purpose of removing expired documents from a collection. It is *not recommended* to rely on TTL indexes for user-land C8QL queries. This is because TTL indexes internally may store a transformed, always numerical version of the index attribute value even if it was originally passed in as a datestring. As a result TTL indexes will likely not be used for filtering and sort operations in user-land C8QL queries.
+TTL indexes are designed exactly for the purpose of removing expired documents from a collection. It is _not recommended_ to rely on TTL indexes for user-land C8QL queries. This is because TTL indexes internally may store a transformed, always numerical version of the index attribute value even if it was originally passed in as a datestring. As a result TTL indexes will likely not be used for filtering and sort operations in user-land C8QL queries.
 
 ### geo index
 
@@ -132,8 +132,8 @@ For example, the following queries cannot use a sparse index on `attr` because t
         RETURN doc
 ```
 
-Sparse skiplist indexes can be used for sorting if the optimizer can safely detect that the index range does not include `null` for any of the index attributes. 
+Sparse skiplist indexes can be used for sorting if the optimizer can safely detect that the index range does not include `null` for any of the index attributes.
 
 :::note
-If you intend to use [joins](../../c8ql/examples/joins.md) it may be clever to use non-sparsity and maybe even uniqueness for that attribute, else all items containing the `null` value will match against each other and thus produce large results.
+If you intend to use [joins](../../queryworkers/c8ql/examples/joins.md) it may be clever to use non-sparsity and maybe even uniqueness for that attribute, else all items containing the `null` value will match against each other and thus produce large results.
 :::

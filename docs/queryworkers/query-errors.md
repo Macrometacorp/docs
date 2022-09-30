@@ -1,5 +1,6 @@
 ---
 title: Query Errors
+sidebar_position: 90
 ---
 
 This page describes errors that might occur during the C8QL parsing or execution.
@@ -24,5 +25,5 @@ The `Invalid operands for logical operations` is triggered when an attempt is ma
 
 ## Other Errors
 
-- Refer to the [Common Errors](../c8ql/common-errors.md) for more information about C8QL errors.
+- Refer to the [Common Errors](c8ql/common-errors.md) for more information about C8QL errors.
 - Refer to [Error Codes](../references/error-codes.md) for a list of error codes and meanings.
