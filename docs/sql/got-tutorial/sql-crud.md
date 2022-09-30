@@ -23,6 +23,7 @@ For this tutorial, [Create a Document Store collection](../../collections/docume
 Add one document to the collection with a query.
 
 Classic SQL syntax:
+
 ```sql
 INSERT INTO categories (_key,name) VALUES('0','Books')
 ```
