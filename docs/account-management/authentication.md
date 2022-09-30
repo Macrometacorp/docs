@@ -9,13 +9,13 @@ import TabItem from '@theme/TabItem';
 
 There are multiple ways users can access their Macrometa GDN account:
 
-* User Authentication
-* Token-based Authentication
-* API Keys
+- User Authentication
+- Token-based Authentication
+- API Keys
 
 ## User Authentication
 
-Users can authenticate with Macrometa GDN via `email and password`, an `API Key`, or a ` JSON Web Token (JWT)`.
+Users can authenticate with Macrometa GDN via `email and password`, an `API Key`, or a `JSON Web Token (JWT)`.
 
 **Code Samples:**
 
@@ -70,15 +70,9 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, toke
 
 ## API Keys
 
-Most APIs today use an API Key to authenticate legitimate clients. API Keys are very simple to use from the consumer perspective:
+For more information about API keys, refer to [API Keys](apikeys/index.md).
 
-* Get an API key from the service (in essence a shared secret).
-* Add the key to an Authorization header.
-* Call the API with `api-` plus your base URL. Example: `https://api-seastar-9b9d9999.paas.macrometa.io/`
-
-API keys never expire.
-
-**Code Samples:**
+The code sample below shows how you could use an API key to authenticate with the SDK.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -98,7 +92,6 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, apik
 
 </TabItem>
 </Tabs>  
-
 
 :::note
 In Macrometa GDN, granular permissions can be assigned to both `user accounts` and for `api keys`.
