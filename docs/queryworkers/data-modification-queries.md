@@ -1,5 +1,6 @@
 ---
 title: Data Modification Queries
+sidebar_position: 70
 ---
 
 C8QL supports the following data-modification operations:

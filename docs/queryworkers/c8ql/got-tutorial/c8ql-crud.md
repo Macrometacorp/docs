@@ -19,9 +19,9 @@ For this tutorial, [Create a Document Store collection](../../collections/docume
 
 ## Create Documents
 
-You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](../operations/insert.md) operation and [Queries and Query Workers](../../queryworkers/index.md).
+You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](../operations/insert.md) operation and [Queries and Query Workers](../../index.md).
 
-For more information about this task, refer to [Add Documents to a Collection](../../collections/documents/add-document.md).
+For more information about this task, refer to [Add Documents to a Collection](../../../collections/documents/add-document.md).
 
 ### Add One Document to the Collection
 
