@@ -96,7 +96,7 @@ const password = "xxxxxx";
 const fabric = "_system";
 
 // SQL Query
-const query = "SELECT * FROM categories",;
+const query = "SELECT * FROM categories";
 
 const client = new jsc8({
   url: "https://gdn.paas.macrometa.io",

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: SQL GoT Tutorial
+title: SQL Tutorial
 ---
 
 This tutorial is an introduction to SQL for Macrometa geo-distributed fast data platform. This tutorial assumes no pre-existing knowledge, starting with basic operations and working up to more advanced.
