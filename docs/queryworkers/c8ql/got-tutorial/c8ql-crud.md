@@ -9,19 +9,19 @@ You can perform basic document tasks such as create, read, update, and delete (C
 
 Before we can insert documents with C8QL, we need a place to put them in: a collection.
 
-For this tutorial, [Create a Document Store collection](../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../collections/index.md).
+For this tutorial, [Create a Document Store collection](../../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../../collections/index.md).
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Collections**.
-1. Click **New Collection**.
-1. Click **Document Store**.
-1. Name the collection **Characters** and then click **Create**.
+2. Click **Collections**.
+3. Click **New Collection**.
+4. Click **Document Store**.
+5. Name the collection **Characters** and then click **Create**.
 
 ## Create Documents
 
-You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](../operations/insert.md) operation and [Queries and Query Workers](../../queryworkers/index.md).
+You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](../operations/insert.md) operation and [Queries and Query Workers](../../index.md).
 
-For more information about this task, refer to [Add Documents to a Collection](../../collections/documents/add-document.md).
+For more information about this task, refer to [Add Documents to a Collection](../../../collections/documents/add-document.md).
 
 ### Add One Document to the Collection
 

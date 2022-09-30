@@ -9,4 +9,4 @@ To return the count of documents that currently exist in a collection, you can c
 RETURN LENGTH(collection)
 ```
 
-Internally, [COLLECTION_COUNT()](../functions/miscellaneous.md#count) is called.
+Internally, [COLLECTION_COUNT()](../functions/database.md#count) is called.

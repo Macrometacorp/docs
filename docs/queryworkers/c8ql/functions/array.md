@@ -161,7 +161,7 @@ Determine the number of elements in an array.
 - **anyArray** (array): array with elements of arbitrary type
 - returns **length** (number): the number of array elements in *anyArray*.
 
-*LENGTH()* can also determine the [number of attribute keys](document.md#length) of an object / document, the [amount of documents](miscellaneous.md#length) in a collection and the [character length](string.md#length) of a string.
+*LENGTH()* can also determine the [number of attribute keys](document.md#length) of an object / document, the [amount of documents](database.md#length) in a collection and the [character length](string.md#length) of a string.
 
 | Input  | Length |
 |--------|--------|
