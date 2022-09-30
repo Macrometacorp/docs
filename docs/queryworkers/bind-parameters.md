@@ -36,7 +36,7 @@ FILTER u.name == "@name" // wrong
 FILTER u.name == @name   // correct
 ```
 
-If you need to do string processing (concatenation, etc.) in the query, you need to use [string functions](../c8ql/functions/string.md) to do so:
+If you need to do string processing (concatenation, etc.) in the query, you need to use [string functions](c8ql/functions/string.md) to do so:
 
 ```js
 FOR u IN users

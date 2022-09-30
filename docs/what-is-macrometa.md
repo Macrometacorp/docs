@@ -68,7 +68,7 @@ Query Workers can be created and updated using the GDN Console or by using the R
 
 Each Query Worker is exposed as its own endpoint and is protected. The Query Workers are organized by the GeoFabric (or database) enabling you to have different Query Workers for different geo-regions as well as for different fabrics within same region.
 
-For more information, refer to the [C8 Query Language](../queryworkers/c8ql/index.md) section.
+For more information, refer to the [C8 Query Language](queryworkers/c8ql/index.md) section.
 
 ## Sharding and Replication
 

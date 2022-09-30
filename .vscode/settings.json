@@ -4,6 +4,8 @@
         "Geospatial",
         "Macrometa",
         "skiplist",
-        "Skiplists"
+        "Skiplists",
+        "UPSERT",
+        "whitespaces"
     ]
 }

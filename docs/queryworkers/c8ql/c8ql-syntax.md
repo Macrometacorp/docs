@@ -134,7 +134,7 @@ FOR f IN ´filter´
 
 Collection names can be used in queries as they are. If a collection happens to have the same name as a keyword, the name must be enclosed in backticks.
 
-Refer to the [Naming Conventions](../../references/naming-conventions.md) about collection naming conventions.
+Refer to the [Naming Conventions](../../../references/naming-conventions.md) about collection naming conventions.
 
 C8QL currently has a limit of up to 256 collections used in one C8QL query. This limit applies to the sum of all involved document and edge collections.
 

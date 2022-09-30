@@ -50,7 +50,7 @@ To create a geo index:
 1. In **Fields**, enter **coordinate**.
 1. Click **Create**
 
-Macrometa returns a success message and your new index appears in the Indexes list. For more information, refer to [Document Store Indexes](../../collections/documents/document-store-indexes.md).
+Macrometa returns a success message and your new index appears in the Indexes list. For more information, refer to [Document Store Indexes](../../../collections/documents/document-store-indexes.md).
 
 ## Find Nearby Locations
 

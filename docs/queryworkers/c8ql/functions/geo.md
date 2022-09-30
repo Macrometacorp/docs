@@ -4,7 +4,7 @@ title: Geo Functions
 
 ## Geo utility functions
 
-The following helper functions **can** use geo indexes, but do not have to in all cases. You can use all of these functions in combination with each other, and if you have configured a geo index it may be utilized, see [Geo Indexing](../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+The following helper functions **can** use geo indexes, but do not have to in all cases. You can use all of these functions in combination with each other, and if you have configured a geo index it may be utilized, see [Geo Indexing](../../../collections/indexing/working-with-indexes#geo-spatial-indexes).
 
 ### DISTANCE()
 
@@ -42,7 +42,7 @@ Checks whether the [GeoJSON object](../../collections/indexing/working-with-inde
 
 `GEO_DISTANCE(geoJsonA, geoJsonB, ellipsoid) → distance`
 
-Return the distance between two GeoJSON objects, measured from the **centroid** of each shape. For a list of supported types see the [geo index page](../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+Return the distance between two GeoJSON objects, measured from the **centroid** of each shape. For a list of supported types see the [geo index page](../../../collections/indexing/working-with-indexes#geo-spatial-indexes).
 
 - **geoJsonA** (object): first GeoJSON object
 - **geoJsonB** (object): second GeoJSON object
