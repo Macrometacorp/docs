@@ -4,7 +4,7 @@ title: Basic Document Tasks
 ---
 
 You can perform basic document tasks such as create, read, update, and delete (CRUD) on documents in a collection. This portion of the tutorial guides you through those tasks.
-We will firs review the syntax of CRUD commands and then use SDKs to send queries to Macrometa platform.
+We will first review the syntax of CRUD commands and then use SDKs to send queries to Macrometa platform.
 
 ## Create the Characters Collection
 
@@ -28,10 +28,10 @@ We are doing all the aforementioned operations so that we could have specific da
 Add one document to the collection with a query.
 
 Classic SQL syntax:
+
 ```sql
 INSERT INTO categories (_key,name) VALUES('0','Books')
 ```
-
 
 ### Add Multiple Documents to the Collection
 
