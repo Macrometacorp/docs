@@ -16,9 +16,9 @@ By the end of this tutorial, you will:
 - Understand the basics of Graph Edge collections.
 
 :::note
-Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../cli/index.md), [API](https://macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
+Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../../cli/index.md), [API](https://macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
 
-If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../../cli/queries-cli.md) command.
+If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../../../cli/queries-cli.md) command.
 :::
 
 ## Prerequisites
@@ -45,7 +45,7 @@ This small collection of eight locations comes with two attributes, a _name_ and
 
 ## About this Tutorial
 
-This tutorial guides you through several sets of tasks. To get the most out of this tutorial, complete the sections in order. Many tasks build on earlier steps, so they are necessary to sucessfully complete the full tutorial.
+This tutorial guides you through several sets of tasks. To get the most out of this tutorial, complete the sections in order. Many tasks build on earlier steps, so they are necessary to successfully complete the full tutorial.
 
 Enjoy and have fun!
 

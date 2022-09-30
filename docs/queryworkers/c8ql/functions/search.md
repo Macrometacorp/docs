@@ -75,7 +75,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-In the following example `ANALYZER()` is used to set the Analyzer `text_en`, but in the second call to `PHRASE()` a different Analyzer is set (`identity`) which overrules `ANALYZER()`. Therefore, the `text_en` Analyzer is used to find the phrase *foo* and the `identity` Analyzer to find *bar*:
+In the following example `ANALYZER()` is used to set the Analyzer `text_en`, but in the second call to `PHRASE()` a different Analyzer is set (`identity`) which overrules `ANALYZER()`. Therefore, the `text_en` Analyzer is used to find the phrase _foo_ and the `identity` Analyzer to find _bar_:
 
 ```js
 FOR doc IN viewName
@@ -167,11 +167,11 @@ Match documents where the attribute at **path** is present _and_ is of the speci
 
 - **path** (attribute path expression): the attribute to test in the document
 - **type** (string): data type to test for, can be one of:
-    - `"null"`
-    - `"bool"` / `"boolean"`
-    - `"numeric"`
-    - `"string"`
-    - `"analyzer"` (see below)
+  - `"null"`
+  - `"bool"` / `"boolean"`
+  - `"numeric"`
+  - `"string"`
+  - `"analyzer"` (see below)
 - returns nothing: the function can only be called in a [SEARCH operation](../operations/search) and throws an error otherwise
 
 ```js
@@ -201,11 +201,12 @@ FOR doc IN viewName
 
 Match documents where the attribute at **path** is greater than (or equal to) **low** and less than (or equal to) **high**.
 
-*low* and *high* can be numbers or strings (technically also `null`, `true` and `false`), but the data type must be the same for both.
+_low_ and _high_ can be numbers or strings (technically also `null`, `true` and `false`), but the data type must be the same for both.
 
 :::warning
 The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against Views will not follow the language rules as per the defined Analyzer locale.
 :::
+
 - **path** (attribute path expression): the path of the attribute to test in the document
 - **low** (number\|string): minimum value of the desired range
 - **high** (number\|string): maximum value of the desired range
@@ -213,7 +214,7 @@ The alphabetical order of characters is not taken into account by Search, i.e. r
 - **includeHigh** (bool): whether the maximum value shall be included in the range (right-closed interval) or not (right-open interval)
 - returns nothing: the function can only be called in a [SEARCH operation](../operations/search) and throws an error otherwise
 
-If *low* and *high* are the same, but *includeLow* and/or *includeHigh* is set to `false`, then nothing will match. If *low* is greater than *high* nothing will match either.
+If _low_ and _high_ are the same, but _includeLow_ and/or _includeHigh_ is set to `false`, then nothing will match. If _low_ is greater than _high_ nothing will match either.
 
 To match documents with the attribute `value >= 3` and `value <= 5` using the default `"identity"` Analyzer you would write the following query:
 
@@ -233,7 +234,7 @@ FOR doc IN valView
   RETURN doc
 ```
 
-This will match `{ "value": "bar" }` and `{ "value": "foo bar" }` because the _b_ of _bar_ is in the range (`"a" <= "b" < "f"`), but not `{ "value": "foo" }` because the _f_ of _foo_ is excluded (*high* is "f" but *includeHigh* is false).
+This will match `{ "value": "bar" }` and `{ "value": "foo bar" }` because the _b_ of _bar_ is in the range (`"a" <= "b" < "f"`), but not `{ "value": "foo" }` because the _f_ of _foo_ is excluded (_high_ is "f" but _includeHigh_ is false).
 
 ### MIN_MATCH()
 
@@ -263,16 +264,16 @@ This will match `{ "text": "the quick brown fox" }` and `{ "text": "some brown f
 
 Search for a phrase in the referenced attribute. It only matches documents in which the tokens appear in the specified order. To search for tokens in any order use [TOKENS()](#tokens) instead.
 
-The phrase can be expressed as an arbitrary number of *phraseParts* separated by *skipTokens* number of tokens (wildcards).
+The phrase can be expressed as an arbitrary number of _phraseParts_ separated by _skipTokens_ number of tokens (wildcards).
 
 - **path** (attribute path expression): the attribute to test in the document
-- **phrasePart** (string): text to search for in the tokens. May consist of several words/tokens, which will be split using the specified *analyzer*
+- **phrasePart** (string): text to search for in the tokens. May consist of several words/tokens, which will be split using the specified _analyzer_
 - **skipTokens** (number, _optional_): amount of words/tokens to treat
   as wildcards
-- **analyzer** (string, _optional_): name of an [Analyzer](../../search/analyzers.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
+- **analyzer** (string, _optional_): name of an [Analyzer](../../../search/analyzers.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
 - returns nothing: the function can only be called in a [SEARCH operation](../operations/search) and throws an error otherwise
 
-Given a View indexing an attribute *text* with the `"text_en"` Analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
+Given a View indexing an attribute _text_ with the `"text_en"` Analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
 
 ```js
 FOR doc IN viewName
@@ -293,7 +294,7 @@ following search expression:
 PHRASE(doc.text, "ipsum", 2, "amet", "text_en")
 ```
 
-The *skipTokens* value of `2` defines how many wildcard tokens have to appear between *ipsum* and *amet*. A *skipTokens* value of `0` means that the tokens must be adjacent. Negative values are allowed, but not very useful. These three search expressions are equivalent:
+The _skipTokens_ value of `2` defines how many wildcard tokens have to appear between _ipsum_ and _amet_. A _skipTokens_ value of `0` means that the tokens must be adjacent. Negative values are allowed, but not very useful. These three search expressions are equivalent:
 
 ```js
 PHRASE(doc.text, "lorem ipsum", "text_en")
@@ -303,7 +304,7 @@ PHRASE(doc.text, "ipsum", -1, "lorem", "text_en")
 
 `PHRASE(path, [ phrasePart1, skipTokens1, ... phrasePartN, skipTokensN ], analyzer)`
 
-The `PHRASE()` function also accepts an array as second argument with *phrasePart* and *skipTokens* parameters as elements. This syntax variation enables the usage of computed expressions:
+The `PHRASE()` function also accepts an array as second argument with _phrasePart_ and _skipTokens_ parameters as elements. This syntax variation enables the usage of computed expressions:
 
 ```js
 LET proximityCondition = [ "foo", ROUND(RAND()*10), "bar" ]
@@ -321,6 +322,7 @@ Match the value of the attribute that starts with **prefix**. If the attribute i
 :::warning
 The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against Views will not follow the language rules as per the defined Analyzer locale.
 :::
+
 - **path** (attribute path expression): the path of the attribute to compare against in the document
 - **prefix** (string): a string to search at the start of the text
 - returns nothing: the function can only be called in a [SEARCH operation](../operations/search) and throws an error otherwise
@@ -358,7 +360,7 @@ RETURN TOKENS("IPS (in-plane switching)", "text_en")
 ]
 ```
 
-The *s* is removed from *ips*, which leads to the prefix *ips* not matching the indexed token *ip*. You may either create a custom text Analyzer with stemming disabled to avoid this issue, or apply stemming to the prefix:
+The _s_ is removed from _ips_, which leads to the prefix _ips_ not matching the indexed token _ip_. You may either create a custom text Analyzer with stemming disabled to avoid this issue, or apply stemming to the prefix:
 
 ```js
 FOR doc IN viewName
@@ -372,7 +374,7 @@ FOR doc IN viewName
 
 Split the **input** string with the help of the specified **analyzer** into an array. The resulting array can be used in `FILTER` or `SEARCH` statements with the `IN` operator, but also be assigned to variables and returned. This can be used to better understand how a specific Analyzer processes an input value.
 
-It has a regular return value unlike all other Search C8QL functions and is thus not limited to `SEARCH` operations. It is independent of Views. A wrapping `ANALYZER()` call in a search expression does not affect the *analyzer* argument nor allow you to omit it.
+It has a regular return value unlike all other Search C8QL functions and is thus not limited to `SEARCH` operations. It is independent of Views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
 
 - **input** (string): text to tokenize
 - **analyzer** (string): name of an [Analyzer](../../search/analyzers.md).
@@ -440,10 +442,10 @@ FOR a IN viewA
 Sorts documents using the [**Best Matching 25** algorithm](https://en.wikipedia.org/wiki/Okapi_BM25){:target="_blank"} (BM25).
 
 - **doc** (document): must be emitted by `FOR ... IN viewName`
-- **k** (number, _optional_): calibrates the text term frequency scaling. The default is `1.2`. A *k* value of `0` corresponds to a binary model (no term frequency), and a large value corresponds to using raw term frequency
-- **b** (number, _optional_): determines the scaling by the total text length. The default is `0.75`. At the extreme values of the coefficient *b*, BM25 turns into the ranking functions known as:
-  - BM11 for *b* = `1` (corresponds to fully scaling the term weight by the total text length)
-  - BM15 for *b* = `0` (corresponds to no length normalization)
+- *_k_* (number, _optional_): calibrates the text term frequency scaling. The default is `1.2`. A *k* value of `0` corresponds to a binary model (no term frequency), and a large value corresponds to using raw term frequency
+- *_b_* (number, _optional_): determines the scaling by the total text length. The default is `0.75`. At the extreme values of the coefficient *b*, BM25 turns into the ranking functions known as:
+  - BM11 for _b_ = `1` (corresponds to fully scaling the term weight by the total text length)
+  - BM15 for _b_ = `0` (corresponds to no length normalization)
 - returns **score** (number): computed ranking value
 
 Sorting by relevance with BM25 at default settings:
@@ -471,7 +473,7 @@ FOR doc IN viewName
 Sorts documents using the [**term frequency–inverse document frequency** algorithm](https://en.wikipedia.org/wiki/TF-IDF){:target="_blank"} (TF-IDF).
 
 - **doc** (document): must be emitted by `FOR ... IN viewName`
-- **normalize** (bool, _optional_): specifies whether scores should be normalized. The default is *false*.
+- **normalize** (bool, _optional_): specifies whether scores should be normalized. The default is _false_.
 - returns **score** (number): computed ranking value
 
 Sort by relevance using the TF-IDF score:
