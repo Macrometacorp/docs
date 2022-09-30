@@ -6,7 +6,7 @@ title: Connect to GDN
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you sepcified. You can create an API key from the GUI or REST API.
+The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you specified. You can create an API key from the GUI or REST API. For more information, refer to [API Keys](../account-management/apikeys/index.md).
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">

@@ -13,9 +13,7 @@ This section demonstrates some of the tasks that you can complete with Macrometa
 - [pyC8](https://github.com/Macrometacorp/pyC8) - Python SDK
 - [VueC8](https://github.com/Macrometacorp/VueC8) - VueJS SDK
 
-The topics in this section focus primarily on the Python and JavaScript drivers, showing how to perform the tasks with SDKs or with APIs and the appropriate calls Python or JavaScript calls.
-
-Read through the complete example below, or refer to the specific subsections.
+Read through the complete example below to see how to perform tasks with SDKs or with APIs using Python or JavaScript calls.
 
 ## Pre-requisites
 
@@ -70,7 +68,7 @@ Once the installation process is finished, you can begin developing applications
 </TabItem>
 </Tabs>
 
-## Complete Example
+## SDK Example
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
