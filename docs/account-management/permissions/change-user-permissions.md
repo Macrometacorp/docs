@@ -5,8 +5,6 @@ title: Change User Permissions
 
 You can change permissions for users from the GDN console.
 
-## Change Permissions for Users
-
 Once you log in to a Macrometa account, you can view all user accounts and API keys that you have access to.
 
 1. Log in to your [Macrometa account](https://auth.paas.macrometa.io/).
