@@ -377,7 +377,7 @@ Split the **input** string with the help of the specified **analyzer** into an a
 It has a regular return value unlike all other Search C8QL functions and is thus not limited to `SEARCH` operations. It is independent of Views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
 
 - **input** (string): text to tokenize
-- **analyzer** (string): name of an [Analyzer](../../search/analyzers.md).
+- **analyzer** (string): name of an [Analyzer](../../../search/analyzers.md).
 - returns **tokenArray** (array): array of strings with zero or more elements, each element being a token.
 
 Example query showcasing the `"text_de"` Analyzer (tokenization with stemming, case conversion and accent removal for German text):
@@ -442,8 +442,8 @@ FOR a IN viewA
 Sorts documents using the [**Best Matching 25** algorithm](https://en.wikipedia.org/wiki/Okapi_BM25){:target="_blank"} (BM25).
 
 - **doc** (document): must be emitted by `FOR ... IN viewName`
-- *_k_* (number, _optional_): calibrates the text term frequency scaling. The default is `1.2`. A *k* value of `0` corresponds to a binary model (no term frequency), and a large value corresponds to using raw term frequency
-- *_b_* (number, _optional_): determines the scaling by the total text length. The default is `0.75`. At the extreme values of the coefficient *b*, BM25 turns into the ranking functions known as:
+- **k** (number, _optional_): calibrates the text term frequency scaling. The default is `1.2`. A _k_ value of `0` corresponds to a binary model (no term frequency), and a large value corresponds to using raw term frequency
+- **b** (number, _optional_): determines the scaling by the total text length. The default is `0.75`. At the extreme values of the coefficient _b_, BM25 turns into the ranking functions known as:
   - BM11 for _b_ = `1` (corresponds to fully scaling the term weight by the total text length)
   - BM15 for _b_ = `0` (corresponds to no length normalization)
 - returns **score** (number): computed ranking value
