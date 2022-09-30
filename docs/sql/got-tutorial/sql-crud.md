@@ -28,7 +28,6 @@ Classic SQL syntax:
 INSERT INTO categories (_key,name) VALUES('0','Books')
 ```
 
-
 ### Add Multiple Documents to the Collection
 
 Add one multiple documents to the collection with a query.
