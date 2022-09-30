@@ -1,5 +1,6 @@
 ---
 title: Bind Parameters
+sidebar_position: 60
 ---
 
 C8QL supports the usage of bind parameters, thus allowing to separate the query text from literal values used in the query. It is good practice to separate the query text from the literal values because this will prevent (malicious) injection of keywords and other collection names into an existing query. This injection would be dangerous because it may change the meaning of an existing query.
@@ -35,7 +36,7 @@ FILTER u.name == "@name" // wrong
 FILTER u.name == @name   // correct
 ```
 
-If you need to do string processing (concatenation, etc.) in the query, you need to use [string functions](../c8ql/functions/string.md) to do so:
+If you need to do string processing (concatenation, etc.) in the query, you need to use [string functions](c8ql/functions/string.md) to do so:
 
 ```js
 FOR u IN users

@@ -1,5 +1,6 @@
 ---
 title: Data Modification Queries
+sidebar_position: 70
 ---
 
 C8QL supports the following data-modification operations:
@@ -10,7 +11,7 @@ C8QL supports the following data-modification operations:
 - **REMOVE**: remove existing documents from a collection
 - **UPSERT**: conditionally insert or update documents in a collection
 
-Below you find some simple example queries that use these operations. The operations are detailed in [C8QL Operations](../c8ql/operations/index.md).
+Below you find some simple example queries that use these operations. The operations are detailed in [C8QL Operations](c8ql/operations/index.md).
 
 ## Transactional Execution
   

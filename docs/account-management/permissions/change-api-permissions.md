@@ -5,8 +5,6 @@ title: Change API Permissions
 
 You can change permissions for API keys from the GDN console.
 
-## Change Permissions for API Keys
-
 Once you log in to a Macrometa account, you can view all API keys that you have access to.
 
 1. Log in to your [Macrometa account](https://auth.paas.macrometa.io/).
