@@ -17,7 +17,7 @@ Although SQL is an ANSI/ISO standard, there are different versions of the SQL la
 The general workflow when executing a query is as follows:
 
 - A client application sends a SQL query to the Macrometa platform. The query text contains everything Macrometa needs to compile the result set.
-- Macrometa will parse the query, execute it and compile the results. If the query is invalid or cannot be executed, the server will return an error that the client can process and react to. If the query can be executed successfully, the server will return the query results (if any) to the client.
+- Macrometa parses the query, executes it, and compiles the results. If the query is invalid or cannot be executed, then the server returns an error that the client can process and react to. If the query can be executed successfully, then the server will return the query results (if any) to the client.
 
 We have SDKs for [JavaScript](https://github.com/Macrometacorp/jsC8) and [Python](https://github.com/Macrometacorp/pyC8)
 
