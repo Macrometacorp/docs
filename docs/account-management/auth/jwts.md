@@ -1,5 +1,6 @@
 ---
 title: JSON Web Tokens (JWTs)
+sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
