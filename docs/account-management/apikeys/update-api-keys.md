@@ -6,7 +6,7 @@ title: Update API Keys
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This section describes how to update API keys. Once you log in to a Macrometa account, you can view all API keys that you have access to. If you have appropriate permissions, then you can also update them.
+This page describes how to update API keys. Once you log in to a Macrometa account, you can view all API keys that you have access to. If you have appropriate permissions, then you can also update them.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">

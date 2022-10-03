@@ -6,9 +6,9 @@ title: View API Keys
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This section describes how to view API keys and their attributes or permissions.
+This page describes how to view API keys and their attributes or permissions.
 
-Once you log in to a Macrometa account, you can view all API keys that you have access to.
+Once you log in to a Macrometa account, you can view all API keys that you have access to. [Update API Keys](update-api-keys.md)
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
