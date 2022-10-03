@@ -7,7 +7,7 @@ slug: authentication
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-There are multiple ways users can access their Macrometa GDN account:
+You can access your Macrometa GDN account using several methods:
 
 - User Authentication
 - Token-based Authentication
@@ -44,9 +44,9 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
 
 ## Token-based Authentication
 
-Users can also authenticate with Macrometa GDN via `JSON web tokens`. The `JWT Tokens` in GDN expire after 12 hours unless renewed. So it is best to use API Keys for access by your apps and APIs.
+Users can also authenticate with Macrometa GDN via JSON web tokens (JWTs). The JWTs in GDN expire after 12 hours unless renewed. So it is best to use API Keys for access by your apps and APIs.
 
-**Code Samples:**
+The code sample below shows how you could use a JWT token to authenticate with the SDK.
 
 <Tabs groupId="operating-systems">
 
