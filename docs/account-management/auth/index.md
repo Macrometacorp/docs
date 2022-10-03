@@ -70,7 +70,7 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, toke
 
 ## API Keys
 
-For more information about API keys, refer to [API Keys](apikeys/index.md).
+For more information about API keys, refer to [API Keys](../apikeys/index.md).
 
 The code sample below shows how you could use an API key to authenticate with the SDK.
 
