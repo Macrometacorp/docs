@@ -10,6 +10,8 @@ This page describes how to create API keys.
 
 After creating the API key, best practice is to save the automatically generated `KeyID` string somewhere secure.
 
+To learn about how to grant permissions to an API key, refer to [Update API Keys](update-api-key.md).
+
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
