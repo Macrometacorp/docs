@@ -27,4 +27,9 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, toke
 ```
 
 </TabItem>
+<TabItem value="apo" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Obtain JWT Authentication](https://macrometa.com/docs/api#/paths/_open-auth/post).
+
+</TabItem>
 </Tabs>
