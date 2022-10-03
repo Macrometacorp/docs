@@ -17,10 +17,12 @@ Read through the complete example below to see how to perform tasks with SDKs or
 
 ## Pre-requisites
 
-- Assume your tenant name is `nemo@nautilus.com` and user password is `xxxxx`.
-- [Install the appropriate SDK](install-sdks.md).
+- You must have a Macrometa account with admin privileges
+- [Install the SDK](install-sdks.md) that corresponds to the programming language you want to use.
 
 ## SDK Example
+
+Assume your tenant name is `nemo@nautilus.com` and user password is `xxxxx`.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
