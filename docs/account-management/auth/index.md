@@ -44,7 +44,7 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
 
 ## Token-based Authentication
 
-Users can also authenticate with Macrometa GDN via `Json web tokens`. The `JWT Tokens` in GDN expire after 12 hours unless renewed. So it is best to use API Keys for access by your apps and APIs.
+Users can also authenticate with Macrometa GDN via `JSON web tokens`. The `JWT Tokens` in GDN expire after 12 hours unless renewed. So it is best to use API Keys for access by your apps and APIs.
 
 **Code Samples:**
 
