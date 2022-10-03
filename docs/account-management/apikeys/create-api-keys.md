@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Create and Manage API Keys
+title: Create API Keys
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,7 +10,7 @@ This page describes how to create API keys.
 
 After creating the API key, best practice is to save the automatically generated `KeyID` string somewhere secure.
 
-To learn about how to grant permissions to an API key, refer to [Update API Keys](update-api-key.md).
+To learn about how to grant permissions to an API key, refer to [Update API Keys](update-api-keys.md).
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -133,6 +133,11 @@ print("ERROR: " , resp)
 else:
 print("API Key Created: ", resp)
 ```
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl apikey](../../cli/api-key-cli.md) CLI command to create API keys.
 
 </TabItem>
 </Tabs>
