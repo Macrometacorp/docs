@@ -65,7 +65,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/map.png',
+      image: 'img/macrometa-preview.png',
       metadata: [
         {
           name: 'og:title',
@@ -73,7 +73,7 @@ const config = {
         },
         {
           name: 'og:description',
-          content: 'Powering the next generation of apps and APIs. Build performant apps on the edge with our lightning-fast, stateful serverless global data platform'
+          content: 'Powering the next generation of apps and APIs. Store, process, and serve data within milliseconds of everyone on the planet.'
         },
         {
           name: 'og:url',
@@ -81,7 +81,7 @@ const config = {
         },
         {
           name: 'og:image',
-          content: 'https://assets-global.website-files.com/5fa9e94bc848ae335afdd627/601af89de27f422a1c090b14_mm-map.png'
+          content: `${host}/img/macrometa-preview.png`
         }
       ],
       algolia: {
