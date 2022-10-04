@@ -55,7 +55,7 @@
     --ifm-color-primary-lighter: var(--color-primary-300);
     --ifm-color-primary-lightest: var(--color-primary-200);
 
-    --ifm-code-border-radius: 0.25rem;
+    --ifm-code-border-radius: 0.5rem;
     --ifm-code-font-size: 0.9375rem;
     --ifm-pre-background-color: var(--color-neutral-50);
 
@@ -132,7 +132,7 @@
     --ifm-color-primary: var(--color-primary-400);
     --ifm-menu-color: var(--color-primary-100) !important;
     --ifm-toc-link-color: var(--color-neutral-200) !important;
-    --ifm-pre-background-color: var(--color-neutral-700);
+    --ifm-pre-background-color: var(--color-neutral-900);
 
     --docs-color-primary-100: var(--color-primary-400);
 
@@ -548,6 +548,7 @@ html[data-theme='dark'] .sl-text-warning {
   --ifm-heading-vertical-rhythm-bottom: 1;
   @apply antialiased;
   font-size: 17px;
+  letter-spacing: -0.0025rem;
   line-height: 28px;
 }
 
