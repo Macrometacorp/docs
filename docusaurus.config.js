@@ -65,7 +65,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/macrometa-preview.png',
+      image: 'img/macrometa-preview-dark.png',
       metadata: [
         {
           name: 'og:title',
@@ -81,7 +81,7 @@ const config = {
         },
         {
           name: 'og:image',
-          content: `${host}/img/macrometa-preview.png`
+          content: `${host}/img/macrometa-preview-dark.png`
         }
       ],
       algolia: {
