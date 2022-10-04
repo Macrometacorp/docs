@@ -4,7 +4,7 @@ title: APIs
 ---
 
 Macrometa's GDN service offering is API-first. We create API calls for every task you can perform in the Macrometa platform.
-
+We currently have two ways in which you can interact with the API: the app API reference and the docs API reference.
 Your main tool for using REST APIs is the API reference in the GDN web browser interface. Use the built-in API reference to run various calls and view their input and output.
 
 While you can run your API calls from your favorite IDE, terminal, or other interface, you can also run them directly from our API references. In this section, pages describe how to:
