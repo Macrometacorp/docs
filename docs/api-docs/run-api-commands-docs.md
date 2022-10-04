@@ -23,4 +23,4 @@ This page provides instructions for running API commands from the Macrometa docu
 
    Macrometa runs the API call with the parameters that you chose and returns a response in the Response pane.
 
-1. If you want to, you can generate a request in a number of programming languages, including Python and JavaScript. Click **Request Sample** to select a language and library for your request. The default request sample is a cURL command.
+1. Optionally, you have the ability to generate a request in multiple programming languages, including Python and JavaScript. Click **Request Sample** to select a language and library for your request. The default request sample is a cURL command.
