@@ -1,14 +1,19 @@
 ---
-sidebar_position: 70
-title: Remove API Key
+sidebar_position: 40
+title: Delete API Keys
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Remove an API Key
+This page describes how to delete API keys.
 
 <Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
+
+On the API Keys tab, click the trash icon next to an API key and then click **Delete**.
+
+</TabItem>
 <TabItem value="js" label="Javascript">
 
 ```js
@@ -98,7 +103,9 @@ else:
 ```
 
 </TabItem>
-<TabItem value="RA" label="Rest API">
+<TabItem value="RA" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Remove an API Key](https://macrometa.com/docs/api#/operations/RemoveApiKey).
 
 ```js
 FEDERATION = "api-gdn.macrometa.io"
@@ -113,6 +120,13 @@ if resp['error'] is True:
 else:
     print("API Key Deleted: ", resp)
 ```
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl apikey clear](../../cli/api-key-cli.md#gdnsl-apikey-clear) CLI command to clear some or all access levels from an API key.
+
+Use the [gdnsl apikey](../../cli/api-key-cli.md) CLI command to delete an API key.
 
 </TabItem>
 </Tabs>
