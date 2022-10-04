@@ -26,7 +26,10 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'macrometacorp', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
-  clientModules: [require.resolve('./src/css/tailwind.css')],
+  clientModules: [
+    require.resolve('./src/css/fonts.css'),
+    require.resolve('./src/css/tailwind.css')
+  ],
 
   presets: [
     [
