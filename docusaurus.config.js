@@ -96,8 +96,8 @@ const config = {
       navbar: {
         logo: {
           alt: 'Macrometa Logo',
-          src: 'img/logo.svg',
-          srcDark: 'img/logo-white.svg',
+          src: 'img/macrometa-logo.svg',
+          srcDark: 'img/macrometa-logo-dark.svg',
           href: 'https://macrometa.com',
           target: '_self'
         },
