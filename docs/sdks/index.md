@@ -17,58 +17,12 @@ Read through the complete example below to see how to perform tasks with SDKs or
 
 ## Pre-requisites
 
-- Assume your tenant name is `nemo@nautilus.com` and user password is `xxxxx`.
-- Download the appropriate SDK.
-
-## SDK download
-
-<Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
-
-```js
-With Yarn or NPM
-
-yarn add jsc8
-(or)
-npm install jsc8
-
-If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
-
-npm install --global jsc8
-
-From source,
-
-git clone https://github.com/macrometacorp/jsc8.git
-cd jsC8
-npm install
-npm run dist
-```
-
-</TabItem>
-<TabItem value="py" label="Python">
-
-```py
-pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
-
-To install pyC8, simply run
-
-$ pip3 install pyC8
-
-or, if you prefer to use conda:
-
-conda install -c conda-forge pyC8
-
-or pipenv:
-
-pipenv install --pre pyC8
-
-Once the installation process is finished, you can begin developing applications in Python.
-```
-
-</TabItem>
-</Tabs>
+- You must have a Macrometa account with admin privileges
+- [Install the SDK](install-sdks.md) that corresponds to the programming language you want to use.
 
 ## SDK Example
+
+Assume your tenant name is `nemo@nautilus.com` and user password is `xxxxx`.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">

@@ -47,7 +47,7 @@ API key commands.
 
 ## gdnsl apikey get
 
-Gets the access levels for the api key with keyid.
+Gets the access levels for the API key with key ID.
 
 ```bash
   gdnsl apikey get [flags]
@@ -200,7 +200,7 @@ If access level for stream is not set then default("_") access level will be use
 
 ## gdnsl apikey clear
 
-Gets the access levels for the api key with keyid.
+Clear the access level of billing, collection, fabric, and streams for a specific API key ID.
 
 ```bash
   gdnsl apikey get [flags]
@@ -221,7 +221,7 @@ Gets the access levels for the api key with keyid.
   # Clears the billing access level of keyid.
   gdnsl apikey clear  --key-id  testKey --billing
 
-  # Delete a specific  attribute of keyid.
+  # Delete a specific attribute of keyid.
   gdnsl apikey clear  --key-id  testKey --attributes name
 ```
 

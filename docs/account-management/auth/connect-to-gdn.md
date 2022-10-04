@@ -1,12 +1,18 @@
 ---
-sidebar_position: 10
-title: Connect to GDN
+sidebar_position: 30
+title: Auth Example - Connect to GDN
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you specified. You can create an API key from the GUI or REST API. For more information, refer to [API Keys](../account-management/apikeys/index.md).
+The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you specified.
+
+The code example below shows how you might use authentication in your code.
+
+:::note
+The example below assumes you have already installed one or more Macrometa SDKs. For instructions, refer to [Install SDKs](../../sdks/install-sdks.md).
+:::
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -58,7 +64,7 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                     email='nemo@nautilus.com', password='xxxxx',
                     geofabric='_system')
 
-# OR Using token
+# Or using token
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token="XXXX")
 ```
 

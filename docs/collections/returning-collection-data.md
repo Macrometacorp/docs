@@ -10,7 +10,7 @@ The Macrometa GDN is a multi-tenant platform for Free and Metered tier users. Th
 
 There are two recommmended approaches depending on the volume of data being returned. The [Cursor](https://macrometa.com/docs/api#/operations/createQueryCursor) endpoint from Macrometa API can be used to fetch up to 30,000 records, this is an approximation based on platform limits. Attempting to return more than 30,000 from the endpoint may cause the query to exceed the query execution time limit and raise an error. The [Collection Export](https://macrometa.com/docs/api#/operations/ExportCollectionData) endpoint from Macrometa API is the recommended approach when retrieving an entire collection.
 
-Create a connection to the GDN using the jsc8 SDK. You will need an API key, JWT, or Email/Password to complete authentication. For more information, refer to [Authentication](../authentication.md).
+Create a connection to the GDN using the jsc8 SDK. You will need an API key, JWT, or Email/Password to complete authentication. For more information, refer to [Authentication](../account-management/authentication.md).
 
 ### SDK download
 
