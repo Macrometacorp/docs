@@ -1,12 +1,29 @@
 ---
-sidebar_position: 20
-title: Create API Key
+sidebar_position: 10
+title: Create API Keys
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+This page describes how to create API keys.
+
+After creating the API key, best practice is to save the automatically generated `KeyID` string somewhere secure.
+
+To learn about how to grant permissions to an API key, refer to [Update API Keys](update-api-keys.md).
+
 <Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to create a new API key using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+2. Click **Account**.
+3. Click the **API Keys** tab.
+4. Click **New API Key**.
+5. Enter a unique ID.
+
+</TabItem>
 <TabItem value="js" label="Javascript">
 
 ```js
@@ -95,7 +112,9 @@ else:
 ```
 
 </TabItem>
-<TabItem value="RA" label="Rest API">
+<TabItem value="RA" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Create an API Key](https://macrometa.com/docs/api#/operations/CreateApiKey).
 
 ```js
 # Create an API Key
@@ -114,6 +133,11 @@ print("ERROR: " , resp)
 else:
 print("API Key Created: ", resp)
 ```
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl apikey](../../cli/api-key-cli.md) CLI command to create API keys.
 
 </TabItem>
 </Tabs>
