@@ -48,6 +48,27 @@ Description of update.
 - We redesigned Macrometa authorization to make our service more efficient and stable.
 - The account signup and login screens have been updated and improved.
 
+### API Updates
+
+This release includes the following API changes.
+
+| Issue #  | Description  |
+|---|---|`
+| APIDOC-51  | Added stream worker parameters `maxLogsLengthKBPerMinutePerWorker` and `maxCpuSecondsPerMinutePerWorker`. |
+|   |  |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+
 ## Known Issues
 
 The following known issues were introduced in this release.
@@ -62,6 +83,18 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
+| APIDOC-54  | In API reference docx, corrected a typo in insertDocument description.  |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
 |   |   |
 |   |   |
 |   |   |
