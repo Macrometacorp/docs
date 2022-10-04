@@ -14,13 +14,13 @@ This page provides instructions for running API commands from the Macrometa docu
 
 1. In an internet browser, navigate to the [Macrometa GDN API](https://macrometa.com/docs/api#/) page.
 1. In the left sidebar, select the endpoint that you want to access.
-1. In the Auth pane, enter the authorization prefix and token or key.
+1. In the Auth pane, enter the authorization method and the JWT or API key.
    - API key: `apikey <YOUR API KEY>`
-   - JWT: `Bearer <YOUR JWT>`
+   - JWT: `bearer <YOUR JWT>`
 1. In the Parameters pane, enter the **fabric** that you want to run the API command against. If you want to run a call on a particular collection or stream, then select the fabric associated with it.
 1. In the Parameters pane, enter any other parameters necessary for your API call. Items marked with an asterisk(*) are required.
 1. Click **Send API Request**.
 
    Macrometa runs the API call with the parameters that you chose and returns a response in the Response pane.
 
-1. If you want to, you can generate a request in a number of programming languages, including Python and JavaScript. Click **Request Sample** to select a language and library for your request. The default request sample is a cURL command.
+1. Optionally, you have the ability to generate a request in multiple programming languages, including Python and JavaScript. Click **Request Sample** to select a language and library for your request. The default request sample is a cURL command.
