@@ -26,7 +26,10 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'macrometacorp', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
-  clientModules: [require.resolve('./src/css/tailwind.css')],
+  clientModules: [
+    require.resolve('./src/css/fonts.css'),
+    require.resolve('./src/css/tailwind.css')
+  ],
 
   presets: [
     [
@@ -62,7 +65,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/map.png',
+      image: 'img/macrometa-preview-dark.png',
       metadata: [
         {
           name: 'og:title',
@@ -70,7 +73,7 @@ const config = {
         },
         {
           name: 'og:description',
-          content: 'Powering the next generation of apps and APIs. Build performant apps on the edge with our lightning-fast, stateful serverless global data platform'
+          content: 'Powering the next generation of apps and APIs. Store, process, and serve data within milliseconds of everyone on the planet.'
         },
         {
           name: 'og:url',
@@ -78,7 +81,7 @@ const config = {
         },
         {
           name: 'og:image',
-          content: 'https://assets-global.website-files.com/5fa9e94bc848ae335afdd627/601af89de27f422a1c090b14_mm-map.png'
+          content: `${host}/img/macrometa-preview-dark.png`
         }
       ],
       algolia: {
@@ -96,8 +99,8 @@ const config = {
       navbar: {
         logo: {
           alt: 'Macrometa Logo',
-          src: 'img/logo.svg',
-          srcDark: 'img/logo-white.svg',
+          src: 'img/macrometa-logo.svg',
+          srcDark: 'img/macrometa-logo-dark.svg',
           href: 'https://macrometa.com',
           target: '_self'
         },
