@@ -107,6 +107,33 @@ Is this user-facing? Should it be included in the end user release notes?
 | GUI-525  | Import Documents button is improperly aligned.  |
 | GUI-536  | When a non-root user opens the permission configuration tab for an API key, the Read-only option is in a disabled state. The same option is enabled for collections.  |
 | GUI-666  | The user is redirected to the login page after they change the fabric.  |
+| GUI-834  | UI breaks when a non-root user with access to a custom fabric and no access to the system fabric logs in.  |
+| GUI-859  | Garbled error message appears on the login page when a non-root user with no access to fabrics logs in after changing their password.  |
+| GUI-864  | Query editor bind parameter saves JSON Object as [object Object].  |
+| GUI-868  | Non-root users are unable to create a new API key in the Macrometa console.  |
+| GUI-903  | Wrong error message in tooltip for import collection scenario.  |
+| GUI-1282  | Validation for field name is missing while adding mapping definition.  |
+| GUI-1298  | Alignment issues on Query Worker page.  |
+| GUI-1315  | Query gets stuck when you press the **Run Query** button quickly multiple times.  |
+| GUI-1441  | Support link is cropped when viewing the console on a screen with 1536 x 864 resolution.  |
+| GUI-1513  | Bind parameter key does not update when run by pressing **Run Query**.  |
+| GUI-1517  | No message is shown when the user successfully purges a Dynamo Table collection.  |
+| GUI-1520  | JSON object attributes in a Dynamo Table collection are not visible in the web console.  |
+| GUI-1521  | Pagination is not working properly for Dynamo collections with JSON attributes.  |
+| GUI-1526  | Enabled and disabled region endpoints are not always displayed correctly in the web console.  |
+| GUI-1537  | Typo in stream creation success message.  |
+| GUI-1547  | **Download CSV** button is missing in some cases.  |
+| GUI-1554  | Graph view in Query Results in the Query Workers page is not stable.  |
+| GUI-1555  | Typo in Primary Sort tool tip in Create New View modal.  |
+| GUI-1571  | Creating two fabrics with access to different regions shows all three regions available to both fabrics.  |
+| GUI-1574  | Multi-edge graph is not working.  |
+| GUI-1575  | An error in one graph prevents other graphs from loading.  |
+| GUI-1577  | Edit user password message does not specify required special characters.  |
+| GUI-1582  | Non-root users with read-only access to a fabric and read-write access to collections are not able to create and save query workers in the web console.  |
+| GUI-1583  | Non-root users with read-only access to a fabric and read-write access to collections are not able to modify data in collections via the web console.  |
+| GUI-1606  | Text wrapping is not working properly in the API header descriptions in the API Reference in the web console.  |
+|   |   |
+| STRM-443  | Stream deletion is not always replicated in other regions.  |
 |   |   |
 |   |   |
 |   |   |
