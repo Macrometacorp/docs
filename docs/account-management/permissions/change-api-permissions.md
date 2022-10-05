@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Change API Permissions
 ---
 
-You can change permissions for API keys from the GDN console. For information about other methods of updating API key permissions, refer to [Update API Key](../apikeys/update-api-keys.md).
+You can change permissions for API keys from the GDN console. For information about other methods of updating API key permissions, refer to [Update API Key](../api-keys/update-api-keys.md).
 
 Once you log in to a Macrometa account, you can view all API keys that you have access to.
 
