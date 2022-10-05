@@ -15,11 +15,11 @@
     "write-translations": "docusaurus write-translations"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-rc.1",
-    "@docusaurus/plugin-client-redirects": "^2.0.0-rc.1",
-    "@docusaurus/plugin-sitemap": "^2.0.0-rc.1",
-    "@docusaurus/preset-classic": "^2.0.0-rc.1",
-    "@docusaurus/theme-search-algolia": "^2.0.0-rc.1",
+    "@docusaurus/core": "^2.1.0",
+    "@docusaurus/plugin-client-redirects": "2.1.0",
+    "@docusaurus/plugin-sitemap": "2.1.0",
+    "@docusaurus/preset-classic": "^2.1.0",
+    "@docusaurus/theme-search-algolia": "2.1.0",
     "@fontsource/lato": "^4.5.8",
     "@fontsource/open-sans": "^4.5.10",
     "@fontsource/source-code-pro": "^4.5.11",
