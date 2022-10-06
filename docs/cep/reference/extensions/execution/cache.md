@@ -8,10 +8,10 @@ The `cache` extension provides a persistent cache per tenant.
 
 The following functions are allowed:
 
-cache:get(<key>)          - gets a value per given <key>;
-cache:put(<key>, <value>) - puts <key>, <value>;
+cache:get("key")          - gets a value per given "key";
+cache:put("key", "value") - puts "key", "value";
 cache:count()             - counts the size of the cache;
-cache:delete(<key>)       - deletes a cache for a given <key>;
+cache:delete("key")       - deletes a cache for a given 'key";
 cache:purge()             - invalidates/purges the current cache.
 
 
@@ -21,9 +21,9 @@ cache:purge()             - invalidates/purges the current cache.
 Cache uses the following syntax:
 
 ```js
-	cache:put("my key", "my value");
+	cache:put("my_key", "my_value");
 	
-	cache:get("my key")
+	cache:get("my_key")
 ```
 
 
@@ -40,11 +40,11 @@ CREATE TABLE put_in_cache(value_is_put string);
 CREATE TABLE get_from_cache(value string);
 
 INSERT INTO put_in_cache 
-SELECT cache:put("my key", "my value") as value_is_put 
+SELECT cache:put("my_key", "my_value") as value_is_put 
 FROM EventsPutTrigger;
 
 INSERT INTO get_from_cache
-SELECT cache:get("my key") as value
+SELECT cache:get("my_key") as value
 FROM EventsGetTrigger;
 ```
 
@@ -55,5 +55,5 @@ Following document is saved every second in `put_in_cache`.
 		
 Following document is saved every 5 seconsd in `get_from_cache`.    
     
-        {"value": "my value"}
+        {"value": "my_value"}
 
