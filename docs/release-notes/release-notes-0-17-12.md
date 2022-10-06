@@ -72,6 +72,6 @@ The following defects were fixed in this release.
 |   |   |
 |   |   |
 |   |   |
-|   |   |
+| GUI-1661  | Moving documents multiple times results in a 409 error.  |
 |   |   |
 |   |   |
