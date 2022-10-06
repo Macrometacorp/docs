@@ -27,19 +27,19 @@ Description of feature.
 
 [Topic name](link) was added as a result of this feature.
 
-### Feature 1
+### Invite User
 
-Description of feature.
+Description of update.
 
-[Topic name](link) was added as a result of this feature.
+[Topic name](link) and [topic name](link) were updated as a result of this change.
 
 ## Feature Updates
 
 The following features updates are included in this release.
 
-### Invite User
+### Stream Worker Prefixes
 
-Description of update.
+You can now prepend a stream worker name to the aggregation tables that it creates. For example, if the stream worker name is `SampleAggregationApp` and the aggregation is `TradeAggregation,` then it will create tables like `SampleAggregationApp-TradeAggregation_SECONDS`. Previously, it was just `TradeAggregation_SECONDS`.
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
@@ -55,7 +55,10 @@ This release includes the following API changes.
 | Issue #  | Description  |
 |---|---|`
 | APIDOC-51  | Added stream worker parameters `maxLogsLengthKBPerMinutePerWorker` and `maxCpuSecondsPerMinutePerWorker`. |
-|   |  |
+| DB-1660  | You can now export in vpack format. Also added batching support. |
+| DB-1692  | The fabric creation endpoint in the API now allows up to 40 characters for fabric names, just like in the web console.  |
+| DB-1704  | Clarified in the API documentation for [Import API](https://macrometa.com/docs/api#/operations/ImportCollectionData) that the `_key` must be a string.  |
+| DB-1783  | provide a separate displayName parameter to set the user's display name while creating new user  |
 |   |   |
 |   |   |
 |   |   |
@@ -65,9 +68,7 @@ This release includes the following API changes.
 |   |   |
 |   |   |
 |   |   |
-|   |   |
-|   |   |
-|   |   |
+
 
 ## Known Issues
 
@@ -81,18 +82,19 @@ Explain the problem and the workaround.
 
 The following defects were fixed in this release.
 
-Is this user-facing? Should it be included in the end user release notes?
+Reviewers: Luis Leite, 
 
 | Defect #  | Description  |
 |---|---|
-| APIDOC-54  | In API reference docx, corrected a typo in insertDocument description.  |
+| APIDOC-54  | In API reference docs, corrected a typo in insertDocument description.  |
 |   |   |
-|   |   |
-|   |   |
+
+| DB-1666  | The item count on the screen is not updating when an item is inserted or deleted from a Dynamo collection.  |
+| DB-1667  | Dynamo scans with filter expressions are not working as expected.  |
 | DB-1668  | Improved error text in duplicate node error for graphs to be more user-friendly.  |
+| DB-1714  | MaxDocumentSize limit error message in Dynamo is incorrect.  |
 | DB-1801  | API `/_api/key/validate` returns HTTP code 200 with message 'non-representable type' when no request body is sent.  |
 | DB-1831  | Graph with a vertex collection not loading normally. It only loads when you click on Full Graph option.  |
-|   |   |
 |   |   |
 |   |   |
 |   |   |
