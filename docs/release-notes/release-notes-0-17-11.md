@@ -134,6 +134,7 @@ The following defects were fixed in this release.
 | GUI-1554  | Graph view in Query Results in the Query Workers page is not stable.  |
 | GUI-1555  | Typo in Primary Sort tool tip in Create New View modal.  |
 | GUI-1571  | Creating two fabrics with access to different regions shows all three regions available to both fabrics.  |
+| GUI-1573  | A non-root user that has access permission for fabric and read/write for collections cannot create or delete documents in the web console.  |
 | GUI-1574  | Multi-edge graph is not working.  |
 | GUI-1575  | An error in one graph prevents other graphs from loading.  |
 | GUI-1577  | Edit user password message does not specify required special characters.  |
