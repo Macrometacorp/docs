@@ -55,20 +55,34 @@ This release includes the following API changes.
 | Issue #  | Description  |
 |---|---|`
 | APIDOC-51  | Added stream worker parameters `maxLogsLengthKBPerMinutePerWorker` and `maxCpuSecondsPerMinutePerWorker`. |
-| DB-1660  | You can now export in vpack format. Also added batching support. |
+| APIDOC-54  | In API reference docs, corrected a typo in insertDocument description.  |
 | DB-1692  | The fabric creation endpoint in the API now allows up to 40 characters for fabric names, just like in the web console.  |
 | DB-1704  | Clarified in the API documentation for [Import API](https://macrometa.com/docs/api#/operations/ImportCollectionData) that the `_key` must be a string.  |
-| DB-1783  | provide a separate displayName parameter to set the user's display name while creating new user  |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
 
+#### Import and Export Changes (DB-1660)
+
+- You can now export in Vpack format.
+- Added batching support for importing and exporting.
+
+#### User Changes (DB-1783)
+
+- The `user` parameter is deprecated and will not be used while creating the new user. For backward compatibility, it will not generate any errors.
+- Provided a new optional parameter `displayName` to set the display name of the user. Whitespaces are allowed.
+
+Here is a sample for the updated request body:
+
+```bash
+curl -X 'POST' \ 'https://api-qa6.eng.macrometa.io/_api/user' \ 
+-H 'accept: application/json' \ 
+-H 'Content-Type: application/json' \ 
+-H 'Authorization: bearer <token> \
+-d { 
+    "active": true, 
+    "email": "test1@bar1.com", 
+    "passwd": "P@55w0rd", 
+    "displayName":"Jhon Doe" 
+    }'
+```
 
 ## Known Issues
 
@@ -82,32 +96,23 @@ Explain the problem and the workaround.
 
 The following defects were fixed in this release.
 
-Reviewers: Luis Leite, 
+Reviewers: Luis Leite, Ivan stoev, Avinash Maurya, Sourabh Edake
 
 | Defect #  | Description  |
 |---|---|
-| APIDOC-54  | In API reference docs, corrected a typo in insertDocument description.  |
-|   |   |
-|   |   |
 | DB-1637  | C8QL queries sometimes time out when a collection is created and not indexed.  |
-|   |   |
 | DB-1666  | The item count on the screen is not updating when an item is inserted or deleted from a Dynamo collection.  |
 | DB-1667  | Dynamo scans with filter expressions are not working as expected.  |
 | DB-1668  | Improved error text in duplicate node error for graphs to be more user-friendly.  |
 | DB-1714  | MaxDocumentSize limit error message in Dynamo is incorrect.  |
 | DB-1801  | API `/_api/key/validate` returns HTTP code 200 with message 'non-representable type' when no request body is sent.  |
 | DB-1831  | Graph with a vertex collection not loading normally. It only loads when you click on Full Graph option.  |
-|   |   |
-|   |   |
-|   |   |
+| DB-1855  | Maximum stored query workers limit is not applied across all regions.  |
 | GUI-236  | Newly-created key-value collection does not replicate in other geo locations.  |
 | GUI-239  | Could not update existing users in an account.  |
 | GUI-241  | Search functionality does not work on Accounts page.  |
 | GUI-249  | KV Pair Edit form does not show the date and time values correctly.  |
-|   |   |
-|   |   |
 | GUI-395  | New index for a collection does not appear in the UI.  |
-|   |   |
 | GUI-525  | Import Documents button is improperly aligned.  |
 | GUI-536  | When a non-root user opens the permission configuration tab for an API key, the Read-only option is in a disabled state. The same option is enabled for collections.  |
 | GUI-666  | The user is redirected to the login page after they change the fabric.  |
@@ -136,11 +141,4 @@ Reviewers: Luis Leite,
 | GUI-1582  | Non-root users with read-only access to a fabric and read-write access to collections are not able to create and save query workers in the web console.  |
 | GUI-1583  | Non-root users with read-only access to a fabric and read-write access to collections are not able to modify data in collections via the web console.  |
 | GUI-1606  | Text wrapping is not working properly in the API header descriptions in the API Reference in the web console.  |
-|   |   |
 | STRM-443  | Stream deletion is not always replicated in other regions.  |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
