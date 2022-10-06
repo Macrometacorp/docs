@@ -47,7 +47,22 @@
 
     /* Docusaurus Theming */
 
-    --ifm-global-radius: 0.5rem;
+    --font-family-base: 'Averta', ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --font-family-monospace: 'Source Code Pro', ui-monospace, SFMono-Regular,
+      Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+    --font-code: var(--font-family-monospace) !important;
+    --font-mono: var(--font-family-monospace) !important;
+    --font-prose: var(--font-family-base);
+
+    --ifm-background-color: var(--color-white);
+
+    --ifm-code-border-radius: 0.5rem;
+    --ifm-code-font-size: 0.9375rem;
 
     --ifm-color-primary: var(--color-primary-500);
     --ifm-color-primary-dark: var(--color-primary-600);
@@ -57,53 +72,42 @@
     --ifm-color-primary-lighter: var(--color-primary-300);
     --ifm-color-primary-lightest: var(--color-primary-200);
 
-    --ifm-code-border-radius: 0.5rem;
-    --ifm-code-font-size: 0.9375rem;
-    --ifm-pre-background-color: var(--color-neutral-50);
-
-    --ifm-link-color: var(--color-primary-500);
-    --ifm-link-decoration: none;
-
-    --ifm-font-family-monospace: 'Source Code Pro', ui-monospace, SFMono-Regular,
-      Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-    --font-code: var(--ifm-font-family-monospace) !important;
-    --font-mono: var(--ifm-font-family-monospace) !important;
-    --font-ui: 'Averta', ui-sans-serif, system-ui, -apple-system,
-      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-      'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-prose: var(--font-ui);
-
     --ifm-font-color-base: var(--color-neutral-700);
+    --ifm-font-family-base: var(--font-family-base);
+    --ifm-font-family-monospace: var(--font-family-monospace);
+    
+    --ifm-global-radius: 0.5rem;
 
     --ifm-heading-color: var(--color-neutral-800);
-    --ifm-heading-font-family: 'Averta', sans-serif;
-
-    --ifm-background-color: var(--color-white);
-
-    --ifm-menu-color: var(--color-neutral-700);
-    --ifm-menu-color-background-hover: var(--color-primary-100);
-    --ifm-menu-color-background-active: var(--color-primary-400);
-    --ifm-navbar-item-padding-horizontal: 0.5rem;
-    --ifm-toc-border-color: var(--docs-color-border);
-    --ifm-toc-padding-horizontal: 0.75rem;
-    --doc-sidebar-width: 280px !important;
+    --ifm-heading-font-family: var(--font-family-base);
 
     --ifm-footer-background-color: var(--color-primary-500);
     --ifm-footer-color: var(--color-primary-100);
     --ifm-footer-link-color: var(--color-primary-50);
     --ifm-footer-link-hover-color: var(--color-white);
+    --ifm-footer-padding-horizontal: 1.5rem;
+    --ifm-footer-padding-vertical: 0.5rem;
     --ifm-footer-title-color: var(--color-white);
 
+    --ifm-link-color: var(--color-primary-500);
+    --ifm-link-decoration: none;
 
+    --ifm-menu-color: var(--color-neutral-700);
+    --ifm-menu-color-background-active: var(--color-primary-400);
+    --ifm-menu-color-background-hover: var(--color-primary-100);
+
+    --ifm-navbar-item-padding-horizontal: 0.5rem;
     --ifm-navbar-padding-horizontal: 1.5rem;
     --ifm-navbar-padding-vertical: 0.5rem;
 
-    --ifm-footer-padding-horizontal: 1.5rem;
-    --ifm-footer-padding-vertical: 0.5rem;
+    --ifm-pre-background-color: var(--color-neutral-50);
+
+    --ifm-toc-border-color: var(--docs-color-border);
+    --ifm-toc-padding-horizontal: 0.75rem;
 
     /* Tailwind Theming */
-
+    --doc-sidebar-width: 280px !important;
+    
     --docs-color-primary: var(--color-primary-500);
     --docs-color-primary-100: var(--color-primary-300);
 
@@ -169,10 +173,10 @@
     --docsearch-key-gradient: var(--color-neutral-600) !important;
     --docsearch-searchbox-background: var(--color-neutral-700) !important;
 
-    --ifm-footer-background-color: var(--color-neutral-900);
-    --ifm-footer-color: var(--color-neutral-500);
-    --ifm-footer-link-color: var(--color-neutral-200);
-    --ifm-footer-link-hover-color: var(--color-neutral-100);
+    --ifm-footer-background-color: var(--color-primary-600);
+    --ifm-footer-color: var(--color-primary-200);
+    --ifm-footer-link-color: var(--color-primary-200);
+    --ifm-footer-link-hover-color: var(--color-white);
 
     --doc-mobile-toc-background: var(--color-primary-700);
 
@@ -184,7 +188,7 @@
 }
 
 html {
-  font-family: var(--font-ui);
+  font-family: var(--font-family-base);
 }
 
 /* Docusaurus styles */
