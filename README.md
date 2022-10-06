@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://macrometa.com">
-    <img src="https://i.imgur.com/NzHE2sN.png" alt="Logo" width="120">
+    <img src="https://www.macrometa.com/docs/img/macrometa-icon-purple.png" alt="Logo" width="120">
   </a>
 
   <h2 align="center"><a href="https://macrometa.com/docs">Macrometa Docs</a></h3>

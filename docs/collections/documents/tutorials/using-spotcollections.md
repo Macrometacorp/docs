@@ -225,97 +225,141 @@ except Exception as e:
 <TabItem value="js" label="Javascript">
 
 ```js
-  'use strict'
+const jsc8 = require("jsc8");
 
-  const jsc8 = require('jsc8');
+// Variables - DB
+const globalUrl = "https://gdn.paas.macrometa.io";
+const geofabric = "_system";
+const spotGfName = "spot";
+const regionUrls = [
+  "gdn-us-west",
+  "gdn-ap-west",
+  "gdn-eu-central"
+];
 
-  // Variables - DB
-  const global_url = "https://gdn.paas.macrometa.io";
-  const region_urls = [
-    "https://gdn-sfo2.prod.macrometa.io",
-    "https://gdn-us-west1.prod.macrometa.io",
-    "https://gdn-nyc1.prod.macrometa.io"
-  ];
+// Variables
+const collectionName = "accounts";
+const readQueryValue = "FOR account IN accounts RETURN account";
 
-  // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: global_url, token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: global_url, apiKey: "XXXX", fabricName: '_system'});
-  // await console.log("Authentication done!!...");
+// Variables - Data
+const data = [
+  { firstname: "Peter", lastname: "Parker", City: "NewYork" },
+  { firstname: "Bruce", lastname: "Wayne", City: "Gotham" },
+  { firstname: "Clark", lastname: "Kent", City: "Manhatten" },
+  { firstname: "Ned", lastname: "Stark", City: "Winterfell" },
+  { firstname: "Tywin", lastname: "Lannister", City: "Kings Landing" }
+];
 
-  // Or use Email & Password to Authenticate client instance
-  const client = new jsc8(global_url);
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+};
 
+async function main () {
+  // Create an authenticated instance with a token or API key
+  // const client = new jsc8({url: globalUrl, token: "XXXX", fabricName: '_system'});
+  // const client = new jsc8({url: globalUrl, apiKey: "XXXX", fabricName: '_system'});
+
+  // Or use email and password to authenticate a client instance
+  const client = new jsc8(globalUrl);
+  console.log(`1. Connecting to federation: ${globalUrl}`);
   await client.login("nemo@nautilus.com", "xxxxxx");
+  console.log("The connection was successful");
 
-  //Variables
-  const collection_name = "accounts";
+  // Step 1.5: Assign a spot region.
+  async function createSpotRegion () {
+    const dcl = "devsuccess2-us-east";
+    let fabric = await client.useFabric(spotGfName);
 
-  const read_query = "FOR account IN accounts RETURN account";
-
-  // Variables - Data
-  const data = [
-    {"firstname": "Peter", "lastname": "Parker", "City": "NewYork"},
-    {"firstname": "Bruce", "lastname": "Wayne", "City": "Gotham"},
-    {"firstname": "Clark", "lastname": "Kent", "City": "Manhatten"},
-    {"firstname": "Ned", "lastname": "Stark", "City": "Winterfell"},
-    {"firstname": "Tywin", "lastname": "Lannister", "City": "Kings Landing"},
-  ];
-
-  async function createCollection() {
-    console.log("\n 2. CREATE_COLLECTION");
-
-    try{
-      console.log(`Creating the collection ${collection_name}...`);
-      const exists_coll = await client.hasCollection(collection_name);
-      if (exists_coll === false) {
-          await client.createCollection(collection_name);
+    if (await fabric.exists()) {
+      console.log("Fabric", spotGfName, "already exists.");
+    } else {
+      fabric = await client.useFabric(geofabric);
+      try {
+        await fabric.createFabric(spotGfName, ["root"], {
+          dcList: regionUrls,
+          spotDc: dcl
+        });
       }
+      catch (e) {
+        console.log("fabric creation failed: ", e.response.body);
+      }
+      console.log("Fabric", spotGfName, "has been created successfully.");
+      fabric = await client.useFabric(spotGfName);
     }
-    catch (e) {
+  }
+
+  async function createCollection () {
+    console.log("\n 2. Create collection: ");
+
+    try {
+      console.log(`Creating the collection ${collectionName}...`);
+      const existsColl = await client.hasCollection(collectionName);
+      if (!existsColl) {
+        await client.createCollection(collectionName, { isSpot: true });
+        console.log("Collection created successfully");
+      } else {
+        console.log("Collection already exists");
+      }
+    } catch (e) {
       await console.log("Collection creation did not succeed due to " + e);
     }
   }
 
-  async function insertData() {
-    console.log(`\n 3. INSERT_DATA in region ${global_url}`);
-    await client.insertDocumentMany(collection_name, data);
+  async function insertData () {
+    console.log(`\n 3. Inserting data`);
+    await client.insertDocumentMany(collectionName, data);
   }
 
-  async function readData(){
-    console.log(`\n 4. READ_DATA in region ${global_url}`);
-    let result = await client.executeQuery(read_query);
+  async function readData () {
+    console.log(`\n 4. Reading data`);
+    const result = await client.executeQuery(readQueryValue);
     console.log(result);
   }
 
-  async function readDataFromAllRegions(){
-    for (let i = 0; i < region_urls.length; i++) { 
+  async function readDataFromAllRegions () {
+    try {
+      console.log(`\n 5. Reading data from regions:`);
+
+      for (let i = 0; i < regionUrls.length; i++) {
         // Crete a authenticated instance with Token / Apikey
-        // const regionclient = new jsc8({url: region_urls[i], token: "XXXX", fabricName: '_system'});
-        // const regionclient = new jsc8({url: region_urls[i], apiKey: "XXXX", fabricName: '_system'});
+        // const regionclient = new jsc8({url: regionUrls[i], token: "XXXX", fabricName: '_system'});
+        // const regionclient = new jsc8({url: regionUrls[i], apiKey: "XXXX", fabricName: '_system'});
         // await console.log("Authentication done!!...");
 
-        // Or use Email & Password to Authenticate client instance
-        const regionclient = new jsc8(region_urls[i]);
+        // Or use email and password to authenticate a client instance
+        console.log(regionUrls[i]);
+        const regionclient = new jsc8(`https://${regionUrls[i]}.paas.macrometa.io`);
         await regionclient.login("nemo@nautilus.com", "xxxxxx");
 
-        console.log(`\n 5. READ_DATA: Reading from region : ${region_urls[i]}`);
-        let result = await client.executeQuery(read_query);
+        console.log(`\n Reading from region : ${regionUrls[i]}`);
+        const result = await client.executeQuery(readQueryValue);
         console.log(result);
+      }
+    } catch (e) {
+      await console.log("Error caught while reading data from all regions: " + e);
     }
   }
 
-  async function deleteData(){
-    console.log("\n 6. DELETE_DATA");
-    await client.deleteCollection(collection_name);
+  async function deleteData () {
+    console.log("\n 6. Delete data");
+    await client.deleteCollection(collectionName);
   }
 
-  (async function(){
+  async function run () {
+    await createSpotRegion();
+    // Need to wait some time to get the spot region ready
+    await sleep(10000);
     await createCollection();
     await insertData();
     await readData();
     await readDataFromAllRegions();
     await deleteData();
-  })();
+  }
+
+  run();
+}
+
+main();
 ```
 
 </TabItem>

@@ -1,5 +1,6 @@
 ---
 title: Projection Queries
+sidebar_position: 80
 ---
 
 You can return a projection of the documents in `OLD` or `NEW` instead of returning the entire documents. This can be used to reduce the amount of data returned by queries.

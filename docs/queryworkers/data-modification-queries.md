@@ -1,5 +1,6 @@
 ---
 title: Data Modification Queries
+sidebar_position: 70
 ---
 
 C8QL supports the following data-modification operations:
@@ -10,7 +11,7 @@ C8QL supports the following data-modification operations:
 - **REMOVE**: remove existing documents from a collection
 - **UPSERT**: conditionally insert or update documents in a collection
 
-Below you find some simple example queries that use these operations. The operations are detailed in [C8QL Operations](../c8ql/operations/index.md).
+Below you find some simple example queries that use these operations. The operations are detailed in [C8QL Operations](c8ql/operations/index.md).
 
 ## Transactional Execution
   
@@ -30,7 +31,7 @@ INSERT {
 } IN users
 ```
 
-You may provide a key for the new document; if not provided, C8 will create one for you.  
+You can provide a key for the new document. If not provided, then Macrometa creates one for you.  
 
 ```js
 INSERT {
@@ -41,7 +42,7 @@ INSERT {
 } IN users
 ```
 
-As C8 is schema-free, attributes of the documents may vary:
+As Macrometa is schema-free, attributes of the documents may vary:
 
 ```js
 INSERT {
@@ -154,7 +155,7 @@ In all cases the full documents will be returned with all their attributes, incl
 
 ## Restrictions
 
-The name of the modified collection (*users* and *backup* in the above cases) must be known to the C8QL executor at query-compile time and cannot change at runtime. Using a bind parameter to specify the collection name is allowed.
+The name of the modified collection (_users_ and _backup_ in the above cases) must be known to the C8QL executor at query-compile time and cannot change at runtime. Using a bind parameter to specify the collection name is allowed.
 
 Data-modification operations are restricted to one collection at a time. It is not possible to use multiple data-modification operations for the same collection in the same query, or follow up a data-modification operation for a specific collection with a read operation for the same collection. Neither is it possible to follow up any data-modification operation with a traversal query (which may read from arbitrary collections not necessarily known at the start of the traversal).
 
