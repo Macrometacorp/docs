@@ -52,7 +52,7 @@ CREATE SOURCE <name> WITH (type="sse-server", receiver.url="<STRING>", worker.co
 |---------------|-------------|----------------|---------------------| -------- |---------|
 | receiver.url  | The sse endpoint url which should be listened | | STRING	| No | No |
 | worker.count  | The number of active worker threads to serve the incoming events                     | 1 | INT | Yes | No |
-| headers       | HTTP request headers in format "key:value,key:value" | | STRING | Yes | No |
+| headers       | HTTP request headers in format '<key>:<value>,<key>:<value>' | | STRING | Yes | No |
 
 
 ### EXAMPLE:
