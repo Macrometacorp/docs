@@ -22,7 +22,7 @@ CREATE SINK <name> WITH (type="sse-server", server.port="<INT>", server.path="<S
 | server.port  | The listening port of the SSE server which clients need to connect to receive events | | INT	| No | No |
 | server.path  | The listening path of the SSE server which clients need to connect to receive events | | STRING | Yes | No |
 | worker.count | The number of active worker threads to serve the incoming events                     | 1 | INT | Yes | No |
-| headers      | HTTP request headers in format "<key>:<value>,<key>:<value>" | | STRING | Yes | No |
+| headers      | HTTP request headers in format  | | STRING | Yes | No |
 
 
 
