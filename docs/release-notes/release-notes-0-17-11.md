@@ -96,8 +96,6 @@ Explain the problem and the workaround.
 
 The following defects were fixed in this release.
 
-Reviewers: Luis Leite, Ivan stoev, Avinash Maurya, Sourabh Edake
-
 | Defect #  | Description  |
 |---|---|
 | DB-1637  | C8QL queries sometimes time out when a collection is created and not indexed.  |
