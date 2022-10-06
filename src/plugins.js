@@ -24,6 +24,10 @@ const redirectsPlugin = [
       {
         from: '/essentials/troubleshooting',
         to: '/references/troubleshooting'
+      },
+            {
+        from: '/c8ql/got-tutorial',
+        to: '/queryworkers/c8ql/got-tutorial'
       }
     ]
   }
