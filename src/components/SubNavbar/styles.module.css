@@ -1,0 +1,42 @@
+@media (max-width: 996px) {
+  .subnav {
+    display: none;
+  }
+}
+
+.subnav {
+  background-color: var(--docs-color-background);
+  border-bottom: 1px solid var(--docs-color-border);
+  padding: 0 var(--ifm-navbar-padding-horizontal);
+}
+
+.subnav > ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  column-gap: 20px;
+}
+
+.navLink {
+  border-bottom: 4px solid transparent;
+  color: var(--navbar-link-color);
+  display: block;
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+  padding: 13px 0 10px;
+}
+
+.navLink:focus,
+.navLink:hover {
+  color: var(--navbar-link-color-focus);
+  text-decoration: none;
+}
+
+.navLinkActive,
+.navLinkActive:focus,
+.navLinkActive:hover {
+  border-bottom-color: var(--ifm-menu-color-background-active);
+  color: var(--navbar-link-color-active);
+  font-weight: 600;
+}

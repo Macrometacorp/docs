@@ -1,0 +1,17 @@
+.grid {
+  display: grid;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+}
+
+.col2 {
+  grid-template-columns: repeat(2, minmax(0px, 1fr));
+}
+
+.col3 {
+  grid-template-columns: repeat(3, minmax(0px, 1fr));
+}
+
+.col4 {
+  grid-template-columns: repeat(4, minmax(0px, 1fr));
+}
