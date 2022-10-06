@@ -95,6 +95,13 @@
     --ifm-footer-link-hover-color: var(--color-white);
     --ifm-footer-title-color: var(--color-white);
 
+
+    --ifm-navbar-padding-horizontal: 1.5rem;
+    --ifm-navbar-padding-vertical: 0.5rem;
+
+    --ifm-footer-padding-horizontal: 1.5rem;
+    --ifm-footer-padding-vertical: 0.5rem;
+
     /* Tailwind Theming */
 
     --docs-color-primary: var(--color-primary-500);
@@ -550,7 +557,7 @@ html[data-theme='dark'] .sl-text-warning {
 */
 
 .container {
-  @apply px-4;
+  @apply px-6;
 }
 @media (min-width: 640px) {
   .container {
@@ -684,8 +691,13 @@ article img {
   @apply text-base;
 }
 
+.footer__links {
+  margin: 0;
+  padding: 1.5rem 0 2.5rem;
+}
+
 .footer__bottom {
-  @apply text-sm;
+  font-size: 0.8125rem;
 }
 
 .theme-doc-toc-mobile {

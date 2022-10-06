@@ -1,8 +1,16 @@
 import React from 'react';
 import Head from '@docusaurus/Head';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
+import Layout from '@theme/Layout'; 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+
+/* Components */
+import Card from '../components/Card';
+import Grid from '../components/Grid';
+
+/* Styles */
+import styles from './index.module.css';
+
+/* Fonts */
 import '@fontsource/source-code-pro'
 
 export default function Homepage() {
@@ -24,13 +32,24 @@ export default function Homepage() {
         <link rel="preload" href="https://fonts.macrometa.com/averta/averta-cyrillic-semibold.woff2" as="font" crossorigin />
       </Head>
 
-      <h1>
-        Documentation
-      </h1>
-      <Link to="/data">Global Data Mesh</Link>
-      <Link to="/compute">Edge Compute</Link>
-      <Link to="/network">Network</Link>
-      <Link to="/access">Access</Link>
+      <div className={styles.heroBanner}>
+        <h1>
+          Documentation
+        </h1>
+        <h3>
+          Everything you need to build lightning-fast, globally distributed apps and APIs
+        </h3>
+      </div>
+      <div className="container">
+        <Grid cols={3}>
+          <Card heading="Global Data Mesh" href="/data" />
+          <Card heading="Edge Compute" href="/compute" />
+          <Card heading="Network" href="/network" />
+          <Card heading="Access" href="/access" />
+          <Card heading="Developer Tools" href="/development" />
+          <Card heading="Sample Apps" href="/apps" />
+        </Grid>
+      </div>
     </Layout>
   );
 }

@@ -159,11 +159,23 @@ const config = {
               {
                 label: 'What is Macrometa',
                 to: '/what-is-macrometa',
-              }
+              },
+              {
+                label: 'Global Data Mesh',
+                to: '/data',
+              },
+              {
+                label: 'Network',
+                to: '/network',
+              },
+              {
+                label: 'Access',
+                to: '/access',
+              },
             ],
           },
           {
-            title: 'SDKs & Tools',
+            title: 'Developer Tools',
             items: [
               {
                 label: 'Javascript',
@@ -180,8 +192,16 @@ const config = {
             ],
           },
           {
-            title: 'Community',
+            title: 'Connect',
             items: [
+              {
+                label: 'Slack Community',
+                href: 'https://macrometa.slack.com',
+              },
+              {
+                label: 'GitHub',
+                href: 'https://github.com/macrometacorp',
+              },
               {
                 label: 'Twitter',
                 href: 'https://twitter.com/macrometa',
@@ -189,16 +209,20 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'Resources',
             items: [
               {
-                label: 'GitHub',
-                href: 'https://github.com/macrometacorp/',
+                label: 'Support',
+                href: 'https://support.macrometa.com',
+              },
+              {
+                label: 'System Status',
+                href: 'https://status.macrometa.io/',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Macrometa`,
+        copyright: `© ${new Date().getFullYear()} Macrometa • All rights reserved`,
       },
       prism: {
         theme: lightCodeTheme,
