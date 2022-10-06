@@ -53,7 +53,7 @@ Following document is saved every second in `put_in_cache`.
         {"value_is_put": "true"}
         
 		
-Following document is saved every 5 seconsd in `get_from_cache`.    
+Following document is saved every five seconsd in `get_from_cache`.    
     
         {"value": "my_value"}
 

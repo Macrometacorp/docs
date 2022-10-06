@@ -1,14 +1,14 @@
 ---
-title: Adhoc Query
+title: Ad Hoc Queries
 ---
 
-Adhoc queries provide a way of performing ad-hoc operations on tables (stores), named-windows, and named-aggregations. We can send adhoc queries and fetch data from Stores and named windows.
+Ad hoc queries provide a way of performing ad-hoc operations on tables (stores), named windows, and named aggregations. We can send ad hoc queries and fetch data from stores and named windows.
 
 
 
 ## Syntax
 
-Adhoc Query uses the following syntax:
+Ad hoc queries use the following syntax:
 
 ```js
 	select * from SampleAdhocQueryInputTableOneMinTimeWindow;
@@ -19,6 +19,7 @@ Adhoc Query uses the following syntax:
 
 
 ## Example
+
 
 ```js
 -- Defines `SampleAdhocQueryInputTable` collection to process events having `sensorId` and `temperature`(F).
@@ -53,7 +54,7 @@ WHERE sensorId == 'sensor A1234';
 2. This application accumulates all the data for one minute in the named window `SampleAdhocQueryInputTableOneMinTimeWindow`
 	Named window allows other application to query data in realtime.
 
-3. Run the adhoc query on the `SampleAdhocQueryInputTableOneMinTimeWindow` 
+3. Run the ad hoc query on the `SampleAdhocQueryInputTableOneMinTimeWindow` 
 	Query:
 		select * from SampleAdhocQueryInputTableOneMinTimeWindow
 
