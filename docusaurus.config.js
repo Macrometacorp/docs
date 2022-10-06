@@ -1,6 +1,4 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
-
 require("dotenv").config();
 
 const {
@@ -24,8 +22,8 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'macrometacorp', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
+  organizationName: 'macrometacorp',
+  projectName: 'docs',
   clientModules: [
     require.resolve('./src/css/fonts.css'),
     require.resolve('./src/css/tailwind.css')
@@ -37,6 +35,7 @@ const config = {
       {
         docs: {
           path: 'docs',
+          breadcrumbs: false,
           editUrl: ({ docPath }) =>
             `https://github.com/macrometacorp/docs/edit/master/docs/${docPath}`,
           routeBasePath: '/',
@@ -106,20 +105,45 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'quickstart',
+            href: '/',
+            activeBasePath: '/',
             position: 'left',
             label: 'Docs',
           },
           {
             position: 'left',
-            label: 'API',
+            label: 'API Reference',
             href: '/api'
           },
           {
+            className: 'navbar__item--external',
+            href: 'https://support.macrometa.com/',
+            label: 'Support',
+            position: 'left',
+          },
+          {
+            className: 'navbar__item--external',
+            href: 'https://auth.paas.macrometa.io/',
+            label: 'Log in',
+            position: 'left',
+          },
+          {
+            className: 'navbar__item--external',
             href: 'https://github.com/macrometacorp/docs',
             label: 'GitHub',
-            position: 'left',
+            position: 'right',
+          },
+          {
+            className: 'navbar__item--external',
+            href: 'https://twitter.com/macrometa',
+            label: 'Twitter',
+            position: 'right',
+          },
+          {
+            className: 'navbar__item--external',
+            href: 'https://macrometa.slack.com/',
+            label: 'Slack',
+            position: 'right',
           },
         ],
       },

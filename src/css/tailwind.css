@@ -47,6 +47,8 @@
 
     /* Docusaurus Theming */
 
+    --ifm-global-radius: 0.5rem;
+
     --ifm-color-primary: var(--color-primary-500);
     --ifm-color-primary-dark: var(--color-primary-600);
     --ifm-color-primary-darker: var(--color-primary-700);
@@ -212,7 +214,7 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
   border-radius: 0.25rem;
   color: var(--color-white);
   background: var(--ifm-menu-color-background-active);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .menu__link--active:not(.menu__link--sublist) {
@@ -237,6 +239,10 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
 
 /* Optional style for only one link which acts as nav section header */
 
+.navbar-sidebar__backdrop {
+  background-color: rgba(11, 12, 14, .68);
+}
+
 .navbar__toggle {
   @apply mr-3;
 }
@@ -247,6 +253,11 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
 
 .navbar__item svg {
   display: none;
+}
+
+.navbar__item--external::after {
+  content: url(/img/icon-arrow-external.svg);
+  padding-left: 2px;
 }
 
 .navbar__logo {
@@ -358,31 +369,29 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   color: inherit !important;
 }
 
-.sl-elements div[aria-label='Responses'] {
-  span {
-    @apply mr-auto;
-  }
+.sl-elements div[aria-label='Responses'] span {
+  @apply mr-auto;
+}
 
-  div[data-key] {
-    @apply mr-2 flex items-center rounded-md border outline-none ring-0;
-  }
+.sl-elements div[aria-label='Responses'] div[data-key] {
+  @apply mr-2 flex items-center rounded-md border outline-none ring-0;
+}
 
-  div[data-key]::before {
-    content: '';
-    @apply mr-2 inline-block h-3 w-3 rounded-full bg-green-500 drop-shadow-sm;
-  }
+.sl-elements div[aria-label='Responses'] div[data-key]::before {
+  content: '';
+  @apply mr-2 inline-block h-3 w-3 rounded-full bg-green-500 drop-shadow-sm;
+}
 
-  div[data-key^='4']::before {
-    @apply bg-red-500;
-  }
+.sl-elements div[aria-label='Responses'] div[data-key^='4']::before {
+  @apply bg-red-500;
+}
 
-  div[data-key^='5']::before {
-    @apply bg-yellow-500;
-  }
+.sl-elements div[aria-label='Responses'] div[data-key^='5']::before {
+  @apply bg-yellow-500;
+}
 
-  div[aria-selected='true'] {
-    @apply border-primary-100 shadow-sm;
-  }
+.sl-elements div[aria-label='Responses'] div[aria-selected='true'] {
+  @apply border-primary-100 shadow-sm;
 }
 
 .sl-overflow-x-hidden.sl-overflow-y-auto.sl-flex-1.sl-w-full.sl-px-24.sl-bg-canvas {
@@ -536,11 +545,43 @@ html[data-theme='dark'] .sl-text-warning {
   scrollbar-width: none;
 }
 
+/*
+  Container
+*/
+
 .container {
-  @apply px-4 lg:pl-7;
+  @apply px-4;
+}
+@media (min-width: 640px) {
+  .container {
+    max-width: 40rem;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 48rem;
+  }
+}
+@media (min-width: 997px) {
+  .container {
+    max-width: 60rem;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: 68rem;
+  }
+}
+@media (min-width: 1536px) {
+  .container {
+    max-width: 72rem;
+  }
 }
 
-/* Markdown styles */
+
+/*
+  Markdown styles
+*/
 
 .markdown {
   --ifm-h2-vertical-rhythm-top: 2;
@@ -550,6 +591,8 @@ html[data-theme='dark'] .sl-text-warning {
   font-size: 17px;
   letter-spacing: -0.0025rem;
   line-height: 28px;
+  margin: 0 auto;
+  max-width: 72rem;
 }
 
 .markdown h1,
@@ -563,8 +606,8 @@ html[data-theme='dark'] .sl-text-warning {
 
 .markdown h1:first-child {
   --ifm-h1-font-size: 2.5rem;
-  --ifm-h1-vertical-rhythm-bottom: 1;
-  margin-top: 0.5rem;
+  --ifm-h1-vertical-rhythm-bottom: 1.25;
+  margin-top: 1.5rem;
 }
 
 .markdown > h2 {
@@ -652,4 +695,22 @@ article img {
 .theme-doc-toc-mobile > .clean-btn {
   padding: 0.75rem 1rem;
   @apply text-base;
+}
+
+/*
+  Pagination
+*/
+
+.pagination-nav__sublabel {
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.pagination-nav__label {
+  font-weight: 400;
+}
+
+.pagination-nav__link--prev .pagination-nav__label::before,
+.pagination-nav__link--next .pagination-nav__label::after {
+  content: ''
 }

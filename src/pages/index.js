@@ -1,6 +1,7 @@
 import React from 'react';
-import { Redirect } from '@docusaurus/router';
 import Head from '@docusaurus/Head';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import '@fontsource/source-code-pro'
 
@@ -8,7 +9,7 @@ export default function Homepage() {
   const { siteConfig } = useDocusaurusContext();
 
   return (
-    <>
+    <Layout>
       <Head>
         <meta title="Macrometa Docs" />
         <meta property="og:title" content="Macrometa Docs" />
@@ -22,7 +23,14 @@ export default function Homepage() {
         <link rel="preload" href="https://fonts.macrometa.com/averta/averta-cyrillic-regular.woff2" as="font" crossorigin />
         <link rel="preload" href="https://fonts.macrometa.com/averta/averta-cyrillic-semibold.woff2" as="font" crossorigin />
       </Head>
-      <Redirect to={`${siteConfig.baseUrl}quickstart`} />
-    </>
+
+      <h1>
+        Documentation
+      </h1>
+      <Link to="/data">Global Data Mesh</Link>
+      <Link to="/compute">Edge Compute</Link>
+      <Link to="/network">Network</Link>
+      <Link to="/access">Access</Link>
+    </Layout>
   );
 }

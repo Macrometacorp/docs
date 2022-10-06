@@ -1,0 +1,38 @@
+.cardWrapper {
+  --docs-card-background-color: rgba(25, 27, 31, 0.8);
+  --docs-card-border-color: rgba(25, 27, 31, 0.8);
+  
+  --docs-card-background-color-focus: rgba(25, 27, 31, 1);
+  --docs-card-border-color-hover: var(--color-primary-500);
+
+  background-color: var(--docs-card-background-color);
+  border: 1px solid var(--docs-card-border-color);
+  border-radius: 0.5rem;
+  display: block;
+  padding: 1.25rem;
+  transition: all ease-in-out 0.135s;
+}
+
+.cardWrapper:focus,
+.cardWrapper:hover {
+  background-color: var(--docs-card-background-color-focus);
+  text-decoration: none;
+}
+
+.cardWrapper:hover {
+  border-color: var(--docs-card-border-color-hover);
+}
+
+.cardTitle {
+  color: var(--color-white);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.6rem;
+  margin: 0 0 0.5rem;
+}
+
+.cardDescription {
+  color: var(--color-primary-300);
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+}
