@@ -42,7 +42,7 @@
     --color-primary-500: #6767E6;
     --color-primary-600: #4D4DAD;
     --color-primary-700: #343473;
-    --color-primary-800: #1A1A3A;
+    --color-primary-800: #191B1F; /*NEW*/
     --color-primary-900: #0A0A17;
 
     /* Docusaurus Theming */
@@ -55,7 +55,7 @@
     --ifm-color-primary-lighter: var(--color-primary-300);
     --ifm-color-primary-lightest: var(--color-primary-200);
 
-    --ifm-code-border-radius: 0.25rem;
+    --ifm-code-border-radius: 0.5rem;
     --ifm-code-font-size: 0.9375rem;
     --ifm-pre-background-color: var(--color-neutral-50);
 
@@ -66,7 +66,7 @@
       Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     --font-code: var(--ifm-font-family-monospace) !important;
     --font-mono: var(--ifm-font-family-monospace) !important;
-    --font-ui: 'Open Sans', ui-sans-serif, system-ui, -apple-system,
+    --font-ui: 'Averta', ui-sans-serif, system-ui, -apple-system,
       BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
       'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol', 'Noto Color Emoji';
@@ -75,14 +75,16 @@
     --ifm-font-color-base: var(--color-neutral-700);
 
     --ifm-heading-color: var(--color-neutral-800);
-    --ifm-heading-font-family: 'Lato', sans-serif;
+    --ifm-heading-font-family: 'Averta', sans-serif;
 
     --ifm-background-color: var(--color-white);
 
+    --ifm-menu-color: var(--color-neutral-700);
     --ifm-menu-color-background-hover: var(--color-primary-100);
     --ifm-menu-color-background-active: var(--color-primary-400);
     --ifm-navbar-item-padding-horizontal: 0.5rem;
     --ifm-toc-border-color: var(--docs-color-border);
+    --ifm-toc-padding-horizontal: 0.75rem;
     --doc-sidebar-width: 280px !important;
 
     --ifm-footer-background-color: var(--color-primary-500);
@@ -118,6 +120,9 @@
 
     --doc-mobile-toc-background: var(--color-primary-50);
     --image-background-color: var(--color-white);
+
+    --navbar-link-color: var(--color-neutral-500);
+    --navbar-link-color-active: var(--color-primary-500);
   }
 
   html[data-theme='dark'] {
@@ -125,9 +130,9 @@
     --ifm-tabs-color-active-border: var(--color-primary-400);
     --ifm-tabs-color-active: var(--color-primary-400);
     --ifm-color-primary: var(--color-primary-400);
-    --ifm-menu-color: var(--color-neutral-100) !important;
+    --ifm-menu-color: var(--color-primary-100) !important;
     --ifm-toc-link-color: var(--color-neutral-200) !important;
-    --ifm-pre-background-color: var(--color-neutral-700);
+    --ifm-pre-background-color: var(--color-neutral-900);
 
     --docs-color-primary-100: var(--color-primary-400);
 
@@ -145,8 +150,8 @@
     --ifm-menu-color-background-hover: var(--color-primary-700);
     --ifm-menu-color-background-active: var(--color-primary-600);
     
-    --ifm-heading-color: var(--color-neutral-100);
-    --ifm-font-color-base: var(--color-neutral-50);
+    --ifm-heading-color: var(--color-white);
+    --ifm-font-color-base: var(--color-neutral-200);
 
     --color-canvas-100: var(--docs-color-background-100);
     --color-canvas-200: var(--docs-color-background-200);
@@ -163,7 +168,14 @@
     --doc-mobile-toc-background: var(--color-primary-700);
 
     --image-background-color: var(--color-neutral-700);
+
+    --navbar-link-color: var(--color-neutral-400);
+    --navbar-link-color-active: var(--color-white);
   }
+}
+
+html {
+  font-family: var(--font-ui);
 }
 
 /* Docusaurus styles */
@@ -181,7 +193,7 @@
 }
 
 .menu > .menu__list {
-  padding: 0 0.5rem;
+  padding: 0 0.75rem;
 }
 
 .menu > .menu__list > .menu__list-item:first-child {
@@ -238,13 +250,26 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
 }
 
 .navbar__logo {
-  height: 1.75rem;
+  height: 34px;
   padding-bottom: 4px;
 }
 
 .navbar {
   background-color: var(--docs-color-background);
   border-bottom: 1px solid var(--docs-color-border);
+}
+
+.navbar__link {
+  color: var(--navbar-link-color);
+}
+
+.navbar__link:hover {
+  color: var(--navbar-link-color-active);
+}
+
+.navbar__link--active {
+  color: var(--navbar-link-color-active);
+  font-weight: 600;
 }
 
 .navbar-sidebar__back {
@@ -521,7 +546,19 @@ html[data-theme='dark'] .sl-text-warning {
   --ifm-h2-vertical-rhythm-top: 2;
   --ifm-h3-vertical-rhythm-top: 2;
   --ifm-heading-vertical-rhythm-bottom: 1;
-  @apply font-sans text-base leading-6 antialiased;
+  @apply antialiased;
+  font-size: 17px;
+  letter-spacing: -0.0025rem;
+  line-height: 28px;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  letter-spacing: -0.02rem;
 }
 
 .markdown h1:first-child {
@@ -542,6 +579,14 @@ html[data-theme='dark'] .sl-text-warning {
 
 .markdown > p {
   margin-bottom: 1rem;
+}
+
+.table-of-contents {
+  font-size: 0.875rem;
+}
+
+.table-of-contents__link {
+  line-height: 1.25rem;
 }
 
 code {
