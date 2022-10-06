@@ -141,4 +141,5 @@ The following defects were fixed in this release.
 | GUI-1582  | Non-root users with read-only access to a fabric and read-write access to collections are not able to create and save query workers in the web console.  |
 | GUI-1583  | Non-root users with read-only access to a fabric and read-write access to collections are not able to modify data in collections via the web console.  |
 | GUI-1606  | Text wrapping is not working properly in the API header descriptions in the API Reference in the web console.  |
+| STRM-418  | Stream limits are not properly applied on custom fabrics.  |
 | STRM-443  | Stream deletion is not always replicated in other regions.  |
