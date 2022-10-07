@@ -16,14 +16,14 @@ export default function NotFound(): JSX.Element {
         <main className="container margin-vert--xl">
           <div className="row">
             <div className="col col--6 col--offset-3">
-              <h1 className="hero__title">
+              <h1 className="hero__title" style={{ textAlign: 'center' }}>
                 <Translate
                   id="theme.NotFound.title"
                   description="The title of the 404 page">
                   Page Not Found
                 </Translate>
               </h1>
-              <p>
+              <p style={{ textAlign: 'center' }}>
                 <Translate
                   id="theme.NotFound.p1"
                   description="The first paragraph of the 404 page">

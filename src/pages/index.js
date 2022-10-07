@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout'; 
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 /* Components */
 import Card from '../components/Card';
@@ -14,8 +13,6 @@ import styles from './index.module.css';
 import '@fontsource/source-code-pro'
 
 export default function Homepage() {
-  const { siteConfig } = useDocusaurusContext();
-
   return (
     <Layout>
       <Head>

@@ -161,17 +161,13 @@ const config = {
                 to: '/what-is-macrometa',
               },
               {
-                label: 'Global Data Mesh',
-                to: '/data',
+                label: 'Sample Apps',
+                to: '/apps'
               },
               {
-                label: 'Network',
-                to: '/network',
-              },
-              {
-                label: 'Access',
-                to: '/access',
-              },
+                label: 'Release Notes',
+                to: '/release-notes'
+              }
             ],
           },
           {

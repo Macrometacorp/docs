@@ -1,10 +1,13 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+:root {
+  --banner-background-color: var(--color-primary-100);
+}
+
+html[data-theme='dark'] {
+  --banner-background-color: var(--color-neutral-900);
+}
 
 .heroBanner {
-  background-color: var(--color-neutral-900);
+  background-color: var(--banner-background-color);
   margin: 0 0 2rem;
   padding: 6rem 0;
   position: relative;

@@ -75,6 +75,7 @@
     --ifm-font-color-base: var(--color-neutral-700);
     --ifm-font-family-base: var(--font-family-base);
     --ifm-font-family-monospace: var(--font-family-monospace);
+    --ifm-font-weight-bold: 600;
     
     --ifm-global-radius: 0.5rem;
 
@@ -82,12 +83,12 @@
     --ifm-heading-font-family: var(--font-family-base);
 
     --ifm-footer-background-color: var(--color-primary-500);
-    --ifm-footer-color: var(--color-primary-100);
-    --ifm-footer-link-color: var(--color-primary-50);
-    --ifm-footer-link-hover-color: var(--color-white);
-    --ifm-footer-padding-horizontal: 1.5rem;
+    --ifm-footer-color: var(--color-neutral-500);
+    --ifm-footer-link-color: var(--color-primary-500);
+    --ifm-footer-link-hover-color: var(--color-primary-600);
+    --ifm-footer-padding-horizontal: 0;
     --ifm-footer-padding-vertical: 0.5rem;
-    --ifm-footer-title-color: var(--color-white);
+    --ifm-footer-title-color: var(--color-neutral-700);
 
     --ifm-link-color: var(--color-primary-500);
     --ifm-link-decoration: none;
@@ -174,9 +175,10 @@
     --docsearch-searchbox-background: var(--color-neutral-700) !important;
 
     --ifm-footer-background-color: var(--color-primary-600);
-    --ifm-footer-color: var(--color-primary-200);
+    --ifm-footer-color: var(--color-neutral-300);
     --ifm-footer-link-color: var(--color-primary-200);
     --ifm-footer-link-hover-color: var(--color-white);
+    --ifm-footer-title-color: var(--color-white);
 
     --doc-mobile-toc-background: var(--color-primary-700);
 
@@ -589,9 +591,8 @@ html[data-theme='dark'] .sl-text-warning {
   }
 }
 
-
 /*
-  Markdown styles
+  Markdown Styles
 */
 
 .markdown {
@@ -647,11 +648,6 @@ code {
   @apply px-1;
 }
 
-strong,
-b {
-  @apply font-extrabold;
-}
-
 article img {
   background-color: var(--image-background-color);
   border: 1px solid var(--docs-color-border);
@@ -665,7 +661,10 @@ article img {
   font-size: 14px;
 }
 
-/* Docsearch */
+/*
+  Docsearch
+*/
+
 .DocSearch-Logo {
   display: none;
 }
@@ -687,21 +686,12 @@ article img {
   background: none !important;
 }
 
+/*
+  Theme
+*/
+
 .theme-code-block {
   box-shadow: none !important;
-}
-
-.footer {
-  @apply text-base;
-}
-
-.footer__links {
-  margin: 0;
-  padding: 1.5rem 0 2.5rem;
-}
-
-.footer__bottom {
-  font-size: 0.8125rem;
 }
 
 .theme-doc-toc-mobile {
@@ -713,9 +703,17 @@ article img {
   @apply text-base;
 }
 
+.theme-doc-footer {
+  margin: 3rem 0 1.5rem 0 !important;
+}
+
 /*
   Pagination
 */
+
+.pagination-nav {
+  margin: 1.5rem 0 0 !important;
+}
 
 .pagination-nav__sublabel {
   font-weight: 600;
@@ -729,4 +727,36 @@ article img {
 .pagination-nav__link--prev .pagination-nav__label::before,
 .pagination-nav__link--next .pagination-nav__label::after {
   content: ''
+}
+
+/*
+  Footer
+*/
+
+.footer {
+  background-color: var(--docs-color-background);
+  border-top: 1px solid var(--docs-color-border);
+  @apply text-base;
+}
+
+.footer__col {
+  padding: 0 1.5rem;
+}
+@media (max-width: 996px) {
+  .footer__col {
+    margin: 0 0 2rem;
+  }
+}
+
+.footer__links {
+  margin: 0;
+  padding: 1.5rem 0 2.5rem;
+}
+
+.footer__title {
+  margin: 0 0 0.75rem;
+}
+
+.footer__bottom {
+  font-size: 0.8125rem;
 }
