@@ -4,7 +4,7 @@ title: Tutorials
 ---
 
 :::note
-If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../../what-is-macrometa.md)**.
+If you are new to Macrometa GDN, we strongly recommend reading [What is Macrometa](../../../what-is-macrometa.md).
 :::
 
 Following tutorials cover various user scenarios using Macrometa GDN.
@@ -13,7 +13,7 @@ Following tutorials cover various user scenarios using Macrometa GDN.
 
 - [Working with Documents](working-with-documents.md)
 - [Using C8QL](../../../queryworkers/tutorial.md)
-- [Coming from SQL](../../../c8ql/coming-from-sql.md)
+- [Coming from SQL](../../../queryworkers/c8ql/coming-from-sql.md)
 <!-- * [Using Spot Collections](using-spotcollections.md) -->
 - [Using Realtime DB](using-realtime-updates.md)
 
