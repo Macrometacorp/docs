@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Quickstart
 ---
 
-Get started with Macrometa by creating a simple address book. This tutorial is Macrometa's version of "Hello, world!" It is simplistic by design and demonstrates how you can quickly use our stateless-serverless backend to run a globally distributed database with local read-write latencies around 50ms.
+Get started with Macrometa by creating a simple address book. This tutorial is Macrometa's version of "Hello, world!" It is simplistic by design and demonstrates how you can quickly use our stateful serverless backend to run a globally distributed database with local read-write latencies around 50ms.
 
 ## Step 1: Create a Macrometa account or log in
 

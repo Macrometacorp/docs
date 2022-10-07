@@ -13,64 +13,16 @@ This section demonstrates some of the tasks that you can complete with Macrometa
 - [pyC8](https://github.com/Macrometacorp/pyC8) - Python SDK
 - [VueC8](https://github.com/Macrometacorp/VueC8) - VueJS SDK
 
-The topics in this section focus primarily on the Python and JavaScript drivers, showing how to perform the tasks with SDKs or with APIs and the appropriate calls Python or JavaScript calls.
+Read through the complete example below to see how to perform tasks with SDKs or with APIs using Python or JavaScript calls.
 
-Read through the complete example below, or refer to the specific subsections.
+## Pre-requisites
 
-## Pre-requisite
+- You must have a Macrometa account with admin privileges
+- [Install the SDK](install-sdks.md) that corresponds to the programming language you want to use.
 
-- Assume your tenant name is `nemo@nautilus.com` and user password is `xxxxx`.
-- Download the appropriate SDK.
+## SDK Example
 
-## SDK download
-
-<Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
-
-```js
-With Yarn or NPM
-
-yarn add jsc8
-(or)
-npm install jsc8
-
-If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
-
-npm install --global jsc8
-
-From source,
-
-git clone https://github.com/macrometacorp/jsc8.git
-cd jsC8
-npm install
-npm run dist
-```
-
-</TabItem>
-<TabItem value="py" label="Python">
-
-```py
-pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
-
-To install pyC8, simply run
-
-$ pip3 install pyC8
-
-or, if you prefer to use conda:
-
-conda install -c conda-forge pyC8
-
-or pipenv:
-
-pipenv install --pre pyC8
-
-Once the installation process is finished, you can begin developing applications in Python.
-```
-
-</TabItem>
-</Tabs>
-
-## Complete Example
+Assume your tenant name is `nemo@nautilus.com` and user password is `xxxxx`.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
