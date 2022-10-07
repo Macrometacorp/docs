@@ -3,13 +3,8 @@ sidebar_position: 1
 title: SQL in Macrometa
 ---
 
-SQL for Structured Query Language. The SQL query language can be used to create, retrieve and modify data that are stored in the Macrometa geo-distributed fast data platform.
+Structured Query Language (SQL) is a standardized programming language that is used to manage relational databases and perform various operations on the data in them. You can use SQL to create, retrieve, and modify data that are stored in the Macrometa geo-distributed fast data platform.
 
-:::note
-If this is your first time with SQL then be sure to check out the [SQL GoT Tutorial](tutorial/index.md) before you head off to the in-depth documentation!
-:::
-
-Structured Query Language (SQL) is a standardized programming language that is used to manage relational databases and perform various operations on the data in them.
 Although SQL is an ANSI/ISO standard, there are different versions of the SQL language. Macrometa SQL dialect supports DQL (SELECT statement), DML statements (UPDATE, INSERT and DELETE) and a subset of DDL statements.
 
 ## SQL Workflow
@@ -23,4 +18,4 @@ The general workflow when executing a query is as follows:
 
 We have SDKs for [JavaScript](https://github.com/Macrometacorp/jsC8) and [Python](https://github.com/Macrometacorp/pyC8)
 
-For some example queries, please refer to [SQL GoT Tutorial](tutorial/index.md).
+If this is your first time with SQL, then you might want to check out the [SQL GoT Tutorial](tutorial/index.md) before you head off to the in-depth documentation.
