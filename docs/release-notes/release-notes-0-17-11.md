@@ -99,7 +99,7 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
-| DB-1637  | C8QL queries sometimes time out when a collection is created and not indexed.  |
+| DB-1637  | In the C8QL query, if the filters are applied on the non-indexed keys, the query is likely to time out.  |
 | DB-1666  | The item count on the screen is not updating when an item is inserted or deleted from a Dynamo collection.  |
 | DB-1667  | Dynamo scans with filter expressions are not working as expected.  |
 | DB-1668  | Improved error text in duplicate node error for graphs to be more user-friendly.  |
