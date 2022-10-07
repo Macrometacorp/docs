@@ -42,10 +42,6 @@ In the diagram below, Consumer-C-1 is the master consumer while Consumer-C-2 wou
 
 ![stream-failover-subscriptions](/img/stream-failover-subscriptions.png)
 
-### Key_Shared
-
-In *key_shared* mode, multiple consumers can attach to the same subscription. Messages with same key or same ordering key are delivered to only one consumer. No matter how many times the message is re-delivered, it is delivered to the same consumer. You must specify a key for messages.
-
 ## Multi-stream Subscriptions
 
 When a consumer subscribes to a GDN stream, by default it subscribes to one specific stream, such as `persistent://tenant1/fabric1/my-stream`. GDN stream consumers can simultaneously subscribe to multiple streams. You can define a list of streams in two ways:
