@@ -268,13 +268,14 @@ await consumer.run({
     })
   }
 })
+```
 
 
 ### Kafka-Node client for Node.js
 
-The Kafka-Node client can be used to create Kafka producers, consumers, and topics in Node.js. Full documentation here.
+The Kafka-Node client can be used to create Kafka producers, consumers, and topics in Node.js. Full documentation [here](https://www.npmjs.com/package/kafka-node).
 
-Note: Recommend to use kafkajs client instead, because kafka-node has not been supporting since 2019 year.
+Note: Recommend to use [kafkajs](../kafkajs/README.md) client instead, because `kafka-node` has not been supporting since 2019 year.
 
 
 #### Installation
@@ -285,6 +286,7 @@ npm install kafka-node
 Create a client
 In order to interact with Kafka, needs to be created a client instance:
 
+```node
 const kafka = require('kafka-node');
 
 const client = new kafka.KafkaClient(
@@ -297,20 +299,24 @@ const client = new kafka.KafkaClient(
           rejectUnauthorized: false
         }
     });
+```
 Create a topic
 This client requires to create a topic before running consumer.
 
 Here is an example:
 
+```node
 client.createTopics([{topic: '<c8globals or c8locals>.<my-topic>' ,partitions: 1, replicationFactor: 1}], (error, result) => {
     ...
 });
+```
 
 
 #### Producer
 
 This example creates a Node.js producer for the my-topic topic and sends messages to that topic:
 
+```node
 const producer = new kafka.HighLevelProducer(client);
 producer.on('ready', function () {
     console.log('starting to produce');
@@ -322,14 +328,14 @@ function send() {
         ...
     });
 }
+```
 
 
 #### Consumer
 
-Kafka consumers subscribe to one or more Kafka topics and listen for incoming messages produced on that topic or multiple topics with global either local distribution. For example: new kafka.Consumer(client, [{ topic: 'c8globals.topic-1', topic: 'c8locals.topic-2'}]).
+Kafka consumers subscribe to one or more Kafka topics and listen for incoming messages produced on that topic or multiple topics with global either local distribution. For example: `new kafka.Consumer(client, [{ topic: 'c8globals.topic-1', topic: 'c8locals.topic-2'}])`.
 
-Here is an example:
-
+```node
 const consumer = new kafka.Consumer(client, [{ topic: '<c8globals or c8locals>.<my-topic>', groupId: '<my-group-id>' partition: 0}], {
     autoCommit: true,
     autoCommitIntervalMs: 500
