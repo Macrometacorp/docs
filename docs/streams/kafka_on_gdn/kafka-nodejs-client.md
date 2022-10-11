@@ -7,7 +7,6 @@ The Kafka-Node client can be used to create Kafka producers, consumers, and topi
 
 Note: Recommend to use [kafkajs](../kafkajs/README.md) client instead, because `kafka-node` has not been supporting since 2019 year.
 
-
 #### Installation
 
 Install Kafka-Node using npm:
@@ -30,6 +29,7 @@ const client = new kafka.KafkaClient(
         }
     });
 ```
+
 Create a topic
 This client requires to create a topic before running consumer.
 
@@ -40,7 +40,6 @@ client.createTopics([{topic: '<c8globals or c8locals>.<my-topic>' ,partitions: 1
     ...
 });
 ```
-
 
 #### Producer
 
@@ -59,7 +58,6 @@ function send() {
     });
 }
 ```
-
 
 #### Consumer
 
