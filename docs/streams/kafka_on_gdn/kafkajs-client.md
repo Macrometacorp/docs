@@ -5,7 +5,6 @@ title: KafkaJS Client
 
 The KafkaJS client can be used to create Kafka producers, consumers. Full documentation [here](https://kafka.js.org/docs/getting-started).
 
-
 ### Installation
 
 Install KafkaJS using:
@@ -13,12 +12,15 @@ Install KafkaJS using:
 ```shell
 yarn add kafkajs
 ```
+
 or npm:
+
 ```shell
 npm install kafkajs
 ```
 
 Let's start by instantiating the KafkaJS client by pointing it towards at least one broker:
+
 ```node
 const { Kafka } = require('kafkajs')
 
@@ -31,7 +33,6 @@ const kafka = new Kafka({
     }
 })
 ```
-
 
 ### Producer
 
@@ -50,7 +51,6 @@ await producer.send({
 
 await producer.disconnect()
 ```
-
 
 ### Consumer
 
