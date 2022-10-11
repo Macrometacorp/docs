@@ -9,7 +9,8 @@ Kafka on GDN brings the native Apache Kafka protocol support to c8streams by int
 ## Supported Client
 
 - Java Client
-- Kafka-Python Client
+- Kafka Python Client
+- Confluent Python Client
 - KafkaJS Client
-- Kafka-Node Client
-- Fluent-Bit Client
+- Kafka Node Client
+- Fluent Bit Client
