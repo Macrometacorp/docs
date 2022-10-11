@@ -54,7 +54,7 @@ You can now prepend a stream worker name to the aggregation tables that it creat
 This release includes the following API changes.
 
 | Issue #  | Description  |
-|---|---|`
+|---|---|
 | APIDOC-51  | Added stream worker parameters `maxLogsLengthKBPerMinutePerWorker` and `maxCpuSecondsPerMinutePerWorker`. |
 | APIDOC-54  | In API reference docs, corrected a typo in insertDocument description.  |
 | DB-1692  | The fabric creation endpoint in the API now allows up to 40 characters for fabric names, just like in the web console.  |
