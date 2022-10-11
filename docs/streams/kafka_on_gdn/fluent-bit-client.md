@@ -11,15 +11,14 @@ Full Kafka plugin documentation can be found [here](https://docs.fluentbit.io/ma
 
 Kafka plugin is on top of `libdrkafka` [library](https://github.com/edenhill/librdkafka/).
 
-
 ### Installation
 
 The correct installation was proven on Ubuntu OS. The bellow steps will show how to build and install Fluent Bit with correct plugins and modules.
 
-
 #### Prequisites
 
 Build Fluent Bit from scratch requires installing `git` and then clone a repository from [GitHub](https://github.com/fluent/fluent-bit) and checkout to the latest version.
+
 ```
 sudo apt update
 sudo apt install git
@@ -39,7 +38,6 @@ sudo apt install -y bison
 sudo apt install -y flex
 sudo apt install -y libssl-dev
 ```
-
 
 #### Consumer
 
@@ -63,6 +61,7 @@ await consumer.run({
 ### Build
 
 Change to the `build` directory inside the Fluent Bit sources and let CMake configure the project specifying where the root path is located with Kafka plugin and TLS module:
+
 ```
 cd fluent-bit/build
 cmake -DFLB_OUT_KAFKA=On -DFLB_TLS=On ..
