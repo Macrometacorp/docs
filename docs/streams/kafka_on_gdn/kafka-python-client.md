@@ -7,18 +7,17 @@ Kafka-Python client library is designed to function much like the official java 
 
 The KafkaProducer can be used across threads without issue, unlike the KafkaConsumer which cannot. While it is possible to use the KafkaConsumer in a thread-local manner, multiprocessing is recommended.
 
-
 #### Installation
 
 The library needs Python 3.8+ installed. You can find installer [here](https://www.python.org/downloads/).
 You can install the Kafka-Python library either via PyPi, using pip, or by building the library from source. Installation [documentation](https://pip.pypa.io/en/stable/installation/) of pip.
 
-
 #### Producer
 
 You can instantiate a Producer object using a bunch of parameters.
 
-The following example creates a Python producer for the <c8globals or c8locals>.<my-topic> topic and sends 5 messages on that topic.
+The following example creates a Python producer for the `<c8globals or c8locals>.<my-topic>` topic and sends 5 messages on that topic.
+
 ```python
 import ssl
 from json import dumps
@@ -45,7 +44,8 @@ for e in range(5):
 
 #### Consumer
 
-The following example creates a consumer with the <my-subscription> subscription name on the <c8globals or c8locals>.<my-topic> topic or multiple topics with global either local distribution. For example: KafkaConsumer("c8globals.topic-1", "c8locals.topic-2", bootstrap_servers=...). The listener receives incoming messages, prints the content and ID of messages that arrive.
+The following example creates a consumer with the `<my-subscription>` subscription name on the `<c8globals or c8locals>.<my-topic>` topic or multiple topics with global either local distribution. For example: KafkaConsumer("c8globals.topic-1", "c8locals.topic-2", bootstrap_servers=...). The listener receives incoming messages, prints the content and ID of messages that arrive.
+
 ```python
 import ssl
 from kafka import KafkaConsumer
