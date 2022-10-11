@@ -5,12 +5,10 @@ title: Confluent Python client
 
 The confluent-kafka Python package is a binding on top of the C client librdkafka. It comes bundled with a pre-built version of librdkafka.
 
-
 #### Installation
 
 The library needs Python 3.8+ installed. You can find installer [here](https://www.python.org/downloads/).
 You can install the Kafka-Python library either via PyPi, using pip, or by building the library from source. Installation [documentation](https://pip.pypa.io/en/stable/installation/) of pip.
-
 
 #### Producer
 
@@ -43,10 +41,10 @@ producer.produce('<c8globals or c8locals>.<my-topic>', key="<my-key-1>", value="
 producer.poll(1)
 ```
 
-
 #### Consumer
 
 The following example creates a consumer with the `<my-subscription>` subscription name on the `<c8globals or c8locals>.<my-topic>` topic or multiple topics with global either local distribution. For example: `consumer.subscribe(["c8globals.topic-1", "c8locals.topic-2"])`. The listener receives incoming messages, prints the content and ID of messages that arrive.
+
 ```
 from confluent_kafka import Consumer, KafkaException, KafkaError
 
