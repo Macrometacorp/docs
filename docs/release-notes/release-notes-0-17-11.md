@@ -81,7 +81,7 @@ curl -X 'POST' \ 'https://api-qa6.eng.macrometa.io/_api/user' \
     "active": true, 
     "email": "test1@bar1.com", 
     "passwd": "P@55w0rd", 
-    "displayName":"Jhon Doe" 
+    "displayName":"John Doe" 
     }'
 ```
 
@@ -105,6 +105,7 @@ The following defects were fixed in this release.
 | DB-1667  | Dynamo scans with filter expressions are not working as expected.  |
 | DB-1668  | Improved error text in duplicate node error for graphs to be more user-friendly.  |
 | DB-1714  | MaxDocumentSize limit error message in Dynamo is incorrect.  |
+| DB-1757  | Updating the bind parameter key in an existing query results in duplicate keys.  |
 | DB-1801  | API `/_api/key/validate` returns HTTP code 200 with message 'non-representable type' when no request body is sent.  |
 | DB-1831  | Graph with a vertex collection not loading normally. It only loads when you click on Full Graph option.  |
 | DB-1855  | Maximum stored query workers limit is not applied across all regions.  |
