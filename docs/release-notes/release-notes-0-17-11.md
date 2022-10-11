@@ -99,6 +99,7 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
+| DB-1625  | Cursor API not working as expected with `stream:true` option in payload.  |
 | DB-1637  | In the C8QL query, if the filters are applied on the non-indexed keys, the query is likely to time out.  |
 | DB-1666  | The item count on the screen is not updating when an item is inserted or deleted from a Dynamo collection.  |
 | DB-1667  | Dynamo scans with filter expressions are not working as expected.  |
