@@ -1,11 +1,47 @@
 ---
-sidebar_position: 10
-title: Create and Manage Users
+sidebar_position: 20
+title: Invite Users
 ---
 
-This section describes how to create and manage user accounts.
+This section describes how to invite new users to a tenant.
 
-## Create User
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to invite a user using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **Account**.
+1. Click the **Invite Users** button.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</TabItem>
+<TabItem value="apo" label="REST API">
+
+API steps
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+CLI steps
+
+</TabItem>
+</Tabs>
+
+
 
 Follow these instructions to create a new user using the GDN console web UI.
 
