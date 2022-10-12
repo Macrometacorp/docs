@@ -9,24 +9,23 @@ This document describes what has changed in Macrometa release 0.17.11. All accou
 
 The following new features are included in this release.
 
-### SQL Support
+### SQL Support - Beta
 
 Description of feature.
 
 [Topic name](link) was added as a result of this feature.
 
-### Redis Support
+### Redis Support - Beta
 
 Description of feature.
 
 [Topic name](link) was added as a result of this feature.
 
-### Kafka Support
+### Kafka Support - Beta
 
 Description of feature.
 
 [Topic name](link) was added as a result of this feature.
-
 
 ### Invite User
 
