@@ -36,7 +36,7 @@ const kafka = new Kafka({
 
 ### Producer
 
-To produce a message to a topic, we'll create a producer using our client:
+To produce a message to a topic, create a producer using our client:
 
 ```node
 const producer = kafka.producer()
