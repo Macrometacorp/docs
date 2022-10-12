@@ -13,7 +13,7 @@ Kafka plugin is on top of `libdrkafka` [library](https://github.com/edenhill/lib
 
 ### Installation
 
-The correct installation was proven on Ubuntu OS. The bellow steps will show how to build and install Fluent Bit with correct plugins and modules.
+The correct installation was proven on Ubuntu OS. The below steps will show how to build and install Fluent Bit with correct plugins and modules.
 
 #### Prequisites
 
