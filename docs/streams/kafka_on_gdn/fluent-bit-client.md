@@ -17,7 +17,7 @@ The correct installation was proven on Ubuntu OS. The below steps will show how 
 
 #### Prequisites
 
-Build Fluent Bit from scratch requires installing `git` and then clone a repository from [GitHub](https://github.com/fluent/fluent-bit) and checkout to the latest version.
+Building Fluent Bit from scratch requires installing `git` and then cloning a repository from [GitHub](https://github.com/fluent/fluent-bit) and checkout to the latest version.
 
 ```
 sudo apt update
