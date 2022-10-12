@@ -17,7 +17,7 @@ You can install the Kafka-Python library either via PyPi, using pip, or by build
 
 You can instantiate a Producer object using a bunch of parameters.
 
-The following example creates a Python producer for the `<c8globals or c8locals>.<my-topic>` topic and sends 5 messages on that topic.
+The following example creates a Python producer for the `<c8globals or c8locals>.<my-topic>` topic and sends five messages on that topic.
 
 ```python
 import ssl
