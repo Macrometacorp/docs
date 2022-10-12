@@ -10,7 +10,8 @@ The KafkaProducer can be used across threads without issue, unlike the KafkaCons
 #### Installation
 
 The library needs Python 3.8+ installed. You can find installer [here](https://www.python.org/downloads/).
-You can install the Kafka-Python library either via PyPi, using pip, or by building the library from source. Installation [documentation](https://pip.pypa.io/en/stable/installation/) of pip.
+
+You can install the Kafka-Python library either via PyPi, using pip, or by building the library from source. For more information, refer to [pip documentation](https://pip.pypa.io/en/stable/installation/).
 
 #### Producer
 
