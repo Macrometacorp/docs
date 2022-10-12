@@ -54,7 +54,7 @@ await producer.disconnect()
 
 ### Consumer
 
-To verify that our message has indeed been produced to the topic, let's create a consumer to consume our message:
+To verify the message has been sent to the topic, create a consumer to consume the message:
 
 ```node
 const consumer = kafka.consumer({ groupId: '<my-group-id>' })
