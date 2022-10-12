@@ -1,0 +1,97 @@
+{
+    "shared": [
+        {
+            "cpus": 8,
+            "price": "$1.08/Hour",
+            "ram": "16GB",
+            "plan": "DX-10",
+            "storage": "320 GB"
+        },
+        {
+            "cpus": 16,
+            "price": "$2.16/Hour",
+            "ram": "32GB",
+            "plan": "DX-20",
+            "storage": "640 GB"
+        },
+        {
+            "cpus": 32,
+            "price": "$4.32/Hour",
+            "ram": "64 GB",
+            "plan": "DX-30",
+            "storage": "1280 GB"
+        },
+        {
+            "cpus": 48,
+            "price": "$9.18/Hour",
+            "ram": "96 GB",
+            "plan": "DX-40",
+            "storage": "1920 GB"
+        },
+        {
+            "cpus": 50,
+            "price": "$12.96/Hour",
+            "ram": "128 GB",
+            "plan": "DX-50",
+            "storage": "2500 GB"
+        },
+        {
+            "cpus": 56,
+            "price": "$23.04/Hour",
+            "ram": "256 GB",
+            "plan": "DX-60",
+            "storage": "5000 GB"
+        },
+        {
+            "cpus": 64,
+            "price": "$40.32/Hour",
+            "ram": "512 GB",
+            "plan": "DX-70",
+            "storage": "7200 GB"
+        }
+    ],
+    "dedicated": [
+        {
+            "cpus": 6,
+            "price": "$0.60/Hour",
+            "ram": "16 GB",
+            "plan": "SX-10",
+            "storage": "320 GB"
+        },
+        {
+            "cpus": 8,
+            "price": "$1.20/Hour",
+            "ram": "32 GB",
+            "plan": "SX-20",
+            "storage": "640 GB"
+        },
+        {
+            "cpus": 16,
+            "price": "$2.40/Hour",
+            "ram": "64 GB",
+            "plan": "SX-30",
+            "storage": "1280 GB"
+        },
+        {
+            "cpus": 20,
+            "price": "$5.04/Hour",
+            "ram": "96 GB",
+            "plan": "SX-40",
+            "storage": "1920 GB"
+        },
+        {
+            "cpus": 24,
+            "price": "$7.20/Hour",
+            "ram": "128 GB",
+            "plan": "SX-50",
+            "storage": "2560 GB"
+        },
+        {
+            "cpus": 32,
+            "price": "$10.80/Hour",
+            "ram": "192 GB",
+            "plan": "SX-60",
+            "storage": "3840 GB"
+        }
+    ]
+}
