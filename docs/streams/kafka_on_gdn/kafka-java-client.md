@@ -5,7 +5,7 @@ title: Kafka Java Client
 
 You can use Kafka Java client to create Java producer, consumer. The current version of the Kafka Java client is 2.8.0.
 
-The Kafka consumer is NOT thread-safe. The Kafka producer is thread-safe.
+The Kafka consumer is _not_ thread-safe. The Kafka producer is thread-safe.
 
 This document focuses only on the client API for producing and consuming messages on Kafka topics.
 
