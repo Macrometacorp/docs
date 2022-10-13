@@ -24,9 +24,6 @@ Follow these instructions to create a new collection using the GDN console web U
    - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
    - **Wait for sync -** Synchronize to disk before completing document creation or update.
 
-
-Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](/api#/operations/handleCommandPost:CreateCollection). 
-
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
