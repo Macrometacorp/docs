@@ -13,12 +13,6 @@ This page explains how to install Macrometa SDKs.
 
 You have several options when installing this SDK.
 
-With Yarn:
-
-```js
-yarn add jsc8
-```
-
 With NPM:
 
 ```js
