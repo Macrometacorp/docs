@@ -25,7 +25,7 @@ If you want to use the SDK outside of the current directory, you can also instal
 npm install --global jsc8
 ```
 
-With NPM in a notebook:
+To install the SDK in a notebook:
 
 ```js
 !npm install jsc8 --save
@@ -47,30 +47,16 @@ npm run dist
 pyC8 requires Python 3.5+. Python 3.6 or higher is recommended.
 :::
 
-You have several options when installing this SDK.
-
-On macOS, you can use pip3:
-
-```py
-pip3 install pyC8
-```
-
-In a notebook, you might need to modify the pip3 command if you want to use it:
-
-```py
-!pip3 install pyC8
-```
-
-On Windows, you can use pip:
+You can install the pyC8 SDK with pip:
 
 ```py
 pip install pyC8
 ```
 
-Using pipenv:
+To install the SDK in a notebook:
 
-```bash
-pipenv install --pre pyC8
+```py
+!pip install pyC8
 ```
 
 </TabItem>
