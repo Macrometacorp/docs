@@ -110,7 +110,7 @@ print(client.get_fabric_details())
 
 ## Create Global & Local Streams
 
-The streams in GDN can be either a local stream or could be a geo-replicated stream.
+The streams in GDN can be either local or globally geo-replicated. Run the code below to create a stream.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -154,31 +154,31 @@ streams();
 ```
 
 </TabItem>
-
 <TabItem value="py" label="Python">
 
 ```py
 prefixText = ""
-prefixBool = False
+prefixBool = False # If false, then the stream created below is global
 demo_stream = 'streamQuickstart'
     
 # Get the right prefix for the stream
 if prefixBool:
-    prefixText = "c8locals."
+    prefixText = "local."
 else:
-    prefixText = "c8globals."
+    prefixText = "global."
 
-
+# Create the stream if it doesn't already exist
+# To create both a global and local stream, run the code twice, once with prefixBool = True, once False
 streamName = {"stream-id": ""}
 if client.has_stream(demo_stream, local = prefixBool):
     print("Stream already exists")
     streamName["stream-id"] = concat(prefixText, demo_stream)
     print ("OLD Producer =",  streamName["stream-id"])
 else:
-    #print(client.create_stream(demo_stream, local=prefixBool))
     streamName = client.create_stream(demo_stream, local=prefixBool)
     print ("NEW Producer =",  streamName["stream-id"])
 
+# Get and print stream details
 print("Get Streams: ", client.get_streams())
 ```
 
