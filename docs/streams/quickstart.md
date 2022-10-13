@@ -19,7 +19,7 @@ The basic parts of this quickstart walk you through creating a stream, publishin
 
 For jsc8 users, the quickstart continues with some more advanced instructions for creating a mechanism to automatically reconnect the streams and view a pub-sub stream application in your browser.
 
-### 1. Connect to GDN
+### Step 1. Connect to GDN
 
 The first step in using the Macrometa Global Data Network (GDN) is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you specified. For more information about connecting to the GDN, refer to [Authentication](../account-management/auth/index.md).
 
@@ -30,12 +30,15 @@ The first step in using the Macrometa Global Data Network (GDN) is to establish 
 const jsc8 = require("jsc8");
 
 // Choose one of the following methods to access the GDN. API key is recommended.
-
-// Authenticate with API key
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-
-// Authenticate with JWT
 // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+// await console.log("Authentication done!!...");
+
+// Or use email and password to authenticate client instance
+const client = new jsc8("https://gdn.paas.macrometa.io");
+
+// Replace values with your email and password.
+await client.login("nemo@nautilus.com", "xxxxxx"); 
 ```
 
 </TabItem>
@@ -71,7 +74,7 @@ client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofab
 </TabItem>
 </Tabs>  
 
-### 2. Get GeoFabric Details
+### Step 2. Get GeoFabric Details
 
 To get details of fabric,
 
@@ -79,18 +82,6 @@ To get details of fabric,
 <TabItem value="js" label="Javascript">
 
 ```js
-const jsc8 = require("jsc8");
-
-// Crete a authenticated instance with Token / Apikey
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-// await console.log("Authentication done!!...");
-
-// Or use Email & Password to Authenticate client instance
-const client = new jsc8("https://gdn.paas.macrometa.io");
-
-await client.login("nemo@nautilus.com", "xxxxxx");
-
 async function getFabric() {
   try {
     await console.log("Getting the fabric details...");
@@ -110,7 +101,7 @@ getFabric();
 <TabItem value="py" label="Python">
 
 ```py
-print("Get geo fabric details...")
+print("Getting fabric details...")
 print(client.get_fabric_details())
 ```
 
