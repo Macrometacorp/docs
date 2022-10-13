@@ -24,7 +24,7 @@ For jsc8 users, the quickstart continues with some more advanced instructions fo
 The first step in using the Macrometa Global Data Network (GDN) is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you specified. For more information about connecting to the GDN, refer to [Authentication](../account-management/auth/index.md).
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 const jsc8 = require("jsc8");
@@ -60,7 +60,7 @@ URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
 
-print("--- Connecting to C8")
+print("--- Connecting to GDN")
 
 # Choose one of the following methods to access the GDN. API key is recommended.
 
@@ -76,10 +76,10 @@ client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofab
 
 ### Step 2. Get GeoFabric Details
 
-To get details of fabric,
+Get fabric details, including the name and associated regions.
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 async function getFabric() {
