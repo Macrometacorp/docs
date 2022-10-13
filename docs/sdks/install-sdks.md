@@ -73,11 +73,5 @@ Using pipenv:
 pipenv install --pre pyC8
 ```
 
-Using conda:
-
-```bash
-conda install -c conda-forge pyC8
-```
-
 </TabItem>
 </Tabs>
