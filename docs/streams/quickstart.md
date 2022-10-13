@@ -6,80 +6,36 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This article is an introduction to using streams with [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
+This article is an introduction to using streams with [Macrometa SDKs](../sdks/index.md).
 
-## Credentials
+## Prerequisites
 
-Assume the following credentials:
+- Access to a Macrometa account with sufficient permissions to create streams.
+- Install the appropriate SDK. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
-- tenant name is `nemo@nautilus.com`.
-- user password is `xxxxxx`.
+## Get Started with Streams
 
-## Installation
+The basic parts of this quickstart walk you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-<Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+For jsc8 users, the quickstart continues with some more advanced instructions for creating a mechanism to automatically reconnect the streams and view a pub-sub stream application in your browser.
 
-```js
-With Yarn or NPM
+### 1. Connect to GDN
 
-    yarn add jsc8
-    (or)
-    npm install jsc8
-
-If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
-
-    npm install --global jsc8
-
-From source,
-
-    git clone https://github.com/macrometacorp/jsc8.git
-    cd jsC8
-    npm install
-    npm run dist
-```
-
-</TabItem>
-<TabItem value="py" label="Python">
-
-```py
-pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
-
-To install pyC8, simply run
-
-    $ pip3 install pyC8
-
-or, if you prefer to use conda:
-
-    conda install -c conda-forge pyC8
-
-or pipenv:
-
-    pipenv install --pre pyC8
-
-Once the installation process is finished, you can begin developing applications in Python.
-```
-
-</TabItem>
-</Tabs>  
-
-## Connect to GDN
-
-The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you sepcified.
+The first step in using the Macrometa Global Data Network (GDN) is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you specified. For more information about connecting to the GDN, refer to [Authentication](../account-management/auth/index.md).
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
 ```js
 const jsc8 = require("jsc8");
-// Simple Way
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-// ----- OR -----
+
+// Choose one of the following methods to access the GDN. API key is recommended.
+
+// Authenticate with API key
 const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
 
-
-// To use advanced options
-const client = new jsc8("https://gdn.paas.macrometa.io");
+// Authenticate with JWT
+// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
 ```
 
 </TabItem>
@@ -87,6 +43,7 @@ const client = new jsc8("https://gdn.paas.macrometa.io");
 <TabItem value="py" label="Python">
 
 ```py
+# Import libraries
 from operator import concat
 import base64
 import json
@@ -95,22 +52,26 @@ from c8 import C8Client
 import six
 warnings.filterwarnings("ignore")
 
+# Define constants
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "my API key" #Change this to my API key
+API_KEY = "my API key" # Change this to your API key
 
 print("--- Connecting to C8")
-## Simple Way
+
+# Choose one of the following methods to access the GDN. API key is recommended.
+
+# Authenticate with API key
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
 
-## To use advanced options
-#client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443)
+# Authenticate with JWT
+# client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token=<your token>)
 ```
 
 </TabItem>
 </Tabs>  
 
-## Get GeoFabric Details
+### 2. Get GeoFabric Details
 
 To get details of fabric,
 
