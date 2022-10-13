@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Invite Users
 ---
 
-This section describes how to send invitation links to email addresses so new users can access the tenant.
+This page describes how to send invitation links to email addresses so new users can access the tenant.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Account**.
