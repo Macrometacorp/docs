@@ -1,18 +1,19 @@
 ---
-sidebar_position: 1
+sidebar_position: 10
 title: Using Rest APIs
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Today’s applications are required to be highly responsive and always online. They need to be deployed in datacenters closer to their users and can access data instantly across the globe. 
+Today’s applications are required to be highly responsive and always online. They need to be deployed in datacenters closer to their users and can access data instantly across the globe.
 
-Macrometa global data network (GDN) is a fully managed realtime materialzed view engine that provides access to data instantly to Apps & APIs in a simple & single interface. 
+Macrometa global data network (GDN) is a fully managed realtime materialzed view engine that provides access to data instantly to Apps & APIs in a simple & single interface.
 
 :::note
 If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../what-is-macrometa.md)**.
 :::
+
 ## Pre-Requisites
 
 A tenant account and credentials with Macrometa GDN.
@@ -27,7 +28,7 @@ Your best friend when working with REST APIs is the REST API browser available i
 
 **GDN streams** is a high-performance solution for server-to-server messaging.
 
-It provides,
+It provides:
 
 - Seamless geo-replication of messages across regions,
 - Very low publish and end-to-end latency,
