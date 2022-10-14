@@ -29,12 +29,14 @@ const client = new jsc8({
   url: "https://gdn.paas.macrometa.io",
   fabricName: fabric
 });
+
 // Or create an authenticated instance with a JWT token.
 const clientUsingJwt = new jsc8({
   url: "https://gdn.paas.macrometa.io",
   token: "XXXX",
   fabricName: fabric
 });
+
 // Or create an authenticated instance with an API key.
 const clientUsingApiKey = new jsc8({
   url: "https://gdn.paas.macrometa.io",
@@ -60,12 +62,22 @@ main()
 
 ```py
 from c8 import C8Client
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
-                    email='nemo@nautilus.com', password='xxxxx',
-                    geofabric='_system')
 
-# Or using token
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token="XXXX")
+# Define constants
+URL = "gdn.paas.macrometa.io"
+GEO_FABRIC = "_system" # Change this if you need to log in to a fabric other than _system.
+API_KEY = "my API key" # Change this to your API key.
+
+# Authenticate with your email and password
+client = C8Client(protocol='https', host= URL, port=443,
+                    email='nemo@nautilus.com', password='xxxxx',
+                    geofabric= GEO_FABRIC)
+
+# Authenticate with API key (recommended for apps)
+client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
+
+# Authenticate with JWT
+client = C8Client(protocol='https', host=URL, port=443, token="XXXX", geofabric = GEO_FABRIC)
 ```
 
 </TabItem>
@@ -82,7 +94,7 @@ EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
 AUTH_TOKEN = "bearer "
 
-# Create a HTTPS Session
+# Create an HTTPS Session
 url = "{}/_open/auth".format(FED_URL)
 payload = {
 'email':EMAIL,
@@ -95,11 +107,11 @@ headers = {
 response = requests.post(url, data = json.dumps(payload), headers = headers)
 
 if response.status_code == 200:
-resp_body = json.loads(response.text)
-AUTH_TOKEN += resp_body["jwt"]
-TENANT = resp_body["tenant"]
+  resp_body = json.loads(response.text)
+  AUTH_TOKEN += resp_body["jwt"]
+  TENANT = resp_body["tenant"]
 else:
-raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
+  raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
 
 
 session = requests.session()

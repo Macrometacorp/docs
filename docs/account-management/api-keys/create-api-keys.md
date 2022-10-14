@@ -12,6 +12,10 @@ After creating the API key, best practice is to save the automatically generated
 
 To learn about how to grant permissions to an API key, refer to [Update API Keys](update-api-keys.md).
 
+:::note
+If you create a new fabric after you create an API key, then the API key permissions will not apply to the newly-created fabric. You will need to [update the API key](update-api-keys.md) permissions.
+:::
+
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
