@@ -1,6 +1,6 @@
 ---
-sidebar_position: 100
-title: Quickstart
+sidebar_position: 10
+title: Getting Started with Streams
 ---
 
 import Tabs from '@theme/Tabs';
