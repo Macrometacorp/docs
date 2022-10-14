@@ -63,6 +63,11 @@ main()
 ```py
 from c8 import C8Client
 
+# Define constants
+URL = "gdn.paas.macrometa.io"
+GEO_FABRIC = "_system" # Change this if you need to log in to a fabric other than _system.
+API_KEY = "my API key" # Change this to your API key.
+
 # Authenticate with your email and password
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                     email='nemo@nautilus.com', password='xxxxx',
