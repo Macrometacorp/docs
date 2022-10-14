@@ -17,7 +17,7 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 The basic parts of this quickstart walk you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-If you want to skip the explanation and just run the code, then go directly to the [Full Demo Quickstart File](#full-demo-quickstart-file).
+If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
 ### Step 1. Connect to GDN
 
@@ -31,14 +31,13 @@ const jsc8 = require("jsc8");
 
 // Choose one of the following methods to access the GDN. API key is recommended.
 // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-// await console.log("Authentication done!!...");
+const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+await console.log("Authentication done!!...");
 
 // Or use email and password to authenticate client instance
-const client = new jsc8("https://gdn.paas.macrometa.io");
-
+// const client = new jsc8("https://gdn.paas.macrometa.io");
 // Replace values with your email and password.
-await client.login("nemo@nautilus.com", "xxxxxx"); 
+// await client.login("nemo@nautilus.com", "xxxxxx"); 
 ```
 
 </TabItem>
@@ -108,26 +107,14 @@ print(client.get_fabric_details())
 </TabItem>
 </Tabs>  
 
-## Create Global & Local Streams
+## Create Global and Local Streams
 
-The streams in GDN can be either local or globally geo-replicated. Run the code below to create a stream.
+The streams in GDN can be either local or globally geo-replicated. The code below allows you to create either or both and then get the stream details.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
 ```js
-const jsc8 = require("jsc8");
-
-// Crete a authenticated instance with Token / Apikey
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-// await console.log("Authentication done!!...");
-
-// Or use Email & Password to Authenticate client instance
-const client = new jsc8("https://gdn.paas.macrometa.io");
-
-await client.login("nemo@nautilus.com", "xxxxxx");
-
 async function streams() {
     try{
       await console.log("Creating local stream...");
@@ -135,15 +122,6 @@ async function streams() {
 
       await console.log("Creating global stream...");
       const stream_global = await client.createStream("testStream-global", false);
-
-      // FOR ADVANCED USER
-      // await console.log("Creating local stream...");
-      // const stream_local = client.stream("testStream-local", true);
-      // await stream.createStream();
-
-      // await console.log("Creating global stream...");
-      // const stream_global = client.stream("testStream-global", false);
-      // await stream.createStream();
 
     } catch(e){
       await console.log("Streams could not be fetched because "+ e);
@@ -161,11 +139,11 @@ prefixText = ""
 prefixBool = False # If false, then the stream created below is global
 demo_stream = 'streamQuickstart'
     
-# Get the right prefix for the stream
+# Get the right prefix for the streamName
 if prefixBool:
-    prefixText = "local."
+    prefixText = "c8locals."
 else:
-    prefixText = "global."
+    prefixText = "c8globals."
 
 # Create the stream if it doesn't already exist
 # To create both a global and local stream, run the code twice, once with prefixBool = True, once False
@@ -179,7 +157,7 @@ else:
     print ("NEW Producer =",  streamName["stream-id"])
 
 # Get and print stream details
-print("Get Streams: ", client.get_streams())
+print("Get streams: ", client.get_streams())
 ```
 
 </TabItem>
@@ -193,18 +171,6 @@ Example to publish documents to a stream. The stream can be either a local strea
 <TabItem value="js" label="Javascript">
 
 ```js
-const jsc8 = require("jsc8")
-
-// Crete a authenticated instance with Token / Apikey
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-// await console.log("Authentication done!!...");
-
-// Or use Email & Password to Authenticate client instance
-const client = new jsc8("https://gdn.paas.macrometa.io");
-
-await client.login("nemo@nautilus.com", "xxxxxx");
-
 async function streams() {
     try {
 
@@ -266,24 +232,12 @@ for i in range(10):
 
 ## Subscribe to Stream
 
-Example to subscribe documents from a stream. The stream can be either a local stream or could be a geo-replicated stream.
+Example to subscribe documents from a stream. The stream can be either a local stream or a geo-replicated global stream.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
 ```js
-const jsc8 = require('jsc8');
-
-// Crete a authenticated instance with Token / Apikey
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-// await console.log("Authentication done!!...");
-
-// Or use Email & Password to Authenticate client instance
-const client = new jsc8("https://gdn.paas.macrometa.io");
-
-await client.login("nemo@nautilus.com", "xxxxxx");
-
 async function getDCList() {
   let dcListAll = await client.listUserFabrics();
   let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
@@ -294,12 +248,14 @@ async function getDCList() {
   const dcList = await getDCList();
   await console.log("dcList: ", dcList);
   await client.createStream("my-stream", true);
+  
   //Here the last boolean value tells if the stream is local or global. false means that it is global.
-  // publishing streams
+  // Publishing streams
   const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
   consumer.on("message", (msg) => {
     const { payload, messageId } = JSON.parse(msg);
-    // logging received message payload(ASCII encoded) to decode use atob()
+    
+    // Logging received message payload(ASCII encoded) to decode use atob()
     console.log(payload);
     // Send message acknowledgement
     consumer.send(JSON.stringify({ messageId }));
@@ -309,7 +265,6 @@ async function getDCList() {
 ```
 
 </TabItem>
-
 <TabItem value="py" label="Python">
 
 ```py
@@ -326,7 +281,7 @@ for i in range(10):
 </TabItem>
 </Tabs>
 
-## Full Demo Quickstart File
+## Full Demo File
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python"> 
