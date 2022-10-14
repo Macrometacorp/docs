@@ -1,37 +1,9 @@
 ---
-sidebar_position: 4
+sidebar_position: 50
 title: Integrating Plugins
 ---
 
 You can use plugins in your tenants to extend the functionality of your streams.
-
-- [Store RDBMS](#store-rdbms)
-	- [CUD](#cud)
-		- [Parameters](#parameters)
-		- [Template](#template)
-		- [Examples](#examples)
-	- [Procedure](#procedure)
-		- [Parameters](#parameters-1)
-		- [Template](#template-1)
-		- [Examples](#examples-1)
-	- [Query](#query)
-		- [Parameters](#parameters-2)
-		- [Template](#template-2)
-		- [Examples](#examples-2)
-	- [Store](#store)
-		- [Parameters](#parameters-3)
-		- [Template](#template-3)
-		- [Examples](#examples-3)
-- [Change Data Capture (CDC)](#change-data-capture-cdc)
-	- [Parameters](#parameters-4)
-	- [Template](#template-4)
-	- [Examples](#examples-4)
-		- [Example 1](#example-1)
-		- [Example 2](#example-2)
-		- [Example 3](#example-3)
-		- [Example 4](#example-4)
-		- [Example 5](#example-5)
-		- [Example 6](#example-6)
 
 ## Store RDBMS
 
