@@ -124,6 +124,7 @@ const run = async function () {
 };
 ​
 run();
+```
 
 </TabItem>
 </Tabs>
