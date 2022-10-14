@@ -66,7 +66,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 url = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
 
 response = session.get(url)
-print(response.text)`
+print(response.text)
 ```
 
 Sample Javascript code demonstrating how to use API key to make REST API calls:
