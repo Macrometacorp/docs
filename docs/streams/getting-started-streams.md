@@ -107,7 +107,7 @@ print(client.get_fabric_details())
 </TabItem>
 </Tabs>  
 
-## Create Global and Local Streams
+### Step 3. Create Global and Local Streams
 
 The streams in GDN can be either local or globally geo-replicated. The code below allows you to create either or both and then get the stream details.
 
@@ -163,7 +163,7 @@ print("Get streams: ", client.get_streams())
 </TabItem>
 </Tabs>  
 
-## Publish Messages
+### Step 4. Publish Messages
 
 Example to publish documents to a stream. The stream can be either a local stream or could be a geo-replicated stream.
 
@@ -213,7 +213,6 @@ streams()
 ```
 
 </TabItem>
-
 <TabItem value="py" label="Python">
 
 ```py
@@ -230,7 +229,7 @@ for i in range(10):
 </TabItem>
 </Tabs>  
 
-## Subscribe to Stream
+### Step 5. Subscribe to Stream
 
 Example to subscribe documents from a stream. The stream can be either a local stream or a geo-replicated global stream.
 
@@ -284,7 +283,7 @@ for i in range(10):
 ## Full Demo File
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python"> 
+<TabItem value="py" label="Python">
 
 ```py
 """ This file is a demo to send data to/from a stream """
@@ -296,6 +295,7 @@ from c8 import C8Client
 import six
 warnings.filterwarnings("ignore")
 
+# Step 1. Connect to GDN.
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
@@ -305,13 +305,13 @@ demo_stream = 'streamQuickstart'
 
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
 
-# Get the right prefix for the stream
+# Get the right prefix for the stream.
 if prefixBool:
     prefixText = "c8locals."
 else:
     prefixText = "c8globals."
 
-
+# Create global and local streams.
 def createStream():
     """ This function creates a stream """
     streamName = {"stream-id": ""}
@@ -324,7 +324,7 @@ def createStream():
         streamName = client.create_stream(demo_stream, local=prefixBool)
         print ("NEW Producer =",  streamName["stream-id"])
 
-# Creating the producer and sending data
+# Create the producer and publish messages.
 def sendData():
     """ This function sends data through a stream """
     producer = client.create_stream_producer(demo_stream, local=prefixBool)
@@ -337,7 +337,7 @@ def sendData():
         print(producer.send(json.dumps(data)))
 
 
-# Creating the subscriber and receiving data
+# Create the subscriber and receive data.
 def receiveData():
     """ This function receives data from a stream """
     subscriber = client.subscribe(stream=demo_stream, local=prefixBool,
@@ -352,8 +352,7 @@ def receiveData():
 
 createStream()
 
-
-# Select choice
+# User enters choice.
 user_input = input("Type 'w' or '1' to write data. Type 'r' or '0' to read data: ")
 if user_input == "w" or user_input == '1':
     sendData()
@@ -362,6 +361,97 @@ elif user_input == "r" or user_input == '0':
 else:
     print ("Invalid user input. Stopping program")
 ```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+// Step 1. Connect to GDN.
+const jsc8 = require("jsc8");
+// Choose one of the following methods to access the GDN. API key is recommended.
+const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "diana.payton_macrometa.com.mykey.eFEvSibM2pUqsaSoL0S54ubZ0kzAU3U6iWAXRiQDqB7PSClEYMhq3WI2gEbvxYxK9c6eb4", fabricName: '_system'});
+console.log("Authentication done!!...");
+
+// Step 2. Get GeoFabric details.
+async function getFabric() {
+    try {
+      await console.log("Getting the fabric details...");
+      let result = await client.get();
+  
+      await console.log("result is: ", result);
+    } catch(e){
+      await console.log("Fabric details could not be fetched because "+ e);
+    }
+  }
+  
+  getFabric();
+
+  // Step 3. Create global and local streams.
+  async function streams() {
+    try{
+      await console.log("Creating local stream...");
+      const stream_local = await client.createStream("testStream-local", true);
+
+      await console.log("Creating global stream...");
+      const stream_global = await client.createStream("testStream-global", false);
+
+    } catch(e){
+      await console.log("Streams could not be fetched because "+ e);
+    }
+}
+
+streams();
+
+// Step 4. Publish messages to stream.
+async function streams() {
+    try {
+      await console.log("Creating local stream...");
+      await client.createStream("my-stream", true);
+
+      const stream = await client.getStream("my-stream", true);
+      await stream.publishMessage("Hello World");
+
+
+// DFP - This part was from the "advanced" portion.
+// How can we make it output this message when the code above is successful?
+    //  producer.on("message", (msg) => {
+    //    console.log(msg, "Sent Successfully");
+    //  });
+
+    } catch(e) {
+      await console.log("Publishing could not be done because "+ e);
+    }
+}
+
+streams()
+
+// Step 5. Subscribe to stream
+async function getDCList() {
+    let dcListAll = await client.listUserFabrics();
+    //DFP - Error here - geo_fabric is not defined. I could not test Step 5. 
+    let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
+    return dcListObject.options.dcList.split(",");
+  }
+  
+  (async function() {
+    const dcList = await getDCList();
+    await console.log("dcList: ", dcList);
+    await client.createStream("my-stream", true);
+    
+    //Here the last boolean value tells if the stream is local or global. false means that it is global.
+    // Publishing streams
+    const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
+    consumer.on("message", (msg) => {
+      const { payload, messageId } = JSON.parse(msg);
+      
+      // Logging received message payload(ASCII encoded) to decode use atob()
+      console.log(payload);
+      // Send message acknowledgement
+      consumer.send(JSON.stringify({ messageId }));
+    });
+  
+  })();
+  ```
 
 </TabItem>
 </Tabs>
