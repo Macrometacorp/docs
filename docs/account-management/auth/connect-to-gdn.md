@@ -107,11 +107,11 @@ headers = {
 response = requests.post(url, data = json.dumps(payload), headers = headers)
 
 if response.status_code == 200:
-resp_body = json.loads(response.text)
-AUTH_TOKEN += resp_body["jwt"]
-TENANT = resp_body["tenant"]
+  resp_body = json.loads(response.text)
+  AUTH_TOKEN += resp_body["jwt"]
+  TENANT = resp_body["tenant"]
 else:
-raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
+  raise Exception("Error while getting auth token. Code:{}, Reason:{}".format(response.status_code,response.reason))
 
 
 session = requests.session()
