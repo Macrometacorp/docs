@@ -69,15 +69,15 @@ GEO_FABRIC = "_system" # Change this if you need to log in to a fabric other tha
 API_KEY = "my API key" # Change this to your API key.
 
 # Authenticate with your email and password
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+client = C8Client(protocol='https', host= URL, port=443,
                     email='nemo@nautilus.com', password='xxxxx',
-                    geofabric='_system')
+                    geofabric= GEO_FABRIC)
 
 # Authenticate with API key (recommended for apps)
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
 
 # Authenticate with JWT
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token="XXXX")
+client = C8Client(protocol='https', host=URL, port=443, token="XXXX", geofabric = GEO_FABRIC)
 ```
 
 </TabItem>
