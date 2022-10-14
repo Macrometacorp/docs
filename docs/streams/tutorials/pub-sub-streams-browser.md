@@ -1,3 +1,4 @@
+---
 sidebar_position: 2
 title: Pub-Sub with Streams in Browser
 ---
