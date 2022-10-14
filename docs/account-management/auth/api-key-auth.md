@@ -27,13 +27,7 @@ const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", f
 <TabItem value="py" label="Python">
 
 ```py
-from operator import concat
-import base64
-import json
-import warnings
 from c8 import C8Client
-import six
-warnings.filterwarnings("ignore")
 
 # Define constants
 URL = "gdn.paas.macrometa.io"
