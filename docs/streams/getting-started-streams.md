@@ -282,6 +282,8 @@ for i in range(10):
 
 ## Full Demo File
 
+Copy the code block below into a file and run it in your favorite IDE.
+
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
 
@@ -295,7 +297,7 @@ from c8 import C8Client
 import six
 warnings.filterwarnings("ignore")
 
-# Step 1. Connect to GDN.
+# Connect to GDN.
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
@@ -366,13 +368,13 @@ else:
 <TabItem value="js" label="JavaScript">
 
 ```js
-// Step 1. Connect to GDN.
+// Connect to GDN.
 const jsc8 = require("jsc8");
 // Choose one of the following methods to access the GDN. API key is recommended.
 const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "diana.payton_macrometa.com.mykey.eFEvSibM2pUqsaSoL0S54ubZ0kzAU3U6iWAXRiQDqB7PSClEYMhq3WI2gEbvxYxK9c6eb4", fabricName: '_system'});
 console.log("Authentication done!!...");
 
-// Step 2. Get GeoFabric details.
+// Get GeoFabric details.
 async function getFabric() {
     try {
       await console.log("Getting the fabric details...");
@@ -386,7 +388,7 @@ async function getFabric() {
   
   getFabric();
 
-  // Step 3. Create global and local streams.
+  // Create global and local streams.
   async function streams() {
     try{
       await console.log("Creating local stream...");
@@ -402,7 +404,7 @@ async function getFabric() {
 
 streams();
 
-// Step 4. Publish messages to stream.
+// Publish messages to stream.
 async function streams() {
     try {
       await console.log("Creating local stream...");
@@ -425,7 +427,7 @@ async function streams() {
 
 streams()
 
-// Step 5. Subscribe to stream
+// Subscribe to stream
 async function getDCList() {
     let dcListAll = await client.listUserFabrics();
     //DFP - Error here - geo_fabric is not defined. I could not test Step 5. 
