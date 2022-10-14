@@ -11,19 +11,29 @@ This page explains how to install Macrometa SDKs.
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
-```js
-With Yarn or NPM
+You have several options when installing this SDK.
 
-yarn add jsc8
-(or)
+With NPM:
+
+```js
 npm install jsc8
+```
 
 If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
 
+```js
 npm install --global jsc8
+```
 
-From source,
+To install the SDK in a notebook:
 
+```js
+!npm install jsc8 --save
+```
+
+From GitHub source:
+
+```bash
 git clone https://github.com/macrometacorp/jsc8.git
 cd jsC8
 npm install
@@ -33,22 +43,20 @@ npm run dist
 </TabItem>
 <TabItem value="py" label="Python">
 
+:::note
+pyC8 requires Python 3.5+. Python 3.6 or higher is recommended.
+:::
+
+You can install the pyC8 SDK with pip:
+
 ```py
-pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
+pip install pyC8
+```
 
-To install pyC8, run
+To install the SDK in a notebook:
 
-$ pip3 install pyC8
-
-or, if you prefer to use conda:
-
-conda install -c conda-forge pyC8
-
-or pipenv:
-
-pipenv install --pre pyC8
-
-Once the installation process is finished, you can begin developing applications in Python.
+```py
+!pip install pyC8
 ```
 
 </TabItem>
