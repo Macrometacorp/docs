@@ -5,7 +5,7 @@ title: KafkaJS Client
 
 The KafkaJS client can be used to create Kafka producers, consumers. Full documentation [here](https://kafka.js.org/docs/getting-started).
 
-### Installation
+## Installation
 
 Install KafkaJS using:
 
@@ -34,7 +34,7 @@ const kafka = new Kafka({
 })
 ```
 
-### Producer
+## Producer
 
 To produce a message to a topic, create a producer using our client:
 
@@ -52,7 +52,7 @@ await producer.send({
 await producer.disconnect()
 ```
 
-### Consumer
+## Consumer
 
 To verify the message has been sent to the topic, create a consumer to consume the message:
 

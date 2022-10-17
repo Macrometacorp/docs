@@ -7,7 +7,7 @@ The Kafka-Node client can be used to create Kafka producers, consumers, and topi
 
 Note: Recommend to use [kafkajs](../kafkajs/README.md) client instead, because `kafka-node` has not been supporting since 2019 year.
 
-#### Installation
+## Installation
 
 Install Kafka-Node using npm:
 
@@ -41,7 +41,7 @@ client.createTopics([{topic: '<c8globals or c8locals>.<my-topic>' ,partitions: 1
 });
 ```
 
-#### Producer
+## Producer
 
 This example creates a Node.js producer for the my-topic topic and sends messages to that topic:
 
@@ -59,7 +59,7 @@ function send() {
 }
 ```
 
-#### Consumer
+## Consumer
 
 Kafka consumers subscribe to one or more Kafka topics and listen for incoming messages produced on that topic or multiple topics with global either local distribution. For example: `new kafka.Consumer(client, [{ topic: 'c8globals.topic-1', topic: 'c8locals.topic-2'}])`.
 

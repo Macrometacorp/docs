@@ -11,11 +11,11 @@ Full Kafka plugin documentation can be found [here](https://docs.fluentbit.io/ma
 
 Kafka plugin is on top of `libdrkafka` [library](https://github.com/edenhill/librdkafka/).
 
-### Installation
+## Installation
 
 The correct installation was proven on Ubuntu OS. The below steps will show how to build and install Fluent Bit with correct plugins and modules.
 
-#### Prequisites
+### Prequisites
 
 Building Fluent Bit from scratch requires installing `git` and then cloning a repository from [GitHub](https://github.com/fluent/fluent-bit) and checkout to the latest version.
 
@@ -39,7 +39,7 @@ sudo apt install -y flex
 sudo apt install -y libssl-dev
 ```
 
-#### Consumer
+## Consumer
 
 To verify that our message has indeed been produced to the topic, let's create a consumer to consume our message:
 

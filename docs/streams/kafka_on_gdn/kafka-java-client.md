@@ -10,7 +10,7 @@ The Kafka consumer is _not_ thread-safe. The Kafka producer is thread-safe.
 This document focuses only on the client API for producing and consuming messages on Kafka topics.
 
 
-### Installation
+## Installation
 
 The latest version of the Kafka Java client library is available via [Maven Central](https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients). To use the latest version, add the kafka-clients library to your build configuration.
 
@@ -29,7 +29,7 @@ If you use Maven, add the following information to the pom.xml file.
 </dependency>
 ```
 
-### Kafka Properties
+## Kafka Properties
 
 To connect to Kafka using client libraries, you should specify Kafka properties are as follows.
 
@@ -56,7 +56,7 @@ props.put("ssl.endpoint.identification.algorithm", "");
 props.put("bootstrap.servers", "<my-gdn>.<my-paas>.macrometa.io:9093");
 ```
 
-### Producer
+## Producer
 
 In Kafka, producers write messages to topics.
 
@@ -80,7 +80,7 @@ Make sure that you close your producer when you do not need it.
 producer.close();
 ```
 
-### Consumer
+## Consumer
 
 In Kafka, consumers subscribe to topics and handle messages that producers publish to those topics. You can instantiate a new consumer by first instantiating a Properties object and passing it properties (as above).
 
