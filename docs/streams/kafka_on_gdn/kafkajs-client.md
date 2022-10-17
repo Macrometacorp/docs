@@ -19,7 +19,7 @@ or npm:
 npm install kafkajs
 ```
 
-Let's start by instantiating the KafkaJS client by pointing it towards at least one broker:
+Instantiate the KafkaJS client by pointing it towards at least one broker:
 
 ```node
 const { Kafka } = require('kafkajs')
