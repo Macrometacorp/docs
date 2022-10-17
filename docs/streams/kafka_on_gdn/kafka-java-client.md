@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Kafka Java Client
 ---
 
-You can use Kafka Java client to create Java producer, consumer. The current version of the Kafka Java client is 2.8.0.
+You can use Kafka Java client to create Java producer, consumer.
 
 The Kafka consumer is _not_ thread-safe. The Kafka producer is thread-safe.
 
@@ -29,7 +29,7 @@ If you use Maven, add the following information to the pom.xml file.
 </dependency>
 ```
 
-## Kafka Properties
+### Kafka Properties
 
 To connect to Kafka using client libraries, you should specify Kafka properties are as follows.
 
