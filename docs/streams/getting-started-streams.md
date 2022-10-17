@@ -332,7 +332,7 @@ async function streams() {
         producer.send(JSON.stringify(payloadObj));
       });
       producer.on("message", (msg) => {
-        console.log(msg, "Sent Successfully");
+        console.log(msg, "Sent successfully");
       });
 
     } catch(e) {
