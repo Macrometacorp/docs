@@ -173,19 +173,9 @@ Example to publish documents to a stream. The stream can be either a local strea
 ```js
 async function streams() {
     try {
-
       await console.log("Creating local stream...");
-      await client.createStream("my-stream", true);
-
-      const stream = await client.getStream("my-stream", true);
-      await stream.publishMessage("Hello World");
-
-      /*
-
-      // FOR ADVANCED USER
-      const stream = client.stream("my-stream", true);
+            const stream = client.stream("my-stream", true);
       await stream.createStream();
-
       const producerOTP = await stream.getOtp();
       const producer = await stream.producer("gdn.paas.macrometa.io", {
         otp: producerOTP,
@@ -197,12 +187,9 @@ async function streams() {
         const payloadObj = { payload: Buffer.from(message).toString("base64") };
         producer.send(JSON.stringify(payloadObj));
       });
-
       producer.on("message", (msg) => {
         console.log(msg, "Sent Successfully");
       });
-
-      */
 
     } catch(e) {
       await console.log("Publishing could not be done because "+ e);
@@ -238,6 +225,7 @@ Example to subscribe documents from a stream. The stream can be either a local s
 
 ```js
 async function getDCList() {
+  const geo_fabric = "_system"
   let dcListAll = await client.listUserFabrics();
   let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
   return dcListObject.options.dcList.split(",");
@@ -285,6 +273,102 @@ for i in range(10):
 Copy the code block below into a file and run it in your favorite IDE.
 
 <Tabs groupId="operating-systems">
+<TabItem value="js" label="JavaScript">
+
+```js
+// Connect to GDN.
+const jsc8 = require("jsc8");
+// Choose one of the following methods to access the GDN. API key is recommended.
+const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "my API key", fabricName: '_system'});
+console.log("Authentication done!!...");
+
+// Get GeoFabric details.
+async function getFabric() {
+    try {
+      await console.log("Getting the fabric details...");
+      let result = await client.get();
+  
+      await console.log("result is: ", result);
+    } catch(e){
+      await console.log("Fabric details could not be fetched because "+ e);
+    }
+  }
+  
+  getFabric();
+
+  // Create global and local streams.
+  async function streams() {
+    try{
+      await console.log("Creating local stream...");
+      const stream_local = await client.createStream("testStream-local", true);
+
+      await console.log("Creating global stream...");
+      const stream_global = await client.createStream("testStream-global", false);
+
+    } catch(e){
+      await console.log("Streams could not be fetched because "+ e);
+    }
+}
+
+streams();
+
+// Publish messages to stream.
+async function streams() {
+    try {
+      await console.log("Creating local stream...");
+            const stream = client.stream("my-stream", true);
+      await stream.createStream();
+      const producerOTP = await stream.getOtp();
+      const producer = await stream.producer("gdn.paas.macrometa.io", {
+        otp: producerOTP,
+    });
+      producer.on("open", () => {
+        // If you message is an object, convert the obj to string.
+        // e.g. const message = JSON.stringify({message:'Hello World'});
+        const message = "Hello World";
+        const payloadObj = { payload: Buffer.from(message).toString("base64") };
+        producer.send(JSON.stringify(payloadObj));
+      });
+      producer.on("message", (msg) => {
+        console.log(msg, "Sent Successfully");
+      });
+
+    } catch(e) {
+      await console.log("Publishing could not be done because "+ e);
+    }
+}
+
+streams()
+
+// Subscribe to stream
+async function getDCList() {
+    const geo_fabric = "_system"
+    let dcListAll = await client.listUserFabrics();
+    let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
+    return dcListObject.options.dcList.split(",");
+  }
+  
+  (async function() {
+    const dcList = await getDCList();
+    await console.log("dcList: ", dcList);
+    await client.createStream("my-stream", true);
+    
+    //Here the last boolean value tells if the stream is local or global. false means that it is global.
+    // Publishing streams
+    const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
+    consumer.on("message", (msg) => {
+      const { payload, messageId } = JSON.parse(msg);
+      
+      // Logging received message payload(ASCII encoded) to decode use atob()
+      console.log(payload);
+      // Send message acknowledgement
+      consumer.send(JSON.stringify({ messageId }));
+    });
+  
+  })();
+  ```
+
+</TabItem>
 <TabItem value="py" label="Python">
 
 ```py
@@ -363,94 +447,6 @@ elif user_input == "r" or user_input == '0':
 else:
     print ("Invalid user input. Stopping program")
 ```
-
-</TabItem>
-<TabItem value="js" label="JavaScript">
-
-```js
-// Connect to GDN.
-const jsc8 = require("jsc8");
-// Choose one of the following methods to access the GDN. API key is recommended.
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "diana.payton_macrometa.com.mykey.eFEvSibM2pUqsaSoL0S54ubZ0kzAU3U6iWAXRiQDqB7PSClEYMhq3WI2gEbvxYxK9c6eb4", fabricName: '_system'});
-console.log("Authentication done!!...");
-
-// Get GeoFabric details.
-async function getFabric() {
-    try {
-      await console.log("Getting the fabric details...");
-      let result = await client.get();
-  
-      await console.log("result is: ", result);
-    } catch(e){
-      await console.log("Fabric details could not be fetched because "+ e);
-    }
-  }
-  
-  getFabric();
-
-  // Create global and local streams.
-  async function streams() {
-    try{
-      await console.log("Creating local stream...");
-      const stream_local = await client.createStream("testStream-local", true);
-
-      await console.log("Creating global stream...");
-      const stream_global = await client.createStream("testStream-global", false);
-
-    } catch(e){
-      await console.log("Streams could not be fetched because "+ e);
-    }
-}
-
-streams();
-
-// Publish messages to stream.
-async function streams() {
-    try {
-      await console.log("Creating local stream...");
-      await client.createStream("my-stream", true);
-
-      const stream = await client.getStream("my-stream", true);
-      await stream.publishMessage("Hello World");
-
-producer.on("message", (msg) => {
-      console.log(msg, "Sent Successfully");
-    });
-
-    } catch(e) {
-      await console.log("Publishing could not be done because "+ e);
-    }
-}
-
-streams()
-
-// Subscribe to stream
-async function getDCList() {
-    let dcListAll = await client.listUserFabrics();
-    //DFP - Error here - geo_fabric is not defined. I could not test Step 5. 
-    let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
-    return dcListObject.options.dcList.split(",");
-  }
-  
-  (async function() {
-    const dcList = await getDCList();
-    await console.log("dcList: ", dcList);
-    await client.createStream("my-stream", true);
-    
-    //Here the last boolean value tells if the stream is local or global. false means that it is global.
-    // Publishing streams
-    const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
-    consumer.on("message", (msg) => {
-      const { payload, messageId } = JSON.parse(msg);
-      
-      // Logging received message payload(ASCII encoded) to decode use atob()
-      console.log(payload);
-      // Send message acknowledgement
-      consumer.send(JSON.stringify({ messageId }));
-    });
-  
-  })();
-  ```
 
 </TabItem>
 </Tabs>
