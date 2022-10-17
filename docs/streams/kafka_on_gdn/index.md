@@ -8,9 +8,9 @@ Kafka on GDN brings the native Apache Kafka protocol support to GDN Streams by i
 
 Supported clients:
 
-- Java Client
-- Kafka Python Client
-- Confluent Python Client
-- KafkaJS Client
-- Kafka Node Client
-- Fluent Bit Client
+- [Kafka Java Client](kafka-java-client.md)
+- [Kafka Python Client](kafka-python-client.md)
+- [Confluent Python Client](confluent-python-client.md)
+- [KafkaJS Client](kafkajs-client.md)
+- [Kafka Node Client](kafka-nodejs-client.md)
+- [Fluent Bit Client](fluent-bit-client.md)
