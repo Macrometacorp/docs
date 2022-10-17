@@ -413,12 +413,9 @@ async function streams() {
       const stream = await client.getStream("my-stream", true);
       await stream.publishMessage("Hello World");
 
-
-// DFP - This part was from the "advanced" portion.
-// How can we make it output this message when the code above is successful?
-    //  producer.on("message", (msg) => {
-    //    console.log(msg, "Sent Successfully");
-    //  });
+producer.on("message", (msg) => {
+      console.log(msg, "Sent Successfully");
+    });
 
     } catch(e) {
       await console.log("Publishing could not be done because "+ e);
