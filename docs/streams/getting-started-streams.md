@@ -30,9 +30,11 @@ The first step in using the Macrometa Global Data Network (GDN) is to establish 
 const jsc8 = require("jsc8");
 
 // Choose one of the following methods to access the GDN. API key is recommended.
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+// API key
 const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-await console.log("Authentication done!!...");
+
+// JSON Web Token
+// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
 
 // Or use email and password to authenticate client instance
 // const client = new jsc8("https://gdn.paas.macrometa.io");
