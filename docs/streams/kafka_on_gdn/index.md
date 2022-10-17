@@ -1,5 +1,4 @@
 ---
-sidebar_position: 150
 title: Kafka on GDN
 ---
 
