@@ -183,7 +183,7 @@ async function streams() {
         otp: producerOTP,
     });
       producer.on("open", () => {
-        // If your message is an object, convert the obj to string.
+        // If your message is an object, convert the object to a string.
         // e.g. const message = JSON.stringify({message:'Hello World'});
         const message = "Hello World";
         const payloadObj = { payload: Buffer.from(message).toString("base64") };
