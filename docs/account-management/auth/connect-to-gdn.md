@@ -73,7 +73,7 @@ client = C8Client(protocol='https', host= URL, port=443,
                     email='nemo@nautilus.com', password='xxxxx',
                     geofabric= GEO_FABRIC)
 
-# Authenticate with API key (recommended for apps)
+# Authenticate with API key (recommended)
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
 
 # Authenticate with JWT
@@ -97,11 +97,11 @@ AUTH_TOKEN = "bearer "
 # Create an HTTPS Session
 url = "{}/_open/auth".format(FED_URL)
 payload = {
-'email':EMAIL,
-'password':PASSWORD
+  'email':EMAIL,
+  'password':PASSWORD
 }
 headers = {
-'content-type': 'application/json'
+  'content-type': 'application/json'
 }
 
 response = requests.post(url, data = json.dumps(payload), headers = headers)
