@@ -84,7 +84,7 @@ producer.close();
 
 In Kafka, consumers subscribe to topics and handle messages that producers publish to those topics. You can instantiate a new consumer by first instantiating a Properties object and passing it properties (as above).
 
-Also, you need to add additional properties for Consumer for specifying a subscription and serializers are as follows.
+Add the following Consumer properties for specifying a subscription and serializers:
 
 ```java
 props.put("enable.auto.commit", "false");
