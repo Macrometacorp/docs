@@ -105,7 +105,9 @@ KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props
 consumer.subscribe(Arrays.asList("<c8globals or c8locals>.<my-topic>"));
 ```
 
-The subscribe method will auto subscribe the consumer to the specified topic and subscription. One way to make the consumer listen on the topic is to set up a while loop. In this example loop, the consumer listens for messages, prints the contents of any received message, and then acknowledges that the message has been processed by commitAsync() method.
+The subscribe method automatically subscribes the consumer to the specified topic and subscription.
+
+One way to make the consumer listen to the topic is to set up a while loop. In this example loop, the consumer listens for messages, prints the contents of any received message, and then acknowledges that the message has been processed by the `commitAsync()` method.
 
 ```java
 while (true) {
