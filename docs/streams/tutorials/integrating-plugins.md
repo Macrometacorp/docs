@@ -1,12 +1,9 @@
 ---
-sidebar_position: 4
+sidebar_position: 50
 title: Integrating Plugins
 ---
 
 You can use plugins in your tenants to extend the functionality of your streams.
-
-* [Store RDBMS](#store-rdbms)
-* [Change Data Capture (CDC)](#cdc)
 
 ## Store RDBMS
 
@@ -14,10 +11,10 @@ The Store plugin provides persistence and retrieval of events to and from RDBMS 
 
 This plugin provides the following functionality:
 
-* [CUD](#cud)
-* [Procedure](#procedure)
-* [Query](#query)
-* [Store](#store)
+- [CUD](#cud)
+- [Procedure](#procedure)
+- [Query](#query)
+- [Store](#store)
 
 ### CUD
 
@@ -82,7 +79,6 @@ Insert the following parameters into the provided [template](#template) to creat
 
 Additionally, the `attributeName` attribute (any type) returns the attributes listed in the parameter `attribute.definition.list`.
 
-
 #### Template
 
 Use the following template to create a Procedure function:
@@ -116,8 +112,6 @@ insert into tempStream1;
 
 The output parameter is `cursor` and the input parameter is `9` as specified in the query.
 
-
-
 ### Query
 
 You can use the Query function to perform SQL retrieval queries on a datasource.
@@ -135,7 +129,6 @@ Insert the following parameters into the provided [template](#template) to creat
 | ack.empty.result.set | BOOL 		| `false`			| Yes		| No		| When set to `true`, null values are returned if the result set is empty. When set to `false`, nothing is returned if the result set is empty. |
 
 Additionally, `attributeName` (any type) returns the attributes listed in the parameter `attribute.definition.list`.
-
 
 #### Template
 
@@ -174,7 +167,6 @@ select creditcardno, country, transaction, amount from TriggerStream#rdbms:query
 insert into recordStream;
 
 ```
-
 
 ### Store
 
@@ -241,17 +233,14 @@ select a.symbol as symbol, b.volume as volume from InputStream as a join StockTa
 insert into FooStream;
 ```
 
-
-
-
 ## Change Data Capture (CDC)
 
 The Change Data Capture (CDC) plugin captures change data from RDBMS databases like MySQL, MS SQL, PostgreSQL, H2, and Oracle. When a change event occurs on a database table, the CDC source receives the event in key-value format.
 
-CDC has two available modes: *polling* and *listening*.
+CDC has two available modes: _polling_ and _listening_.
 
-* Polling mode enables you to set a periodic check at defined intervals for changes to the database. This mode uses the column `polling.column` to capture RDBMS, INSERT, and UPDATE change events. You can track changes by timestamp or by sequence number.
-* Listening mode notifies you in real time when the database logs changes. This mode uses logs to capture MySQL, INSERT, UPDATE, and DELETE change events.
+- Polling mode enables you to set a periodic check at defined intervals for changes to the database. This mode uses the column `polling.column` to capture RDBMS, INSERT, and UPDATE change events. You can track changes by timestamp or by sequence number.
+- Listening mode notifies you in real time when the database logs changes. This mode uses logs to capture MySQL, INSERT, UPDATE, and DELETE change events.
 
 ### Parameters
 
@@ -264,7 +253,7 @@ Insert the following parameters into the provided [template](#template) to creat
 | jdbc.driver.name				| STRING		| N/A				| Yes		| No		| SDK class name for database connection. Required if you are using polling mode. |
 | username						| STRING		| N/A				| No		| No		| The user that accesses the database needs these permissions in the `table.name` field: `SELECT`, `RELOAD`, `SHOW DATABASES`, `REPLICATION SLAVE`, and `REPLICATION CLIENT`. |
 | password						| STRING		| N/A				| No		| No		| Password for the user accessing the database. |
-| pool.properties				| STRING		| N/A				| Yes		| No		| You can use key-value pairs for pool parameters. | 
+| pool.properties				| STRING		| N/A				| Yes		| No		| You can use key-value pairs for pool parameters. |
 | datasource.name				| STRING		| N/A				| Yes 		| No		| If you use a datasource, you do not need to provide a URL, username, or password. Datasource connections have higher priority than URL-based connections. You can only use a datasource with polling mode and a stream processor. |
 | table.name					| STRING		| N/A				| No		| No		| Name of the table to be monitored for changes. |
 | polling.column				| STRING		| N/A				| Yes		| No		| When using polling mode, this field indicates whether records are tracked with an incremental sequence of numbers or a timestamp. Set  to `id` to track updates with a number sequence or `last_updated` to use a timestamp. Number sequences are only compatible with insertion operations. |
@@ -279,8 +268,6 @@ Insert the following parameters into the provided [template](#template) to creat
 | cron.expression				| STRING		| Empty				| Yes		| No		| Specify a timestamp using a cron expression. When the system time matches the CRON expression, we print the records of insertions or deletions. Only applicable for polling mode. |
 | plugin.name					| STRING		| `decoderbufs`		| Yes		| No		| Used when the logical decoding output plugin needs to specify the connection to the database. This is mainly required for PostgreSQL. |
 
-
-
 ### Template
 
 Use the following template to create a CDC plugin:
@@ -289,7 +276,7 @@ Use the following template to create a CDC plugin:
 
 ### Examples
 
-The following CDC plugin examples assume you are using a table called `students` and a database called `SimpleDB`. 
+The following CDC plugin examples assume you are using a table called `students` and a database called `SimpleDB`.
 
 #### Example 1
 
@@ -301,7 +288,6 @@ CREATE SOURCE inputStream WITH (type = 'cdc' , url = 'jdbc:mysql://localhost:330
 
 You can adjust this plugin to listen for updates or deletions by adding `update` or `delete` to the `operation` field separated by commas. For example: `operation = 'insert,update,delete'`
 
-
 #### Example 2
 
 This example polls for row insertions:
@@ -312,7 +298,6 @@ CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = '
 
 The `polling.column` field is set to `id`, indicating that polling will be tracked with an incremental sequence of numbers. Connection requires a URL, username, password, and JDBC SDK name.
 
-
 #### Example 3
 
 This example polls for row insertions and adds sequential numbering to the polling column:
@@ -322,7 +307,6 @@ CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = '
 ```
 
 The polling column The `datasource.name` parameter is only valid with a Stream Processor.
-
 
 #### Example 4
 

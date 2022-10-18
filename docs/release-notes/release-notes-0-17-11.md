@@ -3,7 +3,7 @@ title: Release Notes 0.17.11
 sidebar_position: 98
 ---
 
-This document describes what has changed in Macrometa release 0.17.11. All accounts will be updated by Month XX, YYYY. To check what version of GDN you are using, use the [Client Version](https://macrometa.com/docs/cli/client-version-cli.md) command in the CLI or the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
+This document describes what has changed in Macrometa release 0.17.11. To check what version of GDN you are using, use the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) API command.
 
 ## New Features
 
@@ -22,16 +22,13 @@ Description of feature.
 [Topic name](link) was added as a result of this feature.
 
 ### Kafka Support - Beta
-
-Description of feature.
-
-[Topic name](link) was added as a result of this feature.
+This release adds support for some Kafka clients in the GDN. For a list of supported clients, refer to [Kafka on GDN](../streams/kafka_on_gdn/index.md).
 
 ### Invite User
 
-Description of update.
+You can now invite users to your Macrometa account with emails!
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+[Invite Users](../account-management/users/invite-users.md) was added as a result of this feature.
 
 ## Feature Updates
 
@@ -40,8 +37,6 @@ The following features updates are included in this release.
 ### Stream Worker Prefixes
 
 You can now prepend a stream worker name to the aggregation tables that it creates. For example, if the stream worker name is `SampleAggregationApp` and the aggregation is `TradeAggregation,` then it will create tables like `SampleAggregationApp-TradeAggregation_SECONDS`. Previously, it was just `TradeAggregation_SECONDS`.
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
 
 ### Auth Improvements
 
@@ -84,14 +79,6 @@ curl -X 'POST' \ 'https://api-qa6.eng.macrometa.io/_api/user' \
     }'
 ```
 
-## Known Issues
-
-The following known issues were introduced in this release.
-
-### Problem
-
-Explain the problem and the workaround.
-
 ## Defect Fixes
 
 The following defects were fixed in this release.
@@ -104,7 +91,6 @@ The following defects were fixed in this release.
 | DB-1667  | Dynamo scans with filter expressions are not working as expected.  |
 | DB-1668  | Improved error text in duplicate node error for graphs to be more user-friendly.  |
 | DB-1714  | MaxDocumentSize limit error message in Dynamo is incorrect.  |
-| DB-1757  | Updating the bind parameter key in an existing query results in duplicate keys.  |
 | DB-1801  | API `/_api/key/validate` returns HTTP code 200 with message 'non-representable type' when no request body is sent.  |
 | DB-1831  | Graph with a vertex collection not loading normally. It only loads when you click on Full Graph option.  |
 | DB-1855  | Maximum stored query workers limit is not applied across all regions.  |
