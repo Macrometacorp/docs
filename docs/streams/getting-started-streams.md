@@ -276,7 +276,7 @@ Copy the code block below into a file and run it in your favorite IDE.
 // Connect to GDN.
 const jsc8 = require("jsc8");
 // Choose one of the following methods to access the GDN. API key is recommended.
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "my API key", fabricName: '_system'});
+const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "xxxxx", fabricName: '_system'});
 console.log("Authentication done!!...");
 
 // Get GeoFabric details.
@@ -286,39 +286,60 @@ async function getFabric() {
       let result = await client.get();
   
       await console.log("result is: ", result);
-    } catch(e){
+    } catch(e) {
       await console.log("Fabric details could not be fetched because "+ e);
-    }
-  }
-  
-  getFabric();
-
-  // Create global and local streams.
-  async function streams() {
-    try{
-      await console.log("Creating local stream...");
-      const stream_local = await client.createStream("testStream-local", true);
-
-      await console.log("Creating global stream...");
-      const stream_global = await client.createStream("testStream-global", false);
-
-    } catch(e){
-      await console.log("Streams could not be fetched because "+ e);
     }
 }
 
-streams();
+// Create global and local streams.
+async function createStreams() {
+    try{
+      console.log("Creating local stream...");
+      await client.createStream("testStream-local", true);
+
+      console.log("Creating global stream...");
+      await client.createStream("testStream-global", false);
+
+    } catch(e) {
+      await console.log("Streams could not be created because "+ e);
+    }
+}
+
+// Subscribe to stream
+async function createConsumer() {
+  const dcList = await getDCList();
+  await console.log("dcList: ", dcList);
+
+  try{
+    console.log("Creating local stream...");
+    await client.createStream("my-stream", true);
+  } catch(e) {
+    await console.log("Stream could not be created because "+ e);
+  }
+
+  // Here the last boolean value tells if the stream is local or global. false means that it is global.
+  const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
+
+  consumer.on("message", (msg) => {
+    const { payload, messageId } = JSON.parse(msg);
+    
+    // Received message payload
+    console.log(Buffer.from(payload, "base64").toString("ascii"));
+
+    // Send message acknowledgement
+    consumer.send(JSON.stringify({ messageId }));
+  });
+}
 
 // Publish messages to stream.
-async function streams() {
+async function createProducer() {
     try {
       await console.log("Creating local stream...");
-            const stream = client.stream("my-stream", true);
-      await stream.createStream();
+      const stream = client.stream("my-stream", true);
       const producerOTP = await stream.getOtp();
       const producer = await stream.producer("gdn.paas.macrometa.io", {
         otp: producerOTP,
-    });
+      });
       producer.on("open", () => {
         // If your message is an object, then convert the object to a string.
         // e.g. const message = JSON.stringify({message:'Hello World'});
@@ -329,41 +350,27 @@ async function streams() {
       producer.on("message", (msg) => {
         console.log(msg, "Sent successfully");
       });
-
     } catch(e) {
       await console.log("Publishing could not be done because "+ e);
     }
 }
 
-streams()
-
-// Subscribe to stream
 async function getDCList() {
     const geo_fabric = "_system"
     let dcListAll = await client.listUserFabrics();
     let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
     return dcListObject.options.dcList.split(",");
-  }
-  
-  (async function() {
-    const dcList = await getDCList();
-    await console.log("dcList: ", dcList);
-    await client.createStream("my-stream", true);
-    
-    //Here the last boolean value tells if the stream is local or global. false means that it is global.
-    // Publishing streams
-    const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
-    consumer.on("message", (msg) => {
-      const { payload, messageId } = JSON.parse(msg);
-      
-      // Logging received message payload(ASCII encoded) to decode use atob()
-      console.log(payload);
-      // Send message acknowledgement
-      consumer.send(JSON.stringify({ messageId }));
-    });
-  
-  })();
-  ```
+}
+
+async function main() {
+    await getFabric();
+    await createStreams();
+    await createConsumer();
+    await createProducer();
+};
+
+main();
+```
 
 </TabItem>
 <TabItem value="py" label="Python">
@@ -375,71 +382,68 @@ import base64
 import json
 import warnings
 from c8 import C8Client
-import six
 warnings.filterwarnings("ignore")
 
 # Connect to GDN.
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "my API key" # Change this to your API key
-prefixText = ""
-prefixBool = False
+API_KEY = "xxxxx" # Change this to your API key
+is_local = False
+prefix_text = ""
 demo_stream = 'streamQuickstart'
 
-client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
-
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 # Get the right prefix for the stream.
-if prefixBool:
-    prefixText = "c8locals."
+if is_local:
+    prefix_text = "c8locals."
 else:
-    prefixText = "c8globals."
+    prefix_text = "c8globals."
 
 # Create global and local streams.
 def createStream():
     """ This function creates a stream """
-    streamName = {"stream-id": ""}
-    if client.has_stream(demo_stream, local = prefixBool):
+    stream_name = {"stream-id": ""}
+    if client.has_stream(demo_stream, local = is_local):
         print("Stream already exists")
-        streamName["stream-id"] = concat(prefixText, demo_stream)
-        print ("OLD Producer =",  streamName["stream-id"])
+        stream_name["stream-id"] = concat(prefix_text, demo_stream)
+        print ("OLD Producer =",  stream_name["stream-id"])
     else:
-        #print(client.create_stream(demo_stream, local=prefixBool))
-        streamName = client.create_stream(demo_stream, local=prefixBool)
-        print ("NEW Producer =",  streamName["stream-id"])
+        stream_name = client.create_stream(demo_stream, local=is_local)
+        print ("NEW Producer =",  stream_name["stream-id"])
 
 # Create the producer and publish messages.
 def sendData():
     """ This function sends data through a stream """
-    producer = client.create_stream_producer(demo_stream, local=prefixBool)
+    producer = client.create_stream_producer(demo_stream, local=is_local)
     for i in range(10):
         msg1 = "Persistent Hello from " + "("+ str(i) +")"
         print("Stream: ", msg1)
-        print(producer.send(json.dumps(data)))
-
+        producer.send(msg1)
 
 # Create the subscriber and receive data.
 def receiveData():
     """ This function receives data from a stream """
-    subscriber = client.subscribe(stream=demo_stream, local=prefixBool,
+    subscriber = client.subscribe(stream=demo_stream, local=is_local,
         subscription_name="test-subscription-1")
     for i in range(10):
         print("In ",i)
         m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
-        msg1 = base64.b64decode(m1["payload"])
+        msg1 = base64.b64decode(m1["payload"]).decode('utf-8')
         print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received message
         subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
-
 
 createStream()
 
 # User enters choice.
+# On one terminal use 'r' to start the subscriber to read data
+# Then on another terminal use 'w' to start the producer and publish message
 user_input = input("Type 'w' or '1' to write data. Type 'r' or '0' to read data: ")
 if user_input == "w" or user_input == '1':
     sendData()
 elif user_input == "r" or user_input == '0':
     receiveData()
 else:
-    print ("Invalid user input. Stopping program")
+    print ("Invalid user input. Stopping program") 
 ```
 
 </TabItem>
