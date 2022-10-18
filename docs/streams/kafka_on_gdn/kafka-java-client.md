@@ -46,7 +46,7 @@ props.put("bootstrap.servers", "<my-gdn>.<my-paas>.macrometa.io:9092");
 Note: The topic/stream in GDN could be either global or local that was mentioned above in username variable.
 ```
 
-If you use TLS authentication, then you should add or replace properties are as follows.
+If you use TLS authentication, then you should add or replace the following Kafka properties:
 
 ```java
 props.put("security.protocol", "SASL_SSL");
