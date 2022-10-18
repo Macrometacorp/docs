@@ -211,7 +211,7 @@ for i in range(10):
         "payload" : base64.b64encode(six.b(msg1)).decode("utf-8")
     }
     print("Stream: ", msg1)
-    print(producer.send(json.dumps(data)))
+    producer.send(msg1)
 ```
 
 </TabItem>
