@@ -141,7 +141,7 @@ is_local = False # If false, then the stream created below is global
 demo_stream = 'streamQuickstart'
     
 # Get the right prefix for the streamName
-if prefixBool:
+if is_local:
     prefixText = "c8locals."
 else:
     prefixText = "c8globals."
