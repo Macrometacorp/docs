@@ -149,7 +149,7 @@ else:
 # Create the stream if it doesn't already exist
 # To create both a global and local stream, run the code twice, once with is_local = True, once False
 stream_name = {"stream-id": ""}
-if client.has_stream(demo_stream, local = prefixBool):
+if client.has_stream(demo_stream, local = is_local):
     print("Stream already exists")
     streamName["stream-id"] = concat(prefixText, demo_stream)
     print ("OLD Producer =",  streamName["stream-id"])
