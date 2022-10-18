@@ -16,7 +16,7 @@ The latest version of the Kafka Java client library is available via [Maven Cent
 
 ## Maven
 
-If you use Maven, add the following information to the pom.xml file.
+If you use Maven, then add the following information to the pom.xml file:
 
 ```
 <!-- in your <properties> block -->
