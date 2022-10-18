@@ -136,7 +136,7 @@ streams();
 <TabItem value="py" label="Python">
 
 ```py
-prefixText = ""
+prefix_text = ""
 prefixBool = False # If false, then the stream created below is global
 demo_stream = 'streamQuickstart'
     
