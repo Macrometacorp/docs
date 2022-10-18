@@ -3,10 +3,10 @@ sidebar_position: 50
 title: Kafka NodeJS Client
 ---
 
-The Kafka-Node client can be used to create Kafka producers, consumers, and topics in Node.js. Full documentation [here](https://www.npmjs.com/package/kafka-node).
+The [Kafka-Node](https://www.npmjs.com/package/kafka-node) client can be used to create Kafka producers, consumers, and topics in Node.js.
 
 :::note
-We recommend using [kafkajs](../kafkajs/README.md) client instead, because `kafka-node` has not been supporting since 2019.
+We recommend using [kafkajs](https://kafka.js.org/) client instead, because `kafka-node` has not been supporting since 2019.
 :::
 
 ## Installation
@@ -16,6 +16,7 @@ Install Kafka-Node using npm:
 npm install kafka-node
 
 ## Create a Client
+
 In order to interact with Kafka, needs to be created a client instance:
 
 ```node
