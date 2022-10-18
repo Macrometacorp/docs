@@ -204,7 +204,7 @@ streams()
 <TabItem value="py" label="Python">
 
 ```py
-producer = client.create_stream_producer(demo_stream, local=prefixBool)
+producer = client.create_stream_producer(demo_stream, local=is_local)
 for i in range(10):
     msg1 = "Persistent Hello from " + "("+ str(i) +")"
     data = {
