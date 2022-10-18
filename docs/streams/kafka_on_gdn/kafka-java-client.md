@@ -12,7 +12,7 @@ This document focuses only on the client API for producing and consuming message
 
 ## Installation
 
-The latest version of the Kafka Java client library is available via [Maven Central](https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients). To use the latest version, add the kafka-clients library to your build configuration.
+The latest version of the Kafka Java client library is available via [Maven Central](https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients). To use the latest version, add the `kafka-clients` library to your build configuration.
 
 Maven
 If you use Maven, add the following information to the pom.xml file.
