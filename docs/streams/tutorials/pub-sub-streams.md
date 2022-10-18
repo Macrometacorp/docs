@@ -15,7 +15,10 @@ This is about how to create geo-replicated streams and do queues and pub-sub mes
 
 ## Pub-Sub with Streams Code
 
-
+1. Copy and paste the code block below in your favorite IDE.
+1. Update constants with your values, such as the API key.
+1. Run the code.
+1. (Optional) Log in to the Macrometa console to view the streams.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
