@@ -39,18 +39,18 @@ const client = new jsc8({
 
 // Or use email and password to authenticate a client instance
 // const client = new jsc8(globalUrl);
-// await client.login("nemo@nautilus.com", "xxxxxx");
+// await client.login("your@email.com", "password");
 
 // Variables
 const stream = "streamQuickstart";
-let prefixText = "";
-const prefixBool = false;
+let prefix_text = "";
+const is_local = false;
 
 // Get the right prefix for the stream
-if (prefixBool) {
-  prefixText = "c8locals.";
+if (is_local) {
+  prefix_text = "c8locals.";
 } else {
-  prefixText = "c8globals.";
+  prefix_text = "c8globals.";
 }
 
 async function getDCList () {
@@ -64,12 +64,12 @@ async function getDCList () {
 
 async function createMyStream () {
   let streamName = { "stream-id": "" };
-  if (await client.hasStream(stream, prefixBool)) {
+  if (await client.hasStream(stream, is_local)) {
     console.log("Stream already exists");
-    streamName["stream-id"] = prefixText + stream;
+    streamName["stream-id"] = prefix_text + stream;
     console.log(`OLD Producer = ${streamName["stream-id"]}`);
   } else {
-    streamName = await client.createStream(stream, prefixBool);
+    streamName = await client.createStream(stream, is_local);
     console.log(`NEW Producer = ${streamName.result["stream-id"]}`);
   }
 }
@@ -158,34 +158,34 @@ warnings.filterwarnings("ignore")
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
-prefixText = ""
-prefixBool = False
+prefix_text = ""
+is_local = False
 demo_stream = 'streamQuickstart'
 
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
 
 # Get the right prefix for the stream
-if prefixBool:
-    prefixText = "c8locals."
+if is_local:
+    prefix_text = "c8locals."
 else:
-    prefixText = "c8globals."
+    prefix_text = "c8globals."
 
 def createStream():
     """ This function creates a stream """
     streamName = {"stream-id": ""}
-    if client.has_stream(demo_stream, local = prefixBool):
+    if client.has_stream(demo_stream, local = is_local):
         print("Stream already exists")
-        streamName["stream-id"] = concat(prefixText, demo_stream)
-        print ("OLD Producer =",  streamName["stream-id"])
+        streamName["stream-id"] = concat(prefix_text, demo_stream)
+        print ("Old Producer =",  streamName["stream-id"])
     else:
-        #print(client.create_stream(demo_stream, local=prefixBool))
-        streamName = client.create_stream(demo_stream, local=prefixBool)
+        #print(client.create_stream(demo_stream, local=is_local))
+        streamName = client.create_stream(demo_stream, local=is_local)
         print ("New producer =",  streamName["stream-id"])
 
 # Create the producer and send data
 def sendData():
     """ This function sends data through a stream """
-    producer = client.create_stream_producer(demo_stream, local=prefixBool)
+    producer = client.create_stream_producer(demo_stream, local=is_local)
     for i in range(10):
         msg1 = "Persistent Hello from " + "("+ str(i) +")"
         data = {
@@ -197,7 +197,7 @@ def sendData():
 # Create the subscriber and receive data
 def receiveData():
     """ This function receives data from a stream """
-    subscriber = client.subscribe(stream=demo_stream, local=prefixBool,
+    subscriber = client.subscribe(stream=demo_stream, local=is_local,
         subscription_name="test-subscription-1")
     for i in range(10):
         print("In ",i)
