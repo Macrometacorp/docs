@@ -243,7 +243,7 @@ async function getDCList() {
     const { payload, messageId } = JSON.parse(msg);
     
     // Received message payload
-    console.log(payload);
+    console.log(Buffer.from(payload, "base64").toString("ascii"));
     // Send message acknowledgement
     consumer.send(JSON.stringify({ messageId }));
   });
