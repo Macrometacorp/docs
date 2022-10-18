@@ -21,8 +21,6 @@ Document databases, graph databases, key-value stores, pub-sub streams, and queu
 
 Macrometa GDN decouples its data storage technology from its data model. You can efficiently adapt and remap real-time materialized views and log storage technology to a broad array of rich data models and streams.
 
-![GDN Internals](/img/macrometa-internals.png)
-
 In a single datacenter, GDN is a _geo-distributed CP master/master_ model with no single point of failure:
 
 - _Geo-distributed_ means data is replicated between multiple regions, enabling clients to send requests to any region and view the same results after any latency.
