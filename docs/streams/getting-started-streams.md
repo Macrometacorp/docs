@@ -53,7 +53,6 @@ import base64
 import json
 import warnings
 from c8 import C8Client
-import six
 warnings.filterwarnings("ignore")
 
 # Define constants
