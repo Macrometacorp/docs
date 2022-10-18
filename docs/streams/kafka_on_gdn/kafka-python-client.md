@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Kafka Python Client
 ---
 
-Kafka-Python client library is designed to function much like the official java client, with a sprinkling of pythonic interfaces(e.g., consumer iterators). The library consists 6 different APIS via classes KafkaConsumer, KafkaProducer, KafkaAdminClient, KafkaClient, BrokerConnection, ClusterMetadata.
+The Kafka-Python client library is designed to function much like the official Java client, with a sprinkling of Pythonic interfaces(e.g., consumer iterators). The library consists six different APIs via classes KafkaConsumer, KafkaProducer, KafkaAdminClient, KafkaClient, BrokerConnection, and ClusterMetadata.
 
 The KafkaProducer can be used across threads without issue, unlike the KafkaConsumer which cannot. While it is possible to use the KafkaConsumer in a thread-local manner, multiprocessing is recommended.
 
