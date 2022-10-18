@@ -63,18 +63,22 @@ createStream()
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript SDK">
+<TabItem value="js" label="JavaScript SDK">
 
 You must [Install the JavaScript SDK](../sdks/install-sdks.md) and [Connect to the GDN](../account-management/auth/connect-to-gdn.md) before you can run this code.
 
 ```js
-// Variables
+// Connect to GDN.
+const jsc8 = require("jsc8");
+const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXXX", fabricName: "_system"});
+console.log("Authentication done!!...");
+
 const stream = "streamQuickstart";
 let prefixText = "";
-const prefixBool = false;
+const isLocal = false;
 
 // Get the right prefix for the stream
-if (prefixBool) {
+if (isLocal) {
   prefixText = "c8locals.";
 } else {
   prefixText = "c8globals.";
@@ -82,15 +86,17 @@ if (prefixBool) {
 
 async function createMyStream () {
   let streamName = { "stream-id": "" };
-  if (await client.hasStream(stream, prefixBool)) {
+  if (await client.hasStream(stream, isLocal)) {
     console.log("Stream already exists");
     streamName["stream-id"] = prefixText + stream;
     console.log(`OLD Producer = ${streamName["stream-id"]}`);
   } else {
-    streamName = await client.createStream(stream, prefixBool);
+    streamName = await client.createStream(stream, isLocal);
     console.log(`NEW Producer = ${streamName.result["stream-id"]}`);
   }
 }
+
+createMyStream()
 ```
 
 </TabItem>
@@ -99,11 +105,19 @@ async function createMyStream () {
 Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://macrometa.com/docs/api#/operations/CreateStream)).
 
 ```py
+import requests
+
 # Constants
 URL = "api-gdn.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
-STREAM_NAME = "teststream"
+STREAM_NAME = "streamQuickstart"
+API_KEY = "XXXXX" # Use your apikey here
+AUTH_TOKEN = f"apikey {API_KEY}" # apikey keyword needs to be appended
+
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
 
 # Create a stream
 # Note:- For a global stream pass global=true and global=false for local stream
@@ -118,29 +132,69 @@ print("\nStream Created: ", resp.text)
 Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://macrometa.com/docs/api#/operations/CreateStream)).
 
 ```js
-const stream = "api_tutorial_streams";
+class APIRequest {
+  _headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  };
+
+  constructor (url, apiKey) {
+    this._url = url;
+    this._headers.authorization = `apikey ${apiKey}`; // apikey keyword needs to be appended
+  }
+
+  _handleResponse (response, resolve, reject) {
+    if (response.ok) {
+      resolve(response.json());
+    } else {
+      reject(response);
+    }
+  }
+
+  req (endpoint, { body, ...options } = {}) {
+    const self = this;
+    return new Promise(function (resolve, reject) {
+      fetch(self._url + endpoint, {
+        headers: self._headers,
+        body: body ? JSON.stringify(body) : undefined,
+        ...options
+      }).then((response) => self._handleResponse(response, resolve, reject));
+    });
+  }
+}
+
+const apiKey = "XXXXX"; // Use your apikey here
+const federationName = "api-gdn.paas.macrometa.io";
+const federationUrl = `https://${federationName}`;
+
+const stream = "streamQuickstart";
 const isGlobal = true;
 
-    /* ------------------------------ Create stream ----------------------------- */
+const run = async function () {
+  const connection = new APIRequest(federationUrl, apiKey);
 
-    try {
-      await connection.req(
-        `/_fabric/_system/streams/${stream}?global=${isGlobal}`,
-        {
-          body: { name: stream },
-          method: "POST"
-        }
-      );
-      console.log("Stream created successfully");
-    } catch (e) {
-      if (e.status === 409) {
-        console.log("Stream already exists, skipping creation of stream");
-      } else {
-        console.log("Error while creating stream");
-        throw e;
+  /* ------------------------------ Create stream ----------------------------- */
+
+  try {
+    await connection.req(
+      `/_fabric/_system/streams/${stream}?global=${isGlobal}`,
+      {
+        body: { name: stream },
+        method: "POST"
       }
+    );
+    console.log("Stream created successfully");
+  } catch (e) {
+    if (e.status === 409) {
+      console.log("Stream already exists, skipping creation of stream");
+    } else {
+      console.log("Error while creating stream");
+      throw e;
     }
+  }
+}
 
+run();
 ```
 
 </TabItem>
