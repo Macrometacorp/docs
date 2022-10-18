@@ -148,7 +148,3 @@ IN addresses
 ```
 
 You have a full functional API for your application. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
-
-## Next Steps
-
-Now that you've build your application, you can dig into the docs and see what else Macrometa can help you build [What is Macrometa](what-is-macrometa.md) guide.
