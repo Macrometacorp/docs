@@ -142,7 +142,7 @@ demo_stream = 'streamQuickstart'
     
 # Get the right prefix for the streamName
 if is_local:
-    prefixText = "c8locals."
+    prefix_text = "c8locals."
 else:
     prefix_text = "c8globals."
 
