@@ -22,7 +22,6 @@ Description of feature.
 [Topic name](link) was added as a result of this feature.
 
 ### Kafka Support - Beta
-
 This release adds support for some Kafka clients in the GDN. For a list of supported clients, refer to [Kafka on GDN](../streams/kafka_on_gdn/index.md).
 
 ### Invite User
