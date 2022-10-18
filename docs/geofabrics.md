@@ -31,7 +31,7 @@ You must be logged into the `_system` GeoFabric to create, modify, or delete Geo
 To create a GeoFabric:
 
 1. Log into an administrator account in the `_system` GeoFabric.
-2. Click **GEO FABRICS** to navigate to the GeoFabrics management page.
+2. Click **Geo Fabrics** to navigate to the GeoFabrics management page.
 3. Click **New Geo Fabric**.
 4. Enter a GeoFabric name.
 5. Select at least two Edge Locations across which you want the GeoFabric distributed.
@@ -42,13 +42,13 @@ After creating the GeoFabric, click the GeoFabric name on the list to view its u
 To modify a GeoFabric:
 
 1. Log into an administrator account in the `_system` GeoFabric.
-2. Click **GEO FABRICS** to navigate to the GeoFabrics management page.
+2. Click **Geo Fabrics** to navigate to the GeoFabrics management page.
 3. Click the **Status** switch to add or remove regions to or from the GeoFabric.
 
 To delete a GeoFabric:
 
 1. Log into an administrator account in the `_system` GeoFabric.
-2. Click **GEO FABRICS** to navigate to the GeoFabrics management page.
+2. Click **Geo Fabrics** to navigate to the GeoFabrics management page.
 3. Click **Delete** on the row of the GeoFabric you want to delete.
 
 You must type the name of the GeoFabric to verify its deletion.
