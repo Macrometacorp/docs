@@ -6,37 +6,19 @@ title: Rest APIs Streams Example
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Today’s applications are required to be highly responsive and always online. They need to be deployed in datacenters closer to their users and can access data instantly across the globe.
-
-Macrometa global data network (GDN) is a fully managed realtime materialzed view engine that provides access to data instantly to Apps & APIs in a simple & single interface.
-
-:::note
-If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../what-is-macrometa.md)**.
-:::
+This page shows you how to perform a basic pub-sub streams workflow using the Macrometa API. For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
 
 ## Pre-Requisites
 
-A tenant account and credentials with Macrometa GDN.
+- A Macrometa account with permission to create streams.
+- An API key with sufficient permissions to create streams. For instructions, refer to [Create API Keys](../../account-management/api-keys/create-api-keys.md).
 
-## API Browser
+## Pub-Sub with Streams Example
 
-Your best friend when working with REST APIs is the REST API browser available in [GDN](https://gdn.paas.macrometa.io) GUI. From there, you can execute various rest apis and see exactly what the inputs and outputs are.
-
-![GDN API Browser](/img/gdn-api-browser.png)
-
-## Pub-Sub with Streams
-
-**GDN streams** is a high-performance solution for server-to-server messaging.
-
-It provides:
-
-- Seamless geo-replication of messages across regions,
-- Very low publish and end-to-end latency,
-- Seamless scalability to over a million topics.
-- Multiple subscription modes (`exclusive`, `shared`, and `failover`) for streams.
-- Guaranteed message delivery with persistent message storage.
-
-`Streams` are built on the _publish-subscribe_ pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
+1. Copy and paste the code block below in your favorite IDE.
+1. Update constants with your values, such as the API key.
+1. Run the code.
+1. (Optional) Log in to the Macrometa console to view the streams.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -92,10 +74,10 @@ class APIRequest {
   }
 }
 
-const email = "nemo@nautilus.com";
+const email = "your@email.com";
 const password = "xxxxxx";
-const federationName = "api-gdn.paas.macrometa.io";
-const federationUrl = `https://${federationName}`;
+const URL = "api-gdn.paas.macrometa.io";
+const HTTP_URL = `https://${URL}`;
 
 const stream = "api_tutorial_streams";
 const consumerName = "api_tutorial_streams_consumer";
@@ -103,14 +85,15 @@ const isGlobal = true;
 
 const run = async function () {
   try {
-    const connection = new APIRequest(federationUrl);
+    const connection = new APIRequest(HTTP_URL);
 
-    /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
+    /* -------------------- Log In -------------------- */
 
     const { tenant } = await connection.login(email, password);
 
-    console.log("Login Successfully using", tenant);
-    /* ------------------------------ Create stream ----------------------------- */
+    console.log("Logged in successfully using", tenant);
+    
+    /* ------------------------------ Create Stream ----------------------------- */
 
     try {
       await connection.req(
@@ -130,7 +113,7 @@ const run = async function () {
       }
     }
 
-    /* ----------------- Publish and subscribe message to stream ---------------- */
+    /* ----------------- Publish and Subscribe Message to Stream ---------------- */
 
     const region = isGlobal ? "c8global" : "c8local";
     const streamName = `${region}s.${stream}`;
@@ -143,7 +126,7 @@ const run = async function () {
     const dcUrl = localDcDetails.tags.url;
 
     const url = isGlobal
-      ? federationName
+      ? URL
       : `api-${dcUrl}`;
 
     const otpConsumer = await connection.req(`/apid/otp`, {
@@ -161,7 +144,7 @@ const run = async function () {
     let producer;
     let producerInterval;
 
-    /* -------------------------- Initalizing consumer -------------------------- */
+    /* -------------------------- Initialize Consumer -------------------------- */
 
     const initConsumer = () => {
       return new Promise((resolve) => {
@@ -197,7 +180,7 @@ const run = async function () {
       });
     };
 
-    /* -------------------------- Initalizing Producer -------------------------- */
+    /* -------------------------- Initialize Producer -------------------------- */
 
     const initProducer = () => {
       producer = new WebSocket(producerUrl);
@@ -232,7 +215,8 @@ const run = async function () {
     producer.close();
     console.log("PRODUCER CLOSING...");
     await new Promise((resolve) => setTimeout(resolve, 5000));
-    /* ------------------------ Unsubscribe from stream ------------------------ */
+    
+    /* ------------------------ Unsubscribe from Stream ------------------------ */
     const consumerUnsubscribe = await connection.req(
       `/_fabric/_system/_api/streams/subscription/${consumerName}`,
       {
@@ -243,7 +227,8 @@ const run = async function () {
       `${consumerName} unsubscribed successfully`,
       consumerUnsubscribe
     );
-    /* ------------------------------ Delete topic ------------------------------ */
+    
+    /* ------------------------------ Delete Topic ------------------------------ */
   } catch (e) {
     console.error(e);
   }
@@ -253,7 +238,6 @@ run();
 ```
 
 </TabItem>
-
 <TabItem value="py" label="Python">
 
 ```py
@@ -265,9 +249,9 @@ import six
 
 # Constants
 
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
-EMAIL = "nemo@nautilus.com"
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
+EMAIL = "your@email.com"
 PASSWORD = "xxxxxx"
 FABRIC = "_system"
 STREAM_NAME = "teststream"
@@ -277,7 +261,7 @@ CONSUMER_NAME = "testconsumer"
 
 # Create a HTTPS Session
 
-url = f"{FED_URL}/_open/auth"
+url = f"{HTTP_URL}/_open/auth"
 payload = {
     'email': EMAIL,
     'password': PASSWORD
@@ -302,7 +286,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 
 # Create a stream
 # Note:- For a global stream pass global=true and global=false for local stream
-url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_NAME}?global=true"
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_NAME}?global=true"
 resp = session.post(url)
 print("\nStream Created: ", resp.text)
 
@@ -310,14 +294,13 @@ print("\nStream Created: ", resp.text)
 # Send message in body
 STREAM_TYPE = "c8global"
 
-url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}/publish?global=true"
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}/publish?global=true"
 resp = session.post(url, data="Hello")
 print("\nMessage Posted: ", resp.text)
 
 # or
 
-producerurl = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}"
-
+producerurl = f"wss://{URL}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}"
 
 ws = create_connection(producerurl, header=[f"Authorization: {AUTH_TOKEN}"])
 payload = {
@@ -333,9 +316,9 @@ else:
     print(f"Failed to publish message: {response}")
 ws.close()
 
-# # # Subscribe
+# Subscribe to stream
 
-consumerurl = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}/{CONSUMER_NAME}"
+consumerurl = f"wss://{URL}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}/{CONSUMER_NAME}"
 
 ws = create_connection(consumerurl, header=[f"Authorization: {AUTH_TOKEN}"])
 while True:
@@ -347,10 +330,10 @@ while True:
         break
 ws.close()
 
-# Delete Subscription/ Unsubscribe
-url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}/subscriptions/{CONSUMER_NAME}?global=true"
+# Delete subscription/ unsubscribe
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}/subscriptions/{CONSUMER_NAME}?global=true"
 resp = session.delete(url)
-print("Subsrcription Deleted: ", resp.text)
+print("Subscription deleted: ", resp.text)
 ```
 
 </TabItem>
