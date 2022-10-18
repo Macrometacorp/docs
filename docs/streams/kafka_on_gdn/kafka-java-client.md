@@ -118,7 +118,7 @@ while (true) {
 }
 ```
 
-Make sure that you close your consumer when you do not need it.
+Verify that you close your consumer when you do not need it.
 
 ```java
 consumer.close();
