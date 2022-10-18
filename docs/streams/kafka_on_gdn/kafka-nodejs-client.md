@@ -32,7 +32,8 @@ const client = new kafka.KafkaClient(
     });
 ```
 
-Create a topic
+## Create a Topic
+
 This client requires to create a topic before running consumer.
 
 Here is an example:
