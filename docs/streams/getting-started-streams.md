@@ -155,7 +155,7 @@ if client.has_stream(demo_stream, local = is_local):
     print ("OLD Producer =",  stream_name["stream-id"])
 else:
     stream_name = client.create_stream(demo_stream, local=is_local)
-    print ("NEW Producer =",  streamName["stream-id"])
+    print ("NEW Producer =",  stream_name["stream-id"])
 
 # Get and print stream details
 print("Get streams: ", client.get_streams())
