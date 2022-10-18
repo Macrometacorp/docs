@@ -207,9 +207,6 @@ streams()
 producer = client.create_stream_producer(demo_stream, local=is_local)
 for i in range(10):
     msg1 = "Persistent Hello from " + "("+ str(i) +")"
-    data = {
-        "payload" : base64.b64encode(six.b(msg1)).decode("utf-8")
-    }
     print("Stream: ", msg1)
     producer.send(msg1)
 ```
@@ -416,9 +413,6 @@ def sendData():
     producer = client.create_stream_producer(demo_stream, local=prefixBool)
     for i in range(10):
         msg1 = "Persistent Hello from " + "("+ str(i) +")"
-        data = {
-            "payload" : base64.b64encode(six.b(msg1)).decode("utf-8")
-        }
         print("Stream: ", msg1)
         print(producer.send(json.dumps(data)))
 
