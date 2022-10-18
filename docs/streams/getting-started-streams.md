@@ -152,7 +152,7 @@ stream_name = {"stream-id": ""}
 if client.has_stream(demo_stream, local = is_local):
     print("Stream already exists")
     stream_name["stream-id"] = concat(prefix_text, demo_stream)
-    print ("OLD Producer =",  streamName["stream-id"])
+    print ("OLD Producer =",  stream_name["stream-id"])
 else:
     stream_name = client.create_stream(demo_stream, local=is_local)
     print ("NEW Producer =",  streamName["stream-id"])
