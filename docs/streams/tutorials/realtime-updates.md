@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 40
 title: Realtime Updates
 ---
 
@@ -12,8 +12,8 @@ This tutorial is about using Macrometa GDN as a realtime database with local lat
 
 Let's assume your
 
-* Tenant name is `nemo@nautilus.com` and
-* User password is `xxxxxx`.
+- Tenant name is `nemo@nautilus.com` and
+- User password is `xxxxxx`.
 
 ## SDK download
 
