@@ -14,7 +14,8 @@ We recommend using [kafkajs](../kafkajs/README.md) client instead, because `kafk
 Install Kafka-Node using npm:
 
 npm install kafka-node
-Create a client
+
+## Create a Client
 In order to interact with Kafka, needs to be created a client instance:
 
 ```node
