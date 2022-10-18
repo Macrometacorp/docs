@@ -31,7 +31,7 @@ If you use Maven, add the following information to the pom.xml file.
 
 ### Kafka Properties
 
-To connect to Kafka using client libraries, you should specify Kafka properties are as follows.
+To connect to Kafka using client libraries, you should specify the following Kafka properties:
 
 ```java
 Properties props = new Properties();
