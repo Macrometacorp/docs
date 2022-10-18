@@ -154,7 +154,7 @@ if client.has_stream(demo_stream, local = is_local):
     stream_name["stream-id"] = concat(prefix_text, demo_stream)
     print ("OLD Producer =",  streamName["stream-id"])
 else:
-    streamName = client.create_stream(demo_stream, local=prefixBool)
+    stream_name = client.create_stream(demo_stream, local=is_local)
     print ("NEW Producer =",  streamName["stream-id"])
 
 # Get and print stream details
