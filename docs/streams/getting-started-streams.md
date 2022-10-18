@@ -238,7 +238,6 @@ async function getDCList() {
   await client.createStream("my-stream", true);
   
   //Here the last boolean value tells if the stream is local or global. false means that it is global.
-  // Publishing streams
   const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
   consumer.on("message", (msg) => {
     const { payload, messageId } = JSON.parse(msg);
