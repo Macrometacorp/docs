@@ -30,7 +30,7 @@ If you use Maven, then add the following information to the pom.xml file:
 </dependency>
 ```
 
-### Kafka Properties
+## Kafka Properties
 
 To connect to Kafka using client libraries, you should specify the following Kafka properties:
 
