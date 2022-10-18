@@ -3,7 +3,7 @@ sidebar_position: 80
 title: Delete Streams
 ---
 
-This page explains how you can see delete streams.
+This page explains how you can delete streams.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
