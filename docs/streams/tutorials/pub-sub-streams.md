@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 20
 title: Pub-Sub with Streams
 ---
 
@@ -8,12 +8,12 @@ import TabItem from '@theme/TabItem';
 
 This is about how to create geo-replicated streams and do queues & pub-sub messaging with local latencies across the globe.
 
-## Pre-requisite
+## Pre-requisites
 
 Let's assume your
 
-* Tenant name is `nemo@nautilus.com` and
-* User password is `xxxxxxxx`.
+- Tenant name is `nemo@nautilus.com` and
+- User password is `xxxxxxxx`.
 
 ## Installation
 
@@ -63,7 +63,6 @@ Once the installation process is finished, you can begin developing applications
 
 </TabItem>
 </Tabs>  
-
 
 ## Code Sample
 
@@ -217,7 +216,6 @@ if prefixBool:
 else:
     prefixText = "c8globals."
 
-
 def createStream():
     """ This function creates a stream """
     streamName = {"stream-id": ""}
@@ -242,7 +240,6 @@ def sendData():
         print("Stream: ", msg1)
         print(producer.send(json.dumps(data)))
 
-
 # Create the subscriber and receive data
 def receiveData():
     """ This function receives data from a stream """
@@ -257,7 +254,6 @@ def receiveData():
 
 
 createStream()
-
 
 # Select choice
 user_input = input("Type 'w' or '1' to write data. Type 'r' or '0' to read data: ")
