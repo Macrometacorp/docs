@@ -25,33 +25,15 @@ This page shows you how to perform a basic pub-sub streams workflow using the Ma
 
 ```js
 const WebSocket = require('ws');
-class APIRequest {
+ class APIRequest {
   _headers = {
     Accept: "application/json",
     "Content-Type": "application/json"
   };
 
-  constructor(url) {
+  constructor (url, apiKey) {
     this._url = url;
-  }
-
-  login (email, password) {
-    const endpoint = "/_open/auth";
-
-    const self = this;
-
-    return new Promise(function (resolve, reject) {
-      self
-        .req(endpoint, {
-          body: { email, password },
-          method: "POST"
-        })
-        .then(({ jwt, ...data }) => {
-          self._headers.authorization = `bearer ${jwt}`;
-          resolve(data);
-        })
-        .catch(reject);
-    });
+    this._headers.authorization = `apikey ${apiKey}`; // apikey keyword needs to be appended
   }
 
   _handleResponse (response, resolve, reject) {
@@ -74,24 +56,19 @@ class APIRequest {
   }
 }
 
-const email = "your@email.com";
-const password = "xxxxxx";
-const URL = "api-gdn.paas.macrometa.io";
-const HTTP_URL = `https://${URL}`;
+const apiKey = "XXXXX"; // Use your API key here
+const federationName = "api-gdn.paas.macrometa.io";
+const federationUrl = `https://${federationName}`;
 
-const stream = "api_tutorial_streams";
-const consumerName = "api_tutorial_streams_consumer";
+const stream = "streamQuickstart";
 const isGlobal = true;
+const consumerName = "api_tutorial_streams_consumer";
 
-const run = async function () {
-  try {
-    const connection = new APIRequest(HTTP_URL);
+    /* -------------------- Connect to GDN -------------------- */
 
-    /* -------------------- Log In -------------------- */
+    const run = async function () {
+      const connection = new APIRequest(federationUrl, apiKey);
 
-    const { tenant } = await connection.login(email, password);
-
-    console.log("Logged in successfully using", tenant);
     
     /* ------------------------------ Create Stream ----------------------------- */
 
@@ -112,6 +89,7 @@ const run = async function () {
         throw e;
       }
     }
+  }
 
     /* ----------------- Publish and Subscribe Message to Stream ---------------- */
 
@@ -247,15 +225,25 @@ from websocket import create_connection
 import base64
 import six
 
-# Constants
+import requests
 
+# Constants
 URL = "api-gdn.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
-EMAIL = "your@email.com"
-PASSWORD = "xxxxxx"
 FABRIC = "_system"
-STREAM_NAME = "teststream"
-AUTH_TOKEN = "bearer "
+STREAM_NAME = "streamQuickstart"
+API_KEY = "XXXXX" # Use your API key here
+AUTH_TOKEN = f"apikey {API_KEY}" # apikey keyword needs to be appended
+
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
+
+# Create a stream
+# Note:- For a global stream pass global=true and global=false for local stream
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_NAME}?global=true"
+resp = session.post(url)
+print("\nStream created: ", resp.text)
 TENANT_NAME = "xxxxxx"
 CONSUMER_NAME = "testconsumer"
 
