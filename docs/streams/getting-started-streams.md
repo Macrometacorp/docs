@@ -255,7 +255,7 @@ async function getDCList() {
 <TabItem value="py" label="Python">
 
 ```py
-subscriber = client.subscribe(stream=demo_stream, local=prefixBool,
+subscriber = client.subscribe(stream=demo_stream, local=is_local,
     subscription_name="test-subscription-1")
 for i in range(10):
     print("In ",i)
