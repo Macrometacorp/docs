@@ -144,7 +144,7 @@ demo_stream = 'streamQuickstart'
 if is_local:
     prefixText = "c8locals."
 else:
-    prefixText = "c8globals."
+    prefix_text = "c8globals."
 
 # Create the stream if it doesn't already exist
 # To create both a global and local stream, run the code twice, once with prefixBool = True, once False
