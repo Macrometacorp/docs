@@ -13,7 +13,7 @@ Kafka plugin is on top of `libdrkafka` [library](https://github.com/edenhill/lib
 
 ## Installation
 
-The correct installation was proven on Ubuntu OS. The below steps will show how to build and install Fluent Bit with correct plugins and modules.
+Following are the steps for Fluent Bit installation on Ubuntu OS. The below steps will show how to build and install Fluent Bit with correct plugins and modules.
 
 ### Prequisites
 
@@ -39,24 +39,6 @@ sudo apt install -y flex
 sudo apt install -y libssl-dev
 ```
 
-## Consumer
-
-To verify that our message has indeed been produced to the topic, let's create a consumer to consume our message:
-
-```node
-const consumer = kafka.consumer({ groupId: '<my-group-id>' })
-
-await consumer.connect()
-await consumer.subscribe({ topic: '<c8globals or c8locals>.<my-topic>', fromBeginning: true })
-
-await consumer.run({
-  eachMessage: async ({ topic, partition, message }) => {
-    console.log({
-      value: message.value.toString(),
-    })
-  }
-})
-```
 
 ### Build
 
@@ -95,4 +77,21 @@ Note: The full list of properties can be found [here](https://github.com/edenhil
 
 ### Verify
 
-Verifying the correct sending messages can be performed via consumer of any java, python, node.js Kafka client. The list of clients can be found [here](README.md).
+Verifying the correct sending messages can be performed via consumer of any java, python, node.js Kafka client.
+
+Example in nodejs
+
+```node
+const consumer = kafka.consumer({ groupId: '<my-group-id>' })
+
+await consumer.connect()
+await consumer.subscribe({ topic: '<c8globals or c8locals>.<my-topic>', fromBeginning: true })
+
+await consumer.run({
+  eachMessage: async ({ topic, partition, message }) => {
+    console.log({
+      value: message.value.toString(),
+    })
+  }
+})
+```
