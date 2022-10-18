@@ -137,7 +137,7 @@ streams();
 
 ```py
 prefix_text = ""
-prefixBool = False # If false, then the stream created below is global
+is_local = False # If false, then the stream created below is global
 demo_stream = 'streamQuickstart'
     
 # Get the right prefix for the streamName
