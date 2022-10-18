@@ -60,7 +60,7 @@ props.put("bootstrap.servers", "<my-gdn>.<my-paas>.macrometa.io:9093");
 
 In Kafka, producers write messages to topics.
 
-Also, you need to add additional properties for Producer for specifying a subscription and serializers are as follows.
+Add the following Producer properties for specifying a subscription and serializers:
 
 ```java
 props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
