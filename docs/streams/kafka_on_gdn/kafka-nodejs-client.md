@@ -19,7 +19,7 @@ npm install kafka-node
 
 In order to interact with Kafka, needs to be created a client instance:
 
-```node
+```js
 const kafka = require('kafka-node');
 
 const client = new kafka.KafkaClient(
@@ -40,7 +40,7 @@ This client requires to create a topic before running consumer.
 
 Here is an example:
 
-```node
+```js
 client.createTopics([{topic: '<c8globals or c8locals>.<my-topic>' ,partitions: 1, replicationFactor: 1}], (error, result) => {
     ...
 });
@@ -50,7 +50,7 @@ client.createTopics([{topic: '<c8globals or c8locals>.<my-topic>' ,partitions: 1
 
 This example creates a Node.js producer for the my-topic topic and sends messages to that topic:
 
-```node
+```js
 const producer = new kafka.HighLevelProducer(client);
 producer.on('ready', function () {
     console.log('starting to produce');
@@ -68,7 +68,7 @@ function send() {
 
 Kafka consumers subscribe to one or more Kafka topics and listen for incoming messages produced on that topic or multiple topics with global either local distribution. For example: `new kafka.Consumer(client, [{ topic: 'c8globals.topic-1', topic: 'c8locals.topic-2'}])`.
 
-```node
+```js
 const consumer = new kafka.Consumer(client, [{ topic: '<c8globals or c8locals>.<my-topic>', groupId: '<my-group-id>' partition: 0}], {
     autoCommit: true,
     autoCommitIntervalMs: 500
@@ -77,3 +77,4 @@ const consumer = new kafka.Consumer(client, [{ topic: '<c8globals or c8locals>.<
 consumer.on("message", function (message) {
     console.log("Received a message: " + message["value"]);
 });
+```
