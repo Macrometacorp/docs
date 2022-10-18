@@ -19,8 +19,6 @@ Streams in GDN is built on the [publish-subscribe](https://en.wikipedia.org/wiki
 
 Once a subscription has been created, all messages will be retained by GDN streams, even if the consumer gets disconnected. Retained messages will be discarded only when a consumer acknowledges that they've been successfully processed.
 
-
-
 ## Benefits
 
 Streams provide:
