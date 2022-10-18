@@ -131,10 +131,6 @@ const config = {
               {
                 label: 'Quickstart',
                 to: '/quickstart',
-              },
-              {
-                label: 'What is Macrometa',
-                to: '/what-is-macrometa',
               }
             ],
           },
