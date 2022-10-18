@@ -11,9 +11,9 @@ The following new features are included in this release.
 
 ### SQL Support - Beta
 
-Description of feature.
+Macrometa now supports some SQL queries. Support will be expanded in future releases.
 
-[Topic name](link) was added as a result of this feature.
+[SQL in Macrometa](../queryworkers/sql/index.md) was added as a result of this feature.
 
 ### Redis Support - Beta
 
@@ -22,6 +22,7 @@ Description of feature.
 [Topic name](link) was added as a result of this feature.
 
 ### Kafka Support - Beta
+
 This release adds support for some Kafka clients in the GDN. For a list of supported clients, refer to [Kafka on GDN](../streams/kafka_on_gdn/index.md).
 
 ### Invite User
