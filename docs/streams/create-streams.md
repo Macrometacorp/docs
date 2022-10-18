@@ -29,28 +29,37 @@ Create a stream.
 You must [Install the Python SDK](../sdks/install-sdks.md) and [Connect to the GDN](../account-management/auth/connect-to-gdn.md) before you can run this code.
 
 ```py
+from operator import concat
 from c8 import C8Client
-prefixText = ""
-prefixBool = False
-demo_stream = 'streamQuickstart'
+
+# Connect to GDN.
+URL = "gdn.paas.macrometa.io"
+GEO_FABRIC = "_system"
+API_KEY = "xxxxxx" # Change this to your API key
+is_local = False
+prefix_text = ""
+demo_stream = "streamQuickstart"
+
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
 # Get the right prefix for the stream
-if prefixBool:
-    prefixText = "c8locals."
+if is_local:
+    prefix_text = "c8locals."
 else:
-    prefixText = "c8globals."
+    prefix_text = "c8globals."
 
 def createStream():
     """ This function creates a stream """
-    streamName = {"stream-id": ""}
-    if client.has_stream(demo_stream, local = prefixBool):
+    stream_name = {"stream-id": ""}
+    if client.has_stream(demo_stream, local=is_local):
         print("Stream already exists")
-        streamName["stream-id"] = concat(prefixText, demo_stream)
-        print ("OLD Producer =",  streamName["stream-id"])
+        stream_name["stream-id"] = concat(prefix_text, demo_stream)
+        print ("OLD Producer =",  stream_name["stream-id"])
     else:
-        #print(client.create_stream(demo_stream, local=prefixBool))
-        streamName = client.create_stream(demo_stream, local=prefixBool)
-        print ("New producer =",  streamName["stream-id"])
+        stream_name = client.create_stream(demo_stream, local=is_local)
+        print ("New producer =",  stream_name["stream-id"])
+
+createStream()
 ```
 
 </TabItem>
