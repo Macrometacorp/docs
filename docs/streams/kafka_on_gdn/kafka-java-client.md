@@ -68,7 +68,7 @@ props.put("key.serializer", "org.apache.kafka.common.serialization.StringSeriali
 props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 ```
 
-Once you've configured Kafka Properties, you can create a Producer and sent a message for a specific Kafka topic. The topic should have prefix of global either local namespace. A full topic name: `<c8globals or c8locals>.<my-topic>`.
+Once you've configured Kafka Properties, you can create a Producer and send a message for a specific Kafka topic. The topic should have prefix of global either local namespace. A full topic name would match this format: `<c8globals or c8locals>.<my-topic>`.
 
 ```java
 Producer<String, String> producer = new KafkaProducer<String, String>(props);
