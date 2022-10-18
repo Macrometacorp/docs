@@ -257,7 +257,7 @@ subscriber = client.subscribe(stream=demo_stream, local=is_local,
 for i in range(10):
     print("In ",i)
     m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
-    msg1 = base64.b64decode(m1["payload"])
+    msg1 = base64.b64decode(m1["payload"]).decode('utf-8')
     print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received message
     subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
 ```
