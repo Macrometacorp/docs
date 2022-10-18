@@ -9,7 +9,7 @@ Fluent Bit works as a logging pipeline chunked into logical parts like Inputs, P
 
 Full Kafka plugin documentation can be found [here](https://docs.fluentbit.io/manual/pipeline/outputs/kafka)
 
-Kafka plugin is on top of `libdrkafka` [library](https://github.com/edenhill/librdkafka/).
+The Fluent Bit Kafka plugin is built on top of `libdrkafka` [library](https://github.com/edenhill/librdkafka/).
 
 ## Installation
 
