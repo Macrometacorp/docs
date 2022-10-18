@@ -77,7 +77,7 @@ Note: The full list of properties can be found [here](https://github.com/edenhil
 
 ### Verify
 
-Verifying the correct sending messages can be performed via consumer of any java, python, node.js Kafka client.
+Sent messages can be verified by the consumer of any java, python, node.js Kafka client.
 
 Example in nodejs
 
