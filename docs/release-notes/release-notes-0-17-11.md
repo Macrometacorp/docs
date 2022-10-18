@@ -23,15 +23,13 @@ Description of feature.
 
 ### Kafka Support - Beta
 
-Description of feature.
-
-[Topic name](link) was added as a result of this feature.
+This release adds support for some Kafka clients in the GDN. For a list of supported clients, refer to [Kafka on GDN](../streams/kafka_on_gdn/index.md).
 
 ### Invite User
 
-Description of update.
+You can now invite users to your Macrometa account with emails!
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+[Invite Users](../account-management/users/invite-users.md) was added as a result of this feature.
 
 ## Feature Updates
 
@@ -40,8 +38,6 @@ The following features updates are included in this release.
 ### Stream Worker Prefixes
 
 You can now prepend a stream worker name to the aggregation tables that it creates. For example, if the stream worker name is `SampleAggregationApp` and the aggregation is `TradeAggregation,` then it will create tables like `SampleAggregationApp-TradeAggregation_SECONDS`. Previously, it was just `TradeAggregation_SECONDS`.
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
 
 ### Auth Improvements
 
@@ -83,14 +79,6 @@ curl -X 'POST' \ 'https://api-qa6.eng.macrometa.io/_api/user' \
     "displayName":"John Doe" 
     }'
 ```
-
-## Known Issues
-
-The following known issues were introduced in this release.
-
-### Problem
-
-Explain the problem and the workaround.
 
 ## Defect Fixes
 
