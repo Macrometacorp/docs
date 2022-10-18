@@ -86,11 +86,11 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
-First we need to add dependency for Macrometa [SDK](https://www.npmjs.com/package/jsc8).
-To create instance of `jsc8` we need to provide URL and fabric name to `jsc8` constructor.
+- First we need to add dependency for Macrometa [SDK](https://www.npmjs.com/package/jsc8).
+- To create instance of `jsc8` we need to provide URL and fabric name to `jsc8` constructor.
 `jsc8` holds all the methods needed to work with Macrometa platform. 
-Function `await client.login(email, password)` will do a login to Macrometa platform.
-Function `await client.executeQuery(query, {}, { sql: true })` with `sql` as a field in object sends SQL query to Macrometa platform.
+- Function `await client.login(email, password)` will do a login to Macrometa platform.
+- Function `await client.executeQuery(query, {}, { sql: true })` with `sql` as a field in object sends SQL query to Macrometa platform.
 
 ```js
 const jsc8 = require("jsc8");
@@ -124,10 +124,10 @@ sqlQueries();
 </TabItem>
 <TabItem value="py" label="Python">
 
-First we need to add dependency for Macrometa [SDK](https://pypi.org/project/pyC8/).
-To create instance of `C8Client` we need to provide credentials, protocol, URL and port to `C8Client` constructor.
+- First we need to add dependency for Macrometa [SDK](https://pypi.org/project/pyC8/).
+- To create instance of `C8Client` we need to provide credentials, protocol, URL and port to `C8Client` constructor.
 `C8Client` holds all the methods needed to work with Macrometa platform.
-Function `client.execute_query(QUERY, sql=True)` with `sql` parameter sends SQL query to Macrometa platform.
+- Function `client.execute_query(QUERY, sql=True)` with `sql` parameter sends SQL query to Macrometa platform.
 
 ```py
 from c8 import C8Client
@@ -141,12 +141,6 @@ URL = "gdn.paas.macrometa.io"
 QUERY = 'SELECT * FROM categories'
 
 client = C8Client(protocol='https', host=URL, port=443, email=EMAIL, password=PASSWORD)
-
-client = C8Client(protocol='https',
-                    host=URL, port=443,
-                    email=EMAIL,
-                    password=PASSWORD
-                )
 
 cursor = client.execute_query(QUERY, sql=True)
 docs = [doc for doc in cursor]
