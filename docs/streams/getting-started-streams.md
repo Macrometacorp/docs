@@ -53,7 +53,6 @@ import base64
 import json
 import warnings
 from c8 import C8Client
-import six
 warnings.filterwarnings("ignore")
 
 # Define constants
@@ -137,26 +136,26 @@ streams();
 <TabItem value="py" label="Python">
 
 ```py
-prefixText = ""
-prefixBool = False # If false, then the stream created below is global
+prefix_text = ""
+is_local = False # If false, then the stream created below is global
 demo_stream = 'streamQuickstart'
     
 # Get the right prefix for the streamName
-if prefixBool:
-    prefixText = "c8locals."
+if is_local:
+    prefix_text = "c8locals."
 else:
-    prefixText = "c8globals."
+    prefix_text = "c8globals."
 
 # Create the stream if it doesn't already exist
-# To create both a global and local stream, run the code twice, once with prefixBool = True, once False
-streamName = {"stream-id": ""}
-if client.has_stream(demo_stream, local = prefixBool):
+# To create both a global and local stream, run the code twice, once with is_local = True, once False
+stream_name = {"stream-id": ""}
+if client.has_stream(demo_stream, local = is_local):
     print("Stream already exists")
-    streamName["stream-id"] = concat(prefixText, demo_stream)
-    print ("OLD Producer =",  streamName["stream-id"])
+    stream_name["stream-id"] = concat(prefix_text, demo_stream)
+    print ("OLD Producer =",  stream_name["stream-id"])
 else:
-    streamName = client.create_stream(demo_stream, local=prefixBool)
-    print ("NEW Producer =",  streamName["stream-id"])
+    stream_name = client.create_stream(demo_stream, local=is_local)
+    print ("NEW Producer =",  stream_name["stream-id"])
 
 # Get and print stream details
 print("Get streams: ", client.get_streams())
@@ -176,7 +175,7 @@ Example to publish documents to a stream. The stream can be either a local strea
 async function streams() {
     try {
       await console.log("Creating local stream...");
-            const stream = client.stream("my-stream", true);
+      const stream = client.stream("my-stream", true);
       await stream.createStream();
       const producerOTP = await stream.getOtp();
       const producer = await stream.producer("gdn.paas.macrometa.io", {
@@ -205,14 +204,14 @@ streams()
 <TabItem value="py" label="Python">
 
 ```py
-producer = client.create_stream_producer(demo_stream, local=prefixBool)
+producer = client.create_stream_producer(demo_stream, local=is_local)
 for i in range(10):
     msg1 = "Persistent Hello from " + "("+ str(i) +")"
     data = {
         "payload" : base64.b64encode(six.b(msg1)).decode("utf-8")
     }
     print("Stream: ", msg1)
-    print(producer.send(json.dumps(data)))
+    producer.send(msg1)
 ```
 
 </TabItem>
@@ -239,13 +238,12 @@ async function getDCList() {
   await client.createStream("my-stream", true);
   
   //Here the last boolean value tells if the stream is local or global. false means that it is global.
-  // Publishing streams
   const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
   consumer.on("message", (msg) => {
     const { payload, messageId } = JSON.parse(msg);
     
-    // Logging received message payload(ASCII encoded) to decode use atob()
-    console.log(payload);
+    // Received message payload
+    console.log(Buffer.from(payload, "base64").toString("ascii"));
     // Send message acknowledgement
     consumer.send(JSON.stringify({ messageId }));
   });
@@ -257,7 +255,7 @@ async function getDCList() {
 <TabItem value="py" label="Python">
 
 ```py
-subscriber = client.subscribe(stream=demo_stream, local=prefixBool,
+subscriber = client.subscribe(stream=demo_stream, local=is_local,
     subscription_name="test-subscription-1")
 for i in range(10):
     print("In ",i)
