@@ -244,7 +244,7 @@ async function getDCList() {
   consumer.on("message", (msg) => {
     const { payload, messageId } = JSON.parse(msg);
     
-    // Logging received message payload(ASCII encoded) to decode use atob()
+    // Received message payload
     console.log(payload);
     // Send message acknowledgement
     consumer.send(JSON.stringify({ messageId }));
