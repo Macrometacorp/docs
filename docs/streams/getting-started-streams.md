@@ -176,7 +176,7 @@ Example to publish documents to a stream. The stream can be either a local strea
 async function streams() {
     try {
       await console.log("Creating local stream...");
-            const stream = client.stream("my-stream", true);
+      const stream = client.stream("my-stream", true);
       await stream.createStream();
       const producerOTP = await stream.getOtp();
       const producer = await stream.producer("gdn.paas.macrometa.io", {
