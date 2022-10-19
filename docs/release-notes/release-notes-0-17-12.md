@@ -9,11 +9,11 @@ This document describes what has changed in Macrometa release 0.17.12. All accou
 
 The following new features are included in this release.
 
-### Function Workers
+### Edge Functions - Beta
 
-Description of feature.
+Macrometa now offers edge functions.
 
-[Topic name](link) was added as a result of this feature.
+[Edge Functions](../cep/reference/extensions/execution/edge-functions.md) was added as a result of this feature.
 
 ### feature
 
