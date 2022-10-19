@@ -139,7 +139,7 @@ const run = async function () {
     let producer;
     let producerInterval;
 
-    /* -------------------------- Initalize consumer -------------------------- */
+    /* -------------------------- Initialize consumer -------------------------- */
 
     const initConsumer = () => {
       return new Promise((resolve) => {
@@ -175,7 +175,7 @@ const run = async function () {
       });
     };
 
-    /* -------------------------- Initalize producer -------------------------- */
+    /* -------------------------- Initialize producer -------------------------- */
 
     const initProducer = () => {
       producer = new WebSocket(producerUrl);
