@@ -44,7 +44,7 @@ const client = new jsc8({
 // Variables
 const stream = "streamQuickstart";
 let prefix_text = "";
-const is_local = false;
+const is_local = false; //For a global stream pass True and False for local stream
 
 // Get the right prefix for the stream
 if (is_local) {
@@ -159,7 +159,7 @@ URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
 prefix_text = ""
-is_local = False
+is_local = False # For a global stream pass True and False for local stream
 demo_stream = 'streamQuickstart'
 
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
