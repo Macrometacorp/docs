@@ -80,6 +80,20 @@ curl -X 'POST' \ 'https://api-qa6.eng.macrometa.io/_api/user' \
     }'
 ```
 
+## Known Issues
+
+The following known issues were introduced in this release.
+
+### Local stream is not accessible after upgrade from 17.10 to 17.11
+
+**Problem:** Sometimes global streams are not accessible in the Macrometa console.
+
+**Workaround:** If you get this error, then run the [Publish Message](https://macrometa.com/docs/api#/operations/PublishStreamMessage) API endpoint for particular stream to get rid of the issue.
+
+`POST               /_fabric/_system/_api/streams/{stream}/publish`
+
+For more information about running API commands, refer to [APIs](../api-docs/index.md).
+
 ## Defect Fixes
 
 The following defects were fixed in this release.
