@@ -88,7 +88,7 @@ The following known issues were introduced in this release.
 
 **Problem:** Sometimes global streams are not accessible in the Macrometa console.
 
-**Workaround:** If you get this error, then run the [Publish Message](https://macrometa.com/docs/api#/operations/PublishStreamMessage) API endpoint for particular stream to get rid of the issue.
+**Workaround:** If you encounter this error, then run the [Publish Message](https://macrometa.com/docs/api#/operations/PublishStreamMessage) API endpoint for particular stream to get rid of the issue.
 
 `POST               /_fabric/_system/_api/streams/{stream}/publish`
 
