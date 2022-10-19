@@ -11,7 +11,7 @@ const redirectsPlugin = [
           '/essentials',
           '/essentials/overview'
         ],
-        to: '/what-is-macrometa'
+        to: '/quickstart'
       },
       {
         from: '/essentials/CLI/commands',

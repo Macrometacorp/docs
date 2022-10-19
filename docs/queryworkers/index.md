@@ -3,10 +3,20 @@ sidebar_position: 1
 title: Queries and Query Workers
 ---
 
-You can access your Macrometa data collections by writing a _query_ in [C8QL](c8ql/index.md). GDN stores named and parameterized C8QL queries as _query workers_ that you can run from a dedicated REST endpoint. Query workers are also called RESTQL or “Query as API.”
+You can access your Macrometa data collections by writing a _query_ in [C8QL](c8ql/index.md). GDN stores named and parameterized C8QL queries as _query workers_ that you can run from a dedicated REST endpoint.
 
 When the user saves a query, the query is automatically converted to an API and is deployed globally to serve the users from the region closest to them with local latencies.
 
 :::note
 Best practice is to use query workers to build applications integrated with GDN instead of directly querying C8QL.
 :::
+
+## Query Workers (Query as API)
+
+A query worker is set of named, parameterized C8QL queries stored in GDN that you can run from a dedicated REST endpoint. The query worker will be created automatically globally and is available from the region closest to the user. We recommend using Query Workers to build applications backed by GDN as opposed to querying with raw C8QL directly from application code or setting up a centralized middleware.
+
+Query workers can be created and updated using the GDN Console or by using the REST API directly. Each Query Worker is tied to a specific query text and parameter set. You can set default values for query parameters (making them optional during runs of your query worker), or you can make them mandatory for each run (failing to pass along will result in an error).
+
+Each query worker is exposed as its own endpoint and is protected. The query workers are organized by the [GeoFabric](../geofabrics.md) (or database) enabling you to have different query workers for different geo-regions as well as for different fabrics within same region.
+
+For more information, refer to the [Query Workers](query-workers.md).
