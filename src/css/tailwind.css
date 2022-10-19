@@ -274,8 +274,8 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
   text-decoration: none;
 }
 
-.footer__item svg,
-.navbar__item svg {
+.footer__item--external svg,
+.navbar__item--external svg {
   display: none;
 }
 
