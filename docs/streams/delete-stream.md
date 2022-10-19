@@ -94,7 +94,40 @@ deleteMyStream()
 ```
 
 </TabItem>
-<TabItem value="api" label="REST API - JavaScript">
+<TabItem value="api-py" label="REST API - Python">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://macrometa.com/docs/api#/operations/DeleteStream).
+
+```py
+import requests
+
+# Constants
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
+FABRIC = "_system"
+STREAM_NAME = "streamQuickstart"
+IS_GLOBAL = True # For a global stream pass global=true and global=false for local stream
+API_KEY = "XXXXX" # Use your apikey here
+AUTH_TOKEN = f"apikey {API_KEY}" # apikey keyword needs to be appended
+
+prefix_text = ""
+if IS_GLOBAL is True:
+    prefix_text = "c8globals."
+else:
+    prefix_text = "c8locals."
+
+session = requests.session()
+session.headers.update({"content-type": 'application/json'})
+session.headers.update({"authorization": AUTH_TOKEN})
+
+# Delete a stream
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{prefix_text}{STREAM_NAME}?global={IS_GLOBAL}"
+resp = session.delete(url)
+print("\nStream Deleted: ", resp.text) 
+```
+
+</TabItem>
+<TabItem value="api-js" label="REST API - JavaScript">
 
 Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://macrometa.com/docs/api#/operations/DeleteStream).
 
