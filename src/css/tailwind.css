@@ -216,7 +216,8 @@ html {
 }
 
 .menu > .menu__list > .menu__list-item {
-  @apply text-sm font-normal;
+  font-size: 0.9375rem;
+  @apply font-normal;
 }
 
 .menu__list-item:not(:first-child) {
@@ -697,7 +698,7 @@ article img {
 .table-of-contents {
   border: 1px solid var(--ifm-toc-border-color);
   border-radius: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
 }
 
 .table-of-contents__link {
