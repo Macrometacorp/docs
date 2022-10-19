@@ -19,8 +19,6 @@ html[data-theme='dark'] {
 }
 
 .cardWrapper {
-  
-
   background-color: var(--docs-card-background-color);
   border: 1px solid var(--docs-card-border-color);
   border-radius: 0.5rem;

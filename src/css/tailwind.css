@@ -176,7 +176,7 @@
 
     --ifm-footer-background-color: var(--color-primary-600);
     --ifm-footer-color: var(--color-neutral-300);
-    --ifm-footer-link-color: var(--color-primary-200);
+    --ifm-footer-link-color: var(--color-neutral-400);
     --ifm-footer-link-hover-color: var(--color-white);
     --ifm-footer-title-color: var(--color-white);
 
@@ -264,10 +264,22 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
   @apply font-normal text-base;
 }
 
+.footer__item a {
+  color: var(--ifm-footer-link-color);
+}
+
+.footer__item a:focus,
+.footer__item a:hover {
+  color: var(--ifm-footer-link-hover-color);
+  text-decoration: none;
+}
+
+.footer__item svg,
 .navbar__item svg {
   display: none;
 }
 
+.footer__item--external::after,
 .navbar__item--external::after {
   content: url(/img/icon-arrow-external.svg);
   padding-left: 2px;

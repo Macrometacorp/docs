@@ -180,16 +180,19 @@ const config = {
             title: 'Developer Tools',
             items: [
               {
-                label: 'Javascript',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://github.com/Macrometacorp/jsC8',
+                label: 'Javascript',
               },
               {
-                label: 'Python',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://github.com/Macrometacorp/pyC8',
+                label: 'Python',
               },
               {
-                label: 'CLI',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://www.npmjs.com/package/gdnsl',
+                label: 'CLI',
               },
             ],
           },
@@ -197,16 +200,19 @@ const config = {
             title: 'Connect',
             items: [
               {
-                label: 'Slack Community',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://macrometa.slack.com',
+                label: 'Slack Community',
               },
               {
-                label: 'GitHub',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://github.com/macrometacorp',
+                label: 'GitHub',
               },
               {
-                label: 'Twitter',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://twitter.com/macrometa',
+                label: 'Twitter',
               },
             ],
           },
@@ -214,12 +220,14 @@ const config = {
             title: 'Resources',
             items: [
               {
-                label: 'Support',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://support.macrometa.com',
+                label: 'Support',
               },
               {
-                label: 'System Status',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://status.macrometa.io/',
+                label: 'System Status',
               },
             ],
           },
