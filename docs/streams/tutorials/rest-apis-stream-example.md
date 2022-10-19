@@ -82,7 +82,7 @@ const tenant = "XXXXX" // Use your tenant id here
 
 const stream = "api_tutorial_streams";
 const consumerName = "api_tutorial_streams_consumer";
-const isGlobal = false;
+const isGlobal = true;
 
 const run = async function () {
   try {
