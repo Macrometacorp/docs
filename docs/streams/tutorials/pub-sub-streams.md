@@ -28,14 +28,14 @@ const jsc8 = require("jsc8");
 const readline = require("readline");
 const globalUrl = "https://gdn.paas.macrometa.io";
 
-// Create an authenticated instance with a token or API key
-// const client = new jsc8({ url: gdnUrl, token: "XXXX", fabricName: "_system" });
+// Create an authenticated instance with an API key (recommended) or JSON web token (JWT).
 const client = new jsc8({
   url: globalUrl,
   apiKey:
     "XXXX",
   fabricName: "_system"
 });
+// const client = new jsc8({ url: gdnUrl, token: "XXXX", fabricName: "_system" });
 
 // Or use email and password to authenticate a client instance
 // const client = new jsc8(globalUrl);
@@ -67,10 +67,10 @@ async function createMyStream () {
   if (await client.hasStream(stream, is_local)) {
     console.log("Stream already exists");
     streamName["stream-id"] = prefix_text + stream;
-    console.log(`OLD Producer = ${streamName["stream-id"]}`);
+    console.log(`Old Producer = ${streamName["stream-id"]}`);
   } else {
     streamName = await client.createStream(stream, is_local);
-    console.log(`NEW Producer = ${streamName.result["stream-id"]}`);
+    console.log(`New Producer = ${streamName.result["stream-id"]}`);
   }
 }
 
