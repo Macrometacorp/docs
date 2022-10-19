@@ -2,19 +2,24 @@
 title: Developer Tools
 hide_table_of_contents: true
 pagination_next: null
-sidebar_label: Overview
-sidebar_position: 0
+pagination_prev: null
+sidebar_class_name: hidden
+# sidebar_label: Development
+# sidebar_position: 0
 slug: /development
 ---
 
-import Card from "@site/src/components/Card";
-import Grid from "@site/src/components/Grid";
-
-<Grid cols={2}>
-  <Card
+<grid cols={3}>
+  <card
+    heading="API"
+    href="/api-docs"
+  />
+  <card
     heading="CLI"
-    description="Test 123"
     href="/cli"
   />
-  <Card heading="SDKs" description="Test 123" href="/sdks" />
-</Grid>
+  <card
+    heading="SDKs"
+    href="/sdks"
+  />
+</grid>

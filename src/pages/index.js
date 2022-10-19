@@ -1,18 +1,21 @@
 import React from 'react';
 import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout'; 
+import { Redirect } from '@docusaurus/router';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 /* Components */
-import Card from '../components/Card';
-import Grid from '../components/Grid';
+// import Card from '../components/Card';
+// import Grid from '../components/Grid';
 
 /* Styles */
-import styles from './index.module.css';
+// import styles from './index.module.css';
 
 /* Fonts */
 import '@fontsource/source-code-pro'
 
 export default function Homepage() {
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout>
       <Head>
@@ -28,8 +31,9 @@ export default function Homepage() {
         <link rel="preload" href="https://fonts.macrometa.com/averta/averta-cyrillic-regular.woff2" as="font" crossorigin />
         <link rel="preload" href="https://fonts.macrometa.com/averta/averta-cyrillic-semibold.woff2" as="font" crossorigin />
       </Head>
+      <Redirect to={`${siteConfig.baseUrl}quickstart`} />
 
-      <div className={styles.heroBanner}>
+      {/* <div className={styles.heroBanner}>
         <h1>
           Documentation
         </h1>
@@ -46,7 +50,7 @@ export default function Homepage() {
           <Card heading="Developer Tools" href="/development" />
           <Card heading="Sample Apps" href="/apps" />
         </Grid>
-      </div>
+      </div> */}
     </Layout>
   );
 }

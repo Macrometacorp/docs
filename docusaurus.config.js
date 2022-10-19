@@ -105,11 +105,17 @@ const config = {
         },
         items: [
           {
-            href: '/',
-            activeBasePath: '/',
+            type: 'doc',
+            docId: 'quickstart',
             position: 'left',
             label: 'Docs',
           },
+          // {
+          //   href: '/',
+          //   activeBasePath: '/',
+          //   position: 'left',
+          //   label: 'Docs',
+          // },
           {
             position: 'left',
             label: 'API Reference',
