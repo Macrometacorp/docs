@@ -12,7 +12,7 @@ const redirectsPlugin = [
           '/essentials/overview'
         ],
         to: '/quickstart'
-      },q
+      },
       {
         from: '/essentials/CLI/commands',
         to: '/cli/'
