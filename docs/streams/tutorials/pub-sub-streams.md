@@ -11,7 +11,7 @@ This is about how to create geo-replicated streams and do queues and pub-sub mes
 ## Prerequisites
 
 - Access to a Macrometa account with sufficient permissions to create streams.
-- Install the appropriate SDK. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
+- Install the appropriate SDK. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
 
 ## Pub-Sub with Streams Code
 
