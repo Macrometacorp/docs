@@ -25,15 +25,34 @@ This page shows you how to perform a basic pub-sub streams workflow using the Ma
 
 ```js
 const WebSocket = require('ws');
- class APIRequest {
+class APIRequest {
   _headers = {
     Accept: "application/json",
     "Content-Type": "application/json"
   };
 
-  constructor (url, apiKey) {
+  constructor (url) {
     this._url = url;
-    this._headers.authorization = `apikey ${apiKey}`; // apikey keyword needs to be appended
+    this._headers.authorization = `apikey ${apiKey}`; // apikey keyword is needed here
+  }
+
+  login (email, password) {
+    const endpoint = "/_open/auth";
+
+    const self = this;
+
+    return new Promise(function (resolve, reject) {
+      self
+        .req(endpoint, {
+          body: { email, password },
+          method: "POST"
+        })
+        .then(({ jwt, ...data }) => {
+          self._headers.authorization = `bearer ${jwt}`;
+          resolve(data);
+        })
+        .catch(reject);
+    });
   }
 
   _handleResponse (response, resolve, reject) {
@@ -56,21 +75,20 @@ const WebSocket = require('ws');
   }
 }
 
-const apiKey = "XXXXX"; // Use your API key here
-const federationName = "api-gdn.paas.macrometa.io";
-const federationUrl = `https://${federationName}`;
+const apiKey = "XXXXX" // Use your apikey here
+let url = "api-gdn.paas.macrometa.io";
+const httpUrl = `https://${url}`;
+const tenant = "XXXXX" // Use your tenant id here
 
-const stream = "streamQuickstart";
-const isGlobal = true;
+const stream = "api_tutorial_streams";
 const consumerName = "api_tutorial_streams_consumer";
+const isGlobal = false;
 
-    /* -------------------- Connect to GDN -------------------- */
+const run = async function () {
+  try {
+    const connection = new APIRequest(httpUrl, apiKey);
 
-    const run = async function () {
-      const connection = new APIRequest(federationUrl, apiKey);
-
-    
-    /* ------------------------------ Create Stream ----------------------------- */
+    /* ------------------------------ Create stream ----------------------------- */
 
     try {
       await connection.req(
@@ -89,9 +107,8 @@ const consumerName = "api_tutorial_streams_consumer";
         throw e;
       }
     }
-  }
 
-    /* ----------------- Publish and Subscribe Message to Stream ---------------- */
+    /* ----------------- Publish and subscribe message to stream ---------------- */
 
     const region = isGlobal ? "c8global" : "c8local";
     const streamName = `${region}s.${stream}`;
@@ -103,8 +120,8 @@ const consumerName = "api_tutorial_streams_consumer";
 
     const dcUrl = localDcDetails.tags.url;
 
-    const url = isGlobal
-      ? URL
+    url = isGlobal
+      ? url
       : `api-${dcUrl}`;
 
     const otpConsumer = await connection.req(`/apid/otp`, {
@@ -122,7 +139,7 @@ const consumerName = "api_tutorial_streams_consumer";
     let producer;
     let producerInterval;
 
-    /* -------------------------- Initialize Consumer -------------------------- */
+    /* -------------------------- Initalize consumer -------------------------- */
 
     const initConsumer = () => {
       return new Promise((resolve) => {
@@ -158,7 +175,7 @@ const consumerName = "api_tutorial_streams_consumer";
       });
     };
 
-    /* -------------------------- Initialize Producer -------------------------- */
+    /* -------------------------- Initalize producer -------------------------- */
 
     const initProducer = () => {
       producer = new WebSocket(producerUrl);
@@ -193,8 +210,9 @@ const consumerName = "api_tutorial_streams_consumer";
     producer.close();
     console.log("PRODUCER CLOSING...");
     await new Promise((resolve) => setTimeout(resolve, 5000));
-    
-    /* ------------------------ Unsubscribe from Stream ------------------------ */
+
+    /* ------------------------ Unsubscribe from stream ------------------------ */
+
     const consumerUnsubscribe = await connection.req(
       `/_fabric/_system/_api/streams/subscription/${consumerName}`,
       {
@@ -205,8 +223,6 @@ const consumerName = "api_tutorial_streams_consumer";
       `${consumerName} unsubscribed successfully`,
       consumerUnsubscribe
     );
-    
-    /* ------------------------------ Delete Topic ------------------------------ */
   } catch (e) {
     console.error(e);
   }
