@@ -219,7 +219,6 @@ run();
 <TabItem value="py" label="Python">
 
 ```py
-from concurrent.futures import thread
 import requests
 import json
 from websocket import create_connection
