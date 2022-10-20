@@ -10,8 +10,8 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 ## Prerequisites
 
-- Access to a Macrometa account with sufficient permissions to create streams.
-- Have your API Key ready. For more information, refer to [Create API Keys] (https://macrometa.com/docs/account-management/api-keys/create-api-keys).
+- Access to a [Macrometa account] (https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
+- Have your API Key ready. For more information, refer to [Create API Keys] (../account-management/api-keys/create-api-keys.md).
 - Install the appropriate SDK. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ## Get Started with Streams
@@ -398,7 +398,7 @@ warnings.filterwarnings("ignore")
 # Connect to GDN.
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "xxxx" # Change this to your API key
+API_KEY = "xxxxx" # Change this to your API key
 is_local = False
 prefix_text = ""
 demo_stream = 'streamQuickstart'
@@ -445,8 +445,8 @@ def receiveData():
         m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
         msg1 = base64.b64decode(m1["payload"]).decode('utf-8')
         print(F"Received message: '{msg1}'") 
-    #Output the ID of the received message
-        #print(F"Message ID:'{m1['messageId']}'")
+    # Output the ID of the received message
+        # print(F"Message ID:'{m1['messageId']}'")
         subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
 
 createStream()
