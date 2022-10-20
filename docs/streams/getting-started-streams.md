@@ -277,7 +277,7 @@ It's time to see streams in action!
 3. Select your recently created stream (c8globals.streamQuickstart) to view the output of the message within the console.
   - Open two terminal windows and start the program in each window 
   - In one terminal, type 'r' to begin listening for messages, while in the other terminal, type 'w' to begin writing messages
-  - Upon each write, you should see the message received in the 2nd terminal window, as well as the message displayed in the GDN console output
+  - Upon each write, you should see the message received in the second terminal window, as well as the message displayed in the GDN console output
   
 
 <Tabs groupId="operating-systems">
