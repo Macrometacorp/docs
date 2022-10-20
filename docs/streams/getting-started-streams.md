@@ -18,7 +18,7 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 The basic parts of this quickstart walk you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-To get started, create a new JavaScript (.js) or python (.py) file in your favorite IDE. Then, copy the code block below and paste it into your JavaScript or Python file. With each subsequent step, append the code block to the existing file and run it.
+To get started, create a new JavaScript (.js) or Python (.py) file in your favorite IDE. Then, copy the code block below and paste it into your JavaScript or Python file. With each subsequent step, append the code block to the existing file and run it.
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
@@ -61,7 +61,7 @@ warnings.filterwarnings("ignore")
 # Define constants
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "my API key" # CHANGE THIS TO YOUR API KEY
+API_KEY = "my API key" # Change this to your API key
 
 print("--- Connecting to GDN")
 
@@ -274,8 +274,8 @@ It's time to see streams in action!
 
 1. Replace the contents of your .js or .py file from above with the code block below.
 2. In your browser, open the GDN console and then click **Streams**.
-3. Select your recently created stream (c8globals.streamQuickstart) to view the output of the message within the console.
-  - Open two terminal windows and start the program in each window 
+  - Select your recently created stream (c8globals.streamQuickstart) to view the output of the message within the console.
+3. Open two terminal windows and start the program in each window 
   - In one terminal, type 'r' to begin listening for messages, while in the other terminal, type 'w' to begin writing messages
   - Upon each write, you should see the message received in the second terminal window, as well as the message displayed in the GDN console output
   
