@@ -6,7 +6,9 @@ title: Install SDKs
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to install Macrometa SDKs.
+This page explains how to install and update Macrometa SDKs.
+
+## Install SDKs
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -57,6 +59,27 @@ To install the SDK in a notebook:
 
 ```py
 !pip install pyC8
+```
+
+</TabItem>
+</Tabs>
+
+## Update SDKs
+
+Run the following command in your terminal to update the SDK.
+
+<Tabs groupId="operating-systems">
+<TabItem value="js" label="Javascript">
+
+```js
+npm update jsC8
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+pip install --upgrade pyc8
 ```
 
 </TabItem>
