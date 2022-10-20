@@ -145,12 +145,6 @@ const config = {
             label: 'Twitter',
             position: 'right',
           },
-          {
-            className: 'navbar__item--external',
-            href: 'https://macrometa.slack.com/',
-            label: 'Slack',
-            position: 'right',
-          },
         ],
       },
       footer: {
@@ -199,11 +193,6 @@ const config = {
           {
             title: 'Connect',
             items: [
-              {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://macrometa.slack.com',
-                label: 'Slack Community',
-              },
               {
                 className: 'footer__link-item footer__item--external',
                 href: 'https://github.com/macrometacorp',
