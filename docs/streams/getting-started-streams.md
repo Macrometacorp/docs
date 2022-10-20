@@ -11,7 +11,7 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 ## Prerequisites
 
 - Access to a Macrometa account with sufficient permissions to create streams.
-- Have your API Key ready. For more information, refer to [Create API Keys] (../account-management/api-keys/create-api-keys)
+- Have your API Key ready. For more information, refer to [Create API Keys] (https://macrometa.com/docs/account-management/api-keys/create-api-keys).
 - Install the appropriate SDK. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ## Get Started with Streams
@@ -398,7 +398,7 @@ warnings.filterwarnings("ignore")
 # Connect to GDN.
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "xxxxx" # Change this to your API key
+API_KEY = "xxxx" # Change this to your API key
 is_local = False
 prefix_text = ""
 demo_stream = 'streamQuickstart'
@@ -426,21 +426,27 @@ def createStream():
 def sendData():
     """ This function sends data through a stream """
     producer = client.create_stream_producer(demo_stream, local=is_local)
-    for i in range(10):
-        msg1 = "Persistent Hello from " + "("+ str(i) +")"
-        print("Stream: ", msg1)
-        producer.send(msg1)
+    while True:
+        user_input = input("Enter your message to publish: ")
+        if user_input == '0':
+            break
+        producer.send(user_input)
+
 
 # Create the subscriber and receive data.
 def receiveData():
     """ This function receives data from a stream """
     subscriber = client.subscribe(stream=demo_stream, local=is_local,
         subscription_name="test-subscription-1")
-    for i in range(10):
-        print("In ",i)
+    while True:
+        print("\nListening for message...")
+        if user_input == '0':
+            break
         m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
         msg1 = base64.b64decode(m1["payload"]).decode('utf-8')
-        print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received message
+        print(F"Received message: '{msg1}'") 
+    #Output the ID of the received message
+        #print(F"Message ID:'{m1['messageId']}'")
         subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
 
 createStream()
@@ -448,10 +454,10 @@ createStream()
 # User enters choice.
 # On one terminal use 'r' to start the subscriber to read data
 # Then on another terminal use 'w' to start the producer and publish message
-user_input = input("Type 'w' or '1' to write data. Type 'r' or '0' to read data: ")
-if user_input == "w" or user_input == '1':
+user_input = input("Type 'w' to write data, type 'r' read data, and type '0' to quit at any time: ")
+if user_input == "w":
     sendData()
-elif user_input == "r" or user_input == '0':
+elif user_input == "r":
     receiveData()
 else:
     print ("Invalid user input. Stopping program") 
