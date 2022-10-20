@@ -270,7 +270,11 @@ for i in range(10):
 
 ## Full Demo File
 
-It's time to see streams in action! Replace the contents of your .js or .py file from above with the code block below. In your browser, open the GDN console and navigate to the 'streams' tab. Select your recently created stream (c8globals.streamQuickstart) to view the output of the message within the console.
+It's time to see streams in action! 
+
+1. Replace the contents of your .js or .py file from above with the code block below.
+2. In your browser, open the GDN console and then click **Streams**.
+3. Select your recently created stream (c8globals.streamQuickstart) to view the output of the message within the console.
   - Open two terminal windows and start the program in each window 
   - In one terminal, type 'r' to begin listening for messages, while in the other terminal, type 'w' to begin writing messages
   - Upon each write, you should see the message received in the 2nd terminal window, as well as the message displayed in the GDN console output
