@@ -155,10 +155,10 @@ stream_name = {"stream-id": ""}
 if client.has_stream(demo_stream, local = is_local):
     print("Stream already exists")
     stream_name["stream-id"] = concat(prefix_text, demo_stream)
-    print ("OLD Producer =",  stream_name["stream-id"])
+    print ("Old Producer =",  stream_name["stream-id"])
 else:
     stream_name = client.create_stream(demo_stream, local=is_local)
-    print ("NEW Producer =",  stream_name["stream-id"])
+    print ("New Producer =",  stream_name["stream-id"])
 
 # Get and print stream details
 print("Get streams: ", client.get_streams())
@@ -417,10 +417,10 @@ def createStream():
     if client.has_stream(demo_stream, local = is_local):
         print("Stream already exists")
         stream_name["stream-id"] = concat(prefix_text, demo_stream)
-        print ("OLD Producer =",  stream_name["stream-id"])
+        print ("Old Producer =",  stream_name["stream-id"])
     else:
         stream_name = client.create_stream(demo_stream, local=is_local)
-        print ("NEW Producer =",  stream_name["stream-id"])
+        print ("New Producer =",  stream_name["stream-id"])
 
 # Create the producer and publish messages.
 def sendData():
