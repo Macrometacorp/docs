@@ -17,9 +17,9 @@ Messages are the basic unit of GDN streams. They're what producers publish to st
 
 ## Stream as Message Queue
 
-Message queues are essential components of many large-scale data architectures. If every single work object that passes through your system absolutely `must` be processed in spite of the slowness or downright failure of this or that system component, there's a good chance that you'll need a message queue to step in and ensure that unprocessed data is retained---with correct ordering---until the required actions are taken.
+Message queues are essential components of many large-scale data architectures. If every single work object that passes through your system absolutely _must_ be processed in spite of the slowness or downright failure of this or that system component, there's a good chance that you'll need a message queue to step in and ensure that unprocessed data is retained---with correct ordering---until the required actions are taken.
 
-### Why GDN Streams?
+### Benefits of Using GDN Streams as a Message Queue
 
 GDN Streams is a great choice for a message queue because:
 
@@ -30,7 +30,7 @@ GDN Streams is a great choice for a message queue because:
 
 ### Client Configuration Changes
 
-To use a stream as a message queue, you should distribute the receiver load on that topic across several consumers (the optimal number of consumers will depend on the load).
+To use a stream as a message queue, you should distribute the receiver load on that topic across several consumers. The optimal number of consumers will depend on the load.
 
 Each consumer must:
 
@@ -38,7 +38,7 @@ Each consumer must:
 
 - If you'd like to have tight control over message dispatching across consumers, set the consumers' **receiver queue** size very low (potentially even to 0 if necessary).
 
-Each stream has a receiver queue that determines how many messages the consumer will attempt to fetch at a time. A receiver queue of 1000 (the default), for example, means that the consumer will attempt to process 1,000 messages from the stream's backlog upon connection. Setting the receiver queue to zero essentially means ensuring that each consumer is only doing one thing at a time.
+Each stream has a receiver queue that determines how many messages the consumer will attempt to fetch at a time. A receiver queue of 1,000 (the default), for example, means that the consumer will attempt to process 1,000 messages from the stream's backlog upon connection. Setting the receiver queue to zero essentially means ensuring that each consumer is only doing one thing at a time.
 
 The downside to restricting the receiver queue size of consumers is that that limits the potential throughput of those consumers. Whether the performance/control trade-off is worthwhile will depend on your use case.
 
@@ -46,7 +46,7 @@ The downside to restricting the receiver queue size of consumers is that that li
 
 By default, GDN does the following:
 
-- Immediately deletes `all` messages that have been acknowledged by a consumer.
+- Immediately deletes all messages that have been acknowledged by a consumer.
 - Persistently stores all unacknowledged messages in a message backlog for up to three days.
 
 GDN streams has two features, however, that enable you to override this default behavior:
@@ -55,13 +55,13 @@ GDN streams has two features, however, that enable you to override this default 
 - Message _expiry_ allows you to set a time to live (TTL) for messages that have not yet been acknowledged.
 
 :::note
-All message retention and expiry is managed at the `geofabric` level.
+All message retention and expiry is managed at the geofabric level.
 :::
 
 The diagram below illustrates both concepts:
 
 ![stream-retention-expiry](/img/stream-retention-expiry.png)
 
-With message retention, shown at the top, a `retention policy` applied to all streams in a database dicates that some messages are durably stored in GDN even though they've already been acknowledged. Acknowledged messages that are not covered by the retention policy are `deleted`. Without a retention policy, `all` of the `acknowledged messages` would be deleted.
+With message retention, shown at the top, a retention policy applied to all streams in a database dictates that some messages are durably stored in GDN even though they've already been acknowledged. Acknowledged messages that are not covered by the retention policy are deleted. Without a retention policy, all of the acknowledged messages would be deleted.
 
-With message expiry, shown at the bottom, some messages are `deleted`, even though they `haven't been acknowledged`, because they've expired according to the `TTL applied to the namespace` (for example because a TTL of 5 minutes has been applied and the messages haven't been acknowledged but are 10 minutes old).
+With message expiry, shown at the bottom, some messages are deleted, even though they haven't been acknowledged, because they've expired according to the TTL applied to the namespace. For example, because a TTL of five minutes has been applied and the messages haven't been acknowledged but are 10 minutes old.

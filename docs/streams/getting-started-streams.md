@@ -11,11 +11,14 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 ## Prerequisites
 
 - Access to a Macrometa account with sufficient permissions to create streams.
+- Have your API Key ready. For more information, refer to [Create API Keys] (../account-management/api-keys/create-api-keys)
 - Install the appropriate SDK. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ## Get Started with Streams
 
 The basic parts of this quickstart walk you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
+
+To get started, create a new JavaScript (.js) or Python (.py) file in your favorite IDE. Then, copy the code block below and paste it into your JavaScript or Python file. With each subsequent step, append the code block to the existing file and run it.
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
@@ -267,7 +270,15 @@ for i in range(10):
 
 ## Full Demo File
 
-Copy the code block below into a file and run it in your favorite IDE.
+It's time to see streams in action! 
+
+1. Replace the contents of your .js or .py file from above with the code block below.
+2. In your browser, open the GDN console and then click **Streams**.
+  - Select your recently created stream (c8globals.streamQuickstart) to view the output of the message within the console.
+3. Open two terminal windows and start the program in each window 
+  - In one terminal, type 'r' to begin listening for messages, while in the other terminal, type 'w' to begin writing messages
+  - Upon each write, you should see the message received in the second terminal window, as well as the message displayed in the GDN console output
+  
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="JavaScript">
