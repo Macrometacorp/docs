@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Redis Mode Collection
 ---
 
-A Redis Mode collection allows you to...
+The data store that Macrometa provides is compatible with almost all Redis API use cases.
 
 You must create a Redis Mode collection before you can use Redis with Macrometa. You can read and write to Redis collections using the following methods:
 
