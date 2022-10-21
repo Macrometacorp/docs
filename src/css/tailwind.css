@@ -47,6 +47,23 @@
 
     /* Docusaurus Theming */
 
+    --font-family-base: 'Averta', ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --font-family-monospace: 'Source Code Pro', ui-monospace, SFMono-Regular,
+      Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+    --font-code: var(--font-family-monospace) !important;
+    --font-mono: var(--font-family-monospace) !important;
+    --font-prose: var(--font-family-base);
+
+    --ifm-background-color: var(--color-white);
+
+    --ifm-code-border-radius: 0.5rem;
+    --ifm-code-font-size: 0.9375rem;
+
     --ifm-color-primary: var(--color-primary-500);
     --ifm-color-primary-dark: var(--color-primary-600);
     --ifm-color-primary-darker: var(--color-primary-700);
@@ -55,46 +72,43 @@
     --ifm-color-primary-lighter: var(--color-primary-300);
     --ifm-color-primary-lightest: var(--color-primary-200);
 
-    --ifm-code-border-radius: 0.5rem;
-    --ifm-code-font-size: 0.9375rem;
-    --ifm-pre-background-color: var(--color-neutral-50);
+    --ifm-font-color-base: var(--color-neutral-700);
+    --ifm-font-family-base: var(--font-family-base);
+    --ifm-font-family-monospace: var(--font-family-monospace);
+    --ifm-font-weight-bold: 600;
+    
+    --ifm-global-radius: 0.5rem;
+
+    --ifm-heading-color: var(--color-neutral-800);
+    --ifm-heading-font-family: var(--font-family-base);
+
+    --ifm-footer-background-color: var(--color-primary-500);
+    --ifm-footer-color: var(--color-neutral-500);
+    --ifm-footer-link-color: var(--color-primary-500);
+    --ifm-footer-link-hover-color: var(--color-primary-600);
+    --ifm-footer-padding-horizontal: 0;
+    --ifm-footer-padding-vertical: 0.5rem;
+    --ifm-footer-title-color: var(--color-neutral-700);
 
     --ifm-link-color: var(--color-primary-500);
     --ifm-link-decoration: none;
 
-    --ifm-font-family-monospace: 'Source Code Pro', ui-monospace, SFMono-Regular,
-      Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-    --font-code: var(--ifm-font-family-monospace) !important;
-    --font-mono: var(--ifm-font-family-monospace) !important;
-    --font-ui: 'Averta', ui-sans-serif, system-ui, -apple-system,
-      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-      'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-prose: var(--font-ui);
-
-    --ifm-font-color-base: var(--color-neutral-700);
-
-    --ifm-heading-color: var(--color-neutral-800);
-    --ifm-heading-font-family: 'Averta', sans-serif;
-
-    --ifm-background-color: var(--color-white);
-
     --ifm-menu-color: var(--color-neutral-700);
+    --ifm-menu-color-background-active: var(--color-primary-500);
     --ifm-menu-color-background-hover: var(--color-primary-100);
-    --ifm-menu-color-background-active: var(--color-primary-400);
+
     --ifm-navbar-item-padding-horizontal: 0.5rem;
+    --ifm-navbar-padding-horizontal: 1.5rem;
+    --ifm-navbar-padding-vertical: 0.5rem;
+
+    --ifm-pre-background-color: var(--color-neutral-50);
+
     --ifm-toc-border-color: var(--docs-color-border);
     --ifm-toc-padding-horizontal: 0.75rem;
-    --doc-sidebar-width: 280px !important;
-
-    --ifm-footer-background-color: var(--color-primary-500);
-    --ifm-footer-color: var(--color-primary-100);
-    --ifm-footer-link-color: var(--color-primary-50);
-    --ifm-footer-link-hover-color: var(--color-white);
-    --ifm-footer-title-color: var(--color-white);
 
     /* Tailwind Theming */
-
+    --doc-sidebar-width: 280px !important;
+    
     --docs-color-primary: var(--color-primary-500);
     --docs-color-primary-100: var(--color-primary-300);
 
@@ -160,10 +174,11 @@
     --docsearch-key-gradient: var(--color-neutral-600) !important;
     --docsearch-searchbox-background: var(--color-neutral-700) !important;
 
-    --ifm-footer-background-color: var(--color-neutral-900);
-    --ifm-footer-color: var(--color-neutral-500);
-    --ifm-footer-link-color: var(--color-neutral-200);
-    --ifm-footer-link-hover-color: var(--color-neutral-100);
+    --ifm-footer-background-color: var(--color-primary-600);
+    --ifm-footer-color: var(--color-neutral-300);
+    --ifm-footer-link-color: var(--color-neutral-400);
+    --ifm-footer-link-hover-color: var(--color-white);
+    --ifm-footer-title-color: var(--color-white);
 
     --doc-mobile-toc-background: var(--color-primary-700);
 
@@ -175,7 +190,7 @@
 }
 
 html {
-  font-family: var(--font-ui);
+  font-family: var(--font-family-base);
 }
 
 /* Docusaurus styles */
@@ -193,7 +208,7 @@ html {
 }
 
 .menu > .menu__list {
-  padding: 0 0.75rem;
+  padding: 0 0.75rem 0.75rem;
 }
 
 .menu > .menu__list > .menu__list-item:first-child {
@@ -201,7 +216,8 @@ html {
 }
 
 .menu > .menu__list > .menu__list-item {
-  @apply text-sm font-normal;
+  font-size: 0.9375rem;
+  @apply font-normal;
 }
 
 .menu__list-item:not(:first-child) {
@@ -212,7 +228,7 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
   border-radius: 0.25rem;
   color: var(--color-white);
   background: var(--ifm-menu-color-background-active);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .menu__link--active:not(.menu__link--sublist) {
@@ -237,6 +253,10 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
 
 /* Optional style for only one link which acts as nav section header */
 
+.navbar-sidebar__backdrop {
+  background-color: rgba(11, 12, 14, .68);
+}
+
 .navbar__toggle {
   @apply mr-3;
 }
@@ -245,8 +265,25 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
   @apply font-normal text-base;
 }
 
-.navbar__item svg {
+.footer__item a {
+  color: var(--ifm-footer-link-color);
+}
+
+.footer__item a:focus,
+.footer__item a:hover {
+  color: var(--ifm-footer-link-hover-color);
+  text-decoration: none;
+}
+
+.footer__item--external svg,
+.navbar__item--external svg {
   display: none;
+}
+
+.footer__item--external::after,
+.navbar__item--external::after {
+  content: url(/img/icon-arrow-external.svg);
+  padding-left: 2px;
 }
 
 .navbar__logo {
@@ -358,31 +395,29 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   color: inherit !important;
 }
 
-.sl-elements div[aria-label='Responses'] {
-  span {
-    @apply mr-auto;
-  }
+.sl-elements div[aria-label='Responses'] span {
+  @apply mr-auto;
+}
 
-  div[data-key] {
-    @apply mr-2 flex items-center rounded-md border outline-none ring-0;
-  }
+.sl-elements div[aria-label='Responses'] div[data-key] {
+  @apply mr-2 flex items-center rounded-md border outline-none ring-0;
+}
 
-  div[data-key]::before {
-    content: '';
-    @apply mr-2 inline-block h-3 w-3 rounded-full bg-green-500 drop-shadow-sm;
-  }
+.sl-elements div[aria-label='Responses'] div[data-key]::before {
+  content: '';
+  @apply mr-2 inline-block h-3 w-3 rounded-full bg-green-500 drop-shadow-sm;
+}
 
-  div[data-key^='4']::before {
-    @apply bg-red-500;
-  }
+.sl-elements div[aria-label='Responses'] div[data-key^='4']::before {
+  @apply bg-red-500;
+}
 
-  div[data-key^='5']::before {
-    @apply bg-yellow-500;
-  }
+.sl-elements div[aria-label='Responses'] div[data-key^='5']::before {
+  @apply bg-yellow-500;
+}
 
-  div[aria-selected='true'] {
-    @apply border-primary-100 shadow-sm;
-  }
+.sl-elements div[aria-label='Responses'] div[aria-selected='true'] {
+  @apply border-primary-100 shadow-sm;
 }
 
 .sl-overflow-x-hidden.sl-overflow-y-auto.sl-flex-1.sl-w-full.sl-px-24.sl-bg-canvas {
@@ -536,11 +571,42 @@ html[data-theme='dark'] .sl-text-warning {
   scrollbar-width: none;
 }
 
+/*
+  Container
+*/
+
 .container {
-  @apply px-4 lg:pl-7;
+  @apply px-6;
+}
+@media (min-width: 640px) {
+  .container {
+    max-width: 40rem;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 48rem;
+  }
+}
+@media (min-width: 997px) {
+  .container {
+    max-width: 60rem;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: 68rem;
+  }
+}
+@media (min-width: 1536px) {
+  .container {
+    max-width: 72rem;
+  }
 }
 
-/* Markdown styles */
+/*
+  Markdown Styles
+*/
 
 .markdown {
   --ifm-h2-vertical-rhythm-top: 2;
@@ -550,6 +616,8 @@ html[data-theme='dark'] .sl-text-warning {
   font-size: 17px;
   letter-spacing: -0.0025rem;
   line-height: 28px;
+  margin: 0 auto;
+  max-width: 72rem;
 }
 
 .markdown h1,
@@ -563,8 +631,8 @@ html[data-theme='dark'] .sl-text-warning {
 
 .markdown h1:first-child {
   --ifm-h1-font-size: 2.5rem;
-  --ifm-h1-vertical-rhythm-bottom: 1;
-  margin-top: 0.5rem;
+  --ifm-h1-vertical-rhythm-bottom: 1.25;
+  margin-top: 1.5rem;
 }
 
 .markdown > h2 {
@@ -581,21 +649,8 @@ html[data-theme='dark'] .sl-text-warning {
   margin-bottom: 1rem;
 }
 
-.table-of-contents {
-  font-size: 0.875rem;
-}
-
-.table-of-contents__link {
-  line-height: 1.25rem;
-}
-
 code {
   @apply px-1;
-}
-
-strong,
-b {
-  @apply font-extrabold;
 }
 
 article img {
@@ -611,7 +666,10 @@ article img {
   font-size: 14px;
 }
 
-/* Docsearch */
+/*
+  Docsearch
+*/
+
 .DocSearch-Logo {
   display: none;
 }
@@ -633,16 +691,27 @@ article img {
   background: none !important;
 }
 
+/*
+  Theme
+*/
+
+.table-of-contents {
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.table-of-contents__link {
+  line-height: 1.25rem;
+}
+
 .theme-code-block {
   box-shadow: none !important;
 }
 
-.footer {
-  @apply text-base;
-}
-
-.footer__bottom {
-  @apply text-sm;
+.theme-doc-toc-desktop {
+  margin-top: 2rem;
+  top: calc(108px + 1rem) !important;
 }
 
 .theme-doc-toc-mobile {
@@ -652,4 +721,62 @@ article img {
 .theme-doc-toc-mobile > .clean-btn {
   padding: 0.75rem 1rem;
   @apply text-base;
+}
+
+.theme-doc-footer {
+  margin: 3rem 0 1.5rem 0 !important;
+}
+
+/*
+  Pagination
+*/
+
+.pagination-nav {
+  margin: 1.5rem 0 0 !important;
+}
+
+.pagination-nav__sublabel {
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.pagination-nav__label {
+  font-weight: 400;
+}
+
+.pagination-nav__link--prev .pagination-nav__label::before,
+.pagination-nav__link--next .pagination-nav__label::after {
+  content: ''
+}
+
+/*
+  Footer
+*/
+
+.footer {
+  background-color: var(--docs-color-background);
+  border-top: 1px solid var(--docs-color-border);
+  @apply text-base;
+}
+
+.footer__col {
+  padding: 0 1.5rem;
+}
+@media (max-width: 996px) {
+  .footer__col {
+    margin: 0 0 2rem;
+  }
+}
+
+.footer__links {
+  margin: 0;
+  padding: 1.5rem 0 2.5rem;
+}
+
+.footer__title {
+  margin: 0 0 0.75rem;
+}
+
+.footer__bottom {
+  font-size: 0.8125rem;
 }
