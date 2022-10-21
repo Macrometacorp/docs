@@ -129,7 +129,7 @@ print("\nStream Created: ", resp.text)
 </TabItem>
 <TabItem value="api-js" label="REST API - JavaScript">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://macrometa.com/docs/api#/operations/CreateStream)).
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://macrometa.com/docs/api#/operations/CreateStream).
 
 ```js
 class APIRequest {
