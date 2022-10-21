@@ -36,7 +36,7 @@ from c8 import C8Client
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "xxxxxx" # Change this to your API key
-is_local = False
+is_local = False # For a global stream pass True and False for local stream
 prefix_text = ""
 demo_stream = "streamQuickstart"
 
@@ -75,7 +75,7 @@ console.log("Authentication done!!...");
 
 const stream = "streamQuickstart";
 let prefixText = "";
-const isLocal = false;
+const isLocal = false; # For a global stream pass True and False for local stream
 
 // Get the right prefix for the stream
 if (isLocal) {
