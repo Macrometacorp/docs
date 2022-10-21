@@ -3,10 +3,6 @@ sidebar_position: 1
 title: Tutorials
 ---
 
-:::note
-If you are new to Macrometa GDN, we strongly recommend reading [What is Macrometa](../../../what-is-macrometa.md).
-:::
-
 Following tutorials cover various user scenarios using Macrometa GDN.
 
 ## Documents
