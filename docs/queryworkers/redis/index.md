@@ -12,11 +12,12 @@ This is a beta feature.
 ## Capabilities
 
 Because of its fast performance, Redis is a popular choice for:
-- caching 
-- session management 
-- gaming 
-- leaderboards 
-- real-time analytics 
+
+- caching
+- session management
+- gaming
+- leaderboards
+- real-time analytics
 - geospatial apps
 - ride-hailing apps
 - chat/messaging apps
@@ -24,6 +25,7 @@ Because of its fast performance, Redis is a popular choice for:
 - pub/sub apps
 
 ## Supported Commands
+
 Macrometa supports Redis client protocol up to version 6.2. Following table shows the list of supported Redis commands:
 
 | Feature      | Supported | Supported commands     |
@@ -35,4 +37,3 @@ Macrometa supports Redis client protocol up to version 6.2. Following table show
 | SortedSet   | Yes        | - ZADD - ZCARD - ZCOUNT - ZDIFF - ZDIFFSTORE - ZINCRBY - ZINTER - ZINTERSTORE - ZLEXCOUNT - ZMSCORE - ZPOPMAX - ZPOPMIN - ZRANDMEMBER - ZRANGE - ZRANGEBYLEX - ZRANGEBYSCORE - ZRANGESTORE - ZRANK - ZREM - ZREMRANGEBYLEX - ZREMRANGEBYRANK - ZREMRANGEBYSCORE - ZREVRANGE - ZREVRANGEBYLEX - ZREVRANGEBYSCORE - ZREVRANK - ZSCAN - ZSCORE - ZUNION - ZUNIONSTORE      |
 | Generic   | Yes        | - COPY - DEL - EXISTS - EXPIRE - EXPIREAT - PERSIST - PEXPIRE - PEXPIREAT - PTTL - RANDOMKEY - RENAME - RENAMENX - SCAN - TTL - TYPE - UNLINK      |
 | Server   | Yes        | - ECHO - PING - PIPELINE - DBSIZE - FLUSHDB - TIME      |
-

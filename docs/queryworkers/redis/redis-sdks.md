@@ -5,9 +5,9 @@ title: Redis SDK Commands
 
 Examples on how to use SDK.
 SDK is intuitive in a sense when we create an instance of client we can access all the familiar Redis commands.
-- Step 1. [Download SDK](https://pypi.org/project/pyC8/) 
-- Step 2. Create and instance of the C8Client
-- Step 3. Access Redis commands `client.redis.<Redis command>`
+- Step 1. [Install the SDK](../../sdks/install-sdks.md).
+- Step 2. Create an instance of the C8Client
+- Step 3. Access Redis commands `client.redis.<Redis command>`.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
 ```py
 from c8 import C8Client
 
-# Create a connection to gdn
+# Create a connection to GDN
 client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')

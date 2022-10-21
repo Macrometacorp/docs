@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Redis Mode Collection
 ---
 
-The data store that Macrometa provides is compatible with almost all Redis API use cases.
+The data store that Macrometa provides is compatible with most Redis API use cases.
 
 You must create a Redis Mode collection before you can use Redis with Macrometa. You can read and write to Redis collections using the following methods:
 
@@ -12,4 +12,4 @@ You must create a Redis Mode collection before you can use Redis with Macrometa.
 - [C8QL](../../queryworkers/c8ql/index.md)
 - [SQL](ADD LINK WHEN AVAILABLE)
 
-For more information about using Redis in Macrometa, refer to [Redis](LINK TO REDIS SECTION).
+For more information about using Redis in Macrometa, refer to [Redis](../../queryworkers/redis/index.md).
