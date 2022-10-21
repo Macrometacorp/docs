@@ -75,10 +75,10 @@ class APIRequest {
   }
 }
 
-const apiKey = "XXXXX" // Use your apikey here
+const apiKey = "XXXXX" // Use your API key here
 let url = "api-gdn.paas.macrometa.io";
 const httpUrl = `https://${url}`;
-const tenant = "XXXXX" // Use your tenant id here
+const tenant = "XXXXX" // Use your tenant name here
 
 const stream = "api_tutorial_streams";
 const consumerName = "api_tutorial_streams_consumer";
@@ -246,11 +246,11 @@ import time
 # Constants
 URL = "api-gdn.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
-API_KEY = "XXXXX" # Use your apikey here
+API_KEY = "XXXXX" # Use your API key here
 AUTH_TOKEN = f"apikey {API_KEY}"
 FABRIC = "_system"
 STREAM_NAME = "teststream"
-TENANT_NAME = "XXXXX" # Add your tenant id here
+TENANT_NAME = "XXXXX" # Add your tenant name here
 CONSUMER_NAME = "testconsumer"
 IS_GLOBAL = True # For a global stream pass True and False for local stream
 
