@@ -17,9 +17,9 @@ Macrometa now supports some SQL queries. Support will be expanded in future rele
 
 ### Redis Support - Beta
 
-Description of feature.
+Macrometa now offers Redis support.
 
-[Topic name](link) was added as a result of this feature.
+[Redis Mode Collections](../collections/redis-mode/index.md) and [Redis in Macrometa](../queryworkers/redis/index.md) were added as a result of this feature.
 
 ### Kafka Support - Beta
 
