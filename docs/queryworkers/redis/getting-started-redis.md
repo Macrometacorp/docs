@@ -10,3 +10,4 @@ This page explains how to start using Redis in Macrometa.
 3. Choose how to interact:
 
     - [SDK](/docs/queryworkers/redis/redis-sdks.md)
+    - [API](/docs/queryworkers/redis/redis-sdks.md)

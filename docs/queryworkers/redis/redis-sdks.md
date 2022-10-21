@@ -66,6 +66,10 @@ response = client.redis.spop("animals", 1, REDIS_COLLECTION)
 # Response from platform
 print(response)
 ```
+</TabItem>
+<TabItem value="RA" label="Rest API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
 
 </TabItem>
 </Tabs>
