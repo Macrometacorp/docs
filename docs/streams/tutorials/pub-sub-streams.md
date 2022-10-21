@@ -6,65 +6,19 @@ title: Pub-Sub with Streams
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This is about how to create geo-replicated streams and do queues & pub-sub messaging with local latencies across the globe.
+This page describes how to create geo-replicated streams and set up queues and pub-sub messaging with local latencies across the globe.
 
-## Pre-requisites
+## Prerequisites
 
-Let's assume your
+- Access to a Macrometa account with sufficient permissions to create streams.
+- Install the appropriate SDK. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
 
-- Tenant name is `nemo@nautilus.com` and
-- User password is `xxxxxxxx`.
+## Pub-Sub with Streams Code
 
-## Installation
-
-<Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
-
-```js
-With Yarn or NPM
-
-    yarn add jsc8
-    (or)
-    npm install jsc8
-
-If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
-
-    npm install --global jsc8
-
-From source,
-
-    git clone https://github.com/macrometacorp/jsc8.git
-    cd jsC8
-    npm install
-    npm run dist
-```
-
-</TabItem>
-
-<TabItem value="py" label="Python">
-
-```py
-pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
-
-To install pyC8, simply run
-
-    $ pip3 install pyC8
-
-or, if you prefer to use conda:
-
-    conda install -c conda-forge pyC8
-
-or pipenv:
-
-    pipenv install --pre pyC8
-
-Once the installation process is finished, you can begin developing applications in Python.
-```
-
-</TabItem>
-</Tabs>  
-
-## Code Sample
+1. Copy and paste the code block below in your favorite IDE.
+1. Update constants with your values, such as the API key.
+1. Run the code.
+1. (Optional) Log in to the Macrometa console to view the streams.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -74,29 +28,29 @@ const jsc8 = require("jsc8");
 const readline = require("readline");
 const globalUrl = "https://gdn.paas.macrometa.io";
 
-// Create an authenticated instance with a token or API key
-// const client = new jsc8({ url: gdnUrl, token: "XXXX", fabricName: "_system" });
+// Create an authenticated instance with an API key (recommended) or JSON web token (JWT).
 const client = new jsc8({
   url: globalUrl,
   apiKey:
     "XXXX",
   fabricName: "_system"
 });
+// const client = new jsc8({ url: gdnUrl, token: "XXXX", fabricName: "_system" });
 
 // Or use email and password to authenticate a client instance
 // const client = new jsc8(globalUrl);
-// await client.login("nemo@nautilus.com", "xxxxxx");
+// await client.login("your@email.com", "password");
 
 // Variables
 const stream = "streamQuickstart";
-let prefixText = "";
-const prefixBool = false;
+let prefix_text = "";
+const is_local = false; //For a global stream pass True and False for local stream
 
 // Get the right prefix for the stream
-if (prefixBool) {
-  prefixText = "c8locals.";
+if (is_local) {
+  prefix_text = "c8locals.";
 } else {
-  prefixText = "c8globals.";
+  prefix_text = "c8globals.";
 }
 
 async function getDCList () {
@@ -110,13 +64,13 @@ async function getDCList () {
 
 async function createMyStream () {
   let streamName = { "stream-id": "" };
-  if (await client.hasStream(stream, prefixBool)) {
+  if (await client.hasStream(stream, is_local)) {
     console.log("Stream already exists");
-    streamName["stream-id"] = prefixText + stream;
-    console.log(`OLD Producer = ${streamName["stream-id"]}`);
+    streamName["stream-id"] = prefix_text + stream;
+    console.log(`Old Producer = ${streamName["stream-id"]}`);
   } else {
-    streamName = await client.createStream(stream, prefixBool);
-    console.log(`NEW Producer = ${streamName.result["stream-id"]}`);
+    streamName = await client.createStream(stream, is_local);
+    console.log(`New Producer = ${streamName.result["stream-id"]}`);
   }
 }
 
@@ -204,34 +158,34 @@ warnings.filterwarnings("ignore")
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
-prefixText = ""
-prefixBool = False
+prefix_text = ""
+is_local = False # For a global stream pass True and False for local stream
 demo_stream = 'streamQuickstart'
 
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
 
 # Get the right prefix for the stream
-if prefixBool:
-    prefixText = "c8locals."
+if is_local:
+    prefix_text = "c8locals."
 else:
-    prefixText = "c8globals."
+    prefix_text = "c8globals."
 
 def createStream():
     """ This function creates a stream """
     streamName = {"stream-id": ""}
-    if client.has_stream(demo_stream, local = prefixBool):
+    if client.has_stream(demo_stream, local = is_local):
         print("Stream already exists")
-        streamName["stream-id"] = concat(prefixText, demo_stream)
-        print ("OLD Producer =",  streamName["stream-id"])
+        streamName["stream-id"] = concat(prefix_text, demo_stream)
+        print ("Old producer =",  streamName["stream-id"])
     else:
-        #print(client.create_stream(demo_stream, local=prefixBool))
-        streamName = client.create_stream(demo_stream, local=prefixBool)
+        #print(client.create_stream(demo_stream, local=is_local))
+        streamName = client.create_stream(demo_stream, local=is_local)
         print ("New producer =",  streamName["stream-id"])
 
 # Create the producer and send data
 def sendData():
     """ This function sends data through a stream """
-    producer = client.create_stream_producer(demo_stream, local=prefixBool)
+    producer = client.create_stream_producer(demo_stream, local=is_local)
     for i in range(10):
         msg1 = "Persistent Hello from " + "("+ str(i) +")"
         data = {
@@ -243,7 +197,7 @@ def sendData():
 # Create the subscriber and receive data
 def receiveData():
     """ This function receives data from a stream """
-    subscriber = client.subscribe(stream=demo_stream, local=prefixBool,
+    subscriber = client.subscribe(stream=demo_stream, local=is_local,
         subscription_name="test-subscription-1")
     for i in range(10):
         print("In ",i)
