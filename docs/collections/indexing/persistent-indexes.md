@@ -5,6 +5,10 @@ title: Persistent Indexes
 
 This is an introduction to C8DB persistent indexes. In a persistent index, the index entries are written to disk when documents are stored or updated.
 
+:::note
+The `unique` trait has been temporarily disabled for all indexes. It will be re-enabled in a future release.
+:::
+
 It is possible to define a persistent index on one or more attributes (or paths) of documents. The index is then used in queries to locate documents within a given range. If the index is declared unique, then no two documents are allowed to have the same set of attribute values.
 
 Creating a new document or updating a document will fail if the uniqueness is violated. If the index is declared sparse, a document will be excluded from the index and no uniqueness checks will be performed if any index attribute value is not set or has a value of `null`.
