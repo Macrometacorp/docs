@@ -100,7 +100,7 @@ createMyStream()
 ```
 
 </TabItem>
-<TabItem value="api-py" label="REST API - Python">
+<TabItem value="api-py" label="API - Python">
 
 Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream](https://macrometa.com/docs/api#/operations/CreateStream).
 
@@ -127,7 +127,7 @@ print("\nStream Created: ", resp.text)
 ```
 
 </TabItem>
-<TabItem value="api-js" label="REST API - JavaScript">
+<TabItem value="api-js" label="API - JS">
 
 Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://macrometa.com/docs/api#/operations/CreateStream).
 
