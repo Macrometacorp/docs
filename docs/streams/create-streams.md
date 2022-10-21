@@ -26,7 +26,7 @@ Create a stream.
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../sdks/install-sdks.md) and [Connect to the GDN](../account-management/auth/connect-to-gdn.md) before you can run this code.
+You must [Install the Python SDK](../sdks/install-sdks.md) before you can run this code.
 
 ```py
 from operator import concat
@@ -65,7 +65,7 @@ createStream()
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-You must [Install the JavaScript SDK](../sdks/install-sdks.md) and [Connect to the GDN](../account-management/auth/connect-to-gdn.md) before you can run this code.
+You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can run this code.
 
 ```js
 // Connect to GDN.
