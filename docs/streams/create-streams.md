@@ -113,7 +113,7 @@ HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 STREAM_NAME = "streamQuickstart"
 API_KEY = "XXXXX" # Use your API key here
-AUTH_TOKEN = f"apikey {API_KEY}" # API key keyword needs to be appended
+AUTH_TOKEN = f"apikey {API_KEY}" # apikey keyword needs to be appended
 
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
