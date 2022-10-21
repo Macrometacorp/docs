@@ -72,5 +72,3 @@ addEventListener("fetch", event => {
 ```
 
 Now you have a collection created, you can check it out in the Macrometa console in **Collections**.
-
-If you'd like to learn more about the Macrometa service, head over to [What is Macrometa](https://macrometa.com/docs/what-is-macrometa) to get acquainted with the entire platform.
