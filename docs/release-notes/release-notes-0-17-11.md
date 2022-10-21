@@ -3,36 +3,33 @@ title: Release Notes 0.17.11
 sidebar_position: 98
 ---
 
-This document describes what has changed in Macrometa release 0.17.11. All accounts will be updated by Month XX, YYYY. To check what version of GDN you are using, use the [Client Version](https://macrometa.com/docs/cli/client-version-cli.md) command in the CLI or the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
+This document describes what has changed in Macrometa release 0.17.11. To check what version of GDN you are using, use the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) API command.
 
 ## New Features
 
 The following new features are included in this release.
 
-### SQL Support
+### SQL Support - Beta
+
+Macrometa now supports some SQL queries. Support will be expanded in future releases.
+
+[SQL in Macrometa](../queryworkers/sql/index.md) was added as a result of this feature.
+
+### Redis Support - Beta
 
 Description of feature.
 
 [Topic name](link) was added as a result of this feature.
 
-### Redis Support
+### Kafka Support - Beta
 
-Description of feature.
-
-[Topic name](link) was added as a result of this feature.
-
-### Kafka Support
-
-Description of feature.
-
-[Topic name](link) was added as a result of this feature.
-
+This release adds support for some Kafka clients in the GDN. For a list of supported clients, refer to [Kafka on GDN](../streams/kafka_on_gdn/index.md).
 
 ### Invite User
 
-Description of update.
+You can now invite users to your Macrometa account with emails!
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+[Invite Users](../account-management/users/invite-users.md) was added as a result of this feature.
 
 ## Feature Updates
 
@@ -41,8 +38,6 @@ The following features updates are included in this release.
 ### Stream Worker Prefixes
 
 You can now prepend a stream worker name to the aggregation tables that it creates. For example, if the stream worker name is `SampleAggregationApp` and the aggregation is `TradeAggregation,` then it will create tables like `SampleAggregationApp-TradeAggregation_SECONDS`. Previously, it was just `TradeAggregation_SECONDS`.
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
 
 ### Auth Improvements
 
@@ -54,7 +49,6 @@ You can now prepend a stream worker name to the aggregation tables that it creat
 This release includes the following API changes.
 
 | Issue #  | Description  |
-|---|---|`
 | APIDOC-51  | Added stream worker parameters `maxLogsLengthKBPerMinutePerWorker` and `maxCpuSecondsPerMinutePerWorker`. |
 | APIDOC-54  | In API reference docs, corrected a typo in insertDocument description.  |
 | DB-1692  | The fabric creation endpoint in the API now allows up to 40 characters for fabric names, just like in the web console.  |
@@ -81,7 +75,7 @@ curl -X 'POST' \ 'https://api-qa6.eng.macrometa.io/_api/user' \
     "active": true, 
     "email": "test1@bar1.com", 
     "passwd": "P@55w0rd", 
-    "displayName":"Jhon Doe" 
+    "displayName":"John Doe" 
     }'
 ```
 
@@ -89,9 +83,15 @@ curl -X 'POST' \ 'https://api-qa6.eng.macrometa.io/_api/user' \
 
 The following known issues were introduced in this release.
 
-### Problem
+### Local stream is not accessible after upgrade from 17.10 to 17.11
 
-Explain the problem and the workaround.
+**Problem:** Sometimes global streams are not accessible in the Macrometa console.
+
+**Workaround:** If you encounter this error, then run the [Publish Message](https://macrometa.com/docs/api#/operations/PublishStreamMessage) API endpoint for particular stream to get rid of the issue.
+
+`POST               /_fabric/_system/_api/streams/{stream}/publish`
+
+For more information about running API commands, refer to [APIs](../api-docs/index.md).
 
 ## Defect Fixes
 
@@ -99,6 +99,7 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
+| DB-1625  | Cursor API not working as expected with `stream:true` option in payload.  |
 | DB-1637  | In the C8QL query, if the filters are applied on the non-indexed keys, the query is likely to time out.  |
 | DB-1666  | The item count on the screen is not updating when an item is inserted or deleted from a Dynamo collection.  |
 | DB-1667  | Dynamo scans with filter expressions are not working as expected.  |
