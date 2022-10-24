@@ -106,7 +106,7 @@ The output parameter is `cursor` and the input parameter is `9` as specified in 
 
 ## Query
 
-You can use the Query function to perform SQL retrieval queries on a datasource.
+You can use the Query function to perform SQL retrieval queries on a data source.
 
 ### Query Parameters
 
@@ -114,7 +114,7 @@ Insert the following parameters into the provided [template](#template) to creat
 
 | Name				| Data Type		| Default Value		| Optional?	| Dynamic?	| Description |
 |-------------------|---------------|-------------------|-----------|-----------|-------------|
-| data-source.name	| STRING		| N/A				| No		| No		| Name of the datasource on which to run the query. |
+| data-source.name	| STRING		| N/A				| No		| No		| Name of the data source on which to run the query. |
 | query				| STRING		| N/A				| No		| Yes		| The INSERT, UPDATE, or DELETE query to be performed. Format according to the relevant database type. |
 | parameter			| Any			| N/A				| Yes		| Yes		| If `query` is a parameter used as a SQL query, you can use this field to pass CEP attributes to set parameter values. |
 | attribute.definition.list | STRING | N/A				| No		| Yes		| A comma-separated list of attributes to return with the SQL query. Each item is processed in order. Supported data types are `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, and `BOOL`. |
@@ -122,19 +122,19 @@ Insert the following parameters into the provided [template](#template) to creat
 
 Additionally, `attributeName` (any type) returns the attributes listed in the parameter `attribute.definition.list`.
 
-### Template
+### Query Template
 
-Use the following template to create a Query function:
+Use the following template to create a query function:
 
 ```sql
-rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING query)
-rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
-rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING query, BOOL ack.empty.result.set)
-rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
-rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ..., BOOL ack.empty.result.set)
+rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query)
+rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
+rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query, BOOL ack.empty.result.set)
+rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
+rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ..., BOOL ack.empty.result.set)
 ```
 
-### Examples
+### Query Examples
 
 The following examples query `creditcardno`, `country`, `transaction`, and `amount` from a database called `SAMPLE_DB`, then generate an event for each record retrieval insert the events into the `recordStream` output stream:
 
@@ -157,14 +157,13 @@ This example returns null values if there are no events that satisfy the query:
 ```sql
 select creditcardno, country, transaction, amount from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord, true)  
 insert into recordStream;
-
 ```
 
 ## Store
 
-The Store function can create and edit event tables, configure the table's data sources and connections, and insert, update, or delete data from the tables. It requires read-write permissions on connected datasources.
+The Store function can create and edit event tables, configure the table's data sources and connections, and insert, update, or delete data from the tables. It requires read-write permissions on connected data sources.
 
-### Parameters
+### Store Parameters
 
 Insert the following parameters into the provided [template](#template) to create a Store function.
 
@@ -174,8 +173,8 @@ Insert the following parameters into the provided [template](#template) to creat
 | username			| STRING		| N/A				| No		| No		| The username used to access the RDBMS data store. |
 | password			| STRING		| N/A				| No		| No		| The password used to access the RDBMS data store. |
 | jdbc.driver.name	| STRING		| N/A				| No		| No		| The name of the JDBC SDK used to access the RDBMS data store. |
-| datasource 		| STRING		| N/A				| No		| No		| If you want to use a Carbon data source, specify the name of the datasource on which to run the query. |
-| jndi.resource 	| STRING		| null				| Yes		| No		| If you want to use JNDI look-up, specify the name of the JNDI resource through which you want to attempt connection. If you use a datasource, this is not used. |
+| datasource 		| STRING		| N/A				| No		| No		| If you want to use a Carbon data source, specify the name of the data source on which to run the query. |
+| jndi.resource 	| STRING		| null				| Yes		| No		| If you want to use JNDI look-up, specify the name of the JNDI resource through which you want to attempt connection. If you use a data source, this is not used. |
 | pool.properties	| STRING		| null				| Yes		| No		| Use key-value pairs to specify any pool parameters for the database connection. If you use a datasource or jndi.resource, this is not used. |
 | table.name		| STRING | Table name defined in CEP query. | Yes | No 		| Specify the name to be used for the event table. |
 | field.length		| STRING		| Dependent on database type | Yes		| No		| Use a comma-separated list of key-value pairs (`field.name:`) to specify the number of characters that fields in the table must contain.  |
