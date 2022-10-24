@@ -139,7 +139,7 @@ class APIRequest {
 
   constructor (url, apiKey) {
     this._url = url;
-    this._headers.authorization = `apikey ${apiKey}`; // apikey keyword needs to be appended
+    this._headers.authorization = `apikey ${apiKey}`; // Append the key word for the API key
   }
 
   _handleResponse (response, resolve, reject) {
