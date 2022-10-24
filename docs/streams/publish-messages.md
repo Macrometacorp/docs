@@ -6,7 +6,11 @@ title: Publish Messages to Streams
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to publish messages to a stream in Macrometa. Before publishing messages, you must first [create a stream](create-streams.md) to which you want to publish messages.
+This page explains how to publish messages to a stream in Macrometa.
+
+:::note
+If you publish a message to a stream that does not exist, then Macrometa creates a stream automatically.
+:::
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
