@@ -18,7 +18,9 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 The basic parts of this quickstart walk you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-To get started, create a new JavaScript (.js) or Python (.py) file in your favorite IDE. Then, copy the code block below and paste it into your JavaScript or Python file. With each subsequent step, append the code block to the existing file and run it.
+1. Create a new JavaScript (.js) or Python (.py) file in your favorite IDE.
+2. Copy the code block below and paste it into your JavaScript or Python file. 
+3. With each subsequent step, append the code block to the existing file and then run it.
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 

@@ -14,19 +14,19 @@ import TabItem from '@theme/TabItem';
 Create a stream.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Streams**.
+2. Click **Streams**.
 
    Macrometa displays a list of streams and their attributes.
 
-1. Click **New Stream**.
-1. Enter a stream **Name**.
-1. Select **Replication** type: **Local** or **Global**. Default is **Local**.
-1. Click **Create**.
+3. Click **New Stream**.
+4. Enter a stream **Name**.
+5. Select **Replication** type: **Local** or **Global**. Default is **Local**.
+6. Click **Create**.
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../sdks/install-sdks.md) and [Connect to the GDN](../account-management/auth/connect-to-gdn.md) before you can run this code.
+You must [Install the Python SDK](../sdks/install-sdks.md) before you can run this code.
 
 ```py
 from operator import concat
@@ -36,7 +36,7 @@ from c8 import C8Client
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "xxxxxx" # Change this to your API key
-is_local = False
+is_local = False # For a global stream pass True and False for local stream
 prefix_text = ""
 demo_stream = "streamQuickstart"
 
@@ -65,7 +65,7 @@ createStream()
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-You must [Install the JavaScript SDK](../sdks/install-sdks.md) and [Connect to the GDN](../account-management/auth/connect-to-gdn.md) before you can run this code.
+You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can run this code.
 
 ```js
 // Connect to GDN.
@@ -75,7 +75,7 @@ console.log("Authentication done!!...");
 
 const stream = "streamQuickstart";
 let prefixText = "";
-const isLocal = false;
+const isLocal = false; # For a global stream pass True and False for local stream
 
 // Get the right prefix for the stream
 if (isLocal) {
@@ -100,7 +100,7 @@ createMyStream()
 ```
 
 </TabItem>
-<TabItem value="api-py" label="REST API - Python">
+<TabItem value="api-py" label="API - Python">
 
 Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream](https://macrometa.com/docs/api#/operations/CreateStream).
 
@@ -112,7 +112,7 @@ URL = "api-gdn.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 STREAM_NAME = "streamQuickstart"
-API_KEY = "XXXXX" # Use your apikey here
+API_KEY = "XXXXX" # Use your API key here
 AUTH_TOKEN = f"apikey {API_KEY}" # apikey keyword needs to be appended
 
 session = requests.session()
@@ -127,9 +127,9 @@ print("\nStream Created: ", resp.text)
 ```
 
 </TabItem>
-<TabItem value="api-js" label="REST API - JavaScript">
+<TabItem value="api-js" label="API - JS">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://macrometa.com/docs/api#/operations/CreateStream)).
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://macrometa.com/docs/api#/operations/CreateStream).
 
 ```js
 class APIRequest {
