@@ -94,7 +94,7 @@ deleteMyStream()
 ```
 
 </TabItem>
-<TabItem value="api-py" label="REST API - Python">
+<TabItem value="api-py" label="API - Python">
 
 Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://macrometa.com/docs/api#/operations/DeleteStream).
 
@@ -127,7 +127,7 @@ print("\nStream Deleted: ", resp.text)
 ```
 
 </TabItem>
-<TabItem value="api-js" label="REST API - JavaScript">
+<TabItem value="api-js" label="API - JS">
 
 Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://macrometa.com/docs/api#/operations/DeleteStream).
 

@@ -182,17 +182,15 @@ def createStream():
         streamName = client.create_stream(demo_stream, local=is_local)
         print ("New producer =",  streamName["stream-id"])
 
-# Create the producer and send data
+# Create the producer and publish messages.
 def sendData():
     """ This function sends data through a stream """
     producer = client.create_stream_producer(demo_stream, local=is_local)
-    for i in range(10):
-        msg1 = "Persistent Hello from " + "("+ str(i) +")"
-        data = {
-            "payload" : base64.b64encode(six.b(msg1)).decode("utf-8")
-        }
-        print("Stream: ", msg1)
-        print(producer.send(json.dumps(data)))
+    while True:
+        user_input = input("Enter your message to publish: ")
+        if user_input == '0':
+            break
+        producer.send(user_input)
 
 # Create the subscriber and receive data
 def receiveData():
