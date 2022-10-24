@@ -5,32 +5,27 @@ title: Store RDBMS Plugin
 
 You can use plugins in Macrometa to extend the functionality of your streams.
 
-The Store plugin provides persistence and retrieval of events to and from RDBMS databases like MySQL, MS SQL, PostgreSQL, H2, and Oracle. If you are using CEP as the Java/Python library, you must also set the datasource in the CEP Manager.
+The Store plugin provides persistence and retrieval of events to and from RDBMS databases like MySQL, MS SQL, PostgreSQL, H2, and Oracle. If you are using CEP as the Java/Python library, then you must also set the data source in the CEP Manager.
 
 This plugin provides the following functionality:
 
-- [CUD](#cud)
-- [Procedure](#procedure)
-- [Query](#query)
-- [Store](#store)
-
-### CUD
+## Create, Update, Delete (CUD)
 
 You can use SQL CUD to perform INSERT, UPDATE, and DELETE queries on data sources.
 
-#### Parameters
+### Parameters
 
 Insert the following parameters into the provided [template](#template) to create a CUD function.
 
 | Name				| Data Type		| Default Value		| Optional?	| Dynamic?	| Description |
 |-------------------|---------------|-------------------|-----------|-----------|-------------|
-| datasource.name	| STRING		| N/A				| No		| No		| Name of the datasource on which to run the query. |
+| data-source.name	| STRING		| N/A				| No		| No		| Name of the data source on which to run the query. |
 | query				| STRING		| N/A				| No		| Yes		| The INSERT, UPDATE, or DELETE query to be performed. Format according to the relevant database type. |
-| parameter			| Any			| N/A				| Yes		| Yes		| If `query` is a parameter used as an SQL query, you can use this field to pass CEP attributes to set parameter values. |
+| parameter			| Any			| N/A				| Yes		| Yes		| If `query` is a parameter used as an SQL query, then you can use this field to pass CEP attributes to set parameter values. |
 
 Additionally, the `numRecords` attribute (INT) indicates the number of records manipulated by the query.
 
-#### Template
+### CUD Template
 
 Use the following template to create a CUD function:
 
@@ -40,7 +35,7 @@ rdbms:cud(STRING datasource.name, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LON
 rdbms:cud(STRING datasource.name, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
 ```
 
-#### Examples
+### Examples
 
 The following examples assume you have an input stream called `TriggerStream` and an output stream called `RecordStream`.
 
@@ -56,20 +51,19 @@ This example query does the same thing with the addition of `previousName` and `
 ```sql
 select numRecords from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName=? where customerName=?", changedName, previousName) 
 insert into  RecordStream;
-
 ```
 
-### Procedure
+## Procedure
 
-You can use the Procedure function to run stored procedures and retrieve data to CEP.
+You can use the Procedure function to run stored procedures and retrieve data to a stream worker.
 
-#### Parameters
+### Procedure Parameters
 
 Insert the following parameters into the provided [template](#template) to create a Procedure function.
 
 | Name				| Data Type		| Default Value		| Optional?	| Dynamic?	| Description |
 |-------------------|---------------|-------------------|-----------|-----------|-------------|
-| datasource.name	| STRING		| N/A				| No		| No		| Name of the datasource on which to run the query. |
+| data-source.name	| STRING		| N/A				| No		| No		| Name of the data source on which to run the query. |
 | query				| STRING		| N/A				| No		| Yes		| The INSERT, UPDATE, or DELETE query to be performed. Format according to the relevant database type. |
 | parameter			| Any			| N/A				| Yes		| Yes		| If `query` is a parameter used as a SQL query, you can use this field to pass CEP attributes to set parameter values. |
 | attribute.definition.list | STRING | N/A				| No		| Yes		| A comma-separated list of attributes to return with the SQL query. Each item is processed in order. Supported data types are `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, and `BOOL`. |
@@ -77,7 +71,7 @@ Insert the following parameters into the provided [template](#template) to creat
 
 Additionally, the `attributeName` attribute (any type) returns the attributes listed in the parameter `attribute.definition.list`.
 
-#### Template
+### Procedure Template
 
 Use the following template to create a Procedure function:
 
@@ -88,7 +82,7 @@ rdbms:procedure(STRING datasource.name, STRING attribute.definition.list, STRING
 rdbms:procedure(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING output.parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
 ```
 
-#### Examples
+### Procedure Examples
 
 In these examples, the values in the parentheses for `RETURNCON()` are the input parameter and output parameter.
 
@@ -110,11 +104,11 @@ insert into tempStream1;
 
 The output parameter is `cursor` and the input parameter is `9` as specified in the query.
 
-### Query
+## Query
 
 You can use the Query function to perform SQL retrieval queries on a datasource.
 
-#### Parameters
+### Parameters
 
 Insert the following parameters into the provided [template](#template) to create a Query function.
 
@@ -128,7 +122,7 @@ Insert the following parameters into the provided [template](#template) to creat
 
 Additionally, `attributeName` (any type) returns the attributes listed in the parameter `attribute.definition.list`.
 
-#### Template
+### Template
 
 Use the following template to create a Query function:
 
@@ -140,7 +134,7 @@ rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING que
 rdbms:query(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ..., BOOL ack.empty.result.set)
 ```
 
-#### Examples
+### Examples
 
 The following examples query `creditcardno`, `country`, `transaction`, and `amount` from a database called `SAMPLE_DB`, then generate an event for each record retrieval insert the events into the `recordStream` output stream:
 
@@ -166,11 +160,11 @@ insert into recordStream;
 
 ```
 
-### Store
+## Store
 
 The Store function can create and edit event tables, configure the table's data sources and connections, and insert, update, or delete data from the tables. It requires read-write permissions on connected datasources.
 
-#### Parameters
+### Parameters
 
 Insert the following parameters into the provided [template](#template) to create a Store function.
 
@@ -189,7 +183,7 @@ Insert the following parameters into the provided [template](#template) to creat
 | use.collation		| BOOL			| false				| Yes		| No		| Set to `true` to enable collation for string attributes. We use `latin1_bin` for MySQL and `SQL_Latin1_General_CP1_CS_AS` for Microsoft SQL. |
 | allow.null.values | BOOL			| false				| Yes		| No		| Set to `true` to allow users to insert null values into numeric columns. |
 
-#### Template
+### Template
 
 Use the following template to create a Store function:
 
@@ -199,7 +193,7 @@ Use the following template to create a Store function:
 @Index("INDEX")
 ```
 
-#### Examples
+### Examples
 
 The following example creates an event table named `StockTable` if one does not already exist in the database. The connection details are specified by the attributes under the `@Store` annotation.
 
