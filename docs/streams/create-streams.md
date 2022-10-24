@@ -5,6 +5,10 @@ title: Create Streams
 
 This page explains how to create streams in Macrometa.
 
+:::note
+If you publish a message to a stream that does not exist, then Macrometa creates a stream automatically. For more information about publishing, refer to [Publish Messages to a Stream](publish-messages.md).
+:::
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
