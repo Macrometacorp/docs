@@ -76,10 +76,10 @@ Additionally, the `attributeName` attribute (any type) returns the attributes li
 Use the following template to create a Procedure function:
 
 ```sql
-rdbms:procedure(STRING datasource.name, STRING attribute.definition.list, STRING query)
-rdbms:procedure(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING output.parameter)
-rdbms:procedure(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING output.parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
-rdbms:procedure(STRING datasource.name, STRING attribute.definition.list, STRING query, STRING output.parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
+rdbms:procedure(STRING data-source.name, STRING attribute.definition.list, STRING query)
+rdbms:procedure(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING output.parameter)
+rdbms:procedure(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING output.parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
+rdbms:procedure(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING output.parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
 ```
 
 ### Procedure Examples
@@ -108,13 +108,13 @@ The output parameter is `cursor` and the input parameter is `9` as specified in 
 
 You can use the Query function to perform SQL retrieval queries on a datasource.
 
-### Parameters
+### Query Parameters
 
 Insert the following parameters into the provided [template](#template) to create a Query function.
 
 | Name				| Data Type		| Default Value		| Optional?	| Dynamic?	| Description |
 |-------------------|---------------|-------------------|-----------|-----------|-------------|
-| datasource.name	| STRING		| N/A				| No		| No		| Name of the datasource on which to run the query. |
+| data-source.name	| STRING		| N/A				| No		| No		| Name of the datasource on which to run the query. |
 | query				| STRING		| N/A				| No		| Yes		| The INSERT, UPDATE, or DELETE query to be performed. Format according to the relevant database type. |
 | parameter			| Any			| N/A				| Yes		| Yes		| If `query` is a parameter used as a SQL query, you can use this field to pass CEP attributes to set parameter values. |
 | attribute.definition.list | STRING | N/A				| No		| Yes		| A comma-separated list of attributes to return with the SQL query. Each item is processed in order. Supported data types are `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, and `BOOL`. |
