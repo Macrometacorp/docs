@@ -1,5 +1,5 @@
 ---
-sidebar_position: 90
+sidebar_position: 120
 title: Change Data Capture Plugin
 ---
 
