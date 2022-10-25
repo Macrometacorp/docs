@@ -10,21 +10,21 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 ## Prerequisites
 
-- Access to a Macrometa account with sufficient permissions to create streams.
-- Have your API Key ready. For more information, refer to [Create API Keys] (../account-management/api-keys/create-api-keys)
-- Install the appropriate SDK. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
+- A Macrometa account with sufficient permissions to create streams.
+- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys)
+- Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ## Get Started with Streams
 
-The basic parts of this quickstart walk you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
+This page guides you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-To get started, create a new JavaScript (.js) or Python (.py) file in your favorite IDE. Then, copy the code block below and paste it into your JavaScript or Python file. With each subsequent step, append the code block to the existing file and run it.
+To get started, create a new JavaScript (`.js`) or Python (`.py`) file in your favorite IDE. Then, copy the code block below and paste it into your JavaScript or Python file. With each subsequent step, append the code block to the existing file and run it.
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
 ### Step 1. Connect to GDN
 
-The first step in using the Macrometa Global Data Network (GDN) is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you specified. For more information about connecting to the GDN, refer to [Authentication](../account-management/auth/index.md).
+To use streams with Macrometa Global Data Network (GDN), you must first establish a connection to a local region. When this code runs, it initializes the server connection to the specified region URL. For more information about connecting to GDN, refer to [Authentication](../account-management/auth/index.md).
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="JavaScript">

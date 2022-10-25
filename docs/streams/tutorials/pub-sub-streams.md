@@ -8,12 +8,11 @@ import TabItem from '@theme/TabItem';
 
 This is about how to create geo-replicated streams and do queues & pub-sub messaging with local latencies across the globe.
 
-## Pre-requisites
+## Prerequisites
 
-Let's assume your
-
-- Tenant name is `nemo@nautilus.com` and
-- User password is `xxxxxxxx`.
+- A Macrometa account with sufficient permissions to create streams.
+- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys)
+- Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ## Installation
 
@@ -57,9 +56,11 @@ or, if you prefer to use conda:
 or pipenv:
 
     pipenv install --pre pyC8
-
-Once the installation process is finished, you can begin developing applications in Python.
 ```
+
+Once the installation is finished, you can begin developing applications in Python.
+
+
 
 </TabItem>
 </Tabs>  
