@@ -94,7 +94,7 @@
     --ifm-link-decoration: none;
 
     --ifm-menu-color: var(--color-neutral-700);
-    --ifm-menu-color-background-active: var(--color-primary-400);
+    --ifm-menu-color-background-active: var(--color-primary-500);
     --ifm-menu-color-background-hover: var(--color-primary-100);
 
     --ifm-navbar-item-padding-horizontal: 0.5rem;

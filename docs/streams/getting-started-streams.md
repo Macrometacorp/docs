@@ -10,7 +10,7 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 ## Prerequisites
 
-- A Macrometa account with sufficient permissions to create streams.
+- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
 - An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys)
 - Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
@@ -18,7 +18,9 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 This page guides you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-To get started, create a new JavaScript (`.js`) or Python (`.py`) file in your favorite IDE. Then, copy the code block below and paste it into your JavaScript or Python file. With each subsequent step, append the code block to the existing file and run it.
+1. Create a new JavaScript (.js) or Python (.py) file in your favorite IDE.
+2. Copy the code block below and paste it into your JavaScript or Python file. 
+3. With each subsequent step, append the code block to the existing file and then run it.
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
@@ -155,10 +157,10 @@ stream_name = {"stream-id": ""}
 if client.has_stream(demo_stream, local = is_local):
     print("Stream already exists")
     stream_name["stream-id"] = concat(prefix_text, demo_stream)
-    print ("OLD Producer =",  stream_name["stream-id"])
+    print ("Old Producer =",  stream_name["stream-id"])
 else:
     stream_name = client.create_stream(demo_stream, local=is_local)
-    print ("NEW Producer =",  stream_name["stream-id"])
+    print ("New Producer =",  stream_name["stream-id"])
 
 # Get and print stream details
 print("Get streams: ", client.get_streams())
@@ -417,30 +419,36 @@ def createStream():
     if client.has_stream(demo_stream, local = is_local):
         print("Stream already exists")
         stream_name["stream-id"] = concat(prefix_text, demo_stream)
-        print ("OLD Producer =",  stream_name["stream-id"])
+        print ("Old Producer =",  stream_name["stream-id"])
     else:
         stream_name = client.create_stream(demo_stream, local=is_local)
-        print ("NEW Producer =",  stream_name["stream-id"])
+        print ("New Producer =",  stream_name["stream-id"])
 
 # Create the producer and publish messages.
 def sendData():
     """ This function sends data through a stream """
     producer = client.create_stream_producer(demo_stream, local=is_local)
-    for i in range(10):
-        msg1 = "Persistent Hello from " + "("+ str(i) +")"
-        print("Stream: ", msg1)
-        producer.send(msg1)
+    while True:
+        user_input = input("Enter your message to publish: ")
+        if user_input == '0':
+            break
+        producer.send(user_input)
+
 
 # Create the subscriber and receive data.
 def receiveData():
     """ This function receives data from a stream """
     subscriber = client.subscribe(stream=demo_stream, local=is_local,
         subscription_name="test-subscription-1")
-    for i in range(10):
-        print("In ",i)
+    while True:
+        print("\nListening for message...")
+        if user_input == '0':
+            break
         m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
         msg1 = base64.b64decode(m1["payload"]).decode('utf-8')
-        print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received message
+        print(F"Received message: '{msg1}'") 
+    # Output the ID of the received message
+        # print(F"Message ID:'{m1['messageId']}'")
         subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
 
 createStream()
@@ -448,10 +456,10 @@ createStream()
 # User enters choice.
 # On one terminal use 'r' to start the subscriber to read data
 # Then on another terminal use 'w' to start the producer and publish message
-user_input = input("Type 'w' or '1' to write data. Type 'r' or '0' to read data: ")
-if user_input == "w" or user_input == '1':
+user_input = input("Type 'w' to write data, type 'r' read data, and type '0' to quit at any time: ")
+if user_input == "w":
     sendData()
-elif user_input == "r" or user_input == '0':
+elif user_input == "r":
     receiveData()
 else:
     print ("Invalid user input. Stopping program") 
