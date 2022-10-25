@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: REST APIs Streams Example
+title: REST API Streams Example
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,10 +11,10 @@ This page shows you how to perform a basic pub-sub streams workflow using the Ma
 ## Prerequisites
 
 - A Macrometa account with sufficient permissions to create streams.
-- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys)
+- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys).
 - Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
-## Pub-Sub with Streams Example
+## REST API Streams Example
 
 1. Copy and paste the code block below in your favorite IDE.
 1. Update constants with your values, such as the API key.

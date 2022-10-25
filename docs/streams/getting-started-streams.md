@@ -11,7 +11,7 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 ## Prerequisites
 
 - A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
-- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys)
+- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys).
 - Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ## Get Started with Streams

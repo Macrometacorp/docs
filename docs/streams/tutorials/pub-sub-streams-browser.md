@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Pub-Sub with Streams in Browser
 ---
 
-Example to publish messages on a stream and subscribe to that stream to receive messages, with a simple UI.
+This example shows how to use the GDN console to publish messages on a stream and subscribe to receive messages.
 
 ```html
 <!DOCTYPE html>
