@@ -24,8 +24,8 @@ const jsc8 = require("jsc8");
 
 // Constants - DB
 const globalUrl = "https://gdn.paas.macrometa.io/";
-const email = "nemo@nautilus.com";
-const password = "XXXXXX";
+const email = "your@email.com";
+const password = "password";
 const client = new jsc8(globalUrl);
 
 // Variables
@@ -106,7 +106,7 @@ import time
 GLOBAL_URL = "gdn.paas.macrometa.io"
 
 # Variables - DB
-EMAIL = "nemo@nautilus.com"
+EMAIL = "your@email.com"
 FABRIC = "_system"
 COLLECTION_NAME = "ddos"
 
