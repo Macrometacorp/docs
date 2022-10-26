@@ -18,6 +18,7 @@ const jsc8 = require("jsc8");
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
 const fabric = "_system";
+// API key id
 const keyid = "id1";
 
 const client = new jsc8({
@@ -86,10 +87,13 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 
-# Fetch List of accessible databases and streams
-print("Accessible Databases: ", client.list_accessible_databases('id1'))
+# API key id
+keyid = "id1"
 
-print("Accessible Streams of a db: ", client.list_accessible_streams('id1', '_system'))
+# Fetch List of accessible databases and streams
+print("Accessible Databases: ", client.list_accessible_databases(keyid))
+
+print("Accessible Streams of a db: ", client.list_accessible_streams(keyid, '_system'))
 ```
 
 </TabItem>
