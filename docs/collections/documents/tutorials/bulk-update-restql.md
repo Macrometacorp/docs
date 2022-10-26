@@ -6,11 +6,7 @@ title: Bulk Update with RestQL
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This tutorial is about using RestQL to bulk update `document` Collection data. 
-
-:::note
-If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../../what-is-macrometa.md)** of Macrometa GDN.
-:::
+This tutorial is about using RestQL to bulk update `document` Collection data.
 
 ## Pre-requisite
 
