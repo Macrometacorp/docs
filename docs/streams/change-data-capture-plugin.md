@@ -24,11 +24,11 @@ Insert the following parameters into the provided [template](#template) to creat
 | username						| STRING		| N/A				| No		| No		| The user that accesses the database needs these permissions in the `table.name` field: `SELECT`, `RELOAD`, `SHOW DATABASES`, `REPLICATION SLAVE`, and `REPLICATION CLIENT`. |
 | password						| STRING		| N/A				| No		| No		| Password for the user accessing the database. |
 | pool.properties				| STRING		| N/A				| Yes		| No		| You can use key-value pairs for pool parameters. |
-| datasource.name				| STRING		| N/A				| Yes 		| No		| If you use a datasource, you do not need to provide a URL, username, or password. Datasource connections have higher priority than URL-based connections. You can only use a datasource with polling mode and a stream processor. |
+| data-source.name				| STRING		| N/A				| Yes 		| No		| If you use a data source, then you do not need to provide a URL, username, or password. Data source connections have higher priority than URL-based connections. You can only use a data source with polling mode and a stream processor. |
 | table.name					| STRING		| N/A				| No		| No		| Name of the table to be monitored for changes. |
 | polling.column				| STRING		| N/A				| Yes		| No		| When using polling mode, this field indicates whether records are tracked with an incremental sequence of numbers or a timestamp. Set  to `id` to track updates with a number sequence or `last_updated` to use a timestamp. Number sequences are only compatible with insertion operations. |
 | polling.interval				| INT			| `1`				| Yes		| No		| Time in seconds between polling for changes. Only applicable for polling mode. |
-| operation						| STRING		| N/A				| No		| No		| Change event operations you want to monitor: `insert`, `update`, or `delete`. To choose multiple, separate each value with a comma. Not case sensitive. Required if you are using listening mode. When monitoring for multiple operations, each event is returned as a transport property `trp:operation` which can be viewed when mapping the events. |
+| operation						| STRING		| N/A				| No		| No		| Change event operations you want to monitor: `insert`, `update`, or `delete`. To choose multiple, separate each value with a comma. Not case-sensitive. Required if you are using listening mode. When monitoring for multiple operations, each event is returned as a transport property `trp:operation` which can be viewed when mapping the events. |
 | connector.properties			| STRING		| Empty 			| Yes		| No		| Specify Debezium connector properties as a comma-separated string. Only applicable for listening mode. Properties specified here have higher priority than other parameters. |
 | database.server.id			| STRING		| Random integer between 5400 and 6400 | Yes | No | ID to use when joining MySQL database to read bin log. Use a unique integer between 1 and 2^32. Only applicable for listening mode. If none is specified, a random integer is chosen. |
 | database.server.name			| STRING		| `(host)_(port)`	| Yes		| No		| Provide a logical name that will serve as the namespace for the database server. Only applicable for listening mode. |
@@ -76,7 +76,7 @@ This example polls for row insertions and adds sequential numbering to the polli
 CREATE SOURCE inputStream WITH (type = 'cdc', mode='polling', polling.column = 'id', datasource.name = 'SimpleDB', table.name = 'students', map.type='keyvalue', attributes.id = 'id', attributes.name = 'name') (id int, name string);
 ```
 
-The polling column The `datasource.name` parameter is only valid with a Stream Processor.
+The polling column The `data-source.name` parameter is only valid with a Stream Processor.
 
 ### Example 4
 
