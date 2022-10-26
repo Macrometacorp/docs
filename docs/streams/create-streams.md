@@ -200,7 +200,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams create](../../cli/streams-cli#gdnsl-streams-create) CLI command to create a Document Store collection.
+Use the [gdnsl streams create](../cli/streams-cli#gdnsl-streams-create) CLI command to create a Document Store collection.
 
 </TabItem>
 </Tabs>
