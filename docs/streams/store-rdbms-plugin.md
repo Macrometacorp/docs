@@ -35,7 +35,7 @@ rdbms:cud(STRING datasource.name, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LON
 rdbms:cud(STRING datasource.name, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
 ```
 
-### Examples
+### CUD Examples
 
 The following examples assume you have an input stream called `TriggerStream` and an output stream called `RecordStream`.
 
@@ -182,7 +182,7 @@ Insert the following parameters into the provided [template](#template) to creat
 | use.collation		| BOOL			| false				| Yes		| No		| Set to `true` to enable collation for string attributes. We use `latin1_bin` for MySQL and `SQL_Latin1_General_CP1_CS_AS` for Microsoft SQL. |
 | allow.null.values | BOOL			| false				| Yes		| No		| Set to `true` to allow users to insert null values into numeric columns. |
 
-### Template
+### Store Template
 
 Use the following template to create a Store function:
 
@@ -192,7 +192,7 @@ Use the following template to create a Store function:
 @Index("INDEX")
 ```
 
-### Examples
+### Store Examples
 
 The following example creates an event table named `StockTable` if one does not already exist in the database. The connection details are specified by the attributes under the `@Store` annotation.
 
