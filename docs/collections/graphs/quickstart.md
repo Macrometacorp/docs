@@ -30,7 +30,7 @@ Edges have a direction, with their relations `_from` and `_to` pointing from one
 
 ### Step 1. Connect to GDN
 
-The first step in using the Macrometa Global Data Network (GDN) is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you specified. For more information about connecting to the GDN, refer to [Authentication](../account-management/auth/index.md).
+To use graphs with Macrometa Global Data Network (GDN), you must first establish a connection to a local region. When this code runs, it initializes the server connection to the region URL you specified. For more information about connecting to GDN, refer to [Authentication](../account-management/auth/index.md).
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="JavaScript">
