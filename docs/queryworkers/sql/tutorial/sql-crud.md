@@ -10,7 +10,7 @@ We will first review the syntax of CRUD commands and then use SDKs to send queri
 
 Before we can insert documents with SQL, we need a place to put them in: a collection.
 
-For this tutorial, [Create a Document Store collection](../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../collections/index.md).
+For this tutorial, [Create a Document Store collection](../../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../../collections/index.md).
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Collections**.
@@ -19,6 +19,7 @@ For this tutorial, [Create a Document Store collection](../../collections/docume
 5. Name the collection **categories** and then click **Create**.
 
 ## Working with Dataset
+
 Imagine an online store where we need to put all our products in categories.
 Initially, we are adding categories to the empty collection. In some cases, we will need to update existing categories or remove some of them.
 We are doing all the aforementioned operations so that we could have specific data on request.
