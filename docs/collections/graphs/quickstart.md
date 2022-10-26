@@ -25,7 +25,7 @@ Edges have a direction, with their relations `_from` and `_to` pointing from one
 ## Prerequisites
 
 - Access to a [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
-- Have your API Key ready. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys.md).
+- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys.md).
 - Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ### Step 1. Connect to GDN
