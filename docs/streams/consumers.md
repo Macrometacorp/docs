@@ -3,7 +3,7 @@ sidebar_position: 35
 title: Consumers
 ---
 
-A consumer is an application that subscribes to a stream and then receives messages published by producers.
+A consumer is an app or process that subscribes to a stream and then receives messages published by producers.
 
 ## Receive Modes
 

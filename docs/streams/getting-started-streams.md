@@ -10,13 +10,13 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 ## Prerequisites
 
-- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
-- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys).
-- Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
+- Access to a [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
+- Have your API Key ready. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys.md).
+- Install the appropriate SDK. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ## Get Started with Streams
 
-This page guides you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
+The basic parts of this quickstart walk you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
 1. Create a new JavaScript (.js) or Python (.py) file in your favorite IDE.
 2. Copy the code block below and paste it into your JavaScript or Python file. 
@@ -26,7 +26,7 @@ If you want to skip the explanation and just run the code, then go directly to t
 
 ### Step 1. Connect to GDN
 
-To use streams with Macrometa Global Data Network (GDN), you must first establish a connection to a local region. When this code runs, it initializes the server connection to the specified region URL. For more information about connecting to GDN, refer to [Authentication](../account-management/auth/index.md).
+The first step in using the Macrometa Global Data Network (GDN) is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you specified. For more information about connecting to the GDN, refer to [Authentication](../account-management/auth/index.md).
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="JavaScript">

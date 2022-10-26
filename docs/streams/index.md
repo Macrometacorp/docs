@@ -17,7 +17,7 @@ Consumers are grouped together for consuming messages. Each group of consumers i
 
 Streams in GDN is built on the [publish-subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
 
-Once a subscription has been created, GDN streams retain all messages even if the consumer disconnects from the server. Retained messages are only discarded when a consumer acknowledges that they've been successfully processed.
+Once a subscription has been created, all messages will be retained by GDN streams, even if the consumer gets disconnected. Retained messages will be discarded only when a consumer acknowledges that they've been successfully processed.
 
 ## Benefits
 
