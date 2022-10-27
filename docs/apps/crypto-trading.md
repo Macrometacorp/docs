@@ -19,7 +19,7 @@ Please contact support@macrometa.com if you have any questions.
 
 1. If you haven't already, [sign up for a free Macrometa Playground account](https://auth.paas.macrometa.io/signup). 
 
-2. Login into the [Macrometa Console](https://auth.paas.macrometa.io/) Go to the `Collections` tab and create a new `Doc` collection named `trades` with `collection stream enabled` checked.
+2. Log in to the [Macrometa Console](https://auth.paas.macrometa.io/) Go to the Collections tab and create a new `Doc` collection named `trades` with `collection stream enabled` checked.
 
 3. Click **Stream Workers**.
 4. Click **New Stream Worker** named `Crypto-Trading-App`.
