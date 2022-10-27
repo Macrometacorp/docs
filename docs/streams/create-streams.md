@@ -5,10 +5,6 @@ title: Create Streams
 
 This page explains how to create streams in Macrometa.
 
-:::note
-If you publish a message to a stream that does not exist, then Macrometa creates a stream automatically. For more information about publishing, refer to [Publish Messages to a Stream](publish-messages.md).
-:::
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -18,14 +14,14 @@ import TabItem from '@theme/TabItem';
 Create a stream.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Streams**.
+2. Click **Streams**.
 
    Macrometa displays a list of streams and their attributes.
 
-1. Click **New Stream**.
-1. Enter a stream **Name**.
-1. Select **Replication** type: **Local** or **Global**. Default is **Local**.
-1. Click **Create**.
+3. Click **New Stream**.
+4. Enter a stream **Name**.
+5. Select **Replication** type: **Local** or **Global**. Default is **Local**.
+6. Click **Create**.
 
 </TabItem>
 <TabItem value="py" label="Python SDK">

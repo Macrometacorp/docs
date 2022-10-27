@@ -6,19 +6,17 @@ Triggers allow events to be periodically generated. Trigger definition can be us
 
 ## Features
 
-
 For some use cases the system should be able to periodically generate events based on a specified time interval to perform some periodic executions.
 
 A trigger can be performed for a 'start' operation, for a given 'time interval', or for a given 'cron expression'.
 
-The following types of triggeres are currently supported:
+The following types of triggers are currently supported:
 
 | Trigger type           | Description                                                                                                        |	
 |------------------------|--------------------------------------------------------------------------------------------------------------------|
 | every time_interval    | An event is triggered periodically at the given time interval (Minimum supported time interval is millisec)        |
 | cron expression        | An event is triggered periodically based on the given cron expression                                              |
 | start                  | An event is triggered when Siddhi is started                                                                       |
-
 
 ## Syntax
 
