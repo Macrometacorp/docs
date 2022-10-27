@@ -65,7 +65,7 @@ CREATE SINK EurCryptoTraderRequestStream WITH (type='http-call', publisher.url='
 
 CREATE SINK JpyCryptoTraderRequestStream WITH (type='http-call', publisher.url='https://api.bitflyer.com/v1/ticker', method='GET', sink.id='bitflyer-ticker', map.type='json') (triggered_time string);
 
--- Streams for the http call responses
+-- Streams for the HTTP call responses
 -------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE SOURCE UsdCryptoTraderTickerResponseStream WITH (type='http-call-response', sink.id='coinbase-ticker', http.status.code='200', map.type='json', map.enclosing.element='$.*') (time string, price string);
