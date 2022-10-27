@@ -649,6 +649,25 @@ html[data-theme='dark'] .sl-text-warning {
   margin-bottom: 1rem;
 }
 
+.markdown table {
+  font-size: 17px;
+  margin: 2rem 0;
+}
+
+.markdown table th,
+.markdown table td {
+  padding: 0.5rem 0.75rem;
+}
+
+.markdown table th {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.markdown table td {
+  vertical-align: top;
+}
+
 code {
   @apply px-1;
 }
