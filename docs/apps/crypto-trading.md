@@ -56,7 +56,7 @@ Test the Stream Application:
     2. Start the GUI against the same federation
 */
 
--- Streams for the http call requests
+-- Streams for the HTTP call requests
 -------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE SINK UsdCryptoTraderRequestStream WITH (type='http-call', publisher.url='https://api.pro.coinbase.com/products/btc-usd/ticker', method='GET', headers="'User-Agent:c8cep'", sink.id='coinbase-ticker', map.type='json') (triggered_time string);
