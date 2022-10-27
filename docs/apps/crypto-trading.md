@@ -26,7 +26,7 @@ Please contact support@macrometa.com if you have any questions.
 
 4. Copy and past the code example into the editor.
 
-5. Click save and enable on location that is closest to where you are located around the globe.
+5. Click **Save** and enable on location that is closest to where you are located around the globe.
 
 6. Click publish.
 
