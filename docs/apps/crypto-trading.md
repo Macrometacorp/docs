@@ -50,7 +50,7 @@ whereas the strategy is kept in trades collection.
 */
 
 /**
-Testing the Stream Application:
+Test the Stream Application:
     1. Publish the app
        
     2. Start the GUI against the same federation
