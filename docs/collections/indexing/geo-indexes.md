@@ -1,9 +1,7 @@
 ---
 sidebar_position: 50
-title: Geo Indexes
+title: Geo-Spatial Indexes
 ---
-
-# Geo-Spatial Indexes
 
 GDN features [Google S2](http://s2geometry.io/){:target="_blank"} based geospatial index. Indexing is supported for a subset of the [**GeoJSON**](#geojson) geometry types as well as simple latitude longitude pairs.
 
