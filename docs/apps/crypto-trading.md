@@ -32,7 +32,7 @@ Please contact support@macrometa.com if you have any questions.
 
 Once you the publish the Stream Worker, go over to our [live frontend](https://macrometacorp.github.io/tutorial-cryptotrading/) and use your Macrometa account credentials to log into your account. Select the location you deployed the Stream Worker to, and you will see the app come to life!
 
-### Stream Worker Code
+### Crypto App Stream Worker Code
 
 ```js
 @App:name("Crypto-Trading-App")
