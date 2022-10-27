@@ -39,6 +39,10 @@ You can now invite users to your Macrometa account with emails!
 
 The following features updates are included in this release.
 
+### Search and Stream Workers are in GA
+
+[Search](../search/index.md) and [Stream Workers](../search/index.md), previously only available in closed beta, are now generally available!
+
 ### Stream Worker Prefixes
 
 You can now prepend a stream worker name to the aggregation tables that it creates. For example, if the stream worker name is `SampleAggregationApp` and the aggregation is `TradeAggregation,` then it will create tables like `SampleAggregationApp-TradeAggregation_SECONDS`. Previously, it was just `TradeAggregation_SECONDS`.
