@@ -21,7 +21,8 @@ Please contact support@macrometa.com if you have any questions.
 
 2. Login into the [Macrometa Console](https://auth.paas.macrometa.io/) Go to the `Collections` tab and create a new `Doc` collection named `trades` with `collection stream enabled` checked.
 
-3. Open the `Stream Workers` tab and create a new `Stream Worker` named `Crypto-Trading-App`.
+3. Click **Stream Workers**.
+4. Click **New Stream Worker** named `Crypto-Trading-App`.
 
 4. Copy and past the code example into the editor.
 
