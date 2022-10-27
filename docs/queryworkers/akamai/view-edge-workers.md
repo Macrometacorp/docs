@@ -1,15 +1,7 @@
 ---
-sidebar_position: 20
-title: Edge Workers
+sidebar_position: 40
+title: View Edge Workers
 ---
-
-You can generate an edge worker to ?WHAT?
-
-## Generate a New Edge Worker
-
-
-
-## View Edge Workers
 
 To view edge workers, click **Functions**.
 
