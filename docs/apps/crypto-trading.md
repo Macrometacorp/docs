@@ -15,7 +15,7 @@ Stream Workers is currently an Enterprise only feature.
 Please contact support@macrometa.com if you have any questions.
 :::
 
-### Configuring the Crypto App
+### Configure the Crypto App
 
 1. If you haven't already, [signup](https://auth.paas.macrometa.io/signup) for a free Macrometa Playground account. 
 
