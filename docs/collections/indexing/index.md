@@ -64,7 +64,7 @@ You cannot remove or change an edge index.
 
 Persistent index entries are written to disk when documents are stored or updated, so the entries do not need to be rebuilt when the server is restarted or the indexed collection is loaded. Persistent indexes can reduce collection loading times. You can only use persistent indexes in addition to another primary index.
 
-The index implementation uses the RocksDB engine and provides logarithmic complexity for insert, update, and remove operations. Because the persistent index is not in-memory, it does not store pointers to the primary index. Instead it stores a document's primary key. To retrieve a document via a persistent index via an index value lookup, there will therefore be an additional O(1) complexity lookup into the primary index to fetch the actual document.
+Because the persistent index is not in-memory, it does not store pointers to the primary index. Instead it stores a document's primary key. To retrieve a document via a persistent index via an index value lookup, there will therefore be an additional O(1) complexity lookup into the primary index to fetch the actual document.
 
 Persistent indexes are sorted and can be used for point lookups, range queries, and sorting operations if you provide one of the following in the query:
 
