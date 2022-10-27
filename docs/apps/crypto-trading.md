@@ -28,7 +28,7 @@ Please contact support@macrometa.com if you have any questions.
 
 5. Click **Save** and enable on location that is closest to where you are located around the globe.
 
-6. Click publish.
+6. Click **Publish**.
 
 Once you the publish the Stream Worker, go over to our [live frontend](https://macrometacorp.github.io/tutorial-cryptotrading/) and use your Macrometa account credentials to log into your account. Select the location you deployed the Stream Worker to, and you will see the app come to life!
 
