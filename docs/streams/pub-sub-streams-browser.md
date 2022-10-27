@@ -1,6 +1,6 @@
 ---
-sidebar_position: 30
-title: Pub-Sub with Streams in Browser
+sidebar_position: 110
+title: Pub-Sub with Streams in Browser Example
 ---
 
 This example shows how to use the GDN console to publish messages on a stream and subscribe to receive messages.
