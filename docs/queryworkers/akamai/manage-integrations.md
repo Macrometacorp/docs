@@ -11,7 +11,7 @@ This feature is currently in preview.
 
 ## Prerequisites
 
-- A Macrometa account with sufficient permissions to view and edit query workers.
+- A Macrometa account with sufficient permissions to view and edit query workers or stream workers.
 - In Akamai, a Property created with your Macrometa GDN integration. For more information about Akamai Properties, refer to [Create and configure a property](https://techdocs.akamai.com/api-definitions/docs/create-config-prop).
 
 ## Add Integration
