@@ -218,7 +218,7 @@ print("Accessible Databases: ", client.list_accessible_databases(keyid))
 
 print("Accessible Streams of a db: ", client.list_accessible_streams(keyid, '_system'))
 
-# Set Accesslevels for an API Key
+# Set access levels for an API key
 
 # Create a new collection if it does not exist
 if client.has_collection('testCollection'):
