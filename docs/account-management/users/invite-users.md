@@ -13,5 +13,4 @@ This page describes how to send invitation links to email addresses so new users
 1. Click **Send Invite**.
 
 Macrometa sends an email to with a signup link to each address that you entered. Links expire after 24 hours.
-
 After sending an invitation, you can see a list of pending invitations. Click the stacked dots next to an invitation link to copy, cancel, or resend the invitation link.
