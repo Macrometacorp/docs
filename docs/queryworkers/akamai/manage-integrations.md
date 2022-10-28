@@ -5,6 +5,10 @@ title: Manage Integrations
 
 This page describes how to integrate Akamai's edge worker functionality as a Macrometa functions.
 
+:::note
+This feature is currently in preview.
+:::
+
 ## Prerequisites
 
 - A Macrometa account with sufficient permissions to view and edit query workers.
