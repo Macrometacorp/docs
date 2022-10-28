@@ -18,7 +18,7 @@ const jsc8 = require("jsc8");
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
 const fabric = "_system";
-// API key id
+// API key ID
 const keyid = "id1";
 
 const client = new jsc8({
