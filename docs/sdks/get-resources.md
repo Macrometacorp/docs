@@ -87,7 +87,7 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 
-# API key id
+# API key ID
 keyid = "id1"
 
 # Fetch List of accessible databases and streams
