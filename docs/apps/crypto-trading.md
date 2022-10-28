@@ -3,7 +3,7 @@ sidebar_position: 2
 title: Crypto Trading Bot
 ---
 
-### Crypto App details
+## Crypto App details
 
 | **Tenant** | **Fabric** | **Stream App** | **GUI** | **Source Code**|
 |----------- |----------|----|-----------|-----------|
@@ -15,24 +15,25 @@ Stream Workers is currently an Enterprise only feature.
 Please contact support@macrometa.com if you have any questions.
 :::
 
-### Configure the Crypto App
+## Configure the Crypto App
 
-1. If you haven't already, [sign up for a free Macrometa Playground account](https://auth.paas.macrometa.io/signup). 
+1. Log in to the [Macrometa Console](https://auth.paas.macrometa.io/) 
 
-2. Log in to the [Macrometa Console](https://auth.paas.macrometa.io/) Go to the Collections tab and create a new `Doc` collection named `trades` with `collection stream enabled` checked.
+2. Go to the Collections tab and create a new `Doc` collection named `trades` with `collection stream enabled` checked.
 
 3. Click **Stream Workers**.
+
 4. Click **New Stream Worker** named `Crypto-Trading-App`.
 
-4. Copy and past the code example into the editor.
+5. Copy and past the code example into the editor.
 
-5. Click **Save** and enable on location that is closest to where you are located around the globe.
+6. Click **Save** and enable on location that is closest to where you are located around the globe.
 
-6. Click **Publish**.
+7. Click **Publish**.
 
 Once you the publish the Stream Worker, go over to our [live frontend](https://macrometacorp.github.io/tutorial-cryptotrading/) and use your Macrometa account credentials to log into your account. Select the location you deployed the Stream Worker to, and you will see the app come to life!
 
-### Crypto App Stream Worker Code
+## Crypto App Stream Worker Code
 
 ```js
 @App:name("Crypto-Trading-App")
