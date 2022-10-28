@@ -25,9 +25,9 @@ Macrometa now offers Redis support.
 
 This release adds support for some Kafka clients in the GDN. For a list of supported clients, refer to [Kafka on GDN](../streams/kafka_on_gdn/index.md).
 
-### Akamai Support - Preview
+### Akamai EdgeWorker Support - Preview
 
-This release adds support for Akamai edge workers as functions in GDN. For more information, refer to [Akamai Edge Workers](../queryworkers/akamai/index.md).
+This release adds support for Akamai edge workers as functions in GDN. For more information, refer to [Akamai EdgeWorkers](../queryworkers/akamai/index.md).
 
 ### Invite User
 
