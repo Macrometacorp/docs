@@ -3,11 +3,6 @@ sidebar_position: 30
 title: Add Attributes to API Keys
 ---
 
-This page describes how to add attributes to API keys so you can limit their permissions.
-
-<Tabs groupId="operating-systems">
-<TabItem value="console" label="Web Console">
-
 To add attributes to an API key:
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
@@ -18,15 +13,3 @@ To add attributes to an API key:
     - **Value -** 
 1. Click **Add Attribute** if you want to add more attributes.
 1. Click **Update**.
-
-</TabItem>
-<TabItem value="api" label="C8QL">
-
-To add attributes to an API key:
-
-1. 
-1. 
-1. 
-
-</TabItem>
-</Tabs>
