@@ -3,14 +3,30 @@ sidebar_position: 20
 title: Add Attributes to Users
 ---
 
-To add attributes to a user:
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+This page shows you different methods to add attributes to users on your Macrometa GDN account. You must have appropriate admin permissions to perform this task.
+
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to add attributes to users using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Accounts**.
-1. On the Users tab, click the stacked dots next to the user for which you want to limit permissions.
-1. Click **Edit User**.
-1. Click **Attributes** and provide the following details:
+2. Click **Accounts**.
+3. On the Users tab, click the stacked dots next to the user for which you want to limit permissions.
+4. Click **Edit User**.
+5. Click **Attributes** and provide the following details:
     - **Attribute -** First level of permission. For example, `employee`.
     - **Value -** Second level of permission. For example, `staff` or `admin`.
-1. Click **Add Attribute** if you want to add more attributes.
-1. Click **Update**.
+6. Click **Add Attribute** if you want to add more attributes.
+7. Click **Update**.
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Update User Attributes](https://macrometa.com/docs/api#/operations/CreateTheAttributesForUser).
+
+</TabItem>
+</Tabs>
