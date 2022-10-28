@@ -31,7 +31,7 @@ This release adds support for Akamai edge workers as functions in GDN. For more 
 
 ### SQL Support - Beta
 
-Macrometa now supports some SQL queries. Support will be expanded in future releases.
+Macrometa now supports SQL queries. Support will be expanded in future releases.
 
 [SQL in Macrometa](../queryworkers/sql/index.md) was added as a result of this feature.
 
