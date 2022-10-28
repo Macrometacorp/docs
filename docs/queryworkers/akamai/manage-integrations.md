@@ -16,7 +16,7 @@ This feature is currently in preview.
 
 ## Add Integration
 
-Add Akamai metadata from your Macrometa GDN environment.
+Add Akamai metadata to your Macrometa GDN environment.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Query Workers**.
