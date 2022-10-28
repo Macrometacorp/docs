@@ -210,7 +210,7 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
 # API key ID
 keyid = "id1"
 
-# Create an api key
+# Create an API key
 print("Create API Key: ", client.create_api_key(keyid))
 
 # Fetch List of accessible databases and streams
