@@ -31,7 +31,7 @@ This release adds support for Akamai edge workers as functions in GDN. For more 
 
 ### Invite User
 
-You can now invite users to your Macrometa account with emails!
+You can now invite users to your Macrometa account by sending them email.
 
 [Invite Users](../account-management/users/invite-users.md) was added as a result of this feature.
 
