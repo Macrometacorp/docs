@@ -9,7 +9,7 @@ To add attributes to an API key:
 1. Click **Accounts**.
 1. On the API Keys tab, click the ID of the API key for which you want to limit permissions.
 1. Click **Attributes** and provide the following details:
-    - **Attribute -** 
-    - **Value -** 
+    - **Attribute -** First level of permission. For example, `employee`.
+    - **Value -** Second level of permission. For example, `staff` or `admin`.
 1. Click **Add Attribute** if you want to add more attributes.
 1. Click **Update**.
