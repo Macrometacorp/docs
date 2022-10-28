@@ -1,6 +1,6 @@
 ---
-sidebar_position: 20
-title: Pub-Sub with Streams
+sidebar_position: 100
+title: Pub-Sub with Streams Example
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,6 +1,6 @@
 ---
-sidebar_position: 40
-title: Realtime Updates
+sidebar_position: 140
+title: Realtime DB Updates Example
 ---
 
 import Tabs from '@theme/Tabs';
