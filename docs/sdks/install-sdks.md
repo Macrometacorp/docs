@@ -79,7 +79,7 @@ npm update jsC8
 <TabItem value="py" label="Python">
 
 ```py
-pip install --upgrade pyc8
+pip install --upgrade pyC8
 ```
 
 </TabItem>
