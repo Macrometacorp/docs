@@ -11,16 +11,6 @@ title: Global Address Book
 | ----------------- | ------------- | -------------- | -------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | demo@macrometa.io | `xxxxxxxx`    | \_system       | `addresses`    | [AddressBook](https://macrometacorp.github.io/tutorial-addressbook-streams/) | [github](https://github.com/Macrometacorp/tutorial-addressbook-streams) |
 
-### On GDN (Wavelength 5G)
-
-| **Email**         | **Passsword** | **Geo Fabric** | **Collection** |**GUI**                                                                        | **Source Code** |
-| ----------------- | ------------- | -------------- | -------------- | ------------------------------------------------------------------------------ | --------------- |
-| demo@macrometa.io | `xxxxxxxx`    | \_system       | `addresses`    | [AddressBook](https://macrometacorp.github.io/addressbook-streams-wavelength/) |
-
-:::note
-Stream Workers is currently an Enterprise only feature. Please contact support@macrometa.com if you have any questions.
-:::
-
 Populate `addresses` collection with data:
 
 ```js
@@ -44,18 +34,21 @@ FOR persons IN [
 Queries for RESTQL
 
 Query Name: addAddress
+
 ```js
 INSERT { firstName: @firstName, lastName: @lastName, email: @email }
   INTO addresses
 ```
 
 Query Name: getAddresses
+
 ```js
 FOR address IN addresses
     RETURN address
 ```
 
 Query Name: updateEmail
+
 ```js
 UPDATE { _key: @key }
   WITH { email: @email }
@@ -63,6 +56,7 @@ UPDATE { _key: @key }
 ```
 
 Query Name: removeAddress
+
 ```js
 REMOVE { _key: @key} 
   IN addresses
@@ -79,23 +73,27 @@ REMOVE { _key: @key}
 > Note: The demo app automatically creates the following RESTQLs as part of startup.
 
 **insertAddress:**
+
 ```js
 INSERT { firstName: @firstName, lastName: @lastName, email: @email}
   INTO addresses
 ```
 
 **getAddresses:**
+
 ```js
 FOR entry IN addresses
   RETURN entry
 ```
 
 **removeAddress:**
+
 ```js
 REMOVE @_key IN addresses
 ```
 
 **updateAddress:**
+
 ```js
 UPDATE @_key
   WITH { firstName: @firstName, lastName: @lastName, email: @email }
