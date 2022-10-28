@@ -3,7 +3,7 @@ sidebar_position: 25
 title: Generate Edge Worker from Stream Worker
 ---
 
-Generate an edge worker from a Stream worker.
+Generate an edge worker from a stream worker.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Stream Workers**.
