@@ -15,9 +15,8 @@ Follow these instructions to view user attributes from users using the GDN conso
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Accounts**.
-3. On the Users tab, click the stacked dots next to the user for which you want to remove attributes.
-4. Click **Edit User**.
-5. Click **Attributes**.
+3. On the Users tab, click the user for which you want to view attributes.
+4. Click **Attributes**.
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -27,7 +26,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl user get](../../cli/api-key-cli.md#gdnsl-user-get) CLI command to get user attributes.
+Use the [gdnsl user get](../../cli/user-cli.md#gdnsl-user-get) CLI command to get user attributes.
 
 </TabItem>
 <TabItem value="c8ql" label="C8QL">
