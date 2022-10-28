@@ -25,6 +25,10 @@ You can now manage attributes for users and API keys in the Macrometa console.
 
 [Attributes](../account-management/attributes/index.md) was added as a result of this feature.
 
+### Akamai EdgeWorker Support - Preview
+
+This release adds support for Akamai edge workers as functions in GDN. For more information, refer to [Akamai EdgeWorkers](../queryworkers/akamai/index.md).
+
 ### SQL Support - Beta
 
 Macrometa now supports some SQL queries. Support will be expanded in future releases.
@@ -40,10 +44,6 @@ Macrometa now offers Redis support.
 ### Kafka Support - Beta
 
 This release adds support for some Kafka clients in the GDN. For a list of supported clients, refer to [Kafka on GDN](../streams/kafka_on_gdn/index.md).
-
-### Akamai EdgeWorker Support - Preview
-
-This release adds support for Akamai edge workers as functions in GDN. For more information, refer to [Akamai EdgeWorkers](../queryworkers/akamai/index.md).
 
 ## Feature Updates
 
