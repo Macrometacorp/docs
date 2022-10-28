@@ -9,6 +9,10 @@ This document describes what has changed in Macrometa release 0.17.11. To check 
 
 The following new features are included in this release.
 
+### Search and Stream Workers are in GA
+
+[Search](../search/index.md) and [Stream Workers](../search/index.md), previously only available in closed beta, are now generally available for everyone to use.
+
 ### Invite User
 
 You can now invite users to your Macrometa account by sending them email.
@@ -44,10 +48,6 @@ This release adds support for Akamai edge workers as functions in GDN. For more 
 ## Feature Updates
 
 The following features updates are included in this release.
-
-### Search and Stream Workers are in GA
-
-[Search](../search/index.md) and [Stream Workers](../search/index.md), previously only available in closed beta, are now generally available!
 
 ### Stream Worker Prefixes
 
