@@ -22,100 +22,65 @@ Edges have a direction, with their relations `_from` and `_to` pointing from one
 - INBOUND: `_from` ← `_to`
 - ANY: `_from` ↔ `_to`.
 
-## Example
+## Prerequisites
 
-For this example, assume the following credentials:
+- Access to a [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
+- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys.md).
+- Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
-- Tenant name is `nemo@nautilus.com`.
-- User password is `xxxxxx`.
+### Step 1. Connect to GDN
 
-### SDK Download
-
-<Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
-
-```py
-    pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
-
-    To install pyC8, simply run
-
-        $ pip3 install pyC8
-
-    or, if you prefer to use conda:
-
-        conda install -c conda-forge pyC8
-
-    or pipenv:
-
-        pipenv install --pre pyC8
-
-    Once the installation process is finished, you can begin developing applications in Python.
-```
-
-  </TabItem>
-  <TabItem value="js" label="Javascript">
-
-```js
-    With Yarn or NPM
-
-        yarn add jsc8
-        (or)
-        npm install jsc8
-
-    If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
-
-        npm install --global jsc8
-
-    From source,
-
-        git clone https://github.com/macrometacorp/jsc8.git
-        cd jsC8
-        npm install
-        npm run dist
-```
-
-  </TabItem>
-</Tabs>  
-
-### Connect to GDN
-
-The first step in using GDN is to establish a connection to a local region. When this code executes, it initializes the server connection to the region URL you sepcified.
+To use graphs with Macrometa Global Data Network (GDN), you must first establish a connection to a local region. When this code runs, it initializes the server connection to the region URL you specified. For more information about connecting to GDN, refer to [Authentication](../account-management/auth/index.md).
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
-
-```py
-    from c8 import C8Client
-
-    EMAIL = 'nemo@nautilus.com'
-    PASSWORD = 'xxxxx'
-    HOST = 'gdn.paas.macrometa.io'
-    GEO_FABRIC = '_system'
-
-    print("--- Connecting to C8")
-
-    client = C8Client(protocol='https', host=HOST, port=443,
-                      email=EMAIL, password=PASSWORD,
-                      geofabric=GEO_FABRIC)
-```
-
-  </TabItem>
-  <TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
-    const jsc8 = require("jsc8");
+const jsc8 = require("jsc8");
 
-    // Simple Way
-    const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // ----- OR -----
-    const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+// Choose one of the following methods to access the GDN. API key is recommended.
+// API key
+const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
 
+// JSON Web Token
+// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
 
-    // To use advanced options
-    const client = new jsc8("https://gdn.paas.macrometa.io");
+// Or use email and password to authenticate client instance
+// const client = new jsc8("https://gdn.paas.macrometa.io");
+// Replace values with your email and password.
+// await client.login("nemo@nautilus.com", "xxxxxx"); 
 ```
 
-  </TabItem>
+</TabItem>
+
+<TabItem value="py" label="Python">
+
+```py
+# Import libraries
+from operator import concat
+import base64
+import json
+import warnings
+from c8 import C8Client
+warnings.filterwarnings("ignore")
+
+# Define constants
+URL = "gdn.paas.macrometa.io"
+GEO_FABRIC = "_system"
+API_KEY = "my API key" # Change this to your API key
+
+print("--- Connecting to GDN")
+
+# Choose one of the following methods to access the GDN. API key is recommended.
+
+# Authenticate with API key
+client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
+
+# Authenticate with JWT
+# client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token=<your token>)
+```
+
+</TabItem>
 </Tabs>  
 
 ### Get GeoFabric Details
