@@ -9,6 +9,18 @@ This document describes what has changed in Macrometa release 0.17.11. To check 
 
 The following new features are included in this release.
 
+### Invite User
+
+You can now invite users to your Macrometa account by sending them email.
+
+[Invite Users](../account-management/users/invite-users.md) was added as a result of this feature.
+
+### Manage Attributes
+
+You can now manage attributes for users and API keys in the Macrometa console.
+
+[Attributes](../account-management/attributes/index.md) was added as a result of this feature.
+
 ### SQL Support - Beta
 
 Macrometa now supports some SQL queries. Support will be expanded in future releases.
@@ -28,18 +40,6 @@ This release adds support for some Kafka clients in the GDN. For a list of suppo
 ### Akamai EdgeWorker Support - Preview
 
 This release adds support for Akamai edge workers as functions in GDN. For more information, refer to [Akamai EdgeWorkers](../queryworkers/akamai/index.md).
-
-### Invite User
-
-You can now invite users to your Macrometa account by sending them email.
-
-[Invite Users](../account-management/users/invite-users.md) was added as a result of this feature.
-
-### Manage Attributes
-
-You can now manage attributes for users and API keys in the Macrometa console.
-
-[Attributes](../account-management/attributes/index.md) was added as a result of this feature.
 
 ## Feature Updates
 
