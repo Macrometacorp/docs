@@ -13,4 +13,4 @@ You can use Akamai EdgeWorkers to publish data to pipelines. You can continuousl
 
 Edge workers allow you to use JavaScript to preprocess or post-process data published to pipelines. Additionally, you can query data inside streams and stream workers in real time.
 
-For more information about Akamai EdgeWorkers, refer to the [Akamai EdgeWorkers overview](https://developer.akamai.com/akamai-edgeworkers-overview).
+For more information about Akamai EdgeWorkers, refer to the [Akamai EdgeWorkers Overview](https://developer.akamai.com/akamai-edgeworkers-overview).

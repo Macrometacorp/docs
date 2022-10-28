@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Manage Integrations
 ---
 
-This page describes how to integrate Akamai's EdgeWorker functionality as a Macrometa functions.
+This page describes how to integrate Akamai's EdgeWorker functionality with the Macrometa platform.
 
 :::note
 This feature is currently in preview.
