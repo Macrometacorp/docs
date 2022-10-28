@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Attributes
 ---
 
-Administrators can assign attributes to users and API keys which limit document access. You can use attributes to assign read or write permissions at the document level or collection level.
+Administrators can assign attributes to users and API keys which limit document access. You can use attributes to assign read or write permissions at the document level or collection level. For more information about permissions, refer to [Permissions](../index.md).
 
 In this example, imagine a fulfillment company with documents and collections that must be accessed by partners and employees. The partners request items for the fulfillment company to provide, and the company employees fulfill the orders of the partners' items.
 
