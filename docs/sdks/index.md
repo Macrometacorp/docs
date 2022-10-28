@@ -36,7 +36,7 @@ const password = "xxxxxx";
 const fabric = "_system";
 const collectionName = "testCollection";
 const streamName = "testStream";
-// API key id
+// API key ID
 const keyid = "id1";
 
 const client = new jsc8({
