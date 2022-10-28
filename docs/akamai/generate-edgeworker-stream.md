@@ -11,7 +11,7 @@ This feature is currently in preview.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Stream Workers**.
-1. Select a stream worker or [create a new one](../../cep/index.md).
+1. Select a stream worker or [create a new one](../cep/index.md).
 1. Click **Generate Edge Worker**.
 1. Enter the following details:
     - **Name -** Choose a name for your EdgeWorker.
