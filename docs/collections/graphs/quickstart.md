@@ -25,12 +25,12 @@ Edges have a direction, with their relations `_from` and `_to` pointing from one
 ## Prerequisites
 
 - Access to a [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
-- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys.md).
-- Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
+- An API key. For more information, refer to [Create API Keys](../../account-management/api-keys/create-api-keys.md).
+- Appropriate SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
 
 ### Step 1. Connect to GDN
 
-To use graphs with Macrometa Global Data Network (GDN), you must first establish a connection to a local region. When this code runs, it initializes the server connection to the region URL you specified. For more information about connecting to GDN, refer to [Authentication](../account-management/auth/index.md).
+To use graphs with Macrometa Global Data Network (GDN), you must first establish a connection to a local region. When this code runs, it initializes the server connection to the region URL you specified. For more information about connecting to GDN, refer to [Authentication](../../account-management/auth/index.md).
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="JavaScript">
