@@ -9,12 +9,6 @@ title: Crypto Trading Bot
 |----------- |----------|----|-----------|-----------|
 |  `demo@macrometa.io` | `_system` | `crypto-trading-app` | [**Crypto Trading GUI**](https://macrometacorp.github.io/tutorial-cryptotrading/) |[github](https://github.com/Macrometacorp/tutorial-cryptotrading)|
 
-
-:::note
-Stream Workers is currently an Enterprise only feature. 
-Please contact support@macrometa.com if you have any questions.
-:::
-
 ## Configure the Crypto App
 
 1. Log in to the [Macrometa Console](https://auth.paas.macrometa.io/) 
