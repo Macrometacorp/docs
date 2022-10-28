@@ -11,4 +11,4 @@ Most APIs today use an API Key to authenticate legitimate clients. API Keys are 
 
 API keys never expire.
 
-You can add attributes to API keys to limit access to collections and documents. For more information about attributes, refer to [Attributes](../permissions/attributes/index.md).
+You can add attributes to API keys to limit access to collections and documents. For more information about attributes, refer to [Attributes](../attributes/index.md).

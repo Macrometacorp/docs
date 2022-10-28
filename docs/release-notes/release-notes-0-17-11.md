@@ -35,6 +35,12 @@ You can now invite users to your Macrometa account by sending them email.
 
 [Invite Users](../account-management/users/invite-users.md) was added as a result of this feature.
 
+### Manage Attributes
+
+You can now manage attributes for users and API keys in the Macrometa console.
+
+[Attributes](../account-management/attributes/index.md) was added as a result of this feature.
+
 ## Feature Updates
 
 The following features updates are included in this release.
