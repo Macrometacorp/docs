@@ -1,6 +1,6 @@
 ---
 sidebar_position: 70
-title: Subscribe to Stream
+title: Subscribe to Streams
 ---
 
 import Tabs from '@theme/Tabs';
