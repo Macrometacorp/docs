@@ -3,24 +3,13 @@ sidebar_position: 2
 title: Crypto Trading Bot
 ---
 
-### On GDN
+## On GDN
 
 | **Tenant** | **Fabric** | **Stream App** | **GUI** | **Source Code**|
 |----------- |----------|----|-----------|-----------|
 |  `demo@macrometa.io` | `_system` | `crypto-trading-app` | [**Crypto Trading GUI**](https://macrometacorp.github.io/tutorial-cryptotrading/) |[github](https://github.com/Macrometacorp/tutorial-cryptotrading)|
 
-### On GDN (Wavelength 5G)
-
-| **Tenant** | **Fabric** | **Stream App** | **GUI** | **Source Code**|
-|----------- |----------|----|-----------|-----------|
-|  `demo@macrometa.io` | `_system` | `crypto-trading-app` | [**Crypto Trading GUI**](https://macrometacorp.github.io/demo-crypto-trading-5g/) |
-
-:::note
-Stream Workers is currently an Enterprise only feature. 
-Please contact support@macrometa.com if you have any questions.
-:::
-
-**Stream App:**
+## Stream App
 
 ```js
 @App:name("crypto-trading-app")

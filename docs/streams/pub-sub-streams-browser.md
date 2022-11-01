@@ -1,9 +1,9 @@
 ---
-sidebar_position: 30
-title: Pub-Sub with Streams in Browser
+sidebar_position: 110
+title: Pub-Sub with Streams in Browser Example
 ---
 
-Example to publish messages on a stream and subscribe to that stream to receive messages, with a simple UI.
+This example shows how to use the GDN console to publish messages on a stream and subscribe to receive messages.
 
 ```html
 <!DOCTYPE html>
@@ -127,8 +127,8 @@ Example to publish messages on a stream and subscribe to that stream to receive 
 
     /* ---------------------------- PUB-SUB TUTORIAL ---------------------------- */
 
-    const EMAIL = "nemo@nautilus.com";
-    const PASSWORD = "xxxxxx";
+    const EMAIL = "your@email.com";
+    const PASSWORD = "password";
 
     const FEDERATION_NAME = "api-gdn.paas.macrometa.io";
     const FEDERATION_URL = `https://${FEDERATION_NAME}`;
@@ -206,7 +206,7 @@ Example to publish messages on a stream and subscribe to that stream to receive 
       try {
         toggleUIButtons({ publish: true, close: true });
 
-        /* -------------------- Login (nemo@nautilus.com/xxxxxx) -------------------- */
+        /* -------------------- Login (your@email.com/password) -------------------- */
 
         const { tenant } = await connection.login(EMAIL, PASSWORD);
 
