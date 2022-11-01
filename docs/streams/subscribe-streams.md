@@ -26,17 +26,15 @@ demo_stream = "streamQuickstart"
 
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
-# Create the producer and publish messages.
-def sendData():
-    """ This function sends data through a stream """
-    producer = client.create_stream_producer(demo_stream, local=is_local)
-    while True:
-        user_input = input("Enter your message to publish: ")
-        if user_input == '0':
-            break
-        producer.send(user_input)
-
-sendData()
+# Create the subscriber and receive data
+subscriber = client.subscribe(stream=demo_stream, local=is_local,
+    subscription_name="test-subscription-1")
+for i in range(10):
+    print("In ",i)
+    m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
+    msg1 = base64.b64decode(m1["payload"]).decode('utf-8')
+    print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received message
+    subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
 ```
 
 </TabItem>
@@ -52,27 +50,30 @@ console.log("Authentication done!!...");
 
 const stream = "streamQuickstart";
 
-async function sendData () {
-  console.log("\n ------- Publish Messages  ------");
-  const producer = await client.createStreamProducer(stream);
-
-  producer.on("open", () => {
-    for (let i = 0; i < 10; i++) {
-      const msg1 = `Persistent hello from (${JSON.stringify(i)})`;
-      const data = {
-        payload: Buffer.from(msg1).toString("base64")
-      };
-
-      console.log(`Stream: ${msg1}`);
-      producer.send(JSON.stringify(data));
-    }
-  });
-  producer.onclose = function (e) {
-    console.log("Closed WebSocket:Producer connection for " + streamName);
-  };
+async function getDCList() {
+  const geo_fabric = "_system"
+  let dcListAll = await client.listUserFabrics();
+  let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
+  return dcListObject.options.dcList.split(",");
 }
 
-sendData()
+(async function() {
+  const dcList = await getDCList();
+  await console.log("dcList: ", dcList);
+  await client.createStream("my-stream", true);
+  
+  //Here the last boolean value tells if the stream is local or global. false means that it is global.
+  const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
+  consumer.on("message", (msg) => {
+    const { payload, messageId } = JSON.parse(msg);
+    
+    // Received message payload
+    console.log(Buffer.from(payload, "base64").toString("ascii"));
+    // Send message acknowledgement
+    consumer.send(JSON.stringify({ messageId }));
+  });
+
+})();
 ```
 
 </TabItem>
@@ -95,34 +96,21 @@ session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
-# Publish messages
-# Send message in body
-producerurl = f"wss://{URL}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{stream_type}.{FABRIC}/{stream_type}s.{STREAM_NAME}"
+# Subscribe to stream
+consumerurl = f"wss://{URL}/_ws/ws/v2/consumer/persistent/{TENANT_NAME}/{stream_type}.{FABRIC}/{stream_type}s.{STREAM_NAME}/{CONSUMER_NAME}"
 
-# Enter your message here
-msg = "Hello World"
-def create_producer():
-    ws = create_connection(producerurl, header=[f"Authorization: {AUTH_TOKEN}"])
-    payload = {
-        "payload": base64.b64encode(
-            six.b(msg)
-        ).decode("utf-8")
-    }
-    ws.send(json.dumps(payload))
-    print(f"Message sent: {msg}")
-    time.sleep(3)
-    response = json.loads(ws.recv())
-    if response['result'] == 'ok':
-        print("Received acknowledgement that message was delivered successfully")
-    else:
-        print(f"Failed to publish message: {response}")
+def create_consumer(): 
+    ws = create_connection(consumerurl, header=[f"Authorization: {AUTH_TOKEN}"])
+    while True:
+        msg = json.loads(ws.recv())
+        if msg:
+            print(f"Message received: {base64.b64decode(msg['payload']).decode('utf-8')}")
+            # Acknowledge successful processing
+            ws.send(json.dumps({'messageId': msg['messageId']}))
+            break
     ws.close()
 
-# Or
-# Use publish message api to publish message
-#url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{stream_type}s.{STREAM_NAME}/publish?global={IS_GLOBAL}"
-#resp = session.post(url, data="Hello")
-#print("\nMessage Posted: ", resp.text)
+create_consumer()
 ```
 
 </TabItem>
@@ -203,13 +191,80 @@ const run = async function () {
     let producer;
     let producerInterval;
 
+    /* -------------------------- Initialize consumer -------------------------- */
+
+    const initConsumer = () => {
+      return new Promise((resolve) => {
+        consumer = new WebSocket(consumerUrl);
+
+        consumer.onopen = function () {
+          console.log("WebSocket:Consumer is open now for " + streamName);
+          resolve();
+        };
+
+        consumer.onerror = function () {
+          console.log(
+            "Failed to establish WebSocket:Consumer connection for " +
+              streamName
+          );
+        };
+
+        consumer.onclose = function () {
+          console.log("Closed WebSocket:Consumer connection for " + streamName);
+        };
+
+        consumer.onmessage = function (message) {
+          const receivedMsg = message.data && JSON.parse(message.data);
+
+          console.log(
+            `WebSocket:Consumer message received at ${new Date()}`,
+            receivedMsg
+          );
+
+          const ackMsg = { messageId: receivedMsg.messageId };
+          consumer.send(JSON.stringify(ackMsg));
+        };
+      });
+    };
+
+/* -------------------------- Initialize producer -------------------------- */
+
+    const initProducer = () => {
+      producer = new WebSocket(producerUrl);
+
+      producer.onopen = function () {
+        console.log("WebSocket:Producer is open now for " + streamName);
+        producerInterval = setInterval(function () {
+          console.log(`WebSocket:Producer message sent at ${new Date()}`);
+          producer.send(JSON.stringify({ payload: `test` }));
+        }, 10000);
+      };
+
+      producer.onclose = function (e) {
+        console.log("Closed WebSocket:Producer connection for " + streamName);
+        clearInterval(producerInterval);
+      };
+
+      producer.onerror = function (e) {
+        console.log(
+          "Failed to establish WebSocket:Producer connection for " + streamName
+        );
+      };
+    };
+
+    initConsumer().then(() => {
+      initProducer();
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 1 * 40 * 1000));
+    consumer.close();
+    console.log("CONSUMER CLOSING...");
+    producer.close();
+    console.log("PRODUCER CLOSING...");
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    
 run();
 ```
-
-</TabItem>
-<TabItem value="cli" label="CLI">
-
-Use the [gdnsl streams subscription](../cli/streams-cli.md#gdnsl-streams-subscription) CLI commands to delete existing stream subscriptions.
 
 </TabItem>
 </Tabs>
