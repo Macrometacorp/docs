@@ -188,7 +188,6 @@ Name       | Type       | Language
 `text_pt`  | `text`     | Portuguese
 `text_ru`  | `text`     | Russian
 `text_sv`  | `text`     | Swedish
-`text_zh`  | `text`     | Chinese
 
 ## Supported Languages
 
@@ -215,4 +214,3 @@ Code  | Language
 `pt`  | Portuguese
 `ru`  | Russian
 `sv`  | Swedish
-`zh`  | Chinese
