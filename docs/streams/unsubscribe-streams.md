@@ -112,7 +112,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams subscription](../cli/streams-cli.md#gdnsl-streams-subscription) CLI commands to delete existing streams.
+Use the [gdnsl streams subscription](../cli/streams-cli.md#gdnsl-streams-subscription) CLI commands to delete existing stream subscriptions.
 
 </TabItem>
 </Tabs>
