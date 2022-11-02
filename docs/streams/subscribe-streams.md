@@ -69,23 +69,35 @@ const stream = "streamQuickstart";
 Use our interactive API reference with code generation in 18 programming languages to [publish a message](https://macrometa.com/docs/api#/operations/PublishStreamMessage).
 
 ```py
+import base64
+import json
 import requests
+from websocket import create_connection
 
 # Constants
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-smoke3.eng.macrometa.io"
 HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 STREAM_NAME = "streamQuickstart"
-API_KEY = "XXXXX" # Use your API key here
+API_KEY = "TAbccjwo6Tb2oNdQel2Gm1w.id5.JB2KEqlrcaa8MGfp6B3rCGhb7qXwGJjc9y2yocdjlwELdaOilyTy0EHDdpgDBQMjd27bc8" # Use your API key here
 AUTH_TOKEN = f"apikey {API_KEY}" # Append the key word for the API key
+TENANT_NAME = "TAbccjwo6Tb2oNdQel2Gm1w" # Add your tenant name here
+CONSUMER_NAME = "testconsumer"
+IS_GLOBAL = True # For a global stream pass True and False for local stream
 
+stream_type = ""
+if IS_GLOBAL:
+    stream_type = "c8global"
+else:
+    stream_type = "c8local"
+
+# Create a HTTPS session
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
 # Subscribe to stream
 consumerurl = f"wss://{URL}/_ws/ws/v2/consumer/persistent/{TENANT_NAME}/{stream_type}.{FABRIC}/{stream_type}s.{STREAM_NAME}/{CONSUMER_NAME}"
-
 def create_consumer(): 
     ws = create_connection(consumerurl, header=[f"Authorization: {AUTH_TOKEN}"])
     while True:
@@ -96,7 +108,6 @@ def create_consumer():
             ws.send(json.dumps({'messageId': msg['messageId']}))
             break
     ws.close()
-
 create_consumer()
 ```
 
