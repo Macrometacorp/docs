@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Getting Started with Stream Workers
+title: Stream Workers Example
 ---
 
 import Tabs from '@theme/Tabs';
