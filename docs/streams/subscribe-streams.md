@@ -46,7 +46,7 @@ You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can ru
 ```js
 const jsc8 = require("jsc8");
 const client = new jsc8({ url: "https://gdn.paas.macrometa.io", apiKey: "xxxxx", fabricName: "_system" });
-console.log("Authentication done!!...");
+
 const stream = "streamQuickstart";
 
 (async function () {
