@@ -113,6 +113,7 @@ create_consumer()
 <TabItem value="api-js" label="REST API - JavaScript">
 
 ```js
+const WebSocket = require('ws');
 class APIRequest {
   _headers = {
     Accept: "application/json",
@@ -144,119 +145,67 @@ class APIRequest {
   }
 }
 
-const apiKey = "XXXXX"; // Use your apikey here
+const apiKey = "xxxxx"; // Use your apikey here
 const federationName = "api-gdn.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
-
+const fabric = "_system"
 const stream = "streamQuickstart";
 const isGlobal = true;
+const tenant = "xxxxx" // Use your tenant name here
+const consumerName = "testConsumer";
 
 const run = async function () {
   const connection = new APIRequest(federationUrl, apiKey);
+  const region = isGlobal ? "c8global" : "c8local";
+  const streamName = `${region}s.${stream}`;
+  // Fetching local URL in case the stream is local
+  const localDcDetails = await connection.req(`/datacenter/local`, {
+    method: "GET"
+  });
+  const dcUrl = localDcDetails.tags.url;
+  const url = isGlobal
+    ? federationName
+    : `api-${dcUrl}`;
+  const otpConsumer = await connection.req(`/apid/otp`, {
+    method: "POST"
+  });
+  const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}.${fabric}/${streamName}/${consumerName}?otp=${otpConsumer.otp}`;
+  let consumer;
 
-  /* ----------------- Publish and subscribe message to stream ---------------- */
-
-    const region = isGlobal ? "c8global" : "c8local";
-    const streamName = `${region}s.${stream}`;
-
-    // Fetching local URL in case the stream is local
-    const localDcDetails = await connection.req(`/datacenter/local`, {
-      method: "GET"
-    });
-
-    const dcUrl = localDcDetails.tags.url;
-
-    url = isGlobal
-      ? url
-      : `api-${dcUrl}`;
-
-    const otpConsumer = await connection.req(`/apid/otp`, {
-      method: "POST"
-    });
-    const otpProducer = await connection.req(`/apid/otp`, {
-      method: "POST"
-    });
-
-    const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${consumerName}?otp=${otpConsumer.otp}`;
-
-    const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
-
-    let consumer;
-    let producer;
-    let producerInterval;
-
-    /* -------------------------- Initialize consumer -------------------------- */
-
-    const initConsumer = () => {
-      return new Promise((resolve) => {
-        consumer = new WebSocket(consumerUrl);
-
-        consumer.onopen = function () {
-          console.log("WebSocket:Consumer is open now for " + streamName);
-          resolve();
-        };
-
-        consumer.onerror = function () {
-          console.log(
-            "Failed to establish WebSocket:Consumer connection for " +
-              streamName
-          );
-        };
-
-        consumer.onclose = function () {
-          console.log("Closed WebSocket:Consumer connection for " + streamName);
-        };
-
-        consumer.onmessage = function (message) {
-          const receivedMsg = message.data && JSON.parse(message.data);
-
-          console.log(
-            `WebSocket:Consumer message received at ${new Date()}`,
-            receivedMsg
-          );
-
-          const ackMsg = { messageId: receivedMsg.messageId };
-          consumer.send(JSON.stringify(ackMsg));
-        };
-      });
+  // Subscribe to stream
+  const initConsumer = async function () {
+    consumer = new WebSocket(consumerUrl);
+    consumer.onopen = function () {
+      console.log("WebSocket:Consumer is open now for " + streamName);
     };
-
-/* -------------------------- Initialize producer -------------------------- */
-
-    const initProducer = () => {
-      producer = new WebSocket(producerUrl);
-
-      producer.onopen = function () {
-        console.log("WebSocket:Producer is open now for " + streamName);
-        producerInterval = setInterval(function () {
-          console.log(`WebSocket:Producer message sent at ${new Date()}`);
-          producer.send(JSON.stringify({ payload: `test` }));
-        }, 10000);
-      };
-
-      producer.onclose = function (e) {
-        console.log("Closed WebSocket:Producer connection for " + streamName);
-        clearInterval(producerInterval);
-      };
-
-      producer.onerror = function (e) {
-        console.log(
-          "Failed to establish WebSocket:Producer connection for " + streamName
-        );
-      };
+    consumer.onerror = function () {
+      console.log(
+        "Failed to establish WebSocket:Consumer connection for " +
+          streamName
+      );
     };
+    consumer.onclose = function () {
+      console.log("Closed WebSocket:Consumer connection for " + streamName);
+    };
+    consumer.onmessage = function (message) {
+      const receivedMsg = message.data;
+      console.log(
+        `WebSocket:Consumer message received at ${new Date()}`,
+        receivedMsg
+      );
+      const { payload, messageId } = JSON.parse(receivedMsg);
+      console.log(Buffer.from(payload, "base64").toString("ascii"));
+      // Send message acknowledgement
+      consumer.send(JSON.stringify({ messageId }));
+    };
+  };
 
-    initConsumer().then(() => {
-      initProducer();
-    });
+  await initConsumer();
+  await new Promise((resolve) => setTimeout(resolve, 1 * 40 * 1000));
+  console.log("CONSUMER CLOSING...");
+  consumer.close();
+}
 
-    await new Promise((resolve) => setTimeout(resolve, 1 * 40 * 1000));
-    consumer.close();
-    console.log("CONSUMER CLOSING...");
-    producer.close();
-    console.log("PRODUCER CLOSING...");
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-    
 run();
 ```
 
