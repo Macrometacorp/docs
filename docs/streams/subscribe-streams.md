@@ -14,14 +14,15 @@ This page explains how to publish messages to a stream in Macrometa.
 You must [Install the Python SDK](../sdks/install-sdks.md) before you can run this code.
 
 ```py
-from operator import concat
+import base64
+import json
 from c8 import C8Client
 
 # Connect to GDN.
 URL = "gdn.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "xxxxxx" # Change this to your API key
-is_local = False # For a global stream pass True and False for local stream
+is_local = False # For a global stream pass False and True for local stream
 demo_stream = "streamQuickstart"
 
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
@@ -43,36 +44,22 @@ for i in range(10):
 You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can run this code.
 
 ```js
-// Connect to GDN.
 const jsc8 = require("jsc8");
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXXX", fabricName: "_system"});
+const client = new jsc8({ url: "https://gdn.paas.macrometa.io", apiKey: "xxxxx", fabricName: "_system" });
 console.log("Authentication done!!...");
-
 const stream = "streamQuickstart";
 
-async function getDCList() {
-  const geo_fabric = "_system"
-  let dcListAll = await client.listUserFabrics();
-  let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
-  return dcListObject.options.dcList.split(",");
-}
-
-(async function() {
-  const dcList = await getDCList();
-  await console.log("dcList: ", dcList);
-  await client.createStream("my-stream", true);
-  
-  //Here the last boolean value tells if the stream is local or global. false means that it is global.
-  const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
+(async function () {
+  // Here the last boolean value tells if the stream is local or global. false means that it is global.
+  const consumer = await client.createStreamReader(stream, "my-subscription", false);
   consumer.on("message", (msg) => {
     const { payload, messageId } = JSON.parse(msg);
-    
+
     // Received message payload
     console.log(Buffer.from(payload, "base64").toString("ascii"));
     // Send message acknowledgement
     consumer.send(JSON.stringify({ messageId }));
   });
-
 })();
 ```
 
