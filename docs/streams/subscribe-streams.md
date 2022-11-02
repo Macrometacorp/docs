@@ -14,8 +14,9 @@ This page explains how to publish messages to a stream in Macrometa.
 You must [Install the Python SDK](../sdks/install-sdks.md) before you can run this code.
 
 ```py
-from operator import concat
 from c8 import C8Client
+import json
+import base64
 
 # Connect to GDN.
 URL = "gdn.paas.macrometa.io"
@@ -46,27 +47,15 @@ You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can ru
 // Connect to GDN.
 const jsc8 = require("jsc8");
 const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXXX", fabricName: "_system"});
-console.log("Authentication done!!...");
 
 const stream = "streamQuickstart";
 
-async function getDCList() {
-  const geo_fabric = "_system"
-  let dcListAll = await client.listUserFabrics();
-  let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
-  return dcListObject.options.dcList.split(",");
-}
-
 (async function() {
-  const dcList = await getDCList();
-  await console.log("dcList: ", dcList);
-  await client.createStream("my-stream", true);
-  
   //Here the last boolean value tells if the stream is local or global. false means that it is global.
-  const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
+  const consumer = await client.createStreamReader(stream, "my-subscription", true);
+  console.log(`Listening to '${stream}' stream.`)
   consumer.on("message", (msg) => {
     const { payload, messageId } = JSON.parse(msg);
-    
     // Received message payload
     console.log(Buffer.from(payload, "base64").toString("ascii"));
     // Send message acknowledgement
