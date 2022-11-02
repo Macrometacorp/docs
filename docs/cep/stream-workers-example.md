@@ -8,8 +8,8 @@ import TabItem from '@theme/TabItem';
 
 Assume the following credentials:
 
-* Tenant name: `nemo@nautilus.com`
-* Password: `xxxxxx`
+- Tenant name: `nemo@nautilus.com`
+- Password: `xxxxxx`
 
 ## SDK Download
 
@@ -92,7 +92,7 @@ client = C8Client(protocol='https', host='gdn.paasmacrometa.io', port=443,
   ```
 
  </TabItem>
-</Tabs> 
+</Tabs>
 
 ## Validate Stream Application
 
@@ -217,8 +217,6 @@ print(client.create_stream_app(data=stream_app_definition))
 
 ## Enable or Disable Stream Application
 
-
-
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
 
@@ -239,15 +237,15 @@ print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
     console.log("--- Deactivating `Sample-Cargo-App`");
     const result = await client.activateStreamApp("Sample-Cargo-App", false);
 ```
+
   </TabItem>
- </Tabs> 
+ </Tabs>
 
 To operate on created applications, you need to create an instance of the stream application.
 
-
 ## Example: Update Stream Application
 
-In this example, we update a stream application to store the input data into itself and another collection called `SampleCargoAppDestTable`. 
+In this example, we update a stream application to store the input data into itself and another collection called `SampleCargoAppDestTable`.
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -379,7 +377,8 @@ print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 
     console.log("--- Updating Stream Application `Sample-Cargo-App`");
     result = await app.updateApplication([], updatedAppDefinition);
-```    
+```
+
   </TabItem>
 </Tabs>
 
@@ -403,7 +402,8 @@ app = client._fabric.stream_app("Sample-Cargo-App")
 q = "select * from SampleCargoAppDestTable limit 2"
 result = app.query(q)
 print(result)
-```    
+```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -413,7 +413,7 @@ print(result)
     const q = "select * from SampleCargoAppDestTable limit 3";
     result = await app.query(q);
     console.log(result);
-```    
+```
 
   </TabItem>  
 </Tabs>
@@ -426,7 +426,8 @@ print(result)
 ```py
 print("--- Deleting Stream Application `Sample-Cargo-App`")
 result = client.delete_stream_app('Sample-Cargo-App')
-```    
+```
+
   </TabItem>
 
   <TabItem value="js" label="Javascript">
@@ -435,6 +436,7 @@ result = client.delete_stream_app('Sample-Cargo-App')
     console.log("--- Deleting stream application `Sample-Cargo-App`");
     result = await client.deleteStreamApp("Sample-Cargo-App");
 ```
+
   </TabItem>
 </Tabs>  
 
@@ -448,7 +450,8 @@ You can try out several Stream Apps which are preloaded and ready to run.
 ```py
 print("--- You can try out several stream applications which are pre-loaded and ready to run")
 print("Samples", client.get_stream_app_samples())
-```    
+```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -458,6 +461,7 @@ print("Samples", client.get_stream_app_samples())
     console.log('Sample Stream Applications');
     console.log(result);
 ```
+
   </TabItem>
 </Tabs>  
 
@@ -526,6 +530,7 @@ print(client.delete_stream_app('Sample-Cargo-App'))
 # Get stream application samples
 print("Samples", client.get_stream_app_samples())
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -792,6 +797,7 @@ async function main () {
 }
 
 main();
-```    
+```
+
   </TabItem>
 </Tabs>
