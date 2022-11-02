@@ -6,7 +6,7 @@ title: Subscribe to Streams
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to publish messages to a stream in Macrometa.
+This page explains how to subscribe to a stream in Macrometa.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
