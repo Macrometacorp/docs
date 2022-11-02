@@ -1,65 +1,19 @@
 ---
 sidebar_position: 10
-title: Stream Workers Example
+title: Getting Started with Stream Workers
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Assume the following credentials:
+This article is an introduction to using stream workers with [Macrometa SDKs](../sdks/index.md).
+## Prerequisites
 
-- Tenant name: `nemo@nautilus.com`
-- Password: `xxxxxx`
+- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
+- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys).
+- Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
-## SDK Download
 
-Download the appropriate SDK for your preferred language.
-
-<Tabs groupId="operating-systems">
-  <TabItem value="js" label="Javascript">
-
-```js
-    With Yarn or NPM
-
-        yarn add jsc8
-        (or)
-        npm install jsc8
-
-    If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
-
-        npm install --global jsc8
-
-    From source,
-
-        git clone https://github.com/macrometacorp/jsc8.git
-        cd jsC8
-        npm install
-        npm run dist
-```
-
-  </TabItem>
-  <TabItem value="py" label="Python">
-
-```py
-    pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
-
-    To install pyC8, simply run
-
-        $ pip3 install pyC8
-
-    or, if you prefer to use conda:
-
-        conda install -c conda-forge pyC8
-
-    or pipenv:
-
-        pipenv install --pre pyC8
-
-    Once the installation process is finished, you can begin developing applications in Python.
-```
-
-  </TabItem>
-</Tabs>
 
 ## Connect to GDN
 
