@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a Subscription from All Streams](https://macrometa.com/docs/api#/operations/DeleteAllSubscriptions) or [Remove a Subscription from a Specific Stream](https://macrometa.com/docs/api#/operations/DeleteSubscription).
+You must [Install the Python SDK](../sdks/install-sdks.md) before you can run this code.
 
 ```py
 from c8 import C8Client
@@ -55,7 +55,7 @@ print("Subscription unsubscribed (removed from all ", type, " streams): ", resp)
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a Subscription from All Streams](https://macrometa.com/docs/api#/operations/DeleteAllSubscriptions) or [Remove a Subscription from a Specific Stream](https://macrometa.com/docs/api#/operations/DeleteSubscription).
+You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can run this code.
 
 ```js
 const jsc8 = require("jsc8");
