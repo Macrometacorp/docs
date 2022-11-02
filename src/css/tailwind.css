@@ -79,9 +79,7 @@
     
     --ifm-global-radius: 0.5rem;
 
-    --ifm-heading-color: var(--color-neutral-800);
-    --ifm-heading-font-family: var(--font-family-base);
-
+    
     --ifm-footer-background-color: var(--color-primary-500);
     --ifm-footer-color: var(--color-neutral-500);
     --ifm-footer-link-color: var(--color-primary-500);
@@ -89,10 +87,15 @@
     --ifm-footer-padding-horizontal: 0;
     --ifm-footer-padding-vertical: 0.5rem;
     --ifm-footer-title-color: var(--color-neutral-700);
-
+    
+    --ifm-heading-color: var(--color-neutral-800);
+    --ifm-heading-font-family: var(--font-family-base);
+    
     --ifm-link-color: var(--color-primary-500);
     --ifm-link-decoration: none;
 
+    --ifm-list-item-margin: 0.5rem;
+    
     --ifm-menu-color: var(--color-neutral-700);
     --ifm-menu-color-background-active: var(--color-primary-500);
     --ifm-menu-color-background-hover: var(--color-primary-100);
@@ -103,6 +106,7 @@
 
     --ifm-pre-background-color: var(--color-neutral-50);
 
+    --ifm-tabs-padding-vertical: 0.75rem;
     --ifm-toc-border-color: var(--docs-color-border);
     --ifm-toc-padding-horizontal: 0.75rem;
 
@@ -580,27 +584,31 @@ html[data-theme='dark'] .sl-text-warning {
 }
 @media (min-width: 640px) {
   .container {
-    max-width: 40rem;
+    /* max-width: 40rem; */
+    max-width: auto;
   }
 }
 @media (min-width: 768px) {
   .container {
-    max-width: 48rem;
+    /* max-width: 48rem; */
+    max-width: auto;
   }
 }
 @media (min-width: 997px) {
   .container {
-    max-width: 60rem;
+    /* max-width: 60rem; */
+    max-width: auto;
   }
 }
 @media (min-width: 1280px) {
   .container {
-    max-width: 68rem;
+    /* max-width: 68rem; */
+    max-width: auto;
   }
 }
 @media (min-width: 1536px) {
   .container {
-    max-width: 72rem;
+    max-width: 80rem;
   }
 }
 
@@ -647,6 +655,10 @@ html[data-theme='dark'] .sl-text-warning {
 
 .markdown > p {
   margin-bottom: 1rem;
+}
+
+.markdown li > p {
+  margin: 0;
 }
 
 .markdown table {
@@ -744,6 +756,28 @@ article img {
 
 .theme-doc-footer {
   margin: 3rem 0 1.5rem 0 !important;
+}
+
+/*
+  Tabs
+*/
+
+.tabs {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.tabs__item {
+  border-bottom: 1px solid var(--docs-color-border);
+  border-radius: 0.25rem 0.25rem 0 0;
+  padding-bottom: 13px;
+  padding-top: 14px;
+}
+
+.tabs__item--active {
+  border-bottom-color: var(--ifm-tabs-color-active-border);
+  border-bottom-width: 2px;
+  padding-bottom: 0.75rem;
 }
 
 /*
