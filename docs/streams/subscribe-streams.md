@@ -75,13 +75,13 @@ import requests
 from websocket import create_connection
 
 # Constants
-URL = "api-smoke3.eng.macrometa.io"
+URL = "api-gdn.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 STREAM_NAME = "streamQuickstart"
-API_KEY = "TAbccjwo6Tb2oNdQel2Gm1w.id5.JB2KEqlrcaa8MGfp6B3rCGhb7qXwGJjc9y2yocdjlwELdaOilyTy0EHDdpgDBQMjd27bc8" # Use your API key here
+API_KEY = "XXXXX" # Use your API key here
 AUTH_TOKEN = f"apikey {API_KEY}" # Append the key word for the API key
-TENANT_NAME = "TAbccjwo6Tb2oNdQel2Gm1w" # Add your tenant name here
+TENANT_NAME = "XXXXX" # Add your tenant name here
 CONSUMER_NAME = "testconsumer"
 IS_GLOBAL = True # For a global stream pass True and False for local stream
 
