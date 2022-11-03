@@ -31,7 +31,7 @@ However, for production apps, or any account that is not on the Play tier, you m
 
 To find your unique API URL:
 
-1. In your Macrometa account, switch to the geofabric that you want to run API calls against. This is the fabric that contains the collections, streams, or other entities that are the target of your API calls.
+1. In your Macrometa account, switch to the GeoFabric that you want to run API calls against. This is the fabric that contains the collections, streams, or other entities that are the target of your API calls.
 2. Click **API Reference**.
 
    The base URL is shown at the top of the screen.
