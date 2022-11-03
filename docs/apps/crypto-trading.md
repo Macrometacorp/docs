@@ -9,21 +9,20 @@ title: Crypto Trading Bot
 |----------- |----------|----|-----------|-----------|
 |  `demo@macrometa.io` | `_system` | `crypto-trading-app` | [**Crypto Trading GUI**](https://macrometacorp.github.io/tutorial-cryptotrading/) |[github](https://github.com/Macrometacorp/tutorial-cryptotrading)|
 
-Read our [Blog Post](https://www.macrometa.com/blog/cryptocurrency-trading-building-a-multi-exchange-global-trading-bot) about exchange arbitrage and how the app works.
+Read our blog post [How To Build A Crypto Arbitrage Trading Bot](https://www.macrometa.com/blog/cryptocurrency-trading-building-a-multi-exchange-global-trading-bot) to learn more about exchange arbitrage and how the app works.
 
 ## Configure the Crypto App
 
 1. Log in to the [Macrometa Console](https://auth.paas.macrometa.io/) 
-2. Go to the Collections tab and create a new `Doc` collection named `trades` with `collection stream enabled` checked.
+2. Go to the Collections tab and create a new document collection named `trades` with `collection stream enabled` checked. For more information about creating document collections, refer to [Create a Document Collection](https://macrometa.com/docs/collections/documents/create-document-store).
 3. Click **Stream Workers**.
 4. Click **New Stream Worker** named `Crypto-Trading-App`.
 5. Copy and past the [code example](#crypto-app-stream-worker-code) into the editor.
-6. Click **Save**. When you do we validate your code.
-7. After you click save you will be prompted to select one or more locations to deploy your Stream Worker. Choose the location that is closest to where you are located, and click **Save**.
+6. Click **Save**. Macrometa validates your code.
+7. Select one or more locations to deploy your stream worker. Choose the location that is closest to where you are located, and then click **Save**.
 8. Click **Publish**.
 
-Once you the publish the Stream Worker, go over to our [live frontend](https://macrometacorp.github.io/tutorial-cryptotrading/) and use your Macrometa account credentials to log into your account. Select the location you deployed the Stream Worker to, and you will see the app come to life!
-
+After you the publish the stream worker, navigate to the [live frontend](https://macrometacorp.github.io/tutorial-cryptotrading/) and use your Macrometa account credentials to log in to your account. Select the location you deployed the stream worker to, and you will see the app come to life!
 ## Crypto App Stream Worker Code
 
 ```js
