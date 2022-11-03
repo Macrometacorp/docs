@@ -44,7 +44,7 @@ persistent://tenant/geofabric/stream-name
 |`geofabric`          | The administrative unit of the stream, which acts as a grouping and geo-fencing mechanism for related streams. Stream configuration is performed at the geofabric level. Each tenant can have multiple geofabrics. |
 |`stream-name`              | The final part of the name. Stream names are freeform. |
 
-## Streams and Geofabrics
+## Streams and GeoFabrics
 
 A geofabric is a geo-fenced grouping within a tenant. A tenant can create multiple geofabrics. For more information about geofabrics, refer to [Geofabrics](../geofabrics/index.md).
 
