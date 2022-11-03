@@ -37,4 +37,4 @@ This code of conduct governs Macrometa Corporation’s community events and disc
 - If you are the subject of, or witness to any violations of this Code of Conduct, please contact us via email at product@macrometa.com.
 - If violations occur, organizers will take any action they deem appropriate for the infraction, up to and including expulsion.
 
-Portions of this document were derived from the [Slack API. Code of Conduct]([https://api.slack.com/community/code-of-conduct](https://api.slack.com/community/code-of-conduct)) and the [Django Project Code of Conduct]([https://www.djangoproject.com/conduct/](https://www.djangoproject.com/conduct/)).
+Portions of this document were derived from the [Slack API Code of Conduct](https://api.slack.com/community/code-of-conduct) and the [Django Project Code of Conduct](https://www.djangoproject.com/conduct/).
