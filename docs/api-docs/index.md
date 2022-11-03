@@ -38,6 +38,6 @@ To find your unique API URL:
 
 ![API URL](/img/api-url.png)
 
-This is the same as the Global URL shown at the top of every geofabric page in the Macrometa web console with `api-` prepended.
+This is the same as the Global URL shown at the top of every GeoFabric page in the Macrometa web console with `api-` prepended.
 
 You can also use the CLI command [gdnsl fabric describe](../cli/fabrics-cli.md#gdnsl-fabric-describe) or the API command to get [Information about a GeoFabric](https://macrometa.com/docs/api#/operations/InformationOfTheGeo-fabric) to find your global or regional fabric URLs.
