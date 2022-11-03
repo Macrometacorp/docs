@@ -3,18 +3,7 @@ sidebar_position: 1
 title: Reference
 ---
 
-Macrometa GDN allows you to integrate streaming data and take action based on streaming data. Typically the stream processing use cases involve collecting, analyzing and, integrate or acting on data generated during business activities by various sources i.e.,
- 
-| Stage | Description |
-|-------|-------------|
-| **Collect** | Receive or capture data from various data sources. |
-| **Analyze** | Analyze data to identify interesting patterns and to extract information. |
-| **Act** | Take actions based on the results and findings done via processing the data. The action can be executing some random code, calling an external service, or triggering a complex integration. |
-| **Integrate** | Make processed data available for consumers to consume globally in right format with very low latencies. |
-
-:::note
-Stream Workers is currently an Enterprise only feature. We will be rolling it out to all users in Q1 of 2022. Contact support@macrometa.com if you have any questions.
-:::
+Macrometa GDN allows you to integrate streaming data and take action based on streaming data. Typically the stream processing use cases involve collecting, analyzing and, integrate or acting on data generated during business activities by various sources.
 
 ## Architecture
 
@@ -24,9 +13,9 @@ The architecture of Macrometa stream processing engine fits this natural flow. F
 
 The stream processing engine receives data event-by-event and processes them in real-time to produce meaningful information i.e.,
 
-* Accept event inputs from many different types of sources.
-* Process them to transform, enrich, and generate insights.
-* Publish them to multiple types of sinks.
+- Accept event inputs from many different types of sources.
+- Process them to transform, enrich, and generate insights.
+- Publish them to multiple types of sinks.
 
 To use stream processor, you need to write the processing logic as a stream application using streaming SQL language which is discussed in the [Stream Query Guide](../query-guide/index.md).
 
