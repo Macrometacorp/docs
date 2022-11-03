@@ -13,7 +13,7 @@ We recommend familiarizing yourself with JSON and the GDN API before continuing.
 
 Create a search view by making a call to this GDN API endpoint:
 
-`https://api-gdn.paas.macrometa.io/_fabric/{your-fabric-name}/_api/search/view`
+`https://api-play.paas.macrometa.io/_fabric/{your-fabric-name}/_api/search/view`
 
 ## Create JSON Object
 
@@ -89,7 +89,7 @@ The following example shows a complete cURL request to create the nested search 
 
 ```cURL
 curl -X 'POST' \
-  'https://api-gdn.paas.macrometa.io/_fabric/<your-fabric-name>/_api/search/view' \
+  'https://api-play.paas.macrometa.io/_fabric/<your-fabric-name>/_api/search/view' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: bearer <JWT_TOKEN>' \

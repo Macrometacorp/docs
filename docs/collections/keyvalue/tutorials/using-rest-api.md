@@ -28,7 +28,7 @@ import json
 
 # Constants
 
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = "https://{}".format(URL)
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
@@ -115,7 +115,7 @@ body: body ? JSON.stringify(body) : undefined,
 }
 const EMAIL = "nemo@nautilus.com";
 const PASSWORD = "xxxxxx";
-const HTTP_URL = "https://api-gdn.paas.macrometa.io";
+const HTTP_URL = "https://api-play.paas.macrometa.io";
 
 const COLLECTION_NAME = "students";
 
@@ -470,7 +470,7 @@ import json
 
 # Constants
 
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
@@ -653,7 +653,7 @@ class APIRequest {
   }
   const EMAIL = "nemo@nautilus.com";
   const PASSWORD = "xxxxxx";
-  const HTTP_URL = "https://api-gdn.paas.macrometa.io";
+  const HTTP_URL = "https://api-play.paas.macrometa.io";
   
   const COLLECTION_NAME = "students";
   

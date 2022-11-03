@@ -55,7 +55,7 @@ For example:
 import requests
 
 # Set constants
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 COLLECTION_NAME = 'testcollection'
 EMAIL = "nemo@nautilus.com"
@@ -225,7 +225,7 @@ class APIRequest {
 }
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
-const federationUrl = "https://api-gdn.paas.macrometa.io";
+const federationUrl = "https://api-play.paas.macrometa.io";
 
 const collectionName = "api_tutorial_documents";
 
@@ -338,7 +338,7 @@ import json
 import requests
 
 # Constants
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
@@ -455,7 +455,7 @@ class APIRequest {
 }
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
-const federationUrl = "https://api-gdn.paas.macrometa.io";
+const federationUrl = "https://api-play.paas.macrometa.io";
 
 const insertQuery = {
   query:
@@ -594,7 +594,7 @@ from websocket import create_connection
 import six
 
 # Constants
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
@@ -730,7 +730,7 @@ class APIRequest {
 
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
-const federationName = "api-gdn.paas.macrometa.io";
+const federationName = "api-play.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
 
 const stream = "api_tutorial_streams";
@@ -929,7 +929,7 @@ import time
 import requests
 
 # Set constants
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
@@ -1153,7 +1153,7 @@ class APIRequest {
 
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
-const federationUrl = "https://api-gdn.paas.macrometa.io";
+const federationUrl = "https://api-play.paas.macrometa.io";
 const collectionName = "api_query_tutorial";
 
 const readQueryName = "read";
@@ -1378,7 +1378,7 @@ import requests
 
 # Constants
 
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
@@ -1615,7 +1615,7 @@ class APIRequest {
 }
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
-const federationUrl = "https://api-gdn.paas.macrometa.io";
+const federationUrl = "https://api-play.paas.macrometa.io";
 const teacherCollection = "teachers";
 const lecturesCollection = "lectures";
 const teachEdge = "teach";
@@ -1865,7 +1865,7 @@ import six
 
 # Set constants
 
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
@@ -2066,7 +2066,7 @@ class APIRequest {
 }
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
-const federationName = "api-gdn.paas.macrometa.io";
+const federationName = "api-play.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
 
 const isGlobal = false;

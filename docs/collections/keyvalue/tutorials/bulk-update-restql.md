@@ -119,7 +119,7 @@ class APIRequest {
 
 const EMAIL = "nemo@nautilus.com";
 const PASSWORD = "xxxxxx";
-const HTTP_URL = "https://api-gdn.paas.macrometa.io";
+const HTTP_URL = "https://api-play.paas.macrometa.io";
 const FABRIC_NAME = "_system";
 const COLLECTION_NAME = "superhero";
 

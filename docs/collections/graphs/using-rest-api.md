@@ -62,7 +62,7 @@ import requests
 
 # Constants
 
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 GEO_FABRIC = "_system"
 API_KEY = "my IP key" # Change to your API key

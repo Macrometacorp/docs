@@ -38,7 +38,7 @@ import time
 from websocket import create_connection
 
 # Constants  
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
@@ -230,7 +230,7 @@ class APIRequest {
 }
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
-const federationName = "api-gdn.paas.macrometa.io";
+const federationName = "api-play.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
 
 const isGlobal = false;

@@ -48,7 +48,7 @@ import requests
 
 # Constants
 
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 API_KEY = "XXXXX" # To be replaced by your apikey
@@ -103,7 +103,7 @@ class APIRequest {
   }
 }
 ​
-const federationName = "api-gdn.paas.macrometa.io";
+const federationName = "api-play.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
 const fabric = "_system";
 const apiKey = "XXXXX";

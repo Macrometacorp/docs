@@ -84,7 +84,7 @@ Use our interactive API reference with code generation in 18 programming languag
 import requests
 
 # Constants
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 STREAM_NAME = "streamQuickstart"
@@ -163,7 +163,7 @@ class APIRequest {
 }
 
 const apiKey = "XXXXX"; // Use your apikey here
-const federationName = "api-gdn.paas.macrometa.io";
+const federationName = "api-play.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
 
 const stream = "streamQuickstart";
