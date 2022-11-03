@@ -14,18 +14,13 @@ Read our [Blog Post](https://www.macrometa.com/blog/cryptocurrency-trading-build
 ## Configure the Crypto App
 
 1. Log in to the [Macrometa Console](https://auth.paas.macrometa.io/) 
-
 2. Go to the Collections tab and create a new `Doc` collection named `trades` with `collection stream enabled` checked.
-
 3. Click **Stream Workers**.
-
 4. Click **New Stream Worker** named `Crypto-Trading-App`.
-
-5. Copy and past the code example into the editor.
-
-6. Click **Save** and enable on location that is closest to where you are located around the globe.
-
-7. Click **Publish**.
+5. Copy and past the [code example](#crypto-app-stream-worker-code) into the editor.
+6. Click **Save**. When you do we validate your code.
+7. After you click save you will be prompted to select one or more locations to deploy your Stream Worker. Choose the location that is closest to where you are located, and click **Save**.
+8. Click **Publish**.
 
 Once you the publish the Stream Worker, go over to our [live frontend](https://macrometacorp.github.io/tutorial-cryptotrading/) and use your Macrometa account credentials to log into your account. Select the location you deployed the Stream Worker to, and you will see the app come to life!
 
@@ -40,17 +35,10 @@ Once you the publish the Stream Worker, go over to our [live frontend](https://m
 CREATE TRIGGER CryptoTraderEventsTrigger WITH ( interval = 5 sec );
 
 /*
-This app reads every 5 seconds the close prices FROM Coinbase, Bitstamp and Bitflyer exchanges APIs.
+This app reads every 5 seconds the close prices from Coinbase, Bitstamp and Bitflyer exchanges APIs.
 Then it calculates the average prices within 10 events window and creates a "BUY/SELL" trading strategy.
 The close and average prices are stored in CryptoTraderQuotesAvgXXX streams.
-The strategy is kept in trades collection.
-*/
-
-/**
-Test the Stream Application:
-    1. Publish the app
-       
-    2. Start the GUI against the same federation
+The strategy is kept in the trades collection.
 */
 
 -- Streams for the HTTP call requests
