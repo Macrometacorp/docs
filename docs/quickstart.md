@@ -7,14 +7,11 @@ Macrometa Global Data Network (GDN) is a geo-distributed, real-time, coordinatio
 
 Get started with Macrometa by creating a simple address book. This tutorial is Macrometa's version of "Hello, world!" It is simplistic by design and demonstrates how you can quickly use our stateful serverless backend to run a globally distributed database with local read-write latencies around 50ms.
 
-## Step 1: Create a Macrometa account or log in
+## Prerequisites
 
-You must have a Macrometa account to complete this quickstart. If you already have a Macrometa account, then go to [https://www.macrometa.com/](https://www.macrometa.com/) and log in.
+- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
 
-1. If you don't already have a Macrometa account, go to [https://www.macrometa.com/](https://www.macrometa.com/) and click **Get Started**.
-1. Enter your **Email Address** and **Password**, then click **Sign up**.
-
-## Step 2: Create a collection
+## Step 1: Create a collection
 
 A _collection_ is a group of documents with a unique name and identifier. For the address book, you will create a document collection that contains names and addresses.
 
@@ -30,7 +27,7 @@ Macrometa distributes this collection to every location in the global fabrics. I
 
 Our collection is now accessible worldwide! However, it's empty. Let's fix that.
 
-## Step 3: Add data to your new collection with a query
+## Step 2: Add data to your new collection with a query
 
 There are several ways to add data to a collection, including importing CSV or JSON files. For this quickstart, we'll use a query to insert records.
 
@@ -54,7 +51,7 @@ There are several ways to add data to a collection, including importing CSV or J
 4. (Optional) Click **Query Info** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
 5. Click **Run Query** two more times. Every click adds the six records again so the collection has more records to work with. You can keep clicking if you want more records or change values in the code block if you want different records.
 
-## Step 4: View the documents in the collection
+## Step 3: View the documents in the collection
 
 Return to the collection and see what the query did.
 
@@ -71,7 +68,7 @@ Macrometa displays a list of keys and content for each record in the collection.
 
 When you are done experimenting with records, continue to the next step.
 
-## Step 5: Query the documents in the collection
+## Step 4: Query the documents in the collection
 
 Now, let's query the data you just added to your collection.
 
@@ -87,7 +84,7 @@ Now, let's query the data you just added to your collection.
 
 Macrometa returns all records in the collection. You can view it as a **Table** or **JSON**. You can also click **Query Info** to see detailed performance metrics.
 
-## Step 6: Save the query as an API endpoint
+## Step 5: Save the query as an API endpoint
 
 Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
 
@@ -100,7 +97,7 @@ Macrometa displays a `curl` command you can use to access this endpoint from any
 
 ![Create a Query Worker](/img/quickstart/create-query-worker.png)
 
-## Step 7: Finish the API
+## Step 6: Finish the API
 
 In the previous step, you created the `getAddresses` Query Worker, which is basically the READ in a CRUD API (Create, Read, Update, Delete). Build the rest of the API by creating a Query Worker for each of the following queries.
 
