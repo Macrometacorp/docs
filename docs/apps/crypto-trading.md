@@ -7,7 +7,7 @@ title: Crypto Trading Bot
 
 | **Tenant** | **Fabric** | **Stream App** | **GUI** | **Source Code**|
 |----------- |----------|----|-----------|-----------|
-|  `demo@macrometa.io` | `_system` | `crypto-trading-app` | [**Crypto Trading GUI**](https://macrometacorp.github.io/tutorial-cryptotrading/) |[github](https://github.com/Macrometacorp/tutorial-cryptotrading)|
+|  `demo@macrometa.io` | `_system` | `Crypto-Trading-App` | [**Crypto Trading GUI**](https://macrometacorp.github.io/tutorial-cryptotrading/) |[github](https://github.com/Macrometacorp/tutorial-cryptotrading)|
 
 Read our blog post [How To Build A Crypto Arbitrage Trading Bot](https://www.macrometa.com/blog/cryptocurrency-trading-building-a-multi-exchange-global-trading-bot) to learn more about exchange arbitrage and how the app works.
 
