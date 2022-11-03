@@ -19,7 +19,7 @@ const redirectsPlugin = [
       },
       {
         from: '/essentials/geofabrics',
-        to: '/geofabrics/index'
+        to: '/geofabrics/'
       },
       {
         from: '/essentials/troubleshooting',
