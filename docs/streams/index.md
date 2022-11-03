@@ -46,7 +46,7 @@ persistent://tenant/geofabric/stream-name
 
 ## Streams and GeoFabrics
 
-A geofabric is a geo-fenced grouping within a tenant. A tenant can create multiple geofabrics. For more information about geofabrics, refer to [Geofabrics](../geofabrics/index.md).
+A GeoFabric is a geo-fenced grouping within a tenant. A tenant can create multiple GeoFabrics. For more information about GeoFabrics, refer to [GeoFabrics](../geofabrics/index.md).
 
 For example, a tenant with different applications can create a separate geofabric for each application. A geofabric allows the application to create and manage a hierarchy of streams. The stream `my-tenant/app1` is a geofabric for the application `app1` for `my-tenant`. You can create any number of `streams` under the geofabric.
 
