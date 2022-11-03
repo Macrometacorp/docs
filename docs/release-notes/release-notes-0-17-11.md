@@ -49,6 +49,16 @@ This release adds support for some Kafka clients in the GDN. For a list of suppo
 
 The following features updates are included in this release.
 
+### Migration to Play - Breaking Change
+
+The previous generic global URL `api-gdn.paas.macrometa.io` is no longer valid.
+
+Customers with Macrometa Play tier accounts _can_ use `api-play.paas.macrometa.io` as a substitute, but we do not recommend it.
+
+Instead, we recommend that you use an account-specific global or regional URL, which you can find in the API Reference in the Macrometa web console or on your GeoFabrics page. Any endpoint listed on the GeoFabric will accept API calls if you prepend `api-` to it.
+
+For more information, refer to [APIs](../api-docs/index.md)
+
 ### Stream Worker Prefixes
 
 You can now prepend a stream worker name to the aggregation tables that it creates. For example, if the stream worker name is `SampleAggregationApp` and the aggregation is `TradeAggregation,` then it will create tables like `SampleAggregationApp-TradeAggregation_SECONDS`. Previously, it was just `TradeAggregation_SECONDS`.
