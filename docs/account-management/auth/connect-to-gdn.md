@@ -26,20 +26,20 @@ const password = "xxxxxx";
 const fabric = "_system";
 
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or create an authenticated instance with a JWT token.
 const clientUsingJwt = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   token: "XXXX",
   fabricName: fabric
 });
 
 // Or create an authenticated instance with an API key.
 const clientUsingApiKey = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   apiKey: "XXXX",
   fabricName: fabric
 });
@@ -64,7 +64,7 @@ main()
 from c8 import C8Client
 
 # Define constants
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system" # Change this if you need to log in to a fabric other than _system.
 API_KEY = "my API key" # Change this to your API key.
 

@@ -53,7 +53,7 @@ We can create a cursor to receive the results from our request. A cursor details
 ```js
 const jsc8 = require("jsc8");
 client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   apiKey: "[apiKey]",
   fabricName: "_system",
 });
@@ -88,7 +88,7 @@ The Collection Export example should be used when retrieving the entire collecti
 ```js
 const jsc8 = require("jsc8");
 client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   apiKey: "[apiKey]",
   fabricName: "_system",
 });

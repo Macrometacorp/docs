@@ -229,7 +229,7 @@ run();
 import time
 from c8 import C8Client
 
-HTTP_URL = "gdn.paas.macrometa.io"
+HTTP_URL = "play.paas.macrometa.io"
 GUEST_MAIL = "nemo@nautilus.com"
 GUEST_PASSWORD = "xxxxxx"
 GEO_FABRIC = "_system"
@@ -351,9 +351,9 @@ if __name__ == "__main__":
 const jsc8 = require('jsc8');
 
 // Create an authenticated instance with a JSON Web Token or API key
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-const client = new jsc8("https://gdn.paas.macrometa.io");
+// const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+// const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+const client = new jsc8("https://play.paas.macrometa.io");
 
 //Variables
 const collectionName = "superhero" + Math.floor(1000 + Math.random() * 9000).toString();

@@ -40,13 +40,13 @@ const streamName = "testStream";
 const keyid = "id1";
 
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or create an authenticated instance with a token or API key.
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: fabric});
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: fabric});
+// const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: fabric});
+// const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: fabric});
 // console.log("Authentication done!");
 
 function messageHandler (error) {
@@ -203,7 +203,7 @@ main()
 ```py
 from c8 import C8Client
 # Create a connection to gdn
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 

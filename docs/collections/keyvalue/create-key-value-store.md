@@ -37,7 +37,7 @@ This code example shows how to create a collection for saving the key-value pair
   collection_name = "students"
 
   # Create a connection to gdn
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
 
   # Create a new collection if it does not exist

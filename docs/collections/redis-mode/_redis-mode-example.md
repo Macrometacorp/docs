@@ -70,7 +70,7 @@ The first step in using GDN is to establish a connection to a region. When this 
 ```py
 from c8 import C8Client
 
-HOST = 'gdn.paas.macrometa.io'
+HOST = 'play.paas.macrometa.io'
 EMAIL ='nemo@nautilus.com'
 PASSWORD = 'xxxxx'
 GEOFABRIC = '_system'
@@ -90,15 +90,15 @@ const jsc8 = require("jsc8");
 const fabric = "_system";
 
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or use one of the following authentication methods and remove the commenting.
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 ```
 
 </TabItem>
@@ -115,7 +115,7 @@ To get details of fabric,
 ```py
 from c8 import C8Client
 
-HOST = 'gdn.paas.macrometa.io'
+HOST = 'play.paas.macrometa.io'
 EMAIL = 'nemo@nautilus.com'
 PASSWORD = 'xxxxx'
 GEOFABRIC = '_system'
@@ -141,15 +141,15 @@ const email = "nemo@nautilus.com";
 const password = "xxxxxx";
 const fabric = "_system";
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or use one of the following authentication methods and remove the commenting.
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
 function messageHandler (error) {
   const message = {
@@ -192,7 +192,7 @@ The below example shows the steps.
 ```py
 from c8 import C8Client
 
-HOST = 'gdn.paas.macrometa.io'
+HOST = 'play.paas.macrometa.io'
 EMAIL = 'nemo@nautilus.com'
 PASSWORD = 'xxxxx'
 GEOFABRIC = '_system'
@@ -221,15 +221,15 @@ const password = "xxxxxx";
 const fabric = "_system";
 const collectionName = "employees";
 const client = new jsC8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or use one of the following authentication methods and remove the commenting.
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
 function messageHandler (error) {
   const message = {
@@ -282,7 +282,7 @@ Let's add a `hash_index` called emails to our collection employees. Please refer
 ```py
 from c8 import C8Client
 
-HOST = 'gdn.paas.macrometa.io'
+HOST = 'play.paas.macrometa.io'
 EMAIL = 'nemo@nautilus.com'
 PASSWORD = 'xxxxx'
 GEOFABRIC = '_system'
@@ -311,15 +311,15 @@ const password = "xxxxxx";
 const fabric = "_system";
 const collectionName = "employees";
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or use one of the following authentication methods and remove the commenting.
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
 function messageHandler (error) {
   const message = {
@@ -370,7 +370,7 @@ Let's insert documents to the employees collection as shown below.
 ```py
 from c8 import C8Client
 
-HOST = 'gdn.paas.macrometa.io'
+HOST = 'play.paas.macrometa.io'
 EMAIL = 'nemo@nautilus.com'
 PASSWORD = 'xxxxx'
 GEOFABRIC = '_system'
@@ -404,15 +404,15 @@ const password = "xxxxxx";
 const fabric = "_system";
 const collectionName = "employees";
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or use one of the following authentication methods and remove the commenting.
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
 // Variables
 const docJean = {
@@ -490,7 +490,7 @@ The query `FOR employee IN employees RETURN employee` is equivalent to SQL's SEL
 ```py
 from c8 import C8Client
 
-HOST = 'gdn.paas.macrometa.io'
+HOST = 'play.paas.macrometa.io'
 EMAIL = 'nemo@nautilus.com'
 PASSWORD = 'xxxxx'
 GEOFABRIC = '_system'
@@ -517,15 +517,15 @@ const password = "xxxxxx";
 const fabric = "_system";
 const query = "FOR employee IN employees RETURN employee";
 const client = new jsC8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or use one of the following authentication methods and remove the commenting.
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
 function messageHandler (error) {
   const message = {
@@ -569,7 +569,7 @@ Enable the 'Stream' parameter within the collection to get real-time updates.
 ```py
 from c8 import C8Client
 
-HOST = 'gdn.paas.macrometa.io'
+HOST = 'play.paas.macrometa.io'
 EMAIL = 'nemo@nautilus.com'
 PASSWORD = 'xxxxx'
 GEOFABRIC = '_system'
@@ -597,15 +597,15 @@ const password = "xxxxxx";
 const fabric = "_system";
 const collectionName = "employees";
 const client = new jsC8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric,
 });
 
 // Or use one of the following authentication methods and remove the commenting.
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
 function messageHandler(error) {
   const message = {
@@ -658,7 +658,7 @@ Query as API (aka RESTQL) enables developers to quickly convert saved C8QL queri
 import time
 from c8 import C8Client
 
-HTTP_URL = "gdn.paas.macrometa.io"
+HTTP_URL = "play.paas.macrometa.io"
 GUEST_MAIL = "nemo@nautilus.com"
 GUEST_PASSWORD = "xxxxxx"
 GEO_FABRIC = "_system"
@@ -746,15 +746,15 @@ const email = "nemo@nautilus.com";
 const password = "xxxxxx";
 const fabric = "_system";
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or use one of the following authentication methods and remove the commenting.
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 
 function messageHandler (error) {
   const message = {

@@ -16,7 +16,7 @@ A Macrometa GDN tenant account and credentials.
 
 ## API Browser
 
-Your main tool for using REST APIs is the API reference in the [GDN](https://gdn.paas.macrometa.io) web browser interface. Use the built-in API reference to run various calls and view their input and output.
+Your main tool for using REST APIs is the API reference in the [GDN](https://play.paas.macrometa.io) web browser interface. Use the built-in API reference to run various calls and view their input and output.
 
 ![GDN API Browser](/img/gdn-api-browser.png)
 

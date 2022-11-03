@@ -105,7 +105,7 @@ const fabric = "_system";
 const query = "SELECT * FROM categories";
 
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
@@ -136,7 +136,7 @@ from c8 import C8Client
 # Authentication parameters
 EMAIL = 'nemo@nautilus.com'
 PASSWORD = 'xxxxx'
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 
 # SQL Query
 QUERY = 'SELECT * FROM categories'

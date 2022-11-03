@@ -50,7 +50,7 @@ The example below shows how to use Python or JavaScript to insert documents into
 
 ```py
   # Simple Approach
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                           email='nemo@nautilus.com', password='xxxxx',
                           geofabric='_system')
   client.insert_document(collection_name='employees', document={'_key':'Jean', 'firstname': 'Jean', 'lastname':'Picard', 'email':'jean.picard@macrometa.io'})
@@ -71,13 +71,13 @@ The example below shows how to use Python or JavaScript to insert documents into
   const jsc8 = require("jsc8");
 
 // Constants - DB
-const globalUrl = "https://gdn.paas.macrometa.io";
+const globalUrl = "https://play.paas.macrometa.io";
 const email = "nemo@nautilus.com";
 const password = "xxxxx";
 
   // Create an authenticated instance with a token or API key.
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+  // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+  // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
   // await console.log("Authentication done!!...");
 
   // Or use Email & Password to Authenticate client instance

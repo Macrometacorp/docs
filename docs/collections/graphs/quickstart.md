@@ -40,13 +40,13 @@ const jsc8 = require("jsc8");
 
 // Choose one of the following methods to access the GDN. API key is recommended.
 // API key
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
 
 // JSON Web Token
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+// const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
 
 // Or use email and password to authenticate client instance
-// const client = new jsc8("https://gdn.paas.macrometa.io");
+// const client = new jsc8("https://play.paas.macrometa.io");
 // Replace values with your email and password.
 // await client.login("nemo@nautilus.com", "xxxxxx"); 
 ```
@@ -65,7 +65,7 @@ from c8 import C8Client
 warnings.filterwarnings("ignore")
 
 # Define constants
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
 
@@ -77,7 +77,7 @@ print("--- Connecting to GDN")
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
 
 # Authenticate with JWT
-# client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token=<your token>)
+# client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, token=<your token>)
 ```
 
 </TabItem>
@@ -95,7 +95,7 @@ To get details of fabric,
 
     EMAIL = 'nemo@nautilus.com'
     PASSWORD = 'xxxxx'
-    HOST = 'gdn.paas.macrometa.io'
+    HOST = 'play.paas.macrometa.io'
     GEO_FABRIC = '_system'
 
     print("--- Connecting to C8")
@@ -116,12 +116,12 @@ To get details of fabric,
     const jsc8 = require("jsc8");
 
     // Crete a authenticated instance with Token / Apikey
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
     // Or use Email & Password to Authenticate client instance
-    const client = new jsc8("https://gdn.paas.macrometa.io");
+    const client = new jsc8("https://play.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
 
@@ -156,7 +156,7 @@ The below example shows the steps.
 
     EMAIL = 'nemo@nautilus.com'
     PASSWORD = 'xxxxx'
-    HOST = 'gdn.paas.macrometa.io'
+    HOST = 'play.paas.macrometa.io'
     GEO_FABRIC = '_system'
 
     print("--- Connecting to C8")
@@ -175,12 +175,12 @@ The below example shows the steps.
     const jsc8 = require("jsc8");
 
     // Crete a authenticated instance with Token / Apikey
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
     // Or use Email and Password to Authenticate client instance
-    const client = new jsc8("https://gdn.paas.macrometa.io");
+    const client = new jsc8("https://play.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
 
@@ -220,7 +220,7 @@ An **edge collection** contains edge documents and shares its namespace with all
 
     EMAIL = 'nemo@nautilus.com'
     PASSWORD = 'xxxxx'
-    HOST = 'gdn.paas.macrometa.io'
+    HOST = 'play.paas.macrometa.io'
     GEO_FABRIC = '_system'
 
     print("--- Connecting to C8")
@@ -242,12 +242,12 @@ An **edge collection** contains edge documents and shares its namespace with all
     const jsc8 = require("jsc8");
 
     // Crete a authenticated instance with Token / Apikey
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
     // Or use Email & Password to Authenticate client instance
-    const client = new jsc8("https://gdn.paas.macrometa.io");
+    const client = new jsc8("https://play.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
 
@@ -283,7 +283,7 @@ Let's insert documents to the employees collection as shown below.
 
     EMAIL = 'nemo@nautilus.com'
     PASSWORD = 'xxxxx'
-    HOST = 'gdn.paas.macrometa.io'
+    HOST = 'play.paas.macrometa.io'
     GEO_FABRIC = '_system'
 
     print("--- Connecting to C8")
@@ -311,12 +311,12 @@ Let's insert documents to the employees collection as shown below.
     const jsc8 = require("jsc8");
 
     // Crete a authenticated instance with Token / Apikey
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
     // Or use Email and Password to Authenticate client instance
-    const client = new jsc8("https://gdn.paas.macrometa.io");
+    const client = new jsc8("https://play.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
 
@@ -349,7 +349,7 @@ A graph consists of vertices and edges. Vertices are stored as documents in vert
 
     EMAIL = 'nemo@nautilus.com'
     PASSWORD = 'xxxxx'
-    HOST = 'gdn.paas.macrometa.io'
+    HOST = 'play.paas.macrometa.io'
     GEO_FABRIC = '_system'
 
     print("--- Connecting to C8")
@@ -375,12 +375,12 @@ A graph consists of vertices and edges. Vertices are stored as documents in vert
     const jsc8 = require("jsc8");
 
     // Crete a authenticated instance with Token / Apikey
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
     // Or use Email and Password to Authenticate client instance
-    const client = new jsc8("https://gdn.paas.macrometa.io");
+    const client = new jsc8("https://play.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
 
@@ -412,7 +412,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     import pprint
 
     # Variables - Queries
-    GLOBAL_URL = "gdn.paas.macrometa.io"
+    GLOBAL_URL = "play.paas.macrometa.io"
     EMAIL = "nemo@nautilus.com"
     PASSWORD = "xxxxxx"
     GEO_FABRIC = "_system"
@@ -608,15 +608,15 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     const jsc8 = require('jsc8');
 
     // Variables - DB
-    const global_url = "https://gdn.paas.macrometa.io";
+    const global_url = "https://play.paas.macrometa.io";
 
     // Crete a authenticated instance with Token / Apikey
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
     // Or use Email and Password to Authenticate client instance
-    const client = new jsc8("https://gdn.paas.macrometa.io");
+    const client = new jsc8("https://play.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
 
@@ -882,7 +882,7 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
 
     EMAIL = 'nemo@nautilus.com'
     PASSWORD = 'xxxxx'
-    HOST = 'gdn.paas.macrometa.io'
+    HOST = 'play.paas.macrometa.io'
     GEO_FABRIC = '_system'
 
     print("--- Connecting to C8")
@@ -901,12 +901,12 @@ A graph consists of `vertices` and `edges`. Vertices are stored as documents in 
     const jsc8 = require("jsc8");
 
     // Crete a authenticated instance with Token / Apikey
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
     // await console.log("Authentication done!!...");
 
     // Or use Email & Password to Authenticate client instance
-    const client = new jsc8("https://gdn.paas.macrometa.io");
+    const client = new jsc8("https://play.paas.macrometa.io");
 
     await client.login("nemo@nautilus.com", "xxxxxx");
 

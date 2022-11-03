@@ -40,7 +40,7 @@ The code examples below show how to insert key-value pairs into the collection.
   collection_name = "students"
 
   # Create a connection to GDN
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
 
   # Insert key-value pairs

@@ -19,7 +19,7 @@ import json
 from c8 import C8Client
 
 # Connect to GDN.
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "xxxxxx" # Change this to your API key
 is_local = False # For a global stream pass False and True for local stream
@@ -45,7 +45,7 @@ You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can ru
 
 ```js
 const jsc8 = require("jsc8");
-const client = new jsc8({ url: "https://gdn.paas.macrometa.io", apiKey: "xxxxx", fabricName: "_system" });
+const client = new jsc8({ url: "https://play.paas.macrometa.io", apiKey: "xxxxx", fabricName: "_system" });
 
 const stream = "streamQuickstart";
 

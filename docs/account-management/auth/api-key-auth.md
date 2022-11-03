@@ -20,7 +20,7 @@ For more information about creating and managing API keys, refer to [Manage API 
 const jsc8 = require("jsc8");
 // Replace the apiKey placeholder with your API key.
 // Update the fabricName if you need to log in to a fabric other than _system.
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
 ```
 
 </TabItem>
@@ -30,7 +30,7 @@ const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", f
 from c8 import C8Client
 
 # Define constants
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system" # Change this if you need to log in to a fabric other than _system.
 API_KEY = "my API key" # Change this to your API key.
 

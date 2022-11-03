@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 from c8 import C8Client
 
 # Create a connection to GDN
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 

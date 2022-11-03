@@ -14,7 +14,7 @@ The code sample below shows how you can use your email and password to authentic
 
 ```js
 const jsc8 = require("jsc8");
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "", fabricName: '_system'});
+const client = new jsc8({url: "https://play.paas.macrometa.io", token: "", fabricName: '_system'});
 async function login() {
   return await client.login("nemo@nautilus.com", "xxxxxx")}
 ```
@@ -24,7 +24,7 @@ async function login() {
 
 ```py
 from c8 import C8Client
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, 
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, 
                     email='nemo@nautilus.com', password='xxxxxx')
 ```
 

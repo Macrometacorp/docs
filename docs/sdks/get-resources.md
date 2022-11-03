@@ -22,15 +22,15 @@ const fabric = "_system";
 const keyid = "id1";
 
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 // Choose one of the following authentication methods and remove the commenting.
 
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with a API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 function messageHandler(error) {
   const message = {
     "StatusCode ": error.statusCode,
@@ -83,7 +83,7 @@ main()
 from c8 import C8Client
 
 # Create a connection to gdn
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 

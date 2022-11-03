@@ -23,7 +23,7 @@ This tutorial is about using Macrometa GDN as a realtime database with local lat
 const jsc8 = require("jsc8");
 
 // Constants - DB
-const globalUrl = "https://gdn.paas.macrometa.io/";
+const globalUrl = "https://play.paas.macrometa.io/";
 const email = "your@email.com";
 const password = "password";
 const client = new jsc8(globalUrl);
@@ -103,7 +103,7 @@ import pprint
 import time
 
 # Variables - URLs
-GLOBAL_URL = "gdn.paas.macrometa.io"
+GLOBAL_URL = "play.paas.macrometa.io"
 
 # Variables - DB
 EMAIL = "your@email.com"

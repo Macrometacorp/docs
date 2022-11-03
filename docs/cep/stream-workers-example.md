@@ -83,12 +83,12 @@ client = C8Client(protocol='https', host='gdn.paasmacrometa.io', port=443,
     const jsc8 = require("jsc8");
 
     // Simple Way
-    const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+    const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
     // ----- OR -----
-    const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+    const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
 
     // To use advanced options
-    const client = new jsc8("https://gdn.paas.macrometa.io"); 
+    const client = new jsc8("https://play.paas.macrometa.io"); 
   ```
 
  </TabItem>
@@ -257,7 +257,7 @@ from c8 import C8Client
 from c8.fabric import StandardFabric
 
 print("--- Connecting to C8")
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
 
 # To operate on created apps, you need to create an instance of the app
 app = client._fabric.stream_app("Sample-Cargo-App")
@@ -395,7 +395,7 @@ from c8 import C8Client
 from c8.fabric import StandardFabric
 
 print("--- Connecting to C8")
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
 
 # To operate on created apps, you need to create an instance of the app
 app = client._fabric.stream_app("Sample-Cargo-App")
@@ -474,7 +474,7 @@ import traceback
 from c8 import C8Client
 # Simple Approach
 print("--- Connecting to C8")
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 stream_app_definition = """
@@ -537,7 +537,7 @@ const streamAppName = "Sample-Cargo-App";
 const sourceCollectionName = "SampleCargoAppInputTable";
 const destinationCollectionName = "SampleCargoAppDestTable";
 const parameter = { weight: "" };
-const globalUrl = "https://gdn.paas.macrometa.io";
+const globalUrl = "https://play.paas.macrometa.io";
 const thisApiKey = "XXXXX";
 
 const insertDataValue = {
@@ -640,12 +640,12 @@ async function main () {
   // email = "";
   // password = "";
   // Create an authenticated instance with a token or API key
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+  // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
   const client = new jsc8({ url: globalUrl, apiKey: thisApiKey, fabricName: "_system" });
   // console.log("Authentication done!!...");
   
   // Or use email and password to authenticate a client instance
-  // const client = new jsc8("https://gdn.paas.macrometa.io");
+  // const client = new jsc8("https://play.paas.macrometa.io");
   // await client.login("email", "password");
   console.log("Connection successful");
   async function hasStreamApp (streamApp) {

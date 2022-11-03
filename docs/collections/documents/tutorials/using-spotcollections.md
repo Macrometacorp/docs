@@ -228,7 +228,7 @@ except Exception as e:
 const jsc8 = require("jsc8");
 
 // Variables - DB
-const globalUrl = "https://gdn.paas.macrometa.io";
+const globalUrl = "https://play.paas.macrometa.io";
 const geofabric = "_system";
 const spotGfName = "spot";
 const regionUrls = [
