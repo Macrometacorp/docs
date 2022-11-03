@@ -122,10 +122,10 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ```js
 # Create an API Key
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 keyid = "id1"
-url = FED_URL + "/_api/key"
+url = HTTP_URL + "/_api/key"
 payload= {
 "keyid": keyid
 }

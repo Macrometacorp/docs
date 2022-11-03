@@ -101,10 +101,10 @@ print("Accessible Streams of a db: ", client.list_accessible_streams(keyid, '_sy
 
 ```js
 # Fetch List of accessible databases and streams
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 keyid = "id1"
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/stream"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/stream"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -112,7 +112,7 @@ if resp['error'] is True:
 else:
     print("Accessible Streams: ", resp)
 
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/collection"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/collection"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -120,7 +120,7 @@ if resp['error'] is True:
 else:
     print("Accessible Collections: ", resp)
 
-url = FED_URL + "/_api/key/" + keyid + "/database"
+url = HTTP_URL + "/_api/key/" + keyid + "/database"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:

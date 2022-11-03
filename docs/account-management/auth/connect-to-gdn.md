@@ -88,14 +88,14 @@ import requests
 import json
 
 # Constants
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
 AUTH_TOKEN = "bearer "
 
 # Create an HTTPS Session
-url = "{}/_open/auth".format(FED_URL)
+url = "{}/_open/auth".format(HTTP_URL)
 payload = {
   'email':EMAIL,
   'password':PASSWORD

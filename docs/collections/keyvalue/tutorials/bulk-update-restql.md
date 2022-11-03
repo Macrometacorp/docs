@@ -119,7 +119,7 @@ class APIRequest {
 
 const EMAIL = "nemo@nautilus.com";
 const PASSWORD = "xxxxxx";
-const FEDERATION_URL = "https://api-gdn.paas.macrometa.io";
+const HTTP_URL = "https://api-gdn.paas.macrometa.io";
 const FABRIC_NAME = "_system";
 const COLLECTION_NAME = "superhero";
 
@@ -148,7 +148,7 @@ UPDATE i with { value: (i._key == @updateKeyValue[i._key].key) ? @updateKeyValue
 
 const run = async function () {
     try {
-        const connection = new APIRequest(FEDERATION_URL);
+        const connection = new APIRequest(HTTP_URL);
 
         /* -------------------- Log in (nemo@nautilus.com/xxxxxxx) -------------------- */
         await connection.login(EMAIL, PASSWORD);
@@ -229,7 +229,7 @@ run();
 import time
 from c8 import C8Client
 
-FED_URL = "gdn.paas.macrometa.io"
+HTTP_URL = "gdn.paas.macrometa.io"
 GUEST_MAIL = "nemo@nautilus.com"
 GUEST_PASSWORD = "xxxxxx"
 GEO_FABRIC = "_system"
@@ -278,7 +278,7 @@ if __name__ == "__main__":
     print(f"tenant: {GUEST_MAIL}, geofabric:{GEO_FABRIC}")
     client = C8Client(
         protocol="https",
-        host=FED_URL,
+        host=HTTP_URL,
         port=443,
         email=GUEST_MAIL,
         password=GUEST_PASSWORD,

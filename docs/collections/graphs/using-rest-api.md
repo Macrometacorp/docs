@@ -62,8 +62,8 @@ import requests
 
 # Constants
 
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 GEO_FABRIC = "_system"
 API_KEY = "my IP key" # Change to your API key
 #EMAIL = "my email"
@@ -78,7 +78,7 @@ GRAPH_NAME = "lectureteacher"
 # Create a HTTPS Session Part 1
 # The following is required when accessing Macrometa with your email and password instead of an API key or JWT token
 """
-URL = f"{FED_URL}/_open/auth"
+URL = f"{HTTP_URL}/_open/auth"
 payload = {
     'email':EMAIL,
     'password':PASSWORD
@@ -107,7 +107,7 @@ session.headers.update({"authorization": "apikey " + API_KEY})
 # Create Document Collections and Insert Data
 
 
-url = f"{FED_URL}/_fabric/{GEO_FABRIC}/_api/collection"
+url = f"{HTTP_URL}/_fabric/{GEO_FABRIC}/_api/collection"
 payload = { 'name': COLLECTION_NAME_1 }
 
 resp = session.post(url,data=json.dumps(payload))
@@ -147,7 +147,7 @@ payload = [
     }
 ]
 
-url = f"{FED_URL}/_api/document/{COLLECTION_NAME_1}"
+url = f"{HTTP_URL}/_api/document/{COLLECTION_NAME_1}"
 resp = session.post(url,data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nDocuments Inserted: ",result)
@@ -159,7 +159,7 @@ payload = [
     {'_id': 'lectures/CSC104', 'difficulty': 'moderate', '_key':'CSC104','firstname':'Jean'}
 ]
 
-url = f"{FED_URL}/_api/document/{COLLECTION_NAME_2}"
+url = f"{HTTP_URL}/_api/document/{COLLECTION_NAME_2}"
 resp = session.post(url,data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nDocuments Inserted: ",result)
@@ -168,7 +168,7 @@ print("\nDocuments Inserted: ",result)
 
 payload = { 'name': EDGE_COLL_NAME, "type":3 }
 
-url = f"{FED_URL}/_fabric/{GEO_FABRIC}/_api/collection"
+url = f"{HTTP_URL}/_fabric/{GEO_FABRIC}/_api/collection"
 resp = session.post(url,data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nEdge Collection Created: ",result)
@@ -200,7 +200,7 @@ payload = [
     }
 ]
 
-url = f"{FED_URL}/_api/document/{EDGE_COLL_NAME}"
+url = f"{HTTP_URL}/_api/document/{EDGE_COLL_NAME}"
 resp = session.post(url,data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nDocuments Inserted: ",result)
@@ -217,7 +217,7 @@ payload = {
     "options": {}
 }
 
-url = f"{FED_URL}/_api/graph"
+url = f"{HTTP_URL}/_api/graph"
 resp = session.post(url,data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nGraph Created: ",result)
@@ -229,7 +229,7 @@ params = {
     "direction": "out"
 }
 
-url = f"{FED_URL}/_api/edges/{EDGE_COLL_NAME}"
+url = f"{HTTP_URL}/_api/edges/{EDGE_COLL_NAME}"
 
 resp = session.get(url,params=params)
 result = json.loads(resp.text)
@@ -241,7 +241,7 @@ print("\nGraph Traversal: ",result)
 # set dropCollection to False
 params = {"dropCollections": True}
 
-url = f"{FED_URL}/_api/graph/{GRAPH_NAME}"
+url = f"{HTTP_URL}/_api/graph/{GRAPH_NAME}"
 
 resp = session.delete(url,params=params)
 result = json.loads(resp.text)

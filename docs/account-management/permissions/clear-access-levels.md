@@ -92,11 +92,11 @@ print("Clear Stream Access Level: ", client.clear_stream_access_level('id1','c8g
 <TabItem value="RA" label="Rest API">
 
 ```js
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 keyid = "id1"
 # Clear Database Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system"
 resp = session.delete(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -105,7 +105,7 @@ else:
     print("Clear Database Access Level: ", resp)
 
 # Clear Collection Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
 resp = session.delete(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -114,7 +114,7 @@ else:
     print("Clear Collection Access Level: ", resp)
 
 # Clear Stream Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
 resp = session.delete(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:

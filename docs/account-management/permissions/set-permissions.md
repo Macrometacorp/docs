@@ -140,11 +140,11 @@ print("Set Stream Access Level: ", client.set_stream_access_level('id1','c8globa
 <TabItem value="RA" label="Rest API">
 
 ```js
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 keyid = "id1"
 # Set Database Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system"
 payload={
 "grant": "rw"
 }
@@ -156,7 +156,7 @@ else:
     print("Set Database Access Level: ", resp)
 
 # Set Collection Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
 payload={
 "grant": "rw"
 }
@@ -168,7 +168,7 @@ else:
     print("Set Collection Access Level: ", resp)
 
 # Set Stream Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
 payload={
 "grant": "rw"
 }

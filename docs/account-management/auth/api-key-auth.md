@@ -48,8 +48,8 @@ import requests
 
 # Constants
 
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 API_KEY = "XXXXX" # To be replaced by your apikey
 
@@ -63,7 +63,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 
 # Now you can use the above session to make any API request
 # For example we are calling the 'List all collections' API below
-url = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/collection"
 
 response = session.get(url)
 print(response.text)

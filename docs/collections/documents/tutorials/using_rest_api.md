@@ -55,14 +55,14 @@ For example:
 import requests
 
 # Set constants
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 COLLECTION_NAME = 'testcollection'
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
 AUTH_TOKEN = "bearer "
 FABRIC = "_system"
-URL = f"{FED_URL}/_open/auth"
+URL = f"{HTTP_URL}/_open/auth"
 payload = {
     'email': EMAIL,
     'password': PASSWORD,
@@ -87,7 +87,7 @@ session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
 # Get list of all regions
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/datacenter/all"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/datacenter/all"
 dcl_resp = session.get(URL)
 dcl_list = json.loads(dcl_resp.text)
 regions = []
@@ -98,7 +98,7 @@ print("\nList of regions: ", regions)
 
 # Create a document collection
 # Note: Create a test collection. Set "type" to 2 for documents or 3 for edges
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/collection"
 payload = {
     "name": COLLECTION_NAME,
     "type": 2
@@ -111,14 +111,14 @@ else:
     print("\nCollection created: ", resp['name'])
 
 # Insert a document into a collection
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
 payload = {'GPA': 3.5, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'}
 resp = session.post(URL, data=json.dumps(payload))
 print("\nDocument inserted: ", resp.text)
 
 # Data can either be a single document or a list of documents
 # Insert multiple documents
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
 data = [
     {'GPA': 3.2, 'first': 'Abby', 'last': 'Page', '_key': 'Abby'},
     {'GPA': 3.6, 'first': 'John', 'last': 'Kim', '_key': 'John'},
@@ -128,12 +128,12 @@ resp = session.post(URL, data=json.dumps(data))
 print("\nMultiple documents inserted: ", resp.text)
 
 # Read a document with its ID
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}" + "/Lola"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}" + "/Lola"
 resp = session.get(URL)
 print("\nDocument with ID Lola is: ", resp.text)
 
 # Read multiple documents
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/simple/lookup-by-keys"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/simple/lookup-by-keys"
 payload = {"collection": COLLECTION_NAME,
            "keys": ["Abby", "John", "Emma"]}
 resp = session.put(URL, data=json.dumps(payload))
@@ -141,13 +141,13 @@ resp = json.loads(resp.text)
 print("\nDocuments: ", resp["documents"])
 
 # Update a single document with its ID
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}/John"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}/John"
 payload = {'GPA': 3.6, 'first': 'John', 'last': 'Andrews', '_key': 'John'}
 resp = session.patch(URL, data=json.dumps(payload))
 print("\nUpdated document with ID John: ", resp.text)
 
 # Update  documents
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
 payload = [
     {'GPA': 4.6, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'},
     {'GPA': 3.2, 'first': 'Abby', 'last': 'Stutguard', '_key': 'Abby'}
@@ -156,12 +156,12 @@ resp = session.patch(URL, data=json.dumps(payload))
 print("\nUpdated documents: ", resp.text)
 
 # Remove single document with its ID
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}/John"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}/John"
 resp = session.delete(URL)
 print("\nDeleted document with ID John: ", resp.text)
 
 # Remove a multiple document
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
 payload = [
     {'GPA': 4.6, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'},
     {'GPA': 3.2, 'first': 'Abby', 'last': 'Stutguard', '_key': 'Abby'},
@@ -338,15 +338,15 @@ import json
 import requests
 
 # Constants
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
 AUTH_TOKEN = "bearer "
 
 
 # Create HTTPS session
-url = f"{FED_URL}/_open/auth"
+url = f"{HTTP_URL}/_open/auth"
 payload = {
     'email': EMAIL,
     'password': PASSWORD
@@ -367,7 +367,7 @@ else:
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
-url = f"{FED_URL}/_fabric/_system/_api/cursor"
+url = f"{HTTP_URL}/_fabric/_system/_api/cursor"
 
 
 # Insert documents to the collection
@@ -594,8 +594,8 @@ from websocket import create_connection
 import six
 
 # Constants
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
 FABRIC = "_system"
@@ -606,7 +606,7 @@ CONSUMER_NAME = "testconsumer"
 STREAM_TYPE = "c8global"
 
 # Create HTTPS session with auth endpoint
-url = f"{FED_URL}/_open/auth"
+url = f"{HTTP_URL}/_open/auth"
 payload = {
     'email': EMAIL,
     'password': PASSWORD
@@ -629,17 +629,17 @@ session.headers.update({"authorization": AUTH_TOKEN})
 
 # Create a stream
 # Set global=true for a global stream or global=false for a local stream
-url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_NAME}?global=true"
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_NAME}?global=true"
 resp = session.post(url)
 print("\nStream created: ", resp.text)
 
 # Publish messages, Send message in body
-url = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}/publish?global=true"
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}/publish?global=true"
 resp = session.post(url, data="Message")
 print("\nStream received message: ", resp.text)
 
 # or using web sockets
-PRODUCER_URL = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}"
+PRODUCER_URL = f"wss://{URL}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}"
 ws = create_connection(PRODUCER_URL, header=[f"authorization: {AUTH_TOKEN}"])
 
 payload = {
@@ -657,7 +657,7 @@ else:
 ws.close()
 
 # Subscribe
-CONSUMER_URL = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}/{CONSUMER_NAME}"
+CONSUMER_URL = f"wss://{URL}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}/{CONSUMER_NAME}"
 ws = create_connection(CONSUMER_URL, header=[f"authorization: {AUTH_TOKEN}"])
 while True:
     msg = json.loads(ws.recv())
@@ -669,7 +669,7 @@ while True:
 ws.close()
 
 # Delete Subscription (unsubscribe)
-url = f"{FED_URL}/_api/streams/subscription/{CONSUMER_NAME}"
+url = f"{HTTP_URL}/_api/streams/subscription/{CONSUMER_NAME}"
 resp = session.delete(url)
 print("Subscription deleted: ", resp.text)
 ```
@@ -929,8 +929,8 @@ import time
 import requests
 
 # Set constants
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
 FABRIC = "_system"
@@ -947,7 +947,7 @@ UPDATE_READ_QUERY = "FOR doc IN @@collection FILTER doc.result < 10 RETURN doc"
 
 # Create HTTPS session
 
-URL = f"{FED_URL}/_open/auth"
+URL = f"{HTTP_URL}/_open/auth"
 payload = {
     'email': EMAIL,
     'password': PASSWORD
@@ -972,7 +972,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 
 # Create a document collection
 # Note: Create a test collection. Set "type" to 2 for documents or 3 for edges
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/collection"
 payload = {
     "name": COLLECTION_NAME,
     "type": 2
@@ -985,7 +985,7 @@ else:
     print("\nCollection created: ", resp['name'])
 
 # Create RESTQL
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql"
 
 # Save read query
 payload = {
@@ -1038,7 +1038,7 @@ resp = session.post(URL, data=json.dumps(payload))
 print("\nDelete query saved: ", resp.text)
 time.sleep(1)
 # Execute insert query
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/execute/insert"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/insert"
 payload = {
     "bindVars": QUERY_PARAMS,
 }
@@ -1046,7 +1046,7 @@ resp = session.post(URL, data=json.dumps(payload))
 print("\nInsert query executed: ", resp.text)
 time.sleep(1)
 # Execute read query
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/execute/" + QUERY_NAME
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/" + QUERY_NAME
 payload = {
     "bindVars": QUERY_PARAMS,
 }
@@ -1054,7 +1054,7 @@ resp = session.post(URL, data=json.dumps(payload))
 print("\nRead query executed: ", resp.text)
 time.sleep(1)
 # Execute update query
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/execute/update"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/update"
 payload = {
     "bindVars": QUERY_PARAMS,
 }
@@ -1062,7 +1062,7 @@ resp = session.post(URL, data=json.dumps(payload))
 print("\nUpdate query executed: ", resp.text)
 time.sleep(1)
 # Update saved query
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/" + QUERY_NAME
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/" + QUERY_NAME
 payload = {
     "query": {
         "parameter": QUERY_PARAMS,
@@ -1073,7 +1073,7 @@ resp = session.put(URL, data=json.dumps(payload))
 print("Query updated: ", resp.text)
 time.sleep(1)
 # Execute delete query
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/execute/delete"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/delete"
 payload = {
     "bindVars": QUERY_PARAMS,
 }
@@ -1081,19 +1081,19 @@ resp = session.post(URL, data=json.dumps(payload))
 print("\nDelete query executed: ", resp.text)
 time.sleep(1)
 # Delete saved queries
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/{QUERY_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/{QUERY_NAME}"
 resp = session.delete(URL)
 print("Read query deleted: ", resp.text)
 time.sleep(1)
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/insert"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/insert"
 resp = session.delete(URL)
 print("Insert query deleted: ", resp.text)
 time.sleep(1)
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/update"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/update"
 resp = session.delete(URL)
 print("Update query deleted: ", resp.text)
 time.sleep(1)
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/restql/delete"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/delete"
 resp = session.delete(URL)
 print("Delete query deleted: ", resp.text)
 ```
@@ -1378,8 +1378,8 @@ import requests
 
 # Constants
 
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
 FABRIC = "_system"
@@ -1392,7 +1392,7 @@ GRAPH_NAME = "lectureteacher"
 
 # Create HTTPS session
 
-URL = f"{FED_URL}/_open/auth"
+URL = f"{HTTP_URL}/_open/auth"
 payload = {
     'email': EMAIL,
     'password': PASSWORD
@@ -1418,7 +1418,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 # Create document collections and insert data
 
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/collection"
 payload = {'name': COLLECTION_NAME_1}
 
 resp = session.post(URL, data=json.dumps(payload))
@@ -1458,7 +1458,7 @@ payload = [
     }
 ]
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME_1}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME_1}"
 resp = session.post(URL, data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nDocuments inserted: ", result)
@@ -1471,7 +1471,7 @@ payload = [
 
 ]
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME_2}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME_2}"
 resp = session.post(URL, data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nDocuments inserted: ", result)
@@ -1479,7 +1479,7 @@ print("\nDocuments inserted: ", result)
 # Create edge collection
 payload = {'name': EDGE_COLL_NAME, "type": 3}
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/collection"
 resp = session.post(URL, data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nEdge collection created: ", result)
@@ -1511,7 +1511,7 @@ payload = [
 
 ]
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/document/{EDGE_COLL_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{EDGE_COLL_NAME}"
 resp = session.post(URL, data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nDocuments inserted: ", result)
@@ -1533,7 +1533,7 @@ payload = {
     "options": {}
 }
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/graph"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/graph"
 resp = session.post(URL, data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nGraph created: ", result)
@@ -1546,7 +1546,7 @@ params = {
     "direction": "out"
 }
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/edges/{EDGE_COLL_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/edges/{EDGE_COLL_NAME}"
 
 resp = session.get(URL, params=params)
 result = json.loads(resp.text)
@@ -1555,7 +1555,7 @@ print("\nGraph traversal: ", result)
 # Delete graph and collections
 # To delete the graph and save the collections, set dropCollection to `false`.
 params = {"dropCollections": True}
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/graph/{GRAPH_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/graph/{GRAPH_NAME}"
 resp = session.delete(URL, params=params)
 result = json.loads(resp.text)
 print("Graph and collections deleted: ", result)
@@ -1865,8 +1865,8 @@ import six
 
 # Set constants
 
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-gdn.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxx"
 FABRIC = "_system"
@@ -1907,7 +1907,7 @@ SELECT_QUERY = "FOR doc IN tutorialAppOutputTable return doc"
 
 # Create HTTPS session
 
-URL = f"{FED_URL}/_open/auth"
+URL = f"{HTTP_URL}/_open/auth"
 payload = {
     'email': EMAIL,
     'password': PASSWORD
@@ -1932,7 +1932,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 
 # Create stream application
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/streamapps"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streamapps"
 payload = {
     "definition": STREAM_APP,
     "regions": ["devsuccess2-us-east", "devsuccess2-us-central", "devsuccess2-ap-west"]
@@ -1945,7 +1945,7 @@ print("\nStream application created: ", result)
 
 # Activate stream application
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/streamapps/{STREAM_APP_NAME}/active?active=true"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streamapps/{STREAM_APP_NAME}/active?active=true"
 resp = session.patch(URL)
 result = json.loads(resp.text)
 print("\nStream application activated: ", result)
@@ -1955,7 +1955,7 @@ time.sleep(20)
 
 # Publish messages to the input stream
 STREAM_TYPE = "c8local"
-PRODUCER_URL = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}"
+PRODUCER_URL = f"wss://{URL}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{STREAM_TYPE}.{FABRIC}/{STREAM_TYPE}s.{STREAM_NAME}"
 
 ws = create_connection(PRODUCER_URL, header=[f"Authorization:{AUTH_TOKEN}"])
 payload = {
@@ -1986,7 +1986,7 @@ ws.close()
 
 # Verify results from the collection
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/cursor"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/cursor"
 payload = {
     "id": "tutorialStreamAppQuery",
     "query": SELECT_QUERY,
@@ -1998,14 +1998,14 @@ print("\nStream application results: ", result)
 
 # Delete stream application
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/streamapps/{STREAM_APP_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streamapps/{STREAM_APP_NAME}"
 resp = session.delete(URL)
 result = json.loads(resp.text)
 print("\nStream application deleted: ", result)
 
 # Delete stream
 
-URL = f"{FED_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}"
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_TYPE}s.{STREAM_NAME}"
 resp = session.delete(URL)
 result = json.loads(resp.text)
 print("\nStream deleted: ", result)

@@ -90,11 +90,11 @@ print("Get Stream Access Level: ", client.get_stream_access_level('id1','c8globa
 <TabItem value="RA" label="Rest API">
 
 ```js
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 keyid = "id1"
 # Get Database Acces Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -103,7 +103,7 @@ else:
     print("Get Database Access Level: ", resp)
 
 # Get Stream Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -112,7 +112,7 @@ else:
     print("Get Stream Access Level: ", resp)
 
 # Get Collection Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:

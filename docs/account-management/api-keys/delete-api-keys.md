@@ -108,11 +108,11 @@ else:
 Use our interactive API Reference with code generation in 18 programming languages to [Remove an API Key](https://macrometa.com/docs/api#/operations/RemoveApiKey).
 
 ```js
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 keyid = "id1"
 # Delete an API Key
-url = FED_URL + "/_api/key/"+ keyid
+url = HTTP_URL + "/_api/key/"+ keyid
 resp = session.delete(url, data = json.dumps(payload))
 resp = json.loads(resp.text)
 if resp['error'] is True:

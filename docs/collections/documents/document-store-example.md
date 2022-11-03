@@ -658,7 +658,7 @@ Query as API (aka RESTQL) enables developers to quickly convert saved C8QL queri
 import time
 from c8 import C8Client
 
-FED_URL = "gdn.paas.macrometa.io"
+HTTP_URL = "gdn.paas.macrometa.io"
 GUEST_MAIL = "nemo@nautilus.com"
 GUEST_PASSWORD = "xxxxxx"
 GEO_FABRIC = "_system"
@@ -677,7 +677,7 @@ if __name__ == '__main__':
 
     print("\n ------- CONNECTION SETUP  ------")
     print(f"tenant: {GUEST_MAIL}, geofabric:{GEO_FABRIC}")
-    client = C8Client(protocol='https', host=FED_URL, port=443,
+    client = C8Client(protocol='https', host=HTTP_URL, port=443,
                     email=GUEST_MAIL, password=GUEST_PASSWORD,
                     geofabric=GEO_FABRIC)    
 
