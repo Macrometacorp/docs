@@ -57,7 +57,7 @@ Customers with Macrometa Play tier accounts _can_ use `api-play.paas.macrometa.i
 
 Instead, we recommend that you use an account-specific global or regional URL, which you can find in the API Reference in the Macrometa web console or on your GeoFabrics page. Any endpoint listed on the GeoFabric will accept API calls if you prepend `api-` to it.
 
-For more information, refer to [APIs](../api-docs/index.md)
+For more information, refer to [Unique Global URL vs. Generic](../api-docs/index.md#unique-global-url-vs-generic).
 
 ### Stream Worker Prefixes
 
