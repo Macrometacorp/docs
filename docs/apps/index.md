@@ -23,8 +23,6 @@ slug: /apps
   <card heading="Global Cities Explorer" href="/apps/streamlit-oxford" />
   <card heading="OTT App" href="/apps/ott-app" />
   <card heading="Polling App" href="/apps/jamstack-gatsby" />
-  <card heading="posthog" href="/apps/posthog" />
-  <card heading="Realtime Data Distribution (EventHub)" href="/apps/realtime-data-distribution" />
   <card heading="Realtime Log Analytics" href="/apps/realtime-log-analytics" />
   <card heading="Realtime Stream ETL" href="/apps/realtime-stream-etl" />
   <card heading="Salesforce - Edge Caching and Data Privacy" href="/apps/data-privacy-sf" />
