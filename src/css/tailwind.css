@@ -59,6 +59,9 @@
     --font-mono: var(--font-family-monospace) !important;
     --font-prose: var(--font-family-base);
 
+    --ifm-alert-border-left-width: 0.25rem;
+    --ifm-alert-border-radius: 0.25rem;
+
     --ifm-background-color: var(--color-white);
 
     --ifm-code-border-radius: 0.5rem;
@@ -72,13 +75,13 @@
     --ifm-color-primary-lighter: var(--color-primary-300);
     --ifm-color-primary-lightest: var(--color-primary-200);
 
+    --ifm-color-secondary-contrast-background: var(--color-primary-50);
+    --ifm-color-secondary-dark: var(--color-primary-300);
+
     --ifm-font-color-base: var(--color-neutral-700);
     --ifm-font-family-base: var(--font-family-base);
     --ifm-font-family-monospace: var(--font-family-monospace);
     --ifm-font-weight-bold: 600;
-    
-    --ifm-global-radius: 0.5rem;
-
     
     --ifm-footer-background-color: var(--color-primary-500);
     --ifm-footer-color: var(--color-neutral-500);
@@ -87,6 +90,8 @@
     --ifm-footer-padding-horizontal: 0;
     --ifm-footer-padding-vertical: 0.5rem;
     --ifm-footer-title-color: var(--color-neutral-700);
+    
+    --ifm-global-radius: 0.5rem;
     
     --ifm-heading-color: var(--color-neutral-800);
     --ifm-heading-font-family: var(--font-family-base);
@@ -97,6 +102,7 @@
     --ifm-list-item-margin: 0.5rem;
     
     --ifm-menu-color: var(--color-neutral-700);
+    --ifm-menu-color-active: var(--color-primary-600);
     --ifm-menu-color-background-active: var(--color-primary-500);
     --ifm-menu-color-background-hover: var(--color-primary-100);
 
@@ -111,20 +117,19 @@
     --ifm-toc-padding-horizontal: 0.75rem;
 
     /* Tailwind Theming */
-    --doc-sidebar-width: 280px !important;
-    
-    --docs-color-primary: var(--color-primary-500);
-    --docs-color-primary-100: var(--color-primary-300);
-
-    --docs-color-text: var(--color-neutral-700);
-    --docs-color-text-100: var(--color-neutral-500);
-
-    --docs-color-border: var(--color-neutral-200);
 
     --docs-color-background: var(--color-white);
     --docs-color-background-100: var(--color-neutral-50);
     --docs-color-background-200: var(--color-neutral-100);
     --docs-color-background-300: var(--color-neutral-200);
+    --docs-color-border: var(--color-neutral-200);
+    --docs-color-primary: var(--color-primary-500);
+    --docs-color-primary-100: var(--color-primary-300);
+    --docs-color-text: var(--color-neutral-700);
+    --docs-color-text-100: var(--color-neutral-500);
+
+    --doc-mobile-toc-background: var(--color-primary-50);
+    --doc-sidebar-width: 280px !important;
 
     /* Elements Theming */
 
@@ -136,7 +141,6 @@
     --docsearch-key-gradient: var(--docs-color-background-300) !important;
     --docsearch-highlight-color: var(--ifm-color-primary-lightest);
 
-    --doc-mobile-toc-background: var(--color-primary-50);
     --image-background-color: var(--color-white);
 
     --navbar-link-color: var(--color-neutral-500);
@@ -144,32 +148,48 @@
   }
 
   html[data-theme='dark'] {
+    
+    --ifm-background-color: var(--docs-color-background);
+    --ifm-color-primary: var(--color-primary-400);
+    --ifm-color-secondary-contrast-background: var(--color-neutral-700);
+    --ifm-color-secondary-dark: var(--color-primary-300);
+
+    --ifm-heading-color: var(--color-white);
+    --ifm-font-color-base: var(--color-neutral-200);
+    
+    --ifm-footer-background-color: var(--color-primary-600);
+    --ifm-footer-color: var(--color-neutral-300);
+    --ifm-footer-link-color: var(--color-neutral-400);
+    --ifm-footer-link-hover-color: var(--color-white);
+    --ifm-footer-title-color: var(--color-white);
+
     --ifm-link-color: var(--color-primary-300);
+    
+    --ifm-menu-color: var(--color-primary-100) !important;
+    --ifm-menu-color-active: var(--color-white);
+    --ifm-menu-color-background-hover: var(--color-primary-700);
+    --ifm-menu-color-background-active: var(--color-primary-600);
+    
+    --ifm-pre-background-color: var(--color-neutral-900);
+    
     --ifm-tabs-color-active-border: var(--color-primary-400);
     --ifm-tabs-color-active: var(--color-primary-400);
-    --ifm-color-primary: var(--color-primary-400);
-    --ifm-menu-color: var(--color-primary-100) !important;
     --ifm-toc-link-color: var(--color-neutral-200) !important;
-    --ifm-pre-background-color: var(--color-neutral-900);
 
-    --docs-color-primary-100: var(--color-primary-400);
-
-    --docs-color-text: var(--color-white);
-    --docs-color-text-100: var(--color-neutral-300);
-
-    --docs-color-border: var(--color-neutral-600);
+    /* Tailwind Theming */
 
     --docs-color-background: var(--color-neutral-800);
     --docs-color-background-100: var(--color-neutral-800);
     --docs-color-background-200: var(--color-neutral-700);
     --docs-color-background-300: var(--color-neutral-600);
+    --docs-color-border: var(--color-neutral-600);
+    --docs-color-primary-100: var(--color-primary-400);
+    --docs-color-text: var(--color-white);
+    --docs-color-text-100: var(--color-neutral-300);
 
-    --ifm-background-color: var(--docs-color-background);
-    --ifm-menu-color-background-hover: var(--color-primary-700);
-    --ifm-menu-color-background-active: var(--color-primary-600);
-    
-    --ifm-heading-color: var(--color-white);
-    --ifm-font-color-base: var(--color-neutral-200);
+    --doc-mobile-toc-background: var(--color-primary-700);
+
+    /* Elements Theming */
 
     --color-canvas-100: var(--docs-color-background-100);
     --color-canvas-200: var(--docs-color-background-200);
@@ -177,14 +197,6 @@
 
     --docsearch-key-gradient: var(--color-neutral-600) !important;
     --docsearch-searchbox-background: var(--color-neutral-700) !important;
-
-    --ifm-footer-background-color: var(--color-primary-600);
-    --ifm-footer-color: var(--color-neutral-300);
-    --ifm-footer-link-color: var(--color-neutral-400);
-    --ifm-footer-link-hover-color: var(--color-white);
-    --ifm-footer-title-color: var(--color-white);
-
-    --doc-mobile-toc-background: var(--color-primary-700);
 
     --image-background-color: var(--color-neutral-700);
 
@@ -232,6 +244,10 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
   border-radius: 0.25rem;
   color: var(--color-white);
   background: var(--ifm-menu-color-background-active);
+  font-weight: 600;
+}
+
+.menu__link--active {
   font-weight: 600;
 }
 
@@ -763,21 +779,37 @@ article img {
 */
 
 .tabs {
+  box-shadow: inset 0 -1px 0 0 var(--docs-color-border);
   margin-top: 2rem;
   margin-bottom: 1.5rem;
 }
 
 .tabs__item {
-  border-bottom: 1px solid var(--docs-color-border);
+  border-bottom: medium none;
   border-radius: 0.25rem 0.25rem 0 0;
-  padding-bottom: 13px;
-  padding-top: 14px;
+  padding: 0.75rem 1rem 0.875rem;
 }
 
 .tabs__item--active {
-  border-bottom-color: var(--ifm-tabs-color-active-border);
-  border-bottom-width: 2px;
+  border-bottom: 2px solid var(--ifm-tabs-color-active-border);
   padding-bottom: 0.75rem;
+}
+
+/*
+  Alerts
+*/
+
+.alert {
+  margin: 2rem 0 !important;
+  padding: 1.25rem 1.25rem;
+}
+
+.alert > .admonitionHeading_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-styles-module {
+  margin-bottom: 0.5rem;
+}
+
+.alert p {
+  margin: 0 0 0.25rem;
 }
 
 /*
@@ -789,12 +821,18 @@ article img {
 }
 
 .pagination-nav__sublabel {
+  font-size: 1rem;
   font-weight: 600;
   margin: 0 0 0.5rem;
 }
 
 .pagination-nav__label {
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.pagination-nav__link {
+  padding: 1rem 1.25rem;
 }
 
 .pagination-nav__link--prev .pagination-nav__label::before,
