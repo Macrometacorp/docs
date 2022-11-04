@@ -8,9 +8,7 @@ import TabItem from '@theme/TabItem';
 
 Modern applications need to be highly responsive, always online, and able to access data instantly across the globe. At the same time, they need to be deployed on datacenters close to their users. Macrometa global data network (GDN) is a real-time materialized view engine that provides instant data to applications and APIs in a simple interface.
 
-If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../../what-is-macrometa.md)**.
-
-Prerequisites:
+## Prerequisites:
 
 A Macrometa GDN tenant account and credentials.
 
@@ -177,144 +175,149 @@ print("\nDeleted Documents: ", resp.text)
 <TabItem value="js" label="Javascript">
 
 ```js
-  class APIRequest {
-    _headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
-
-    constructor(url) {
-      this._url = url;
-    }
-
-    login(email, password) {
-      const endpoint = "/_open/auth";
-
-      const self = this;
-
-      return new Promise(function (resolve, reject) {
-        self
-          .req(endpoint, {
-            body: { email, password },
-            method: "POST",
-          })
-          .then(({ jwt, ...data }) => {
-            self._headers.authorization = `bearer ${jwt}`;
-            resolve(data);
-          })
-          .catch(reject);
-      });
-    }
-
-    _handleResponse(response, resolve, reject) {
-      if (response.ok) {
-        resolve(response.json());
-      } else {
-        reject(response);
-      }
-    }
-
-    req(endpoint, { body, ...options } = {}) {
-      const self = this;
-      return new Promise(function (resolve, reject) {
-        fetch(self._url + endpoint, {
-          headers: self._headers,
-          body: body ? JSON.stringify(body) : undefined,
-          ...options,
-        }).then((response) => self._handleResponse(response, resolve, reject));
-      });
-    }
-  }
-  const EMAIL = "nemo@nautilus.com";
-  const PASSWORD = "xxxxxx";
-  const FEDERATION_URL = "https://api-gdn.paas.macrometa.io";
-
-  const COLLECTION_NAME = "api_tutorial_documents";
-
-  const run = async function () {
-    try {
-      const connection = new APIRequest(FEDERATION_URL);
-
-      /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
-
-      await connection.login(EMAIL, PASSWORD);
-
-      console.log("Logged in successfully using", EMAIL);
-
-      /* -------------------------- Create document collection ------------------------- */
-
-      const collection = await connection.req(
-        "/_fabric/_system/_api/collection",
-        {
-          body: { name: COLLECTION_NAME },
-          method: "POST",
-        }
-      );
-
-      console.log("COLLECTION CREATED SUCCESSFULLY", collection);
-
-      /* ---------------------------- Insert documents ---------------------------- */
-
-      const document = await connection.req(
-        `/_fabric/_system/_api/document/${COLLECTION_NAME}`,
-        {
-          body: { new: true },
-          method: "POST",
-        }
-      );
-
-      console.log("DOCUMENT CREATED SUCCESSFULLY", document);
-
-      /* ----------------------------- Read documents ----------------------------- */
-
-      const readDocument = await connection.req(
-        `/_fabric/_system/_api/document/${document._id}`
-      );
-
-      console.log("DOCUMENT READ SUCCESSFULLY", readDocument);
-
-      /* ---------------------------- Update documents ---------------------------- */
-
-      const updateDocument = await connection.req(
-        `/_fabric/_system/_api/document/${document._id}`,
-        {
-          method: "PATCH",
-          body: { new: false },
-        }
-      );
-
-      console.log("DOCUMENT UPDATED SUCCESSFULLY", updateDocument);
-
-      /* ----------------------------- Read documents ----------------------------- */
-
-      const updatedReadDocument = await connection.req(
-        `/_fabric/_system/_api/document/${document._id}`
-      );
-
-      console.log("DOCUMENT UPDATED READ SUCCESSFULLY", updatedReadDocument);
-
-      /* ------------------------------- Delete documents ------------------------------ */
-      const deletedDocument = await connection.req(
-        `/_fabric/_system/_api/document/${document._id}`,
-        {
-          method: "DELETE",
-        }
-      );
-      console.log("DOCUMENT DELETED SUCCESSFULLY", deletedDocument);
-
-      /* --------------------------- Delete collection. --------------------------- */
-      const deletedCollection = await connection.req(
-        `/_fabric/_system/_api/collection/${COLLECTION_NAME}`,
-        { method: "DELETE" }
-      );
-
-      console.log("DOCUMENT DELETED SUCCESSFULLY", deletedCollection);
-    } catch (e) {
-      console.error(e);
-    }
+class APIRequest {
+  _headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
   };
 
-  run();
+  constructor (url) {
+    this._url = url;
+  }
+
+  login (email, password) {
+    const endpoint = "/_open/auth";
+
+    const self = this;
+
+    return new Promise(function (resolve, reject) {
+      self
+        .req(endpoint, {
+          body: { email, password },
+          method: "POST"
+        })
+        .then(({ jwt, ...data }) => {
+          self._headers.authorization = `bearer ${jwt}`;
+          resolve(data);
+        })
+        .catch(reject);
+    });
+  }
+
+  _handleResponse (response, resolve, reject) {
+    if (response.ok) {
+      resolve(response.json());
+    } else {
+      reject(response);
+    }
+  }
+
+  req (endpoint, { body, ...options } = {}) {
+    const self = this;
+    return new Promise(function (resolve, reject) {
+      fetch(self._url + endpoint, {
+        headers: self._headers,
+        body: body ? JSON.stringify(body) : undefined,
+        ...options
+      }).then((response) => self._handleResponse(response, resolve, reject));
+    });
+  }
+}
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const federationUrl = "https://api-gdn.paas.macrometa.io";
+
+const collectionName = "api_tutorial_documents";
+
+const run = async function () {
+  const connection = new APIRequest(federationUrl);
+
+  /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
+
+  await connection
+    .login(email, password)
+    .then(() => console.log("\n1. User authentication done!"))
+    .catch((error) => error);
+
+  /* -------------------------- Create document collection ------------------------- */
+
+  await connection
+    .req("/_fabric/_system/_api/collection", {
+      body: { name: collectionName },
+      method: "POST"
+    })
+    .then((collection) =>
+      console.log("2. Collection created successfully", collection)
+    )
+    .catch((error) => console.log(error));
+
+  /* ---------------------------- Insert documents ---------------------------- */
+
+  const document = await connection
+    .req(`/_fabric/_system/_api/document/${collectionName}`, {
+      body: { new: true },
+      method: "POST"
+    })
+    .then((document) => {
+      console.log("3. Document created successfully", document);
+      return document;
+    })
+    .catch((error) => error);
+
+  /* ----------------------------- Read documents ----------------------------- */
+
+  await connection
+    .req(`/_fabric/_system/_api/document/${document._id}`)
+    .then((readDocument) =>
+      console.log("4. Document read successfully", readDocument)
+    )
+    .catch((error) => console.log(error));
+
+  /* ---------------------------- Update documents ---------------------------- */
+
+  await connection
+    .req(`/_fabric/_system/_api/document/${document._id}`, {
+      method: "PATCH",
+      body: { new: false }
+    })
+    .then((updateDocument) =>
+      console.log("5. Document was updated successfully", updateDocument)
+    )
+    .catch((error) => console.log(error));
+
+  /* ----------------------------- Read documents ----------------------------- */
+
+  await connection
+    .req(`/_fabric/_system/_api/document/${document._id}`)
+    .then((updatedReadDocument) =>
+      console.log("6. Document read successfully", updatedReadDocument)
+    )
+    .catch((error) => console.log(error));
+
+  /* ------------------------------- Delete documents ------------------------------ */
+  await connection
+    .req(`/_fabric/_system/_api/document/${document._id}`, {
+      method: "DELETE"
+    })
+    .then((deletedDocument) =>
+      console.log("7. Document with Id " + document._id + " deleted successfully", deletedDocument)
+    )
+    .catch((error) => console.log(error));
+
+  /* --------------------------- Delete collection --------------------------- */
+  await connection
+    .req(`/_fabric/_system/_api/collection/${collectionName}`, {
+      method: "DELETE"
+    })
+    .then((deletedCollection) =>
+      console.log("8. Collection deleted successfully", deletedCollection)
+    )
+    .catch((error) => console.log(error));
+};
+
+run()
+  .then()
+  .catch((error) => console.log(error));
 ```
 
 </TabItem>
@@ -399,7 +402,172 @@ print(resp.text)
 
 ```  
 </TabItem>
+<TabItem value="js" label="Javascript">
+
+```js
+class APIRequest {
+  _headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  };
+
+  constructor (url) {
+    this._url = url;
+  }
+
+  login (email, password) {
+    const endpoint = "/_open/auth";
+
+    const self = this;
+
+    return new Promise(function (resolve, reject) {
+      self
+        .req(endpoint, {
+          body: { email, password },
+          method: "POST"
+        })
+        .then(({ jwt, ...data }) => {
+          self._headers.authorization = `bearer ${jwt}`;
+          resolve(data);
+        })
+        .catch(reject);
+    });
+  }
+
+  _handleResponse (response, resolve, reject) {
+    if (response.ok) {
+      resolve(response.json());
+    } else {
+      reject(response);
+    }
+  }
+
+  req (endpoint, { body, ...options } = {}) {
+    const self = this;
+    return new Promise(function (resolve, reject) {
+      fetch(self._url + endpoint, {
+        headers: self._headers,
+        body: body ? JSON.stringify(body) : undefined,
+        ...options
+      }).then((response) => self._handleResponse(response, resolve, reject));
+    });
+  }
+}
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const federationUrl = "https://api-gdn.paas.macrometa.io";
+
+const insertQuery = {
+  query:
+    "INSERT{'name' : 'Julie', 'company' : 'ABC', '_key' : 'Julie'} INTO testcollection"
+};
+const readQuery = {
+  query: "FOR doc IN testcollection RETURN doc"
+};
+const updateQuery = {
+  query:
+    "FOR c IN testcollection UPDATE c WITH{'company':'XYZ'} IN testcollection"
+};
+const upsertQuery = {
+  query:
+    "UPSERT {name: 'John'} INSERT {_key:'John', name: 'John', logins:1, updatedAt: DATE_NOW()} UPDATE {'logins': OLD.logins + 1, updatedAt: DATE_NOW()} IN testcollection"
+};
+
+const deleteDocumentsQuery = {
+  query: "FOR c IN testcollection REMOVE c IN testcollection"
+};
+const collectionName = "testcollection";
+
+const connection = new APIRequest(federationUrl);
+
+async function runningQueryFromCursor (query) {
+  await connection
+    .req("/_fabric/_system/_api/cursor", {
+      body: query,
+      method: "POST"
+    })
+    .then((document) => {
+      console.log("Cursor result:", document);
+      return document;
+    })
+    .catch((error) => console.log(error));
+}
+
+async function deleteCollection (collection) {
+  await connection
+    .req(`/_fabric/_system/_api/collection/${collection}`, {
+      method: "DELETE"
+    })
+    .then((document) => {
+      console.log("9. Delete collection " + collection);
+      return document;
+    })
+    .catch((error) => console.log(error));
+}
+
+async function createCollection (collection) {
+  await connection
+    .req("/_fabric/_system/_api/collection", {
+      body: { name: collection },
+      method: "POST"
+    })
+    .then((collection) => console.log("2. Collection created: ", collection))
+    .catch((error) => console.log(error));
+}
+
+const run = async function () {
+  /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
+
+  await connection
+    .login(email, password)
+    .then(() => console.log("\n1. User authentication done!"))
+    .catch((error) => error);
+
+  /* -------------------------- Create document collection ------------------------- */
+  
+  await createCollection(collectionName);
+
+  /* ---------------------------- Insert documents ---------------------------- */
+  
+  console.log("3. Inserting data in collection " + collectionName);
+  await runningQueryFromCursor(insertQuery);
+
+  /* ---------------------------- Read documents ---------------------------- */
+  
+  console.log("4. Reading data from collection " + collectionName);
+  await runningQueryFromCursor(readQuery);
+
+  /* ---------------------------- Update documents ---------------------------- */
+  
+  console.log("5. Update data from collection " + collectionName);
+  await runningQueryFromCursor(updateQuery);
+
+  /* ---------------------------- Upsert documents ---------------------------- */
+  
+  console.log("6. Upsert data from collection " + collectionName);
+  await runningQueryFromCursor(upsertQuery);
+
+  /* ---------------------------- Read documents ---------------------------- */
+  
+  console.log("7. Reading data from collection " + collectionName);
+  await runningQueryFromCursor(readQuery);
+
+  /* ---------------------------- Delete documents --------------------------- */
+  
+  console.log("8. Delete data from collection " + collectionName);
+  await runningQueryFromCursor(deleteDocumentsQuery);
+
+  /* ---------------------------- Delete collection ---------------------------- */
+  await deleteCollection(collectionName);
+};
+
+run()
+  .then()
+  .catch((error) => console.log(error));
+```
+</TabItem>
 </Tabs>
+
 
 ## Publish-Subscribe with Streams
 
@@ -510,196 +678,233 @@ print("Subscription deleted: ", resp.text)
 <TabItem value="js" label="Javascript">
 
 ```js
-  class APIRequest {
-    _headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
+const WebSocket = require("ws");
+class APIRequest {
+  _headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  };
 
-    constructor(url) {
-      this._url = url;
-    }
+  constructor (url) {
+    this._url = url;
+  }
 
-    login(email, password) {
-      const endpoint = "/_open/auth";
+  login (email, password) {
+    const endpoint = "/_open/auth";
 
-      const self = this;
+    const self = this;
 
-      return new Promise(function (resolve, reject) {
-        self
-          .req(endpoint, {
-            body: { email, password },
-            method: "POST",
-          })
-          .then(({ jwt, ...data }) => {
-            self._headers.authorization = `bearer ${jwt}`;
-            resolve(data);
-          })
-          .catch(reject);
-      });
-    }
+    return new Promise(function (resolve, reject) {
+      self
+        .req(endpoint, {
+          body: { email, password },
+          method: "POST"
+        })
+        .then(({ jwt, ...data }) => {
+          self._headers.authorization = `bearer ${jwt}`;
+          resolve(data);
+        })
+        .catch(reject);
+    });
+  }
 
-    _handleResponse(response, resolve, reject) {
-      if (response.ok) {
-        resolve(response.json());
-      } else {
-        reject(response);
-      }
-    }
-
-    req(endpoint, { body, ...options } = {}) {
-      const self = this;
-      return new Promise(function (resolve, reject) {
-        fetch(self._url + endpoint, {
-          headers: self._headers,
-          body: body ? JSON.stringify(body) : undefined,
-          ...options,
-        }).then((response) => self._handleResponse(response, resolve, reject));
-      });
+  _handleResponse (response, resolve, reject) {
+    if (response.ok) {
+      resolve(response.json());
+    } else {
+      reject(response);
     }
   }
 
-  const EMAIL = "nemo@nautilus.com";
-  const PASSWORD = "xxxxxx";
-  const FEDERATION_NAME = "https://api-gdn.paas.macrometa.io";
-  const FEDERATION_URL = `https://${FEDERATION_NAME}`;
+  req (endpoint, { body, ...options } = {}) {
+    const self = this;
+    return new Promise(function (resolve, reject) {
+      fetch(self._url + endpoint, {
+        headers: self._headers,
+        body: body ? JSON.stringify(body) : undefined,
+        ...options
+      }).then((response) => self._handleResponse(response, resolve, reject));
+    });
+  }
+}
 
-  const STREAM_NAME = "api_tutorial_streams";
-  const CONSUMER_NAME = "api_tutorial_streams_consumer";
-  const IS_GLOBAL = true;
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const federationName = "api-gdn.paas.macrometa.io";
+const federationUrl = `https://${federationName}`;
 
-  const run = async function () {
-    try {
-      const connection = new APIRequest(FEDERATION_URL);
+const stream = "api_tutorial_streams";
+const consumerName = "api_tutorial_streams_consumer";
+const isGlobal = true;
 
-      /* -------------------- Log in (nemo@nautilus.com/xxxxxxx) -------------------- */
+const run = async function () {
+  const connection = new APIRequest(federationUrl);
 
-      const { tenant } = await connection.login(EMAIL, PASSWORD);
+  /* -------------------- Log in (nemo@nautilus.com/xxxxxxx) -------------------- */
 
-      console.log("Logged in successfully using", tenant);
-      /* ------------------------------ Create stream ----------------------------- */
+  const { tenant } = await connection
+    .login(email, password)
+    .then((tenant) => {
+      console.log("\n1. User authentication done!");
+      return tenant;
+    })
+    .catch((error) => console.log(error));
 
-      const stream = await connection.req(
-        `/_fabric/_system/streams/${STREAM_NAME}?global=${IS_GLOBAL}`,
-        {
-          body: { name: STREAM_NAME },
-          method: "POST",
-        }
-      );
+  /* ------------------------------ Create stream ----------------------------- */
 
-      console.log("STREAM CREATED SUCCESSFULLY", stream);
-
-      /* ----------------- Publish and subscribe message to stream ---------------- */
-
-      const region = IS_GLOBAL ? "c8global" : "c8local";
-      const streamName = `${region}s.${STREAM_NAME}`;
-      const url = IS_GLOBAL
-        ? FEDERATION_NAME;
-        : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
-
-      const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${CONSUMER_NAME}`;
-
-      const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}`;
-
-      var consumer;
-      var producer;
-      var producer_interval;
-
-      /* -------------------------- Initalize consumer -------------------------- */
-
-      const initConsumer = () => {
-        return new Promise((resolve) => {
-          consumer = new WebSocket(consumerUrl);
-
-          consumer.onopen = function () {
-            console.log("WebSocket:Consumer is open now for " + streamName);
-            resolve();
-          };
-
-          consumer.onerror = function () {
-            console.log(
-              "Failed to establish WebSocket:Consumer connection for " +
-                streamName
-            );
-          };
-
-          consumer.onclose = function () {
-            console.log("Closed WebSocket:Consumer connection for " + streamName);
-          };
-
-          consumer.onmessage = function (message) {
-            var receivedMsg = message.data && JSON.parse(message.data);
-
-            console.log(
-              `WebSocket:Consumer message received at ${new Date()}`,
-              receivedMsg
-            );
-
-            const ackMsg = { messageId: receivedMsg.messageId };
-            consumer.send(JSON.stringify(ackMsg));
-          };
-        });
-      };
-
-      /* -------------------------- Initalize producer -------------------------- */
-
-      const initProducer = () => {
-        producer = new WebSocket(producerUrl);
-
-        producer.onopen = function () {
-          console.log("WebSocket:Producer is open now for " + streamName);
-          producer_interval = setInterval(function () {
-            console.log(`WebSocket:Producer message sent at ${new Date()}`);
-            producer.send(JSON.stringify({ payload: `test` }));
-          }, 10000);
-        };
-
-        producer.onclose = function (e) {
-          console.log("Closed WebSocket:Producer connection for " + streamName);
-          clearInterval(producer_interval);
-        };
-
-        producer.onerror = function (e) {
-          console.log(
-            "Failed to establish WebSocket:Producer connection for " + streamName
-          );
-        };
-      };
-
-      initConsumer().then(() => {
-        initProducer();
-      });
-
-      await new Promise((resolve) => setTimeout(resolve, 1 * 40 * 1000));
-
-      consumer.close();
-      console.log("CONSUMER CLOSING...");
-      producer.close();
-      console.log("PRODUCER CLOSING...");
-
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-
-      /* ------------------------ Unsubscribe from stream ------------------------ */
-
-      const consumerUnsubscribe = await connection.req(
-        `/_fabric/_system/_api/streams/unsubscribe/${CONSUMER_NAME}`,
-        {
-          method: "POST",
-        }
-      );
-
-      console.log(
-        `${CONSUMER_NAME} UNSUBSCRIBED SUCCESSFULLY`,
-        consumerUnsubscribe
-      );
-
-      /* ------------------------------ Delete topic ------------------------------ */
-    } catch (e) {
-      console.error(e);
+  try {
+    await connection.req(
+      `/_fabric/_system/streams/${stream}?global=${isGlobal}`,
+      {
+        body: { name: stream },
+        method: "POST"
+      }
+    );
+    console.log("2. Stream created successfully");
+  } catch (e) {
+    if (e.status === 409) {
+      console.log("2. Stream already exists, skipping creation of stream");
+    } else {
+      console.log("2. Error while creating stream");
+      throw e;
     }
+  }
+  console.log("3. Initiation producer and consumer")
+  /* ----------------- Publish and subscribe message to stream ---------------- */
+
+  const region = isGlobal ? "c8global" : "c8local";
+  const streamName = `${region}s.${stream}`;
+
+  // Fetch local URL in case the stream is local
+  const localDcDetails = await connection
+    .req(`/datacenter/local`, {
+      method: "GET"
+    })
+    .catch((error) => console.log(error));
+
+  const dcUrl = localDcDetails.tags.url;
+
+  const url = isGlobal ? federationName : `api-${dcUrl}`;
+
+  const otpConsumer = await connection
+    .req(`/apid/otp`, {
+      method: "POST"
+    })
+    .catch((error) => console.log(error));
+  const otpProducer = await connection
+    .req(`/apid/otp`, {
+      method: "POST"
+    })
+    .catch((error) => console.log(error));
+
+  const consumerUrl = `wss://${url}/_ws/ws/v2/consumer/persistent/${tenant}/${region}._system/${streamName}/${consumerName}?otp=${otpConsumer.otp}`;
+
+  const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
+
+  let consumer;
+  let producer;
+  let producerInterval;
+
+  /* -------------------------- Initalize consumer -------------------------- */
+
+  const initConsumer = () => {
+    return new Promise((resolve) => {
+      consumer = new WebSocket(consumerUrl);
+
+      consumer.onopen = function () {
+        console.log("WebSocket:Consumer is open now for " + streamName);
+        resolve();
+      };
+
+      consumer.onerror = function () {
+        console.log(
+          "Failed to establish WebSocket:Consumer connection for " + streamName
+        );
+      };
+
+      consumer.onclose = function () {
+        console.log("Closed WebSocket:Consumer connection for " + streamName);
+      };
+
+      consumer.onmessage = function (message) {
+        const receivedMsg = message.data && JSON.parse(message.data);
+
+        console.log(
+          `WebSocket:Consumer message received at ${new Date()}`,
+          receivedMsg
+        );
+        console.log(
+          "Payload: ",
+          Buffer.from(receivedMsg.payload, "base64").toString("ascii"),
+          " At: ",
+          receivedMsg.publishTime
+        );
+
+        const ackMsg = { messageId: receivedMsg.messageId };
+        consumer.send(JSON.stringify(ackMsg));
+      };
+    });
   };
 
-  run();
+  /* -------------------------- Initalize producer -------------------------- */
+
+  const initProducer = () => {
+    producer = new WebSocket(producerUrl);
+
+    producer.onopen = function () {
+      console.log("WebSocket:Producer is open now for " + streamName);
+      producerInterval = setInterval(function () {
+        console.log(`WebSocket:Producer message sent at ${new Date()}`);
+        producer.send(
+          JSON.stringify({
+            payload: Buffer.from("Hello World").toString("base64")
+          })
+        );
+      }, 10000);
+    };
+
+    producer.onclose = function (e) {
+      console.log("Closed WebSocket:Producer connection for " + streamName);
+      clearInterval(producerInterval);
+    };
+
+    producer.onerror = function (e) {
+      console.log(
+        "Failed to establish WebSocket:Producer connection for " + streamName
+      );
+    };
+  };
+
+  initConsumer()
+    .then(() => {
+      initProducer();
+    })
+    .catch((error) => console.log(error));
+
+  await new Promise((resolve) => setTimeout(resolve, 1 * 40 * 1000));
+
+  consumer.close();
+  console.log("4. Closing consumer...");
+  producer.close();
+  console.log("5. Closing producer...");
+
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
+  /* ------------------------ Unsubscribe from stream ------------------------ */
+
+  const consumerUnsubscribe = await connection
+    .req(`/_fabric/_system/_api/streams/subscription/${consumerName}`, {
+      method: "DELETE"
+    })
+    .catch((error) => console.log(error));
+
+  console.log(`6. ${consumerName} unsubscribed successfully`, consumerUnsubscribe);
+
+};
+
+run()
+  .then()
+  .catch((error) => console.log(error));
 ```
 
 </TabItem>
@@ -897,189 +1102,223 @@ print("Delete query deleted: ", resp.text)
 <TabItem value="js" label="Javascript">
 
 ```js
-  class APIRequest {
-    _headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
+class APIRequest {
+  _headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  };
 
-    constructor(url) {
-      this._url = url;
-    }
+  constructor(url) {
+    this._url = url;
+  }
 
-    login(email, password) {
-      const endpoint = "/_open/auth";
+  login (email, password) {
+    const endpoint = "/_open/auth";
 
-      const self = this;
+    const self = this;
 
-      return new Promise(function (resolve, reject) {
-        self
-          .req(endpoint, {
-            body: { email, password },
-            method: "POST",
-          })
-          .then(({ jwt, ...data }) => {
-            self._headers.authorization = `bearer ${jwt}`;
-            resolve(data);
-          })
-          .catch(reject);
-      });
-    }
+    return new Promise(function (resolve, reject) {
+      self
+        .req(endpoint, {
+          body: { email, password },
+          method: "POST"
+        })
+        .then(({ jwt, ...data }) => {
+          self._headers.authorization = `bearer ${jwt}`;
+          resolve(data);
+        })
+        .catch(reject);
+    });
+  }
 
-    _handleResponse(response, resolve, reject) {
-      if (response.ok) {
-        resolve(response.json());
-      } else {
-        reject(response);
-      }
-    }
-
-    req(endpoint, { body, ...options } = {}) {
-      const self = this;
-      return new Promise(function (resolve, reject) {
-        fetch(self._url + endpoint, {
-          headers: self._headers,
-          body: body ? JSON.stringify(body) : undefined,
-          ...options,
-        }).then((response) => self._handleResponse(response, resolve, reject));
-      });
+  _handleResponse (response, resolve, reject) {
+    if (response.ok) {
+      resolve(response.json());
+    } else {
+      reject(response);
     }
   }
 
-  const EMAIL = "nemo@nautilus.com";
-  const PASSWORD = "xxxxxx";
-  const FEDERATION_URL = "https://api-gdn.paas.macrometa.io";
+  req (endpoint, { body, ...options } = {}) {
+    const self = this;
+    return new Promise(function (resolve, reject) {
+      fetch(self._url + endpoint, {
+        headers: self._headers,
+        body: body ? JSON.stringify(body) : undefined,
+        ...options
+      }).then((response) => self._handleResponse(response, resolve, reject));
+    });
+  }
+}
 
-  const QUERY_NAME = "api_query_tutorial";
-  const QUERY_PARAMS = { "@collection": "api_query_tutorial" };
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const federationUrl = "https://api-gdn.paas.macrometa.io";
+const collectionName = "api_query_tutorial";
 
-  const run = async function () {
-    try {
-      const connection = new APIRequest(FEDERATION_URL);
+const readQueryName = "read";
+const queryParams = { "@collection": collectionName };
+const readQuery = "FOR doc IN @@collection RETURN doc";
 
-      /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
+const insertQueryName = "insert";
+const insertQuery = "FOR i IN 1..10 INSERT { result: i } INTO @@collection";
 
-      await connection.login(EMAIL, PASSWORD);
+const updateQueryName = "update";
+const updateQuery =
+  "FOR doc IN @@collection FILTER doc.result >= 3 UPDATE doc._key WITH { qualified :true } IN @@collection";
 
-      console.log("Logged in successfully using", EMAIL);
+const deleteQueryName = "delete";
+const deleteQuery = "FOR c IN @@collection REMOVE c IN @@collection";
 
-      /* ------------------------ Save RestQL query (with params) ----------------------- */
+const readQueryUpdated =
+  "FOR doc IN @@collection FILTER doc.result < 1 RETURN doc";
 
-      const QUERY = "FOR doc IN @@collection RETURN doc";
+const connection = new APIRequest(federationUrl);
 
-      const query = await connection.req("/_fabric/_system/_api/restql", {
-        body: {
-          query: {
-            name: QUERY_NAME,
-            value: QUERY,
-            parameter: QUERY_PARAMS,
-          },
-        },
-        method: "POST",
-      });
-
-      console.log("QUERY CREATED SAVED SUCCESSFULLY", query);
-
-      /* ----------------------- Update RestQL query (with params) ---------------------- */
-
-      const updatedQuery = await connection.req(
-        `/_fabric/_system/_api/restql/${QUERY_NAME}`,
-        {
-          body: {
-            query: {
-              value: QUERY,
-              parameter: QUERY_PARAMS,
-            },
-          },
-          method: "PUT",
+async function saveQueryWorker (queryName, queryValue, queryParams) {
+  await connection
+    .req("/_fabric/_system/_api/restql", {
+      body: {
+        query: {
+          name: queryName,
+          value: queryValue,
+          parameter: queryParams
         }
-      );
+      },
+      method: "POST"
+    })
+    .then((query) =>
+      console.log(`${queryName} query saved successfully `, query)
+    )
+    .catch((error) => console.log(error));
+}
 
-      console.log("QUERY UPDATED  SUCCESSFULLY", updatedQuery);
+async function runQueryWorker (queryWorkerName, params) {
+  await connection
+    .req(`/_fabric/_system/_api/restql/execute/${queryWorkerName}`, {
+      body: {
+        bindVars: params
+      },
+      method: "POST"
+    })
+    .then((query) =>
+      console.log(`${queryWorkerName} query worker results: `, query)
+    )
+    .catch((error) => console.log(error));
+}
 
-      /* ----------------------- Run RestQL query (with params) ---------------------- */
-
-      const execute = () =>
-        connection.req(`/_fabric/_system/_api/restql/execute/${QUERY_NAME}`, {
-          body: {
-            bindVars: QUERY_PARAMS,
-          },
-          method: "POST",
-        });
-
-      /* -------------------  Insert query using cursor (with params) ------------------- */
-
-      const INSERT_QUERY =
-        "FOR i IN 1..100 INSERT { result: i } INTO @@collection";
-
-      await connection.req(`/_fabric/_system/_api/cursor`, {
-        body: {
-          id: "tutorialQuery",
-          query: INSERT_QUERY,
-          bindVars: QUERY_PARAMS,
-        },
-        method: "POST",
-      });
-
-      console.log("DOCUMENTS INSERTED SUCCESSFULLY");
-
-      const insertResults = await execute();
-
-      console.log("DATA AFTER INSERT", insertResults);
-
-      /* ------------------- Update query using cursor (with params) ------------------- */
-      const CURSOR_QUERY =
-        "FOR doc IN @@collection FILTER doc.result >= 35 UPDATE doc._key WITH { qualified :true } IN @@collection";
-
-      await connection.req(`/_fabric/_system/_api/cursor`, {
-        body: {
-          id: "tutorialQuery",
-          query: CURSOR_QUERY,
-          bindVars: QUERY_PARAMS,
-        },
-        method: "POST",
-      });
-      console.log("DOCUMENTS UPDATED SUCCESSFULLY");
-
-      const updateResults = await execute();
-
-      console.log("DATA AFTER UPDATE", updateResults);
-
-      /* ------------------- Remove query using cursor (with params) ------------------- */
-
-      const REMOVE_QUERY = "FOR doc IN @@collection REMOVE doc IN @@collection";
-
-      await connection.req(`/_fabric/_system/_api/cursor`, {
-        body: {
-          id: "tutorialQuery",
-          query: REMOVE_QUERY,
-          bindVars: QUERY_PARAMS,
-        },
-        method: "POST",
-      });
-
-      console.log("DOCUMENTS DELETED SUCCESSFULLY");
-
-      const removeResults = await execute();
-
-      console.log("DATA AFTER DELETE", removeResults);
-
-      /* ----------------------------- Delete RestQL query by name ----------------------------- */
-
-      const deleteQuery = await connection.req(
-        `/_fabric/_system/_api/restql/${QUERY_NAME}`,
-        {
-          method: "DELETE",
+async function updateSavedQueryWorker (queryName, newQuery, queryParams) {
+  await connection
+    .req(`/_fabric/_system/_api/restql/${queryName}`, {
+      body: {
+        query: {
+          value: newQuery,
+          parameter: queryParams
         }
-      );
+      },
+      method: "PUT"
+    })
+    .then((updatedQuery) =>
+      console.log(`${queryName} was modified successfully`, updatedQuery)
+    )
+    .catch((error) => console.log(error));
+}
 
-      console.log("QUERY DELETED  SUCCESSFULLY", deleteQuery);
-    } catch (e) {
-      console.error(e);
-    }
-  };
+async function deleteQueryWorker (queryName) {
+  await connection
+    .req(`/_fabric/_system/_api/restql/${queryName}`, {
+      method: "DELETE"
+    })
+    .then((query) => console.log("Query deleted successfully", query))
+    .catch((error) => console.log(error));
+}
 
-  run();
+async function createCollection (collection) {
+  await connection
+    .req("/_fabric/_system/_api/collection", {
+      body: { name: collection },
+      method: "POST"
+    })
+    .then((collection) =>
+      console.log("2. Collection saved successfully", collection)
+    )
+    .catch((error) => console.log(error));
+}
+
+async function deleteCollection (collection) {
+  await connection
+    .req(`/_fabric/_system/_api/collection/${collection}`, {
+      method: "DELETE"
+    })
+    .then((collection) =>
+      console.log("Collection deleted successfully", collection)
+    )
+    .catch((error) => console.log(error));
+}
+
+const run = async function () {
+  try {
+    /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
+
+    await connection
+      .login(email, password)
+      .then(() => console.log("\n1. User authentication done!"))
+      .catch((error) => console.log(error));
+
+    /* ------------------------ Create collection ----------------------- */
+    await createCollection(collectionName);
+
+    console.log("3. Saving query workers");
+
+    /* ------------------------ Save query worker  ----------------------- */
+    await saveQueryWorker(readQueryName, readQuery, queryParams);
+
+    /* -------------------  Insert query worker ------------------- */
+    await saveQueryWorker(insertQueryName, insertQuery, queryParams);
+
+    /* -------------------  Update query worker ------------------- */
+    await saveQueryWorker(updateQueryName, updateQuery, queryParams);
+
+    /* -------------------  Delete query worker ------------------- */
+    await saveQueryWorker(deleteQueryName, deleteQuery, queryParams);
+
+    await new Promise(r => setTimeout(r, 2000));
+    console.log("4. Running query workers");
+
+    /* ----------------------- Run insert query worker ---------------------- */
+    await runQueryWorker(insertQueryName, queryParams);
+
+    /* ----------------------- Run read query worker ---------------------- */
+    await runQueryWorker(readQueryName, queryParams);
+
+    /* ----------------------- Run update query worker ---------------------- */
+    await runQueryWorker(updateQueryName, queryParams);
+
+    /* ----------------------- Run read query worker ---------------------- */
+    await runQueryWorker(readQueryName, queryParams);
+
+    /* ----------------------- Run delete query worker ---------------------- */
+    await runQueryWorker(deleteQueryName, queryParams);
+
+    /* ----------------------- Update saved query worker ---------------------- */
+    await updateSavedQueryWorker(readQueryName, readQueryUpdated, queryParams);
+
+
+    /* ----------------------------- Delete query workers ----------------------------- */
+    console.log("5. Deleting query workers");
+    await deleteQueryWorker(readQueryName);
+    await deleteQueryWorker(updateQueryName);
+    await deleteQueryWorker(insertQueryName);
+    await deleteQueryWorker(deleteQueryName);
+
+    console.log(`6. Deleting ${collectionName} collection`);
+    await deleteCollection(collectionName);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+run();
 ```
 
 </TabItem>
@@ -1326,55 +1565,276 @@ print("Graph and collections deleted: ", result)
 <TabItem value="js" label="Javascript">
 
 ```js
-  class APIRequest {
-    _headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
+class APIRequest {
+  _headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  };
 
-    constructor(url) {
-      this._url = url;
-    }
+  constructor (url) {
+    this._url = url;
+  }
 
-    login(email, password) {
-      const endpoint = "/_open/auth";
+  login (email, password) {
+    const endpoint = "/_open/auth";
 
-      const self = this;
+    const self = this;
 
-      return new Promise(function (resolve, reject) {
-        self
-          .req(endpoint, {
-            body: { email, password },
-            method: "POST",
-          })
-          .then(({ jwt, ...data }) => {
-            self._headers.authorization = `bearer ${jwt}`;
-            resolve(data);
-          })
-          .catch(reject);
-      });
-    }
+    return new Promise(function (resolve, reject) {
+      self
+        .req(endpoint, {
+          body: { email, password },
+          method: "POST"
+        })
+        .then(({ jwt, ...data }) => {
+          self._headers.authorization = `bearer ${jwt}`;
+          resolve(data);
+        })
+        .catch(reject);
+    });
+  }
 
-    _handleResponse(response, resolve, reject) {
-      if (response.ok) {
-        resolve(response.json());
-      } else {
-        reject(response);
-      }
-    }
-
-    req(endpoint, { body, ...options } = {}) {
-      const self = this;
-      return new Promise(function (resolve, reject) {
-        fetch(self._url + endpoint, {
-          headers: self._headers,
-          body: body ? JSON.stringify(body) : undefined,
-          ...options,
-        }).then((response) => self._handleResponse(response, resolve, reject));
-      });
+  _handleResponse (response, resolve, reject) {
+    if (response.ok) {
+      resolve(response.json());
+    } else {
+      reject(response);
     }
   }
-  TBD
+
+  req (endpoint, { body, ...options } = {}) {
+    const self = this;
+    return new Promise(function (resolve, reject) {
+      fetch(self._url + endpoint, {
+        headers: self._headers,
+        body: body ? JSON.stringify(body) : undefined,
+        ...options
+      }).then((response) => self._handleResponse(response, resolve, reject));
+    });
+  }
+}
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const federationUrl = "https://api-gdn.paas.macrometa.io";
+const teacherCollection = "teachers";
+const lecturesCollection = "lectures";
+const teachEdge = "teach";
+const lectureTracherGraph = "lectureteacher";
+
+const teachersPayload = [
+  {
+    _key: "Jean",
+    firstname: "Jean",
+    lastname: "Picard",
+    email: "jean.picard@macrometa.io"
+  },
+  {
+    _key: "James",
+    firstname: "James",
+    lastname: "Kirk",
+    email: "james.kirk@macrometa.io"
+  },
+  {
+    _key: "Han",
+    firstname: "Han",
+    lastname: "Solo",
+    email: "han.solo@macrometa.io"
+  },
+  {
+    _key: "Bruce",
+    firstname: "Bruce",
+    lastname: "Wayne",
+    email: "bruce.wayne@macrometa.io"
+  }
+];
+
+const lecturesPayload = [
+  {
+    _id: "lectures/CSC101",
+    difficulty: "easy",
+    _key: "CSC101",
+    firstname: "Jean"
+  },
+  {
+    _id: "lectures/CSC102",
+    difficulty: "hard",
+    _key: "CSC102",
+    firstname: "Jean"
+  },
+  {
+    _id: "lectures/CSC103",
+    difficulty: "hard",
+    _key: "CSC103",
+    firstname: "Jean"
+  },
+  {
+    _id: "lectures/CSC104",
+    difficulty: "moderate",
+    _key: "CSC104",
+    firstname: "Jean"
+  }
+];
+
+const edgePayload = [
+  {
+    _key: "Jean-CSC101",
+    _from: "teachers/Jean",
+    _to: "lectures/CSC101",
+    online: false
+  },
+  {
+    _key: "Jean-CSC102",
+    _from: "teachers/Jean",
+    _to: "lectures/CSC102",
+    online: true
+  },
+  {
+    _key: "Jean-CSC103",
+    _from: "teachers/Jean",
+    _to: "lectures/CSC103",
+    online: false
+  },
+  {
+    _key: "Bruce-CSC101",
+    _from: "teachers/Bruce",
+    _to: "lectures/CSC101",
+    online: true
+  }
+];
+
+const graphPayload = {
+  edgeDefinitions: [
+    {
+      collection: teachEdge,
+      from: ["teachers"],
+      to: ["lectures"]
+    }
+  ],
+  name: lectureTracherGraph,
+  options: {}
+};
+
+const tranversalGraphParams = {
+  vertex: "teachers/Jean",
+  direction: "out"
+};
+
+const run = async function () {
+  const connection = new APIRequest(federationUrl);
+
+  /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
+
+  await connection
+    .login(email, password)
+    .then(() => console.log("\n1. User authentication done!"))
+    .catch((error) => error);
+
+  /* -------------------- Create teachers collection -------------------- */
+  await connection
+    .req("/_fabric/_system/_api/collection", {
+      body: { name: teacherCollection },
+      method: "POST"
+    })
+    .then((collection) =>
+      console.log("2. Collection " + teacherCollection + " created", collection)
+    )
+    .catch((error) => console.log(error));
+
+  /* -------------------- Create lectures collection -------------------- */
+  await connection
+    .req("/_fabric/_system/_api/collection", {
+      body: { name: lecturesCollection },
+      method: "POST"
+    })
+    .then((collection) =>
+      console.log(
+        "3. Collection " + lecturesCollection + " created",
+        collection
+      )
+    )
+    .catch((error) => console.log(error));
+
+   /* -------------------- Load data to teachers collection -------------------- */
+  await connection
+    .req(`/_fabric/_system/_api/document/${teacherCollection}`, {
+      body: teachersPayload,
+      method: "POST"
+    })
+    .then((collection) => console.log("4. Documents inserted", collection))
+    .catch((error) => console.log(error));
+
+   /* -------------------- Load data to lectures collection -------------------- */
+  await connection
+    .req(`/_fabric/_system/_api/document/${lecturesCollection}`, {
+      body: lecturesPayload,
+      method: "POST"
+    })
+    .then((collection) => console.log("5. Documents inserted", collection))
+    .catch((error) => console.log(error));
+
+  /* -------------------- Create edge collection -------------------- */
+  await connection
+    .req("/_fabric/_system/_api/collection", {
+      body: { name: teachEdge, type: 3 },
+      method: "POST"
+    })
+    .then((collection) =>
+      console.log("6. Edge collection created successfully", collection)
+    )
+    .catch((error) => console.log(error));
+
+  /* -------------------- Load data to edge collection -------------------- */
+  await connection
+    .req(`/_fabric/_system/_api/document/${teachEdge}`, {
+      body: edgePayload,
+      method: "POST"
+    })
+    .then((collection) =>
+      console.log("7. Documents inserted in edge collection", collection)
+    )
+    .catch((error) => console.log(error));
+
+  /* -------------------- Create graph -------------------- */
+  await connection
+    .req("/_fabric/_system/_api/graph", {
+      body: graphPayload,
+      method: "POST"
+    })
+    .then((collection) =>
+      console.log("8. Graph created successfully", collection)
+    )
+    .catch((error) => console.log(error));
+
+  /* -------------------- Load data graph traversal-------------------- */
+  await connection
+    .req(
+      `/_fabric/_system/_api/edges/${teachEdge}?` +
+        new URLSearchParams(tranversalGraphParams),
+      {
+        method: "GET"
+      }
+    )
+    .then((collection) => console.log("9. Graph traversal", collection))
+    .catch((error) => console.log(error));
+
+  /* -------------------- Delete graph and drop collections -------------------- */
+  
+  await connection
+    .req(
+      `/_fabric/_system/_api/graph/${lectureTracherGraph}?` +
+        new URLSearchParams({ dropCollections: true }),
+      {
+        method: "DELETE"
+      }
+    )
+    .then((collection) => console.log("10. Graph deleted", collection))
+    .catch((error) => console.log(error));
+};
+
+run()
+  .then()
+  .catch((error) => console.log(error));
+
 ```
 
 </TabItem>
@@ -1555,211 +2015,235 @@ print("\nStream deleted: ", result)
 <TabItem value="js" label="Javascript">
 
 ```js
-  class APIRequest {
-    _headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
+ const WebSocket = require("ws");
+class APIRequest {
+  _headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  };
 
-    constructor(url) {
-      this._url = url;
+  constructor(url) {
+    this._url = url;
+  }
+
+  login (email, password) {
+    const endpoint = "/_open/auth";
+
+    const self = this;
+
+    return new Promise(function (resolve, reject) {
+      self
+        .req(endpoint, {
+          body: { email, password },
+          method: "POST"
+        })
+        .then(({ jwt, ...data }) => {
+          self._headers.authorization = `bearer ${jwt}`;
+          resolve(data);
+        })
+        .catch(reject);
+    });
+  }
+
+  _handleResponse (response, resolve, reject) {
+    if (response.ok) {
+      resolve(response.json());
+    } else {
+      reject(response);
     }
+  }
 
-    login(email, password) {
-      const endpoint = "/_open/auth";
+  req (endpoint, { body, ...options } = {}) {
+    const self = this;
+    return new Promise(function (resolve, reject) {
+      fetch(self._url + endpoint, {
+        headers: self._headers,
+        body: body ? JSON.stringify(body) : undefined,
+        ...options
+      }).then((response) => self._handleResponse(response, resolve, reject));
+    });
+  }
+}
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const federationName = "api-gdn.paas.macrometa.io";
+const federationUrl = `https://${federationName}`;
 
-      const self = this;
+const isGlobal = false;
+const stream = `tutorialAppInputStream`;
+const streamAppName = `stream_app_tutorial`;
+const streamApp = `@App:name('stream_app_tutorial')
+  @App:description('This application demonstrates how to use user-defined functions in a stream app')
 
-      return new Promise(function (resolve, reject) {
-        self
-          .req(endpoint, {
-            body: { email, password },
-            method: "POST",
-          })
-          .then(({ jwt, ...data }) => {
-            self._headers.authorization = `bearer ${jwt}`;
-            resolve(data);
-          })
-          .catch(reject);
+  define function concatFn[javascript] return string {
+      var str1 = data[0];
+      var str2 = data[1];
+      var str3 = data[2];
+      var response = str1 + str2 + str3;
+      return response;
+  };
+
+  -- Stream
+  define stream tutorialAppInputStream (deviceID string, roomNo int, temperature double);
+
+  -- Table
+  define table tutorialAppOutputTable (ID string, temperature double);
+
+  @info(name='Query')
+  select concatFn(roomNo,'-',deviceID) as id, temperature
+  from tutorialAppInputStream
+  insert into tutorialAppOutputTable;`;
+
+const run = async function () {
+  try {
+    const connection = new APIRequest(federationUrl);
+
+    /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
+
+    const { tenant } = await connection.login(email, password);
+
+    console.log("Logged in successfully using", tenant);
+
+    /* ---------------------------- Create stream app ---------------------------- */
+    
+    try {
+      const app = await connection.req("/_fabric/_system/_api/streamapps", {
+        body: {
+          definition: streamApp,
+          regions: []
+        },
+        method: "POST"
       });
-    }
-
-    _handleResponse(response, resolve, reject) {
-      if (response.ok) {
-        resolve(response.json());
+      console.log("Stream app created successfully", app);
+    } catch (e) {
+      if (e.status === 409) {
+        console.log(
+          "Stream app already exists, skipping creation of stream app"
+        );
       } else {
-        reject(response);
+        console.log("Error while creating stream app");
+        throw e;
       }
     }
 
-    req(endpoint, { body, ...options } = {}) {
-      const self = this;
-      return new Promise(function (resolve, reject) {
-        fetch(self._url + endpoint, {
-          headers: self._headers,
-          body: body ? JSON.stringify(body) : undefined,
-          ...options,
-        }).then((response) => self._handleResponse(response, resolve, reject));
-      });
-    }
-  }
-  const EMAIL = "nemo@nautilus.com";
-  const PASSWORD = "xxxxxx";
-  const FEDERATION_NAME = "api-gdn.prod.macrometa.io";
-  const FEDERATION_URL = `https://${FEDERATION_NAME}`;
+    /* --------------------------- Activate stream app --------------------------- */
 
-  const IS_GLOBAL = true;
-  const STREAM_NAME = `tutorialAppInputStream`;
-  const STREAM_APP_NAME = `strean_app_tutorial`;
-  const STREAM_APP = `@App:name('strean_app_tutorial')
-    @App:description('This application demonstrates how to use user defined function in the stream app')
+    await connection.req(
+      `/_fabric/_system/_api/streamapps/${streamAppName}/active?active=true`,
+      {
+        method: "PATCH"
+      }
+    );
 
-    define function concatFn[javascript] return string {
-        var str1 = data[0];
-        var str2 = data[1];
-        var str3 = data[2];
-        var response = str1 + str2 + str3;
-        return response;
+    console.log("Activating stream app...", streamAppName);
+
+    await new Promise((resolve) => setTimeout(resolve, 10000));
+
+    console.log("Stream app activated successfully");
+
+    /* ------------------ Publish messages to sample stream app ------------------ */
+    
+    const region = isGlobal ? "c8global" : "c8local";
+    const streamName = `${region}s.${stream}`;
+
+    // Fetch local URL in case the stream is local (which is defined in the stream app)
+    const localDcDetails = await connection.req(`/datacenter/local`, {
+      method: "GET"
+    });
+
+    const dcUrl = localDcDetails.tags.url;
+
+    const url = isGlobal ? federationName : `api-${dcUrl}`;
+
+    const otpProducer = await connection.req(`/apid/otp`, {
+      method: "POST"
+    });
+
+    const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
+
+    /* -------------------------- Initalize producer -------------------------- */
+
+    const producer = new WebSocket(producerUrl);
+
+    producer.onopen = function () {
+      console.log("WebSocket:Producer is open now for " + streamName);
     };
 
-    -- Stream
-    define stream tutorialAppInputStream (deviceID string, roomNo int, temperature double);
-
-    -- Table
-    define table tutorialAppOutputTable (id string, temperature double);
-
-    @info(name='Query')
-    select concatFn(roomNo,'-',deviceID) as id, temperature
-    from tutorialAppInputStream
-    insert into tutorialAppOutputTable;`;
-
-  const run = async function () {
-    try {
-      const connection = new APIRequest(FEDERATION_URL);
-
-      /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
-
-      const { tenant } = await connection.login(EMAIL, PASSWORD);
-
-      console.log("Logged in successfully using", tenant);
-
-      /* ---------------------------- Create StreamApp ---------------------------- */
-      const streamApp = await connection.req("/_fabric/_system/_api/streamapps", {
-        body: {
-          definition: STREAM_APP,
-          regions: [],
-        },
-        method: "POST",
-      });
-
-      console.log("STREAM APP CREATED SUCCESSFULLY", streamApp);
-
-      /* --------------------------- Activate StreamApp --------------------------- */
-
-      await connection.req(
-        `/_fabric/_system/_api/streamapps/${STREAM_APP_NAME}/active?active=true`,
-        {
-          method: "PATCH",
-        }
+    producer.onerror = function () {
+      console.log(
+        "Failed to establish WebSocket:Producer connection for " + streamName
       );
+    };
 
-      console.log("ACTIVATING STREAM APP...", STREAM_APP_NAME);
+    producer.onclose = function () {
+      console.log("Closed WebSocket:Producer connection for " + streamName);
+    };
 
-      await new Promise((resolve) => setTimeout(resolve, 10000));
+    producer.onmessage = function () {
+      console.log("WebSocket:Producer message sent successfully");
+    };
 
-      console.log("STREAM APP ACTIVATED SUCCESSFULLY");
+    await new Promise((resolve) => setTimeout(resolve, 10000));
 
-      /* ------------------ Publish messages to sample StreamApp ------------------ */
-      const region = IS_GLOBAL ? "c8global" : "c8local";
-      const streamName = `${region}s.${STREAM_NAME}`;
-      const url = IS_GLOBAL
-        ? FEDERATION_NAME;
-        : `api-${streamApp.streamApps[0].regions[0]}.prod.macrometa.io`
+    const inputData = [
+      {
+        deviceID: "AD11",
+        roomNo: 200,
+        temperature: 18
+      },
+      { deviceID: "AD11", roomNo: 201, temperature: 47 }
+    ];
 
-      const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}`;
+    producer.send(
+      JSON.stringify({
+        payload: Buffer.from((JSON.stringify(inputData[0]))).toString('base64')
+      })
+    );
 
-      /* -------------------------- Initalize producer -------------------------- */
+    await new Promise((resolve) => setTimeout(resolve, 10000));
 
-      const producer = new WebSocket(producerUrl);
+    producer.send(
+      JSON.stringify({
+        payload: Buffer.from((JSON.stringify(inputData[1]))).toString('base64')
+      })
+    );
 
-      producer.onopen = function () {
-        console.log("WebSocket:Producer is open now for " + streamName);
-      };
+    await new Promise((resolve) => setTimeout(resolve, 10000));
 
-      producer.onerror = function () {
-        console.log(
-          "Failed to establish WebSocket:Producer connection for " + streamName
-        );
-      };
+    producer.close();
 
-      producer.onclose = function () {
-        console.log("Closed WebSocket:Producer connection for " + streamName);
-      };
+    /* ----------------------------- Verify results ----------------------------- */
 
-      producer.onmessage = function () {
-        console.log("WebSocket:Producer message sent successfully");
-      };
+    const selectQuery = "FOR doc IN tutorialAppOutputTable return doc";
 
-      await new Promise((resolve) => setTimeout(resolve, 10000));
+    const result = await connection.req(`/_fabric/_system/_api/cursor`, {
+      body: {
+        id: "tutorialStreamAppQuery",
+        query: selectQuery,
+        bindVars: {}
+      },
+      method: "POST"
+    });
 
-      const INPUT_DATA = [
-        {
-          deviceID: "AD11",
-          roomNo: 200,
-          temperature: 18,
-        },
-        { deviceID: "AD11", roomNo: 201, temperature: 47 },
-      ];
+    console.log("Input data sent --->", inputData);
+    console.log("Output data received --->", result.result);
 
-      producer.send(
-        JSON.stringify({
-          payload: btoa(JSON.stringify(INPUT_DATA[0])),
-        })
-      );
+    /* ---------------------------- Delete stream app ---------------------------- */
+    
+    const deletion = await connection.req(
+      `/_fabric/_system/_api/streamapps/${streamAppName}`,
+      {
+        method: "DELETE"
+      }
+    );
 
-      await new Promise((resolve) => setTimeout(resolve, 10000));
+    console.log("Stream app deleted successfully", deletion);
+  } catch (e) {
+    console.error(e);
+  }
+};
 
-      producer.send(
-        JSON.stringify({
-          payload: btoa(JSON.stringify(INPUT_DATA[1])),
-        })
-      );
-
-      await new Promise((resolve) => setTimeout(resolve, 10000));
-
-      producer.close();
-
-      /* ----------------------------- Verify results ----------------------------- */
-
-      const SELECT_QUERY = "FOR doc IN tutorialAppOutputTable return doc";
-
-      const result = await connection.req(`/_fabric/_system/_api/cursor`, {
-        body: {
-          id: "tutorialStreamAppQuery",
-          query: SELECT_QUERY,
-          bindVars: {},
-        },
-        method: "POST",
-      });
-
-      console.log("INPUT SENT --->", INPUT_DATA);
-      console.log("OUTPUT DATA --->", result.results);
-
-      /* ---------------------------- Delete StreamApp ---------------------------- */
-      const deletion = await connection.req(
-        `/_fabric/_system/_api/streamapps/${STREAM_APP_NAME}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      console.log("STREAM APP DELETED SUCCESSFULLY", deletion);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  run();
+run();
 ```
 
 </TabItem>

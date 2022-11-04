@@ -12,26 +12,68 @@ import TabItem from '@theme/TabItem';
 Get all accessible resources.
 
 ```js
-//Fetch accessible databases
-try{
-    var databases = await client.listAccessibleDatabases(keyid)
-    console.log("Accessible Databases")
-    console.log(databases.result)
-}
-catch(e){
-    console.log('Failed to fetch accessible dataases: ', e);
+const jsc8 = require("jsc8");
 
-}
-// Fetch accessible streams
-try{
-    streams = await client.listAccessibleStreams(keyid, '_system', full=false)
-    console.log("Accessible Streams")
-    console.log(streams.result)
-}
-catch(e){
-    console.log('Failed to fetch accessible streams: ', e);
+// Email and password to authenticate client instance
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const fabric = "_system";
+// API key ID
+const keyid = "id1";
 
+const client = new jsc8({
+  url: "https://gdn.paas.macrometa.io",
+  fabricName: fabric
+});
+// Choose one of the following authentication methods and remove the commenting.
+
+// Create an authenticated instance with a JWT token.
+// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// Create an authenticated instance with a API key.
+// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+function messageHandler(error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.log(message);
 }
+async function main() {
+  await client
+    .login(email, password)
+    .then((e) => console.log("1. User authentication done!"))
+    .catch((error) => error);
+
+  console.log("\n2. Listing accessible databases for Key_ID = " + keyid);
+  await client
+    .listAccessibleDatabases(keyid)
+    .then((databases) => {
+      console.log(databases.result);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n3. Listing accessible streams for Key_ID = " + keyid);
+  await client
+    .listAccessibleStreams(keyid, fabric, (full = false))
+    .then((streams) => {
+      console.log(streams.result);
+    })
+    .catch((error) => messageHandler(error));
+
+  console.log("\n4. Listing accessible collections for Key_ID = " + keyid);
+  await client
+    .listAccessibleCollections(keyid, fabric, (full = false))
+    .then((collections) => {
+      console.log(collections.result);
+    })
+    .catch((error) => messageHandler(error));
+}
+
+main()
+  .then()
+  .catch((error) => console.log(error));
+
 ```
 
 </TabItem>
@@ -45,10 +87,13 @@ client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 
-# Fetch List of accessible databases and streams
-print("Accessible Databases: ", client.list_accessible_databases('id1'))
+# API key ID
+keyid = "id1"
 
-print("Accessible Streams of a db: ", client.list_accessible_streams('id1', '_system'))
+# Fetch List of accessible databases and streams
+print("Accessible Databases: ", client.list_accessible_databases(keyid))
+
+print("Accessible Streams of a db: ", client.list_accessible_streams(keyid, '_system'))
 ```
 
 </TabItem>

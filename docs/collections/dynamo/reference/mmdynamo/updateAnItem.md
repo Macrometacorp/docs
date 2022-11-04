@@ -55,7 +55,7 @@ Save as .html and open the file in your browser.
             ":p": "Everything happens all at once.",
             ":a": ["Larry", "Moe", "Curly"],
           },
-          ReturnValues: "UPDATED_NEW",
+          ReturnValues: "ALL_NEW",
         };
 
         client.updateItem(params, function (err, data) {

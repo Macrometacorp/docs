@@ -15,7 +15,7 @@ By default, a new document has only one attribute, `_key`. Defining the document
 Follow these instructions to add documents to an existing document collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **COLLECTIONS**.
+1. Click **Collections**.
 1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
 1. Click **New Document**.
 1. (Optional) Enter a `_key`.
@@ -32,7 +32,7 @@ Follow these instructions to add documents to an existing document collection fr
 ![Import a Document](/img/collections/import-docs.png)
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **COLLECTIONS**.
+1. Click **Collections**.
 1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
 1. Click the import icon, which is a down arrow pointing to a file box.
 1. Click **Choose File**, then browse to the file containing the documents you want to import.
@@ -70,15 +70,18 @@ The example below shows how to use Python or JavaScript to insert documents into
 ```js
   const jsc8 = require("jsc8");
 
+// Constants - DB
+const globalUrl = "https://gdn.paas.macrometa.io";
+const email = "nemo@nautilus.com";
+const password = "xxxxx";
+
   // Create an authenticated instance with a token or API key.
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
   // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
   // await console.log("Authentication done!!...");
 
   // Or use Email & Password to Authenticate client instance
-  const client = new jsc8("https://gdn.paas.macrometa.io");
-
-  await client.login("nemo@nautilus.com", "xxxxxx");
+  const client = new jsc8(globalUrl);
 
   //Variables
   const docJean = {'_key':'Jean', 
@@ -97,8 +100,8 @@ The example below shows how to use Python or JavaScript to insert documents into
 
   const docs = [docJean, docJames, docHan, docBruce];
 
-
   async function populate() {
+    await client.login(email, password);
     await console.log("Creating the collection object to be used and populating with documents...");
     await client.insertDocumentMany("employees", docs);
     await console.log("collection populated with documents");

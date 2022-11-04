@@ -3,6 +3,8 @@ sidebar_position: 4
 title: Data Cleansing
 ---
 
+This page explains ways to clean your data.
+
 ## Value based Filtering
 
 This example shows filter-out events based on simple conditions such as `number value`, `range` or `null` type.
@@ -44,11 +46,11 @@ Below events are sent to `TemperatureStream`,
 
 After processing, the following events will be arriving at each stream:
 
-* SenorA1234TemperatureStream: <br/>[`'A1234'`, 39] only
+- SenorA1234TemperatureStream: <br/>[`'A1234'`, 39] only
 
-* NormalTemperatureStream:  <br/>[`'sensor1'`, 35] only
+- NormalTemperatureStream:  <br/>[`'sensor1'`, 35] only
 
-* InValidTemperatureStream: <br/>[`null`, 43] only 
+- InValidTemperatureStream: <br/>[`null`, 43] only
 
 ## If-Then-Else
 
@@ -80,8 +82,8 @@ from TemperatureStream	;
 
 When an event with values [`'sensor1'`, `35.4`] is sent to TemperatureStream stream it will get converted and travel through the streams as below.
 
-* ValidTemperatureStream : [`'sensor1'`, `'Valid'`]
-* ProcessedTemperatureStream : [`'sensor1'`, `'Normal'`]
+- ValidTemperatureStream : [`'sensor1'`, `'Valid'`]
+- ProcessedTemperatureStream : [`'sensor1'`, `'Normal'`]
 
 ## Regex Matching
 
@@ -103,10 +105,9 @@ from SweetProductionStream;
 
 ### Input
 
-Below event is sent to `SweetProductionStream`, 
+Below event is sent to `SweetProductionStream`,
 
 [`'chocolate cake'`, `34`]
-
 
 ### Output
 
@@ -114,11 +115,9 @@ After processing, the event arriving at `ChocolateProductStream` will be as foll
 
 [`'chocolate cake'`, `true`, `'cake'`]
 
-
 ## Default
 
 This example shows how to use `default` function to process attributes with `null` values.
-
 
 ```sql
 -- Defines `PatientRegistrationInputStream` having information in all primitive types.
@@ -153,10 +152,9 @@ from PatientRegistrationInputStream;
 
 An event of all `null` attributes is sent to `PatientRegistrationInputStream`,
 
-
 ### Output
 
-After processing, the event arriving at `PreprocessedPatientRegistrationInputStream` will be as follows, 
+After processing, the event arriving at `PreprocessedPatientRegistrationInputStream` will be as follows,
 
 [`'invalid'`, `0` `0.0`, `0`, `0.0`]
 
@@ -164,11 +162,9 @@ with types,
 
 [`string`, `long`, `double`, `int`, `float`]
 
-
 ## Type based Filtering
 
 This example shows filter-out events based on data `type` of the attribute.
-
 
 ```sql
 -- Defines `SweetProductionStream` having information of `name` and `amount`
@@ -186,7 +182,7 @@ from SweetProductionStream;
 
 ### Input
 
-Below event is sent to `SweetProductionStream`, 
+Below event is sent to `SweetProductionStream`,
 
 [`'chocolate cake'`, `'invalid'`]
 
@@ -222,7 +218,6 @@ insert into UniqueSensorSeqNoStream;
 ### Behavior
 
 When events are sent to `TemperatureStream` stream, following events will get emitted after deduplication on `UniqueSensorStream` stream via `Deduplicate-sensorId` query, and `UniqueSensorSeqNoStream` stream via `Deduplicate-sensorId-and-seqNo` query.
-
 
 |Time | Input to `TemperatureStream` | Output at `UniqueSensorStream` | Output at `UniqueSensorSeqNoStream` |
 |---|---|---|---|

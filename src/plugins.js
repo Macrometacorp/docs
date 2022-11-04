@@ -11,7 +11,7 @@ const redirectsPlugin = [
           '/essentials',
           '/essentials/overview'
         ],
-        to: '/what-is-macrometa'
+        to: '/quickstart'
       },
       {
         from: '/essentials/CLI/commands',
@@ -19,11 +19,15 @@ const redirectsPlugin = [
       },
       {
         from: '/essentials/geofabrics',
-        to: '/geofabrics'
+        to: '/geofabrics/'
       },
       {
         from: '/essentials/troubleshooting',
         to: '/references/troubleshooting'
+      },
+      {
+        from: '/c8ql/got-tutorial',
+        to: '/queryworkers/c8ql/got-tutorial/'
       }
     ]
   }

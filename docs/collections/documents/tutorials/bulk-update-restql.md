@@ -6,11 +6,7 @@ title: Bulk Update with RestQL
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This tutorial is about using RestQL to bulk update `document` Collection data. 
-
-:::note
-If you are new to Macrometa GDN, we strongly recommend reading **[What is Macrometa](../../../what-is-macrometa.md)** of Macrometa GDN.
-:::
+This tutorial is about using RestQL to bulk update `document` Collection data.
 
 ## Pre-requisite
 
@@ -74,7 +70,7 @@ From source,
 class APIRequest {
     _headers = {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
     };
 
     constructor(url) {
@@ -87,7 +83,7 @@ class APIRequest {
         return new Promise(function (resolve, reject) {
             self.req(endpoint, {
                 body: { email, password },
-                method: "POST",
+                method: "POST"
             })
                 .then(({ jwt, ...data }) => {
                     self._headers.authorization = `bearer ${jwt}`;
@@ -117,84 +113,102 @@ class APIRequest {
     }
 }
 
-const EMAIL = "nemo@nautilus.com";
-const PASSWORD = "xxxxxx";
-const FEDERATION_URL = "https://api-gdn.paas.macrometa.io";
-const FABRIC_NAME = "_system";
-const COLLECTION_NAME = "superhero";
+// Variables
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
+const federationUrl = "https://api-smoke1.eng.macrometa.io";
+const fabricName = "_system";
+const collectionName = "superhero" + Math.floor(1000 + Math.random() * 9000).toString();
+const jamesKey = "james.kirk" + Math.floor(1000 + Math.random() * 9000).toString();
+const bruceKey = "bruce.wayne" + Math.floor(1000 + Math.random() * 9000).toString();
+const barryKey = "barry.allen" + Math.floor(1000 + Math.random() * 9000).toString();
 
-//Variables
 const inputDocs = [
-    { _key: "james.kirk@mafabriccrometa.io", firstname: "James", lastname: "Kirk", email: "james.kirk@mafabriccrometa.io", zipcode: "12312" },
-    { _key: "han.solo@macrfabricometa.io", firstname: "Han", lastname: "Solo", email: "han.solo@macrfabricometa.io", zipcode: "12311" },
-    { _key: "bruce.wayne@mfabricacrometa.io", firstname: "Bruce", lastname: "Wayne", email: "bruce.wayne@mfabricacrometa.io", zipcode: "12345" }
+  { "_key": jamesKey, "firstname": "James", "lastname": "Kirk", "email": "james.kirk@macrometa.io", "zipcode": "12312" },
+  { "_key": bruceKey, "firstname": "Bruce", "lastname": "Wayne", "email": "bruce.wayne@macrometa.io", "zipcode": "12345" }
 ];
 
-const updateKeys = ["james.kirk@mafabriccrometa.io", "bruce.wayne@mfabricacrometa.io"];
+const updateKeys = [jamesKey, bruceKey];
 const updateKeyValue = {
-    "bruce.wayne@mfabricacrometa.io": { key: "bruce.wayne@mfabricacrometa.io", zipcode: "22222" },
-    "james.kirk@mafabriccrometa.io": { key: "james.kirk@mafabriccrometa.io", zipcode: "55555" },
+  bruceKey: { key: bruceKey, zipcode: "22222" },
+  jamesKey: { key: jamesKey, zipcode: "55555" }
 };
 
-//Queries
+// Queries
 const insertData = `FOR doc in @InputDocs \
-INSERT {"firstname":doc.firstname, "lastname":doc.lastname, "email":doc.email, "zipcode":doc.zipcode, "_key": doc._key} IN ${COLLECTION_NAME}`;
+INSERT { "firstname":doc.firstname, "lastname":doc.lastname, "email":doc.email, "zipcode":doc.zipcode, "_key": doc._key } IN ${collectionName}`;
 
-const getData = `FOR doc IN ${COLLECTION_NAME} RETURN doc`;
+const getData = `FOR doc IN ${collectionName} RETURN doc`;
 
-const updateData = `FOR i IN ${COLLECTION_NAME} \
+const updateData = `FOR i IN ${collectionName} \
 FILTER i._key IN @updateKeys \
-UPDATE i with { zipcode: (i._key == @updateKeyValue[i._key].key) ? @updateKeyValue[i._key].zipcode : i.zipcode } IN ${COLLECTION_NAME}`;
+UPDATE i with { zipcode: (i._key == @updateKeyValue[i._key].key) ? @updateKeyValue[i._key].zipcode : i.zipcode } IN ${collectionName}`;
+
+const updatedInsertData = `INSERT 
+{ "firstname": "Barry", "lastname": "Allen", "email": "barry.allen@macrometa.io", "zipcode": "44444", "_key": @barryKey } IN ${collectionName}`;
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
 
 const run = async function () {
     try {
-        const connection = new APIRequest(FEDERATION_URL);
+        const connection = new APIRequest(federationUrl);
 
         /* -------------------- Login (nemo@nautilus.com/xxxxxxx) -------------------- */
-        await connection.login(EMAIL, PASSWORD);
-        console.log("Login Successfully using", EMAIL);
+        await connection.login(email, password);
+        console.log("Login Successfully using ", email);
 
         /* -------------------------- Create Doc Collection ------------------------- */
-        const collection = await connection.req(`/_fabric/${FABRIC_NAME}/_api/collection`, {
-            body: { name: COLLECTION_NAME },
-            method: "POST",
-        });
+        try {
+            const collection = await connection.req(`/_fabric/${fabricName}/_api/collection`, {
+                body: { name: collectionName },
+                method: "POST"
+            });
+            console.log("Collection " + collectionName + " created.\n", collection);
+        } catch (e) {
+            if (e.status === 409) {
+              console.log("Collection already exists, skipping creation");
+            } else {
+              console.log("Create collection failed");
+              throw e;
+            }
+        }
 
-        console.log("COLLECTION CREATED SUCCESSFULLY", collection);
-
-        /* ------------------------ Saving a Restql Query ----------------------- */
-        const saveRestQlQuery = (queryName, query, parameter) =>
-            connection.req(`/_fabric/${FABRIC_NAME}/_api/restql`, {
+        /* ------------------------ Saving a query ----------------------- */
+        const saveRestQlQuery = (queryName, query, parameters) =>
+            connection.req(`/_fabric/${fabricName}/_api/restql`, {
                 body: {
                     query: {
                         name: queryName,
                         value: query,
-                        parameter,
-                    },
+                        parameter: parameters
+                    }
                 },
-                method: "POST",
+                method: "POST"
             });
 
-        console.log("------- Save the RestQl Queries  ------");
+        console.log("------- Save the Queries  ------");
         await saveRestQlQuery("insertData", insertData, {});
         await saveRestQlQuery("getData", getData, {});
         await saveRestQlQuery("updateData", updateData, {});
 
         console.log("Queries Saved Successfully");
 
-        /* ----------------------- Executing a Restql Query ---------------------- */
+        /* ----------------------- Executing a query ---------------------- */
         const executeRestql = (queryName, parameter) =>
-            connection.req(`/_fabric/${FABRIC_NAME}/_api/restql/execute/${queryName}`, {
+            connection.req(`/_fabric/${fabricName}/_api/restql/execute/${queryName}`, {
                 body: {
-                    bindVars: parameter,
+                    bindVars: parameter
                 },
-                method: "POST",
+                method: "POST"
             });
 
-        console.log("------- Execute the RestQl Queries  ------");
+        await sleep(2000);
+        console.log("------- Execute the Queries  ------");
 
         await executeRestql("insertData", {
-            InputDocs: inputDocs,
+            InputDocs: inputDocs
         });
         console.log("Data Inserted \n");
 
@@ -206,7 +220,7 @@ const run = async function () {
 
         await executeRestql("updateData", {
             updateKeys,
-            updateKeyValue,
+            updateKeyValue
         });
 
         console.log("Data updated \n");
@@ -214,7 +228,46 @@ const run = async function () {
         const dataAfterUpdate = await executeRestql("getData");
         console.log(dataAfterUpdate.result);
         console.log("\n");
+
+        /* ------------------------ Updating a query ----------------------- */
+        const updateRestQlQuery = (queryName, query, parameters) =>
+            connection.req(`/_fabric/${fabricName}/_api/restql/${queryName}`, {
+                body: {
+                    query: {
+                        value: query,
+                        parameter: parameters
+                    }
+                },
+                method: "PUT"
+            });
+
+        console.log("------- Updating the insertData query  ------");
+        await updateRestQlQuery("insertData", updatedInsertData, {});
+        console.log("Query updated successfully");
+
+        await sleep(2000);
+        await executeRestql("insertData", {
+            barryKey
+        });
+        console.log("New data inserted with the updated insertData query\n");
+
+        const resultAfterUpdate = await executeRestql("getData");
+        console.log(resultAfterUpdate.result);
+        console.log("\n");
+
+        const deleteRestQl = (queryName) =>
+        connection.req(`/_fabric/${fabricName}/_api/restql/${queryName}`, {
+            method: "DELETE"
+        });
+
+        console.log("------- Deleting the insertData, getData, and updateData queries ------");
+        await deleteRestQl("insertData");
+        await deleteRestQl("getData");
+        await deleteRestQl("updateData");
+        console.log("RestQls deleted successfully");
+
     } catch (e) {
+        console.log("Error caught while executing RestQL demo: ");
         console.error(e);
     }
 };
@@ -350,24 +403,28 @@ const jsc8 = require('jsc8');
 // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
 const client = new jsc8("https://gdn.paas.macrometa.io");
 
-//Variables
+// Variables
+const email = "nemo@nautilus.com";
+const password = "xxxxxx";
 const collectionName = "superhero" + Math.floor(1000 + Math.random() * 9000).toString();
+const jamesKey = "james.kirk" + Math.floor(1000 + Math.random() * 9000).toString();
+const bruceKey = "bruce.wayne" + Math.floor(1000 + Math.random() * 9000).toString();
+const barryKey = "barry.allen" + Math.floor(1000 + Math.random() * 9000).toString();
 
 const inputDocs = [
-    { "_key": "james.kirk@mafabriccrometa.io", "firstname": "James", "lastname": "Kirk", "email": "james.kirk@mafabriccrometa.io", "zipcode": "12312"},
-    { "_key": "han.solo@macrfabricometa.io", "firstname": "Han", "lastname": "Solo", "email": "han.solo@macrfabricometa.io", "zipcode": "12311"},
-    { "_key": "bruce.wayne@mfabricacrometa.io", "firstname": "Bruce", "lastname": "Wayne", "email": "bruce.wayne@mfabricacrometa.io", "zipcode": "12345" }
+  { "_key": jamesKey, "firstname": "James", "lastname": "Kirk", "email": "james.kirk@macrometa.io", "zipcode": "12312" },
+  { "_key": bruceKey, "firstname": "Bruce", "lastname": "Wayne", "email": "bruce.wayne@macrometa.io", "zipcode": "12345" }
 ];
 
-const updateKeys = ["james.kirk@mafabriccrometa.io", "bruce.wayne@mfabricacrometa.io"];
+const updateKeys = [jamesKey, bruceKey];
 const updateKeyValue = {
-    "bruce.wayne@mfabricacrometa.io": { key: "bruce.wayne@mfabricacrometa.io", zipcode: "22222" },
-    "james.kirk@mafabriccrometa.io": { key: "james.kirk@mafabriccrometa.io", zipcode: "55555"}
+  bruceKey: { key: bruceKey, zipcode: "22222" },
+  jamesKey: { key: jamesKey, zipcode: "55555" }
 };
 
-//Queries
+// Queries
 const insertData = `FOR doc in @InputDocs \
-INSERT {"firstname":doc.firstname, "lastname":doc.lastname, "email":doc.email, "zipcode":doc.zipcode, "_key": doc._key} IN ${collectionName}`;
+INSERT { "firstname":doc.firstname, "lastname":doc.lastname, "email":doc.email, "zipcode":doc.zipcode, "_key": doc._key } IN ${collectionName}`;
 
 const getData = `FOR doc IN ${collectionName} RETURN doc`;
 
@@ -375,20 +432,45 @@ const updateData = `FOR i IN ${collectionName} \
 FILTER i._key IN @updateKeys \
 UPDATE i with { zipcode: (i._key == @updateKeyValue[i._key].key) ? @updateKeyValue[i._key].zipcode : i.zipcode } IN ${collectionName}`;
 
-async function restqldemo() {
+const updatedInsertData = `INSERT 
+{ "firstname": "Barry", "lastname": "Allen", "email": "barry.allen@macrometa.io", "zipcode": "44444", "_key": @barryKey } IN ${collectionName}`;
+
+function errorResponseHandler (error) {
+  const message = {
+    "StatusCode ": error.statusCode,
+    "ErrorMessage ": error.message,
+    "ErrorNum ": error.errorNum
+  };
+  console.error(message);
+}
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+async function restqldemo () {
+  try {
     /* Authenticate client instance with username and password */
-    console.log("------- AUTHENTICATE CLIENT INSTANCE WITH USERNAME AND PASSWORD  ------");
-    await client.login("nemo@nautilus.com", "xxxxxx");
+    console.log("------- Authenticate client instance with username AND password  ------");
+    await client.login(email, password);
 
-    /* Create Collection */
-    console.log("------- CREATE GEO-REPLICATED COLLECTION  ------");
+    /* Create collection */
+    console.log("------- Create geo-replicated collection  ------");
 
-    const collection = await client.createCollection(collectionName);
+    try {
+      const collection = await client.createCollection(collectionName);
+      console.log("Collection " + collectionName + " created.\n", collection);
+    } catch (e) {
+      if (e.statusCode === 409) {
+        console.log("Collection already exists, skipping creation");
+      } else {
+        console.log("Create collection failed");
+        throw e;
+      }
+    }
 
-    console.log("Collection " + collectionName + " created.\n", collection);
-
-    /* Save RestQl Queries */
-    console.log("------- SAVING THE QUERIES  ------");
+    /* Save queries */
+    console.log("------- Saving the queries  ------");
 
     await client.createRestql("insertData", insertData, {});
     await client.createRestql("getData", getData, {});
@@ -397,35 +479,70 @@ async function restqldemo() {
     console.log("Saved Queries Successfully\n");
 
     /* Execute RestQl Queries */
-    console.log("------- EXECUTING THE QUERIES  ------");
+    console.log("------- Running the queries  ------");
 
+    await sleep(2000);
     await client.executeRestql("insertData", {
-        InputDocs: inputDocs
+      InputDocs: inputDocs
     });
 
     console.log("Data Inserted \n");
 
-    const res = await client.executeRestql("getData");
+    let res = await client.executeRestql("getData");
 
     console.log("Output of get data query:");
     console.log(res.result);
     console.log("\n");
 
     await client.executeRestql("updateData", {
-        updateKeys,
-        updateKeyValue
+      updateKeys,
+      updateKeyValue
     });
 
     console.log("Data updated \n");
 
-    const data = await client.executeRestql("getData");
+    res = await client.executeRestql("getData");
 
     console.log("Output of get data query after update:");
-    console.log(data.result);
+    console.log(res.result);
     console.log("\n");
+
+    await client.updateRestql("insertData", updatedInsertData, {});
+    await sleep(2000);
+
+    await client.executeRestql("insertData", {
+      barryKey
+    });
+
+    console.log("New Data Inserted \n");
+
+    res = await client.executeRestql("getData");
+
+    console.log("Output of get data query after insertion of new data:");
+    console.log(res.result);
+    console.log("\n");
+
+    res = await client.getRestqls();
+
+    console.log("List of all available query workers: ");
+    console.log(res.result);
+
+    console.log("Deleting saved queries - insertData, getData, updateData");
+    await client.deleteRestql("insertData");
+    await client.deleteRestql("getData");
+    await client.deleteRestql("updateData");
+
+    res = await client.getRestqls();
+
+    console.log("List of all available query workers after deletion:");
+    console.log(res.result);
+  } catch (e) {
+    console.log("Error caught while executing RestQl Demo: ");
+    errorResponseHandler(e);
+  }
 }
 
-restqldemo().then(console.log("Starting Execution"));
+restqldemo().then(console.log("Running queries"));
 ```
 
 </TabItem>

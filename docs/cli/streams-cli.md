@@ -225,13 +225,7 @@ gdnsl streams expire <stream-name> [flags] <second-value-number>
 
 ## gdnsl streams backlog
 
-Delete backlog for all stream.
-
-```bash
-gdnsl streams backlog [flags]
-```
-
-Delete backlog for a subscription.
+Delete backlog for all streams or for a subscription.
 
 ```bash
 gdnsl streams backlog [flags]
@@ -287,16 +281,17 @@ gdnsl streams subscription NAME [flags]
 **Options:**
 
 ```bash
-  -h, --help              Help for deleting subscriptions.
-      --global            Is stream global or not.
-      --subscription      Subscription for a particular stream.
-      --fabric            Name of the fabric to use.
+  -h, --help            Help for deleting subscriptions
+  --delete              Delete the given subscription on all streams
+  --fabric=<value>      Name of the fabric. Default will be "_system"
+  --global              Is stream global or not.
+  --stream=<value>      Name of the streams.
 ```
 
 **Options inherited:**
 
 ```bash
-      --config string     gdnsl config file (default is ./gdnsl.yaml)
+-c, --config=<value>     gdnsl config file (default is ./gdnsl.yaml)
 ```
 
 ## gdnsl streams ttl

@@ -1,6 +1,4 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
-
 require("dotenv").config();
 
 const {
@@ -24,9 +22,12 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'macrometacorp', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
-  clientModules: [require.resolve('./src/css/tailwind.css')],
+  organizationName: 'macrometacorp',
+  projectName: 'docs',
+  clientModules: [
+    require.resolve('./src/css/fonts.css'),
+    require.resolve('./src/css/tailwind.css')
+  ],
 
   presets: [
     [
@@ -34,6 +35,7 @@ const config = {
       {
         docs: {
           path: 'docs',
+          breadcrumbs: false,
           editUrl: ({ docPath }) =>
             `https://github.com/macrometacorp/docs/edit/master/docs/${docPath}`,
           routeBasePath: '/',
@@ -62,7 +64,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/map.png',
+      image: 'img/macrometa-preview-dark.png',
       metadata: [
         {
           name: 'og:title',
@@ -70,7 +72,7 @@ const config = {
         },
         {
           name: 'og:description',
-          content: 'Powering the next generation of apps and APIs. Build performant apps on the edge with our lightning-fast, stateful serverless global data platform'
+          content: 'Powering the next generation of apps and APIs. Store, process, and serve data within milliseconds of everyone on the planet.'
         },
         {
           name: 'og:url',
@@ -78,7 +80,7 @@ const config = {
         },
         {
           name: 'og:image',
-          content: 'https://assets-global.website-files.com/5fa9e94bc848ae335afdd627/601af89de27f422a1c090b14_mm-map.png'
+          content: `${host}/img/macrometa-preview-dark.png`
         }
       ],
       algolia: {
@@ -96,8 +98,8 @@ const config = {
       navbar: {
         logo: {
           alt: 'Macrometa Logo',
-          src: 'img/logo.svg',
-          srcDark: 'img/logo-white.svg',
+          src: 'img/macrometa-logo.svg',
+          srcDark: 'img/macrometa-logo-dark.svg',
           href: 'https://macrometa.com',
           target: '_self'
         },
@@ -108,15 +110,40 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
+          // {
+          //   href: '/',
+          //   activeBasePath: '/',
+          //   position: 'left',
+          //   label: 'Docs',
+          // },
           {
             position: 'left',
-            label: 'API',
+            label: 'API Reference',
             href: '/api'
           },
           {
+            className: 'navbar__item--external',
+            href: 'https://support.macrometa.com/',
+            label: 'Support',
+            position: 'left',
+          },
+          {
+            className: 'navbar__item--external',
+            href: 'https://auth.paas.macrometa.io/',
+            label: 'Log in',
+            position: 'left',
+          },
+          {
+            className: 'navbar__item--external',
             href: 'https://github.com/macrometacorp/docs',
             label: 'GitHub',
-            position: 'left',
+            position: 'right',
+          },
+          {
+            className: 'navbar__item--external',
+            href: 'https://twitter.com/macrometa',
+            label: 'Twitter',
+            position: 'right',
           },
         ],
       },
@@ -130,48 +157,67 @@ const config = {
                 to: '/quickstart',
               },
               {
-                label: 'What is Macrometa',
-                to: '/what-is-macrometa',
+                label: 'Sample Apps',
+                to: '/apps'
+              },
+              {
+                label: 'Release Notes',
+                to: '/release-notes'
               }
             ],
           },
           {
-            title: 'SDKs & Tools',
+            title: 'Developer Tools',
             items: [
               {
-                label: 'Javascript',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://github.com/Macrometacorp/jsC8',
+                label: 'Javascript',
               },
               {
-                label: 'Python',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://github.com/Macrometacorp/pyC8',
+                label: 'Python',
               },
               {
-                label: 'CLI',
+                className: 'footer__link-item footer__item--external',
                 href: 'https://www.npmjs.com/package/gdnsl',
+                label: 'CLI',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Connect',
             items: [
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/macrometa',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
+                className: 'footer__link-item footer__item--external',
+                href: 'https://github.com/macrometacorp',
                 label: 'GitHub',
-                href: 'https://github.com/macrometacorp/',
+              },
+              {
+                className: 'footer__link-item footer__item--external',
+                href: 'https://twitter.com/macrometa',
+                label: 'Twitter',
+              },
+            ],
+          },
+          {
+            title: 'Resources',
+            items: [
+              {
+                className: 'footer__link-item footer__item--external',
+                href: 'https://support.macrometa.com',
+                label: 'Support',
+              },
+              {
+                className: 'footer__link-item footer__item--external',
+                href: 'https://status.macrometa.io/',
+                label: 'System Status',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Macrometa`,
+        copyright: `© ${new Date().getFullYear()} Macrometa • All rights reserved`,
       },
       prism: {
         theme: lightCodeTheme,
