@@ -79,16 +79,16 @@ Establish connection to a local region. When this code runs, it initializes the 
 
   # Simple Way
   print("--- Connecting to C8")
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                           email='nemo@nautilus.com', password="xxxxxx",
                           geofabric='_system')
 
   # Or Using token
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   token="XXXX")
 
   # Or Using API Key
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey="<your-api-key>")
 ```
 
@@ -99,12 +99,12 @@ Establish connection to a local region. When this code runs, it initializes the 
   const jsc8 = require("jsc8");
 
   // Simple Way
-  const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "", fabricName: '_system'});
+  const client = new jsc8({url: "https://play.paas.macrometa.io", token: "", fabricName: '_system'});
   // ----- OR -----
-  const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "<your-api-key>", fabricName: '_system'});
+  const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<your-api-key>", fabricName: '_system'});
 
   // To use advanced options
-  const client = new jsc8("https://gdn.paas.macrometa.io"); 
+  const client = new jsc8("https://play.paas.macrometa.io"); 
 ```
 
 </TabItem>
@@ -124,7 +124,7 @@ Create a Collection for saving the key-value pairs.
   collection_name = "students"
 
   # Create a connection to gdn
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
 
   # Create a new collection if it does not exist
@@ -167,7 +167,7 @@ Insert key-value pairs into the collection.
   collection_name = "students"
 
   # Create a connection to gdn
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
   # Insert Key Value pairs
   data = [
@@ -250,7 +250,7 @@ Get value for a given key.
   collection_name = "students"
 
   # Create a connection to gdn
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
   # Get value for a key
   print("Value for the provided key: ",client.get_value_for_key(collection_name, "Monika"))
@@ -281,7 +281,7 @@ Get key-value count from a given collection.
   collection_name = "students"
 
   # Create a connection to gdn
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
 
   # Get KV count of a collection
@@ -314,7 +314,7 @@ Update value for a given key.
   collection_name = "students"
 
   # Create a connection to gdn
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
 
   # Update value for a key
@@ -364,7 +364,7 @@ Delete key-value pairs from a collection.
   collection_name = "students"
 
   # Create a connection to gdn
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
 
   # Delete entry for a key
@@ -408,7 +408,7 @@ Delete key-value collection
   collection_name = "students"
 
   # Create a connection to gdn
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
 
   # Delete Collection
@@ -446,15 +446,15 @@ The following complete examples are a composite of the previous code snippets:
   collection_name = "students"
 
   # Create a connection to gdn
-  client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   apikey=key)
 
-  # client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  # client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   #                          email='nemo@nautilus.com', password="xxxxxx",
   #                          geofabric='_system')
 
   # OR Using token
-  # client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+  # client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
   #  token="XXXX")
 
 
@@ -526,15 +526,15 @@ The following complete examples are a composite of the previous code snippets:
   const collectionName = "students";
 
   // Connect to gdn
-  const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: key});
+  const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: key});
 
   // Crete a authenticated instance with Token / Apikey
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+  // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+  // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
   // await console.log("Authentication done!!...");
 
   // Or use Email & Password to Authenticate client instance
-  // const client = new jsc8("https://gdn.paas.macrometa.io");
+  // const client = new jsc8("https://play.paas.macrometa.io");
 
   // await client.login("nemo@nautilus.com", "xxxxx");
 

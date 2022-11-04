@@ -10,7 +10,7 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 ## Prerequisites
 
-- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
+- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create streams.
 - An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys).
 - Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
@@ -36,13 +36,13 @@ const jsc8 = require("jsc8");
 
 // Choose one of the following methods to access the GDN. API key is recommended.
 // API key
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
 
 // JSON Web Token
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+// const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
 
 // Or use email and password to authenticate client instance
-// const client = new jsc8("https://gdn.paas.macrometa.io");
+// const client = new jsc8("https://play.paas.macrometa.io");
 // Replace values with your email and password.
 // await client.login("nemo@nautilus.com", "xxxxxx"); 
 ```
@@ -61,7 +61,7 @@ from c8 import C8Client
 warnings.filterwarnings("ignore")
 
 # Define constants
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
 
@@ -73,7 +73,7 @@ print("--- Connecting to GDN")
 client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
 
 # Authenticate with JWT
-# client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token=<your token>)
+# client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, token=<your token>)
 ```
 
 </TabItem>
@@ -183,7 +183,7 @@ async function streams() {
       const stream = client.stream("my-stream", true);
       await stream.createStream();
       const producerOTP = await stream.getOtp();
-      const producer = await stream.producer("gdn.paas.macrometa.io", {
+      const producer = await stream.producer("play.paas.macrometa.io", {
         otp: producerOTP,
     });
       producer.on("open", () => {
@@ -289,7 +289,7 @@ It's time to see streams in action!
 // Connect to GDN.
 const jsc8 = require("jsc8");
 // Choose one of the following methods to access the GDN. API key is recommended.
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "xxxxx", fabricName: '_system'});
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "xxxxx", fabricName: '_system'});
 console.log("Authentication done!!...");
 
 // Get GeoFabric details.
@@ -350,7 +350,7 @@ async function createProducer() {
       await console.log("Creating local stream...");
       const stream = client.stream("my-stream", true);
       const producerOTP = await stream.getOtp();
-      const producer = await stream.producer("gdn.paas.macrometa.io", {
+      const producer = await stream.producer("play.paas.macrometa.io", {
         otp: producerOTP,
       });
       producer.on("open", () => {
@@ -398,7 +398,7 @@ from c8 import C8Client
 warnings.filterwarnings("ignore")
 
 # Connect to GDN.
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "xxxxx" # Change this to your API key
 is_local = False

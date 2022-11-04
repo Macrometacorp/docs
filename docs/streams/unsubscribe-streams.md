@@ -17,7 +17,7 @@ You must [Install the Python SDK](../sdks/install-sdks.md) before you can run th
 from c8 import C8Client
 
 # Connect to GDN.
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "XXXXX" # Change this to your API key
 
@@ -59,7 +59,7 @@ You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can ru
 
 ```js
 const jsc8 = require("jsc8");
-const client = new jsc8({ url: "https://gdn.paas.macrometa.io", apiKey: "xxxxx", fabricName: "_system" });
+const client = new jsc8({ url: "https://play.paas.macrometa.io", apiKey: "xxxxx", fabricName: "_system" });
 
 const streamName = "streamQuickstart";
 
@@ -104,7 +104,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 import requests
 
 # Constants
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 STREAM_NAME = "streamQuickstart"
@@ -184,7 +184,7 @@ class APIRequest {
 }
 
 const apiKey = "xxxxx"; // Use your apikey here
-const federationName = "api-gdn.paas.macrometa.io";
+const federationName = "api-play.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
 const fabric = "_system"
 const stream = "streamQuickstart";

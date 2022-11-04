@@ -13,7 +13,7 @@ For the following examples, assume these credentials:
 
 ## API Browser
 
-Your main tool when working with REST APIs is the REST API browser available in the [GDN](https://gdn.paas.macrometa.io) GUI. From there, you can execute various REST APIs and see exactly what the inputs and outputs are.
+Your main tool when working with REST APIs is the REST API browser available in the [GDN](https://play.paas.macrometa.io) GUI. From there, you can execute various REST APIs and see exactly what the inputs and outputs are.
 
 ![GDN API Browser](/img/gdn-api-browser.png)
 
@@ -28,8 +28,8 @@ import json
 
 # Constants
 
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-play.paas.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
 FABRIC = "_system"
@@ -37,7 +37,7 @@ AUTH_TOKEN = "bearer "
 
 # Create HTTPS session
 
-url = "{}/_open/auth".format(FED_URL)
+url = "{}/_open/auth".format(HTTP_URL)
 payload = {
     'email':EMAIL,
     'password':PASSWORD
@@ -115,13 +115,13 @@ body: body ? JSON.stringify(body) : undefined,
 }
 const EMAIL = "nemo@nautilus.com";
 const PASSWORD = "xxxxxx";
-const FEDERATION_URL = "https://api-gdn.paas.macrometa.io";
+const HTTP_URL = "https://api-play.paas.macrometa.io";
 
 const COLLECTION_NAME = "students";
 
 const run = async function () {
 try {
-const connection = new APIRequest(FEDERATION_URL);
+const connection = new APIRequest(HTTP_URL);
 
 /* -------------------- Log in (nemo@nautilus.com/xxxxxxx) -------------------- */
 
@@ -144,7 +144,7 @@ Create a KV collection.
   # Create a collection
 
   COLLECTION_NAME = "students"
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME
+  url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME
 
   resp = session.post(url, data = json.dumps(payload))
   resp = resp.json()
@@ -205,7 +205,7 @@ Insert Key Value pairs into collection.
     }
   ]
 
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
+  url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
   print(url)
   resp = session.put(url, data = json.dumps(data))
   print("\nMultiple Documents Inserted: ", resp.text)
@@ -264,7 +264,7 @@ Get value for a given key.
   # Get value for a key
 
   KEY = "Monika"
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME + "/value/" + KEY
+  url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME + "/value/" + KEY
   resp = session.get(url)
   print("\nDocument with specified Key is: ",resp.text)
 ```
@@ -295,7 +295,7 @@ Get size of the kv collection.
 ```py
   # Get collection count
 
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME + "/count"
+  url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME + "/count"
   resp = session.get(url)
   print("\nNumber of kv pairs in your collection: ",resp.text)
 ```
@@ -333,7 +333,7 @@ Update value for a given key in the collection.
       "value": "Biology",
       "expireAt": 0
     }
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
+  url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
   resp = session.put(url, data = json.dumps(data))
   print("\nDocument Updated: ", resp.text)
 ```
@@ -374,13 +374,13 @@ Delete value for a given key.
 
 ```py
   # Delete value for a Key
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value/" + KEY
+  url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME +"/value/" + KEY
   resp = session.delete(url)
   print("\nDocument with specified Key Deleted: ", resp.text)
 
   # Delete value for multiple Keys
   data = ["Alex", "Alice", "John"]
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/values"
+  url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME +"/values"
   resp = session.delete(url, data = json.dumps(data))
   print("\nDocument with specified Key Deleted: ", resp.text)
 ```
@@ -409,7 +409,7 @@ Get collections.
 
 ```py
   # Get collections
-  url = FED_URL + "/_api/kv"
+  url = HTTP_URL + "/_api/kv"
   resp = session.get(url)
   print("\nCollections : ",resp.text)
 ```
@@ -434,7 +434,7 @@ Delete collection.
 ```py
   # Delete collection
 
-  url = FED_URL + "/_api/kv/" + COLLECTION_NAME 
+  url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME 
   resp = session.delete(url)
   print("\nCollection Deleted: ", resp.text)
 ```
@@ -470,8 +470,8 @@ import json
 
 # Constants
 
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-play.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
 FABRIC = "_system"
@@ -480,7 +480,7 @@ COLLECTION_NAME = "students"
 
 # Create HTTPS session
 
-url = f"{FED_URL}/_open/auth"
+url = f"{HTTP_URL}/_open/auth"
 payload = {
       'email':EMAIL,
       'password':PASSWORD
@@ -501,7 +501,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 
 # Get list of all regions
 
-url = FED_URL + "/_api/datacenter/all"
+url = HTTP_URL + "/_api/datacenter/all"
 dcl_resp = session.get(url)
 dcl_list = json.loads(dcl_resp.text)
 regions = []
@@ -512,7 +512,7 @@ print("\nList of Regions: ",regions)
 
 # Create a collection
 
-url = FED_URL + "/_api/kv/" + COLLECTION_NAME
+url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME
 resp = session.post(url, data = json.dumps(payload))
 resp = json.loads(resp.text)
 if 'error' in resp and resp['error']:
@@ -544,7 +544,7 @@ data = [
       "expireAt": 0
     }
   ]
-url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
+url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
 print(url)
 resp = session.put(url, data = json.dumps(data))
 print("\nMultiple Documents Inserted: ", resp.text)
@@ -552,13 +552,13 @@ print("\nMultiple Documents Inserted: ", resp.text)
 # Get value for a given key
 
 KEY = "Monika"
-url = FED_URL + "/_api/kv/" + COLLECTION_NAME + "/value/" + KEY
+url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME + "/value/" + KEY
 resp = session.get(url)
 print("\nDocument with specified Key is: ",resp.text)
 
 # Get collection count
 
-url = FED_URL + "/_api/kv/" + COLLECTION_NAME + "/count"
+url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME + "/count"
 resp = session.get(url)
 print("\nNumber of kv pairs in your collection: ",resp.text)
 
@@ -569,32 +569,32 @@ data =  {
       "value": "Biology",
       "expireAt": 0
     }
-url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
+url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME +"/value"
 resp = session.put(url, data = json.dumps(data))
 print("\nDocument Updated: ", resp.text)
 
 # Delete value for a key
 
-url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/value/" + KEY
+url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME +"/value/" + KEY
 resp = session.delete(url)
 print("\nDocument with specified Key Deleted: ", resp.text)
 
 # Delete value for multiple keys
 
 data = ["Alex", "Alice", "John"]
-url = FED_URL + "/_api/kv/" + COLLECTION_NAME +"/values"
+url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME +"/values"
 resp = session.delete(url, data = json.dumps(data))
 print("\nDocument with specified Key Deleted: ", resp.text)
 
 # Get collections
 
-url = FED_URL + "/_api/kv"
+url = HTTP_URL + "/_api/kv"
 resp = session.get(url)
 print("\nCollections : ",resp.text)
 
 # Delete collection
 
-url = FED_URL + "/_api/kv/" + COLLECTION_NAME
+url = HTTP_URL + "/_api/kv/" + COLLECTION_NAME
 resp = session.delete(url)
 print("\nCollection Deleted: ", resp.text)
 ```
@@ -653,13 +653,13 @@ class APIRequest {
   }
   const EMAIL = "nemo@nautilus.com";
   const PASSWORD = "xxxxxx";
-  const FEDERATION_URL = "https://api-gdn.paas.macrometa.io";
+  const HTTP_URL = "https://api-play.paas.macrometa.io";
   
   const COLLECTION_NAME = "students";
   
   const run = async function () {
   try {
-  const connection = new APIRequest(FEDERATION_URL);
+  const connection = new APIRequest(HTTP_URL);
   
   /* -------------------- Log in (nemo@nautilus.com/xxxxxxx) -------------------- */
   

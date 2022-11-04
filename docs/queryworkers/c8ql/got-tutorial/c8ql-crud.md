@@ -11,7 +11,7 @@ Before we can insert documents with C8QL, we need a place to put them in: a coll
 
 For this tutorial, [Create a Document Store collection](../../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../../collections/index.md).
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Collections**.
 3. Click **New Collection**.
 4. Click **Document Store**.

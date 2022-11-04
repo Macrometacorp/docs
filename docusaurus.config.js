@@ -129,7 +129,7 @@ const config = {
           },
           {
             className: 'navbar__item--external',
-            href: 'https://auth.paas.macrometa.io/',
+            href: 'https://auth-play.macrometa.io/',
             label: 'Log in',
             position: 'left',
           },

@@ -9,7 +9,7 @@ Get started with Macrometa by creating a simple address book. This tutorial is M
 
 ## Prerequisites
 
-- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
+- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create collections.
 
 ## Step 1: Create a collection
 

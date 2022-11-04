@@ -77,7 +77,7 @@ class APIRequest {
 }
 
 const apiKey = "XXXXX" // Use your API key here
-let url = "api-gdn.paas.macrometa.io";
+let url = "api-play.paas.macrometa.io";
 const httpUrl = `https://${url}`;
 const tenant = "XXXXX" // Use your tenant name here
 
@@ -245,7 +245,7 @@ import threading
 import time
 
 # Constants
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 API_KEY = "XXXXX" # Use your API key here
 AUTH_TOKEN = f"apikey {API_KEY}"
