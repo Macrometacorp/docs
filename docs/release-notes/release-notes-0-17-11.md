@@ -11,7 +11,7 @@ The following new features are included in this release.
 
 ### Search and Stream Workers are in GA
 
-[Search](../search/index.md) and [Stream Workers](../search/index.md), previously only available in closed beta, are now generally available for everyone to use.
+[Search](../search/index.md) and [Stream Workers](../cep/index.md), previously only available in closed beta, are now generally available for everyone to use.
 
 ### Invite User
 
@@ -27,7 +27,7 @@ You can now manage attributes for users and API keys in the Macrometa console.
 
 ### Akamai EdgeWorker Support - Preview
 
-This release adds support for Akamai edge workers as functions in GDN. For more information, refer to [Akamai EdgeWorkers](../akamai/index.md).
+This release adds support for Akamai edge workers as functions in GDN. For more information, refer to [Akamai in Macrometa](../akamai/index.md).
 
 ### SQL Support - Beta
 
