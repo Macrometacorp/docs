@@ -1,0 +1,68 @@
+---
+sidebar_position: 20
+title: Getting started with Search
+---
+
+In this getting started guide we will be adding search functionality to the Address Book app that you build by following our [quickstart guide](https://macrometa.com/docs/quickstart).
+
+## Prerequisites
+
+- A [Macrometa account](https://auth.paas.macrometa.io/).
+- Completion of our [quickstart guide](https://macrometa.com/docs/quickstart).
+
+## Step 1: Create a view
+
+ A search _view_ an inverted index that contains the search configuration and all document attributes across one or many collections.
+
+1. On the side menu, click **Search Views**.
+2. Click **New view**.
+3. In **Name**, enter `addresses_view`.
+4. Click the **plus** under Mapping Definition.
+5. Select the `addresses` collection from the COLLECTION dropdown. 
+6. Enter `lastName` in `FIELD` and select **text_en** in the ANALYZER dropdown. 
+7. Follow steps 5 and 6 two more times, but add `firstName` in the second Mapping Definition and `email` in the third Mapping Definition.
+8. Click the **Create** button.
+
+Macrometa distributes this view index to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
+
+Our view is now accessible worldwide, and your three address collection key values are indexed and ready to query!
+
+## Step 2: Query your view
+
+1. On the side menu, click **Query Workers**.
+2. The code block below is a search query that will allow you to pass in a query parameter to search you index. Copy and paste it in the code editor on line 1.
+
+  ```sql
+    FOR contact IN addresses_view
+        SEARCH ANALYZER(
+                BOOST(STARTS_WITH(contact.firstName, @searchTerm), 3) OR
+                BOOST(STARTS_WITH(contact.lastName, @searchTerm), 2) OR 
+                BOOST(STARTS_WITH(contact.email, @searchTerm), 1),
+                "text_en"
+            )
+        SORT BM25(contact) DESC
+        RETURN UNSET(contact, ["_id", "_rev"])
+  ```
+
+3. Add the word `nemo` to the searchTerm value to the right of the query editor window.
+4. Click **Run Query**. You will see your results show up below the Run Query button.
+5. (Optional) Click **Query Info** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
+
+## Step 3: Save the query as an API endpoint
+
+Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
+
+1. Click **Save Query**.
+1. Name the query **getContactBySearchTerm** and click **Save**. This saves the query so you can use it again.
+1. Click **Run Query**.
+1. Click **API Endpoint**.
+
+Macrometa displays a `curl` command you can use to access this endpoint from anywhere in the world in under 50ms.
+
+:::note
+This query requires a key, so you must enter one in the bind parameters or else the query will fail with an error.
+:::
+
+![Create a Query Worker](/img/quickstart/create-query-worker.png)
+
+You have created your first view and made it a RESTful endpoint with a query worker. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
