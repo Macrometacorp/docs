@@ -27,7 +27,7 @@ You can now manage attributes for users and API keys in the Macrometa console.
 
 ### Akamai EdgeWorker Support - Preview
 
-This release adds support for Akamai edge workers as functions in GDN. For more information, refer to [Akamai EdgeWorkers](../akamai/index.md).
+This release adds support for Akamai edge workers as functions in GDN. For more information, refer to [Akamai in Macrometa](../akamai/index.md).
 
 ### SQL Support - Beta
 
