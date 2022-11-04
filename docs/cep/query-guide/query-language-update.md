@@ -9,13 +9,14 @@ You must include `@App:qlversion('2')` at the beginning of the stream applicatio
 
 For all queries, version 2 replaces annotations such as `@sink` and `@source` are replaced by keywords such as `SINK` and `SOURCE` and `WITH()` properties. For example:
 
-* Version 1:
+- Version 1:
+
     ```js
     @sink(type='http-call', sink.id='echo-service', publisher.url='http://postman-echo.com/post', @map(type='json', @payload('{{payloadBody}}'))) ...
     ```
 
+- Version 2:
 
-* Version 2:
     ```js
     CREATE SINK sink_name WITH (type='http-call', sink.id='echo-service', publisher.url='http://postman-echo.com/post', map.type='json', map.payload = '{{payloadBody}}') ...
     ```
@@ -53,25 +54,25 @@ This table describes updates to key words and query types:
 
 Additionally, the following key words are added for more granular querying:
 
-* `SINK`: Used with `CREATE SINK`.
-* `SOURCE`: Used with `CREATE SOURCE`.
-* `STORE`: Used with `CREATE STORE`.
-* `GLOBAL`: Used with `CREATE STREAM GLOBAL?` or `CREATE TABLE GLOBAL|SPOT?`.
-* `SPOT`: Used with `CREATE TABLE GLOBAL|SPOT?`.
-* `INTERVAL`: Used with `CREATE TRIGGER`.
-* `EXPRESSION`: Used with `CREATE TRIGGER`.
-* `WHERE`: Alternative to `HAVING`.
+- `SINK`: Used with `CREATE SINK`.
+- `SOURCE`: Used with `CREATE SOURCE`.
+- `STORE`: Used with `CREATE STORE`.
+- `GLOBAL`: Used with `CREATE STREAM GLOBAL?` or `CREATE TABLE GLOBAL|SPOT?`.
+- `SPOT`: Used with `CREATE TABLE GLOBAL|SPOT?`.
+- `INTERVAL`: Used with `CREATE TRIGGER`.
+- `EXPRESSION`: Used with `CREATE TRIGGER`.
+- `WHERE`: Alternative to `HAVING`.
 
 ### Define Streams
 
-* Version 1:
+- Version 1:
 
     ```js
     @sink(type = 'c8streams', stream = "ExampleStream")
     define stream ExampleStream (data string);
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     // Creates GDN stream source (default):
@@ -86,19 +87,18 @@ Additionally, the following key words are added for more granular querying:
 
 Refer to [Stream](../query-guide/stream.md) for more information.
 
-
 ### Define Tables
 
 Tables no longer require `@sink` or `@source` annotations.
 
-* Version 1:
+- Version 1:
 
     ```js
     @store(type=’c8db’, collection=`<table_name>`)
     define table <table_name> (<attribute_name> <attribute_type>, ...);
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     CREATE TABLE ExampleTable (data string);
@@ -106,11 +106,9 @@ Tables no longer require `@sink` or `@source` annotations.
 
 Refer to [Table (Collection)](../query-guide/table-collection.md) for more information.
 
-
-
 ### Define Trigger
 
-* Version 1:
+- Version 1:
 
     ```js
     define trigger InitTrigger at 'start';
@@ -118,7 +116,7 @@ Refer to [Table (Collection)](../query-guide/table-collection.md) for more infor
     define trigger WorkStartTrigger at '0 15 10 ? * MON-FRI';
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     CREATE TRIGGER InitTrigger WITH (expression = 'start');
@@ -128,17 +126,16 @@ Refer to [Table (Collection)](../query-guide/table-collection.md) for more infor
 
 Refer to [Trigger](../query-guide/trigger.md) for more information.
 
-
 ### Define Sinks
 
-* Version 1:
+- Version 1:
 
     ```js
     @sink(type='restql-call',restql.name="restqlExample")
     define stream restqlStream (startTime string);
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     CREATE SINK restqlStream WITH (type='query-worker', query.worker.name="restqlExample") (startTime string);
@@ -146,10 +143,9 @@ Refer to [Trigger](../query-guide/trigger.md) for more information.
 
 Refer to [Sink](../query-guide/stream.md#sink) for more information.
 
-
 ### Define Sources
 
-* Version 1:
+- Version 1:
 
     ```js
     @source(type = 'c8db', collection = "ExampleInputTable", @map(type='json'))
@@ -157,7 +153,7 @@ Refer to [Sink](../query-guide/stream.md#sink) for more information.
 
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     CREATE SOURCE ExampleInputTableStream WITH (type = 'database', collection = "ExampleInputTable", map.type='json')(data string);
@@ -167,7 +163,7 @@ Refer to [Source](../query-guide/stream.md#source) for more information.
 
 ### Define Stores
 
-* Version 1:
+- Version 1:
 
     ```js
     @store(type="rdbms", jdbc.url="jdbc:mysql://host:3306", username="root", password="Welcome@123#", jdbc.driver.name="com.mysql.jdbc.Driver", field.length="symbol:100", table.check.query="SELECT 1 FROM StockTable LIMIT")
@@ -177,7 +173,7 @@ Refer to [Source](../query-guide/stream.md#source) for more information.
 
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://host:3306", username="root", password="Welcome@123#", jdbc.driver.name="com.mysql.jdbc.Driver", field.length="symbol:100", table.check.query="SELECT 1 FROM StockTable LIMIT", PrimaryKey='id', PrimaryKey='symbol', Index='volume')
@@ -189,13 +185,13 @@ Refer to [Store](../query-guide/store.md) for more information.
 
 ### Define Named Windows
 
-* Version 1:
+- Version 1:
 
     ```js
     define window SensorWindow (deviceID string, value float, roomNo int) timeBatch(1 second);
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     CREATE WINDOW SensorWindow (deviceID string, value float, roomNo int) TUMBLING_TIME(1 second);
@@ -205,7 +201,7 @@ Refer to [Named Window](../query-guide/named-window.md) for more information.
 
 ### Define Functions
 
-* Version 1:
+- Version 1:
 
     ```js
     define function concatFn[javascript] return string {
@@ -218,7 +214,7 @@ Refer to [Named Window](../query-guide/named-window.md) for more information.
 
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     CREATE FUNCTION concatFn[javascript] RETURN STRING {
@@ -235,7 +231,7 @@ Refer to [Function](../query-guide/query.md#function) for more information.
 
 ### Define Stream As Select
 
-* Version 1:
+- Version 1:
 
     ```js
     define stream StockStream (symbol string, price float, volume long);
@@ -244,7 +240,7 @@ Refer to [Function](../query-guide/query.md#function) for more information.
     insert into StockStream;
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     CREATE STREAM StockStream (symbol string, price float, volume long)
@@ -254,11 +250,9 @@ Refer to [Function](../query-guide/query.md#function) for more information.
 
 Refer to [Select](../query-guide/query.md#select) for more information.
 
-
-
 ### Define Table As Select
 
-* Version 1:
+- Version 1:
 
     ```js
     define table StockTable (symbol string, price float, volume long);
@@ -267,7 +261,7 @@ Refer to [Select](../query-guide/query.md#select) for more information.
     insert into StockTable;
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     CREATE TABLE StockTable (symbol string, price float, volume long)
@@ -287,7 +281,7 @@ The order of queries is as follows:
 
 For example:
 
-* Version 1:
+- Version 1:
 
     ```js
     select symbol, price, volume
@@ -295,7 +289,7 @@ For example:
     insert into StockStream;
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     INSERT INTO StockStream
@@ -303,19 +297,17 @@ For example:
     FROM InputStream[price > 500] WINDOW SLIDING_LENGTH(1);
     ```
 
-
-
 ### Windows in Queries
 
 In addition to the new syntax, windows also use new names.
 
-* Version 1:
+- Version 1:
 
     ```js
     from ExampleStream#window.length(2) ...
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     FROM ExampleStream WINDOW SLIDING_LENGTH(2) ...
@@ -325,7 +317,7 @@ The following table shows the version 1 and version 2 window names:
 
 | Version 1                     | Version 2 |
 |---                            |---        |
-| #window.time()                | WINDOW SLIDING_TIME() | 
+| #window.time()                | WINDOW SLIDING_TIME() |
 | #window.timeBatch()           | WINDOW TUMBLING_TIME()    |
 | #window.length()              | WINDOW SLIDING_LENGTH()   |
 | #window.lengthBatch()         | WINDOW TUMBLING_LENGTH()  |
@@ -346,7 +338,7 @@ Refer to [Window](../query-guide/query.md#window) for more information.
 
 The `WHERE` clause is an alternative to the `HAVING` clause.
 
-* Version 1:
+- Version 1:
 
     ```js
     select roomNo, avg(temp) as avgTemp
@@ -356,7 +348,7 @@ The `WHERE` clause is an alternative to the `HAVING` clause.
 
     ```
 
-* Version 2:
+- Version 2:
 
     ```sql
     INSERT INTO AlertStream
