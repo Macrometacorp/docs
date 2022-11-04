@@ -69,7 +69,7 @@ When you use Key_Shared type, be aware that:
 -You need to specify a key or orderingKey for messages.
 -You cannot use cumulative acknowledgment with Key_Shared type.
 
-![stream-failover-subscriptions](/img/stream-key-shared-subscriptions.png)
+![stream-key-shared-subscriptions](/img/stream-key-shared-subscriptions.png)
 
 ## Multi-stream Subscriptions
 
