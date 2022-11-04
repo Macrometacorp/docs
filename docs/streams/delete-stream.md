@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 Delete a stream.
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Streams**.
 
    Macrometa displays a list of streams and their attributes.

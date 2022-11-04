@@ -10,7 +10,7 @@ This page describes how to create geo-replicated streams and set up queues and p
 
 ## Prerequisites
 
-- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
+- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create streams.
 - Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ## Pub-Sub with Streams Code

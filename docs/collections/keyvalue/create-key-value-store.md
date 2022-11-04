@@ -12,7 +12,7 @@ This page explains how to create a new Key-Value Store collection.
 
 Follow these instructions to create a new collection using the GDN console web UI.
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Collections**.
 1. Click **New Collection**.
 1. Click **Key-Value Store**.

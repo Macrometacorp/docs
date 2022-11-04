@@ -18,7 +18,7 @@ This feature is currently in preview.
 
 Add Akamai metadata to your Macrometa GDN environment.
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Query Workers**.
 1. Click **Generate Edge Worker**.
 1. In the pop-up, click **Manage Integration**.
@@ -36,7 +36,7 @@ Add Akamai metadata to your Macrometa GDN environment.
 
 Delete Akamai metadata from your Macrometa GDN environment.
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Query Workers**.
 1. Click **Generate EdgeWorker**.
 1. In the pop-up, click **Manage Integration**.

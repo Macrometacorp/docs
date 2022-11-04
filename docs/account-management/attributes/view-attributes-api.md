@@ -13,7 +13,7 @@ This page shows you different methods to view attributes assigned to Macrometa G
 
 Follow these instructions to view API key attributes using the GDN console web UI.
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Accounts**.
 1. On the API Keys tab, click the ID of the API key for which you want to view attributes.
 

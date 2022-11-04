@@ -13,7 +13,7 @@ This page shows you different methods to add attributes to Macrometa GDN API key
 
 Follow these instructions to add attributes to API keys using the GDN console web UI.
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Accounts**.
 1. On the API Keys tab, click the ID of the API key for which you want to limit permissions.
 1. Click **Attributes** and provide the following details:
