@@ -9,7 +9,7 @@ import Prerequisites from '../_partials/_prerequisites-sdk-api-key.md';
 import Steps from '../_partials/_get-started-steps.md';
 import ConnectToGDN from '../_partials/_connect-to-gdn-code-block.md';
 
-This article is an introduction to using stream workers with [Macrometa SDKs](../sdks/index.md).
+This article is an introduction to using stream workers (sometimes called stream apps) with [Macrometa SDKs](../sdks/index.md).
 
 <Prerequisites />
 
@@ -21,35 +21,35 @@ This page guides you through creating a stream worker, updating it, and running 
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
-### Connect to GDN
+### Step 1. Connect to GDN
 
 To use stream workers with Macrometa Global Data Network (GDN), you must first establish a connection to a local region.
 
 <ConnectToGDN />
 
-## Validate Stream Application
+### Step 2. Validate Stream Worker
 
-Validate the stream application for syntax errors before saving. If valid, then the system returns `True`.
+Validate the stream worker for syntax errors before saving. If valid, then the system returns `True`.
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 # Define the stream app to validate.
 stream_app_definition = """
 @App:name('Sample-Cargo-App')
 @App:qlVersion("2")
-@App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
+@App:description('Basic stream worker to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
 /**
-Testing the Stream Application:
+Test the Stream Application:
     1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
-    2. Upload following data into SampleCargoAppInputTable C8DB Collection
+    2. Upload following data into SampleCargoAppInputTable Collection
         {"weight": 1}
         {"weight": 2}
         {"weight": 3}
         {"weight": 4}
         {"weight": 5}
-    3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
+    3. Following messages are shown on the SampleCargoAppDestStream Stream Console
         [2021-08-27T14:12:15.795Z] {"weight":1}
         [2021-08-27T14:12:15.799Z] {"weight":2}
         [2021-08-27T14:12:15.805Z] {"weight":3}
@@ -71,12 +71,12 @@ FROM SampleCargoAppInputTable;
 """
 
 # Validate the stream app code.
-print("--- Validating Stream Application Definition")
+print("--- Validating Stream Worker Definition")
 print(client.validate_stream_app(data=stream_app_definition))
 ```
 
  </TabItem>
- <TabItem value="js" label="Javascript">
+ <TabItem value="js" label="JavaScript SDK">
 
 ```js
     // Add this snippet in previously created main function
