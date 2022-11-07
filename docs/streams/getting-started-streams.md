@@ -6,6 +6,7 @@ title: Getting Started with Streams
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Prerequisites from '../_partials/_prerequisites-sdk-api-key.md';
+import Steps from '../_partials/_get-started-steps.md';
 import ConnectToGDN from '../_partials/_connect-to-gdn-code-block.md';
 
 This article is an introduction to using streams with [Macrometa SDKs](../sdks/index.md).
@@ -16,9 +17,7 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 This page guides you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-1. Create a new JavaScript (.js) or Python (.py) file in your favorite IDE.
-2. Copy the code block below and paste it into your JavaScript or Python file.
-3. With each subsequent step, append the code block to the existing file and then run it.
+<Steps />
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
