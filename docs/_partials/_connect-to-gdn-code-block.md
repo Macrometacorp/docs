@@ -4,7 +4,7 @@ import TabItem from '@theme/TabItem';
 When this code runs, it initializes the server connection to the specified region URL. For more information about connecting to GDN, refer to [Authentication](../account-management/auth/index.md).
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 # Import libraries
@@ -32,7 +32,7 @@ client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofab
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
