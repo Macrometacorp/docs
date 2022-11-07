@@ -32,7 +32,7 @@ To use streams with Macrometa Global Data Network (GDN), you must first establis
 Get fabric details, including the name and associated regions.
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 print("Getting fabric details...")
@@ -40,7 +40,7 @@ print(client.get_fabric_details())
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 async function getFabric() {
@@ -65,7 +65,7 @@ getFabric();
 The streams in GDN can be either local or globally geo-replicated. The code below allows you to create either or both and then get the stream details.
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 prefix_text = ""
@@ -94,7 +94,7 @@ print("Get streams: ", client.get_streams())
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 async function streams() {
@@ -121,7 +121,7 @@ streams();
 Example to publish documents to a stream. The stream can be either a local stream or could be a geo-replicated stream.
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 producer = client.create_stream_producer(demo_stream, local=is_local)
@@ -132,7 +132,7 @@ for i in range(10):
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 async function streams() {
@@ -171,7 +171,7 @@ streams()
 Example to subscribe documents from a stream. The stream can be either a local stream or a geo-replicated global stream.
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 subscriber = client.subscribe(stream=demo_stream, local=is_local,
@@ -185,7 +185,7 @@ for i in range(10):
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 async function getDCList() {
@@ -232,7 +232,7 @@ It's time to see streams in action!
    - Upon each write, you should see the message received in the second terminal window, as well as the message displayed in the GDN console output
   
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 """ This file is a demo to send data to/from a stream """
@@ -312,7 +312,7 @@ else:
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 // Connect to GDN.
