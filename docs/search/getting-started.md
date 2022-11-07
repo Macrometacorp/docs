@@ -53,7 +53,7 @@ Our view is now accessible worldwide, and your three address collection key valu
 Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
 
 1. Click **Save Query**.
-1. Name the query **getContactBySearchTerm** and click **Save**. This saves the query so you can use it again.
+1. Name the query **getContactBySearchTerm** and then click **Save**. This saves the query so you can use it again.
 1. Click **Run Query**.
 1. Click **API Endpoint**.
 
