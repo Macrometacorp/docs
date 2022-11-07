@@ -48,7 +48,7 @@ Our view is now accessible worldwide, and your three address collection key valu
 4. Click **Run Query**. You will see your results show up below the Run Query button.
 5. (Optional) Click **Query Info** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
 
-## Step 3: Save the query as an API endpoint
+## Step 3. Save the Query as an API Endpoint
 
 Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
 
