@@ -110,7 +110,7 @@ The following known issues were introduced in this release.
 
 ### Local stream is not accessible after upgrade from 17.10 to 17.11
 
-**Problem:** Sometimes global streams are not accessible in the Macrometa console.
+**Problem:** Sometimes local streams are not accessible in the Macrometa console.
 
 **Workaround:** If you encounter this error, then run the [Publish Message](https://macrometa.com/docs/api#/operations/PublishStreamMessage) API endpoint for particular stream to get rid of the issue.
 
