@@ -15,16 +15,21 @@ Once you log in to a Macrometa account, you can view all API keys that you have 
 
 To see a list of existing API keys:
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Account**.
 1. Click the **API Keys** tab.
+1. (Optional) Click the ID of an API key to view its details. The following columns show information about each API key.
+
+   - **ID -** The unique ID for the user. This value is chosen by the creator of the API key.
+   - **Tenant -** The tenant on which the API key is hosted.
+   - **Username -** The username of the account that created the API key.
 
 To see API key permissions:
 
-1. Log in to your [Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Account**.
-1. Click the **API Keys** tab.
-1. Click the API key in the list that you want to change permissions for.
+1. Log in to your [Macrometa account](https://auth-play.macrometa.io/).
+2. Click **Account**.
+3. Click the **API Keys** tab.
+4. Click the API key in the list that you want to change permissions for.
 
    Macrometa displays permissions for that API key. Refer to [Permissions](../permissions/index.md) for information about each permission level.
 

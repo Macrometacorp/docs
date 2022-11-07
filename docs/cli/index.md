@@ -28,7 +28,7 @@ gdnsl init
 Sample gdnsl.yaml:
 
   ```yaml
-  url: gdn.paas.macrometa.io
+  url: play.paas.macrometa.io
   tenant: demo@macrometa.io
   apikey: "xxxxxxx"
   regions: [ ] # Valid values - LOCAL, ALL, comma separated list of regions.

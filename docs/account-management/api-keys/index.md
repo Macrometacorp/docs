@@ -10,3 +10,5 @@ Most APIs today use an API Key to authenticate legitimate clients. API Keys are 
 - Call the API with `api-` plus your base URL. Example: `https://api-seastar-9b9d9999.paas.macrometa.io/`
 
 API keys never expire.
+
+You can add attributes to API keys to limit access to collections and documents. For more information about attributes, refer to [Attributes](../attributes/index.md).

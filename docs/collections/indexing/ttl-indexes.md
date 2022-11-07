@@ -132,7 +132,7 @@ In case that the index was successfully created, an object with the index detail
 
 ## Create TTL Index in GDN Console
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **COLLECTIONS**.
 1. Click the collection that you want to create an index for.
 1. Click **Indexes**.

@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 Create a stream.
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Streams**.
 
    Macrometa displays a list of streams and their attributes.
@@ -33,7 +33,7 @@ from operator import concat
 from c8 import C8Client
 
 # Connect to GDN.
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "xxxxxx" # Change this to your API key
 is_local = False # For a global stream pass True and False for local stream
@@ -70,7 +70,7 @@ You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can ru
 ```js
 // Connect to GDN.
 const jsc8 = require("jsc8");
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXXX", fabricName: "_system"});
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXXX", fabricName: "_system"});
 console.log("Authentication done!!...");
 
 const stream = "streamQuickstart";
@@ -108,7 +108,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 import requests
 
 # Constants
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 STREAM_NAME = "streamQuickstart"
@@ -164,7 +164,7 @@ class APIRequest {
 }
 
 const apiKey = "XXXXX"; // Use your apikey here
-const federationName = "api-gdn.paas.macrometa.io";
+const federationName = "api-play.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
 
 const stream = "streamQuickstart";
@@ -200,7 +200,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams create](../../cli/streams-cli#gdnsl-streams-create) CLI command to create a Document Store collection.
+Use the [gdnsl streams create](../cli/streams-cli#gdnsl-streams-create) CLI command to create a Document Store collection.
 
 </TabItem>
 </Tabs>

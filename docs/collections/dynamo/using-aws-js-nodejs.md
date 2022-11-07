@@ -22,11 +22,11 @@ In this tutorial, you use the AWS SDK for JavaScript to write simple application
 ## Prerequistes
 
 1. Create an API Key
-    * Login to your tenant account on https://gdn.paas.macrometa.io
+    * Login to your tenant account on https://play.paas.macrometa.io
     * Create an API key via REST API. Make a copy of the key.
 
     :::tip
-        Following api key is created under `demo@macrometa.io/_system` on https://gdn.paas.macrometa.io with `rw` permissions.
+        Following api key is created under `demo@macrometa.io/_system` on https://play.paas.macrometa.io with `rw` permissions.
         ```bash
             demo.demok1.1a1aad0f4b000ca4d2d3bdb505298cbb9467b65526b0f79364e61e5f00000000
         ```
@@ -47,7 +47,7 @@ Create following file - `MoviesCreateTable.js`.
 ```js
     var AWS = require("aws-sdk");
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =
@@ -176,7 +176,7 @@ The following is an example of movie data:
     var fs = require('fs');
 
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =
@@ -236,7 +236,7 @@ Copy the following program and paste it into a file named `MoviesItemOps01.js`
     var fs = require('fs');
 
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =
@@ -382,7 +382,7 @@ Copy the following program and paste it into a file named `MoviesItemOps03.js`.
     var fs = require('fs');
 
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =
@@ -458,7 +458,7 @@ Copy the following program and paste it into a file named `MoviesItemOps04.js`.
     var fs = require('fs');
 
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =
@@ -527,7 +527,7 @@ Copy the following program and paste it into a file named `MoviesItemOps05.js`.
     var fs = require('fs');
 
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =
@@ -615,7 +615,7 @@ Copy the following program and paste it into a file named `MoviesItemOps06.js`.
     var fs = require('fs');
 
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =
@@ -715,7 +715,7 @@ Copy the following program and paste it into a file named `MoviesQuery01.js`.
     var fs = require('fs');
 
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =
@@ -788,7 +788,7 @@ Copy the following program and paste it into a file named `MoviesQuery02.js`
     var fs = require('fs');
 
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =
@@ -927,7 +927,7 @@ To delete the Movies table, copy the following program and paste it into a file 
     var fs = require('fs');
 
 
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
 
     const host = "https://api-" + dcName;
     const apiKey =

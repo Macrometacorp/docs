@@ -16,7 +16,7 @@ A Macrometa GDN tenant account and credentials.
 
 ## API Browser
 
-Your main tool for using REST APIs is the API reference in the [GDN](https://gdn.paas.macrometa.io) web browser interface. Use the built-in API reference to run various calls and view their input and output.
+Your main tool for using REST APIs is the API reference in the [GDN](https://play.paas.macrometa.io) web browser interface. Use the built-in API reference to run various calls and view their input and output.
 
 ![GDN API Browser](/img/gdn-api-browser.png)
 
@@ -38,8 +38,8 @@ import time
 from websocket import create_connection
 
 # Constants  
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-play.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
 FABRIC = "_system"
@@ -82,7 +82,7 @@ INPUT_DATA = [
 SELECT_QUERY = "FOR doc IN tutorialAppOutputTable return doc"
 
 # Create a HTTPS Session
-url = f"{FED_URL}/_open/auth"
+url = f"{HTTP_URL}/_open/auth"
 payload = {
     'email':EMAIL,
     'password':PASSWORD
@@ -104,7 +104,7 @@ session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
 # Create a Stream Application
-url = f"{FED_URL}/_fabric/_system/_api/streamapps"
+url = f"{HTTP_URL}/_fabric/_system/_api/streamapps"
 payload = {
   "definition": STREAM_APP,
   "regions": []
@@ -112,11 +112,11 @@ payload = {
 
 resp = session.post(url, data=json.dumps(payload))
 result = json.loads(resp.text)
-print("FED URL:", FED_URL)
+print("FED URL:", HTTP_URL)
 print("\nStream App Created: ", result)
 
 # Activate Stream Application
-url = f"{FED_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}/active?active=true"
+url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}/active?active=true"
 resp = session.patch(url)
 result = json.loads(resp.text)
 print("\nStream App Activated: ", result)
@@ -125,7 +125,7 @@ print("\nStream App Activated: ", result)
 time.sleep(5)
 # Publish Messages to the input stream
 stream_type = "c8local"
-producerurl = f"wss://{FEDERATION}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{stream_type}.{FABRIC}/{stream_type}s.{STREAM_NAME}"
+producerurl = f"wss://{URL}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{stream_type}.{FABRIC}/{stream_type}s.{STREAM_NAME}"
 ws = create_connection(producerurl,header={"content-type": 'application/json', 'authorization': AUTH_TOKEN})
 payload = {
                 "payload": base64.b64encode(
@@ -156,7 +156,7 @@ else:
 ws.close()
 
 # Verify results from the collection
-url = f"{FED_URL}/_fabric/_system/_api/cursor"
+url = f"{HTTP_URL}/_fabric/_system/_api/cursor"
 payload= {
   "id": "tutorialStreamAppQuery",
   "query": SELECT_QUERY,
@@ -167,7 +167,7 @@ result = json.loads(resp.text)
 print("\nStream App Results: ", result)
 
 # Delete Stream Application
-url = f"{FED_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}"
+url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}"
 resp = session.delete(url)
 result = json.loads(resp.text)
 print("\nStream App Deleted: ", result)
@@ -230,7 +230,7 @@ class APIRequest {
 }
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
-const federationName = "api-gdn.paas.macrometa.io";
+const federationName = "api-play.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
 
 const isGlobal = false;

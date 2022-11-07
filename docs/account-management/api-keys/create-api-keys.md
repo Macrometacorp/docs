@@ -21,7 +21,7 @@ If you create a new fabric after you create an API key, then the API key permiss
 
 Follow these instructions to create a new API key using the GDN console web UI.
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Account**.
 3. Click the **API Keys** tab.
 4. Click **New API Key**.
@@ -40,15 +40,15 @@ const fabric = "_system";
 const keyid = "id1";
 
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 // Choose one of the following authentication methods and remove the commenting.
 
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 function messageHandler (error) {
   const message = {
     "StatusCode ": error.statusCode,
@@ -86,7 +86,7 @@ API_ACTIVE = False
 CHOSEN_API_KEY_ID = "myNewKey"
 EMAIL = 'nemo@nautilus.com'
 PASSWORD = 'xxxxx'
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 
 client = C8Client(protocol='https', host=URL, port=443, email=EMAIL, password=PASSWORD)
 
@@ -122,10 +122,10 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ```js
 # Create an API Key
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 keyid = "id1"
-url = FED_URL + "/_api/key"
+url = HTTP_URL + "/_api/key"
 payload= {
 "keyid": keyid
 }

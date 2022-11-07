@@ -9,7 +9,7 @@ This demo shows how to integrate real-time log analytics with Macrometa GDN to m
 
 | **Federation**                                        | **Email**                              | **Passsword** | **Dashboard**|
 | ----------------------------------------------------- | -------------------------------------- | ------------- |--------------|
-| [GDN](https://gdn.paas.macrometa.io/) | demo-realtime-logs@macrometa.io | `xxxxxxxx`    | [Dashboard](https://macrometacorp.github.io/demo-jsc8-realtime-logs) |
+| [GDN](https://play.paas.macrometa.io/) | demo-realtime-logs@macrometa.io | `xxxxxxxx`    | [Dashboard](https://macrometacorp.github.io/demo-jsc8-realtime-logs) |
 
 ## Solution
 

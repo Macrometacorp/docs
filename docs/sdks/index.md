@@ -40,13 +40,13 @@ const streamName = "testStream";
 const keyid = "id1";
 
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 
 // Or create an authenticated instance with a token or API key.
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: fabric});
-// const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: fabric});
+// const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: fabric});
+// const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: fabric});
 // console.log("Authentication done!");
 
 function messageHandler (error) {
@@ -203,7 +203,7 @@ main()
 ```py
 from c8 import C8Client
 # Create a connection to gdn
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 
@@ -263,15 +263,15 @@ import json
 
 # Constants
 
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 EMAIL = "nemo@nautilus.com"
 PASSWORD = "xxxxxx"
 AUTH_TOKEN = "bearer "
 
 # Create a HTTPS Session
 
-url = "{}/_open/auth".format(FED_URL)
+url = "{}/_open/auth".format(HTTP_URL)
 payload = {
     'email':EMAIL,
     'password':PASSWORD
@@ -296,7 +296,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 
 # Create an API Key
 keyid = "id1"
-url = FED_URL + "/_api/key"
+url = HTTP_URL + "/_api/key"
 payload= {
 "keyid": keyid
 }
@@ -309,7 +309,7 @@ else:
     print("API Key Created: ", resp)
         
 # Fetch List of accessible databases and streams
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/stream"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/stream"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -317,7 +317,7 @@ if resp['error'] is True:
 else:
     print("Accessible Streams: ", resp)
 
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/collection"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/collection"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -325,7 +325,7 @@ if resp['error'] is True:
 else:
     print("Accessible Collections: ", resp)
 
-url = FED_URL + "/_api/key/" + keyid + "/database"
+url = HTTP_URL + "/_api/key/" + keyid + "/database"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -334,7 +334,7 @@ else:
     print("Accessible Databases: ", resp)
 
 # Set Database Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system"
 payload={
 "grant": "rw"
 }
@@ -346,7 +346,7 @@ else:
     print("Set Database Access Level: ", resp)
 
 # Set Collection Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
 payload={
 "grant": "rw"
 }
@@ -358,7 +358,7 @@ else:
     print("Set Collection Access Level: ", resp)
 
 # Set Stream Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
 payload={
 "grant": "rw"
 }
@@ -370,7 +370,7 @@ else:
     print("Set Stream Access Level: ", resp)
 
 # Get Database Acces Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -379,7 +379,7 @@ else:
     print("Get Database Access Level: ", resp)
 
 # Get Stream Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -388,7 +388,7 @@ else:
     print("Get Stream Access Level: ", resp)
 
 # Get Collection Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
 resp = session.get(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -397,7 +397,7 @@ else:
     print("Get Collection Access Level: ", resp)
 
 # Clear Database Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system"
 resp = session.delete(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -406,7 +406,7 @@ else:
     print("Clear Database Access Level: ", resp)
 
 # Clear Collection Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
 resp = session.delete(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -415,7 +415,7 @@ else:
     print("Clear Collection Access Level: ", resp)
 
 # Clear Stream Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
 resp = session.delete(url)
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -424,7 +424,7 @@ else:
     print("Clear Stream Access Level: ", resp)
 
 # Delete an API Key
-url = FED_URL + "/_api/key/"+ keyid
+url = HTTP_URL + "/_api/key/"+ keyid
 resp = session.delete(url, data = json.dumps(payload))
 resp = json.loads(resp.text)
 if resp['error'] is True:
@@ -487,14 +487,14 @@ body: body ? JSON.stringify(body) : undefined,
 }
 const EMAIL = "nemo@nautilus.com";
 const PASSWORD = "xxxxxx";
-const FEDERATION_URL = "https://api-gdn.prod.macrometa.io";
+const HTTP_URL = "https://api-gdn.prod.macrometa.io";
 
 const COLLECTION_NAME = "testCollection";
 const STREAM_NAME = "testStream"
 const KEY_ID = "id1"
 const run = async function () {
 try {
-const connection = new APIRequest(FEDERATION_URL);
+const connection = new APIRequest(HTTP_URL);
 
 /* -------------------- Login (nemo@nautilus.com/xxxxxx) -------------------- */
 
