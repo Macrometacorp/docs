@@ -10,7 +10,7 @@ In this getting started guide, you will add search functionality to the Address 
 - A [Macrometa account](https://auth.paas.macrometa.io/).
 - Completion of our [quickstart guide](https://macrometa.com/docs/quickstart).
 
-## Step 1: Create a view
+## Step 1. Create a View
 
  A _search view_ is an inverted index that contains the search configuration and all document attributes across one or many collections.
 
