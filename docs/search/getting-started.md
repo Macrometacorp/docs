@@ -19,7 +19,7 @@ In this getting started guide, you will add search functionality to the Address 
 3. In **Name**, enter `addresses_view`.
 4. Click the **plus** under Mapping Definition.
 5. Select the `addresses` collection from the COLLECTION list. 
-6. Enter `lastName` in `FIELD` and select **text_en** in the ANALYZER dropdown. 
+6. Enter `lastName` in `FIELD` and select **text_en** in the ANALYZER list. 
 7. Follow steps 5 and 6 two more times, but add `firstName` in the second Mapping Definition and `email` in the third Mapping Definition.
 8. Click the **Create** button.
 
