@@ -15,7 +15,7 @@ This article is an introduction to using stream workers with [Macrometa SDKs](..
 
 ## Get Started with Stream Workers
 
-This page guides you through creating a stream worker, updating it, and running an ad hoc query on it using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
+This page guides you through creating a stream worker, updating it, and running an ad hoc query on it using the [pyC8](https://github.com/Macrometacorp/pyC8) and [jsC8](https://github.com/Macrometacorp/jsC8) SDKs.
 
 <Steps />
 
@@ -29,12 +29,13 @@ To use stream workers with Macrometa Global Data Network (GDN), you must first e
 
 ## Validate Stream Application
 
-Validate the stream application for syntax errors before saving.
+Validate the stream application for syntax errors before saving. If valid, then the system returns `True`.
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+<TabItem value="py" label="Python">
 
 ```py
+# Define the stream app to validate.
 stream_app_definition = """
 @App:name('Sample-Cargo-App')
 @App:qlVersion("2")
@@ -69,6 +70,7 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 """
 
+# Validate the stream app code.
 print("--- Validating Stream Application Definition")
 print(client.validate_stream_app(data=stream_app_definition))
 ```
