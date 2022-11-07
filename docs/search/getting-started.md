@@ -19,7 +19,7 @@ In this getting started guide, you will add search functionality to the Address 
 3. In **Name**, enter `addresses_view`.
 4. Click the **plus** under Mapping Definition.
 5. Select the `addresses` collection from the COLLECTION list. 
-6. Enter `lastName` in `FIELD` and select **text_en** in the ANALYZER list. 
+6. Enter `lastName` in `field` and select **text_en** in the ANALYZER list. 
 7. Follow steps 5 and 6 two more times, but add `firstName` in the second Mapping Definition and `email` in the third Mapping Definition.
 8. Click **Create**.
 
@@ -50,7 +50,7 @@ Our view is now accessible worldwide, and your three address collection key valu
 
 ## Step 3. Save the Query as an API Endpoint
 
-Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
+Macrometa allows you to save a query as a [Query Worker](queryworkers.md).
 
 1. Click **Save Query**.
 1. Name the query **getContactBySearchTerm** and then click **Save**. This saves the query so you can use it again.
