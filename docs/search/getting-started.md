@@ -27,7 +27,7 @@ Macrometa distributes this view index to every location in the global fabrics. I
 
 Our view is now accessible worldwide, and your three address collection key values are indexed and ready to query!
 
-## Step 2: Query your view
+## Step 2. Query your View
 
 1. On the side menu, click **Query Workers**.
 2. The code block below is a search query that will allow you to pass in a query parameter to search you index. Copy and paste it in the code editor on line 1.
