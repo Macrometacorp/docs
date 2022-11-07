@@ -15,7 +15,7 @@ By default, array elements are indexed individually as if each element is the va
 
 You can manage search views by using:
 
-- [The Web UI](https://auth.paas.macrometa.io/)
+- [The Web UI](https://auth-play.macrometa.io/)
 - [An HTTP API](https://macrometa.com/docs/api/)
 - [JavaScript API](https://github.com/Macrometacorp/jsC8)
 

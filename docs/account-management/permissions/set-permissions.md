@@ -1,5 +1,5 @@
 ---
-sidebar_position: 40
+sidebar_position: 70
 title: Set Permissions
 ---
 
@@ -29,15 +29,15 @@ const collectionName = "testCollection";
 const streamName = "testStream";
 
 const client = new jsc8({
-  url: "https://gdn.paas.macrometa.io",
+  url: "https://play.paas.macrometa.io",
   fabricName: fabric
 });
 // Or use one of the following authentication methods.
 
 // Create an authenticated instance with a JWT token.
-// const clientUsingJwt = new jsc8({url: "https://gdn.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
+// const clientUsingJwt = new jsc8({url: "https://play.paas.macrometa.io" , token: "XXXX" , fabricName: fabric});
 // Create an authenticated instance with an API key.
-// const clientUsingApiKey = new jsc8({url: "https://gdn.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
+// const clientUsingApiKey = new jsc8({url: "https://play.paas.macrometa.io" , apiKey: "XXXX" , fabricName: fabric });
 function messageHandler (error) {
   const message = {
     "StatusCode ": error.statusCode,
@@ -115,7 +115,7 @@ main()
 from c8 import C8Client
 
 # Create a connection to gdn
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 
@@ -140,11 +140,11 @@ print("Set Stream Access Level: ", client.set_stream_access_level('id1','c8globa
 <TabItem value="RA" label="Rest API">
 
 ```js
-FEDERATION = "api-gdn.macrometa.io"
-FED_URL = "https://{}".format(FEDERATION)
+URL = "api-gdn.macrometa.io"
+HTTP_URL = "https://{}".format(URL)
 keyid = "id1"
 # Set Database Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system"
 payload={
 "grant": "rw"
 }
@@ -156,7 +156,7 @@ else:
     print("Set Database Access Level: ", resp)
 
 # Set Collection Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/collection/testCollection"
 payload={
 "grant": "rw"
 }
@@ -168,7 +168,7 @@ else:
     print("Set Collection Access Level: ", resp)
 
 # Set Stream Access Level
-url = FED_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
+url = HTTP_URL + "/_api/key/" + keyid + "/database/_system/stream/c8globals.testStream"
 payload={
 "grant": "rw"
 }

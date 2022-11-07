@@ -10,7 +10,7 @@ This page describes how to create geo-replicated streams and set up queues and p
 
 ## Prerequisites
 
-- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
+- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create streams.
 - Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
 
 ## Pub-Sub with Streams Code
@@ -26,7 +26,7 @@ This page describes how to create geo-replicated streams and set up queues and p
 ```js
 const jsc8 = require("jsc8");
 const readline = require("readline");
-const globalUrl = "https://gdn.paas.macrometa.io";
+const globalUrl = "https://play.paas.macrometa.io";
 
 // Create an authenticated instance with an API key (recommended) or JSON web token (JWT).
 const client = new jsc8({
@@ -155,7 +155,7 @@ from c8 import C8Client
 import six
 warnings.filterwarnings("ignore")
 
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
 prefix_text = ""

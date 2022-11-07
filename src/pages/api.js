@@ -34,7 +34,7 @@ export default function APIPage() {
           const { API } = require('@stoplight/elements');
           return (
             <>
-              {/* https://api-gdn.paas.macrometa.io/_admin/api/swagger.json */}
+              {/* https://api-play.paas.macrometa.io/_admin/api/swagger.json */}
               <API
                 apiDescriptionUrl={`${siteConfig.baseUrl}swagger/spec.json`}
                 router="hash"

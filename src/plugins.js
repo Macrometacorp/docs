@@ -28,6 +28,10 @@ const redirectsPlugin = [
       {
         from: '/c8ql/got-tutorial',
         to: '/queryworkers/c8ql/got-tutorial/'
+      },
+      {
+        from: '/troubleshooting',
+        to: '/references/troubleshooting'
       }
     ]
   }

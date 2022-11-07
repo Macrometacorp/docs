@@ -69,7 +69,7 @@ Once the installation process is finished, you can begin developing applications
 ```js
 const jsc8 = require("jsc8");
 
-const globalUrl = "https://gdn.paas.macrometa.io";
+const globalUrl = "https://play.paas.macrometa.io";
 
 /*
 // Create auth instance with token
@@ -283,7 +283,7 @@ import pprint
 import time
 
 # Variables - URLs
-GLOBAL_URL = "gdn.paas.macrometa.io"
+GLOBAL_URL = "play.paas.macrometa.io"
 
 # Variables - DB
 EMAIL = "nemo@nautilus.com"

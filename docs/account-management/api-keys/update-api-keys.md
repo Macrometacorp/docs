@@ -11,7 +11,7 @@ This page describes how to update API keys. Once you log in to a Macrometa accou
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-1. Log in to your [Macrometa account](https://auth.paas.macrometa.io/).
+1. Log in to your [Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Account**.
 1. Click the **API Keys** tab.
 1. Click the API key in the list that you want to change permissions for.
