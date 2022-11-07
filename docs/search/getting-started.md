@@ -57,7 +57,7 @@ Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
 1. Click **Run Query**.
 1. Click **API Endpoint**.
 
-Macrometa displays a `curl` command you can use to access this endpoint from anywhere in the world in under 50ms.
+Macrometa displays a cURL command that you can use to access this endpoint from anywhere in the world in under 50ms.
 
 :::note
 This query requires a key, so you must enter one in the bind parameters or else the query will fail with an error.
