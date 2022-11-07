@@ -14,13 +14,14 @@ This article is an introduction to using stream workers with [Macrometa SDKs](..
 
 ## Get Started with Stream Workers
 
-This page guides you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
+This page guides you through creating a stream worker, updating it, and running an ad hoc query on it using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
 1. Create a new JavaScript (.js) or Python (.py) file in your favorite IDE.
 2. Copy the code block below and paste it into your JavaScript or Python file.
 3. With each subsequent step, append the code block to the existing file and then run it.
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
+
 ### Connect to GDN
 
 To use stream workers with Macrometa Global Data Network (GDN), you must first establish a connection to a local region.
@@ -398,7 +399,7 @@ print("Samples", client.get_stream_app_samples())
   </TabItem>
 </Tabs>  
 
-## Complete Example
+## Full Demo File
 
 The following example uses the code snippets provided in this tutorial.
 
