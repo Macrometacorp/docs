@@ -37,12 +37,12 @@ There are several ways to add data to a collection, including importing CSV or J
   ```sql
   // Query to insert addresses
   FOR persons IN [ 
-    { firstname: "Captain", lastname: "Nemo", email: "cpnemo@gnautilus.com" },
-    { firstname: "Pierre", lastname: "Aronnax", email: "pierre@asoc.org" },
-    { firstname: "Ned", lastname: "Land", email: "ned@nature.org" },
-    { firstname: "Cyrus", lastname: "Smith", email: "cycy@laborrights.org" },
-    { firstname: "Tom", lastname: "Ayrton", email: "tommy@water.org" },
-    { firstname: "Jules", lastname: "Verne", email: "j.garcia@en-julesverne.nantesmetropole.fr" } 
+    { firstName: "Captain", lastName: "Nemo", email: "cpnemo@gnautilus.com" },
+    { firstName: "Pierre", lastName: "Aronnax", email: "pierre@asoc.org" },
+    { firstName: "Ned", lastName: "Land", email: "ned@nature.org" },
+    { firstName: "Cyrus", lastName: "Smith", email: "cycy@laborrights.org" },
+    { firstName: "Tom", lastName: "Ayrton", email: "tommy@water.org" },
+    { firstName: "Jules", lastName: "Verne", email: "j.garcia@en-julesverne.nantesmetropole.fr" } 
     ]
     INSERT persons INTO addresses
   ```
