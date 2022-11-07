@@ -31,6 +31,8 @@ To use stream workers with Macrometa Global Data Network (GDN), you must first e
 
 Validate the stream worker for syntax errors before saving. If valid, then the system returns `True`.
 
+The stream worker shown below reads data from a collection and publishes it to a stream.
+
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
@@ -41,15 +43,15 @@ stream_app_definition = """
 @App:qlVersion("2")
 @App:description('Basic stream worker to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
 /**
-Test the Stream Application:
-    1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
-    2. Upload following data into SampleCargoAppInputTable Collection
+Test the stream worker:
+    1. Open Stream SampleCargoAppDestStream in console. The output can be monitored here.
+    2. Upload following data into SampleCargoAppInputTable collection:
         {"weight": 1}
         {"weight": 2}
         {"weight": 3}
         {"weight": 4}
         {"weight": 5}
-    3. Following messages are shown on the SampleCargoAppDestStream Stream Console
+    3. Following messages are shown on the SampleCargoAppDestStream Stream Console:
         [2021-08-27T14:12:15.795Z] {"weight":1}
         [2021-08-27T14:12:15.799Z] {"weight":2}
         [2021-08-27T14:12:15.805Z] {"weight":3}
@@ -83,13 +85,13 @@ print(client.validate_stream_app(data=stream_app_definition))
     const appDefinition = `
         @App:name('Sample-Cargo-App')
         @App:qlVersion("2")
-        @App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections will be created automatically if they do not already exist.')
+        @App:description('Basic Stream application to demonstrate reading data from input stream and store it in a collection. The stream and collections are created automatically if they do not already exist.')
 
         /**
          Testing the Stream Application:
             1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
 
-            2. Upload following data into SampleCargoAppInputTable C8DB Collection
+            2. Upload following data into SampleCargoAppInputTable collection
                 {"weight": 1}
                 {"weight": 2}
                 {"weight": 3}
@@ -125,20 +127,20 @@ print(client.validate_stream_app(data=stream_app_definition))
  </TabItem>
  </Tabs>
 
-## Save Stream Application
+### Step 3. Create Stream Worker
 
-By default, the stream application saves in the local region. Optionally, you can use `dclist` (domain component list) to deploy the stream application in other specified regions or all regions.
+By default, the stream worker is created in the local region. You can use `dclist` (domain component list) to deploy the stream application in other specified regions, or in all regions.
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
-print("--- Creating Stream Application")
+print("--- Creating Stream Worker")
 print(client.create_stream_app(data=stream_app_definition))
 ```
 
-  </TabItem>
-  <TabItem value="js" label="Javascript">
+</TabItem>
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
     // The stream app will be created by default in the local region. Optionally, you can send dclist to deploy stream
@@ -150,20 +152,23 @@ print(client.create_stream_app(data=stream_app_definition))
   </TabItem>
 </Tabs>  
 
-## Enable or Disable Stream Application
+### Step 4. Activate and Deactivate Stream Worker
+
+Sometimes you need to turn a stream worker on or off. The commands below demonstrate how to do that programmatically. Make sure that the stream worker is on (activated) before continuing to the next step!
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
-print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
-
+# Deactivate the stream worker
 print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
+
+# Activate the stream worker
+print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 ```
 
-  </TabItem>
-
-  <TabItem value="js" label="Javascript">
+</TabItem>
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
     console.log("--- Activating `Sample-Cargo-App`");
@@ -173,49 +178,42 @@ print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
     const result = await client.activateStreamApp("Sample-Cargo-App", false);
 ```
 
-  </TabItem>
- </Tabs>
+</TabItem>
+</Tabs>
 
-To operate on created applications, you need to create an instance of the stream application.
+### Step 4. Update Stream Application
 
-## Example: Update Stream Application
+The code below adds a second data processing step. It updates the stream worker to store the input data into itself and another collection called `SampleCargoAppDestTable`.
 
-In this example, we update a stream application to store the input data into itself and another collection called `SampleCargoAppDestTable`.
+After you run this command, you can view the changes in the Macrometa console Stream Workers page.
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
-from c8 import C8Client
 from c8.fabric import StandardFabric
 
-print("--- Connecting to C8")
-client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
-
-# To operate on created apps, you need to create an instance of the app
-app = client._fabric.stream_app("Sample-Cargo-App")
-
-# Update the app using
+# Code with which the stream worker will be updated.
 data = """
 @App:name('Sample-Cargo-App')
 @App:qlVersion("2")
-@App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
+@App:description('Basic stream worker to demonstrate reading data from input stream and store it in a collection. The stream and collections are automatically created if they do not already exist.')
 /**
-    Testing the Stream Application:
+    Test the stream worker:
     1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
-    2. Upload following data into SampleCargoAppInputTable C8DB Collection
+    2. Upload following data into SampleCargoAppInputTable collection:
         {"weight": 1}
         {"weight": 2}
         {"weight": 3}
         {"weight": 4}
         {"weight": 5}
-    3. Following messages would be shown on the `SampleCargoAppDestStream` Stream Console.
+    3. Following messages are shown on the `SampleCargoAppDestStream` Stream Console:
         [2021-08-27T14:12:15.795Z] {"weight":1}
         [2021-08-27T14:12:15.799Z] {"weight":2}
         [2021-08-27T14:12:15.805Z] {"weight":3}
         [2021-08-27T14:12:15.809Z] {"weight":4}
         [2021-08-27T14:12:15.814Z] {"weight":5}
-    4. Following messages would be stored into SampleCargoAppDestTable
+    4. Following messages are stored into SampleCargoAppDestTable
         {"weight":1}
         {"weight":2}
         {"weight":3}
@@ -245,18 +243,18 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 """
 
-# Optionally, specify a comma separated list of regions where stream application needs to be deployed
-regions = []
-print("--- Updating Stream Application `Sample-Cargo-App`")
-result = app.update(data, regions)
+# You must first create an instance of a stream worker before you can update it.
+app = client._fabric.stream_app("Sample-Cargo-App")
 
-#To Enable the stream app
-print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+# Update the stream worker.
+print("--- Updating Stream Application `Sample-Cargo-App`")
+result = app.update(data)
+
 ```
 
-  </TabItem>
+</TabItem>
 
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript SDK">
 
 ```js  
     const updatedAppDefinition = `
@@ -314,10 +312,10 @@ print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
     result = await app.updateApplication([], updatedAppDefinition);
 ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
-## Run an Ad Hoc Query
+### Step 5. Run an Ad Hoc Query
 
 In this example, we run an ad hoc query on the store `SampleCargoAppDestTable` used in a stream application. It should get records which you inserted into `SampleCargoAppInputTable`.
 
@@ -325,8 +323,6 @@ In this example, we run an ad hoc query on the store `SampleCargoAppDestTable` u
   <TabItem value="py" label="Python">
 
 ```py
-from c8 import C8Client
-from c8.fabric import StandardFabric
 
 print("--- Connecting to C8")
 client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
