@@ -15,7 +15,7 @@ This article is an introduction to using streams with [Macrometa SDKs](../sdks/i
 
 ## Get Started with Streams
 
-This page guides you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
+This page guides you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://github.com/Macrometacorp/pyC8) and [jsC8](https://github.com/Macrometacorp/jsC8) SDKs.
 
 <Steps />
 
