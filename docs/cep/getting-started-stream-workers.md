@@ -1,52 +1,31 @@
 ---
 sidebar_position: 10
-title: Stream Workers Example
+title: Getting Started with Stream Workers
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Prerequisites from '../_partials/_prerequisites-sdk-api-key.md';
+import ConnectToGDN from '../_partials/_connect-to-gdn-code-block.md';
 
 This article is an introduction to using stream workers with [Macrometa SDKs](../sdks/index.md).
-## Prerequisites
 
-- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
-- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys).
-- Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
+<Prerequisites />
 
+## Get Started with Stream Workers
 
+This page guides you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-## Connect to GDN
+1. Create a new JavaScript (.js) or Python (.py) file in your favorite IDE.
+2. Copy the code block below and paste it into your JavaScript or Python file.
+3. With each subsequent step, append the code block to the existing file and then run it.
 
-Establish a connection to a local region. When this code runs, it initializes the server connection to the region URL you specified.
+If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
+### Connect to GDN
 
-<Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+To use stream workers with Macrometa Global Data Network (GDN), you must first establish a connection to a local region.
 
-```py
-from c8 import C8Client
-print("--- Connecting to C8")
-client = C8Client(protocol='https', host='gdn.paasmacrometa.io', port=443,
-                        email='nemo@nautilus.com', password='xxxxx',
-                        geofabric='_system')
-```
-
- </TabItem>
- <TabItem value="js" label="Javascript">
-
-```js
-    const jsc8 = require("jsc8");
-
-    // Simple Way
-    const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // ----- OR -----
-    const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-
-    // To use advanced options
-    const client = new jsc8("https://play.paas.macrometa.io"); 
-  ```
-
- </TabItem>
-</Tabs>
+<ConnectToGDN />
 
 ## Validate Stream Application
 
