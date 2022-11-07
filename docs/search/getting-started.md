@@ -12,7 +12,7 @@ In this getting started guide, you will add search functionality to the Address 
 
 ## Step 1: Create a view
 
- A search _view_ an inverted index that contains the search configuration and all document attributes across one or many collections.
+ A _search view_ is an inverted index that contains the search configuration and all document attributes across one or many collections.
 
 1. On the side menu, click **Search Views**.
 2. Click **New view**.
