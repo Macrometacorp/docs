@@ -15,7 +15,7 @@ In this getting started guide, you will add search functionality to the Address 
  A _search view_ is an inverted index that contains the search configuration and all document attributes across one or many collections.
 
 1. On the side menu, click **Search Views**.
-2. Click **New view**.
+2. Click **New View**.
 3. In **Name**, enter `addresses_view`.
 4. Click the **plus** under Mapping Definition.
 5. Select the `addresses` collection from the COLLECTION dropdown. 
