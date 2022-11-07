@@ -51,7 +51,7 @@ The following features updates are included in this release.
 
 ### Migration to Play - Breaking Change
 
-The previous generic global URL `api-play.paas.macrometa.io` is no longer valid.
+The previous generic global URL `api-gdn.paas.macrometa.io` is no longer valid.
 
 Customers with Macrometa Play tier accounts _can_ use `api-play.paas.macrometa.io` as a substitute, but we do not recommend it.
 
