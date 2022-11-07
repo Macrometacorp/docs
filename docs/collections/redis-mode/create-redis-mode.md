@@ -3,8 +3,6 @@ title: Create a Redis Mode Collection
 sidebar_position: 20
 ---
 
-DINO - I copy/pasted this from the Document Store docs. I updated the Web Console tab, can you update the others?
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
