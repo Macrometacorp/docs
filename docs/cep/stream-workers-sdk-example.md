@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Getting Started with Stream Workers
+title: Stream Workers SDK Example
 ---
 
 import Tabs from '@theme/Tabs';
@@ -253,7 +253,6 @@ result = app.update(data)
 ```
 
 </TabItem>
-
 <TabItem value="js" label="JavaScript SDK">
 
 ```js  
@@ -317,10 +316,10 @@ result = app.update(data)
 
 ### Step 5. Run an Ad Hoc Query
 
-In this example, we run an ad hoc query on the store `SampleCargoAppDestTable` used in a stream application. It should get records which you inserted into `SampleCargoAppInputTable`.
+In this example, we run an ad hoc query on the store `SampleCargoAppDestTable` used in a stream application. It gets the records that you inserted into `SampleCargoAppInputTable`.
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 
@@ -335,8 +334,8 @@ result = app.query(q)
 print(result)
 ```
 
-  </TabItem>
-  <TabItem value="js" label="Javascript">
+</TabItem>
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
     console.log("--- Running adhoc query on the store `SampleCargoAppDestTable` used in Stream Application. It should get all records which you inserted into `SampleCargoAppInputTable`");
@@ -346,54 +345,30 @@ print(result)
     console.log(result);
 ```
 
-  </TabItem>  
+</TabItem>  
 </Tabs>
 
-## Delete Stream Application
+### Step 6. Delete Stream Application
+
+Clean up your workspace! You're done with this stream worker, so time to delete it.
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 print("--- Deleting Stream Application `Sample-Cargo-App`")
 result = client.delete_stream_app('Sample-Cargo-App')
 ```
 
-  </TabItem>
-
-  <TabItem value="js" label="Javascript">
+</TabItem>
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
     console.log("--- Deleting stream application `Sample-Cargo-App`");
     result = await client.deleteStreamApp("Sample-Cargo-App");
 ```
 
-  </TabItem>
-</Tabs>  
-
-## Get Sample Stream Applications
-
-You can try out several Stream Apps which are preloaded and ready to run.
-
-<Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
-
-```py
-print("--- You can try out several stream applications which are pre-loaded and ready to run")
-print("Samples", client.get_stream_app_samples())
-```
-
-  </TabItem>
-  <TabItem value="js" label="Javascript">
-
-```js
-    console.log("--- You can try out several Stream Apps which are pre-loaded and ready to run");
-    result = await client.getStreamAppSamples();
-    console.log('Sample Stream Applications');
-    console.log(result);
-```
-
-  </TabItem>
+</TabItem>
 </Tabs>  
 
 ## Full Demo File
@@ -401,69 +376,103 @@ print("Samples", client.get_stream_app_samples())
 The following example uses the code snippets provided in this tutorial.
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
-import time
-import traceback
+# Import libraries
+from operator import concat
+import base64
+import json
+import warnings
 from c8 import C8Client
-# Simple Approach
-print("--- Connecting to C8")
-client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
-                        email='nemo@nautilus.com', password='xxxxx',
-                        geofabric='_system')
+warnings.filterwarnings("ignore")
+
+# Define constants
+URL = "play.paas.macrometa.io"
+GEO_FABRIC = "_system"
+API_KEY = "my API key" # Change this to your API key
+
+print("--- Connecting to GDN")
+
+# Choose one of the following methods to access the GDN. API key is recommended.
+
+# Authenticate with API key
+client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
+
+# Authenticate with JWT
+# client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, token=<your token>)
+
+# Define the stream worker
 stream_app_definition = """
     @App:name('Sample-Cargo-App')
-    @App:qlVersion("2")
-    @App:description('Basic stream application to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
-    /**
-    Testing the Stream Application:
-        1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
-        2. Upload following data into SampleCargoAppInputTable C8DB Collection
-            {"weight": 1}
-            {"weight": 2}
-            {"weight": 3}
-            {"weight": 4}
-            {"weight": 5}
-        3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
-            [2021-08-27T14:12:15.795Z] {"weight":1}
-            [2021-08-27T14:12:15.799Z] {"weight":2}
-            [2021-08-27T14:12:15.805Z] {"weight":3}
-            [2021-08-27T14:12:15.809Z] {"weight":4}
-            [2021-08-27T14:12:15.814Z] {"weight":5}
-    */
-    -- Create Table SampleCargoAppInputTable to process events.
-	CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
+@App:qlVersion("2")
+@App:description('Basic stream worker to demonstrate reading data from input stream and store it in a collection. The stream and collections are automatically created if they do not already exist.')
+/**
+    Test the stream worker:
+    1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
+    2. Upload following data into SampleCargoAppInputTable collection:
+        {"weight": 1}
+        {"weight": 2}
+        {"weight": 3}
+        {"weight": 4}
+        {"weight": 5}
+    3. Following messages are shown on the `SampleCargoAppDestStream` Stream Console:
+        [2021-08-27T14:12:15.795Z] {"weight":1}
+        [2021-08-27T14:12:15.799Z] {"weight":2}
+        [2021-08-27T14:12:15.805Z] {"weight":3}
+        [2021-08-27T14:12:15.809Z] {"weight":4}
+        [2021-08-27T14:12:15.814Z] {"weight":5}
+    4. Following messages are stored into SampleCargoAppDestTable
+        {"weight":1}
+        {"weight":2}
+        {"weight":3}
+        {"weight":4}
+        {"weight":5}
+*/
 
-    -- Create Stream SampleCargoAppDestStream
-	CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
+-- Defines Table SampleCargoAppInputTable
+CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", map.type='json') (weight int);
 
-    -- Data Processing
-    @info(name='Query')
-    INSERT INTO SampleCargoAppDestStream
-    SELECT weight
-    FROM SampleCargoAppInputTable;
-    """
-# Validate a stream application
+-- Define Stream SampleCargoAppDestStream
+CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
+
+-- Defining a Destination table to dump the data from the stream
+CREATE STORE SampleCargoAppDestTable WITH (type = 'database', stream = "SampleCargoAppDestTable") (weight int);
+
+-- Data Processing
+@info(name='Query')
+INSERT INTO SampleCargoAppDestStream
+SELECT weight
+FROM SampleCargoAppInputTable;
+
+-- Data Processing
+@info(name='Dump')
+INSERT INTO SampleCargoAppDestTable
+SELECT weight
+FROM SampleCargoAppInputTable;
+"""
+
+# Validate stream application
 print(client.validate_stream_app(data=stream_app_definition))
-# Create a stream application
+
+# Create stream application
 print(client.create_stream_app(data=stream_app_definition))
-# Retrive a stream application
-print("Retrive", client.retrieve_stream_app())
-# Get a stream application handle for advanced operations
+
+# Retrieve stream application
+print("Retrieve", client.retrieve_stream_app())
+
+# Get stream application handle for advanced operations
 print("Get App", client.get_stream_app('Sample-Cargo-App'))
-# Deactivate a stream application
-print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
-# Activate a stream application
+
+# Activate (publish) stream application
 print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
-# Delete a stream application
+
+# Delete stream application
 print(client.delete_stream_app('Sample-Cargo-App'))
-# Get stream application samples
-print("Samples", client.get_stream_app_samples())
 ```
 
-  </TabItem>
-  <TabItem value="js" label="Javascript">
+</TabItem>
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
