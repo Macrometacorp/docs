@@ -75,7 +75,7 @@ console.log("Authentication done!!...");
 
 const stream = "streamQuickstart";
 let prefixText = "";
-const isLocal = false; # For a global stream pass True and False for local stream
+const isLocal = false; // For a global stream pass True and False for local stream
 
 // Get the right prefix for the stream
 if (isLocal) {
