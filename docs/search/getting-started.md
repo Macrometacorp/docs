@@ -65,4 +65,4 @@ This query requires a key, so you must enter one in the bind parameters or else 
 
 ![Create a Query Worker](/img/quickstart/create-query-worker.png)
 
-You have created your first view and made it a RESTful endpoint with a query worker. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
+You have created your first view and made it a RESTful endpoint with a query worker. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
