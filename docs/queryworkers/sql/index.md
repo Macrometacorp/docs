@@ -7,6 +7,10 @@ Structured Query Language (SQL) is a standardized programming language that is u
 
 Although SQL is an ANSI/ISO standard, there are different versions of the SQL language. Macrometa SQL dialect supports DQL (SELECT statement), DML statements (UPDATE, INSERT and DELETE) and a subset of DDL statements.
 
+:::note
+This is a beta feature. While you can use SQL in API, CLI, and SDK queries, it is not yet supported in the Query Editor in the Macrometa console.
+:::
+
 ## SQL Workflow
 
 The general workflow when executing a query is as follows:
