@@ -1,98 +1,31 @@
 ---
 sidebar_position: 10
-title: Stream Workers Example
+title: Getting Started with Stream Workers
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Prerequisites from '../_partials/_prerequisites-sdk-api-key.md';
+import Steps from '../_partials/_get-started-steps.md';
+import ConnectToGDN from '../_partials/_connect-to-gdn-code-block.md';
 
-Assume the following credentials:
+This article is an introduction to using stream workers with [Macrometa SDKs](../sdks/index.md).
 
-* Tenant name: `nemo@nautilus.com`
-* Password: `xxxxxx`
+<Prerequisites />
 
-## SDK Download
+## Get Started with Stream Workers
 
-Download the appropriate SDK for your preferred language.
+This page guides you through creating a stream worker, updating it, and running an ad hoc query on it using the [pyC8](https://pyc8.readthedocs.io/en/latest/) and [jsC8](https://www.npmjs.com/package/jsc8) SDKs.
 
-<Tabs groupId="operating-systems">
-  <TabItem value="js" label="Javascript">
+<Steps />
 
-```js
-    With Yarn or NPM
+If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
-        yarn add jsc8
-        (or)
-        npm install jsc8
+### Connect to GDN
 
-    If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
+To use stream workers with Macrometa Global Data Network (GDN), you must first establish a connection to a local region.
 
-        npm install --global jsc8
-
-    From source,
-
-        git clone https://github.com/macrometacorp/jsc8.git
-        cd jsC8
-        npm install
-        npm run dist
-```
-
-  </TabItem>
-  <TabItem value="py" label="Python">
-
-```py
-    pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
-
-    To install pyC8, simply run
-
-        $ pip3 install pyC8
-
-    or, if you prefer to use conda:
-
-        conda install -c conda-forge pyC8
-
-    or pipenv:
-
-        pipenv install --pre pyC8
-
-    Once the installation process is finished, you can begin developing applications in Python.
-```
-
-  </TabItem>
-</Tabs>
-
-## Connect to GDN
-
-Establish a connection to a local region. When this code runs, it initializes the server connection to the region URL you specified.
-
-<Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
-
-```py
-from c8 import C8Client
-print("--- Connecting to C8")
-client = C8Client(protocol='https', host='gdn.paasmacrometa.io', port=443,
-                        email='nemo@nautilus.com', password='xxxxx',
-                        geofabric='_system')
-```
-
- </TabItem>
- <TabItem value="js" label="Javascript">
-
-```js
-    const jsc8 = require("jsc8");
-
-    // Simple Way
-    const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // ----- OR -----
-    const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-
-    // To use advanced options
-    const client = new jsc8("https://gdn.paas.macrometa.io"); 
-  ```
-
- </TabItem>
-</Tabs> 
+<ConnectToGDN />
 
 ## Validate Stream Application
 
@@ -217,8 +150,6 @@ print(client.create_stream_app(data=stream_app_definition))
 
 ## Enable or Disable Stream Application
 
-
-
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
 
@@ -239,15 +170,15 @@ print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
     console.log("--- Deactivating `Sample-Cargo-App`");
     const result = await client.activateStreamApp("Sample-Cargo-App", false);
 ```
+
   </TabItem>
- </Tabs> 
+ </Tabs>
 
 To operate on created applications, you need to create an instance of the stream application.
 
-
 ## Example: Update Stream Application
 
-In this example, we update a stream application to store the input data into itself and another collection called `SampleCargoAppDestTable`. 
+In this example, we update a stream application to store the input data into itself and another collection called `SampleCargoAppDestTable`.
 
 <Tabs groupId="operating-systems">
   <TabItem value="py" label="Python">
@@ -257,7 +188,7 @@ from c8 import C8Client
 from c8.fabric import StandardFabric
 
 print("--- Connecting to C8")
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
 
 # To operate on created apps, you need to create an instance of the app
 app = client._fabric.stream_app("Sample-Cargo-App")
@@ -379,7 +310,8 @@ print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 
     console.log("--- Updating Stream Application `Sample-Cargo-App`");
     result = await app.updateApplication([], updatedAppDefinition);
-```    
+```
+
   </TabItem>
 </Tabs>
 
@@ -395,7 +327,7 @@ from c8 import C8Client
 from c8.fabric import StandardFabric
 
 print("--- Connecting to C8")
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
 
 # To operate on created apps, you need to create an instance of the app
 app = client._fabric.stream_app("Sample-Cargo-App")
@@ -403,7 +335,8 @@ app = client._fabric.stream_app("Sample-Cargo-App")
 q = "select * from SampleCargoAppDestTable limit 2"
 result = app.query(q)
 print(result)
-```    
+```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -413,7 +346,7 @@ print(result)
     const q = "select * from SampleCargoAppDestTable limit 3";
     result = await app.query(q);
     console.log(result);
-```    
+```
 
   </TabItem>  
 </Tabs>
@@ -426,7 +359,8 @@ print(result)
 ```py
 print("--- Deleting Stream Application `Sample-Cargo-App`")
 result = client.delete_stream_app('Sample-Cargo-App')
-```    
+```
+
   </TabItem>
 
   <TabItem value="js" label="Javascript">
@@ -435,6 +369,7 @@ result = client.delete_stream_app('Sample-Cargo-App')
     console.log("--- Deleting stream application `Sample-Cargo-App`");
     result = await client.deleteStreamApp("Sample-Cargo-App");
 ```
+
   </TabItem>
 </Tabs>  
 
@@ -448,7 +383,8 @@ You can try out several Stream Apps which are preloaded and ready to run.
 ```py
 print("--- You can try out several stream applications which are pre-loaded and ready to run")
 print("Samples", client.get_stream_app_samples())
-```    
+```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -458,10 +394,11 @@ print("Samples", client.get_stream_app_samples())
     console.log('Sample Stream Applications');
     console.log(result);
 ```
+
   </TabItem>
 </Tabs>  
 
-## Complete Example
+## Full Demo File
 
 The following example uses the code snippets provided in this tutorial.
 
@@ -474,7 +411,7 @@ import traceback
 from c8 import C8Client
 # Simple Approach
 print("--- Connecting to C8")
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443,
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                         email='nemo@nautilus.com', password='xxxxx',
                         geofabric='_system')
 stream_app_definition = """
@@ -526,6 +463,7 @@ print(client.delete_stream_app('Sample-Cargo-App'))
 # Get stream application samples
 print("Samples", client.get_stream_app_samples())
 ```
+
   </TabItem>
   <TabItem value="js" label="Javascript">
 
@@ -537,7 +475,7 @@ const streamAppName = "Sample-Cargo-App";
 const sourceCollectionName = "SampleCargoAppInputTable";
 const destinationCollectionName = "SampleCargoAppDestTable";
 const parameter = { weight: "" };
-const globalUrl = "https://gdn.paas.macrometa.io";
+const globalUrl = "https://play.paas.macrometa.io";
 const thisApiKey = "XXXXX";
 
 const insertDataValue = {
@@ -640,12 +578,12 @@ async function main () {
   // email = "";
   // password = "";
   // Create an authenticated instance with a token or API key
-  // const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+  // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
   const client = new jsc8({ url: globalUrl, apiKey: thisApiKey, fabricName: "_system" });
   // console.log("Authentication done!!...");
   
   // Or use email and password to authenticate a client instance
-  // const client = new jsc8("https://gdn.paas.macrometa.io");
+  // const client = new jsc8("https://play.paas.macrometa.io");
   // await client.login("email", "password");
   console.log("Connection successful");
   async function hasStreamApp (streamApp) {
@@ -792,6 +730,7 @@ async function main () {
 }
 
 main();
-```    
+```
+
   </TabItem>
 </Tabs>

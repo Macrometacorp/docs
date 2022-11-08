@@ -62,7 +62,7 @@ title: Using mmDynamo Javascript SDK
 
   ```html
   <script type="text/javascript">
-  const dcName = "gdn.paas.macrometa.io";
+  const dcName = "play.paas.macrometa.io";
   const host = "https://api-" + dcName;
   const apiKey = "<your-api-key>";
   /*
@@ -103,7 +103,7 @@ title: Using mmDynamo Javascript SDK
     <script src="https://unpkg.com/mmdynamo@0.2.0/dist/mmdynamo.umd.js"></script>
 
     <script>
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
     const host = "https://api-" + dcName;
     const apiKey = "<your-api-key>";
     /*
@@ -191,7 +191,7 @@ title: Using mmDynamo Javascript SDK
     <script src="https://unpkg.com/mmdynamo@0.2.0/dist/mmdynamo.umd.js"></script>
 
     <script>
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
     const host = "https://api-" + dcName;
     const apiKey = "<your-api-key>";
     /*
@@ -268,7 +268,7 @@ title: Using mmDynamo Javascript SDK
     <script src="https://unpkg.com/mmdynamo@0.2.0/dist/mmdynamo.umd.js"></script>
 
     <script>
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
     const host = "https://api-" + dcName;
     const apiKey = "<your-api-key>";
     /*
@@ -351,7 +351,7 @@ title: Using mmDynamo Javascript SDK
     <script src="https://unpkg.com/mmdynamo@0.2.0/dist/mmdynamo.umd.js"></script>
 
     <script>
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
     const host = "https://api-" + dcName;
     const apiKey = "<your-api-key>";
     /*
@@ -652,7 +652,7 @@ function scanData() {
     <script src="https://unpkg.com/mmdynamo@0.2.0/dist/mmdynamo.umd.js"></script>
 
     <script>
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
     const host = "https://api-" + dcName;
     const apiKey = "<your-api-key>";
     /*
@@ -733,7 +733,7 @@ function scanData() {
     <script src="https://unpkg.com/mmdynamo@0.2.0/dist/mmdynamo.umd.js"></script>
 
     <script>
-    const dcName = "gdn.paas.macrometa.io";
+    const dcName = "play.paas.macrometa.io";
     const host = "https://api-" + dcName;
     const apiKey = "<your-api-key>";
     /*

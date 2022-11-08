@@ -73,7 +73,7 @@ import pprint
 from c8 import C8Client
 
 # Variables - URLs
-GLOBAL_URL = "gdn.paas.macrometa.io"
+GLOBAL_URL = "play.paas.macrometa.io"
 
 # Variables - DB
 EMAIL = "nemo@nautilus.com"
@@ -142,7 +142,7 @@ if __name__ == '__main__':
 const jsc8 = require("jsc8");
 
 // Constants - DB
-const globalUrl = "https://gdn.paas.macrometa.io/";
+const globalUrl = "https://play.paas.macrometa.io/";
 const email = "nemo@nautilus.com";
 const password = "XXXXXX";
 const client = new jsc8(globalUrl);

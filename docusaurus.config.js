@@ -129,7 +129,7 @@ const config = {
           },
           {
             className: 'navbar__item--external',
-            href: 'https://auth.paas.macrometa.io/',
+            href: 'https://auth-play.macrometa.io/',
             label: 'Log in',
             position: 'left',
           },
@@ -137,6 +137,12 @@ const config = {
             className: 'navbar__item--external',
             href: 'https://github.com/macrometacorp/docs',
             label: 'GitHub',
+            position: 'right',
+          },
+          {
+            className: 'navbar__item--external',
+            href: 'https://join.slack.com/t/macrometa/shared_invite/zt-1j4f06xwm-5Y~yGQz8CVImOowdc80s1A',
+            label: 'Slack',
             position: 'right',
           },
           {
@@ -193,6 +199,11 @@ const config = {
                 className: 'footer__link-item footer__item--external',
                 href: 'https://github.com/macrometacorp',
                 label: 'GitHub',
+              },
+              {
+                className: 'footer__link-item footer__item--external',
+                href: 'https://join.slack.com/t/macrometa/shared_invite/zt-1j4f06xwm-5Y~yGQz8CVImOowdc80s1A',
+                label: 'Slack',
               },
               {
                 className: 'footer__link-item footer__item--external',

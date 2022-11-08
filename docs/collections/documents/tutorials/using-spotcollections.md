@@ -82,7 +82,7 @@ import pprint
 from c8 import C8Client
 
 # Variables Access
-URL = "api-gdn.paas.macrometa.io"
+URL = "api-play.paas.macrometa.io"
 API_KEY = "my API key" #Change this to my API key
 API_KEY_ID = "my API key ID" #Change this to my API key ID
 GEO_FABRIC = "_system"
@@ -228,7 +228,7 @@ except Exception as e:
 const jsc8 = require("jsc8");
 
 // Variables - DB
-const globalUrl = "https://gdn.paas.macrometa.io";
+const globalUrl = "https://play.paas.macrometa.io";
 const geofabric = "_system";
 const spotGfName = "spot";
 const regionUrls = [

@@ -10,14 +10,14 @@ A geo-distributed Netflix clone running at the edge with low latency providing s
 
 | **Federation**                                        | **Email**                              | **Password** | **Dashboard**|
 | ----------------------------------------------------- | -------------------------------------- | ------------- |--------------|
-| [Global Data Network](https://gdn.paas.macrometa.io/) | demo-ott-app@macrometa.io | `xxxxxxxx`    | [Dashboard](https://macrometacorp.github.io/demo-ott-app/) |
+| [Global Data Network](https://play.paas.macrometa.io/) | demo-ott-app@macrometa.io | `xxxxxxxx`    | [Dashboard](https://macrometacorp.github.io/demo-ott-app/) |
 
 
 ## Setup (Fastly)
 
 | **Federation**                                        | **Email**                              | **Password** | **Dashboard**|
 | ----------------------------------------------------- | -------------------------------------- | ------------- |--------------|
-| [Global Data Network](https://gdn.paas.macrometa.io/) | demo-ott-app@macrometa.io | `xxxxxxxx`    | [Dashboard]( https://macrometacorp.github.io/demo-ott-app-fastly/) |
+| [Global Data Network](https://play.paas.macrometa.io/) | demo-ott-app@macrometa.io | `xxxxxxxx`    | [Dashboard]( https://macrometacorp.github.io/demo-ott-app-fastly/) |
 
 
 ## Solution

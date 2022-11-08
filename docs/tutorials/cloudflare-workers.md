@@ -8,7 +8,7 @@ This brief tutorial will show you have to authenticate to the GDN using it's RES
 ## Auth and create first collection
 
 ```js
-const macrometaHost = "https://api-gdn.paas.macrometa.io"
+const macrometaHost = "https://api-play.paas.macrometa.io"
 const authEndpoint = macrometaHost + "/_open/auth"
 const collectionEndpoint = macrometaHost + "/_fabric/_system/_api/collection"
 const type = "application/json;charset=UTF-8"

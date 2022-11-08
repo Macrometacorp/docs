@@ -80,7 +80,7 @@ import pprint
 from c8 import C8Client
 
 # Variables - Connection
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 API_KEY = "my API key" #Change to my API key
 GEO_FABRIC = "_system"
 
@@ -215,7 +215,7 @@ client.delete_collection(collection_shops)
 const jsc8 = require("jsc8");
 
 // Variables - DB
-const globalUrl = "https://gdn.paas.macrometa.io";
+const globalUrl = "https://play.paas.macrometa.io";
 
 // Create an authenticated instance with token or API key
 // const client = new jsc8({ url: globalUrl, token: "XXXX", fabricName: '_system' });

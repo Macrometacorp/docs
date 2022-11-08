@@ -12,7 +12,7 @@ This page provides instructions for running API commands from the Macrometa cons
 
 ## Run API Commands
 
-1. Log in to your [Macrometa account](https://auth.paas.macrometa.io/).
+1. Log in to your [Macrometa account](https://auth-play.macrometa.io/).
 1. Click **API Reference**.
 1. (Optional) If you want to use an API key to run your commands, then click **Use API Key. Otherwise, Macrometa authenticates you with a [JSON Web Token (JWT)](../account-management/auth/jwts.md).
 1. In the Macrometa GDN API pane, browse through the commands and then click the one that you want to use to expand it.
