@@ -35,6 +35,14 @@ Get fabric details, including the name and associated regions.
 <TabItem value="py" label="Python SDK">
 
 ```py
+# Importing stuff you'll need later
+from operator import concat
+import base64
+import json
+import warnings
+warnings.filterwarnings("ignore")
+
+# Get the fabric details
 print("Getting fabric details...")
 print(client.get_fabric_details())
 ```

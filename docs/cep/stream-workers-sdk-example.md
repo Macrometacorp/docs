@@ -37,6 +37,12 @@ The stream worker shown below reads data from a collection and publishes it to a
 <TabItem value="py" label="Python SDK">
 
 ```py
+# Import libraries you'll need later
+from operator import concat
+import warnings
+from c8.fabric import StandardFabric
+warnings.filterwarnings("ignore")
+
 # Define the stream app to validate.
 stream_app_definition = """
 @App:name('Sample-Cargo-App')
@@ -381,11 +387,10 @@ The following example uses the code snippets provided in this tutorial.
 
 ```py
 # Import libraries
-from operator import concat
-import base64
-import json
-import warnings
 from c8 import C8Client
+from operator import concat
+import warnings
+from c8.fabric import StandardFabric
 warnings.filterwarnings("ignore")
 
 # Define constants

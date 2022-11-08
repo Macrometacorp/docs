@@ -8,12 +8,7 @@ When this code runs, it initializes the server connection to the specified regio
 
 ```py
 # Import libraries
-from operator import concat
-import base64
-import json
-import warnings
 from c8 import C8Client
-warnings.filterwarnings("ignore")
 
 # Define constants
 URL = "play.paas.macrometa.io"
