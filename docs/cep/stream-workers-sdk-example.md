@@ -72,8 +72,8 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 """
 
-# Validate the stream app code.
-print("--- Validating Stream Worker Definition")
+# Validate the stream worker code.
+print("--- Validating stream worker definition")
 print(client.validate_stream_app(data=stream_app_definition))
 ```
 
@@ -120,7 +120,7 @@ print(client.validate_stream_app(data=stream_app_definition))
         SELECT weight
         FROM SampleCargoAppInputTable;`
 
-    console.log("--- Validating Stream Application Definition");
+    console.log("--- Validating stream worker definition");
     result = await client.validateStreamApp(appDefinition);
 ```
 
@@ -135,7 +135,7 @@ By default, the stream worker is created in the local region. You can use `dclis
 <TabItem value="py" label="Python SDK">
 
 ```py
-print("--- Creating Stream Worker")
+print("--- Creating stream worker")
 print(client.create_stream_app(data=stream_app_definition))
 ```
 
@@ -145,26 +145,26 @@ print(client.create_stream_app(data=stream_app_definition))
 ```js
     // The stream app will be created by default in the local region. Optionally, you can send dclist to deploy stream
     // app in all / selected regions
-    console.log("--- Creating Stream Application");
+    console.log("--- Creating stream worker");
     result = await client.createStreamApp([], appDefinition);
 ```
 
-  </TabItem>
+</TabItem>
 </Tabs>  
 
 ### Step 4. Activate and Deactivate Stream Worker
 
-Sometimes you need to turn a stream worker on or off. The commands below demonstrate how to do that programmatically. Make sure that the stream worker is on (activated) before continuing to the next step!
+Sometimes you need to turn a stream worker on or off. The commands below demonstrate how to do that programmatically. Make sure that the stream worker is activated (published) before continuing to the next step!
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
 ```py
-# Deactivate the stream worker
-print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
-
-# Activate the stream worker
+# Activate the stream worker.
 print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+
+# You can also deactivate the stream worker.
+# print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
 ```
 
 </TabItem>
@@ -181,7 +181,7 @@ print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 </TabItem>
 </Tabs>
 
-### Step 4. Update Stream Application
+### Step 4. Update Stream Worker
 
 The code below adds a second data processing step. It updates the stream worker to store the input data into itself and another collection called `SampleCargoAppDestTable`.
 
@@ -243,11 +243,11 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 """
 
-# You must first create an instance of a stream worker before you can update it.
+# Create an instance of a stream worker before you update it.
 app = client._fabric.stream_app("Sample-Cargo-App")
 
 # Update the stream worker.
-print("--- Updating Stream Application `Sample-Cargo-App`")
+print("--- Updating stream worker `Sample-Cargo-App`")
 result = app.update(data)
 
 ```
@@ -326,10 +326,11 @@ In this example, we run an ad hoc query on the store `SampleCargoAppDestTable` u
 print("--- Connecting to C8")
 client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
 
-# To operate on created apps, you need to create an instance of the app
+# Create an instance of the stream worker.
 app = client._fabric.stream_app("Sample-Cargo-App")
-# Run query on application
-q = "select * from SampleCargoAppDestTable limit 2"
+
+# Run query against the store.
+q = "select * from SampleCargoAppDestTable limit 3"
 result = app.query(q)
 print(result)
 ```
@@ -338,7 +339,6 @@ print(result)
 <TabItem value="js" label="JavaScript SDK">
 
 ```js
-    console.log("--- Running adhoc query on the store `SampleCargoAppDestTable` used in Stream Application. It should get all records which you inserted into `SampleCargoAppInputTable`");
     await app.activateStreamApplication(true);
     const q = "select * from SampleCargoAppDestTable limit 3";
     result = await app.query(q);
@@ -348,15 +348,16 @@ print(result)
 </TabItem>  
 </Tabs>
 
-### Step 6. Delete Stream Application
+### Step 6. Delete Stream Worker
 
-Clean up your workspace! You're done with this stream worker, so time to delete it.
+You're done with this stream worker, so time to delete it.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
 ```py
-print("--- Deleting Stream Application `Sample-Cargo-App`")
+# Delete the stream worker.
+print("--- Deleting stream worker `Sample-Cargo-App`")
 result = client.delete_stream_app('Sample-Cargo-App')
 ```
 
@@ -364,7 +365,7 @@ result = client.delete_stream_app('Sample-Cargo-App')
 <TabItem value="js" label="JavaScript SDK">
 
 ```js
-    console.log("--- Deleting stream application `Sample-Cargo-App`");
+    console.log("--- Deleting stream worker `Sample-Cargo-App`");
     result = await client.deleteStreamApp("Sample-Cargo-App");
 ```
 
@@ -452,22 +453,22 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 """
 
-# Validate stream application
+# Validate stream worker
 print(client.validate_stream_app(data=stream_app_definition))
 
-# Create stream application
+# Create stream worker
 print(client.create_stream_app(data=stream_app_definition))
 
-# Retrieve stream application
+# Retrieve stream worker
 print("Retrieve", client.retrieve_stream_app())
 
-# Get stream application handle for advanced operations
-print("Get App", client.get_stream_app('Sample-Cargo-App'))
+# Get stream worker handle for advanced operations
+print("Get stream worker", client.get_stream_app('Sample-Cargo-App'))
 
-# Activate (publish) stream application
+# Activate (publish) stream worker
 print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 
-# Delete stream application
+# Delete stream worker
 print(client.delete_stream_app('Sample-Cargo-App'))
 ```
 
