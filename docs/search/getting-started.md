@@ -60,7 +60,7 @@ Macrometa allows you to save a query as a [Query Worker](queryworkers.md).
 Macrometa displays a cURL command that you can use to access this endpoint from anywhere in the world in under 50ms.
 
 :::note
-This query requires a key, so you must enter one in the bind parameters or else the query will fail with an error.
+This query requires a value to be passes with each request, so you must enter one in the bind parameters or else the query will fail with an error.
 :::
 
 ![Create a Query Worker](/img/quickstart/create-query-worker.png)
