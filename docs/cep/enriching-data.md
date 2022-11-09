@@ -1,10 +1,7 @@
 ---
-sidebar_position: 5
+sidebar_position: 60
+title: Enriching Data
 ---
-
-# Enriching Data
-
-## Introduction
 
 Enriching data involves integrating the data received in the stream with data from c8db or another data stream, or an external service to derive an expected result. To understand the different ways in which this is done, follow the sections below.
 

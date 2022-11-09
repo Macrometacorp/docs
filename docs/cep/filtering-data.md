@@ -1,10 +1,7 @@
 ---
-sidebar_position: 6
+sidebar_position: 70
+title: Filtering Data
 ---
-
-# Filtering Data
-
-## Introduction
 
 When you receive input data, it may consist of data that is not required to generate the required output, null values for certain attributes, etc.  You can filter data to refine the received data. 
 

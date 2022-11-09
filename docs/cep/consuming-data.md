@@ -1,10 +1,7 @@
 ---
-sidebar_position: 3
+sidebar_position: 40
+title: Consuming Data
 ---
-
-# Consuming Data
-
-## Introduction
 
 Typically the first step  in a stream processing flow is to consume the data to be cleaned, enriched, transformed or summarized to produce the required output.
 

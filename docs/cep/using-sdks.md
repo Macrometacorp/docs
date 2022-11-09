@@ -1,6 +1,6 @@
 ---
-sidebar_position: 10
-title: Getting Started with Stream Workers
+sidebar_position: 20
+title: Using Drivers with Stream Workers
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,57 +19,11 @@ This article is an introduction to using stream workers with [Macrometa SDKs](..
 
 If you want to skip the explanation and just run the code, then go to the [Full Demo File](#full-demo-file).
 
-### Step 1. Connect to GDN
+### Connect to GDN
 
 To use stream workers with Macrometa Global Data Network (GDN), you must first establish a connection to a local region.
 
 <ConnectToGDN />
-
-### Step 2. Get GeoFabric Details
-
-Get fabric details, including the name and associated regions.
-
-<Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
-
-```py
-print("Getting fabric details...")
-print(client.get_fabric_details())
-```
-
-</TabItem>
-<TabItem value="js" label="JavaScript">
-
-```js
-async function getFabric() {
-  try {
-    await console.log("Getting the fabric details...");
-    let result = await client.get();
-
-    await console.log("result is: ", result);
-  } catch(e){
-    await console.log("Fabric details could not be fetched because "+ e);
-  }
-}
-
-getFabric();
-```
-
-</TabItem>
-</Tabs>  
-
-
-
-### Step 2. 
-
-### Step 3. 
-
-### Step 4. 
-
-
-
-
-
 
 ## Validate Stream Application
 

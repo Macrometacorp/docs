@@ -1,8 +1,7 @@
 ---
-sidebar_position: 9
+sidebar_position: 100
+title: Publishing Data
 ---
-
-# Publishing Data
 
 When information is processed by the stream processor, the output is presented as events in a streaming manner. This output can be published to databases, files, cloud-based applications or other streaming applications.
 

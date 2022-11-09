@@ -1,10 +1,7 @@
 ---
-sidebar_position: 2
+sidebar_position: 30
+title: Create Stream Application
 ---
-
-# Create Stream Application
-
-## Introduction
 
 Stream applications are declarative specs that define the processing logic to process the events sent to the stream processor. A stream app definition contains the following configurations:
 

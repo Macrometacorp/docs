@@ -1,10 +1,7 @@
 ---
-sidebar_position: 7
+sidebar_position: 80
+title: Summarizing Data
 ---
-
-# Summarizing Data
-
-## Introduction
 
 Summarizing data refers to obtaining aggregates in an incremental manner for a specified set of time periods.
 
