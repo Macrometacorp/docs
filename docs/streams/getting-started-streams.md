@@ -296,8 +296,6 @@ def receiveData():
         subscription_name="test-subscription-1")
     while True:
         print("\nListening for message...")
-        if user_input == '0':
-            break
         m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
         msg1 = base64.b64decode(m1["payload"]).decode('utf-8')
         print(F"Received message: '{msg1}'") 
