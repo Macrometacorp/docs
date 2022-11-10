@@ -146,7 +146,7 @@ print(client.create_stream_app(data=stream_app_definition))
 <TabItem value="js" label="JavaScript SDK">
 
 ```js
-    // The stream app will be created by default in the local region. Optionally, you can send dclist to deploy stream
+    // The stream app will be created by default in the local region. Optionally, you can use dclist to deploy stream
     // app in all / selected regions
     console.log("--- Creating stream worker");
     result = await client.createStreamApp([], appDefinition);
@@ -174,11 +174,13 @@ print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
 <TabItem value="js" label="JavaScript SDK">
 
 ```js
+  // Activate the stream worker.
     console.log("--- Activating `Sample-Cargo-App`");
     const result = await client.activateStreamApp("Sample-Cargo-App", true);
-
-    console.log("--- Deactivating `Sample-Cargo-App`");
-    const result = await client.activateStreamApp("Sample-Cargo-App", false);
+  
+  // You can also deactivate the stream worker.
+  //  console.log("--- Deactivating `Sample-Cargo-App`");
+  //  const result = await client.activateStreamApp("Sample-Cargo-App", false);
 ```
 
 </TabItem>
@@ -258,7 +260,8 @@ result = app.update(data)
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-```js  
+```js
+  // Code with which the stream worker will be updated.
     const updatedAppDefinition = `
     @App:name('Sample-Cargo-App')
     @App:qlVersion("2")
@@ -310,7 +313,8 @@ result = app.update(data)
     SELECT weight
     FROM SampleCargoAppInputTable;`
 
-    console.log("--- Updating Stream Application `Sample-Cargo-App`");
+  // Update the stream worker.
+    console.log("--- Updating stream worker `Sample-Cargo-App`");
     result = await app.updateApplication([], updatedAppDefinition);
 ```
 
@@ -368,6 +372,7 @@ result = client.delete_stream_app('Sample-Cargo-App')
 <TabItem value="js" label="JavaScript SDK">
 
 ```js
+  // Delete the stream worker.
     console.log("--- Deleting stream worker `Sample-Cargo-App`");
     result = await client.deleteStreamApp("Sample-Cargo-App");
 ```
@@ -381,6 +386,8 @@ The following example uses the code snippets provided in this tutorial.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
+
+This example does not include the [Update Stream Worker](#step-4-update-stream-worker) or [Run an Ad Hoc Query](#step-5-run-an-ad-hoc-query) steps listed above.
 
 ```py
 # Import libraries
@@ -485,7 +492,7 @@ const streamAppName = "Sample-Cargo-App";
 const sourceCollectionName = "SampleCargoAppInputTable";
 const destinationCollectionName = "SampleCargoAppDestTable";
 const parameter = { weight: "" };
-const globalUrl = "https://play.paas.macrometa.io";
+const globalURL = "https://play.paas.macrometa.io";
 const thisApiKey = "XXXXX";
 
 const insertDataValue = {
@@ -589,7 +596,7 @@ async function main () {
   // password = "";
   // Create an authenticated instance with a token or API key
   // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-  const client = new jsc8({ url: globalUrl, apiKey: thisApiKey, fabricName: "_system" });
+  const client = new jsc8({ url: globalURL, apiKey: thisApiKey, fabricName: "_system" });
   // console.log("Authentication done!!...");
   
   // Or use email and password to authenticate a client instance
@@ -642,9 +649,10 @@ async function main () {
   async function creatingStreamApplication () {
     let result = await client.get();
 
-    console.log("--- Validating stream application definition");
+    console.log("--- Validating stream worker definition");
     result = await client.validateStreamApp(appDefinition);
     console.log(result);
+    
     // By default, the stream application is created in the local region. Optionally, you can send dclist to deploy stream
     // app in all / selected regions
     console.log("--- Creating stream application");
@@ -655,13 +663,13 @@ async function main () {
     }
     console.log(result);
 
-    console.log("--- Getting stream application instance: " + streamAppName);
+    console.log("--- Getting stream worker instance: " + streamAppName);
     result = await client.getStreamApp(streamAppName);
     console.log(result);
   }
 
   async function enablingStreamApplication () {
-    console.log("--- Enable stream application " + streamAppName);
+    console.log("--- Enable stream worker " + streamAppName);
     // Enable app using change_state function
     const result = await client.activateStreamApp(streamAppName, true);
     console.log(result);
@@ -671,7 +679,7 @@ async function main () {
   async function updatingSteamApplication () {
     const app = await client.streamApp(streamAppName);
 
-    console.log("--- Updating stream application " + streamAppName);
+    console.log("--- Updating stream worker " + streamAppName);
     await app.updateApplication([], updatedAppDefinition);
     // Enable app using change_state function
     await app.activateStreamApplication(true);
@@ -696,7 +704,7 @@ async function main () {
     const app = await client.streamApp(streamAppName);
 
     // As per the query, the result is limited to the first 10 results
-    console.log(`--- Running adhoc query on the store ${destinationCollectionName} used in stream application. 
+    console.log(`--- Running ad hoc query on the store ${destinationCollectionName} used in stream application. 
       It should get all records which you inserted into ${sourceCollectionName}`);
     const q = `select * from ${destinationCollectionName} limit 10`;
     const result = await app.query(q);
@@ -705,15 +713,8 @@ async function main () {
 
   async function deletingStreamApplication () {
     const app = await client.streamApp(streamAppName);
-    console.log(`--- Deleting stream application ${streamAppName}`);
+    console.log(`--- Deleting stream worker ${streamAppName}`);
     await app.deleteApplication();
-  }
-
-  async function displayingSampleApplications () {
-    console.log("--- You can try out several stream applications which are pre-loaded and ready to run");
-    const result = await client.getStreamAppSamples();
-    console.log("Sample Stream Applications:");
-    console.log(result);
   }
 
   async function run () {
@@ -729,11 +730,6 @@ async function main () {
       // Only the stream application is removed with the code
       await deletingStreamApplication();
 
-      // Code below can be used to see the sample stream apps
-      // await displayingSampleApplications();
-    } catch (e) {
-      console.log(messageHandler(e));
-    }
   }
 
   run();
