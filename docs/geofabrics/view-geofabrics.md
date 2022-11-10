@@ -29,7 +29,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection](../../cli/collections-cli.md) CLI command to create a Document Store collection.
+Use the [gdnsl fabric list](../cli/fabrics-cli.md#gdnsl-fabric-list) CLI command to list GeoFabrics and [gdnsl fabric describe](../cli/fabrics-cli.md#gdnsl-fabric-describe) CLI command to view GeoFabric details.
 
 </TabItem>
 </Tabs>
