@@ -87,47 +87,44 @@ print(client.validate_stream_app(data=stream_app_definition))
  <TabItem value="js" label="JavaScript SDK">
 
 ```js
-    // Add this snippet in previously created main function
+    // Define the stream app to validate.
     const appDefinition = `
-        @App:name('Sample-Cargo-App')
-        @App:qlVersion("2")
-        @App:description('Basic Stream application to demonstrate reading data from input stream and store it in a collection. The stream and collections are created automatically if they do not already exist.')
+      @App:name('Sample-Cargo-App')
+      @App:qlVersion("2")
+      @App:description('Basic stream worker to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
+      /**
+      Test the stream worker:
+          1. Open Stream SampleCargoAppDestStream in console. The output can be monitored here.
+          2. Upload following data into SampleCargoAppInputTable collection:
+              {"weight": 1}
+              {"weight": 2}
+              {"weight": 3}
+              {"weight": 4}
+              {"weight": 5}
+          3. Following messages are shown on the SampleCargoAppDestStream Stream Console:
+              [2021-08-27T14:12:15.795Z] {"weight":1}
+              [2021-08-27T14:12:15.799Z] {"weight":2}
+              [2021-08-27T14:12:15.805Z] {"weight":3}
+              [2021-08-27T14:12:15.809Z] {"weight":4}
+              [2021-08-27T14:12:15.814Z] {"weight":5}
+      */
 
-        /**
-         Testing the Stream Application:
-            1. Open Stream SampleCargoAppDestStream in Console. The output can be monitored here.
+      -- Create Table SampleCargoAppInputTable to process events.
+      CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection ="SampleCargoAppInputTable", collection.type="doc", replication.type="global", maptype='json') (weight int);
 
-            2. Upload following data into SampleCargoAppInputTable collection
-                {"weight": 1}
-                {"weight": 2}
-                {"weight": 3}
-                {"weight": 4}
-                {"weight": 5}
+      -- Create Stream SampleCargoAppDestStream
+      CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream ="SampleCargoAppDestStream", replication.type="local") (weight int);
 
-            3. Following messages would be shown on the SampleCargoAppDestStream Stream Console
-                [1]
-                [2]
-                [3]
-                [4]
-                [5]
-        */
+      -- Data Processing
+      @info(name='Query')
+      INSERT INTO SampleCargoAppDestStream
+      SELECT weight
+      FROM SampleCargoAppInputTable;`
 
-        -- Create Table SampleCargoAppInputTable to process events having sensorId and temperature(F).
-		CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc", replication.type="global", @map(type='json')) (weight int);
-
-
-        -- Create Stream SampleCargoAppDestStream
-		CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
-
-
-        -- Data Processing
-        @info(name='Query')
-        INSERT INTO SampleCargoAppDestStream 
-        SELECT weight
-        FROM SampleCargoAppInputTable;`
-
+  // Validate the stream worker code.
     console.log("--- Validating stream worker definition");
     result = await client.validateStreamApp(appDefinition);
+    console.log(result);
 ```
 
  </TabItem>
