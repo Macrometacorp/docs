@@ -44,7 +44,7 @@ In the diagram below, Consumer-C-1 is the master consumer while Consumer-C-2 wou
 
 ## Key_Shared
 
-In Key_Shared type, multiple consumers can attach to the same subscription. Messages are delivered in a distribution across consumers and message with same key or same ordering key are delivered to only one consumer. No matter how many times the message is re-delivered, it is delivered to the same consumer. When a consumer connected or disconnected will cause served consumer change for some key of message.
+In *key_shared* mode, multiple consumers can attach to the same subscription. Messages are delivered in a distribution across consumers and messages with the same key or same ordering key are delivered to only one consumer. No matter how many times the message is re-delivered, it is delivered to the same consumer. When a consumer connected or disconnected will cause served consumer change for some key of message.
 
 Note that when the consumers are using the Key_Shared subscription type, you need to disable batching or use key-based batching for the producers. There are two reasons why the key-based batching is necessary for Key_Shared subscription type:
 
