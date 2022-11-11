@@ -13,7 +13,7 @@ This page lists several methods for updating GeoFabrics. Which GeoFabrics you ca
 
 To modify a geofabric:
 
-1. Log in to an administrator account in the `_system` GeoFabric.
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/) in the `_system` GeoFabric.
 2. Click **Geo Fabrics** to navigate to the GeoFabrics management page.
 3. Click the GeoFabric that you want to modify.
 4. Add regions to or remove regions from the GeoFabric by clicking the **Status** switch next to each region.

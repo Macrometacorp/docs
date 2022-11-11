@@ -13,9 +13,9 @@ This page lists several methods for accessing the unique global or regional endp
 
 To delete a GeoFabric in the Macrometa Web console:
 
-1. Log into an administrator account in the `_system` GeoFabric.
-2. Click **Geo Fabrics** to navigate to the GeoFabrics management page.
-
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/) in the `_system` GeoFabric.
+1. Click **Geo Fabrics** to navigate to the GeoFabrics management page.
+1. 
 
 </TabItem>
 <TabItem value="api" label="REST API">
