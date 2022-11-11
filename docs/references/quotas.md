@@ -22,7 +22,7 @@ Playground accounts can not be used in production. Review our [Terms of Service]
 | Views per Fabric 				| 2				    |
 | Indexes per Fabric 			| 10 				|
 | Requests per Day				| 20000				|
-| Requests per Minute  			| 4500 (500/PoP)	|
+| Requests per Minute  			| 5500 (500/PoP)	|
 | Storage per Day				| 200 MB			|
 | Document Size					| 500 KB			|
 | Documents per Query			| 1000				|
@@ -54,4 +54,4 @@ The following limits apply to Stream Workers:
 | Max Workers Memory (MB)       	            | 200			    |
 | Max Workers Throughput Out Per Minute (MB)	| 10	    		|
 | Max Workers Throughput Per Minute (MB)        | 10	            |
-| Max Logs Length Per Minute PerWorker (KB) 	| 10				|
+| Max Logs Length Per Minute Per Worker (KB) 	| 10				|
