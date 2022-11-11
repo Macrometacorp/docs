@@ -53,7 +53,7 @@ Note that when the consumers are using the Key_Shared subscription type, you nee
 
 The key-based batching aims at resolving the above-mentioned issues. This batching method ensures that the producers pack the messages with the same key to the same batch. The messages without a key are packed into one batch and this batch has no key. When the broker dispatches messages from this batch, it uses NON_KEY as the key. In addition, each consumer is associated with only one key and should receive only one message batch for the connected key. By default, you can limit batching by configuring the number of messages that producers are allowed to send.
 
-Below is example of enabling the key-based batching under the Key_Shared subscription type.
+Below is an example of enabling the key-based batching under the key_shared subscription type.
 
 ```java
 Producer<byte[]> producer = client.newProducer()
