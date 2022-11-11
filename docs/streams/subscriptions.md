@@ -64,7 +64,7 @@ Producer<byte[]> producer = client.newProducer()
 
 ### Limitations of Key_Shared Subscriptions
 
-When you use Key_Shared type, be aware that:
+When you use key_shared subscriptions, be aware that:
 
 -You need to specify a key or orderingKey for messages.
 -You cannot use cumulative acknowledgment with Key_Shared type.
