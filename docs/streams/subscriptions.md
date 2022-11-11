@@ -62,7 +62,7 @@ Producer<byte[]> producer = client.newProducer()
         .create();
 ```
 
-### Limitations of Key_Shared type
+### Limitations of Key_Shared Subscriptions
 
 When you use Key_Shared type, be aware that:
 
