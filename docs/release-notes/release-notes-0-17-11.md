@@ -51,7 +51,7 @@ The following features updates are included in this release.
 
 ### Migration to Play - Breaking Change
 
-The previous generic global URL `api-play.paas.macrometa.io` is no longer valid.
+The previous generic global URL `api-gdn.paas.macrometa.io` is no longer valid.
 
 Customers with Macrometa Play tier accounts _can_ use `api-play.paas.macrometa.io` as a substitute, but we do not recommend it.
 
@@ -108,7 +108,13 @@ curl -X 'POST' \ 'https://api-qa6.eng.macrometa.io/_api/user' \
 
 The following known issues were introduced in this release.
 
-### Local stream is not accessible after upgrade from 17.10 to 17.11
+### Stream Workers and Query Workers are Limited to Owners
+
+**Problem:** Currently the stream workers and query workers are scoped by tenant, fabric, and owner where owner is the user account that created the worker. The result of this is stream workers and query workers created by one user cannot be seen by another user belonging to same tenant and fabric.
+
+**Workaround:** If you encounter this issue, then reduce the scope to tenant and fabric for the workers so that all users with permission on a GeoFabric can see the stream workers and query users regardless of which user created them.
+
+### Local Stream is Not Accessible after Upgrade from 17.10 to 17.11
 
 **Problem:** Sometimes local streams are not accessible in the Macrometa console.
 
