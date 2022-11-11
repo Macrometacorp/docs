@@ -21,17 +21,51 @@ This page guides you through creating a stream worker and updating it.
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
-### Step 1. Log in to Macrometa GDN
+### Step 1. Connect to GDN
 
+To use streams with Macrometa Global Data Network (GDN), you must first establish a connection to a local region.
 
+<ConnectToGDN />
 
 ### Step 2. Define Query Name
 
+
+
+```sql
+@App:name('sample-cargo-app')
+@App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream & collection will be created automatically if they do not already exist.')
+@App:qlVersion('2')
+```
+
 ### Step 3. Define Source
 
-### Step 3. Define Stream
 
-### Step 4. Write and Save Query
+
+```sql
+-- Defines `SampleCargoAppInputTable` Source.
+CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc" , replication.type="global", map.type='json') (weight int);
+```
+
+### Step 4. Define Stream
+
+
+
+```sql
+-- Define `SampleCargoAppDestStream` Stream.
+CREATE SINK STREAM SampleCargoAppDestStream (weight int);
+```
+
+### Step 5. Write and Save Query
+
+
+
+```sql
+-- Data Processing
+@info(name='Query')
+INSERT INTO SampleCargoAppDestStream
+SELECT weight
+FROM SampleCargoAppInputTable;
+```
 
 
 ## Full Demo File
