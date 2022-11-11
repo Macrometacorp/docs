@@ -19,7 +19,7 @@ The following table shows rate limits for free developer accounts and metered ac
 | Memory per Query				| 256 MB			|
 | Collections per Fabric		| 10				|
 | Graphs per Fabric				| 2					|
-| Views per Fabric 				| N/A 				|
+| Views per Fabric 				| 2				|
 | Indexes per Fabric 			| 10 				|
 | Geo Fabrics per Tenant 		| 2					|
 
@@ -27,7 +27,7 @@ The following limits apply to streams:
 
 | Name 											| Play Tier Quota 	|
 |------											|-----------------	|
-| Max Backlog Message TTL in Minutes 			| 1440 				|
+| Max Backlog Message TTL in Minutes 			| 240 				|
 | Max Dispatch Throttling Rate (Bytes)			| 4096				|
 | Max Backlog Storage for Global Streams (Megabytes) | 2048	|
 | Max Backlog Storage for Local Streams (Megabytes)	| 100			|
