@@ -16,7 +16,7 @@ The code sample below shows how you could use a JWT to authenticate with the SDK
 
 ```js
 const jsc8 = require("jsc8");
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "xxxxxx", fabricName: '_system'});
+const client = new jsc8({url: "https://play.paas.macrometa.io", token: "xxxxxx", fabricName: '_system'});
 ```
 
 </TabItem>
@@ -24,7 +24,7 @@ const client = new jsc8({url: "https://gdn.paas.macrometa.io", token: "xxxxxx", 
 
 ```py
 from c8 import C8Client
-client = C8Client(protocol='https', host='gdn.paas.macrometa.io', port=443, token=<your tokeb>)
+client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, token=<your tokeb>)
 ```
 
 </TabItem>

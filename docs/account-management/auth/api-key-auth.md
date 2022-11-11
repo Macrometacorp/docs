@@ -20,7 +20,7 @@ For more information about creating and managing API keys, refer to [Manage API 
 const jsc8 = require("jsc8");
 // Replace the apiKey placeholder with your API key.
 // Update the fabricName if you need to log in to a fabric other than _system.
-const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
 ```
 
 </TabItem>
@@ -30,7 +30,7 @@ const client = new jsc8({url: "https://gdn.paas.macrometa.io", apiKey: "XXXX", f
 from c8 import C8Client
 
 # Define constants
-URL = "gdn.paas.macrometa.io"
+URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system" # Change this if you need to log in to a fabric other than _system.
 API_KEY = "my API key" # Change this to your API key.
 
@@ -48,8 +48,8 @@ import requests
 
 # Constants
 
-FEDERATION = "api-gdn.paas.macrometa.io"
-FED_URL = f"https://{FEDERATION}"
+URL = "api-play.paas.macrometa.io"
+HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 API_KEY = "XXXXX" # To be replaced by your apikey
 
@@ -63,7 +63,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 
 # Now you can use the above session to make any API request
 # For example we are calling the 'List all collections' API below
-url = f"{FED_URL}/_fabric/{FABRIC}/_api/collection"
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/collection"
 
 response = session.get(url)
 print(response.text)
@@ -103,7 +103,7 @@ class APIRequest {
   }
 }
 ​
-const federationName = "api-gdn.paas.macrometa.io";
+const federationName = "api-play.paas.macrometa.io";
 const federationUrl = `https://${federationName}`;
 const fabric = "_system";
 const apiKey = "XXXXX";

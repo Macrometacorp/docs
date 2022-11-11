@@ -13,7 +13,7 @@ Read our blog post [How To Build A Crypto Arbitrage Trading Bot](https://www.mac
 
 ## Configure the Crypto App
 
-1. Log in to the [Macrometa Console](https://auth.paas.macrometa.io/) 
+1. Log in to the [Macrometa Console](https://auth-play.macrometa.io/) 
 2. Go to the Collections tab and create a new document collection named `trades` with `collection stream enabled` checked. For more information about creating document collections, refer to [Create a Document Collection](https://macrometa.com/docs/collections/documents/create-document-store).
 3. Click **Stream Workers**.
 4. Click **New Stream Worker** named `Crypto-Trading-App`.

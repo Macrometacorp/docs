@@ -226,7 +226,7 @@ add(1 hour and 25 minutes, startTime + 56)
 
 **Inbuilt functions**
 
-Following are some inbuilt Stream functions, for more functions refer [Functions](functions).
+Following are some inbuilt Stream functions, for more functions refer [Functions](#function).
 
 |Inbuilt function | Description|
 | ------------- |-------------|

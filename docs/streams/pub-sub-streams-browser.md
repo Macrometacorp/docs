@@ -130,8 +130,8 @@ This example shows how to use the GDN console to publish messages on a stream an
     const EMAIL = "your@email.com";
     const PASSWORD = "password";
 
-    const FEDERATION_NAME = "api-gdn.paas.macrometa.io";
-    const FEDERATION_URL = `https://${FEDERATION_NAME}`;
+    const URL_NAME = "api-play.paas.macrometa.io";
+    const HTTP_URL = `https://${URL_NAME}`;
 
     const STREAM_NAME = "api_tutorial_streams";
     const CONSUMER_NAME = "api_tutorial_streams_consumer";
@@ -200,7 +200,7 @@ This example shows how to use the GDN console to publish messages on a stream an
 
     /* -------------------------------------------------------------------------- */
 
-    const connection = new APIRequest(FEDERATION_URL);
+    const connection = new APIRequest(HTTP_URL);
 
     const init = async function () {
       try {
@@ -245,7 +245,7 @@ This example shows how to use the GDN console to publish messages on a stream an
         const dcUrl = localDcDetails.tags.url;
 
         const url = IS_GLOBAL
-          ? FEDERATION_NAME
+          ? URL_NAME
           : `api-${dcUrl}`;
 
         const otpConsumer = await connection.req(`/apid/otp`, {

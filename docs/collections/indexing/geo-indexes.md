@@ -1,9 +1,7 @@
 ---
 sidebar_position: 50
-title: Geo Indexes
+title: Geo-Spatial Indexes
 ---
-
-# Geo-Spatial Indexes
 
 GDN features [Google S2](http://s2geometry.io/){:target="_blank"} based geospatial index. Indexing is supported for a subset of the [**GeoJSON**](#geojson) geometry types as well as simple latitude longitude pairs.
 
@@ -15,7 +13,7 @@ This index assumes coordinates with the latitude between -90 and 90 degrees and 
 
 ## Create Geo Index in GDN Console
 
-1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **COLLECTIONS**.
 1. Click the collection that you want to create an index for.
 1. Click **Indexes**.

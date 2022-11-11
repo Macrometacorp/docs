@@ -32,7 +32,7 @@ FOR doc IN doc // e.g. documents returned by a traversal
 
 `GEO_CONTAINS(geoJsonA, geoJsonB) → bool`
 
-Checks whether the [GeoJSON object](../../../collections/indexing/working-with-indexes#geojson-mode) `geoJsonA` fully contains `geoJsonB` (Every point in B is also in A). The object `geoJsonA` has to be of type `Polygon` or `MultiPolygon`, other types are not supported because containment is ill defined. This function can be **optimized** by a S2 based [geospatial index](../../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+Checks whether the [GeoJSON object](../../../collections/indexing/geo-indexes.md#geojson-mode) `geoJsonA` fully contains `geoJsonB` (Every point in B is also in A). The object `geoJsonA` has to be of type `Polygon` or `MultiPolygon`, other types are not supported because containment is ill defined. This function can be **optimized** by a S2 based [geospatial index](../../../collections/indexing/geo-indexes.md#geo-spatial-indexes).
 
 - **geoJsonA** (object): first GeoJSON object or coordinate array (in longitude, latitude order)
 - **geoJsonB** (object): second GeoJSON object or coordinate array (in longitude, latitude order)
@@ -42,11 +42,11 @@ Checks whether the [GeoJSON object](../../../collections/indexing/working-with-i
 
 `GEO_DISTANCE(geoJsonA, geoJsonB, ellipsoid) → distance`
 
-Return the distance between two GeoJSON objects, measured from the **centroid** of each shape. For a list of supported types see the [geo index page](../../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+Return the distance between two GeoJSON objects, measured from the **centroid** of each shape. For a list of supported types see the [geo index page](../../../collections/indexing/geo-indexes.md#geo-spatial-indexes).
 
 - **geoJsonA** (object): first GeoJSON object
 - **geoJsonB** (object): second GeoJSON object
-- **ellipsoid** (string, *optional*): reference ellipsoid to use. Supported are `"sphere"` (default) and `"wgs84"`.
+- **ellipsoid** (string, _optional_): reference ellipsoid to use. Supported are `"sphere"` (default) and `"wgs84"`.
 - returns **distance** (number): the distance between the centroid points of the two objects on the reference ellipsoid
 
 ```js
@@ -63,10 +63,10 @@ FOR doc IN collectionName
 
 `GEO_AREA(geoJson, ellipsoid) → area`
 
-Return the area for a polygon or multi-polygon on a sphere with the average Earth radius, or an ellipsoid. For a list of supported types see the [geo index page](../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+Return the area for a polygon or multi-polygon on a sphere with the average Earth radius, or an ellipsoid. For a list of supported types see the [geo index page](../../../collections/indexing/geo-indexes.md#geo-spatial-indexes).
 
 - **geoJson** (object): a GeoJSON object
-- **ellipsoid** (string, *optional*): reference ellipsoid to use. Supported are `"sphere"` (default) and `"wgs84"`.
+- **ellipsoid** (string, _optional_): reference ellipsoid to use. Supported are `"sphere"` (default) and `"wgs84"`.
 - returns **area** (number): the area in square meters of the polygon
 
 ```js
@@ -81,7 +81,7 @@ RETURN GEO_AREA(polygon, "wgs84")
 
 `GEO_EQUALS(geoJsonA, geoJsonB) → bool`
 
-Checks whether two GeoJSON objects are equal or not. For a list of supported types see the [geo index page](../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+Checks whether two GeoJSON objects are equal or not. For a list of supported types see the [geo index page](../../../collections/indexing/geo-indexes.md#geo-spatial-indexes).
 
 - **geoJsonA** (object): first GeoJSON object
 - **geoJsonB** (object): second GeoJSON object.
@@ -111,14 +111,13 @@ RETURN GEO_EQUALS(polygonA, polygonB) // false
 
 `GEO_INTERSECTS(geoJsonA, geoJsonB) → bool`
 
-Checks whether the [GeoJSON object](../../collections/indexing/working-with-indexes#geojson-mode) `geoJsonA` intersects with `geoJsonB` (i.e. at least one point in B is also A or vice-versa). This function can be **optimized** by a S2 based [geospatial index](../../collections/indexing/working-with-indexes#geo-spatial-indexes).
+Checks whether the [GeoJSON object](../../../collections/indexing/geo-indexes.md#geojson-mode) `geoJsonA` intersects with `geoJsonB` (i.e. at least one point in B is also A or vice-versa). This function can be **optimized** by a S2 based [geospatial index](../../../collections/indexing/geo-indexes.md#geo-spatial-indexes).
 
 - **geoJsonA** (object): first GeoJSON object
 - **geoJsonB** (object): second GeoJSON object.
 - returns **bool** (bool): true if B intersects A, false otherwise
 
 ## GeoJSON Constructors
-
 
 The following helper functions are available to easily create valid GeoJSON output. In all cases you can write equivalent JSON yourself, but these functions will help you to make all your C8QL queries shorter and easier to read.
 

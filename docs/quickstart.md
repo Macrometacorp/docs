@@ -9,7 +9,7 @@ Get started with Macrometa by creating a simple address book. This tutorial is M
 
 ## Prerequisites
 
-- A [Macrometa account](https://auth.paas.macrometa.io/) with sufficient permissions to create streams.
+- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create collections.
 
 ## Step 1: Create a collection
 
@@ -37,12 +37,12 @@ There are several ways to add data to a collection, including importing CSV or J
   ```sql
   // Query to insert addresses
   FOR persons IN [ 
-    { firstname: "Captain", lastname: "Nemo", email: "cpnemo@gnautilus.com" },
-    { firstname: "Pierre", lastname: "Aronnax", email: "pierre@asoc.org" },
-    { firstname: "Ned", lastname: "Land", email: "ned@nature.org" },
-    { firstname: "Cyrus", lastname: "Smith", email: "cycy@laborrights.org" },
-    { firstname: "Tom", lastname: "Ayrton", email: "tommy@water.org" },
-    { firstname: "Jules", lastname: "Verne", email: "j.garcia@en-julesverne.nantesmetropole.fr" } 
+    { firstName: "Captain", lastName: "Nemo", email: "cpnemo@gnautilus.com" },
+    { firstName: "Pierre", lastName: "Aronnax", email: "pierre@asoc.org" },
+    { firstName: "Ned", lastName: "Land", email: "ned@nature.org" },
+    { firstName: "Cyrus", lastName: "Smith", email: "cycy@laborrights.org" },
+    { firstName: "Tom", lastName: "Ayrton", email: "tommy@water.org" },
+    { firstName: "Jules", lastName: "Verne", email: "j.garcia@en-julesverne.nantesmetropole.fr" } 
     ]
     INSERT persons INTO addresses
   ```
@@ -73,7 +73,7 @@ When you are done experimenting with records, continue to the next step.
 Now, let's query the data you just added to your collection.
 
 1. Click **Query Workers**.
-2. Click **New** to clear the code editor.
+2. Click **New Query** to clear the code editor.
 3. Copy the code block below and paste it into the code editor.
 
   ```sql
@@ -101,7 +101,7 @@ Macrometa displays a `curl` command you can use to access this endpoint from any
 
 In the previous step, you created the `getAddresses` Query Worker, which is basically the READ in a CRUD API (Create, Read, Update, Delete). Build the rest of the API by creating a Query Worker for each of the following queries.
 
-1. In **Query Workers**, click **New**.
+1. In **Query Workers**, click **New Query**.
 1. Copy and paste a code block.
 1. Save the query using the name with each code block.
 1. Click **API Endpoint** and record the API Usage information.
