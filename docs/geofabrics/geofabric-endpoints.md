@@ -11,11 +11,12 @@ This page lists several methods for accessing the unique global or regional endp
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-To delete a GeoFabric in the Macrometa Web console:
+To view GeoFabric endpoints in the Macrometa Web console:
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/) in the `_system` GeoFabric.
 1. Click **Geo Fabrics** to navigate to the GeoFabrics management page.
-1. 
+1. Click the name of the GeoFabric for which you want to view endpoints.
+1. Global and regional endpoints are displayed in the **ENDPOINT** field next to each global or regional entry.
 
 </TabItem>
 <TabItem value="api" label="REST API">
