@@ -54,4 +54,4 @@ The following limits apply to Stream Workers:
 | Max Workers Memory (MB)       	            | 200			    |
 | Max Workers Throughput Out Per Minute (MB)	| 10	    		|
 | Max Workers Throughput Per Minute (MB)        | 10	            |
-| Max Logs Length Per Minute PerWorker (KB) 	| 10				|
+| Max Logs Length Per Minute Per Worker (KB) 	| 10				|
