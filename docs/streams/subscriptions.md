@@ -67,7 +67,7 @@ Producer<byte[]> producer = client.newProducer()
 When you use key_shared subscriptions, be aware that:
 
 -You need to specify a key or orderingKey for messages.
--You cannot use cumulative acknowledgment with Key_Shared type.
+-You cannot use cumulative acknowledgment with key_shared subscriptions.
 
 ![stream-key-shared-subscriptions](/img/stream-key-shared-subscriptions.png)
 
