@@ -22,7 +22,7 @@ Playground accounts can not be used in production. Review our [Terms of Service]
 | Views per Fabric 				| 2				    |
 | Indexes per Fabric 			| 10 				|
 | Requests per Day				| 20000				|
-| Requests per Minute  			| 4500 (500/PoP)	|
+| Requests per Minute  			| 5500 (500/PoP)	|
 | Storage per Day				| 200 MB			|
 | Document Size					| 500 KB			|
 | Documents per Query			| 1000				|
