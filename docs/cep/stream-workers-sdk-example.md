@@ -163,7 +163,12 @@ Sometimes you need to turn a stream worker on or off. The commands below demonst
 
 ```py
 # Activate the stream worker.
-print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+# Check if already active
+result = client.get_stream_app('Sample-Cargo-App')
+if result[0]['isActive'] is False:
+    print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+else:
+    print("Stream worker already active")
 
 # You can also deactivate the stream worker.
 # print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
@@ -245,12 +250,16 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 """
 
-# Create an instance of a stream worker before you update it.
+# Create an instance of a stream worker and deactivate it before you update it.
+client.activate_stream_app('Sample-Cargo-App', False)
 app = client._fabric.stream_app("Sample-Cargo-App")
 
 # Update the stream worker.
 print("--- Updating stream worker `Sample-Cargo-App`")
-result = app.update(data)
+app.update(data)
+# Wait time is needed after updating a stream worker to initialize resources
+time.sleep(10)
+app.change_state(True)
 
 ```
 
@@ -337,8 +346,7 @@ insert_data_query = {
 }
 
 client.create_restql(insert_data_query)
-# Wait time is needed after updating a stream worker to initialize resources
-time.sleep(10)
+time.sleep(2)
 for i in range(5):
     client.execute_restql("insertWeight", {"bindVars": {"weight": i}})
 time.sleep(2)
@@ -465,7 +473,12 @@ print("--- Creating stream worker")
 print(client.create_stream_app(data=stream_app_definition, dclist=dclist))
 
 # Activate the stream worker.
-print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+# Check if already active
+result = client.get_stream_app('Sample-Cargo-App')
+if result[0]['isActive'] is False:
+    print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+else:
+    print("Stream worker already active")
 
 # You can also deactivate the stream worker.
 # print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
@@ -520,12 +533,16 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 """
 
-# Create an instance of a stream worker before you update it.
+# Create an instance of a stream worker and deactivate it before you update it.
+client.activate_stream_app('Sample-Cargo-App', False)
 app = client._fabric.stream_app("Sample-Cargo-App")
 
 # Update the stream worker.
 print("--- Updating stream worker `Sample-Cargo-App`")
-result = app.update(data)
+app.update(data)
+# Wait time is needed after updating a stream worker to initialize resources
+time.sleep(10)
+app.change_state(True)
 
 # Inserting data into SampleCargoAppInputTable using a query worker.
 insert_data_value = 'INSERT { "weight": @weight } IN SampleCargoAppInputTable'
@@ -537,8 +554,7 @@ insert_data_query = {
 }
 
 client.create_restql(insert_data_query)
-# Wait time is needed after updating a stream worker to initialize resources
-time.sleep(10)
+time.sleep(2)
 for i in range(5):
     client.execute_restql("insertWeight", {"bindVars": {"weight": i}})
 time.sleep(2)
