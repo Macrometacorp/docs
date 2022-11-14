@@ -44,7 +44,7 @@ const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", 
 
 // Or use email and password to authenticate client instance
 // const client = new jsc8("https://play.paas.macrometa.io");
-// Replace values with your email and password.
+// Replace values with your email and password (use it inside an async function).
 // await client.login("nemo@nautilus.com", "xxxxxx"); 
 ```
 
