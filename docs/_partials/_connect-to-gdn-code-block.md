@@ -20,10 +20,13 @@ print("--- Connecting to GDN")
 # Choose one of the following methods to access the GDN. API key is recommended.
 
 # Authenticate with API key
-client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
 # Authenticate with JWT
-# client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, token=<your token>)
+# client = C8Client(protocol='https', host=URL, port=443, token=<your token>, geofabric=GEO_FABRIC))
+
+# Authenticate with email and password
+# client = C8Client(protocol='https', host=URL, port=443, email=<your email id>, password=<your password>, geofabric=GEO_FABRIC)
 ```
 
 </TabItem>
