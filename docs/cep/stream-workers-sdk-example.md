@@ -38,10 +38,7 @@ The stream worker shown below reads data from a collection and publishes it to a
 
 ```py
 # Import libraries you'll need later
-from operator import concat
-import warnings
-from c8.fabric import StandardFabric
-warnings.filterwarnings("ignore")
+import time
 
 # Define the stream app to validate.
 stream_app_definition = """
@@ -138,8 +135,10 @@ By default, the stream worker is created in the local region. You can use `dclis
 <TabItem value="py" label="Python SDK">
 
 ```py
+# Create the stream worker.
+dclist = []
 print("--- Creating stream worker")
-print(client.create_stream_app(data=stream_app_definition))
+print(client.create_stream_app(data=stream_app_definition, dclist=dclist))
 ```
 
 </TabItem>
@@ -196,8 +195,6 @@ After you run this command, you can view the changes in the Macrometa console St
 <TabItem value="py" label="Python SDK">
 
 ```py
-from c8.fabric import StandardFabric
-
 # Code with which the stream worker will be updated.
 data = """
 @App:name('Sample-Cargo-App')
@@ -233,7 +230,7 @@ CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "Sa
 CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
 
 -- Defining a Destination table to dump the data from the stream
-CREATE STORE SampleCargoAppDestTable WITH (type = 'database', stream = "SampleCargoAppDestTable") (weight int);
+CREATE STORE SampleCargoAppDestTable WITH (type = 'database', replication.type="global", stream = "SampleCargoAppDestTable") (weight int);
 
 -- Data Processing
 @info(name='Query')
@@ -321,25 +318,38 @@ result = app.update(data)
 </TabItem>
 </Tabs>
 
-### Step 5. Run an Ad Hoc Query
+### Step 5. Insert data and run an Ad Hoc Query
 
-In this example, we run an ad hoc query on the store `SampleCargoAppDestTable` used in a stream application. It gets the records that you inserted into `SampleCargoAppInputTable`.
+In this example, we use a query worker `insertWeight` to insert data into `SampleCargoAppInputTable` and then we run an ad hoc query on the store `SampleCargoAppDestTable` used in the stream worker. It gets the records that you inserted into `SampleCargoAppInputTable`.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
 ```py
 
-print("--- Connecting to C8")
-client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, email='nemo@nautilus.com', password='xxxxxx', geofabric='_system')
+# Inserting data into SampleCargoAppInputTable using a query worker.
+insert_data_value = 'INSERT { "weight": @weight } IN SampleCargoAppInputTable'
+insert_data_query = {
+    "query": {
+        "name": "insertWeight",
+        "value": insert_data_value,
+    }
+}
 
-# Create an instance of the stream worker.
-app = client._fabric.stream_app("Sample-Cargo-App")
+client.create_restql(insert_data_query)
+# Wait time is needed after updating a stream worker to initialize resources
+time.sleep(10)
+for i in range(5):
+    client.execute_restql("insertWeight", {"bindVars": {"weight": i}})
+time.sleep(2)
+# Deleting the query worker.
+client.delete_restql("insertWeight")
 
 # Run query against the store.
 q = "select * from SampleCargoAppDestTable limit 3"
 result = app.query(q)
 print(result)
+
 ```
 
 </TabItem>
@@ -364,6 +374,7 @@ You're done with this stream worker, so time to delete it.
 
 ```py
 # Delete the stream worker.
+
 print("--- Deleting stream worker `Sample-Cargo-App`")
 result = client.delete_stream_app('Sample-Cargo-App')
 ```
@@ -387,15 +398,10 @@ The following example uses the code snippets provided in this tutorial.
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
-This example does not include the [Update Stream Worker](#step-4-update-stream-worker) or [Run an Ad Hoc Query](#step-5-run-an-ad-hoc-query) steps listed above.
-
 ```py
 # Import libraries
 from c8 import C8Client
-from operator import concat
-import warnings
-from c8.fabric import StandardFabric
-warnings.filterwarnings("ignore")
+import time
 
 # Define constants
 URL = "play.paas.macrometa.io"
@@ -403,18 +409,70 @@ GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
 
 print("--- Connecting to GDN")
-
 # Choose one of the following methods to access the GDN. API key is recommended.
 
 # Authenticate with API key
-client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
 # Authenticate with JWT
-# client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, token=<your token>)
+# client = C8Client(protocol='https', host=URL, port=443, token=<your token>, geofabric=GEO_FABRIC)
 
-# Define the stream worker
+# Authenticate with email and password
+# client = C8Client(protocol='https', host=URL, port=443, email=<your email id>, password=<your password>, geofabric=GEO_FABRIC)
+
+# Define the stream app to validate.
 stream_app_definition = """
-    @App:name('Sample-Cargo-App')
+@App:name('Sample-Cargo-App')
+@App:qlVersion("2")
+@App:description('Basic stream worker to demonstrate reading data from input stream and store it in the collection. The stream and collections are automatically created if they do not already exist.')
+/**
+Test the stream worker:
+    1. Open Stream SampleCargoAppDestStream in console. The output can be monitored here.
+    2. Upload following data into SampleCargoAppInputTable collection:
+        {"weight": 1}
+        {"weight": 2}
+        {"weight": 3}
+        {"weight": 4}
+        {"weight": 5}
+    3. Following messages are shown on the SampleCargoAppDestStream Stream Console:
+        [2021-08-27T14:12:15.795Z] {"weight":1}
+        [2021-08-27T14:12:15.799Z] {"weight":2}
+        [2021-08-27T14:12:15.805Z] {"weight":3}
+        [2021-08-27T14:12:15.809Z] {"weight":4}
+        [2021-08-27T14:12:15.814Z] {"weight":5}
+*/
+
+-- Create Table SampleCargoAppInputTable to process events.
+CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection ="SampleCargoAppInputTable", collection.type="doc", replication.type="global", maptype='json') (weight int);
+
+-- Create Stream SampleCargoAppDestStream
+CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream ="SampleCargoAppDestStream", replication.type="local") (weight int);
+
+-- Data Processing
+@info(name='Query')
+INSERT INTO SampleCargoAppDestStream
+SELECT weight
+FROM SampleCargoAppInputTable;
+"""
+
+# Validate the stream worker code.
+print("--- Validating stream worker definition")
+print(client.validate_stream_app(data=stream_app_definition))
+
+# Create the stream worker.
+dclist = []
+print("--- Creating stream worker")
+print(client.create_stream_app(data=stream_app_definition, dclist=dclist))
+
+# Activate the stream worker.
+print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+
+# You can also deactivate the stream worker.
+# print("Deactivate", client.activate_stream_app('Sample-Cargo-App', False))
+
+# Code with which the stream worker will be updated.
+data = """
+@App:name('Sample-Cargo-App')
 @App:qlVersion("2")
 @App:description('Basic stream worker to demonstrate reading data from input stream and store it in a collection. The stream and collections are automatically created if they do not already exist.')
 /**
@@ -447,7 +505,7 @@ CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "Sa
 CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
 
 -- Defining a Destination table to dump the data from the stream
-CREATE STORE SampleCargoAppDestTable WITH (type = 'database', stream = "SampleCargoAppDestTable") (weight int);
+CREATE STORE SampleCargoAppDestTable WITH (type = 'database', replication.type="global", stream = "SampleCargoAppDestTable") (weight int);
 
 -- Data Processing
 @info(name='Query')
@@ -462,23 +520,39 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 """
 
-# Validate stream worker
-print(client.validate_stream_app(data=stream_app_definition))
+# Create an instance of a stream worker before you update it.
+app = client._fabric.stream_app("Sample-Cargo-App")
 
-# Create stream worker
-print(client.create_stream_app(data=stream_app_definition))
+# Update the stream worker.
+print("--- Updating stream worker `Sample-Cargo-App`")
+result = app.update(data)
 
-# Retrieve stream worker
-print("Retrieve", client.retrieve_stream_app())
+# Inserting data into SampleCargoAppInputTable using a query worker.
+insert_data_value = 'INSERT { "weight": @weight } IN SampleCargoAppInputTable'
+insert_data_query = {
+    "query": {
+        "name": "insertWeight",
+        "value": insert_data_value,
+    }
+}
 
-# Get stream worker handle for advanced operations
-print("Get stream worker", client.get_stream_app('Sample-Cargo-App'))
+client.create_restql(insert_data_query)
+# Wait time is needed after updating a stream worker to initialize resources
+time.sleep(10)
+for i in range(5):
+    client.execute_restql("insertWeight", {"bindVars": {"weight": i}})
+time.sleep(2)
+# Deleting the query worker.
+client.delete_restql("insertWeight")
 
-# Activate (publish) stream worker
-print("Activate", client.activate_stream_app('Sample-Cargo-App', True))
+# Run query against the store.
+q = "select * from SampleCargoAppDestTable limit 3"
+result = app.query(q)
+print(result)
 
-# Delete stream worker
-print(client.delete_stream_app('Sample-Cargo-App'))
+# Delete the stream worker.
+print("--- Deleting stream worker `Sample-Cargo-App`")
+result = client.delete_stream_app('Sample-Cargo-App')
 ```
 
 </TabItem>
