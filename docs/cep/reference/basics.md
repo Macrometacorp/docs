@@ -113,10 +113,10 @@ Provides introduction to tables and database backed stores that can be used to s
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
 -- Defines `TemperatureLogTable` having `sensorId`, `roomNo`, and `temperature` attributes of types `string`, `string`, and `double`.
-CREATE TABLE TemperatureLogTable (sensorId string, roomNo string, temperature double);
+CREATE TABLE GLOBAL TemperatureLogTable (sensorId string, roomNo string, temperature double);
 
 -- Defines `SensorIdInfoTable` table.
-CREATE TABLE SensorIdInfoTable (sensorId string, roomNo string);
+CREATE TABLE GLOBAL SensorIdInfoTable (sensorId string, roomNo string);
 
 @info(name = 'Join-query')
 -- Selects `sensorId`, `roomNo`, and `temperature` attributes from stream and table, and adds events to `TemperatureLogTable`.
