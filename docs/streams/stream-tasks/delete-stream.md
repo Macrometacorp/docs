@@ -26,7 +26,7 @@ Delete a stream.
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../sdks/install-sdks.md).
+You must [Install the Python SDK](../../sdks/install-sdks.md).
 
 ```py
 from operator import concat
