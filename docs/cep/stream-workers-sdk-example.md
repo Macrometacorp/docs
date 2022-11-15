@@ -404,7 +404,8 @@ for i in range(5):
 # Deleting the query worker.
 client.delete_restql("insertWeight")
 
-# Run query against the store.
+# Run ad hoc query against the store.
+print("--- Running an ad hoc query against the store `SampleCargoAppDestTable`")
 q = "select * from SampleCargoAppDestTable limit 3"
 result = app.query(q)
 print(result)
@@ -632,7 +633,8 @@ for i in range(5):
 # Deleting the query worker.
 client.delete_restql("insertWeight")
 
-# Run query against the store.
+# Run ad hoc query against the store.
+print("--- Running an ad hoc query against the store `SampleCargoAppDestTable`")
 q = "select * from SampleCargoAppDestTable limit 3"
 result = app.query(q)
 print(result)
@@ -833,5 +835,5 @@ async function main () {
 main();
 ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
