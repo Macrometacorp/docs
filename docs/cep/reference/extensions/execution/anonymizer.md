@@ -137,9 +137,9 @@ Anonymizer uses the following syntax:
 ## Example
 
 ```js
-CREATE SOURCE patient_local WITH (type='database', collection='patient_local', replication.type="local", map.type='json') (full_name string, ssn string, email string, phone string);
+CREATE SOURCE patient_local WITH (type='database', collection='patient_local', replication.type="global", map.type='json') (full_name string, ssn string, email string, phone string);
 
-CREATE TABLE patient_public(full_name string, ssn string, email string, phone string);
+CREATE TABLE GLOBAL patient_public(full_name string, ssn string, email string, phone string);
 
 INSERT INTO patient_public
 SELECT pii:fake(full_name, "NAME_FULLNAME", true)        as full_name,
