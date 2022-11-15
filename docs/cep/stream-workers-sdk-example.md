@@ -136,6 +136,8 @@ async function main () {
     let result;
     result = await client.validateStreamApp(appDefinition);
     console.log(!result.error)
+
+    // Add subsequent code blocks above this line.
   } catch (e) {
     console.log(messageHandler(e));
   }
@@ -163,7 +165,7 @@ print(client.create_stream_app(data=stream_app_definition, dclist=dclist))
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-The following lines of code should be appended inside the try block of main function.
+Append the following lines of code inside the `try` block of main function. Look for the code comment that says, `Add subsequent code blocks above this line.`.
 
 ```js
     // The stream app will be created by default in the local region. Optionally, you can use dclist to deploy stream
@@ -208,7 +210,7 @@ else:
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-The following lines of code should be appended inside the try block of main function.
+Append the following lines of code inside the `try` block of main function. Look for the code comment that says, `Add subsequent code blocks above this line.`.
 
 ```js
     // Activate the stream worker if not already active.
@@ -306,7 +308,7 @@ app.change_state(True)
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-The following lines of code should be appended inside the try block of main function.
+Append the following lines of code inside the `try` block of main function. Look for the code comment that says, `Add subsequent code blocks above this line.`.
 
 ```js
     // Code with which the stream worker will be updated.
@@ -412,7 +414,7 @@ print(result)
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-The following lines of code should be appended inside the try block of main function.
+Append the following lines of code inside the `try` block of main function. Look for the code comment that says, `Add subsequent code blocks above this line.`.
 
 ```js
 
@@ -457,7 +459,7 @@ result = client.delete_stream_app('Sample-Cargo-App')
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-The following lines of code should be appended inside the try block of main function.
+Append the following lines of code inside the `try` block of main function. Look for the code comment that says, `Add subsequent code blocks above this line.`.
 
 ```js
     // Delete the stream worker.
