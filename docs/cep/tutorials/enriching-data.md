@@ -28,7 +28,7 @@ a scenario where you receive sales records generated from multiple locations as 
         
     2. Define the table as follows.
         ```sql
-        CREATE TABLE UserTable (userId long, firstName string, lastName string);
+        CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
         ```
         
 3. Then define the stream query to join the stream and the table, and handle the result as required.
@@ -72,7 +72,7 @@ a scenario where you receive sales records generated from multiple locations as 
 
         CREATE STREAM TrasanctionStream (userId long, transactionAmount double, location string);
 
-        CREATE TABLE UserTable (userId long, firstName string, lastName string);
+        CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
 
 		CREATE STREAM EnrichedTrasanctionStream WITH (type='stream', stream='EnrichedTrasanctionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
 
@@ -244,7 +244,7 @@ To understand how this is done, consider an example where you have some credit c
 6. To save the response of the external application, define a table named `CCInfoTable`.
 
     ```sql
-    CREATE TABLE CCInfoTable (cardNo long, cardType string);
+    CREATE TABLE GLOBAL CCInfoTable (cardNo long, cardType string);
     ```
     
 7. To save the data enriched by integrating the information received from the external service, add a stream query as follows.
@@ -270,7 +270,7 @@ To understand how this is done, consider an example where you have some credit c
 
 	CREATE STREAM EnrichedCreditCardInfoStream WITH (source.type='http-response', sink.id='cardTypeSink', map.type='xml', map.namespaces = "xmlns=http://localhost/SmartPayments/", attributes.creditCardNo = 'trp:creditCardNo',creditCardType = ".") (creditCardNo string,creditCardType string);
 
-    CREATE TABLE CCInfoTable (creditCardNo string,creditCardType string);
+    CREATE TABLE GLOBAL CCInfoTable (creditCardNo string,creditCardType string);
 
     insert into GetCreditCardInfoStream
     select creditCardNo

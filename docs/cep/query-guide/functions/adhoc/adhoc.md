@@ -29,7 +29,7 @@ CREATE SOURCE SampleAdhocQueryInputTable WITH(type = 'database', collection = "S
 CREATE WINDOW SampleAdhocQueryInputTableOneMinTimeWindow (sensorId string, temperature double) SLIDING_TIME(1 min);
 
 -- Table
-CREATE TABLE SampleAdhocQuerySensorA1234DestTable(sensorId string, temperature double);
+CREATE TABLE GLOBAL SampleAdhocQuerySensorA1234DestTable(sensorId string, temperature double);
 
 @info(name = 'Insert-to-window')
 INSERT INTO SampleAdhocQueryInputTableOneMinTimeWindow
