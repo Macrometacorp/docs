@@ -3,7 +3,7 @@ title: Release Notes 0.17.12
 sidebar_position: 97
 ---
 
-This document describes what has changed in Macrometa release 0.17.12. All accounts will be updated by Month XX, YYYY.  To check what version of GDN you are using, use the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
+This document describes what has changed in Macrometa release 0.17.12. To check what version of GDN you are using, use the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
 
 ## New Features
 
