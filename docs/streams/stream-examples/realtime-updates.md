@@ -11,8 +11,8 @@ This tutorial is about using Macrometa GDN as a realtime database with local lat
 ## Prerequisites
 
 - A Macrometa account with sufficient permissions to create streams.
-- An API key. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys).
-- Appropriate SDK installed. For more information, refer to [Install SDKs](../sdks/install-sdks.md).
+- An API key. For more information, refer to [Create API Keys](../../account-management/api-keys/create-api-keys).
+- Appropriate SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
 
 ## Realtime Updates Code
 
