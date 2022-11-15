@@ -806,7 +806,6 @@ async function main () {
 
     // Insert data into the collection via query worker.
     console.log("--- Inserting data to `SampleCargoAppInputTable` collection");
-
     const queryName = "insertWeight";
     const queryValue = `INSERT { weight:@weight } IN SampleCargoAppInputTable`;
     await client.createRestql(queryName, queryValue);
@@ -817,8 +816,8 @@ async function main () {
     }
     await client.deleteRestql(queryName);
 
-    // Run query against the store.
-    console.log("--- Running an Ad Hoc query against the store `SampleCargoAppDestTable`");
+    // Run ad hoc query against the store.
+    console.log("--- Running an ad hoc query against the store `SampleCargoAppDestTable`");
     const q = "select * from SampleCargoAppDestTable limit 3";
     result = await app.query(q);
     console.log(result);
