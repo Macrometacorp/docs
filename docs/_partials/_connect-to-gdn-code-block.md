@@ -4,16 +4,11 @@ import TabItem from '@theme/TabItem';
 When this code runs, it initializes the server connection to the specified region URL. For more information about connecting to GDN, refer to [Authentication](../account-management/auth/index.md).
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 # Import libraries
-from operator import concat
-import base64
-import json
-import warnings
 from c8 import C8Client
-warnings.filterwarnings("ignore")
 
 # Define constants
 URL = "play.paas.macrometa.io"
@@ -25,14 +20,17 @@ print("--- Connecting to GDN")
 # Choose one of the following methods to access the GDN. API key is recommended.
 
 # Authenticate with API key
-client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
 # Authenticate with JWT
-# client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443, token=<your token>)
+# client = C8Client(protocol='https', host=URL, port=443, token=<your token>, geofabric=GEO_FABRIC))
+
+# Authenticate with email and password
+# client = C8Client(protocol='https', host=URL, port=443, email=<your email id>, password=<your password>, geofabric=GEO_FABRIC)
 ```
 
 </TabItem>
-<TabItem value="js" label="JavaScript">
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -46,7 +44,7 @@ const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", 
 
 // Or use email and password to authenticate client instance
 // const client = new jsc8("https://play.paas.macrometa.io");
-// Replace values with your email and password.
+// Replace values with your email and password (use it inside an async function).
 // await client.login("nemo@nautilus.com", "xxxxxx"); 
 ```
 
