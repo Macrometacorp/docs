@@ -61,7 +61,7 @@ STREAM_APP ="""
   -- Stream
   CREATE STREAM tutorialAppInputStream (deviceID string, roomNo int, temperature double);
   -- Table
-  CREATE TABLE tutorialAppOutputTable (id string, temperature double);
+  CREATE TABLE GLOBAL tutorialAppOutputTable (id string, temperature double);
   @info(name='Query')
   INSERT INTO tutorialAppOutputTable
   SELECT concatFn(roomNo,'-',deviceID) as id, temperature
