@@ -41,6 +41,26 @@ Each stream has a receiver queue that determines how many messages the consumer 
 
 The downside to restricting the receiver queue size of consumers is that that limits the potential throughput of those consumers. Whether the performance/control trade-off is worthwhile will depend on your use case.
 
+These config settings are set when you subscribe to a stream.
+
+Python SDK example:
+
+```python
+# Create subscriber
+subscriber = client.subscribe(
+    stream="quickStart", local=False, subscription_name="sub_1", consumer_type=CONSUMER_TYPES.SHARED, receiver_queue_size=1000
+)
+```
+
+JavaScript SDK example:
+
+```js
+stream.consumer("my-subscription", "test.macrometa.io", {
+  subscriptionType: Shared,
+  receiverQueueSize: 1000,
+}
+```
+
 ## Message Retention and Expiry
 
 By default, GDN does the following:
@@ -64,3 +84,7 @@ The diagram below illustrates both concepts:
 With message retention, shown at the top, a retention policy applied to all streams in a database dictates that some messages are durably stored in GDN even though they've already been acknowledged. Acknowledged messages that are not covered by the retention policy are deleted. Without a retention policy, all of the acknowledged messages would be deleted.
 
 With message expiry, shown at the bottom, some messages are deleted, even though they haven't been acknowledged, because they've expired according to the TTL applied to the namespace. For example, because a TTL of five minutes has been applied and the messages haven't been acknowledged but are 10 minutes old.
+
+:::note
+Contact support@macrometa.com if you need to change the message expiry TTL.
+:::
