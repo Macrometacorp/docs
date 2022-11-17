@@ -55,12 +55,7 @@ The key-based batching aims at resolving the above-mentioned issues. This batchi
 
 Below is an example of enabling the key-based batching under the key_shared subscription type.
 
-```java
-Producer<byte[]> producer = client.newProducer()
-        .topic("my-topic")
-        .batcherBuilder(BatcherBuilder.KEY_BASED)
-        .create();
-```
+
 
 ### Limitations of Key_Shared Subscriptions
 
