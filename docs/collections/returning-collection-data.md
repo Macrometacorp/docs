@@ -6,9 +6,9 @@ title: Retrieving Data
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Macrometa GDN is a multi-tenant platform for Free and Metered tier users. There are default limits for both tiers detailed in [Tenant Quotas and Limits](../references/quotas.md). This page describes how to retrieve larger result sets from a collection with the default limit of 1,000 documents per query.
+This page describes how to retrieve larger result sets from a collection with the default limit of 1,000 documents per query.
 
-There are two recommmended approaches depending on the volume of data being returned. The [Cursor](https://macrometa.com/docs/api#/operations/createQueryCursor) endpoint from Macrometa API can be used to fetch up to 30,000 records, this is an approximation based on platform limits. Attempting to return more than 30,000 from the endpoint may cause the query to exceed the query execution time limit and raise an error. The [Collection Export](https://macrometa.com/docs/api#/operations/ExportCollectionData) endpoint from Macrometa API is the recommended approach when retrieving an entire collection.
+There are two recommended approaches depending on the volume of data being returned. The [Cursor](https://macrometa.com/docs/api#/operations/createQueryCursor) endpoint from Macrometa API can be used to fetch up to 30,000 records, this is an approximation based on platform limits. Attempting to return more than 30,000 from the endpoint may cause the query to exceed the query execution time limit and raise an error. The [Collection Export](https://macrometa.com/docs/api#/operations/ExportCollectionData) endpoint from Macrometa API is the recommended approach when retrieving an entire collection.
 
 Create a connection to the GDN using the jsc8 SDK. You will need an API key, JWT, or Email/Password to complete authentication. For more information, refer to [Authentication](../account-management/auth/index.md).
 

@@ -1,9 +1,9 @@
 ---
-sidebar_position: 90
-title: Delete Streams
+sidebar_position: 50
+title: Create Streams
 ---
 
-This page explains how you can delete streams in Macrometa.
+This page explains how to create streams in Macrometa.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -11,22 +11,22 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Delete a stream.
+Create a stream.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Streams**.
+2. Click **Streams**.
 
    Macrometa displays a list of streams and their attributes.
 
-1. Click the trash can icon next to the stream that you want to delete.
-1. Confirm your choice.
-
-    Macrometa permanently deletes the stream. You can re-create the stream, but you cannot undo the deletion.
+3. Click **New Stream**.
+4. Enter a stream **Name**.
+5. Select **Replication** type: **Local** or **Global**. Default is **Local**.
+6. Click **Create**.
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../sdks/install-sdks.md).
+You must [Install the Python SDK](../../sdks/install-sdks.md) before you can run this code.
 
 ```py
 from operator import concat
@@ -35,8 +35,8 @@ from c8 import C8Client
 # Connect to GDN.
 URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "XXXXX" # Change this to your API key
-is_local = False
+API_KEY = "xxxxxx" # Change this to your API key
+is_local = False # For a global stream pass True and False for local stream
 prefix_text = ""
 demo_stream = "streamQuickstart"
 
@@ -48,21 +48,24 @@ if is_local:
 else:
     prefix_text = "c8globals."
 
-def deleteStream():
-    """ This function deletes a stream """
-    if client.has_stream(demo_stream, local=is_local) is False:
-        print("Stream does not exists")
+def createStream():
+    """ This function creates a stream """
+    stream_name = {"stream-id": ""}
+    if client.has_stream(demo_stream, local=is_local):
+        print("Stream already exists")
+        stream_name["stream-id"] = concat(prefix_text, demo_stream)
+        print ("OLD Producer =",  stream_name["stream-id"])
     else:
-        client.delete_stream((prefix_text + demo_stream))
-        print("Stream deleted")
+        stream_name = client.create_stream(demo_stream, local=is_local)
+        print ("New producer =",  stream_name["stream-id"])
 
-deleteStream()
+createStream()
 ```
 
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-You must [Install the JavaScript SDK](../sdks/install-sdks.md) before you can run this code.
+You must [Install the JavaScript SDK](../../sdks/install-sdks.md) before you can run this code.
 
 ```js
 // Connect to GDN.
@@ -72,7 +75,7 @@ console.log("Authentication done!!...");
 
 const stream = "streamQuickstart";
 let prefixText = "";
-const isLocal = false;
+const isLocal = false; // For a global stream pass True and False for local stream
 
 // Get the right prefix for the stream
 if (isLocal) {
@@ -81,22 +84,25 @@ if (isLocal) {
   prefixText = "c8globals.";
 }
 
-async function deleteMyStream () {
-  if (!await client.hasStream(stream, isLocal)) {
-    console.log("Stream does not exists");
+async function createMyStream () {
+  let streamName = { "stream-id": "" };
+  if (await client.hasStream(stream, isLocal)) {
+    console.log("Stream already exists");
+    streamName["stream-id"] = prefixText + stream;
+    console.log(`OLD Producer = ${streamName["stream-id"]}`);
   } else {
-    await client.deleteStream((prefixText + stream), isLocal);
-    console.log("Stream deleted");
+    streamName = await client.createStream(stream, isLocal);
+    console.log(`NEW Producer = ${streamName.result["stream-id"]}`);
   }
 }
 
-deleteMyStream()
+createMyStream()
 ```
 
 </TabItem>
 <TabItem value="api-py" label="API - Python">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://macrometa.com/docs/api#/operations/DeleteStream).
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream](https://macrometa.com/docs/api#/operations/CreateStream).
 
 ```py
 import requests
@@ -106,30 +112,24 @@ URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 FABRIC = "_system"
 STREAM_NAME = "streamQuickstart"
-IS_GLOBAL = True # For a global stream pass global=true and global=false for local stream
-API_KEY = "XXXXX" # Use your apikey here
+API_KEY = "XXXXX" # Use your API key here
 AUTH_TOKEN = f"apikey {API_KEY}" # apikey keyword needs to be appended
-
-prefix_text = ""
-if IS_GLOBAL is True:
-    prefix_text = "c8globals."
-else:
-    prefix_text = "c8locals."
 
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
-# Delete a stream
-url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{prefix_text}{STREAM_NAME}?global={IS_GLOBAL}"
-resp = session.delete(url)
-print("\nStream Deleted: ", resp.text) 
+# Create a stream
+# Note:- For a global stream pass global=true and global=false for local stream
+url = f"{HTTP_URL}/_fabric/{FABRIC}/_api/streams/{STREAM_NAME}?global=true"
+resp = session.post(url)
+print("\nStream Created: ", resp.text)
 ```
 
 </TabItem>
 <TabItem value="api-js" label="API - JS">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://macrometa.com/docs/api#/operations/DeleteStream).
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://macrometa.com/docs/api#/operations/CreateStream).
 
 ```js
 class APIRequest {
@@ -170,38 +170,37 @@ const federationUrl = `https://${federationName}`;
 const stream = "streamQuickstart";
 const isGlobal = true;
 
-let prefixText = ""
-
-if (isGlobal)
-  prefixText = "c8globals."
-else
-  prefixText = "c8locals."
-
 const run = async function () {
   const connection = new APIRequest(federationUrl, apiKey);
 
-  /* ------------------------------ Delete stream ----------------------------- */
+  /* ------------------------------ Create stream ----------------------------- */
 
   try {
     await connection.req(
-      `/_fabric/_system/streams/${prefixText}${stream}?global=${isGlobal}`,
+      `/_fabric/_system/streams/${stream}?global=${isGlobal}`,
       {
-        method: "DELETE"
+        body: { name: stream },
+        method: "POST"
       }
     );
-    console.log("Stream deleted successfully");
+    console.log("Stream created successfully");
   } catch (e) {
-    console.log("Error while deleting stream");
-    throw e;
+    if (e.status === 409) {
+      console.log("Stream already exists, skipping creation of stream");
+    } else {
+      console.log("Error while creating stream");
+      throw e;
+    }
   }
 }
 
 run();
 ```
+
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams delete](../cli/streams-cli.md#gdnsl-streams-delete) CLI commands to delete existing streams.
+Use the [gdnsl streams create](../../cli/streams-cli#gdnsl-streams-create) CLI command to create a Document Store collection.
 
 </TabItem>
 </Tabs>

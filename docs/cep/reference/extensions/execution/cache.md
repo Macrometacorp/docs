@@ -35,9 +35,9 @@ CREATE TRIGGER EventsPutTrigger WITH (interval=1 sec);
 
 CREATE TRIGGER EventsGetTrigger WITH (interval=5 sec);
 
-CREATE TABLE put_in_cache(value_is_put string);
+CREATE TABLE GLOBAL put_in_cache(value_is_put string);
 
-CREATE TABLE get_from_cache(value string);
+CREATE TABLE GLOBAL get_from_cache(value string);
 
 INSERT INTO put_in_cache 
 SELECT cache:put("my_key", "my_value") as value_is_put 
@@ -53,7 +53,7 @@ Following document is saved every second in `put_in_cache`.
         {"value_is_put": "true"}
         
 		
-Following document is saved every five seconsd in `get_from_cache`.    
+Following document is saved every five seconds in `get_from_cache`.
     
         {"value": "my_value"}
 
