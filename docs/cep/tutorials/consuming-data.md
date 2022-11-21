@@ -101,7 +101,7 @@ Following are the steps to create a stream application:
     
 1. Complete the stream application by defining an output stream with a connected sink configuration.
 
-    !!!tip
+    :::tip
         In the example used, you can define the `PublishSalesTotals` stream that you already specified as the output stream in the query, and connect a `c8stream` sink to it as follows. Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
 
     ```sql
@@ -180,7 +180,7 @@ Stream processor consumes a message in the default format when it makes no chang
 
 Stream processor consumes a message in the custom format when it makes changes to the names of the attributes of the message schema before it processes the message. To understand how messages are consumed in custom format, follow the procedure below.
 
-!!!info
+:::info
     For this section, you can edit the same stream application that you saved in the [Consume messages in default format](#consume-messages-in-default-format) subsection.
     
 1. Open your stream application with a source configuration.
