@@ -57,10 +57,10 @@ To create a stream application follow the steps below:
 1. Add the following sample stream application.
 
 	```sql
-	CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', map.type='json') (name string, amount double);
-
+	CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', collection.type='DOC', replication.type='GLOBAL',  map.type='json') (name string, amount double);
+	
 	CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json') (name string, amount double);
-
+	
 	INSERT INTO ProductionAlertStream
 	SELECT *
 	FROM SweetProductionStream;
@@ -75,13 +75,13 @@ To create a stream application follow the steps below:
 ### C8Streams
 
 Syntax:
-
-	CREATE SOURCE SourceName WITH (type="stream", stream.list="STRING", replication.type="STRING", map.type='type') (strings);
-
+```sql
+   CREATE SOURCE SourceName WITH (type="stream", stream.list="STRING", replication.type="STRING", map.type='type') (strings);
+```
 Example:
-
-	CREATE SOURCE OrderStream WITH (type="stream", stream.list="OrderStream", replication.type="local", map.type='json') (product_id string, quantity integer);
-
+```sql
+   CREATE SOURCE OrderStream WITH (type="stream", stream.list="OrderStream", replication.type="GLOBAL", map.type='json') (product_id string, quantity int);
+```
 Stream application will use the stream with the default query parameters explained in the chart below.
 
 Query Parameters:
@@ -117,12 +117,14 @@ Query Parameters:
 ### C8DB
 
 Syntax:
-
-	CREATE SOURCE SourceName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type') (strings);
+```sql
+   CREATE SOURCE SourceName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type') (strings);
+```
 
 Example:
-
-	CREATE SOURCE SweetProductionStream WITH (type="database", map.type='json') (name string, amount double);
+```sql
+   CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', collection.type='DOC', replication.type='GLOBAL',  map.type='json') (name string, amount double);
+```
 
 Query Parameters:
 
@@ -146,10 +148,10 @@ Query Parameters:
 </tr>
 <tr class="even">
 <td>replication.type</td>
-<td>Specifies if the replication type of the c8db collection. Possible values can be `local` and `global`</td>
+<td>Specifies if the replication type of the c8db collection. At the moment local collections are not allowed, type must be `global`</td>
 <td>local</td>
 <td>STRING</td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>collection.type</td>
@@ -166,14 +168,14 @@ Query Parameters:
 ### C8Streams
 
 Syntax:
-
-	CREATE SINK SinkName WITH (type="stream", stream="STRING", replication.type="STRING", map.type='type') (strings);
-    @sink(type="c8streams", stream="<STRING>", replication.type="<STRING>", @map(...)))
+```sql
+   CREATE SINK SinkName WITH (type="stream", stream="STRING", replication.type="STRING", map.type='type') (strings);
+```
 
 Example:
-
-	CREATE SINK ProductionAlertStream WITH (type="stream", stream='ProductionAlertStream', map.type='json`) (name string, amount double);
-
+```sql
+   CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json') (name string, amount double);
+```
 Query Parameters:
 
 <table>
@@ -209,12 +211,17 @@ Query Parameters:
 ### C8DB
 
 Syntax:
-
-	CREATE STORE StoreName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type', from="STRING", to="STRING") (strings);
-
+```sql
+   CREATE STORE StoreName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type', from="STRING", to="STRING") (strings);
+```
 Example:
-
-	CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="local", map.type='json') (strings);
+```sql
+   CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="local", collection.type="DOC", map.type='json') (name string, amount double);
+```
+Or equivalent using TABLE:
+```sql
+   CREATE TABLE GLOBAL SweetProductionCollection(name string, amount double);
+```
 
 Stream applications will use the c8db with the default query parameters explained in the chart below.
 
@@ -238,10 +245,10 @@ Stream applications will use the c8db with the default query parameters explaine
 </tr>
 <tr class="even">
 <td>replication.type</td>
-<td>Specifies if the replication type of the c8db collection. Possible values can be `local` and `global`</td>
+<td>Specifies if the replication type of the c8db collection. At the moment local collections are not allowed, type must be `global`</td>
 <td>local</td>
 <td>STRING</td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>collection.type</td>
