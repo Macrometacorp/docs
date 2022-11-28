@@ -126,7 +126,7 @@ Example:
    CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', collection.type='DOC', replication.type='GLOBAL',  map.type='json') (name string, amount double);
 ```
 
-Query Parameters:
+Query parameters:
 
 <table>
 <thead>
