@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Producers
 ---
 
-A producer is an app or process that publishes messages to the stream. Once published, they can be processed with [stream workers](../cep/index.md).
+A producer is an app or process that publishes messages to the stream. Once published, they can be processed with [stream workers](../../cep/index.md).
 
 ## Send modes
 
