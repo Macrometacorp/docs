@@ -245,7 +245,7 @@ Stream applications will use the c8db with the default query parameters explaine
 </tr>
 <tr class="even">
 <td>replication.type</td>
-<td>Specifies if the replication type of the c8db collection. At the moment local collections are not allowed, type must be `global`</td>
+<td>Specifies if the replication type of the collection. <b>Note:</b> Type must be `global`. Local collections are not currently allowed.</td>
 <td>local</td>
 <td>STRING</td>
 <td>No</td>
