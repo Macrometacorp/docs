@@ -72,7 +72,7 @@ To create a stream application follow the steps below:
 
 ## Source
 
-### C8Streams
+### Create Streams
 
 Syntax:
 ```sql
