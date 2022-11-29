@@ -13,6 +13,7 @@ slug: /apps
     heading="Address Book"
     href="/apps/address-book"
   />
+  <card heading="Macrometa Storefront" href="/apps/macrometa-storefront" />
   <card heading="Book Store (using Cloudflare Workers)" href="/apps/cf-bookstore" />
   <card heading="Credit Card Fraud" href="/apps/credit-card-fraud" />
   <card heading="Crypto Trading Bot" href="/apps/crypto-trading" />
