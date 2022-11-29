@@ -194,7 +194,7 @@ For more information refer the [Stream Query Guide](../query-guide/index.md).
 CREATE STREAM ProductInputStream (item string, price double);
 
 -- Empty `ProductInfoTable` with attributes `item` and `discount`.
-CREATE TABLE ProductInfoTable (item string, discount double);
+CREATE TABLE GLOBAL ProductInfoTable (item string, discount double);
 
 @info(name = 'Check-for-null')
 -- Checks if `price` contains `null` value.
