@@ -15,13 +15,13 @@ Macrometa now offers edge functions.
 
 [Edge Functions](../cep/reference/extensions/execution/edge-functions.md) was added as a result of this feature.
 
-### feature
+### New Onboarding
 
 Description of feature.
 
 [Topic name](link) was added as a result of this feature.
 
-### feature
+### Scale Tier Self-Managed Upgrade
 
 Description of update.
 
@@ -30,6 +30,30 @@ Description of update.
 ## Feature Updates
 
 The following features updates are included in this release.
+
+### SQL Support Updates - Beta
+
+stuff
+
+[Topic name](link) and [topic name](link) were updated as a result of this change.
+
+### Redis Support Updates - Beta
+
+stuff
+
+[Topic name](link) and [topic name](link) were updated as a result of this change.
+
+### Akamai EdgeWorker Support Updates - Preview
+
+stuff
+
+[Topic name](link) and [topic name](link) were updated as a result of this change.
+
+### Updated Side Menu
+
+stuff
+
+[Topic name](link) and [topic name](link) were updated as a result of this change.
 
 ### Feature
 
@@ -52,7 +76,6 @@ This release includes the following API changes.
 |   |   |
 |   |   |
 |   |   |
-
 
 ## Known Issues
 
