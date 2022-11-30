@@ -25,15 +25,15 @@ A source configuration consists of the following:
 :::tip
         Say the stream processor is reading employee records. The employee name might be defined as `emp No` in the source from which you are extracting the records. However, the corresponding attribute name in the stream definition is `employeeNo` because that is how you want to refer to the attribute in the stream processor. In this instance, you need a custom mapping to indicate that `emp No` is the same as `employeeNo`.
 :::
-## Stream Application for Consuming Data
+## Stream Worker for Consuming Data
 
-Following are the steps to create a stream application:
+Following are the steps to create a stream worker:
 
 1. Open the Stream Apps editor in the GUI.
 
-1. Click **New** to define a new stream application.
+1. Click **New** to define a new stream worker.
 
-1. Enter a **Name** for the stream application. For example `SalesTotalsApp`.
+1. Enter a **Name** for the stream worker. For example `SalesTotalsApp`.
 
 1. Enter a **Description**.
 
@@ -100,10 +100,10 @@ Following are the steps to create a stream application:
     group by productinsert into PublishSalesTotalsStream;
     ```
     
-1. Complete the stream application by defining an output stream with a connected sink configuration.
+1. Complete the stream worker by defining an output stream with a connected sink configuration.
 
 :::tip
-        In the example used, you can define the `PublishSalesTotals` stream that you already specified as the output stream in the query, and connect a `c8stream` sink to it as follows. Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
+        In the example used, you can define the `PublishSalesTotals` stream that you already specified as the output stream in the query, and connect a `stream` sink to it as follows. Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
 :::
 
 
@@ -111,24 +111,33 @@ Following are the steps to create a stream application:
 	CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream='SalesTotals', replication.type='local') (transNo int, product string, price int, quantity int, salesValue long);
     ```
         
-1. Save the Stream Application. The completed application is as follows:
+1. Save the Stream Worker. The completed application is as follows:
 
     ```js
-    @App:name("SalesTotalsApp")
-    @App:qlVersion("2")
-    @App:description("Description of the plan")
+	@App:name("SalesTotalsApp")
+	@App:qlVersion("2")
+	@App:description("Description of the plan")
 
-	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream', stream.list='SalesTotalsEP', stream.type='local', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
+	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream', stream.list='SalesTotalsEP', map.type='json', stream.type='local') (transNo int, product string, price int, quantity int, salesValue long);
 
-	CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream.list='SalesTotals') (transNo int, product string, price int, quantity int, salesValue long);
+	CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream.list='SalesTotals', map.type='json', replication.type='local') (transNo int, product string, price int, quantity int, salesValue long);
 
-    insert into PublishSalesTotalsStream
-    select *
-    from ConsumerSalesTotalsStream
-    group by product;
+	-- CREATE STREAM TO CONSUME DATA (OPTIONAL, USED FOR TESTING)
+	-- CREATE SINK STREAM ConsumerSales (transNo int, product string, price int, quantity int, salesValue long);
+
+	-- TRANSFERS DATA BETWEEN SOURCES
+	INSERT INTO PublishSalesTotalsStream
+	SELECT *
+	FROM ConsumerSalesTotalsStream
+	GROUP BY product;
+
+	-- SENDS DATA TO A STREAM (OPTIONAL, USED FOR TESTING)
+	-- INSERT INTO ConsumerSales
+	-- SELECT *
+	-- FROM PublishSalesTotalsStream;
     ```
 
-1. Publish the stream application to one or more regions via GUI/REST API.
+1. Publish the stream worker to one or more regions via GUI/REST API.
 
 ## Supported message formats
 
@@ -136,7 +145,7 @@ Following are the steps to create a stream application:
 
 Stream processor consumes a message in the default format when it makes no changes to the names of the attributes of the message schema before it processes the message. To understand how messages are consumed in default format, follow the procedure below.
 
-1. Create a stream application with a source configuration following the instructions in the above subsection.
+1. Create a stream worker with a source configuration following the instructions in the above subsection.
 
 2. In the source configuration, make sure that an `@map` annotation is included with the mapping type as shown below.
 
@@ -147,27 +156,27 @@ Stream processor consumes a message in the default format when it makes no chang
     The map type specifies the format in which the messages are received.  For example:
     
     ```sql
-	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
+	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', map.attributes.transNo = '$.transaction', map.attributes.product = 'product', map.attributes.quantity = 'quantity', map.attributes.salesValue = '$.sales', map.attributes.price = 'price') (transNo int, product string, price int, quantity int, salesValue long);
     ```
     
-3. Save the stream application. If you save the stream application that was created using the example configurations, the completed stream application is as follows.
+3. Save the stream worker. If you save the stream worker that was created using the example configurations, the completed stream worker is as follows.
 
     ```js
     @App:name("SalesTotalsApp")
     @App:qlVersion("2")
     @App:description("Description of the plan")
 
-	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream', stream.list='SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
+	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', map.attributes.transNo = '$.transaction', map.attributes.product = 'product', map.attributes.quantity = 'quantity', map.attributes.salesValue = '$.sales', map.attributes.price = 'price') (transNo int, product string, price int, quantity int, salesValue long);
 
-	CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream='SalesTotals', replication.type='local') (product string, totalSale long);
+	CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream.list='SalesTotals', replication.type='local') (product string, totalSale long);
 
-    insert into PublishSalesTotalsStream
-    select product, sum(salesValue) as totalSale
-    from ConsumerSalesTotalsStream#window.time(1 min)
-    group by product;
+	insert into PublishSalesTotalsStream
+	select product, sum(salesValue) as totalSale
+	from ConsumerSalesTotalsStream WINDOW SLIDING_TIME(1 min)
+	group by product;
     ```
     
-4. To check whether the above stream application works as expected, publish some messages. For example, a stream using JSON can produce output such as:
+4. To check whether the above stream worker works as expected, publish some messages. For example, a stream using JSON can produce output such as:
     
     ```json
     {
@@ -184,10 +193,10 @@ Stream processor consumes a message in the default format when it makes no chang
 Stream processor consumes a message in the custom format when it makes changes to the names of the attributes of the message schema before it processes the message. To understand how messages are consumed in custom format, follow the procedure below.
 
 :::info
-    For this section, you can edit the same stream application that you saved in the [Consume messages in default format](#consume-messages-in-default-format) subsection.
+    For this section, you can edit the same stream worker that you saved in the [Consume messages in default format](#consume-messages-in-default-format) subsection.
 :::
     
-1. Open your stream application with a source configuration.
+1. Open your stream worker with a source configuration.
 
 2. In the `map.type` annotation within the source configuration, add the `attributes` annotation with mappings for different attributes. This can be done in two ways as shown below.  
 
@@ -197,7 +206,7 @@ Stream processor consumes a message in the custom format when it makes changes t
 		CREATE SOURCE <Stream_Name> WITH (type='SOURCE_TYPE', PARAMETER1_NAME='PARAMETER1_VALUE', map.type='MAP_TYPE', @attributes( attributeN='mapping_N', attribute1='mapping_1')) (attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
         ```
 :::tip 
-            In the Stream application used as an example in the previous section, assume that when receiving events, the `transNo` attribute is received as `transaction` and the `salesValue` attribute is received as `sales`.  The mapping type is JSON. therefore, you can  add the mappings as JSONPath expressions.
+            In the Stream worker used as an example in the previous section, assume that when receiving events, the `transNo` attribute is received as `transaction` and the `salesValue` attribute is received as `sales`.  The mapping type is JSON. therefore, you can  add the mappings as JSONPath expressions.
 :::
 
         | **Stream Attribute Name** | **JSON Event Attribute Name** | **JSONPath Expression** |
@@ -220,5 +229,5 @@ Stream processor consumes a message in the custom format when it makes changes t
         e.g., If you consider the same example, mapping can be defined as follows.
               
         ```sql
-		CREATE SOURCE ConsumerSalesTotalsStream(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', @attributes(transNo = '$.transaction', product = product, quantity = quantity, salesValue = '$.sales')) (transNo int, product string, price int, quantity int, salesValue long);
+		CREATE SOURCE ConsumerSalesTotalsStream(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', @attributes(transNo = '$.transaction', product = product, price = price, quantity = quantity, salesValue = '$.sales')) (transNo int, product string, price int, quantity int, salesValue long);
         ```
