@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # Executing Scripts
 
-The script provides the ability to write custom functions in other programming languages and execute them within Stream Workers. The custom functions using scripts can be defined via the function definitions and accessed in queries similar to any other inbuilt functions.
+The script provides the ability to write custom functions in other programming languages and execute them within stream workers. The custom functions using scripts can be defined via the function definitions and accessed in queries similar to any other inbuilt functions.
 
 Scripts help to define custom functions in other programming languages such as javascript. This can eliminate the need for writing extensions to fulfill the functionalities that are not provided in Stream Workers or by its extension.
 
