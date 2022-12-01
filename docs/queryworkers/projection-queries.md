@@ -29,7 +29,7 @@ FOR u IN users
 
 ## Calculations with OLD or NEW
 
-It is also possible to run additional calculations with `LET` statements between the data-modification part and the final `RETURN` of a C8QL query. 
+It is also possible to run additional calculations with `LET` statements between the data-modification part and the final `RETURN` of a C8QL query.
 
 For example, the following query performs an upsert operation and returns whether an existing document was updated, or a new document was inserted. It does so by checking the `OLD` variable after the `UPSERT` and using a `LET` statement to store a temporary string for the operation type:
   
