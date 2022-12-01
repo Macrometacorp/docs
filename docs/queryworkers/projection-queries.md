@@ -3,6 +3,9 @@ title: Projection Queries
 sidebar_position: 80
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 You can return a projection of the documents in `OLD` or `NEW` instead of returning the entire documents. This can be used to reduce the amount of data returned by queries.
 
 For example, the following query will return only the keys of the inserted documents:

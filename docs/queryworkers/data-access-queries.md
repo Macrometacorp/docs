@@ -3,6 +3,9 @@ title: Data Access Queries
 sidebar_position: 70
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Retrieving data from the database with C8QL does always include a **RETURN** operation. It can be used to return a static value, such as a string:
 
 ```js

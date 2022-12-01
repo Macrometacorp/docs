@@ -3,6 +3,9 @@ title: Data Modification Queries
 sidebar_position: 70
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 C8QL supports the following data-modification operations:
 
 - **INSERT**: insert new documents into a collection
