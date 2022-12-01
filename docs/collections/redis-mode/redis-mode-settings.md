@@ -6,7 +6,6 @@ sidebar_position: 50
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import ViewCollectionSettings from '../_partials/_view-collection-settings.md';
-import DocAndGraphSettings from '../_partials/_doc-and-graph-settings.mdx';
 import CollectionSettingsApi from '../_partials/_collection-settings-api.md';
 
 You can view and update Redis mode collection settings in the Settings tab.
@@ -15,6 +14,10 @@ You can view and update Redis mode collection settings in the Settings tab.
 
 ## Redis Mode Settings
 
-<DocAndGraphSettings collection='Document store' />
+- **ID -** System-generated ID of the selected collection.
+- **Type -** The data model type of the selected collection.
+- **Status -** Current status of the selected collection.
 
-![Document Store Settings Tab](/img/collections/doc-store-settings.png)
+You can also [Delete](../delete-collection.md) or [Truncate](../truncate-collection.md) the collection.
+
+![Redis Mode Settings Tab](/img/collections/doc-store-settings.png)
