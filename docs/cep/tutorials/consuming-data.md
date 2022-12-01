@@ -83,7 +83,7 @@ Following are the steps to create a stream worker:
         Mapping is explained in detail in the [Consuming a message in default format](#consume-messages-in-default-format) and [Consuming a message in custom format](#consume-messages-in-custom-format) sections. However, note that you need to add a mapping type to complete a source configuration. If no mapping type i specified, an error is indicated.
 :::
         
-1.  Add stream query to specify how the output is derived and the name of an output stream to which this output is directed.
+1.  To query a stream, specify how the output is derived and the name of an output stream to which this output is directed.
     ```sql
     insert into <OUTPUT_STREAM_NAME>
     select <ATTRIBUTE1_Name>, <ATTRIBUTE2_NAME>, ... 
