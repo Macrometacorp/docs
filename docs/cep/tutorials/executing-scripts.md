@@ -149,7 +149,7 @@ To write custom function calls, follow the procedure below:
 	CREATE SOURCE CompanyXInputStream WITH (type = 'database', collection = "CompanyXInputStream", collection.type="doc" , replication.type="global", map.type='json') (seqNo string, name string, address string);
     ```
    
-1. Define an output stream   
+1. Define an output stream:
 
     ```sql
 	CREATE SINK CompanyXProfessionalInfo WITH (type = 'stream', stream = "CompanyXProfessionalInfo", replication.type="local") (name string, workAddress string);
