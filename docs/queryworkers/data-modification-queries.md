@@ -166,4 +166,4 @@ That means you may not place several `REMOVE` or `UPDATE` statements for the sam
 
 In case you have a query with several places that need to remove documents from the same collection, it is recommended to collect these documents or their keys in an array and have the documents from that array removed using a single `REMOVE` operation.
 
-Data-modification operations can optionally be followed by `LET` operations to perform further calculations and a `RETURN` operation to return data.
+Data-modification operations can be followed by `LET` operations to perform further calculations and a `RETURN` operation to return data.
