@@ -20,7 +20,7 @@ The function `DOCUMENT()` can be called to retrieve a single document via its do
 RETURN DOCUMENT("users/phil")
 ```
 
-`RETURN` is usually accompanied by a `FOR` loop to iterate over the documents of a collection. 
+`RETURN` is usually accompanied by a `FOR` loop to iterate over the documents of a collection.
 
 The following query executes the loop body for all documents of a collection called `users`. Each document is returned unchanged in this example:
 
@@ -36,7 +36,7 @@ FOR doc IN users
     RETURN { user: doc, newAttribute: true }
 ```
 
-For every user document, an object with two attributes is returned. The value of the attribute `user` is set to the content of the user document, and `newAttribute` is a static attribute with the boolean value *true*.
+For every user document, an object with two attributes is returned. The value of the attribute `user` is set to the content of the user document, and `newAttribute` is a static attribute with the boolean value _true_.
 
 Operations like **FILTER**, **SORT** and **LIMIT** can be added to the loop body to narrow and order the result. Instead of above shown call to `DOCUMENT()`, one can also retrieve the document that describes user `phil` like so:
 
