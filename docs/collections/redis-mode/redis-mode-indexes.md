@@ -1,26 +1,19 @@
 ---
-title: Document Store Indexes
-sidebar_position: 50
+title: Redis Mode Indexes
+sidebar_position: 40
 ---
 
 Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../indexing/index.md).
 
-## Document Store Indexes
+## Redis Mode Indexes
 
-You can create the following types of index for a document collection:
-
-- [Geo Index](../indexing/geo-indexes.md)
-- [Fulltext Index](../indexing/fulltext-indexes.md)
-- [Persistent Index](../indexing/persistent-indexes.md)
-- [TTL Index](../indexing/ttl-indexes.md)
-
-Refer to each index type for more information about the index and for instructions on how to create and use it.
+Redis Mode collections have several indexes created automatically. You cannot create additional indexes in Macrometa for these collections.
 
 ## View Indexes
 
 View active indexes for a collection on the Indexes tab. The section explains what each element of the tab means.
 
-![Document Store Indexes Tab](/img/collections/doc-store-indexes.png)
+![Redis Mode Indexes Tab](/img/collections/redis-mode-indexes.png)
 
 - **ID -** This is a unique primary key for the indexes.
 - **Type -** The index type.
