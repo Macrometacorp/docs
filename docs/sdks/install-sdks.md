@@ -64,6 +64,27 @@ To install the SDK in a notebook:
 </TabItem>
 </Tabs>
 
+## View currently installed version of the SDK
+
+To know the currently installed version of the SDK, run the following command
+
+<Tabs groupId="operating-systems">
+<TabItem value="js" label="Javascript">
+
+```js
+npm view jsc8 version
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+pip show pyC8
+```
+
+</TabItem>
+</Tabs>
+
 ## Update SDKs
 
 Run the following command in your terminal to update the SDK.
@@ -84,3 +105,9 @@ pip install --upgrade pyC8
 
 </TabItem>
 </Tabs>
+
+## Reference
+
+You can follow the following links for further reference regarding the SDK's:
+jsC8: [https://www.npmjs.com/package/jsc8](https://www.npmjs.com/package/jsc8)
+pyC8: [https://pyc8.readthedocs.io/en/latest](https://pyc8.readthedocs.io/en/latest)
