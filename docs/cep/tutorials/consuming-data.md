@@ -25,6 +25,11 @@ A source configuration consists of the following:
 :::tip
         Say the stream processor is reading employee records. The employee name might be defined as `emp No` in the source from which you are extracting the records. However, the corresponding attribute name in the stream definition is `employeeNo` because that is how you want to refer to the attribute in the stream processor. In this instance, you need a custom mapping to indicate that `emp No` is the same as `employeeNo`.
 :::
+
+:::note
+	Stream processors are a combination of stream functions and windows. Stream processors are more advanced than stream functions as they can retain and arbitrarily emit events, and they are more advanced than windows because they can add additional attributes to the events. Stream processors help to achieve complex execution logics that cannot be achieved by other constructs such as functions, aggregate functions, stream functions, and windows.
+:::
+
 ## Stream Worker for Consuming Data
 
 Following are the steps to create a stream worker:
