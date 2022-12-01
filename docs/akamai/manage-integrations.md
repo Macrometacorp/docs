@@ -1,9 +1,9 @@
 ---
 sidebar_position: 10
-title: Manage Integrations
+title: Manage Akamai Integrations
 ---
 
-This page describes how to integrate Akamai's EdgeWorker functionality with the Macrometa platform.
+This page describes how to integrate Akamai EdgeWorker functionality with the Macrometa platform.
 
 :::note
 This feature is currently in preview.
@@ -14,7 +14,7 @@ This feature is currently in preview.
 - A Macrometa account with sufficient permissions to view and edit query workers or stream workers.
 - In Akamai, a Property created with your Macrometa GDN integration. For more information about Akamai Properties, refer to [Create and configure a property](https://techdocs.akamai.com/api-definitions/docs/create-config-prop).
 
-## Add Integration
+## Add Akamai Integration
 
 Add Akamai metadata to your Macrometa GDN environment.
 
@@ -32,7 +32,7 @@ Add Akamai metadata to your Macrometa GDN environment.
     - **Group ID**
 1. Click **Update**.
 
-## Delete Integration
+## Delete Akamai Integration
 
 Delete Akamai metadata from your Macrometa GDN environment.
 
