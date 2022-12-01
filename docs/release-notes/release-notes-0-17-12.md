@@ -9,21 +9,13 @@ This document describes what has changed in Macrometa release 0.17.12. To check 
 
 The following new features are included in this release.
 
-### Edge Functions - Beta
-
-Macrometa now offers edge functions.
-
-[Edge Functions](../cep/reference/extensions/execution/edge-functions.md) was added as a result of this feature.
-
 ### New Onboarding
 
-Description of feature.
-
-[Topic name](link) was added as a result of this feature.
+The first time you log in to Macrometa, the system now displays a welcome page with links to useful resources for new users.
 
 ### Scale Tier Self-Managed Upgrade
 
-Description of update.
+You can now upgrade and manage your scale tier payment plan in the Account page in the Macrometa web console.
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
@@ -33,13 +25,14 @@ The following features updates are included in this release.
 
 ### SQL Support Updates - Beta
 
-stuff
+- You can now enter SQL queries in the Macrometa query editor and save them as query workers.
+- Other SQL functionality improvements.
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
 ### Redis Support Updates - Beta
 
-stuff
+Python SDK
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
@@ -51,9 +44,11 @@ stuff
 
 ### Updated Side Menu
 
-stuff
+The side menu in the web console has been updated and organized.
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+![Updated Side Menu](/img/release-notes/17-12-side-menu.gif)
+
+Screenshots and instructions were updated as a result of this change.
 
 ### Feature
 
