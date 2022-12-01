@@ -3,7 +3,7 @@ title: Bind Parameters
 sidebar_position: 60
 ---
 
-C8QL supports the usage of bind parameters, thus allowing to separate the query text from literal values used in the query. It is good practice to separate the query text from the literal values because this will prevent (malicious) injection of keywords and other collection names into an existing query. This injection would be dangerous because it may change the meaning of an existing query.
+SQL and C8QL support the usage of bind parameters, thus allowing to separate the query text from literal values used in the query. It is good practice to separate the query text from the literal values because this will prevent (malicious) injection of keywords and other collection names into an existing query. This injection would be dangerous because it may change the meaning of an existing query.
 
 Using bind parameters, the meaning of an existing query cannot be changed. Bind parameters can be used everywhere in a query where literals can be used.
 
@@ -36,7 +36,7 @@ FILTER u.name == "@name" // wrong
 FILTER u.name == @name   // correct
 ```
 
-If you need to do string processing (concatenation, etc.) in the query, you need to use [string functions](c8ql/functions/string.md) to do so:
+If you need to do string processing (concatenation, etc.) in the query, you need to use [C8QL string functions](c8ql/functions/string.md) to do so:
 
 ```js
 FOR u IN users
@@ -44,7 +44,7 @@ FOR u IN users
   RETURN u
 ```
 
-Bind paramers can be used for both, the dot notation as well as the square bracket notation for sub-attribute access. They can also be chained:
+Bind parameters can be used for both, the dot notation as well as the square bracket notation for sub-attribute access. They can also be chained:
 
 ```js
 LET doc = { foo: { bar: "baz" } }
