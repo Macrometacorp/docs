@@ -143,7 +143,7 @@ To write custom function calls, follow the procedure below:
 
 1. Enter a **Description**.
 
-1. Define an input C8DB collection
+1. Define an input collection:
 
     ```sql
 	CREATE SOURCE CompanyXInputStream WITH (type = 'database', collection = "CompanyXInputStream", collection.type="doc" , replication.type="global", map.type='json') (seqNo string, name string, address string);
