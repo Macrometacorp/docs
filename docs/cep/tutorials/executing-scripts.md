@@ -62,7 +62,8 @@ The following parameters are used to configure the function definition:
 
 To write custom function calls, follow the procedure below:
 
-1. Open the GUI. Click on `Stream Workers` tab.
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
+1. Click the **Stream Workers** tab.
 
 1. Click **New** to start defining a new stream worker.
 
