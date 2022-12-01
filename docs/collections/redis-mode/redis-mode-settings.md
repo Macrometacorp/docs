@@ -20,4 +20,4 @@ You can view and update Redis mode collection settings in the Settings tab.
 
 You can also [Delete](../delete-collection.md) or [Truncate](../truncate-collection.md) the collection.
 
-![Redis Mode Settings Tab](/img/collections/doc-store-settings.png)
+![Redis Mode Settings Tab](/img/collections/redis-mode-settings.png)
