@@ -109,5 +109,5 @@ pip install --upgrade pyC8
 ## Reference
 
 You can follow the following links for further reference regarding the SDK's:
-jsC8: [https://www.npmjs.com/package/jsc8](https://www.npmjs.com/package/jsc8)
-pyC8: [https://pyc8.readthedocs.io/en/latest](https://pyc8.readthedocs.io/en/latest)
+jsC8: [https://github.com/macrometacorp/jsC8](https://github.com/macrometacorp/jsC8)
+pyC8: [https://github.com/Macrometacorp/pyC8](https://github.com/Macrometacorp/pyC8)
