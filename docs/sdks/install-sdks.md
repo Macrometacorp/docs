@@ -64,9 +64,9 @@ To install the SDK in a notebook:
 </TabItem>
 </Tabs>
 
-## View currently installed version of the SDK
+## Check Installed SDK Version
 
-To know the currently installed version of the SDK, run the following command
+To check which version of the SDK is currently installed, run the following command in your terminal:
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
