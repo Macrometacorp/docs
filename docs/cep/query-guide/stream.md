@@ -421,7 +421,9 @@ CREATE STREAM !TempStream (deviceID long, roomNo int, temp double, _error object
 
 The stream worker extends the above use-case by adding failure generation and error handling with the use of [queries](#query) is as follows.
 
-Note: Details on writing processing logics via [queries](#query) will be explained in later sections.
+:::note
+Details on writing processing logics via [queries](#query) will be explained in later sections.
+:::
 
 ```
 -- Define fault stream to handle error occurred at TempStream subscribers
