@@ -9,7 +9,7 @@ This document describes what has changed in Macrometa release 0.17.12. To check 
 
 The following new features are included in this release.
 
-### New Onboarding
+### New Onboarding Experience
 
 The first time you log in to Macrometa, the system now displays a welcome page with links to useful resources for new users.
 
@@ -32,7 +32,7 @@ The following features updates are included in this release.
 
 ### Redis Support Updates - Beta
 
-Python SDK
+Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
