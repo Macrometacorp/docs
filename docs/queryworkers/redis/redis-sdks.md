@@ -1,19 +1,19 @@
 ---
 sidebar_position: 20
-title: Redis SDK Commands
+title: Redis SDK and API Commands
 ---
 
-Examples on how to use SDK.
-SDK is intuitive in a sense when we create an instance of client we can access all the familiar Redis commands.
-- Step 1. [Install the SDK](../../sdks/install-sdks.md).
-- Step 2. Create an instance of the C8Client
-- Step 3. Access Redis commands `client.redis.<Redis command>`.
+You can access all the familiar Redis commands using the Macrometa SDK or API.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
+
+- Step 1. [Install the SDK](../../sdks/install-sdks.md).
+- Step 2. Create an instance of the C8Client
+- Step 3. Access Redis commands `client.redis.<Redis command>`.
 
 ```py
 from c8 import C8Client
@@ -66,10 +66,14 @@ response = client.redis.spop("animals", 1, REDIS_COLLECTION)
 # Response from platform
 print(response)
 ```
-</TabItem>
-<TabItem value="RA" label="Rest API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages:
+
+- [RedisPost](https://macrometa.com/docs/api#/operations/RedisPost)
+- [RedisGet](https://macrometa.com/docs/api#/operations/RedisGet)
 
 </TabItem>
 </Tabs>
