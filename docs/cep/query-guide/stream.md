@@ -68,8 +68,8 @@ The following is the list of source types supported by Stream:
 
 |Source type | Description|
 | ------------- |-------------|
-| `database` | Allow the Stream Worker to consume events from collections (doc, graphs) running in the same or different geo fabric. |
-| `stream` | Allow the Stream Worker to consume events from streams (local, geo-replicated) running in the same or different geo fabric. |
+| `database` | Allow the stream worker to consume events from collections (doc, graphs) running in the same or different geo fabric. |
+| `stream` | Allow the stream worker to consume events from streams (local, geo-replicated) running in the same or different geo fabric. |
 | `Kafka` | Subscribe to Kafka topic to consume events.|
 
 #### Source Mapper
@@ -207,7 +207,7 @@ The following is a list of sink types supported by stream processor:
 
 |Source type | Description|
 | ------------- |-------------|
-| database | Allow the Stream Worker to publish events to collections (doc, graphs) in the same or different geofabric. |
+| database | Allow the stream worker to publish events to collections (doc, graphs) in the same or different geofabric. |
 | HTTP| Publish events to an HTTP endpoint.|
 | Kafka | Publish events to Kafka topic. |
 | TCP | Publish events to a TCP service. |
@@ -225,7 +225,7 @@ and send the Stream events for all its destination endpoints.
 
 Distributed sink provides a way to publish Stream events to multiple endpoints in the configured event format.
 
-**Syntax**
+###Syntax
 
 To configure a distributed sink, add the sink configuration to a stream definition by adding the `sink.type` property and add the configuration parameters that are common of all the destination endpoints inside it, along with the common parameters also add the `distribution.strategy` property specifying the distribution strategy (i.e. `roundRobin` or `partitioned`) and `destination` properties providing each endpoint specific configurations.
 
@@ -419,7 +419,7 @@ Stream infers and automatically defines the fault stream of `TempStream` as give
 CREATE STREAM !TempStream (deviceID long, roomNo int, temp double, _error object);
 ```
 
-The Stream Worker extends the above use-case by adding failure generation and error handling with the use of [queries](#query) is as follows.
+The stream worker extends the above use-case by adding failure generation and error handling with the use of [queries](#query) is as follows.
 
 Note: Details on writing processing logics via [queries](#query) will be explained in later sections.
 
