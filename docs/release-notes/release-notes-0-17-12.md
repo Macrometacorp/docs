@@ -52,6 +52,22 @@ The side menu in the web console has been updated and organized.
 
 Screenshots and instructions were updated as a result of this change.
 
+### Macrometa Stops Unpublished Stream Workers (CEP-432)
+
+A new backed service forcefully stream workers that are unpublished by a user but continue to run for any reason.
+
+### Streams Process Messages with _delete Fields in Database Extension (CEP-440)
+
+In previous versions of Macrometa, the `database` extension for streams skipped messages with a `_delete` field, because they mark deleted collection documents.
+
+This release adds the following functionality:
+
+- Introduce parameter `skip.event.with._delete` in `database` extension.
+- The default value for `skip.event.with._delete` is `true`.
+- Allow processing of all messages when the `skip.event.with._delete` is `false`.
+
+[Topic name](link) and [topic name](link) were updated as a result of this change.
+
 ### Feature
 
 stuff
@@ -64,6 +80,8 @@ This release includes the following API changes.
 
 | Issue #  | Description  |
 |---|---|
+| CEP-406  | Corrected wrong sample code in stream worker ad hoc query API reference.  |
+| CEP-409  | Corrected HTTP-Source API endpoint description.  |
 |   |   |
 |   |   |
 |   |   |
@@ -88,6 +106,22 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
+| AUTH-277  | Macrometa logo on the login screen should link to macrometa.com.  |
+| AUTH-280  | Incorrect text on the Awaiting verification page.  |
+| AUTH-298  | Error on clicking email verification link.  |
+| CEP-366, CEP-404  | Slow processing of collection streams.  |
+| CEP-414  | Java out of heap memory error when running aggregation sample stream worker for several days.  |
+| CEP-428  | Error when trying to publish or update a stream worker.  |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
 |   |   |
 |   |   |
 |   |   |
