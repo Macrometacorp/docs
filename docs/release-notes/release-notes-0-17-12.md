@@ -126,16 +126,38 @@ The following defects were fixed in this release.
 | DB-1719  | [Dynamo] Delete index operation is not working.  |
 | DB-1755  | When a GeoFabric is deleted, saved queries are not properly deleted.  |
 | DB-1832  | Non-root user with `ro` permissions should be able to lower stream access level for the API key created by the non-root user.  |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
+| DB-2072  | Enable streams for _guestdbs collection.  |
+| DB-2090  | Replication failed for few tenants on the Play server.  |
+| FAAS-328  | Error message should be shown when an EdgeWorker is called with an empty parameter.  |
+| FAAS-336  | Different error messages are received for an EdgeWorker when invoked at different times.  |
+| GUI-893  | Exporting queries results in files with empty arrays.  |
+| GUI-1229  | [Query Workers] Save button remains enabled even after saving the query.  |
+| GUI-1239  | Stream workers should be sorted in ascending order.  |
+| GUI-1251  | [Key-Value Collection] After truncating the collection, text should be "0 kv(s) / 0 edge(s)" instead of "0 Results." |
+| GUI-1550  | In the Query Worker code editor, the text wrapper and scrolling aren't working properly.  |
+| GUI-1551  | [Collections] Missing drop-down list to select number of entries displayed.  |
+| GUI-1644  | Make query worker and stream worker list double-click behavior consistent.  |
+| GUI-1648  | [Collections] Make document content display colors consistent throughout the Macrometa web console. |
+| GUI-1653  | Cannot auto-login from one region to other from the map.  |
+| GUI-1657  | [Query workers] There is no notification for save and delete query worker operations.  |
+| GUI-1659  | [Dynamo] Filtering via Scan and Query is not working properly. |
 | GUI-1661  | Moving documents multiple times results in a 409 error.  |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
 |   |   |
 |   |   |
