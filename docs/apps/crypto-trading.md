@@ -7,7 +7,7 @@ title: Crypto Trading Bot
 
 | **Tenant** | **Fabric** | **Stream App** | **GUI** | **Source Code**|
 |----------- |----------|----|-----------|-----------|
-|  `demo@macrometa.io` | `_system` | `Crypto-Trading-App` | [**Crypto Trading GUI**](https://macrometacorp.github.io/tutorial-cryptotrading/) |[github](https://github.com/Macrometacorp/tutorial-cryptotrading)|
+|  `demo@macrometa.io` | `crypto_trading_bot` | `Crypto-Trading-App` | [**Crypto Trading GUI**](https://macrometacorp.github.io/tutorial-cryptotrading/) |[github](https://github.com/Macrometacorp/tutorial-cryptotrading)|
 
 Read our blog post [How To Build A Crypto Arbitrage Trading Bot](https://www.macrometa.com/blog/cryptocurrency-trading-building-a-multi-exchange-global-trading-bot) to learn more about exchange arbitrage and how the app works.
 
@@ -113,7 +113,7 @@ INSERT INTO CryptoTraderQuotesAvgUSDNew
 SELECT "Coinbase Pro" as exchange, "USA" as quote_region,
         "BTC/USD" as symbol, avg(convert(price, 'double')) as ma, convert(price, 'double') as close, 
         time:timestampInMilliseconds()/1000 as timestamp
-FROM UsdCryptoTraderTickerResponseStream[context:getVar('region') == 'gdn-us-west'] WINDOW SLIDING_LENGTH(10);
+FROM UsdCryptoTraderTickerResponseStream[context:getVar('region') == 'play-us-west'] WINDOW SLIDING_LENGTH(10);
 
 @info(name='Query for BTC/USD trading strategy BUY')
 INSERT INTO TradesBuy
@@ -143,7 +143,7 @@ INSERT INTO CryptoTraderQuotesAvgEURNew
 SELECT "Bitstamp" as exchange, "Europe" as quote_region,
         "BTC/EUR" as symbol, avg(convert(last, 'double')) as ma, convert(last, 'double') as close, 
         time:timestampInMilliseconds()/1000 as timestamp
-FROM EurCryptoTraderTickerResponseStream[context:getVar('region') == 'gdn-us-west'] WINDOW SLIDING_LENGTH(10);
+FROM EurCryptoTraderTickerResponseStream[context:getVar('region') == 'play-us-west'] WINDOW SLIDING_LENGTH(10);
 
 @info(name='Query for BTC/EUR trading strategy BUY')
 INSERT INTO TradesBuy
@@ -173,7 +173,7 @@ INSERT INTO CryptoTraderQuotesAvgJPYNew
 SELECT "Bitflyer" as exchange, "Asia-Pacific" as quote_region,
         "BTC/JPY" as symbol, avg(ltp) as ma, ltp as close, 
         time:timestampInMilliseconds()/1000 as timestamp
-FROM JpyCryptoTraderTickerResponseStream[context:getVar('region') == 'gdn-us-west'] WINDOW SLIDING_LENGTH(10);
+FROM JpyCryptoTraderTickerResponseStream[context:getVar('region') == 'play-us-west'] WINDOW SLIDING_LENGTH(10);
 
 @info(name='Query for BTC/JPY trading strategy BUY')
 INSERT INTO TradesBuy
