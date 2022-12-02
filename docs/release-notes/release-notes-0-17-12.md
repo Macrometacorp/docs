@@ -68,6 +68,16 @@ This release adds the following functionality:
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
+### Dynamo Collection Indexes (DB-1719)
+
+Dynamo collections are no longer allowed to have multiple indexes with the same definition. This prevents issues with indexes not being properly deleted.
+
+### Feature
+
+stuff
+
+[Topic name](link) and [topic name](link) were updated as a result of this change.
+
 ### Feature
 
 stuff
@@ -82,7 +92,7 @@ This release includes the following API changes.
 |---|---|
 | CEP-406  | Corrected wrong sample code in stream worker ad hoc query API reference.  |
 | CEP-409  | Corrected HTTP-Source API endpoint description.  |
-|   |   |
+| DB-1726  | [Search View] APIs using a disabled Search View are informed that they are operating on a disabled View through response header.  |
 |   |   |
 |   |   |
 |   |   |
@@ -112,10 +122,10 @@ The following defects were fixed in this release.
 | CEP-366, CEP-404  | Slow processing of collection streams.  |
 | CEP-414  | Java out of heap memory error when running aggregation sample stream worker for several days.  |
 | CEP-428  | Error when trying to publish or update a stream worker.  |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
+| DB-1542  | Intermittently observed response error 403 in long run at random places.  |
+| DB-1719  | [Dynamo] Delete index operation is not working.  |
+| DB-1755  | When a GeoFabric is deleted, saved queries are not properly deleted.  |
+| DB-1832  | Non-root user with `ro` permissions should be able to lower stream access level for the API key created by the non-root user.  |
 |   |   |
 |   |   |
 |   |   |
