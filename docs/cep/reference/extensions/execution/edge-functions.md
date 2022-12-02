@@ -4,7 +4,7 @@ title: Edge Function
 
 The `fx` extension provides access to _edge functions_.
 
-Edge function allows you to execute code in response to events/requests without the complex infrastructure typically associated with building and launching microservices applications.
+Edge functions allow you to execute code in response to events/requests without the complex infrastructure typically associated with building and launching microservices applications.
 
 ## Syntax
 
@@ -74,6 +74,7 @@ FROM MyTrigger;
 
 For this example needs to be generated Edge Worker with name `my-fn-name`.
 The easiest way is to:
+
 1. Generate Edge Worker based on [Query Worker](https://macrometa.com/docs/queryworkers/building-queries) with the next query:
 
 ```sql

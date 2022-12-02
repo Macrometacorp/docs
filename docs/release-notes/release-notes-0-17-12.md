@@ -38,7 +38,9 @@ Python SDK
 
 ### Akamai EdgeWorker Support Updates - Preview
 
-stuff
+- Delete functionality improved (Dino to add detail here)
+- Can now invoke EdgeWorkers with stream workers. In Samples, sample-function-worker added.
+- Macrometa SDK support
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
