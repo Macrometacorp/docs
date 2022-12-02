@@ -54,7 +54,7 @@ Screenshots and instructions were updated as a result of this change.
 
 ### Macrometa Stops Unpublished Stream Workers (CEP-432)
 
-A new backed service forcefully stream workers that are unpublished by a user but continue to run for any reason.
+A new backend service forcefully stops stream workers that are unpublished by a user but continue to run for any reason.
 
 ### Streams Process Messages with _delete Fields in Database Extension (CEP-440)
 
@@ -65,8 +65,6 @@ This release adds the following functionality:
 - Introduce parameter `skip.event.with._delete` in `database` extension.
 - The default value for `skip.event.with._delete` is `true`.
 - Allow processing of all messages when the `skip.event.with._delete` is `false`.
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
 
 ### Dynamo Collection Indexes (DB-1719)
 
