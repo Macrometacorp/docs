@@ -20,7 +20,7 @@ the temperature of a room every second are transformed to indicate the average t
 3. Type a **Name**. For example, `TemperatureApp`.
 4. Type a **Description**.
 5. Add the following sample stream application.
-6. Let's define the input stream to define the schema based on which data is selected to the streaming integration flow.
+6. Let's define the input stream to define the schema based on which data are selected to the streaming integration flow.
 
     In this example, let's assume that each event indicates the device ID, the room number, and the temperature. Therefore, let's define an input stream as follows:
     ```sql
