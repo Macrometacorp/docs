@@ -168,7 +168,7 @@ Query parameters:
 
 ## Sink
 
-To publish events to an external source, after being processed, Sinks are used. Sink consumes events from streams and allows the definition of a schema for the output format. 
+Sinks are used to publish events to an external source after being processed. Sink consumes events from streams and allows the definition of a schema for the output format. 
 
 ### Create streams
 
