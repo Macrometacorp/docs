@@ -146,4 +146,4 @@ REMOVE @_key
 IN addresses
 ```
 
-You have a full functional API for your application. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
+You have a full functional API for your application. [We made a front-end for you to take your new back-end for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
