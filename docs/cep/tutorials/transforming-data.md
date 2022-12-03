@@ -79,7 +79,7 @@ the temperature of a room every second are transformed to indicate the average t
     GROUP BY roomNo;
     ```
 
-## Transform data using Plugins
+## Transform Data Using Plugins
 
 The stream processor offers a variety of options to carry out data transformations via in-built plugins. The following table describes the complete list of plugins that provide data transformation functionality.
 
