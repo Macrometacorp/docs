@@ -5,7 +5,7 @@ title: Quickstart
 
 Macrometa Global Data Network (GDN) is a geo-distributed, real-time, coordination-free materialized views engine. GDN supports multiple data models, making it flexible and compatible with many database types.
 
-Get started with Macrometa by creating a simple address book. This tutorial is Macrometa's version of "Hello, world!" It is simplistic by design and demonstrates how you can quickly use our stateful serverless backend to run a globally distributed database with local read-write latencies around 50ms.
+Get started with Macrometa by creating a simple address book. This tutorial is Macrometa's version of "Hello, world!" It is simplistic by design and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms.
 
 ## Prerequisites
 
