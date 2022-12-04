@@ -6,54 +6,55 @@ sidebar_position: 4
 
 ## Introduction
 
-The stream processor allows you to perform a wide range of transformations to the input data received. The transformations are carried out via operators that are defined inline within the stream application.
+The stream processor allows you to perform a wide range of transformations to the input data received. The transformations are carried out via operators that are defined inline within the stream worker.
 
 ## Transform data using Operators
 
-The operators that you can configure inline within Stream applications in order to carry out data transformations are listed in the [Stream Query Guide](../query-guide/index.md).
+The operators that you can configure inline within Stream workers in order to carry out data transformations are listed in the [Stream Query Guide](../query-guide/index.md).
 
 To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
 the temperature of a room every second are transformed to indicate the average temperature and the average humidity as at each second.
 
 1. Open the GUI. Click the **Stream Apps** tab.
-2. Click **New** to define a new stream application.
+2. Click **New** to define a new stream worker.
 3. Type a **Name**. For example, `TemperatureApp`.
 4. Type a **Description**.
-5. Add the following sample stream application.
-6. Let's define the input stream to define the schema based on which data are selected to the streaming integration flow.
+5. Add the following sample stream worker.
+6. Define the input stream to define the schema based on which data are selected to the streaming integration flow.
 
-    In this example, let's assume that each event indicates the device ID, the room number, and the temperature. Therefore, let's define an input stream as follows:
+    In this example, assume that each event indicates the device ID, the room number, and the temperature. Therefore, let's define an input stream as follows:
     ```sql
 	   CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
     ```
        
    > For more information about defining input streams to receive events, see the [Consuming Data page](consuming-data.md).
            
-7. Let's define the output stream which will receive the average temperature of each incomming message in the TempStream. The output stream definition is as follows:
+7. Define the output stream which will receive the average temperature of each incomming message in the TempStream. The output stream definition is as follows:
     ```sql
        CREATE SINK OutputStream WITH (type='stream', stream='OutputStream', map.type='json') (roomNo int, avgTemp double);
     ```
 
 8. To do the required transformation, let's add the query as follows:
-    1. Add the `INSERT INTO` clause with the name of the output stream to indicate that the processed events are directed to that stream.
+  
+    A. Add the `INSERT INTO` clause with the name of the output stream to indicate that the processed events are directed to that stream.
 
         ```sql
         INSERT INTO OutputStream
         FROM TempStream;
         ```
-    1. Add a `select` to select the fields required to calculate the average temperature. Apply the `avg()` to the `temp` attribute, and then specify `avgTemp` as the name with which the result should be output. 
+    B. Add a `select` to select the fields required to calculate the average temperature. Apply the `avg()` to the `temp` attribute, and then specify `avgTemp` as the name with which the result should be output. 
     
         ```sql
         SELECT roomNo, avg(temp) AS avgTemp
         ```
 
-    1. Add the `from` clause with the name of the input stream to indicate that the events to be processed are taken from the input stream.
+    C. Add the `from` clause with the name of the input stream to indicate that the events to be processed are taken from the input stream.
 
         ```sql
         FROM TempStream
         ```
 
-    1. To group by a specific attribute (by the `roomNo` attribute in this example), specify it via the `group by` clause as shown below.
+    D. To group by a specific attribute (by the `roomNo` attribute in this example), specify it via the `group by` clause as shown below.
 
         ```sql
         INSERT INTO OutputStream
@@ -62,7 +63,7 @@ the temperature of a room every second are transformed to indicate the average t
         GROUP BY roomNo;
         ```
 
-9. Save the stream application. The completed stream application is as follows.
+9. Save the stream worker. The completed stream worker is as follows.
 
     ```sql
     @App:name("TemperatureApp")
