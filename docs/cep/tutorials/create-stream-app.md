@@ -76,6 +76,7 @@ For this example, a source can be of type stream or database. The incoming data 
 ### Create Streams
 
 Syntax:
+
 ```sql
    CREATE SOURCE SourceName WITH (type="stream", stream.list="STRING", replication.type="STRING", map.type='type') (strings);
 ```
