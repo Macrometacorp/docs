@@ -52,10 +52,6 @@ The side menu in the web console has been updated and organized.
 
 Screenshots and instructions were updated as a result of this change.
 
-### Macrometa Stops Unpublished Stream Workers (CEP-432)
-
-A new backend service forcefully stops stream workers that are unpublished by a user but continue to run for any reason.
-
 ### Streams Process Messages with _delete Fields in Database Extension (CEP-440)
 
 In previous versions of Macrometa, the `database` extension for streams skipped messages with a `_delete` field, because they mark deleted collection documents.
@@ -66,21 +62,16 @@ This release adds the following functionality:
 - The default value for `skip.event.with._delete` is `true`.
 - Allow processing of all messages when the `skip.event.with._delete` is `false`.
 
-### Dynamo Collection Indexes (DB-1719)
+### Miscellaneous Changes
 
-Dynamo collections are no longer allowed to have multiple indexes with the same definition. This prevents issues with indexes not being properly deleted.
+The following minor changes were added in this release.
 
-### Feature
-
-stuff
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
-
-### Feature
-
-stuff
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+| Change #  | Description  |
+|---|---|
+| CEP-432  | A new backend service forcefully stops stream workers that are unpublished by a user but continue to run for any reason.  |
+| DB-1719  | Dynamo collections are no longer allowed to have multiple indexes with the same definition. This prevents issues with indexes not being properly deleted.  |
+| GUI-1682  | Added new database limit `maxQueryCursorTTLInMs`.  |
+| GUI-1720  | Updated location name from Australia to Sydney.  |
 
 ### API Updates
 
@@ -91,22 +82,6 @@ This release includes the following API changes.
 | CEP-406  | Corrected wrong sample code in stream worker ad hoc query API reference.  |
 | CEP-409  | Corrected HTTP-Source API endpoint description.  |
 | DB-1726  | [Search View] APIs using a disabled Search View are informed that they are operating on a disabled View through response header.  |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-
-## Known Issues
-
-The following known issues were introduced in this release.
-
-### Problem
-
-Explain the problem and the workaround.
 
 ## Defect Fixes
 
@@ -140,22 +115,11 @@ The following defects were fixed in this release.
 | GUI-1657  | [Query workers] There is no notification for save and delete query worker operations.  |
 | GUI-1659  | [Dynamo] Filtering via Scan and Query is not working properly. |
 | GUI-1661  | Moving documents multiple times results in a 409 error.  |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
+| GUI-1694  | [Invite User] Proper error message is not shown when an email already assigned to a user is entered to invite a user.  |
+| GUI-1695  | In 17.10, there is no first and last page button in the collection preview.  |
+| GUI-1738  | Manage Locations button is not working on fabrics aside from the _system fabric.  |
+| GUI-1754  | Fixed loading screen when a new account is created.  |
+| STRM-337  | Getting unexpected error on navigating to streams.  |
+| STRM-411  | Streams getting created from connectors (or any other producer/consumer) are not getting replicated.  |
+| STRM-444  | Remove the deleted API keys from the c8streams cache.  |
+| STRM-461  | Local stream is not accessible after upgrade from 17.10 to 17.11.  |
