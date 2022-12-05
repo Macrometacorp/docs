@@ -73,6 +73,7 @@ To create a stream worker follow the steps below:
 ## Source
 
 For this example, a source can be of type stream or database. The incoming data is used for processing. A source-of-type database is best if you need to store incoming data. Otherwise, you can use a source-type stream.
+
 ### Create Streams
 
 Syntax:
