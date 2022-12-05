@@ -91,7 +91,7 @@ This example demonstrates event cleansing using regex expressions.
 
 ```sql
 -- Defines `SweetProductionStream` having information of `name` and `amount`
-define stream SweetProductionStream (name string, amount int);
+CREATE STREAM SweetProductionStream (name string, amount int);
 
 @info(name='ProcessSweetProductionStream')
 insert into ChocolateProductStream
@@ -209,10 +209,9 @@ from TemperatureStream#unique:deduplicate(sensorId, 1 min);
 
 @info(name = 'Deduplicate-sensorId-and-seqNo')
 -- Remove duplicate events arriving within `1 minute` time gap, based on unique `sensorId` and `seqNo` combination.
-insert into UniqueSensorStream
+insert into UniqueSensorSeqNoStream
 select *
 from TemperatureStream#unique:deduplicate(str:concat(sensorId,'-',seqNo), 1 min)
-insert into UniqueSensorSeqNoStream;
 ```
 
 ### Behavior
