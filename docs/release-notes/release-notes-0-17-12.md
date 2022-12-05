@@ -42,7 +42,7 @@ Python SDK
 - You can now invoke EdgeWorkers with stream workers. [Edge Functions](../cep/reference/extensions/execution/edge-functions.md) was added as a result of this change.
   - In Samples, Sample-Function-Worker added.
 - Added API error response codes. [Functions API](link) were updated as a result of this change.
-- `groupIdWithPrefix` has been added to EdgeWorker metadata. This means you should re-initialize any EdgeWorkers with metadata.
+- `groupIdWithPrefix` has been added to EdgeWorker metadata. You should delete your existing metadata and create new metadata through APIs before creating new EdgeWorkers.
 - Macrometa SDK support for EdgeWorkers. You can now use EdgeWorkers with the jsC8 or pyC8 SDKs.
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
