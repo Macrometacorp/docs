@@ -38,7 +38,7 @@ Stream workers are declarative specs that define the processing logic to process
 <ul>
 <li>Stateless query: Queries that only consider currently incoming events when generating an output. e.g., filters</li>
 <li>Stateful query: Queries that consider both currently incoming events as well as past events when generating an output. e.g., windows, sequences, patterns, etc.</li>
-<li>Partitions: Collections of stream definitions and queries separated from each other within a Stream worker for the purpose of processing events in parallel and in isolation</li>
+<li>Partitions: Collections of stream definitions and queries separated from each other within a stream worker for the purpose of processing events in parallel and in isolation</li>
 </ul></td>
 </tr>
 </tbody>
