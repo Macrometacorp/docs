@@ -54,7 +54,7 @@ To create a stream worker follow the steps below:
 1. Click **New Stream Worker** to define a new stream worker.
 1. Type a **Name** for the stream worker. For example, `SweetProductionAnalysis`.
 1. Type a **Description**.
-1. Add the following sample stream worker.
+1. Add the following sample stream worker:
 
 	```sql
 	CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', collection.type='DOC', replication.type='GLOBAL',  map.type='json') (name string, amount double);
