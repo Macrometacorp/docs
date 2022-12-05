@@ -68,7 +68,7 @@ To create a stream worker follow the steps below:
 
 1. Click `Save` to save the stream worker.
 1. Select all the regions to deploy your application in.
-1. Click on `Save`.
+1. Click **Save**.
 
 ## Source
 
