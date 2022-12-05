@@ -2,12 +2,11 @@
 title: csv (Sink Mapper)
 ---
 
-This output mapper extension allows you to convert Stream App events processed by the gdn SP to CSV message before publishing them. You can either use custom placeholder to map a custom CSV message or use pre-defined CSV format where event conversion takes place without extra configurations.
+This output mapper extension allows you to convert stream worker events processed by the GDN stream processor to CSV message before publishing them. You can either use custom placeholder to map a custom CSV message or use predefined CSV format where event conversion takes place without extra configurations.
 
-Syntax
+## Syntax
 
     CREATE SINK <NAME> WITH (map.type="csv", map.delimiter="<STRING>", map.header="<BOOL>", map.event.grouping.enabled="<BOOL>")
-
 
 ## Query Parameters
 
@@ -21,9 +20,9 @@ Syntax
 
     CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='csv') (symbol string, price float, volume long);
 
-Above configuration will perform a default CSV output mapping, which will generate output as follows: `symbol-price-volumegdn-55.6-100`
+Above configuration will perform a default CSV output mapping, which will generate output: `symbol-price-volumegdn-55.6-100`
 
-If header is true and delimiter is "-", then the output will be as follows: `symbol-price-volume`
+If header is `true` and delimiter is "-", then the output will be: `symbol-price-volume`
 
 ## Example 2
 
