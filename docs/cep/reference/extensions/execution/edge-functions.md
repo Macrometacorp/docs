@@ -77,27 +77,26 @@ The easiest way is to:
 
 1. Generate Edge Worker based on [Query Worker](https://macrometa.com/docs/queryworkers/building-queries) with the next query:
 
-```sql
-FOR doc IN my-colection LIMIT 1 RETURN doc
-```
+    ```sql
+    FOR doc IN my-colection LIMIT 1 RETURN doc
+    ```
 
 2. [Create](https://macrometa.com/docs/collections/documents/create-document-store) a collection with a name `my-colection`.
 3. Add one document in the collection.
 
 The following stream `FxSampleStream` is receiving a new message every five seconds as the result of the Edge Function.
 
-```js
-    {"result": {<my item>}}
-```
+    ```js
+        {"result": {<my item>}}
+    ```
 
 If the function returns output with multiple items, then the Edge Function returns an object with multiple entries in the `items` property.
 
-```js
-    {"result": 
-        {"items": [
-            {<my item 1>},
-            {<my item 2>}
-        ]}
-    }
-```
- 
+    ```js
+        {"result": 
+            {"items": [
+                {<my item 1>},
+                {<my item 2>}
+            ]}
+        }
+    ```

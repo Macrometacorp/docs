@@ -39,8 +39,11 @@ Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
 ### Akamai EdgeWorker Support Updates - Preview
 
 - Delete functionality improved (Dino to add detail here)
-- Can now invoke EdgeWorkers with stream workers. In Samples, sample-function-worker added.
-- Macrometa SDK support
+- You can now invoke EdgeWorkers with stream workers. [Edge Functions](../cep/reference/extensions/execution/edge-functions.md) was added as a result of this change.
+  - In Samples, Sample-Function-Worker added.
+- Added API error response codes. [Functions API](link) were updated as a result of this change.
+- `groupIdWithPrefix` has been added to EdgeWorker metadata. You should delete your existing metadata and create new metadata through APIs before creating new EdgeWorkers.
+- Macrometa SDK support for EdgeWorkers. You can now use EdgeWorkers with the jsC8 or pyC8 SDKs.
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
