@@ -15,7 +15,7 @@ The operators that you can configure inline within stream workers in order to ca
 To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
 the temperature of a room every second are transformed to indicate the average temperature and the average humidity as at each second.
 
-1. Open the GUI. Click the **Stream Apps** tab.
+1. Log in to the Macrometa web console. Click the **Stream Apps** tab.
 2. Click **New** to define a new stream worker.
 3. Type a **Name**. For example, `TemperatureApp`.
 4. Type a **Description**.
