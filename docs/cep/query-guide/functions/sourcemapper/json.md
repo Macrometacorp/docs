@@ -31,48 +31,112 @@ though optional.
     CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
 ```
 
-This configuration performs a default JSON input mapping.  For a single
+This configuration performs a default JSON input mapping. For a single
 event, the input is required to be in one of the following formats:
 
 ```json
     {    
-    "event":{        
-        "symbol":GDN,        
-        "price":55.6,        
-        "volume":100    
+        "event":{        
+            "symbol":"GDN",        
+            "price":55.6,        
+            "volume":100    
         }
+    }
+```
+
+or
+
+```json
+    {    
+        "symbol":"GDN",    
+        "price":55.6,    
+        "volume":100
     }
 ```
 
 ## Example 2
 
+```js
     CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
+```
 
 This configuration performs a default JSON input mapping. For multiple
-events, the input is required to be in one of the following formats: [
-{\"event\":{\"symbol\":\"gdn\",\"price\":55.6,\"volume\":100}},
-{\"event\":{\"symbol\":\"gdn\",\"price\":56.6,\"volume\":99}},
-{\"event\":{\"symbol\":\"gdn\",\"price\":57.6,\"volume\":80}} ] or [
-{\"symbol\":\"gdn\",\"price\":55.6,\"volume\":100},
-{\"symbol\":\"gdn\",\"price\":56.6,\"volume\":99},
-{\"symbol\":\"gdn\",\"price\":57.6,\"volume\":80} ]
+events, the input is required to be in one of the following formats:
+
+```json
+    [
+        {"event":
+            {"symbol":"GDN","price":55.6,"volume":100}
+        },
+        {"event":
+            {"symbol":"GDN","price":56.6,"volume":99}
+        },
+        {"event":
+            {"symbol":"GDN","price":57.6,"volume":80}
+        }
+    ]
+```
+
+or
+
+```json
+    [
+        {"symbol":"GDN","price":55.6,"volume":100},
+        {"symbol":"GDN","price":56.6,"volume":99},
+        {"symbol":"GDN","price":57.6,"volume":80}
+    ]
+```
 
 ## Example 3
 
+```js
     CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json', map.enclosing.element="$.portfolio", map.attributes="symbol = 'company.symbol', price = 'price', volume = 'volume'")
+```
 
 This configuration performs a custom JSON mapping. For a single event,
-the expected input is similar to the one shown below: {  "portfolio":{
-     "stock":{ "volume":100,         "company":{
-           "symbol":"gdn"           },         "price":55.6
-       }    } }
+the expected input is similar to the one shown below:
+
+```json
+    { 
+     "portfolio":{     
+            "stock":{
+                "volume":100,        
+                "company":{           
+                    "symbol":"GDN"          
+                },        
+                "price":55.6       
+            }   
+        }
+    }
+```
 
 ## Example 4
 
+```js
     CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json', map.enclosing.element="$.portfolio", map.attributes="symbol = 'stock.company.symbol', price = 'stock.price', volume = 'stock.volume'") (symbol string, price float, volume long);
+```
 
-The configuration performs a custom JSON mapping. For multiple events,
-expected input looks as follows. .{"portfolio":    [
-{\"stock\":{\"volume\":100,\"company\":{\"symbol\":\"gdn\"},\"price\":56.6}},
-{\"stock\":{\"volume\":200,\"company\":{\"symbol\":\"gdn\"},\"price\":57.6}}
-] }
+The configuration performs a custom JSON mapping. For multiple events, expected input looks as follows:
+
+```json
+    {"portfolio":   
+        [
+            {"stock":{
+                "volume":100,
+                "company":{
+                    "symbol":"GDN"
+                },
+                "price":56.6
+                }
+            },
+            {"stock":{
+                "volume":200,
+                "company":{
+                    "symbol":"GDN"
+                },
+                "price":57.6
+                }
+            }
+        ]
+    }
+```
