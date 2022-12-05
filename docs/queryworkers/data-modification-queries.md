@@ -26,6 +26,9 @@ In a cluster, C8QL data-modification queries are currently not executed transact
 
 Let's start with the basics: `INSERT`, `UPDATE` and `REMOVE` operations on single documents. Here is an example that insert a document in an existing collection _users_:
 
+<Tabs groupId="modify-single">
+<TabItem value="c8ql" label="C8QL">
+
 ```js
 INSERT {
     firstName: "Anna",
@@ -33,6 +36,14 @@ INSERT {
     profession: "artist"
 } IN users
 ```
+
+</TabItem>
+<TabItem value="sql" label="SQL">
+
+SQL stuff
+
+</TabItem>
+</Tabs>
 
 You can provide a key for the new document. If not provided, then Macrometa creates one for you.  
 
