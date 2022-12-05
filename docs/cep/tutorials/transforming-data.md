@@ -10,7 +10,7 @@ The stream processor allows you to perform a wide range of transformations to th
 
 ## Transform data using Operators
 
-The operators that you can configure inline within Stream workers in order to carry out data transformations are listed in the [Stream Query Guide](../query-guide/index.md).
+The operators that you can configure inline within stream workers in order to carry out data transformations are listed in the [Stream Query Guide](../query-guide/index.md).
 
 To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
 the temperature of a room every second are transformed to indicate the average temperature and the average humidity as at each second.
