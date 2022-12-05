@@ -11,44 +11,37 @@ For all the following features, you can choose to use coordinates or a `geo.json
 
 The following functions, stream functions, and stream processors are available for geo functionality:
 
+- [distance (Function)](#distance)
 
-* [distance (Function)](#distance)
-    
-* [intersects (Function)](#intersects)
-    
-* [contains (Function)](#contains)
-    
-* [withinDistance (Function)](#withinDistance)
-    
-* [disjoint (Function)](#disjoint)
+- [intersects (Function)](#intersects)
 
-* [touches (Function)](#touches)
+- [contains (Function)](#contains)
 
-* [overlaps (Function)](#overlaps)
+- [withinDistance (Function)](#withinDistance)
 
-* [equals (Function)](#equals)
-    
-* [closestPoints (Stream Function)](#closestPoints)
-    
-* [locationApproximate (Stream Function)](#locationApproximate)
+- [disjoint (Function)](#disjoint)
 
-* [crosses (Stream Processor)](#crosses)
- 
-* [proximity  (Stream Processor)](#proximity)
-   
-* [stationary (Stream Processor)](#stationary)
-   
-   
-   
+- [touches (Function)](#touches)
+
+- [overlaps (Function)](#overlaps)
+
+- [equals (Function)](#equals)
+
+- [closestPoints (Stream Function)](#closestPoints)
+
+- [locationApproximate (Stream Function)](#locationApproximate)
+
+- [crosses (Stream Processor)](#crosses)
+
+- [proximity  (Stream Processor)](#proximity)
+
+- [stationary (Stream Processor)](#stationary)
+
 ## distance
 
 Returns the distance between two coordinates in meters.
 
-
     <DOUBLE> geo:distance(<DOUBLE> location1.latitude, <DOUBLE> location1.longitude, <DOUBLE> location2.latitude, <DOUBLE> location2.longitude)
-
-
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -57,27 +50,23 @@ Returns the distance between two coordinates in meters.
 | location2.latitude          | Latitude of 2nd location. | DOUBLE                | No      | No     |
 | location2.longitude         | Longitude of 2nd location. | DOUBLE                | No      | No     |
 
-
 For example:
 
     geo:distance(10.45, 77.38, 83.98, 59.93)
-
 
 ## intersects
 
 Two available sets of parameters:
 
-* First set returns `true` if the incoming `geo.json.geometry` event intersects the given `geo.json.geometryFence`.
-* Second set returns `true` if the specified coordinates intersect the given `geo.json.geometryFence`.
+- First set returns `true` if the incoming `geo.json.geometry` event intersects the given `geo.json.geometryFence`.
+- Second set returns `true` if the specified coordinates intersect the given `geo.json.geometryFence`.
 
 ### Syntax
 
     <BOOL> geo:intersects(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
     <BOOL> geo:intersects(<STRING> geo.json.geometry, <STRING> geo.json.geometry.fence)
 
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -86,43 +75,31 @@ Two available sets of parameters:
 | geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING                | Yes      | Yes     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String                | No      | Yes     |
 
-
 Example 1:
-
 
     geo:intersects( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]} )
 
 This example returns `true` because `geo.json.geometry` intersects with `geo.json.geometry.fence`.
 
-
 Example 2:
 
-
     geo:intersects(0.5. 0.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
-    
+
 This example returns `true` because the coordinates intersect with `geo.json.geometry.fence`.
 
-
-       
 ## contains
 
 Two available sets of parameters:
 
-* First set returns `true` if the specified coordinates are contained within the `geo.json.geometry.fence`.
-* Second set returns `true` if the `geo.json.geometry` is contained within the `geo.json.geometry.fence`.
-
+- First set returns `true` if the specified coordinates are contained within the `geo.json.geometry.fence`.
+- Second set returns `true` if the `geo.json.geometry` is contained within the `geo.json.geometry.fence`.
 
 ### Syntax
-
 
     <BOOL> geo:contains(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
     <BOOL> geo:contains(<STRING> geo.json.geometry, <STRING> geo.json.geometry.fence)
 
-
-
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -131,44 +108,31 @@ Two available sets of parameters:
 | geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING                | Yes      | Yes     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String                | No      | Yes     |
 
-
 Example 1:
-
 
     geo:contains(0.5, 0.5, {'type':'Polygon','coordinates':[[[0,0],[0,2],[1,2],[1,0],[0,0]]]} )
 
-
 This example returns `true` because the coordinates are within the `geo.json.geometry.fence`.
-
 
 Example 2:
 
-
     geo:contains( {'type': 'Circle', 'radius': 110575, 'coordinates':[1.5, 1.5]} , {'type':'Polygon','coordinates':[[[0,0],[0,4],[3,4],[3,0],[0,0]]]} )
-    
-This example returns `true` because `geo.json.geometry` is within `geo.json.geometry.fence`.
-       
 
+This example returns `true` because `geo.json.geometry` is within `geo.json.geometry.fence`.
 
 ## withinDistance
 
 Two available sets of parameters:
 
-* First set returns `true` if the specified coordinates are within a given distance of the `geo.json.geometry.fence`.
-* Second set returns `true` if the area specified by `geo.json.geometry` is within a given distance of the `geo.json.geometry.fence`. 
-
+- First set returns `true` if the specified coordinates are within a given distance of the `geo.json.geometry.fence`.
+- Second set returns `true` if the area specified by `geo.json.geometry` is within a given distance of the `geo.json.geometry.fence`.
 
 ### Syntax
-
 
     <BOOL> geo:withinDistance(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence, <DOUBLE> radius)
     <BOOL> geo:withinDistance(<STRING> geo.json.geometry, <STRING> geo.json.geometry.fence,  <DOUBLE> radius)
 
-
-
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -176,47 +140,33 @@ Two available sets of parameters:
 | latitude | Latitude of the geo location.                                           | DOUBLE              | Yes      | Yes     |
 | geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING                | Yes      | Yes     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String                | No      | Yes     |
-| radius        | The distance parameter. | DOUBLE                | No      | Yes     |       
-
+| radius        | The distance parameter. | DOUBLE                | No      | Yes     |
 
 Example 1:
 
-
     geo:withinDistance( 0.5 , 0.5, {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]}, 110574.61087757687)
-
-
-
 
 This example returns `true` because the coordinates are within the specified radius of the `geo.json.geometry.fence`.
 
-
 Example 2:
 
-
     geo:withinDistance( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]}, 110574.61087757687)
-    
-This example returns `true` because `geo.json.geometry` is within the specified radius of `geo.json.geometry.fence`.       
-       
-       
+
+This example returns `true` because `geo.json.geometry` is within the specified radius of `geo.json.geometry.fence`.
+
 ## disjoint
 
 Two available sets of parameters:
 
-* First set returns `true` if the incoming `geo.json.geometry` event is disjointed from the given `geo.json.geometryFence`.
-* Second set returns `true` if the specified coordinates are disjointed from the given `geo.json.geometryFence`.
-
+- First set returns `true` if the incoming `geo.json.geometry` event is disjointed from the given `geo.json.geometryFence`.
+- Second set returns `true` if the specified coordinates are disjointed from the given `geo.json.geometryFence`.
 
 ### Syntax
-
 
     <BOOL> geo:disjoint(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
     <BOOL> geo:disjoint(<STRING> geo.json.geometry, <STRING> geo.json.geometry.fence)
 
-
-
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -225,41 +175,30 @@ Two available sets of parameters:
 | geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING                | Yes      | Yes     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String                | No      | Yes     |
 
-
 Example 1:
-
 
     geo:disjoint( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
 This example returns `true` because `geo.json.geometry` is disjointed from `geo.json.geometry.fence`.
 
-
 Example 2:
 
-
     geo:disjoint(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
-    
+
 This example returns `true` because the coordinates are disjointed from `geo.json.geometry.fence`.
-       
-      
+
 ## touches
 
 Two available sets of parameters:
 
-* First set returns `true` if the incoming `geo.json.geometry` event touches the given `geo.json.geometryFence`.
-* Second set returns `true` if the coordinates touch the given `geo.json.geometryFence`.
-
+- First set returns `true` if the incoming `geo.json.geometry` event touches the given `geo.json.geometryFence`.
+- Second set returns `true` if the coordinates touch the given `geo.json.geometryFence`.
 
 ### Syntax
-
 
     <BOOL> geo:touches(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
     <BOOL> geo:touches(<STRING> geo.json.geometry, <STRING> geo.json.geometry.fence)
 
-
-
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -268,41 +207,30 @@ Two available sets of parameters:
 | geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING                | Yes      | Yes     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String                | No      | Yes     |
 
-
 Example 1:
-
 
     geo:touches( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
 This example returns `false` because `geo.json.geometry` does not touch `geo.json.geometry.fence`.
 
-
 Example 2:
 
-
     geo:touches(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
-    
+
 This example returns `true` because the coordinates do not touch `geo.json.geometry.fence`.
-       
-       
+
 ## overlaps
 
 Two available sets of parameters:
 
-* First set returns `true` if the incoming `geo.json.geometry` event overlaps the given `geo.json.geometryFence`.
-* Second set returns `true` if the specified coordinates overlap the given `geo.json.geometryFence`.
-
+- First set returns `true` if the incoming `geo.json.geometry` event overlaps the given `geo.json.geometryFence`.
+- Second set returns `true` if the specified coordinates overlap the given `geo.json.geometryFence`.
 
 ### Syntax
-
 
     <BOOL> geo:overlaps(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
     <BOOL> geo:overlaps(<STRING> geo.json.geometry, <STRING> geo.json.geometry.fence)
 
-
-
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -311,41 +239,30 @@ Two available sets of parameters:
 | geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING                | Yes      | Yes     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String                | No      | Yes     |
 
-
 Example 1:
-
 
     geo:overlaps( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
 This example returns `false` because `geo.json.geometry` does not overlap with `geo.json.geometry.fence`.
 
-
 Example 2:
 
-
     geo:overlaps(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
-    
-This example returns `true` because the coordinates do not overlap with `geo.json.geometry.fence`.       
-       
-       
+
+This example returns `true` because the coordinates do not overlap with `geo.json.geometry.fence`.
+
 ## equals
 
 Two available sets of parameters:
 
-* First set returns `true` if the incoming `geo.json.geometry` event equals the given `geo.json.geometryFence`.
-* Second set returns `true` if the location pointed by longitude and latitude equals the given geo.json.geometryFence.
-
+- First set returns `true` if the incoming `geo.json.geometry` event equals the given `geo.json.geometryFence`.
+- Second set returns `true` if the location pointed by longitude and latitude equals the given geo.json.geometryFence.
 
 ### Syntax
-
 
     <BOOL> geo:equals(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
     <BOOL> geo:equals(<STRING> geo.json.geometry, <STRING> geo.json.geometry.fence)
 
-
-
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -354,36 +271,26 @@ Two available sets of parameters:
 | geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING                | Yes      | Yes     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String                | No      | Yes     |
 
-
 Example 1:
-
 
     geo:equals( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
 This example returns `false` because `geo.json.geometry` is not equal to `geo.json.geometry.fence`.
 
-
 Example 2:
 
-
     geo:equals(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
-    
-This example returns `true` because the coordinates are not equal to `geo.json.geometry.fence`.          
-       
-       
-## closestPoints 
 
+This example returns `true` because the coordinates are not equal to `geo.json.geometry.fence`.
+
+## closestPoints
 
 Returns the closest coordinate to `geo.json.geometry.fence`.
 
-
 ### Syntax
-
 
     geo:closestPoints(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
 
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -391,44 +298,30 @@ Returns the closest coordinate to `geo.json.geometry.fence`.
 | latitude | Latitude of the geo location.                                           | DOUBLE              | No      | No     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String                | No      | No     |
 
-
 ### Extra Return Attributes
-       
-| Name              | Description                                                                                              | Possible Data Types | 
-|-------------------|----------------------------------------------------------------------------------------------------------|---------------|
-| closestPointOf1From2Latitude 	              | closest point's latitude to the fence from the location.                       |   DOUBLE            | 
-| closestPointOf1From2Longitude 	          | closest point's longitude to the fence from the location.                       |   DOUBLE            | 
-| closestPointOf2From1Latitude 	              | closest point's latitude to the location from the fence.                       |   DOUBLE            | 
-| closestPointOf2From1Longitude 	          | closest point's longitude to the location from the fence.                       |   DOUBLE            | 
-       
-       
-For example:
 
+| Name              | Description                                                                                              | Possible Data Types |
+|-------------------|----------------------------------------------------------------------------------------------------------|---------------|
+| closestPointOf1From2Latitude 	              | closest point's latitude to the fence from the location.                       |   DOUBLE            |
+| closestPointOf1From2Longitude 	          | closest point's longitude to the fence from the location.                       |   DOUBLE            |
+| closestPointOf2From1Latitude 	              | closest point's latitude to the location from the fence.                       |   DOUBLE            |
+| closestPointOf2From1Longitude 	          | closest point's longitude to the location from the fence.                       |   DOUBLE            |
+
+For example:
 
     geo:closestPoints(0.5,0.5,"{'type':'Polygon','coordinates':[[[0,0],[0,2],[1,2],[1,0],[0,0]]]}")
 
-
 This example returns `0.5, 0.5, 0.5, 0.5`.
-       
-       
+
 ## locationApproximate
 
-
-Calculates the average location of `locationRecorder` using the collection iBeacons in which the location recorder resides. 
-
-
-
+Calculates the average location of `locationRecorder` using the collection iBeacons in which the location recorder resides.
 
 ### Syntax
 
-
     geo:locationApproximate(<STRING> location.recorder, <DOUBLE> latitude, <DOUBLE> longitude, <STRING> sensor.proximity, <STRING> sensor.uuid, <DOUBLE> sensor.weight, <LONG> timestamp)
 
-
-
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -440,31 +333,22 @@ Calculates the average location of `locationRecorder` using the collection iBeac
 | sensor.weight        | Approximation weight of the iBeacon (e.g. approximate distance from the iBeacon). | DOUBLE                | No      | No     |
 | timestamp        | Timestamp of the log you want to use to remove iBeacon from a collection after no new log for 5 minutes. | LONG                | No      | No     |
 
-
-       
 For example:
-
 
     geo:geoLocationApproximate("person1", 6.876657, 79.897648, "ENTER", "uuid1", 20.0d, 1452583935L)
 
-
 This example returns `6.876657000000001` as the approximate location.
-       
-   
-## crosses 
+
+## crosses
 
 Determines if the specified object or location crosses a geographic location specified by `geo.json.geometry.fence`.
 
-
 ### Syntax
-
 
     <BOOL> geo:crosses(<STRING> id, <DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
     <BOOL> geo:crosses(<STRING> id, <STRING> geo.json.geometry, <STRING> geo.json.geometry.fence)
 
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -474,31 +358,21 @@ Determines if the specified object or location crosses a geographic location spe
 | geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING                | Yes      | No     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | STRING                | No      | No     |
 
-
 For example:
-
 
     geo:crosses(km-4354, -0.5, 0.5, {'type':'Polygon','coordinates':[[[0, 0],[2, 0],[2, 1],[0, 1],[0, 0]]]} )
 
-
 This example returns `true` because the coordinates cross the `geo.json.geometry.fence`.
   
-       
-## proximity 
+## proximity
 
 Determines if the specified object or location is within the radius of another object. Returns false when the object moves out of the specified radius.
 
-
-
-
 ### Syntax
-
 
     <BOOL> geo:proximity(<STRING> id, <DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence, <DOUBLE> radius)
 
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -507,35 +381,24 @@ Determines if the specified object or location is within the radius of another o
 | latitude | Latitude of the geo location.                                           | DOUBLE              | No      | No     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | STRING                | No      | No     |
 | radius          | Proximity distance (radial). | DOUBLE                | No      | No     |
-       
-For example:
 
+For example:
 
     geo:proximity(1, 0, 0, 110574.61087757687)
 
-
-
-
 This example returns `true` because the coordinates are within the given radius.
-       
-       
-## stationary 
+
+## stationary
 
 Determines if the specified object or location becomes stationary within a specified radius. Returns false when the object moves out of the specified radius.
-       
-This function will Return true when the object (defined in terms of longitude and latitude) becomes stationary within the specified radius. Returns false when the object moves out of the specified radius.
 
+This function will Return true when the object (defined in terms of longitude and latitude) becomes stationary within the specified radius. Returns false when the object moves out of the specified radius.
 
 ### Syntax
 
-
     <BOOL> geo:stationary(<STRING> id, <DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence, <DOUBLE> radius)
 
-
-
-
 ### Query Parameters
-
 
 | Name              | Description                                                                                              | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------------|----------|---------|
@@ -544,11 +407,9 @@ This function will Return true when the object (defined in terms of longitude an
 | latitude | Latitude value of the geo location.                                           | DOUBLE              | No      | No     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | STRING                | No      | No     |
 | radius          | Proximity distance (radial). | DOUBLE                | No      | No     |
-       
+
 For example:
 
-
     geo:stationary(km-4354,0,0, 110574.61087757687)
-
 
 This example returns true.
