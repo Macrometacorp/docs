@@ -7,7 +7,9 @@ Indexes enable you to create searchable attributes to speed up your queries. For
 
 ## Redis Mode Indexes
 
-Redis Mode collections have several indexes created automatically. You cannot create additional indexes in Macrometa for these collections.
+Redis Mode collections have several indexes created automatically.
+
+The Redis API supports a fixed set of commands. Most of those operate on a single entry and don't need any special indexing (the purpose of indexes is basically to speed up operations that involve multiple entries). We have taken care to optimize the commands operating on multiple entries, so you should not need any additional indexes.
 
 ## View Indexes
 
