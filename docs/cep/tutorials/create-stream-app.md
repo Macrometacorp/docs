@@ -122,6 +122,7 @@ Query Parameters:
 You can create collections with your stream worker, and store incoming data in it for further processing, the syntax to achieve that is shown below:
 
 Syntax:
+
 ```sql
    CREATE SOURCE SourceName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type') (strings);
 ```
