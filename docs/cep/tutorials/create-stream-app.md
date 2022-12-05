@@ -234,7 +234,7 @@ Or equivalent using STORE:
    CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="local", collection.type="DOC", map.type='json') (name string, amount double);
 ```
 
-Stream worker will use the macrometa collections with the default query parameters explained in the chart below.
+The stream worker will use the Macrometa collections with the default query parameters explained in the chart below.
 
 <table>
 <thead>
