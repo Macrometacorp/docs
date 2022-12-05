@@ -3,16 +3,20 @@ title: json (Source Mapper)
 ---
 
 This extension is a JSON-to-Event input mapper. Transports that accept
-JSON messages can utilize this extension to convert an incoming JSON
-message into a Stream App event. Users can either send a pre-defined JSON
+JSON messages can use this extension to convert an incoming JSON
+message into a Stream App event.
+
+Users can either send a pre-defined JSON
 format, where event conversion happens without any configurations, or
 use the JSON path to map from a custom JSON message. In default mapping,
 the JSON string of the event can be enclosed by the element "event",
 though optional.
 
-Syntax
+## Syntax
 
+```js
     CREATE SOURCE <NAME> WITH (map.type="json", enclosing.element="<STRING>", fail.on.missing.attribute="<BOOL>")
+```
 
 ## Query Parameters
 
@@ -23,13 +27,22 @@ Syntax
 
 ## Example 1
 
+```js
     CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
+```
 
 This configuration performs a default JSON input mapping.  For a single
-event, the input is required to be in one of the following formats: {
-    "event":{         "symbol":"gdn",         "price":55.6,
-        "volume":100     } } or {     "symbol":"gdn",
-    "price":55.6,     "volume":100 }
+event, the input is required to be in one of the following formats:
+
+```json
+    {    
+    "event":{        
+        "symbol":GDN,        
+        "price":55.6,        
+        "volume":100    
+        }
+    }
+```
 
 ## Example 2
 
