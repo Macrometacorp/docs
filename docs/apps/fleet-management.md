@@ -8,7 +8,7 @@ Fleet management demo demonstrates how you can monitor and take actions to keep 
 
 | **Tenant** | **Fabric** | **Password** | **GUI** | **Source Code**|
 |----------- |----------|-----------|--------------|-----------|
-| demo-fleet1-management@macrometa.io | `_system` | `xxxxxxxxx` | [**Fleet Management App**](https://macrometacorp.github.io/demo-fleet-management/) | |
+| demo-fleet-management@macrometa.io | `_system` | `xxxxxxxxx` | [**Fleet Management App**](https://macrometacorp.github.io/demo-fleet-management/) | |
 
 
 ## Solution
