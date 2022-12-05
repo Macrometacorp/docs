@@ -8,7 +8,6 @@ Syntax
 
     CREATE SINK <NAME> WITH (map.type="json", map.validate.json="<BOOL>", map.enclosing.element="<STRING>")
 
-
 ## Query Parameters
 
 | Name              | Description                                                                                                                                                                                                                                                                                                                                                        | Default Value | Possible Data Types | Optional | Dynamic |
@@ -18,9 +17,41 @@ Syntax
 
 ## Example 1
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
+```js
+CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
+```
 
+Above configuration does a default JSON input mapping that generates the
+output given
+below.
+
+```json
+{    
+"event":{        
+    "symbol":GDN,        
+    "price":55.6,        
+    "volume":100    
+    }
+}
+```
 
 ## Example 2
 
+```js
     CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='json', map.enclosing.element='$.portfolio', map.validate.json='true', map.payload="""{"StockData":{"Symbol":"{{symbol}}","Price":{{price}}}}""") (symbol string, price float, volume long);
+```
+
+The above configuration performs a custom JSON mapping that generates
+the following JSON message as the
+output.
+
+```json
+    {
+        "portfolio":{    
+            "StockData":{        
+                "Symbol":GDN,        
+                "Price":55.6      
+            }
+        }
+    }
+```
