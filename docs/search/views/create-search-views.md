@@ -10,7 +10,7 @@ This page explains how to create a new search view.
 Follow these instructions to create a new search view using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Search Views**.
+1. Click **Data > Search Views**.
 1. Click **New View**.
 1. Enter information about the view and then click **Create**.
 
