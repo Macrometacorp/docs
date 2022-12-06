@@ -48,7 +48,7 @@ Extensions enhances Macrometa Stream QL by incorporating additional functionalit
 |Text|This is an extension that converts text messages to/from stream processor events.|
 
 
-#### Example
+## Example
 
 This stream application with the name `TestExtensions` creates a stream named `FooStream`. This configuration for `SOURCE FooStream` performs input mapping using 
 **JSON Format Mappers extension**. For a single event, the input is required to be in following format:
