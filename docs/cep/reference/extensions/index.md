@@ -4,7 +4,14 @@ title: Extensions
 ---
 
 
-Extensions enhances Macrometa Stream QL by incorporating additional functionalities in a seamless manner.
+Extensions enhance Macrometa Stream QL, the language used to write stream workers, by seamlessly incorporating additional functionalities.
+
+Extensions allow you to use:
+
+- Different data sources.
+- Different sinks, such as GDN Streams, Kafka and ActiveMQ.
+- Appropriate format mapping, such as JSON, XML or CSV.
+- Different kinds of processing, such as math, string, statistics and geospatial.
 
 ## Execution Extension Types
 
