@@ -26,7 +26,7 @@ Extensions enhances Macrometa Stream QL by incorporating additional functionalit
 
 
 
-## IO extensions types
+## IO Extensions Types
 
 | IO Extensions     | Description|
 | ------------- |-------------|
