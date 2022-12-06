@@ -38,7 +38,7 @@ Extensions enhances Macrometa Stream QL by incorporating additional functionalit
 |SSE|This an extension that receives and publishes events from SSE server.|
 
 
-## Format Mappers extension types
+## Format Mappers Extension Types
 
 | Format Mappers Extensions     | Description|
 | ------------- |-------------|
