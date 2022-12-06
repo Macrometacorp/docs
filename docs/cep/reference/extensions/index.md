@@ -80,7 +80,6 @@ After which the data gets inserted into Kafka `SINK` using **Apache Kafka IO ext
 
 CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price string, volume string);
 
-
 @info(name = 'query1') 
 
 CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price double, volume long);
