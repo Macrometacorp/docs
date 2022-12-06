@@ -3,7 +3,6 @@ sidebar_position: 3
 title: Extensions
 ---
 
-# Extensions
 
 Extensions enhances Macrometa Stream QL by incorporating additional functionalities in a seamless manner.
 
