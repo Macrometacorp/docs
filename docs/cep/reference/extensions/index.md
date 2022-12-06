@@ -13,6 +13,7 @@ Extensions allow you to use:
 - Appropriate format mapping, such as JSON, XML or CSV.
 - Different kinds of processing, such as math, string, statistics and geospatial.
 
+
 ## Execution Extension Types
 
 | Execution Extensions | Description |
@@ -30,7 +31,6 @@ Extensions allow you to use:
 | Cache	               | The `cache` extension provides a persistent cache per tenant. |
 | Geo Spatial	         | This extension provides geo data related functionality such as checking whether a given geo coordinate is within a predefined geo-fence, finding distance between 2 geo coordinates etc. |
 | Sentiment	           |This extension performs sentiment analysis using AFINN Wordlist-based approach.|
-
 
 
 ## IO Extensions Types
@@ -59,7 +59,6 @@ Extensions allow you to use:
 
 This stream application with the name `TestExtensions` creates a stream named `FooStream`. This configuration for `SOURCE FooStream` performs input mapping using 
 **JSON Format Mappers extension**. For a single event, the input is required to be in following format:
-
 
 
     {    
