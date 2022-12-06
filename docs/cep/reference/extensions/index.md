@@ -72,7 +72,7 @@ This stream application with the name `TestExtensions` creates a stream named `F
 
 
 On receiving the event, a query is executed which parses string data types using **Execution extension (math)** into required formats.
-After which the data gets inserted into Kafka `SINK` using **Apache Kafka IO extension**
+After which the data gets inserted into Kafka `SINK` using **Apache Kafka IO extension**.
 
 
 ```js
