@@ -119,6 +119,7 @@ The following defects were fixed in this release.
 | GUI-1695  | In 17.10, there is no first and last page button in the collection preview.  |
 | GUI-1738  | Manage Locations button is not working on fabrics aside from the _system fabric.  |
 | GUI-1754  | Fixed loading screen when a new account is created.  |
+| GUI-1772  | Export documents as JSON file does not work.       |
 | STRM-337  | Getting unexpected error on navigating to streams.  |
 | STRM-411  | Streams getting created from connectors (or any other producer/consumer) are not getting replicated.  |
 | STRM-444  | Remove the deleted API keys from the c8streams cache.  |
