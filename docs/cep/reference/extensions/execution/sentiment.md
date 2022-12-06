@@ -12,7 +12,7 @@ It contains more than 3,300 words with a polarity score associated with each wor
    
 ## getRate
 
-This provides the sentiment value for a given string as per the AFINN word list. The sentiment value ranges from -5 to +5.
+This provides the sentiment value for a given string as per the AFINN word list.
 
 ## Syntax
 
