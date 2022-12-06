@@ -75,7 +75,6 @@ On receiving the event, a query is executed which parses string data types using
 After which the data gets inserted into Kafka `SINK` using **Apache Kafka IO extension**
 
 
-
 ```js
 @App:name('TestExtensions') 
 
