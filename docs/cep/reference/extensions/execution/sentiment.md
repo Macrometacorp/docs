@@ -1,6 +1,6 @@
 # Sentiment
 This extension performs sentiment analysis using AFINN Wordlist-based approach. AFINN is a list of words rated for valence with an integer between minus five (negative) and plus five (positive).
-It contains 3300+ words with a polarity score associated with each word.
+It contains more than 3,300 words with a polarity score associated with each word.
 
 ## Features
 
