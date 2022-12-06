@@ -6,7 +6,7 @@ title: Extensions
 
 Extensions enhances Macrometa Stream QL by incorporating additional functionalities in a seamless manner.
 
-## Execution extension types
+## Execution Extension Types
 
 | Execution Extensions | Description |
 |----------------------|-------------|
