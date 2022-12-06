@@ -16,7 +16,7 @@ You can view and update graph edge collection settings in the Settings tab.
 
 <ViewCollectionSettings />
 
-## Graph Edge Settings
+**Graph Edge Settings**
 
 <DocAndGraphSettings collection='Graph edge' />
 
