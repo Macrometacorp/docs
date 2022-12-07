@@ -31,7 +31,7 @@ the temperature of a room every second are transformed to indicate the average t
    > For more information about defining input streams to receive events, see the [Consuming Data page](consuming-data.md).
            
 7. Define the output stream which will receive the average temperature of each incomming message in the TempStream. The output stream definition is as follows:
-8. 
+ 
     ```sql
        CREATE SINK OutputStream WITH (type='stream', stream='OutputStream', map.type='json') (roomNo int, avgTemp double);
     ```
@@ -39,8 +39,6 @@ the temperature of a room every second are transformed to indicate the average t
 8. To do the required transformation, let's add the query as follows:
   
     A. Add the `INSERT INTO` clause with the name of the output stream to indicate that the processed events are directed to that stream.
-
-
 	```sql
 	INSERT INTO OutputStream
 	FROM TempStream;
@@ -48,22 +46,17 @@ the temperature of a room every second are transformed to indicate the average t
 	
     B. Add a `select` to select the fields required to calculate the average temperature. Apply the `avg()` to the `temp` attribute, and then specify `avgTemp` as the name with which the result should be output. 
     
-    
 	```sql
 	SELECT roomNo, avg(temp) AS avgTemp
 	```
-	
 
     C. Add the `from` clause with the name of the input stream to indicate that the events to be processed are taken from the input stream.
-    
 
 	```sql
 	FROM TempStream
 	```
 	
-
     D. To group by a specific attribute (by the `roomNo` attribute in this example), specify it via the `group by` clause as shown below.
-    
     
 	```sql
 	INSERT INTO OutputStream
@@ -71,7 +64,6 @@ the temperature of a room every second are transformed to indicate the average t
 	FROM TempStream
 	GROUP BY roomNo;
 	```
-	
 
 9. Save the stream worker. The completed stream worker is as follows.
 
