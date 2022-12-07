@@ -42,7 +42,7 @@ Delete Akamai metadata from your Macrometa GDN environment.
 1. Click **Compute > Query Workers**.
 1. Click **Generate EdgeWorker**.
 1. In the pop-up, click **Manage Integration**.
-1. Click **Delete metadata** to clear your Akamai account details.
+1. Click **Delete Metadata** to clear your Akamai account details.
 
 ## Akamai Account Details
 
