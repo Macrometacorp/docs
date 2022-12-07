@@ -4,7 +4,7 @@ title: Google Pub-Sub (Sink)
 
 The Google PubSub sink publishes messages to a topic in the Google PubSub server. If the required topic does not exist, Google PubSub Sink creates the topic and publishes messages to it.
 
-## Syntax:
+## Syntax
 
 ```js
 CREATE SINK <name> WITH (type="googlepubsub", project.id="<STRING>", topic.id="<STRING>", credential.id="<STRING>", map.type=<"STRING>")
