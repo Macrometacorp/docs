@@ -38,14 +38,20 @@ INSERT {
 ```
 
 </TabItem>
+
 <TabItem value="sql" label="SQL">
 
-SQL stuff
+```sql
+INSERT INTO users (firstName,name,profesion) VALUES('Anna','Pavlova','artist')
+```
 
 </TabItem>
 </Tabs>
 
 You can provide a key for the new document. If not provided, then Macrometa creates one for you.  
+
+<Tabs groupId="modify-single">
+<TabItem value="c8ql" label="C8QL">
 
 ```js
 INSERT {
@@ -56,7 +62,20 @@ INSERT {
 } IN users
 ```
 
+</TabItem>
+<TabItem value="sql" label="SQL">
+
+```sql
+INSERT INTO users (_key,firstName,name,city) VALUES('GilbertoGil','Gilberto','Gil','Fortalezza')
+```
+
+</TabItem>
+</Tabs>
+
 As Macrometa is schema-free, attributes of the documents may vary:
+
+<Tabs groupId="modify-single">
+<TabItem value="c8ql" label="C8QL">
 
 ```js
 INSERT {
@@ -68,6 +87,19 @@ INSERT {
 } IN users
 ```
 
+</TabItem>
+<TabItem value="sql" label="SQL">
+
+```sql
+INSERT INTO users (_key,firstName,name,middleName,status) VALUES('PhilCarpenter','Phil','Carpenter','G.','inactive')
+```
+
+</TabItem>
+</Tabs>
+
+<Tabs groupId="modify-single">
+<TabItem value="c8ql" label="C8QL">
+
 ```js
 INSERT {
     _key: "NatachaDeclerck",
@@ -77,7 +109,20 @@ INSERT {
 } IN users 
 ```
 
+</TabItem>
+<TabItem value="sql" label="SQL">
+
+```sql
+INSERT INTO users (_key,firstName,name,location) VALUES('NatachaDeclerck','Natacha','Declerck','Antwerp')
+```
+
+</TabItem>
+</Tabs>
+
 Update is quite simple. The following C8QL statement will add or change the attributes status and location
+
+<Tabs groupId="modify-single">
+<TabItem value="c8ql" label="C8QL">
 
 ```js
 UPDATE "PhilCarpenter" WITH {
@@ -86,7 +131,19 @@ UPDATE "PhilCarpenter" WITH {
 } IN users
 ```
 
+</TabItem>
+<TabItem value="sql" label="SQL">
+
+```sql
+UPDATE users SET status='active', location='Beijing' WHERE _key='PhilCarpenter'
+```
+
+</TabItem>
+</Tabs>
+
+
 Replace is an alternative to update where all attributes of the document are replaced.
+
 
 ```js
 REPLACE {
@@ -98,7 +155,11 @@ REPLACE {
 } IN users
 ```
 
-Removing a document if you know its key is simple as well :
+
+Removing a document if you know its key is simple as well:
+
+<Tabs groupId="modify-single">
+<TabItem value="c8ql" label="C8QL">
 
 ```js
 REMOVE "GilbertoGil" IN users
@@ -110,17 +171,41 @@ or
 REMOVE { _key: "GilbertoGil" } IN users
 ```
 
+</TabItem>
+<TabItem value="sql" label="SQL">
+
+```sql
+DELETE FROM users WHERE _key='GilbertoGil'
+```
+
+</TabItem>
+</Tabs>
+
+
 ## Modifying multiple documents
 
 Data-modification operations are normally combined with `FOR` loops to iterate over a given list of documents. They can optionally be combined with `FILTER` statements and the like.
 
 Let's start with an example that modifies existing documents in a collection `users` that match some condition:
 
+<Tabs groupId="modify-single">
+<TabItem value="c8ql" label="C8QL">
+
 ```js
 FOR u IN users
     FILTER u.status == "not active"
     UPDATE u WITH { status: "inactive" } IN users
 ```
+
+</TabItem>
+<TabItem value="sql" label="SQL">
+
+```sql
+UPDATE users SET status='not active' WHERE status = 'inactive'
+```
+
+</TabItem>
+</Tabs>
 
 Now, let's copy the contents of the collection `users` into the collection `backup`:
 
