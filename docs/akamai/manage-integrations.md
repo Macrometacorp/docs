@@ -46,7 +46,7 @@ Delete Akamai metadata from your Macrometa GDN environment.
 
 ## Akamai account details explanation
 
-These 4 parameters are credentials for Akamai API:
+These four parameters are credentials for the Akamai API:
 
 - **Access Token**
 - **Base URL**
