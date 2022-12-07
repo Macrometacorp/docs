@@ -14,7 +14,7 @@ This page explains how to create a new Document Store collection.
 Follow these instructions to create a new collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Collections**.
+2. Click **Data > Collections**.
 3. Click **New Collection**.
 4. Click **Document Store**.
 5. Enter information about the collection and then click **Create**.
