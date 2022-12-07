@@ -19,8 +19,8 @@ CREATE STREAM HumidityStream (roomNo string, humidity double);
 -- Join latest `temperature` and `humidity` events arriving within 1 minute for each `roomNo`.
 insert into TemperatureHumidityStream
 select t.roomNo, t.temperature, h.humidity
-from TemperatureStream#window.unique:time(roomNo, 1 min) as t
-    join HumidityStream#window.unique:time(roomNo, 1 min) as h
+from TemperatureStream window unique:time(roomNo, 1 min) as t
+    join HumidityStream window unique:time(roomNo, 1 min) as h
     on t.roomNo == h.roomNo;
 
 
@@ -30,7 +30,7 @@ select t.roomNo, t.temperature, h.humidity
 -- Join when events arrive in `TemperatureStream`.
 from TemperatureStream as t
 -- When events get matched in `time()` window, all matched events are emitted, else `null` is emitted.
-    left outer join HumidityStream#window.time(1 min) as h
+    left outer join HumidityStream window sliding_time(1 min) as h
     on t.roomNo == h.roomNo;
 ```
 
@@ -61,28 +61,25 @@ For more information on [partition](../query-guide/partition.md) refer the [Stre
 ```sql
 CREATE STREAM LoginStream ( userID string, loginSuccessful bool);
 
--- Optional purging configuration, to remove partition instances that haven't received events for `1 hour` by checking every `10 sec`.
+-- Optional purging configuration to remove partition instances that haven't received events for `1 hour` by checking every `10 sec`.
 @purge(enable='true', interval='10 sec', idle.period='1 hour')
 -- Partitions the events based on `userID`.
 partition with ( userID of LoginStream )
 
 begin
     @info(name='Aggregation-query')
--- Calculates success and failure login attempts from last 3 events of each `userID`.
+-- Calculates success and failure login attempts from the last 3 events of each `userID`.
     insert into #LoginAttempts
     select userID, loginSuccessful, count() as attempts
-    from LoginStream#window.length(3)
+    from LoginStream window sliding_length(3)
     group by loginSuccessful;
 -- Inserts results to `#LoginAttempts` inner stream that is only accessible within the partition instance.
-    
-
 
     @info(name='Alert-query')
 -- Consumes events from the inner stream, and suspends `userID`s that have 3 consecutive login failures.
     insert into UserSuspensionStream
     select userID, "3 consecutive login failures!" as message
     from #LoginAttempts[loginSuccessful==false and attempts==3];
-
 end;
 ```
 
@@ -127,7 +124,7 @@ insert into GroupedPurchaseItemStream
 -- Concat all events in a batch separating them by `,`.
 select userId, str:groupConcat(itemKey, ",") as itemKeys
 -- Collect events traveling as a batch via `batch()` window.
-from TransformedItemStream#window.batch();
+from TransformedItemStream window batch();
 ```
 
 ### Input
@@ -153,7 +150,7 @@ The event arriving at `GroupedPurchaseItemStream` will be as follows:
 ## Scatter and Gather (JSON)
 
 
-This example shows performing scatter and gather on string values.
+This example shows performing scatter and gather on json values.
 
 
 ```sql
@@ -188,7 +185,7 @@ insert into GroupedItemStream
 -- Combine `item` from all events in a batch as a single JSON Array.
 select orderId, json:group(item) as items, store
 -- Collect events traveling as a batch via `batch()` window.
-from DiscountedItemStream#window.batch();
+from DiscountedItemStream window batch();
 
 
 @info(name = 'Format-query')
@@ -200,7 +197,6 @@ select str:fillTemplate("""
     }""", orderId, items, store) as discountedOrder
 from GroupedItemStream;
 ```
-
 ### Input
 
 Below event is sent to `PurchaseStream`,
