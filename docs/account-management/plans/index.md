@@ -6,7 +6,9 @@ title: Plans
 This section explains the differences between each Macrometa plan, and how to view and change your own plan.
 
 - **Playground -** A test environment to familiarize yourself with Macrometa GDN. Production use is disabled.
-- **Scale -** The standard production package 
-- **Enterprise -** 
+- **Scale -** The standard production package. Pay only for what you need, and increase or decrease your limits as you go.
+- **Enterprise -** Remove the limits
+
+For more information about limits, refer to [Tenant Quotas and Limits](../../references/quotas.md)
 
 ![Manage Plans](/img/manage-macrometa-plan.png)
