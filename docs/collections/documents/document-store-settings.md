@@ -16,7 +16,7 @@ You can view and update document store collection settings in the Settings tab.
 
 <ViewCollectionSettings />
 
-## Document Store Settings
+**Document Store Settings**
 
 <DocAndGraphSettings collection='Document store' />
 
