@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Plans
 ---
 
-This section explains the differences between each Macrometa plan, and how to view and change your own plan.
+This section explains the differences between each Macrometa plan and how to upgrade your plan.
 
 For more information about limits, refer to [Tenant Quotas and Limits](../../references/quotas.md)
 
