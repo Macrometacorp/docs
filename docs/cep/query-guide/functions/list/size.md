@@ -4,7 +4,7 @@ title: size (Function)
 
 Function to return the size of the list.
 
-Syntax
+## Syntax
 
     <INT> list:size(<OBJECT> list)
 

@@ -4,7 +4,7 @@ title: merge (Aggregate Function)
 
 Collects multiple lists to merge as a single list.
 
-Syntax
+## Syntax
 
     <OBJECT> list:merge(<OBJECT> list)
     <OBJECT> list:merge(<OBJECT> list, <BOOL> is.distinct)
@@ -22,4 +22,4 @@ Syntax
     select list:merge(list) as stockSymbols
     from StockStream WINDOW TUMBLING_LENGTH(2);
 
-For the window expiration of 2 events, the merge() function collects attributes of `list` and merge them to a single list, returned as stockSymbols.
+For the window expiration of two events, the `merge()` function collects attributes of `list` and merges them to a single list, returned as stockSymbols.
