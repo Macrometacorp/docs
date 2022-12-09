@@ -54,7 +54,7 @@ These four parameters are credentials for the Akamai API:
 - **Client Token -** Follow the [Set up authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials) procedure in the Akamai documentation to create credentials with a client token and client secret.
 
 
-- **Host Name**
+- **Host Name -** Your Akamai **Property Host Name**.
 - **Group ID -** You can view your **Group ID** in the Properties screen in Akamai. Select a property to view more details and view the Group ID in the URL bar of preferred browser: `gid=xxxxxx`
 
 are needed to identify CDN configuration and that it called **Property** on Akamai platform.
