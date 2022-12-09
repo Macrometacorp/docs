@@ -1,45 +1,35 @@
 ---
-sidebar_position: 1
+title: getVar
 ---
 
-# Context
+This extension provides useful environment properties such as current region where the stream worker is running.
 
-This extension provides useful environment properties such as current region where the Stream App is running.
+This functions returns the value of the `var` if present. If the `var` is unknown to the stream worker, `default.value` (if specified) are returned.
 
-## Features
-
-* **[getVar (var, default.value)](#getVar)**
-
-    This functions returns the value of the `var` if present. If the `var` is unknown to the Stream App, `default.value` (if specified) will be returned.
-
-## getVar
-
-This functions returns the value of the `var` if present. If the `var` is unknown to the Stream App, `default.value` (if specified) will be returned.
-
-Syntax
+## Syntax
 
     <STRING> context:getVar(<STRING> var, <STRING> default.value)
 
-QUERY PARAMETERS
+## Query Parameters
 
 | Name | Description                                                                                                                  | Default Value | Possible Data Types   | Optional | Dynamic |
 |------|------------------------------------------------------------------------------------------------------------------------------|---------------|-----------------------|----------|---------|
 | var  | The variable name whose value should be returned.                                                                 |               | STRING | No       | Yes     |
 | default.value    | If the `var` is unknown `default.value` will be returned. | null | STRING                | Yes       | Yes     |
 
-SUPPORTED CONTEXT VARIABLES
+## Supported Context Variables
 
-| Name | Description | 
+| Name | Description |
 |------|-------------|
-| region  | Current region where the Stream App is ruuning e.g. `gdn-sfo2` |               | STRING | No       | Yes     |
+| region  | Current region where the Stream App is running e.g. `gdn-sfo2` |               | STRING | No       | Yes     |
 
-EXAMPLE 1
+## Example 1
 
     insert into OutputStream
     select customerName, context:getVar('region') as region
     from InputStream;
-    
-EXAMPLE 2
+
+## Example 2
 
     insert into OutputStream
     select customerName
