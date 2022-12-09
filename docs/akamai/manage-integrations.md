@@ -59,7 +59,6 @@ These four parameters are credentials for the Akamai API:
 
 are needed to identify CDN configuration and that it called **Property** on Akamai platform.
 You can find key concepts of Property Management in [Akamai documentation](https://techdocs.akamai.com/property-mgr/docs/key-concepts-terms).
-**Host Name** should be filled with Akamai **Property Host Name**.
 **Group ID** we can find out if we login to Akamai platform then select Properties from the right sidebar.
 All properties will be displayed, select property to get the property details. In the URL bar of preferred browser you will see `gid=xxxxxx` parameter.
 
