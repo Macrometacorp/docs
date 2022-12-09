@@ -53,7 +53,6 @@ These four parameters are credentials for the Akamai API:
 - **Client Secret -** Follow the [Set up authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials) procedure in the Akamai documentation to create credentials with a client token and client secret.
 - **Client Token**
 
-In [Akamai documentation](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials), you will find out how to create credentials.
 
 - **Host Name**
 - **Group ID**
