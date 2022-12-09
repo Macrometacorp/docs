@@ -4,7 +4,7 @@ title: tokenize (Stream Processor)
 
 Tokenize the list and return each key, value as new attributes in events
 
-Syntax
+## Syntax
 
     list:tokenize(<OBJECT> list)
     list:tokenize(<OBJECT> list, <OBJECT> ...)
@@ -26,4 +26,4 @@ Extra Return Attributes
 
     list:tokenize(customList)
 
-If custom list contains (`gdn`, `IBM`, `XYZ`) elements, then tokenize function returns 3 events with value attributes gdn, IBM and XYZ respectively.
+If custom list contains (`gdn`, `IBM`, `XYZ`) elements, then tokenize function returns three events with value attributes gdn, IBM, and XYZ respectively.
