@@ -56,7 +56,6 @@ These four parameters are credentials for the Akamai API:
 
 - **Host Name -** Your Akamai **Property Host Name**.
 - **Group ID -** You can view your **Group ID** in the Properties screen in Akamai. Select a property to view more details and view the Group ID in the URL bar of preferred browser: `gid=xxxxxx`
-
 **Group ID** we can find out if we login to Akamai platform then select Properties from the right sidebar.
 All properties will be displayed, select property to get the property details. In the URL bar of preferred browser you will see `gid=xxxxxx` parameter.
 
