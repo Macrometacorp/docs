@@ -4,7 +4,7 @@ title: containsValue (Function)
 
 Function checks if the map contains the value.
 
-Syntax
+## Syntax
 
     <BOOL> map:containsValue(<OBJECT> map, <INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
 

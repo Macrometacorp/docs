@@ -4,7 +4,7 @@ title: clone (Function)
 
 Function returns the cloned map.
 
-Syntax
+## Syntax
 
     <OBJECT> map:clone(<OBJECT> map)
 
