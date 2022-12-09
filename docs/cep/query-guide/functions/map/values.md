@@ -4,7 +4,7 @@ title: values (Function)
 
 Function to return the values of the map.
 
-Syntax
+## Syntax
 
     <OBJECT> map:values(<OBJECT> map)
 
