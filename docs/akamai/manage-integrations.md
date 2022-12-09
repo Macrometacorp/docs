@@ -48,7 +48,7 @@ Delete Akamai metadata from your Macrometa GDN environment.
 
 These four parameters are credentials for the Akamai API:
 
-- **Access Token**
+- **Access Token -** Refer to the [Get an access token](https://techdocs.akamai.com/identity-cloud-auth/reference/post-access-getaccesstoken) API call to create or retrieve an access token.
 - **Base URL**
 - **Client Secret**
 - **Client Token**
