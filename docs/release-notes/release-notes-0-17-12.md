@@ -17,7 +17,7 @@ The first time you log in to Macrometa, the system now displays a welcome page w
 
 You can now upgrade and manage your scale tier payment plan in the Account page in the Macrometa web console.
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+The [Plans](../account-management/plans/index.md) topic was created as a result of this change.
 
 ## Feature Updates
 
