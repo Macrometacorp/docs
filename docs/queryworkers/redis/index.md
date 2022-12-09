@@ -44,10 +44,12 @@ Our platform has limitation on certan commands. Commands that are mentioned belo
 
 - [**SETRANGE**](#setrange)
 
-## SETRANGE 
+### SETRANGE
+
 SETRANGE returns different value than redis server when offset of the command is greater than the length of string value.
 
 First we set string value that has key `foo`.
+
 ```js
 [
   "SET",
@@ -78,4 +80,3 @@ Response of Macrometa platform:
 
 Response from Redis server:
 `(integer) 37`
-
