@@ -62,7 +62,6 @@ All properties will be displayed, select property to get the property details. I
 
 - **Resource Tier ID -** Specify the Akamai tier used for your integration.  **Dynamic Computer** should be **200** and **Basic Compute** should be **100**.
 
-The Resource Tier ID for **Dynamic Compute is 200** and the Resource Tier ID for **Basic Compute is 100**.
 
 
 
