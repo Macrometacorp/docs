@@ -63,7 +63,7 @@ All properties will be displayed, select property to get the property details. I
 - **Resource Tier ID -** Specify the Akamai tier used for your integration.  **Dynamic Computer** should be **200** and **Basic Compute** should be **100**.
 
 
-
+**Host Name** and **Group ID** are considered Properties. Refer to [Key concepts and terms](https://techdocs.akamai.com/property-mgr/docs/key-concepts-terms) in the Akamai documentation for more information.
 
 
 
