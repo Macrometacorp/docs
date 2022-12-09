@@ -54,7 +54,6 @@ These four parameters are credentials for the Akamai API:
 - **Client Token**
 
 In [Akamai documentation](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials), you will find out how to create credentials.
-Please keep in mind that base URL is Akamai endpoint URL it has a format of `akab-***.luna.akamaiapis.net`.
 
 - **Host Name**
 - **Group ID**
