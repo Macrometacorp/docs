@@ -4,7 +4,7 @@ title: createFromXML (Function)
 
 Function returns the map created by pairing the keys with their corresponding values,given as an XML string.
 
-Syntax
+## Syntax
 
     <OBJECT> map:createFromXML(<STRING> xml.string)
 
@@ -22,4 +22,4 @@ Syntax
                           <volume>100</volume>
                        </stock>")
 
-This returns a map with the keys `symbol`, `price`, `volume`, and with their values `IBM`, `200` and `100` respectively.
+This returns a map with the keys `symbol`, `price`, `volume`, and with their values `IBM`, `200`, and `100` respectively.
