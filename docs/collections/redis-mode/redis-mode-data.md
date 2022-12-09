@@ -1,6 +1,6 @@
 ---
 title: Redis Mode Data
-sidebar_position: 40
+sidebar_position: 30
 ---
 
 The Redis Mode Data tab is one way to view collection information.
