@@ -4,7 +4,7 @@ title: Edge Function
 
 The `fx` extension provides access to _edge functions_.
 
-Edge functions allow you to execute code in response to events/requests without the complex infrastructure typically associated with building and launching microservices applications.
+Edge functions allow you to run code in response to events or requests without the complex infrastructure typically associated with building and launching microservices.
 
 ## Syntax
 
