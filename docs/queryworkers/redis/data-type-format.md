@@ -10,11 +10,17 @@ After collection is created developers can use Redis interface with API call or 
 While working with the API or SDK you will need to send Redis collection name as a parameter.
 
 Developers have option to check how data is structured.
+
+To view your data:
+
 1. Log in to your Macrometa account.
-2. Go to the tab **Data** than select **Collections**.
-3. Select Redis collection
+2. Click **Data > Collections**.
+3. Select your [Redis Mode collection](../../collections/redis-mode/index.md).
+
+   Data is displayed on the Data tab of the collection.
 
 ## STRING data type representation
+
 When you use string commands such as **SET**, **APPEND** etc. data in the platform will be represented in format:
 
 ```js
