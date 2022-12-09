@@ -4,7 +4,7 @@ title: toJSON (Function)
 
 Function converts a map into a JSON object and returns the JSON as a string.
 
-Syntax
+## Syntax
 
     <STRING> map:toJSON(<OBJECT> map)
 
