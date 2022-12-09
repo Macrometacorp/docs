@@ -60,7 +60,7 @@ These four parameters are credentials for the Akamai API:
 **Group ID** we can find out if we login to Akamai platform then select Properties from the right sidebar.
 All properties will be displayed, select property to get the property details. In the URL bar of preferred browser you will see `gid=xxxxxx` parameter.
 
-- **Resource Tier ID**
+- **Resource Tier ID -** Specify the Akamai tier used for your integration.  **Dynamic Computer** should be **200** and **Basic Compute** should be **100**.
 
 The Resource Tier ID for **Dynamic Compute is 200** and the Resource Tier ID for **Basic Compute is 100**.
 
