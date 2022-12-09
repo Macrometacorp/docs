@@ -63,7 +63,6 @@ All properties will be displayed, select property to get the property details. I
 
 - **Resource Tier ID**
 
-defines Akamai tier that will be used for integration.
 The Resource Tier ID for **Dynamic Compute is 200** and the Resource Tier ID for **Basic Compute is 100**.
 
 
