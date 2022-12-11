@@ -4,7 +4,7 @@ title: getExponent (Function)
 
 This function returns the unbiased exponent that is used in the representation of `p1`. This function wraps the `java.lang.Math.getExponent()` function.
 
-Syntax
+## Syntax
 
     <INT> math:getExponent(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:getExponent(inValue) as expValue
     from InValueStream;
 
-This function calculates the unbiased exponent of a given input, `inValue` and directs the result to the `OutMediationStream` output stream. For example, getExponent(60984.1) returns 15.
+This function calculates the unbiased exponent of a given input, `inValue` and directs the result to the `OutMediationStream` output stream. For example, `getExponent(60984.1)` returns 15.

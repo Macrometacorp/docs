@@ -2,7 +2,7 @@
 title: asin (Function)
 ---
 
-If -1 \<= p1 \<= 1, this function returns the arc-sin (inverse sine) value of p1. If the domain is invalid, it returns NULL. The value returned is in radian scale. This function wraps the java.lang.Math.asin() function.
+If -1 \<= p1 \<= 1, this function returns the arc-sin (inverse sine) value of p1. If the domain is invalid, then it returns `NULL`. The value returned is in radian scale. This function wraps the `java.lang.Math.asin()` function.
 
 Syntax
 
@@ -22,4 +22,4 @@ Syntax
     select math:asin(inValue) as asinValue
     from InValueStream;
 
-If the `inValue` in the input stream is given, the function calculates the arc-sin value of it and returns the arc-sin value to the output stream, OutMediationStream. For example, asin(0.5) returns 0.5235987755982989.
+If the `inValue` in the input stream is given, the function calculates the arc-sin value of it and returns the arc-sin value to the output stream, OutMediationStream. For example, `asin(0.5)` returns 0.5235987755982989.
