@@ -50,9 +50,9 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-You can also check if there is existing metadata set, update metadata and delete metadata.
+You can also check if there is existing metadata set-up, update metadata and delete metadata.
 
-When metadata is set-up. You can deploy Query Worker to Edge Worker with `deployQueryWorkerToEdgeWorker` method:
+When metadata is set-up. You can deploy Query Worker to Edge Worker with `deployQueryWorkerToEdgeWorker` method or an API call:
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
@@ -87,7 +87,7 @@ main();
 </TabItem>
 </Tabs>
 
-You can check deployed Edge Workers with `listFunctionWorkers` method:
+You can check deployed Edge Workers with `listFunctionWorkers` method or an API call:
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
@@ -116,7 +116,7 @@ main();
 </TabItem>
 </Tabs>
 
-There are other deployment options such as `deployStreamPublisherToEdgeWorker` and `deployStreamAdhocQueryToEdgeWorker` methods:
+There are other deployment options such as `deployStreamPublisherToEdgeWorker` and `deployStreamAdhocQueryToEdgeWorker` methods or API calls:
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
@@ -187,7 +187,7 @@ main();
 </TabItem>
 </Tabs>
 
-It is possible to get all the information about deployed Edge Worker with `getFunctionWorkerInfo` method:
+It is possible to get all the information about deployed Edge Worker with `getFunctionWorkerInfo` method or an API call:
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
@@ -218,7 +218,7 @@ main();
 </TabItem>
 </Tabs>
 
-Last step would be to invoke Edge Worker with `invokeFunctionWorker` method:
+Last step would be to invoke Edge Worker with `invokeFunctionWorker` method or an API call:
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
