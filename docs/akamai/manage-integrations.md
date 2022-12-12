@@ -52,17 +52,21 @@ This section explains how Macrometa fields relate to Akamai EdgeWorker fields.
 
 These four parameters are credentials for the Akamai API:
 
-- **Access Token**
-- **Base URL** - The base URL is the Akamai endpoint URL it has a format of `akab-***.luna.akamaiapis.net`.
-- **Client Secret**
-- **Client Token**
+- **Access Token -** Refer to the [Get an access token](https://techdocs.akamai.com/identity-cloud-auth/reference/post-access-getaccesstoken) API call to create or retrieve an access token.
+- **Base URL -** Akamai endpoint URL with the format `akab-***.luna.akamaiapis.net`
+- **Client Secret -** Follow the [Set up authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials) procedure in the Akamai documentation to create credentials with a client token and client secret.
+- **Client Token -** Follow the [Set up authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials) procedure in the Akamai documentation to create credentials with a client token and client secret.
 
-Refer to [Akamai documentation](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials), to learn how to create credentials.
 
-### Host Name and Group ID
+- **Host Name -** Your Akamai **Property Host Name**.
+- **Group ID -** You can view your **Group ID** in the Properties screen in Akamai. Select a property to view more details and view the Group ID in the URL bar of preferred browser: `gid=xxxxxx`
+**Group ID** we can find out if we login to Akamai platform then select Properties from the right sidebar.
+All properties will be displayed, select property to get the property details. In the URL bar of preferred browser you will see `gid=xxxxxx` parameter.
 
-**Host Name** and **Group ID** are needed to identify CDN configuration and that it called **Property** on Akamai platform.
-You can find key concepts of Property Management in [Akamai documentation](https://techdocs.akamai.com/property-mgr/docs/key-concepts-terms).
+- **Resource Tier ID -** Specify the Akamai tier used for your integration.  **Dynamic Computer** should be **200** and **Basic Compute** should be **100**.
+
+
+**Host Name** and **Group ID** are considered Properties. Refer to [Key concepts and terms](https://techdocs.akamai.com/property-mgr/docs/key-concepts-terms) in the Akamai documentation for more information.
 
 - **Host Name** should be filled with the Akamai **Property Host Name**.
 - **Group ID**. Log in to Akamai platform, then select **Properties** from the right sidebar. All properties are displayed, select a property to get the property details. In the URL bar of preferred browser, you will see `gid=xxxxxx` parameter.

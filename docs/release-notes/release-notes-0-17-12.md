@@ -17,7 +17,7 @@ The first time you log in to Macrometa, the system now displays a welcome page w
 
 You can now upgrade and manage your scale tier payment plan in the Account page in the Macrometa web console.
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+The [Plans](../account-management/plans/index.md) topic was created as a result of this change.
 
 ## Feature Updates
 
@@ -32,9 +32,10 @@ Topics in [Queries and Query Workers](../queryworkers/index.md) and [SQL in Macr
 
 ### Redis Support Updates - Beta
 
-Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
+- Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
+- Macrometa documentation now clarifies [Redis limitations](../queryworkers/redis/index.md#limitations) and [data type format requirements](../queryworkers/redis/data-type-format.md).
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+Topics in [Redis](../queryworkers/redis/index.md) were updated as a result of this change.
 
 ### Akamai EdgeWorker Support Updates - Preview
 
