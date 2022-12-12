@@ -7,14 +7,14 @@ import TabItem from '@theme/TabItem';
 
 This page shows you how to use Akamai EdgeWorkers with Macrometa SDKs and API calls.
 
-## Create EdgeWorker Metadata
+## Create or Update EdgeWorker Metadata
 
 The first step to working with EdgeWorkers is to create EdgeWorker metadata. You can see more about parameters of metadata object in [Manage Integrations](../../docs/akamai/manage-integrations.md).
 
 You can also check if there is existing metadata set up, update metadata, and delete metadata.
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label="JavaScript">
+<TabItem value="javascript" label=" JavaScript SDK">
 
 - Step 1. [Install the SDK](../../docs/sdks/install-sdks.md).
 - Step 2. Create an instance of the jsC8.
@@ -48,9 +48,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages:
-
-- [Create EdgeWorker metadata](https://macrometa.com/docs/api#/operations/RedisPost).
+[Create or Update EdgeWorker Metadata](https://macrometa.com/docs/api#/operations/UpdateFunctionWorkerMetadata).
 
 </TabItem>
 </Tabs>
@@ -60,7 +58,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 When metadata is set up, you can deploy a query worker to an EdgeWorker with `deployQueryWorkerToEdgeWorker` method or an API call.
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label="JavaScript">
+<TabItem value="javascript" label=" JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -86,39 +84,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Deploy the query worker to the edge worker environment](https://macrometa.com/docs/api#/operations/RedisPost)
-
-
-</TabItem>
-</Tabs>
-
-## View Deployed EdgeWorkers
-
-You can check deployed EdgeWorkers with `listFunctionWorkers` method or an API call.
-
-<Tabs groupId="modify-single">
-<TabItem value="javascript" label="JavaScript">
-
-```js
-const jsc8 = require("jsc8");
-client = new jsc8({
-    url: "https://play.paas.macrometa.io/",
-    apiKey: "xxxxxx",
-    fabricName: "_system",
-});
-
-async function main() {
-    const response = await client.function.listFunctionWorkers();
-    console.log(response);
-}
-
-main();
-```
-
-</TabItem>
-<TabItem value="api" label="REST API">
-
-- [List multiple edge functions](https://macrometa.com/docs/api#/operations/RedisPost)
+[Deploy the query worker to the EdgeWorker environment](https://macrometa.com/docs/api#/operations/GenerateFunctionWorkerFromQueryWorker)
 
 </TabItem>
 </Tabs>
@@ -126,7 +92,7 @@ main();
 ## Deploy Stream Worker to EdgeWorker
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label="JavaScript">
+<TabItem value="javascript" label=" JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -155,7 +121,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Deploy the stream publisher to the edge worker environment](https://macrometa.com/docs/api#/operations/RedisPost)
+[Deploy the stream worker to the EdgeWorker environment](https://macrometa.com/docs/api#/operations/GenerateFunctionWorkerFromStreamPublisher)
 
 </TabItem>
 </Tabs>
@@ -163,7 +129,7 @@ main();
 ## Deploy Stream Ad Hoc Query to EdgeWorker
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label="JavaScript">
+<TabItem value="javascript" label=" JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -191,40 +157,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Deploy the stream adhoc query to the edge worker environment](https://macrometa.com/docs/api#/operations/RedisPost)
-
-</TabItem>
-</Tabs>
-
-## Get EdgeWorker Details
-
-You can get all the information about deployed EdgeWorker with `getFunctionWorkerInfo` method or an API call:
-
-<Tabs groupId="modify-single">
-<TabItem value="javascript" label="JavaScript">
-
-```js
-const jsc8 = require("jsc8");
-client = new jsc8({
-    url: "https://play.paas.macrometa.io/",
-    apiKey: "xxxxxx",
-    fabricName: "_system",
-});
-
-async function main() {
-    const response = await client.function.getFunctionWorkerInfo(
-        "functionName"
-    );
-    console.log(response);
-}
-
-main();
-```
-
-</TabItem>
-<TabItem value="api" label="REST API">
-
-- [Get edge function information](https://macrometa.com/docs/api#/operations/RedisPost)
+- [Deploy the stream ad hoc query to the EdgeWorker environment](https://macrometa.com/docs/api#/operations/GenerateFunctionWorkerFromStreamQuery)
 
 </TabItem>
 </Tabs>
@@ -232,7 +165,7 @@ main();
 ## Invoke EdgeWorker
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label="JavaScript">
+<TabItem value="javascript" label=" JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -255,7 +188,71 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Invoke a edge function](https://macrometa.com/docs/api#/operations/RedisPost).
+[Invoke an EdgeWorker](https://macrometa.com/docs/api#/operations/InvokeFunctionWorkerByFunctionName)
+
+</TabItem>
+</Tabs>
+
+## View Deployed EdgeWorkers
+
+You can check deployed EdgeWorkers with `listFunctionWorkers` method or an API call.
+
+<Tabs groupId="modify-single">
+<TabItem value="javascript" label=" JavaScript SDK">
+
+```js
+const jsc8 = require("jsc8");
+client = new jsc8({
+    url: "https://play.paas.macrometa.io/",
+    apiKey: "xxxxxx",
+    fabricName: "_system",
+});
+
+async function main() {
+    const response = await client.function.listFunctionWorkers();
+    console.log(response);
+}
+
+main();
+```
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+[List multiple EdgeWorkers](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType)
+
+</TabItem>
+</Tabs>
+
+## Get EdgeWorker Details
+
+You can get all the information about deployed EdgeWorker with `getFunctionWorkerInfo` method or an API call:
+
+<Tabs groupId="modify-single">
+<TabItem value="javascript" label=" JavaScript SDK">
+
+```js
+const jsc8 = require("jsc8");
+client = new jsc8({
+    url: "https://play.paas.macrometa.io/",
+    apiKey: "xxxxxx",
+    fabricName: "_system",
+});
+
+async function main() {
+    const response = await client.function.getFunctionWorkerInfo(
+        "functionName"
+    );
+    console.log(response);
+}
+
+main();
+```
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+- [Get EdgeWorker information](https://macrometa.com/docs/api#/operations/GetFunctionWorkerMetadata)
 
 </TabItem>
 </Tabs>
