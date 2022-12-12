@@ -44,7 +44,7 @@ Topics in [Redis](../queryworkers/redis/index.md) were updated as a result of th
   - In the Stream Workers Samples tab in the Macrometa web console, Sample-Function-Worker was added.
 - Added API error response codes. [Functions API](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType) were updated as a result of this change.
 - `groupIdWithPrefix` has been added to EdgeWorker metadata. You should delete your existing metadata and create new metadata through APIs before creating new EdgeWorkers.
-- Macrometa SDK support for EdgeWorkers. You can now use EdgeWorkers with the jsC8 or pyC8 SDKs.
+- Macrometa SDK support for EdgeWorkers. You can now use EdgeWorkers with the jsC8 SDKs.
 
 [Akamai EdgeWorker SDK Support](../akamai/akamai-sdk.md) and [Manage Akamai Integrations](../akamai/manage-integrations.md) were updated as a result of these changes.
 
