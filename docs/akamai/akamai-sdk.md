@@ -1,6 +1,6 @@
 ---
 sidebar_position: 50
-title: Edge Workers SDK support
+title: Akamai EdgeWorker SDK Support
 ---
 
 import Tabs from '@theme/Tabs';
