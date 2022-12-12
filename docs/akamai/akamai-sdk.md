@@ -54,7 +54,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 You can also check if there is existing metadata set-up, update metadata, and delete metadata.
 
-When metadata is set-up. You can deploy Query Worker to Edge Worker with `deployQueryWorkerToEdgeWorker` method or an API call:
+When metadata is set up, you can deploy a query worker to an EdgeWorker with `deployQueryWorkerToEdgeWorker` method or an API call:
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
