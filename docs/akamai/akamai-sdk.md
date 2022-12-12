@@ -2,13 +2,16 @@
 sidebar_position: 50
 title: Akamai EdgeWorker SDK Support
 ---
-
-This page shows you how to use Akamai EdgeWorkers with Macrometa SDKs.
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-First step is to create Edge worker metadata. You can see more about parameters of metadata object in [Manage Integrations](../../docs/akamai/manage-integrations.md).
+This page shows you how to use Akamai EdgeWorkers with Macrometa SDKs and API calls.
+
+## Create EdgeWorker Metadata
+
+The first step to working with EdgeWorkers is to create EdgeWorker metadata. You can see more about parameters of metadata object in [Manage Integrations](../../docs/akamai/manage-integrations.md).
+
+You can also check if there is existing metadata set up, update metadata, and delete metadata.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
@@ -52,9 +55,9 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-You can also check if there is existing metadata set-up, update metadata, and delete metadata.
+## Deploy Query Worker to EdgeWorker
 
-When metadata is set up, you can deploy a query worker to an EdgeWorker with `deployQueryWorkerToEdgeWorker` method or an API call:
+When metadata is set up, you can deploy a query worker to an EdgeWorker with `deployQueryWorkerToEdgeWorker` method or an API call.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
@@ -89,7 +92,9 @@ main();
 </TabItem>
 </Tabs>
 
-You can check deployed EdgeWorkers with `listFunctionWorkers` method or an API call:
+## View Deployed EdgeWorkers
+
+You can check deployed EdgeWorkers with `listFunctionWorkers` method or an API call.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
@@ -118,7 +123,7 @@ main();
 </TabItem>
 </Tabs>
 
-There are other deployment options such as `deployStreamPublisherToEdgeWorker` and `deployStreamAdhocQueryToEdgeWorker` methods or API calls:
+## Deploy Stream Worker to EdgeWorker
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
@@ -155,6 +160,8 @@ main();
 </TabItem>
 </Tabs>
 
+## Deploy Stream Ad Hoc Query to EdgeWorker
+
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
 
@@ -189,6 +196,8 @@ main();
 </TabItem>
 </Tabs>
 
+## Get EdgeWorker Details
+
 You can get all the information about deployed EdgeWorker with `getFunctionWorkerInfo` method or an API call:
 
 <Tabs groupId="modify-single">
@@ -220,7 +229,7 @@ main();
 </TabItem>
 </Tabs>
 
-Last step would be to invoke Edge Worker with `invokeFunctionWorker` method or an API call:
+## Invoke EdgeWorker
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
