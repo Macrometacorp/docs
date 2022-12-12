@@ -866,7 +866,7 @@ Square brackets can be used to indicate the event index where `1` can be used as
 
 **Example**
 
-The following Stream App calculates the temperature difference between two regulator events.
+The following Stream Worker calculates the temperature difference between two regulator events.
 
 ```
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
@@ -931,7 +931,7 @@ Pattern|Detected Scenario
 
 **Example**
 
-Following Stream App, sends the `stop` control action to the regulator when the key is removed from the hotel room.
+Following Stream Worker, sends the `stop` control action to the regulator when the key is removed from the hotel room.
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
@@ -944,7 +944,7 @@ from every( e1=RegulatorStateChangeStream[ action == 'on' ] ) ->
 having action != 'none';
 ```
 
-This Stream Application generates an alert if we have switch off the regulator before the temperature reaches 12 degrees.  
+This Stream Worker generates an alert if we have switch off the regulator before the temperature reaches 12 degrees.  
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
@@ -955,7 +955,7 @@ select e1.roomNo as roomNo
 from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] and e2=RegulatorStateChangeStream[action == 'off'];
 ```
 
-This Stream Application generates an alert if the temperature does not reduce to 12 degrees within 5 minutes of switching on the regulator.  
+This Stream Worker generates an alert if the temperature does not reduce to 12 degrees within 5 minutes of switching on the regulator.  
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
@@ -963,7 +963,7 @@ CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
 insert into AlertStream
 select e1.roomNo as roomNo
-from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] for '5 min';
+from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] for 5 min;
 ```
 
 ### Sequence
