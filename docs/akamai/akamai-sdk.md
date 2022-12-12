@@ -6,7 +6,7 @@ title: Akamai EdgeWorker SDK Support
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-First step is to create Edge worker metadata. You can see more about parameters of metadata object in [Menage Integrations](../../docs/akamai/manage-integrations.md).
+First step is to create Edge worker metadata. You can see more about parameters of metadata object in [Manage Integrations](../../docs/akamai/manage-integrations.md).
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
