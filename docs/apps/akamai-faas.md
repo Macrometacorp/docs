@@ -40,7 +40,7 @@ curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/function
  -d ''
 ```
 
-cURL command to invoke Akamai edgeworker directly
+cURL command to invoke Akamai EdgeWorker directly
 
 ```
 curl --location -g -X GET 'https://macrometa-akamai-ew.macrometa.io/mm-_system-get_car_by_make?bindVars={"make":"Mercedes"}' \
