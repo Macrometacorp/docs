@@ -17,7 +17,7 @@ You can also check if there is existing metadata set up, update metadata, and de
 <TabItem value="javascript" label="JavaScript">
 
 - Step 1. [Install the SDK](../../docs/sdks/install-sdks.md).
-- Step 2. Create an instance of the jsc8.
+- Step 2. Create an instance of the jsC8.
 - Step 3. Access Function commands `client.function.<function method>`.
 
 ```js
