@@ -3,6 +3,8 @@ sidebar_position: 50
 title: Akamai EdgeWorker SDK Support
 ---
 
+This page shows you how to use Akamai EdgeWorkers with Macrometa SDKs.
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
