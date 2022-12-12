@@ -1,6 +1,6 @@
 ---
 sidebar_position: 30
-title: Data Type Format on Macrometa platform
+title: Data Type Format on Macrometa Platform
 ---
 
 import Tabs from '@theme/Tabs';
