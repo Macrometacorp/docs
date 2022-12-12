@@ -12,7 +12,7 @@ First step is to create Edge worker metadata. You can see more about parameters 
 <TabItem value="javascript" label="JavaScript">
 
 - Step 1. [Install the SDK](../../docs/sdks/install-sdks.md).
-- Step 2. Create an instance of the jsc8
+- Step 2. Create an instance of the jsc8.
 - Step 3. Access Function commands `client.function.<function method>`.
 
 ```js
