@@ -226,7 +226,7 @@ To understand how this is done, consider an example where you have some credit c
         Note the following about the above sink definition:
         - It is assumed that the external application receives requests in HTTP. Therefore, the sink type is `http-request`.
         - The `publisher.url` parameter specifies the URL to which the outgoing events need to be published via HTTP.
-        - For more information about the HTTP transport, see [Plugins - HTTP](../reference/extensions/io/http.md).
+        - For more information about the HTTP transport, see [HTTP Sink](../query-guide/functions/sink/http.md) and [HTTP Source](../query-guide/functions/source/http.md).
     :::
 4. To capture the response of the external application once it returns the credit card type, create a stream as follows. For more information about consuming data, see the [Consuming Data guide](./consuming-data.md).
 
