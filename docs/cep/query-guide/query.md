@@ -420,14 +420,14 @@ Event type should be defined in between `insert` and `into` keywords for insert 
 ```
 insert <event type> into <output stream>
 select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
+from <input stream> window <window name>(<parameter>, <parameter>, ... )
 ```
 
 Event type should be defined next to the `for` keyword for delete queries as follows.
 
 ```
 select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
+from <input stream> window <window name>(<parameter>, <parameter>, ... )
 delete <table> (for <event type>)?
     on <condition>
 ```
@@ -436,7 +436,7 @@ Event type should be defined next to the `for` keyword for update queries as fol
 
 ```
 select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
+from <input stream> window <window name>(<parameter>, <parameter>, ... )
 update <table> (for <event type>)?
     set <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
     on <condition>
@@ -446,7 +446,7 @@ Event type should be defined next to the `for` keyword for update or insert quer
 
 ```
 select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
+from <input stream> window <window name>(<parameter>, <parameter>, ... )
 update or insert into <table> (for <event type>)?
     set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
     on <condition>
@@ -471,7 +471,7 @@ Query to output only the expired events from a 1 minute time window to the `Dela
 ```
 insert expired events into DelayedTempStream
 select *
-from TempStream#window.time(1 min)
+from TempStream window sliding_time(1)
 ```
 
 :::note
