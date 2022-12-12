@@ -189,7 +189,7 @@ main();
 </TabItem>
 </Tabs>
 
-It is possible to get all the information about deployed Edge Worker with `getFunctionWorkerInfo` method or an API call:
+You can get all the information about deployed EdgeWorker with `getFunctionWorkerInfo` method or an API call:
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
