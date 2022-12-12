@@ -244,7 +244,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Invoke a edge function](https://macrometa.com/docs/api#/operations/RedisPost)
+- [Invoke a edge function](https://macrometa.com/docs/api#/operations/RedisPost).
 
 </TabItem>
 </Tabs>
