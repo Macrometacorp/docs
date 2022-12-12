@@ -1,24 +1,44 @@
 ---
 sidebar_position: 30
-title: Data Type Format on Macrometa Platform
+title: Redis Data Formats
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+Redis Mode collections require data to be stored in certain formats in order to be compatible with Redis.
 
-If you want to use Redis with Macrometa first step is to create collection on the platform.
-How to create Redis collection you can find [here](../../collections/redis-mode/index.md).
+If you add items to the collection using the Redis API, then the format is enforced automatically. However, if you add items through other APIs, then you must ensure that data respects the following formats according to type.
+
+## View Data in Redis Mode Collection
 
 After collection is created developers can use Redis interface with API call or SDK.
 While working with the API or SDK you will need to send Redis collection name as a parameter.
 
 Developers have option to check how data is structured.
-1. Log in to your Macrometa account.
-2. Go to the tab **Data** than select **Collections**.
-3. Select Redis collection
 
-## STRING data type representation
-When you use string commands such as **SET**, **APPEND** etc. data in the platform will be represented in format:
+To view your data:
+
+1. Log in to your Macrometa account.
+2. Click **Data > Collections**.
+3. Select your [Redis Mode collection](../../collections/redis-mode/index.md).
+
+   Data is displayed on the Data tab of the collection.
+
+## Data Formats
+
+:::note
+The use of `key` instead of `_key` is intentional. Each document also has an auto-generated `_key` that is not part of the Redis data.
+
+Each document also has the optional attribute `expireDate`, not shown in the entries below.
+:::
+
+### String
+
+Syntax:
+
+```json
+{key: ..., value: ..., data_type: "string"}
+```
+
+When you use string commands such as **SET**, **APPEND**, and so on, data in the platform will be represented in format:
 
 ```js
 {
@@ -28,10 +48,20 @@ When you use string commands such as **SET**, **APPEND** etc. data in the platfo
     "value": "testValue"
 }
 ```
-`expiryDate` is optional parameter.
 
-## HASH data type representation
-When you use hash commands such as **HSET**, **HINCRBY** etc. data in the platform will be represented in format:
+`expiryDate` is an optional parameter.
+
+### Hash
+
+Syntax:
+
+There can be multiple entries per hash.
+
+```json
+{key: ..., value: ..., hvalue: ..., data_type: "hash"}
+```
+
+When you use hash commands such as **HSET**, **HINCRBY**, and so on, data in the platform will be represented in format:
 
 ```js
 {
@@ -42,11 +72,12 @@ When you use hash commands such as **HSET**, **HINCRBY** etc. data in the platfo
 }
 ```
 
-Keep in mind that we will have multiple entries per hash.
 If we use Redis **HSET** command:
-- `HSET games action "elden" driving "GT7"`
+
+`HSET games action "elden" driving "GT7"`
 
 Data in Redis collection will look like:
+
 ```js
 [
 	{
@@ -64,8 +95,15 @@ Data in Redis collection will look like:
 ]
 ```
 
-## LIST data type representation
-When you use list commands such as **LPUSH**, **LSET** etc. data in the platform will be represented in format:
+### List
+
+Syntax:
+
+```json
+{key: ..., list: [...], data_type: "list"}
+```
+
+When you use list commands such as **LPUSH**, **LSET**, and so on, data in the platform will be represented in format:
 
 ```js
 {
@@ -79,8 +117,17 @@ When you use list commands such as **LPUSH**, **LSET** etc. data in the platform
 }
 ```
 
-## SET data type representation
-When you use set commands such as **SADD**, **SMOVE** etc. data in the platform will be represented in format:
+### SET
+
+Syntax:
+
+There can be multiple entries per set.
+
+```json
+{key: ..., value: ..., data_type: "set"}
+```
+
+When you use set commands such as **SADD**, **SMOVE**, and so on, data in the platform will be represented in format:
 
 ```js
 {
@@ -90,9 +137,9 @@ When you use set commands such as **SADD**, **SMOVE** etc. data in the platform 
 }
 ```
 
-Keep in mind that we will have multiple entries per set.
 If we use Redis **SADD** command:
-- `SADD animals "dog" "cat"`
+
+`SADD animals "dog" "cat"`
 
 Data in Redis collection will look like:
 
@@ -111,8 +158,17 @@ Data in Redis collection will look like:
 ]
 ```
 
-## SORTED SET data type representation
-When you use set commands such as **ZADD**, **SMOVE** etc. data in the platform will be represented in format:
+### Sorted Set
+
+Syntax:
+
+There can be multiple entries per sorted set.
+
+```json
+{key: ..., value: ..., score: <number>, data_type: "zset"}
+```
+
+When you use set commands such as **ZADD**, **SMOVE**, and so on, data in the platform will be represented in format:
 
 ```js
 {
@@ -123,11 +179,12 @@ When you use set commands such as **ZADD**, **SMOVE** etc. data in the platform 
 }
 ```
 
-Keep in mind that we will have multiple entries per set.
 If we use Redis **ZADD** command:
-- `ZADD animals 1 "dog" 2 "cat"`
+
+`ZADD animals 1 "dog" 2 "cat"`
 
 Data in Redis collection will look like:
+
 ```js
 [
 	{
@@ -144,27 +201,3 @@ Data in Redis collection will look like:
 	}
 ]
 ```
-
-## Working with Redis collection
-On Redis collection you can preform other operations such as writing complex queries, generating API endpoints, Query workers etc. using platform console, API call or SDK.
-
-Examples for writing queries:
-
-<Tabs groupId="modify-single">
-<TabItem value="c8ql" label="C8QL">
-
-```js
-FOR data IN redisCollection FILTER data.data_type=="zset"
-RETURN data
-```
-
-</TabItem>
-<TabItem value="sql" label="SQL">
-
-```sql
-SELECT * FROM test_redis_collection WHERE data_type='zset'
-```
-
-</TabItem>
-</Tabs>
-
