@@ -17,7 +17,7 @@ The first time you log in to Macrometa, the system now displays a welcome page w
 
 You can now upgrade and manage your scale tier payment plan in the Account page in the Macrometa web console.
 
-The [Plans](../account-management/plans/index.md) topic was created as a result of this change.
+The [Plans](../account-management/plans/index.md) section was created as a result of this change.
 
 ## Feature Updates
 
@@ -33,7 +33,7 @@ Topics in [Queries and Query Workers](../queryworkers/index.md) and [SQL in Macr
 ### Redis Support Updates - Beta
 
 - Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
-- Macrometa documentation now clarifies [Redis limitations](../queryworkers/redis/index.md#limitations) and [data type format requirements](../queryworkers/redis/data-type-format.md).
+- Macrometa documentation now clarifies [Redis limitations](../queryworkers/redis/index.md#limitations) and [Redis Data Formats](../queryworkers/redis/data-type-format.md).
 
 Topics in [Redis](../queryworkers/redis/index.md) were updated as a result of this change.
 
@@ -46,7 +46,7 @@ Topics in [Redis](../queryworkers/redis/index.md) were updated as a result of th
 - `groupIdWithPrefix` has been added to EdgeWorker metadata. You should delete your existing metadata and create new metadata through APIs before creating new EdgeWorkers.
 - Macrometa SDK support for EdgeWorkers. You can now use EdgeWorkers with the jsC8 or pyC8 SDKs.
 
-[Topic name](link) and [Manage Akamai Integrations](../akamai/manage-integrations.md) were updated as a result of this change.
+[Akamai EdgeWorker SDK Support](../akamai/akamai-sdk.md) and [Manage Akamai Integrations](../akamai/manage-integrations.md) were updated as a result of these changes.
 
 ### Updated Side Menu
 
