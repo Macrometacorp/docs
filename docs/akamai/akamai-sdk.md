@@ -89,7 +89,7 @@ main();
 </TabItem>
 </Tabs>
 
-You can check deployed Edge Workers with `listFunctionWorkers` method or an API call:
+You can check deployed EdgeWorkers with `listFunctionWorkers` method or an API call:
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript">
