@@ -47,7 +47,7 @@ main();
 
 Use our interactive API Reference with code generation in 18 programming languages:
 
-- [Create the edge worker metadata](https://macrometa.com/docs/api#/operations/RedisPost)
+- [Create EdgeWorker metadata](https://macrometa.com/docs/api#/operations/RedisPost).
 
 </TabItem>
 </Tabs>
