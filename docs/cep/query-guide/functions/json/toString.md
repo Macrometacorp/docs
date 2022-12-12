@@ -4,7 +4,7 @@ title: toString (Function)
 
 Function generates a JSON string corresponding to a given JSON object.
 
-Syntax
+## Syntax
 
     <STRING> json:toString(<OBJECT> json)
 
