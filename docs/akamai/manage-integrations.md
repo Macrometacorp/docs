@@ -22,7 +22,7 @@ Add Akamai metadata to your Macrometa GDN environment.
 1. Click **Compute > Query Workers**.
 1. Click **Generate Edge Worker**.
 1. In the pop-up, click **Manage Integration**.
-1. Enter the following details from your [Akamai account](#akamai-account-details-explanation):
+1. Enter your [Akamai account details](#akamai-account-details):
     - **Access Token**
     - **Base URL**
     - **Client Secret**
@@ -42,9 +42,13 @@ Delete Akamai metadata from your Macrometa GDN environment.
 1. Click **Compute > Query Workers**.
 1. Click **Generate EdgeWorker**.
 1. In the pop-up, click **Manage Integration**.
-1. Click **Delete metadata** to clear your Akamai account details.
+1. Click **Delete Metadata** to clear your Akamai account details.
 
-## Akamai account details explanation
+## Akamai Account Details
+
+This section explains how Macrometa fields relate to Akamai EdgeWorker fields.
+
+### Credentials and Access
 
 These four parameters are credentials for the Akamai API:
 
@@ -64,7 +68,9 @@ All properties will be displayed, select property to get the property details. I
 
 **Host Name** and **Group ID** are considered Properties. Refer to [Key concepts and terms](https://techdocs.akamai.com/property-mgr/docs/key-concepts-terms) in the Akamai documentation for more information.
 
+- **Host Name** should be filled with the Akamai **Property Host Name**.
+- **Group ID**. Log in to Akamai platform, then select **Properties** from the right sidebar. All properties are displayed, select a property to get the property details. In the URL bar of preferred browser, you will see `gid=xxxxxx` parameter.
 
+### Resource Tier ID
 
-
-
+**Resource Tier ID** defines Akamai tier that will be used for integration. The Resource Tier ID for **Dynamic Compute is 200** and the Resource Tier ID for **Basic Compute is 100**.

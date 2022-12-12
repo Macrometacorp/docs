@@ -46,7 +46,7 @@ Topics in [Redis](../queryworkers/redis/index.md) were updated as a result of th
 - `groupIdWithPrefix` has been added to EdgeWorker metadata. You should delete your existing metadata and create new metadata through APIs before creating new EdgeWorkers.
 - Macrometa SDK support for EdgeWorkers. You can now use EdgeWorkers with the jsC8 or pyC8 SDKs.
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+[Topic name](link) and [Manage Akamai Integrations](../akamai/manage-integrations.md) were updated as a result of this change.
 
 ### Updated Side Menu
 
