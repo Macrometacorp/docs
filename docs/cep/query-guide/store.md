@@ -23,7 +23,7 @@ Queries supported for windows and aggregators:
 
 This is be done by submitting the store query to the stream worker runtime using its `query()` method.
 
-In order to execute store queries, the Stream worker of the Stream worker runtime you are using, should have a store defined, which contains the table that needs to be queried.
+In order to execute store queries, the stream worker of the stream worker runtime you are using, should have a store defined, which contains the table that needs to be queried.
 
 **Example**
 
