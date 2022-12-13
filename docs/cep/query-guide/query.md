@@ -944,7 +944,7 @@ from every( e1=RegulatorStateChangeStream[ action == 'on' ] ) ->
 having action != 'none';
 ```
 
-This Stream Worker generates an alert if we have switch off the regulator before the temperature reaches 12 degrees.  
+This stream worker generates an alert if we have switch off the regulator before the temperature reaches 12 degrees.  
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
