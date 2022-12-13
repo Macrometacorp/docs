@@ -866,7 +866,7 @@ Square brackets can be used to indicate the event index where `1` can be used as
 
 **Example**
 
-The following Stream Worker calculates the temperature difference between two regulator events.
+The following stream worker calculates the temperature difference between two regulator events.
 
 ```
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
