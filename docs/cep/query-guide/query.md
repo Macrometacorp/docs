@@ -931,7 +931,7 @@ Pattern|Detected Scenario
 
 **Example**
 
-Following Stream Worker, sends the `stop` control action to the regulator when the key is removed from the hotel room.
+Following stream worker, sends the `stop` control action to the regulator when the key is removed from the hotel room.
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
