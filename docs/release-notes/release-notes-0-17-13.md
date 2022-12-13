@@ -32,6 +32,23 @@ Description of update.
 
 [Topic name](link) and [topic name](link) were updated as a result of this change.
 
+### API Updates
+
+This release includes the following API changes.
+
+| Issue #  | Description  |
+|---|---|
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+
 ## Known Issues
 
 The following known issues were introduced in this release.
