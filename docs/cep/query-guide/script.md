@@ -3,7 +3,7 @@ sidebar_position: 80
 title: Script
 ---
 
-Scripts allow you to write functions in other programming languages and execute them within Stream queries. Functions defined via scripts can be accessed in queries similar to any other inbuilt function. **Function definitions** can be used to define these scripts.
+Scripts allow you to write functions in other programming languages and execute them within queries for a stream. Functions defined via scripts can be accessed in queries similar to any other inbuilt function. **Function definitions** can be used to define these scripts.
 
 Function parameters are passed into the function logic as `Object[]` and with the name `data` .
 
@@ -35,15 +35,16 @@ The following parameters are configured when defining a script.
 This query performs concatenation using JavaScript, and returns the output as a string.
 
 ```
-define function concatFn[javascript] return string {
+CREATE function concatFn[javascript] return string {
     var str1 = data[0];
     var str2 = data[1];
     var str3 = data[2];
-    var responce = str1 + str2 + str3;
-    return responce;
+    var response = str1 + str2 + str3;
+    return response;
 };
 
 CREATE STREAM TempStream(deviceID long, roomNo int, temp double);
+CREATE STREAM DeviceTempStream (id string, temp double);
 
 insert into DeviceTempStream
 select concatFn(roomNo,'-',deviceID) as id, temp
