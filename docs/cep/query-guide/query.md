@@ -955,7 +955,7 @@ select e1.roomNo as roomNo
 from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] and e2=RegulatorStateChangeStream[action == 'off'];
 ```
 
-This Stream Worker generates an alert if the temperature does not reduce to 12 degrees within 5 minutes of switching on the regulator.  
+This stream worker generates an alert if the temperature does not reduce to 12 degrees within five minutes of switching on the regulator.  
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
