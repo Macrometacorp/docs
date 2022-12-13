@@ -7,7 +7,9 @@ This document describes what has changed in Macrometa release X.X.X. All account
 
 NOTES
 - CMD + click now opens item (record, collection, whatever) in a new tab. Will this also work with opening new tab option in right-click menu? Does not in 17.12.
-- 
+- counter support - https://drive.google.com/file/d/1sEGr-CjyECJz-HseTG0D1gWxx5yg3tgW/view
+  -  Is this backend?
+-  
 
 
 ## New Features
