@@ -9,7 +9,7 @@ Provides introduction to basic Stream app attribute types which are `int`, `long
 
 In Stream apps, other types such as list, map, etc, should be passed as `object` into streams. For more information on other types refer other examples under Values and Types section.
 
-For information on [values](../query-guide/query.md#value), and other useful [functions](../query-guide/query.md#function), refer the [Stream Query Guide](../query-guide/index.md).
+For information on [values](../query-guide/query.md#value), and other useful [functions](../query-guide/query.md#function), refer the [Stream Worker Query Guide](../query-guide/index.md).
 
 ### Example
 
@@ -61,9 +61,9 @@ After processing, the event arriving at `PatientRegistrationStream` will be as f
 
 ## Map
 
-Provides examples on basic map functions provided via [map](extensions/execution/map.md) extension.
+Provides examples on basic map functions provided via [map](../query-guide/functions/map/clear.md) extension.
 
-For information of performing scatter and gather using `map:tokenize()`, and `map:collect()` refer the examples in Data Pipelining section. The information on all map functions is [here](extensions/execution/map.md).
+For information of performing scatter and gather using [map:tokenize()](../query-guide/functions/map/tokenize.md), and [map:collect()](../query-guide/functions/map/collect.md) refer the examples in Data Pipelining section.
 
 ### Example
 
@@ -117,15 +117,15 @@ Below event is sent to `CoupleDealInfoStream`,
 
 After processing, the following events will be arriving at each stream:
 
-* NewMapStream: <br/>[`{Ice Cream=24.0, Chocolate =18.0}`]
-* MapAnalysisStream: <br/>[`true`, `false`, `true`, `false`, `[Ice Cream, Chocolate]`, `2`]
-* ItemInsertedMapStream: <br/>[`{Ice Cream=24.0, Gift=1.0, Chocolate =18.0}`]
+- NewMapStream: <br/>[`{Ice Cream=24.0, Chocolate =18.0}`]
+- MapAnalysisStream: <br/>[`true`, `false`, `true`, `false`, `[Ice Cream, Chocolate]`, `2`]
+- ItemInsertedMapStream: <br/>[`{Ice Cream=24.0, Gift=1.0, Chocolate =18.0}`]
 
 ## List
 
-Provides examples on basic list functions provided via [list](extensions/execution/list.md) extension.
+Provides examples on basic list functions provided via [list functions](../query-guide/functions/list/addAll.md).
 
-For information of performing scatter and gather using `list:tokenize()`, and `list:collect()` refer the examples in Data Pipelining section. The information on all list functions is [here](extensions/execution/list.md).
+For information of performing scatter and gather using [list:tokenize()](../query-guide/functions/list/tokenize.md), and [list:collect()](../query-guide/functions/list/collect.md) refer the examples in Data Pipelining section.
 
 ### Example
 
@@ -177,10 +177,9 @@ Below event is sent to `ProductComboStream`,
 
 After processing, the following events will be arriving at each stream:
 
-* NewListStream: <br/>[`[Ice Cream, Chocolate, Cake]`]
-* ListAnalysisStream: <br/>[`true`, `true`, `false`, `Chocolate`, `3`]
-* UpdatedListStream: <br/>[`[Ice Cream, Chocolate, Toffee]`]
-
+- NewListStream: <br/>[`[Ice Cream, Chocolate, Cake]`]
+- ListAnalysisStream: <br/>[`true`, `true`, `false`, `Chocolate`, `3`]
+- UpdatedListStream: <br/>[`[Ice Cream, Chocolate, Toffee]`]
 
 ## Null
 
@@ -230,5 +229,5 @@ Below event is sent to `ProductInputStream`,
 
 After processing, the following events will be arriving at each stream:
 
-* ProductValidationStream: <br/>[`Cake`, `false`]
-* DiscountValidationStream: <br/>[`Cake`, `12.0`, `null`, `true`, `true`, `false`, `true`, `false`]
+- ProductValidationStream: <br/>[`Cake`, `false`]
+- DiscountValidationStream: <br/>[`Cake`, `12.0`, `null`, `true`, `true`, `false`, `true`, `false`]
