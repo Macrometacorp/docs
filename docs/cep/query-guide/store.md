@@ -27,7 +27,7 @@ In order to execute store queries, the stream worker of the stream worker runtim
 
 **Example**
 
-If you need to query the table named `RoomTypeTable` the it should have been defined in the Stream worker.
+If you need to query the table named `RoomTypeTable` the it should have been defined in the stream worker.
 
 In order to execute a store query on `RoomTypeTable`, you need to submit the store query using `query()` method.
 
