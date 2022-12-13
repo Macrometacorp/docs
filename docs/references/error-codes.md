@@ -195,7 +195,7 @@ For errors that occur but are anticipated.
 | 1463    | ERROR_CLUSTER_COULD_NOT_REMOVE_DATABASE_IN_CURRENT           | Occurs when a coordinator in a cluster cannot remove an entry for a database in the Current hierarchy in the agency.                                               |
 | 1464    | ERROR_CLUSTER_SHARD_GONE                                     | Occurs when a coordinator in a cluster cannot determine the shard that is responsible for a given document.                                                        |
 | 1465    | ERROR_CLUSTER_CONNECTION_LOST                                | Occurs when a coordinator in a cluster loses an HTTP connection to a DBserver in the cluster while transferring data.                                              |
-| 1466    | ERROR_CLUSTER_MUST_NOT_SPECIFY_KEY                           | Occurs when a coordinator in a cluster finds that the _key attribute was specified in a sharded collection the uses not only _key as sharding attribute.           |
+| 1466    | ERROR_CLUSTER_MUST_NOT_SPECIFY_KEY                           | Occurs when a coordinator in a cluster finds that the `_key` attribute was specified in a sharded collection the uses not only `_key` as sharding attribute.           |
 | 1467    | ERROR_CLUSTER_GOT_CONTRADICTING_ANSWERS                      | Occurs if a coordinator in a cluster gets conflicting results from different shards, which should never happen.                                                    |
 | 1468    | ERROR_CLUSTER_NOT_ALL_SHARDING_ATTRIBUTES_GIVEN              | Occurs if a coordinator tries to find out which shard is responsible for a partial document, but cannot do this because not all sharding attributes are specified. |
 | 1469    | ERROR_CLUSTER_MUST_NOT_CHANGE_SHARDING_ATTRIBUTES            | Occurs if there is an attempt to update the value of a shard attribute.                                                                                            |
@@ -283,12 +283,22 @@ For errors that occur but are anticipated.
 | 1591    | ERROR_QUERY_NOT_FOUND     | Occurs when an ID of a query is not found by the HTTP API.                     |
 | 1592    | ERROR_QUERY_IN_USE        | Occurs when an ID of a query is found by the HTTP API but the query is in use. |
 
-## Cursor Errors (1600-1699)
+## Cursor Errors (1600-1649)
 
 | Error # | Error Name             | Description                                                                                      |
 | ------- | ---------------------- | ------------------------------------------------------------------------------------------------ |
 | 1600    | ERROR_CURSOR_NOT_FOUND | Occurs when a cursor is requested via its id but a cursor with that ID cannot be found.          |
 | 1601    | ERROR_CURSOR_BUSY      | Occurs when a cursor is requested via its id but a concurrent request is still using the cursor. |
+
+## Transaction Errors (1650-1699)
+
+| Error # | Error Name             | Description                                                                                      |
+| ------- | ---------------------- | ------------------------------------------------------------------------------------------------ |
+| 1650    | ERROR_TRANSACTION_INTERNAL | Occurs when a wrong usage of transactions is detected. This is an internal error.          |
+| 1651    | ERROR_TRANSACTION_NESTED | Occurs when transactions are nested. |
+| 1652    | ERROR_TRANSACTION_UNREGISTERED_COLLECTION | Occurs when a collection is used in the middle of a transaction but was not registered at transaction start. |
+| 1653    | ERROR_TRANSACTION_DISALLOWED_OPERATION  | Occurs when a disallowed operation is carried out in a transaction. |
+| 1654    | ERROR_TRANSACTION_ABORTED | Occurs when a transaction was aborted.  |
 
 ## User Management Errors (1700-1799)
 
