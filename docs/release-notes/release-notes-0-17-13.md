@@ -16,6 +16,14 @@ NOTES
 
 The following new features are included in this release.
 
+### C8QL Transactions
+
+Description of feature.
+
+[Topic name](link) was added as a result of this feature.
+
+[Error Codes](../references/error-codes.md)
+
 ### Feature 1
 
 Description of feature.
