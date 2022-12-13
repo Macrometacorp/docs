@@ -22,16 +22,15 @@ To understand the different ways you can filter the specific data you need to tr
 1. Define an input stream to specify the schema based on which events are selected.
 
     ```sql
-    CREATE STREAM `InputTempStream` (deviceID long, roomNo string, temp double);
+    CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
     ```
 
-    :::info
-        For more information about defining input streams to receive events, see the [Consuming Data](./consuming-data.md).
-    :::
-1. Define an output stream `Room2233AnalysisStream` to emit the result
+   >* For more information about defining input streams to receive events, see the [Consuming Data](./consuming-data.md).
+   
+1. Define an output stream `Room2233Stream` to emit the result
 
     ```sql
-	CREATE STREAM Room2233AnalysisStream WITH (type='stream', stream='Room2233AnalysisStream', map.type='json') (deviceID long, roomNo string, temp double);
+	  CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
     ```
 
 1. Add a query to generate filtered temperature readings as follows. For this example, let's assume that you want to filter only temperature readings for a specific room number (e.g., room no `2233`).
@@ -39,48 +38,49 @@ To understand the different ways you can filter the specific data you need to tr
     1. Add the `from` clause and enter `InputTempStream` as the input stream from which the input data. However, because you only need to extract readings for room no `2233`, include a filter in the `from` clause as shown below:
 
         ```sql
-        from InputTempStream [roomNo=='2233']
+        FROM InputTempStream [roomNo=='2233']
         ```
 
     2. Add the `select` clause with `*` to indicate that all the attributes should be selected without any changes.
         ```sql
-        select *
-        from InputTempStream [roomNo=='2233']
+        SELECT *
+        FROM InputTempStream [roomNo=='2233']
         ```
 
-    3. Add the `insert into` clause and direct the output to a stream named `Room2233AnalysisStream`.
+    3. Add the `insert into` clause and direct the output to a stream named `Room2233Stream`.
 
         ```sql
-        insert into Room2233AnalysisStream
-        select *
-        from InputTempStream [roomNo=='2233']
+        INSERT INTO Room2233Stream
+        SELECT *
+        FROM InputTempStream [roomNo=='2233']
         ```
 
         :::tip
             As a best practice, name your queries using the `@info` annotation. In this example, you can name the query `Filtering` as follows.
         :::
+
         ```sql
-        @info(name = 'Filtering2233')
-        insert into Room2233AnalysisStream
-        select *
-        from InputTempStream [roomNo=='2233']
+        @info(name = 'Get temperature for roomNo: 2233')
+        INSERT INTO Room2233Stream
+        SELECT *
+        FROM InputTempStream [roomNo=='2233']
         ```
 
 1. The saved stream application is as follows:
 
     ```sql
     @App:name("TemperatureApp")
-    @App:description("Description of the plan")
+    @App:description("This stream worker receives an object with properties 'deviceID', 'roomNo', and 'temp' in InputTempStream, if the roomNo is '2233', the query will send the object to Room2233Stream")
     @App:qlVersion("2")
-
+    
     CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
-
-	CREATE STREAM Room2233AnalysisStream WITH (type='stream', stream='Room2233AnalysisStream', map.type='json') (deviceID long, roomNo string, temp double);
-
-    @info(name = 'Filtering2233')
-    select *
-    from InputTempStream [roomNo=='2233']
-    insert into Room2233AnalysisStream
+    
+    CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
+    
+    @info(name = 'Get temperature for roomNo: 2233')
+    INSERT INTO Room2233Stream
+    SELECT *
+    FROM InputTempStream [roomNo=='2233'];
     ```
         
 ### Filtering based on regex pattern
@@ -99,28 +99,28 @@ To filter events as described, follow the procedure below.
     1. Add `select` statement to project the fields:
 
         ```sql
-        select deviceID, roomNo, temp
+        SELECT deviceID, roomNo, temp
         ```
     
     1. Add a `from` clause as follows to get the required events from the `InputTempStream` stream.
 
         ```sql
-        from InputTempStream[regex:find('SOU*B*', roomNo)]
+        FROM InputTempStream[regex:matches('SOU(.*)B(.*)', roomNo)];
         ```
 
     1. Add the `insert to` clause as follows to insert the results into a stream named `FilteredResultsStream`.
 
         ```sql
-        insert into FilteredResultsStream
+        INSERT INTO FilteredResultsStream
         ```
 
         The completed query is as follows.
 
         ```sql
-        @info(name = 'FilteredRoomRange')
-        insert into FilteredResultsStream
-        select deviceID, roomNo, temp
-        from InputTempStream[regex:find('SOU*B*', roomNo)];
+        @info(name = 'Southern wing room range filter')
+        INSERT INTO FilteredResultsStream
+        SELECT deviceID, roomNo, temp
+        FROM InputTempStream[regex:matches('SOU(.*)B(.*)', roomNo)];
         ```
 
 3. Save the stream application.
@@ -129,35 +129,54 @@ To filter events as described, follow the procedure below.
 
     ```sql
     @App:name("TemperatureApp1")
-    @App:description("Description of the plan")
+    @App:description("Streams Room2233Stream and FilteredResultsStream are waiting for results from queries 'Get temperature for roomNo: 2233' and 'Southern wing room range filter'")
     @App:qlVersion("2")
-
+    
+    /*
+    
+    Part-1: This stream worker receives an object with properties 'deviceID', 'roomNo', and 'temp' in InputTempStream. If the roomNo is '2233', the query will send the object to Room2233Stream 
+    
+    Part 2: The FilteredRoomRange query will filter values using a regular expression. In this case, any roomNo starting with 'SOU' with some random characters plus a 'B' plus some random character will match the pattern, and the object that matches that expression will be sent to 'FilteredResultsStream'
+    
+    */
+    
     CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
-
-	CREATE STREAM Room2233AnalysisStream WITH (type='stream', stream='Room2233AnalysisStream', map.type='json') (deviceID long, roomNo string, temp double);
-
-	CREATE STREAM FilteredResultsStream WITH (type='stream', stream='FilteredResultsStream', map.type='json') (deviceID long, roomNo string, temp double);
-
-    @info(name = 'Filtering2233')
-    insert into Room2233AnalysisStream
-    select *
-    from InputTempStream [roomNo=='2233'];
-
-    @info(name = 'FilteredRoomRange')
-    insert into FilteredResultsStream
-    select deviceID, roomNo, temp
-    from InputTempStream[regex:find('SOU*B*', roomNo)];
+    
+    CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
+    
+    CREATE SINK FilteredResultsStream WITH (type='stream', stream='FilteredResultsStream', map.type='json') (deviceID long, roomNo string, temp double);
+    
+    @info(name = 'Get temperature for roomNo: 2233')
+    INSERT INTO Room2233Stream
+    SELECT *
+    FROM InputTempStream [roomNo=='2233'];
+    
+    @info(name = 'Southern wing room range filter')
+    INSERT INTO FilteredResultsStream
+    SELECT deviceID, roomNo, temp
+    FROM InputTempStream[regex:matches('SOU(.*)B(.*)', roomNo)];
     ```
     
 ### Filtering based on multiple criteria
 
 For this purpose, you can use the `TemperatureApp` stream application that you created in the example under **Filtering based on exact match of attribute** section. However, instead of filtering only readings for room No `2233`, assume that you need to filter the readings for a range of rooms (e.g., rooms 100-210) where the temperature is greater than 40. For this, you can update the filter as follows.
 
-```js
-[(roomNo >= 100 and roomNo < 210) or temp < 40]
-```
+    ```sql
+    @App:name("TemperatureApp2")
+    @App:description("This stream worker receives a object with properties 'deviceID', 'roomNo', and 'temp' in InputTempStream, If roomNo is 2233, and temperature is more than 20 and less than 50 degrees, and where deviceID is more than 1 and less than 9, send the object to the stream")
+    @App:qlVersion("2")
     
-Here, the `and` logical expression is used to indicate that both the filter conditions provided need to be considered.
+    CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
+        
+    CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
+        
+    @info(name = 'Get temperature for roomNo: 2233')
+    INSERT INTO Room2233Stream
+    SELECT *
+    FROM InputTempStream [(temp > 20 AND temp < 50) AND (deviceID > 1 AND deviceID < 9) AND roomNo == "2233"];
+    ```
+    
+Here, the `AND` logical expression is used to indicate that both the filter conditions provided need to be considered.
     
 
 ## Modifying, removing and replacing attributes
@@ -175,7 +194,7 @@ Assume that in the previous example, you do not need the device ID for further p
 2. Add the `from` clause and enter `FilteredResultsStream` as the input stream from which the input data is taken.
 
     ```sql
-    from FilteredResultsStream
+    FROM FilteredResultsStream
     ```
 
 3. Let's create the `select` statement as follows.
@@ -183,34 +202,66 @@ Assume that in the previous example, you do not need the device ID for further p
     1. To select only the `roomNo` and `temp` attributes for further processing and remove the `deviceID` attribute, add them as follows.
 
         ```sql
-        select deviceID, roomNo, temp
+        SELECT str:trim(roomNo) AS roomNo, temp
         ```
 
     2. To remove the unnecessary white spaces from the room number, add the `trim()` function as shown below.
 
         ```sql
-        str:trim(roomNo) as roomNo
+        str:trim(roomNo) AS roomNo
         ```
         
     3. Now the completed `select` statement is as follows.
 
         ```sql
-        select str:trim(roomNo) as roomNo, temp
+        SELECT str:trim(roomNo) AS roomNo, temp
         ```
    
 4. Insert the results into an output stream as follows.
 
     ```sql
-    insert into CleansedDataStream
+    INSERT INTO CleansedDataStream
     ```
    
 5. The completed query is as follows:
 
     ```sql
     @info(name = 'CleaningData')
-    insert into CleansedDataStream
-    select deviceID, str:trim(roomNo) as roomNo, temp
-    from FilteredResultsStream;
+    INSERT INTO CleansedDataStream
+    SELECT str:trim(roomNo) AS roomNo, temp
+    FROM FilteredResultsStream;
+    ```
+
+6. The complete stream worker looks as follows
+
+    ```sql
+    @App:name("TemperatureApp3")
+    @App:description("")
+    @App:qlVersion("2")
+    
+    /*
+    
+    Part 1: The  'Southern wing room range filter' query will filter values using a regular expression. In this case, any roomNo starting with 'SOU' with some random characters plus a 'B' plus some random character will match the pattern, and the object that matches that expression will be sent to 'FilteredResultsStream'
+    
+    Part 2: The query 'CleaningData' eliminates the deviceID property and any unnecessary white spaces
+    
+    */
+    
+    CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
+    
+    CREATE SINK FilteredResultsStream WITH (type='stream', stream='FilteredResultsStream', map.type='json') (deviceID long, roomNo string, temp double);
+    
+    CREATE SINK CleansedDataStream WITH (type='stream', stream='CleansedDataStream', map.type='json') (roomNo string, temp double);
+    
+    @info(name = 'Southern wing room range filter')
+    INSERT INTO FilteredResultsStream
+    SELECT deviceID, roomNo, temp
+    FROM InputTempStream[regex:matches('SOU(.*)B(.*)', roomNo)];
+    
+    @info(name = 'CleaningData')
+    INSERT INTO CleansedDataStream
+    SELECT str:trim(roomNo) AS roomNo, temp
+    FROM FilteredResultsStream;
     ```
 
 Modifying and replacing is also demonstrated in the [Enriching Data](enriching-data.md) and [Transforming Data](transforming-data.md) pages.
@@ -232,13 +283,11 @@ To do this, follow the procedure below:
 2. Add the `from` clause and enter `FilteredResultsStream` as the input stream from which the input data is taken.
 
     ```sql
-    from FilteredResultsStream
+    FROM FilteredResultsStream
     ```
 
-    :::note
-        Here, we are using the inferred output stream of the previous query as the input stream for this query. As a 
+>* Here, we are using the inferred output stream of the previous query as the input stream for this query. As a 
         result, the changes made via this query are applied to the filtered data.
-    :::
     
 3. Add the `select` clause. To assign `unknown` as the value for the `roomNo` attribute when it has a null value, you 
    need to use the `ifThenElse` function as shown below.
@@ -250,20 +299,47 @@ To do this, follow the procedure below:
     Select the `deviceID` and `temp` attributes can be selected without any changes. The query updated with the `select` clause now looks as follows.
 
     ```sql
-    select deviceID, ifThenElse(roomNo is null, "UNKNOWN", str:trim(roomNo)) as roomNo, temp
+    SELECT deviceID, ifThenElse(roomNo is null, "UNKNOWN", str:trim(roomNo)) AS roomNo, temp
     ```
    
- 4. Insert the results into an output stream as follows.
-
-    `insert into CleansedDataStream`
-    
-    The completed query now looks as follows.
+ 4. Insert the results into an output stream as follows. `insert into CleansedDataStream`. The completed query now looks as follows.
     
     ```sql
     @info(name = 'AddingMissingValues')
-    insert into CleansedDataStream
-    select deviceID, ifThenElse(roomNo is null, "UNKNOWN", str:trim(roomNo)) as roomNo, temp
-    from FilteredResultsStream;
+    INSERT INTO CleansedDataStream
+    SELECT ifThenElse(roomNo is null, "UNKNOWN", str:trim(roomNo)) as roomNo, temp
+    FROM FilteredResultsStream;
+    ```
+6. The complete stream worker looks as follows.
+
+    ```sql
+    @App:name("TemperatureApp3")
+    @App:description("")
+    @App:qlVersion("2")
+    
+    /*
+    
+    Part 1: The  'Southern wing room range filter' query will filter values using a regular expression. In this case, any roomNo starting with 'SOU' with some random characters plus a 'B' plus some random character will match the pattern, and the object that matches that expression will be sent to 'FilteredResultsStream'
+    
+    Part 2: The query 'CleaningData' eliminates the deviceID property and any unnecessary white spaces
+    
+    */
+    
+    CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
+    
+    CREATE SINK FilteredResultsStream WITH (type='stream', stream='FilteredResultsStream', map.type='json') (deviceID long, roomNo string, temp double);
+    
+    CREATE SINK CleansedDataStream WITH (type='stream', stream='CleansedDataStream', map.type='json') (roomNo string, temp double);
+    
+    @info(name = 'Southern wing room range filter')
+    INSERT INTO FilteredResultsStream
+    SELECT deviceID, roomNo, temp
+    FROM InputTempStream[regex:matches('SOU(.*)B(.*)', roomNo)];
+    
+    @info(name = 'AddingMissingValues')
+    INSERT INTO CleansedDataStream
+    SELECT ifThenElse(roomNo is null, "UNKNOWN", str:trim(roomNo)) as roomNo, temp
+    FROM FilteredResultsStream;
     ```
     
  5. Save the stream application. 
