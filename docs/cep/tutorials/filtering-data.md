@@ -14,10 +14,11 @@ To understand the different ways you can filter the specific data you need to tr
     
 
 ### Filtering based on exact match of attribute
- 
-1. Start creating a new stream application. For more information, see [Creating a Stream Application](./create-stream-app.md).
 
-1. Enter a name for the stream application via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
+ 
+1. Start creating a new stream worker. For more information, see [Creating a Stream Application](./create-stream-app.md).
+
+1. Enter a name for the stream worker via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
 
 1. Define an input stream to specify the schema based on which events are selected.
 
@@ -66,7 +67,7 @@ To understand the different ways you can filter the specific data you need to tr
         FROM InputTempStream [roomNo=='2233']
         ```
 
-1. The saved stream application is as follows:
+1. The saved stream worker is as follows:
 
     ```sql
     @App:name("TemperatureApp")
@@ -87,13 +88,13 @@ To understand the different ways you can filter the specific data you need to tr
  
 You can filter events by providing a condition where only events that match a specific Regex pattern are taken for further processing.
  
-For this purpose, you can use the `TemperatureApp` stream application that you created in the previous example. However, instead of filtering the readings for a specific room no, you can filter the readings for many rooms of which the room number matches a specific regex pattern.
+For this purpose, you can use the `TemperatureApp` stream worker that you created in the previous example. However, instead of filtering the readings for a specific room no, you can filter the readings for many rooms of which the room number matches a specific regex pattern.
      
 Assume that you want to filter the temperature readings for a specific rage of rooms located in the Southern wing and used for purpose B. Also assume that this can be derived from the room number because the first three characters of the room no represent the wing, and the eighth character represents the purpose. e.g., in room no `SOU5438B765`, the first three characters `SOU` represent the Southern wing, and the eighth character `B` represents purpose B.
     
 To filter events as described, follow the procedure below.
     
-1. Open the `TemperatureApp` stream application.
+1. Open the `TemperatureApp` stream worker.
 2. Create a new query named `FilteredRoomRange` as follows:
 
     1. Add `select` statement to project the fields:
@@ -123,9 +124,9 @@ To filter events as described, follow the procedure below.
         FROM InputTempStream[regex:matches('SOU(.*)B(.*)', roomNo)];
         ```
 
-3. Save the stream application.
+3. Save the stream worker.
 
-1. The completed stream application looks as follows.
+1. The completed stream worker looks as follows.
 
     ```sql
     @App:name("TemperatureApp1")
@@ -159,22 +160,22 @@ To filter events as described, follow the procedure below.
     
 ### Filtering based on multiple criteria
 
-For this purpose, you can use the `TemperatureApp` stream application that you created in the example under **Filtering based on exact match of attribute** section. However, instead of filtering only readings for room No `2233`, assume that you need to filter the readings for a range of rooms (e.g., rooms 100-210) where the temperature is greater than 40. For this, you can update the filter as follows.
+For this purpose, you can use the `TemperatureApp` stream worker that you created in the example under **Filtering based on exact match of attribute** section. However, instead of filtering only readings for room No `2233`, assume that you need to filter the readings for a range of rooms (e.g., rooms 100-210) where the temperature is greater than 40. For this, you can update the filter as follows.
 
-    ```sql
-    @App:name("TemperatureApp2")
-    @App:description("This stream worker receives a object with properties 'deviceID', 'roomNo', and 'temp' in InputTempStream, If roomNo is 2233, and temperature is more than 20 and less than 50 degrees, and where deviceID is more than 1 and less than 9, send the object to the stream")
-    @App:qlVersion("2")
+```sql
+@App:name("TemperatureApp2")
+@App:description("This stream worker receives a object with properties 'deviceID', 'roomNo', and 'temp' in InputTempStream, If roomNo is 2233, and temperature is more than 20 and less than 50 degrees, and where deviceID is more than 1 and less than 9, send the object to the stream")
+@App:qlVersion("2")
+
+CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
     
-    CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
-        
-    CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
-        
-    @info(name = 'Get temperature for roomNo: 2233')
-    INSERT INTO Room2233Stream
-    SELECT *
-    FROM InputTempStream [(temp > 20 AND temp < 50) AND (deviceID > 1 AND deviceID < 9) AND roomNo == "2233"];
-    ```
+CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
+    
+@info(name = 'Get temperature for roomNo: 2233')
+INSERT INTO Room2233Stream
+SELECT *
+FROM InputTempStream [(temp > 20 AND temp < 50) AND (deviceID > 1 AND deviceID < 9) AND roomNo == "2233"];
+```
     
 Here, the `AND` logical expression is used to indicate that both the filter conditions provided need to be considered.
     
@@ -185,7 +186,7 @@ The input data may include attributes that are not required in order to generate
  
 Assume that in the previous example, you do not need the device ID for further processing, and you need to remove some unnecessary white spaces from the `roomNo` before sending the input data for further processing. To do this, follow the procedure below:
 
-1. Open the `TemperatureApp` stream application that you previously created in the [Filtering data based on conditions](##filtering-data-based-on-conditions) section and start adding a new query. You can name it as `CleaningData` as shown below.
+1. Open the `TemperatureApp` stream worker that you previously created in the [Filtering data based on conditions](##filtering-data-based-on-conditions) section and start adding a new query. You can name it as `CleaningData` as shown below.
 
     ```sql
     @info(name = 'CleaningData')
@@ -268,13 +269,13 @@ Modifying and replacing is also demonstrated in the [Enriching Data](enriching-d
 
 ## Handling attributes with `null` values
 
-To understand this section, you can reuse the `TemperatureApp` stream application that you created in the [Filtering data based on conditions](##filtering-data-based-on-conditions).
+To understand this section, you can reuse the `TemperatureApp` stream worker that you created in the [Filtering data based on conditions](##filtering-data-based-on-conditions).
 
 Assume that some events arrive with null values for the `roomNo` attribute, and you want to assign the value `unknown` in such scenarios.
 
 To do this, follow the procedure below:
 
-1. Start adding a new query to the `TemperatureApp` stream application. You can name it `AddingMissingValues` as follows.
+1. Start adding a new query to the `TemperatureApp` stream worker. You can name it `AddingMissingValues` as follows.
 
     ```sql
     @info(name = 'AddingMissingValues')
@@ -342,4 +343,4 @@ To do this, follow the procedure below:
     FROM FilteredResultsStream;
     ```
     
- 5. Save the stream application. 
+ 5. Save the stream worker. 
