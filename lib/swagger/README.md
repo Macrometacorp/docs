@@ -23,7 +23,7 @@ Copy the latest official swagger file to `./lib/swagger/revisions` as `spec-VERS
 
 ## Produce Target File
 
-Run the following script to produce a target swagger file that contains the additional fields required for our API Reference.
+Run the following script to produce a target Swagger file that contains the additional fields required for our API Reference.
 
 ```ssh
 # build-swagger.sh source.json target.json
