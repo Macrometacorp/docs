@@ -16,7 +16,7 @@ To understand the different ways you can filter the specific data you need to tr
 ### Filtering based on exact match of attribute
 
  
-1. Start creating a new stream worker. For more information, see [Creating a Stream Application](./create-stream-app.md).
+1. Start creating a new stream worker. For more information, see [Creating a Stream Worker](./create-stream-app.md).
 
 1. Enter a name for the stream worker via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
 
