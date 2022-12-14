@@ -724,7 +724,7 @@ The `unidirectional` keyword cannot be applied to both the input streams because
 **Example**
 
 Assuming that the temperature of regulators are updated every minute.
-Following is a Stream App that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
+Following is a stream worker that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
 
 ```
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
@@ -866,7 +866,7 @@ Square brackets can be used to indicate the event index where `1` can be used as
 
 **Example**
 
-The following Stream Worker calculates the temperature difference between two regulator events.
+The following stream worker calculates the temperature difference between two regulator events.
 
 ```
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
@@ -931,7 +931,7 @@ Pattern|Detected Scenario
 
 **Example**
 
-Following Stream Worker, sends the `stop` control action to the regulator when the key is removed from the hotel room.
+Following stream worker, sends the `stop` control action to the regulator when the key is removed from the hotel room.
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
@@ -944,7 +944,7 @@ from every( e1=RegulatorStateChangeStream[ action == 'on' ] ) ->
 having action != 'none';
 ```
 
-This Stream Worker generates an alert if we have switch off the regulator before the temperature reaches 12 degrees.  
+This stream worker generates an alert if we have switch off the regulator before the temperature reaches 12 degrees.  
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
@@ -955,7 +955,7 @@ select e1.roomNo as roomNo
 from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] and e2=RegulatorStateChangeStream[action == 'off'];
 ```
 
-This Stream Worker generates an alert if the temperature does not reduce to 12 degrees within 5 minutes of switching on the regulator.  
+This stream worker generates an alert if the temperature does not reduce to 12 degrees within 5 minutes of switching on the regulator.  
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
@@ -1035,7 +1035,7 @@ from (every)? <event reference>=<input stream>[<filter condition>](+|*|?)?,
 
 **Example**
 
-This Stream application identifies temperature peeks.
+This stream worker identifies temperature peeks.
 
 ```
 CREATE STREAM TempStream(deviceID long, roomNo int, temp double);
@@ -1064,7 +1064,7 @@ Keywords such as `and`, `or`, or `not` can be used to illustrate the logical rel
 
 **Example**
 
-This Stream application notifies the state when a regulator event is immediately followed by both temperature and humidity events.
+This stream worker notifies the state when a regulator event is immediately followed by both temperature and humidity events.
 
 ```
 CREATE STREAM TempStream(deviceID long, temp double);
