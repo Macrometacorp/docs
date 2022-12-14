@@ -2,7 +2,7 @@
 title: SSE Source
 ---
 
-HTTP SSE source send a request to a given url and listen to the response stream.
+HTTP SSE source sends a request to a given URL and listens to the response stream.
 
 ## SSE Source Syntax
 
