@@ -73,7 +73,7 @@ QUERY PARAMETERS
 
 EXAMPLE 1
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue') 
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue')(symbol string, price float, volume long);
 
 This query performs a default key value input mapping. The expected
 input is a map similar to the following:
@@ -83,7 +83,7 @@ volume: 100
 
 EXAMPLE 2
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', fail.on.missing.attribute='true', map.attributes="symbol = 's', price = 'p', volume = 'v'") (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', fail.on.missing.attribute='true', map.attributes.symbol = "s", map.attributes.price = "p", map.attributes.volume = "v") (symbol string, price float, volume long);
 
 This query performs a custom key value input mapping. The matching keys
 for the `symbol`, `price` and `volume` attributes are be `s`, `p`, and

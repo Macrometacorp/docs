@@ -7,7 +7,7 @@ Stream store queries are a set of on-demand queries that can be used to perform 
 
 **Purpose**
 
-Store queries allow you to execute the following operations on Stream tables, windows, and aggregators without the intervention of streams.
+Store queries allow you to execute the following operations on stream tables, windows, and aggregators without the intervention of streams.
 
 Queries supported for tables:
 
@@ -21,13 +21,13 @@ Queries supported for windows and aggregators:
 
 - SELECT
 
-This is be done by submitting the store query to the Stream application runtime using its `query()` method.
+This is be done by submitting the store query to the stream worker runtime using its `query()` method.
 
-In order to execute store queries, the Stream application of the Stream application runtime you are using, should have a store defined, which contains the table that needs to be queried.
+In order to execute store queries, the stream worker of the stream worker runtime you are using, should have a store defined, which contains the table that needs to be queried.
 
 **Example**
 
-If you need to query the table named `RoomTypeTable` the it should have been defined in the Stream application.
+If you need to query the table named `RoomTypeTable` the it should have been defined in the stream worker.
 
 In order to execute a store query on `RoomTypeTable`, you need to submit the store query using `query()` method.
 
@@ -38,9 +38,9 @@ The `SELECT` store query retrieves records from the specified table or window, b
 **Syntax**
 
 ```
+select <attribute name>, <attribute name>, ...
 from <table/window>
 <on condition>?
-select <attribute name>, <attribute name>, ...
 <group by>?
 <having>?
 <order by>?
@@ -65,11 +65,11 @@ and granularity.
 **Syntax**
 
 ```
+select <attribute name>, <attribute name>, ...
 from <aggregation>
 <on condition>?
 within <time range>
 per <time granularity>
-select <attribute name>, <attribute name>, ...
 <group by>?
 <having>?
 <order by>?
@@ -84,10 +84,10 @@ Following aggregation definition will be used for the examples.
 CREATE STREAM TradeStream (symbol string, price double, volume long, timestamp long);
 
 CREATE AGGREGATION TradeAggregation
-  select symbol, avg(price) as avgPrice, sum(price) as total
-    group by symbol
-    aggregate by timestamp every sec ... year
-  from TradeStream;
+select symbol, avg(price) as avgPrice, sum(price) as total
+from TradeStream
+  group by symbol
+  aggregate by timestamp every sec ... year;
 ```
 
 This query retrieves daily aggregations within the time range `"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"` (Please note that +05:30 can be omitted if timezone is GMT)
@@ -170,10 +170,10 @@ The `UPDATE` store query updates selected attributes stored in a specific table,
 **Syntax**
 
 ```
-select <attribute name>, <attribute name>, ...?
 update <table>
     set <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
     on <condition>
+select <attribute name>, <attribute name>, ...?
 ```
 
 The `condition` element specifies the basis on which records are selected to be updated. When specifying the `condition`, table attributes must be referred to with the table name.
@@ -187,19 +187,14 @@ Table attributes must always be referred to with the table name as shown below:
 
 **Example**
 
-The following query updates the room occupancy by increasing the value of `people` by 1, in the `RoomOccupancyTable` table for each room number greater than 10.
-
-```
-select 10 as roomNumber, 1 as arrival
-update RoomTypeTable
-    set RoomTypeTable.people = RoomTypeTable.people + arrival
-    on RoomTypeTable.roomNo == roomNumber;
-```
+The following query updates the room occupancy by declaring the value of `people`, in the `RoomTypeTable` table for each room number equal to 10.
 
 ```
 update RoomTypeTable
-    set RoomTypeTable.people = RoomTypeTable.people + 1
-    on RoomTypeTable.roomNo == 10;
+   set RoomTypeTable.people = people
+    on RoomTypeTable.roomNo == roomNumber
+select 10 as roomNumber, arrival - exit as people
+  from UpdateStream;
 ```
 
 ### Update or Insert
@@ -210,10 +205,10 @@ If a matching record does not exist, the entry is inserted as a new record.
 **Syntax**
 
 ```
-select <attribute name>, <attribute name>, ...
 update or insert into <table>
     set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
     on <condition>
+select <attribute name>, <attribute name>, ...
 ```
 
 The `condition` element specifies the basis on which records are selected for update. When specifying the `condition`, table attributes should be referred to with the table name. If a record that matches the condition does not already exist in the table, the arriving event is inserted into the table.
@@ -230,10 +225,11 @@ Table attributes must always be referred to with the table name as shown below:
 The following query tries to update the records in the `RoomAssigneeTable` table that have room numbers that match the same in the selection. If such records are not found, it inserts a new record based on the values provided in the selection.
 
 ```
-select 10 as roomNo, "single" as type, "abc" as assignee
 update or insert into RoomAssigneeTable
     set RoomAssigneeTable.assignee = assignee
-    on RoomAssigneeTable.roomNo == roomNo;
+    on RoomAssigneeTable.roomNo == roomNo
+select 10 as roomNo, "single" as type, "abc" as assignee
+from RoomAssigneeStream;
 ```
 
 ### Event Playback
