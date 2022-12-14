@@ -7,7 +7,7 @@ Stream store queries are a set of on-demand queries that can be used to perform 
 
 **Purpose**
 
-Store queries allow you to execute the following operations on Stream tables, windows, and aggregators without the intervention of streams.
+Store queries allow you to execute the following operations on stream tables, windows, and aggregators without the intervention of streams.
 
 Queries supported for tables:
 
