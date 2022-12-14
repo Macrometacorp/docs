@@ -102,7 +102,7 @@ then the input is as follows:symbol-price-volumeGDN-55.6-100
 
 EXAMPLE 2
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='csv', map.header='true', map.attributes="symbol = '2', price = '0', volume = '1'") (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='csv', map.header='true', map.attributes.symbol = "2", map.attributes.price = "0", map.attributes.volume = "1") (symbol string, price float, volume long);
 
 Above configuration will perform a custom CSV mapping. Here, user can
 add place order of each attribute in the @attribute. The place order
