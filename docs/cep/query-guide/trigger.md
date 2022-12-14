@@ -40,7 +40,7 @@ The following types of triggeres are currently supported:
     The following query triggers events every 5 minutes.
 
     ```
-    CREATE TRIGGER FiveMinTriggerStream at every 5 min;
+    CREATE TRIGGER FiveMinTriggerStream WITH(interval= 5 min);
     ```
 
 - Triggering events at a specific time on specified days
@@ -48,5 +48,5 @@ The following types of triggeres are currently supported:
     The following query triggers an event at 10.15 AM on every weekdays.
 
     ```
-    CREATE TRIGGER FiveMinTriggerStream at '0 15 10 ? * MON-FRI';
+    CREATE TRIGGER FiveMinTriggerStream1 WITH (expression='0 15 10 ? * MON-FRI');
     ```

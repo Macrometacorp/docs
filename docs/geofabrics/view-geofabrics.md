@@ -14,7 +14,7 @@ This page lists several methods for viewing GeoFabrics. Which GeoFabrics you can
 Follow these instructions to view GeoFabrics using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Geo Fabrics**. Macrometa displays a list of GeoFabrics you have access to.
+1. Click **Network > Fabrics**. Macrometa displays a list of GeoFabrics you have access to.
 1. Click a GeoFabric name to view details about a GeoFabric, such as unique endpoints and which locations are enabled.
 
 </TabItem>

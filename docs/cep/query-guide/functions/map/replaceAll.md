@@ -4,7 +4,7 @@ title: replaceAll (Function)
 
 Function returns the updated map after replacing all the key-value pairs from another map, if keys are present.
 
-Syntax
+## Syntax
 
     <OBJECT> map:replaceAll(<OBJECT> to.map, <OBJECT> from.map)
 
