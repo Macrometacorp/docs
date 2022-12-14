@@ -51,12 +51,11 @@ EXAMPLE 1:
 ```js
 @App:name('TestExecutionPlan') 
 
-CREATE STREAM FooStream (symbol string, price float, volume long);
-
-@info(name = 'query1') 
+CREATE STREAM FooStream (symbol string, price float, volume long); 
 
 CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
 
+@info(name = 'query1')
 insert into BarStream
 select symbol, price, volume 
 from FooStream;
@@ -71,9 +70,9 @@ EXAMPLE 2:
 
 CREATE STREAM FooStream (symbol string, price float, volume long); 
 
-@info(name = 'query1') 
 CREATE SINK BarStream WITH (type='kafka', topic='{{symbol}}', partition.no='{{volume}}', bootstrap.servers='localhost:9092', map.type='json')) (symbol string, price float, volume long);
 
+@info(name = 'query1')
 insert into BarStream
 select symbol, price, volume 
 from FooStream ;
@@ -81,43 +80,6 @@ from FooStream ;
 
 This query publishes dynamic topic and partitions that are taken from the GDN stream worker event. The value for `partition.no` is taken from the `volume attribute`, and the `topic` value is taken from the `symbol` attribute.
 
-### Kafka Replay Request
-
-This sink is used to request replay of specific range of events on a specified partition of a topic.
-
-Syntax:
-
-```js
-CREATE SINK <name> WITH (type="kafka-replay-request", sink.id="<STRING>", @map.type="<STRING>")
-```
-
-QUERY PARAMETERS:
-
-| Name | Description |	Default Value |	Possible Data Types	| Optional | Dynamic |
-|------|-------------|----------------|---------------------| -------- | --------|
-| sink.id| a unique SINK_ID should be set. This sink id will be used to match with the appropriate kafka-replay-response source. | | STRING	| No | No |
-
-
-EXAMPLE 1:
-
-```js
-@App:name('TestKafkaReplay')
-
-CREATE SINK BarStream WITH (type='kafka-replay-request', sink.id='1') (topicForReplay string, partitionForReplay string, startOffset string, endOffset string);
-
-@info(name = 'query1')
-CREATE SOURCE FooStream WITH (type='kafka-replay-response', group.id='group', threading.option='single.thread', bootstrap.servers='localhost:9092', sink.id='1', map.type='json') (symbol string, amount double);
-
-CREATE SINK logStream (type='log') (symbol string, amount double);
-
-insert into logStream
-select * 
-from FooStream;
-```
-
-In this app we can send replay request events into BarStream and observe the replayed events in the logStream.
-
-## Source
 
 ### Kafka Source
 
@@ -152,10 +114,9 @@ EXAMPLE 1:
 @App:name('TestExecutionPlan') 
 CREATE STREAM BarStream (symbol string, price float, volume long); 
 
-@info(name = 'query1') 
-
 CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic,kafka_topic2', group.id='test', threading.option='partition.wise', bootstrap.servers='localhost:9092', partition.no.list='0,1', map.type='json') (symbol string, price float, volume long);
 
+@info(name = 'query1') 
 insert into BarStream
 select symbol, price, volume 
 from FooStream;
@@ -169,10 +130,9 @@ EXAMPLE 2:
 @App:name('TestExecutionPlan') 
 CREATE STREAM BarStream (symbol string, price float, volume long); 
 
-@info(name = 'query1') 
-
 CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic', group.id='test', threading.option='single.thread', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
 
+@info(name = 'query1') 
 insert into BarStream
 select symbol, price, volume
 from FooStream;
@@ -195,42 +155,3 @@ from FooStream;
 This Kafka source configuration listens to the `trp_topic` topic for the default partition because no `partition.no.list` is defined.
 
 Since the custom attribute mapping is enabled with `TRP` values, the GDN stream worker event will be populated with the relevant `trp` values as well.
-
-### Kafka Replay Request
-
-This source is used to listen to replayed events requested from `kafka-replay-request` sink.
-
-Syntax:
-
-```js
-CREATE SOURCE <name> WITH (type="kafka-replay-response", bootstrap.servers="<STRING>", group.id="<STRING>", threading.option="<STRING>", sink.id="<INT>", map.type="<STRING>")
-```
-
-QUERY PARAMETERS:
-
-| Name | Description |	Default Value |	Possible Data Types	| Optional | 
-|------|-------------|----------------|---------------------| -------- |
-| bootstrap.servers| This parameter specifies the list of Kafka servers to which the Kafka sink must publish events. This list should be provided as a set of comma separated values. e.g., localhost:9092,localhost:9093. | | STRING | No |
-| topic.list | This specifies the list of topics to which the source must listen. This list can be provided as a set of comma-separated values. e.g., `topic_one`,`topic_two`| | STRING | No |
-| group.id | This is an ID to identify the Kafka source group. The group ID ensures that sources with the same topic and partition that are in the same group do not receive the same event. |  | STRING | No|
-| threading.option | This specifies whether the Kafka source is to be run on a single thread, or in multiple threads based on a condition. <br /> Possible values are as follows: <br /> `single.thread`: To run the Kafka source on a single thread. <br /> `topic.wise`: To use a separate thread per topic. <br /> `partition.wise`: To use a separate thread per partition. |  | STRING | NO|
-| sink.id | a unique SINK_ID . |  | INT | No|
-
-EXAMPLE 1:
-
-```js
-@App:name('TestKafkaReplay')
-
-CREATE SINK BarStream WITH (type='kafka-replay-request', sink.id='1') (topicForReplay string, partitionForReplay string, startOffset string, endOffset string);
-
-@info(name = 'query1')
-CREATE SOURCE FooStream WITH (type='kafka-replay-response',  group.id='group', threading.option='single.thread', bootstrap.servers='localhost:9092', sink.id='1', map.type='json') (symbol string, amount double);
-
-CREATE SINK logStream WITH (type='log') (symbol string, amount double);
-
-insert into logStream
-select * 
-from FooStream;
-```
-
-In this app we can send replay request events into BarStream and observe the replayed events in the logStream.
