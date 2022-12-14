@@ -2,7 +2,7 @@
 title: http (Sink)
 ---
 
-HTTP sink publishes messages via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats `text`, `XML` and `JSON`. It can also publish to endpoints protected by basic authentication or OAuth 2.0.
+HTTP sink publishes messages via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats `text` and `JSON`. It can also publish to endpoints protected by basic authentication or OAuth 2.0.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ HTTP sink publishes messages via HTTP or HTTPS protocols using methods such as P
 | consumer.secret                 | Consumer secret used for calling endpoints protected by OAuth 2.0   | \-   | STRING              | Yes      | No      |
 | token.url                       | Token URL to generate a new access tokens when calling endpoints protected by OAuth 2.0                  | \-   | STRING              | Yes      | No      |
 | refresh.token                   | Refresh token used for generating new access tokens when calling endpoints protected by OAuth 2.0        | \-   | STRING              | Yes      | No      |
-| headers                         | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When `Content-Type` header is not provided the system derives the Content-Type based on the provided sink mapper as following:  - `map.type='xml'`: `application/xml`  - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.                  | Content-Type and Content-Length headers                      | STRING              | Yes      | No      |
+| headers                         | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When `Content-Type` header is not provided the system derives the Content-Type based on the provided sink mapper as following: - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.                  | Content-Type and Content-Length headers                      | STRING              | Yes      | No      |
 | method                          | The HTTP method used for calling the endpoint.                      | POST | STRING              | Yes      | No      |
 | socket.idle.timeout             | Socket timeout in millis.                                           | 6000 | INT                 | Yes      | No      |
 | chunk.disabled                  | Disable chunked transfer encoding.                                  | false            | BOOL                | Yes      | No      |
@@ -70,23 +70,27 @@ Events arriving on the StockStream will be published to the HTTP endpoint `http:
         "volume": 5000
       }
     }
-
+    
 ## Example 2
 
-    CREATE SINK FooStream WITH (type='http', map.type='xml', publisher.url = 'http://localhost:8009/foo', client.bootstrap.configurations = "'client.bootstrap.socket.timeout:20'", max.pool.active.connections = '1', headers = "{{headers}}", map.payload="""<stock>{{payloadBody}}</stock>""") (payloadBody String, headers string);
+    CREATE SINK FooStream WITH (type='http', map.type='json', publisher.url = 'http://localhost:8009/foo', client.bootstrap.configurations = "'client.bootstrap.socket.timeout:20'", max.pool.active.connections = '1', headers = "{{headers}}", map.payload="""<stock>{{payloadBody}}</stock>""") (payloadBody string, headers string);
 
-Events arriving on FooStream will be published to the HTTP endpoint `http://localhost:8009/foo` using `POST` method with Content-Type `application/xml` and setting `payloadBody` and `header` attribute values. If the `payloadBody` contains
+Events arriving on FooStream will be published to the HTTP endpoint `http://localhost:8009/foo` using `POST` method with Content-Type `application/json` and setting `payloadBody` and `header` attribute values. If the `payloadBody` contains
 
-    <symbol>gdn</symbol>
-    <price>55.6</price>
-    <volume>100</volume>
+    {
+      "symbol": "gdn",
+      "price": 55.6,
+      "volume": 100
+    }
 
 and `header` contains `'topic:foobar'` values, then the system will generate an output with the body:
 
-    <stock>
-    <symbol>gdn</symbol>
-    <price>55.6</price>
-    <volume>100</volume>
-    </stock>
+    {
+      "stock": {
+        "symbol": "gdn",
+        "price": 55.6,
+        "volume": 100
+      }
+    }
 
-and HTTP headers: `Content-Length:xxx`, `Content-Location:'xxx'`, `Content-Type:'application/xml'`, `HTTP_METHOD:'POST'`
+and HTTP headers: `Content-Length:xxx`, `Content-Location:'xxx'`, `Content-Type:'application/json'`, `HTTP_METHOD:'POST'`
