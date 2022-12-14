@@ -76,7 +76,7 @@ a scenario where you receive sales records generated from multiple locations as 
 
 	CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
 
-	CREATE TABLE UserTable (userId long, firstName string, lastName string);
+	CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
 
 	CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
 
@@ -277,7 +277,7 @@ To understand how this is done, consider an example where you have some credit c
 
 	CREATE SOURCE EnrichedCreditCardInfoStream WITH (source.type='http-call-response', sink.id='cardTypeSink', map.type='json', attributes.creditCardNo = 'trp:creditCardNo', attributes.creditCardType = ".") (creditCardNo string,creditCardType string);
 
-	CREATE TABLE CCInfoTable (creditCardNo string, creditCardType string);
+	CREATE TABLE GLOBAL CCInfoTable (creditCardNo string, creditCardType string);
 
 	insert into GetCreditCardInfoStream
 	select creditCardNo
