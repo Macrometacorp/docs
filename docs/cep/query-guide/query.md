@@ -700,13 +700,13 @@ Join can also be performed with [stored data](#join-table), [aggregation](#join-
 
 The syntax for a join is as follows:
 
-```
-insert into <output stream>
-select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, ... ) {unidirectional} {as <reference>}
-         join <input stream>#window.<window name>(<parameter>,  ... ) {unidirectional} {as <reference>}
-    on <join condition>
-```
+  ```sql
+  INSERT INTO <output stream>
+  SELECT <attribute name>, <attribute name>, ...
+  FROM <input stream> WINDOW <window type>(<parameter>, ... ) {unidirectional} {as <reference>}
+           JOIN <input stream> WINDOW <window type>(<parameter>,  ... ) {unidirectional} {as <reference>}
+      ON <join condition>
+  ```
 
 Here, the `<join condition>` allows you to match the attributes from both the streams.
 
@@ -726,15 +726,35 @@ The `unidirectional` keyword cannot be applied to both the input streams because
 Assuming that the temperature of regulators are updated every minute.
 Following is a stream worker that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
 
-```
+```sql
+@App:name("tempRegulator")
+@App:qlVersion("2")
+/*
+1. Payload to send to TempStream: {"deviceID":12,"roomNo": 1,"temp": 34}
+
+2. Payload to send to RegulatorStream: {"deviceID":12,"roomNo": 1,"isOn": false}
+
+3. Result in RegulatorActionStream :{"roomNo":1,"action":"start","deviceID":12}
+
+This stream worker joins TempStream and RegulatorStream and if the temperature ingested in TempStream is greater than 30.0 and if the isOn property is equal to false in Regulator stream, produces this output in RegulatorActionStream {"roomNo":1,"action":"start","deviceID":12}
+
+Streams are stateless. Therefore, in order to join two streams, they need to be connected to a window so that there is a 
+pool of events that can be used for joining. 
+
+A sliding time window that, at a given time holds the last window length events that arrived during last window time period, 
+and gets updated for every event arrival and expiration.
+
+*/
+
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 CREATE STREAM RegulatorStream (deviceID long, roomNo int, isOn bool);
+CREATE SINK RegulatorActionStream WITH (type='stream', stream='RegulatorActionStream', map.type='json',OnError.action="log")(roomNo int, deviceID long, action string);
 
-insert into RegulatorActionStream
-select T.roomNo, R.deviceID, 'start' as action
-from TempStream[temp > 30.0]#window.time(1 min) as T
-  join RegulatorStream[isOn == false]#window.length(1) as R
-  on T.roomNo == R.roomNo;
+INSERT INTO RegulatorActionStream
+SELECT T.roomNo, R.deviceID, 'start' AS action
+FROM TempStream[temp > 30.0] WINDOW SLIDING_LENGTH(1) AS T
+  JOIN RegulatorStream[isOn == false] WINDOW SLIDING_LENGTH(1) AS R
+  ON T.roomNo == R.roomNo;
 ```
 
 **Supported join types**
