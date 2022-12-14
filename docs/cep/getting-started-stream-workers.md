@@ -29,7 +29,7 @@ To use streams with Macrometa Global Data Network (GDN), you must first establis
 
 ### Step 2. Define Query Name
 
-
+Write a name and description. If no `qlVersion` is specified, default is `2`. Do not change this value unless you are working with a version 1 stream.
 
 ```sql
 @App:name('sample-cargo-app')
@@ -37,27 +37,27 @@ To use streams with Macrometa Global Data Network (GDN), you must first establis
 @App:qlVersion('2')
 ```
 
-### Step 3. Define Source
+### Step 3. Create Source
 
-
+Example to create a source for a stream worker.
 
 ```sql
 -- Defines `SampleCargoAppInputTable` Source.
 CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc" , replication.type="global", map.type='json') (weight int);
 ```
 
-### Step 4. Define Stream
+### Step 4. Create Sink
 
-
+Example to create a sink for a stream worker.
 
 ```sql
--- Define `SampleCargoAppDestStream` Stream.
+-- Defines `SampleCargoAppDestStream` Stream.
 CREATE SINK STREAM SampleCargoAppDestStream (weight int);
 ```
 
 ### Step 5. Write and Save Query
 
-
+Example query that adds data from the source into the sink.
 
 ```sql
 -- Data Processing
@@ -67,10 +67,46 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 ```
 
+### Step 6. Add Data to the Source
+
+Upload the following data to the source you created:
+
+```sql
+{"weight": 1}
+{"weight": 2}
+{"weight": 3}
+{"weight": 4}
+{"weight": 5}
+```
+
+When you view the output for `SampleCargoAppDestStream`, you will see results similar to the following:
+
+```sql
+[2021-08-27T14:12:15.795Z] {"weight":1}
+[2021-08-27T14:12:15.799Z] {"weight":2}
+[2021-08-27T14:12:15.805Z] {"weight":3}
+[2021-08-27T14:12:15.809Z] {"weight":4}
+[2021-08-27T14:12:15.814Z] {"weight":5}
+```
 
 ## Full Demo File
 
 The following example uses the code snippets provided in this tutorial.
 
+```sql
+@App:name('sample-cargo-app')
+@App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream & collection will be created automatically if they do not already exist.')
+@App:qlVersion('2')
 
+-- Defines `SampleCargoAppInputTable` Source.
+CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc" , replication.type="global", map.type='json') (weight int);
 
+-- Defines `SampleCargoAppDestStream` Stream.
+CREATE SINK STREAM SampleCargoAppDestStream (weight int);
+
+-- Data Processing
+@info(name='Query')
+INSERT INTO SampleCargoAppDestStream
+SELECT weight
+FROM SampleCargoAppInputTable;
+```
