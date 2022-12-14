@@ -724,7 +724,7 @@ The `unidirectional` keyword cannot be applied to both the input streams because
 **Example**
 
 Assuming that the temperature of regulators are updated every minute.
-Following is a Stream App that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
+Following is a stream worker that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
 
 ```
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
@@ -1035,7 +1035,7 @@ from (every)? <event reference>=<input stream>[<filter condition>](+|*|?)?,
 
 **Example**
 
-This Stream application identifies temperature peeks.
+This stream worker identifies temperature peeks.
 
 ```
 CREATE STREAM TempStream(deviceID long, roomNo int, temp double);
@@ -1064,7 +1064,7 @@ Keywords such as `and`, `or`, or `not` can be used to illustrate the logical rel
 
 **Example**
 
-This Stream application notifies the state when a regulator event is immediately followed by both temperature and humidity events.
+This stream worker notifies the state when a regulator event is immediately followed by both temperature and humidity events.
 
 ```
 CREATE STREAM TempStream(deviceID long, temp double);
