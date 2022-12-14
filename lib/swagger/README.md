@@ -32,7 +32,7 @@ Run the following script to produce a target swagger file that contains the addi
 
 ## Validate Target File
 
-Once the target swagger file has been created, validate it at [editor.swagger.io](https://editor.swagger.io/). Verify that all the expected resources are presented correctly.
+Once the target Swagger file has been created, validate it at [editor.swagger.io](https://editor.swagger.io/). Verify that all the expected resources are presented correctly.
 
 **Important:** You will see the following error, which is expected. Any other errors should be resolved before committing.
 
