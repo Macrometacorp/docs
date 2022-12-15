@@ -95,7 +95,7 @@ The following example uses the code snippets provided in this tutorial.
 
 ```sql
 @App:name('sample-cargo-app')
-@App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream & collection will be created automatically if they do not already exist.')
+@App:description('Basic Stream application to demonstrate reading data from input stream and store it in the collection. The stream and collection are created automatically if they do not already exist.')
 @App:qlVersion('2')
 
 -- Defines `SampleCargoAppInputTable` Source.
