@@ -16,13 +16,13 @@ title: keyvalue (Source Mapper)
 
 ## Example 1
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue') (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='keyvalue') (symbol string, price float, volume long);
 
 This query performs a default key value input mapping. The expected input is a map similar to the following: symbol: `gdn` price: 55.6f volume: 100
 
 ## Example 2
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='keyvalue', map.fail.on.missing.attribute='true', map.attributes="symbol = 's', price = 'p', volume = 'v'") (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='keyvalue', map.fail.on.missing.attribute='true', map.attributes="symbol = 's', price = 'p', volume = 'v'") (symbol string, price float, volume long);
 
 This query performs a custom key value input mapping. The matching keys
 for the `symbol`, `price` and `volume` attributes are be `s`, `p`, and
