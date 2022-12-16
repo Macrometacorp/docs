@@ -727,13 +727,32 @@ Assuming that the temperature of regulators are updated every minute.
 Following is a stream worker that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
 
 ```
+@App:name("tempRegulator")
+@App:qlVersion("2")
+
+/*
+1. Payload to send to TempStream: {"deviceID":12,"roomNo": 1,"temp": 34}
+
+2. Payload to send to RegulatorStream: {"deviceID":12,"roomNo": 1,"isOn": false}
+
+3. Result in RegulatorActionStream :{"roomNo":1,"action":"start","deviceID":12}
+
+This stream worker joins TempStream and RegulatorStream and if the temperature ingested in TempStream is greater than 30.0 and if the isOn property is equal to false in Regulator stream, produces this output in RegulatorActionStream {"roomNo":1,"action":"start","deviceID":12}
+
+Streams are stateless. Therefore, in order to join two streams, they need to be connected to a window so that there is a 
+pool of events that can be used for joining. 
+
+A sliding time window that, at a given time holds the last window length events that arrived during last window time period, 
+and gets updated for every event arrival and expiration.
+*/
+
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 CREATE STREAM RegulatorStream (deviceID long, roomNo int, isOn bool);
 
 insert into RegulatorActionStream
 select T.roomNo, R.deviceID, 'start' as action
-from TempStream[temp > 30.0]#window.time(1 min) as T
-  join RegulatorStream[isOn == false]#window.length(1) as R
+from TempStream[temp > 30.0] window sliding_time(1 min) as T
+  join RegulatorStream[isOn == false] window sliding_time(1) as R
   on T.roomNo == R.roomNo;
 ```
 
