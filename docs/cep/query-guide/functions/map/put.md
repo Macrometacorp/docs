@@ -4,7 +4,7 @@ title: put (Function)
 
 Function returns the updated map after adding the given key-value pair. If the key already exist in the map the key is updated with the new value.
 
-Syntax
+## Syntax
 
     <OBJECT> map:put(<OBJECT> map, <OBJECT|INT|LONG|FLOAT|DOUBLE|FLOAT|BOOL|STRING> key, <OBJECT|INT|LONG|FLOAT|DOUBLE|FLOAT|BOOL|STRING> value)
 

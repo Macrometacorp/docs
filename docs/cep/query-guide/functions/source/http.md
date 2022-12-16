@@ -3,7 +3,7 @@ title: http (Source)
 ---
 
 HTTP source receives POST requests via HTTP and HTTPS protocols in
-format such as `text`, `XML` and `JSON`. It also supports basic
+format such as `text` and `JSON`. It also supports basic
 authentication to ensure events are received from authorized
 users/systems. The request headers and properties can be accessed via
 transport properties in the format `trp:<header>`.
@@ -45,36 +45,46 @@ transport properties in the format `trp:<header>`.
 
 ## Example 1
 
-    @app.name('StockProcessor')
+    @App:name("http-source")
+    @App:qlVersion("2")
 
-    CREATE SOURCE StockStream WITH (type='http', map.type='json') (symbol string, price float, volume long);
+    CREATE SOURCE SampleHTTPSource WITH (type = 'http', map.type='json') (msg string);
 
-Above HTTP source listeners on URL
-`http://0.0.0.0:9763/StockProcessor/StockStream` for JSON messages on the format:
+    CREATE SINK STREAM SampleHTTPInputStream (msg string);
 
-    {
-      "event": {
-        "symbol": "FB",
-        "price": 24.5,
-        "volume": 5000
-      }
-    }
+    INSERT INTO SampleHTTPInputStream
+    SELECT msg
+    FROM SampleHTTPSource;
 
-It maps the incoming messages and sends them to `StockStream` for
-processing.
+
+It maps the incoming messages and sends them to `SampleHTTPInputStream` for processing.
 
 ## Example 2
 
-    CREATE SOURCE StockStream WITH (type='http', receiver.url='http://localhost:5005/stocks', map.type='xml') (symbol string, price float, volume long);
+    @App:name('Sample-HTTP-Source')
+    @App:description("This application how to receive POST requests via Stream Workers API.")
+    @App:qlVersion('2')
 
-Above HTTP source listeners on url `http://localhost:5005/stocks` for JSON messages on the format:
+    /**
+    Testing the Stream Application:
+        1. Open Stream `SampleHTTPOutputStream` in Console to monitor the output.
 
-    <events>
-        <event>
-            <symbol>Fb</symbol>
-            <price>55.6</price>
-            <volume>100</volume>
-        </event>
-    </events>
+        2. Go to Stream Workers API and try `Publish message via HTTP-Source stream.` endpoint. Run it with
+        application name set to `Sample-HTTP-Source`, stream name set to `SampleHTTPSource`, and body with the next data:
+            {"carId":"c1","longitude":18.4334, "latitude":30.2123}
 
-It maps the incoming messages and sends them to `StockStream` for processing.
+        3. This application read the carId, longitude and latitude from the `SampleHTTPSource` and sends it to
+        sink stream `SampleHTTPOutputStream`
+    **/
+
+    -- Defines `SampleHTTPSource` stream to process events having `carId`, `longitude`, and `latitude`.
+    CREATE SOURCE SampleHTTPSource WITH (type = 'http', map.type='json') (carId string, longitude double, latitude double);
+
+    -- Defines `SampleHTTPOutputStream` to emit the events after the data is processed by external service
+    CREATE SINK STREAM SampleHTTPOutputStream (carId string, longitude double, latitude double);
+
+    -- Note: Consume data received from the external service
+    @info(name = 'ConsumeProcessedData')
+    INSERT INTO SampleHTTPOutputStream
+    SELECT carId, longitude, latitude
+    FROM SampleHTTPSource;

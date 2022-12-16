@@ -4,7 +4,7 @@ title: remove (Function)
 
 Function returns the updated map after removing the element with the specified key.
 
-Syntax
+## Syntax
 
     <OBJECT> map:remove(<OBJECT> map, <OBJECT|INT|LONG|FLOAT|DOUBLE|FLOAT|BOOL|STRING> key)
 

@@ -28,4 +28,5 @@ slug: /apps
   <card heading="Realtime Stream ETL" href="/apps/realtime-stream-etl" />
   <card heading="Salesforce - Edge Caching and Data Privacy" href="/apps/data-privacy-sf" />
   <card heading="ToDo App (using CloudFlare Workers and Macrometa GDN)" href="/apps/todo-app-cfworkers" />
+  <card heading="Akamai FaaS" href="/apps/akamai-faas" />
 </grid>
