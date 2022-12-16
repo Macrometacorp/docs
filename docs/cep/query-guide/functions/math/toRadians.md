@@ -2,10 +2,9 @@
 title: toRadians (Function)
 ---
 
-This function converts the value given in degrees to radians. It wraps
-the `java.lang.Math.toRadians()` function.
+This function converts the value given in degrees to radians. It wraps the `java.lang.Math.toRadians()` function.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:toRadians(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -23,4 +22,4 @@ Syntax
     from InValueStream
     select math:toRadians(inValue) as radiansValue;
 
-This function converts the input, from degrees to radians and directs the result to `OutMediationStream` output stream. For example, toRadians(6d) returns 0.10471975511965977.
+This function converts the input, from degrees to radians and directs the result to `OutMediationStream` output stream. For example, `toRadians(6d)` returns 0.10471975511965977.
