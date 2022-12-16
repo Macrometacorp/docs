@@ -10,7 +10,7 @@ Macrometa User Management Portal is a fullstack `admin` and `user` portal to sho
 
 | **Federation**                                        | **Email**                              | **Passsword** | **App**|
 | ----------------------------------------------------- | -------------------------------------- | ------------- |--------------|
-| [Global Data Network](https://play.paas.macrometa.io/) | demo@macrometa.io | `xxxx`    | [User Management Portal](https://pii.macrometa.io/) |
+| [Global Data Network](https://play.paas.macrometa.io/) | demo-pii@macrometa.io | `xxxx`    | [User Management Portal](https://pii.macrometa.io/) |
 
 **Dataset: [pii-users.csv](/datasets/pii-users.csv)**
 
