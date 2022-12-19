@@ -4,7 +4,7 @@ title: isEmpty (Function)
 
 Function checks if the map is empty.
 
-Syntax
+## Syntax
 
     <BOOL> map:isEmpty(<OBJECT> map)
 

@@ -4,7 +4,7 @@ title: getBool (Function)
 
 Function retrieves the `boolean` value specified in the given path of the JSON element.
 
-Syntax
+## Syntax
 
     <BOOL> json:getBool(<STRING|OBJECT> json, <STRING> path)
 
@@ -12,7 +12,7 @@ Syntax
 
 | Name | Description                               | Default Value | Possible Data Types | Optional | Dynamic |
 |------|-------------------------------------------|---------------|---------------------|----------|---------|
-| json | The JSON input containing boolean value.  |               | STRING OBJECT       | No       | Yes     |
+| json | The JSON input containing a boolean value.  |               | STRING OBJECT       | No       | Yes     |
 | path | The JSON path to fetch the boolean value. |               | STRING              | No       | Yes     |
 
 ## Example 1

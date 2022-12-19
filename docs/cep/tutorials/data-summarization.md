@@ -13,6 +13,9 @@ To aggregate events in batches, based on events, or by session, refer other the 
 ```sql
 CREATE STREAM TemperatureStream(sensorId string, temperature double);
 
+CREATE SINK STREAM OverallTemperatureStream(avgTemperature double, maxTemperature double, numberOfEvents long);
+CREATE SINK STREAM SensorIdTemperatureStream(sensorId string, avgTemperature double, maxTemperature double);
+
 @info(name = 'Overall-analysis')
 insert all events into OverallTemperatureStream
 -- Calculate average, maximum, and count for `temperature` attribute.
@@ -20,22 +23,22 @@ select avg(temperature) as avgTemperature,
        max(temperature) as maxTemperature,
        count() as numberOfEvents
 -- Aggregate events over `1 minute` sliding window
-from TemperatureStream#window.time(1 min);
--- Output when events are added, and removed (expired) from `window.time()`.
+from TemperatureStream window time(1 min);
+-- Output when events are added, and removed (expired) from `window time()`.
 
 
 @info(name = 'SensorId-analysis')
 insert into SensorIdTemperatureStream
 select sensorId,
--- Calculate average, and minimum for `temperature`, by grouping events by `sensorId`.
+-- Calculate average, and maximum for `temperature`, by grouping events by `sensorId`.
        avg(temperature) as avgTemperature,
-       min(temperature) as maxTemperature
+       max(temperature) as maxTemperature
 -- Aggregate events over `30 seconds` sliding window
-from TemperatureStream#window.time(30 sec)       
+from TemperatureStream window time(30 sec)       
 group by sensorId
 -- Output events only when `avgTemperature` is greater than `20.0`.
 having avgTemperature > 20.0;
--- Output only when events are added to `window.time()`.
+-- Output only when events are added to `window time()`.
 ```
 
 ### Aggregation Behavior
@@ -64,6 +67,9 @@ To aggregate events in a sliding manner, based on events, or by session, refer o
 ```sql
 CREATE STREAM TemperatureStream(sensorId string, temperature double);
 
+CREATE SINK STREAM OverallTemperatureStream(avgTemperature double, maxTemperature double, numberOfEvents long);
+CREATE SINK STREAM SensorIdTemperatureStream(sensorId string, avgTemperature double, maxTemperature double);
+
 @info(name = 'Overall-analysis')
 -- Calculate average, maximum, and count for `temperature` attribute.
 insert into OverallTemperatureStream
@@ -71,21 +77,18 @@ select avg(temperature) as avgTemperature,
        max(temperature) as maxTemperature,
        count() as numberOfEvents
 -- Aggregate events every `1 minute`, from the arrival of the first event.
-from TemperatureStream#window.timeBatch(1 min);
+from TemperatureStream window timeBatch(1 min);
 
 
 @info(name = 'SensorId-analysis')
 insert into SensorIdTemperatureStream
 select sensorId,
--- Calculate average, and minimum for `temperature`, by grouping events by `sensorId`.
+-- Calculate average, and maximum for `temperature`, by grouping events by `sensorId`.
        avg(temperature) as avgTemperature,
-       min(temperature) as maxTemperature
-
+       max(temperature) as maxTemperature
 -- Aggregate events every `30 seconds` from epoch timestamp `0`.
-from TemperatureStream#window.timeBatch(30 sec, 0)
-
+from TemperatureStream window timeBatch(30 sec, 0)
 group by sensorId
-
 -- Output events only when `avgTemperature` is greater than `20.0`.
 having avgTemperature > 20.0;
 ```
@@ -119,6 +122,9 @@ To aggregate events in batches, based on time, or by session, refer other the ex
 ```sql
 CREATE STREAM TemperatureStream(sensorId string, temperature double);
 
+CREATE SINK STREAM OverallTemperatureStream(avgTemperature double, maxTemperature double, numberOfEvents long);
+CREATE SINK STREAM SensorIdTemperatureStream(sensorId string, avgTemperature double, maxTemperature double);
+
 @info(name = 'Overall-analysis')
 insert into OverallTemperatureStream
 -- Calculate average, maximum, and count for `temperature` attribute.
@@ -126,18 +132,17 @@ select avg(temperature) as avgTemperature,
        max(temperature) as maxTemperature,
        count() as numberOfEvents
 -- Aggregate last `4` events in a sliding manner.
-from TemperatureStream#window.length(4);
+from TemperatureStream window length(4);
 
 
 @info(name = 'SensorId-analysis')
 insert into SensorIdTemperatureStream
 select sensorId,
--- Calculate average, and minimum for `temperature`, by grouping events by `sensorId`.
+-- Calculate average, and maximum for `temperature`, by grouping events by `sensorId`.
        avg(temperature) as avgTemperature,
-       min(temperature) as maxTemperature
-
+       max(temperature) as maxTemperature
 -- Aggregate last `5` events in a sliding manner.
-from TemperatureStream#window.length(5)
+from TemperatureStream window length(5)
 group by sensorId
 -- Output events only when `avgTemperature` is greater than or equal to `20.0`.
 having avgTemperature >= 20.0;
@@ -167,6 +172,9 @@ To aggregate events in a sliding manner, based on time, or by session, refer oth
 ```sql
 CREATE STREAM TemperatureStream(sensorId string, temperature double);
 
+CREATE SINK STREAM OverallTemperatureStream(avgTemperature double, maxTemperature double, numberOfEvents long);
+CREATE SINK STREAM SensorIdTemperatureStream(sensorId string, avgTemperature double, maxTemperature double);
+
 @info(name = 'Overall-analysis')
 insert into OverallTemperatureStream
 -- Calculate average, maximum, and count for `temperature` attribute.
@@ -174,16 +182,16 @@ select avg(temperature) as avgTemperature,
        max(temperature) as maxTemperature,
        count() as numberOfEvents
 -- Aggregate every `4` events in a batch (tumbling) manner.
-from TemperatureStream#window.lengthBatch(4);
+from TemperatureStream window lengthBatch(4);
 
 @info(name = 'SensorId-analysis')
 insert into SensorIdTemperatureStream
 select sensorId,
--- Calculate average, and minimum for `temperature`, by grouping events by `sensorId`.
+-- Calculate average, and maximum for `temperature`, by grouping events by `sensorId`.
        avg(temperature) as avgTemperature,
-       min(temperature) as maxTemperature
+       max(temperature) as maxTemperature
 -- Aggregate every `5` events in a batch (tumbling) manner.
-from TemperatureStream#window.lengthBatch(5)
+from TemperatureStream window lengthBatch(5)
 group by sensorId
 -- Output events only when `avgTemperature` is greater than or equal to `20.0`.
 having avgTemperature >= 20.0;
@@ -213,6 +221,9 @@ To aggregate events in batches, or based on events, refer other the examples in 
 ```sql
 CREATE STREAM PurchaseStream(userId string, item string, price double);
 
+CREATE SINK STREAM OutOfOrderUserIdPurchaseStream(userId string, totalItems long, totalPrice double);
+CREATE SINK STREAM UserIdPurchaseStream(userId string, totalItems long, totalPrice double);
+
 @info(name = 'Session-analysis')
 -- Calculate count and sum of `price` per `userId` during the session.
 insert into OutOfOrderUserIdPurchaseStream
@@ -220,19 +231,20 @@ select userId,
        count() as totalItems,
        sum(price) as totalPrice
 -- Aggregate events over a `userId` based session window with `1 minute` session gap.
-from PurchaseStream#window.session(1 min, userId)
-group by userId
+from PurchaseStream window session(1 min, userId)
+group by userId;
 -- Output when events are added to the session.
-insert into UserIdPurchaseStream;
+
 
 @info(name = 'Session-analysis-with-late-event-arrivals')
 -- Calculate count and sum of `price` per `userId` during the session.
+insert into UserIdPurchaseStream
 select userId,
        count() as totalItems,
        sum(price) as totalPrice
 -- Aggregate events over a `userId` based session window with `1 minute` session gap,
 -- and `20 seconds` of allowed latency to capture late event arrivals.
-from PurchaseStream#window.session(1 min, userId, 20 sec)
+from PurchaseStream window session(1 min, userId, 20 sec)
 group by userId;
 -- Output when events are added to the session.
 ```
@@ -260,8 +272,11 @@ This example shows defining a named window and summarizing data based on the win
 ```sql
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
+CREATE SINK STREAM MinMaxTemperatureOver1MinStream(minTemperature double, maxTemperature double);
+CREATE SINK STREAM AvgTemperaturePerSensorStream(sensorId string, avgTemperature double);
+
 -- Define a named window with name `OneMinTimeWindow` to retain events over `1 minute` in a sliding manner.
-define window OneMinTimeWindow (sensorId string, temperature double) time(1 min) ;
+CREATE WINDOW OneMinTimeWindow (sensorId string, temperature double) time(1 min) ;
 
 @info(name = 'Insert-to-window')
 -- Insert events in to the named time window.

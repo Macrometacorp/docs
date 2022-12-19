@@ -4,7 +4,7 @@ title: abs (Function)
 
 This function returns the absolute value of the given parameter. It wraps the `java.lang.Math.abs()` function.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:abs(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:abs(inValue) as absValue
     from InValueStream;
 
-Regardless of whether the `invalue` in the input stream holds a value of abs(3) or abs(-3),the function returns 3 since the absolute value of both 3 and -3 is 3. The result directed to OutMediationStream stream.
+Regardless of whether the `invalue` in the input stream holds a value of abs(3) or abs(-3), the function returns 3 since the absolute value of both 3 and -3 is 3. The result directed to OutMediationStream stream.

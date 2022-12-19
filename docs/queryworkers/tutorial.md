@@ -8,11 +8,6 @@ import TabItem from '@theme/TabItem';
 
 This tutorial is about using C8QL queries as API (aka Query Workers) in Macrometa GDN with low latencies across the globe.
 
-For this example, we use the following credentials:
-
-- Tenant name: `nemo@nautilus.com`
-- User password: `xxxxxx`.
-
 ## Installation
 
 <Tabs groupId="operating-systems">

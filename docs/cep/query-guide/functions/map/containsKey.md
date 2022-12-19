@@ -4,7 +4,7 @@ title: containsKey (Function)
 
 Function checks if the map contains the key.
 
-Syntax
+## Syntax
 
     <BOOL> map:containsKey(<OBJECT> map, <INT|LONG|FLOAT|DOUBLE|BOOL|STRING> key)
 
