@@ -3,11 +3,27 @@ sidebar_position: 1
 title: Map Functions
 ---
 
-Provides examples on basic map functions provided via [map](../query-guide/functions/map/clear.md) extension.
+Map functions allow you to create and interact with maps.
 
-For information of performing scatter and gather using [map:tokenize()](../query-guide/functions/map/tokenize.md), and [map:collect()](../query-guide/functions/map/collect.md) refer the examples in Data Pipelining section.
+For information on performing scatter and gather using [map:tokenize()](tokenize.md), and [map:collect()](collect.md), refer the examples in [Data Pipelining](../../../tutorials/data-pipelining.md).
 
-### Example
+## Input
+
+Below event is sent to `CoupleDealInfoStream`,
+
+[`'Chocolate'`, `18.0`, `'Ice Cream'`, `24.0`]
+
+## Output
+
+After processing, the following events arrive at each stream:
+
+- NewMapStream: [`{Ice Cream=24.0, Chocolate =18.0}`]
+- MapAnalysisStream: [`true`, `false`, `true`, `false`, `[Ice Cream, Chocolate]`, `2`]
+- ItemInsertedMapStream: [`{Ice Cream=24.0, Gift=1.0, Chocolate =18.0}`]
+
+## Example
+
+This example provides examples of basic map functions.
 
 ```sql
 -- Defines `CoupleDealInfoStream` having attributes `item1`, `price1`, `item2`, and `price2` with `string` and `double` types.
@@ -48,17 +64,3 @@ select map:replace(
                    12.0) as itemPriceMap
 from NewMapStream;
 ```
-
-### Input
-
-Below event is sent to `CoupleDealInfoStream`,
-
-[`'Chocolate'`, `18.0`, `'Ice Cream'`, `24.0`]
-
-### Output
-
-After processing, the following events will be arriving at each stream:
-
-- NewMapStream: <br/>[`{Ice Cream=24.0, Chocolate =18.0}`]
-- MapAnalysisStream: <br/>[`true`, `false`, `true`, `false`, `[Ice Cream, Chocolate]`, `2`]
-- ItemInsertedMapStream: <br/>[`{Ice Cream=24.0, Gift=1.0, Chocolate =18.0}`]
