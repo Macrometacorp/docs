@@ -111,9 +111,9 @@ In such cases use the `update or insert into` operation.
 **Syntax**
 
 ```
-insert into <table>
-select <attribute name>, <attribute name>, ...
-from <input stream>
+INSERT INTO <table>
+SELECT <attribute name>, <attribute name>, ...
+FROM <input stream>
 ```
 
 Similar to streams, you need to use the `current events`, `expired events` or the `all events` keyword between `insert` and `into` keywords in order to insert only the specific event types.
@@ -125,9 +125,9 @@ For more information, see [Event Type](#event-type)
 This query inserts all the events from the `TempStream` stream to the `TempTable` table.
 
 ```
-insert into TempTable
-select *
-from TempStream;
+INSERT INTO TempTable
+SELECT *
+FROM TempStream;
 ```
 
 ## Join (Table)
@@ -141,10 +141,10 @@ Joins can also be performed with [two streams](#join-stream), [aggregation](#joi
 **Syntax**
 
 ```
-insert into <output stream>
-select (<input stream>|<table>).<attribute name>, (<input stream>|<table>).<attribute name>, ...
-from <input stream> join <table>
-    on <condition>
+INSERT INTO <output stream>
+SELECT (<input stream>|<table>).<attribute name>, (<input stream>|<table>).<attribute name>, ...
+FROM <input stream> JOIN <table>
+    ON <condition>
 ```
 
 :::note
@@ -160,11 +160,11 @@ This Stream App performs a join to retrieve the room type from `RoomTypeTable` t
 CREATE TABLE RoomTypeTable (roomNo int, type string);
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
-insert into ServerRoomTempStream
-select deviceID, RoomTypeTable.type as roomType, type, temp
+INSERT INTO ServerRoomTempStream
+SELECT deviceID, RoomTypeTable.type as roomType, type, temp
     having roomType == 'server-room'
-from TempStream join RoomTypeTable
-    on RoomTypeTable.roomNo == TempStream.roomNo;
+FROM TempStream JOIN RoomTypeTable
+    ON RoomTypeTable.roomNo == TempStream.roomNo;
 ```
 
 **Supported join types**
@@ -193,10 +193,10 @@ To delete selected events that are stored in a table.
 **Syntax**
 
 ```
-select <attribute name>, <attribute name>, ...
-from <input stream>
-delete <table> (for <event type>)?
-    on <condition>
+SELECT <attribute name>, <attribute name>, ...
+FROM <input stream>
+DELETE <table> (for <event type>)?
+    ON <condition>
 ```
 
 The `condition` element specifies the basis on which events are selected to be deleted. When specifying the condition, table attributes should be referred to with the table name.
@@ -217,9 +217,9 @@ CREATE TABLE RoomTypeTable (roomNo int, type string);
 
 CREATE STREAM DeleteStream (roomNumber int);
 
-from DeleteStream
-delete RoomTypeTable
-    on RoomTypeTable.roomNo == roomNumber;
+FROM DeleteStream
+DELETE RoomTypeTable
+    ON RoomTypeTable.roomNo == roomNumber;
 ```
 
 ## Update
@@ -229,11 +229,11 @@ This operator updates selected event attributes stored in a table based on a con
 **Syntax**
 
 ```
-select <attribute name>, <attribute name>, ...
-from <input stream>
-update <table> (for <event type>)?
-    set <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
-    on <condition>
+SELECT <attribute name>, <attribute name>, ...
+FROM <input stream>
+UPDATE <table> (for <event type>)?
+    SET <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
+    ON <condition>
 ```
 
 The `condition` element specifies the basis on which events are selected to be updated. When specifying the `condition`, table attributes must be referred to with the table name.
@@ -255,11 +255,11 @@ This stream application updates the room occupancy in the `RoomOccupancyTable` t
 CREATE TABLE RoomOccupancyTable (roomNo int, people int);
 CREATE STREAM UpdateStream (roomNumber int, arrival int, exit int);
 
-select *
-from UpdateStream
-update RoomOccupancyTable
-    set RoomOccupancyTable.people = RoomOccupancyTable.people + arrival - exit
-    on RoomOccupancyTable.roomNo == roomNumber;
+SELECT *
+FROM UpdateStream
+UPDATE RoomOccupancyTable
+    SET RoomOccupancyTable.people = RoomOccupancyTable.people + arrival - exit
+    ON RoomOccupancyTable.roomNo == roomNumber;
 ```
 
 ## Update or Insert
@@ -269,11 +269,12 @@ This allows you update if the event attributes already exist in the table based 
 **Syntax**
 
 ```
-select <attribute name>, <attribute name>, ...
-from <input stream>
-update or insert into <table> (for <event type>)?
-    set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
-    on <condition>
+SELECT <attribute name>, <attribute name>, ...
+FROM <input stream>
+UPDATE RoomOccupancyTable
+ OR INSERT INTO <table> (for <event type>)?
+    SET <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
+    ON <condition>
 ```
 
 The `condition` element specifies the basis on which events are selected for update. When specifying the `condition`, table attributes should be referred to with the table name. If a record that matches the condition does not already exist in the table, the arriving event is inserted into the table.
@@ -298,11 +299,11 @@ The following query update for events in the `UpdateTable` event table that have
 CREATE TABLE RoomAssigneeTable (roomNo int, type string, assignee string);
 CREATE STREAM RoomAssigneeStream (roomNumber int, type string, assignee string);
 
-select roomNumber as roomNo, type, assignee
-from RoomAssigneeStream
-update or insert into RoomAssigneeTable
-    set RoomAssigneeTable.assignee = assignee
-    on RoomAssigneeTable.roomNo == roomNo;
+SELECT roomNumber as roomNo, type, assignee
+FROM RoomAssigneeStream
+UPDATE OR INSERT INTO RoomAssigneeTable
+    SET RoomAssigneeTable.assignee = assignee
+    ON RoomAssigneeTable.roomNo == roomNo;
 ```
 
 ## In
@@ -313,7 +314,7 @@ This allows the stream to check whether the expected value exists in the table a
 
 ```
 INSERT INTO <output stream>
-select <attribute name>, <attribute name>, ...
+SELECT <attribute name>, <attribute name>, ...
 FROM <input stream>[<condition> IN <table>]
 ```
 
@@ -331,6 +332,6 @@ This Stream application filters only room numbers that are listed in the `Server
 CREATE TABLE ServerRoomTable (roomNo int);
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
-insert into ServerRoomTempStream
-from TempStream[ServerRoomTable.roomNo == roomNo in ServerRoomTable];
+INSERT INTO ServerRoomTempStream
+FROM TempStream[ServerRoomTable.roomNo == roomNo in ServerRoomTable];
 ```
