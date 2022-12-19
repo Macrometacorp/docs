@@ -55,10 +55,10 @@ To calculate and store time-based aggregation values for the scenario explained 
 3. Create an aggregation as follows. You can name it `TradeAggregation`.
 
     :::info
-        The system uses the aggregation name you define here as part of the database table name. Table name is `<Aggregation_Name>_<Granularity>`. System will automatically create a collection `TradeAggregation_HOUR` in `c8db` as we will be calculating the aggregation hourly in the next step.
+        The system uses the aggregation name you define here as part of the database table name. Table name is `<StreamWorker_Name>-<Aggregation_Name>_<Granularity>`. System will automatically create a collection `TradeApp-TradeAggregation_HOUR` as we will be calculating the aggregation hourly in the next step.
     :::    
     ```sql
-    CREATE AGGREGATION TradeAggregation
+    CREATE AGGREGATION TradeAggregation WITH(store.type='database', store.replication.type='global')
     ```
 
 4. To calculate aggregations, include a query as follows:
@@ -95,7 +95,7 @@ To calculate and store time-based aggregation values for the scenario explained 
 
     CREATE STREAM TradeStream (symbol string, price double, quantity long, timestamp long);
 
-    CREATE AGGREGATION TradeAggregation
+    CREATE AGGREGATION TradeAggregation WITH(store.type='database', store.replication.type='global')
    
     @info(name = 'CalculatingAggregates')
     select symbol, avg(price) as avgPrice, sum(quantity) as total
@@ -112,17 +112,17 @@ To do this, let's add the definitions and queries required for retrieval to the 
 
 1. Open the `TradeApp` stream application.
 
-2. To retrieve aggregations, you need to make retrieval requests. To capture these requests as events, let's define a stream as follows.
+2. To retrieve aggregations, you need to make retrieval requests. To process these requests let's define a stream as follows.
     ```sql
-    CREATE STREAM TradeSummaryRetrievalStream (symbol string);
+    CREATE SINK STREAM TradeSummaryStream (symbol string, total long, avgPrice double);
     ```
     
-3. To process the events captured via the `TradeSummaryRetrievalStream` stream you defined, add a new query as follows.
+3. To retrieve and process the events, add a new query as follows.
 
     ```sql
     insert into TradeSummaryStream
     select a.symbol, a.total, a.avgPrice 
-    from TradeSummaryRetrievalStream as b join TradeAggregation as a
+    from TradeStream as b join TradeAggregation as a
         on a.symbol == b.symbol 
         within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30" 
         per "days" ;
@@ -136,7 +136,7 @@ To do this, let's add the definitions and queries required for retrieval to the 
     
     CREATE STREAM TradeStream (symbol string, price double, quantity long, timestamp long);
     
-    CREATE STREAM TradeSummaryRetrievalStream (symbol string);
+    CREATE SINK STREAM TradeSummaryStream (symbol string, total long, avgPrice double);
     
     CREATE AGGREGATION TradeAggregation
     select symbol, avg(price) as avgPrice, sum(quantity) as total
@@ -147,7 +147,7 @@ To do this, let's add the definitions and queries required for retrieval to the 
     @info(name = 'RetrievingAggregates') 
     insert into TradeSummaryStream
     select a.symbol, a.total, a.avgPrice 
-    from TradeSummaryRetrievalStream as b join TradeAggregation as a
+    from TradeStream as b join TradeAggregation as a
         on a.symbol == b.symbol 
         within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30" 
         per "days" ;
@@ -175,17 +175,17 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 2. To capture details about each production run, define an input stream as follows.
 
     ```sql
-    CREATE STREAM ProductionStream (name string, amount long, timestamp long);
+    CREATE STREAM ProductionStream (name string, amount long);
     ```
     
 3. To publish the production for the last hour, define the output stream as follows.
 
     ```sql
-	CREATE STREAM PastHourProductionStream WITH (type='log', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
+    CREATE SINK PastHourProductionStream WITH (type='logger', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
     ```
 
     :::note
-        A sink annotation is connected to the output stream to log the output events. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
+        A sink annotation is connected to the output stream to log the output events. You can view the logged events by simply clicking on the `Log Viewer` button on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
     :::
 
 4. To define how the output is derived, add the `select` statement as follows:
@@ -199,11 +199,11 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 5. To specify that the processing done as defined via the `select` statement applies to a time window, add the `from` clause and include the time window as shown below. This must be added above the `select` clause.
 
     ```sql
-    from ProductionStream#window.time(1 hour)
+    from ProductionStream window time(1 hour)
     ```
 
     :::note
-        `window.time` indicates that the window added is a time window. The time considered is one hour. The window is a sliding window which considers the last hour at any given time.
+        `window time` indicates that the window added is a time window. The time considered is one hour. The window is a sliding window which considers the last hour at any given time.
 
         (For example, when the stream processor calculates the total production during the time 13.00-14.00, next it calculates the total production during the time 13.01-14.01 after the 13.01 minute as elapsed.) 
         
@@ -228,13 +228,13 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     @App:name('PastHourProductionApp')
     @App:qlVersion("2")
     
-    CREATE STREAM ProductionStream (name string, amount long, timestamp long);
+    CREATE STREAM ProductionStream (name string, amount long);
     
-	CREATE STREAM PastHourProductionStream WITH (type='log', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
+    CREATE SINK PastHourProductionStream WITH (type='logger', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
     
     insert into PastHourProductionStream
     select name, sum(amount) as pastHourTotal
-    from ProductionStream#window.time(1 hour)
+    from ProductionStream window time(1 hour)
     group by name;
     ```
 
@@ -260,20 +260,20 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
 3. To output the maximum production detected every 10 production runs, define an output stream as follows.
 
     ```sql
-	CREATE STREAM DetectedMaximumProductionStream WITH (type='log', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
+    CREATE SINK DetectedMaximumProductionStream WITH (type='logger', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
     ```
 
     :::note
-        A sink annotation is connected to the output stream to log the output events. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
+        A sink annotation is connected to the output stream to log the output events. You can view the logged events by simply clicking on the `Log Viewer` button on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
     :::
         
 4. To define the subset of events to be considered based on the number of events, add the `from` clause with a `lengthBatch` window as follows.
 
     ```sql
-    from ProductionStream#window.lengthBatch(10)
+    from ProductionStream window lengthBatch(10)
     ```
     
-    `window.lengthBatch` indicates that the window added is a length window that considers events in batches when determin ing subsets. The number of events in each batch is `10`. For details about other window types supported, see [Plugins - Unique](../reference/extensions/execution/unique.md).
+    `window lengthBatch` indicates that the window added is a length window that considers events in batches when determin ing subsets. The number of events in each batch is `10`. For details about other window types supported, see [Plugins - Unique](../reference/extensions/execution/unique.md).
 
 5. To derive the values for the `DetectedMaximumProductionStream` output stream, add the `select` statement as follows.
 
@@ -300,13 +300,13 @@ The completed stream application is as follows.
 @App:name('MaximumProductionApp') 
 @App:qlVersion("2")
 
-CREATE STREAM ProductionStream (name string, amount long, timestamp long);
+CREATE STREAM ProductionStream (name string, amount long);
 
-CREATE STREAM DetectedMaximumProductionStream WITH (type='log', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
+CREATE SINK DetectedMaximumProductionStream WITH (type='logger', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
 
 insert into DetectedMaximumProductionStream
 select name, max(amount) as maximumValue
-from ProductionStream#window.lengthBatch(10)
+from ProductionStream window lengthBatch(10)
 group by name
 ;
 ```
