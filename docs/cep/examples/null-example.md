@@ -1,9 +1,9 @@
 ---
 sidebar_position: 40
-title: Nulls in Stream Workers Example
+title: Nulls Example
 ---
 
-This page provides examples on using nulls in stream workers.
+This page provides examples of using nulls in stream workers.
 
 ## Input
 
