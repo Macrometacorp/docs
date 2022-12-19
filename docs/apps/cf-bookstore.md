@@ -9,13 +9,13 @@ Bookstore Demo is a full-stack sample web application that creates a storefront 
 
 | **Tenant** | **Fabric** | **Password** | **GUI** | **Source Code**|
 |----------- |----------|-----------|--------------|-----------|
-| bookstore@macrometa.io | `_system` | `xxxxxxxxxx` | [**Book Store App**](https://bookstore.macrometa.io/) |[github](https://github.com/Macrometacorp/tutorial-cloudflare-bookstore)|
+| demo-bookstore@macrometa.io | `_system` | `xxxxxxxxxx` | [**Book Store App**](https://bookstore.macrometa.io/) |[github](https://github.com/Macrometacorp/tutorial-cloudflare-bookstore)|
 
 ### On GDN (Dynamo Mode)
 
 | **Tenant** | **Fabric** | **Password** | **GUI** | **Source Code**|
 |----------- |----------|-----------|--------------|-----------|
-| bookstore-dynamo@macrometa.io | `_system` | `xxxxxxxxxx` | [**Book Store Dynamo App**](https://bookstore-dynamo.macrometadev.workers.dev/) |[github](https://github.com/Macrometacorp/tutorial-cloudflare-bookstore-dynamo)|
+| demo-bookstore-dynamo@macrometa.io | `_system` | `xxxxxxxxxx` | [**Book Store Dynamo App**](https://bookstore-dynamo.macrometadev.workers.dev/) |[github](https://github.com/Macrometacorp/tutorial-cloudflare-bookstore-dynamo)|
 
 ![Bookstore](/img/bookstore.png)
 
