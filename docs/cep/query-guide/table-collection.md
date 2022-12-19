@@ -3,13 +3,13 @@ sidebar_position: 40
 title: Table (Collection)
 ---
 
-A table is a stored version of an stream or a table of events. Its schema is defined via the **table definition** that is similar to a stream definition. These events are stored in database.
+A table is a stored version of an stream or a table of events. Its schema is defined via the _table definition_ that is similar to a stream definition. These events are stored in database.
 
-**Purpose**
+## Table Purpose
 
 Tables allow stream processor to work with stored events. By defining a schema for tables stream processor enables them to be processed by queries using their defined attributes with the streaming data. You can also interactively query the state of the stored events in the table.
 
-**Syntax**
+### Table Syntax
 
 The syntax for a new table definition is as follows:
 
@@ -33,21 +33,7 @@ The following defines a table named `RoomTypeTable` with `roomNo` and `type` att
 CREATE TABLE RoomTypeTable ( roomNo int, type string );
 ```
 
-### Primary Keys
-
-Tables can be configured with primary keys to avoid the duplication of data.
-
-Primary keys are configured by including the `PrimaryKey` property to the table definition. Each event table configuration can have only one `PrimaryKey` property. The number of attributes supported differ based on the table implementations. When more than one attribute is used for the primary key, the uniqueness of the events stored in the table is determined based on the combination of values for those attributes.
-
-**Examples**
-
-This query creates an event table with the `symbol` attribute as the primary key. Therefore each entry in this table must have a unique value for `symbol` attribute.
-
-```
-CREATE TABLE StockTable WITH (PrimaryKey='symbol', Index='key1', Index='key2') (symbol string, price float, volume long);
-```
-
-### Indexes
+## Indexes
 
 Indexes allow tables to be searched/modified much faster.
 
@@ -55,16 +41,38 @@ Indexes are configured by including the `@Index( 'key1', 'key2' )` annotation to
 
 Indexes can be configured together with primary keys.
 
-**Examples**
+**Example 1**
 
 This query creates an indexed event table named `RoomTypeTable` with the `roomNo` attribute as the index key.
 
-```
+```js
 @Index('roomNo')
-CREATE TABLE RoomTypeTable (roomNo int, type string);
+CREATE (UNIQUE)? INDEX index_name ON TABLE source with_properties '(' field_name (',' field_name ) ')'
 ```
 
-### Store
+**Example 2**
+
+```js
+-- Creates a persistent index named `SamplePersistentIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
+CREATE UNIQUE INDEX SamplePersistentIndex ON TABLE SampleGDNTable WITH(type="persistent", sparse="true", deduplicate="true") (sensorId);
+
+-- Creates a hash index named `SampleHashIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
+CREATE UNIQUE INDEX SampleHashIndex ON TABLE SampleGDNTable WITH(type="hash", sparse="true", deduplicate="true") (sensorId);
+
+-- Creates a skiplist index named `SampleSkiplistIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
+CREATE UNIQUE INDEX SampleSkiplistIndex ON TABLE SampleGDNTable WITH(type="skiplist", sparse="true", deduplicate="true") (sensorId);
+
+-- Creates a fulltext index named `SampleFullTextIndex` on `SampleGDNTable` with following properties {minLength=3}.
+CREATE INDEX SampleFullTextIndex ON TABLE SampleGDNTable WITH(type="fulltext", minLength="3") (sensorId);
+
+-- Creates a geo index named `SampleGeoIndex` on `SampleGDNTable` with following properties {geoJson=false}.
+CREATE INDEX SampleGeoIndex ON TABLE SampleGDNTable WITH(type="geo", geoJson="false") (sensorId);
+
+-- Creates a ttl index named `SampleTTLIndex` on `SampleGDNTable` with following properties {expireAfter=3600}.
+CREATE INDEX SampleTTLIndex ON TABLE SampleGDNTable WITH(type="ttl", expireAfter="3600") (sensorId);
+```
+
+## Store
 
 Store is a table that refers to data/events stored in data stores outside of stream. Store is defined via the `@store` annotation, and the store schema is defined via a **table definition** associated with it.
 
@@ -92,7 +100,7 @@ CREATE TABLE RoomTypeTable WITH (Store.type="database", collection="RoomTypeTabl
 
 The following operators can be performed on tables.
 
-### Insert
+## Insert
 
 This allows events to be inserted into tables. This is similar to inserting events into streams.
 
@@ -122,7 +130,7 @@ select *
 from TempStream;
 ```
 
-### Join (Table)
+## Join (Table)
 
 This allows a stream to retrieve information from a table in a streaming manner.
 
@@ -165,7 +173,7 @@ Table join supports following join operations.
 
 - **Inner join (join)**
 
-    This is the default behaviour of a join operation. `join` is used as the keyword to join the stream with the table. The output is generated only if there is a matching event in both the stream and the table.
+    This is the default behavior of a join operation. `join` is used as the keyword to join the stream with the table. The output is generated only if there is a matching event in both the stream and the table.
 
 - **Left outer join**
 
@@ -178,7 +186,7 @@ Table join supports following join operations.
     This is similar to a `left outer join`. `right outer join` is used as the keyword to join a stream on right side with a table on the left side based on a condition.
     It returns all the events of the right stream even if there are no matching events in the left table.
 
-### Delete
+## Delete
 
 To delete selected events that are stored in a table.
 
@@ -214,7 +222,7 @@ delete RoomTypeTable
     on RoomTypeTable.roomNo == roomNumber;
 ```
 
-### Update
+## Update
 
 This operator updates selected event attributes stored in a table based on a condition.
 
@@ -254,7 +262,7 @@ update RoomOccupancyTable
     on RoomOccupancyTable.roomNo == roomNumber;
 ```
 
-### Update or Insert
+## Update or Insert
 
 This allows you update if the event attributes already exist in the table based on a condition, or else insert the entry as a new attribute.
 
@@ -297,7 +305,7 @@ update or insert into RoomAssigneeTable
     on RoomAssigneeTable.roomNo == roomNo;
 ```
 
-### In
+## In
 
 This allows the stream to check whether the expected value exists in the table as a part of a conditional operation.
 
