@@ -61,7 +61,8 @@ High level syntax of StreamApp is as follows.
 For example, this stream application with the name `Temperature-Analytics` creates a stream named `TempStream` and a query named `5minAvgQuery`.
 
 ```js
-@app:name('Temperature-Analytics')
+@App:name("Temperature-Analytics")
+@App:description("This stream worker creates a stream and query.")
 @App:qlVersion("2")
 
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
@@ -69,6 +70,6 @@ CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 @name('5minAvgQuery')
 insert into OutputStream
 select roomNo, avg(temp) as avgTemp
-from TempStream#window.time(5 min)
+from TempStream window sliding_time(5 min)
 group by roomNo;
 ```
