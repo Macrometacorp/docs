@@ -4,7 +4,7 @@ title: ceil (Function)
 
 This function returns the smallest double value, i.e., the closest to the negative infinity, that is greater than or equal to the `p1` argument, and is equal to a mathematical integer. It wraps the `java.lang.Math.ceil()` method.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:ceil(<FLOAT|DOUBLE> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:ceil(inValue) as ceilingValue
     from InValueStream;
 
-This function calculates the ceiling value of the given `inValue` and directs the result to `OutMediationStream` output stream. For example, ceil(423.187d) returns 424.0.
+This function calculates the ceiling value of the given `inValue` and directs the result to `OutMediationStream` output stream. For example, `ceil(423.187d)` returns 424.0.

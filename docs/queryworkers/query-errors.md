@@ -3,7 +3,7 @@ title: Query Errors
 sidebar_position: 90
 ---
 
-This page describes errors that might occur during the C8QL parsing or execution.
+This page describes errors that might occur during the query parsing or execution.
 
 Issuing an invalid query to the server will result in a parse error if the query is syntactically invalid. Macrometa detects such errors during query inspection and abort further processing. Instead, the error number and an error message are returned so that the errors can be fixed.
 
@@ -25,5 +25,5 @@ The `Invalid operands for logical operations` is triggered when an attempt is ma
 
 ## Other Errors
 
-- Refer to the [Common Errors](c8ql/common-errors.md) for more information about C8QL errors.
+- Refer to the [C8QL Common Errors](c8ql/common-errors.md) for more information about C8QL errors.
 - Refer to [Error Codes](../references/error-codes.md) for a list of error codes and meanings.
