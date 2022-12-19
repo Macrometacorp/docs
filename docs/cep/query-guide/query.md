@@ -726,6 +726,7 @@ The `unidirectional` keyword cannot be applied to both the input streams because
 Assuming that the temperature of regulators are updated every minute.
 Following is a stream worker that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
 
+
 ```sql
 @App:name("tempRegulator")
 @App:qlVersion("2")
@@ -745,6 +746,7 @@ A sliding time window that, at a given time holds the last window length events 
 and gets updated for every event arrival and expiration.
 
 */
+
 
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 CREATE STREAM RegulatorStream (deviceID long, roomNo int, isOn bool);
@@ -983,7 +985,7 @@ CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
 insert into AlertStream
 select e1.roomNo as roomNo
-from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] for '5 min';
+from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] for 5 min;
 ```
 
 ### Sequence
