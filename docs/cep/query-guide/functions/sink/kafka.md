@@ -26,10 +26,10 @@ To configure a sink to use the Kafka transport, the `type` parameter should have
 
     @App:name('TestExecutionPlan')
     CREATE STREAM FooStream (symbol string, price float, volume long);
+    
+    CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
 
     @info(name = 'query1')
-    CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='xml') (symbol string, price float, volume long);
-
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
@@ -40,9 +40,9 @@ This Kafka sink configuration publishes to 0th partition of the topic named `top
     @App:name('TestExecutionPlan')
     CREATE STREAM FooStream (symbol string, price float, volume long);
 
-    @info(name = 'query1')
-    CREATE SINK BarStream WITH (type='kafka', topic='{{symbol}}', partition.no='{{volume}}', bootstrap.servers='localhost:9092', map.type='xml') (symbol string, price float, volume long);
+    CREATE SINK BarStream WITH (type='kafka', topic='{{symbol}}', partition.no='{{volume}}', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
 
+    @info(name = 'query1')
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
