@@ -312,9 +312,9 @@ This allows the stream to check whether the expected value exists in the table a
 **Syntax**
 
 ```
-insert into <output stream>
+INSERT INTO <output stream>
 select <attribute name>, <attribute name>, ...
-from <input stream>[<condition> in <table>]
+FROM <input stream>[<condition> IN <table>]
 ```
 
 The `condition` element specifies the basis on which events are selected to be compared. When constructing the `condition`, the table attribute must be always referred to with the table name as shown below:
