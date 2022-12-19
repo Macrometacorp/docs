@@ -5,7 +5,7 @@ title: Stream
 
 A stream is a logical series of events ordered in time. Its schema is defined via the _stream definition_. A stream definition contains the stream name and a set of attributes with specific types and uniquely identifiable names within the stream. All events associated to the stream will have the same schema (i.e., have the same attributes in the same order).
 
-Stream processor groups common types of events together with a schema. This helps in various ways such as, processing all events together in queries and performing data format transformations together when they are consumed and published via sources and sinks.
+The stream processor groups common types of events together with a schema. This helps in various ways such as, processing all events together in queries and performing data format transformations together when they are consumed and published via sources and sinks.
 
 ### Syntax
 
@@ -68,8 +68,8 @@ The following is the list of source types supported by Stream:
 
 |Source type | Description|
 | ------------- |-------------|
-| `database` | Allow stream app to consume events from collections (doc, graphs) running in the same or different geo fabric. |
-| `stream` | Allow stream app to consume events from streams (local, geo-replicated) running in the same or different geo fabric. |
+| `database` | Allow the stream worker to consume events from collections (doc, graphs) running in the same or different geo fabric. |
+| `stream` | Allow the stream worker to consume events from streams (local, geo-replicated) running in the same or different geo fabric. |
 | `Kafka` | Subscribe to Kafka topic to consume events.|
 
 #### Source Mapper
@@ -207,7 +207,7 @@ The following is a list of sink types supported by stream processor:
 
 |Source type | Description|
 | ------------- |-------------|
-| database | Allow StreamApp to publish events to collections (doc, graphs) in the same or different geofabric. |
+| database | Allow the stream worker to publish events to collections (doc, graphs) in the same or different geofabric. |
 | HTTP| Publish events to an HTTP endpoint.|
 | Kafka | Publish events to Kafka topic. |
 | TCP | Publish events to a TCP service. |
@@ -225,9 +225,9 @@ and send the Stream events for all its destination endpoints.
 
 Distributed sink provides a way to publish Stream events to multiple endpoints in the configured event format.
 
-**Syntax**
+###Syntax
 
-To configure distributed sink add the sink configuration to a stream definition by adding the `sink.type` property and add the configuration parameters that are common of all the destination endpoints inside it, along with the common parameters also add the `distribution.strategy` property specifying the distribution strategy (i.e. `roundRobin` or `partitioned`) and `destination` properties providing each endpoint specific configurations.
+To configure a distributed sink, add the sink configuration to a stream definition by adding the `sink.type` property and add the configuration parameters that are common of all the destination endpoints inside it, along with the common parameters also add the `distribution.strategy` property specifying the distribution strategy (i.e. `roundRobin` or `partitioned`) and `destination` properties providing each endpoint specific configurations.
 
 The distributed sink syntax is as follows:
 
@@ -361,7 +361,7 @@ This can also publish multiple events together as a `JSON` message on the follow
 
 **Example 3**
 
-Publishes events from the `OutputStream` stream to multiple the `HTTP` endpoints using a partitioning strategy. Here the events are sent to either `http://localhost:8005/endpoint1` or `http://localhost:8006/endpoint2` based on the partitioning key `country`. It uses default `JSON` mapping, `POST` method, and used `admin` as both the username and the password when publishing to both the endpoints.
+Publishes events from the `OutputStream` stream to multiple `HTTP` endpoints using a partitioning strategy. Here the events are sent to either `http://localhost:8005/endpoint1` or `http://localhost:8006/endpoint2` based on the partitioning key `country`. It uses default `JSON` mapping, `POST` method, and used `admin` as both the username and the password when publishing to both the endpoints.
 
 The configuration of the distributed `HTTP` sink and `JSON` sink mapper to achieve the above is as follows.
 
@@ -419,9 +419,11 @@ Stream infers and automatically defines the fault stream of `TempStream` as give
 CREATE STREAM !TempStream (deviceID long, roomNo int, temp double, _error object);
 ```
 
-The StreamApp extending the above the use-case by adding failure generation and error handling with the use of [queries](#query) is as follows.
+The stream worker extends the above use-case by adding failure generation and error handling with the use of [queries](#query) is as follows.
 
-Note: Details on writing processing logics via [queries](#query) will be explained in later sections.
+:::note
+Details on writing processing logics via [queries](#query) will be explained in later sections.
+:::
 
 ```
 -- Define fault stream to handle error occurred at TempStream subscribers

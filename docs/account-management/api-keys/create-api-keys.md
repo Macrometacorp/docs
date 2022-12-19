@@ -22,10 +22,9 @@ If you create a new fabric after you create an API key, then the API key permiss
 Follow these instructions to create a new API key using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Account**.
-3. Click the **API Keys** tab.
-4. Click **New API Key**.
-5. Enter a unique ID.
+1. Click **Access > API Keys**.
+1. Click **New API Key**.
+1. Enter a unique ID.
 
 </TabItem>
 <TabItem value="js" label="Javascript">

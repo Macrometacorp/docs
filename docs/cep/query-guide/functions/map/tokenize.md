@@ -4,7 +4,7 @@ title: tokenize (Stream Processor)
 
 Tokenize the map and return each key, value as new attributes in events
 
-Syntax
+## Syntax
 
     map:tokenize(<OBJECT> map)
     map:tokenize(<OBJECT> map, <OBJECT> ...)
