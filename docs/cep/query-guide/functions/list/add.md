@@ -4,7 +4,7 @@ title: add (Function)
 
 Function returns the updated list after adding the given value.
 
-Syntax
+## Syntax
 
     <OBJECT> list:add(<OBJECT> list, <OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
     <OBJECT> list:add(<OBJECT> list, <OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value, <INT> index)

@@ -33,16 +33,16 @@ Syntax
     @App:name('TestExecutionPlan')
     CREATE STREAM BarStream (symbol string, price float, volume long);
 
-    @info(name = 'query1')
-    CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic,kafka_topic2', group.id='test', threading.option='partition.wise', bootstrap.servers='localhost:9092', partition.no.list='0,1', map.type='xml') (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic,kafka_topic2', group.id='test', threading.option='partition.wise', bootstrap.servers='localhost:9092', partition.no.list='0,1', map.type='json') (symbol string, price float, volume long);
 
+    @info(name = 'query1')
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
 This kafka source configuration listens to the `kafka_topic` and
 `kafka_topic2` topics with `0` and `1` partitions. A thread is created
 for each topic and partition combination. The events are received in the
-XML format, mapped to a Stream App event, and sent to a stream named
+JSON format, mapped to a Stream App event, and sent to a stream named
 `FooStream`.
 
 ## Example 2
@@ -50,14 +50,14 @@ XML format, mapped to a Stream App event, and sent to a stream named
     @App:name('TestExecutionPlan')
     CREATE STREAM BarStream (symbol string, price float, volume long);
 
-    @info(name = 'query1')
-    CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic', group.id='test', threading.option='single.thread', bootstrap.servers='localhost:9092', map.type='xml') (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic', group.id='test', threading.option='single.thread', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
 
+    @info(name = 'query1')
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
 This Kafka source configuration listens to the `kafka_topic` topic for
 the default partition because no `partition.no.list` is defined. Only
-one thread is created for the topic. The events are received in the XML
+one thread is created for the topic. The events are received in the JSON
 format, mapped to a Stream App event, and sent to a stream named
 `FooStream`.

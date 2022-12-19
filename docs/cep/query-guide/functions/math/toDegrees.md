@@ -5,7 +5,7 @@ title: toDegrees (Function)
 This function converts the value given in radians to degrees. It wraps
 the `java.lang.Math.toDegrees()` function.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:toDegrees(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -23,4 +23,4 @@ Syntax
     from InValueStream
     select math:toDegrees(inValue) as degreesValue;
 
-The function converts the `inValue` in the input stream from radians to degrees and directs the output to `OutMediationStream` output stream. For example, toDegrees(6d) returns 343.77467707849394.
+The function converts the `inValue` in the input stream from radians to degrees and directs the output to `OutMediationStream` output stream. For example, `toDegrees(6d)` returns 343.77467707849394.

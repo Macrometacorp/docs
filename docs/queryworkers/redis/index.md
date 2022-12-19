@@ -37,3 +37,46 @@ Macrometa supports Redis client protocol up to version 6.2. Following table show
 | SortedSet   | Yes        | - ZADD - ZCARD - ZCOUNT - ZDIFF - ZDIFFSTORE - ZINCRBY - ZINTER - ZINTERSTORE - ZLEXCOUNT - ZMSCORE - ZPOPMAX - ZPOPMIN - ZRANDMEMBER - ZRANGE - ZRANGEBYLEX - ZRANGEBYSCORE - ZRANGESTORE - ZRANK - ZREM - ZREMRANGEBYLEX - ZREMRANGEBYRANK - ZREMRANGEBYSCORE - ZREVRANGE - ZREVRANGEBYLEX - ZREVRANGEBYSCORE - ZREVRANK - ZSCAN - ZSCORE - ZUNION - ZUNIONSTORE      |
 | Generic   | Yes        | - COPY - DEL - EXISTS - EXPIRE - EXPIREAT - PERSIST - PEXPIRE - PEXPIREAT - PTTL - RANDOMKEY - RENAME - RENAMENX - SCAN - TTL - TYPE - UNLINK      |
 | Server   | Yes        | - ECHO - PING - PIPELINE - DBSIZE - FLUSHDB - TIME      |
+
+## Limitations
+
+Our platform has limitation on certan commands. Commands that are mentioned below return different result in some edge cases.
+
+- [**SETRANGE**](#setrange)
+
+### SETRANGE
+
+SETRANGE returns different value than redis server when offset of the command is greater than the length of string value.
+
+First we set string value that has key `foo`.
+
+```js
+[
+  "SET",
+  "foo",
+  "Macrometa GDN"
+]
+```
+
+When we use **SETRANGE** on that same key with index that is greater than 13 the result will be different that redis server.
+
+```js
+[
+  "SETRANGE",
+  "foo_21",
+  18,
+  "Global Data Network"
+]
+```
+
+Response of Macrometa platform:
+
+```js
+{
+  "code": 200,
+  "result": 32
+}
+```
+
+Response from Redis server:
+`(integer) 37`

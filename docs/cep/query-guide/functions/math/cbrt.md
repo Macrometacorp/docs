@@ -22,4 +22,4 @@ Syntax
     select math:cbrt(inValue) as cbrtValue
     from InValueStream;
 
-If the `inValue` is given, the function calculates the cube-root value for the same and directs the output to the output stream, OutMediationStream. For example, cbrt(17d) returns 2.5712815906582356.
+If the `inValue` is given, the function calculates the cube-root value for the same and directs the output to the output stream, OutMediationStream. For example, `cbrt(17d)` returns 2.5712815906582356.

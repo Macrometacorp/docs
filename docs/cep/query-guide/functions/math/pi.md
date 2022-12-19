@@ -4,7 +4,7 @@ title: pi (Function)
 
 This function returns the `java.lang.Math.PI` constant, which is the closest value to pi, i.e., the ratio of the circumference of a circle to its diameter.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:pi()
 
@@ -16,4 +16,4 @@ Syntax
     select math:pi() as piValue
     from InValueStream;
 
-pi() always returns 3.141592653589793.
+`pi()` always returns 3.141592653589793.

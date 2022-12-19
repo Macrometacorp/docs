@@ -4,7 +4,7 @@ title: containsAll (Function)
 
 Function checks whether the list contains all the values in the given list.
 
-Syntax
+## Syntax
 
     <BOOL> list:containsAll(<OBJECT> list, <OBJECT> given.list)
 
@@ -19,4 +19,4 @@ Syntax
 
     list:containsAll(stockSymbols, latestStockSymbols)
 
-Returns `true` if the stockSymbols list contains values in latestStockSymbols else it returns `false`.
+Returns `true` if the stockSymbols list contains values in latestStockSymbols, else it returns `false`.
