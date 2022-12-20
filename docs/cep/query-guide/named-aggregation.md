@@ -32,7 +32,7 @@ The above syntax includes the following:
 |Item                          |Description
 ---------------                |---------
 |`store`                      |This annotation is used to refer to the data store where the calculated aggregate results are stored. This annotation is optional. When no annotation is provided, the data is stored in the `in-memory` store.
-|`purge`                      |This annotation is used to configure purging in aggregation granularities. If this annotation is not provided, the default purging mentioned above is applied. If you want to disable automatic data purging, you can use this annotation as follows:`purge.enable='false'`/You should disable data purging if the aggregation query in included in the Stream worker for read-only purposes.
+|`purge`                      |This annotation is used to configure purging in aggregation granularities. If this annotation is not provided, the default purging mentioned above is applied. If you want to disable automatic data purging, you can use this annotation as follows:`purge.enable='false'` You should disable data purging if the aggregation query in included in the stream worker for read-only purposes.
 |`purge.retention.Period`            |This annotation is used to specify the length of time the data needs to be retained when carrying out data purging. If this annotation is not provided, the default retention period is applied.
 |`<aggregator name>`           |This specifies a unique name for the aggregation so that it can be referred when accessing aggregate results.
 |`<input stream>`              |The stream that feeds the aggregation. **Note! this stream should be already defined.**
