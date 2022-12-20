@@ -61,7 +61,7 @@ the aggregation input stream should only feed events to one aggregation definiti
 
 **Example**
 
-This stream worker defines an aggregation named `TradeAggregation` to calculate the average and sum for the `price` attribute of events arriving at the `TradeStream` stream. These aggregates are calculated per every time granularity in the second-year range.
+This stream worker defines an aggregation named `TradeAggregation` to calculate the average for the `price` attribute and sum for the `volume` attribute of events arriving at the `TradeStream` stream. These aggregates are calculated per every time granularity in the second-year range.
 
 ```sql
 CREATE STREAM TradeStream (symbol string, price double, volume long, timestamp long);
