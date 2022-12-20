@@ -172,7 +172,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
    @App:qlVersion("2")
    ```
 
-2. To capture details about each production run, define an input stream as follows.
+2. To capture details about each production run, define an input stream:
 
     ```sql
     CREATE STREAM ProductionStream (name string, amount long);
