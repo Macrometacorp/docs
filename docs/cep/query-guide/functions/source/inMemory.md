@@ -21,7 +21,7 @@ Syntax
 
 ## Example 1
 
-    CREATE SOURCE StocksStream WITH (type='inMemory', topic='Stocks', map.type='passThrough') (symbol string, price float, volume long);
+    CREATE SOURCE StocksStream WITH (type='stream', topic='Stocks', map.type='passThrough') (symbol string, price float, volume long);
 
 Here the `StocksStream` uses inMemory source to consume events published
 on the topic `Stocks` by the inMemory sinks deployed in the same JVM.
