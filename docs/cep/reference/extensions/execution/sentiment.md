@@ -1,14 +1,13 @@
 # Sentiment
+
 This extension performs sentiment analysis using Afinn Wordlist-based approach.
 
 ## Features
 
-* **[getRate (Function)](#getRate)**
+- **[getRate (Function)](#getRate)**
 
     This provides the sentiment value for a given string as per the AFINN word list.
-    
- 
-   
+
 ## getRate
 
 This provides the sentiment value for a given string as per the AFINN word list.
@@ -22,7 +21,6 @@ QUERY PARAMETERS
 | Name              | Description                                                                                              | Default Value | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
 | text 	              | The input text for which the sentiment value should be derived.                                                            |               | STRING       | No       | No     |
-
 
 EXAMPLE 1
 
