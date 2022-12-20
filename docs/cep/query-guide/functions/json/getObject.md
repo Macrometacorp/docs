@@ -4,7 +4,7 @@ title: getObject (Function)
 
 Function retrieves the object specified in the given path of the JSON element.
 
-Syntax
+## Syntax
 
     <OBJECT> json:getObject(<STRING|OBJECT> json, <STRING> path)
 

@@ -4,7 +4,7 @@ title: replace (Function)
 
 Function returns the updated map after replacing the given key-value pair only if key is present.
 
-Syntax
+## Syntax
 
     <OBJECT> map:replace(<OBJECT> map, <INT|LONG|FLOAT|DOUBLE|FLOAT|BOOL|STRING> key, <INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
 

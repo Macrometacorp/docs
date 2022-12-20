@@ -4,7 +4,7 @@ title: putIfAbsent (Function)
 
 Function returns the updated map after adding the given key-value pair if key is absent.
 
-Syntax
+## Syntax
 
     <OBJECT> map:putIfAbsent(<OBJECT> map, <INT|LONG|FLOAT|DOUBLE|BOOL|STRING> key, <INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
 

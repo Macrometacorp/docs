@@ -2,9 +2,9 @@
 title: merge (Aggregate Function)
 ---
 
-Collect multiple maps to merge as a single map. Only distinct keys are collected, if a duplicate key arrives, it overrides the old value.
+Collect multiple maps to merge as a single map. Only distinct keys are collected. If a duplicate key arrives, then it overrides the old value.
 
-Syntax
+## Syntax
 
     <OBJECT> map:merge(<OBJECT> map)
 
@@ -20,4 +20,4 @@ Syntax
     select map:merge(map) as stockDetails
     from StockStream WINDOW TUMBLING_LENGTH(2);
 
-For the window expiration of 2 events, the merge() function will collect attributes of `map` and merge them to a single map, returned as stockDetails.
+For the window expiration of two events, the merge() function will collect attributes of `map` and merge them to a single map, returned as stockDetails.
