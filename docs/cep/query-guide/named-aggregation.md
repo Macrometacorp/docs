@@ -75,7 +75,7 @@ CREATE AGGREGATION TradeAggregation WITH (store.type='database', store.replicati
 
 ### Distributed Aggregation
 
-Distributed Aggregation allows you to partially process aggregations in different shards. This allows Stream worker in one shard to be responsible only for processing a part of the aggregation.
+Distributed aggregation allows you to partially process aggregations in different shards. This allows stream worker in one shard to be responsible only for processing a part of the aggregation.
 
 **Syntax**
 
