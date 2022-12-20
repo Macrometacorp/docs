@@ -185,7 +185,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     ```
 
     :::note
-        A sink annotation is connected to the output stream to log the output events. You can view the logged events by simply clicking on the `Log Viewer` button on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
+        A sink annotation is connected to the output stream to log the output events. You can view the logged events by clicking on the **Log Viewer** on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
     :::
 
 4. To define how the output is derived, add the `select` statement as follows:
