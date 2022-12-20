@@ -16,6 +16,6 @@ Syntax
 
 ## Example 1
 
-    CREATE SINK StocksStream WITH (type='inMemory', topic='Stocks', map.type='passThrough') (symbol string, price float, volume long);
+    CREATE SINK StocksStream WITH (type='stream', topic='Stocks', map.type='passThrough') (symbol string, price float, volume long);
 
 Here the `StocksStream` uses inMemory sink to emit the Stream App events to all the inMemory sources deployed in the same JVM and subscribed to the topic `Stocks`.

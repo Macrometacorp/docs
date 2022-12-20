@@ -30,14 +30,14 @@ Syntax
 
 ## Example 1
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text') (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text') (symbol string, price float, volume long);
 
 This query performs a default text input mapping. The expected output is
 as follows: symbol:"gdn", price:55.6, volume:100
 
 ## Example 2
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.event.grouping.enabled='true') (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text', map.event.grouping.enabled='true') (symbol string, price float, volume long);
 
 This query performs a default text input mapping with event grouping.
 The expected output is as follows: symbol:"gdn", price:55.6,
@@ -45,7 +45,7 @@ volume:100 ~~~~~~~~~~ symbol:"gdn", price:55.6, volume:100
 
 ## Example 3
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text',  map.payload="SensorID : {{symbol}}/{{volume}}, SensorPrice : Rs{{price}}/=, Value : {{volume}}ml") (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text',  map.payload="SensorID : {{symbol}}/{{volume}}, SensorPrice : Rs{{price}}/=, Value : {{volume}}ml") (symbol string, price float, volume long);
 
 This query performs a custom text mapping. The expected output is as
 follows: SensorID : gdn/100, SensorPrice : Rs1000/=, Value : 100ml for
@@ -53,7 +53,7 @@ the following stream processor event. {gdn,1000,100}
 
 ## Example 4
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.event.grouping.enabled='true', map.payload="Stock price of {{symbol}} is {{price}}") (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text', map.event.grouping.enabled='true', map.payload="Stock price of {{symbol}} is {{price}}") (symbol string, price float, volume long);
 
 This query performs a custom text mapping with event grouping. The
 expected output is as follows: Stock price of gdn is 55.6
@@ -63,7 +63,7 @@ Stock price of gdn is 55.6 for the following stream processor event.
 
 ## Example 5
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.mustache.enabled='true',  map.payload="SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml") (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text', map.mustache.enabled='true',  map.payload="SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml") (symbol string, price float, volume long);
 
 This query performs a custom text mapping to return unescaped HTML. The
 expected output is as follows: SensorID : a&b/100, SensorPrice :

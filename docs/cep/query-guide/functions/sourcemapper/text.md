@@ -26,7 +26,7 @@ Syntax
 
 ## Example 1
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='text') (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='text') (symbol string, price float, volume long);
 
 This query performs a default text input mapping. The expected input is
 as follows: symbol:"gdn", price:55.6, volume:100 OR symbol:`gdn`,
@@ -36,7 +36,7 @@ symbol:"gdn", price:55.6, volume:100
 
 ## Example 2
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='text', map.fail.on.missing.attribute='true', map.regex.A='(\w+)\s([-0-9]+)', map.regex.B='volume\s([-0-9]+)', map.attributes="symbol='A[1]', price='A[2]', volume='B'") (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='text', map.fail.on.missing.attribute='true', map.regex.A='(\w+)\s([-0-9]+)', map.regex.B='volume\s([-0-9]+)', map.attributes="symbol='A[1]', price='A[2]', volume='B'") (symbol string, price float, volume long);
 
 This query performs a custom text mapping. The expected input is as
 follows: wos2 550 volume 100 If group events is enabled then input

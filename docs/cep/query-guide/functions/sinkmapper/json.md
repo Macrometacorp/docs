@@ -20,7 +20,7 @@ This extension is an Event to JSON output mapper. Transports that publish messag
 ## Example 1
 
 ```js
-CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price float, volume long);
+CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='json') (symbol string, price float, volume long);
 ```
 
 Above configuration does a default JSON input mapping that generates the
@@ -40,7 +40,7 @@ below.
 ## Example 2
 
 ```js
-    CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='json', map.enclosing.element='$.portfolio', map.validate.json='true', map.payload="""{"StockData":{"Symbol":"{{symbol}}","Price":{{price}}}}""") (symbol string, price float, volume long);
+    CREATE SINK BarStream WITH (type='stream', topic='{{symbol}}', map.type='json', map.enclosing.element='$.portfolio', map.validate.json='true', map.payload="""{"StockData":{"Symbol":"{{symbol}}","Price":{{price}}}}""") (symbol string, price float, volume long);
 ```
 
 The above configuration performs a custom JSON mapping that generates

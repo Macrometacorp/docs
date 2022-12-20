@@ -20,7 +20,7 @@ Syntax
 
 ## Example 1
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='xml') (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='xml') (symbol string, price float, volume long);
 
 Above configuration will do a default XML input mapping which will generate below output: 
 
@@ -36,7 +36,7 @@ Above configuration will do a default XML input mapping which will generate belo
 
 ## Example 2
 
-    CREATE SINK BarStream WITH (type='inMemory', topic='{{symbol}}', map.type='xml', map.enclosing.element='<portfolio>', map.validate.xml='true', map.payload="<StockData><Symbol>{{symbol}}</Symbol><Price>{{price}}</Price></StockData>") (symbol string, price float, volume long);
+    CREATE SINK BarStream WITH (type='stream', topic='{{symbol}}', map.type='xml', map.enclosing.element='<portfolio>', map.validate.xml='true', map.payload="<StockData><Symbol>{{symbol}}</Symbol><Price>{{price}}</Price></StockData>") (symbol string, price float, volume long);
 
 Above configuration will perform a custom XML mapping. Inside \@payload
 you can specify the custom template that you want to send the messages
