@@ -21,8 +21,8 @@ replaced with `&amp;` `"` is replaced with `&quot;` `=` is replaced with
 
 ## Query Parameters
 
-| Name                   | Description                                                                                                                                                                                                                                                                   | Default Value        | Possible Data Types | Optional | Dynamic |
-|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|---------------------|----------|---------|
+| Name                   | Description         | Default Value        | Possible Data Types | Optional | Dynamic |
+|------------------------|----------------------|----------------------|---------------------|----------|---------|
 | event.grouping.enabled | If this parameter is set to `true`, events are grouped via a delimiter when multiple events are received. It is required to specify a value for the `delimiter` parameter when the value for this parameter is `true`.   | false                | BOOL | Yes      | No      |
 | delimiter              | This parameter specifies how events are separated when a grouped event is received. This must be a whole line and not a single character.    | \~\~\~\~\~\~\~\~\~\~ | STRING              | Yes      | No      |
 | new.line.character     | This attribute indicates the new line character of the event that is expected to be received. This is used mostly when communication between 2 types of operating systems is expected. For example, Linux uses `\n` whereas Windows uses `\r\n` as the end of line character. | \\n     | STRING              | Yes      | No      |
@@ -30,7 +30,7 @@ replaced with `&amp;` `"` is replaced with `&quot;` `=` is replaced with
 
 ## Example 1
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text') (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text') (symbol string, price float, volume long);
 
 This query performs a default text input mapping. The expected output is:
 
@@ -40,7 +40,7 @@ This query performs a default text input mapping. The expected output is:
 
 ## Example 2
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.event.grouping.enabled='true') (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text', map.event.grouping.enabled='true') (symbol string, price float, volume long);
 
 This query performs a default text input mapping with event grouping.
 The expected output is:
@@ -55,7 +55,7 @@ The expected output is:
 
 ## Example 3
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text',  map.payload="SensorID : {{symbol}}/{{volume}}, SensorPrice : Rs{{price}}/=, Value : {{volume}}ml") (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text',  map.payload="SensorID : {{symbol}}/{{volume}}, SensorPrice : Rs{{price}}/=, Value : {{volume}}ml") (symbol string, price float, volume long);
 
 This query performs a custom text mapping. The expected output is:
 
@@ -69,7 +69,7 @@ for the following stream processor event.
 
 ## Example 4
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.event.grouping.enabled='true', map.payload="Stock price of {{symbol}} is {{price}}") (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text', map.event.grouping.enabled='true', map.payload="Stock price of {{symbol}} is {{price}}") (symbol string, price float, volume long);
 
 This query performs a custom text mapping with event grouping. The expected output is:
 
@@ -81,7 +81,7 @@ This query performs a custom text mapping with event grouping. The expected outp
 
 ## Example 5
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='stock', map.type='text', map.mustache.enabled='true',  map.payload="SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml") (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text', map.mustache.enabled='true',  map.payload="SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml") (symbol string, price float, volume long);
 
 This query performs a custom text mapping to return unescaped HTML. The expected output is: SensorID :
 
