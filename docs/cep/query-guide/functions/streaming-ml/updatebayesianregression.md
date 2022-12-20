@@ -31,7 +31,7 @@ extension uses an improved version of stochastic variational inference.
 
 | Name | Description        | Possible Types |
 |------|--------------------|----------------|
-| loss | loss of the model. | DOUBLE         |
+| loss | Loss of the model. | DOUBLE         |
 
 ## Example 1
 
