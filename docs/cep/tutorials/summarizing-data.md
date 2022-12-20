@@ -117,7 +117,7 @@ To do this, let's add the definitions and queries required for retrieval to the 
     CREATE SINK STREAM TradeSummaryStream (symbol string, total long, avgPrice double);
     ```
     
-3. To retrieve and process the events, add a new query as follows.
+3. To retrieve and process the events, add a new query as follows:
 
     ```sql
     insert into TradeSummaryStream
