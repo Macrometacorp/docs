@@ -87,7 +87,7 @@ from <input stream>
     aggregate by <timestamp attribute> every <time periods> ;
 ```
 
-Following table includes the `annotation` to be used to enable distributed aggregation,
+Following table includes the `annotation` to be used to enable distributed aggregation:
 
 Item | Description
 ------|------
