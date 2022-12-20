@@ -12,8 +12,8 @@ configurations, or specify a regex to map a text message using custom configurat
 
 ## Query Parameters
 
-| Name                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                         | Default Value        | Possible Data Types | Optional | Dynamic |
-|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|---------------------|----------|---------|
+| Name                      | Description       | Default Value        | Possible Data Types | Optional | Dynamic |
+|--------------|------------------------------|----------------------|---------------------|----------|---------|
 | regex.groupid             | This parameter specifies a regular expression group. The `groupid` can be any capital letter (e.g., regex.A,regex.B .. etc). You can specify any number of regular expression groups. In the attribute annotation, you need to map all attributes to the regular expression group with the matching group index. If you need to to enable custom mapping, it is required to specifythe matching group for each and every attribute. |                      | STRING              | No       | No      |
 | fail.on.missing.attribute | This parameter specifies how unknown attributes should be handled. If it is set to `true` a message is dropped if its execution fails, or if one or more attributes do not have values. If this parameter is set to `false`, null values are assigned to attributes with missing values, and messages with such attributes are not dropped.      | true                 | BOOL                | Yes      | No      |
 | event.grouping.enabled    | This parameter specifies whether event grouping is enabled or not. To receive a group of events together and generate multiple events, this parameter must be set to `true`.  | false                | BOOL                | Yes      | No      |
@@ -22,7 +22,7 @@ configurations, or specify a regex to map a text message using custom configurat
 
 ## Example 1
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='text') (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='text') (symbol string, price float, volume long);
 
 This query performs a default text input mapping. The expected input is:
 
@@ -48,7 +48,7 @@ If group events is enabled then input should be:
 
 ## Example 2
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='text', map.fail.on.missing.attribute='true', map.regex.A='(\w+)\s([-0-9]+)', map.regex.B='volume\s([-0-9]+)', map.attributes="symbol='A[1]', price='A[2]', volume='B'") (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='text', map.fail.on.missing.attribute='true', map.regex.A='(\w+)\s([-0-9]+)', map.regex.B='volume\s([-0-9]+)', map.attributes="symbol='A[1]', price='A[2]', volume='B'") (symbol string, price float, volume long);
 
 This query performs a custom text mapping. The expected input is:
 
