@@ -32,7 +32,7 @@ The following sections explain how to calculate and store time-based aggregation
 
 To calculate and store time-based aggregation values for the scenario explained above, follow the procedure below.
 
-1. Start creating a new stream application. You can name it `TradeApp` For instructions, see [Creating a Stream Application](create-stream-app.md).
+1. Start creating a new stream worker. You can name it `TradeApp` For instructions, see [Creating a Stream Worker](create-stream-app.md).
 
     ```sql
     @App:name("TradeApp");
@@ -87,7 +87,7 @@ To calculate and store time-based aggregation values for the scenario explained 
         aggregate by timestamp every hour;
         ```
         
-5. The completed stream application is as follows.
+5. The completed stream worker is as follows.
 
     ```sql
     @App:name("TradeApp")
@@ -108,9 +108,9 @@ To calculate and store time-based aggregation values for the scenario explained 
 
 This section involves retrieving the aggregate values that you calculated and persisted in the [Calculate and store clock-time-based aggregate values subsection](#calculate-and-store-clock-time-based-aggregate-values). 
 
-To do this, let's add the definitions and queries required for retrieval to the `TradeApp` stream application that you have already created in the previous section.
+To do this, let's add the definitions and queries required for retrieval to the `TradeApp` stream worker that you have already created in the previous section.
 
-1. Open the `TradeApp` stream application.
+1. Open the `TradeApp` stream worker in the editor by clicking the **Edit** icon on the stream workers tab.
 
 2. To retrieve aggregations, you need to make retrieval requests. To process these requests, let's define a stream as follows:
     ```sql
@@ -128,7 +128,7 @@ To do this, let's add the definitions and queries required for retrieval to the 
         per "days" ;
     ```
     
-4. The completed stream application is as follows.
+4. The completed stream worker is as follows.
 
     ```sql
     @App:name("TradeApp")
@@ -163,9 +163,9 @@ The window can apply to a batch of events or in a sliding manner. This is furthe
 
 This subsection demonstrates how to summarize data for a short term based on time and well as how to do a summarization in a sliding manner.
 
-To demonstrate this, consider a factory manager who wants to be able to check the production for the last hour at any given time. Every event represents a production run. For this purpose, a Stream application can be created as follows:
+To demonstrate this, consider a factory manager who wants to be able to check the production for the last hour at any given time. Every event represents a production run. For this purpose, a Stream worker can be created as follows:
 
-1. Start creating a new stream application. You can name it `PastHourProductionApp` For instructions, see [Creating a Stream Application](create-stream-app.md).
+1. Start creating a new stream worker. You can name it `PastHourProductionApp` For instructions, see [Creating a Stream Worker](create-stream-app.md).
 
    ```sql
    @App:name('PastHourProductionApp');
@@ -222,7 +222,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     insert into PastHourProductionStream
     ```
 
-8. The completed stream application is as follows:
+8. The completed stream worker is as follows:
     
     ```sql
     @App:name('PastHourProductionApp')
@@ -242,9 +242,9 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 
 This subsection demonstrates how to summarize data for a specific number of events as well as how to do that summarization for batches of events.
 
-To demonstrate this, assume that a factory manager wants to track the maximum production in every 10 production runs. IOn order to do so, let's create a Stream application as follows:
+To demonstrate this, assume that a factory manager wants to track the maximum production in every 10 production runs. IOn order to do so, let's create a Stream worker as follows:
 
-1. Start creating a new stream application. You can name it `ProductionApp` For instructions, see [Creating a Stream Application](create-stream-app.md).
+1. Start creating a new stream worker. You can name it `ProductionApp` For instructions, see [Creating a Stream Worker](create-stream-app.md).
 
    ```sql
    @App:name('MaximumProductionApp')
@@ -294,7 +294,7 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
     insert into DetectedMaximumProductionStream
     ```
 
-The completed stream application is as follows.
+The completed stream worker is as follows.
 
 ```sql
 @App:name('MaximumProductionApp') 
