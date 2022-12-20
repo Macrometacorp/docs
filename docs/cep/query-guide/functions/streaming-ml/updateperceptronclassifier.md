@@ -1,5 +1,5 @@
 ---
-title: updatePerceptronClassifier (StreamProcessor)
+title: updatePerceptronClassifier (Stream Processor)
 ---
 
 This extension builds/updates a linear binary classification Perceptron model.
