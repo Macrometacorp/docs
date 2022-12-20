@@ -178,7 +178,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     CREATE STREAM ProductionStream (name string, amount long);
     ```
     
-3. To publish the production for the last hour, define the output stream as follows.
+3. To publish the production for the last hour, define the output stream:
 
     ```sql
     CREATE SINK PastHourProductionStream WITH (type='logger', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
