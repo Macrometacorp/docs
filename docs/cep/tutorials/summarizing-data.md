@@ -128,7 +128,7 @@ To do this, let's add the definitions and queries required for retrieval to the 
         per "days" ;
     ```
     
-4. The completed stream worker is as follows.
+4. The completed stream worker is as follows:
 
     ```sql
     @App:name("TradeApp")
