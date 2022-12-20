@@ -112,7 +112,7 @@ To do this, let's add the definitions and queries required for retrieval to the 
 
 1. Open the `TradeApp` stream application.
 
-2. To retrieve aggregations, you need to make retrieval requests. To process these requests let's define a stream as follows.
+2. To retrieve aggregations, you need to make retrieval requests. To process these requests, let's define a stream as follows:
     ```sql
     CREATE SINK STREAM TradeSummaryStream (symbol string, total long, avgPrice double);
     ```
