@@ -1,5 +1,5 @@
 ---
-title: Edge Function
+title: Edge Functions (fx)
 ---
 
 The `fx` extension provides access to _edge functions_.
@@ -34,7 +34,7 @@ It executes the function with the name `fn-name` and JSON string put as the seco
 
 Example 2:
 
-It executes the function with the name `fn-name` and object as the second parameter. Extention `json:getObject(...)` was added as an example of an object that was used here.
+It executes the function with the name `fn-name` and object as the second parameter. Extension `json:getObject(...)` was added as an example of an object that was used here.
 
 ```js
     fx('fn-name', json:getObject(\"{name : [{name:'John'}], age : 23}\",'$'))
@@ -56,7 +56,7 @@ It executes the function with the name `fn-name`, every odd parameter as a param
 
 ## Example
 
-An example of Stream worker that uses Edge Function with a name `my-fn-name`:
+An example of Stream worker that uses edge function with a name `my-fn-name`:
 
 ```js
 @App:name("fx-1")
@@ -72,7 +72,7 @@ fx('my-fn-name', 'my-param', 'my-value') as result
 FROM MyTrigger;
 ```
 
-For this example needs to be generated Edge Worker with name `my-fn-name`.
+For this example needs to be generated edge function with name `my-fn-name`.
 The easiest way is to:
 
 1. Generate Edge Worker based on [Query Worker](https://macrometa.com/docs/queryworkers/building-queries) with the next query:
@@ -81,7 +81,7 @@ The easiest way is to:
     FOR doc IN my-colection LIMIT 1 RETURN doc
     ```
 
-2. [Create](https://macrometa.com/docs/collections/documents/create-document-store) a collection with a name `my-colection`.
+2. [Create](https://macrometa.com/docs/collections/documents/create-document-store) a collection with a name `my-collection`.
 3. Add one document in the collection.
 
 The following stream `FxSampleStream` is receiving a new message every five seconds as the result of the Edge Function.
