@@ -2,8 +2,6 @@
 title: getVar
 ---
 
-This extension provides useful environment properties such as current region where the stream worker is running.
-
 This functions returns the value of the `var` if present. If the `var` is unknown to the stream worker, `default.value` (if specified) are returned.
 
 ## Syntax
