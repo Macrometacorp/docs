@@ -19,8 +19,8 @@ Syntax
 QUERY PARAMETERS
 
 | Name              | Description                                                                                              | Default Value | Possible Data Types | Optional | Dynamic |
-|-------------------|----------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| text 	              | The input text for which the sentiment value should be derived.                                                            |               | STRING       | No       | No     |
+|-------------------|---------------------------------------------|---------------|---------------------|----------|---------|
+| text 	   | The input text for which the sentiment value should be derived.   |          | STRING       | No       | No     |
 
 EXAMPLE 1
 
