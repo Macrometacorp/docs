@@ -90,7 +90,7 @@ or
 ## Example 3
 
 ```js
-    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='json', map.enclosing.element="$.portfolio", map.attributes="symbol = 'company.symbol', price = 'price', volume = 'volume'")
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='json', enclosing.element="$.portfolio", map.attributes.symbol="company.symbol", map.attributes.price="price", map.attributes.volume="volume" ) (symbol string, price float, volume long);
 ```
 
 This configuration performs a custom JSON mapping. For a single event,
@@ -113,7 +113,7 @@ the expected input is similar to the one shown below:
 ## Example 4
 
 ```js
-    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='json', map.enclosing.element="$.portfolio", map.attributes="symbol = 'stock.company.symbol', price = 'stock.price', volume = 'stock.volume'") (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='json', enclosing.element="$.portfolio", map.attributes.symbol = 'stock.company.symbol', map.attributes.price = 'stock.price', map.attributes.volume = 'stock.volume') (symbol string, price float, volume long);```
 ```
 
 The configuration performs a custom JSON mapping. For multiple events, expected input looks as follows:
