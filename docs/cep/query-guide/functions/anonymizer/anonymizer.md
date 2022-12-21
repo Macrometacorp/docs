@@ -4,9 +4,9 @@ title: Anonymizer
 
 The Anonymizer extension provides a function for anonymizing various data types. This function returns a fake value for anonymizing which matches the original data. For example, an email would be replaced with a fake email.
 
-## Features
+## Data Types
 
-Macrometa supports the following data types:
+Anonymizer supports the following data types:
 
 ### Address
 
@@ -123,8 +123,7 @@ Anonymizer uses the following syntax:
 ```js
 	pii:fake(STRING input.string, String fake.function, BOOL invalidate.cache)
 ```
-					  
-					  
+
 ## Query Parameters
 
 
@@ -157,4 +156,4 @@ The code block does the following:
 1. Following document would be shown on the `patient_public` collection:
         {"full_name": "fake name", "ssn": "fake ssn", "email": "fake email", "phone": "fake phone number"}
 
-This example shows how you might anonymize protected patient data. The patient needs to be hidden in the system so that he/she cannot be personally identified with it. Therefore, you need to obfuscate the value for the patient attributes. 
+This example shows how you might anonymize protected patient data. The patient needs to be hidden in the system so that he/she cannot be personally identified with it. Therefore, you need to obfuscate the value for the patient attributes.
