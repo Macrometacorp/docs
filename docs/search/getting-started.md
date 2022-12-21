@@ -7,7 +7,7 @@ In this getting started guide, you will add search functionality to the Address 
 
 ## Prerequisites
 
-- A [Macrometa account](https://auth.paas.macrometa.io/).
+- A [Macrometa account](https://auth-play.macrometa.io/sign-up).
 - Completion of our [quickstart guide](https://macrometa.com/docs/quickstart).
 
 ## Step 1. Create a View
