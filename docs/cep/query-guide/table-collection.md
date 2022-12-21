@@ -7,7 +7,7 @@ A table is a stored version of an stream or a table of events. Its schema is def
 
 ## Table Purpose
 
-Tables allow stream processor to work with stored events. By defining a schema for tables stream processor enables them to be processed by queries using their defined attributes with the streaming data. You can also interactively query the state of the stored events in the table.
+Tables allow the stream processor to work with stored events. By defining a schema for tables, the stream processor enables them to be processed by queries using their defined attributes with the streaming data. You can also interactively query the state of the stored events in the table.
 
 ### Table Syntax
 
@@ -30,24 +30,21 @@ The following parameters are configured in a table definition:
 The following defines a table named `RoomTypeTable` with `roomNo` and `type` attributes of data types `int` and `string` respectively.
 
 ```
-CREATE TABLE RoomTypeTable ( roomNo int, type string );
+CREATE TABLE RoomTypeTable (roomNo int, type string);
 ```
 
 ## Indexes
 
 Indexes allow tables to be searched/modified much faster.
 
-Indexes are configured by including the `@Index( 'key1', 'key2' )` annotation to the table definition. Each event table configuration can have 0-1 `@Index` annotations. Support for the `@Index` annotation and the number of attributes supported differ based on the table type i.e., `doc collection` or `edge collection`. When more then one attribute is used for index, each one of them is used to index the table for fast access of the data.
-
 Indexes can be configured together with primary keys.
+
+When more than one attribute is used for index, each one of them is used to index the table for fast access to the data.
 
 **Example 1**
 
-This query creates an indexed event table named `RoomTypeTable` with the `roomNo` attribute as the index key.
-
-```js
-@Index('roomNo')
-CREATE (UNIQUE)? INDEX index_name ON TABLE source with_properties '(' field_name (',' field_name ) ')'
+```
+CREATE SOURCE StockTable WITH (type='database',collection='StockTable',PrimaryKey='symbol', Index='key1', Index='key2') (symbol string, price float, volume long);
 ```
 
 **Example 2**
@@ -78,14 +75,14 @@ Store is a table that refers to data/events stored in data stores outside of str
 
 **Purpose**
 
-Store allows stream processor to search, retrieve and manipulate data stored in database through stream queries.
+Store allows the stream processor to search, retrieve and manipulate data stored in database through stream queries.
 
 **Syntax**
 
 The syntax for a defining store and it's associated table definition is as follows:
 
 ```
-CREATE TABLE TableName WITH (store.type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN') (attribute1 Type1, attributeN TypeN);
+CREATE SOURCE TableName WITH (type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN') (attribute1 Type1, attributeN TypeN);
 ```
 
 **Example**
@@ -93,7 +90,7 @@ CREATE TABLE TableName WITH (store.type='store_type', static.option.key1='static
 The following defines a database having a table `RoomTypeTable` with columns `roomNo` of `INTEGER` and `type` of `VARCHAR(255)` mapped to Stream data types `int` and `string` respectively.
 
 ```
-CREATE TABLE RoomTypeTable WITH (Store.type="database", collection="RoomTypeTable") ( roomNo int, type string );
+CREATE SOURCE RoomTypeTable WITH (type="database", collection="RoomTypeTable") (roomNo int, type string);
 ```
 
 **Operators on Table**
@@ -144,7 +141,7 @@ Joins can also be performed with [two streams](#join-stream), [aggregation](#joi
 INSERT INTO <output stream>
 SELECT (<input stream>|<table>).<attribute name>, (<input stream>|<table>).<attribute name>, ...
 FROM <input stream> JOIN <table>
-    ON <condition>
+ON <condition>
 ```
 
 :::note
@@ -162,9 +159,9 @@ CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
 INSERT INTO ServerRoomTempStream
 SELECT deviceID, RoomTypeTable.type as roomType, type, temp
-    having roomType == 'server-room'
 FROM TempStream JOIN RoomTypeTable
-    ON RoomTypeTable.roomNo == TempStream.roomNo;
+ON RoomTypeTable.roomNo == TempStream.roomNo
+HAVING roomType == 'server-room';
 ```
 
 **Supported join types**
@@ -193,10 +190,9 @@ To delete selected events that are stored in a table.
 **Syntax**
 
 ```
-SELECT <attribute name>, <attribute name>, ...
-FROM <input stream>
 DELETE <table> (for <event type>)?
-    ON <condition>
+ON <condition>
+FROM <input stream>;
 ```
 
 The `condition` element specifies the basis on which events are selected to be deleted. When specifying the condition, table attributes should be referred to with the table name.
@@ -214,12 +210,11 @@ In this example, the script deletes a record in the `RoomTypeTable` table if it 
 
 ```
 CREATE TABLE RoomTypeTable (roomNo int, type string);
-
 CREATE STREAM DeleteStream (roomNumber int);
 
-FROM DeleteStream
 DELETE RoomTypeTable
-    ON RoomTypeTable.roomNo == roomNumber;
+ON RoomTypeTable.roomNo == roomNumber
+FROM DeleteStream;
 ```
 
 ## Update
@@ -229,11 +224,12 @@ This operator updates selected event attributes stored in a table based on a con
 **Syntax**
 
 ```
-SELECT <attribute name>, <attribute name>, ...
-FROM <input stream>
 UPDATE <table> (for <event type>)?
-    SET <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
-    ON <condition>
+SET <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
+ON <condition>
+
+SELECT <attribute name>, <attribute name>, ...
+FROM <input stream>;
 ```
 
 The `condition` element specifies the basis on which events are selected to be updated. When specifying the `condition`, table attributes must be referred to with the table name.
@@ -255,11 +251,12 @@ This stream application updates the room occupancy in the `RoomOccupancyTable` t
 CREATE TABLE RoomOccupancyTable (roomNo int, people int);
 CREATE STREAM UpdateStream (roomNumber int, arrival int, exit int);
 
-SELECT *
-FROM UpdateStream
 UPDATE RoomOccupancyTable
-    SET RoomOccupancyTable.people = RoomOccupancyTable.people + arrival - exit
-    ON RoomOccupancyTable.roomNo == roomNumber;
+SET RoomOccupancyTable.people = RoomOccupancyTable.people
+ON RoomOccupancyTable.roomNo == roomNumber
+
+SELECT * 
+FROM UpdateStream;
 ```
 
 ## Update or Insert
@@ -269,12 +266,12 @@ This allows you update if the event attributes already exist in the table based 
 **Syntax**
 
 ```
+UPDATE or INSERT INTO <table> (for <event type>)?
+SET <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
+ON <condition>
+    
 SELECT <attribute name>, <attribute name>, ...
-FROM <input stream>
-UPDATE RoomOccupancyTable
- OR INSERT INTO <table> (for <event type>)?
-    SET <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
-    ON <condition>
+FROM <input stream>;
 ```
 
 The `condition` element specifies the basis on which events are selected for update. When specifying the `condition`, table attributes should be referred to with the table name. If a record that matches the condition does not already exist in the table, the arriving event is inserted into the table.
@@ -299,11 +296,12 @@ The following query update for events in the `UpdateTable` event table that have
 CREATE TABLE RoomAssigneeTable (roomNo int, type string, assignee string);
 CREATE STREAM RoomAssigneeStream (roomNumber int, type string, assignee string);
 
+UPDATE or INSERT INTO RoomAssigneeTable
+SET RoomAssigneeTable.assignee = assignee
+ON RoomAssigneeTable.roomNo == roomNo
+    
 SELECT roomNumber as roomNo, type, assignee
-FROM RoomAssigneeStream
-UPDATE OR INSERT INTO RoomAssigneeTable
-    SET RoomAssigneeTable.assignee = assignee
-    ON RoomAssigneeTable.roomNo == roomNo;
+FROM RoomAssigneeStream;
 ```
 
 ## In
@@ -314,7 +312,6 @@ This allows the stream to check whether the expected value exists in the table a
 
 ```
 INSERT INTO <output stream>
-SELECT <attribute name>, <attribute name>, ...
 FROM <input stream>[<condition> IN <table>]
 ```
 
