@@ -10,6 +10,6 @@ Syntax
 
 ## Example 1
 
-    CREATE SINK BarStream WITH (type='inMemory', map.type='passThrough') (symbol string, price float, volume long);
+    CREATE SINK BarStream WITH (type='stream', map.type='passThrough') (symbol string, price float, volume long);
 
 In the following example BarStream uses passThrough outputmapper which emit Stream App event directly without any transformation into sink.

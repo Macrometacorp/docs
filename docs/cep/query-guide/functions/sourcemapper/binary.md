@@ -11,7 +11,7 @@ Syntax
 
 ## Example 1
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='gdn', map.type='binary') (symbol string, price float, volume long);
+    CREATE SOURCE FooStream WITH (type='stream', topic='gdn', map.type='binary') (symbol string, price float, volume long);
 
 This query performs a mapping to convert an event of the `binary` format
 to a Stream App event.
