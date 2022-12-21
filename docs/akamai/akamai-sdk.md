@@ -14,7 +14,7 @@ The first step to working with EdgeWorkers is to create EdgeWorker metadata. You
 You can also check if there is existing metadata set up, update metadata, and delete metadata.
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label=" JavaScript SDK">
+<TabItem value="javascript" label="JavaScript SDK">
 
 - Step 1. [Install the SDK](../../docs/sdks/install-sdks.md).
 - Step 2. Create an instance of the jsC8.
@@ -46,6 +46,39 @@ main();
 ```
 
 </TabItem>
+<TabItem value="python" label="Python SDK">
+
+- Step 1. [Install the SDK](../../docs/sdks/install-sdks.md).
+- Step 2. Create an instance of the C8Client.
+- Step 3. Access Function commands `client.function.<function method>`.
+
+```python
+from c8 import C8Client
+
+client = C8Client(
+    protocol="https",
+    host="https://play.paas.macrometa.io/",
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system",
+)
+
+response = client.function.create_edge_worker_metadata(
+    "akamai",
+    "<accessToken>",
+    "<baseUri>",
+    "<clientSecret>",
+    "<clientToken>",
+    "200",
+    "<groupId>",
+    "test-akamai-ew.test.io"
+)
+
+print(response)
+
+```
+
+</TabItem>
 <TabItem value="api" label="REST API">
 
 [Create or Update EdgeWorker Metadata](https://macrometa.com/docs/api#/operations/UpdateFunctionWorkerMetadata).
@@ -70,15 +103,40 @@ client = new jsc8({
 
 async function main() {
     const response = await client.function.deployQueryWorkerToEdgeWorker(
+        {
         "akamai",
         "testSdkEv",
         "testSdkEv",
-        "PRODUCTION",
+        "PRODUCTION"
+        }
     );
     console.log(response);
 }
 
 main();
+```
+
+</TabItem>
+<TabItem value="python" label="Python SDK">
+
+```python
+from c8 import C8Client
+
+client = C8Client(
+    protocol="https",
+    host="https://play.paas.macrometa.io/",
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system",
+)
+
+response = client.function.deploy_query_worker_to_edge_worker(
+    "testSdkEv",
+    "testSdkEv"
+)
+
+print(response)
+
 ```
 
 </TabItem>
@@ -109,13 +167,37 @@ async function main() {
           "testSdkEvStreamPublisher",
           "testSdkEvStreamPublisher",
           "testSdkKvStreamPublisher",
-          "PRODUCTION",
+          "PRODUCTION"
         }
     );
     console.log(response);
 }
 
 main();
+```
+
+</TabItem>
+<TabItem value="python" label="Python SDK">
+
+```python
+from c8 import C8Client
+
+client = C8Client(
+    protocol="https",
+    host="https://play.paas.macrometa.io/",
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system",
+)
+
+response = client.function.deploy_stream_publisher_to_edge_worker(
+    "testSdkEvStreamPublisher",
+    "testSdkEvStreamPublisher",
+    "testSdkKvStreamPublisher"
+)
+
+print(response)
+
 ```
 
 </TabItem>
@@ -145,13 +227,36 @@ async function main() {
           "akamai",
           "testSdkEvStreamAdhoc",
           "testSdkKvStreamAdhoc",
-          "PRODUCTION",
+          "PRODUCTION"
         }
     );
     console.log(response);
 }
 
 main();
+```
+
+</TabItem>
+<TabItem value="python" label="Python SDK">
+
+```python
+from c8 import C8Client
+
+client = C8Client(
+    protocol="https",
+    host="https://play.paas.macrometa.io/",
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system",
+)
+
+response = client.function.deploy_stream_adhoc_query_to_edge_worker(
+    "testSdkEvStreamAdhoc",
+    "testSdkKvStreamAdhoc"
+)
+
+print(response)
+
 ```
 
 </TabItem>
@@ -186,6 +291,26 @@ main();
 ```
 
 </TabItem>
+<TabItem value="python" label="Python SDK">
+
+```python
+from c8 import C8Client
+
+client = C8Client(
+    protocol="https",
+    host="https://play.paas.macrometa.io/",
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system",
+)
+
+response = client.function.invoke_function_worker("functionName")
+
+print(response)
+
+```
+
+</TabItem>
 <TabItem value="api" label="REST API">
 
 [Invoke an EdgeWorker](https://macrometa.com/docs/api#/operations/InvokeFunctionWorkerByFunctionName)
@@ -217,6 +342,26 @@ main();
 ```
 
 </TabItem>
+<TabItem value="python" label="Python SDK">
+
+```python
+from c8 import C8Client
+
+client = C8Client(
+    protocol="https",
+    host="https://play.paas.macrometa.io/",
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system",
+)
+
+response = client.function.list_function_workers()
+
+print(response)
+
+```
+
+</TabItem>
 <TabItem value="api" label="REST API">
 
 [List multiple EdgeWorkers](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType)
@@ -229,7 +374,7 @@ main();
 You can get all the information about deployed EdgeWorker with `getFunctionWorkerInfo` method or an API call:
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label=" JavaScript SDK">
+<TabItem value="javascript" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -247,6 +392,26 @@ async function main() {
 }
 
 main();
+```
+
+</TabItem>
+<TabItem value="python" label="Python SDK">
+
+```python
+from c8 import C8Client
+
+client = C8Client(
+    protocol="https",
+    host="https://play.paas.macrometa.io/",
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system",
+)
+
+response = client.function.get_function_worker_info("functionName")
+
+print(response)
+
 ```
 
 </TabItem>

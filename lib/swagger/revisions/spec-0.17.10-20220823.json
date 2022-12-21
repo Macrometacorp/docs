@@ -1,7 +1,5 @@
 {
   "basePath": "/",
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
   "definitions": {
     "headers": {
       "x-gdn-region": {
@@ -76,7 +74,6 @@
         }
     },
     "query_workers_get_restql_user_rc_200": {
-        "type": "object",
         "properties": {
             "code": {
               "description": "HTTP response code.",
@@ -89,7 +86,6 @@
               "example": false
             },
             "result": {
-              "type": "array",
               "items": {
                   "$ref": "#/definitions/examples_id_key_rev_data"
               }
@@ -97,7 +93,6 @@
           }
     },
     "query_workers_post_restql_execute_rc_200": {
-        "type": "object",
         "properties": {
           "code": {
             "description": "HTTP response code.",
@@ -122,26 +117,18 @@
             "example": false
           },
           "extra": {
-            "type": "object",
             "properties": {
               "stats": {
                   "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
                   "example": []
               },
               "warnings": {
                 "type": "array",
-                "items": {
-                    "type": "string"
-                  },
                 "example": []
               }
             }
           },
           "result": {
-            "type": "array",
             "items": {
                 "$ref": "#/definitions/examples_id_key_rev_data"
             }
@@ -149,7 +136,6 @@
         }
     },  
     "query_workers_post_restql_execute_rc_201": {
-        "type": "object",
         "properties": {
           "code": {
             "description": "HTTP response code.",
@@ -174,19 +160,14 @@
             "example": false
           },
           "extra": {
-            "type": "object",
             "properties": {
               "warnings": {
                   "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
                   "example": []
               }
             }
           },
           "result": {
-            "type": "array",
             "items": {
                 "$ref": "#/definitions/examples_id_key_rev_data"
             }
@@ -573,7 +554,6 @@
       "type": "object"
     },
     "export_http_examples_rc_200": {
-        "type": "object",
         "properties": {
           "code": {
             "description": "HTTP response code.",
@@ -586,9 +566,7 @@
             "example": false
           },
           "result": {
-              "type": "array",
               "items": {
-                "type": "object",
                 "properties": {
                    "_key": {
                       "type": "string",
@@ -1087,7 +1065,6 @@
       "type": "object"
     },
     "examples_id_key_rev_array": {
-        "type": "array",
         "items": {
            "$ref": "#/definitions/examples_id_key_rev"
         }
@@ -1156,9 +1133,7 @@
         },
         "result": {
           "description": "An array of key-value pairs from collection. If no keys are found and empty array is returned.",
-          "type": "array",
           "items": {
-            "type": "object",
             "properties": {
               "_key": {
                 "type": "string",
@@ -1180,7 +1155,6 @@
       "type": "object"
     },
     "plan_201_billing": {
-      "type": "object",
       "properties": {
         "active": {
           "description": "Active status of the billing plan.",
@@ -1204,7 +1178,6 @@
         },
         "featureGates": {
           "description": "List of featureGates associated with billing plan.",
-          "type": "array",
           "items": {
             "type": "string",
             "example": "KV"
@@ -1221,7 +1194,6 @@
         },
         "metadata": {
           "description": "Metadata about the billing plan.",
-          "type": "object",
           "properties": {},
           "example": {
             "key": "value"
@@ -1230,7 +1202,6 @@
         "metrics": {
           "description": "Metric values displayed along with name.",
           "items": {
-            "type": "object",
             "properties": {
               "name": {
                 "type": "string",
@@ -1689,7 +1660,6 @@
       }
     },
     "tenant_limits_value": {
-      "type": "object",
       "properties": {
         "apiServer": {
           "$ref": "#/definitions/api_server_limits_example"
@@ -1712,7 +1682,6 @@
       }
     },
     "database_limits_example": {
-      "type": "object",
       "properties": {
         "maxDocumentSize": {
           "description": "The maximum document size in bytes.",
@@ -1788,7 +1757,6 @@
       }
     },
     "api_server_limits_example": {
-      "type": "object",
       "properties": {
         "maxRequestPerMinute": {
           "description": "Rate limiting at the gateway proxy. This value indicates the maximum number of requests per minute for a tenant, including all http/https requests for any component coming from a regions LoadBalancer. If the value is 0, rate limiting is disabled.",
@@ -1799,7 +1767,6 @@
       }
     },
     "streams_limits_example": {
-      "type": "object",
       "properties": {
         "maxStreamsCount": {
           "description": "Max streams count.",
@@ -1840,7 +1807,6 @@
     },
     "eventhub_limits_example": {
       "description": "The limits values for eventhub feature",
-      "type": "object",
       "format": "object",
       "properties": {
         "maxEventhubProducersCount": {
@@ -1857,7 +1823,6 @@
     },
     "cep_limits_example": {
       "description": "The limits values for CEP feature",
-      "type": "object",
       "format": "object",
       "properties": {
         "maxPublishedWorkers": {
@@ -1889,21 +1854,10 @@
           "description": "Max OUT throughput per minute in MB for stream workers.",
           "type": "integer",
           "example": 10
-        },
-        "maxLogsLengthKBPerMinutePerWorker": {
-          "description": "Max logs length per minute in KB for each stream worker.",
-          "type": "integer",
-          "example": 10
-        },
-        "maxCpuSecondsPerMinutePerWorker": {
-          "description": "Max CPU seconds per minute for each stream worker.54",
-          "type": "integer",
-          "example": 20
         }
       }
     },
     "set_enable_limits_flag": {
-      "type": "object",
       "properties": {
         "value": {
           "description": "The flag value for enable limits. This value is applicable for all tenants. This is a boolean field. Set this value to true, if limits need to be enabled, else set it to *false* to disable limits.",
@@ -2106,7 +2060,6 @@
       "type": "array"
     },
     "kv_array_rc_200": {
-      "type": "object",
       "properties": {
         "code": {
             "description": "HTTP response code.",
@@ -2120,7 +2073,6 @@
         },
         "result": {
           "description": "An array of keys. If there are no results, the array is returned as empty.",
-          "type": "array",
           "items": {
             "type": "string",
             "example": "data"
@@ -2129,7 +2081,6 @@
       }
     },
     "keys_array_rc_200_1": {
-      "type": "object",
       "properties": {
         "code": {
             "description": "HTTP response code.",
@@ -2143,9 +2094,7 @@
         },
         "result": {
           "description": "An array of keys. If there are no results, the array is returned as empty.",
-          "type": "array",
           "items": {
-            "type": "object",
             "properties": {
               "name": {
                 "description": "Name of the collection.",
@@ -2239,7 +2188,6 @@
       }
     },
     "delete_stream_example_rc_202": {
-      "type": "object",
       "properties": {
         "error": {
           "description": "Flag if there is an error in response. *False* for this response.",
@@ -2257,7 +2205,6 @@
       }
     },
     "publish_stream_example_rc_200": {
-      "type": "object",
       "properties": {
         "error": {
           "description": "Flag if there is an error in response. *False* for this response.",
@@ -2407,7 +2354,6 @@
       }
     },
     "create_GeoFabric_examples_rc_201": {
-      "type": "object",
       "properties": {
         "code": {
           "description": "HTTP response code.",
@@ -2420,14 +2366,11 @@
           "example": false
         },
         "result": {
-          "description": "Whether the GeoFabric was created successfully",
-          "type": "boolean",
-          "example": true
+          "type": "boolean"
         }
       }
     },
     "get_GeoFabric_info_rc_200": {
-      "type": "object",
       "properties": {
         "code": {
           "description": "HTTP response code.",
@@ -2451,15 +2394,13 @@
             },
             "isSystem": {
               "description": "Whether or not the current GeoFabric is the _system fabric",
-              "type": "boolean",
-              "example": true
+              "type": "boolean"
             }
           }
         }
       }
     },
     "get_user_GeoFabrics_examples_rc_200": {
-      "type": "object",
       "properties": {
         "code": {
           "description": "HTTP response code.",
@@ -2494,7 +2435,6 @@
       }
     },
     "get_user_GeoFabrics_options_examples_rc_200": {
-      "type": "object",
       "properties": {
         "associated_regions": {
           "description": "List of data centers added.",
@@ -2560,7 +2500,6 @@
       }
     },
     "dropped_GeoFabrics_example_rc_200": {
-      "type": "object",
       "properties": {
         "code": {
           "description": "HTTP response code.",
@@ -2574,13 +2513,11 @@
         },
         "result": {
           "description": "Whether GeoFabric was successfully removed.",
-          "type": "boolean",
-          "example": true
+          "type": "boolean"
         }
       }
     },
     "set_GeoFabric_example_rc_201": {
-      "type": "object",
       "properties": {
         "code": {
           "description": "HTTP response code.",
@@ -2593,14 +2530,11 @@
           "example": false
         },
         "result": {
-          "description": "Whether the GeoFabric metadata was successfully set",
-          "type": "boolean",
-          "example": true
+          "type": "boolean"
         }
       }
     },
     "patch_GeoFabric_example_rc_201": {
-      "type": "object",
       "properties": {
         "code": {
           "description": "HTTP response code.",
@@ -2613,9 +2547,7 @@
           "example": false
         },
         "result": {
-          "description": "Whether the GeoFabric metadata was modified successfully",
-          "type": "boolean",
-          "example": true
+          "type": "boolean"
         }
       }
     },
@@ -2784,7 +2716,6 @@
       "type": "object"
     },
     "create_environment_examples_rc_201": {
-      "type": "object",
       "properties": {
         "code": {
           "description": "HTTP response code.",
@@ -2797,14 +2728,11 @@
           "example": false
         },
         "result": {
-          "description": "Whether the environment was created successfully.",
-          "type": "boolean",
-          "example": true
+          "type": "boolean"
         }
       }
     },
     "get_user_environments_examples_rc_200": {
-      "type": "object",
       "properties": {
         "code": {
           "description": "HTTP response code.",
@@ -2829,8 +2757,7 @@
                 "$ref": "#/definitions/get_user_GeoFabrics_options_examples_rc_200"
               },
               "isSystem": {
-                "type": "boolean",
-                "example": true
+                "type": "boolean"
               }
             }
           }
@@ -2876,8 +2803,7 @@
         },
         "result": {
           "description": "Whether environment was successfully removed.",
-          "type": "boolean",
-          "example": true
+          "type": "boolean"
         }
       }
     },
@@ -3160,12 +3086,6 @@
         "dnsInfo": {
           "description": "Populates the DNS related information like global and regional URLs.",
           "$ref": "#/definitions/dns_info_response"
-        },
-        "privateGdnUrl": {
-          "description": "The URL of the federation.",
-          "format": "string",
-          "type": "string",
-          "example": "example.eng.macrometa.io"
         }
       }
     },
@@ -3198,7 +3118,6 @@
             },
             "features": {
               "description": "List of features with boolean value indicating that those features are enabled or not.",
-              "type": "array",
               "items": {
                 "$ref": "#/definitions/features_list_with_availability_flag_example"
               }
@@ -3210,7 +3129,6 @@
       "type": "object"
     },
     "features_list_with_availability_flag_example": {
-      "type": "object",
       "properties": {
         "CEP": {
           "description": "Name of the CEP feature.",
@@ -3224,11 +3142,6 @@
         },
         "DYNAMO": {
           "description": "Name of the Dynamo feature.",
-          "type": "boolean",
-          "example": false
-        },
-        "REDIS": {
-          "description": "Name of the Redis feature.",
           "type": "boolean",
           "example": false
         },
@@ -3384,7 +3297,6 @@
         },
         "result": {
           "description": "Attributes of tenant after patch operation.",
-          "type": "array",
           "items": {
             "$ref": "#/definitions/tenant_modify_result_value"
           }
@@ -3424,14 +3336,14 @@
     "plan_create": {
       "properties": {
         "name": {
-          "description": "Name and unique identifier of the of the billing plan.",
+          "description": "Full name of the billing plan.",
           "type": "string",
           "example": "Test"
         },
         "planId": {
-          "description": "ID of the billing plan.",
+          "description": "Id of the billing plan.",
           "type": "string",
-          "example": "1"
+          "example": "a22jj3n3bh1b3njn3j"
         },
         "description": {
           "description": "Description of the billing plan.",
@@ -3447,85 +3359,12 @@
           }
         },
         "attribution": {
-          "description": "Attribution of the billing plan. Combination of attribution and label must be unique for the plan.",
+          "description": "Attribution of the billing plan.",
           "type": "string",
           "example": "Macrometa"
         },
         "label": {
-          "description": "Display label of the billing plan. Combination of attribution and label must be unique for the plan.",
-          "type": "string",
-          "example": "Enterprise"
-        },
-        "pricing": {
-          "description": "Pricing details of the billing plan.",
-          "type": "string",
-          "example": "Custom pricing"
-        },
-        "isBundle": {
-          "description": "Bundle.",
-          "type": "boolean",
-          "example": true
-        },
-        "metadata": {
-          "description": "Metadata of the plan, having set of key-value pairs.",
-          "type": "object",
-          "example": {
-            "key": "value"
-          }
-        },
-        "metrics": {
-          "description": "List of metrics applicable for billing plan.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/plan_metrics_example"
-          }
-        },
-        "active": {
-          "description": "A mandatory flag that specifies whether the billing plan is active.",
-          "type": "boolean",
-          "example": true
-        },
-        "demo": {
-          "description": "An flag that specifies whether the billing plan is demo or not.",
-          "type": "boolean",
-          "default": false
-        }
-      },
-      "required": ["name", "featureGates", "attribution", "label", "active"],
-      "type": "object"
-    },
-    "plan_modify": {
-      "properties": {
-        "name": {
-          "description": "Name and unique identifier of the of the billing plan.",
-          "type": "string",
-          "example": "Test"
-        },
-        "planId": {
-          "description": "ID of the billing plan.",
-          "type": "string",
-          "example": "1"
-        },
-        "description": {
-          "description": "Description of the billing plan.",
-          "type": "string",
-          "example": "New billing plan."
-        },
-        "featureGates": {
-          "description": "List of the billing plan feature gates.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "example": "KV"
-          }
-        },
-        "attribution": {
-          "description": "Attribution of the billing plan. Combination of attribution and label must be unique for the plan.",
-          "type": "string",
-          "example": "Macrometa"
-        },
-        "label": {
-          "description": "Display label of the billing plan. Combination of attribution and label must be unique for the plan.",
+          "description": "Display label of the billing plan.",
           "type": "string",
           "example": "Enterprise"
         },
@@ -3603,7 +3442,7 @@
           "example": "joe"
         },
         "payment_method_id": {
-          "description": "ID of billing payment method.",
+          "description": "ID of Stripe payment method.",
           "type": "string",
           "example": "pm_1KRHKj2eZvKYlo2CHkt3rab6"
         }
@@ -3636,7 +3475,7 @@
     "user_create": {
       "properties": {
         "active": {
-          "description": "If set to *true*, the user is active.",
+          "description": "(Optional) If set to *true*, the user is active.",
           "format": "boolean",
           "type": "boolean",
           "default": true
@@ -3647,17 +3486,17 @@
           "example": "test@bar.com"
         },
         "passwd": {
-          "description": "The user password. The password must have at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).",
+          "description": "The user password.",
           "type": "string",
-          "example": "P@55w0rd"
+          "example": "password"
         },
-        "displayName": {
-          "description": "The display name of the user.",
+        "user": {
+          "description": "The name of the user.",
           "type": "string",
-          "example": "Jhon Doe"
+          "example": "testuser"
         }
       },
-      "required": ["email", "passwd"],
+      "required": ["user"],
       "type": "object"
     },
     "user_grant_collection": {
@@ -3695,14 +3534,14 @@
     "user_modify": {
       "properties": {
         "active": {
-          "description": "If set to _true_, then the user is active.",
+          "description": "(Optional) If set to *true*, the user is active.",
           "type": "boolean",
           "default": true
         },
         "passwd": {
-          "description": "The user password. The password must have at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).",
+          "description": "The user password. Specifying a password is mandatory, but an empty string is allowed.",
           "type": "string",
-          "example": "P@55w0rd"
+          "example": "xxxx"
         },
         "displayName": {
           "description": "The user name.",
@@ -3727,14 +3566,8 @@
           "type": "object"
         }
       },
+      "required": ["passwd"],
       "type": "object"
-    },
-    "user_queries_data_format_type": {
-      "description": "Query language.",
-      "type": "string",
-      "enum": ["c8ql", "sql"],
-      "default": "c8ql",
-      "example": "c8ql"
     },
     "user_queries_import_custom_queries": {
       "properties": {
@@ -3759,10 +3592,7 @@
                 "description": "Query bind parameters as JSON Object.",
                 "type": "object",
                 "example": {}
-              },
-              "type": {
-                "$ref": "#/definitions/user_queries_data_format_type"
-              }
+              }              
             },
             "required": ["name", "value"]
           }
@@ -3851,9 +3681,6 @@
           "description": "Value of the query.",
           "type": "string",
           "example": "for u in testCollection return u"
-        },
-        "type": {
-          "$ref": "#/definitions/user_queries_data_format_type"
         }
       },
       "required": ["name"],
@@ -3908,9 +3735,6 @@
           "description": "Value for the query.",
           "type": "string",
           "example": "for u in testCollection return u"
-        },
-        "type": {
-          "$ref": "#/definitions/user_queries_data_format_type"
         }
       },
       "required": ["value"],
@@ -5154,7 +4978,7 @@
           "example": "for u in testCollection return u"
         },
         "ttl": {
-          "description": "The amount of time for which the cursor is valid. The maximum value which can be specified, can be determined using *GET /_api/limits/default* API" ,
+          "description": "The cursor is automatically removed from the server after the specified amount of time. This is useful to ensure garbage collection of cursors that are not fully fetched by clients.",
           "format": "int64",
           "type": "integer",
           "default": 30
@@ -5220,7 +5044,6 @@
       "type": "object"
     },
     "api_cursor_rc_200": {
-        "type": "object",
         "properties": {
           "code": {
             "description": "HTTP response code.",
@@ -5273,10 +5096,6 @@
             },
           "result": {
             "description": "An array of result documents (might be empty if query has no results).",
-            "type": "array",
-            "items": {
-                "type": "object"
-            },
             "example": [ {
               "_id": "xxx/8753330",
               "_key": "8753330",
@@ -5288,7 +5107,6 @@
         "required": ["error"]
       },
     "api_cursor_rc_201": {
-      "type": "object",
       "properties": {
         "code": {
           "description": "HTTP response code.",
@@ -5341,10 +5159,6 @@
           },
         "result": {
           "description": "An array of result documents (might be empty if query has no results).",
-          "type": "array",
-          "items": {
-            "type": "object"
-          },
           "example": [ {
             "_id": "xxx/8753330",
             "_key": "8753330",
@@ -5412,40 +5226,6 @@
         "required": ["error"],
         "type": "object"
       },
-      "sql_api_cursor": {
-        "properties": {
-          "batchSize": {
-            "description": "Sets the batch size of queries. This batch size decides how many results are returned as part of query output.",
-            "format": "int64",
-            "type": "integer",
-            "default": 100,
-            "maximum": 1000
-          },
-          "bindVars": {
-            "description": "Key/value pairs representing the bind parameters.",
-            "type": "object"
-          },
-          "count": {
-            "description": "Indicates whether the number of documents in the result set should be returned in the \"count\" attribute of the result. Calculating the \"count\" attribute might have a performance impact for some queries in the future, so this option is turned off by default, and \"count\" is only returned when requested.",
-            "type": "boolean",
-            "example": false,
-            "default": false
-          },
-          "query": {
-            "description": "Query to run.",
-            "type": "string",
-            "example": "SELECT name FROM users"
-          },
-          "ttl": {
-            "description": "The cursor is automatically removed from the server after the specified amount of time. This is useful to ensure garbage collection of cursors that are not fully fetched by clients.",
-            "format": "int64",
-            "type": "integer",
-            "default": 30
-          }
-        },
-        "required": ["query"],
-        "type": "object"
-      },
     "api_explain": {
       "properties": {
         "bindVars": {
@@ -5487,7 +5267,7 @@
     "api_import": {
       "properties": {
         "data": {
-          "description": "An array of JSON documents. Each document is interpreted separately. If the `primaryKey` property (see below) is not set or equals `auto`, then the `_key` attribute values of the documents must be strings. The maximum number of documents that can be imported is limited by the `Max Documents Imported Per API Call` limit.",
+          "description": "An array of JSON documents. Each document is interpreted separately. The maximum number of documents that can be imported is limited by the *Max Documents Imported Per API Call* limit.",
           "type": "array",
           "items": {
             "type": "object",
@@ -6048,7 +5828,7 @@
       "properties": {
         "query": {
           "type": "string",
-          "example": "Select * from test_collection"
+          "example": "for d in testCollection return d"
         }
       }
     },
@@ -6414,9 +6194,8 @@
           "type": "object",
           "properties": {
             "created_at": {
-              "description": "Timestamp (in seconds since the Epoch, 1970-01-01 00:00:00 +0000) when account was created.",
               "type": "string",
-              "example": "1665491129"
+              "example": "Timestamp when account was created."
             },
             "plan": {
               "type": "object",
@@ -6438,7 +6217,7 @@
                 "target": {
                   "description": "Target where billing data is uploaded. E.g. Stripe, AWS S3.",
                   "type": "string",
-                  "example": "Stripe"
+                  "example": "Macrometa"
                 }
               }
             },
@@ -6562,164 +6341,6 @@
           }
         }
       }
-    },
-    "response_missing_usage_record_get": {
-      "properties": {
-        "code": {
-          "description": "HTTP response code.",
-          "type": "integer",
-          "example": 200
-        },
-        "error": {
-          "description": "Flag if there is an error in response. _False_ for this response.",
-          "type": "boolean",
-          "example": false
-        },
-        "data": {
-          "description": "List of missing billing usage records for all tenants.",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "tenantxyz": {
-                "type": "object",
-                "properties": {
-                  "_usageDaily": {
-                    "type": "object",
-                    "properties": {
-                      "missingRecords":{
-                        "type": "array",
-                        "items": {
-                          "type": "string",
-                          "example" : "services-ap-west_tenantxyz-22062022T2359"
-                        }
-                      }
-                    }
-                  },
-                  "_usageDailyAggregated": {
-                    "type": "object",
-                    "properties": {
-                      "missingRecords":{
-                        "type": "array",
-                        "items": {
-                          "type": "string",
-                          "example" : "tenantxyz-22062022T2359"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "billing_hourly_usage_create": {
-      "properties": {
-        "tenant": {
-          "description": "(Optional) The ID of the tenant.",
-          "format": "string",
-          "type": "string",
-          "example": "Test"
-        },
-        "overwrite": {
-          "description": "(Optional) Overwrite existing hourly usage data.",
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "billing_usage_create": {
-      "properties": {
-        "tenant": {
-          "description": "(Optional) The ID of the tenant.",
-          "format": "string",
-          "type": "string",
-          "example": "Test"
-        },
-        "start": {
-          "description": "Start date-time in 'YYYY-MM-DD HH:MM:SS' format.",
-          "format": "string",
-          "type": "string",
-          "example": "2022-05-01 00:00:00"
-        },
-        "end": {
-          "description": "End date-time in 'YYYY-MM-DD HH:MM:SS' format.",
-          "format": "string",
-          "type": "string",
-          "example": "2022-05-03 00:00:00"
-        },
-        "overwrite": {
-          "description": "(Optional) Overwrite existing usage data.",
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "billing_stripe_usage": {
-      "properties": {
-        "tenant": {
-          "description": "(Optional) The ID of the tenant.",
-          "format": "string",
-          "type": "string",
-          "example": "Test"
-        },
-        "start": {
-          "description": "Start date-time in 'YYYY-MM-DD HH:MM:SS' format.",
-          "format": "string",
-          "type": "string",
-          "example": "2022-05-01 00:00:00"
-        },
-        "end": {
-          "description": "End date-time in 'YYYY-MM-DD HH:MM:SS' format.",
-          "format": "string",
-          "type": "string",
-          "example": "2022-05-03 00:00:00"
-        },
-        "reportTimestamp": {
-          "description": "Billing reporting date-time in 'YYYY-MM-DD HH:MM:SS' format.",
-          "format": "string",
-          "type": "string",
-          "example": "2022-05-03 00:00:00"
-        },
-        "overwrite": {
-          "description": "(Optional) Overwrite existing usage data.",
-          "default": false,
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "billing_stripe_subscription_create": {
-      "properties": {
-        "tenant": {
-          "description": "The ID of the tenant.",
-          "format": "string",
-          "type": "string",
-          "example": "Test"
-        },
-        "subscriptionItems": {
-          "description": "Subscription items. Only one of the property is required at a given time.",
-          "type": "object",
-          "properties": {
-            "item": {
-              "description": "Unique identifier of the plan.",
-              "type": "string",
-              "example": "dx-10-ap-west"
-            },
-            "stripePriceId": {
-              "description": "Billing priceId of the plan.",
-              "type": "string",
-              "example": "price_1LkBH1J9rYbF4Cf9phQq3Xwz"
-            }
-          }
-        }
-      },
-      "required": ["tenant", "subscriptionItems"],
-      "type": "object"
     },
     "federation_member_peerip": {
       "properties": {
@@ -9833,9 +9454,7 @@
                 "example": 0
             },
             "instances": {
-                "type": "array",
                 "items": {
-                    "type": "object",
                     "properties": {
                         "instanceId": {
                             "type": "number",
@@ -9898,7 +9517,6 @@
         }
     },
     "api_search_get_view_http_examples_rc_200": {
-      "type": "object",
       "properties": {
         "code": {
             "description": "HTTP response code.",
@@ -9927,10 +9545,6 @@
         },
         "result": {
             "description": "The array of matching documents.",
-            "type": "array",
-            "items": {
-                "type": "object"
-            },
             "example": [{
               "URL": "https://www.macrometa.com/",
               "_id": "server_list/62487646",
@@ -10087,10 +9701,6 @@
         },
         "features": {
           "description": "The array of properties of analyzer.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
           "example": ["position", "norm"]
         }
       },
@@ -10182,547 +9792,6 @@
           "description": "Name of the removed analyzer.",
           "type": "string",
           "example": "my_custom_analyzer"
-        }
-      },
-      "type": "object"
-    },
-    "generate_edge_worker_from_query_worker_rc_200": {
-      "properties": {
-        "message": {
-          "type": "string",
-          "example": "Your edge worker will be generated and activated shortly.",
-          "description": "Success message."
-        }
-      },
-      "type": "object"
-    },
-    "akamai_credentials": {
-      "description": "Only available when type is akamai.",
-      "properties": {
-        "accessToken": {
-          "type": "object",
-          "properties": {
-            "hash": {
-              "type": "string",
-              "example": "66c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-              "description": "Akamai access token."
-            }
-          }
-        },
-        "baseUri": {
-          "type": "string",
-          "example": "something.akamai.com",
-          "description": "Host name of the Akamai edge worker."
-        },
-        "clientSecret": {
-          "type": "object",
-          "properties": {
-            "hash": {
-              "type": "string",
-              "example": "86c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-              "description": "Akamai client secret."
-            }
-          }
-        },
-        "clientToken": {
-          "type": "object",
-          "properties": {
-            "hash": {
-              "type": "string",
-              "example": "96c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-              "description": "Akamai client token."
-            }
-          }
-        }
-      },
-      "type": "object"
-    },
-    "generate_edge_worker_from_query_worker": {
-      "properties": {
-      },
-      "type": "object"
-    },
-    "edge_worker_rc_200": {
-      "properties": {
-        "activationStatus": {
-          "type": "string",
-          "example": "ACTIVE",
-          "description": "Function worker activation status."
-        },
-        "description": {
-          "type": "string",
-          "example": "Get animal details funcion worker.",
-          "description": "Description about function worker."
-        },
-        "edgeWorkerId": {
-          "type": "number",
-          "example": 59283,
-          "description": "Function worker identifier."
-        },
-        "name": {
-          "type": "string",
-          "example": "mmFnworker",
-          "description": "Name of the function worker."
-        },
-        "type": {
-          "type": "string",
-          "example": "akamai",
-          "default": "akamai",
-          "description": "Type of the function worker."
-        },
-        "environment": {
-          "type": "string",
-          "example": "PRODUCTION",
-          "description": "Function worker activation environment."
-        },
-        "url": {
-          "type": "string",
-          "example": "mmfnworker.macrometa.io/",
-          "description": "URL to access the function worker."
-        },
-        "fabric": {
-          "type": "string",
-          "example": "_system",
-          "description": "Name of the fabric."
-        },
-        "createdAt": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2022-08-16T06:46:02Z",
-          "description": "ISO 8601 timestamp indicating when the function worker was created."
-        },
-        "lastModified": {
-          "format": "date-time",
-          "type": "string",
-          "example": "2022-08-10T01:29:39Z",
-          "description": "ISO 8601 timestamp indicating when the edge worker was most recently modified."
-        },
-        "queryWorkerName": {
-          "type": "string",
-          "example": "animal_details_ew",
-          "description": "Name of the Macrometa query worker."
-        },
-        "queue": {
-          "type": "string",
-          "example": "No",
-          "description": "If yes, then pending activation."
-        }
-      },
-      "type": "object"
-    },
-    "list_edge_worker_rc_200": {
-      "description": "Array of function worker information.",
-      "items": {
-        "$ref": "#/definitions/edge_worker_rc_200"
-      },
-      "type": "array"
-    },
-    "invoke_function_worker_rc_200": {
-      "description": "Array of key value pairs.",
-      "example": [{"key": "value"}],
-      "type": "object"
-    },
-    "function_worker_metadata": {
-      "properties": {
-        "type": {
-          "type": "string",
-          "example": "akamai",
-          "description": "Type of the function worker."
-        },
-        "accessToken": {
-          "type": "string",
-          "example": "66c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-          "description": "Akamai access token."
-        },
-        "baseUri": {
-          "type": "string",
-          "example": "something.akamai.com",
-          "description": "Host name of the Akamai edge worker."
-        },
-        "clientSecret": {
-          "type": "string",
-          "example": "86c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-          "description": "Akamai client secret."
-        },
-        "clientToken": {
-          "type": "string",
-          "example": "96c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-          "description": "Akamai client token."
-        },
-        "resourceTierId": {
-          "type": "string",
-          "description": "Resource tier identifier.",
-          "example": "201"
-        },
-        "groupId": {
-          "type": "string",
-          "description": "Group identifier.",
-          "example": "221222"
-        },
-        "hostName": {
-          "type": "string",
-          "description": "Function worker hostname.",
-          "example": "macrometa-akamai-ew.macrometa.io"
-        }
-      },
-      "required": [
-        "type",
-        "accessToken",
-        "clientSecret",
-        "baseUri",
-        "clientToken",
-        "resourceTierId",
-        "groupId",
-        "hostName"
-      ],
-      "type": "object"
-    },
-    "modify_function_worker_metadata": {
-      "properties": {
-        "type": {
-          "type": "string",
-          "example": "Akamai",
-          "description": "Type of the function worker."
-        },
-        "accessToken": {
-          "type": "string",
-          "example": "66c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-          "description": "Akamai access token."
-        },
-        "baseUri": {
-          "type": "string",
-          "example": "something.akamai.com",
-          "description": "Host name of the Akamai edge worker."
-        },
-        "clientSecret": {
-          "type": "string",
-          "example": "86c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-          "description": "Akamai client secret."
-        },
-        "clientToken": {
-          "type": "string",
-          "example": "96c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-          "description": "Akamai client token."
-        },
-        "resourceTierId": {
-          "type": "string",
-          "description": "Resource tier identifier.",
-          "example": "201"
-        },
-        "groupId": {
-          "type": "string",
-          "description": "Group identifier.",
-          "example": "221222"
-        },
-        "hostName": {
-          "type": "string",
-          "description": "Function worker hostname.",
-          "example": "macrometa-akamai-ew.macrometa.io"
-        }
-      },
-      "type": "object"
-    },
-    "function_worker_metadata_rc_200": {
-      "properties": {
-        "type": {
-          "type": "string",
-          "example": "akamai",
-          "description": "Type of the function worker."
-        },
-        "accessToken": {
-          "type": "string",
-          "example": "66c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-          "description": "Akamai access token."
-        },
-        "baseUri": {
-          "type": "string",
-          "example": "something.akamai.com",
-          "description": "Host name of the Akamai edge worker."
-        },
-        "clientSecret": {
-          "type": "string",
-          "example": "86c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-          "description": "Akamai client secret."
-        },
-        "clientToken": {
-          "type": "string",
-          "example": "96c6c8a1d7112066cbd1905cb909bbe1e29ae730f7873b4ff35afe286",
-          "description": "Akamai client token."
-        },
-        "resourceTierId": {
-          "type": "string",
-          "description": "Resource tier identifier.",
-          "example": "201"
-        },
-        "groupId": {
-          "type": "string",
-          "description": "Group identifier.",
-          "example": "221222"
-        },
-        "propertyId": {
-          "type": "string",
-          "description": "Akamai property identifier.",
-          "example": "46"
-        },
-        "contractId": {
-          "type": "string",
-          "description": "Akamai contract identifier.",
-          "example": "ctr_V-49QB5O7"
-        },
-        "hostName": {
-          "type": "string",
-          "description": "Function worker hostname.",
-          "example": "macrometa-akamai-ew.macrometa.io"
-        }
-      },
-      "type": "object"
-    },
-    "set_function_metadata_example_rc_201": {
-      "properties": {
-        "code": {
-          "description": "HTTP response code.",
-          "type": "integer",
-          "example": 201
-        },
-        "error": {
-          "description": "Flag if there is an error in response. *False* for this response.",
-          "type": "boolean",
-          "example": false
-        },
-        "result": {
-          "description": "Flag for if the metadata for function worker is set successfully.",
-          "type": "boolean",
-          "example": true
-        }
-      }
-    },
-    "transaction_begin": {
-      "properties": {
-        "collections": {
-          "$ref": "#/definitions/begin_transaction_collections_object_example"
-        },
-        "waitForSync": {
-          "description": "*True* if all data must be synced to storage before operation returns. Default is *False*",
-          "type": "boolean",
-          "example": "false"
-        },
-        "allowImplicit": {
-          "description": "If *True*, then allow reading from undeclared collections. Default is *True*.",
-          "type": "boolean",
-          "example": "false"
-        },
-        "lockTimeout": {
-          "description": "Number of seconds to wait on a collection lock. To indefinitely wait on the lock, set the timeout to zero. Default is 900.",
-          "type": "integer",
-          "example": 900
-        },
-        "maxTransactionSize": {
-          "description": "Maximum transaction size, in bytes.",
-          "type": "integer",
-          "example": 134217728
-        }
-      },
-      "required": ["collections"],
-      "type": "object"
-    },
-    "begin_transaction_collections_object_example": {
-      "description": "A JSON object that can have one or all sub-attributes set as *read*, *write*, or *exclusive*. Each sub-attribute is an array of collection names or a single collection name.\n\nCollections that are written to in the transaction must be declared with the *write* or *exclusive* attribute, otherwise the transaction fails. Non-declared collections that are solely read from are automatically added by the database at the time they are referenced, but this can cause deadlocks. Best practice is to fully declare collections for reading whenever possible.\n\nIf you want the transaction to fail if an undeclared collection is read from, then set the optional sub-attribute *allowImplicit* to false.",
-      "properties": {
-        "read": {
-          "description": "A single collection or a list of collections to use in the transaction in read-only mode.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          },
-          "example": ["collection1", "collection2"]
-        },
-        "write": {
-          "description": "A single collection or a list of collections to use in the transaction in read-write mode.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          },
-          "example": ["collection1", "collection2"]
-        },
-        "exclusive": {
-          "description": "A single collection or a list of collections to acquire exclusive write access for.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          },
-          "example": ["collection1", "collection2"]
-        }
-      },
-      "default": {},
-      "example": {
-        "read": ["collection1", "collection2"],
-        "write": ["collection3", "collection4"]
-      }
-    },
-    "begin_transaction_example_rc_201": {
-      "properties": {
-        "code": {
-          "description": "HTTP response code.",
-          "type": "integer",
-          "example": 201
-        },
-        "error": {
-          "description": "Flag if there is an error in response. *False* for this response.",
-          "type": "boolean",
-          "example": "false"
-        },
-        "result": {
-          "properties": {
-            "id": {
-              "description": "The identifier of the transaction. The identifier is specified in the *x-gdn-trxid* request header of the operations that run in this transaction.",
-              "type": "integer",
-              "format": "int64",
-              "example": 423415
-            },
-            "status": {
-              "description": "The status of the newly created transaction.",
-              "type": "string",
-              "format": "string",
-              "example": "running"
-            }
-          }
-        }
-      },
-      "type": "object"
-    },
-    "fetch_transaction_example_rc_200": {
-      "properties": {
-        "code": {
-          "description": "HTTP response code.",
-          "type": "integer",
-          "example": 200
-        },
-        "error": {
-          "description": "Flag if there is an error in response. *False* for this response.",
-          "type": "boolean",
-          "example": "false"
-        },
-        "result": {
-          "properties": {
-            "id": {
-              "description": "The identifier of the transaction.",
-              "type": "integer",
-              "format": "int64",
-              "example": 423415
-            },
-            "status": {
-              "description": "The status of the transaction.",
-              "type": "string",
-              "format": "string",
-              "enum": ["running", "committed", "aborted"],
-              "example": "running"
-            }
-          }
-        }
-      },
-      "type": "object"
-    },
-    "commit_transaction_example_rc_200": {
-      "properties": {
-        "code": {
-          "description": "HTTP response code.",
-          "type": "integer",
-          "example": 200
-        },
-        "error": {
-          "description": "Flag if there is an error in response. *False* for this response.",
-          "type": "boolean",
-          "example": "false"
-        },
-        "result": {
-          "properties": {
-            "id": {
-              "description": "The identifier of the transaction.",
-              "type": "integer",
-              "format": "int64",
-              "example": 423415
-            },
-            "status": {
-              "description": "The status of the transaction. *committed* for this response.",
-              "type": "string",
-              "format": "string",
-              "example": "committed"
-            }
-          }
-        }
-      },
-      "type": "object"
-    },
-    "abort_transaction_example_rc_200": {
-      "properties": {
-        "code": {
-          "description": "HTTP response code.",
-          "type": "integer",
-          "example": 200
-        },
-        "error": {
-          "description": "Flag if there is an error in response. *False* for this response.",
-          "type": "boolean",
-          "example": "false"
-        },
-        "result": {
-          "properties": {
-            "id": {
-              "description": "The identifier of the transaction.",
-              "type": "integer",
-              "format": "int64",
-              "example": 423415
-            },
-            "status": {
-              "description": "The status of the transaction. *aborted* for this response.",
-              "type": "string",
-              "format": "string",
-              "example": "aborted"
-            }
-          }
-        }
-      },
-      "type": "object"
-    },
-    "list_transactions_example_rc_200": {
-      "properties": {
-        "code": {
-          "description": "HTTP response code.",
-          "type": "integer",
-          "example": 200
-        },
-        "error": {
-          "description": "Flag if there is an error in response. *False* for this response.",
-          "type": "boolean",
-          "example": "false"
-        },
-        "result": {
-          "properties": {
-            "transactions": {
-              "description": "An array of transactions",
-              "type": "array",
-              "items": {
-                "properties": {
-                  "id": {
-                    "description": "The identifier of the transaction.",
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 423415
-                  },
-                  "status": {
-                    "description": "The status of the transaction.",
-                    "type": "string",
-                    "format": "string",
-                    "enum": ["running", "committed", "aborted"],
-                    "example": "running"
-                  }
-                }
-              }
-            }
-          }
         }
       },
       "type": "object"
@@ -12094,7 +11163,6 @@
           "429": {
             "description": "Requests count from this IP exceeds the rate limit.",
             "schema": {
-                "type": "object",
                 "properties": {
                     "code": {
                       "description": "HTTP response code.",
@@ -12144,12 +11212,6 @@
             "type": "string",
             "format": "string",
             "description": "The name of the key-value collection."
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -12434,12 +11496,6 @@
             "type": "string",
             "format": "string",
             "description": "The key."
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -12486,12 +11542,6 @@
             "type": "string",
             "format": "string",
             "description": "The key."
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -12607,21 +11657,13 @@
             "schema": {
               "$ref": "#/definitions/keys_array"
             }
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
           "202": {
             "description": "Successfully removed key-value pairs.",
             "schema": {
-                "type": "array",
                 "items": {
-                "type": "object",
                 "properties": {
                     "_id": {
                       "description": "ID of the collection.",
@@ -12682,19 +11724,13 @@
             "schema": {
               "$ref": "#/definitions/key_value_array"
             }
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
+          
         ],
         "responses": {
           "202": {
             "description": "Successfully updated key-value pair.",
             "schema": {
-                "type": "array",
                 "items": {
                 "properties": {
                     "_id": {
@@ -12753,12 +11789,6 @@
             "type": "string",
             "format": "string",
             "description": "The name of the key-value collection."
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -12870,7 +11900,6 @@
           "200": {
             "description": "Successfully returned after execution.",
             "schema": {
-                "type": "object",
                 "properties": {
                     "code": {
                         "description": "HTTP response code.",
@@ -12892,7 +11921,6 @@
                                     "AttributeDefinitions": {
                                         "type": "array",
                                         "items": {
-                                            "type": "object",
                                             "properties": {
                                                 "AttributeName": {
                                                     "type": "string"
@@ -12909,7 +11937,6 @@
                                     "KeySchema": {
                                         "type": "array",
                                         "items": {
-                                            "type": "object",
                                             "properties": {
                                                 "AttributeName": {
                                                     "type": "string"
@@ -12979,199 +12006,6 @@
         "tags": ["Dynamo"]
       }
     },
-    "/_fabric/{fabric}/_api/redis/{collection}": {
-      "post": {
-        "description":
-        "This API provides a REST API to access Redis databases. The REST API follows the same convention that the Redis Protocol uses.\n\n Using an HTTP POST request, the redis command and its parameters can be set the in the request body. The command can also be in the url suffix with the parameter set in the request body. The parameter suffixes can vary in number, depending upon the command. For example http://api.macrometa.io/_fabric/myfabric/_api/redis/SET/foo/bar.\n\n Currently supported Redis commands :\n\n * **String:** - **APPEND**  - **DECR**  - **DECRBY**  - **GET**  - **GETDEL**  - **GETEX**  - **GETRANGE** - **GETSET**  - **INCR**  - **INCRBY**  - **INCRBYFLOAT**  - **MGET**  - **MSET**  - **MSETNX** - **PSETEX**  - **SET** - **SETBIT** - **SETEX**  - **SETNX** - **SETRANGE**  - **STRLEN**  - **BITCOUNT** - **BITOP** - **BITPOS** - **GETBIT**\n\n * **Hash:** - **HDEL**  - **HEXISTS**  - **HGET** - **HGETALL**  - **HINCRBY**  - **HINCRBYFLOAT**  - **HKEYS** - **HLEN**  - **HMGET**  - **HMSET**  - **HSCAN** - **HSET**  - **HSETNX**  - **HSTRLEN**  - **HRANDFIELD** - **HVALS**\n\n * **List:** - **LINDEX** - **LINSERT** - **LLEN** - **LMOVE** - **LPOP** - **LPOS** - **LPUSH** - **LPUSHX** - **LRANGE** - **LREM** - **LSET** - **LTRIM** - **RPOP** - **RPOPLPUSH** - **RPUSH** - **RPUSHX**\n\n *  **Set:** - **SADD** - **SCARD** - **SDIFF** - **SDIFFSTORE** - **SINTER** - **SINTERSTORE** - **SISMEMBER** - **SMEMBERS** - **SMISMEMBER** - **SMOVE** - **SPOP** - **SRANDMEMBER** - **SREM** - **SSCAN** - **SUNION** - **SUNIONSTORE**\n\n * **SortedSet:** - **ZADD** - **ZCARD** - **ZCOUNT** - **ZDIFF** - **ZDIFFSTORE** - **ZINCRBY** - **ZINTER** - **ZINTERSTORE** - **ZLEXCOUNT** - **ZMSCORE** - **ZPOPMAX** - **ZPOPMIN** - **ZRANDMEMBER** - **ZRANGE** - **ZRANGEBYLEX** - **ZRANGEBYSCORE** - **ZRANGESTORE** - **ZRANK** - **ZREM** - **ZREMRANGEBYLEX** - **ZREMRANGEBYRANK** - **ZREMRANGEBYSCORE** - **ZREVRANGE** - **ZREVRANGEBYLEX** - **ZREVRANGEBYSCORE** - **ZREVRANK** - **ZSCAN** - **ZSCORE** - **ZUNION** - **ZUNIONSTORE**\n\n * **Generic:** - **COPY** - **DEL** - **EXISTS** - **EXPIRE** - **EXPIREAT** - **PERSIST** - **PEXPIRE** - **PEXPIREAT** - **PTTL** - **RANDOMKEY** - **RENAME** - **RENAMENX** - **SCAN** - **TTL** - **TYPE** - **UNLINK**\n\n * **Server:** - **ECHO** - **PING** - **PIPELINE** - **DBSIZE** - **FLUSHDB** - **TIME**\n\n",
-        "operationId": "RedisPost",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "in": "path",
-            "name": "collection",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the Redis collection."
-          },
-          {
-            "description": "The body depends on the command to be executed.",
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": false,
-            "schema": {
-                "type": "array",
-                "items": {},
-                "example": ["SET","foo","bar"]
-             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully returned after execution.",
-            "schema": {
-                "properties": {
-                    "code": {
-                        "description": "HTTP response code.",
-                        "type": "integer",
-                        "example": 200
-                    },
-                    "result": {
-                        "description": "Result depending upon Redis command. It can be a string, number or an array.",
-                        "type": "array",
-                        "items": {},
-                        "example": "OK"
-                    }
-                }
-            }
-          },
-          "400": {
-            "description": "Failed due to invalid command parameters. Verify that all parameters are correct.",
-            "schema": {
-              "properties": {
-                    "error": {
-                        "description": "Error message if there is an error in response.",
-                        "type": "string",
-                        "example": "Invalid cmd params."
-                    },
-                    "code": {
-                        "description": "HTTP response code.",
-                        "type": "integer",
-                        "example": 400
-                  }
-              }
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have execute permissions.",
-            "schema": {
-              "properties": {
-                    "error": {
-                        "description": "Flag if there is an error in response. *True* for this response.",
-                        "type": "boolean",
-                        "example": true
-                    },
-                    "errorMessage": {
-                        "description": "Error message if there is an error in response.",
-                        "type": "string",
-                        "example": "not authorized to execute this request"
-                    },
-                    "code": {
-                        "description": "HTTP response code.",
-                        "type": "integer",
-                        "example": 401
-                  }
-              }
-            }
-          }
-        },
-        "summary": "Redis-like API interface",
-        "tags": ["Redis"]
-      }
-    },
-    "/_fabric/{fabric}/_api/redis/{collection}/{command}": {
-      "get": {
-        "description":
-        "This API provides a REST API to access Redis databases. The REST API follows the same convention that the Redis Protocol uses. \n\n Give the command name and parameters in the same order as the Redis protocol, separating commands with a '/'. The parameter suffixes can vary in number, depending upon the command. For example http://api.macrometa.io/_fabric/myfabric/_api/redis/SET/foo/bar. Query params can also be used along with suffixes, for example http://api.macrometa.io/_fabric/myfabric/_api/redis/SET/foo/bar?ex=100.\n\n Currently supported Redis commands :\n\n * **String:** - **APPEND**  - **DECR**  - **DECRBY**  - **GET**  - **GETDEL**  - **GETEX**  - **GETRANGE** - **GETSET**  - **INCR**  - **INCRBY**  - **INCRBYFLOAT**  - **MGET**  - **MSET**  - **MSETNX** - **PSETEX**  - **SET** - **SETBIT** - **SETEX**  - **SETNX** - **SETRANGE**  - **STRLEN**  - **BITCOUNT** - **BITOP** - **BITPOS** - **GETBIT**\n\n * **Hash:** - **HDEL**  - **HEXISTS**  - **HGET** - **HGETALL**  - **HINCRBY**  - **HINCRBYFLOAT**  - **HKEYS** - **HLEN**  - **HMGET**  - **HMSET**  - **HSCAN** - **HSET**  - **HSETNX**  - **HSTRLEN**  - **HRANDFIELD** - **HVALS**\n\n * **List:** - **LINDEX** - **LINSERT** - **LLEN** - **LMOVE** - **LPOP** - **LPOS** - **LPUSH** - **LPUSHX** - **LRANGE** - **LREM** - **LSET** - **LTRIM** - **RPOP** - **RPOPLPUSH** - **RPUSH** - **RPUSHX**\n\n *  **Set:** - **SADD** - **SCARD** - **SDIFF** - **SDIFFSTORE** - **SINTER** - **SINTERSTORE** - **SISMEMBER** - **SMEMBERS** - **SMISMEMBER** - **SMOVE** - **SPOP** - **SRANDMEMBER** - **SREM** - **SSCAN** - **SUNION** - **SUNIONSTORE**\n\n * **SortedSet:** - **ZADD** - **ZCARD** - **ZCOUNT** - **ZDIFF** - **ZDIFFSTORE** - **ZINCRBY** - **ZINTER** - **ZINTERSTORE** - **ZLEXCOUNT** - **ZMSCORE** - **ZPOPMAX** - **ZPOPMIN** - **ZRANDMEMBER** - **ZRANGE** - **ZRANGEBYLEX** - **ZRANGEBYSCORE** - **ZRANGESTORE** - **ZRANK** - **ZREM** - **ZREMRANGEBYLEX** - **ZREMRANGEBYRANK** - **ZREMRANGEBYSCORE** - **ZREVRANGE** - **ZREVRANGEBYLEX** - **ZREVRANGEBYSCORE** - **ZREVRANK** - **ZSCAN** - **ZSCORE** - **ZUNION** - **ZUNIONSTORE**\n\n * **Generic:** - **COPY** - **DEL** - **EXISTS** - **EXPIRE** - **EXPIREAT** - **PERSIST** - **PEXPIRE** - **PEXPIREAT** - **PTTL** - **RANDOMKEY** - **RENAME** - **RENAMENX** - **SCAN** - **TTL** - **TYPE** - **UNLINK**\n\n * **Server:** - **ECHO** - **PING** - **PIPELINE** - **DBSIZE** - **FLUSHDB** - **TIME**\n\n",
-        "operationId": "RedisGet",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "in": "path",
-            "name": "collection",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the collection."
-          },
-          {
-            "in": "path",
-            "name": "command",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the redis command."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully returned after execution.",
-            "schema": {
-                "properties": {
-                    "code": {
-                        "description": "HTTP response code.",
-                        "type": "integer",
-                        "example": 200
-                    },
-                    "result": {
-                        "description": "Result depending upon Redis command. It can be a string, number or an array.",
-                        "type": "array",
-                        "items": {},
-                        "example": "OK"
-                    }
-                }
-            }
-          },
-          "400": {
-            "description": "Failed due to invalid command parameters. Verify that all parameters are correct.",
-            "schema": {
-              "properties": {
-                    "error": {
-                        "description": "Error message if there is an error in response.",
-                        "type": "string",
-                        "example": "Invalid cmd params."
-                    },
-                    "code": {
-                        "description": "HTTP response code.",
-                        "type": "integer",
-                        "example": 400
-                  }
-              }
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have execute permissions.",
-            "schema": {
-              "properties": {
-                    "error": {
-                        "description": "Flag if there is an error in response. *True* for this response.",
-                        "type": "boolean",
-                        "example": true
-                    },
-                    "errorMessage": {
-                        "description": "Error message if there is an error in response.",
-                        "type": "string",
-                        "example": "not authorized to execute this request"
-                    },
-                    "code": {
-                        "description": "HTTP response code.",
-                        "type": "integer",
-                        "example": 401
-                  }
-              }
-            }
-          }
-        },
-        "summary": "Redis-like API interface",
-        "tags": ["Redis"]
-      }
-    },
     "/_fabric/{fabric}/_api/document/{collection}": {
       "delete": {
         "description": "The body of the request is an array consisting of selectors for documents. A selector can either be a string with a key or a string with a document handle or an object with a *_key* attribute.\n\nThis API call removes all specified documents from *collection*. If the selector is an object and has a *_rev* attribute, it is a precondition that the actual revision of the removed document in the collection is the specified one.\n\nThe body of the response is an array of the same length as the input array. For each input selector, the output contains a JSON object with the information about the outcome of the operation. If no error occurred, an object is built in which the attribute *_id* contains the known *document-handle* of the removed document, *_key* contains the key which uniquely identifies a document in a given collection, and the attribute *_rev* contains the document revision.\n\nIn case of an error, an object with the attribute *error* set to *true* and *errorCode* set to the error code is built. If the query parameter *returnOld* is *true*, the previous revision of the document is returned under the *old* attribute in the result.\n\nNote that if any precondition is violated or an error occurred with some of the documents, the return code is still 200 or 202, but the additional HTTP header *X-C8-Error-Codes* is set, which contains a map of the error codes that occurred together with their multiplicities, as in: *1200:17,1205:10* which means that in 17 cases the error 1200 \"revision conflict\" and in 10 cases the error 1205 \"illegal document handle\" has happened.",
@@ -13230,12 +12064,6 @@
             "required": false,
             "type": "boolean",
             "default": false
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -13353,12 +12181,6 @@
             "required": false,
             "type": "boolean",
             "default": false
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -13416,7 +12238,7 @@
             "description": "The name of the fabric."
           },
           {
-            "description": "The *collection* in which the document is to be created.",
+            "description": "The *collection* in which the collection is to be created.",
             "format": "string",
             "in": "path",
             "name": "collection",
@@ -13485,12 +12307,6 @@
             "required": false,
             "type": "boolean",
             "default": false
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -13604,12 +12420,6 @@
             "required": false,
             "type": "boolean",
             "default": false
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -13713,12 +12523,6 @@
             "in": "header",
             "name": "If-Match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -13790,12 +12594,6 @@
             "in": "header",
             "name": "If-Match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -13868,12 +12666,6 @@
             "in": "header",
             "name": "If-Match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -14009,12 +12801,6 @@
             "in": "header",
             "name": "If-Match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -14138,12 +12924,6 @@
             "in": "header",
             "name": "If-Match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -14402,12 +13182,6 @@
             "name": "collection-name",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -14455,12 +13229,6 @@
             "name": "collection-name",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "produces": ["application/json"],
@@ -14509,12 +13277,6 @@
             "name": "collection-name",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -14570,12 +13332,6 @@
             "schema": {
               "$ref": "#/definitions/api_collection_put_properties_http_examples_rc_200"
             }
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -14602,934 +13358,9 @@
         "tags": ["Collections"]
       }
     },
-    "/_fabric/{fabric}/_api/transaction/begin": {
-      "post": {
-        "description": "Begin a server-side transaction.\n\nTo execute multiple operations as one transaction, the transaction identifier must be passed in each operation's *x-gdn-trxid* header.",
-        "operationId": "BeginTransaction",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "description": "A JSON object with the options for the new transaction.",
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/transaction_begin"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Successfully began the transaction.",
-            "schema": {
-               "$ref": "#/definitions/begin_transaction_example_rc_201"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "404": {
-            "description": "Failed to find any of the specified collections.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Begin transaction",
-        "tags": ["Transactions"]
-      }
-    },
-    "/_fabric/{fabric}/_api/transaction/{transaction-id}": {
-      "get": {
-        "description": "Fetch the status of a server-side transaction.",
-        "operationId": "FetchTransaction",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "in": "path",
-            "name": "transaction-id",
-            "required": true,
-            "type": "integer",
-            "format": "int64",
-            "description": "The identifier of the transaction to be fetched."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully fetched the transaction.",
-            "schema": {
-              "$ref": "#/definitions/fetch_transaction_example_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed because the transaction identifier specified is either missing or malformed.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "404": {
-            "description": "Failed to find the specified transaction.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Fetch transaction",
-        "tags": ["Transactions"]
-      },
-      "put": {
-        "description": "Commit a server-side transaction.\n\nCommitting is an idempotent operation. It is not an error to commit a transaction more than once.",
-        "operationId": "CommitTransaction",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "in": "path",
-            "name": "transaction-id",
-            "required": true,
-            "type": "integer",
-            "format": "int64",
-            "description": "The identifier of the transaction to be committed."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully commited the transaction.",
-            "schema": {
-              "$ref": "#/definitions/commit_transaction_example_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed because the transaction identifier specified is either missing or malformed.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "404": {
-            "description": "Failed to find the specified transaction.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          },
-          "409": {
-            "description": "Failed because the transaction was already aborted.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_409"
-            }
-          }
-        },
-        "summary": "Commit transaction",
-        "tags": ["Transactions"]
-      },
-      "delete": {
-        "description": "Abort a server-side transaction.\n\nAborting is an idempotent operation. It is not an error to abort a transaction more than once.",
-        "operationId": "AbortTransaction",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "in": "path",
-            "name": "transaction-id",
-            "required": true,
-            "type": "integer",
-            "format": "int64",
-            "description": "The identifier of the transaction to be aborted."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully aborted the transaction.",
-            "schema": {
-              "$ref": "#/definitions/abort_transaction_example_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed because the transaction identifier specified is either missing or malformed.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "404": {
-            "description": "Failed to find the specified transaction.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          },
-          "409": {
-            "description": "Failed because the transaction was already committed.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_409"
-            }
-          }
-        },
-        "summary": "Abort transaction",
-        "tags": ["Transactions"]
-      }
-    },
-    "/_fabric/{fabric}/_api/transaction": {
-      "get": {
-        "description": "Return the currently ongoing server-side transactions.",
-        "operationId": "ListTransactions",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the list of transactions.",
-            "schema": {
-              "$ref": "#/definitions/list_transactions_example_rc_200"
-            }
-          }
-        },
-        "summary": "List currently ongoing transactions",
-        "tags": ["Transactions"]
-      }
-    },
-    "/_fabric/{fabric}/_api/function": {
-      "get": {
-        "description": "List multiple function workers.",
-        "operationId": "ListAllFunctionWorkerByType",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "name": "type",
-            "in": "query",
-            "default": "all",
-            "description": "Type of function worker.",
-            "type": "string",
-            "enum": ["all", "akamai", "macrometa"]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully fetched function workers.",
-            "schema": {
-              "$ref": "#/definitions/list_edge_worker_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "List multiple function workers.",
-        "tags": ["Function"]
-      }
-    },
-    "/_fabric/{fabric}/_api/function/generate": {
-      "post": {
-        "description": "Deploy the query worker to the edge worker environment.\n\n**Note**: The edge worker activation is delayed while the environment is setup. Use the get function worker information API to get the activation status of the edge worker.",
-        "operationId": "GenerateFunctionWorkerFromQueryWorker",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "default": "_system",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "name": "type",
-            "default": "akamai",
-            "in": "query",
-            "description": "Type of edge worker.",
-            "type": "string",
-            "enum": ["akamai"]
-          },
-          {
-            "name": "name",
-            "required": true,
-            "in": "query",
-            "description": "Name of the edge worker.",
-            "type": "string"
-          },
-          {
-            "name": "queryWorkerName",
-            "required": true,
-            "in": "query",
-            "description": "Name of the Macrometa query worker.",
-            "type": "string"
-          },
-          {
-            "name": "environment",
-            "required": false,
-            "in": "query",
-            "default": "PRODUCTION",
-            "description": "The environment in which the edge worker is activated.",
-            "type": "string",
-            "enum": ["STAGING", "PRODUCTION"]
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Successfully deployed the query worker to the edge worker.",
-            "schema": {
-              "$ref": "#/definitions/generate_edge_worker_from_query_worker_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Deploy the query worker to the edge worker.",
-        "tags": ["Function"]
-      }
-    },
-    "/_fabric/{fabric}/_api/function/generate/publisher": {
-      "post": {
-        "description": "Deploy the stream publisher to the edge worker environment.\n\n**Note**: The edge worker activation is delayed while the environment is setup. Use the get function worker information API to get the activation status of the edge worker.",
-        "operationId": "GenerateFunctionWorkerFromStreamPublisher",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "default": "_system",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "name": "type",
-            "default": "akamai",
-            "in": "query",
-            "description": "Type of edge worker.",
-            "type": "string",
-            "enum": ["akamai"]
-          },
-          {
-            "name": "name",
-            "required": true,
-            "in": "query",
-            "description": "Name of the edge worker.",
-            "type": "string"
-          },
-          {
-            "name": "streamWorkerName",
-            "required": true,
-            "in": "query",
-            "description": "Name of the stream worker.",
-            "type": "string"
-          },
-          {
-            "name": "streamName",
-            "required": true,
-            "in": "query",
-            "description": "Name of the stream.",
-            "type": "string"
-          },
-          {
-            "name": "environment",
-            "in": "query",
-            "default": "PRODUCTION",
-            "description": "The environment in which the edge worker is activated.",
-            "type": "string",
-            "enum": ["STAGING", "PRODUCTION"]
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Successfully deployed the stream publisher to the edge worker.",
-            "schema": {
-              "$ref": "#/definitions/generate_edge_worker_from_query_worker_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Deploy the stream publisher to the edge worker.",
-        "tags": ["Function"]
-      }
-    },
-    "/_fabric/{fabric}/_api/function/generate/query": {
-      "post": {
-        "description": "Deploy the stream adhoc query to the edge worker environment. \n\n**Note**: The edge worker activation is delayed while the environment is setup. Use the get function worker information API to get the activation status of the edge worker.",
-        "operationId": "GenerateFunctionWorkerFromStreamQuery",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "default": "_system",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "name": "type",
-            "default": "akamai",
-            "in": "query",
-            "description": "Type of edge worker.",
-            "type": "string",
-            "enum": ["akamai"]
-          },
-          {
-            "name": "name",
-            "required": true,
-            "in": "query",
-            "description": "Name of the edge worker.",
-            "type": "string"
-          },
-          {
-            "name": "streamName",
-            "required": true,
-            "in": "query",
-            "description": "Name of the stream worker.",
-            "type": "string"
-          },
-          {
-            "name": "environment",
-            "in": "query",
-            "default": "PRODUCTION",
-            "description": "The environment in which the edge worker is activated.",
-            "type": "string",
-            "enum": ["STAGING", "PRODUCTION"]
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Successfully deploy the stream adhoc query to the edge worker.",
-            "schema": {
-              "$ref": "#/definitions/generate_edge_worker_from_query_worker_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Deploy the stream adhoc query to the edge worker.",
-        "tags": ["Function"]
-      }
-    },
-    "/_fabric/{fabric}/_api/function/{fx-name}": {
-      "get": {
-        "description": "Get function worker information.",
-        "operationId": "GetFunctionWorkerByFunctionName",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "default": "_system",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "name": "fx-name",
-            "format": "string",
-            "required": true,
-            "in": "path",
-            "description": "The name of the function worker.",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully fetched information about the function worker.",
-            "schema": {
-              "$ref": "#/definitions/edge_worker_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Get function worker information.",
-        "tags": ["Function"]
-      },
-      "delete": {
-        "description": "Remove a function worker.",
-        "operationId": "DeleteFunctionWorkerByFunctionName",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "default": "_system",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "name": "fx-name",
-            "format": "string",
-            "required": true,
-            "in": "path",
-            "description": "The name of the function worker.",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Successfully removed function worker."
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Remove a function worker.",
-        "tags": ["Function"]
-      }
-    },
-    "/_fabric/{fabric}/_api/function/invoke/{fx-name}": {
-      "post": {
-        "description": "Invoke a function worker.",
-        "operationId": "InvokeFunctionWorkerByFunctionName",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "default": "_system",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "name": "fx-name",
-            "format": "string",
-            "required": true,
-            "in": "path",
-            "description": "The name of the function worker.",
-            "type": "string"
-          },
-          {
-            "name": "params",
-            "required": false,
-            "in": "query",
-            "default": "{}",
-            "description": "Params for edge worker like bindVars or query. E.g: {'key1':'val1'}.",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully invoked the function worker.",
-            "schema": {
-              "$ref": "#/definitions/invoke_function_worker_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Invoke a function worker.",
-        "tags": ["Function"]
-      }
-    },
-    "/_fabric/{fabric}/_api/function/metadata": {
-      "get": {
-        "description": "Get metadata about the edge worker.",
-        "operationId": "GetFunctionWorkerMetadata",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully fetched the metadata about the edge worker.",
-            "schema": {
-              "$ref": "#/definitions/function_worker_metadata_rc_200"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Get metadata about the edge worker.",
-        "tags": ["Function"]
-      },
-      "put": {
-        "description": "Modify the edge worker metadata.",
-        "operationId": "ModifyFunctionWorkerMetadata",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "default": "_system",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/modify_function_worker_metadata"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Successfully modified the edge worker metadata.",
-            "schema": {
-              "$ref": "#/definitions/set_function_metadata_example_rc_201"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Modify the edge worker metadata.",
-        "tags": ["Function"]
-      },
-      "post": {
-        "description": "Create the edge worker metadata.",
-        "operationId": "UpdateFunctionWorkerMetadata",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "default": "_system",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/function_worker_metadata"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Successfully created the edge worker metadata.",
-            "schema": {
-              "$ref": "#/definitions/set_function_metadata_example_rc_201"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Create the edge worker metadata.",
-        "tags": ["Function"]
-      },
-      "delete": {
-        "description": "Remove metadata for an edge worker.",
-        "operationId": "RemoveFunctionWorkerMetadata",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "default": "_system",
-            "required": true,
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Successfully removed edge worker metadata."
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Remove the edge worker metadata.",
-        "tags": ["Function"]
-      }
-    },
     "/_fabric/{fabric}/_api/cursor": {
       "post": {
-        "description": "Queries are executed on the server and the results are returned to the client.\n\n If the resulting queries returned a number of documents less than the *batchSize* (attribute set in query), then all documents are returned in the *result* JSON attribute.\n\n If there are more documents than the defined *batchSize*, then the *hasMore* JSON attribute is set to *true* and the *id* JSON attribute contains the cursor ID. The cursor ID is then used in subsequent calls to the cursor API to retrieve all documents. This is repeated until the *hasMore* JSON attribute is set to false. The cursor ID will cease to exist after the seconds specified in the *ttl* attribute.\n\n In the event that a search view is used in the query and this search view has been paused due to resource constraints, the *x-gdn-view* header is set with the list of all paused views.",
+        "description": "The query details include the query string plus query options and bind parameters. These values need to be passed in a JSON representation in the body of the POST request.",
         "operationId": "createQueryCursor",
         "parameters": [
           {
@@ -15548,72 +13379,6 @@
             "schema": {
               "$ref": "#/definitions/api_cursor"
             }
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "201": {
-            "description": "Successfully created the cursor.",
-            "headers": {
-              "x-gdn-view": {
-                "description": "List of paused search views used by query.",
-                "type": "string"
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/api_cursor_rc_201"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/api_cursor_rc_400"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified fabric or collection.",
-            "schema": {
-                "$ref": "#/definitions/api_cursor_rc_404"
-              }
-          }
-        },
-        "summary": "Create cursor from C8QL query",
-        "tags": ["Query"]
-      }
-    },
-    "/_fabric/{fabric}/_api/cursor/sql": {
-      "post": {
-        "description": "To more efficiently batch communication, results of SQL queries are returned as cursors. Each REST API call returns a portion of the documents in a batch and indicates if this is the final batch. Batches are sent until the batch with the final indicator.\n\nDepending on the query, the total number of documents in the result set might not be known in advance.\n\nIn order to free resources, delete the cursor as soon as it is no longer needed.",
-        "operationId": "createSqlQueryCursor",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "fabric",
-            "required": true,
-            "default": "_system",
-            "type": "string",
-            "format": "string",
-            "description": "The name of the fabric."
-          },
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/sql_api_cursor"
-            }
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "produces": ["application/json"],
@@ -15637,7 +13402,7 @@
               }
           }
         },
-        "summary": "Create cursor from SQL query.",
+        "summary": "Create cursor",
         "tags": ["Query"]
       }
     },
@@ -15668,7 +13433,6 @@
           "202": {
             "description": "Successfully removed the cursor.",
             "schema": {
-                "type": "object",
                 "properties": {
                     "code": {
                         "description": "HTTP response code.",
@@ -16071,12 +13835,6 @@
         "responses": {
           "201": {
             "description": "Successfully ran the query.",
-            "headers": {
-              "x-gdn-view": {
-                "description": "List of paused search views used by query.",
-                "type": "string"
-              }
-            },
             "schema": {
                 "$ref": "#/definitions/query_workers_post_restql_execute_rc_201"
               }
@@ -16199,7 +13957,6 @@
           "200": {
              "description": "Successfully removed query.",
              "schema": {
-                "type": "object",
                 "properties": {
                     "code": {
                       "description": "HTTP response code.",
@@ -16213,9 +13970,6 @@
                     },
                     "result": {
                         "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
                         "example": []
                     }
                 }
@@ -16265,7 +14019,6 @@
           "200": {
             "description": "Sucessfully updated the query.",
             "schema": {
-                "type": "object",
                 "properties": {
                     "code": {
                       "description": "HTTP response code.",
@@ -16278,8 +14031,8 @@
                       "example": false
                     },
                     "result": {
-                        "type": "object",
                         "properties": {
+
                             "value": {
                                 "description": "The query being saved",
                                 "type": "string",
@@ -16361,7 +14114,7 @@
     "/_fabric/{fabric}/_api/index/fulltext": {
       "post": {
         "description": "Create full-text index, if it does not already exist.",
-        "operationId": "createIndex:fulltext",
+        "operationId": "createIndex#fulltext",
         "parameters": [
           {
             "in": "path",
@@ -16487,7 +14240,7 @@
     "/_fabric/{fabric}/_api/index/geo": {
       "post": {
         "description": "Create a geo index.\n\n**Note**: Geo indexes are always sparse, meaning that documents that do not contain the index attributes or have non-numeric values in the index attributes are not indexed.",
-        "operationId": "createIndex:geo",
+        "operationId": "createIndex#geo",
         "parameters": [
           {
             "in": "path",
@@ -17205,12 +14958,6 @@
             "type": "string"
           },
           {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
-          },
-          {
             "in": "body",
             "name": "JSON Request Body",
             "required": true,
@@ -17292,12 +15039,6 @@
             "name": "returnNew",
             "required": false,
             "type": "boolean"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           },
           {
             "in": "body",
@@ -17382,12 +15123,6 @@
             "type": "boolean"
           },
           {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
-          },
-          {
             "in": "body",
             "name": "JSON Request Body",
             "required": true,
@@ -17468,12 +15203,6 @@
             "required": false,
             "default": false,
             "type": "boolean"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "produces": ["application/json"],
@@ -17557,12 +15286,6 @@
             "in": "header",
             "name": "if-match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "produces": ["application/json"],
@@ -17656,12 +15379,6 @@
             "in": "header",
             "name": "if-none-match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "produces": ["application/json"],
@@ -17766,12 +15483,6 @@
             "in": "header",
             "name": "if-match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           },
           {
             "description": "The body has to contain a JSON object containing exactly the attributes that should be overwritten, all other attributes remain unchanged.",
@@ -17890,12 +15601,6 @@
             "type": "string"
           },
           {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
-          },
-          {
             "in": "body",
             "name": "JSON Request Body",
             "required": true,
@@ -18002,12 +15707,6 @@
             "name": "graph",
             "required": true,
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "produces": ["application/json"],
@@ -18084,12 +15783,6 @@
             "required": false,
             "default": false,
             "type": "boolean"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "produces": ["application/json"],
@@ -18164,12 +15857,6 @@
             "required": false,
             "type": "boolean",
             "default": false
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           },
           {
             "description": "The body has to be the JSON object to be stored.",
@@ -18266,12 +15953,6 @@
             "in": "header",
             "name": "if-match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "produces": ["application/json"],
@@ -18366,12 +16047,6 @@
             "in": "header",
             "name": "if-none-match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "produces": ["application/json"],
@@ -18476,12 +16151,6 @@
             "in": "header",
             "name": "if-match",
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           },
           {
             "description": "The body has to contain a JSON object containing exactly the attributes that should be overwritten, all other attributes remain unchanged.",
@@ -18600,12 +16269,6 @@
             "type": "string"
           },
           {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
-          },
-          {
             "description": "The body has to be the JSON object to be stored.",
             "in": "body",
             "name": "JSON Request Body",
@@ -18690,12 +16353,6 @@
             "name": "direction",
             "required": false,
             "type": "string"
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -21475,7 +19132,7 @@
             }
           },
           "409": {
-            "description": "Failed because stream application already exists.",
+            "description": "Failed becasue stream application already exists.",
             "schema": {
               "$ref": "#/definitions/error_example_rc_409"
             }
@@ -21755,11 +19412,11 @@
         }
       }
     },
-    "/_fabric/{fabric}/_api/streamapps/http/{appName}/{httpSourceName}": {
+    "/_fabric/{fabric}/_api/streamapps/http/{appName}/{streamName}": {
       "post": {
         "tags": ["Stream Workers"],
-        "summary": "Publish message to HTTP-Source.",
-        "description": "Publish message to HTTP-Source.",
+        "summary": "Publish message via HTTP-Source stream.",
+        "description": "Publish message via HTTP-Source stream.",
         "operationId": "publishHttpSourceMessage",
         "consumes": ["application/json"],
         "produces": ["application/json"],
@@ -21778,7 +19435,7 @@
             "type": "string"
           },
           {
-            "name": "httpSourceName",
+            "name": "streamName",
             "in": "path",
             "required": true,
             "type": "string"
@@ -22660,7 +20317,7 @@
         ]
       },
       "patch": {
-        "description": "Modfiy the GeoFabric metadata.",
+        "description": "Mofiy the GeoFabric metadata.",
         "operationId": "UpdateMetadataInformationOfTheGeo-fabric",
         "parameters": [
           {
@@ -23050,7 +20707,6 @@
           "201": {
             "description": "Successfully created user.",
             "schema": {
-                "type": "object",
                 "properties": {
                     "code": {
                         "description": "HTTP response code.",
@@ -23134,7 +20790,6 @@
           "200": {
             "description": "Successfully fetched all users.",
             "schema": {
-                "type": "object",
                 "properties": {
                     "code": {
                         "description": "HTTP response code.",
@@ -23149,7 +20804,6 @@
                     "result": {
                         "type": "array",
                         "items": {
-                            "type": "object",
                             "properties": {
                                 "tenant": {
                                     "description": "The name of the tenant.",
@@ -23239,7 +20893,6 @@
           "202": {
             "description": "Successfully removed user.",
             "schema": {
-                "type": "object",
                 "properties": {
                     "code": {
                         "description": "HTTP response code.",
@@ -23384,6 +21037,62 @@
           }
         },
         "summary": "Modify User.",
+        "tags": ["Users"]
+      },
+      "put": {
+        "description": "Replace the data of an existing user.\n\n**Note**: Requires *administrator* permissions.",
+        "operationId": "ReplaceUser",
+        "parameters": [
+          {
+            "description": "The id of the user",
+            "format": "string",
+            "in": "path",
+            "name": "user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "JSON Request Body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user_modify"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully replaced user.",
+            "schema": {
+                "$ref": "#/definitions/api_key_http_examples_rc_200_0"
+              }
+          },
+          "400": {
+            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
+            "schema": {
+              "$ref": "#/definitions/error_example_rc_400"
+            }
+          },
+          "401": {
+            "description": "Failed to validate because you do not have access to the GeoFabric.",
+            "schema": {
+              "$ref": "#/definitions/error_example_rc_401"
+            }
+          },
+          "403": {
+            "description": "Failed to validate because you do not have access to the server.",
+            "schema": {
+              "$ref": "#/definitions/error_example_rc_403"
+            }
+          },
+          "404": {
+            "description": "Failed to find specified user",
+            "schema": {
+                "$ref": "#/definitions/error_example_rc_404"
+              }
+          }
+        },
+        "summary": "Replace User",
         "tags": ["Users"]
       }
     },
@@ -24578,7 +22287,7 @@
     },
     "/_api/billing/contact": {
       "put": {
-        "description": "Update contact details for given tenant name.\n\n**Note**:\n- This API is not applicable for system tenants.\n- Updates the billing account.",
+        "description": "Update contact details for given tenant name.\n\n**Note**:\n- This API is not applicable for system tenants.\n- Updates the Stripe account.",
         "operationId": "UpdateContactDetails",
         "parameters": [
           {
@@ -25107,12 +22816,6 @@
             "schema": {
               "$ref": "#/definitions/api_import"
             }
-          },
-          {
-            "description": "To make this operation a part of a transaction, set this header to the transaction ID returned by the [begin transaction REST API](#/Transactions/BeginTransaction).",
-            "in": "header",
-            "name": "x-gdn-trxid",
-            "type": "integer"
           }
         ],
         "responses": {
@@ -25255,10 +22958,9 @@
           "200": {
             "description": "Successfully changed data center on-spot capability.",
             "schema": {
-              "type": "object",
               "properties": {
                 "result": {
-                  "type": "boolean",
+                  "type": "string",
                   "example": true
                 }
               }
@@ -25800,7 +23502,7 @@
             "name": "JSON Request Body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/plan_modify"
+              "$ref": "#/definitions/plan_create"
             }
           }
         ],
@@ -25808,7 +23510,7 @@
           "200": {
             "description": "Successfully updated billing plan data.",
             "schema": {
-              "$ref": "#/definitions/plan_modify"
+              "$ref": "#/definitions/plan_create"
             }
           },
           "400": {
@@ -25988,7 +23690,6 @@
           "200": {
             "description": "Successfully fetched billing plan limits.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26040,7 +23741,6 @@
           "200": {
             "description": "Successfully updated the default tenant limit.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26098,7 +23798,6 @@
           "200": {
             "description": "Successfully updated the default tenant limits.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26146,7 +23845,6 @@
           "200": {
             "description": "Successfully reset default tenant limits.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26199,7 +23897,6 @@
           "200": {
             "description": "Successfully fetched service.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26243,7 +23940,6 @@
           "200": {
             "description": "Successfully fetched whether limits are configured.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26298,7 +23994,6 @@
           "200": {
             "description": "Successfully enabled limits.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26357,7 +24052,6 @@
           "200": {
             "description": "Successfully fetched tenant.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26429,7 +24123,6 @@
           "200": {
             "description": "Successfully updated the tenant limit.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26502,7 +24195,6 @@
           "200": {
             "description": "Successfully updated the tenant limit.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26566,7 +24258,6 @@
           "200": {
             "description": "Successfully reset limits",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26640,7 +24331,6 @@
           "200": {
             "description": "Successfully fetched tenant service limits.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26713,7 +24403,6 @@
           "200": {
             "description": "Successfully fetched specified billing plan limits.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26793,7 +24482,6 @@
           "200": {
             "description": "Successfully updated billing plan limits.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26806,9 +24494,7 @@
                   "example": false
                 },
                 "result": {
-                  "description": "Whether the billing plan limits were set successfully.",
-                  "type": "boolean",
-                  "example": true
+                  "type": "boolean"
                 }
               }
             }
@@ -26875,7 +24561,6 @@
           "200": {
             "description": "Successfully updated the billing plan limits.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26888,7 +24573,6 @@
                   "example": false
                 },
                 "result": {
-                  "description": "Whether the billing plan limits were updated successfully.",
                   "type": "boolean",
                   "example": true
                 }
@@ -26948,7 +24632,6 @@
           "200": {
             "description": "Successfully reset billing plan limits.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -26961,7 +24644,6 @@
                   "example": false
                 },
                 "result": {
-                  "description": "Whether the billing plan limits were reset successfully.",
                   "type": "boolean",
                   "example": true
                 }
@@ -27031,7 +24713,6 @@
           "200": {
             "description": "Successfully fetched service.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -27096,7 +24777,6 @@
           "200": {
             "description": "Successfully reset features for a tenent.",
              "schema": {
-               "type": "object",
                "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -27374,7 +25054,6 @@
           "200": {
             "description": "Successfully added data center to tenant.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -27455,7 +25134,6 @@
           "200": {
             "description": "Successfully removed data center from tenant.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -27574,7 +25252,6 @@
           "200": {
             "description": "Successfully reconcile data center.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -27743,7 +25420,6 @@
           "200": {
             "description": "Successfully added data center to all fabrics form all tenants.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -27817,7 +25493,6 @@
           "200": {
             "description": "Successfully enabled publishing changes to local collections.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -27888,7 +25563,6 @@
           "200": {
             "description": "Successfully disabled publishing changes to local collection.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -27961,7 +25635,6 @@
           "200": {
             "description": "Successfully enabled accepting updates to local collection.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -28032,7 +25705,6 @@
           "200": {
             "description": "Successfully disabled accepting updates to local collection.",
             "schema": {
-              "type": "object",
               "properties": {
                 "code": {
                     "description": "HTTP response code.",
@@ -28402,7 +26074,7 @@
         "tags": ["Administration"]
       }
     },
-    "/_api/repair/all": {
+    "/_api/heal/all": {
       "post": {
         "consumes": [
           "application/json"
@@ -28413,12 +26085,12 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Successfully repaired.",
+            "description": "Successfully healed.",
             "schema": {
               "type": "object",
               "properties": {
                  "result": {
-                   "default": "*True* if successfully repaired",
+                   "default": "*True* if successfully healed",
                    "type": "boolean",
                    "example": "true"
                  }
@@ -28452,10 +26124,10 @@
         ],
         "description": "Fixes streams settings for all tenants and fabrics.",
         "operationId": "FixesC8StreamsSettingsForAll",
-        "summary": "Fixes streams settings for all tenants and fabrics"
+        "summary": "Fixes settings for all tenants and fabrics"
       }
     },
-    "/_api/repair/tenant/{tenant}": {
+    "/_api/heal/tenant/{tenant}": {
       "post": {
         "consumes": [
           "application/json"
@@ -28476,12 +26148,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully repaired.",
+            "description": "Successfully healed.",
             "schema": {
               "type": "object",
               "properties": {
                 "result": {
-                  "default": "*True* if successfully repaired",
+                  "default": "*True* if successfully healed",
                   "type": "boolean",
                   "example": "true"
                 }
@@ -28513,9 +26185,9 @@
         "tags": [
           "Administration"
         ],
-        "description": "Fixes streams settings for all fabrics of a specific tenant.",
+        "description": "Fixes settings for all fabrics of a specific tenant.",
         "operationId": "FixesC8StreamsSettingsForTenant",
-        "summary": "Fixes streams settings for a specific tenant and its fabrics"
+        "summary": "Fixes settings for a specific tenant and its fabrics"
       }
     },
     "/_api/repair/check": {
@@ -28716,484 +26388,6 @@
         "tags": [
           "Support"
         ]
-      }
-    },
-    "/_api/_admin/_billing/usage/hourly": {
-      "post": {
-        "description": "Generates hourly usage data for all tenants. Requires administrator permissions.",
-        "operationId": "GenerateHourlyBillingUsage(superuser)",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/billing_hourly_usage_create"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully generated hourly usage data for billing.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                    "description": "HTTP response code.",
-                    "type": "integer",
-                    "example": 200
-                },
-                "error": {
-                  "description": "Flag if there is an error in response. _False_ for this response.",
-                  "type": "boolean",
-                  "example": false
-                },
-                "message": {
-                  "description": "_OK_ if successfully generated daily usage data for billing. An error description is displayed if there is an error..",
-                  "type": "string",
-                  "example": "OK"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          }
-        },
-        "summary": "Generates hourly usage data.",
-        "tags": ["Administration"]
-      }
-    },
-    "/_api/_admin/_billing/usage/daily": {
-      "post": {
-        "description": "Generates daily usage data for tenants. Requires administrator permissions.",
-        "operationId": "GenerateDailyUsage(superuser)",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/billing_usage_create"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully generated daily usage data for billing.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                    "description": "HTTP response code.",
-                    "type": "integer",
-                    "example": 200
-                },
-                "error": {
-                  "description": "Flag if there is an error in response. _False_ for this response.",
-                  "type": "boolean",
-                  "example": false
-                },
-                "message": {
-                  "description": "_OK_ if successfully generated daily usage data for billing. An error description is displayed if there is an error.",
-                  "type": "string",
-                  "example": "OK"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified tenant.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Generates daily usage data for billing.",
-        "tags": ["Administration"]
-      }
-    },
-    "/_api/_admin/_billing/usage/federation": {
-      "post": {
-        "description": "Generates aggregated usage data for tenants. Requires administrator permissions.",
-        "operationId": "GenerateFederationUsage(superuser)",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/billing_usage_create"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully generated aggregated usage data for billing.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                    "description": "HTTP response code.",
-                    "type": "integer",
-                    "example": 200
-                },
-                "error": {
-                  "description": "Flag if there is an error in response. _False_ for this response.",
-                  "type": "boolean",
-                  "example": false
-                },
-                "message": {
-                  "description": "_OK*_ if successfully generated aggregated usage data for billing. An error description is displayed if an error occurs.",
-                  "type": "string",
-                  "example": "OK"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified tenant.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Generates aggregated usage data for billing.",
-        "tags": ["Administration"]
-      }
-    },
-    "/_api/_admin/_billing/usage/report": {
-      "post": {
-        "description": "Upload usage data for billing invoice. Requires administrator permissions.",
-        "operationId": "ReportUsageToBilling(superuser)",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/billing_stripe_usage"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Upload usage data for billing invoice.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                    "description": "HTTP response code.",
-                    "type": "integer",
-                    "example": 200
-                },
-                "error": {
-                  "description": "Flag if there is an error in response. _False_ for this response.",
-                  "type": "boolean",
-                  "example": false
-                },
-                "message": {
-                  "description": "_OK_ if successfully generated aggregated usage data for billing. An error description is displayed if an error occurs.",
-                  "type": "string",
-                  "example": "OK"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified tenant.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          },
-          "429": {
-            "description": "Too many requests.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_429"
-            }
-          }
-        },
-        "summary": "Upload usage data for billing invoice.",
-        "tags": ["Administration"]
-      }
-    },
-    "/_api/_admin/_billing/usage/missing": {
-      "get": {
-        "description": "Returns the list of missing usage record between start and end date. List contains records from daily and federation usage. Requires administrator permissions.",
-        "operationId": "CheckBillingUsage(superuser)",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/billing_usage_create"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the list of missing usage records.",
-            "schema": {
-              "$ref": "#/definitions/response_missing_usage_record_get"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified tenant.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Returns the list of missing usage records of tenants.",
-        "tags": ["Administration"]
-      }
-    },
-    "/_api/_admin/_billing/usage/missing/generate": {
-      "post": {
-        "description": "Generate missing usage records from daily and federation usage between start and end date. Requires administrator permissions.",
-        "operationId": "GenerateMissingBillingUsage(superuser)",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/billing_usage_create"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the list of generated records.",
-            "schema": {
-              "$ref": "#/definitions/response_missing_usage_record_get"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified tenant.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          }
-        },
-        "summary": "Generate missing usage records.",
-        "tags": ["Administration"]
-      }
-    },
-    "/_api/_admin/_billing/subscription": {
-      "post": {
-        "description": "Create a new billing subscription for the given tenant.",
-        "operationId": "CreateBillingSubscription(superuser)",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/billing_stripe_subscription_create"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Successfully created new billing subscription.",
-            "schema": {
-              "$ref": "#/definitions/Response_Billing_Account_Get"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified tenant.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          },
-          "429": {
-            "description": "Too many requests.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_429"
-            }
-          }
-        },
-        "summary": "Create a new billing subscription.",
-        "tags": ["Administration"]
-      },
-      "patch": {
-        "description": "Add new billing subscription items for the given tenant.",
-        "operationId": "AddBillingSubscriptionItems(superuser)",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "JSON Request Body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/billing_stripe_subscription_create"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Succesfully added new subscription items.",
-            "schema": {
-              "$ref": "#/definitions/Response_Billing_Account_Get"
-            }
-          },
-          "400": {
-            "description": "Failed due to missing or malformed data. Verify that all parameters are complete.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_400"
-            }
-          },
-          "401": {
-            "description": "Failed because you do not have administrator permissions.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_401"
-            }
-          },
-          "403": {
-            "description": "Failed to validate because you do not have access to the server.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_403"
-            }
-          },
-          "404": {
-            "description": "Failed to find specified tenant.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_404"
-            }
-          },
-          "429": {
-            "description": "Too many requests.",
-            "schema": {
-              "$ref": "#/definitions/error_example_rc_429"
-            }
-          }
-        },
-        "summary": "Add new billing subscription items.",
-        "tags": ["Administration"]
       }
     }
   },

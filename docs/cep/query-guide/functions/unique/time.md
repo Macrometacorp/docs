@@ -4,16 +4,16 @@ title: time (Window)
 
 This is a sliding time window that holds the latest unique events that arrived during the previous time window. The unique events are determined based on the value for a specified unique key parameter. The window is updated with the arrival and expiration of each event. When a new event that arrives within a window time period has the same value for the unique key parameter as an existing event in the window, the previous event is replaced by the new event.
 
-Syntax
+## Syntax
 
     unique:time(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
 
 ## Query Parameters
 
-| Name        | Description                                                      | Default Value | Possible Data Types               | Optional | Dynamic |
-|-------------|------------------------------------------------------------------|---------------|-----------------------------------|----------|---------|
-| unique.key  | The attribute that should be checked for uniqueness.             |               | INT LONG FLOAT BOOL DOUBLE STRING | No       | Yes     |
-| window.time | The sliding time period for which the window should hold events. |               | INT LONG                          | No       | No      |
+| Name        | Description            | Default Value | Possible Data Types | Optional | Dynamic |
+|-------------|---------------------------------|---------------|----------------------|----------|---------|
+| unique.key  | The attribute that should be checked for uniqueness.             | | INT LONG FLOAT BOOL DOUBLE STRING | No       | Yes     |
+| window.time | The sliding time period for which the window should hold events. | | INT LONG            | No       | No      |
 
 ## Example 1
 

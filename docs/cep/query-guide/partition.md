@@ -35,11 +35,11 @@ A partition key can be generated in the following two methods:
     This query calculates the maximum temperature recorded within the last 10 events per `deviceID`.
 
     <pre>
-    partition with ( deviceID of TempStream )
+    partition with (deviceID of TempStream)
     begin
         insert into DeviceTempStream
         select roomNo, deviceID, max(temp) as maxTemp
-        from TempStream#window.length(10);
+        from TempStream window sliding_length (10);
     end;
     </pre>
 
@@ -65,18 +65,18 @@ A partition key can be generated in the following two methods:
 
     ```
     partition with ( roomNo >= 1030 as 'serverRoom' or
-                     roomNo < 1030 and roomNo >= 330 as 'officeRoom' or
-                     roomNo < 330 as 'lobby' of TempStream)
+        roomNo < 1030 and roomNo >= 330 as 'officeRoom' or
+        roomNo < 330 as 'lobby' of TempStream)
     begin
         insert into AreaTempStream
         select roomNo, deviceID, avg(temp) as avgTemp
-        from TempStream#window.time(10 min)
+        from TempStream window sliding_time(10 min)
     end;
     ```  
 
 ### Inner Stream
 
-Queries inside a partition block can use inner streams to communicate with each other while preserving partition isolation. Inner streams are denoted by a "#" placed before the stream name, and these streams cannot be accessed outside a partition block.
+Queries inside a partition block can use inner streams to communicate with each other while preserving partition isolation. These streams cannot be accessed outside a partition block.
 
 **Purpose**
 
@@ -89,15 +89,15 @@ This partition calculates the average temperature of every 10 events for each se
 5 degrees.
 
 ```
-partition with ( deviceID of TempStream )
+partition with (deviceID of TempStream)
 begin
-    insert into #AvgTempStream
+    insert into AvgTempStream
     select roomNo, deviceID, avg(temp) as avgTemp
-    from TempStream#window.lengthBatch(10)
+    from TempStream window lengthBatch(10);
 
     insert into DeviceTempIncreasingStream
     select e1.deviceID, e1.avgTemp as initialAvgTemp, e2.avgTemp as finalAvgTemp
-    from every (e1=#AvgTempStream),e2=#AvgTempStream[e1.avgTemp + 5 < avgTemp]
+    from every e1=AvgTempStream,e2=AvgTempStream[e1.avgTemp + 5 < avgTemp];
 end;
 ```
 
@@ -142,12 +142,12 @@ Mark partition instances eligible for purging, if there are no events from a par
 @purge(enable='true', interval='1 sec', idle.period='15 sec')
 partition with ( deviceID of TempStream )
 begin
-    insert into #AvgTempStream
+    insert into AvgTempStream
     select roomNo, deviceID, avg(temp) as avgTemp
-    from TempStream#window.lengthBatch(10)
+    from TempStream window lengthBatch(10);
 
     insert into DeviceTempIncreasingStream
     select e1.deviceID, e1.avgTemp as initialAvgTemp, e2.avgTemp as finalAvgTemp
-    from every (e1=#AvgTempStream),e2=#AvgTempStream[e1.avgTemp + 5 < avgTemp]
+    from every e1=AvgTempStream,e2=AvgTempStream[e1.avgTemp + 5 < avgTemp];
 end;
 ```
