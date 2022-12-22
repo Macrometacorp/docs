@@ -20,7 +20,7 @@ Functions allow you to :
 - Appropriate format mapping, such as JSON, XML, or CSV.
 - Different kinds of processing, such as math, string, statistics, and geospatial.
 - Data aggregation.
-- Write logical expressions
+- Write logical expressions.
 
 ## Core Functions
 
