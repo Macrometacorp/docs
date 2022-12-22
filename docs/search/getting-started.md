@@ -50,12 +50,12 @@ Our view is now accessible worldwide, and your three address collection key valu
 
 ## Step 3. Save the Query as an API Endpoint
 
-Macrometa allows you to save a query as a [Query Worker](queryworkers.md).
+Macrometa allows you to save a query as a [Query Worker](../queryworkers/index.md).
 
 1. Click **Save Query**.
-1. Name the query **getContactBySearchTerm** and then click **Save**. This saves the query so you can use it again.
-1. Click **Run Query**.
-1. Click **API Endpoint**.
+2. Name the query **getContactBySearchTerm** and then click **Save**. This saves the query so you can use it again.
+3. Click **Run Query**.
+4. Click **API Endpoint**.
 
 Macrometa displays a cURL command that you can use to access this endpoint from anywhere in the world in under 50ms.
 
