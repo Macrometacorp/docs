@@ -32,6 +32,7 @@ Playground accounts can not be used in production. Review our [Terms of Service]
 
 
 **Stream Limits:**
+
 | Name 											| Play Tier Quota 	|
 |------											|-----------------	|
 | Max Streams Count			                    | 10 				|
