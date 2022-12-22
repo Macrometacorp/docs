@@ -2,7 +2,7 @@
 title: or (Aggregate Function)
 ---
 
-eturns the results of OR operation for all the events.
+Returns the results of OR operation for all the events.
 
 Syntax
 
