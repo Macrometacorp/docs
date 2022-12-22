@@ -5,7 +5,7 @@ title: Map Functions
 
 Map functions allow you to create and interact with maps.
 
-For information on performing scatter and gather using [map:tokenize()](tokenize.md), and [map:collect()](collect.md), refer the examples in [Data Pipelining](../../../tutorials/data-pipelining.md).
+For information on performing scatter and gather using [map:tokenize()](tokenize.md), and [map:collect()](collect.md), refer to the examples in [Data Pipeline Examples](../../../examples/data-pipelinesmd).
 
 ## Input
 
