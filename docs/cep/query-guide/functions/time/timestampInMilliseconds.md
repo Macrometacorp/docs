@@ -4,7 +4,7 @@ title: timestampInMilliseconds (Function)
 
 Returns the system time or the given time in milliseconds.
 
-Syntax
+## Syntax
 
     <LONG> time:timestampInMilliseconds()
     <LONG> time:timestampInMilliseconds(<STRING> date.value, <STRING> date.format)
@@ -12,10 +12,10 @@ Syntax
 
 ## Query Parameters
 
-| Name        | Description                                                                                  | Default Value               | Possible Data Types | Optional | Dynamic |
+| Name        | Description            | Default Value | Possible Data Types | Optional | Dynamic |
 |-------------|----------------------------------------------------------------------------------------------|-----------------------------|---------------------|----------|---------|
-| date.value  | The value of the date. For example, `2014-11-11 13:23:44.657`, `2014-11-11`, `13:23:44.657`. | Current system time         | STRING              | Yes      | Yes     |
-| date.format | The format of the date value provided. For example, `yyyy/MM/dd HH:mm:ss.SSS`.               | \`yyyy-MM-dd HH:mm:ss.SSS\` | STRING              | Yes      | Yes     |
+| date.value  | The value of the date. For example, `2014-11-11 13:23:44.657`, `2014-11-11`, `13:23:44.657`. | Current system time         | STRING| Yes      | Yes     |
+| date.format | The format of the date value provided. For example, `yyyy/MM/dd HH:mm:ss.SSS`. | `yyyy-MM-dd HH:mm:ss.SSS` | STRING| Yes      | Yes     |
 
 ## Example 1
 

@@ -4,7 +4,7 @@ title: floor (Function)
 
 This function wraps the `java.lang.Math.floor()` function and returns the largest value, i.e., closest to the positive infinity, that is less than or equal to `p1`, and is equal to a mathematical integer.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:floor(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:floor(inValue) as floorValue
     from InValueStream;
 
-This function calculates the floor value of the given `inValue` input and directs the output to the `OutMediationStream` output stream. For example, (10.23) returns 10.0.
+This function calculates the floor value of the given `inValue` input and directs the output to the `OutMediationStream` output stream. For example, `floor(10.23)` returns 10.0.
