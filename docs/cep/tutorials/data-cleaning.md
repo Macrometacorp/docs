@@ -14,21 +14,21 @@ This example shows how to enrich events based on a simple `if-then-else` conditi
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
 @info(name = 'SimpleIfElseQuery')
-insert into ValidTemperatureStream
-select sensorId,
+INSERT INTO ValidTemperatureStream
+SELECT sensorId,
 -- if `temperature` > -2, `isValid`, then return `true`, else `false` 
 	ifThenElse(temperature > -2, 'Valid', 'InValid') as isValid 
-from TemperatureStream;
+FROM TemperatureStream;
 
 @info(name = 'ComplexIfElseQuery') 
-insert into ProcessedTemperatureStream
-select sensorId, 
+INSERT INTO ProcessedTemperatureStream
+SELECT sensorId, 
 -- If the `temperature` > 40 the status is set to `High`, between -2 and 40 as `Normal` and less than -2 as `InValid` 
 	ifThenElse(temperature > -2, 
 		ifThenElse(temperature > 40, 'High', 'Normal'), 
 		'InValid') 
 	as tempStatus
-from TemperatureStream	;
+FROM TemperatureStream	;
 ```
 
 ### Events at Each Stream
@@ -48,23 +48,23 @@ CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
 @info(name = 'EqualsFilter')
 -- Filter out events with `sensorId` equal to A1234
-insert into SenorA1234TemperatureStream
-select *
-from TemperatureStream[ sensorId == 'A1234'];
+INSERT INTO SenorA1234TemperatureStream
+SELECT *
+FROM TemperatureStream[ sensorId == 'A1234'];
 
 
 @info(name = 'RangeFilter') 
 -- Filter out events where `-2 < temperature < 40`
-insert into NormalTemperatureStream
-select *
-from TemperatureStream[ temperature > -2 and temperature < 40];
+INSERT INTO NormalTemperatureStream
+SELECT *
+FROM TemperatureStream[ temperature > -2 and temperature < 40];
 
 
 @info(name = 'NullFilter') 
 -- Filter out events with `SensorId` is `null`
-insert into InValidTemperatureStream
-select *
-from TemperatureStream[ sensorId is null ];
+INSERT INTO InValidTemperatureStream
+SELECT *
+FROM TemperatureStream[ sensorId is null ];
 ```
 
 ### Value-based Filtering Input
@@ -94,13 +94,13 @@ This example shows filter-out events based on the data `type` of the attribute.
 CREATE STREAM SweetProductionStream (name string, amount int);
 
 @info(name='ProcessSweetProductionStream')
-insert into ProcessedSweetProductionStream
-select 
+INSERT INTO ProcessedSweetProductionStream
+SELECT 
 -- `true` if `amount` is of `int` type
    instanceOfInteger(amount) as isAIntInstance,
     name, 
     amount
-from SweetProductionStream;
+FROM SweetProductionStream;
 ```
 
 ### Type-based Filtering Input
@@ -124,13 +124,13 @@ This example demonstrates event cleansing using regex expressions.
 CREATE STREAM SweetProductionStream (name string, amount int);
 
 @info(name='ProcessSweetProductionStream')
-insert into ChocolateProductStream
-select name, 
+INSERT INTO ChocolateProductStream
+SELECT name, 
 -- Matches if `name` begins with the word 'chocolate'
    regex:matches('chocolate(.*)', name) as isAChocolateProduct, 
 -- Captures the `sweetType` of the sweet following the flavour in `name`
    regex:group('.*\s(.*)', name, 1) as sweetType
-from SweetProductionStream;
+FROM SweetProductionStream;
 ```
 
 ### Regex Matching Input
@@ -158,8 +158,8 @@ CREATE STREAM PatientRegistrationInputStream (
 
 
 @info(name = 'SimpleIfElseQuery')
-insert into PreprocessedPatientRegistrationInputStream
-select 
+INSERT INTO PreprocessedPatientRegistrationInputStream
+SELECT 
 -- Default value of `invalid` to be used if `name` is `null` 
 	default(name, 'invalid') as name, 
 
@@ -175,7 +175,7 @@ select
 -- Default value of `0f` to be used if `height` is `null` 
 	default(height, 0f) as height 	
 
-from PatientRegistrationInputStream;
+FROM PatientRegistrationInputStream;
 ```
 
 ### Default Input
@@ -203,15 +203,15 @@ CREATE STREAM TemperatureStream (sensorId string, seqNo string, temperature doub
 
 @info(name = 'Deduplicate-sensorId')
 -- Remove duplicate events arriving within `1 minute` time gap, based on unique `sensorId`.
-insert into UniqueSensorStream
-select *
-from TemperatureStream#unique:deduplicate(sensorId, 1 min);
+INSERT INTO UniqueSensorStream
+SELECT *
+FROM TemperatureStream#unique:deduplicate(sensorId, 1 min);
 
 @info(name = 'Deduplicate-sensorId-and-seqNo')
 -- Remove duplicate events arriving within `1 minute` time gap, based on unique `sensorId` and `seqNo` combination.
-insert into UniqueSensorSeqNoStream
-select *
-from TemperatureStream#unique:deduplicate(str:concat(sensorId,'-',seqNo), 1 min)
+INSERT INTO UniqueSensorSeqNoStream
+SELECT *
+FROM TemperatureStream#unique:deduplicate(str:concat(sensorId,'-',seqNo), 1 min)
 ```
 
 ### Behavior
