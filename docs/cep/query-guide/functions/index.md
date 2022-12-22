@@ -18,7 +18,7 @@ Functions allow you to :
 - Use different data sources.
 - Use different sinks, such as GDN Streams, Kafka, and ActiveMQ.
 - Appropriate format mapping, such as JSON, XML or CSV.
-- Different kinds of processing, such as math, string, statistics and geospatial.
+- Different kinds of processing, such as math, string, statistics, and geospatial.
 - Data aggregation.
 - Write logical expressions
 
