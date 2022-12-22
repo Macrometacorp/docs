@@ -8,7 +8,12 @@ title: Data Transformation
 This example shows the use of math or logical operations on events.
 
 ```sql
+@App:name("DataTransformation")
+@App:qlVersion("2")
+
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
+
+CREATE SINK FilteredResultsStream WITH (type='stream', stream='FilteredResultsStream', map.type='json')(sensorId string, approximateTemp double);
 
 @info(name = 'celciusTemperature')
 
@@ -26,7 +31,7 @@ from FahrenheitTemperatureStream;
 
 @info(name = 'RangeFilter') 
 -- Filter out events where `-2 < approximateTemp < 40`
-insert into NormalTemperatureStream
+insert into FilteredResultsStream
 select *
 from OverallTemperatureStream[ approximateTemp > -2 and approximateTemp < 40];
 ```
