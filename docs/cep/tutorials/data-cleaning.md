@@ -5,16 +5,49 @@ title: Data Cleaning Examples
 
 This page shows examples of ways to clean your data.
 
-## Value based Filtering
+## If-Then-Else
+
+This example shows how to enrich events based on a simple `if-then-else` conditions.
+
+```sql
+-- Defines `TemperatureStream` stream to process events having `sensorId` and `temperature`(F)
+CREATE STREAM TemperatureStream (sensorId string, temperature double);
+
+@info(name = 'SimpleIfElseQuery')
+insert into ValidTemperatureStream
+select sensorId,
+-- if `temperature` > -2, `isValid`, then return `true`, else `false` 
+	ifThenElse(temperature > -2, 'Valid', 'InValid') as isValid 
+from TemperatureStream;
+
+@info(name = 'ComplexIfElseQuery') 
+insert into ProcessedTemperatureStream
+select sensorId, 
+-- If the `temperature` > 40 the status is set to `High`, between -2 and 40 as `Normal` and less than -2 as `InValid` 
+	ifThenElse(temperature > -2, 
+		ifThenElse(temperature > 40, 'High', 'Normal'), 
+		'InValid') 
+	as tempStatus
+from TemperatureStream	;
+```
+
+### Events at Each Stream
+
+When an event with values [`'sensor1'`, `35.4`] is sent to TemperatureStream, it is converted and travels through the streams as below.
+
+- ValidTemperatureStream : [`'sensor1'`, `'Valid'`]
+- ProcessedTemperatureStream : [`'sensor1'`, `'Normal'`]
+
+## Value-based Filtering
 
 This example shows filter-out events based on simple conditions such as `number value`, `range` or `null` type.
 
 ```sql
--- Defines `TemperatureStream` stream to process events having `sensorId` and `temperature`(F).
+-- Defines `TemperatureStream` stream to process events having `sensorId` and `temperature`(F)
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
 @info(name = 'EqualsFilter')
--- Filter out events with `sensorId` equalling `A1234`
+-- Filter out events with `sensorId` equal to A1234
 insert into SenorA1234TemperatureStream
 select *
 from TemperatureStream[ sensorId == 'A1234'];
@@ -28,13 +61,13 @@ from TemperatureStream[ temperature > -2 and temperature < 40];
 
 
 @info(name = 'NullFilter') 
--- Filter out events with `SensorId` being `null`
+-- Filter out events with `SensorId` is `null`
 insert into InValidTemperatureStream
 select *
 from TemperatureStream[ sensorId is null ];
 ```
 
-### Input
+### Value-based Filtering Input
 
 Below events are sent to `TemperatureStream`,
 
@@ -42,48 +75,45 @@ Below events are sent to `TemperatureStream`,
 2. [`'sensor1'`, 35]
 3. [`null`, 43]
 
-### Output
+### Value-based Filtering Output
 
-After processing, the following events will be arriving at each stream:
+After processing, the following events arrive at each stream:
 
-- SenorA1234TemperatureStream: <br/>[`'A1234'`, 39] only
+- SenorA1234TemperatureStream: [`'A1234'`, 39] only
 
-- NormalTemperatureStream:  <br/>[`'sensor1'`, 35] only
+- NormalTemperatureStream:  [`'sensor1'`, 35] only
 
-- InValidTemperatureStream: <br/>[`null`, 43] only
+- InValidTemperatureStream: [`null`, 43] only
 
-## If-Then-Else
+## Type-based Filtering
 
-This example shows how to enrich events based on a simple `if-then-else` conditions.
+This example shows filter-out events based on the data `type` of the attribute.
 
 ```sql
--- Defines `TemperatureStream` stream to process events having `sensorId` and `temperature`(F).
-CREATE STREAM TemperatureStream (sensorId string, temperature double);
+-- Defines `SweetProductionStream` having information of `name` and `amount`
+CREATE STREAM SweetProductionStream (name string, amount int);
 
-@info(name = 'SimpleIfElseQuery')
-insert into ValidTemperatureStream
-select sensorId,
--- if `temperature` > -2, `isValid` will be `true` else `false` 
-	ifThenElse(temperature > -2, 'Valid', 'InValid') as isValid 
-from TemperatureStream;
-
-@info(name = 'ComplexIfElseQuery') 
-insert into ProcessedTemperatureStream
-select sensorId, 
--- If the `temperature` > 40 the status is set to `High`, between -2 and 40 as `Normal` & less than -2 as `InValid` 
-	ifThenElse(temperature > -2, 
-		ifThenElse(temperature > 40, 'High', 'Normal'), 
-		'InValid') 
-	as tempStatus
-from TemperatureStream	;
+@info(name='ProcessSweetProductionStream')
+insert into ProcessedSweetProductionStream
+select 
+-- `true` if `amount` is of `int` type
+   instanceOfInteger(amount) as isAIntInstance,
+    name, 
+    amount
+from SweetProductionStream;
 ```
 
-### Events at each stream
+### Type-based Filtering Input
 
-When an event with values [`'sensor1'`, `35.4`] is sent to TemperatureStream stream it will get converted and travel through the streams as below.
+Below event is sent to `SweetProductionStream`:
 
-- ValidTemperatureStream : [`'sensor1'`, `'Valid'`]
-- ProcessedTemperatureStream : [`'sensor1'`, `'Normal'`]
+[`'chocolate cake'`, `'invalid'`]
+
+### Type-based Filtering Output
+
+After processing, the event arriving at `ProcessedSweetProductionStream` is:
+
+[`false`, `'chocolate cake'`, `'invalid'`]
 
 ## Regex Matching
 
@@ -103,24 +133,24 @@ select name,
 from SweetProductionStream;
 ```
 
-### Input
+### Regex Matching Input
 
 Below event is sent to `SweetProductionStream`,
 
 [`'chocolate cake'`, `34`]
 
-### Output
+### Regex Matching Output
 
-After processing, the event arriving at `ChocolateProductStream` will be as follows:
+After processing, the event arriving at `ChocolateProductStream` is:
 
 [`'chocolate cake'`, `true`, `'cake'`]
 
-## Default
+## Default Function with Null Values
 
-This example shows how to use `default` function to process attributes with `null` values.
+This example shows how to use the `default` function to process attributes with `null` values.
 
 ```sql
--- Defines `PatientRegistrationInputStream` having information in all primitive types.
+-- Defines `PatientRegistrationInputStream` having information in all primitive types
 CREATE STREAM PatientRegistrationInputStream (
                  seqNo long, name string, age int,
                  height float, weight double, photo object,
@@ -148,49 +178,19 @@ select
 from PatientRegistrationInputStream;
 ```
 
-### Input
+### Default Input
 
-An event of all `null` attributes is sent to `PatientRegistrationInputStream`,
+An event of all `null` attributes is sent to `PatientRegistrationInputStream`:
 
-### Output
+### Default Output
 
-After processing, the event arriving at `PreprocessedPatientRegistrationInputStream` will be as follows,
+After processing, the event arriving at `PreprocessedPatientRegistrationInputStream` is:
 
 [`'invalid'`, `0` `0.0`, `0`, `0.0`]
 
-with types,
+With types:
 
 [`string`, `long`, `double`, `int`, `float`]
-
-## Type based Filtering
-
-This example shows filter-out events based on data `type` of the attribute.
-
-```sql
--- Defines `SweetProductionStream` having information of `name` and `amount`
-CREATE STREAM SweetProductionStream (name string, amount int);
-
-@info(name='ProcessSweetProductionStream')
-insert into ProcessedSweetProductionStream
-select 
--- `true` if `amount` is of `int` type
-   instanceOfInteger(amount) as isAIntInstance,
-    name, 
-    amount
-from SweetProductionStream;
-```
-
-### Input
-
-Below event is sent to `SweetProductionStream`,
-
-[`'chocolate cake'`, `'invalid'`]
-
-### Output
-
-After processing, the event arriving at `ProcessedSweetProductionStream` will be as follows:
-
-[`false`, `'chocolate cake'`, `'invalid'`]
 
 ## Remove Duplicate Events
 
@@ -216,7 +216,7 @@ from TemperatureStream#unique:deduplicate(str:concat(sensorId,'-',seqNo), 1 min)
 
 ### Behavior
 
-When events are sent to `TemperatureStream` stream, following events will get emitted after deduplication on `UniqueSensorStream` stream via `Deduplicate-sensorId` query, and `UniqueSensorSeqNoStream` stream via `Deduplicate-sensorId-and-seqNo` query.
+When events are sent to `TemperatureStream` stream, following events are emitted after deduplication on `UniqueSensorStream` via `Deduplicate-sensorId` query, and `UniqueSensorSeqNoStream` stream via `Deduplicate-sensorId-and-seqNo` query.
 
 |Time | Input to `TemperatureStream` | Output at `UniqueSensorStream` | Output at `UniqueSensorSeqNoStream` |
 |---|---|---|---|
