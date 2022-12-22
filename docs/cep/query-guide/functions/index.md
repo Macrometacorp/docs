@@ -97,7 +97,7 @@ Functions allow you to :
 | Function     | Description|
 | ------------ |-------------|
 |Google Pub-Sub | This an function that receives and publishes events from/to Google Pub/Sub.                                                                                                      |
-|HTTP & HTTPS| The **http** function receives and publishes events via HTTP and HTTPS transports, calls external services, and serves incoming requests and provide synchronous responses. |
+|HTTP and HTTPS| The **http** function receives and publishes events via HTTP and HTTPS transports, calls external services, and serves incoming requests and provide synchronous responses. |
 |Apache Kafka (beta)|This function receives and publishes events from/to Apache Kafka.|
 |MQTT|This function receives and publishes events to and from MQTT.|
 |S3|This function allows to publish events to Amazon AWS S3 buckets.|
