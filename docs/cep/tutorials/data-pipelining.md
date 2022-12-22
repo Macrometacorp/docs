@@ -1,14 +1,16 @@
 ---
-sidebar_position: 8
-title: Data Pipelines
+sidebar_position: 80
+title: Data Pipeline Examples
 ---
 
+This page explains ways to create data pipelines.
 ## Stream Joins
 
 This example shows joining two stream based on a condition.
 
-For more information on other [join operations](../query-guide/query.md#join-stream) refer the [Stream Query Guide](../query-guide/index.md).
+For more information on other [join operations](../query-guide/query.md#join-stream), refer to the [Stream Worker Query Guide](../query-guide/index.md).
 
+### Stream Joins Example
 
 ```sql
 CREATE STREAM TemperatureStream (roomNo string, temperature double);
@@ -36,7 +38,7 @@ from TemperatureStream as t
 
 ### Join Behavior
 
-When events are sent to `TemperatureStream` stream and `HumidityStream` stream, following events will get emitted at `TemperatureHumidityStream` stream via `Equi-join` query, and `EnrichedTemperatureStream` stream via `Join-on-temperature` query.
+When events are sent to `TemperatureStream` stream and `HumidityStream` stream, the following events are emitted at `TemperatureHumidityStream` via `Equi-join` query, and `EnrichedTemperatureStream` via `Join-on-temperature` query:
 
 |Time | Input to `TemperatureStream` |  Input to `HumidityStream` | Output at `TemperatureHumidityStream` | Output at `EnrichedTemperatureStream` |
 |---|---|---|---|---|
@@ -49,14 +51,11 @@ When events are sent to `TemperatureStream` stream and `HumidityStream` stream, 
 | 9:01:20 | [`'1001'`, `17.0`] | -                  | [`'1001'`, `17.0`, `62.0`] | [`'1001'`, `17.0`, `60.0`], <br/>[`'1001'`, `17.0`, `62.0`] |
 | 9:02:10 | [`'1002'`, `23.5`] | - | - | [`'1002'`, `23.5`, `null`] |
 
-
 ## Partition Events by Value
 
-This example shows partitioning events by attribute values.
+This example shows partitioning events by attribute values. For more information on [partition](../query-guide/partition.md) refer the [Stream Query Guide](../query-guide/index.md).
 
-For more information on partitioning events based on value ranges, refer other examples under data pipelining section.
-For more information on [partition](../query-guide/partition.md) refer the [Stream Query Guide](../query-guide/index.md).
-
+### Partition Events by Value Example
 
 ```sql
 CREATE STREAM LoginStream ( userID string, loginSuccessful bool);
@@ -85,8 +84,7 @@ end;
 
 ### Partition Behavior
 
-When events are sent to `LoginStream` stream, following events will be generated at `#LoginAttempts` inner stream via `Aggregation-query` query, and `UserSuspensionStream` stream via `Alert-query` query.
-
+When events are sent to `LoginStream` stream, following events will be generated at `#LoginAttempts` inner stream via `Aggregation-query` query, and `UserSuspensionStream` via `Alert-query` query:
 
 | Input to `TemperatureStream` | At `#LoginAttempts` | Output at `UserSuspensionStream` |
 |---|---|---|
@@ -103,6 +101,7 @@ When events are sent to `LoginStream` stream, following events will be generated
 
 This example shows performing scatter and gather on string values.
 
+### Scatter and Gather (String) Example
 
 ```sql
 CREATE STREAM PurchaseStream (userId string, items string, store string);
@@ -127,31 +126,31 @@ select userId, str:groupConcat(itemKey, ",") as itemKeys
 from TransformedItemStream window batch();
 ```
 
-### Input
+### Scatter and Gather (String) Input
 
 The following event containing a JSON string is sent to `PurchaseStream`:
 
 [`'501'`, `'cake,cookie,bun,cookie'`, `'CA'`]
 
-### Output
+### Scatter and Gather (String) Output
 
-After processing, the events arriving at `TokenizedItemStream` will be as follows:
+After processing, the events arrive at `TokenizedItemStream`:
 
 [`'501'`, `'cake'`, `'CA'`], [`'501'`, `'cookie'`, `'CA'`], [`'501'`, `'bun'`, `'CA'`]
 
-The events arriving at `TransformedItemStream` will be as follows:
+The events arrive at `TransformedItemStream`:
 
 [`'501'`, `'CA-cake'`], [`'501'`, `'CA-cookie'`], [`'501'`, `'CA-bun'`]
 
-The event arriving at `GroupedPurchaseItemStream` will be as follows:
+The event arrive at `GroupedPurchaseItemStream`:
 
 [`'501'`, `'CA-cake,CA-cookie,CA-bun'`]
 
 ## Scatter and Gather (JSON)
 
+This example shows performing scatter and gather on JSON values.
 
-This example shows performing scatter and gather on json values.
-
+### Scatter and Gather (JSON) Example
 
 ```sql
 CREATE STREAM PurchaseStream (order string, store string);
@@ -182,7 +181,7 @@ from TokenizedItemStream;
 
 @info(name = 'Gather-query')
 insert into GroupedItemStream
--- Combine `item` from all events in a batch as a single JSON Array.
+-- Combine `item` from all events in a batch as a single JSON array.
 select orderId, json:group(item) as items, store
 -- Collect events traveling as a batch via `batch()` window.
 from DiscountedItemStream window batch();
@@ -197,9 +196,9 @@ select str:fillTemplate("""
     }""", orderId, items, store) as discountedOrder
 from GroupedItemStream;
 ```
-### Input
+### Scatter and Gather (JSON) Input
 
-Below event is sent to `PurchaseStream`,
+Below event is sent to `PurchaseStream`:
 
 ```json
 [{
@@ -213,7 +212,7 @@ Below event is sent to `PurchaseStream`,
 }, 'CA']
 ```
 
-### Output
+### Scatter and Gather (JSON) Output
 
 After processing, following events arrive at `TokenizedItemStream`:
 
@@ -221,17 +220,17 @@ After processing, following events arrive at `TokenizedItemStream`:
 [`'501'`, `'{"name":"cookie","price":15.0}'`, `'CA'`],<br/>
 [`'501'`, `'{"name":"bun","price":20.0}'`, `'CA'`]
 
-The events arriving at `DiscountedItemStream` will be as follows:
+The events arrive at `DiscountedItemStream`:
 
 [`'501'`, `'{"name":"cake","price":20.0}'`, `'CA'`],<br/>
 [`'501'`, `'{"name":"cookie","price":15.0}'`, `'CA'`],<br/>
 [`'501'`, `'{"name":"bun","price":20.0}'`, `'CA'`]
 
-The event arriving at `GroupedItemStream` will be as follows:
+The event arriving at `GroupedItemStream` is:
 
 [`'501'`, `'[{"price":20.0,"name":"cake"},{"price":15.0,"name":"cookie"},{"price":20.0,"name":"bun"}]'`, `'CA'`]
 
-The event arriving at `DiscountedOrderStream` will be as follows:
+The event arriving at `DiscountedOrderStream` is:
 
 ```json
     [
