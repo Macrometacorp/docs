@@ -1,9 +1,11 @@
 ---
-sidebar_position: 5
-title: Data Transformation
+sidebar_position: 50
+title: Data Transformation Examples
 ---
 
-## Math & Logical Operations
+This page explains ways to transform your data.
+
+## Math and Logical Operations
 
 This example shows the use of math or logical operations on events.
 
@@ -15,9 +17,9 @@ CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
 CREATE SINK FilteredResultsStream WITH (type='stream', stream='FilteredResultsStream', map.type='json')(sensorId string, approximateTemp double);
 
-@info(name = 'celciusTemperature')
+@info(name = 'celsiusTemperature')
 
--- Converts Celsius value into Fahrenheit.
+-- Converts Celsius value into Fahrenheit
 insert into FahrenheitTemperatureStream
 select sensorId, (temperature * 9 / 5) + 32 as temperature
 from TemperatureStream;
@@ -38,26 +40,26 @@ from OverallTemperatureStream[ approximateTemp > -2 and approximateTemp < 40];
 
 ### Input
 
-Below event is sent to `TemperatureStream`,
+Below event is sent to `TemperatureStream`:
 
 [`'SensorId'`, `-17`]
 
 ### Output
 
-After processing, the following events will be arriving at each stream:
+After processing, the following events arrive at each stream:
 
-* FahrenheitTemperatureStream: [`'SensorId'`, `1.4`]
-* OverallTemperatureStream: [`'SensorId'`, `1.0`]
-* NormalTemperatureStream: [`'SensorId'`, `1.0`]
+- FahrenheitTemperatureStream: [`'SensorId'`, `1.4`]
+- OverallTemperatureStream: [`'SensorId'`, `1.0`]
+- NormalTemperatureStream: [`'SensorId'`, `1.0`]
 
 ## Transform JSON
 
-This example shows transforming JSON objects within a stream application.
+This example shows transforming JSON objects within a stream worker.
 
 ```sql
 CREATE STREAM InputStream(jsonString string);
 
--- Transforms JSON string to JSON object which can then be manipulated
+-- Transforms JSON string to JSON object that can then be manipulated
 insert into PersonalDetails
 select json:toObject(jsonString) as jsonObj 
 from InputStream ;
@@ -81,9 +83,9 @@ select json:setElement(jsonObj, '$', 0f, 'salary') as jsonObj
 from OutputStream[isSalaryAvailable == false];
 ```
 
-### Input
+### Transform JSON Input
 
-Below event is sent to `InputStream`,
+Below event is sent to `InputStream`:
 
 ```json
 [
@@ -97,11 +99,11 @@ Below event is sent to `InputStream`,
 ]
 ```
 
-### Output
+### Transform JSON Output
 
-After processing, the following events will be arriving:
+After processing, the following events arrive:
 
-* OutputStream:
+- OutputStream:
 
 ```json
 [ 
@@ -115,7 +117,7 @@ After processing, the following events will be arriving:
 ]
 ```
 
-* PreprocessedStream:
+- PreprocessedStream:
 
 ```json
 [
