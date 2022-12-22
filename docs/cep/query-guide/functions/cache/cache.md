@@ -8,13 +8,11 @@ The `cache` extension provides a persistent cache per tenant.
 
 The following functions are allowed:
 
-cache:get("key")          - gets a value per given "key";
-cache:put("key", "value") - puts "key", "value";
-cache:count()             - counts the size of the cache;
-cache:delete("key")       - deletes a cache for a given 'key";
-cache:purge()             - invalidates/purges the current cache.
-
-
+- `cache:get("key")`          - gets a value per given key
+- `cache:put("key", "value")` - puts "key", "value"
+- `cache:count()`             - counts the size of the cache
+- `cache:delete("key")`       - deletes a cache for a given key
+- `cache:purge()`             - invalidates/purges the current cache
 
 ## Syntax
 
@@ -25,8 +23,6 @@ Cache uses the following syntax:
 	
 	cache:get("my_key")
 ```
-
-
 
 ## Example
 
@@ -56,4 +52,3 @@ Following document is saved every second in `put_in_cache`.
 Following document is saved every five seconds in `get_from_cache`.
     
         {"value": "my_value"}
-
