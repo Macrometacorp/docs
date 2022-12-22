@@ -20,22 +20,22 @@ CREATE SINK FilteredResultsStream WITH (type='stream', stream='FilteredResultsSt
 @info(name = 'celsiusTemperature')
 
 -- Converts Celsius value into Fahrenheit
-insert into FahrenheitTemperatureStream
-select sensorId, (temperature * 9 / 5) + 32 as temperature
-from TemperatureStream;
+INSERT INTO FahrenheitTemperatureStream
+SELECT sensorId, (temperature * 9 / 5) + 32 AS temperature
+FROM TemperatureStream;
 
 
 @info(name = 'Overall-analysis')
 -- Calculate approximated temperature to the first digit 
-insert all events into OverallTemperatureStream
-select sensorId, math:floor(temperature) as approximateTemp 
-from FahrenheitTemperatureStream;
+INSERT INTO events into OverallTemperatureStream
+SELECT sensorId, math:floor(temperature) as approximateTemp 
+FROM FahrenheitTemperatureStream;
 
 @info(name = 'RangeFilter') 
 -- Filter out events where `-2 < approximateTemp < 40`
-insert into FilteredResultsStream
-select *
-from OverallTemperatureStream[ approximateTemp > -2 and approximateTemp < 40];
+INSERT INTO FilteredResultsStream
+SELECT *
+FROM OverallTemperatureStream[ approximateTemp > -2 and approximateTemp < 40];
 ```
 
 ### Input
@@ -60,27 +60,27 @@ This example shows transforming JSON objects within a stream worker.
 CREATE STREAM InputStream(jsonString string);
 
 -- Transforms JSON string to JSON object that can then be manipulated
-insert into PersonalDetails
-select json:toObject(jsonString) as jsonObj 
-from InputStream ;
+INSERT INTO PersonalDetails
+SELECT json:toObject(jsonString) AS jsonObj 
+FROM InputStream;
 
-insert into OutputStream
-select jsonObj, 
+INSERT INTO OutputStream
+SELECT jsonObj, 
 -- Get the `name` element(string) form the JSON
-    json:getString(jsonObj,'$.name') as name,
+    json:getString(jsonObj,'$.name') AS name,
 
 -- Validate if `salary` element is available
-    json:isExists(jsonObj, '$.salary') as isSalaryAvailable,
+    json:isExists(jsonObj, '$.salary') AS isSalaryAvailable,
 
 -- Stringify the JSON object
     json:toString(jsonObj) as jsonString
-from PersonalDetails;
+FROM PersonalDetails;
 
 
 -- Set `salary` element to `0` is not available 
-insert into PreprocessedStream
-select json:setElement(jsonObj, '$', 0f, 'salary') as jsonObj
-from OutputStream[isSalaryAvailable == false];
+INSERT INTO PreprocessedStream
+SELECT json:setElement(jsonObj, '$', 0f, 'salary') AS jsonObj
+FROM OutputStream[isSalaryAvailable == false];
 ```
 
 ### Transform JSON Input
