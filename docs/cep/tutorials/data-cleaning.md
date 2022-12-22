@@ -1,9 +1,9 @@
 ---
-sidebar_position: 4
-title: Data Cleansing
+sidebar_position: 40
+title: Data Cleaning Examples
 ---
 
-This page explains ways to clean your data.
+This page shows examples of ways to clean your data.
 
 ## Value based Filtering
 
