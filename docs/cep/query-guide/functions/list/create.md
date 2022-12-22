@@ -4,7 +4,7 @@ title: create (Function)
 
 Function creates a list containing all values provided.
 
-Syntax
+## Syntax
 
     <OBJECT> list:create()
     <OBJECT> list:create(<OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value1)

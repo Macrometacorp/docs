@@ -4,17 +4,16 @@ title: http-service-response (Sink)
 
 The http-service-response sink send responses of the requests consumed by its corresponding http-service source, by mapping the response messages to formats such as `text`, `XML` and `JSON`.
 
-Syntax
+## Syntax
 
     CREATE SINK <NAME> WITH (type="http-service-response", map.type="<STRING>", source.id="<STRING>", message.id="<STRING>", headers="<STRING>")
 
-
 ## Query Parameters
 
-| Name       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Default Value                           | Possible Data Types | Optional | Dynamic |
+| Name       | Description    | Default Value   | Possible Data Types | Optional | Dynamic |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|---------------------|----------|---------|
-| source.id  | Identifier to correlate the http-service-response sink to its corresponding http-service source which consumed the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                         | STRING              | No       | No      |
-| message.id | Identifier to correlate the response with the request received by http-service source.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                         | STRING              | No       | Yes     |
+| source.id  | Identifier to correlate the http-service-response sink to its corresponding http-service source which consumed the request.             |                                         | STRING              | No       | No      |
+| message.id | Identifier to correlate the response with the request received by http-service source.      |                                         | STRING              | No       | Yes     |
 | headers    | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following:  - `map.type='xml'`: `application/xml`  - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text` Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload. | Content-Type and Content-Length headers | STRING              | Yes      | No      |
 
 ## Example 1

@@ -420,14 +420,14 @@ Event type should be defined in between `insert` and `into` keywords for insert 
 ```
 insert <event type> into <output stream>
 select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
+from <input stream> window <window name>(<parameter>, <parameter>, ... )
 ```
 
 Event type should be defined next to the `for` keyword for delete queries as follows.
 
 ```
 select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
+from <input stream> window <window name>(<parameter>, <parameter>, ... )
 delete <table> (for <event type>)?
     on <condition>
 ```
@@ -436,7 +436,7 @@ Event type should be defined next to the `for` keyword for update queries as fol
 
 ```
 select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
+from <input stream> window <window name>(<parameter>, <parameter>, ... )
 update <table> (for <event type>)?
     set <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
     on <condition>
@@ -446,7 +446,7 @@ Event type should be defined next to the `for` keyword for update or insert quer
 
 ```
 select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
+from <input stream> window <window name>(<parameter>, <parameter>, ... )
 update or insert into <table> (for <event type>)?
     set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
     on <condition>
@@ -471,7 +471,7 @@ Query to output only the expired events from a 1 minute time window to the `Dela
 ```
 insert expired events into DelayedTempStream
 select *
-from TempStream#window.time(1 min)
+from TempStream window sliding_time(1)
 ```
 
 :::note
@@ -645,7 +645,7 @@ The syntax for the Limit & Offset clauses is as follows:
 ```
 insert into <output stream>
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
-from <input stream>#window.<window name>( ... )
+from <input stream> window <window name>( ... )
 group by <attribute1 name>, <attribute2 name> ...
 having <condition>
 order by <attribute1 name> (asc | desc)?, <attribute2 name> (<ascend/descend>)?, ...
@@ -662,7 +662,7 @@ Query to calculate the average `temp` per `roomNo` and `deviceID` combination fo
 ```
 insert into HighestAvgTempStream
 select roomNo, deviceID, avg(temp) as avgTemp
-from TempStream#window.timeBatch(10 min)
+from TempStream window timeBatch(10 min)
 group by roomNo, deviceID
 order by avgTemp desc
 limit 2;
@@ -674,7 +674,7 @@ Query to calculate the average `temp` per `roomNo` and `deviceID` combination fo
 ```
 insert into HighestAvgTempStream
 select roomNo, deviceID, avg(temp) as avgTemp
-from TempStream#window.timeBatch(10 min)
+from TempStream window timeBatch(10 min)
 group by roomNo, deviceID
 order by avgTemp desc
 limit 3
@@ -700,13 +700,13 @@ Join can also be performed with [stored data](#join-table), [aggregation](#join-
 
 The syntax for a join is as follows:
 
-```
-insert into <output stream>
-select <attribute name>, <attribute name>, ...
-from <input stream>#window.<window name>(<parameter>, ... ) {unidirectional} {as <reference>}
-         join <input stream>#window.<window name>(<parameter>,  ... ) {unidirectional} {as <reference>}
-    on <join condition>
-```
+  ```sql
+  INSERT INTO <output stream>
+  SELECT <attribute name>, <attribute name>, ...
+  FROM <input stream> WINDOW <window type>(<parameter>, ... ) {unidirectional} {as <reference>}
+           JOIN <input stream> WINDOW <window type>(<parameter>,  ... ) {unidirectional} {as <reference>}
+      ON <join condition>
+  ```
 
 Here, the `<join condition>` allows you to match the attributes from both the streams.
 
@@ -724,17 +724,39 @@ The `unidirectional` keyword cannot be applied to both the input streams because
 **Example**
 
 Assuming that the temperature of regulators are updated every minute.
-Following is a Stream App that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
+Following is a stream worker that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
 
-```
+
+```sql
+@App:name("tempRegulator")
+@App:qlVersion("2")
+/*
+1. Payload to send to TempStream: {"deviceID":12,"roomNo": 1,"temp": 34}
+
+2. Payload to send to RegulatorStream: {"deviceID":12,"roomNo": 1,"isOn": false}
+
+3. Result in RegulatorActionStream :{"roomNo":1,"action":"start","deviceID":12}
+
+This stream worker joins TempStream and RegulatorStream and if the temperature ingested in TempStream is greater than 30.0 and if the isOn property is equal to false in Regulator stream, produces this output in RegulatorActionStream {"roomNo":1,"action":"start","deviceID":12}
+
+Streams are stateless. Therefore, in order to join two streams, they need to be connected to a window so that there is a 
+pool of events that can be used for joining. 
+
+A sliding time window that, at a given time holds the last window length events that arrived during last window time period, 
+and gets updated for every event arrival and expiration.
+
+*/
+
+
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 CREATE STREAM RegulatorStream (deviceID long, roomNo int, isOn bool);
+CREATE SINK RegulatorActionStream WITH (type='stream', stream='RegulatorActionStream', map.type='json',OnError.action="log")(roomNo int, deviceID long, action string);
 
-insert into RegulatorActionStream
-select T.roomNo, R.deviceID, 'start' as action
-from TempStream[temp > 30.0]#window.time(1 min) as T
-  join RegulatorStream[isOn == false]#window.length(1) as R
-  on T.roomNo == R.roomNo;
+INSERT INTO RegulatorActionStream
+SELECT T.roomNo, R.deviceID, 'start' AS action
+FROM TempStream[temp > 30.0] WINDOW SLIDING_LENGTH(1) AS T
+  JOIN RegulatorStream[isOn == false] WINDOW SLIDING_LENGTH(1) AS R
+  ON T.roomNo == R.roomNo;
 ```
 
 **Supported join types**
@@ -866,7 +888,7 @@ Square brackets can be used to indicate the event index where `1` can be used as
 
 **Example**
 
-The following Stream App calculates the temperature difference between two regulator events.
+The following stream worker calculates the temperature difference between two regulator events.
 
 ```
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
@@ -931,7 +953,7 @@ Pattern|Detected Scenario
 
 **Example**
 
-Following Stream App, sends the `stop` control action to the regulator when the key is removed from the hotel room.
+Following stream worker, sends the `stop` control action to the regulator when the key is removed from the hotel room.
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
@@ -944,7 +966,7 @@ from every( e1=RegulatorStateChangeStream[ action == 'on' ] ) ->
 having action != 'none';
 ```
 
-This Stream Application generates an alert if we have switch off the regulator before the temperature reaches 12 degrees.  
+This stream worker generates an alert if we have switch off the regulator before the temperature reaches 12 degrees.  
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
@@ -955,7 +977,7 @@ select e1.roomNo as roomNo
 from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] and e2=RegulatorStateChangeStream[action == 'off'];
 ```
 
-This Stream Application generates an alert if the temperature does not reduce to 12 degrees within 5 minutes of switching on the regulator.  
+This stream worker generates an alert if the temperature does not reduce to 12 degrees within five minutes of switching on the regulator.  
 
 ```
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
@@ -963,7 +985,7 @@ CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
 insert into AlertStream
 select e1.roomNo as roomNo
-from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] for '5 min';
+from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] for 5 min;
 ```
 
 ### Sequence
@@ -1035,7 +1057,7 @@ from (every)? <event reference>=<input stream>[<filter condition>](+|*|?)?,
 
 **Example**
 
-This Stream application identifies temperature peeks.
+This stream worker identifies temperature peeks.
 
 ```
 CREATE STREAM TempStream(deviceID long, roomNo int, temp double);
@@ -1064,7 +1086,7 @@ Keywords such as `and`, `or`, or `not` can be used to illustrate the logical rel
 
 **Example**
 
-This Stream application notifies the state when a regulator event is immediately followed by both temperature and humidity events.
+This stream worker notifies the state when a regulator event is immediately followed by both temperature and humidity events.
 
 ```
 CREATE STREAM TempStream(deviceID long, temp double);

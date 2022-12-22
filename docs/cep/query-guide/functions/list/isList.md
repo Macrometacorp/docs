@@ -4,7 +4,7 @@ title: isList (Function)
 
 Function checks if the object is type of a list.
 
-Syntax
+## Syntax
 
     <BOOL> list:isList(<OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> arg)
 
@@ -18,4 +18,4 @@ Syntax
 
     list:isList(stockSymbols)
 
-Returns `true` if the stockSymbols is and an instance of `java.util.List` else it returns `false`.
+Returns `true` if the stockSymbols is and an instance of `java.util.List`, else it returns `false`.
