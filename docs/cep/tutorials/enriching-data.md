@@ -246,7 +246,7 @@ To understand how this is done, consider an example where you have some credit c
     ```
 
     !!!info
-        It is assumed that the external application sends requests in HTTP. Therefore, the source type is `http-request`. For more information about the HTTP transport, see [Plugins - HTTP](../reference/extensions/io/http.md).
+        It is assumed that the external application sends requests in HTTP. Therefore, the source type is `http-request`. For more information about the HTTP transport, refer to [HTTP sink](../query-guide/functions/sink/http.md) and [HTTP source](../query-guide/functions/source/http.md).
 
 6. To save the response of the external application, define a table named `CCInfoTable`.
 
@@ -292,7 +292,7 @@ To understand how this is done, consider an example where you have some credit c
 
 The following is a list of stream plugins  with which you can enrich data.
 
-- [streamingml](../reference/extensions/execution/streamingml.md)
+- [streamingml](../query-guide/functions/streaming-ml/index.md)
 - [math](../query-guide/functions/math/abs.md)
 - [time](../query-guide/functions/time/currentDate.md)
 - [json](../query-guide/functions/json/getBool.md)

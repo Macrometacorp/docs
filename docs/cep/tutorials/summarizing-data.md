@@ -13,7 +13,7 @@ Summarizing data refers to obtaining aggregates in an incremental manner for a s
 Performing clock-time based based summarization involves calculating, storing, and then retrieving aggregations for a selected range of time granularities. This process is carried out in two parts:
 
 1. Calculating the aggregations for the selected time granularities and storing the results.
-2. Retrieving previously calculated aggregations for selected time granularities. 
+2. Retrieving previously calculated aggregations for selected time granularities.
 
 To understand data summarization further, consider the scenario where a business that sells multiple brands stores its sales data in a physical database for the purpose of retrieving them later to perform sales analysis. Each sales transaction is received with the following details:
 
@@ -25,7 +25,8 @@ The Sales Analyst needs to retrieve the total number of items sold of each brand
 
 :::info
 It is not always required to maintain a physical database for incremental analysis, but it enables you to try out your aggregations with ease.
-:::    
+:::
+
 The following sections explain how to calculate and store time-based aggregations for this scenarios, and then retrieve them.
 
 ### Calculate and store clock-time-based aggregate values
@@ -106,7 +107,7 @@ To calculate and store time-based aggregation values for the scenario explained 
 
 ### Retrieve the stored aggregate values
 
-This section involves retrieving the aggregate values that you calculated and persisted in the [Calculate and store clock-time-based aggregate values subsection](#calculate-and-store-clock-time-based-aggregate-values). 
+This section involves retrieving the aggregate values that you calculated and persisted in the [Calculate and store clock-time-based aggregate values subsection](#calculate-and-store-clock-time-based-aggregate-values).
 
 To do this, let's add the definitions and queries required for retrieval to the `TradeApp` stream worker that you have already created in the previous section.
 
@@ -207,7 +208,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 
         (For example, when the stream processor calculates the total production during the time 13.00-14.00, next it calculates the total production during the time 13.01-14.01 after the 13.01 minute as elapsed.) 
         
-        For details about other window types supported, see [Plugins- Unique](../reference/extensions/execution/unique.md).
+        For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate.md).
     :::
 
 6. To group by the product name, add the `group by` clause as follows.
@@ -273,7 +274,7 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
     from ProductionStream window lengthBatch(10)
     ```
     
-    `window lengthBatch` indicates that the window added is a length window that considers events in batches when determin ing subsets. The number of events in each batch is `10`. For details about other window types supported, see [Plugins - Unique](../reference/extensions/execution/unique.md).
+    `window lengthBatch` indicates that the window added is a length window that considers events in batches when determining subsets. The number of events in each batch is `10`. For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate.md).
 
 5. To derive the values for the `DetectedMaximumProductionStream` output stream, add the `select` statement as follows.
 
