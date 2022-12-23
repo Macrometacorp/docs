@@ -10,5 +10,3 @@ For more information about limits, refer to [Tenant Quotas and Limits](../../ref
 - **Playground -** A test environment to familiarize yourself with Macrometa GDN. Production use is disabled.
 - **Scale -** The standard production package. Pay only for what you need, and increase or decrease your limits as you go.
 - **Enterprise -** Remove limits from your account.
-
-![Manage Plans](/img/manage-macrometa-plan.png)
