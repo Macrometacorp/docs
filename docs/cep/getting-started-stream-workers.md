@@ -5,9 +5,7 @@ title: Getting Started with Stream Workers
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../_partials/_prerequisites-sdk-api-key.md';
 import Steps from '../_partials/_get-started-steps.md';
-import ConnectToGDN from '../_partials/_connect-to-gdn-code-block.md';
 
 This article is an introduction to using stream workers with the Macrometa GDN console.
 
@@ -21,11 +19,9 @@ This page guides you through creating a stream worker and updating it.
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
-### Step 1. Connect to GDN
+### Step 1. Log In to GDN
 
-To use streams with Macrometa Global Data Network (GDN), you must first establish a connection to a local region.
 
-<ConnectToGDN />
 
 ### Step 2. Define Query Name
 
