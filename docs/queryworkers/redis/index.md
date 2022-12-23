@@ -117,7 +117,8 @@ We will add three different keys with SADD:
   "e"
 ]
 ```
-With SINTERSTORE we will try to store set in existing key:
+With SINTERSTORE, we will try to store the set in an existing key:
+
 
 ```js
 [
