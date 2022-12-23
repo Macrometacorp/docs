@@ -23,7 +23,7 @@ client = new jsc8({
   fabricName: "_system",
 });
 
-// We need to create redis collection on platform using SDK, Console or API call
+// We need to create a Redis collection on platform using SDK, Console, or API call
 const REDIS_COLLECTION = "testRedisCollection";
 
 async function redisExample() {
