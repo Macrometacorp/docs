@@ -3,6 +3,7 @@ sidebar_position: 10
 title: Advanced SQL Queries
 ---
 
+## Case Sensitivity
 Case-sensitivity is supported for attribute names using `"<attribute name>"`.
 Case-sensitive collections names can be used as well.
 
@@ -12,6 +13,7 @@ Example:
 SELECT "CaseSens" FROM case_sens;
 ```
 
+## Join Support
 Macrometa SQL has full support for `left outer join`.
 
 Example:
@@ -25,6 +27,7 @@ GROUP BY category.name
 ORDER BY avg(film.length) DESC
 ```
 
+## WHERE and EXISTS operators
 `WHERE...EXISTS` operators also supported. It has two variants:
 - `WHERE EXISTS`
 - `WHERE NOT EXISTS`
@@ -46,6 +49,7 @@ WHERE rental.inventory_id = inventory.inventory_id
 AND rental.return_date IS NULL)
 ```
 
+## HAVING clause
 `HAVING` clause is supported.
 
 Example:
@@ -68,6 +72,7 @@ AND rental.return_date IS NULL)
 Users can't use  `HAVING` clause with subqueries.
 :::
 
+## SQL Functions
 Macrometa SQL supports following functions:
 - STDDEV
 - STDDEV_POP
