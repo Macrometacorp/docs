@@ -84,7 +84,8 @@ Response from Redis server:
 
 ### SINTERSTORE
 
-SINTERSTORE gives wrong value when existing key is given as destination.
+SINTERSTORE gives the wrong value when an existing key is given as the destination.
+
 
 We will add three different keys with SADD:
 
