@@ -143,7 +143,8 @@ Response from Redis server:
 `(integer) 1`
 
 :::note
-For Redis SET and SORTED SET datatype commands, using same keys for the command will give a syntax error.
+For Redis SET and SORTED SET datatype commands, using the same keys for the command gives a syntax error.
+
 :::
 
 :::note
