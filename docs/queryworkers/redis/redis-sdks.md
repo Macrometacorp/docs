@@ -91,7 +91,7 @@ client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                         apikey="xxxxx",
                         geofabric='_system')
 
-# We need to create redis collection on platform using SDK, Console or API call
+# We need to create redis collection on platform using SDK, Console, or API call
 REDIS_COLLECTION = "test_redis_collection"
 
 # String data type example
