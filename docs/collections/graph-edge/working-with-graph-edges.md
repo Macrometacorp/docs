@@ -1,6 +1,6 @@
 ---
-title: Using Rest API
-sidebar_position: 50
+title: Working with Graph Edges
+sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';
