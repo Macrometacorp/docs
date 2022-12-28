@@ -314,24 +314,24 @@ from <input stream>#window.<window name>(<parameter>, <parameter>, ... );
 Filter conditions can be applied both before and/or after the window.
 :::
 
-**Inbuilt windows**
+**Core windows**
 
-Following are some inbuilt Stream windows, for more windows refer [execution extensions](functions).
+Following are some core Stream windows, for more windows refer [here](functions/unique).
 
-|Inbuilt function | Description|
-| ------------- |-------------|
-| [time](functions#time-window) | Retains events based on time in a sliding manner.|
-| [timeBatch](functions#timebatch-window) | Retains events based on time in a tumbling/batch manner. |
-| [length](functions#length-window) | Retains events based on number of events in a sliding manner. |
-| [lengthBatch](functions#lengthbatch-window) | Retains events based on number of events in a tumbling/batch manner. |
-| [timeLength](functions#timelength-window) | Retains events based on time and number of events in a sliding manner. |
-| [session](functions#session-window) | Retains events for each session based on session key. |
-| [batch](functions#batch-window) | Retains events of last arrived event chunk. |
-| [sort](functions#sort-window) | Retains top-k or bottom-k events based on a parameter value. |
-| [cron](functions#cron-window) | Retains events based on cron time in a tumbling/batch manner. |
-| [externalTime](functions#externalTime-window) | Retains events based on event time value passed as a parameter in a sliding manner.|
-| [externalTimeBatch](functions#externaltimebatch-window) | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
-| [delay](functions#delay-window) | Retains events and delays the output by the given time period in a sliding manner.|
+| Core window function                                         | Description|
+|--------------------------------------------------------------|-------------|
+| [time](functions/core/time-window.md)                        | Retains events based on time in a sliding manner.|
+| [timeBatch](functions/core/timebatch-window.md)                 | Retains events based on time in a tumbling/batch manner. |
+| [length](functions/core/length-window.md)                       | Retains events based on number of events in a sliding manner. |
+| [lengthBatch](functions/core/lengthbatch-window.md)             | Retains events based on number of events in a tumbling/batch manner. |
+| [timeLength](functions/core/timelength-window.md)               | Retains events based on time and number of events in a sliding manner. |
+| [session](functions/core/session-window.md)                     | Retains events for each session based on session key. |
+| [batch](functions/core/batch.md)                                | Retains events of last arrived event chunk. |
+| [sort](functions/core/sort-window.md)                           | Retains top-k or bottom-k events based on a parameter value. |
+| [cron](functions/core/cron-window.md)                           | Retains events based on cron time in a tumbling/batch manner. |
+| [externalTime](functions/core/externalTime-window.md)           | Retains events based on event time value passed as a parameter in a sliding manner.|
+| [externalTimeBatch](functions/core/externaltimebatch-window.md) | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
+| [delay](functions/core/delay-window.md)                         | Retains events and delays the output by the given time period in a sliding manner.|
 
 **Example 1**
 
@@ -339,7 +339,7 @@ Query to find out the maximum temperature out of the **last 10 events**, using t
 
 ```
 select max(temp) as maxTemp
-from TempStream#window.length(10)
+from TempStream window sliding_length(10)
 insert into MaxTempStream;
 ```
 
@@ -358,7 +358,7 @@ Query to find out the maximum temperature out of the **every 10 events**, using 
 ```
 insert into MaxTempStream
 select max(temp) as maxTemp
-from TempStream#window.lengthBatch(10);
+from TempStream window tumbling_length(10);
 ```
 
 Here, the window operates in a batch/tumbling manner where the following 3 event subsets are calculated and outputted when a list of 30 events are received in a sequential order.
@@ -376,7 +376,7 @@ Query to find out the maximum temperature out of the events arrived **during las
 ```
 insert into MaxTempStream
 select max(temp) as maxTemp
-from TempStream#window.time(10 min);
+from TempStream window sliding_time(10 min);
 ```
 
 Here, the `time` window operates in a sliding manner with millisecond accuracy, where it will process events in the following 3 time durations and output aggregated events when a list of events are received in a sequential order.
@@ -394,7 +394,7 @@ Query to find out the maximum temperature out of the events arriving **every 10 
 ```
 insert into MaxTempStream
 select max(temp) as maxTemp
-from TempStream#window.timeBatch(10 min);
+from TempStream window tumbling_time(10 min);
 ```
 
 Here, the window operates in a batch/tumbling manner where the window will process evetns in the following 3 time durations and output aggregated events when a list of events are received in a sequential order.
@@ -475,7 +475,7 @@ from TempStream window sliding_time(1)
 ```
 
 :::note
-This is just to illustrate how expired events work, it is recommended to use [delay](functions#delay-window) window for usecases where we need to delay events by a given time period.
+This is just to illustrate how expired events work, it is recommended to use [delay](functions/core/delay-window.md) window for usecases where we need to delay events by a given time period.
 :::
 
 ### Aggregate Function
@@ -495,7 +495,7 @@ The syntax of aggregate function is as follows,
 ```
 insert into <output stream>
 select <aggregate function>(<parameter>, <parameter>, ... ) as <attribute name>, <attribute2 name>, ...
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... );
+from <input stream> window <window name>(<parameter>, <parameter>, ... );
 ```
 
 Here `<aggregate function>` uniquely identifies the aggregate function. The `<parameter>` defined input parameters the aggregate function can accept. The input parameters can be attributes, constant values, results of other functions or aggregate functions, results of mathematical or logical expressions, or time values. The number and type of parameters an aggregate function accepts depend on the function itself.
@@ -526,7 +526,7 @@ Query to calculate average, maximum, and minimum values on `temp` attribute of t
 ```
 insert into AvgTempStream
 select avg(temp) as avgTemp, max(temp) as maxTemp, min(temp) as minTemp
-from TempStream#window.time(10 min);
+from TempStream window sliding_time(10 min);
 ```
 
 ### Group By
@@ -544,7 +544,7 @@ The syntax for the Group By with aggregate function is as follows.
 ```
 insert into <output stream>
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
-from <input stream>#window.<window name>(...)
+from <input stream> window <window name>(...)
 group by <attribute1 name>, <attribute2 name>, ...;
 ```
 
@@ -557,7 +557,7 @@ Query to calculate the average `temp` per `roomNo` and `deviceID` combination, f
 ```
 insert into AvgTempStream
 select roomNo, deviceID, avg(temp) as avgTemp
-from TempStream#window.time(10 min)
+from TempStream window sliding_time(10 min)
 group by roomNo, deviceID;
 ```
 
@@ -576,7 +576,7 @@ The syntax for the Having clause is as follows.
 ```
 insert into <output stream>
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
-from <input stream>#window.<window name>( ... )
+from <input stream> window <window name>( ... )
 group by <attribute1 name>, <attribute2 name> ...
 having <condition>;
 ```
@@ -590,7 +590,7 @@ Query to calculate the average `temp` per `roomNo` for the last 10 minutes, and 
 ```
 insert into AlertStream
 select roomNo, avg(temp) as avgTemp
-from TempStream#window.time(10 min)
+from TempStream window sliding_time(10 min)
 group by roomNo
 having avgTemp > 30;
 ```
@@ -610,7 +610,7 @@ The syntax for the Order By clause is as follows:
 ```
 insert into <output stream>
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
-from <input stream>#window.<window name>( ... )
+from <input stream> window <window name>( ... )
 group by <attribute1 name>, <attribute2 name> ...
 having <condition>
 order by <attribute1 name> (asc|desc)?, <attribute2 name> (asc|desc)?, ...;
@@ -625,7 +625,7 @@ Query to calculate the average `temp` per `roomNo` and `deviceID` combination on
 ```
 insert into AvgTempStream
 select roomNo, deviceID, avg(temp) as avgTemp
-from TempStream#window.timeBatch(10 min)
+from TempStream window tumbling_time(10 min)
 group by roomNo, deviceID
 order by avgTemp, roomNo desc;
 ```
@@ -781,8 +781,8 @@ Following are the supported operations of a join clause.
 
     <pre>
     select S.symbol as symbol, T.tweet, S.price
-    from StockStream#window.time(1 min) as S
-      left outer join TwitterStream#window.length(1) as T
+    from StockStream window sliding_time(1 min) as S
+      left outer join TwitterStream window sliding_length(1) as T
       on S.symbol== T.symbol
     insert into outputStream ;    </pre>
 
@@ -804,8 +804,8 @@ Following are the supported operations of a join clause.
     <pre>
     insert into outputStream
     select S.symbol as symbol, T.tweet, S.price
-    from StockStream#window.time(1 min) as S
-      full outer join TwitterStream#window.length(1) as T
+    from StockStream window sliding_time(1 min) as S
+      full outer join TwitterStream window sliding_length(1) as T
       on S.symbol== T.symbol;    </pre>
 
 ### Patterns
@@ -1166,5 +1166,5 @@ The possible values are as follows:
 
     <pre>
     insert into SnapshotTempStream
-    from TempStream#window.time(5 sec)
+    from TempStream window sliding_time(5 sec)
     output snapshot every 1 sec;    </pre>

@@ -26,7 +26,7 @@ Syntax
     @info(name = 'query1')
     insert into OutputStream
     select symbol, sum(price) as price
-    from InputEventStream#timeBatch(20 sec);
+    from InputEventStream window tumbling_time(20 sec);
 
 This collect and process incoming events as a batch every 20 seconds and output them.
 
@@ -37,7 +37,7 @@ This collect and process incoming events as a batch every 20 seconds and output 
     @info(name = 'query1')
     insert into OutputStream
     select symbol, sum(price) as sumPrice
-    from InputEventStream#timeBatch(20 sec, true);
+    from InputEventStream window tumbling_time(20 sec, true);
 
 This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually and on every 20 second interval it clears the window as a batch resetting the `sumPrice` to zero.
 
