@@ -287,7 +287,7 @@ The stream worker will use the Macrometa collections with the default query para
 </table>
 
 
-## Source ,Sink, Table and Window: Understanding with the help of an Stream Worker example
+## Source ,Sink, Table and Window: Understanding with the help of a Stream Worker example
 
 
 In the application below, a Macrometa document based collection plays role of `source` to our SW IntrusionDetectionSystem.
@@ -318,8 +318,8 @@ convert them to various data formats, and publish them to a stream or external e
 
 /**
 The source stream InboundTraffic is proving ip hits in a server
-if the same ip is hitting more than 100 times in 10 seconds , consider that as a threat
-add that ip into SuspiciousTraffic table.
+if the same ip is hitting more than 50 times within 2 seconds, consider it as suspicious trffic
+add raise an alarm if same IP matches in our SuspiciousIPTable.
 
 Testing the Stream Application:
 
