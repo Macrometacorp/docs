@@ -287,7 +287,7 @@ The stream worker will use the Macrometa collections with the default query para
 </table>
 
 
-## Source ,Sink, Table and Window: Understanding with the help of a Stream Worker example
+## Source, Sink, Table and Window: Understanding with the help of a Stream Worker example
 
 
 In the application below, a Macrometa document based collection plays role of `source` to our SW IntrusionDetectionSystem.
