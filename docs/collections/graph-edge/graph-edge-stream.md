@@ -1,6 +1,6 @@
 ---
 title: Graph Edge Stream
-sidebar_position: 20
+sidebar_position: 40
 ---
 
 import StreamTab from '../_stream-tab.md';

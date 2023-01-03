@@ -1,6 +1,6 @@
 ---
 title: Graph Edge Settings
-sidebar_position: 30
+sidebar_position: 50
 ---
 
 import Tabs from '@theme/Tabs';
