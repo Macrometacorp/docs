@@ -1,9 +1,9 @@
 ---
-title: Getting started with Graphs
-sidebar_position: 10
+title: Getting Started with Graphs
+sidebar_position: 20
 ---
 
-In this getting started we will create a document collection, a edge collection, and a graph that creates relationships between the collections. We will then query that graph.
+This page shows you how to create a document collection, a edge collection, and a graph that creates relationships between the collections. You will then query that graph.
 
 ## Dataset
 
@@ -59,9 +59,9 @@ Create a graph named airline with and edges in flights and both from and to vert
 
 ## Query your Graph
 
-Storing (and retrieving) a graph is one thing, but the actual problems only begin when we want to query information about a graph.
+Storing (and retrieving) a graph is one thing, but the actual problems only begin when you want to query information about a graph.
 
-Finding the neighbours of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when we deal with graphs (or relations) in practice, we usually have a lot more questions, here we just mention a few that come to mind:
+Finding the neighbours of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when you deal with graphs (or relations) in practice, you usually have a lot more questions, here are a few that come to mind:
 
 1. Find all neighbours of a `vertex` only using `edges` with a given `property` or `label`.
 2. Find all neighbours of a `vertex` with a given `property` or `label`.

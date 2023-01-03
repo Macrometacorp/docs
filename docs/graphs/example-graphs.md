@@ -1,10 +1,10 @@
 ---
 title: Example Graphs
-sidebar_position: 30
+sidebar_position: 40
 ---
 
-The GDN comes with a set of easily graspable graphs that are used to demonstrate the APIs.
-You can use the `add samples` tab in the `create graph` window in the web interface and use it to create instances of these graphs in your GDN fabric. Once you've created them, you can them in GUI.
+Macrometa comes with a set of easily graspable graphs that are used to demonstrate the APIs.
+You can use the `add samples` tab in the `create graph` window in the web interface and use it to create instances of these graphs in your GDN fabric. Once you've created them, you can view them in Macrometa web console.
 
 ## The Knows\_Graph
 
