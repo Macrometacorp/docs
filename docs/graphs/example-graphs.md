@@ -1,6 +1,6 @@
 ---
 title: Example Graphs
-sidebar_position: 40
+sidebar_position: 50
 ---
 
 Macrometa comes with a set of easily graspable graphs that are used to demonstrate the APIs.

@@ -1,6 +1,6 @@
 ---
 title: Graph Functions
-sidebar_position: 30
+sidebar_position: 40
 ---
 
 A lot of graph functions accept a vertex (or edge) example as parameter as defined in the next sections.
