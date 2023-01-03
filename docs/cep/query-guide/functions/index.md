@@ -8,12 +8,11 @@ import TabItem from '@theme/TabItem';
 
 This section lists all the stream worker functions provided by Macrometa GDN and explains how they work.
 
-
 Functions enhance Macrometa Stream QL, the language used to write stream workers, by seamlessly incorporating additional capabilities.
-Macrometa Stream QL provides various in-built functions to access and manage event data according to our requirements. Functions can accept 
-zero or more parameters, perform actions and return the result. 
+Macrometa Stream QL provides various in-built functions to access and manage event data according to our requirements. Functions can accept
+zero or more parameters, perform actions and return the result.
 
-Functions allow you to :
+Functions allow you to:
 
 - Use different data sources.
 - Use different sinks, such as GDN Streams, Kafka, and ActiveMQ.
@@ -71,8 +70,6 @@ Functions allow you to :
 | unionSet	     | Union multiple sets.|
 | uuid	     | Generates a UUID (Universally Unique Identifier).|
 
-
-
 ## Execution Function Types
 
 | Functions | Description |
@@ -91,7 +88,6 @@ Functions allow you to :
 | Geo Spatial	        | This function provides geo data related functionality such as checking whether a given geo coordinate is within a predefined geo-fence, finding distance between 2 geo coordinates etc. |
 | Sentiment	          |This function performs sentiment analysis using AFINN Wordlist-based approach.|
 
-
 ## IO Function Types
 
 | Function     | Description|
@@ -103,22 +99,19 @@ Functions allow you to :
 |S3|This function allows to publish events to Amazon AWS S3 buckets.|
 |SSE|This function receives and publishes events from SSE server.|
 
-
 ## Format Mappers Function Types
 
 | Function     | Description|
 | ------------- |-------------|
 |JSON|This function converts JSON messages to/from stream processor events.|
 |CSV|This function converts messages with CSV format to/from stream processor events.|
-|Key-Value|This function converts events having Key-Value maps to/from stream proceesor events.|
+|Key-Value|This function converts events having Key-Value maps to/from stream processor events.|
 |Text|This function that converts text messages to/from stream processor events.|
-
 
 ## Example
 
 This stream application with the name `TestFunctions` creates a stream named `FooStream`. This configuration for `SOURCE FooStream` performs input mapping using
 **JSON Format Mappers function**. For a single event, the input is required to be in following format:
-
 
     {    
         "event":{        
@@ -128,10 +121,8 @@ This stream application with the name `TestFunctions` creates a stream named `Fo
         }
     }
 
-
-On receiving the event, a query is executed which parses string data types using **Execution function (math)** into required formats.
-After which the data gets inserted into Kafka `SINK` using **Apache Kafka IO function**.
-
+On receiving the event, a query is executed that parses string data types using execution function (math) into required formats.
+After that, the data gets inserted into Kafka `SINK` using Apache Kafka IO function.
 
 ```js
 @App:name('TestFunctions') 
