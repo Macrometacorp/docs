@@ -7,16 +7,17 @@ according to the unique key parameter. When a new event arrives with a
 key that is already in the window, that event is not processed by the
 window.
 
-Syntax
+## Syntax
 
     unique:first(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key)
     unique:first(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG|FLOAT|BOOL|DOUBLE|STRING> ...)
 
 ## Query Parameters
 
-| Name       | Description                                                                                                                                                            | Default Value | Possible Data Types               | Optional | Dynamic |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|-----------------------------------|----------|---------|
-| unique.key | The attribute that should be checked for uniqueness. If there is more than one parameter to check for uniqueness, it can be specified as an array separated by commas. |               | INT LONG FLOAT BOOL DOUBLE STRING | No       | Yes     |
+| Name       | Description  | Default Value | Possible Data Types | Optional | Dynamic |
+|------------|---------------------------------------|---------------|----------
+----------------|----------|---------|
+| unique.key | The attribute that should be checked for uniqueness. If there is more than one parameter to check for uniqueness, it can be specified as an array separated by commas. | | INT LONG FLOAT BOOL DOUBLE STRING | No       | Yes     |
 
 ## Example 1
 

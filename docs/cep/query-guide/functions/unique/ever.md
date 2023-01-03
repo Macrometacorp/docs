@@ -4,20 +4,24 @@ title: ever (Window)
 
 Window that retains the latest events based on a given unique keys. When
 a new event arrives with the same key it replaces the one that exist in
-the window.\<b\>This function is not recommended to be used when the
-maximum number of unique attributes are undefined, as there is a risk of
-system going out to memory\</b\>.
+the window.
 
-Syntax
+:::caution
+This function is not recommended to be used when the
+maximum number of unique attributes are undefined, as there is a risk of
+system going out to memory.
+:::
+
+## Syntax
 
     unique:ever(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key)
     unique:ever(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG|FLOAT|BOOL|DOUBLE|STRING> ...)
 
 ## Query Parameters
 
-| Name       | Description                                   | Default Value | Possible Data Types               | Optional | Dynamic |
-|------------|-----------------------------------------------|---------------|-----------------------------------|----------|---------|
-| unique.key | The attribute used to checked for uniqueness. |               | INT LONG FLOAT BOOL DOUBLE STRING | No       | Yes     |
+| Name       | Description       | Default Value | Possible Data Types | Optional | Dynamic |
+|------------|-----------------------------------------------|---------------|------------------------|----------|---------|
+| unique.key | The attribute used to checked for uniqueness. | | INT LONG FLOAT BOOL DOUBLE STRING | No       | Yes     |
 
 ## Example 1
 

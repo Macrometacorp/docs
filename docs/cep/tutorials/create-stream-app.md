@@ -298,5 +298,3 @@ Following tutorials cover various user scenarios using Macrometa Stream Processi
 - [Executing Scripts](executing-scripts.md)
 - [Correlating Data](correlating-data.md)
 - [Summarizing Data](summarizing-data.md)
-
-Refer to [Reference](../reference/index.md) for additional stream processing examples.

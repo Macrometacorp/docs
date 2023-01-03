@@ -11,7 +11,7 @@ Syntax
 
 ## Example 1
 
-    CREATE SINK FooStream WITH (type='inMemory', topic='gdn', map.type='binary') (symbol string, price float, volume long);
+    CREATE SINK FooStream WITH (type='stream', topic='gdn', map.type='binary') (symbol string, price float, volume long);
 
 
 This will publish Stream App event in binary format.
