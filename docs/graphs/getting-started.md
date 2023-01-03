@@ -7,7 +7,7 @@ This page shows you how to create a document collection, a edge collection, and 
 
 ## Dataset
 
-Create a document collection named cities. Add a Geo Index to the collection cities with Fields location and Geo JSON set to true. To populate the cities collection, execute the following query:
+1. Create a document collection named cities and add data to the collection by executing the following query in the `Query Workers` tab:
 
 ```JavaScript
 LET c = [
@@ -23,8 +23,9 @@ LET c = [
 FOR city IN c
     INSERT city IN cities
 ```
+2. Add a Geo Index to the cities collection with the fields `location` and Geo JSON set to true.
 
-Create an edge collection named flights. To populate the flights collection, execute the following query:
+3. Create an edge collection named flights. To populate the flights collection, execute the following query:
 
 ```JavaScript
 LET e = [
@@ -53,7 +54,7 @@ FOR edge IN e
     INSERT edge IN flights
 ```
 
-## Create a Graphs
+## Create a Graph
 
 Create a graph named airline with and edges in flights and both from and to vertices in cities.
 
