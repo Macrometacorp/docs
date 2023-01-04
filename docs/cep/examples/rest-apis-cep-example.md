@@ -10,6 +10,8 @@ import Steps from '../../_partials/_api-example-steps.md';
 
 Modern applications need to be highly responsive, always online, and able to access data instantly across the globe. At the same time, they need to be deployed on data centers close to their users. Macrometa global data network (GDN) is a real-time materialized view engine that provides instant data to applications and APIs in a simple interface.
 
+For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
+
 <Prerequisites />
 
 ## REST API Stream Worker Example
