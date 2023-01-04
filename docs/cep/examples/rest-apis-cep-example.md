@@ -266,12 +266,10 @@ from websocket import create_connection
 # Constants  
 URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
-EMAIL = "nemo@nautilus.com"
-PASSWORD = "xxxxxx"
+API_KEY = "XXXXX" # Use your API key here
+AUTH_TOKEN = f"apikey {API_KEY}"
 FABRIC = "_system"
-AUTH_TOKEN = "bearer "
-TENANT_NAME = "nemo_nautilus.com"
-
+TENANT_NAME = "XXXXX" # Add your tenant name here
 STREAM_NAME = "tutorialAppInputStream"
 STREAM_APP_NAME = "stream_worker_tutorial"
 STREAM_APP ="""
@@ -308,28 +306,13 @@ INPUT_DATA = [
 SELECT_QUERY = "FOR doc IN tutorialAppOutputTable return doc"
 
 # Create a HTTPS Session
-url = f"{HTTP_URL}/_open/auth"
-payload = {
-    'email':EMAIL,
-    'password':PASSWORD
-    }
-headers = {
-    'content-type': 'application/json'
-    }
-
-response = requests.post(url, data = json.dumps(payload), headers = headers)
-if response.status_code == 200:
-    resp_body = json.loads(response.text)
-    AUTH_TOKEN += resp_body["jwt"]
-    TENANT = resp_body["url"]
-else:
-    raise Exception(f"Error while getting auth token. Code:{response.status_code}, Reason:{response.reason}")
 
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
-# Create a stream workerlication
+# Create a stream worker
+
 url = f"{HTTP_URL}/_fabric/_system/_api/streamapps"
 payload = {
   "definition": STREAM_APP,
@@ -341,15 +324,19 @@ result = json.loads(resp.text)
 print("FED URL:", HTTP_URL)
 print("\nstream worker Created: ", result)
 
-# Activate stream workerlication
+# Activate stream worker
+
 url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}/active?active=true"
 resp = session.patch(url)
 result = json.loads(resp.text)
 print("\nstream worker Activated: ", result)
 
 # Wait for all inputs and outputs to initialize
+
 time.sleep(5)
-# Publish Messages to the input stream
+
+# Publish messages to the input stream
+
 stream_type = "c8local"
 producerurl = f"wss://{URL}/_ws/ws/v2/producer/persistent/{TENANT_NAME}/{stream_type}.{FABRIC}/{stream_type}s.{STREAM_NAME}"
 ws = create_connection(producerurl,header={"content-type": 'application/json', 'authorization': AUTH_TOKEN})
@@ -382,6 +369,7 @@ else:
 ws.close()
 
 # Verify results from the collection
+
 url = f"{HTTP_URL}/_fabric/_system/_api/cursor"
 payload= {
   "id": "tutorialStreamAppQuery",
@@ -392,11 +380,14 @@ resp = session.post(url, data=json.dumps(payload))
 result = json.loads(resp.text)
 print("\nstream worker Results: ", result)
 
-# Delete stream workerlication
+# Delete stream worker
+
+
 url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}"
 resp = session.delete(url)
 result = json.loads(resp.text)
 print("\nstream worker Deleted: ", result)
 ```
+
  </TabItem>
 </Tabs>  
