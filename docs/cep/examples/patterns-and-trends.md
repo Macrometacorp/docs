@@ -1,14 +1,17 @@
 ---
-sidebar_position: 7
-title: Patterns and Trends
+sidebar_position: 70
+title: Patterns and Trends Detection Examples
 ---
+
+This page explains ways to detect patterns and trends in your data.
 
 ## Simple Pattern
 
 The pattern is a state machine implementation that detects event occurrences from events arrived via one or more event streams over time.
 
-This example shows a simple pattern that detects high-temperature event occurrence of a continuous event stream.
+### Simple Pattern Example
 
+This stream worker shows a simple pattern that detects high-temperature event occurrence of a continuous event stream. The application sends an alert if the temperature of a room increases by 5 degrees within 10 min.
 
 ```sql
 -- Defines `TemperatureStream` having information of room temperature such as `roomNo` and `temp`.
@@ -28,11 +31,9 @@ from every( e1 = TemperatureStream ) ->
     within 10 min;
 ```
 
-This application sends an alert if the temperature of a room increases by 5 degrees within 10 min.
+### Simple Pattern Input
 
-### Input
-
-Below events are sent to `TemperatureStream` within 10 minutes,
+Below events are sent to `TemperatureStream` within 10 minutes:
 
 [`2`, `35`]
 
@@ -40,19 +41,21 @@ Below events are sent to `TemperatureStream` within 10 minutes,
 
 [`2`, `40`]
 
+### Simple Pattern Output
 
-### Output
-
-After processing the above input events, the event arriving at `HighTempAlertStream` will be as follows:
+After processing the above input events, the event arriving at `HighTempAlertStream` is:
 
 [`2`, `35.0`, `40.0`]
 
 ## Counting Pattern
 
-Counting patterns allow to match multiple events that may have been received for the same matching condition. The number of events matched per condition can be limited via condition postfixes.
+Counting patterns allow to match multiple events that might have been received for the same matching condition. The number of events matched per condition can be limited with condition postfixes.
 
 Refer the [Stream Query Guide](../query-guide/index.md) for more information.
 
+### Counting Pattern Example
+
+This stream worker calculates the temperature difference between two regulator events. Here, when at least one TemperatureStream event occurs between two RegulatorStream events the pattern is valid and logs can be seen.
 
 ```sql
 -- Defines `TemperatureStream` having information on room temperature such as `sensorID`, `roomNo` and `temp`.
@@ -74,15 +77,13 @@ from every( e1 = RegulatorStream)
     -> e3 = RegulatorStream[e1.roomNo == roomNo];
 ```
 
-This application calculates the temperature difference between two regulator events. Here, when at least one TemperatureStream event occurs between two RegulatorStream events the pattern is valid and logs can be seen.
+### Counting Pattern Input
 
-### Input
-
-- First, below event is sent to `RegulatorStream`,
+- First, below event is sent to `RegulatorStream`:
 
     [`21`, `2`, `25`, `true`]
 
-- Below events are sent to `TemperatureStream`,
+- Below events are sent to `TemperatureStream`:
 
     [`21`, `2`, `29`]
 
@@ -92,21 +93,22 @@ This application calculates the temperature difference between two regulator eve
 
     [`21`, `2`, `30`, `true`]
 
-### Output
+### Counting Pattern Output
 
-After processing the above input events, the event arriving at `TemperatureDiffStream` will be as follows:
+After processing the above input events, the event arriving at `TemperatureDiffStream` is:
 
 [`2`, `3.0`]
 
 ## Logical Pattern
 
-Logical patterns match events that arrive in temporal order and correlate them with logical relationships such as `and`, `or` and `not`.
+Logical patterns match events that arrive in temporal order and correlate them with logical relationships such as `and`, `or`, and `not`.
 
-Refer the [Stream Query Guide](../query-guide/index.md) for more information.
+### Logical Pattern Example
 
+This stream worker  sends a `stop` action on the regulator if a `removed` action is triggered in the `RoomKeyStream` stream.
 
 ```sql
--- Defines `RegulatorStateChangeStream` having information of regulator state change such as `deviceID`, `roomNo`, `tempSet` and `action`.
+-- Defines `RegulatorStateChangeStream` having information of regulator state change such as `deviceID`, `roomNo`, `tempSet`, and `action`.
 CREATE STREAM RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 
 -- Defines `RoomKeyStream` which contains the events related to room key usage.
@@ -116,7 +118,7 @@ CREATE STREAM RoomKeyStream(deviceID long, roomNo int, action string);
 CREATE SINK RegulatorActionStream WITH (type='log') (roomNo int, action string);
 
 
--- Sends a stop action on RegulatorActionStream stream, if a removed action is triggered in the RoomKeyStream stream before the regulator state changing to off which is notified RegulatorStateChangeStream stream
+-- Sends a stop action on RegulatorActionStream stream, if a removed action is triggered in RoomKeyStream before the regulator state changing to off which is notified in RegulatorStateChangeStream.
 insert into RegulatorActionStream
 select e1.roomNo,
 -- Checks whether pattern triggered due to removal of room key.
@@ -129,37 +131,34 @@ from every e1=RegulatorStateChangeStream[ action == 'on' ]
 having action != 'none'            ;
 ```
 
-This application sends a `stop` action on the regulator if a `removed` action is triggered in the RoomKeyStream stream.
+### Logical Pattern Input
 
-### Input
-
-- First, below event is sent to `RegulatorStateChangeStream`,
+- First, below event is sent to `RegulatorStateChangeStream`:
 
     [`10`, `5`, `30`, `on`]
 
-- Then, send below events are sent to `RoomKeyStream`,
+- Then, send below events are sent to `RoomKeyStream`:
 
     [`10`, `5`, `removed`]
 
+### Logical Pattern Output
 
-### Output
-
-After processing the above input events, the event arriving at `RegulatorActionStream` will be as follows:
+After processing the above input events, the event arriving at `RegulatorActionStream` is:
 
 [`5`, `stop`]
 
+## Non-Occurrence Pattern
 
-## Non Occurrence Pattern
+A non-occurrence patterns identifies the absence of events when detecting a pattern.
 
-Non occurrence patterns identifies the absence of events when detecting a pattern.
+### Non-Occurrence Pattern Example
 
-Stream Processor detects non-occurrence of events using the not keyword, and its effective non-occurrence checking period is bounded either by fulfillment of a condition associated by and or via an expiry time using `<time period>`.
+This stream worker detects non-occurrence of events using the not keyword, and its effective non-occurrence checking period is bounded either by fulfillment of a condition associated by and or via an expiry time using `<time period>`.
 
-Refer the [Stream Query Guide](../query-guide/index.md) for more information.
-
+It sends a notification alert if the room temperature is not reduced to the expected level after the regulator is started.
 
 ```sql
--- Defines `RegulatorStateChangeStream` having information of regulator state change such as `deviceID`, `roomNo`, `tempSet` and `action`.
+-- Defines `RegulatorStateChangeStream` having information of regulator state change such as `deviceID`, `roomNo`, `tempSet`, and `action`.
 CREATE STREAM RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 
 -- Defines `TemperatureStream` having information of room temperature such as `roomNo` and `temp`.
@@ -177,17 +176,15 @@ from e1=RegulatorStateChangeStream[action == 'on']
         temp <= e1.tempSet] for 30 sec;
 ```
 
-This application sends a notification alert if the room temperature is not reduced to the expected level after the regulator is started.
+### Non-Occurrence Pattern Input
 
-### Input
-
-- First, below event is sent to `RegulatorStateChangeStream`,
+- First, below event is sent to `RegulatorStateChangeStream`:
 
     [`10`, `5`, `30`, `on`]
 
-### Output
+### Non-Occurrence Pattern Output
 
-After processing the above input event, there will be an alert event arriving at `RoomTemperatureAlertStream` after the 30 seconds (from the first event):
+After processing the above input event, an alert event arrives at `RoomTemperatureAlertStream` after the 30 seconds (from the first event):
 
 [`5`]
 
@@ -195,8 +192,9 @@ After processing the above input event, there will be an alert event arriving at
 
 Sequence is a state machine implementation that detects consecutive event occurrences from events arrived via one or more event streams over time. Here all matching events need to arrive consecutively, and there should not be any non-matching events in between the matching sequence of events.
 
-Refer the [Stream Query Guide](../query-guide/index.md) for more information.
+### Simple Sequence Example
 
+This stream worker can be used to detect trends from a stock trades stream; in the above example, peak stock rate identified.
 
 ```sql
 -- Defines `StockRateStream` having information on stock rate such as `symbol`, `price` and `volume`.
@@ -220,10 +218,9 @@ begin
 end;
 ```
 
-This application can be used to detect trends from a stock trades stream; in the above example, peak stock rate identified.
+### Simple Sequence Input
 
-### Input
-Below events are sent to `StockRateStream` within 10 minutes,
+Below events are sent to `StockRateStream` within 10 minutes:
 
 [`mint-leaves`, `35`, `20`]
 
@@ -231,8 +228,9 @@ Below events are sent to `StockRateStream` within 10 minutes,
 
 [`mint-leaves`, `38`, `20`]
 
-### Output
-After processing the above input events, the event arriving at `PeakStockRateStream` will be as follows:
+### Simple Sequence Output
+
+After processing the above input events, the event arriving at `PeakStockRateStream` is:
 
 [`mint-leaves`, `40`]
 
@@ -240,8 +238,9 @@ After processing the above input events, the event arriving at `PeakStockRateStr
 
 Sequence query does expect the matching events to occur immediately after each other, and it can successfully correlate the events who do not have other events in between. Here, sequence can count event occurrences.
 
-Refer the [Stream Query Guide](../query-guide/index.md) for more information.
+### Sequence with Count Example
 
+This stream worker identifies temperature peaks by monitoring continuous increases in temp attribute and alerts upon the first drop.
 
 ```sql
 -- Defines `TemperatureStream` having information on room temperatures such as `roomNo` and `temp`.
@@ -269,11 +268,9 @@ begin
 end;
 ```
 
-This application identifies temperature peaks by monitoring continuous increases in temp attribute and alerts upon the first drop.
+### Sequence with Count Input
 
-### Input
-
-- Below events are sent to `TemperatureStream`,
+- Below events are sent to `TemperatureStream`:
 
     [`20`, `29`]
     [`10`, `28`]
@@ -282,9 +279,9 @@ This application identifies temperature peaks by monitoring continuous increases
     [`20`, `35`]
     [`20`, `33`]
 
-### Output
+### Sequence with Count Output
 
-After processing the above input events, the event arriving at `PeakTemperatureStream` will be as follows:
+After processing the above input events, the event arriving at `PeakTemperatureStream` is:
 
 [`20`, `29.0`, `35.0`, `33.0`]
 
@@ -292,8 +289,9 @@ After processing the above input events, the event arriving at `PeakTemperatureS
 
 The sequence can repetitively match event `sequences` and use logical event ordering (using `and`, `or`, and `not`).
 
-Refer the [Stream Query Guide](../query-guide/index.md) for more information.
+### Logical Sequence Example
 
+This stream worker can be used identify a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.
 
 ```sql
 -- Defines `TempSensorStream` having information of temperature sensor device.
@@ -319,24 +317,22 @@ from every e1=RegulatorStream[isOn == true],
     e2=TempSensorStream and e3=HumidSensorStream;
 ```
 
-This application can be used identify a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.
+### Logical Sequence Input
 
-### Input
-
-- First, below event is sent to `RegulatorStream`,
+- First, below event is sent to `RegulatorStream`:
 
     [`2134`, `true`]
 
-- Then, below event is sent to `HumidSensorStream`,
+- Then, below event is sent to `HumidSensorStream`:
 
     [`124`, `true`]
 
-- Then, below event is sent to `TempSensorStream`,
+- Then, below event is sent to `TempSensorStream`:
 
     [`242`, `false`]
 
-### Output
+### Logical Sequence Output
 
-After processing the above input events, the event arriving at `StateNotificationStream` will be as follows:
+After processing the above input events, the event arriving at `StateNotificationStream` is:
 
 [`2134`, `false`, `true`]
