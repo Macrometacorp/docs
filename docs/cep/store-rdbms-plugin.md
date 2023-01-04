@@ -46,7 +46,7 @@ SELECT numRecords
 FROM TriggerStream#rdbms:cud("jdbc:mysql://hostname:3306/MySQLDB?useSSL=false", "username", "password", "com.mysql.jdbc.Driver", "UPDATE Customers_Table SET customerName='abc' where customerName='xyz'");
 ```
 
-Note: Make sure the stream is previously defined with:
+Make sure the stream is defined with:
 
 ```sql
 CREATE STREAM TriggerStream (customerName string);
@@ -60,7 +60,7 @@ SELECT numRecords
 FROM TriggerStream#rdbms:cud("jdbc:mysql://hostname:3306/MySQLDB?useSSL=false", "username", "password", "com.mysql.jdbc.Driver",  "UPDATE Customers_Table SET customerName=? where customerName=?", changedName, previousName);
 ```
 
-Note: Make sure the stream is previously defined with:
+Make sure the stream is defined with:
 
 ```sql
 CREATE STREAM TriggerStream (customerName string, changedName string, previousName string);
@@ -86,7 +86,7 @@ Additionally, the `attributeName` attribute (any type) returns the attributes li
 
 ### Procedure Template
 
-Use the following template to create a Procedure function:
+Use the following template to create a procedure function:
 
 ```sql
 rdbms:procedure(STRING data-source.name, STRING query)
@@ -106,7 +106,7 @@ SELECT Name, Age, Date_Time
 FROM IntrimStream--#rdbms:procedure('ORACLE_DB', 'Name String, Age int,Date_Time String', 'begin RETURNCON(?,?); end;','cursor', NoOfYears);
 ```
 
-Note: Make sure the stream is previously defined with:
+Make sure the stream is defined with:
 
 ```sql
 CREATE STREAM IntrimStream (NoOfYears int, Name string, Age int, Date_Time string);
@@ -122,7 +122,7 @@ SELECT Name, Age, Date_Time
 FROM IntrimStream--#rdbms:procedure('ORACLE_DB', 'Name String, Age int,Date_Time String', 'begin RETURNCON(9,?); end;','cursor');
 ```
 
-Note: Make sure the stream is previously defined with:
+Make sure the stream is defined with:
 
 ```sql
 CREATE STREAM IntrimStream (NoOfYears int, Name string, Age int, Date_Time string);
@@ -179,7 +179,7 @@ SELECT creditcardno, country, transaction, amount
 FROM TriggerStream#rdbms:query("jdbc:mysql://hostname:3306/MySQLDB?useSSL=false", "username", "password", "com.mysql.jdbc.Driver", 'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord);
 ```
 
-Note: Make sure the stream is previously defined with:
+Make sure the stream is defined with:
 
 ```sql
 CREATE STREAM TriggerStream (countrySearchWord string);
@@ -194,7 +194,7 @@ FROM TriggerStream#rdbms:query("jdbc:mysql://hostname:3306/MySQLDB?useSSL=false"
     'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord, true);
 ```
 
-Note: Make sure the stream is previously defined with:
+Make sure the stream is defined with:
 
 ```sql
 CREATE STREAM TriggerStream (countrySearchWord string);
