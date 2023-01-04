@@ -243,9 +243,9 @@ import time
 
 # Constants
 URL = "api-play.paas.macrometa.io"
-HTTP_URL = f"https://{URL}"
+HTTP_URL = "https://{URL}"
 API_KEY = "XXXXX" # Use your API key here
-AUTH_TOKEN = f"apikey {API_KEY}"
+AUTH_TOKEN = "apikey {API_KEY}"
 FABRIC = "_system"
 STREAM_NAME = "teststream"
 TENANT_NAME = "XXXXX" # Add your tenant name here

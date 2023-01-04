@@ -265,9 +265,9 @@ from websocket import create_connection
 
 # Constants  
 URL = "api-play.paas.macrometa.io"
-HTTP_URL = f"https://{URL}"
+HTTP_URL = "https://{URL}"
 API_KEY = "XXXXX" # Use your API key here
-AUTH_TOKEN = f"apikey {API_KEY}"
+AUTH_TOKEN = "apikey {API_KEY}"
 FABRIC = "_system"
 TENANT_NAME = "XXXXX" # Add your tenant name here
 STREAM_NAME = "tutorialAppInputStream"
