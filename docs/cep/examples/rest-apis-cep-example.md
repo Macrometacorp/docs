@@ -12,6 +12,8 @@ Modern applications need to be highly responsive, always online, and able to acc
 
 For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
 
+## Prerequisites
+
 <Prerequisites />
 
 ## REST API Stream Worker Example
@@ -78,10 +80,10 @@ class APIRequest {
   }
 }
 
-const email = "nemo@nautilus.com";
-const password = "xxxxxx";
-const url = "api-play.paas.macrometa.io";
+const apiKey = "XXXXX" // Use your API key here
+let url = "api-play.paas.macrometa.io";
 const httpUrl = `https://${url}`;
+const tenant = "XXXXX" // Use your tenant name here
 
 const isGlobal = false;
 const stream = "tutorialAppInputStream";
@@ -107,13 +109,7 @@ const streamWorkerDef = `@App:name('stream_worker_tutorial')
 
 const run = async function () {
   try {
-    const connection = new APIRequest(httpUrl);
-
-    /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
-
-    const { url } = await connection.login(email, password);
-
-    console.log("Log in successful using: ", url);
+    const connection = new APIRequest(httpUrl, apiKey);
 
     /* ---------------------------- Create stream worker ---------------------------- */
     try {
@@ -124,10 +120,10 @@ const run = async function () {
         },
         method: "POST"
       });
-      console.log("Stream app created successfully", streamWorker);
+      console.log("Stream worker created successfully", streamWorker);
     } catch (e) {
       if (e.status === 409) {
-        console.log("Stream app already exists, skipping creation");
+        console.log("Stream worker already exists, skipping creation");
       } else {
         console.log("Error while creating stream worker");
         throw e;
@@ -147,14 +143,14 @@ const run = async function () {
 
     await new Promise((resolve) => setTimeout(resolve, 10000));
 
-    console.log("Stream app activated successfully");
+    console.log("Stream worker activated successfully");
 
     /* ------------------ Publish messages to sample stream worker ------------------ */
     
     const region = isGlobal ? "c8global" : "c8local";
     const streamName = `${region}s.${stream}`;
 
-    // Fetching local URL in case the stream is local (which is defined in the stream worker)
+    // Fetching local URL in case the stream is local as defined in the stream worker
     const localDcDetails = await connection.req(`/datacenter/local`, {
       method: "GET"
     });
@@ -171,7 +167,7 @@ const run = async function () {
 
     const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${url}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
-    /* -------------------------- Initalizing producer -------------------------- */
+    /* -------------------------- Initializing producer -------------------------- */
 
     const producer = new WebSocket(producerUrl);
 
@@ -239,6 +235,7 @@ const run = async function () {
     console.log("Output received --->", result.result);
 
     /* ---------------------------- Delete stream worker ---------------------------- */
+    
     const deletion = await connection.req(
       `/_fabric/_system/_api/streamapps/${streamWorkerName}`,
       {
@@ -246,7 +243,7 @@ const run = async function () {
       }
     );
 
-    console.log("Stream app deleted successfully", deletion);
+    console.log("Stream worker deleted successfully", deletion);
   } catch (e) {
     console.error(e);
   }
@@ -254,6 +251,7 @@ const run = async function () {
 
 run();
 ```
+
   </TabItem>
   <TabItem value="py" label="Python">
 
@@ -331,7 +329,7 @@ session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
-# Create a Stream Application
+# Create a stream workerlication
 url = f"{HTTP_URL}/_fabric/_system/_api/streamapps"
 payload = {
   "definition": STREAM_APP,
@@ -341,13 +339,13 @@ payload = {
 resp = session.post(url, data=json.dumps(payload))
 result = json.loads(resp.text)
 print("FED URL:", HTTP_URL)
-print("\nStream App Created: ", result)
+print("\nstream worker Created: ", result)
 
-# Activate Stream Application
+# Activate stream workerlication
 url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}/active?active=true"
 resp = session.patch(url)
 result = json.loads(resp.text)
-print("\nStream App Activated: ", result)
+print("\nstream worker Activated: ", result)
 
 # Wait for all inputs and outputs to initialize
 time.sleep(5)
@@ -392,13 +390,13 @@ payload= {
 }
 resp = session.post(url, data=json.dumps(payload))
 result = json.loads(resp.text)
-print("\nStream App Results: ", result)
+print("\nstream worker Results: ", result)
 
-# Delete Stream Application
+# Delete stream workerlication
 url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}"
 resp = session.delete(url)
 result = json.loads(resp.text)
-print("\nStream App Deleted: ", result)
+print("\nstream worker Deleted: ", result)
 ```
  </TabItem>
 </Tabs>  

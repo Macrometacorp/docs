@@ -10,6 +10,8 @@ import Steps from '../../_partials/_api-example-steps.md';
 
 This page shows you how to perform a basic pub-sub streams workflow using the Macrometa API. For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
 
+## Prerequisites
+
 <Prerequisites />
 
 ## REST API Streams Example
