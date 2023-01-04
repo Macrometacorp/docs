@@ -302,7 +302,7 @@ Windows help to retain events based on a criterion, such that the values of thos
 
 **Syntax**
 
-Window should be defined by using the `window <window-name>` next to the input stream as shown below.
+Define the window by using the `window <window-name>` next to the input stream as shown below.
 
 ```
 insert <ouput event type>? into <output stream>
