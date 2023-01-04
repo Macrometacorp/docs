@@ -379,7 +379,7 @@ select max(temp) as maxTemp
 from TempStream window sliding_time(10 min);
 ```
 
-Here, the `time` window operates in a sliding manner with millisecond accuracy, where it will process events in the following 3 time durations and output aggregated events when a list of events are received in a sequential order.
+Here, the `time` window operates in a sliding manner with millisecond accuracy, where it will process events in the following three time durations and output aggregated events when a list of events are received in a sequential order.
 
 |Subset|Time Range (in ms)|
 |------|-----------|
