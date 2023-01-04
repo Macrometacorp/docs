@@ -475,7 +475,7 @@ from TempStream window sliding_time(1)
 ```
 
 :::note
-This is just to illustrate how expired events work, it is recommended to use [delay](functions/core/delay-window.md) window for usecases where we need to delay events by a given time period.
+This is just to illustrate how expired events work. Use the [delay](functions/core/delay-window.md) window for use cases where we need to delay events by a given time period.
 :::
 
 ### Aggregate Function
