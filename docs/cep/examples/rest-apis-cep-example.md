@@ -21,7 +21,7 @@ Macrometa stream processing allows you to integrate streaming data and take appr
 <Steps />
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 // If you are using Node.js version less than 17.5, then run `npm install node-fetch` and comment out the line below.
@@ -36,6 +36,7 @@ class APIRequest {
 
   constructor (url) {
     this._url = url;
+    this._headers.authorization = `apikey ${apiKey}`; // apikey keyword is needed here
   }
 
   login (email, password) {
@@ -71,21 +72,22 @@ class APIRequest {
       fetch(self._url + endpoint, {
         headers: self._headers,
         body: body ? JSON.stringify(body) : undefined,
-        ...options,
+        ...options
       }).then((response) => self._handleResponse(response, resolve, reject));
     });
   }
 }
+
 const email = "nemo@nautilus.com";
 const password = "xxxxxx";
-const federationName = "api-play.paas.macrometa.io";
-const federationUrl = `https://${federationName}`;
+const url = "api-play.paas.macrometa.io";
+const httpUrl = `https://${url}`;
 
 const isGlobal = false;
 const stream = "tutorialAppInputStream";
-const streamAppName = "stream_app_tutorial";
-const streamAppDef = `@App:name('stream_app_tutorial')
-  @App:description('This application demonstrates how to use user-defined functions in the stream app.')
+const streamWorkerName = "stream_worker_tutorial";
+const streamWorkerDef = `@App:name('stream_worker_tutorial')
+  @App:description('This application demonstrates how to use user-defined functions in the stream worker.')
   @App:qlVersion("2")
   CREATE FUNCTION concatFn[javascript] return string {
       var str1 = data[0];
@@ -105,54 +107,54 @@ const streamAppDef = `@App:name('stream_app_tutorial')
 
 const run = async function () {
   try {
-    const connection = new APIRequest(federationUrl);
+    const connection = new APIRequest(httpUrl);
 
     /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
 
-    const { tenant } = await connection.login(email, password);
+    const { url } = await connection.login(email, password);
 
-    console.log("Log in successful using: ", tenant);
+    console.log("Log in successful using: ", url);
 
-    /* ---------------------------- Create stream app ---------------------------- */
+    /* ---------------------------- Create stream worker ---------------------------- */
     try {
-      const streamApp = await connection.req("/_fabric/_system/_api/streamapps", {
+      const streamWorker = await connection.req("/_fabric/_system/_api/streamapps", {
         body: {
-          definition: streamAppDef,
+          definition: streamWorkerDef,
           regions: []
         },
         method: "POST"
       });
-      console.log("Stream app created successfully", streamApp);
+      console.log("Stream app created successfully", streamWorker);
     } catch (e) {
       if (e.status === 409) {
         console.log("Stream app already exists, skipping creation");
       } else {
-        console.log("Error while creating stream app");
+        console.log("Error while creating stream worker");
         throw e;
       }
     }
 
-    /* --------------------------- Activate stream app --------------------------- */
+    /* --------------------------- Activate stream worker --------------------------- */
 
     await connection.req(
-      `/_fabric/_system/_api/streamapps/${streamAppName}/active?active=true`,
+      `/_fabric/_system/_api/streamapps/${streamWorkerName}/active?active=true`,
       {
         method: "PATCH"
       }
     );
 
-    console.log("Activating stream app...", streamAppName);
+    console.log("Activating stream worker...", streamWorkerName);
 
     await new Promise((resolve) => setTimeout(resolve, 10000));
 
     console.log("Stream app activated successfully");
 
-    /* ------------------ Publish messages to sample stream app ------------------ */
+    /* ------------------ Publish messages to sample stream worker ------------------ */
     
     const region = isGlobal ? "c8global" : "c8local";
     const streamName = `${region}s.${stream}`;
 
-    // Fetching local URL in case the stream is local (which is defined in the stream app)
+    // Fetching local URL in case the stream is local (which is defined in the stream worker)
     const localDcDetails = await connection.req(`/datacenter/local`, {
       method: "GET"
     });
@@ -160,14 +162,14 @@ const run = async function () {
     const dcUrl = localDcDetails.tags.url;
 
     const url = isGlobal
-      ? federationName
+      ? url
       : `api-${dcUrl}`;
 
     const otpProducer = await connection.req(`/apid/otp`, {
       method: "POST"
     });
 
-    const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
+    const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${url}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
     /* -------------------------- Initalizing producer -------------------------- */
 
@@ -236,9 +238,9 @@ const run = async function () {
     console.log("Input sent --->", inputData);
     console.log("Output received --->", result.result);
 
-    /* ---------------------------- Delete stream app ---------------------------- */
+    /* ---------------------------- Delete stream worker ---------------------------- */
     const deletion = await connection.req(
-      `/_fabric/_system/_api/streamapps/${streamAppName}`,
+      `/_fabric/_system/_api/streamapps/${streamWorkerName}`,
       {
         method: "DELETE"
       }
@@ -273,9 +275,9 @@ AUTH_TOKEN = "bearer "
 TENANT_NAME = "nemo_nautilus.com"
 
 STREAM_NAME = "tutorialAppInputStream"
-STREAM_APP_NAME = "stream_app_tutorial"
+STREAM_APP_NAME = "stream_worker_tutorial"
 STREAM_APP ="""
-  @App:name('stream_app_tutorial')
+  @App:name('stream_worker_tutorial')
   @App:qlVersion("2")
   CREATE FUNCTION concatFn[javascript] return string {
       var str1 = data[0];
@@ -321,7 +323,7 @@ response = requests.post(url, data = json.dumps(payload), headers = headers)
 if response.status_code == 200:
     resp_body = json.loads(response.text)
     AUTH_TOKEN += resp_body["jwt"]
-    TENANT = resp_body["tenant"]
+    TENANT = resp_body["url"]
 else:
     raise Exception(f"Error while getting auth token. Code:{response.status_code}, Reason:{response.reason}")
 
