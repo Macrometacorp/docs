@@ -361,7 +361,7 @@ select max(temp) as maxTemp
 from TempStream window tumbling_length(10);
 ```
 
-Here, the window operates in a batch/tumbling manner where the following 3 event subsets are calculated and outputted when a list of 30 events are received in a sequential order.
+Here, the window operates in a batch/tumbling manner where the following three event subsets are calculated and outputted when a list of 30 events are received in a sequential order.
 
 |Subset|Event Range|
 |------|-----------|
