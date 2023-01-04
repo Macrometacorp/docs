@@ -6,7 +6,7 @@ title: Unique (window)
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This window is used with namespace i.e. `unique:windowName` This window retains and process unique events based on the given parameters.
+This window is used with a namespace such as `unique:windowName`. The window retains and processes unique events based on the given parameters.
 
 | Function                                                         | Description                                                                                                                                                                  |
 |------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
