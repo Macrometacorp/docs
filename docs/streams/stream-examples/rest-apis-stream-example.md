@@ -12,14 +12,13 @@ This page shows you how to perform a basic pub-sub streams workflow using the Ma
 
 - A Macrometa account with sufficient permissions to create streams.
 - An API key. For more information, refer to [Create API Keys](../../account-management/api-keys/create-api-keys).
-- Appropriate SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
 
 ## REST API Streams Example
 
 1. Copy and paste the code block below in your favorite IDE.
-1. Update constants with your values, such as the API key.
-1. Run the code.
-1. (Optional) Log in to the Macrometa console to view the streams.
+2. Update constants with your values, such as the [API key](../../account-management/api-keys/index.md).
+3. Run the code.
+4. (Optional) Log in to the [Macrometa console](https://auth-play.macrometa.io/) to view the streams.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
