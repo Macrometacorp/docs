@@ -28,7 +28,7 @@ Syntax
     select symbol, sum(price) as price
     from InputEventStream window tumbling_time(20 sec);
 
-This collect and process incoming events as a batch every 20 seconds and output them.
+This window collects and processes incoming events as a batch every 20 seconds and then outputs them to a stream.
 
 ## Example 2
 
