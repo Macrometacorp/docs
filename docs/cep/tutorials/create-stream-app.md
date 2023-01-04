@@ -294,7 +294,7 @@ In the application below, a Macrometa document-based collection plays role of `s
 Consider InboundTrafficData as an audit collection where client IPs are added as they make requests to the server.
 As a new record is added, an event is emitted by collection streams associated with this collection. This event is consumed by the `source` InboundTraffic.
 
-Now it is quite possible that your application, `IntrusionDetectionSystem` may get burst of events having the same IP, and you need to gauge  
+It is quite possible that your application, `IntrusionDetectionSystem`, might get burst of events having the same IP, and you need to gauge  
 this traffic in some way. Maybe 50 requests in a couple of seconds from the same IP can be considered suspicious traffic.
 Windows store events as and when they arrive and automatically expire/clean them based on the given window constraint.
 
