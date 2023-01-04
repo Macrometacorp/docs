@@ -22,7 +22,7 @@ within the `time.interval` gap from one another.
 
     insert into UniqueTemperatureStream
     select *
-    from TemperatureStream#unique:deduplicate(sensorId, 30 sec);
+    from TemperatureStream window unique:deduplicate(sensorId, 30 sec);
 
 Query that removes duplicate events of `TemperatureStream` stream based
 on `sensorId` attribute when they arrive within 30 seconds.
