@@ -290,7 +290,7 @@ The stream worker will use the Macrometa collections with the default query para
 ## Source, Sink, Table and Window: Understanding with the help of a Stream Worker example
 
 
-In the application below, a Macrometa document based collection plays role of `source` to our SW IntrusionDetectionSystem.
+In the application below, a Macrometa document-based collection plays role of `source` to our SW IntrusionDetectionSystem.
 Consider InboundTrafficData as an audit collection where client IPs are added as they make requests to the server.
 As a new record is added, an event is emitted by collection streams associated with this collection. This event is consumed by the `source` InboundTraffic.
 
