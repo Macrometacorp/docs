@@ -5,13 +5,11 @@ title: REST API Streams Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Prerequisites from '../../_partials/_prerequisites-api-key.md';
 
 This page shows you how to perform a basic pub-sub streams workflow using the Macrometa API. For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
 
-## Prerequisites
-
-- A Macrometa account with sufficient permissions to create streams.
-- An API key. For more information, refer to [Create API Keys](../../account-management/api-keys/create-api-keys).
+<Prerequisites />
 
 ## REST API Streams Example
 

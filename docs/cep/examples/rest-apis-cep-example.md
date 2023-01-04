@@ -5,22 +5,15 @@ title: REST APIs Stream Worker Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Prerequisites from '../../_partials/_prerequisites-api-key.md';
 
 Modern applications need to be highly responsive, always online, and able to access data instantly across the globe. At the same time, they need to be deployed on data centers close to their users. Macrometa global data network (GDN) is a real-time materialized view engine that provides instant data to applications and APIs in a simple interface.
 
-## Prerequisites:
+<Prerequisites />
 
-A Macrometa GDN tenant account and credentials.
+## REST API Stream Worker Example
 
-## API Browser
-
-Your main tool for using REST APIs is the API reference in the [GDN](https://play.paas.macrometa.io) web browser interface. Use the built-in API reference to run various calls and view their input and output.
-
-![GDN API Browser](/img/gdn-api-browser.png)
-
-## Stream Processing
-
-Macrometa Stream Processing allows you to integrate streaming data and take appropriate actions. 
+Macrometa stream processing allows you to integrate streaming data and take appropriate actions. 
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
