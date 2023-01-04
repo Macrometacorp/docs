@@ -305,7 +305,6 @@ from the same IP within two seconds, then we can assume this is suspicious traff
 
 In addition to the window, we have reference data for our application, i.e., `Table`.  A table is a stored collection of events, and its schema is defined via the
 table definition. Unlike `stream`, `table` is stateful and supports interactive queries for the state of the stored events. In our case `SuspiciousIPTable` stores
-pre-defined suspicious IPs which we are using to verify if it matches IPs in suspicious traffic. 
 
 If they match, we raise an alarm by adding a event to a `sink`. Sink is an abstraction for an egress event, which serves as an output for the Stream Worker application,
 convert them to various data formats, and publish them to a stream or external endpoints like HTTP/REST ,database, log, JMS, email, or as in this case, a Macrometa stream.
