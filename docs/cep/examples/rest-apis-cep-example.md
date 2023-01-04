@@ -271,8 +271,8 @@ AUTH_TOKEN = f"apikey {API_KEY}"
 FABRIC = "_system"
 TENANT_NAME = "XXXXX" # Add your tenant name here
 STREAM_NAME = "tutorialAppInputStream"
-STREAM_APP_NAME = "stream_worker_tutorial"
-STREAM_APP ="""
+STREAM_WORKER_NAME = "stream_worker_tutorial"
+STREAM_WORKER ="""
   @App:name('stream_worker_tutorial')
   @App:qlVersion("2")
   CREATE FUNCTION concatFn[javascript] return string {
@@ -315,7 +315,7 @@ session.headers.update({"authorization": AUTH_TOKEN})
 
 url = f"{HTTP_URL}/_fabric/_system/_api/streamapps"
 payload = {
-  "definition": STREAM_APP,
+  "definition": STREAM_WORKER,
   "regions": []
 }
 
@@ -326,7 +326,7 @@ print("\nstream worker Created: ", result)
 
 # Activate stream worker
 
-url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}/active?active=true"
+url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_WORKER_NAME}/active?active=true"
 resp = session.patch(url)
 result = json.loads(resp.text)
 print("\nstream worker Activated: ", result)
@@ -382,8 +382,7 @@ print("\nstream worker Results: ", result)
 
 # Delete stream worker
 
-
-url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_APP_NAME}"
+url = f"{HTTP_URL}/_fabric/_system/_api/streamapps/{STREAM_WORKER_NAME}"
 resp = session.delete(url)
 result = json.loads(resp.text)
 print("\nstream worker Deleted: ", result)
