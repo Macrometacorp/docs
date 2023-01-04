@@ -17,7 +17,7 @@ This page shows you how to perform a basic pub-sub streams workflow using the Ma
 <Steps />
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 const WebSocket = require('ws');
