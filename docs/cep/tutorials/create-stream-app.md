@@ -299,7 +299,7 @@ this traffic in some way. Maybe 50 requests in a couple of seconds from the same
 Windows store events as and when they arrive and automatically expire/clean them based on the given window constraint.
 
 In our IntrusionDetectionSystem application, we have associated a `sliding window` of two seconds on incoming events. The window will hold all the events that appear
-within 2 seconds. Further Stream QL is grouping all the events by IP and if the count on any of these groups is more than 50, i.e., more than 50 events occurred
+within two seconds. Further Stream QL is grouping all the events by IP and if the count on any of these groups is more than 50, i.e., more than 50 events occurred
 from the same IP within 2 seconds, we can assume this is suspicious traffic. 
 
 
