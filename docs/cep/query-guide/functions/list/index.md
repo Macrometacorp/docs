@@ -5,7 +5,7 @@ title: List Functions
 
 List functions allow you to create and interact with lists.
 
-For information on performing scatter and gather using [list:tokenize()](tokenize.md), and [list:collect()](collect.md), refer to the examples in [Data Pipeline Examples](../../../examples/data-pipelinesmd).
+For information on performing scatter and gather using [list:tokenize()](tokenize.md), and [list:collect()](collect.md), refer to the examples in [Data Pipeline Examples](../../../examples/data-pipelines.md).
 
 ## Input
 
