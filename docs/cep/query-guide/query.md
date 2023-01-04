@@ -305,7 +305,7 @@ Windows help to retain events based on a criterion, such that the values of thos
 Define the window by using the `window <window-name>` next to the input stream as shown below.
 
 ```
-insert <ouput event type>? into <output stream>
+insert <output event type>? into <output stream>
 select <attribute name>, <attribute name>, ...
 from <input stream> window <window name>(<parameter>, <parameter>, ... );
 ```
