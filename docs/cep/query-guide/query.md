@@ -397,7 +397,7 @@ select max(temp) as maxTemp
 from TempStream window tumbling_time(10 min);
 ```
 
-Here, the window operates in a batch/tumbling manner where the window will process evetns in the following 3 time durations and output aggregated events when a list of events are received in a sequential order.
+Here, the window operates in a batch/tumbling manner where the window will process events in the following three time durations and output aggregated events when a list of events are received in a sequential order.
 
 |Subset|Time Range (in ms)|
 |------|-----------|
