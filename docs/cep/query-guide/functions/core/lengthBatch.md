@@ -36,7 +36,7 @@ This collect and process 10 events as a batch and output them.
     select symbol, sum(price) as sumPrice
     from InputEventStream tumbling_length(10, true);
 
-This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually, after every 10 events it clears the window as a batch and resets the `sumPrice` to zero.
+This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually. After every 10 events, it clears the window as a batch and resets the `sumPrice` to zero.
 
 ## Example 3
 
