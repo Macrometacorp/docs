@@ -320,18 +320,18 @@ Following are some core Stream windows, for more windows refer [here](functions/
 
 | Core window function                                         | Description|
 |--------------------------------------------------------------|-------------|
-| [time](functions/core/time-window.md)                        | Retains events based on time in a sliding manner.|
-| [timeBatch](functions/core/timebatch-window.md)                 | Retains events based on time in a tumbling/batch manner. |
-| [length](functions/core/length-window.md)                       | Retains events based on number of events in a sliding manner. |
-| [lengthBatch](functions/core/lengthbatch-window.md)             | Retains events based on number of events in a tumbling/batch manner. |
-| [timeLength](functions/core/timelength-window.md)               | Retains events based on time and number of events in a sliding manner. |
-| [session](functions/core/session-window.md)                     | Retains events for each session based on session key. |
+| [time](functions/core/time.md)                      | Retains events based on time in a sliding manner.|
+| [timeBatch](functions/core/timebatch.md)                 | Retains events based on time in a tumbling/batch manner. |
+| [length](functions/core/length.md)                       | Retains events based on number of events in a sliding manner. |
+| [lengthBatch](functions/core/lengthbatch.md)             | Retains events based on number of events in a tumbling/batch manner. |
+| [timeLength](functions/core/timelength.md)               | Retains events based on time and number of events in a sliding manner. |
+| [session](functions/core/session.md)                     | Retains events for each session based on session key. |
 | [batch](functions/core/batch.md)                                | Retains events of last arrived event chunk. |
-| [sort](functions/core/sort-window.md)                           | Retains top-k or bottom-k events based on a parameter value. |
-| [cron](functions/core/cron-window.md)                           | Retains events based on cron time in a tumbling/batch manner. |
-| [externalTime](functions/core/externalTime-window.md)           | Retains events based on event time value passed as a parameter in a sliding manner.|
-| [externalTimeBatch](functions/core/externaltimebatch-window.md) | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
-| [delay](functions/core/delay-window.md)                         | Retains events and delays the output by the given time period in a sliding manner.|
+| [sort](functions/core/sort.md)                           | Retains top-k or bottom-k events based on a parameter value. |
+| [cron](functions/core/cron.md)                           | Retains events based on cron time in a tumbling/batch manner. |
+| [externalTime](functions/core/externalTime.md)           | Retains events based on event time value passed as a parameter in a sliding manner.|
+| [externalTimeBatch](functions/core/externaltimebatch.md) | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
+| [delay](functions/core/delay.md)                         | Retains events and delays the output by the given time period in a sliding manner.|
 
 **Example 1**
 
