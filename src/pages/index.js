@@ -11,7 +11,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 /* Styles */
 // import styles from './index.module.css';
 
-/* Fonts  */
+/* Fonts */
 import '@fontsource/source-code-pro'
 
 export default function Homepage() {
