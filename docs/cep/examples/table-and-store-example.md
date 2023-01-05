@@ -25,7 +25,7 @@ from TemperatureStream as t join SensorIdInfoTable as s
      on t.sensorId == s.sensorId;
 ```
 
-## Event at table and store
+## Event at Table and Store
 
 When `SensorIdInfoTable` table contains a recode [`'aq-14'`, `'789'`], and when an event with values [`'aq-14'`, `35.4`] is sent to `TemperatureStream` stream.
 
@@ -33,11 +33,11 @@ The event will get converted and added to the `TemperatureLogTable` table as bel
 
 [`'aq-14'`, `'789'`, `35.4`]
 
-## Retrieving values from tables and stores
+## Retrieve Values from Tables and Stores
 
-The stored values can be retrieved by join tables and stores with the streams as in the `Join-query` depicted in the example, or using on-demand queries.
+The stored values can be retrieved by joining tables and stores with the streams as in the `Join-query` depicted in the example, or using on-demand queries.
 
-The data in `TemperatureDetailsTable` can be retrieved via on-demand queries as below, using the `On Demand Query REST API`.
+The data in `TemperatureDetailsTable` can be retrieved using on-demand queries as shown below, using the `On Demand Query REST API`.
 
 ```sql
 select *
