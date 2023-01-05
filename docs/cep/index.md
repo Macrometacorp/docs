@@ -72,3 +72,8 @@ Macrometa stream processing engine  allows you to write rich & complex stream pr
 | Realtime Decisions as Service | Provide REST APIs to [query](query-guide/query.md) `multi-modal geo-replicated tables`, `windows` and `named-aggregations` to make decisions based on the state of the system. |
 
 These features allows you to build robust global data processing and integration pipelines at the edge by combining powerful stream processing, multi-model database and geo-replicated streams capabilities.
+
+:::tip
+"Have different business use cases in separate stream workers."
+This is recommended as it allows users to selectively deploy the applications based on their business needs. It is also recommended to move the repeated stream processing logic that exists in multiple stream workers, such as message retrieval and preprocessing, to a common Stream Application, whereby reducing code duplication and improving maintainability. In this case, to pass the events from one Stream App to another, configure them using a common stream or collection using `stream` Sink and `stream` Source.
+:::
