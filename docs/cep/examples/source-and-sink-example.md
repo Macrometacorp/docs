@@ -1,0 +1,59 @@
+---
+sidebar_position: 4
+title: Source and Sink example
+---
+
+Sources and sinks are used to consume and publish events to external systems.
+
+There are multiple source and sink types, but this example only explains Macrometa source, c8stream sink, and Kafka sink. For more info refer to the [Stream Worker Query Guide](../query-guide/index.md).
+
+## Example
+
+This example creates a source from which a stream consumes JSON messages:
+
+```sql
+C8DB source to consume `JSON` messages from.
+CREATE SOURCE TemperatureStream WITH (type='database', collection='TemparatureStream', collection.type="doc", replication.type="global", map.type='json') (sensorId string, temperature double);
+```
+
+This example creates a sink to log events that arrive from a stream called `TemperatureOnlyStream` with the `temperature` attribute of type `double`:
+
+```sql
+CREATE SINK TemperatureOnlyStream WITH (type='stream', stream="TemperatureOnlyStream", replication.type="local", map.type='json') (temperature double);
+
+@info(name = 'Simple-selection')
+insert into TemperatureOnlyStream
+select temperature
+from TemperatureStream;
+```
+
+## Input
+
+When a JSON message is written to the collection `TemparatureStream`, it automatically gets mapped to an event in the `TemperatureStream` stream.
+
+```json
+{
+    "sensorId":"aq-14",
+    "temperature":35.4
+}
+```
+
+To process custom input messages, refer to Sinkmapper in [Functions](../query-guide/functions/index.md).
+
+## Output
+
+After processing, the event arriving at `TemperatureOnlyStream` will be emitted via `c8stream` and `kafka` sinks.
+
+The message is published to `TemperatureOnlyStream` as
+
+```json
+{"temperature":"35.4"}
+```
+
+The `kafka` sink maps the event to a custom JSON message as below and publishes it to the `temperature` topic.
+
+```json
+{"temp":"35.4"}
+```
+
+To output messages using other message formats, refer to Sourcemapper in [Functions](../query-guide/functions/index.md).
