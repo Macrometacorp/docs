@@ -29,28 +29,9 @@ class APIRequest {
     "Content-Type": "application/json"
   };
 
-  constructor (url) {
-    this._url = url;
+  constructor (httpUrl, apiKey) {
+    this._url = httpUrl;
     this._headers.authorization = `apikey ${apiKey}`; // apikey keyword is needed here
-  }
-
-  login (email, password) {
-    const endpoint = "/_open/auth";
-
-    const self = this;
-
-    return new Promise(function (resolve, reject) {
-      self
-        .req(endpoint, {
-          body: { email, password },
-          method: "POST"
-        })
-        .then(({ jwt, ...data }) => {
-          self._headers.authorization = `bearer ${jwt}`;
-          resolve(data);
-        })
-        .catch(reject);
-    });
   }
 
   _handleResponse (response, resolve, reject) {
@@ -74,8 +55,8 @@ class APIRequest {
 }
 
 const apiKey = "XXXXX" // Use your API key here
-let url = "api-play.paas.macrometa.io";
-const httpUrl = `https://${url}`;
+const globalUrl = "api-play.paas.macrometa.io";
+const httpUrl = `https://${globalUrl}`;
 const tenant = "XXXXX" // Use your tenant name here
 
 const stream = "api_tutorial_streams";
@@ -119,7 +100,7 @@ const run = async function () {
     const dcUrl = localDcDetails.tags.url;
 
     url = isGlobal
-      ? url
+      ? globalUrl
       : `api-${dcUrl}`;
 
     const otpConsumer = await connection.req(`/apid/otp`, {
@@ -233,19 +214,19 @@ run();
 <TabItem value="py" label="Python">
 
 ```py
-import requests
-import json
-from websocket import create_connection
 import base64
+import json
+import requests
 import six
 import threading
 import time
+from websocket import create_connection
 
 # Constants
 URL = "api-play.paas.macrometa.io"
-HTTP_URL = "https://{URL}"
+HTTP_URL = f"https://{URL}"
 API_KEY = "XXXXX" # Use your API key here
-AUTH_TOKEN = "apikey {API_KEY}"
+AUTH_TOKEN = f"apikey {API_KEY}"
 FABRIC = "_system"
 STREAM_NAME = "teststream"
 TENANT_NAME = "XXXXX" # Add your tenant name here
