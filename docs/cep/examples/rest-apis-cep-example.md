@@ -36,28 +36,9 @@ class APIRequest {
     "Content-Type": "application/json"
   };
 
-  constructor (url) {
-    this._url = url;
+  constructor (httpUrl, apiKey) {
+    this._url = httpUrl;
     this._headers.authorization = `apikey ${apiKey}`; // apikey keyword is needed here
-  }
-
-  login (email, password) {
-    const endpoint = "/_open/auth";
-
-    const self = this;
-
-    return new Promise(function (resolve, reject) {
-      self
-        .req(endpoint, {
-          body: { email, password },
-          method: "POST"
-        })
-        .then(({ jwt, ...data }) => {
-          self._headers.authorization = `bearer ${jwt}`;
-          resolve(data);
-        })
-        .catch(reject);
-    });
   }
 
   _handleResponse (response, resolve, reject) {
@@ -81,8 +62,8 @@ class APIRequest {
 }
 
 const apiKey = "XXXXX" // Use your API key here
-let url = "api-play.paas.macrometa.io";
-const httpUrl = `https://${url}`;
+const globalUrl = "api-play.paas.macrometa.io";
+const httpUrl = `https://${globalUrl}`;
 const tenant = "XXXXX" // Use your tenant name here
 
 const isGlobal = false;
@@ -101,7 +82,7 @@ const streamWorkerDef = `@App:name('stream_worker_tutorial')
   -- Stream
   CREATE STREAM tutorialAppInputStream (deviceID string, roomNo int, temperature double);
   -- Table
-  CREATE TABLE tutorialAppOutputTable (id string, temperature double);
+  CREATE TABLE GLOBAL tutorialAppOutputTable (id string, temperature double);
   @info(name='Query')
   INSERT INTO tutorialAppOutputTable
   SELECT concatFn(roomNo,'-',deviceID) as id, temperature
@@ -158,14 +139,14 @@ const run = async function () {
     const dcUrl = localDcDetails.tags.url;
 
     const url = isGlobal
-      ? url
+      ? globalUrl
       : `api-${dcUrl}`;
 
     const otpProducer = await connection.req(`/apid/otp`, {
       method: "POST"
     });
 
-    const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${url}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
+    const producerUrl = `wss://${url}/_ws/ws/v2/producer/persistent/${tenant}/${region}._system/${streamName}?otp=${otpProducer.otp}`;
 
     /* -------------------------- Initializing producer -------------------------- */
 
