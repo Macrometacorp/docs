@@ -6,6 +6,7 @@
     "build": "docusaurus build",
     "clear": "docusaurus clear",
     "deploy": "docusaurus deploy",
+    "verceld": "mkdir public ; mkdir public/docs ; npm run build && cp -r ./build/* ./public",
     "docusaurus": "docusaurus",
     "reinstall": "yarn clear && rm -rf node_modules && yarn install",
     "serve": "docusaurus serve",
