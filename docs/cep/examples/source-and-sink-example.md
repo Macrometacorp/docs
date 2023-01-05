@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Source and Sink example
+title: Source and Sink Example
 ---
 
 Sources and sinks are used to consume and publish events to external systems.
