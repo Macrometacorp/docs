@@ -13,7 +13,7 @@ This example creates a source from which a stream consumes JSON messages:
 
 ```sql
 C8DB source to consume `JSON` messages from.
-CREATE SOURCE TemperatureStream WITH (type='database', collection='TemparatureStream', collection.type="doc", replication.type="global", map.type='json') (sensorId string, temperature double);
+CREATE SOURCE TemperatureStream WITH (type='database', collection='TemperatureStream', collection.type="doc", replication.type="global", map.type='json') (sensorId string, temperature double);
 ```
 
 This example creates a sink to log events that arrive from a stream called `TemperatureOnlyStream` with the `temperature` attribute of type `double`:
@@ -29,7 +29,7 @@ from TemperatureStream;
 
 ## Input
 
-When a JSON message is written to the collection `TemparatureStream`, it automatically gets mapped to an event in the `TemperatureStream` stream.
+When a JSON message is written to the collection `TemperatureStream`, it automatically gets mapped to an event in the `TemperatureStream` stream.
 
 ```json
 {
