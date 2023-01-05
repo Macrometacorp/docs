@@ -10,6 +10,5 @@
       "destination": "/",
       "permanent": true
     }
-  ],
-  "trailingSlash": false
+  ]
 }
