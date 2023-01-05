@@ -25,7 +25,6 @@ from InputTemperatureStream;
 
 @info(name = 'Simple-selection')
 
-
 -- Selects only the `temperature` attribute from events, and outputs to `TemperatureOnlyStream`.
 -- Consumes events from `TemperatureAndSensorStream`. The schema of the stream is inferred from the previous query, hence no need to be defined.
 insert into TemperatureOnlyStream
@@ -33,7 +32,7 @@ select temperature
 from TemperatureAndSensorStream;
 ```
 
-## Events at each stream
+## Events at Each Stream
 
 When an event with values [`'aq-14'`, `35.4`] is sent to `InputTemperatureStream` stream, it is converted and travels through the streams as below.
 
