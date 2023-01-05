@@ -18,7 +18,7 @@ const config = {
   title: 'Macrometa',
   tagline: 'Macrometa GDN Documentation',
   url: host,
-  baseUrl: isDev ? '/docs' : '/docs',
+  baseUrl: isDev ? '/docs/' : '/docs/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
