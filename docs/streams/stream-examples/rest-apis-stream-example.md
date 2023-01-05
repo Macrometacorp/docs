@@ -99,7 +99,7 @@ const run = async function () {
 
     const dcUrl = localDcDetails.tags.url;
 
-    url = isGlobal
+    const url = isGlobal
       ? globalUrl
       : `api-${dcUrl}`;
 
