@@ -381,7 +381,7 @@ async function sendData () {
       output: process.stdout
     });
 
-    // To repeatedly ask the user for message to be published to the stream. User can always exit by typing 0
+    // Repeatedly ask the user for message to be published to the stream. User can always exit by typing 0
     var recursiveUserInput = () => {
       input.question(
         "Enter your message to publish or Type 0 to exit:\n",
