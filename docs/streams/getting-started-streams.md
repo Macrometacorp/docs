@@ -415,7 +415,7 @@ async function receiveData () {
     is_local
   );
   
-  // To close consumer connection when user types 0
+  // Close consumer connection when user types 0
   const input = readline.createInterface({
     input: process.stdin,
     output: process.stdout
