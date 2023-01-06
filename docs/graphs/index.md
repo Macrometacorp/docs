@@ -3,7 +3,7 @@ title: Graphs
 sidebar_position: 10
 ---
 
-A Graph consists of `vertices` and `edges`. Edges are stored as documents in [edge collections](../collections/graph-edge/add-edges.md).
+A Graph consists of `vertices` and `edges`. Edges are stored as documents in [edge collections](../collections/graph-edge/create-graph-edge.md).
 
 A vertex can be a document of a `document collection` or of an `edge collection` (so `edges` can be used as `vertices`). Which collections are used within a named graph is defined via `edge definitions`.
 
