@@ -1,6 +1,6 @@
 ---
 title: Create Graph Edge
-sidebar_position: 20
+sidebar_position: 10
 ---
 
 The Graph Edge collection is a form of document collection. It is used define relationships between two documents by using the **_from** and **_to** system attributes and the document **_id** system attribute.
