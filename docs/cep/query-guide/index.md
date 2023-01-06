@@ -52,7 +52,7 @@ The following diagram depicts some of the key Stream QL elements of Stream Appli
 
 ![Event Flow](/img/event-flow.png?raw=true "Event Flow")
 
-## Parts of a Stream Worker
+## Elements of a Stream Worker
 
 The table below provides a brief description of a the potential parts of a stream worker.
 
