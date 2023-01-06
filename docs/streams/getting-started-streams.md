@@ -450,11 +450,11 @@ async function selectAction () {
   });
 
   input.question(
-    "Type 'w' or '1' to write data. Type 'r' or '0' to read data: ",
+    "Type 'w' to write data. Type 'r' to read data: ",
     (userInput) => {
-      if (userInput === "w" || userInput === "1") {
+      if (userInput === "w") {
         sendData();
-      } else if (userInput === "r" || userInput === "0") {
+      } else if (userInput === "r") {
         receiveData();
       } else {
         console.log("Invalid user input. Stopping program.");
