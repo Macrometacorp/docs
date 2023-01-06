@@ -3,7 +3,21 @@ title: Getting Started with Graphs
 sidebar_position: 20
 ---
 
-This page shows you how to create a document collection, a edge collection, and a graph that creates relationships between the collections. You will then query that graph.
+In this getting started guide you will learn how to work with Graphs by creating relationships between collections that allow you to run semantic queries on airline flight data.
+
+_Graphs_ enable you to group your data and perform more powerful queries across connected documents. A graph consists of _vertices_ and _edges_. Vertices are stored in collections and linked by an edge document. Edges are stored as documents in edge collections, and vertices can be a document or an edge.
+
+The _edge definition_ determines which collections are used in a named graph. A named graph must contain at least one edge definition.
+
+ You can turn documents into graph structures for semantic queries with nodes, edges, and properties. Graphs directly connect data items between different collections. You can use graphs to refer to documents in different tables without a nested join. Graphs can also find patterns of document connections, such as the shortest path between two vertices in a graph.
+
+Edges in one edge collection may point to several vertex collections. You can add attributes to edges to do things like labelling connections.
+
+Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. In queries you can define in which directions the edge relations may be followed:
+
+- OUTBOUND: `_from` → `_to`
+- INBOUND: `_from` ← `_to`
+- ANY: `_from` ↔ `_to`.
 
 ## Dataset
 
