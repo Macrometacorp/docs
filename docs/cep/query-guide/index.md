@@ -18,8 +18,8 @@ StreamApp is a collection of Stream QL elements composed together as a script. H
 High level syntax of StreamApp is as follows:
 
 ```js
-<stream app>  :
-        <app annotation> *
+<stream worker>  :
+        <worker annotation> *
         ( <stream definition> | <table definition> | ... ) +
         ( <query> | <partition> ) +
         ;
@@ -37,6 +37,7 @@ Stream workers are named by adding `@app:name('<name>')` annotation on the top o
 @App:qlVersion("2")
 
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
+CREATE SINK STREAM OutputStream (roomNo int, avgTemp double);
 
 @name('5minAvgQuery')
 insert into OutputStream
