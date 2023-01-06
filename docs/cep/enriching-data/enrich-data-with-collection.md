@@ -10,8 +10,8 @@ For this purpose, consider a scenario where you receive sales records generated 
 ## Create a Stream Worker
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Stream Worker**.
-   
+1. Click **Stream Worker**.
+
    In the Editor tab, you must define the stream worker. The complete code block is below for you to copy and paste, followed by an explanation.
 
     ```sql
@@ -20,7 +20,22 @@ For this purpose, consider a scenario where you receive sales records generated 
     @App:description('An application for enriching transactions.')
     /**
     Test the stream worker:
- 
+    1. Load `UserTable` collection with user data.
+
+        {"userId":1200001,"firstName":"Raleigh","lastName":"McGilvra"}
+        {"userId":1200002,"firstName":"Marty","lastName":"Mueller"}
+        {"userId":1200003,"firstName":"Kelby","lastName":"Mattholie"}
+
+    2. Publish events on the `TrasanctionStream`.
+
+        {"userId":1200002,"transactionAmount":803,"location":"Chicago"}
+        {"userId":1200001,"transactionAmount":1023,"location":"New York"}
+
+    3. Observe the following events on `EnrichedTrasanctionStream`.
+
+        {"event":{"userId":1200002,"userName":"Marty Mueller","transactionAmount":803.0,"location":"Chicago"}}
+        {"event":{"userId":1200001,"userName":"Raleigh McGilvra","transactionAmount":1023.0,"location":"New York"}}
+
     **/
 
     CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
@@ -34,16 +49,20 @@ For this purpose, consider a scenario where you receive sales records generated 
     from UserTable as u join TransactionStream as t on u.userId == t.userId ;
     ```
 
+1. Click **Validate**. Macrometa checks to see that your code is valid.
+
 ### Metadata
 
-This information tells you
+This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid.
 
-3. Click **New** to define a new stream worker.
-4. Type a **Name** for the stream worker. For example, `EnrichingTransactionsApp`.
-5. Type a **Description**.
-6. Add the following sample stream worker.
+- **Name** - `@App:name("EnrichingTransactionsApp")`
+- **Query language version** - @App:qlVersion("2")
+- **Description (optional)** - @App:description('An application for enriching transactions.')
+- **Other information (optional)** - By convention, you can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/**` and `**/`. This is similar to a docstring in functions.
 
-7. Define the input stream and the c8db collection that need to be joined as follows.
+### Input and Output
+
+2. Define the input stream and the c8db collection that need to be joined as follows.
 
     1. Define the stream as follows.
 
@@ -63,7 +82,9 @@ This information tells you
         CREATE SINK EnrichedTrasanctionStream WITH (type='stream', stream='EnrichedTrasanctionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
         ```
 
-8. Then define the query for a stream to join the stream and the table, and handle the result as required.
+### Query to Enrich Data
+
+3. Then define the query for a stream to join the stream and the table, and handle the result as required.
     1. Add the `from` clause as follows with the `join` keyword to join the table and the stream.
 
         ```sql
@@ -103,7 +124,7 @@ This information tells you
 
 To check whether the above stream worker works as expected follow below steps
 
-DFP COMMENT - How do I do any of these things? Should this be part of the 
+DFP COMMENT - How do I do any of these things?
 
 1. Load `UserTable` Collection with User Data
 
