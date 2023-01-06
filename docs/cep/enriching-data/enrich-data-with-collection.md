@@ -11,6 +11,33 @@ For this purpose, consider a scenario where you receive sales records generated 
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Stream Worker**.
+   
+   In the Editor tab, you must define the stream worker. The complete code block is below for you to copy and paste, followed by an explanation.
+
+    ```sql
+    @App:name("EnrichingTransactionsApp")
+    @App:qlVersion("2")
+    @App:description('An application for enriching transactions.')
+    /**
+    Test the stream worker:
+ 
+    **/
+
+    CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
+
+    CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
+
+    CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
+
+    insert into EnrichedTransactionStream
+    select u.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
+    from UserTable as u join TransactionStream as t on u.userId == t.userId ;
+    ```
+
+### Metadata
+
+This information tells you
+
 3. Click **New** to define a new stream worker.
 4. Type a **Name** for the stream worker. For example, `EnrichingTransactionsApp`.
 5. Type a **Description**.
@@ -70,26 +97,13 @@ For this purpose, consider a scenario where you receive sales records generated 
 
     4. The completed stream worker is as follows.
 
-        ```sql
-        @App:name("EnrichingTransactionsApp")
-        @App:qlVersion("2")
 
-        CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
-
-        CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
-
-        CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
-
-        insert into EnrichedTransactionStream
-        select u.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
-        from UserTable as u join TransactionStream as t on u.userId == t.userId ;
-        ```
 
 ## Test the Stream Worker
 
 To check whether the above stream worker works as expected follow below steps
 
-DFP COMMENT - How do I do any of these things?
+DFP COMMENT - How do I do any of these things? Should this be part of the 
 
 1. Load `UserTable` Collection with User Data
 
