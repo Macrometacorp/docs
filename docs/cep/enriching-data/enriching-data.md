@@ -1,23 +1,23 @@
 ---
 sidebar_position: 5
+title: Enriching Data
 ---
 
-# Enriching Data
+Enriching data involves integrating the data received in the stream with data from Macrometa or another data stream, or an external service to derive an expected result. To understand the different ways in which this is done, follow the sections below.
 
-Enriching data involves integrating the data received in the stream with data from c8db or another data stream, or an external service to derive an expected result. To understand the different ways in which this is done, follow the sections below.
-
-## Enrich data with a Collection
+## Enrich Data with a Collection
 
 This section explains how to enrich the data in a specific stream by joining it with c8db collection. For this purpose, consider
 a scenario where you receive sales records generated from multiple locations as events via a system.
 
-1. Open the GUI. Click the **Stream Worker** tab.
-1. Click **New** to define a new stream worker.
-1. Type a **Name** for the stream worker. For example, `EnrichingTransactionsApp`.
-1. Type a **Description**.
-1. Add the following sample stream worker.
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
+2. Click **Stream Worker**.
+3. Click **New** to define a new stream worker.
+4. Type a **Name** for the stream worker. For example, `EnrichingTransactionsApp`.
+5. Type a **Description**.
+6. Add the following sample stream worker.
 
-1. Define the input stream and the c8db collection that need to be joined as follows.
+7. Define the input stream and the c8db collection that need to be joined as follows.
 
     1. Define the stream as follows.
 
@@ -25,18 +25,19 @@ a scenario where you receive sales records generated from multiple locations as 
         CREATE STREAM TrasanctionStream (userId long, transactionAmount double, location string);
         ```
 
-    1. Define the table as follows.
+    2. Define the table as follows.
 
         ```sql
         CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
         ```
-    1. Define the sink stream as follows.
+
+    3. Define the sink stream as follows.
 
         ```sql
-	CREATE SINK EnrichedTrasanctionStream WITH (type='stream', stream='EnrichedTrasanctionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
-	```
+        CREATE SINK EnrichedTrasanctionStream WITH (type='stream', stream='EnrichedTrasanctionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
+        ```
 
-1. Then define the query for a stream to join the stream and the table, and handle the result as required.
+8. Then define the query for a stream to join the stream and the table, and handle the result as required.
     1. Add the `from` clause as follows with the `join` keyword to join the table and the stream.
 
         ```sql
@@ -71,18 +72,18 @@ a scenario where you receive sales records generated from multiple locations as 
     4. The completed stream worker is as follows.
 
         ```sql
-	@App:name("EnrichingTransactionsApp")
-	@App:qlVersion("2")
+        @App:name("EnrichingTransactionsApp")
+        @App:qlVersion("2")
 
-	CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
+        CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
 
-	CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
+        CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
 
-	CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
+        CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
 
-	insert into EnrichedTransactionStream
-	select u.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
-	from UserTable as u join TransactionStream as t on u.userId == t.userId ;
+        insert into EnrichedTransactionStream
+        select u.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
+        from UserTable as u join TransactionStream as t on u.userId == t.userId ;
         ```
 
     5. To check whether the above stream worker works as expected follow below steps
@@ -188,6 +189,7 @@ To understand how this is done, consider a scenario where you receive informatio
     5. The completed stream worker is as follows:
 
         ```sql
+
 	@App:name("BankTransactionsApp")
 	@App:qlVersion("2")
 
@@ -199,8 +201,8 @@ To understand how this is done, consider a scenario where you receive informatio
 
 	insert into CashFlowStream
 	select w.branchID as branchID, w.amount as withdrawalAmount, d.amount as depositAmount
-	from CashWithdrawalStream window sliding_time(1 min) as w 
-		join CashDepositsStream window sliding_time(1 min) as d 
+	from CashWithdrawalStream window sliding_time(1 min) as w
+		join CashDepositsStream window sliding_time(1 min) as d
 		on w.branchID == d.branchID
 		having w.amount > d.amount * 0.95;
         ```
