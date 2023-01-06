@@ -7,6 +7,8 @@ This page explains how to enrich the data in a specific stream by joining it wit
 
 For this purpose, consider a scenario where you receive sales records generated from multiple locations as events from an external system.
 
+## Create a Stream Worker
+
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Stream Worker**.
 3. Click **New** to define a new stream worker.
@@ -42,11 +44,11 @@ For this purpose, consider a scenario where you receive sales records generated 
         ```
 
         :::info
-            Note the following about the `from` clause:
+        Note the following about the `from` clause:
 
-            * In this example, the input data is taken from both a stream and a table. You need to assign a unique reference for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream` stream is referred to as `t`, and the `UserTable` table is referred to as `u`.
-            * The `join ` keyword joins the stream and the table together while specifying the unique references.
-            * The condition for the stream and the table to be joined is `t.userId == u.userId `, which means that for an event to be taken from the `TransactionStream` for the join, one or more events that have the same value for the `userId` must exist in the `UserTable` table and vice versa.
+        - In this example, the input data is taken from both a stream and a table. You need to assign a unique reference for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream` stream is referred to as `t`, and the `UserTable` table is referred to as `u`.
+        - The `join` keyword joins the stream and the table together while specifying the unique references.
+        - The condition for the stream and the table to be joined is `t.userId == u.userId`, which means that for an event to be taken from the `TransactionStream` for the join, one or more events that have the same value for the `userId` must exist in the `UserTable` table and vice versa.
         :::
     2. To specify how the value for each attribute in the output stream is derived, add a `select` clause as follows.
 
@@ -55,13 +57,13 @@ For this purpose, consider a scenario where you receive sales records generated 
         ```
 
         :::info
-            Note the following in the `select` statement:
+        Note the following in the `select` statement:
 
-            * The `userId` attribute name is common to both the stream and the table. Therefore, you need to specify from where this attribute needs to be taken. Here, you can also specify `t.userId` instead of `u.userId`.
-            * You are specifying the output generated to include an attribute named `userName`. The value for that is derived
-            by concatenating the values of two attributes in the `UserTable` table (i.e., `firstName` and `lastName` attributes)
-            by applying the `str:concat()` function. 
-            * Similarly, you can apply any of the range of streams functions available to further enrich the joined output.
+        - The `userId` attribute name is common to both the stream and the table. Therefore, you need to specify from where this attribute needs to be taken. Here, you can also specify `t.userId` instead of `u.userId`.
+        - You are specifying the output generated to include an attribute named `userName`. The value for that is derived
+        by concatenating the values of two attributes in the `UserTable` table (i.e., `firstName` and `lastName` attributes)
+        by applying the `str:concat()` function.
+        - Similarly, you can apply any of the range of streams functions available to further enrich the joined output.
         :::
     3. To infer an output stream into which the enriched data must be directed, add the `insert into` clause as follows.
        `insert into EnrichedTrasanctionStream;`
@@ -83,27 +85,30 @@ For this purpose, consider a scenario where you receive sales records generated 
         from UserTable as u join TransactionStream as t on u.userId == t.userId ;
         ```
 
-    5. To check whether the above stream worker works as expected follow below steps
+## Test the Stream Worker
 
-        1. Load `UserTable` Collection with User Data
+To check whether the above stream worker works as expected follow below steps
 
-            ```json
-            {"userId":1200001,"firstName":"Raleigh","lastName":"McGilvra"}
-            {"userId":1200002,"firstName":"Marty","lastName":"Mueller"}
-            {"userId":1200003,"firstName":"Kelby","lastName":"Mattholie"}
-            ```
+DFP COMMENT - How do I do any of these things?
 
-        2. Publish events on the `TrasanctionStream`
+1. Load `UserTable` Collection with User Data
 
-            ```json
-            {"userId":1200002,"transactionAmount":803,"location":"Chicago"}
-            {"userId":1200001,"transactionAmount":1023,"location":"New York"}
-            ```
+   ```json
+   {"userId":1200001,"firstName":"Raleigh","lastName":"McGilvra"}
+   {"userId":1200002,"firstName":"Marty","lastName":"Mueller"}
+   {"userId":1200003,"firstName":"Kelby","lastName":"Mattholie"}
+   ```
 
-        3. You can observe the following events on `EnrichedTrasanctionStream`
+2. Publish events on the `TrasanctionStream`
 
-            ```json
-            {"event":{"userId":1200002,"userName":"Marty Mueller","transactionAmount":803.0,"location":"Chicago"}}
-            {"event":{"userId":1200001,"userName":"Raleigh McGilvra","transactionAmount":1023.0,"location":"New York"}}
-            ```
+   ```json
+   {"userId":1200002,"transactionAmount":803,"location":"Chicago"}
+   {"userId":1200001,"transactionAmount":1023,"location":"New York"}
+   ```
 
+3. You can observe the following events on `EnrichedTrasanctionStream`
+
+   ```json
+   {"event":{"userId":1200002,"userName":"Marty Mueller","transactionAmount":803.0,"location":"Chicago"}}
+   {"event":{"userId":1200001,"userName":"Raleigh McGilvra","transactionAmount":1023.0,"location":"New York"}}
+   ```
