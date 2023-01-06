@@ -5,7 +5,7 @@ title: Source and Sink Example
 
 Sources and sinks are used to consume and publish events to external systems.
 
-There are multiple source and sink types, but this example only explains Macrometa source, c8stream sink, and Kafka sink. For more info refer to the [Stream Worker Query Guide](../query-guide/index.md).
+There are multiple source and sink types, but this example only explains Macrometa source with a c8stream sink. For more info refer to the [Stream Worker Query Guide](../query-guide/index.md).
 
 ## Example
 
@@ -42,18 +42,12 @@ To process custom input messages, refer to Sinkmapper in [Functions](../query-gu
 
 ## Output
 
-After processing, the event arriving at `TemperatureOnlyStream` will be emitted via `c8stream` and `kafka` sinks.
+After processing, the event arriving at `TemperatureOnlyStream` will be emitted via `c8stream` sink.
 
 The message is published to `TemperatureOnlyStream` as
 
 ```json
 {"temperature":"35.4"}
-```
-
-The `kafka` sink maps the event to a custom JSON message as below and publishes it to the `temperature` topic.
-
-```json
-{"temp":"35.4"}
 ```
 
 To output messages using other message formats, refer to Sourcemapper in [Functions](../query-guide/functions/index.md).
