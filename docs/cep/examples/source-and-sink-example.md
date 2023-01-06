@@ -5,7 +5,7 @@ title: Source and Sink Example
 
 Sources and sinks are used to consume and publish events to external systems.
 
-There are multiple source and sink types, but this example only explains Macrometa source with a c8stream sink. For more info refer to the [Stream Worker Query Guide](../query-guide/index.md).
+There are multiple source and sink types, but this example only explains Macrometa source with a stream sink. For more info refer to the [Stream Worker Query Guide](../query-guide/index.md).
 
 ## Example
 
