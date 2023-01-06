@@ -24,27 +24,32 @@ This page describes how to create geo-replicated streams and set up queues and p
 <TabItem value="js" label="Javascript">
 
 ```js
+// Connect to GDN.
 const jsc8 = require("jsc8");
 const readline = require("readline");
 const globalUrl = "https://play.paas.macrometa.io";
+const apiKey = "xxxx"; //Change this to your API Key
 
-// Create an authenticated instance with an API key (recommended) or JSON web token (JWT).
+// Create an authenticated instance with an API key (recommended)
 const client = new jsc8({
   url: globalUrl,
-  apiKey:
-    "XXXX",
+  apiKey: apiKey,
   fabricName: "_system"
 });
-// const client = new jsc8({ url: gdnUrl, token: "XXXX", fabricName: "_system" });
 
-// Or use email and password to authenticate a client instance
-// const client = new jsc8(globalUrl);
-// await client.login("your@email.com", "password");
+/* Authenticate via JSON Web Token (JWT)
+const client = new jsc8({ url: globalUrl, token: "XXXX", fabricName: "_system" });
+*/
+  
+/* Create an authenticated client instance via email and password
+const client = new jsc8(globalUrl);
+await client.login("your@email.com", "password");
+*/
 
 // Variables
 const stream = "streamQuickstart";
 let prefix_text = "";
-const is_local = false; //For a global stream pass True and False for local stream
+const is_local = false; //For a local stream pass this variable as True, or False for a global stream
 
 // Get the right prefix for the stream
 if (is_local) {
@@ -53,19 +58,10 @@ if (is_local) {
   prefix_text = "c8globals.";
 }
 
-async function getDCList () {
-  const dcListAll = await client.listUserFabrics();
-  const dcListObject = await dcListAll.find(function (o) {
-    return o.name === "_system";
-  });
-  const dcList = dcListObject.options.dcList.split(",");
-  console.log("dcList: ", dcList);
-}
-
 async function createMyStream () {
   let streamName = { "stream-id": "" };
   if (await client.hasStream(stream, is_local)) {
-    console.log("Stream already exists");
+    console.log("This stream already exists!");
     streamName["stream-id"] = prefix_text + stream;
     console.log(`Old Producer = ${streamName["stream-id"]}`);
   } else {
@@ -76,21 +72,37 @@ async function createMyStream () {
 
 async function sendData () {
   console.log("\n ------- Publish Messages  ------");
-  const producer = await client.createStreamProducer(stream);
+  const producer = await client.createStreamProducer(stream, is_local);
 
   producer.on("open", () => {
-    for (let i = 0; i < 10; i++) {
-      const msg1 = `Persistent hello from (${JSON.stringify(i)})`;
-      const data = {
-        payload: Buffer.from(msg1).toString("base64")
-      };
+    const input = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
 
-      console.log(`Stream: ${msg1}`);
-      producer.send(JSON.stringify(data));
+    // Repeatedly ask the user for message to be published to the stream. User can always exit by typing 0
+    var recursiveUserInput = () => {
+      input.question(
+        "Enter your message to publish or Type 0 to exit:\n",
+        (userInput) => {
+          if (userInput === "0") {
+            producer.close();
+            return input.close();
+          }
+
+          const data = {
+            payload: Buffer.from(userInput).toString("base64")
+          };
+          producer.send(JSON.stringify(data));
+          console.log(`Message sent: ${userInput}`);
+          recursiveUserInput();
+        }
+      );
     }
+    recursiveUserInput();
   });
-  producer.onclose = function (e) {
-    console.log("Closed WebSocket:Producer connection for " + streamName);
+  producer.onclose = function () {
+    console.log("Closed WebSocket:Producer connection for " + stream);
   };
 }
 
@@ -98,7 +110,24 @@ async function receiveData () {
   console.log("\n ------- Receive Messages  ------");
   const consumer = await client.createStreamReader(
     stream,
-    "test-subscription-1"
+    "test-subscription-1",
+    is_local
+  );
+  
+  // Close consumer connection when user types 0
+  const input = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  input.question(
+    "Type '0' to exit anytime:\n",
+    (userInput) => {
+      if (userInput === "0") {
+        consumer.close();
+        return input.close();
+      } 
+    }
   );
 
   consumer.on("message", (msg) => {
@@ -107,6 +136,7 @@ async function receiveData () {
     // Send message acknowledgement
     consumer.send(JSON.stringify({ messageId }));
   });
+
   consumer.onclose = function () {
     console.log("Closed WebSocket:Consumer connection for " + stream);
   };
@@ -135,7 +165,6 @@ async function selectAction () {
 }
 
 (async function () {
-  await getDCList();
   await createMyStream();
   await selectAction();
 })();
