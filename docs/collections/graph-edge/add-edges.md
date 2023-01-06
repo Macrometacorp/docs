@@ -1,6 +1,6 @@
 ---
 title: Add Edges to Collection
-sidebar_position: 30
+sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
