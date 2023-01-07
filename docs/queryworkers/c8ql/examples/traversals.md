@@ -35,7 +35,7 @@ db._query(`FOR startCity IN
 ........> } ).toArray()
 ```
 
-The geo index query returns us `startCity` (**Cologne** and **Hamburg**) which we then use as starting point for our graph traversal. For simplicity we only return their direct neighbours. We format the return result so we can see from which `startCity` the traversal came.
+The geo index query returns us `startCity` (**Cologne** and **Hamburg**) which we then use as starting point for our graph traversal. For simplicity we only return their direct neighbors. We format the return result so we can see from which `startCity` the traversal came.
 
 Alternatively we could use a `LET` statement with a subquery to group the traversals by their `startCity` efficiently:
 

@@ -76,10 +76,10 @@ Create a graph named airline with and edges in flights and both from and to vert
 
 Storing (and retrieving) a graph is one thing, but the actual problems only begin when you want to query information about a graph.
 
-Finding the neighbours of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when you deal with graphs (or relations) in practice, you usually have a lot more questions, here are a few that come to mind:
+Finding the neighbor's of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when you deal with graphs (or relations) in practice, you usually have a lot more questions, here are a few that come to mind:
 
-1. Find all neighbours of a `vertex` only using `edges` with a given `property` or `label`.
-2. Find all neighbours of a `vertex` with a given `property` or `label`.
+1. Find all neighbor's of a `vertex` only using `edges` with a given `property` or `label`.
+2. Find all neighbor's of a `vertex` with a given `property` or `label`.
 3. Find all paths with a fixed length L in the graph starting at some given `vertex`.
 4. Find the shortest (or lightest when working with weights) path from vertex `V` to vertex `W`.
 5. Find the distances between any two vertices in the graph.
@@ -145,7 +145,7 @@ RETURN {
 
 ### Cities within a given distance
 
-Get the cities that are no more than 2500km away from houston.
+Get the cities that are no more than 2500km away from Houston.
 
 ```JavaScript
 LET city = DOCUMENT("cities/houston")
