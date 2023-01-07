@@ -19,21 +19,34 @@ For this purpose, consider a scenario where you receive sales records generated 
     @App:description('An application for enriching transactions.')
     /**
     Test the stream worker:
-    1. Load `UserTable` collection with user data.
+    1. If they are not already present, then run the following query to add the records to the UserTable collection.
 
-        {"userId":1200001,"firstName":"Raleigh","lastName":"McGilvra"}
-        {"userId":1200002,"firstName":"Marty","lastName":"Mueller"}
+        LET data = [
+        {"userId":1200001,"firstName":"Raleigh","lastName":"McGilvra"},
+        {"userId":1200002,"firstName":"Marty","lastName":"Mueller"},
         {"userId":1200003,"firstName":"Kelby","lastName":"Mattholie"}
+        ]
 
-    2. Publish events on the `TrasanctionStream`.
+        FOR d IN data
+            INSERT d INTO UserTable
 
-        {"userId":1200002,"transactionAmount":803,"location":"Chicago"}
-        {"userId":1200001,"transactionAmount":1023,"location":"New York"}
+    2. Open a stream window to view c8locals.EnrichedTransactionStream output.
 
-    3. Observe the following events on `EnrichedTrasanctionStream`.
+    3. Send the following message to c8locals.TransactionStream:
 
-        {"event":{"userId":1200002,"userName":"Marty Mueller","transactionAmount":803.0,"location":"Chicago"}}
-        {"event":{"userId":1200001,"userName":"Raleigh McGilvra","transactionAmount":1023.0,"location":"New York"}}
+        "userId":1200002,"transactionAmount":803,"location":"Chicago",
+
+        c8locals.EnrichedTransactionStream output should be:
+
+        {"transactionAmount":803.0,"location":"Chicago","userName":"Marty Mueller","userId":1200002,}
+
+   4. Send the following message to c8locals.TransactionStream:
+
+        "userId":1200001,"transactionAmount":1023,"location":"New York"
+
+        c8locals.EnrichedTransactionStream output should be:
+
+        {"transactionAmount":1023.0,"location":"New York","userName":"Raleigh McGilvra","userId":1200001}
 
     **/
 
@@ -144,7 +157,7 @@ To check whether the above stream worker works as expected follow below steps
 
 ### 1. Load UserTable Collection with User Data
 
-Run the following query using one of the methods described in [Running Queries](../../queryworkers/running-queries.md) to add the following records to the collection. Each line is a separate record.
+Run the following query using one of the methods described in [Running Queries](../../queryworkers/running-queries.md) to add the records to the collection. Each line is a separate record.
 
 ```sql
 LET data = [
