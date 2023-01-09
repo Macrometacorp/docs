@@ -7,7 +7,7 @@ This section explains how to enrich the data in a specific stream by connecting 
 
 To understand how this is done, consider an example where you have some credit card numbers, but need to connect with an external service to identify the credit card companies that issued them, and then save that information in a database.
 
-1. Start creating a new stream worker. You can name it `CCTypeIdentificationApp` For instructions, see [Creating a Stream Worker](./create-stream-app.md).
+1. Start creating a new stream worker. You can name it `CCTypeIdentificationApp` For instructions, see [Creating a Stream Worker](../tutorials/create-stream-app.md).
 
 2. Define the input stream from which the input data (i.e., the credit card no in this example) must be taken.
 
@@ -15,7 +15,7 @@ To understand how this is done, consider an example where you have some credit c
    create stream CreditCardStream (creditCardNo string);
    ```
 
-3. To publish the input data to the external application, connect a sink to the stream you created as shown below. For more information about publishing information, see the [Publishing Data guide](publishing-data.md).
+3. To publish the input data to the external application, connect a sink to the stream you created as shown below. For more information about publishing information, see the [Publishing Data guide](../tutorials/publishing-data.md).
 
     ```sql
 	CREATE SINK GetCreditCardInfoStream WITH (type='http-call', publisher.url='http://postman-echo.com/post', method='POST', headers="'Content-Type:application/json'", sink.id="cardTypeSink", map.type='json', map.payload='{{creditCardNo}}') (creditCardNo string);
@@ -25,15 +25,15 @@ To understand how this is done, consider an example where you have some credit c
         Note the following about the above sink definition:
         - It is assumed that the external application receives requests in HTTP. Therefore, the sink type is `http-request`.
         - The `publisher.url` parameter specifies the URL to which the outgoing events need to be published via HTTP.
-        - For more information about the HTTP transport, see [HTTP Sink](../query-guide/functions/sink/http.md) and [HTTP Source](../query-guide/functions/source/http.md).
+        - For more information about the HTTP transport, see [HTTP Sink](../query-guide/functions/sink/http.md) and [HTTP Source](../source/http.md).
     :::
-4. To capture the response of the external application once it returns the credit card type, create a stream as follows. For more information about consuming data, see the [Consuming Data guide](./consuming-data.md).
+4. To capture the response of the external application once it returns the credit card type, create a stream as follows. For more information about consuming data, see the [Consuming Data guide](../tutorials/consuming-data.md).
 
     ```sql
     CREATE SOURCE EnrichedCreditCardInfoStream WITH (creditCardNo string, creditCardType string);
     ```
 
-5. Assuming the external application sends its output via HTTP transport, connect a source of the `http`type to the `EnrichedCreditCardStream` stream as follows. For more information about consuming events, see the [Consuming Data guide](./consuming-data.md).
+5. Assuming the external application sends its output via HTTP transport, connect a source of the `http`type to the `EnrichedCreditCardStream` stream as follows. For more information about consuming events, see the [Consuming Data guide](../tutorials/consuming-data.md).
 
     ```sql
 	CREATE SOURCE EnrichedCreditCardInfoStream WITH (source.type='http-call-response', sink.id='cardTypeSink', map.type='json', attributes.creditCardNo = 'trp:creditCardNo', attributes.creditCardType = ".") (creditCardNo string,creditCardType string);
