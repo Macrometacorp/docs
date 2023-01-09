@@ -14,7 +14,7 @@ The following types of triggers are currently supported:
 
 | Trigger type           | Description                                                                                                        |	
 |------------------------|--------------------------------------------------------------------------------------------------------------------|
-| every time_interval    | An event is triggered periodically at the given time interval (Minimum supported time interval is millisec)        |
+| every time_interval    | An event is triggered periodically at the given time interval (Minimum supported time interval is millisecond)        |
 | cron expression        | An event is triggered periodically based on the given cron expression                                              |
 | start                  | An event is triggered when Siddhi is started                                                                       |
 
