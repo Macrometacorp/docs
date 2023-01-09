@@ -117,14 +117,14 @@ There are two ways you to configure `map.payload` annotation.
 
 The following is a list of sink mapping types supported by Stream:
 
-|Sink mapping type | Description|
+|Sink Mapping Type | Description|
 | ------------- |-------------|
-| PassThrough | Omits data conversion on Stream events.|
-| JSON | Converts JSON messages to Stream events.|
-| XML | Converts XML messages to Stream events.|
-| TEXT | Converts plain text messages to Stream events.|
-| Key Value | Converts key-value HashMaps to Stream events.|
-| CSV | Converts CSV like delimiter separated events to Stream events.|
+| [CSV](../query-guide/functions/sourcemapper/csv.md) | Converts CSV-like delimiter separated events to stream events.|
+| [JSON](../query-guide/functions/sourcemapper/json.md) | Converts JSON messages to stream events.|
+| [Key-Value](../query-guide/functions/sourcemapper/keyvalue.md) | Converts key-value hash maps to stream events.|
+| [PassThrough](../query-guide/functions/sourcemapper/passThrough.md) | Omits data conversion on stream events.|
+| [Text](../query-guide/functions/sourcemapper/text.md) | Converts plain text messages to stream events.|
+| XML | Converts XML messages to stream events.|
 
 :::tip
 When the `map.type` annotation is not provided `map.type='passThrough'` is used as default, that passes the outgoing Stream events directly to the sinks without any data conversion.
