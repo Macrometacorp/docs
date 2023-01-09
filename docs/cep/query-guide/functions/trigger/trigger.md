@@ -27,7 +27,6 @@ Trigger uses the following syntax:
 	CREATE TRIGGER <trigger name> WITH ( expression = 'start' or 'cron expression' ); 
 ```
 
-
 ## Example
 
 ```js
