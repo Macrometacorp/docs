@@ -1,15 +1,14 @@
 {
   "redirects": [
-    {
-      "source": "/essentials",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/essentials/(.*)",
-      "destination": "/",
-      "permanent": true
-    }
+    { "source": "/docs/demos/cloudflare-workers", "destination": "/docs/tutorials/cloudflare-workers" },
+    { "source": "/docs/demos/dynamo", "destination": "/docs/tutorials/dynamo" },
+    { "source": "/docs/documents", "destination": "/docs/tutorials/cloudflare-workers" },
+    { "source": "/docs/gdnsl/commands", "destination": "/docs/essentials/CLI/commands" },
+    { "source": "/docs/graphs", "destination": "/docs/collections/graphs" },
+    { "source": "/docs/keyvalue", "destination": "/docs/collections/keyvalue" },
+    { "source": "/docs/collections/graphs", "destination": "/docs/graphs" },
+    {"source": "/essentials", "destination": "/docs"},
+    {"source": "/essentials/(.*)", "destination": "/docs"}
   ],
   "trailingSlash": false
 }
