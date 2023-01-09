@@ -140,7 +140,7 @@ The configuration of the `HTTP` sink and `JSON` sink mapper to achieve the above
 CREATE SINK OutputStream WITH (sink.type='http', publisher.url='http://localhost:8005/endpoint', method='POST', headers='Accept-Date:20/02/2017', basic.auth.enabled='true', basic.auth.username='admin', basic.auth.password='admin', map.type='json') (name string, age int, country string);
 ```
 
-This will publish a `JSON` message on the following format:
+This publishes a `JSON` message on the following format:
 
 ```json
 {
@@ -200,13 +200,13 @@ This can also publish multiple events together as a `JSON` message on the follow
 
 Publishes events from the `OutputStream` stream to multiple `HTTP` endpoints using a partitioning strategy. Here the events are sent to either `http://localhost:8005/endpoint1` or `http://localhost:8006/endpoint2` based on the partitioning key `country`. It uses default `JSON` mapping, `POST` method, and used `admin` as both the username and the password when publishing to both the endpoints.
 
-The configuration of the distributed `HTTP` sink and `JSON` sink mapper to achieve the above is as follows.
+The configuration of the distributed `HTTP` sink and `JSON` sink mapper to achieve the above is:
 
-```
+```sql
 CREATE SINK OutputStream WITH (sink.type='http', method='POST', basic.auth.enabled='true', basic.auth.username='admin', basic.auth.password='admin', map.type='json', distribution.strategy='partitioned', partitionKey='country', destination.publisher.url='http://localhost:8005/endpoint1', destination.publisher.url='http://localhost:8006/endpoint2') (name string, age int, country string);
 ```
 
-This will partition the outgoing events and publish all events with the same country attribute value to the same endpoint. The `JSON` message published will be on the following format:
+This partitions the outgoing events and publish all events with the same country attribute value to the same endpoint. The `JSON` message published will be in the following format:
 
 ```json
 {
@@ -218,19 +218,15 @@ This will partition the outgoing events and publish all events with the same cou
 }
 ```
 
-### Error Handling
-
-Errors in Stream can be handled at the Streams and in Sinks.
-
-
-
-#### Error Handling at Sink
+## Error Handling at Stream Sink
 
 There can be cases where external systems becoming unavailable or coursing errors when the events are published to them. By default sinks log and drop the events causing event losses, and this can be handled gracefully by configuring `on.error` parameter of the `sink.type` annotation.
 
+### on.error Parameter
+
 The `on.error` parameter of the `sink.type` annotation can be specified as below.
 
-```
+```sql
 CREATE SINK <stream name> WITH (sink.type='<sink type>', on.error.action='<on error action>', <key>='<value>', ...) (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
 ```  
 
@@ -240,25 +236,23 @@ The following actions can be specified to `on.error` parameter of `sink.type` an
 
 - `STREAM`: Pushes the failed events with the corresponding error to the associated fault stream the sink belongs to.
 
-**Example 1**
+### Example 1
 
 Introduce back pressure on the threads who bring events via `TempStream` when the system cannot connect to Kafka.
 
 The configuration of `TempStream` stream and `sink.type` Kafka annotation with `on.error` property is as follows.
 
-```
+```sql
 CREATE SINK TempStream WITH (sink.type='kafka', on.error.action='WAIT', topic='{{roomNo}}', bootstrap.servers='localhost:9092', map.type='xml') (deviceID long, roomNo int, temp double);
 ```
 
-**Example 2**
+### Example 2
 
 Send events to the fault stream of `TempStream` when the system cannot connect to Kafka.
 
-The configuration of `TempStream` stream with associated fault stream, `sink.type` Kafka annotation with `on.error` property and a [queries](#query) to handle the error is as follows.
+The configuration of `TempStream` stream with associated fault stream, `sink.type` Kafka annotation with `on.error` property and a queries to handle the error is as follows.
 
-Note: Details on writing processing logics via [queries](#query) will be explained in later sections.
-
-```
+```sql
 CREATE SINK TempStream WITH (sink.type='kafka', on.error.action='STREAM', topic='{{roomNo}}', bootstrap.servers='localhost:9092', map.type='xml') (deviceID long, roomNo int, temp double);
 
 -- Handling error by simply logging the event and error.
