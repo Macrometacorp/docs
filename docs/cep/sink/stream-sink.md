@@ -2,23 +2,21 @@
 title: Stream Sink
 ---
 
-### Sink
+Stream sinks consume events from streams and publish them using multiple transports to external endpoints in various data formats.
 
-Sinks consumes events from streams and publish them via multiple transports to external endpoints in various data formats.
+A sink configuration allows users to define a mapping to convert the stream events into the required output data format, such as `JSON`, `TEXT`, and so on, and publish the events to the configured endpoints. When customizations to such mappings are not provided, stream converts events to the predefined event format based on the stream definition and the configured message mapper type before publishing the events.
 
-A sink configuration allows users to define a mapping to convert the Stream events in to the required output data format (such as `JSON`, `TEXT`, `XML`, etc.) and publish the events to the configured endpoints. When customizations to such mappings are not provided, Stream converts events to the predefined event format based on the stream definition and the configured message mapper type before publishing the events.
+## Purpose
 
-**Purpose**
+Stream sink provides a way to publish stream events of a stream to external systems by converting events to their supported format.
 
-Sink provides a way to publish stream events of a stream to external systems by converting events to their supported format.
-
-**Syntax**
+## Syntax
 
 To configure a stream to publish events via a sink, add the sink configuration to a stream definition by adding the `sink.type` annotation with the required parameter values.
 
 The sink syntax is as follows:
 
-```
+```sql
 CREATE SINK <stream name> WITH (sink.type='<sink type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.payload'<payload mapping>')) (<attribute1> <type>, <attributeN> <type>);
 ```
 
@@ -39,7 +37,7 @@ Here the attribute names in the double curly braces will be replaced with the va
 
 This syntax includes the following annotations.
 
-**Sink**
+### Sink
 
 The `type` parameter of the `sink.type` annotation defines the sink type that publishes the events. The other parameters of the `sink.type` annotation depends upon the selected sink type, and here some of its parameters can be optional and/or dynamic.
 
@@ -54,18 +52,18 @@ The following is a list of sink types supported by stream processor:
 | Email | Send emails via SMTP protocols.|
 | Web Socket | Publish events to a Web Socket |
 
-#### Distributed Sink
+## Distributed Sink
 
-Distributed Sinks publish events from a defined stream to multiple endpoints using load balancing or partitioning strategies.
+Distributed sinks publish events from a defined stream to multiple endpoints using load balancing or partitioning strategies.
 
 Any sink can be used as a distributed sink. A distributed sink configuration allows users to define a common mapping to convert
 and send the Stream events for all its destination endpoints.
 
-**Purpose**
+### Purpose
 
 Distributed sink provides a way to publish Stream events to multiple endpoints in the configured event format.
 
-###Syntax
+### Syntax
 
 To configure a distributed sink, add the sink configuration to a stream definition by adding the `sink.type` property and add the configuration parameters that are common of all the destination endpoints inside it, along with the common parameters also add the `distribution.strategy` property specifying the distribution strategy (i.e. `roundRobin` or `partitioned`) and `destination` properties providing each endpoint specific configurations.
 
@@ -225,62 +223,7 @@ This will partition the outgoing events and publish all events with the same cou
 
 Errors in Stream can be handled at the Streams and in Sinks.
 
-#### Error Handling at Stream
 
-When errors are thrown by Stream elements subscribed to the stream, the error gets propagated up to the stream that delivered the event to those Stream elements. By default the error is logged and dropped at the stream, but this behavior can be altered by by adding `OnError` property to the corresponding stream definition.
-
-`OnError` property can help users to capture the error and the associated event, and handle them gracefully by sending them to a fault stream.
-
-The `OnError` property and the required `action` to be specified as below.
-
-```
-CREATE SOURCE <stream name> WITH (OnError.action='<action>') (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
-```
-
-The `action` parameter of the `OnError` property defines the action to be executed during failure scenarios.
-
-The following actions can be specified to `OnError` property to handle erroneous scenarios.
-
-- `STREAM`: Creates a fault stream and redirects the event and the error to it. The created fault stream will have all the attributes defined in the base stream to capture the error causing event, and in addition it also contains `_error` attribute of type `object` to containing the error information. The fault stream can be referred by adding `!` in front of the base stream name as `!<stream name>`.
-
-**Example**
-
-Handle errors in `TempStream` by redirecting the errors to a fault stream.
-
-The configuration of `TempStream` stream and `OnError` property is as follows.
-
-```
-CREATE STREAM TempStream WITH(OnError.action="STREAM") (deviceID long, roomNo int, temp double;
-```
-
-Stream infers and automatically defines the fault stream of `TempStream` as given below.
-
-```
-CREATE STREAM !TempStream (deviceID long, roomNo int, temp double, _error object);
-```
-
-The stream worker extends the above use-case by adding failure generation and error handling with the use of [queries](#query) is as follows.
-
-:::note
-Details on writing processing logics via [queries](#query) will be explained in later sections.
-:::
-
-```
--- Define fault stream to handle error occurred at TempStream subscribers
-
-CREATE STREAM TempStream WITH(OnError.action="STREAM") (deviceID long, roomNo int, temp double;
-
--- Error generation through a custom function `createError()`
-@name('error-generation')
-insert into IgnoreStream1
-from TempStream#custom:createError();
-
--- Handling error by simply logging the event and error.
-@name('handle-error')
-insert into IgnoreStream2
-select deviceID, roomNo, temp, _error
-from !TempStream#log("Error Occurred!");
-```
 
 #### Error Handling at Sink
 
