@@ -42,6 +42,7 @@ When viewing your collections, you can click **New Collection** to create a new 
 - [Create a Key-Value Store](keyvalue/create-key-value-store.md)
 - [Create a Dynamo Table](dynamo/create-dynamo-table.md)
 - [Create a Graph Edge](graph-edge/create-graph-edge.md)
+
 </TabItem>
 <TabItem value="apo" label="REST API">
 
