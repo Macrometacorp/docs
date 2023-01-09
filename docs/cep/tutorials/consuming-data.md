@@ -161,7 +161,7 @@ Stream processor consumes a message in the default format when it makes no chang
     The map type specifies the format in which the messages are received.  For example:
     
     ```sql
-	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', map.attributes.transNo = '$.transaction', map.attributes.product = 'product', map.attributes.quantity = 'quantity', map.attributes.salesValue = '$.sales', map.attributes.price = 'price') (transNo int, product string, price int, quantity int, salesValue long);
+	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', map.type='json', map.attributes.transNo = '$.transaction', map.attributes.product = 'product', map.attributes.quantity = 'quantity', map.attributes.salesValue = '$.sales', map.attributes.price = 'price') (transNo int, product string, price int, quantity int, salesValue long);
     ```
     
 3. Save the stream worker. If you save the stream worker that was created using the example configurations, the completed stream worker is as follows.
@@ -171,14 +171,14 @@ Stream processor consumes a message in the default format when it makes no chang
     @App:qlVersion("2")
     @App:description("Description of the plan")
 
-	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', map.attributes.transNo = '$.transaction', map.attributes.product = 'product', map.attributes.quantity = 'quantity', map.attributes.salesValue = '$.sales', map.attributes.price = 'price') (transNo int, product string, price int, quantity int, salesValue long);
+    CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', map.type='json', map.attributes.transNo = '$.transaction', map.attributes.product = 'product', map.attributes.quantity = 'quantity', map.attributes.salesValue = '$.salesValue', map.attributes.price = 'price') (transNo int, product string, price int, quantity int, salesValue long);
 
-	CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream.list='SalesTotals', replication.type='local') (product string, totalSale long);
+    CREATE SINK STREAM SalesTotals (product string, totalSale long);
 
-	insert into PublishSalesTotalsStream
-	select product, sum(salesValue) as totalSale
-	from ConsumerSalesTotalsStream WINDOW SLIDING_TIME(1 min)
-	group by product;
+    insert into SalesTotals
+    select product, sum(salesValue) as totalSale
+    from ConsumerSalesTotalsStream WINDOW SLIDING_TIME(1 min)
+    group by product;
     ```
     
 4. To check whether the above stream worker works as expected, publish some messages. For example, a stream using JSON can produce output such as:
