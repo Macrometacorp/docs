@@ -32,6 +32,10 @@ const redirectsPlugin = [
       {
         from: '/troubleshooting',
         to: '/references/troubleshooting'
+      },
+      {
+        from: '/collections/graphs',
+        to: '/graphs/'
       }
     ]
   }
