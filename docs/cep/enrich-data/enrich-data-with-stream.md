@@ -36,7 +36,7 @@ To understand how this is done, consider a scenario where you receive informatio
     ```
 
     !!!info
-        A sink annotation is connected to the output stream to publish the output events. For more information about adding sinks to publish events, see the [Publishing Data guide](publishing-data.md).
+        A sink annotation is connected to the output stream to publish the output events. For more information about adding sinks to publish events, see the [Publishing Data guide](../tutorials/publishing-data.md).
 
 4. To specify how the join is performed, and how to use the combined information, write a query to a stream as follows.
 
