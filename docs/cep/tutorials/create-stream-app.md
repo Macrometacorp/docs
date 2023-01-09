@@ -294,7 +294,7 @@ Following tutorials cover various user scenarios using Macrometa Stream Processi
 - [Consuming Data](consuming-data.md)
 - [Filtering Data](filtering-data.md)
 - [Transforming Data](transforming-data.md)
-- [Enriching Data](enriching-data.md)
+- [Enrich Data](../enrich-data/index.md)
 - [Executing Scripts](executing-scripts.md)
 - [Correlating Data](correlating-data.md)
 - [Summarizing Data](summarizing-data.md)
