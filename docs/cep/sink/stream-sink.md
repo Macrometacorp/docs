@@ -69,24 +69,23 @@ To configure a distributed sink, add the sink configuration to a stream definiti
 
 The distributed sink syntax is as follows:
 
-**_RoundRobin Distributed Sink_**
+#### RoundRobin Distributed Sink
 
 Publishes events to defined destinations in a round robin manner.
 
-```
+```sql
 CREATE SINK <stream name> WITH (sink.type='<sink type>', <common.static.key>='<value>', <common.dynamic.key>='{{<value>}}', map.type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.payload='<payload mapping>' distribution.strategy='roundRobin', destination.<key>='<value>', destination.<key>='<value>') (<attribute1> <type>, <attributeN> <type>);
 ```
 
-**_Partitioned Distributed Sink_**
+#### Partitioned Distributed Sink
 
 Publishes events to defined destinations by partitioning them based on the partitioning key.
 
-```
-
+```sql
 CREATE SINK <stream name> WITH (sink.type='<sink type>', <common.static.key>='<value>', <common.dynamic.key>='{{<value>}}', map.type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.payload='<payload mapping>', distribution.strategy='partitioned', partitionKey='<partition key>', destination.<key>='<value>', destination.<key>='<value>') (<attribute1> <type>, <attributeN> <type>);
 ```
 
-#### Sink Mapper
+### Sink Mapper
 
 Each `sink.type` configuration can have a mapping denoted by the `map.type` annotation that defines how to convert Stream events to outgoing messages with the defined format.
 
@@ -94,7 +93,7 @@ The `type` parameter of the `map.type` defines the map type to be used in conver
 
 For detailed information about the parameters see the documentation of the relevant mapper.
 
-**Map Payload**
+### Map Payload
 
 `map.payload` is an optional annotation used with `map.type` to define custom mapping. When the `map.payload` annotation is not provided, each mapper maps the outgoing events to its own default event format. The `map.payload` annotation allow users to configure mappers to produce the output payload of their choice, and by using dynamic properties within the payload they can selectively extract and add data from the published Stream events.
 
@@ -102,19 +101,19 @@ There are two ways you to configure `map.payload` annotation.
 
 1. Some mappers such as `XML`, `JSON`, and `Test` only accept one output payload:
 
-  ```
+  ```js
   map.payload='This is a test message from {{user}}.'
   ```
 
 2. Some mappers such `key-value` accept series of mapping values:
 
-  ```
+  ```js
   map.payload= key1='mapping_1', 'key2'='user : {{user}}'
   ```
 
   Here, the keys of payload mapping can be defined using the dot notation as ```a.b.c```, or using any constant string value as `'$abc'`.
 
-**Supported Sink Mapping Types**
+### Supported Sink Mapping Types
 
 The following is a list of sink mapping types supported by Stream:
 
@@ -130,14 +129,14 @@ The following is a list of sink mapping types supported by Stream:
 :::tip
 When the `map.type` annotation is not provided `map.type='passThrough'` is used as default, that passes the outgoing Stream events directly to the sinks without any data conversion.
 :::
-**Example 1**
+
+## Example 1
 
 Publishes `OutputStream` events by converting them to `JSON` messages with the default format, and by sending to an `HTTP` endpoint `http://localhost:8005/endpoint1`, using `POST` method, `Accept` header, and basic authentication having `admin` is both username and password.
 
 The configuration of the `HTTP` sink and `JSON` sink mapper to achieve the above is as follows.
 
-```
-
+```sql
 CREATE SINK OutputStream WITH (sink.type='http', publisher.url='http://localhost:8005/endpoint', method='POST', headers='Accept-Date:20/02/2017', basic.auth.enabled='true', basic.auth.username='admin', basic.auth.password='admin', map.type='json') (name string, age int, country string);
 ```
 
@@ -153,17 +152,17 @@ This will publish a `JSON` message on the following format:
 }
 ```
 
-**Example 2**
+## Example 2
 
 Publishes `StockStream` events by converting them to user defined `JSON` messages, and by sending to an `HTTP` endpoint `http://localhost:8005/stocks`.
 
 The configuration of the `HTTP` sink and custom `JSON` sink mapping to achieve the above is as follows.
 
-```
+```sql
 CREATE SINK StockStream WITH (sink.type='http', publisher.url='http://localhost:8005/stocks', map.type='json', validate.json='true', enclosing.element='$.Portfolio', map.payload="""{"StockData":{ "Symbol":"{{symbol}}", "Price":{{price}} }}""") (symbol string, price float, volume long);
 ```
 
-This will publish a single event as the `JSON` message on the following format:
+This publishes a single event as the `JSON` message on the following format:
 
 ```json
 {
@@ -197,7 +196,7 @@ This can also publish multiple events together as a `JSON` message on the follow
 }
 ```
 
-**Example 3**
+## Example 3
 
 Publishes events from the `OutputStream` stream to multiple `HTTP` endpoints using a partitioning strategy. Here the events are sent to either `http://localhost:8005/endpoint1` or `http://localhost:8006/endpoint2` based on the partitioning key `country`. It uses default `JSON` mapping, `POST` method, and used `admin` as both the username and the password when publishing to both the endpoints.
 
