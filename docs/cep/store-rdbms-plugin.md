@@ -30,9 +30,8 @@ Additionally, the `numRecords` attribute (INT) indicates the number of records m
 Use the following template to create a CUD function:
 
 ```sql
-rdbms:cud(STRING datasource.name, STRING query)
-rdbms:cud(STRING datasource.name, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
-rdbms:cud(STRING datasource.name, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
+rdbms:cud(STRING jdbc.url, STRING username, STRING password, STRING jdbc.driver.name, STRING query)
+rdbms:cud(STRING jdbc.url, STRING username, STRING password, STRING jdbc.driver.name, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
 ```
 
 ### CUD Examples
@@ -42,15 +41,29 @@ The following examples assume you have an input stream called `TriggerStream` an
 This example query updates events from the input stream by adding a `numRecords` attribute, then inserts the updated events into an output stream:
 
 ```sql
-select numRecords from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName='abc' where customerName='xyz'") 
-insert into  RecordStream;
+INSERT INTO RecordStream
+SELECT numRecords 
+FROM TriggerStream#rdbms:cud("jdbc:mysql://hostname:3306/MySQLDB?useSSL=false", "username", "password", "com.mysql.jdbc.Driver", "UPDATE Customers_Table SET customerName='abc' where customerName='xyz'");
+```
+
+Make sure the stream is defined with:
+
+```sql
+CREATE STREAM TriggerStream (customerName string);
 ```
 
 This example query does the same thing with the addition of `previousName` and `changedName` attributes to indicate the names of the input and output streams:
 
 ```sql
-select numRecords from TriggerStream#rdbms:cud("SAMPLE_DB", "UPDATE Customers_Table SET customerName=? where customerName=?", changedName, previousName) 
-insert into  RecordStream;
+INSERT INTO RecordStream
+SELECT numRecords 
+FROM TriggerStream#rdbms:cud("jdbc:mysql://hostname:3306/MySQLDB?useSSL=false", "username", "password", "com.mysql.jdbc.Driver",  "UPDATE Customers_Table SET customerName=? where customerName=?", changedName, previousName);
+```
+
+Make sure the stream is defined with:
+
+```sql
+CREATE STREAM TriggerStream (customerName string, changedName string, previousName string);
 ```
 
 ## Procedure
@@ -73,13 +86,12 @@ Additionally, the `attributeName` attribute (any type) returns the attributes li
 
 ### Procedure Template
 
-Use the following template to create a Procedure function:
+Use the following template to create a procedure function:
 
 ```sql
-rdbms:procedure(STRING data-source.name, STRING attribute.definition.list, STRING query)
-rdbms:procedure(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING output.parameter)
-rdbms:procedure(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING output.parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
-rdbms:procedure(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING output.parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
+rdbms:procedure(STRING data-source.name, STRING query)
+rdbms:procedure(STRING data-source.name, STRING query, STRING output.parameter)
+rdbms:procedure(STRING data-source.name, STRING query, STRING output.parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter,                       STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
 ```
 
 ### Procedure Examples
@@ -89,8 +101,15 @@ In these examples, the values in the parentheses for `RETURNCON()` are the input
 This example runs a stored procedure from the database called `RETURNCON()` and returns the output `Name`, `Age`, and `Date_Time`:
 
 ```sql
-select Name, Age, Date_Time from IntrimStream#rdbms:procedure('ORACLE_DB', 'Name String, Age int,Date_Time String', 'begin RETURNCON(?,?); end;','cursor', NoOfYears)
-insert into tempStream1;
+INSERT INTO tempStream1
+SELECT Name, Age, Date_Time
+FROM IntrimStream--#rdbms:procedure('ORACLE_DB', 'Name String, Age int,Date_Time String', 'begin RETURNCON(?,?); end;','cursor', NoOfYears);
+```
+
+Make sure the stream is defined with:
+
+```sql
+CREATE STREAM IntrimStream (NoOfYears int, Name string, Age int, Date_Time string);
 ```
 
 The output parameter is `cursor` and the input parameter is `NoOfYears`.
@@ -98,8 +117,15 @@ The output parameter is `cursor` and the input parameter is `NoOfYears`.
 This example runs a stored procedure from the database called `RETURNCON()` and returns the output `Name`, `Age`, and `Date_Time`:
 
 ```sql
-select Name, Age, Date_Time from IntrimStream#rdbms:procedure('ORACLE_DB', 'Name String, Age int,Date_Time String', 'begin RETURNCON(9,?); end;','cursor')
-insert into tempStream1;
+INSERT INTO tempStream1
+SELECT Name, Age, Date_Time
+FROM IntrimStream--#rdbms:procedure('ORACLE_DB', 'Name String, Age int,Date_Time String', 'begin RETURNCON(9,?); end;','cursor');
+```
+
+Make sure the stream is defined with:
+
+```sql
+CREATE STREAM IntrimStream (NoOfYears int, Name string, Age int, Date_Time string);
 ```
 
 The output parameter is `cursor` and the input parameter is `9` as specified in the query.
@@ -127,11 +153,10 @@ Additionally, `attributeName` (any type) returns the attributes listed in the pa
 Use the following template to create a query function:
 
 ```sql
-rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query)
-rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter)
+rdbms:query(STRING jdbc.url, STRING username, STRING password, STRING jdbc.driver.name, STRING attribute.definition.list, STRING query)
+rdbms:query(STRING jdbc.url, STRING username, STRING password, STRING jdbc.driver.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
 rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query, BOOL ack.empty.result.set)
-rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ...)
-rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ..., BOOL ack.empty.result.set)
+rdbms:query(STRING jdbc.url, STRING username, STRING password, STRING jdbc.driver.name, STRING attribute.definition.list, STRING query, STRING|BOOL|INT|DOUBLE|FLOAT|LONG parameter, STRING|BOOL|INT|DOUBLE|FLOAT|LONG ..., BOOL ack.empty.result.set)
 ```
 
 ### Query Examples
@@ -139,8 +164,9 @@ rdbms:query(STRING data-source.name, STRING attribute.definition.list, STRING qu
 The following examples query `creditcardno`, `country`, `transaction`, and `amount` from a database called `SAMPLE_DB`, then generate an event for each record retrieval insert the events into the `recordStream` output stream:
 
 ```sql
-select creditcardno, country, transaction, amount from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string, transaction string, amount int', 'select * from Transactions_Table')     
-insert into recordStream;
+INSERT INTO recordStream
+SELECT creditcardno, country, transaction, amount
+FROM TriggerStream#rdbms:query("jdbc:mysql://hostname:3306/MySQLDB?useSSL=false", "username", "password", "com.mysql.jdbc.Driver", 'creditcardno string, country string,transaction string, amount int', 'select * from Transactions_Table');   
 ```
 
 The event includes the attributes defined in the `attribute.definition.list` as additional attributes (e.g. `creditcardno string, country string, transaction string, amount int`).
@@ -148,15 +174,30 @@ The event includes the attributes defined in the `attribute.definition.list` as 
 Additionally, this example uses the `countrySearchWord` parameter as a filter.
 
 ```sql
-select creditcardno, country, transaction, amount from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord)  
-insert into recordStream;
+INSERT INTO recordStream
+SELECT creditcardno, country, transaction, amount
+FROM TriggerStream#rdbms:query("jdbc:mysql://hostname:3306/MySQLDB?useSSL=false", "username", "password", "com.mysql.jdbc.Driver", 'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord);
+```
+
+Make sure the stream is defined with:
+
+```sql
+CREATE STREAM TriggerStream (countrySearchWord string);
 ```
 
 This example returns null values if there are no events that satisfy the query:
 
 ```sql
-select creditcardno, country, transaction, amount from TriggerStream#rdbms:query('SAMPLE_DB', 'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord, true)  
-insert into recordStream;
+INSERT INTO recordStream 
+SELECT creditcardno, country, transaction, amount
+FROM TriggerStream#rdbms:query("jdbc:mysql://hostname:3306/MySQLDB?useSSL=false", "username", "password", "com.mysql.jdbc.Driver", 
+    'creditcardno string, country string,transaction string, amount int', 'select * from where country=?', countrySearchWord, true);
+```
+
+Make sure the stream is defined with:
+
+```sql
+CREATE STREAM TriggerStream (countrySearchWord string);
 ```
 
 ## Store
@@ -206,20 +247,20 @@ This example creates an event table named `StockTable`, then adds a stream calle
 
 ```sql
 CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/das", username="root", password="root" , jdbc.driver.name="org.h2.Driver", field.length="symbol:100", PrimaryKey="symbol", Index="symbol") (symbol string, price float, volume long);
-
 CREATE STREAM InputStream (symbol string, volume long);
 
-select a.symbol as symbol, b.volume as volume from InputStream as a join StockTable as b on str:contains(b.symbol, a.symbol)
-insert into FooStream;
+INSERT INTO FooStream
+SELECT a.symbol as symbol, b.volume as volume
+FROM InputStream as a join StockTable as b on str:contains(b.symbol, a.symbol);
 ```
 
 This example checks to see if a table named `StockTable` exists in the database, and if not, creates an event table named `StockTable`.
 
 ```sql
-CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/das", table.name="StockTable", username="root", password="root" , jdbc.driver.name="org.h2.Driver", field.length="symbol:100", table.check.query="SELECT 1 FROM StockTable LIMIT 1", PrimaryKey="symbol", Index="symbol") (symbol string, price float, volume long);
-
+CREATE STORE StockTable WITH (type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/das", table.name="StockTable", username="root", password="root" , jdbc.driver.name=" com.mysql.jdbc.Driver ", field.length="symbol:100", table.check.query="SELECT 1 FROM StockTable LIMIT 1", PrimaryKey="symbol", Index="symbol") (symbol string, price float, volume long);
 CREATE STREAM InputStream (symbol string, volume long);
 
-select a.symbol as symbol, b.volume as volume from InputStream as a join StockTable as b on str:contains(b.symbol, a.symbol)
-insert into FooStream;
+INSERT INTO FooStream
+SELECT a.symbol as symbol, b.volume as volume
+FROM InputStream as a join StockTable as b on str:contains(b.symbol, a.symbol);
 ```
