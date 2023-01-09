@@ -18,11 +18,15 @@
         "tags": ["DynamoMode"]
       },
       {
-        "url": "https://macrometa.com/docs/collections/graphs/quickstart",
+        "url": "https://macrometa.com/docs/collections/graph-edge/create-graph-edge",
+        "tags": ["Graph Edge"]
+      },
+      {
+        "url": "https://macrometa.com/docs/graphs/getting-started",
         "tags": ["Graphs"]
       },
       {
-        "url": "https://macrometa.com/docs/collections/graphs/quickstart",
+        "url": "https://macrometa.com/docs/graphs/getting-started",
         "tags": ["Graphs"]
       },
       {

@@ -22,4 +22,4 @@ Follow these instructions to create a new collection using the GDN console web U
 
 ## Create a Document Store Collection with Code
 
-Refer to the [Graph Edge Quickstart](quickstart.md) and [Using Rest API](using-rest-api.md) for code examples.
+Refer to the [Graphs Rest API guide](../../graphs/using-rest-api.md).
