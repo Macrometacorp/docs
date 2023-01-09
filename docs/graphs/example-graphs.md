@@ -1,10 +1,10 @@
 ---
 title: Example Graphs
-sidebar_position: 70
+sidebar_position: 50
 ---
 
-GDN  comes with a set of easily graspable graphs that are used to demonstrate the APIs.
-You can use the `add samples` tab in the `create graph` window in the web interface and use it to create instances of these graphs in your GDN fabric. Once you've created them, you can them in GUI.
+Macrometa comes with a set of easily graspable graphs that are used to demonstrate the APIs.
+You can use the `add samples` tab in the `create graph` window in the web interface and use it to create instances of these graphs in your GDN fabric. Once you've created them, you can view them in Macrometa web console.
 
 ## The Knows\_Graph
 
@@ -63,7 +63,7 @@ with the travel time for both directions as edge weight.
 
 ![Train Connection Map](/img/train_map.png)
 
-See the [Shortest Paths](graph-queries.md#shortest-path) page for query examples.
+See the [Shortest Paths](../queryworkers/c8ql/graphs/shortest-path.md) page for query examples. 
 
 ## The World Graph
 
@@ -75,7 +75,7 @@ It is used to demonstrate raw traversal operations.
 
 ## The Mps Graph
 
-This graph was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries. Therefore the graph is named after the [**m**ultiple **p**ath **s**earch](../../queryworkers/c8ql/examples/multiple-path-search.md) use case.
+This graph was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries. Therefore the graph is named after the [**m**ultiple **p**ath **s**earch](../queryworkers/c8ql/examples/multiple-path-search.md) use case.
 
 ![Mps Graph](/img/mps_graph.png)
 

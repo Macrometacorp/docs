@@ -51,11 +51,11 @@ When events are sent to `TemperatureStream` stream and `HumidityStream` stream, 
 | 9:01:20 | [`'1001'`, `17.0`] | -                  | [`'1001'`, `17.0`, `62.0`] | [`'1001'`, `17.0`, `60.0`], <br/>[`'1001'`, `17.0`, `62.0`] |
 | 9:02:10 | [`'1002'`, `23.5`] | - | - | [`'1002'`, `23.5`, `null`] |
 
-## PartitiON Events by Value
+## Partition Events by Value
 
 This example shows partitioning events by attribute values. For more informatiON ON [partition](../query-guide/partition.md) refer the [Stream Query Guide](../query-guide/index.md).
 
-### PartitiON Events by Value Example
+### Partition Events by Value Example
 
 ```sql
 CREATE STREAM LoginStream ( userID string, loginSuccessful bool);
@@ -82,7 +82,7 @@ begin
 end;
 ```
 
-### PartitiON Behavior
+### Partition Behavior
 
 When events are sent to `LoginStream` stream, following events will be generated at `#LoginAttempts` inner stream via `Aggregation-query` query, and `UserSuspensionStream` via `Alert-query` query:
 

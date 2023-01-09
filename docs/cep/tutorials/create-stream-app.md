@@ -232,7 +232,7 @@ Example:
 
 Or equivalent using STORE:
 ```sql
-   CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="local", collection.type="DOC", map.type='json') (name string, amount double);
+   CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="global", collection.type="DOC", map.type='json') (name string, amount double);
 ```
 
 The stream worker will use the Macrometa collections with the default query parameters explained in the chart below.

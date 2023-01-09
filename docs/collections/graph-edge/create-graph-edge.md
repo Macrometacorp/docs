@@ -1,6 +1,6 @@
 ---
 title: Create Graph Edge
-sidebar_position: 20
+sidebar_position: 10
 ---
 
 The Graph Edge collection is a form of document collection. It is used define relationships between two documents by using the **_from** and **_to** system attributes and the document **_id** system attribute.
@@ -22,4 +22,4 @@ Follow these instructions to create a new collection using the GDN console web U
 
 ## Create a Document Store Collection with Code
 
-Refer to the [Graph Edge Quickstart](quickstart.md) and [Using Rest API](using-rest-api.md) for code examples.
+Refer to the [Graphs Rest API guide](../../graphs/using-rest-api.md).
