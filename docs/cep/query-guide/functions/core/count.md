@@ -4,20 +4,20 @@ title: count (Aggregate Function)
 
 Returns the count of all the events.
 
-Syntax
+## Syntax
 
 ```js
     <LONG> count()
     <LONG> count(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> arg)
 ```
 
-QUERY PARAMETERS
+## Query Parameters
 
-| Name | Description                                                                           | Default Value | Possible Data Types                      | Optional | Dynamic |
-|------|---------------------------------------------------------------------------------------|---------------|------------------------------------------|----------|---------|
+| Name | Description   | Default Value | Possible Data Types                      | Optional | Dynamic |
+|------|-----------------------|---------------|-----------------------|----------|---------|
 | arg  | This function accepts one parameter. It can belong to any one of the available types. |               | INT LONG DOUBLE FLOAT STRING BOOL OBJECT | Yes      | Yes     |
 
-## Example 1
+## Example
 
 ```js
     insert into barStream
