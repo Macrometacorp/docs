@@ -2,7 +2,7 @@
 title: Cache
 ---
 
-The `cache` extension provides a persistent cache per tenant.
+The `cache` function provides a persistent cache per tenant.
 
 ## Features
 
@@ -19,9 +19,9 @@ The following functions are allowed:
 Cache uses the following syntax:
 
 ```js
-	cache:put("my_key", "my_value");
-	
-	cache:get("my_key")
+cache:put("my_key", "my_value");
+
+cache:get("my_key")
 ```
 
 ## Example
