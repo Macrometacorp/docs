@@ -1,32 +1,27 @@
 ---
-title: Graph Queries
-sidebar_position: 60
+title: Getting Started with Graphs
+sidebar_position: 20
 ---
 
-This page provides an example of how to make graph queries.
+In this getting started guide you will learn how to work with Graphs by creating relationships between collections that allow you to run semantic queries on airline flight data.
 
-## Querying graphs
+_Graphs_ enable you to group your data and perform more powerful queries across connected documents. A graph consists of _vertices_ and _edges_. Vertices are stored in collections and linked by an edge document. Edges are stored as documents in edge collections, and vertices can be a document or an edge.
 
-Storing (and retrieving) a graph is one thing, but the actual problems only begin when we want to query information about a graph.
+The _edge definition_ determines which collections are used in a named graph. A named graph must contain at least one edge definition.
 
-Finding the neighbours of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when we deal with graphs (or relations) in practice, we usually have a lot more questions, here we just mention a few that come to mind:
+ You can turn documents into graph structures for semantic queries with nodes, edges, and properties. Graphs directly connect data items between different collections. You can use graphs to refer to documents in different tables without a nested join. Graphs can also find patterns of document connections, such as the shortest path between two vertices in a graph.
 
-1. Find all neighbours of a `vertex` only using `edges` with a given `property` or `label`.
-2. Find all neighbours of a `vertex` with a given `property` or `label`.
-3. Find all paths with a fixed length L in the graph starting at some given `vertex`.
-4. Find the shortest (or lightest when working with weights) path from vertex `V` to vertex `W`.
-5. Find the distances between any two vertices in the graph.
-6. Perform a depth first search for some vertex starting at a given vertex.
-7. Perform a breadth first search for some vertex starting at a given vertex.
-8. Find a minimal spanning tree for the graph.
-9. Perform any map-reduce like computation as is possible in the Pregel framework by Google, for example “Pagerank” or “Find connected components”.
-10. Solve the traveling salesman problem in the graph.
+Edges in one edge collection may point to several vertex collections. You can add attributes to edges to do things like labelling connections.
 
-GDN provides several [Graph Functions](graph-functions.md) for working with edges and vertices, to analyze them and their relations.
+Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. In queries you can define in which directions the edge relations may be followed:
+
+- OUTBOUND: `_from` → `_to`
+- INBOUND: `_from` ← `_to`
+- ANY: `_from` ↔ `_to`.
 
 ## Dataset
 
-Create a document collection named cities. Add a Geo Index to the collection cities with Fields location and Geo JSON set to true. To populate the cities collection, execute the following query:
+1. Create a document collection named cities and add data to the collection by executing the following query in the `Query Workers` tab:
 
 ```JavaScript
 LET c = [
@@ -42,8 +37,9 @@ LET c = [
 FOR city IN c
     INSERT city IN cities
 ```
+2. Add a Geo Index to the cities collection with the fields `location` and Geo JSON set to true.
 
-Create an edge collection named flights. To populate the flights collection, execute the following query:
+3. Create an edge collection named flights. To populate the flights collection, execute the following query:
 
 ```JavaScript
 LET e = [
@@ -72,9 +68,28 @@ FOR edge IN e
     INSERT edge IN flights
 ```
 
+## Create a Graph
+
 Create a graph named airline with and edges in flights and both from and to vertices in cities.
 
-## Queries
+## Query your Graph
+
+Storing (and retrieving) a graph is one thing, but the actual problems only begin when you want to query information about a graph.
+
+Finding the neighbor's of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when you deal with graphs (or relations) in practice, you usually have a lot more questions, here are a few that come to mind:
+
+1. Find all neighbor's of a `vertex` only using `edges` with a given `property` or `label`.
+2. Find all neighbor's of a `vertex` with a given `property` or `label`.
+3. Find all paths with a fixed length L in the graph starting at some given `vertex`.
+4. Find the shortest (or lightest when working with weights) path from vertex `V` to vertex `W`.
+5. Find the distances between any two vertices in the graph.
+6. Perform a depth first search for some vertex starting at a given vertex.
+7. Perform a breadth first search for some vertex starting at a given vertex.
+8. Find a minimal spanning tree for the graph.
+9. Perform any map-reduce like computation as is possible in the Pregel framework by Google, for example “Pagerank” or “Find connected components”.
+10. Solve the traveling salesman problem in the graph.
+
+GDN provides several [Graph Functions](graph-functions.md) for working with edges and vertices, to analyze them and their relations.
 
 ### Breadth-first search
 
@@ -130,7 +145,7 @@ RETURN {
 
 ### Cities within a given distance
 
-Get the cities that are no more than 2500km away from houston.
+Get the cities that are no more than 2500km away from Houston.
 
 ```JavaScript
 LET city = DOCUMENT("cities/houston")

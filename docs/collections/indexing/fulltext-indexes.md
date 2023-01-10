@@ -32,7 +32,7 @@ If the index attribute is neither a string, an object or an array, its contents 
 Ensures that a fulltext index exists:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "fields": [ "type" : "fulltext", ."fields": ["field"],  "minLength": <minLength> }'
 ```

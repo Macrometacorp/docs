@@ -6,7 +6,7 @@ title: Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Macrometa GDN allows you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
+A _stream worker_ performs complex event processing on data in motion, also called [streams](../streams/index.md). Macrometa GDN allows you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
 
 | Stage | Description |
 |-------|-------------|
@@ -72,3 +72,10 @@ Macrometa stream processing engine  allows you to write rich & complex stream pr
 | Realtime Decisions as Service | Provide REST APIs to [query](query-guide/query.md) `multi-modal geo-replicated tables`, `windows` and `named-aggregations` to make decisions based on the state of the system. |
 
 These features allows you to build robust global data processing and integration pipelines at the edge by combining powerful stream processing, multi-model database and geo-replicated streams capabilities.
+
+:::tip
+"Have different business use cases in separate stream workers."
+This is recommended as it allows users to selectively deploy the applications based on their business needs. It is also recommended to move the repeated stream processing logic that exists in multiple stream workers, such as message retrieval and preprocessing, to a common stream workers, whereby reducing code duplication and improving maintainability. In this case, to pass the events from one Stream App to another, configure them using a common stream or collection using `stream` Sink and `stream` Source.
+
+Stream workers provide an isolated execution environment for your processing logic that allows you to deploy and execute processing logic independent of other stream workers in the system. Therefore, it's always recommended to have processing logic related to a single use case in a single StreamApp. This will help you to group processing logic and easily manage addition and removal of various use cases.
+:::

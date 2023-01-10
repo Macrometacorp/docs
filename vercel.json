@@ -1,14 +1,19 @@
 {
+  "trailingSlash": false,
   "redirects": [
     { "source": "/docs/demos/cloudflare-workers", "destination": "/docs/tutorials/cloudflare-workers" },
     { "source": "/docs/demos/dynamo", "destination": "/docs/tutorials/dynamo" },
     { "source": "/docs/documents", "destination": "/docs/tutorials/cloudflare-workers" },
     { "source": "/docs/gdnsl/commands", "destination": "/docs/essentials/CLI/commands" },
-    { "source": "/docs/graphs", "destination": "/docs/collections/graphs" },
     { "source": "/docs/keyvalue", "destination": "/docs/collections/keyvalue" },
+    { "source": "/c8ql/got-tutorial", "destination": "/queryworkers/c8ql/got-tutorial", "permanent": true },
     { "source": "/docs/collections/graphs", "destination": "/docs/graphs" },
-    {"source": "/essentials", "destination": "/docs"},
-    {"source": "/essentials/(.*)", "destination": "/docs"}
-  ],
-  "trailingSlash": false
+    { "source": "/collections/graphs/:match*", "destination": "/graphs/:match*", "permanent": true },
+    { "source": "/essentials", "destination": "/quickstart", "permanent": true },
+    { "source": "/essentials/CLI/commands", "destination": "/cli", "permanent": true },
+    { "source": "/essentials/geofabrics", "destination": "/geofabrics", "permanent": true },
+    { "source": "/essentials/troubleshooting", "destination": "/references/troubleshooting", "permanent": true },
+    { "source": "/essentials/:match*", "destination": "/quickstart", "permanent": true },
+    { "source": "/troubleshooting", "destination": "/references/troubleshooting", "permanent": true }
+  ]
 }
