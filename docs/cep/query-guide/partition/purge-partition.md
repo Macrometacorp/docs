@@ -29,14 +29,14 @@ When using purge with an aggregation, use a `WITH()` property instead. For examp
 
 ```
 
-Partition Purge configuration| Description
+Partition Purge Configuration| Description
 ---------|--------
-Purge interval | The periodic time interval to purge the purgeable partition instances.
-Idle period of partition instance| The period, a particular partition instance (for a given partition key) needs to be idle before it becomes purgeable.
+Purge interval | The periodic time interval to purge the partition instances.
+Idle period of partition instance| The period that a particular partition instance for a given partition key needs to be idle before it becomes available to purge.
 
-**Examples**
+## Example
 
-Mark partition instances eligible for purging, if there are no events from a particular deviceID for 15 seconds, and periodically purge those partition instances every 1 second.
+Mark partition instances eligible for purging, if there are no events from a particular deviceID for 15 seconds, and periodically purge those partition instances every one second.
 
 ```sql
 @purge(enable='true', interval='1 sec', idle.period='15 sec')
