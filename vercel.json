@@ -8,6 +8,7 @@
     { "source": "/docs/keyvalue", "destination": "/docs/collections/keyvalue" },
     { "source": "/c8ql/got-tutorial", "destination": "/queryworkers/c8ql/got-tutorial", "permanent": true },
     { "source": "/docs/collections/graphs", "destination": "/docs/graphs" },
+    { "source": "/collections/graphs/", "destination": "/graphs", "permanent": true },
     { "source": "/collections/graphs/:match*", "destination": "/graphs/:match*", "permanent": true },
     { "source": "/essentials", "destination": "/quickstart", "permanent": true },
     { "source": "/essentials/CLI/commands", "destination": "/cli", "permanent": true },
