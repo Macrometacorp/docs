@@ -35,7 +35,7 @@ Before reporting an issue, check that there is not an issue already open for the
 
 To make a contribution, you need to:
 
-1. Clone the latest master branch: `git clone git@github.com:Macrometacorp/docs.git`
+1. Clone the latest `main` branch: `git clone git@github.com:Macrometacorp/docs.git`
 2. Create your feature branch: `git checkout -b my-new-contribution`
 3. Add your changes: `git add .`
 4. Commit your changes: `git commit -am "Add a contribution message"`

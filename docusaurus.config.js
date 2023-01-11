@@ -36,7 +36,7 @@ const config = {
           path: 'docs',
           breadcrumbs: false,
           editUrl: ({ docPath }) =>
-            `https://github.com/macrometacorp/docs/edit/master/docs/${docPath}`,
+            `https://github.com/macrometacorp/docs/edit/main/docs/${docPath}`,
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: true,
