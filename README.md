@@ -42,6 +42,10 @@ To make a contribution, you need to:
 5. Push to the branch: `git push -u origin my-new-feature`
 6. Create a pull request
 
+### Redirects
+
+Redirects can be found in `./vercel.json`.
+
 ### Pull Requests
 
 All pull requests should have:

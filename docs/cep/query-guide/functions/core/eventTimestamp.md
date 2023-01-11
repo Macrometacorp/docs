@@ -4,13 +4,13 @@ title: eventTimestamp (Function)
 
 Returns the timestamp of the processed event.
 
-Syntax
+## Syntax
 
 ```js
-    <LONG> eventTimestamp()
+<LONG> eventTimestamp()
 ```
 
-## Example 1
+## Example
 
 ```js
     insert into barStream
