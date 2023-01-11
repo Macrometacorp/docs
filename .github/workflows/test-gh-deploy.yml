@@ -3,7 +3,7 @@ name: Test GH Pages Deploy
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   test-deploy:
