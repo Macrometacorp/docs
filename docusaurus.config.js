@@ -2,7 +2,6 @@
 require("dotenv").config();
 
 const {
-  redirectsPlugin,
   tailwindPlugin,
   webpackPlugin,
 } = require('./src/plugins');
@@ -11,7 +10,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 const host = process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview' ? `https://${process.env.VERCEL_URL}` : 'https://macrometa.com';
-const isDev = process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV;
+const isDev = process.env.NODE_ENV === 'development' || (process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -55,7 +54,6 @@ const config = {
   ],
 
   plugins: [
-    redirectsPlugin,
     tailwindPlugin,
     webpackPlugin,
     'posthog-docusaurus'

@@ -1,20 +1,20 @@
 {
   "trailingSlash": false,
   "redirects": [
-    { "source": "/docs/demos/cloudflare-workers", "destination": "/docs/tutorials/cloudflare-workers" },
-    { "source": "/docs/demos/dynamo", "destination": "/docs/tutorials/dynamo" },
-    { "source": "/docs/documents", "destination": "/docs/tutorials/cloudflare-workers" },
-    { "source": "/docs/gdnsl/commands", "destination": "/docs/essentials/CLI/commands" },
-    { "source": "/docs/keyvalue", "destination": "/docs/collections/keyvalue" },
-    { "source": "/c8ql/got-tutorial", "destination": "/queryworkers/c8ql/got-tutorial", "permanent": true },
-    { "source": "/docs/collections/graphs", "destination": "/docs/graphs" },
-    { "source": "/collections/graphs/", "destination": "/graphs", "permanent": true },
-    { "source": "/collections/graphs/:match*", "destination": "/graphs/:match*", "permanent": true },
-    { "source": "/essentials", "destination": "/quickstart", "permanent": true },
-    { "source": "/essentials/CLI/commands", "destination": "/cli", "permanent": true },
-    { "source": "/essentials/geofabrics", "destination": "/geofabrics", "permanent": true },
-    { "source": "/essentials/troubleshooting", "destination": "/references/troubleshooting", "permanent": true },
-    { "source": "/essentials/:match*", "destination": "/quickstart", "permanent": true },
-    { "source": "/troubleshooting", "destination": "/references/troubleshooting", "permanent": true }
+    { "source": "/docs", "destination": "/docs/quickstart", "permanent": false },
+    { "source": "/docs/c8ql/got-tutorial", "destination": "/docs/queryworkers/c8ql/got-tutorial", "permanent": true },
+    { "source": "/docs/collections/graphs/", "destination": "/docs/graphs", "permanent": true },
+    { "source": "/docs/collections/graphs/:match*", "destination": "/docs/graphs/:match*", "permanent": true },
+    { "source": "/docs/demos/cloudflare-workers", "destination": "/docs/tutorials/cloudflare-workers", "permanent": true },
+    { "source": "/docs/demos/dynamo", "destination": "/docs/tutorials/dynamo", "permanent": true },
+    { "source": "/docs/documents", "destination": "/docs/tutorials/cloudflare-workers", "permanent": true },
+    { "source": "/docs/essentials", "destination": "/docs/quickstart", "permanent": true },
+    { "source": "/docs/essentials/CLI/commands", "destination": "/docs/cli", "permanent": true },
+    { "source": "/docs/essentials/geofabrics", "destination": "/docs/geofabrics", "permanent": true },
+    { "source": "/docs/essentials/troubleshooting", "destination": "/docs/references/troubleshooting", "permanent": true },
+    { "source": "/docs/essentials/:match*", "destination": "/docs/quickstart", "permanent": true },
+    { "source": "/docs/gdnsl/commands", "destination": "/docs/essentials/CLI/commands", "permanent": true },
+    { "source": "/docs/keyvalue", "destination": "/docs/collections/keyvalue", "permanent": true },
+    { "source": "/docs/troubleshooting", "destination": "/docs/references/troubleshooting", "permanent": true }
   ]
 }
