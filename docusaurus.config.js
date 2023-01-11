@@ -2,7 +2,6 @@
 require("dotenv").config();
 
 const {
-  redirectsPlugin,
   tailwindPlugin,
   webpackPlugin,
 } = require('./src/plugins');
@@ -55,7 +54,6 @@ const config = {
   ],
 
   plugins: [
-    redirectsPlugin,
     tailwindPlugin,
     webpackPlugin,
     'posthog-docusaurus'
