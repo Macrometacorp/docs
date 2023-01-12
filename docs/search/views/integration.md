@@ -16,7 +16,7 @@ By default, array elements are indexed individually as if each element is the va
 You can manage search views by using:
 
 - [The Web UI](https://auth-play.macrometa.io/)
-- [An HTTP API](https://macrometa.com/docs/api/)
+- [An HTTP API](https://www.macrometa.com/docs/api/)
 - [JavaScript API](https://github.com/Macrometacorp/jsC8)
 
 You can query views with C8QL using the [SEARCH operation](../../queryworkers/c8ql/operations/search).

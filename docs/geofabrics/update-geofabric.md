@@ -23,8 +23,8 @@ To modify a geofabric:
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- [Set the GeoFabric Metadata](https://macrometa.com/docs/api#/operations/SetMetadataInformationOfTheGeo-fabric)
-- [Modify the GeoFabric Metadata](https://macrometa.com/docs/api#/operations/UpdateMetadataInformationOfTheGeo-fabric)
+- [Set the GeoFabric Metadata](https://www.macrometa.com/docs/api#/operations/SetMetadataInformationOfTheGeo-fabric)
+- [Modify the GeoFabric Metadata](https://www.macrometa.com/docs/api#/operations/UpdateMetadataInformationOfTheGeo-fabric)
 
 </TabItem>
 <TabItem value="cli" label="CLI">

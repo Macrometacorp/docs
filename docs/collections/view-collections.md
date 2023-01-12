@@ -48,9 +48,9 @@ When viewing your collections, you can click **New Collection** to create a new 
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- [List All Collections](https://macrometa.com/docs/api#/operations/handleCommandGet)
-- [Get Information About a Collection](https://macrometa.com/docs/api#/operations/handleCommandGet:collectionGetProperties)
-- [Get Number of Documents in a Collection](https://macrometa.com/docs/api#/operations/handleCommandGet:getCollectionCount)
+- [List All Collections](https://www.macrometa.com/docs/api#/operations/handleCommandGet)
+- [Get Information About a Collection](https://www.macrometa.com/docs/api#/operations/handleCommandGet:collectionGetProperties)
+- [Get Number of Documents in a Collection](https://www.macrometa.com/docs/api#/operations/handleCommandGet:getCollectionCount)
 
 </TabItem>
 <TabItem value="cli" label="CLI">

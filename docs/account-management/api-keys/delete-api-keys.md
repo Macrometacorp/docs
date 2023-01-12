@@ -107,7 +107,7 @@ else:
 </TabItem>
 <TabItem value="RA" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove an API Key](https://macrometa.com/docs/api#/operations/RemoveApiKey).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove an API Key](https://www.macrometa.com/docs/api#/operations/RemoveApiKey).
 
 ```js
 URL = "api-gdn.macrometa.io"

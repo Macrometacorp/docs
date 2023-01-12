@@ -78,7 +78,7 @@ sendData()
 </TabItem>
 <TabItem value="api-py" label="REST API - Python">
 
-Use our interactive API reference with code generation in 18 programming languages to [publish a message](https://macrometa.com/docs/api#/operations/PublishStreamMessage).
+Use our interactive API reference with code generation in 18 programming languages to [publish a message](https://www.macrometa.com/docs/api#/operations/PublishStreamMessage).
 
 ```py
 import requests
@@ -128,7 +128,7 @@ def create_producer():
 </TabItem>
 <TabItem value="api-js" label="REST API - JavaScript">
 
-Use our interactive API reference with code generation in 18 programming languages to [publish a message](https://macrometa.com/docs/api#/operations/PublishStreamMessage).
+Use our interactive API reference with code generation in 18 programming languages to [publish a message](https://www.macrometa.com/docs/api#/operations/PublishStreamMessage).
 
 ```js
 class APIRequest {

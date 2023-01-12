@@ -3,7 +3,7 @@ title: Release Notes 0.17.10
 sidebar_position: 99
 ---
 
-This document describes what has changed in Macrometa release 0.17.10. To check what version of GDN you are using, use the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
+This document describes what has changed in Macrometa release 0.17.10. To check what version of GDN you are using, use the [RestVersionHandler](https://www.macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
 
 ## Features
 

@@ -2,65 +2,65 @@
     "index_name": "prod_DOCS",
     "start_urls": [
       {
-        "url": "https://macrometa.com/docs/quickstart",
+        "url": "https://www.macrometa.com/docs/quickstart",
         "tags": ["Quickstart"]
       },
       {
-        "url": "https://macrometa.com/docs/collections/keyvalue",
+        "url": "https:/www.macrometa.com/docs/collections/keyvalue",
         "tags": ["Key Value"]
       },
       {
-        "url": "https://macrometa.com/docs/collections/documents",
+        "url": "https://www.macrometa.com/docs/collections/documents",
         "tags": ["Documents"]
       },
       {
-        "url": "https://macrometa.com/docs/collections/dynamo/create-dynamo-table",
+        "url": "https://www.macrometa.com/docs/collections/dynamo/create-dynamo-table",
         "tags": ["Dynamo"]
       },
       {
-        "url": "https://macrometa.com/docs/collections/graph-edge",
+        "url": "https://www.macrometa.com/docs/collections/graph-edge",
         "tags": ["Graph Edge"]
       },
       {
-        "url": "https://macrometa.com/docs/graphs",
+        "url": "https://www.macrometa.com/docs/graphs",
         "tags": ["Graphs"]
       },
       {
-        "url": "https://macrometa.com/docs/search/search",
+        "url": "https://www.macrometa.com/docs/search/search",
         "tags": ["Search"]
       },
       {
-        "url": "https://macrometa.com/docs/queryworkers",
+        "url": "https://www.macrometa.com/docs/queryworkers",
         "tags": ["Query Workers"]
       },
       {
-        "url": "https://macrometa.com/docs/streams",
+        "url": "https://www.macrometa.com/docs/streams",
         "tags": ["Streams"]
       },
       {
-        "url": "https://macrometa.com/docs/cep",
+        "url": "https://www.macrometa.com/docs/cep",
         "tags": ["Stream Workers"]
       },
       {
-        "url": "https://macrometa.com/docs/queryworkers/c8ql",
+        "url": "https://www.macrometa.com/docs/queryworkers/c8ql",
         "tags": ["C8QL"]
       },
       {
-        "url": "https://macrometa.com/docs/tutorials",
+        "url": "https://www.macrometa.com/docs/tutorials",
         "tags": ["Tutorials"]
       },
       {
-        "url": "https://macrometa.com/docs/apps",
+        "url": "https://www.macrometa.com/docs/apps",
         "tags": ["Sample Apps"]
       },
       {
-        "url": "https://macrometa.com/docs/api",
+        "url": "https://www.macrometa.com/docs/api",
         "tags": ["REST API"]
       },
-      "https://macrometa.com/docs",
-      "https://macrometa.com/docs/api"
+      "https://www.macrometa.com/docs",
+      "https://www.macrometa.com/docs/api"
     ],
-    "sitemap_urls": ["https://macrometa.com/docs/sitemap.xml"],
+    "sitemap_urls": ["https://www.macrometa.com/docs/sitemap.xml"],
     "sitemap_alternate_links": true,
     "stop_urls": [],
     "selectors": {
