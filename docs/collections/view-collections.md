@@ -41,16 +41,16 @@ When viewing your collections, you can click **New Collection** to create a new 
 - [Create a Document Store](documents/create-document-store.md)
 - [Create a Key-Value Store](keyvalue/create-key-value-store.md)
 - [Create a Dynamo Table](dynamo/create-dynamo-table.md)
-- [Create a Graph Edge](graphs/create-graph-edge.md)
+- [Create a Graph Edge](graph-edge/create-graph-edge.md)
 
 </TabItem>
 <TabItem value="apo" label="REST API">
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- [List All Collections](https://macrometa.com/docs/api#/operations/handleCommandGet)
-- [Get Information About a Collection](https://macrometa.com/docs/api#/operations/handleCommandGet:collectionGetProperties)
-- [Get Number of Documents in a Collection](https://macrometa.com/docs/api#/operations/handleCommandGet:getCollectionCount)
+- [List All Collections](https://www.macrometa.com/docs/api#/operations/handleCommandGet)
+- [Get Information About a Collection](https://www.macrometa.com/docs/api#/operations/handleCommandGet:collectionGetProperties)
+- [Get Number of Documents in a Collection](https://www.macrometa.com/docs/api#/operations/handleCommandGet:getCollectionCount)
 
 </TabItem>
 <TabItem value="cli" label="CLI">

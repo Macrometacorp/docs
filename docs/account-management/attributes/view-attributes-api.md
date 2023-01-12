@@ -20,7 +20,7 @@ Follow these instructions to view API key attributes using the GDN console web U
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Get API Key Attributes](https://macrometa.com/docs/api#/operations/GetTheAttributesForApiKey).
+Use our interactive API Reference with code generation in 18 programming languages to [Get API Key Attributes](https://www.macrometa.com/docs/api#/operations/GetTheAttributesForApiKey).
 
 </TabItem>
 <TabItem value="cli" label="CLI">

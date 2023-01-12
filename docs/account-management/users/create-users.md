@@ -25,7 +25,7 @@ Follow these instructions to create a new user using the GDN console web UI.
 <TabItem value="api" label="REST API">
 
 Use our interactive API Reference with code generation in 18 programming languages to 
-[Create User](https://macrometa.com/docs/api#/operations/CreateUser).
+[Create User](https://www.macrometa.com/docs/api#/operations/CreateUser).
 
 </TabItem>
 <TabItem value="cli" label="CLI">

@@ -93,7 +93,7 @@ createCollection()
 </TabItem>
 <TabItem value="apo" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
+Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://www.macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
 
 </TabItem>
 <TabItem value="cli" label="CLI">

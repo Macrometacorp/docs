@@ -22,7 +22,7 @@ On the Users tab, you can select a user to access their details and delete the a
 <TabItem value="api" label="REST API">
 
 Use our interactive API Reference with code generation in 18 programming languages to 
-[Remove User](https://macrometa.com/docs/api#/operations/RemoveUser).
+[Remove User](https://www.macrometa.com/docs/api#/operations/RemoveUser).
 
 </TabItem>
 <TabItem value="cli" label="CLI">

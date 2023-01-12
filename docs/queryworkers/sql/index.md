@@ -20,7 +20,7 @@ The general workflow when executing a query is as follows:
 
 ## Resources
 
-- [API Reference](https://macrometa.com/docs/api#/operations/createSqlQueryCursor)
+- [API Reference](https://www.macrometa.com/docs/api#/operations/createSqlQueryCursor)
 - [JavaScript SDK](https://github.com/Macrometacorp/jsC8)
 - [Python SDK](https://github.com/Macrometacorp/pyC8)
 
