@@ -26,7 +26,7 @@ After creating the GeoFabric, click the GeoFabric name on the list to view its u
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create GeoFabrics](https://macrometa.com/docs/api#/operations/CreateGeo-fabric).
+Use our interactive API Reference with code generation in 18 programming languages to [Create GeoFabrics](https://www.macrometa.com/docs/api#/operations/CreateGeo-fabric).
 
 </TabItem>
 <TabItem value="cli" label="CLI">

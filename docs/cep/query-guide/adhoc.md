@@ -4,8 +4,6 @@ title: Ad Hoc Queries
 
 Ad hoc queries provide a way of performing ad-hoc operations on tables (stores), named windows, and named aggregations. We can send ad hoc queries and fetch data from stores and named windows.
 
-
-
 ## Syntax
 
 Ad hoc queries use the following syntax:
@@ -14,12 +12,9 @@ Ad hoc queries use the following syntax:
 	select * from SampleAdhocQueryInputTableOneMinTimeWindow;
 	
 	SELECT * FROM SampleAdhocQueryTable;
-```				  
-					  
-
+```
 
 ## Example
-
 
 ```js
 -- Defines `SampleAdhocQueryInputTable` collection to process events having `sensorId` and `temperature`(F).
@@ -44,7 +39,6 @@ FROM SampleAdhocQueryInputTable
 WHERE sensorId == 'sensor A1234';
 ```
 
-
 1. Upload following data into `SampleAdhocQueryInputTable` C8DB Collection
 	{"sensorId":"sensor A1234","temperature":18}
 	{"sensorId":"sensor A1234","temperature":-32.2}
@@ -54,7 +48,7 @@ WHERE sensorId == 'sensor A1234';
 2. This application accumulates all the data for one minute in the named window `SampleAdhocQueryInputTableOneMinTimeWindow`
 	Named window allows other application to query data in realtime.
 
-3. Run the ad hoc query on the `SampleAdhocQueryInputTableOneMinTimeWindow` 
+3. Run the ad hoc query on the `SampleAdhocQueryInputTableOneMinTimeWindow`
 	Query:
 		select * from SampleAdhocQueryInputTableOneMinTimeWindow
 
@@ -66,7 +60,7 @@ WHERE sensorId == 'sensor A1234';
 			["sensor meter1",49.6]
 		]
 
-4. Similar to Named Windows one can run adhoc queries on the stores as well. Running adhoc query on 
+4. Similar to Named Windows one can run adhoc queries on the stores as well. Running adhoc query on
 	`SampleAdhocQuerySensorA1234DestTable` Collection should produce below result
 
 	Query: Store the result if sensorId is equal to "sensor A1234"

@@ -2,7 +2,6 @@
 require("dotenv").config();
 
 const {
-  redirectsPlugin,
   tailwindPlugin,
   webpackPlugin,
 } = require('./src/plugins');
@@ -10,15 +9,15 @@ const {
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
-const host = process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview' ? `https://${process.env.VERCEL_URL}` : 'https://macrometa.com';
-const isDev = process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV;
+const host = process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview' ? `https://${process.env.VERCEL_URL}` : 'https://www.macrometa.com';
+const isDev = process.env.NODE_ENV === 'development' || (process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Macrometa',
   tagline: 'Macrometa GDN Documentation',
   url: host,
-  baseUrl: isDev ? '/' : '/docs/',
+  baseUrl: isDev ? '/docs/' : '/docs/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -37,7 +36,7 @@ const config = {
           path: 'docs',
           breadcrumbs: false,
           editUrl: ({ docPath }) =>
-            `https://github.com/macrometacorp/docs/edit/master/docs/${docPath}`,
+            `https://github.com/macrometacorp/docs/edit/main/docs/${docPath}`,
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: true,
@@ -55,7 +54,6 @@ const config = {
   ],
 
   plugins: [
-    redirectsPlugin,
     tailwindPlugin,
     webpackPlugin,
     'posthog-docusaurus'
@@ -100,7 +98,7 @@ const config = {
           alt: 'Macrometa Logo',
           src: 'img/macrometa-logo.svg',
           srcDark: 'img/macrometa-logo-dark.svg',
-          href: 'https://macrometa.com',
+          href: 'https://www.macrometa.com',
           target: '_self'
         },
         items: [

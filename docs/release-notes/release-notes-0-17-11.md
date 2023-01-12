@@ -3,7 +3,7 @@ title: Release Notes 0.17.11
 sidebar_position: 98
 ---
 
-This document describes what has changed in Macrometa release 0.17.11. To check what version of GDN you are using, use the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) API command.
+This document describes what has changed in Macrometa release 0.17.11. To check what version of GDN you are using, use the [RestVersionHandler](https://www.macrometa.com/docs/api#/operations/RestVersionHandler) API command.
 
 ## New Features
 
@@ -77,7 +77,7 @@ This release includes the following API changes.
 | APIDOC-51  | Added stream worker parameters `maxLogsLengthKBPerMinutePerWorker` and `maxCpuSecondsPerMinutePerWorker`. |
 | APIDOC-54  | In API reference docs, corrected a typo in insertDocument description.  |
 | DB-1692  | The fabric creation endpoint in the API now allows up to 40 characters for fabric names, just like in the web console.  |
-| DB-1704  | Clarified in the API documentation for [Import API](https://macrometa.com/docs/api#/operations/ImportCollectionData) that the `_key` must be a string.  |
+| DB-1704  | Clarified in the API documentation for [Import API](https://www.macrometa.com/docs/api#/operations/ImportCollectionData) that the `_key` must be a string.  |
 
 #### Import and Export Changes (DB-1660)
 
@@ -118,7 +118,7 @@ The following known issues were introduced in this release.
 
 **Problem:** Sometimes local streams are not accessible in the Macrometa console.
 
-**Workaround:** If you encounter this error, then run the [Publish Message](https://macrometa.com/docs/api#/operations/PublishStreamMessage) API endpoint for particular stream to get rid of the issue.
+**Workaround:** If you encounter this error, then run the [Publish Message](https://www.macrometa.com/docs/api#/operations/PublishStreamMessage) API endpoint for particular stream to get rid of the issue.
 
 `POST               /_fabric/_system/_api/streams/{stream}/publish`
 

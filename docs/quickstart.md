@@ -154,4 +154,5 @@ IN addresses
 
 You have a fully-functional API for your application. [We made a front-end for you to take your new back-end for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
 
-## Next Up: [Add Search to your app](https://macrometa.com/docs/search/getting-started)
+
+## Next Up: [Add Search to your app](https://www.macrometa.com/docs/search/getting-started)

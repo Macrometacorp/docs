@@ -25,7 +25,7 @@ To delete a GeoFabric in the Macrometa Web console:
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove GeoFabric](https://macrometa.com/docs/api#/operations/DropGeo-fabric).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove GeoFabric](https://www.macrometa.com/docs/api#/operations/DropGeo-fabric).
 
 </TabItem>
 <TabItem value="cli" label="CLI">

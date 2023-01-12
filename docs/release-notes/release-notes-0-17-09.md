@@ -5,7 +5,7 @@ title: Release Notes 0.17.9
 
 # Release Notes 0.17.9
 
-This document describes what has changed in Macrometa release 17.9. To check what version of GDN you are using, use the [RestVersionHandler](https://macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
+This document describes what has changed in Macrometa release 17.9. To check what version of GDN you are using, use the [RestVersionHandler](https://www.macrometa.com/docs/api#/operations/RestVersionHandler) command in the API.
 
 ## Bug Fixes
 
