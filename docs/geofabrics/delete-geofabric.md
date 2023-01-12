@@ -18,7 +18,7 @@ Deleting a GeoFabric removes all entities, including collections and stream work
 To delete a GeoFabric in the Macrometa Web console:
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/) in the `_system` GeoFabric.
-2. Click **Geo Fabrics**.
+2. Click **Network > Fabrics**.
 3. Click **Delete** on the row of the GeoFabric you want to delete.
 4. Confirm your choice.
 

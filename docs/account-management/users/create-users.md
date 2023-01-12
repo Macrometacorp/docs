@@ -14,7 +14,7 @@ This page shows you different methods to create new users on a Macrometa GDN acc
 Follow these instructions to create a new user using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Account**.
+1. Click **Access > Users**.
 1. Click **New User**.
 1. Enter a unique username.
 1. Enter the email to be associated with this user account.

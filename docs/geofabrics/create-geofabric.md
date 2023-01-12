@@ -14,7 +14,7 @@ This page lists several methods for creating GeoFabrics. Whether or not you can 
 To create a GeoFabric in the Macrometa web console:
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/) in the `_system` GeoFabric.
-2. Click **Geo Fabrics** to navigate to the GeoFabrics management page. If you do not see the **Fabrics** link, then you might not be logged in to the `_system` GeoFabric.
+2. Click **Network > Fabrics** to navigate to the GeoFabrics management page. If you do not see the **Fabrics** link, then you might not be logged in to the `_system` GeoFabric.
 3. Click **New Geo Fabric**.
 4. Enter a GeoFabric **Name**.
 5. Select at least two Edge Locations across which you want the GeoFabric distributed.
