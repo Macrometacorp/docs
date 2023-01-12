@@ -27,7 +27,6 @@
     {" source": "/docs/cep/query-guide/functions/sink/http.md", "destination": "/docs/cep/sink/http.md", "permanent": true },
     {" source": "/docs/cep/reference/functions", "destination": "/docs/cep/query-guide/functions", "permanent": true },
     {" source": "/docs/what-is-macrometa", "destination": "/docs/quickstart", "permanent": true },
-    {" source": "/docs/authentication", "destination": "/docs/account-management/auth", "permanent": true },
-    {" source": "/docs/cep/reference/extensions/execution/reorder", "destination": "", "permanent": true }
+    {" source": "/docs/authentication", "destination": "/docs/account-management/auth", "permanent": true }
   ]
 }
