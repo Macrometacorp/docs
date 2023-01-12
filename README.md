@@ -1,15 +1,15 @@
 <p align="center">
-  <a href="https://macrometa.com">
+  <a href="https://www.macrometa.com">
     <img src="https://www.macrometa.com/docs/img/macrometa-icon-purple.png" alt="Logo" width="120">
   </a>
 
-  <h2 align="center"><a href="https://macrometa.com/docs">Macrometa Docs</a></h3>
+  <h2 align="center"><a href="https://www.macrometa.com/docs">Macrometa Docs</a></h3>
   <br />
   <p align="center">
     Macrometa is a secure, global data platform with integrated pub/sub, stream processing, search, functions, and containers. Create stateful APIs and real-time, event-driven, streaming data apps in minutes – not months.
     <br />
     <br />
-    <a href="https://macrometa.com/docs">Explore the Docs 🚀</a>
+    <a href="https://www.macrometa.com/docs">Explore the Docs 🚀</a>
     ·
     <a href="https://github.com/macrometacorp/docs/issues">Report a Bug 🐛</a>
     <br />
