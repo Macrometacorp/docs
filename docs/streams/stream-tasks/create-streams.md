@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 Create a stream.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Data > Streams**.
+1. Click **Streams**.
 
    Macrometa displays a list of streams and their attributes.
 
