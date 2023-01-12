@@ -4,13 +4,13 @@ title: currentTimeMillis (Function)
 
 Returns the current timestamp of stream processor application in milliseconds.
 
-Syntax
+## Syntax
 
 ```js
     <LONG> currentTimeMillis()
 ```
 
-## Example 1
+## Example
 
 ```js
     insert into barStream

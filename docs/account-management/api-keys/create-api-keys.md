@@ -117,7 +117,7 @@ else:
 </TabItem>
 <TabItem value="RA" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create an API Key](https://macrometa.com/docs/api#/operations/CreateApiKey).
+Use our interactive API Reference with code generation in 18 programming languages to [Create an API Key](https://www.macrometa.com/docs/api#/operations/CreateApiKey).
 
 ```js
 # Create an API Key

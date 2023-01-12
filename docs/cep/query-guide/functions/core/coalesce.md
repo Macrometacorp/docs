@@ -4,16 +4,16 @@ title: coalesce (Function)
 
 Returns the value of the first input parameter that is not null, and all input parameters have to be on the same type.
 
-Syntax
+## Syntax
 
 ```js
     <INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> coalesce(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> arg, <INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> ...)
 ```
 
-QUERY PARAMETERS
+## Query Parameters
 
-| Name | Description                                                                                                                                               | Default Value | Possible Data Types                      | Optional | Dynamic |
-|------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|------------------------------------------|----------|---------|
+| Name | Description   | Default Value | Possible Data Types       | Optional | Dynamic |
+|------|------------------------------------------------------|-------------|---------------|----------|---------|
 | arg  | This function accepts one or more parameters. They can belong to any one of the available types. All the specified parameters should be of the same type. |               | INT LONG DOUBLE FLOAT STRING BOOL OBJECT | No       | Yes     |
 
 ## Example 1
@@ -25,7 +25,6 @@ QUERY PARAMETERS
 ```
 
 This returns first value `123`.
-
 
 ## Example 2
 
@@ -45,4 +44,4 @@ This returns first value `76`.
     from fooStream;
 ```
 
-This returns null as there are no valid values.
+This returns null, as there are no valid values.
