@@ -17,7 +17,7 @@ Developers have option to check how data is structured.
 To view your data:
 
 1. Log in to your Macrometa account.
-2. Click **Data > Collections**.
+2. Click **Collections**.
 3. Select your [Redis Mode collection](../../collections/redis-mode/index.md).
 
    Data is displayed on the Data tab of the collection.
