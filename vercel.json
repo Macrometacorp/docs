@@ -1,6 +1,7 @@
 {
   "trailingSlash": false,
   "redirects": [
+    { "source": "/", "destination": "/docs", "permanent": false },
     { "source": "/docs", "destination": "/docs/quickstart", "permanent": false },
     { "source": "/docs/c8ql/got-tutorial", "destination": "/docs/queryworkers/c8ql/got-tutorial", "permanent": true },
     { "source": "/docs/collections/graphs/", "destination": "/docs/graphs", "permanent": true },
