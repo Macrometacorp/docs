@@ -23,7 +23,7 @@ This page describes how to update API keys. Once you log in to a Macrometa accou
 
 Use our interactive API Reference with code generation in 18 programming languages to perform API key updates.
 
-Refer to the [API Keys section](https://macrometa.com/docs/api#/operations/ValidateApiKey) in the API reference docs for a full list of commands.
+Refer to the [API Keys section](https://www.macrometa.com/docs/api#/operations/ValidateApiKey) in the API reference docs for a full list of commands.
 
 Refer to [Permissions](index.md) for information about each permission level.
 
