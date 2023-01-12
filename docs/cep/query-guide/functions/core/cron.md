@@ -4,7 +4,7 @@ title: cron (Window)
 
 This window outputs the arriving events as and when they arrive, and resets (expires) the window periodically based on the given cron expression.
 
-Syntax
+## Syntax
 
     cron(<STRING> cron.expression)
 
@@ -23,7 +23,7 @@ Syntax
     select symbol, sum(price) as totalPrice
     from InputEventStream#cron('*/5 * * * * ?');
 
-This let the totalPrice to gradually increase and resets to zero as a batch every 5 seconds.
+This let the `totalPrice` to gradually increase and resets to zero as a batch every five seconds.
 
 ## Example 2
 
@@ -39,4 +39,4 @@ This let the totalPrice to gradually increase and resets to zero as a batch ever
     select symbol, sum(price) as totalPrice
     from StockEventWindow;
 
-The defined window enables the totalPrice to gradually increase and resets to zero as a batch every 5 seconds.
+The defined window enables the `totalPrice` to gradually increase and resets to zero as a batch every five seconds.

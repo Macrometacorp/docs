@@ -13,6 +13,6 @@ You can use Akamai EdgeWorkers to publish data to pipelines. You can continuousl
 
 Edge workers allow you to use JavaScript to pre-process or post-process data published to pipelines. Additionally, you can query data inside streams and stream workers in real time.
 
-All Macrometa API commands for EdgeWorkers are listed in the [API Reference](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType).
+All Macrometa API commands for EdgeWorkers are listed in the [API Reference](https://www.macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType).
 
 For more information about Akamai EdgeWorkers, refer to the [Akamai EdgeWorkers Overview](https://developer.akamai.com/akamai-edgeworkers-overview).

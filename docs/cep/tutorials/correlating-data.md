@@ -386,8 +386,8 @@ Logical sequences are used to identify logical relationships between events that
 
 ## Correlating two streams of data and unify
 
-For a detailed explanation, see [Enrich data by connecting with another stream of data](enriching-data.md#enrich-data-by-connecting-with-another-stream-of-data)
+For a detailed explanation, see [Enrich data by connecting with another stream of data](../enrich-data/enrich-data-with-stream.md).
 
-## Correlate a stream and a static datasource to enrich
+## Correlate a stream and a static data source to enrich
 
-For a detailed explanation, see [Enrich data by connecting with a data store](enriching-data.md#enrich-data-by-connecting-with-a-data-store)
+For a detailed explanation, see [Enrich data by connecting with a data store](../enrich-data/enrich-data-external-services.md).

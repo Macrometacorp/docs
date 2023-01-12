@@ -75,13 +75,13 @@ FROM MyTrigger;
 For this example needs to be generated EdgeWorker with name `my-fn-name`.
 The easiest way is to:
 
-1. Generate EdgeWorker based on [Query Worker](https://macrometa.com/docs/queryworkers/building-queries) with the next query:
+1. Generate EdgeWorker based on [Query Worker](https://www.macrometa.com/docs/queryworkers/building-queries) with the next query:
 
     ```sql
     FOR doc IN my-colection LIMIT 1 RETURN doc
     ```
 
-2. [Create](https://macrometa.com/docs/collections/documents/create-document-store) a collection with a name `my-collection`.
+2. [Create](https://www.macrometa.com/docs/collections/documents/create-document-store) a collection with a name `my-collection`.
 3. Add one document in the collection.
 
 The following stream `FxSampleStream` is receiving a new message every five seconds as the result of the Edge Function.
