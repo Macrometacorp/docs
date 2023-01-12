@@ -1,21 +1,26 @@
 ---
-title: Redis Mode Indexes
-sidebar_position: 40
+title: Document Store Indexes
+sidebar_position: 50
 ---
 
 Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../indexing/index.md).
 
-## Redis Mode Indexes
+## Document Store Indexes
 
-Redis Mode collections have several indexes created automatically.
+You can create the following types of index for a document collection:
 
-The Redis API supports a fixed set of commands. Most of those operate on a single entry and don't need any special indexing (the purpose of indexes is basically to speed up operations that involve multiple entries). We have taken care to optimize the commands operating on multiple entries, so you should not need any additional indexes.
+- [Geo Index](../indexing/geo-indexes.md)
+- [Fulltext Index](../indexing/fulltext-indexes.md)
+- [Persistent Index](../indexing/persistent-indexes.md)
+- [TTL Index](../indexing/ttl-indexes.md)
+
+Refer to each index type for more information about the index and for instructions on how to create and use it.
 
 ## View Indexes
 
 View active indexes for a collection on the Indexes tab. The section explains what each element of the tab means.
 
-![Redis Mode Indexes Tab](/img/collections/redis-mode-indexes.png)
+![Document Store Indexes Tab](/img/collections/doc-store-indexes.png)
 
 - **ID -** This is a unique primary key for the indexes.
 - **Type -** The index type.

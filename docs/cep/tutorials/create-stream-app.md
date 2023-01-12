@@ -2,11 +2,11 @@
 sidebar_position: 2
 ---
 
-# Create Stream Workers
+# Create Stream Application
 
 ## Introduction
 
-Stream workers are declarative specs that define the processing logic to process the events sent to the stream processor. A stream worker definition contains the following configurations:
+Stream applications are declarative specs that define the processing logic to process the events sent to the stream processor. A stream app definition contains the following configurations:
 
 <table>
 <thead>
@@ -38,7 +38,7 @@ Stream workers are declarative specs that define the processing logic to process
 <ul>
 <li>Stateless query: Queries that only consider currently incoming events when generating an output. e.g., filters</li>
 <li>Stateful query: Queries that consider both currently incoming events as well as past events when generating an output. e.g., windows, sequences, patterns, etc.</li>
-<li>Partitions: Collections of stream definitions and queries separated from each other within a stream worker for the purpose of processing events in parallel and in isolation</li>
+<li>Partitions: Collections of stream definitions and queries separated from each other within a Stream application for the purpose of processing events in parallel and in isolation</li>
 </ul></td>
 </tr>
 </tbody>
@@ -46,47 +46,43 @@ Stream workers are declarative specs that define the processing logic to process
 
 Macrometa provide in-build source, sink and store explained in the later section of this document.
 
-## Creating a Stream Worker
+## Creating a Stream Application
 
-To create a stream worker follow the steps below:
+To create a stream application follow the steps below:
 
-1. Open the GUI. Click the **Stream Workers** tab.
-1. Click **New Stream Worker** to define a new stream worker.
-1. Type a **Name** for the stream worker. For example, `SweetProductionAnalysis`.
+1. Open the GUI. Click the **Stream Apps** tab.
+1. Click **New** to define a new stream application.
+1. Type a **Name** for the stream application. For example, `SweetProductionAnalysis`.
 1. Type a **Description**.
-1. Add the following sample stream worker:
+1. Add the following sample stream application.
 
 	```sql
-	CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', collection.type='DOC', replication.type='GLOBAL',  map.type='json') (name string, amount double);
-	
+	CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', map.type='json') (name string, amount double);
+
 	CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json') (name string, amount double);
-	
+
 	INSERT INTO ProductionAlertStream
 	SELECT *
 	FROM SweetProductionStream;
 	```
 
-1. Click **Save** to save the stream worker.
+1. Click `Save` to save the stream app.
 1. Select all the regions to deploy your application in.
-1. Click **Save**.
+1. Click on `Save`.
 
 ## Source
 
-For this example, a source can be of type stream or database. The incoming data is used for processing. A source-of-type database is best if you need to store incoming data. Otherwise, you can use a source-type stream.
-
-### Create Streams
+### C8Streams
 
 Syntax:
 
-```sql
-   CREATE SOURCE SourceName WITH (type="stream", stream.list="STRING", replication.type="STRING", map.type='type') (strings);
-```
+	CREATE SOURCE SourceName WITH (type="stream", stream.list="STRING", replication.type="STRING", map.type='type') (strings);
 
 Example:
-```sql
-   CREATE SOURCE OrderStream WITH (type="stream", stream.list="OrderStream", replication.type="GLOBAL", map.type='json') (product_id string, quantity int);
-```
-Stream workers will use the stream with the default query parameters explained in the chart below.
+
+	CREATE SOURCE OrderStream WITH (type="stream", stream.list="OrderStream", replication.type="local", map.type='json') (product_id string, quantity integer);
+
+Stream application will use the stream with the default query parameters explained in the chart below.
 
 Query Parameters:
 
@@ -118,23 +114,17 @@ Query Parameters:
 </tbody>
 </table>
 
-### Create collections
-
-You can create collections with your stream worker, and store incoming data in it for further processing, the syntax to achieve that is shown below:
+### C8DB
 
 Syntax:
 
-```sql
-   CREATE SOURCE SourceName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type') (strings);
-```
-
+	CREATE SOURCE SourceName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type') (strings);
 
 Example:
-```sql
-   CREATE SOURCE SweetProductionStream WITH (type = 'database', collection='SweetProductionData', collection.type='DOC', replication.type='GLOBAL',  map.type='json') (name string, amount double);
-```
 
-Query parameters:
+	CREATE SOURCE SweetProductionStream WITH (type="database", map.type='json') (name string, amount double);
+
+Query Parameters:
 
 <table>
 <thead>
@@ -149,17 +139,17 @@ Query parameters:
 <tbody>
 <tr class="odd">
 <td>collection</td>
-<td>This specifies the name of the collection to which the source must listen.</td>
+<td>This specifies the name of the c8db collection to which the source must listen.</td>
 <td></td>
 <td>STRING</td>
 <td>No</td>
 </tr>
 <tr class="even">
 <td>replication.type</td>
-<td>Specifies if the replication type of the collection. At the moment local collections are not allowed, type must be `global`</td>
+<td>Specifies if the replication type of the c8db collection. Possible values can be `local` and `global`</td>
 <td>local</td>
 <td>STRING</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <tr class="odd">
 <td>collection.type</td>
@@ -173,19 +163,17 @@ Query parameters:
 
 ## Sink
 
-Sinks are used to publish events to an external source after being processed. Sink consumes events from streams and allows the definition of a schema for the output format. 
-
-### Create streams
+### C8Streams
 
 Syntax:
-```sql
-   CREATE SINK SinkName WITH (type="stream", stream="STRING", replication.type="STRING", map.type='type') (strings);
-```
+
+	CREATE SINK SinkName WITH (type="stream", stream="STRING", replication.type="STRING", map.type='type') (strings);
+    @sink(type="c8streams", stream="<STRING>", replication.type="<STRING>", @map(...)))
 
 Example:
-```sql
-   CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json') (name string, amount double);
-```
+
+	CREATE SINK ProductionAlertStream WITH (type="stream", stream='ProductionAlertStream', map.type='json`) (name string, amount double);
+
 Query Parameters:
 
 <table>
@@ -201,7 +189,7 @@ Query Parameters:
 <tbody>
 <tr class="odd">
 <td>stream</td>
-<td>The streams to which the sink needs to publish events.</td>
+<td>The streams to which the C8Stream sink needs to publish events.</td>
 <td></td>
 <td>STRING</td>
 <td>No</td>
@@ -218,24 +206,17 @@ Query Parameters:
 
 ## Table
 
-Table is similar to collection, is a structured representation of data with a defined schema.
+### C8DB
 
 Syntax:
 
-```sql
-   CREATE TABLE GLOBAL TableName(property type);
-```
+	CREATE STORE StoreName WITH (type="database", collection="STRING", replication.type="STRING", collection.type="STRING", map.type='type', from="STRING", to="STRING") (strings);
+
 Example:
-```sql
-   CREATE TABLE GLOBAL SweetProductionCollection(name string, amount double);
-```
 
-Or equivalent using STORE:
-```sql
-   CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="local", collection.type="DOC", map.type='json') (name string, amount double);
-```
+	CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="local", map.type='json') (strings);
 
-The stream worker will use the Macrometa collections with the default query parameters explained in the chart below.
+Stream applications will use the c8db with the default query parameters explained in the chart below.
 
 <table>
 <thead>
@@ -250,17 +231,17 @@ The stream worker will use the Macrometa collections with the default query para
 <tbody>
 <tr class="odd">
 <td>collection</td>
-<td>This specifies the name of the collection to which events must written.</td>
+<td>This specifies the name of the c8db collection to which events must written.</td>
 <td></td>
 <td>STRING</td>
 <td>No</td>
 </tr>
 <tr class="even">
 <td>replication.type</td>
-<td>Specifies if the replication type of the collection. <b>Note:</b> Type must be `global`. Local collections are not currently allowed.</td>
+<td>Specifies if the replication type of the c8db collection. Possible values can be `local` and `global`</td>
 <td>local</td>
 <td>STRING</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <tr class="odd">
 <td>collection.type</td>
