@@ -6,6 +6,7 @@
     "build": "docusaurus build",
     "clear": "docusaurus clear",
     "deploy": "docusaurus deploy",
+    "verceld": "mkdir public ; mkdir public/docs ; npm run build && cp -r ./build/* ./public/docs",
     "docusaurus": "docusaurus",
     "reinstall": "yarn clear && rm -rf node_modules && yarn install",
     "serve": "docusaurus serve",
@@ -16,7 +17,6 @@
   },
   "dependencies": {
     "@docusaurus/core": "^2.1.0",
-    "@docusaurus/plugin-client-redirects": "2.1.0",
     "@docusaurus/plugin-sitemap": "2.1.0",
     "@docusaurus/preset-classic": "^2.1.0",
     "@docusaurus/theme-search-algolia": "2.1.0",

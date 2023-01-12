@@ -2,9 +2,9 @@
 title: externalTimeBatch (Window)
 ---
 
-A batch (tumbling) time window based on external time, that holds events arrived during windowTime periods, and gets updated for every windowTime.
+A batch (tumbling) time window based on external time, that holds events arrived during `windowTime` periods, and gets updated for every `windowTime`.
 
-Syntax
+## Syntax
 
     externalTimeBatch(<LONG> timestamp, <INT|LONG|TIME> window.time)
     externalTimeBatch(<LONG> timestamp, <INT|LONG|TIME> window.time, <INT|LONG|TIME> start.time)
@@ -13,13 +13,13 @@ Syntax
 
 ## Query Parameters
 
-| Name                   | Description                                                                                                                                                                                                                                | Default Value                                                             | Possible Data Types | Optional | Dynamic |
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|---------------------|----------|---------|
-| timestamp              | The time which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing.                                                                                                    |                                                                           | LONG                | No       | Yes     |
-| window.time            | The batch time period for which the window should hold events.                                                                                                                                                                             |                                                                           | INT LONG TIME       | No       | No      |
-| start.time             | User defined start time. This could either be a constant (of type int, long or time) or an attribute of the corresponding stream (of type long). If an attribute is provided, initial value of attribute would be considered as startTime. | Timestamp of first event                                                  | INT LONG TIME       | Yes      | Yes     |
-| timeout                | Time to wait for arrival of new event, before flushing and giving output for events belonging to a specific batch.                                                                                                                         | System waits till an event from next batch arrives to flush current batch | INT LONG TIME       | Yes      | No      |
-| replace.with.batchtime | This indicates to replace the expired event timeStamp as the batch end timeStamp                                                                                                                                                           | System waits till an event from next batch arrives to flush current batch | BOOL                | Yes      | No      |
+| Name                   | Description        | Default Value           | Possible Data Types | Optional | Dynamic |
+|--------------|---------------------------------------|--------------------------|------------------|----------|---------|
+| timestamp              | The time which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. |                        | LONG                | No       | Yes     |
+| window.time            | The batch time period for which the window should hold events.    |                      | INT LONG TIME       | No       | No      |
+| start.time             | User defined start time. This could either be a constant (of type int, long or time) or an attribute of the corresponding stream (of type long). If an attribute is provided, initial value of attribute would be considered as startTime. | Timestamp of first event     | INT LONG TIME       | Yes      | Yes     |
+| timeout      | Time to wait for arrival of new event, before flushing and giving output for events belonging to a specific batch.    | System waits till an event from next batch arrives to flush current batch | INT LONG TIME       | Yes      | No      |
+| replace.with.batchtime | This indicates to replace the expired event timeStamp as the batch end timeStamp        | System waits till an event from next batch arrives to flush current batch | BOOL          | Yes      | No      |
 
 ## Example 1
 

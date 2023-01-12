@@ -22,7 +22,7 @@ Follow these instructions to remove attributes from API keys using the GDN conso
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove All Attributes](https://macrometa.com/docs/api#/operations/ClearAllAttributesForApiKey) or [Remove One Attribute](https://macrometa.com/docs/api#/operations/ClearTheAttributesForApiKey).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove All Attributes](https://www.macrometa.com/docs/api#/operations/ClearAllAttributesForApiKey) or [Remove One Attribute](https://www.macrometa.com/docs/api#/operations/ClearTheAttributesForApiKey).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
