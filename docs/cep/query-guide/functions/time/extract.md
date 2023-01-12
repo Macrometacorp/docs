@@ -4,7 +4,7 @@ title: extract (Function)
 
 Function extracts a date unit from the date.
 
-Syntax
+## Syntax
 
     <INT> time:extract(<STRING> unit, <STRING> date.value)
     <INT> time:extract(<STRING> unit, <STRING> date.value, <STRING> date.format)
@@ -14,19 +14,19 @@ Syntax
 
 ## Query Parameters
 
-| Name                      | Description                                                                                                                                 | Default Value                                           | Possible Data Types | Optional | Dynamic |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|---------------------|----------|---------|
-| unit                      | This is the part of the date that needs to be modified. For example, `MINUTE`, `HOUR`, `MONTH`, `YEAR`, `QUARTER`, `WEEK`, `DAY`, `SECOND`. |                                                         | STRING              | No       | No      |
-| date.value                | The value of the date. For example, `2014-11-11 13:23:44.657`, `2014-11-11`, `13:23:44.657`.                                                | \-                                                      | STRING              | Yes      | Yes     |
-| date.format               | The format of the date value provided. For example, `yyyy-MM-dd HH:mm:ss.SSS`.                                                              | \`yyyy-MM-dd HH:mm:ss.SSS\`                             | STRING              | Yes      | Yes     |
-| timestamp.in.milliseconds | The date value in milliseconds. For example, `1415712224000L`.                                                                              | \-                                                      | LONG                | Yes      | Yes     |
-| locale                    | Represents a specific geographical, political or cultural region. For example `en_US` and `fr_FR`                                           | Current default locale set in the Java Virtual Machine. | STRING              | Yes      | No      |
+| Name        | Description   | Default Value | Possible Data Types | Optional | Dynamic |
+|------------------------|-----------------------|-----------------------------------|---------------------|----------|---------|
+| unit        | This is the part of the date that needs to be modified. For example, `MINUTE`, `HOUR`, `MONTH`, `YEAR`, `QUARTER`, `WEEK`, `DAY`, `SECOND`. | | STRING| No       | No      |
+| date.value  | The value of the date. For example, `2014-11-11 13:23:44.657`, `2014-11-11`, `13:23:44.657`.      | -            | STRING| Yes      | Yes     |
+| date.format | The format of the date value provided. For example, `yyyy-MM-dd HH:mm:ss.SSS`.      | `yyyy-MM-dd HH:mm:ss.SSS` | STRING| Yes      | Yes     |
+| timestamp.in.milliseconds | The date value in milliseconds. For example, `1415712224000L`.        | -            | LONG  | Yes      | Yes     |
+| locale      | Represents a specific geographical, political or cultural region. For example `en_US` and `fr_FR` | Current default locale set in the Java Virtual Machine. | STRING| Yes      | No      |
 
 ## Example 1
 
     time:extract('YEAR', '2019/11/11 13:23:44.657', 'yyyy/MM/dd HH:mm:ss.SSS')
 
-Extracts the year amount and returns `2019`.
+Extracts the year amount and returns `2022`.
 
 ## Example 2
 

@@ -2,9 +2,9 @@
 title: groupAsObject (Aggregate Function)
 ---
 
-This function aggregates the JSON elements and returns a JSON object by adding enclosing.element if it is provided. If enclosing.element is not provided it aggregate the JSON elements returns a JSON array.
+This function aggregates the JSON elements and returns a JSON object by adding `enclosing.element` if it is provided. If `enclosing.element` is not provided, then it aggregate the JSON elements returns a JSON array.
 
-Syntax
+## Syntax
 
     <OBJECT> json:groupAsObject(<STRING|OBJECT> json)
     <OBJECT> json:groupAsObject(<STRING|OBJECT> json, <BOOL> distinct)
@@ -16,7 +16,7 @@ Syntax
 | Name              | Description                                                                                              | Default Value | Possible Data Types | Optional | Dynamic |
 |-------------------|----------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
 | json              | The JSON element that needs to be aggregated.                                                            |               | STRING OBJECT       | No       | Yes     |
-| enclosing.element | The JSON element used to enclose the aggregated JSON elements.                                           | EMPTY\_STRING | STRING              | Yes      | Yes     |
+| enclosing.element | The JSON element used to enclose the aggregated JSON elements.                                           | EMPTY_STRING | STRING              | Yes      | Yes     |
 | distinct          | This is used to only have distinct JSON elements in the concatenated JSON object/array that is returned. | false         | BOOL                | Yes      | Yes     |
 
 ## Example 1

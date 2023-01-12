@@ -26,7 +26,7 @@ Syntax
 
 ## Example 1
 
-    CREATE SOURCE UserStream WITH (type='inMemory', topic='user', map.type='avro', map.schema.def = """{"type":"record","name":"userInfo","namespace":"user.example","fields":[{"name":"name","type":"string"}, {"name":"age","type":"int"}]}""") (name string, age int );
+    CREATE SOURCE UserStream WITH (type='stream', topic='user', map.type='avro', map.schema.def = """{"type":"record","name":"userInfo","namespace":"user.example","fields":[{"name":"name","type":"string"}, {"name":"age","type":"int"}]}""") (name string, age int );
 
 The above Stream App query performs a default Avro input mapping. The input
 Avro message that contains user information is converted to a Stream App
@@ -34,7 +34,7 @@ event. The expected input is a byte array or ByteBuffer.
 
 ## Example 2
 
-    CREATE SOURCE userStream WITH (type='inMemory', topic='user', map.type='avro', map.schema.def = """{"type":"record","name":"userInfo","namespace":"avro.userInfo","fields":[{"name":"username","type":"string"}, {"name":"age","type":"int"}]}""", map.attributes="name="username",age="age"") (name string, age int );
+    CREATE SOURCE userStream WITH (type='stream', topic='user', map.type='avro', map.schema.def = """{"type":"record","name":"userInfo","namespace":"avro.userInfo","fields":[{"name":"username","type":"string"}, {"name":"age","type":"int"}]}""", map.attributes="name="username",age="age"") (name string, age int );
 
 The above Stream App query performs a custom Avro input mapping. The input
 Avro message that contains user information is converted to a Stream App
@@ -42,7 +42,7 @@ event.  The expected input is a byte array or ByteBuffer.
 
 ## Example 3
 
-    CREATE SOURCE UserStream WITH (type='inMemory', topic='user', map.type='avro',schema.registry='http://192.168.2.5:9090', schema.id='1', map.attributes="name='username', age='age'") (name string, age int );
+    CREATE SOURCE UserStream WITH (type='stream', topic='user', map.type='avro',schema.registry='http://192.168.2.5:9090', schema.id='1', map.attributes="name='username', age='age'") (name string, age int );
 
 The above Stream App query performs a custom Avro input mapping. The input
 Avro message that contains user information is converted to a Stream App

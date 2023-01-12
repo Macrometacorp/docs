@@ -4,19 +4,19 @@ title: setElement (Function)
 
 Function sets JSON element into a given JSON at the specific path.
 
-Syntax
+## Syntax
 
     <OBJECT> json:setElement(<STRING|OBJECT> json, <STRING> path, <STRING|BOOL|DOUBLE|FLOAT|INT|LONG|OBJECT> json.element)
     <OBJECT> json:setElement(<STRING|OBJECT> json, <STRING> path, <STRING|BOOL|DOUBLE|FLOAT|INT|LONG|OBJECT> json.element, <STRING> key)
 
 ## Query Parameters
 
-| Name         | Description                                                            | Default Value                                                                                           | Possible Data Types                      | Optional | Dynamic |
+| Name         | Description                              | Default Value | Possible Data Types                      | Optional | Dynamic |
 |--------------|------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|------------------------------------------|----------|---------|
-| json         | The JSON to which a JSON element needs to be added/replaced.           |                                                                                                         | STRING OBJECT                            | No       | Yes     |
-| path         | The JSON path where the JSON element should be added/replaced.         |                                                                                                         | STRING                                   | No       | Yes     |
-| json.element | The JSON element being added.                                          |                                                                                                         | STRING BOOL DOUBLE FLOAT INT LONG OBJECT | No       | Yes     |
-| key          | The key to be used to refer the newly added element in the input JSON. | Assumes the element is added to a JSON array, or the element selected by the JSON path will be updated. | STRING                                   | Yes      | Yes     |
+| json         | The JSON to which a JSON element needs to be added/replaced.      |       | STRING OBJECT    | No       | Yes     |
+| path         | The JSON path where the JSON element should be added/replaced.         |               | STRING     | No       | Yes     |
+| json.element | The JSON element being added.            |               | STRING BOOL DOUBLE FLOAT INT LONG OBJECT | No       | Yes     |
+| key          | The key to be used to refer the newly added element in the input JSON. | Assumes the element is added to a JSON array, or the element selected by the JSON path will be updated. | STRING     | Yes      | Yes     |
 
 ## Example 1
 

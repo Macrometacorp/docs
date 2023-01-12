@@ -4,7 +4,7 @@ title: exp (Function)
 
 This function returns the Euler's number `e` raised to the power of `p1`. It wraps the `java.lang.Math.exp()` function.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:exp(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:exp(inValue) as expValue
     from InValueStream;
 
-If the `inValue` in the inputstream holds a value, this function calculates the corresponding Euler's number `e` and directs it to the output stream, OutMediationStream. For example, exp(10.23) returns 27722.51006805505.
+If the `inValue` in the inputstream holds a value, this function calculates the corresponding Euler's number `e` and directs it to the output stream, OutMediationStream. For example, `exp(10.23)` returns 27722.51006805505.

@@ -2,9 +2,9 @@
 title: collect (Aggregate Function)
 ---
 
-Collect multiple key-value pairs to construct a map. Only distinct keys are collected, if a duplicate key arrives, it overrides the old value
+Collect multiple key-value pairs to construct a map. Only distinct keys are collected. If a duplicate key arrives, then it overrides the old value.
 
-Syntax
+## Syntax
 
     <OBJECT> map:collect(<INT|LONG|FLOAT|DOUBLE|FLOAT|BOOL|STRING> key, <OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
 
@@ -21,4 +21,4 @@ Syntax
     select map:collect(symbol, price) as stockDetails
     from StockStream WINDOW TUMBLING_LENGTH(10);
 
-For the window expiration of 10 events, the collect() function will collectattributes of `key` and `value` to a single map and return as stockDetails.
+For the window expiration of 10 events, the collect() function will collect attributes of `key` and `value` to a single map and return as stockDetails.
