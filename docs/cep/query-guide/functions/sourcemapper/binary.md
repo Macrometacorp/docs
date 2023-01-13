@@ -2,10 +2,9 @@
 title: binary (Source Mapper)
 ---
 
-This extension is a binary input mapper that converts events received in
-`binary` format to Stream App events before they are processed.
+This extension is a binary input mapper that converts events received in `binary` format to stream worker events before they are processed.
 
-Syntax
+## Syntax
 
     CREATE SOURCE <NAME> WITH (map.type="binary")
 
@@ -13,5 +12,4 @@ Syntax
 
     CREATE SOURCE FooStream WITH (type='stream', topic='gdn', map.type='binary') (symbol string, price float, volume long);
 
-This query performs a mapping to convert an event of the `binary` format
-to a Stream App event.
+This query performs a mapping to convert an event of the `binary` format to a stream worker event.
