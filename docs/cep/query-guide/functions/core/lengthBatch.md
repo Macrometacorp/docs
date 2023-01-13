@@ -2,19 +2,19 @@
 title: lengthBatch (Window)
 ---
 
-A batch (tumbling) length window that holds and process a number of events as specified in the window.length.
+A batch (tumbling) length window that holds and process a number of events as specified in the `window.length`.
 
-Syntax
+## Syntax
 
     lengthBatch(<INT> window.length)
     lengthBatch(<INT> window.length, <BOOL> stream.current.event)
 
 ## Query Parameters
 
-| Name                 | Description                                                                                                        | Default Value | Possible Data Types | Optional | Dynamic |
-|----------------------|--------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| window.length        | The number of events the window should tumble.                                                                     |               | INT                 | No       | No      |
-| stream.current.event | Let the window stream the current events out as and when they arrive to the window while expiring them in batches. | false         | BOOL                | Yes      | No      |
+| Name      | Description       | Default Value | Possible Data Types | Optional | Dynamic |
+|----------------|---------------------------------------------------------------|------------|--------------|----------|---------|
+| window.length        | The number of events the window should tumble.        |      | INT  | No       | No      |
+| stream.current.event | Let the window stream the current events out as and when they arrive to the window while expiring them in batches. | false | BOOL    | Yes      | No      |
 
 ## Example 1
 
