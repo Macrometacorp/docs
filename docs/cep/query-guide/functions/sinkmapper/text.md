@@ -83,7 +83,7 @@ This query performs a custom text mapping with event grouping. The expected outp
 
     CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='text', map.mustache.enabled='true',  map.payload="SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml") (symbol string, price float, volume long);
 
-This query performs a custom text mapping to return unescaped HTML. The expected output is: SensorID :
+This query performs a custom text mapping to return unescaped HTML. The expected output is: SensorID:
 
     SensorID : a&b/100,
     SensorPrice : Rs1000/=,

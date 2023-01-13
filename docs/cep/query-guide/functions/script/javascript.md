@@ -2,9 +2,9 @@
 title: javascript (Script)
 ---
 
-This extension allows you to include JavaScript functions within the Query Language.
+This extension allows you to include JavaScript functions within the stream workers. For more information, refer to [Script Functions](../../script.md).
 
-Syntax
+## Syntax
 
     define function <FunctionName>[javascript] return <type> {
         // Script code

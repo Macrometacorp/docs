@@ -12,9 +12,9 @@ This extension is an Event to JSON output mapper. Transports that publish messag
 
 ## Query Parameters
 
-| Name              | Description                                                                                                                                                                                                                                                                                                                                                        | Default Value | Possible Data Types | Optional | Dynamic |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| validate.json     | If this property is set to `true`, it enables JSON validation for the JSON messages generated. When validation is carried out, messages that do not adhere to proper JSON standards are dropped. This property is set to `false` by default.                                                                                                                     | false         | BOOL                | Yes      | No      |
+| Name              | Description           | Default Value | Possible Data Types | Optional | Dynamic |
+|------------|------------------------------------------|---------------|---------------------|----------|---------|
+| validate.json     | If this property is set to `true`, it enables JSON validation for the JSON messages generated. When validation is carried out, messages that do not adhere to proper JSON standards are dropped. This property is set to `false` by default.       | false         | BOOL                | Yes      | No      |
 | enclosing.element | This specifies the enclosing element to be used if multiple events are sent in the same JSON message. Stream App treats the child elements of the given enclosing element as events and executes JSON expressions on them. If an `enclosing.element` is not provided, the multiple event scenario is disregarded and JSON path is evaluated based on the root element. | \$            | STRING              | Yes      | No      |
 
 ## Example 1
@@ -23,9 +23,7 @@ This extension is an Event to JSON output mapper. Transports that publish messag
 CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='json') (symbol string, price float, volume long);
 ```
 
-Above configuration does a default JSON input mapping that generates the
-output given
-below.
+Above configuration does a default JSON input mapping that generates the output given below.
 
 ```json
 {    
@@ -40,12 +38,10 @@ below.
 ## Example 2
 
 ```js
-    CREATE SINK BarStream WITH (type='stream', topic='{{symbol}}', map.type='json', map.enclosing.element='$.portfolio', map.validate.json='true', map.payload="""{"StockData":{"Symbol":"{{symbol}}","Price":{{price}}}}""") (symbol string, price float, volume long);
+CREATE SINK BarStream WITH (type='stream', topic='{{symbol}}', map.type='json', map.enclosing.element='$.portfolio', map.validate.json='true', map.payload="""{"StockData":{"Symbol":"{{symbol}}","Price":{{price}}}}""") (symbol string, price float, volume long);
 ```
 
-The above configuration performs a custom JSON mapping that generates
-the following JSON message as the
-output.
+The above configuration performs a custom JSON mapping that generates the following JSON message as the output.
 
 ```json
     {
