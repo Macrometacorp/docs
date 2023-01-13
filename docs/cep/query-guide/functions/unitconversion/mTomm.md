@@ -4,7 +4,7 @@ title: mTomm (Function)
 
 This converts the input given in meters into millimeters.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:mTomm(<INT|LONG|FLOAT|DOUBLE> p1)
 

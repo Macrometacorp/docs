@@ -4,7 +4,7 @@ title: miTokm (Function)
 
 This converts the input given in miles into kilometers.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:miTokm(<INT|LONG|FLOAT|DOUBLE> p1)
 

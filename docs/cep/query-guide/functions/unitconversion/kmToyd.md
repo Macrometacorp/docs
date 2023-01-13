@@ -4,7 +4,7 @@ title: kmToyd (Function)
 
 This converts the input given in kilometers into yards.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kmToyd(<INT|LONG|FLOAT|DOUBLE> p1)
 

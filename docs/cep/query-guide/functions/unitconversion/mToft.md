@@ -4,7 +4,7 @@ title: mToft (Function)
 
 This converts the input given in meters into feet.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:mToft(<INT|LONG|FLOAT|DOUBLE> p1)
 

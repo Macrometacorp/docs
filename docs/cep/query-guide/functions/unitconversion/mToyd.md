@@ -4,7 +4,7 @@ title: mToyd (Function)
 
 This converts the input given in meters into yards.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:mToyd(<INT|LONG|FLOAT|DOUBLE> p1)
 

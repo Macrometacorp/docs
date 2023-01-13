@@ -4,7 +4,7 @@ title: hTos (Function)
 
 This converts the input given in hours into seconds.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:hTos(<INT|LONG|FLOAT|DOUBLE> p1)
 

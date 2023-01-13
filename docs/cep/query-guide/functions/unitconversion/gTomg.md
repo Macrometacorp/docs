@@ -4,7 +4,7 @@ title: gTomg (Function)
 
 This converts the input given in grams into milligrams.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:gTomg(<INT|LONG|FLOAT|DOUBLE> p1)
 

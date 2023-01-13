@@ -4,7 +4,7 @@ title: kmToft (Function)
 
 This converts the input given in kilometers into feet.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kmToft(<INT|LONG|FLOAT|DOUBLE> p1)
 
