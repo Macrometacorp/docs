@@ -19,4 +19,4 @@ This function returns the `char` value that is present at the given index positi
 
     charAt("gdn", 1)
 
-In this case, the functiion returns the character that exists at index 1. Hence, it returns `S`.
+In this case, the function returns the character that exists at index 1. Hence, it returns `S`.
