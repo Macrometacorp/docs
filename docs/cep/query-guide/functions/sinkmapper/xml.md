@@ -22,7 +22,7 @@ data.
 
     CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='xml') (symbol string, price float, volume long);
 
-Above configuration will do a default XML input mapping which will generate below output: 
+Above configuration will do a default XML input mapping which will generate below output:
 
 ```xml
 <events>     

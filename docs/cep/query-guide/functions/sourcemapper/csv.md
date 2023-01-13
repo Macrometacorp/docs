@@ -2,10 +2,7 @@
 title: csv (Source Mapper)
 ---
 
-This extension is used to convert a CSV message to stream worker event input
-mapper. You can either receive a predefined CSV message where event
-conversion takes place without extra configurations or receive custom
-CSV message where a custom place order maps from a custom CSV message.
+This extension is used to convert a CSV message to stream worker event input mapper. You can either receive a predefined CSV message where event conversion takes place without extra configurations or receive custom CSV message where a custom place order maps from a custom CSV message.
 
 ## Syntax
 
@@ -26,10 +23,9 @@ CSV message where a custom place order maps from a custom CSV message.
 
 Above configuration will do a default CSV input mapping. Expected input is:
 
-gdn ,55.6 , 100OR  "gdn,No10,Palam Groove Rd,Col-03" ,55.6 , 100
+`gdn ,55.6 , 100OR  "gdn,No10,Palam Groove Rd,Col-03" ,55.6 , 100`
 
-If `header.present` is `true` and delimiter is "-",
-then the input is as follows: `symbol-price-volumegdn-55.6-100`
+If `header.present` is `true` and delimiter is "-", then the input is as follows: `symbol-price-volumegdn-55.6-100`
 
 ## Example 2
 
