@@ -32,4 +32,4 @@ select instanceOfDouble(switchState) as state
 from fooStream;
 ```
 
-If the `switchState = true` then this returns `false` as the value is not an instance of the double.
+If the `switchState = true`, then this returns `false` as the value is not an instance of the double.
