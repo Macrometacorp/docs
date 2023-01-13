@@ -14,7 +14,7 @@ This section describes the features available in the GDN console and how to work
 Once you log in to a Macrometa account, you can view all collections that you have access to.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Data > Collections**.
+1. Click **Collections**.
 
 Macrometa displays a list of collections. The following columns show information about each collection.
 
@@ -48,9 +48,9 @@ When viewing your collections, you can click **New Collection** to create a new 
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- [List All Collections](https://macrometa.com/docs/api#/operations/handleCommandGet)
-- [Get Information About a Collection](https://macrometa.com/docs/api#/operations/handleCommandGet:collectionGetProperties)
-- [Get Number of Documents in a Collection](https://macrometa.com/docs/api#/operations/handleCommandGet:getCollectionCount)
+- [List All Collections](https://www.macrometa.com/docs/api#/operations/handleCommandGet)
+- [Get Information About a Collection](https://www.macrometa.com/docs/api#/operations/handleCommandGet:collectionGetProperties)
+- [Get Number of Documents in a Collection](https://www.macrometa.com/docs/api#/operations/handleCommandGet:getCollectionCount)
 
 </TabItem>
 <TabItem value="cli" label="CLI">

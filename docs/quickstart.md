@@ -3,9 +3,15 @@ sidebar_position: 10
 title: Quickstart
 ---
 
-Macrometa Global Data Network (GDN) is a geo-distributed, real-time, coordination-free materialized views engine. GDN supports multiple data models, making it flexible and compatible with many database types.
+Macrometa's Global Data Network (GDN) is a distributed backend for building global applications. If you're still curious as to why you should build on Macrometa rather than on the centralized cloud (AWS, GCP, or Azure), please keep reading. Otherwise, you may skip this section and get started on our address book demo.
 
-Get started with Macrometa by creating a simple address book. This tutorial is Macrometa's version of "Hello, world!" It is simplistic by design and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms.
+1. **Low-latency for Everyone**: Wouldn't it be nice if you could provide a consistent end-user experience for your customers, regardless of where they are located? With Macrometa, your data is no longer centralized in a specific region like us-east-1, but rather replicated and available for reads and writes (N-Active) from 175+ locations around the world, allowing you to build stateful applications as close to your end-users as possible. The added benefit of global replication with CRDTs ensures business continuity if a particular region or multiple regions were to fail. For the developers out there, you won't even need to change your endpoint as it will automatically reconnect you to the closest region! Check out our [Global Data Mesh](https://www.macrometa.com/platform/global-data-mesh) to learn more.  
+2. **Faster Time-To-Market**: Macrometa is a converged technology Platform as a Service (PaaS) consisting of a multi-model database (K/V, document, search, graph), stream engine, complex event processing, and compute capabilities. Utilizing a single platform as opposed to stitching together a variety of services _a la carte_ in the public cloud allows you to build, iterate, and execute faster. Check out our [Edge Compute](https://www.macrometa.com/platform/edge-compute) to learn more.
+3. **Lower Total Cost of Ownership (TCO)**: Building on the previous example, multiple cloud services are needed to build applications. When it's time to scale out to support a global audience, you'll end up utilizing several databases, maintaining copies of your data within multiple regions, and the costs will add up very quickly. Within the Macrometa GDN is a true [multi-model database](https://www.macrometa.com/topics/multi-model-database), allowing you to query one copy of data with extremely low latency anywhere in the world. Your development team will be free to spend more time on the business logic and less time focusing on the data layer and movement.
+
+Great, time to jump right in! Let's get started with Macrometa by creating a global address book. In this tutorial, you will be creating a document [collection](https://macrometa.com/docs/collections/), inserting and querying some user data, and finally creating a fully operational API via [Query Workers](https://macrometa.com/docs/queryworkers/). This tutorial is Macrometa's version of "Hello, world!", is simplistic by design, and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms. 
+
+If you've already completed this tutorial, then you can [add search to your application](https://macrometa.com/docs/search/getting-started).
 
 ## Prerequisites
 
@@ -15,7 +21,7 @@ Get started with Macrometa by creating a simple address book. This tutorial is M
 
 A _collection_ is a group of documents with a unique name and identifier. For the address book, you will create a document collection that contains names and addresses.
 
-1. On the side menu, click **Data > Collections**.
+1. On the side menu, click **Collections**.
 1. Click **New Collection**.
 1. Click **Document Store**.
 1. In **Collection Name**, enter `addresses`.
@@ -31,7 +37,7 @@ Our collection is now accessible worldwide! However, it's empty. Let's fix that.
 
 There are several ways to add data to a collection, including importing CSV or JSON files. For this quickstart, we'll use a query to insert records.
 
-1. On the side menu, click **Compute > Query Workers**.
+1. On the side menu, click **Query Workers**.
 2. The code block below contains six names and email addresses. Copy and paste it in the code editor on line 1.
 
   ```sql
@@ -55,7 +61,7 @@ There are several ways to add data to a collection, including importing CSV or J
 
 Return to the collection and see what the query did.
 
-1. click **Data > Collections**.
+1. Click **Collections**.
 1. Click **addresses**.
 
 Macrometa displays a list of keys and content for each record in the collection. Now you can:
@@ -72,7 +78,7 @@ When you are done experimenting with records, continue to the next step.
 
 Now, let's query the data you just added to your collection.
 
-1. Click **Compute > Query Workers**.
+1. Click **Query Workers**.
 2. Click **New Query** to clear the code editor.
 3. Copy the code block below and paste it into the code editor.
 
@@ -146,6 +152,7 @@ REMOVE @_key
 IN addresses
 ```
 
-You have a full functional API for your application. [We made a front-end for you to take your new back-end for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
+You have a fully-functional API for your application. [We made a front-end for you to take your new back-end for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
 
-## Next Up: [Add Search to your app](https://macrometa.com/docs/search/getting-started)
+
+## Next Up: [Add Search to your app](https://www.macrometa.com/docs/search/getting-started)
