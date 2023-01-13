@@ -19,11 +19,7 @@ This page guides you through creating a stream worker and updating it.
 
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
-### Step 1. Log In to GDN
-
-
-
-### Step 2. Define Query Name
+### Step 1. Define Query Name
 
 Write a name and description. If no `qlVersion` is specified, default is `2`. Do not change this value unless you are working with a version 1 stream.
 
@@ -33,7 +29,7 @@ Write a name and description. If no `qlVersion` is specified, default is `2`. Do
 @App:qlVersion('2')
 ```
 
-### Step 3. Create Source
+### Step 2. Create Source
 
 Example to create a source for a stream worker.
 
@@ -42,7 +38,7 @@ Example to create a source for a stream worker.
 CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "SampleCargoAppInputTable", collection.type="doc" , replication.type="global", map.type='json') (weight int);
 ```
 
-### Step 4. Create Sink
+### Step 3. Create Sink
 
 Example to create a sink for a stream worker.
 
@@ -51,7 +47,7 @@ Example to create a sink for a stream worker.
 CREATE SINK STREAM SampleCargoAppDestStream (weight int);
 ```
 
-### Step 5. Write and Save Query
+### Step 4. Write and Save Query
 
 Example query that adds data from the source into the sink.
 
@@ -63,7 +59,7 @@ SELECT weight
 FROM SampleCargoAppInputTable;
 ```
 
-### Step 6. Add Data to the Source
+### Step 5. Add Data to the Source
 
 Upload the following data to the source you created:
 
