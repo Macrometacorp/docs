@@ -2,19 +2,19 @@
 title: sizeOfSet (Stream Function)
 ---
 
-The pol2Cart function calculating the cartesian coordinates x & y for the given theta, rho coordinates and adding them as new attributes to the existing events.
+The pol2Cart function calculating the cartesian coordinates x and y for the given theta, rho coordinates and adding them as new attributes to the existing events.
 
-Syntax
+## Syntax
 
     pol2Cart(<DOUBLE> theta, <DOUBLE> rho)
     pol2Cart(<DOUBLE> theta, <DOUBLE> rho, <DOUBLE> z)
 
 ## Query Parameters
 
-| Name  | Description                           | Default Value                                                    | Possible Data Types | Optional | Dynamic |
-|-------|---------------------------------------|------------------------------------------------------------------|---------------------|----------|---------|
-| theta | The theta value of the coordinates.   |                                                                  | DOUBLE              | No       | Yes     |
-| rho   | The rho value of the coordinates.     |                                                                  | DOUBLE              | No       | Yes     |
+| Name  | Description            | Default Value    | Possible Data Types | Optional | Dynamic |
+|-------|---------------------------------------|--------------------------|---------------------|----------|---------|
+| theta | The theta value of the coordinates.   |        | DOUBLE              | No       | Yes     |
+| rho   | The rho value of the coordinates.     |        | DOUBLE              | No       | Yes     |
 | z     | z value of the cartesian coordinates. | If z value is not given, drop the third parameter of the output. | DOUBLE              | Yes      | Yes     |
 
 ## Example 1
