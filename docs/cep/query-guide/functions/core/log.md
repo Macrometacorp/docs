@@ -4,7 +4,7 @@ title: log (Stream Processor)
 
 Logs the message on the given priority with or without the processed event.
 
-Syntax
+## Syntax
 
     log()
     log(<STRING> log.message)
@@ -62,7 +62,7 @@ For each event logs a message "Event Arrived" on default log level INFO.
 Logs events with the message prefix "Sample Event :" on default log level INFO.
 
 ## Example 6
-    
+
     insert into BarStream
     select *
     from FooStream#log(true);
