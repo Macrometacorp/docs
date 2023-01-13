@@ -23,11 +23,7 @@ begin
 end;
 ```
 
-When using purge with an aggregation, use a `WITH()` property instead. For example:
-
-```
-
-```
+## Parameters
 
 Partition Purge Configuration| Description
 ---------|--------
