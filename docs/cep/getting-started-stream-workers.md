@@ -61,7 +61,7 @@ FROM SampleCargoAppInputTable;
 
 ### Step 5. Add Data to the Source
 
-Upload the following data to the source you created:
+Upload the following data to your source. In this case, it's a collection called `SampleCargoAppInputTable`.
 
 ```sql
 {"weight": 1}
@@ -71,7 +71,7 @@ Upload the following data to the source you created:
 {"weight": 5}
 ```
 
-When you view the output for `SampleCargoAppDestStream`, you will see results similar to the following:
+When you view the output on the stream console for `SampleCargoAppDestStream`, you will see results similar to the following:
 
 ```sql
 [2021-08-27T14:12:15.795Z] {"weight":1}
