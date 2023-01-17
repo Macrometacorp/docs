@@ -3,7 +3,7 @@ sidebar_position: 60
 title: Sink Mapping
 ---
 
-Each `sink.type` configuration can have a mapping denoted by the `map.type` annotation that defines how to convert Stream events to outgoing messages with the defined format.
+Each `sink.type` configuration can have a mapping denoted by the `map.type` annotation that defines how to convert stream events to outgoing messages with the defined format.
 
 The `type` parameter of the `map.type` defines the map type to be used in converting the outgoing events. The other parameters of `map.type` annotation depends on the mapper selected, and some of its parameters can be optional and/or dynamic.
 
