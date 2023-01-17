@@ -2,17 +2,16 @@
 title: unhex (Function)
 ---
 
-Returns a string by converting the hexadecimal characters in the input
-string.
+Returns a string by converting the hexadecimal characters in the input string.
 
-Syntax
+## Syntax
 
     <STRING> str:unhex(<STRING> input.string)
 
 ## Query Parameters
 
-| Name         | Description                                                        | Default Value | Possible Data Types | Optional | Dynamic |
-|--------------|--------------------------------------------------------------------|---------------|---------------------|----------|---------|
+| Name         | Description              | Default Value | Possible Data Types | Optional | Dynamic |
+|--------------|-------------------------------------|---------------|---------------------|----------|---------|
 | input.string | The hexadecimal input string that needs to be converted to string. |               | STRING              | No       | Yes     |
 
 ## Example 1

@@ -5,22 +5,22 @@ title: tokenize (Stream Processor)
 This function splits the input string into tokens using a given regular
 expression and returns the split tokens.
 
-Syntax
+## Syntax
 
     str:tokenize(<STRING> input.string, <STRING> regex)
     str:tokenize(<STRING> input.string, <STRING> regex, <BOOL> distinct)
 
 ## Query Parameters
 
-| Name         | Description                                                      | Default Value | Possible Data Types | Optional | Dynamic |
-|--------------|------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| input.string | The input string which needs to be split.                        |               | STRING              | No       | Yes     |
+| Name         | Description            | Default Value | Possible Data Types | Optional | Dynamic |
+|--------------|----------------------------------|---------------|---------------------|----------|---------|
+| input.string | The input string which needs to be split.   |               | STRING              | No       | Yes     |
 | regex        | The string value which is used to tokenize the `input.string`. |               | STRING              | No       | Yes     |
 | distinct     | This flag is used to return only distinct values.                | false         | BOOL                | Yes      | Yes     |
 
-Extra Return Attributes
+## Extra Return Attributes
 
-| Name  | Description                                  | Possible Types |
+| Name  | Description             | Possible Types |
 |-------|----------------------------------------------|----------------|
 | token | The attribute which contains a single token. | STRING         |
 
@@ -33,7 +33,4 @@ Extra Return Attributes
     select token
     from inputStream#str:tokenize(str , ',');
 
-This query performs tokenization on the given string. If the str is
-"Android,Windows8,iOS", then the string is split into 3 events
-containing the `token` attribute values, i.e., `Android`, `Windows8` and
-`iOS`.
+This query performs tokenization on the given string. If the string is "Android,Windows8,iOS", then the string is split into three events containing the `token` attribute values, i.e., `Android`, `Windows8`, and `iOS`.

@@ -4,15 +4,14 @@ title: protobuf (Sink Mapper)
 
 This output mapper allows you to convert Events to protobuf messages before publishing them. To work with this mapper you have to add auto-generated protobuf classes to the project classpath. When you use this output mapper, you can either define stream attributes as the same names as the protobuf message attributes or you can use custom mapping to map stream definition attributes with the protobuf attributes. When you use this mapper with `stream processor-io-grpc` you don't have to provide the protobuf message class in the `class` parameter.
 
-Syntax
+## Syntax
 
     CREATE SINK <NAME> WITH (type="protobuf", class="<STRING>")
 
-
 ## Query Parameters
 
-| Name  | Description                                                                                                                           | Default Value | Possible Data Types | Optional | Dynamic |
-|-------|---------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
+| Name  | Description       | Default Value | Possible Data Types | Optional | Dynamic |
+|-------|---------------------------------|---------------|---------------------|----------|---------|
 | class | This specifies the class name of the protobuf message class, If sink type is grpc then it's not necessary to provide this parameter. | \-            | STRING              | Yes      | No      |
 
 ## Example 1

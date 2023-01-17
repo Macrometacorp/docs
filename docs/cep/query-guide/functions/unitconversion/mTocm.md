@@ -4,7 +4,7 @@ title: mTocm (Function)
 
 This converts the input given in meters into centimeters.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:mTocm(<INT|LONG|FLOAT|DOUBLE> p1)
 

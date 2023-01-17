@@ -4,7 +4,7 @@ title: gToug (Function)
 
 This converts the input given in grams into micrograms.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:gToug(<INT|LONG|FLOAT|DOUBLE> p1)
 

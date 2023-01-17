@@ -4,7 +4,7 @@ title: kmToum (Function)
 
 This converts the input given in kilometers into micrometers.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kmToum(<INT|LONG|FLOAT|DOUBLE> p1)
 

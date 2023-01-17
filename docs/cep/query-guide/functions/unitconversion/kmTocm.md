@@ -4,7 +4,7 @@ title: kmTocm (Function)
 
 This converts the input given in kilometers into centimeters.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kmTocm(<INT|LONG|FLOAT|DOUBLE> p1)
 

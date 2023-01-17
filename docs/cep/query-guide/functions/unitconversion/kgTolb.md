@@ -4,7 +4,7 @@ title: kgTolb (Function)
 
 This converts the input given in kilograms into pounds.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kgTolb(<INT|LONG|FLOAT|DOUBLE> p1)
 

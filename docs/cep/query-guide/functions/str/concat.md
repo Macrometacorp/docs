@@ -2,10 +2,9 @@
 title: concat (Function)
 ---
 
-This function returns a string value that is obtained as a result of
-concatenating two or more input string values.
+This function returns a string value that is obtained as a result of concatenating two or more input string values.
 
-Syntax
+## Syntax
 
     <STRING> str:concat(<STRING> arg, <STRING> ...)
 
@@ -19,5 +18,4 @@ Syntax
 
     concat("D533", "8JU^", "XYZ")
 
-This returns a string value by concatenating two or more given
-arguments. In the example shown above, it returns "D5338JU\^XYZ".
+This returns a string value by concatenating two or more given arguments. In the example shown above, it returns `"D5338JU\^XYZ"`.

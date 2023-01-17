@@ -5,7 +5,7 @@ title: hex (Function)
 This function returns a hexadecimal string by converting each byte of
 each character in the input string to two hexadecimal digits.
 
-Syntax
+## Syntax
 
     <STRING> str:hex(<STRING> input.string)
 
@@ -19,5 +19,4 @@ Syntax
 
     hex("MySQL")
 
-This returns the hexadecimal value of the input.string. In this
-scenario, the output is "4d7953514c".
+This returns the hexadecimal value of the input.string. In this scenario, the output is "4d7953514c".

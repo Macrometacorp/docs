@@ -4,7 +4,7 @@ title: cmTonm (Function)
 
 This converts the input given in centimeters into nanometers.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:cmTonm(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -18,5 +18,4 @@ Syntax
 
     unitconversion:cmTonm(1)
 
-The centimeter value `1` is converted into nanometers as `10000000`
-.
+The centimeter value `1` is converted into nanometers as `10000000`.
