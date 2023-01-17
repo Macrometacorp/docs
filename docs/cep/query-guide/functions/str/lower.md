@@ -2,10 +2,9 @@
 title: lower (Function)
 ---
 
-Converts the capital letters in the input string to the equivalent
-simple letters.
+Converts the capital letters in the input string to the equivalent simple letters.
 
-Syntax
+## Syntax
 
     <STRING> str:lower(<STRING> input.string)
 

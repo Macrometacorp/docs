@@ -5,7 +5,7 @@ title: replaceAll (Function)
 Finds all the substrings of the input string that matches with the given
 expression, and replaces them with the given replacement string.
 
-Syntax
+## Syntax
 
     <STRING> str:replaceAll(<STRING> input.string, <STRING> regex, <STRING> replacement.string)
 
@@ -21,6 +21,4 @@ Syntax
 
     replaceAll("hello hi hello",  'hello', 'test')
 
-This returns a string after replacing the substrings of the input string
-with the replacement string. In this scenario, the output is "test hi
-test" .
+This returns a string after replacing the substrings of the input string with the replacement string. In this scenario, the output is "test hi test" .

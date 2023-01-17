@@ -4,7 +4,7 @@ title: cmTom (Function)
 
 This converts the input given in centimeters into meters.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:cmTom(<INT|LONG|FLOAT|DOUBLE> p1)
 
