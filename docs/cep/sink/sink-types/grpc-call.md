@@ -2,7 +2,7 @@
 title: grpc-call (Sink)
 ---
 
-This extension publishes event data encoded into GRPC Classes as defined in the user input jar. This extension has a default gRPC service classes jar added.
+This sink publishes event data encoded into GRPC Classes as defined in the user input jar. This extension has a default gRPC service classes jar added.
 
 The default service is called "EventService". If we want to use our custom gRPC services, we have to pack auto-generated gRPC service classes and protobuf classes into a jar file and add it into the project classpath (or to the `jars` folder in the `stream processor-tooling` folder if we use it with `stream processor-tooling`).
 
