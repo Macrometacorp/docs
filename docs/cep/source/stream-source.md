@@ -73,7 +73,6 @@ The following is the list of source mapping types supported by stream.
 | [Key-Value](../query-guide/functions/sourcemapper/keyvalue.md) | Converts key-value hash maps to stream events.|
 | [PassThrough](../query-guide/functions/sourcemapper/passThrough.md) | Omits data conversion on stream events.|
 | [Text](../query-guide/functions/sourcemapper/text.md) | Converts plain text messages to stream events.|
-| XML | Converts XML messages to stream events.|
 
 :::tip
 When the `map.type` annotation is not provided `map.type='passThrough'` is used as default, that passes the consumed stream events directly to the streams without any data conversion.
@@ -170,14 +169,9 @@ The stream worker extends the above use case by adding failure generation and er
 
 CREATE STREAM TempStream WITH(OnError.action="STREAM") (deviceID long, roomNo int, temp double;
 
--- Error generation through a custom function `createError()`
-@name('error-generation')
-insert into IgnoreStream1
-from TempStream#custom:createError();
-
 -- Handling error by simply logging the event and error.
 @name('handle-error')
-insert into IgnoreStream2
+insert into IgnoreStream
 select deviceID, roomNo, temp, _error
 from !TempStream#log("Error Occurred!");
 ```
