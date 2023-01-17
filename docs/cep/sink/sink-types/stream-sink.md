@@ -12,7 +12,7 @@ Stream sink provides a way to publish stream events of a stream to external syst
 
 To configure a stream to publish events via a sink, add the sink configuration to a stream definition by adding the `sink.type` annotation with the required parameter values.
 
-The sink syntax is as follows:
+The stream sink syntax is as follows:
 
 ```sql
    CREATE SINK SinkName WITH (type="stream", stream="STRING", replication.type="STRING", map.type='type') (strings);
