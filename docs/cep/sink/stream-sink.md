@@ -4,8 +4,6 @@ title: Stream Sink
 
 Stream sinks consume events from streams and publish them using multiple transports to external endpoints in various data formats.
 
-A sink configuration allows users to define a mapping to convert the stream events into the required output data format, such as `JSON`, `TEXT`, and so on, and publish the events to the configured endpoints. When customizations to such mappings are not provided, stream converts events to the predefined event format based on the stream definition and the configured message mapper type before publishing the events.
-
 ## Purpose
 
 Stream sink provides a way to publish stream events of a stream to external systems by converting events to their supported format.
@@ -20,37 +18,11 @@ The sink syntax is as follows:
 CREATE SINK <stream name> WITH (sink.type='<sink type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.payload'<payload mapping>')) (<attribute1> <type>, <attributeN> <type>);
 ```
 
-:::note
-"Dynamic Properties"
-The sink and sink mapper properties that are categorized as `dynamic` have the ability to absorb attribute values
-dynamically from the Stream events of their associated streams. This can be configured by enclosing the relevant
-attribute names in double curly braces as`{{...}}`, and using it within the property values.
-
-Some valid dynamic properties values are:
-
-- `'{{attribute1}}'`
-- `'This is {{attribute1}}'`
-- `{{attribute1}} > {{attributeN}}`  
-
-Here the attribute names in the double curly braces will be replaced with the values from the events before they are published.
-:::
-
 This syntax includes the following annotations.
 
 ### Sink
 
-The `type` parameter of the `sink.type` annotation defines the sink type that publishes the events. The other parameters of the `sink.type` annotation depends upon the selected sink type, and here some of its parameters can be optional and/or dynamic.
 
-The following is a list of sink types supported by stream processor:
-
-|Source type | Description|
-| ------------- |-------------|
-| database | Allow the stream worker to publish events to collections (doc, graphs) in the same or different geofabric. |
-| HTTP| Publish events to an HTTP endpoint.|
-| Kafka | Publish events to Kafka topic. |
-| TCP | Publish events to a TCP service. |
-| Email | Send emails via SMTP protocols.|
-| Web Socket | Publish events to a Web Socket |
 
 ## Distributed Sink
 
@@ -115,7 +87,7 @@ There are two ways you to configure `map.payload` annotation.
 
 ### Supported Sink Mapping Types
 
-The following is a list of sink mapping types supported by Stream:
+The following is a list of sink mapping types supported by stream workers:
 
 |Sink Mapping Type | Description|
 | ------------- |-------------|
@@ -124,7 +96,6 @@ The following is a list of sink mapping types supported by Stream:
 | [Key-Value](../query-guide/functions/sourcemapper/keyvalue.md) | Converts key-value hash maps to stream events.|
 | [PassThrough](../query-guide/functions/sourcemapper/passThrough.md) | Omits data conversion on stream events.|
 | [Text](../query-guide/functions/sourcemapper/text.md) | Converts plain text messages to stream events.|
-| XML | Converts XML messages to stream events.|
 
 :::tip
 When the `map.type` annotation is not provided `map.type='passThrough'` is used as default, that passes the outgoing Stream events directly to the sinks without any data conversion.
@@ -216,48 +187,4 @@ This partitions the outgoing events and publish all events with the same country
     "country":"UK"
   }
 }
-```
-
-## Error Handling at Stream Sink
-
-There can be cases where external systems becoming unavailable or coursing errors when the events are published to them. By default sinks log and drop the events causing event losses, and this can be handled gracefully by configuring `on.error` parameter of the `sink.type` annotation.
-
-### on.error Parameter
-
-The `on.error` parameter of the `sink.type` annotation can be specified as below.
-
-```sql
-CREATE SINK <stream name> WITH (sink.type='<sink type>', on.error.action='<on error action>', <key>='<value>', ...) (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
-```  
-
-The following actions can be specified to `on.error` parameter of `sink.type` annotation to handle erroneous scenarios.
-
-- `WAIT` : Publishing threads wait in `back-off and re-trying` mode, and only send the events when the connection is re-established. During this time the threads will not consume any new messages causing the systems to introduce back pressure on the systems that publishes to it.
-
-- `STREAM`: Pushes the failed events with the corresponding error to the associated fault stream the sink belongs to.
-
-### Example 1
-
-Introduce back pressure on the threads who bring events via `TempStream` when the system cannot connect to Kafka.
-
-The configuration of `TempStream` stream and `sink.type` Kafka annotation with `on.error` property is as follows.
-
-```sql
-CREATE SINK TempStream WITH (sink.type='kafka', on.error.action='WAIT', topic='{{roomNo}}', bootstrap.servers='localhost:9092', map.type='xml') (deviceID long, roomNo int, temp double);
-```
-
-### Example 2
-
-Send events to the fault stream of `TempStream` when the system cannot connect to Kafka.
-
-The configuration of `TempStream` stream with associated fault stream, `sink.type` Kafka annotation with `on.error` property and a queries to handle the error is as follows.
-
-```sql
-CREATE SINK TempStream WITH (sink.type='kafka', on.error.action='STREAM', topic='{{roomNo}}', bootstrap.servers='localhost:9092', map.type='xml') (deviceID long, roomNo int, temp double);
-
--- Handling error by simply logging the event and error.
-@name('handle-error')
-insert into IgnoreStream;
-select deviceID, roomNo, temp, _error
-from !TempStream#log("Error Occurred!")
 ```
