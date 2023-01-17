@@ -4,8 +4,6 @@ sidebar_position: 2
 
 # Create Stream Workers
 
-## Introduction
-
 Stream workers are declarative specs that define the processing logic to process the events sent to the stream processor. A stream worker definition contains the following configurations:
 
 <table>
@@ -22,11 +20,11 @@ Stream workers are declarative specs that define the processing logic to process
 </tr>
 <tr class="even">
 <td>Source</td>
-<td>This consumes data from external sources (such as `TCP` , ` Kafka ` , ` HTTP ` , etc) in the form of events, then converts each event (that can be in `XML` , `             JSON` , ` binary` , etc. format) to a stream event, and passes that to a stream for processing.</td>
+<td>This consumes data from external sources (such as `TCP` , ` Kafka ` , ` HTTP ` , etc) in the form of events, then converts each event (that can be in `JSON` , ` binary` , etc. format) to a stream event, and passes that to a stream for processing.</td>
 </tr>
 <tr class="odd">
 <td>Sink</td>
-<td>This takes events arriving at a stream, maps them to a predefined data format (such as `  XML ` , `JSON,` `binary` , etc), and publishes them to external endpoints (such as ` E-mail ` , ` TCP ` , ` Kafka ` , `HTTP ` , etc).</td>
+<td>This takes events arriving at a stream, maps them to a predefined data format (such as `JSON,` `binary` , etc), and publishes them to external endpoints (such as ` E-mail ` , ` TCP ` , ` Kafka ` , `HTTP ` , etc).</td>
 </tr>
 <tr class="even">
 <td>Table</td>
@@ -171,50 +169,7 @@ Query parameters:
 </tbody>
 </table>
 
-## Sink
 
-Sinks are used to publish events to an external source after being processed. Sink consumes events from streams and allows the definition of a schema for the output format. 
-
-### Create streams
-
-Syntax:
-```sql
-   CREATE SINK SinkName WITH (type="stream", stream="STRING", replication.type="STRING", map.type='type') (strings);
-```
-
-Example:
-```sql
-   CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json') (name string, amount double);
-```
-Query Parameters:
-
-<table>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-<th>Default Value</th>
-<th>Possible Data Types</th>
-<th>Optional</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>stream</td>
-<td>The streams to which the sink needs to publish events.</td>
-<td></td>
-<td>STRING</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>replication.type</td>
-<td>Specifies if the replication type of the stream. Possible values can be `local` and `global`</td>
-<td>local</td>
-<td>STRING</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
 
 ## Table
 
