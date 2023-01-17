@@ -2,10 +2,9 @@
 title: charAt (Function)
 ---
 
-This function returns the `char` value that is present at the given
-index position. of the input string.
+This function returns the `char` value that is present at the given index position. of the input string.
 
-Syntax
+## Syntax
 
     <STRING> str:charAt(<STRING> input.value, <INT> index)
 
@@ -20,5 +19,4 @@ Syntax
 
     charAt("gdn", 1)
 
-In this case, the functiion returns the character that exists at index
-1. Hence, it returns `S`.
+In this case, the function returns the character that exists at index 1. Hence, it returns `S`.

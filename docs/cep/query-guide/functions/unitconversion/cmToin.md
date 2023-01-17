@@ -4,7 +4,7 @@ title: cmToin (Function)
 
 This converts the input given in centimeters into inches.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:cmToin(<INT|LONG|FLOAT|DOUBLE> p1)
 

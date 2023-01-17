@@ -4,7 +4,7 @@ title: kmTomi (Function)
 
 This converts the input given in kilometers into miles.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kmTomi(<INT|LONG|FLOAT|DOUBLE> p1)
 
