@@ -47,6 +47,10 @@ The following is a list of some of the sink types supported by stream workers:
 | [Kafka](kafka.md) | Publish events to Kafka topic. |
 | [TCP](tcp.md) | Publish events to a TCP service. |
 
+## Sink Mappers
+
+You can map different sink formats using sink mappers. For more information, refer to [Sink Mapping](sink-mapping.md).
+
 ## Example Stream Sink
 
 ```sql
