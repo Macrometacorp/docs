@@ -4,7 +4,7 @@ title: kgTost (Function)
 
 This converts the input given in kilograms into imperial stones.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kgTost(<INT|LONG|FLOAT|DOUBLE> p1)
 

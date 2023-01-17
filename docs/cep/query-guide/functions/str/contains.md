@@ -2,10 +2,9 @@
 title: contains (Function)
 ---
 
-This function returns `true` if the`input.string` contains the specified
-sequence of char values in the `search.string`.
+This function returns `true` if the`input.string` contains the specified sequence of char values in the `search.string`.
 
-Syntax
+## Syntax
 
     <BOOL> str:contains(<STRING> input.string, <STRING> search.string)
 
@@ -20,5 +19,4 @@ Syntax
 
     contains("21 products are produced by gdn currently", "gdn")
 
-This returns a boolean value as the output. In this case, it
-returns`true`.
+This returns a boolean value as the output. In this case, it returns`true`.
