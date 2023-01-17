@@ -5,13 +5,6 @@ title: Getting Started with Stream Workers
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Steps from '../_partials/_get-started-steps.md';
-
-This article is an introduction to using stream workers with the Macrometa GDN console.
-
-<Prerequisites />
-
-## Get Started with Stream Workers
 
 This page guides you through creating a stream worker and updating it.
 
@@ -21,7 +14,9 @@ If you want to skip the explanation and just run the code, then go directly to t
 
 ### Step 1. Define Query Name
 
-Write a name and description. If no `qlVersion` is specified, default is `2`. Do not change this value unless you are working with a version 1 stream.
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
+1. Click **Stream Worker**.
+1. In the Editor tab, you must define the stream worker. Copy and paste the following code block in the code editor on the Editor tab. An explanation is below if you want more information than is available in the code comments.
 
 ```sql
 @App:name('sample-cargo-app')
@@ -29,9 +24,18 @@ Write a name and description. If no `qlVersion` is specified, default is `2`. Do
 @App:qlVersion('2')
 ```
 
+1. Click **Validate**. Macrometa checks to see that your code is valid.
+1. Click **Save**.
+1. Select edge locations, and then click **Save**. The locations that you select represent where the data for this stream worker will live.
+1. Click **Publish** to publish your stream worker. When you do this, it will begin to run the code as defined and will continue until you unpublish it.
+
+:::note
+The default`qlVersion` is `2`. Version 1 is only used for backwards compatibility with deprecated stream workers.
+:::
+
 ### Step 2. Create Source
 
-Example to create a source for a stream worker.
+
 
 ```sql
 -- Defines `SampleCargoAppInputTable` Source.
@@ -40,7 +44,7 @@ CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "Sa
 
 ### Step 3. Create Sink
 
-Example to create a sink for a stream worker.
+
 
 ```sql
 -- Defines `SampleCargoAppDestStream` Stream.
@@ -49,7 +53,7 @@ CREATE SINK STREAM SampleCargoAppDestStream (weight int);
 
 ### Step 4. Write and Save Query
 
-Example query that adds data from the source into the sink.
+
 
 ```sql
 -- Data Processing
