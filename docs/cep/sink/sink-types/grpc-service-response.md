@@ -2,7 +2,7 @@
 title: grpc-service-response (Sink)
 ---
 
-This extension is used to send responses back to a gRPC client after receiving requests through grpc-service source. This correlates with the particular source using a unique `source.id`.
+This sink is used to send responses back to a gRPC client after receiving requests through grpc-service source. This correlates with the particular source using a unique `source.id`.
 
 ## Syntax
 
