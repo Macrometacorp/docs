@@ -68,7 +68,7 @@ CREATE SINK FooStream WITH (type='http-call', sink.id='foo', publisher.url='http
 CREATE SOURCE ResponseStream WITH (type='http-call-response', sink.id='foo', map.type='text', regex.A='((.|\n)*)', map.attributes="headers='trp:headers', message='A[1]'") (message string, headers string);
 ```
 
-When events arrive in `FooStream`, http-call sink makes calls to endpoint on url `http://localhost:8009/foo` with `POST` method and Content-Type `application/xml`. If the event `payloadBody` attribute contains following XML:
+When events arrive in `FooStream`, http-call sink makes calls to endpoint on URL `http://localhost:8009/foo` with `POST` method and Content-Type `application/xml`. If the event `payloadBody` attribute contains following XML:
 
 ```xml
 <item>
