@@ -2,10 +2,9 @@
 title: trim (Function)
 ---
 
-Returns a copy of the input string without the leading and trailing
-whitespace (if any).
+Returns a copy of the input string without the leading and trailing whitespace (if any).
 
-Syntax
+## Syntax
 
     <STRING> str:trim(<STRING> input.string)
 
@@ -19,6 +18,4 @@ Syntax
 
     trim("  AbCDefghiJ KLMN  ")
 
-This returns a copy of the `input.string` with the leading and/or
-trailing white-spaces omitted. In this scenario, the output is
-"AbCDefghiJ KLMN".
+This returns a copy of the `input.string` with the leading and/or trailing white-spaces omitted. In this scenario, the output is "AbCDefghiJ KLMN".

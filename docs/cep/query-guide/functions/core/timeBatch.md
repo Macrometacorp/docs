@@ -4,7 +4,7 @@ title: timeBatch (Window)
 
 A batch (tumbling) time window that holds and process events that arrive during `window.time` period as a batch.
 
-Syntax
+## Syntax
 
     timeBatch(<INT|LONG|TIME> window.time)
     timeBatch(<INT|LONG|TIME> window.time, <INT|LONG> start.time)
@@ -13,11 +13,11 @@ Syntax
 
 ## Query Parameters
 
-| Name                 | Description                                                                                                        | Default Value            | Possible Data Types | Optional | Dynamic |
-|----------------------|--------------------------------------------------------------------------------------------------------------------|--------------------------|---------------------|----------|---------|
-| window.time          | The batch time period in which the window process the events.                                                      |                          | INT LONG TIME       | No       | No      |
-| start.time           | This specifies an offset in milliseconds in order to start the window at a time different to the standard time.    | Timestamp of first event | INT LONG            | Yes      | No      |
-| stream.current.event | Let the window stream the current events out as and when they arrive to the window while expiring them in batches. | false                    | BOOL                | Yes      | No      |
+| Name              | Description       | Default Value            | Possible Data Types | Optional | Dynamic |
+|--------------|----------------------------------------------------|----------------|----------------|----------|---------|
+| window.time      | The batch time period in which the window process the events.       |          | INT LONG TIME       | No       | No      |
+| start.time      | This specifies an offset in milliseconds in order to start the window at a time different to the standard time.    | Timestamp of first event | INT LONG      | Yes      | No      |
+| stream.current.event | Let the window stream the current events out as and when they arrive to the window while expiring them in batches. | false     | BOOL     | Yes      | No      |
 
 ## Example 1
 

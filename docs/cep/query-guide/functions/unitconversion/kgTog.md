@@ -4,7 +4,7 @@ title: kgTog (Function)
 
 This converts the input given in kilograms into grams.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kgTog(<INT|LONG|FLOAT|DOUBLE> p1)
 

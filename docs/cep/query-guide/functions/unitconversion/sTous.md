@@ -4,7 +4,7 @@ title: sTous (Function)
 
 This converts the input given in seconds into microseconds.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:sTous(<INT|LONG|FLOAT|DOUBLE> p1)
 

@@ -4,7 +4,7 @@ title: hTom (Function)
 
 This converts the input given in hours into minutes.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:hTom(<INT|LONG|FLOAT|DOUBLE> p1)
 

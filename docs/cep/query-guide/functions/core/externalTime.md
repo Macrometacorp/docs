@@ -4,7 +4,7 @@ title: externalTime (Window)
 
 A sliding time window based on external time. It holds events that arrived during the last windowTime period from the external timestamp, and gets updated on every monotonically increasing timestamp.
 
-Syntax
+## Syntax
 
     externalTime(<LONG> timestamp, <INT|LONG|TIME> window.time)
 
@@ -12,8 +12,8 @@ Syntax
 
 | Name        | Description            | Default Value | Possible Data Types | Optional | Dynamic |
 |-------------|--------------------------------------------------------|---------------|---------------------|----------|---------|
-| timestamp   | The time which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. |               | LONG                | No       | Yes     |
-| window.time | The sliding time period for which the window should hold events.                                                                        |               | INT LONG TIME       | No       | No      |
+| timestamp   | The time which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. |               | LONG     | No       | Yes     |
+| window.time | The sliding time period for which the window should hold events.      |          | INT LONG TIME    | No      | No      |
 
 ## Example
 
