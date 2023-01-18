@@ -74,7 +74,7 @@ The Macrometa Streams console does not persist messages, so to see them, you mus
 1. Click **Streams**.
 1. Click **c8locals.SampleCargoAppDestStream**.
 
-### 2. Add Documents to Collection
+### 2. Add Data to Collection and View Stream
 
 Run the following query using one of the methods described in [Running Queries](../../queryworkers/running-queries.md) to add the records to the collection. Each line is a separate record.
 
@@ -91,7 +91,7 @@ FOR d IN data
     INSERT d INTO SampleCargoAppInputTable
 ```
 
-The stream worker pulls the transaction information and sends it to the stream. You will see results similar to the following:
+The stream worker pulls the transaction information and sends it to the stream. In the stream console, you will see results similar to the following:
 
 ```sql
 [2021-08-27T14:12:15.795Z] {"weight":1}
