@@ -6,12 +6,7 @@ title: Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Source - 
-
-Sink - 
-
-
-Macrometa stream workers enable you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
+A _stream worker_ performs complex event processing on data in motion, also called [streams](../streams/index.md). Macrometa GDN allows you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
 
 | Stage | Description |
 |-------|-------------|
@@ -36,6 +31,101 @@ You can process streams to perform the following actions with your data:
 - [Consume](query-guide/stream.md#source) and [publish](query-guide/stream.md#sink) events.
 - Run premade and custom [functions](query-guide/functions/index.md).
 - Write custom [JavaScript functions](query-guide/script.md) to interact with your streams.
+- Query, modify, and join the data stored in [tables](query-guide/table-collection.md) which support primary key constraints and indexing.
+- Rule processing based on single event using [`filter`](query-guide/query.md#filter) operator, `if-then-else` and `match` [functions](query-guide/query.md#function), and many others.
+
+These features allows you to build robust global data processing and integration pipelines at the edge by combining powerful stream processing, multi-model database and geo-replicated streams capabilities.
+
+:::tip
+"Have different business use cases in separate stream workers."
+This is recommended as it allows users to selectively deploy the applications based on their business needs. It is also recommended to move the repeated stream processing logic that exists in multiple stream workers, such as message retrieval and preprocessing, to a common stream workers, whereby reducing code duplication and improving maintainability. In this case, to pass the events from one Stream App to another, configure them using a common stream or collection using `stream` Sink and `stream` Source.
+
+Stream workers provide an isolated execution environment for your processing logic that allows you to deploy and execute processing logic independent of other stream workers in the system. Therefore, it's always recommended to have processing logic related to a single use case in a single StreamApp. This will help you to group processing logic and easily manage addition and removal of various use cases.
+:::
+
+
+## Stream Worker Explanation
+
+This section explains the parts of this stream worker and what they are doing.
+
+### Metadata
+
+This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid.
+
+- **Name** - `@App:name("ExampleApp")`
+- **Query language version (optional)** - @App:qlVersion("2")
+- **Description (optional)** - @App:description('An application for enriching transactions.')
+- **Other information (optional)** - By convention, you can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/**` and `**/`. This is similar to a docstring in functions.
+
+### Input and Output
+
+Define the input stream and the Macrometa collection that need to be joined as follows. If the stream or collection do not exist, then Macrometa creates them when you publish the stream worker.
+
+#### Define the Source Stream
+
+This stream is where the data is coming from. For more information about defining a STREAM in a stream worker, refer to [STREAM](../query-guide/stream.md) in the [Query Guide](../query-guide/index.md). For more information about streams in general, refer to [Streams](../../streams/index.md).
+
+```sql
+CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
+```
+
+#### Define the Table (Collection)
+
+`CREATE TABLE` defines where the stream worker stores your data. In this case, it will be a [Document Store Collection](../../collections/documents/index.md) For more information about defining a TABLE in a stream worker, refer to [Table (Collection)](../query-guide/table-collection.md). For more information about collections in general, refer to [Collections](../../collections/index.md).
+
+```sql
+CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
+```
+
+#### Define the Sink Stream
+
+The sink stream is where the stream worker sends your data.
+
+```sql
+CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
+```
+
+### Data Enrichment Query
+
+Define the query for a stream to join the stream and the table, and then handle the result. This section examines the query line by line.
+
+#### Insert Data
+
+The `insert into` clause defines an output stream into which the enriched data is directed.
+
+```sql
+insert into EnrichedTransactionStream;
+```
+
+#### Select Data
+
+A `select` clause specifies how the value for each attribute in the output stream is derived. The variables used for the attributes are defined in the next line where you [join data](#join-data).
+
+```sql
+select u.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
+```
+
+Note the following in the `select` statement:
+
+- The `userId` attribute name is common to both the stream and the table. Therefore, you need to specify from where this attribute needs to be taken. Here, you can also specify `t.userId` instead of `u.userId`.
+- You are specifying the output generated to include an attribute named `userName`. The value for that is derived
+by concatenating the values of the `firstName` and `lastName` attributes in the `UserTable` table using the `str:concat()` function.
+- You can apply any of the range of streams functions available to further enrich the joined output.
+
+#### Join Data
+
+The `from` clause together with the `join` keyword join the table and the stream.
+
+```sql
+from UserTable as u join TransactionStream as t on u.userId == t.userId
+```
+
+Note the following about the `from` clause:
+
+- The input data is taken from both a stream and a table. You need to assign a unique reference for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream` stream is referred to as `t`, and the `UserTable` table is referred to as `u`.
+- The `join` keyword joins the stream and the table together and defines the unique references.
+- The condition for the stream and the table to be joined is `t.userId == u.userId`, which means that for an event to be taken from the `TransactionStream` for the join, one or more events that have the same value for the `userId` must exist in the `UserTable` table and vice versa.
+
 
 
 ## Architecture
@@ -58,16 +148,3 @@ When the stream application is published, it:
 2. Pipe the events to queries through various streams for processing.
 3. Generates new events based on the processing done at the queries.
 4. Finally, sends newly generated events through output to streams.
-
-
-
-
-
-| Data Summarization | [Aggregate data](query-guide/query.md#aggregate-function) using `sum`, `count`, average (`avg`), `min`, `max`, `distinctCount`, and standard deviation (`StdDev`) operators. Summarize events based on time intervals like `sliding time`, `tumbling/batch time` [windows](query-guide/query.md#window) and based on number of events like `sliding length`, and `tumbling/batch length` [windows](query-guide/query.md#window). Support for data summarization based on `sessions` and `uniqueness`. Support for `named aggregation` and aggregation of data based on `group by fields`, `having` conditions. Sort & limit the aggregated output using `order by` and `limit` keywords.|
-| Pattern & Trend Mining |  Identifies event `occurrence patterns` among streams over time. Identify `non occurrence` of events. Supports `repetitive matches` of event pattern occurrences with logical conditions and time bound. |
-| Sequence Processing | Identifies continuous sequence of events from streams. Supports `zero to many`, `one to many`, and `zero to one` event matching conditions. |
-| Scatter-Gather | Process complex messages by dividing them into simple messages using `tokenize` function, process or transform them in isolation, and group them back using the `batch` window and `group` aggregation. Ability to modularize the execution logic of each use case to build a composite event-driven applications. Provide execution isolation and parallel processing by `partitioning` the events using keys or value ranges. |
-| Data Pipelines | Periodically trigger data pipelines based on time intervals, and cron expression using `triggers`. Support for calling `HTTP`services in a non-blocking manner to fetch data and enrich events. Handle responses accordingly for different response status codes. Divert the events to error stream to handle the errors gracefully.|
-| Geo Replicated Data Store | Query, modify, and join the data stored in [tables](query-guide/table-collection.md) which support primary key constraints and indexing. |
-| Rule Processing | Execution of rules based on single event using [`filter`](query-guide/query.md#filter) operator, `if-then-else` and `match` [functions](query-guide/query.md#function), and many others. Rules based on collection of events using [data summarization](query-guide/query.md#aggregate-function), and joins with [streams](query-guide/query.md#join-stream), [tables](query-guide/table-collection.md#join-table), [windows](query-guide/query.md#join-named-window) or [aggregations](query-guide/named-aggregation.md#join-aggregation). Rules to detect event occurrence patterns, trends, or non-occurrence of a critical events using complex event processing constructs such as [`pattern`](query-guide/query.md#patterns), and [`sequence`](query-guide/query.md#sequence). |
-| Real-time Decisions as Service | Provide REST APIs to [query](query-guide/query.md) `multi-modal geo-replicated tables`, `windows` and `named-aggregations` to make decisions based on the state of the system. |
