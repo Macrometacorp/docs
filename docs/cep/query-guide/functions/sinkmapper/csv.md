@@ -12,9 +12,9 @@ This output mapper extension allows you to convert stream worker events processe
 
 | Name                   | Description       | Default Value | Possible Data Types | Optional | Dynamic |
 |------------------------|--------------------------|---------------|---------------------|----------|---------|
-| delimiter              | This parameter used to separate the output CSV data, when converting a Stream App event to CSV format,                                                                                                                           | ,             | STRING              | Yes      | No      |
-| header                 | This parameter specifies whether the CSV messages will be generated with header or not. If this parameter is set to true, message will be generated with header                                                              | false         | BOOL                | Yes      | No      |
-| event.grouping.enabled | If this parameter is set to `true`, events are grouped via a line.separator when multiple events are received. It is required to specify a value for the System.lineSeparator() when the value for this parameter is `true`. | false         | BOOL                | Yes      | No      |
+| delimiter              | This parameter used to separate the output CSV data, when converting a Stream App event to CSV format,      | ,             | STRING              | Yes      | No      |
+| header         | This parameter specifies whether the CSV messages will be generated with header or not. If this parameter is set to true, message will be generated with header         | false         | BOOL      | Yes      | No      |
+| event.grouping.enabled | If this parameter is set to `true`, events are grouped via a line.separator when multiple events are received. It is required to specify a value for the System.lineSeparator() when the value for this parameter is `true`. | false    | BOOL       | Yes      | No      |
 
 ## Example 1
 
@@ -30,6 +30,6 @@ If header is `true` and delimiter is "-", then the output will be: `symbol-price
 
 Above configuration will perform a custom CSV mapping. Here, user can add custom place order in the @payload. The place order indicates that where the attribute name's value will be appear in the output message, the output will be produce output as follows: `gdn,100,55.6`.
 
-If header is true and delimiter is "-", then the output will be: `price-volume-symbol 55.6-100-gdn` 
+If header is true and delimiter is "-", then the output will be: `price-volume-symbol 55.6-100-gdn`
 
 If event grouping is enabled, then the output is: `price-volume-symbol 55.6-100-gdnSystem.lineSeparator() 55.6-100-IBMSystem.lineSeparator() 55.6-100-IFSSystem.lineSeparator()`

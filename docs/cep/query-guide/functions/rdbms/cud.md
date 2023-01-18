@@ -2,9 +2,9 @@
 title: cud (Stream Processor)
 ---
 
-This function performs SQL CUD (INSERT, UPDATE, DELETE) queries on data sources. 
+This function performs SQL CUD (INSERT, UPDATE, DELETE) queries on data sources.
 
-Syntax
+## Syntax
 
     rdbms:cud(<STRING> datasource.name, <STRING> query)
     rdbms:cud(<STRING> datasource.name, <STRING> query, <STRING|BOOL|INT|DOUBLE|FLOAT|LONG> parameter)
@@ -12,19 +12,19 @@ Syntax
 
 ## Query Parameters
 
-| Name            | Description                                                                                                                                                                                                     | Default Value | Possible Data Types               | Optional | Dynamic |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|-----------------------------------|----------|---------|
-| datasource.name | The name of the datasource for which the query should be performed.  |               | STRING                            | No       | No      |
-| query           | The update, delete, or insert query(formatted according to the relevant database type) that needs to be performed.                                                                                              |               | STRING                            | No       | Yes     |
-| parameter       | If the second parameter is a parametrised SQL query, then stream processor attributes can be passed to set the values of the parameters                                                                                   |               | STRING BOOL INT DOUBLE FLOAT LONG | Yes      | Yes     |
+| Name        | Description         | Default Value | Possible Data Types      | Optional | Dynamic |
+|-----------|-----------------------------------------------|-----------|-------------------|----------|---------|
+| datasource.name | The name of the data source for which the query should be performed.  |               | STRING      | No       | No      |
+| query       | The update, delete, or insert query(formatted according to the relevant database type) that needs to be performed.       |               | STRING                            | No       | Yes     |
+| parameter       | If the second parameter is a parametrized SQL query, then stream processor attributes can be passed to set the values of the parameters       |               | STRING BOOL INT DOUBLE FLOAT LONG | Yes      | Yes     |
 
-System Parameters
+## System Parameters
 
-| Name                   | Description                                                                                        | Default Value | Possible Parameters |
-|------------------------|----------------------------------------------------------------------------------------------------|---------------|---------------------|
-| perform.CUD.operations | If this parameter is set to `true`, the RDBMS CUD function is enabled to perform CUD operations. | false         | true false          |
+| Name                   | Description      | Default Value | Possible Parameters |
+|-----------------|-------------------------|---------------|---------------------|
+| perform.CUD.operations | If this parameter is set to `true`, then the RDBMS CUD function is enabled to perform CUD operations. | false         | true false          |
 
-Extra Return Attributes
+## Extra Return Attributes
 
 | Name       | Description                                     | Possible Types |
 |------------|-------------------------------------------------|----------------|

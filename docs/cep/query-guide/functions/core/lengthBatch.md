@@ -2,19 +2,19 @@
 title: lengthBatch (Window)
 ---
 
-A batch (tumbling) length window that holds and process a number of events as specified in the window.length.
+A batch (tumbling) length window that holds and process a number of events as specified in the `window.length`.
 
-Syntax
+## Syntax
 
     lengthBatch(<INT> window.length)
     lengthBatch(<INT> window.length, <BOOL> stream.current.event)
 
 ## Query Parameters
 
-| Name                 | Description                                                                                                        | Default Value | Possible Data Types | Optional | Dynamic |
-|----------------------|--------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| window.length        | The number of events the window should tumble.                                                                     |               | INT                 | No       | No      |
-| stream.current.event | Let the window stream the current events out as and when they arrive to the window while expiring them in batches. | false         | BOOL                | Yes      | No      |
+| Name      | Description       | Default Value | Possible Data Types | Optional | Dynamic |
+|----------------|---------------------------------------------------------------|------------|--------------|----------|---------|
+| window.length        | The number of events the window should tumble.        |      | INT  | No       | No      |
+| stream.current.event | Let the window stream the current events out as and when they arrive to the window while expiring them in batches. | false | BOOL    | Yes      | No      |
 
 ## Example 1
 
@@ -23,7 +23,7 @@ Syntax
     @info(name = 'query1')
     insert into OutputStream
     select symbol, sum(price) as price
-    from InputEventStream#lengthBatch(10);
+    from InputEventStream window tumbling_length(10);
 
 This collect and process 10 events as a batch and output them.
 
@@ -34,9 +34,9 @@ This collect and process 10 events as a batch and output them.
     @info(name = 'query1')
     insert into OutputStream
     select symbol, sum(price) as sumPrice
-    from InputEventStream#lengthBatch(10, true);
+    from InputEventStream tumbling_length(10, true);
 
-This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually, after every 10 events it clears the window as a batch and resets the `sumPrice` to zero.
+This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually. After every 10 events, it clears the window as a batch and resets the `sumPrice` to zero.
 
 ## Example 3
 

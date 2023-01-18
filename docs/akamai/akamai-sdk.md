@@ -48,7 +48,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-[Create or Update EdgeWorker Metadata](https://macrometa.com/docs/api#/operations/UpdateFunctionWorkerMetadata).
+[Create or Update EdgeWorker Metadata](https://www.macrometa.com/docs/api#/operations/UpdateFunctionWorkerMetadata).
 
 </TabItem>
 </Tabs>
@@ -84,7 +84,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-[Deploy the query worker to the EdgeWorker environment](https://macrometa.com/docs/api#/operations/GenerateFunctionWorkerFromQueryWorker)
+[Deploy the query worker to the EdgeWorker environment](https://www.macrometa.com/docs/api#/operations/GenerateFunctionWorkerFromQueryWorker)
 
 </TabItem>
 </Tabs>
@@ -121,7 +121,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-[Deploy the stream worker to the EdgeWorker environment](https://macrometa.com/docs/api#/operations/GenerateFunctionWorkerFromStreamPublisher)
+[Deploy the stream worker to the EdgeWorker environment](https://www.macrometa.com/docs/api#/operations/GenerateFunctionWorkerFromStreamPublisher)
 
 </TabItem>
 </Tabs>
@@ -157,7 +157,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Deploy the stream ad hoc query to the EdgeWorker environment](https://macrometa.com/docs/api#/operations/GenerateFunctionWorkerFromStreamQuery)
+- [Deploy the stream ad hoc query to the EdgeWorker environment](https://www.macrometa.com/docs/api#/operations/GenerateFunctionWorkerFromStreamQuery)
 
 </TabItem>
 </Tabs>
@@ -188,7 +188,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-[Invoke an EdgeWorker](https://macrometa.com/docs/api#/operations/InvokeFunctionWorkerByFunctionName)
+[Invoke an EdgeWorker](https://www.macrometa.com/docs/api#/operations/InvokeFunctionWorkerByFunctionName)
 
 </TabItem>
 </Tabs>
@@ -219,7 +219,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-[List multiple EdgeWorkers](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType)
+[List multiple EdgeWorkers](https://www.macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType)
 
 </TabItem>
 </Tabs>
@@ -252,7 +252,7 @@ main();
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Get EdgeWorker information](https://macrometa.com/docs/api#/operations/GetFunctionWorkerMetadata)
+- [Get EdgeWorker information](https://www.macrometa.com/docs/api#/operations/GetFunctionWorkerMetadata)
 
 </TabItem>
 </Tabs>

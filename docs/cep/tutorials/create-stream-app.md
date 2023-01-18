@@ -232,7 +232,7 @@ Example:
 
 Or equivalent using STORE:
 ```sql
-   CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="local", collection.type="DOC", map.type='json') (name string, amount double);
+   CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="global", collection.type="DOC", map.type='json') (name string, amount double);
 ```
 
 The stream worker will use the Macrometa collections with the default query parameters explained in the chart below.
@@ -294,7 +294,7 @@ Following tutorials cover various user scenarios using Macrometa Stream Processi
 - [Consuming Data](consuming-data.md)
 - [Filtering Data](filtering-data.md)
 - [Transforming Data](transforming-data.md)
-- [Enriching Data](enriching-data.md)
+- [Enrich Data](../enrich-data/index.md)
 - [Executing Scripts](executing-scripts.md)
 - [Correlating Data](correlating-data.md)
 - [Summarizing Data](summarizing-data.md)

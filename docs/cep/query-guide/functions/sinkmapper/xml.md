@@ -7,22 +7,22 @@ published via transports that publish in XML format. Users can either
 send a pre-defined XML format or a custom XML message containing event
 data.
 
-Syntax
+## Syntax
 
     CREATE SINK <NAME> WITH (map.type="xml", validate.xml="<BOOL>", enclosing.element="<STRING>")
 
 ## Query Parameters
 
-| Name              | Description                                                                                                                                                                                                                                                                                                                            | Default Value                                            | Possible Data Types | Optional | Dynamic |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|---------------------|----------|---------|
-| validate.xml      | This parameter specifies whether the XML messages generated should be validated or not. If this parameter is set to true, messages that do not adhere to proper XML standards are dropped.                                                                                                                                             | false                                                    | BOOL                | Yes      | No      |
-| enclosing.element | When an enclosing element is specified, the child elements (e.g., the immediate child elements) of that element are considered as events. This is useful when you need to send multiple events in a single XML message. When an enclosing element is not specified, one XML message per every event will be emitted without enclosing. | None in custom mapping and \<events\> in default mapping | STRING              | Yes      | No      |
+| Name              | Description         | Default Value           | Possible Data Types | Optional | Dynamic |
+|-------------------|----------------------|---------------------------|---------------------|----------|---------|
+| validate.xml      | This parameter specifies whether the XML messages generated should be validated or not. If this parameter is set to true, messages that do not adhere to proper XML standards are dropped.   | false                                                    | BOOL                | Yes      | No      |
+| enclosing.element | When an enclosing element is specified, the child elements (e.g., the immediate child elements) of that element are considered as events. This is useful when you need to send multiple events in a single XML message. When an enclosing element is not specified, one XML message per every event will be emitted without enclosing. | None in custom mapping and events in default mapping | STRING              | Yes      | No      |
 
 ## Example 1
 
     CREATE SINK FooStream WITH (type='stream', topic='stock', map.type='xml') (symbol string, price float, volume long);
 
-Above configuration will do a default XML input mapping which will generate below output: 
+Above configuration will do a default XML input mapping which will generate below output:
 
 ```xml
 <events>     
@@ -40,7 +40,7 @@ Above configuration will do a default XML input mapping which will generate belo
 
 Above configuration will perform a custom XML mapping. Inside \@payload
 you can specify the custom template that you want to send the messages
-out and addd placeholders to places where you need to add event
+out and add placeholders to places where you need to add event
 attributes.Above config will produce below output XML message:
 
 ```xml

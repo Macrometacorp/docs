@@ -72,8 +72,8 @@ print(response)
 
 Use our interactive API Reference with code generation in 18 programming languages:
 
-- [RedisPost](https://macrometa.com/docs/api#/operations/RedisPost)
-- [RedisGet](https://macrometa.com/docs/api#/operations/RedisGet)
+- [RedisPost](https://www.macrometa.com/docs/api#/operations/RedisPost)
+- [RedisGet](https://www.macrometa.com/docs/api#/operations/RedisGet)
 
 </TabItem>
 </Tabs>
