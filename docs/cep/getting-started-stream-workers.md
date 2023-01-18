@@ -13,7 +13,7 @@ This page explains how to create a stream worker that reads data added to a coll
 Refer to the [Stream Workers](/cep/index.md) section for an explanation of how stream workers function.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Stream Worker**.
+1. Click **Stream Workers**.
 1. In the Editor tab, you must define the stream worker. Copy and paste the following code block in the code editor on the Editor tab.
 
 ```sql
