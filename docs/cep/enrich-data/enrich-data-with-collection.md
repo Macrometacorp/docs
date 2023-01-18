@@ -13,7 +13,7 @@ Refer to the [Stream Workers](/cep/index.md) section for an explanation of how s
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Stream Worker**.
-1. In the Editor tab, you must define the stream worker. Copy and paste the following code block in the code editor on the Editor tab. An explanation is below if you want more information than is available in the code comments.
+1. In the Editor tab, you must define the stream worker. Copy and paste the following code block in the code editor on the Editor tab.
 
     ```sql
     @App:name("EnrichingTransactionsApp")
@@ -73,7 +73,7 @@ Refer to the [Stream Workers](/cep/index.md) section for an explanation of how s
 
 ## Test the Stream Worker
 
-To check whether the above stream worker works as expected follow below steps
+Use the following procedure to verify that the stream worker functions as expected.
 
 ### 1. Load UserTable Collection with User Data
 
@@ -92,7 +92,7 @@ FOR d IN data
 
 ### 2. Open a Stream Window
 
-The Macrometa Streams console does not persist messages, so in order to see them, you must have the console open before you send.
+The Macrometa Streams console does not persist messages, so to see them, you must have the console open before you send.
 
 1. In a new tab or window, open the Macrometa console.
 1. Click **Streams**.
@@ -115,11 +115,11 @@ There are several ways to [publish messages to streams](../../streams/stream-tas
 
    The stream worker enriches the transaction information and sends the following message to `EnrichedTransactionStream`:
 
-     ```json
-   {"transactionAmount":803.0,"location":"Chicago","userName":"Marty Mueller","userId":1200002,}
-   ```
+    ```json
+    {"transactionAmount":803.0,"location":"Chicago","userName":"Marty Mueller","userId":1200002,}
+    ```
 
-1. To test a second time, copy and paste the following transaction code block into **Message**, between the curly brackets::
+1. To test a second time, copy and paste the following transaction code block into **Message**, between the curly brackets:
 
     ```json
     "userId":1200001,"transactionAmount":1023,"location":"New York"
