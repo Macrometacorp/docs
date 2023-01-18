@@ -6,7 +6,7 @@ title: Getting Started with Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create a stream worker that reads data from a stream and automatically adds it to a collection.
+This page explains how to create a stream worker that reads data added to a collection and sends the data to a stream.
 
 ## Create a Stream Worker
 
