@@ -9,7 +9,7 @@ For this purpose, consider a scenario where you receive sales records generated 
 
 ## Create a Stream Worker
 
-Refer to the [Stream Workers](/cep/index.md) section for an explanation of how stream workers function.
+For more information about stream workers, refer to the [Stream Workers](index.md).
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Stream Worker**.
