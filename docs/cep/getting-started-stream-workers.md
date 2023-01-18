@@ -66,7 +66,15 @@ The default`qlVersion` is `2`. Version 1 is only used for backwards compatibilit
 
 Use the following procedure to verify that the stream worker functions as expected.
 
-### 1. Load Collection with Data
+### 1. Open a Stream Window
+
+The Macrometa Streams console does not persist messages, so to see them, you must have the console open before you send.
+
+1. In a new tab or window, open the Macrometa console.
+1. Click **Streams**.
+1. Click **c8locals.SampleCargoAppDestStream**.
+
+### 2. Add Documents to Collection
 
 Run the following query using one of the methods described in [Running Queries](../../queryworkers/running-queries.md) to add the records to the collection. Each line is a separate record.
 
@@ -83,52 +91,12 @@ FOR d IN data
     INSERT d INTO SampleCargoAppInputTable
 ```
 
-### 2. Open a Stream Window
+The stream worker pulls the transaction information and sends it to the stream. You will see results similar to the following:
 
-The Macrometa Streams console does not persist messages, so to see them, you must have the console open before you send.
-
-1. In a new tab or window, open the Macrometa console.
-1. Click **Streams**.
-1. Click **c8locals.SampleCargoAppDestStream**.
-
-
-### 3. Publish Events and Observe Output
-
-There are several ways to [publish messages to streams](../../streams/stream-tasks/publish-messages.md), this page shows you how to do it in the Macrometa console API reference.
-
-1. In the original tab or window (not the one with the stream open), click **API Reference**.
-1. In the API Reference pane, click to expand **Streams** and then click the POST command **Publish message**.
-1. Click **Try it out**.
-1. In **fabric**, enter the fabric your stream worker is associated with. This is the fabric you were logged in to when you created the stream worker, probably `_system`.
-1. In **stream**, enter `c8locals.SampleCargoAppDestStream`.
-1. Copy and paste the following transaction code block into **Message**, between the curly brackets:
-
-    ```json
-    [
-        {
-            "weight": "1"
-        },
-        {
-            "weight": "2"
-        },
-        {
-            "weight": "3"
-        },
-        {
-            "weight": "4"
-        },
-        {
-            "weight": "5"
-        }
-    ]
-    ```
-
-    The stream worker pulls the transaction information and sends it to the stream. You will see results similar to the following:
-
-    ```sql
-    [2021-08-27T14:12:15.795Z] {"weight":1}
-    [2021-08-27T14:12:15.799Z] {"weight":2}
-    [2021-08-27T14:12:15.805Z] {"weight":3}
-    [2021-08-27T14:12:15.809Z] {"weight":4}
-    [2021-08-27T14:12:15.814Z] {"weight":5}
-    ```
+```sql
+[2021-08-27T14:12:15.795Z] {"weight":1}
+[2021-08-27T14:12:15.799Z] {"weight":2}
+[2021-08-27T14:12:15.805Z] {"weight":3}
+[2021-08-27T14:12:15.809Z] {"weight":4}
+[2021-08-27T14:12:15.814Z] {"weight":5}
+``
