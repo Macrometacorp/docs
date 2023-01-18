@@ -2,7 +2,7 @@
 title: grpc-call-response (Source)
 ---
 
-This gRPC source receives responses received from gRPC server for requests sent from a grpc-call sink. The source will receive responses for sink with the same `sink.id`. For example if you have a gRPC sink with sink.id 15 then we need to set the sink.id as 15 in the source to receives responses. Sinks and sources have 1:1 mapping.
+This gRPC source receives responses received from gRPC server for requests sent from a grpc-call sink. The source will receive responses for sink with the same `sink.id`. For example if you have a gRPC sink with sink.id 15 then we need to set the `sink.id` as 15 in the source to receives responses. Sinks and sources have 1:1 mapping.
 
 ## Syntax
 
