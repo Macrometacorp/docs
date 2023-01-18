@@ -77,9 +77,9 @@ CREATE STREAM TransactionStream (userId long, transactionAmount double, location
 CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
 ```
 
-#### Define the Sink Stream
+#### Define the Sink
 
-The sink stream is where the stream worker sends your data.
+The sink is where the stream worker sends your data.
 
 ```sql
 CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
