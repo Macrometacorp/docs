@@ -63,19 +63,21 @@ The http-call sink publishes messages to endpoints via HTTP or HTTPS protocols u
 ## Example 1
 
 ```sql
-CREATE SINK FooStream WITH (type='http-call', sink.id='foo', publisher.url='http://localhost:8009/foo', map.type='xml', map.payload="'{{payloadBody}}'") (payloadBody string);
+CREATE SINK FooStream WITH (type='http-call', sink.id='foo', publisher.url='http://localhost:8009/foo', map.type='json', map.payload="'{{payloadBody}}'") (payloadBody string);
 
 CREATE SOURCE ResponseStream WITH (type='http-call-response', sink.id='foo', map.type='text', regex.A='((.|\n)*)', map.attributes="headers='trp:headers', message='A[1]'") (message string, headers string);
 ```
 
-When events arrive in `FooStream`, http-call sink makes calls to endpoint on URL `http://localhost:8009/foo` with `POST` method and Content-Type `application/xml`. If the event `payloadBody` attribute contains following XML:
+When events arrive in `FooStream`, http-call sink makes calls to endpoint on URL `http://localhost:8009/foo` with `POST` method and Content-Type `application/xml`. If the event `payloadBody` attribute contains following JSON:
 
-```xml
-<item>
-    <name>apple</name>
-    <price>55</price>
-    <quantity>5</quantity>
-</item>
+```json
+{
+  "item": {
+    "name": "apple",
+    "price": 55,
+    "quantity": 5
+  }
+}
 ```
 
 The http-call sink maps that and sends it to the endpoint. When endpoint sends a response it will be consumed by the corresponding http-call-response source correlated via the same `sink.id` `foo` and that will map the response message and send it via `ResponseStream` steam by assigning the message body as `message` attribute and response headers as `headers` attribute of the event.
