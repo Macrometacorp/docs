@@ -13,7 +13,7 @@ For more information about stream workers and how they work, refer [Stream Worke
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Stream Worker**.
-1. In the Editor tab, you must define the stream worker. Copy and paste the following code block in the code editor on the Editor tab.
+1. In the Editor tab, define the stream worker. Copy and paste the following code block in the code editor on the Editor tab.
 
     ```sql
     @App:name("EnrichingTransactionsApp")
