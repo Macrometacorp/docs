@@ -57,7 +57,9 @@ This information defines basic information about the stream worker. Every stream
 - **Description (optional)** - @App:description('An application for enriching transactions.')
 - **Other information (optional)** - By convention, you can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/**` and `**/`. This is similar to a docstring in functions.
 
-
+:::note
+`qlVersion` is only used for backwards compatibility with deprecated stream workers.
+:::
 
 ### Input and Output
 
