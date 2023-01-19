@@ -18,7 +18,7 @@ Refer to the [Stream Workers](/cep/index.md) section for an explanation of how s
 
 ```sql
 @App:name('sample-cargo-app')
-@App:description('Basic Stream application to demonstrate reading data from a collection and sending it to a stream.  The stream & collection will be created automatically if they do not already exist.')
+@App:description('Basic stream worker to demonstrate reading data from a collection and sending it to a stream. The stream and collection are created automatically if they do not already exist.')
 @App:qlVersion('2')
 
 /**
