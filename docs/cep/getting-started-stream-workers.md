@@ -80,7 +80,7 @@ LET data = [
     {"weight":2},
     {"weight":3},
     {"weight":4},
-    {"weight":5},
+    {"weight":5}
    ]
 
 FOR d IN data
