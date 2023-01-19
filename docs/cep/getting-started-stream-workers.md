@@ -58,10 +58,6 @@ FROM SampleCargoAppInputTable;
 1. Select edge locations, and then click **Save**. The locations that you select represent where the data for this stream worker will live.
 1. Click **Publish** to publish your stream worker. When you do this, it will begin to run the code as defined and will continue until you unpublish it.
 
-:::note
-The default`qlVersion` is `2`. Version 1 is only used for backwards compatibility with deprecated stream workers.
-:::
-
 ## Test the Stream Worker
 
 Use the following procedure to verify that the stream worker functions as expected.
