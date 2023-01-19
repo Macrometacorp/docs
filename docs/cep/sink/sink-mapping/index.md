@@ -15,7 +15,7 @@ For detailed information about the parameters see the documentation of the relev
 
 There are two ways you to configure `map.payload` annotation.
 
-1. Some mappers such as `XML`, `JSON`, and `Test` only accept one output payload:
+1. Some mappers such as `JSON` and `Test` only accept one output payload:
 
   ```js
   map.payload='This is a test message from {{user}}.'
@@ -35,11 +35,11 @@ The following is a list of sink mapping types supported by stream workers:
 
 |Sink Mapping Type | Description|
 | ------------- |-------------|
-| [CSV](../query-guide/functions/sourcemapper/csv.md) | Converts CSV-like delimiter separated events to stream events.|
-| [JSON](../query-guide/functions/sourcemapper/json.md) | Converts JSON messages to stream events.|
-| [Key-Value](../query-guide/functions/sourcemapper/keyvalue.md) | Converts key-value hash maps to stream events.|
-| [PassThrough](../query-guide/functions/sourcemapper/passThrough.md) | Omits data conversion on stream events.|
-| [Text](../query-guide/functions/sourcemapper/text.md) | Converts plain text messages to stream events.|
+| [CSV](csv.md) | Converts CSV-like delimiter separated events to stream events.|
+| [JSON](json.md) | Converts JSON messages to stream events.|
+| [Key-Value](keyvalue.md) | Converts key-value hash maps to stream events.|
+| [PassThrough](passThrough.md) | Omits data conversion on stream events.|
+| [Text](text.md) | Converts plain text messages to stream events.|
 
 :::tip
 When the `map.type` annotation is not provided, `map.type='passThrough'` is used as default, that passes the outgoing events directly to the sinks without any data conversion.
