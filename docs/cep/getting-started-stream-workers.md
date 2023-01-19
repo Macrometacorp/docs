@@ -14,7 +14,7 @@ Refer to the [Stream Workers](/cep/index.md) section for an explanation of how s
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Stream Workers**.
-1. In the Editor tab, you must define the stream worker. Copy and paste the following code block in the code editor on the Editor tab.
+1. In the Editor tab, define the stream worker. Copy and paste the following code block in the code editor on the Editor tab.
 
 ```sql
 @App:name('sample-cargo-app')
