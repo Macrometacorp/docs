@@ -42,5 +42,4 @@ The RabbitMQ source receives the events from the RabbitMQ broker via the AMQP pr
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
-This query receives events from the `direct` exchange with the
-`direct`exchange type, and the `directTest` routing key.
+This query receives events from the `direct` exchange with the `direct`exchange type and the `directTest` routing key.
