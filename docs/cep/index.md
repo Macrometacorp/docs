@@ -19,7 +19,7 @@ A _stream worker_ performs complex event processing on data in motion, also call
 
 You can process streams to perform the following actions with your data:
 
-- Transform data from one format to another. For example, from XML to JSON.
+- Transform data from one format to another. For example, from text to JSON.
 - Enrich data received from a specific source by combining it with databases and services.
 - Correlate data by joining multiple streams to create an aggregate stream.
 - [Filter](query-guide/query.md#filter) data and events based on conditions such as value ranges and string matching.
