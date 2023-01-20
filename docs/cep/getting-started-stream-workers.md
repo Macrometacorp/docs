@@ -6,7 +6,11 @@ title: Getting Started with Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create a stream worker that reads data added to a collection and sends the data to a stream. After you create the stream worker, there are instructions for testing it. 
+This page explains how to write a stream worker that creates a collection with an automatically linked stream.
+
+In this tutorial you will write your first stream worker. Once published, the stream worker will listen for new data to be written to a collection, and subsequently write that data to a stream. For an additional challenge, you could extend this stream worker to grab the data from the stream, process/transform the data (like finding an average over x events), and write it to a new collection, or even trigger a different downstream event or action.
+
+After you create the stream worker, there are instructions for testing it. 
 
 ## Create a Stream Worker
 
@@ -87,7 +91,7 @@ FOR d IN data
     INSERT d INTO SampleCargoAppInputTable
 ```
 
-The stream worker pulls the transaction information and sends it to the stream. In the stream console, you will see results similar to the following:
+The stream worker pulls the weight information and sends it to the stream. In the stream console, you will see results similar to the following:
 
 ```sql
 [2021-08-27T14:12:15.795Z] {"weight":1}
@@ -95,4 +99,4 @@ The stream worker pulls the transaction information and sends it to the stream. 
 [2021-08-27T14:12:15.805Z] {"weight":3}
 [2021-08-27T14:12:15.809Z] {"weight":4}
 [2021-08-27T14:12:15.814Z] {"weight":5}
-``
+```
