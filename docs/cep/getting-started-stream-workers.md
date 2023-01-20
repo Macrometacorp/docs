@@ -6,9 +6,7 @@ title: Getting Started with Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to write a stream worker that creates a collection with an automatically linked stream.
-
-In this tutorial you will write your first stream worker. Once published, the stream worker will listen for new data to be written to a collection, and subsequently write that data to a stream. For an additional challenge, you could extend this stream worker to grab the data from the stream, process/transform the data (like finding an average over x events), and write it to a new collection, or even trigger a different downstream event or action.
+This page guides you through creating your first stream worker. The stream worker in this example automatically creates a collection and a stream. Once published, the stream worker listens to the collection for new writes and adds them to the stream.
 
 After you create the stream worker, there are instructions for testing it. 
 
@@ -27,16 +25,16 @@ Refer to the [Stream Workers](/cep/index.md) section for an explanation of how s
 
 /**
 Testing the Stream Worker:
-    1. Open Stream `SampleCargoAppDestStream` in Console. The output can be monitored here.
+    1. Open Stream `SampleCargoAppDestStream` in console. The output can be monitored here.
 
-    2. Upload following data into `SampleCargoAppInputTable` C8DB Collection.
+    2. Upload following data into `SampleCargoAppInputTable` C8DB collection.
         {"weight": 1}
         {"weight": 2}
         {"weight": 3}
         {"weight": 4}
         {"weight": 5}
 
-    3. Following messages would be shown on the `SampleCargoAppDestStream` Stream Console.
+    3. Following messages would be shown on the `SampleCargoAppDestStream` stream console.
         [2021-08-27T14:12:15.795Z] {"weight":1}
         [2021-08-27T14:12:15.799Z] {"weight":2}
         [2021-08-27T14:12:15.805Z] {"weight":3}
@@ -100,3 +98,7 @@ The stream worker pulls the weight information and sends it to the stream. In th
 [2021-08-27T14:12:15.809Z] {"weight":4}
 [2021-08-27T14:12:15.814Z] {"weight":5}
 ```
+
+## Next Steps
+
+For an additional challenge, you could extend this stream worker to transform stream data for use cases such as finding an average over a number of events, writing it to a new collection, or triggering a different downstream event or action.
