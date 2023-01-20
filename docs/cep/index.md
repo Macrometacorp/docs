@@ -34,7 +34,9 @@ You can process streams to perform the following actions with your data:
 - Query, modify, and join the data stored in [tables](query-guide/table-collection.md) which support primary key constraints and indexing.
 - Rule processing based on single event using [`filter`](query-guide/query.md#filter) operator, `if-then-else` and `match` [functions](query-guide/query.md#function), and many others.
 
-These features allows you to build robust global data processing and integration pipelines at the edge by combining powerful stream processing, multi-model database and geo-replicated streams capabilities.
+These actions allow you to build robust global data processing and integration pipelines at the edge by combining powerful stream processing, multi-model database and geo-replicated streams capabilities.
+
+Best practice is to keep keep the functionality of stream workers minimal
 
 :::tip
 "Have different business use cases in separate stream workers."
