@@ -62,4 +62,4 @@ When the stream application is published, it:
 1. Consumes data one-by-one as events.
 2. Pipe the events to queries through various streams for processing.
 3. Generates new events based on the processing done at the queries.
-4. Finally, sends newly generated events through output to streams.
+4. Finally, sends newly-generated events through output to streams.
