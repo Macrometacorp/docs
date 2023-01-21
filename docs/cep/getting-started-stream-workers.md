@@ -72,11 +72,12 @@ The Macrometa Streams console does not persist messages, so to see them, you mus
 1. Click **Streams**.
 1. Click **c8locals.SampleCargoAppDestStream**.
 
-### 2. Add Data to Collection and View Stream
+### 2. Add Data to Collection and View Stream Updates
 
-Run the following query using one of the methods described in [Running Queries](../../queryworkers/running-queries.md) to add the records to the collection. Each line is a separate record.
+1. In the non-stream tab or window, navigate to **Query Workers**.
+1. Copy and paste this sample into the editor:
 
-```sql
+```c8ql
 LET data = [
     {"weight":1},
     {"weight":2},
@@ -89,7 +90,10 @@ FOR d IN data
     INSERT d INTO SampleCargoAppInputTable
 ```
 
-The stream worker pulls the weight information and sends it to the stream. In the stream console, you will see results similar to the following:
+1. Click **Run Query** to add the five weight records to the collection.
+1. Return to the stream tab or window and view the results.
+
+    The stream worker pulls the weight information and sends it to the stream. In the stream console, you will see results similar to the following:
 
 ```sql
 [2021-08-27T14:12:15.795Z] {"weight":1}
