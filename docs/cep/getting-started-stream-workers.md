@@ -24,15 +24,21 @@ Refer to the [Stream Workers](/cep/index.md) section for an explanation of how s
     @App:qlVersion('2')
 
     /**
-    Testing the Stream Worker:
-        1. Open Stream `SampleCargoAppDestStream` in console. The output can be monitored here.
+    Testing the stream worker:
+        1. Open stream `SampleCargoAppDestStream` in console. The output can be monitored here.
 
-        2. Upload following data into `SampleCargoAppInputTable` C8DB collection.
-            {"weight": 1}
-            {"weight": 2}
-            {"weight": 3}
-            {"weight": 4}
-            {"weight": 5}
+        2. Navigate to Query Workers and run the following query:
+        
+            LET data = [
+                {"weight":1},
+                {"weight":2},
+                {"weight":3},
+                {"weight":4},
+                {"weight":5}
+            ]
+
+            FOR d IN data
+                INSERT d INTO SampleCargoAppInputTable
 
         3. Following messages would be shown on the `SampleCargoAppDestStream` stream console.
             [2021-08-27T14:12:15.795Z] {"weight":1}
