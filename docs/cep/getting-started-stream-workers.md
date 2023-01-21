@@ -58,7 +58,7 @@ FROM SampleCargoAppInputTable;
 1. Click **Validate**. Macrometa checks to see that your code is valid.
 1. Click **Save**.
 1. Select edge locations, and then click **Save**. The locations that you select represent where the data for this stream worker will live.
-1. Click **Publish** to publish your stream worker. When you do this, it will begin to run the code as defined and will continue until you unpublish it.
+1. Click **Publish** to publish your stream worker. When you do this, it will begin to run the code as defined and continue until you unpublish it.
 
 ## Test the Stream Worker
 
@@ -91,9 +91,7 @@ FOR d IN data
 ```
 
 1. Click **Run Query** to add the five weight records to the collection.
-1. Return to the stream tab or window and view the results.
-
-    The stream worker pulls the weight information and sends it to the stream. In the stream console, you will see results similar to the following:
+1. Return to the stream tab or window. The results will be similar to the following:
 
 ```sql
 [2021-08-27T14:12:15.795Z] {"weight":1}
@@ -102,6 +100,8 @@ FOR d IN data
 [2021-08-27T14:12:15.809Z] {"weight":4}
 [2021-08-27T14:12:15.814Z] {"weight":5}
 ```
+
+The stream worker has pulled the weight information and sent it to the stream.
 
 ## Next Steps
 
