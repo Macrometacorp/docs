@@ -77,7 +77,7 @@ The Macrometa Streams console does not persist messages, so to see them, you mus
 1. In the non-stream tab or window, navigate to **Query Workers**.
 1. Copy and paste this sample into the editor:
 
-```c8ql
+```C8QL
 LET data = [
     {"weight":1},
     {"weight":2},
