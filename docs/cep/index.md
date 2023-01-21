@@ -36,14 +36,7 @@ You can process streams to perform the following actions with your data:
 
 These actions allow you to build robust global data processing and integration pipelines at the edge by combining powerful stream processing, multi-model database and geo-replicated streams capabilities.
 
-Best practice is to keep keep the functionality of stream workers minimal
-
-:::tip
-"Have different business use cases in separate stream workers."
-This is recommended as it allows users to selectively deploy the applications based on their business needs. It is also recommended to move the repeated stream processing logic that exists in multiple stream workers, such as message retrieval and preprocessing, to a common stream workers, whereby reducing code duplication and improving maintainability. In this case, to pass the events from one Stream App to another, configure them using a common stream or collection using `stream` Sink and `stream` Source.
-
-Stream workers provide an isolated execution environment for your processing logic that allows you to deploy and execute processing logic independent of other stream workers in the system. Therefore, it's always recommended to have processing logic related to a single use case in a single StreamApp. This will help you to group processing logic and easily manage addition and removal of various use cases.
-:::
+Best practice is to keep stream worker functionality limited to one business use case per stream worker. Additionally, stream workers can use shared sinks and sources to reduce code duplication and improve maintainability.
 
 ## Architecture
 
