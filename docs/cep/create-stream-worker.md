@@ -282,16 +282,3 @@ The stream worker will use the Macrometa collections with the default query para
 </tr>
 </tbody>
 </table>
-
-## Tutorials
-
-Following tutorials cover various user scenarios using Macrometa Stream Processing.
-
-- [Publishing Data](publishing-data.md)
-- [Consuming Data](consuming-data.md)
-- [Filtering Data](filtering-data.md)
-- [Transforming Data](transforming-data.md)
-- [Enrich Data](../enrich-data/index.md)
-- [Executing Scripts](executing-scripts.md)
-- [Correlating Data](correlating-data.md)
-- [Summarizing Data](summarizing-data.md)
