@@ -1,10 +1,7 @@
 ---
 sidebar_position: 2
+title: Create Stream Workers
 ---
-
-# Create Stream Workers
-
-## Introduction
 
 Stream workers are declarative specs that define the processing logic to process the events sent to the stream processor. A stream worker definition contains the following configurations:
 

@@ -9,9 +9,11 @@ For this purpose, consider a scenario where you receive sales records generated 
 
 ## Create a Stream Worker
 
+For more information about stream workers and how they work, refer [Stream Workers](index.md).
+
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Stream Worker**.
-1. In the Editor tab, you must define the stream worker. Copy and paste the following code block in the code editor on the Editor tab. An explanation is below if you want more information than is available in the code comments.
+1. In the Editor tab, define the stream worker. Copy and paste the following code block in the code editor on the Editor tab.
 
     ```sql
     @App:name("EnrichingTransactionsApp")
@@ -78,9 +80,13 @@ This section explains the parts of this stream worker and what they are doing.
 This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid.
 
 - **Name** - `@App:name("EnrichingTransactionsApp")`
-- **Query language version** - @App:qlVersion("2")
+- **Query language version (optional)** - @App:qlVersion("2")
 - **Description (optional)** - @App:description('An application for enriching transactions.')
 - **Other information (optional)** - By convention, you can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/**` and `**/`. This is similar to a docstring in functions.
+
+:::note
+`qlVersion` is only used for backwards compatibility with deprecated stream workers.
+:::
 
 ### Input and Output
 
@@ -102,9 +108,9 @@ CREATE STREAM TransactionStream (userId long, transactionAmount double, location
 CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
 ```
 
-#### Define the Sink Stream
+#### Define the Sink
 
-The sink stream is where the stream worker sends your data.
+The sink is where the stream worker sends your data.
 
 ```sql
 CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
@@ -151,9 +157,11 @@ Note the following about the `from` clause:
 - The `join` keyword joins the stream and the table together and defines the unique references.
 - The condition for the stream and the table to be joined is `t.userId == u.userId`, which means that for an event to be taken from the `TransactionStream` for the join, one or more events that have the same value for the `userId` must exist in the `UserTable` table and vice versa.
 
+
+
 ## Test the Stream Worker
 
-To check whether the above stream worker works as expected follow below steps
+Use the following procedure to verify that the stream worker functions as expected.
 
 ### 1. Load UserTable Collection with User Data
 
@@ -172,7 +180,7 @@ FOR d IN data
 
 ### 2. Open a Stream Window
 
-The Macrometa Streams console does not persist messages, so in order to see them, you must have the console open before you send.
+The Macrometa Streams console does not persist messages, so to see them, you must have the console open before you send.
 
 1. In a new tab or window, open the Macrometa console.
 1. Click **Streams**.
@@ -195,11 +203,11 @@ There are several ways to [publish messages to streams](../../streams/stream-tas
 
    The stream worker enriches the transaction information and sends the following message to `EnrichedTransactionStream`:
 
-     ```json
-   {"transactionAmount":803.0,"location":"Chicago","userName":"Marty Mueller","userId":1200002,}
-   ```
+    ```json
+    {"transactionAmount":803.0,"location":"Chicago","userName":"Marty Mueller","userId":1200002,}
+    ```
 
-1. To test a second time, copy and paste the following transaction code block into **Message**, between the curly brackets::
+1. To test a second time, copy and paste the following transaction code block into **Message**, between the curly brackets:
 
     ```json
     "userId":1200001,"transactionAmount":1023,"location":"New York"
