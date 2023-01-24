@@ -28,7 +28,7 @@ You can process streams to perform the following actions with your data:
 - Summarize data with time windows and incremental aggregations.
 - Extract, transform, and load (ETL) collections, tailing files, and scraping HTTP endpoints.
 - Integrating stream data and trigger actions based on the data. This can be a single service request or a complex enterprise integration flow.
-- [Consume](query-guide/stream.md#source) and [publish](query-guide/stream.md#sink) events.
+- [Consume and publish](query-guide/stream.md) events.
 - Run premade and custom [functions](query-guide/functions/index.md).
 - Write custom [JavaScript functions](query-guide/script.md) to interact with your streams.
 - Query, modify, and join the data stored in [tables](query-guide/table-collection.md) which support primary key constraints and indexing.
