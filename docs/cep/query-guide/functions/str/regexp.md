@@ -2,10 +2,10 @@
 title: regexp (Function)
 ---
 
-Returns a boolean value based on the matchability of the input string
+Returns a boolean value based whether an input string matches
 and the given regular expression.
 
-Syntax
+## Syntax
 
     <BOOL> str:regexp(<STRING> input.string, <STRING> regex)
 
@@ -17,8 +17,9 @@ Syntax
 | regex        | The regular expression to be matched with the input string.  |               | STRING              | No       | Yes     |
 
 ## Example 1
-```
-    regexp("gdn abcdh", "GDN(.*h)")
+
+```js
+regexp("gdn abcdh", "GDN(.*h)")
 ```
 
 This returns a boolean value after matching regular expression with the

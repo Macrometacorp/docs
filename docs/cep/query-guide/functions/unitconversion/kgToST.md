@@ -4,7 +4,7 @@ title: kgToST (Function)
 
 This converts the input given in kilograms into US tons.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kgToST(<INT|LONG|FLOAT|DOUBLE> p1)
 
