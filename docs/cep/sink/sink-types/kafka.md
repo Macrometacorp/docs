@@ -13,7 +13,7 @@ To configure a sink to use the Kafka transport, the `type` parameter should have
 ## Query Parameters
 
 | Name                   | Description             | Default Value | Possible Data Types | Optional | Dynamic |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
+|------------------------|-------------------------|---------------|---------------------|----------|---------|
 | bootstrap.servers      | This parameter specifies the list of Kafka servers to which the Kafka sink must publish events. This list should be provided as a set of comma separated values. e.g., `localhost:9092,localhost:9093`. |               | STRING              | No       | No      |
 | topic                  | The topic to which the Kafka sink needs to publish events. Only one topic must be specified.                    |               | STRING              | No       | No      |
 | partition.no           | The partition number for the given topic. Only one partition ID can be defined. If no value is specified for this parameter, the Kafka sink publishes to the default partition of the topic (i.e., 0)   | 0             | INT                 | Yes      | No      |
@@ -46,4 +46,4 @@ This Kafka sink configuration publishes to 0th partition of the topic named `top
     insert into BarStream
     from FooStream select symbol, price, volume ;
 
-This query publishes dynamic topic and partitions that are taken from the Stream App event. The value for `partition.no` is taken from the `volume` attribute, and the topic value is taken from the `symbol` attribute.
+This query publishes dynamic topic and partitions that are taken from the stream worker event. The value for `partition.no` is taken from the `volume` attribute, and the topic value is taken from the `symbol` attribute.
