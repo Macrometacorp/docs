@@ -15,6 +15,7 @@ The syntax for defining a new stream is as follows.
 CREATE STREAM <stream_name> (<attribute_name> <attribute_type>,
                              <attribute_name> <attribute_type>, ... );
 ```
+
 ## Parameters
 
 The following parameters are used to configure a stream definition.
@@ -43,4 +44,4 @@ CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
 ## Using Streams as Source and Sink
 
-You can use streams as sinks and sources for stream workers. For more information, refer to [Stream Source](../source/stream-source.md) and [Stream Sink](../sink/stream-sink.md).
+You can use streams as sinks and sources for stream workers.
