@@ -16,11 +16,11 @@ To understand the different ways you can filter the specific data you need to tr
 ### Filtering based on exact match of attribute
 
  
-1. Start creating a new stream worker. For more information, see [Creating a Stream Worker](./create-stream-app.md).
+1. Start creating a new stream worker. For more information, see [Creating a Stream Worker](create-stream-worker.md).
 
-1. Enter a name for the stream worker via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
+2. Enter a name for the stream worker via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
 
-1. Define an input stream to specify the schema based on which events are selected.
+3. Define an input stream to specify the schema based on which events are selected.
 
     ```sql
     CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
@@ -28,13 +28,13 @@ To understand the different ways you can filter the specific data you need to tr
 
    >* For more information about defining input streams to receive events, see the [Consuming Data](./consuming-data.md).
    
-1. Define an output stream `Room2233Stream` to emit the result
+4. Define an output stream `Room2233Stream` to emit the result
 
     ```sql
 	  CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
     ```
 
-1. Add a query to generate filtered temperature readings as follows. For this example, let's assume that you want to filter only temperature readings for a specific room number (e.g., room no `2233`).
+5. Add a query to generate filtered temperature readings as follows. For this example, let's assume that you want to filter only temperature readings for a specific room number (e.g., room no `2233`).
 
     1. Add the `from` clause and enter `InputTempStream` as the input stream from which the input data. However, because you only need to extract readings for room no `2233`, include a filter in the `from` clause as shown below:
 
@@ -67,7 +67,7 @@ To understand the different ways you can filter the specific data you need to tr
         FROM InputTempStream [roomNo=='2233']
         ```
 
-1. The saved stream worker is as follows:
+6. The saved stream worker is as follows:
 
     ```sql
     @App:name("TemperatureApp")
