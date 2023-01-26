@@ -5,19 +5,16 @@ title: Basic Stream Worker Example
 
 This example provides an introduction to the concept of a stream worker.
 
-A stream worker provides an isolated execution environment for processing the execution logic. It can be deployed and processed independently of other stream workers in the system. Stream workers can use `inMemory`, `c8db`, and `c8stream` sources and sinks to communicate between each other.
+A stream worker provides an isolated execution environment for processing the execution logic. It can be deployed and processed independently of other stream workers in the system. Stream workers can use collection and stream sources and sinks to communicate between each other.
 
 ## Example
 
-This example creates a Macrometa data stream to consume events from stream workers:
-
 ```sql
+-- Creates a Macrometa stream to consume events from stream workers.
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
-```
 
-This example creates a sink to publish events from stream workers:
+-- Creates a sink to publish events from stream workers:
 
-```sql
 CREATE SINK TemperatureOnlyStream WITH (type='inMemory', topic='Temperature') (temperature double);
 
 @info(name = 'Simple-selection')
