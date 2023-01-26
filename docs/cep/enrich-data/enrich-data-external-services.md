@@ -7,7 +7,7 @@ This section explains how to enrich the data in a specific stream by connecting 
 
 To understand how this is done, consider an example where you have some credit card numbers, but need to connect with an external service to identify the credit card companies that issued them, and then save that information in a database.
 
-1. Start creating a new stream worker. You can name it `CCTypeIdentificationApp` For instructions, see [Creating a Stream Worker](../tutorials/create-stream-app.md).
+1. Start creating a new stream worker. You can name it `CCTypeIdentificationApp` For instructions, see [Creating a Stream Worker](../tutorials/create-stream-worker.md).
 
 2. Define the input stream from which the input data (i.e., the credit card no in this example) must be taken.
 
@@ -25,7 +25,6 @@ To understand how this is done, consider an example where you have some credit c
     Note the following about the above sink definition:
     - It is assumed that the external application receives requests in HTTP. Therefore, the sink type is `http-request`.
     - The `publisher.url` parameter specifies the URL to which the outgoing events need to be published via HTTP.
-    - For more information about the HTTP transport, see [HTTP Sink](../sink/http.md) and [HTTP Source](../source/http.md).
     :::
 
 4. To capture the response of the external application once it returns the credit card type, create a stream as follows. For more information about consuming data, see the [Consuming Data guide](../tutorials/consuming-data.md).
@@ -39,9 +38,6 @@ To understand how this is done, consider an example where you have some credit c
     ```sql
 	CREATE SOURCE EnrichedCreditCardInfoStream WITH (source.type='http-call-response', sink.id='cardTypeSink', map.type='json', attributes.creditCardNo = 'trp:creditCardNo', attributes.creditCardType = ".") (creditCardNo string,creditCardType string);
     ```
-
-    !!!info
-        It is assumed that the external application sends requests in HTTP. Therefore, the source type is `http-request`. For more information about the HTTP transport, refer to [HTTP sink](../query-guide/functions/sink/http.md) and [HTTP source](../query-guide/functions/source/http.md).
 
 6. To save the response of the external application, define a table named `CCInfoTable`.
 
