@@ -33,8 +33,7 @@ console.log(result);
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 
-18 programming languages to [Submit an Ad Hoc Query](https://www.macrometa.com/docs/api#/operations/queryStreamApp).
+Use our interactive API Reference with code generation in 18 programming languages to [Submit an Ad Hoc Query](https://www.macrometa.com/docs/api#/operations/queryStreamApp).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
@@ -42,8 +41,8 @@ Use our interactive API Reference with code generation in
 Use the [gdnsl stream-worker](../../cli/stream-workers-cli.md) CLI command to submit an ad hoc query.
 
 ```bash
-  # Submit an ad hoc Stream query and get the result records from a store.
-  gdnsl stream-worker TestStream --query "SELECT * FROM TestStreamTable"
+# Submit an ad hoc Stream query and get the result records from a store.
+gdnsl stream-worker TestStream --query "SELECT * FROM TestStreamTable"
 ```
 
 </TabItem>
