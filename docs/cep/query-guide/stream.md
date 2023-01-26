@@ -15,6 +15,7 @@ The syntax for defining a new stream is as follows.
 CREATE STREAM <stream_name> (<attribute_name> <attribute_type>,
                              <attribute_name> <attribute_type>, ... );
 ```
+
 ## Parameters
 
 The following parameters are used to configure a stream definition.
