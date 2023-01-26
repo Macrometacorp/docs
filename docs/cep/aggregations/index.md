@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Create Named Aggregations
 ---
 
-Named aggregation allows you to obtain aggregates in an incremental manner for a specified set of time periods.
+A _named aggregation_ allows you to obtain aggregates in an incremental manner for a specified set of time periods.
 
 This not only allows you to calculate aggregations with varied time granularity, but also allows you to access them in an interactive  manner for reports, dashboards, and for further processing. Its schema is defined via the _aggregation definition_.
 
@@ -34,8 +34,8 @@ from <input stream>
 |---------------|---------|
 | store                      | Used to refer to the data store where the calculated aggregate results are stored. This annotation is optional. When no annotation is provided, the data is stored in the `in-memory` store. |
 | purge                      | Used to configure purging in aggregation granularities. If this annotation is not provided, then the default purging is applied. To disable automatic data purging, you can use this annotation as follows:`purge.enable='false'` You should disable data purging if the aggregation query in included in the stream worker for read-only purposes. |
-| purge.retention.Period            | This annotation is used to specify the length of time the data needs to be retained when carrying out data purging. If this annotation is not provided, then the default retention period is applied. |
-| aggregator name         | This specifies a unique name for the aggregation so that it can be referred when accessing aggregate results. |
+| purge.retention.Period            | Used to specify the length of time the data needs to be retained when carrying out data purging. If this annotation is not provided, then the default retention period is applied. |
+| aggregator name         | Specifies a unique name for the aggregation so that it can be referred when accessing aggregate results. |
 | input stream             | The stream that feeds the aggregation.   |
 | group by attribute name   | The `group by` clause is optional. If it is included in a stream worker, then aggregate values  are calculated per each `group by` attribute. If it is not used, then all the events are aggregated together. |
 | by timestamp attribute    | This clause is optional. This defines the attribute that should be used as the timestamp. If this clause is not used, then the event time is used by default. The timestamp could be given as either a `string` or a `long` value. If it is a `long` value, then the unix timestamp in milliseconds is expected (e.g. `1496289950000`). If it is a `string` value, then the supported formats are `<yyyy>-<MM>-<dd> <HH>:<mm>:<ss>` (if time is in GMT) and  `<yyyy>-<MM>-<dd> <HH>:<mm>:<ss> <Z>` (if time is not in GMT), here the ISO 8601 UTC offset must be provided for `<Z>` .(e.g., `+05:30`, `-11:00`).
