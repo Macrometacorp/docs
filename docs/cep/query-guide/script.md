@@ -18,9 +18,16 @@ The syntax for a script definition is as follows.
 ```js
 define function <function name>[<javascript>] return <return type> {
     <operation of the function>
-    // Script code
 };
 ```
+
+The defined function can be used in the queries similar to inbuilt functions as follows.
+
+```js
+<function name>( (<function parameter>(, <function parameter>)*)? )
+```
+
+The custom functions defined with these function definitions have higher precedence compared to other functions.
 
 ## Parameters
 
