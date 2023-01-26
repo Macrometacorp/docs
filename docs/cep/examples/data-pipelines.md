@@ -4,6 +4,7 @@ title: Data Pipeline Examples
 ---
 
 This page explains ways to create data pipelines.
+
 ## Stream Joins
 
 This example shows joining two stream based on a condition.
@@ -53,7 +54,7 @@ When events are sent to `TemperatureStream` stream and `HumidityStream` stream, 
 
 ## Partition Events by Value
 
-This example shows partitioning events by attribute values. For more informatiON ON [partition](../query-guide/partition.md) refer the [Stream Query Guide](../query-guide/index.md).
+This example shows partitioning events by attribute values. For more informatiON ON [partition](../query-guide/partition/index.md) refer the [Stream Query Guide](../query-guide/index.md).
 
 ### Partition Events by Value Example
 
@@ -196,6 +197,7 @@ SELECT str:fillTemplate("""
     }""", orderId, items, store) AS discountedOrder
 FROM GroupedItemStream;
 ```
+
 ### Scatter and Gather (JSON) Input
 
 Below event is sent to `PurchaseStream`:
