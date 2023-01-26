@@ -7,7 +7,7 @@ A _distributed aggregation_ allows you to partially process aggregations in diff
 
 ## Syntax
 
-```
+```sql
 CREATE AGGREGATION <aggregator name> WITH (store.type='database', store.replication.type='global', PartitionById.enable='false')
 select <attribute name>, <aggregate function>(<attribute name>) as <attribute name>, ...
 from <input stream>
@@ -15,20 +15,19 @@ from <input stream>
     aggregate by <timestamp attribute> every <time periods> ;
 ```
 
-Following table includes the `annotation` to be used to enable distributed aggregation:
+## Parameters
 
-Item | Description
-------|------
-`@partitionById` | If the property is given, then the distributed aggregation is enabled. Further this can be disabled by using `enable` element, `PartitionById.enable='false'`.
+|Item | Description|
+|------|------|
+@partitionById | If the property is given, then the distributed aggregation is enabled. This can be disabled by using `enable` element, `PartitionById.enable='false'`.|
 
-Further, following system properties are also available,
+## System Properties
 
 System Property| Description| Possible Values | Optional | Default Value
 ---------|---------|---------|---------|------
-shardId| The id of the shard one of the distributed aggregation is running in. This should be unique to a single shard | Any string | No | <Empty_String>
-partitionById| This allows user to enable/disable distributed aggregation for all aggregations running in one stream processing manager. | true/false | Yesio | false
+shardId| The ID of the shard one of the distributed aggregation is running in. This should be unique to a single shard. | Any string | No | <Empty_String>
+partitionById| This allows user to enable/disable distributed aggregation for all aggregations running in one stream processing manager. | true/false | Yes | false
 
 :::note
 ShardIds should not be changed after the first configuration in order to keep data consistency.
 :::
-
