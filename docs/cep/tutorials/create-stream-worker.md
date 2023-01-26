@@ -19,7 +19,7 @@ Stream workers are declarative specs that define the processing logic to process
 </tr>
 <tr class="even">
 <td>Source</td>
-<td>This consumes data from external sources (such as `TCP` , ` Kafka ` , ` HTTP ` , etc) in the form of events, then converts each event (that can be in `XML` , `             JSON` , ` binary` , etc. format) to a stream event, and passes that to a stream for processing.</td>
+<td>This consumes data from external sources (such as `TCP` , ` Kafka ` , ` HTTP ` , etc) in the form of events, then converts each event (that can be in `JSON` , ` binary` , etc. format) to a stream event, and passes that to a stream for processing.</td>
 </tr>
 <tr class="odd">
 <td>Sink</td>
