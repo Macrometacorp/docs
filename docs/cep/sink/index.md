@@ -42,7 +42,6 @@ The following is a list of some of the sink types supported by stream workers:
 |Source type | Description|
 | ------------- |-------------|
 | [database](../query-guide/table-collection.md) | Allow the stream worker to publish events to collections (doc, graphs) in the same or different geofabric. |
-| [HTTP](sink-types/http.md| Publish events to an HTTP endpoint.|
 | [Kafka](sink-types/kafka.md) | Publish events to Kafka topic. |
 | [stream](sink-types/stream-sink.md) | Publish events to a stream. |
 | [TCP](sink-types/tcp.md) | Publish events to a TCP service. |
