@@ -22,7 +22,7 @@ The stream sink syntax is as follows:
 
 | Name             | Description         | Default Value | Possible Data Types | Optional |
 |------------------|----------------------------------|---------------|---------------------|----------|
-| stream      | The streams to which the sink needs to publish events.|   | STRING        | No                  |
+| stream      | The streams to which the sink needs to publish events.|     | STRING        | No                  |
 | replication.type | Specifies if the replication type of the streams. Possible values can be `local` and `global`      | local         | STRING         | Yes      |
 
 ## Example 1
