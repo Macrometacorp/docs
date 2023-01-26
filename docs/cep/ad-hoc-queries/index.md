@@ -33,7 +33,12 @@ Ad hoc queries use the following syntax:
 
 In order to execute ad hoc queries, the stream worker you are using should have a sink or defined that contains the table, window, or aggregator to be queried.
 
-### Event Playback
+## Next Steps
+
+- [Perform ad hoc queries](perform-ad-hoc-queries.md).
+- [Look at ad hoc query examples](ad-hoc-examples.md).
+
+## Event Playback
 
 When `@app:playback` annotation is added to the stream worker, the timestamp of the event (specified via an attribute) is treated as the current time. This results in events being processed faster.
 
