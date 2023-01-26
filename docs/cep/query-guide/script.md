@@ -1,6 +1,6 @@
 ---
 sidebar_position: 80
-title: Script Functions
+title: Custom Script Functions
 ---
 
 Scripts allow you to write functions in JavaScript and execute them within queries for a stream. Functions defined with scripts can be accessed in queries similar to any other inbuilt function. You can use function definitions to define these scripts.
