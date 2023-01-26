@@ -9,7 +9,7 @@ The stream processor groups common types of events together with a schema. This 
 
 ## Syntax
 
-The syntax for defining a new stream is as follows.
+The syntax for defining a new stream is:
 
 ```sql
 CREATE STREAM <stream_name> (<attribute_name> <attribute_type>,
