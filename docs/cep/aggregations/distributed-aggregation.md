@@ -1,13 +1,11 @@
 ---
 sidebar_position: 20
-title: Distributed Aggregation
+title: Distributed Aggregations
 ---
 
-### Distributed Aggregation
+A _distributed aggregation_ allows you to partially process aggregations in different shards. This allows a stream worker in one shard to be responsible only for processing a part of the aggregation.
 
-Distributed aggregation allows you to partially process aggregations in different shards. This allows stream worker in one shard to be responsible only for processing a part of the aggregation.
-
-**Syntax**
+## Syntax
 
 ```
 CREATE AGGREGATION <aggregator name> WITH (store.type='database', store.replication.type='global', PartitionById.enable='false')
