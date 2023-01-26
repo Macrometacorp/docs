@@ -16,8 +16,9 @@ Scripts allow you to define a function operation that is not provided in stream 
 The syntax for a script definition is as follows.
 
 ```js
-define function <function name>[<language name>] return <return type> {
+define function <function name>[<javascript>] return <return type> {
     <operation of the function>
+    // Script code
 };
 ```
 
@@ -32,9 +33,7 @@ The following parameters are configured when defining a script.
 | `return type`| The attribute type of the function’s return. This can be `int`, `long`, `float`, `double`, `string`, `bool`, or `object`. Here the function implementer should be responsible for returning the output attribute on the defined return type for proper functionality.
 |`operation of the function`| Here, the execution logic of the function is added. This logic should be written in the language specified under the `language name`, and it should return the output in the data type specified in the `return type` parameter.
 
-## Example
-
-This query performs concatenation using JavaScript and returns the output as a string.
+## Example 1
 
 ```sql
 CREATE function concatFn[javascript] return string {
@@ -52,3 +51,5 @@ insert into DeviceTempStream
 select concatFn(roomNo,'-',deviceID) as id, temp
 from TempStream;
 ```
+
+This function performs concatenation using JavaScript and returns the output as a string.
