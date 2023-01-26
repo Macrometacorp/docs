@@ -7,6 +7,8 @@ Named aggregation allows you to obtain aggregates in an incremental manner for a
 
 This not only allows you to calculate aggregations with varied time granularity, but also allows you to access them in an interactive  manner for reports, dashboards, and for further processing. Its schema is defined via the _aggregation definition_.
 
+You can also create [Distributed Aggregations](distributed-aggregation.md) or [Joins](join-aggregation.md).
+
 ## Purpose
 
 A named aggregation allows you to retrieve the aggregate values for different time durations.
