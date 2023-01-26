@@ -28,5 +28,13 @@ The stream sink syntax is as follows:
 ## Example 1
 
 ```sql
-   CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json') (name string, amount double);
+CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json') (name string, amount double);
 ```
+
+## Example 2
+
+```sql
+CREATE SINK STREAM UserIdPurchaseStream(userId string, totalItems long, totalPrice double);
+```
+
+When creating a stream to use as a sink, you can use the syntax shortcut `CREATE SINK STREAM`.
