@@ -181,9 +181,9 @@ if __name__ == '__main__':
 </Tabs>
 
 
-### Step 5. Delete Data from Collection
+### Step 5. Delete Data
 
-
+Delete the data from the collection. If the collection becomes empty, the collection is deleted too.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
