@@ -29,7 +29,7 @@ To use streams with Macrometa Global Data Network (GDN), you must first establis
 
 ### Step 2. Set Variables
 
-
+Set the variables required to run the code.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -76,6 +76,7 @@ pp = pprint.PrettyPrinter(indent=4)
 
 ### Step 3. Create Collection
 
+Create a collection called `ddos` to which we will subscribe. If a collection by that name already exists, the existing collection is used instead.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
@@ -138,7 +139,9 @@ if __name__ == '__main__':
 </Tabs>
 
 
-### Step 4. Insert Data into Collection
+### Step 4. Add Data and Subscribe to Collection
+
+Add to the collection the information we defined in the `data` variable, then subscribe to the collection.
 
 
 <Tabs groupId="operating-systems">
