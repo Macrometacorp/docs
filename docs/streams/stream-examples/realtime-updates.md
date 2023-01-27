@@ -20,8 +20,7 @@ In your preferred IDE, paste the following code block and replace these variable
 
 - `your@email.com` with your login email address.
 - `play.paas.macrometa.io` with your unique login URL (for example, `animal-1234abc.paas.macrometa.io`).
-- (JavaScript only) `password` with your login password.
-- (Python only) `apikey` with an API key created from your account.
+- `apikey` with an API key created from your account.
 
 
 <Tabs groupId="operating-systems">
@@ -33,8 +32,7 @@ const jsc8 = require("jsc8");
 // Constants - DB
 const globalUrl = "https://play.paas.macrometa.io/";
 const email = "your@email.com";
-const password = "password";
-const client = new jsc8(globalUrl);
+const client = new jsc8({url: globalUrl, apiKey: "XXXX", fabricName: '_system'});
 
 // Variables
 const collectionName = "ddos";
@@ -51,16 +49,8 @@ const sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 };
 
-// Create an authenticated instance with a token or API key
-
-// const client = new jsc8({url: globalUrl, token: "XXXX", fabricName: '_system'});
-// const client = new jsc8({url: globalUrl, apiKey: "XXXX", fabricName: '_system'});
-
-// Or use email and password to authenticate client instance
-
 async function createCollection () {
   console.log("\n1. Log in.");
-  await client.login(email, password);
   console.log("\n2. Create collection.");
   try {
     console.log(`Creating the collection ${collectionName}...`);
