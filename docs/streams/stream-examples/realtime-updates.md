@@ -1,12 +1,12 @@
 ---
 sidebar_position: 140
-title: Realtime DB Updates Example
+title: Real-Time DB Updates
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This tutorial is about using Macrometa GDN as a realtime database with local latencies across the globe.
+This tutorial demonstrates how to use Macrometa GDN as a real-time database with local latencies across the globe.
 
 ## Prerequisites
 
@@ -14,7 +14,15 @@ This tutorial is about using Macrometa GDN as a realtime database with local lat
 - An API key. For more information, refer to [Create API Keys](../../account-management/api-keys/create-api-keys).
 - Appropriate SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
 
-## Realtime Updates Code
+## Code
+
+In your preferred IDE, paste the following code block and replace these variables:
+
+- `your@email.com` with your login email address.
+- `play.paas.macrometa.io` with your unique login URL (for example, `animal-1234abc.paas.macrometa.io`).
+- (JavaScript only) `password` with your login password.
+- (Python only) `apikey` with an API key created from your account.
+
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
