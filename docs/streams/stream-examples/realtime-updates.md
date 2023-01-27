@@ -27,8 +27,194 @@ To use streams with Macrometa Global Data Network (GDN), you must first establis
 
 <ConnectToGDN />
 
-### Step 2. 
+### Step 2. Set Variables
 
+
+
+<Tabs groupId="operating-systems">
+<TabItem value="js" label="Javascript">
+
+```js
+// Variables
+const collectionName = "ddos";
+let listener;
+const data = [
+  { ip: "10.1.1.1", action: "block", rule: "blocklistA" },
+  { ip: "20.1.1.2", action: "block", rule: "blocklistA" },
+  { ip: "30.1.1.3", action: "block", rule: "blocklistB" },
+  { ip: "40.1.1.4", action: "block", rule: "blocklistA" },
+  { ip: "50.1.1.5", action: "block", rule: "blocklistB" }
+];
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+};
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
+
+```py
+COLLECTION_NAME = "ddos"
+
+# Variables - Data
+data = [
+    {"ip": "10.1.1.1", "action": "block", "rule": "blacklistA"},
+    {"ip": "20.1.1.2", "action": "block", "rule": "blacklistA"},
+    {"ip": "30.1.1.3", "action": "block", "rule": "blacklistB"},
+    {"ip": "40.1.1.4", "action": "block", "rule": "blacklistA"},
+    {"ip": "50.1.1.5", "action": "block", "rule": "blacklistB"},
+]
+
+pp = pprint.PrettyPrinter(indent=4)
+```
+
+</TabItem>
+</Tabs>
+
+
+### Step 3. Create Collection
+
+
+<Tabs groupId="operating-systems">
+<TabItem value="js" label="Javascript">
+
+```js
+async function createCollection () {
+  console.log("\n1. Log in.");
+  console.log("\n2. Create collection.");
+  try {
+    console.log(`Creating the collection ${collectionName}...`);
+    const existsColl = await client.hasCollection(collectionName);
+    if (existsColl === false) {
+      await client.createCollection(collectionName, { stream: true });
+    }
+    // Add an onChange listener for collection
+    listener = await client.onCollectionChange(collectionName);
+    
+    // Decode the message printed here in readable format
+    listener.on("message", (msg) => {
+      const receivedMsg = msg && JSON.parse(msg);
+      console.log("message=>", Buffer.from(receivedMsg.payload, "base64").toString("ascii"))
+    });
+    listener.on("open", () => console.log("Connection open"));
+    listener.on("close", () => console.log("Connection closed"));
+  } catch (e) {
+    await console.log("Collection creation did not succeed due to " + e);
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
+
+```py
+if __name__ == '__main__':
+
+    # Step1: Open connection to GDN. You will be routed to closest region.
+    print(f"\n1. CONNECT: federation: {URL}")
+    client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+
+    # Step 2: Create a collection if one does not exist
+    print(f"\n2. CREATE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
+    if client.has_collection(COLLECTION_NAME):
+        collection = client.collection(COLLECTION_NAME)
+    else:
+        collection = client.create_collection(COLLECTION_NAME, stream=True)
+
+    # Subscribe to be notified when changes are made to collection.
+
+    def create_callback():
+        def callback_fn(event):
+            pp.pprint(event)
+            return
+
+        client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
+```
+
+</TabItem>
+</Tabs>
+
+
+### Step 4. Insert Data into Collection
+
+
+<Tabs groupId="operating-systems">
+<TabItem value="js" label="Javascript">
+
+```js
+async function insertData () {
+  console.log(`\n3. Insert data`);
+  await client.insertDocumentMany(collectionName, data);
+}
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
+
+```py
+if __name__ == '__main__':
+
+    # Step3: Subscribe to receive documents in realtime (PUSH model)
+    print(f"\n3. SUBSCRIBE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
+    rt_thread = threading.Thread(target=create_callback)
+    rt_thread.start()
+    time.sleep(10)
+    print(f"Callback registered for collection: {COLLECTION_NAME}")
+
+    # Step4: Subscribe to receive documents in real-time (PUSH model)
+    print(f"\n4. INSERT_DOCUMENTS: region: {URL},  collection: {COLLECTION_NAME}")
+    client.insert_document(COLLECTION_NAME, document=data)
+
+    # Step5: Wait to close the callback.
+    print("\n5. Waiting to close callback")
+    rt_thread.join(2)
+```
+
+</TabItem>
+</Tabs>
+
+
+### Step 5. Delete Data from Collection
+
+
+
+<Tabs groupId="operating-systems">
+<TabItem value="js" label="Javascript">
+
+```js
+async function deleteData () {
+  console.log("\n4. Delete data");
+  await client.deleteCollection(collectionName);
+}
+(async function () {
+  await createCollection();
+  await sleep(2000);
+  await insertData();
+  await sleep(10000);
+  await listener.close();
+  await deleteData();
+})();
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python">
+
+```py
+if __name__ == '__main__':
+
+    # Step 6: Delete data.
+    print(f"\n6. DELETE_DATA: region: {URL}, collection: {COLLECTION_NAME}")
+    collection.truncate()
+    client.delete_collection(COLLECTION_NAME)
+```
+
+</TabItem>
+</Tabs>
 
 
 ## Full Demo File
@@ -154,7 +340,7 @@ if __name__ == '__main__':
     time.sleep(10)
     print(f"Callback registered for collection: {COLLECTION_NAME}")
 
-    # Step4: Subscribe to receive documents in realtime (PUSH model)
+    # Step4: Subscribe to receive documents in real-time (PUSH model)
     print(f"\n4. INSERT_DOCUMENTS: region: {URL},  collection: {COLLECTION_NAME}")
     client.insert_document(COLLECTION_NAME, document=data)
 
@@ -162,7 +348,7 @@ if __name__ == '__main__':
     print("\n5. Waiting to close callback")
     rt_thread.join(2)
 
-    # Step6: Delete data.
+    # Step 6: Delete data.
     print(f"\n6. DELETE_DATA: region: {URL}, collection: {COLLECTION_NAME}")
     collection.truncate()
     client.delete_collection(COLLECTION_NAME)
