@@ -127,7 +127,7 @@ After that, the data gets inserted into Kafka `SINK` using Apache Kafka IO funct
 ```sql
     @App:name('TestFunctions') 
 
-    CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price string, volume string);
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='json') (symbol string, price string, volume string);
 
     @info(name = 'query1') 
 

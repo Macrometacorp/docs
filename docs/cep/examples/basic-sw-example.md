@@ -15,7 +15,7 @@ CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
 -- Creates a sink to publish events from stream workers:
 
-CREATE SINK TemperatureOnlyStream WITH (type='inMemory', topic='Temperature') (temperature double);
+CREATE SINK TemperatureOnlyStream WITH (type='stream', topic='Temperature') (temperature double);
 
 @info(name = 'Simple-selection')
 insert into TemperatureOnlyStream
@@ -25,8 +25,8 @@ from TemperatureStream;
 
 ## Input
 
-When an event [`'aq-14'`, `35.4`] is pushed via the `SensorDetail` topic of the `inMemory` transport from another stream worker, the event is consumed and mapped to the `TemperatureStream` stream.
+When an event [`'aq-14'`, `35.4`] is pushed via the `SensorDetail` topic of the stream transport from another stream worker, the event is consumed and mapped to the `TemperatureStream` stream.
 
 ## Output
 
-After processing, the event [`35.4`] arriving at `TemperatureOnlyStream` is emitted via `Temperature` topic of the `inMemory` transport to other subscribed stream workers.
+After processing, the event [`35.4`] arriving at `TemperatureOnlyStream` is emitted via `Temperature` topic of the stream transport to other subscribed stream workers.
