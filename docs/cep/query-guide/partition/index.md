@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Partition
+title: Partitions
 ---
 
 Partitions divide streams and queries into isolated groups in order to process them in parallel and in isolation. A partition can contain one or more queries and there can be multiple instances where the same queries and streams are replicated for each partition.
