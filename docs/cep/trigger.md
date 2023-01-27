@@ -1,6 +1,6 @@
 ---
-sidebar_position: 70
-title: CREATE TRIGGER
+sidebar_position: 40
+title: Create Triggers
 ---
 
 Triggers allow events to be periodically generated. A trigger also works like a [stream](stream.md) with a predefined schema.
