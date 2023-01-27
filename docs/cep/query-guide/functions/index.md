@@ -124,16 +124,16 @@ This stream application with the name `TestFunctions` creates a stream named `Fo
 On receiving the event, a query is executed that parses string data types using execution function (math) into required formats.
 After that, the data gets inserted into Kafka `SINK` using Apache Kafka IO function.
 
-```js
-@App:name('TestFunctions') 
+```sql
+    @App:name('TestFunctions') 
 
-CREATE SOURCE FooStream WITH (type='inMemory', topic='stock', map.type='json') (symbol string, price string, volume string);
+    CREATE SOURCE FooStream WITH (type='stream', topic='stock', map.type='json') (symbol string, price string, volume string);
 
-@info(name = 'query1') 
+    @info(name = 'query1') 
 
-CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price double, volume long);
+    CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price double, volume long);
 
-insert into BarStream
-select symbol, math:parseDouble(price), math:parseLong(volume) 
-from FooStream;
+    insert into BarStream
+    select symbol, math:parseDouble(price), math:parseLong(volume) 
+    from FooStream;
 ```

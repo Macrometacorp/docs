@@ -42,7 +42,6 @@ The following is a list of some of the sink types supported by stream workers:
 |Source type | Description|
 | ------------- |-------------|
 | [database](../query-guide/table-collection.md) | Allow the stream worker to publish events to collections (doc, graphs) in the same or different geofabric. |
-| [HTTP](sink-types/http.md| Publish events to an HTTP endpoint.|
 | [Kafka](sink-types/kafka.md) | Publish events to Kafka topic. |
 | [stream](sink-types/stream-sink.md) | Publish events to a stream. |
 | [TCP](sink-types/tcp.md) | Publish events to a TCP service. |
@@ -57,8 +56,8 @@ You can map different sink formats using sink mappers. For more information, ref
    CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertStream', map.type='json') (name string, amount double);
 ```
 
-## Example HTTP Sink
+## Example MQTT Sink
 
 ```sql
-CREATE SINK <NAME> WITH (type="http", map.type="<STRING>" publisher.url="<STRING>", basic.auth.username="<STRING>", basic.auth.password="<STRING>", https.truststore.file="<STRING>", https.truststore.password="<STRING>", oauth.username="<STRING>", oauth.password="<STRING>", consumer.key="<STRING>", consumer.secret="<STRING>", token.url="<STRING>", refresh.token="<STRING>", headers="<STRING>", method="<STRING>", socket.idle.timeout="<INT>", chunk.disabled="<BOOL>", ssl.protocol="<STRING>", ssl.verification.disabled="<BOOL>", tls.store.type="<STRING>", ssl.configurations="<STRING>", proxy.host="<STRING>", proxy.port="<STRING>", proxy.username="<STRING>", proxy.password="<STRING>", client.bootstrap.configurations="<STRING>", max.pool.active.connections="<INT>", min.pool.idle.connections="<INT>", max.pool.idle.connections="<INT>", min.evictable.idle.time="<STRING>", time.between.eviction.runs="<STRING>", max.wait.time="<STRING>", test.on.borrow="<BOOL>", test.while.idle="<BOOL>", exhausted.action="<INT>", hostname.verification.enabled="<BOOL>")
+CREATE SINK SinkStream WITH (type="mqtt", url="tcp://test.mosquitto.org:1883", topic="topicA", map.type="json", clean.session="true", message.retain="false", quality.of.service= "1", keep.alive= "60",connection.timeout="30") (startTime long);
 ```
