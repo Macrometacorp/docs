@@ -112,8 +112,6 @@ URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key
 
-print("--- Connecting to GDN")
-
 COLLECTION_NAME = "ddos"
 
 # Variables - Data
