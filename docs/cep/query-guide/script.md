@@ -1,6 +1,6 @@
 ---
 sidebar_position: 80
-title: Script Functions
+title: Custom Script Functions
 ---
 
 Scripts allow you to write functions in JavaScript and execute them within queries for a stream. Functions defined with scripts can be accessed in queries similar to any other inbuilt function. You can use function definitions to define these scripts.
@@ -16,10 +16,18 @@ Scripts allow you to define a function operation that is not provided in stream 
 The syntax for a script definition is as follows.
 
 ```js
-define function <function name>[<language name>] return <return type> {
+define function <function name>[<javascript>] return <return type> {
     <operation of the function>
 };
 ```
+
+The defined function can be used in the queries similar to inbuilt functions as follows.
+
+```js
+<function name>( (<function parameter>(, <function parameter>)*)? )
+```
+
+The custom functions defined with these function definitions have higher precedence compared to other functions.
 
 ## Parameters
 
@@ -32,9 +40,7 @@ The following parameters are configured when defining a script.
 | `return type`| The attribute type of the function’s return. This can be `int`, `long`, `float`, `double`, `string`, `bool`, or `object`. Here the function implementer should be responsible for returning the output attribute on the defined return type for proper functionality.
 |`operation of the function`| Here, the execution logic of the function is added. This logic should be written in the language specified under the `language name`, and it should return the output in the data type specified in the `return type` parameter.
 
-## Example
-
-This query performs concatenation using JavaScript and returns the output as a string.
+## Example 1
 
 ```sql
 CREATE function concatFn[javascript] return string {
@@ -52,3 +58,5 @@ insert into DeviceTempStream
 select concatFn(roomNo,'-',deviceID) as id, temp
 from TempStream;
 ```
+
+This function performs concatenation using JavaScript and returns the output as a string.
