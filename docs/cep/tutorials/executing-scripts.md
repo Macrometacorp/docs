@@ -3,60 +3,9 @@ title: Executing Scripts
 sidebar_position: 10
 ---
 
-
 The script provides the ability to write custom functions in other programming languages and execute them within stream workers. The custom functions using scripts can be defined via the function definitions and accessed in queries similar to any other inbuilt functions.
 
 Scripts help to define custom functions in other programming languages such as JavaScript. This can eliminate the need for writing extensions to fulfill the functionalities that are not provided in stream workers or by its extension.
-
-## Syntax
-
-The syntax for defining the script is as follows.
-
-```js
-define function <function name>[<language name>] return <return type> {
-    <function logic>
-};
-```
-    
-The defined function can be used in the queries similar to inbuilt functions as follows.
-
-```json
-<function name>( (<function parameter>(, <function parameter>)*)? )
-```
-    
-Here, the `&lt;function parameter&gt;`'s are passed into the `&lt;function logic&gt;` of the definition as an `Object[]` with the name `data`.
-
-The functions defined via the function definitions have higher precedence compared to inbuilt functions and the functions provided via extensions.
-
-The following parameters are used to configure the function definition:
-
-<table>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>`&lt;function name&gt;`</td>
-<td>The name of the function created. (It is recommended to define a function name in `camelCase`.)</td>
-</tr>
-<tr class="even">
-<td>`&lt;language name&gt;`</td>
-<td>Name of the programming language used to define the script, such as `javascript`, `r`, or `scala`</td>
-</tr>
-<tr class="odd">
-<td>`&lt;return type&gt;`</td>
-<td>The return type of the function. This can be `int, long, float, double, string, bool` or `object`. Here, the function implementer is responsible for returning the output according on the defined return type to ensure proper functionality.</td>
-</tr>
-<tr class="even">
-<td>`&lt;language name&gt;`</td>
-<td>The execution logic that is written in the language specified under the `&lt;language name&gt;`, where it consumes the `&lt;function parameter&gt;`'s through the `data` variable and returns the output in the type specified via the `&lt;return type&gt;` parameter.
-</td>
-</tr>
-</tbody>
-</table>
 
 ## Transform data using Custom Functions
 
