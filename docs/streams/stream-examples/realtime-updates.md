@@ -15,7 +15,7 @@ This tutorial demonstrates how to use Macrometa GDN as a real-time database with
 
 ## Code
 
-This page guides you through ABC XYZ
+This page guides you through creating a collection, subscribing to the collection, and automatically adding and deleting data to the collection.
 
 <Steps />
 
