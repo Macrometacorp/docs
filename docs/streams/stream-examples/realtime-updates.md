@@ -23,7 +23,7 @@ If you want to skip the explanation and just run the code, then go directly to t
 
 ### Step 1. Connect to GDN
 
-To use streams with Macrometa Global Data Network (GDN), you must first establish a connection to a local region.
+To update a database with Macrometa Global Data Network (GDN), you must first establish a connection to a local region.
 
 <ConnectToGDN />
 
