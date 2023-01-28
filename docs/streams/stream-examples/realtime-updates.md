@@ -143,6 +143,7 @@ if __name__ == '__main__':
 
 Add to the collection the information we defined in the `data` variable, then subscribe to the collection.
 
+In this example, we are adding IP addresses to blacklist.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
