@@ -1,6 +1,6 @@
 ---
 sidebar_position: 140
-title: Real-Time DB Updates
+title: Real-Time DB Updates Example
 ---
 
 import Tabs from '@theme/Tabs';
@@ -32,7 +32,7 @@ To update a database with Macrometa Global Data Network (GDN), you must first es
 Set the variables required to run the code.
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 // Variables
@@ -56,6 +56,9 @@ const sleep = (milliseconds) => {
 <TabItem value="py" label="Python">
 
 ```py
+import threading
+import pprint
+import time
 COLLECTION_NAME = "ddos"
 
 # Variables - Data
@@ -79,7 +82,7 @@ pp = pprint.PrettyPrinter(indent=4)
 Create a collection called `ddos` to which we will subscribe. If a collection by that name already exists, the existing collection is used instead.
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 async function createCollection () {
@@ -143,10 +146,10 @@ if __name__ == '__main__':
 
 Add to the collection the information we defined in the `data` variable, then subscribe to the collection.
 
-In this example, we are adding IP addresses to blacklist.
+In this example, we are adding IP addresses to block.
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 async function insertData () {
@@ -187,7 +190,7 @@ if __name__ == '__main__':
 Delete the data from the collection. If the collection becomes empty, the collection is deleted too.
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 async function deleteData () {
@@ -224,7 +227,7 @@ if __name__ == '__main__':
 ## Full Demo File
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 const jsc8 = require("jsc8");
