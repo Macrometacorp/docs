@@ -63,11 +63,11 @@ COLLECTION_NAME = "ddos"
 
 # Variables - Data
 data = [
-    {"ip": "10.1.1.1", "action": "block", "rule": "blacklistA"},
-    {"ip": "20.1.1.2", "action": "block", "rule": "blacklistA"},
-    {"ip": "30.1.1.3", "action": "block", "rule": "blacklistB"},
-    {"ip": "40.1.1.4", "action": "block", "rule": "blacklistA"},
-    {"ip": "50.1.1.5", "action": "block", "rule": "blacklistB"},
+    {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
+    {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
+    {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
+    {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
+    {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
 ]
 
 pp = pprint.PrettyPrinter(indent=4)
@@ -309,11 +309,11 @@ COLLECTION_NAME = "ddos"
 
 # Variables - Data
 data = [
-    {"ip": "10.1.1.1", "action": "block", "rule": "blacklistA"},
-    {"ip": "20.1.1.2", "action": "block", "rule": "blacklistA"},
-    {"ip": "30.1.1.3", "action": "block", "rule": "blacklistB"},
-    {"ip": "40.1.1.4", "action": "block", "rule": "blacklistA"},
-    {"ip": "50.1.1.5", "action": "block", "rule": "blacklistB"},
+    {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
+    {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
+    {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
+    {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
+    {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
 ]
 
 pp = pprint.PrettyPrinter(indent=4)
