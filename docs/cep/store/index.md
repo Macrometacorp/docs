@@ -7,16 +7,34 @@ A _store_ is a place to keep your data. Stores allow creating, reading, updating
 
 ## Store Syntax
 
-You can create any store with the following syntax:
+Stores can be created as part of your stream worker using one of the following syntaxes.
+
+### General Store Syntax
+
+You can create any store with the following syntax.
 
 ```sql
 CREATE STORE <table_name> WITH(type="<store_type>", propKey=”propVal”, … , PrimaryKey='<attribute_name>', Index='<attribute_name>')(<attribute_name> <attribute_type>, ...);
 ```
 
+For example:
+
+```sql
+CREATE STORE SensorTable WITH(type=’database’, collection=’SampleTable’, map.type=’json’) (sensorId string, temperature double);
+```
+
+### Table Store Syntax
+
 You can also create a table, which is a Macrometa [collection](../../collections/index.md) that is automatically a store for the stream worker that defines it.
 
 ```sql
 CREATE TABLE (GLOBAL|SPOT)? <table_name> (<attribute_name> <attribute_type>, ...);
+```
+
+For example:
+
+```sql
+CREATE TABLE SensorTable (sensorId string, temperature double);
 ```
 
 ## Supported Stores
@@ -30,32 +48,45 @@ Supported stores include:
 
 ## Sample Store Queries
 
-Create Stores
-CREATE STORE SensorTable WITH(type=’database’, collection=’SampleTable’, map.type=’json’) (sensorId string, temperature double);
-CREATE TABLE SensorTable (sensorId string, temperature double);
+This section shows some of the queries that you might use on a stream worker store.
 
-Insert into a Store
-INSERT INTO SensorTable 
-SELECT * 
+### Insert into a Store
+
+```sql
+INSERT INTO SensorTable
+SELECT *
 FROM SampleStream;
+```
 
-Join with a Store
-INSERT INTO OutputStream 
+### Join with a Store
+
+```sql
+INSERT INTO OutputStream
 SELECT st.sensorId, st.temperature, ts.type AS type
 FROM TempStream AS ts JOIN SensorTable AS st
     ON ts.sensorId == st.sensorId;
+```
 
-Delete from a Store
+### Delete from a Store
+
+```sql
 DELETE SensorTable
 	ON SensorTable.sensorId == sensorId
 FROM DeleteStream;
+```
 
-Update in a Store
+### Update in a Store
+
+```sql
 UPDATE SensorTable
 	SET SensorTable.temperature = temperature
 	ON SensorTable.sensorId == sensorId
 FROM TemperatureStream;
+```
 
-Lookup in a Store
+### Look Up in a Store
+
+```sql
 INSERT INTO ExistingSensorStream
 FROM SensorStream[SensorTable.sensorId == sensorId in SensorTable]
+```
