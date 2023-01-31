@@ -18,6 +18,12 @@ The stream sink syntax is as follows:
    CREATE SINK SinkName WITH (type="stream", stream="STRING", replication.type="STRING", map.type='type') (strings);
 ```
 
+Or you can use:
+
+```sql
+CREATE SINK STREAM SampleStreamSink (data string);
+```
+
 ## Query Parameters
 
 | Name             | Description         | Default Value | Possible Data Types | Optional |
