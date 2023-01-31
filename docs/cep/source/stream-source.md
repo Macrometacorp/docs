@@ -2,6 +2,8 @@
 title: Stream Source
 ---
 
+GENERIC SOURCE CONTENT
+
 Streams used as sources receive events via multiple transports and in various data formats, and direct them into streams for processing.
 
 A source configuration allows to define a mapping in order to convert each incoming event from its native data format to a stream event. When customizations to such mappings are not provided, stream processor assumes that the arriving event adheres to the predefined format based on the stream definition and the configured message mapping type.
