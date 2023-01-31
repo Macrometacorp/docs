@@ -42,8 +42,6 @@ CREATE TABLE SensorTable (sensorId string, temperature double);
 Supported stores include:
 
 - [Macrometa collections](../../collections/index.md) (also called tables)
-- [MongoDB](mongodb.md)
-- [Redis](redis.md)
 - [RDBMS](rdbms.md)
 
 ## Sample Store Queries
