@@ -54,13 +54,13 @@ Execution plan:
  Id   NodeType          Est.   Comment
   1   SingletonNode        1   * ROOT
   8   IndexNode            1     - FOR car IN Cars   /* reverse primary index scan */
-  3   CalculationNode      1       - LET #1 = (car.`type` == "SUV")   /* simple expression */   /* collections used: car : Cars */
-  4   FilterNode           1       - FILTER #1
+  3   CalculationNode      1       - LET #3 = (car.`type` == "SUV")   /* simple expression */   /* collections used: car : Cars */
+  4   FilterNode           1       - FILTER #3       /* sorting strategy: standard */
   7   ReturnNode           1       - RETURN car
 
 Indexes used:
  By   Name      Type      Collection   Unique   Sparse   Selectivity   Fields       Ranges
-  8   primary   primary   Cars         true     false       100.00 %   [ `_key` ]   *
+  8   primary   primary   Cars         false     false       50.00 %   [ `type` ]   (car.`type` == "SUV")
 
 Optimization rules applied:
  Id   RuleName
@@ -69,7 +69,7 @@ Optimization rules applied:
   3   move-calculations-up-2
   4   move-filters-up-2
   5   use-indexes
-  6   use-index-for-sort
+  6   remove-filter-coverd-by-index
   7   remove-unnecessary-calculations-2
 ```
 
