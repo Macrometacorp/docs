@@ -1,11 +1,10 @@
 ---
-sidebar_position: 120
 title: Change Data Capture Plugin
 ---
 
 You can use plugins in Macrometa to extend the functionality of your streams.
 
-The Change Data Capture (CDC) plugin captures change data from RDBMS databases like MySQL, MS SQL, PostgreSQL, H2, and Oracle. When a change event occurs on a database table, the CDC source receives the event in key-value format.
+The Change Data Capture (CDC) plugin captures change data from RDBMS databases such as MySQL, PostgresQL, SQLServer, and Oracle. When a change event occurs on a database table, the CDC source receives the event in key-value format.
 
 CDC has two available modes: _polling_ and _listening_.
 
