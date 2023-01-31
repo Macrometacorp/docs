@@ -26,7 +26,7 @@ A Kafka sink publishes events processed by gdn SP to a topic with a partition fo
     CREATE STREAM FooStream (symbol string, price float, volume long);
 
     @info(name = 'query1')
-    CREATE SINK BarStream WITH (type='kafkaMultiDC', topic='myTopic', partition.no='0', bootstrap.servers='host1:9092, host2:9092', map.type='xml') (symbol string, price float, volume long);
+    CREATE SINK BarStream WITH (type='kafkaMultiDC', topic='myTopic', partition.no='0', bootstrap.servers='host1:9092, host2:9092', map.type='text') (symbol string, price float, volume long);
 
     insert into BarStream
     from FooStream select symbol, price, volume ;

@@ -28,7 +28,7 @@ The `type` parameter of `CREATE SOURCE` annotation defines the source type that 
 
 ### Supported Stream Source Types
 
-The following is the list of source types supported by stream.
+The following is the list of some source types supported by stream workers. For a full list, refer to [Source Types](source-types/index.md).
 
 |Source type | Description|
 | ------------- |-------------|

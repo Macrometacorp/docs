@@ -2,7 +2,7 @@
 title: http-call (Sink)
 ---
 
-The http-call sink publishes messages to endpoints via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats `text`, `XML` or `JSON` and consume responses through its corresponding http-call-response source. It also supports calling endpoints protected with basic authentication or OAuth 2.0.
+The http-call sink publishes messages to endpoints via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats `text` or `JSON` and consume responses through its corresponding http-call-response source. It also supports calling endpoints protected with basic authentication or OAuth 2.0.
 
 ## Syntax
 
@@ -24,7 +24,7 @@ The http-call sink publishes messages to endpoints via HTTP or HTTPS protocols u
 | consumer.secret                 | Consumer secret used for calling endpoints protected by OAuth 2.0.      | \-               | STRING              | Yes      | No      |
 | token.url      | Token URL to generate a new access tokens when calling endpoints protected by OAuth 2.0. | \-               | STRING              | Yes      | No      |
 | refresh.token  | Refresh token used for generating new access tokens when calling endpoints protected by OAuth 2.0.        | \-               | STRING              | Yes      | No      |
-| headers        | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following:  - `map.type='xml'`: `application/xml`  - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text`. Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.              | Content-Type and Content-Length headers     | STRING              | Yes      | No      |
+| headers        | HTTP request headers in format `"'<key>:<value>','<key>:<value>'"`. When the `Content-Type` header is not provided the system decides the Content-Type based on the provided sink mapper as following:  - `map.type='json'`: `application/json`  - `map.type='text'`: `plain/text`  - `map.type='keyvalue'`: `application/x-www-form-urlencoded`  - For all other cases system defaults to `plain/text`. Also the `Content-Length` header need not to be provided, as the system automatically defines it by calculating the size of the payload.              | Content-Type and Content-Length headers     | STRING              | Yes      | No      |
 | method         | The HTTP method used for calling the endpoint.               | POST             | STRING              | Yes      | No      |
 | downloading.enabled             | Enable response received by the http-call-response source to be written to a file. When this is enabled, the `download.path` property should also be set.       | false            | BOOL                | Yes      | No      |
 | download.path  | The absolute file path along with the file name where the downloads should be saved.    | \-               | STRING              | Yes      | Yes     |
@@ -68,7 +68,7 @@ CREATE SINK FooStream WITH (type='http-call', sink.id='foo', publisher.url='http
 CREATE SOURCE ResponseStream WITH (type='http-call-response', sink.id='foo', map.type='text', regex.A='((.|\n)*)', map.attributes="headers='trp:headers', message='A[1]'") (message string, headers string);
 ```
 
-When events arrive in `FooStream`, http-call sink makes calls to endpoint on URL `http://localhost:8009/foo` with `POST` method and Content-Type `application/xml`. If the event `payloadBody` attribute contains following JSON:
+When events arrive in `FooStream`, http-call sink makes calls to endpoint on URL `http://localhost:8009/foo` with `POST` method and Content-Type `application/text`. If the event `payloadBody` attribute contains following JSON:
 
 ```json
 {

@@ -30,7 +30,7 @@ This section explains how to configure a basic sink without mapping.
 
 To create a stream application with the sink configuration defined inline, follow the steps below.
 
-1. Open the GUI and start creating a new Stream application. For more information, see [Creating a Stream Application](create-stream-app.md).
+1. Open the GUI and start creating a new Stream application. For more information, see [Creating a Stream Application](create-stream-worker.md).
 
 2. Enter a name for the stream application as shown below.
     ```sql
@@ -156,7 +156,7 @@ In this section, you can update the same stream application that you saved in th
 
 2. Within the `map.type` annotation of the sink configuration, add a `map.payload` annotation. There are two ways to configure this:
 
-    * Some mappers such as `xml`, `json`, and `text` accept only one output payload using the following format: 
+    * Some mappers such as `json` and `text` accept only one output payload using the following format: 
         ```js
         map.payload="<PAYLOAD>"
         ```

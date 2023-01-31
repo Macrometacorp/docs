@@ -9,12 +9,13 @@ The stream processor groups common types of events together with a schema. This 
 
 ## Syntax
 
-The syntax for defining a new stream is as follows.
+The syntax for defining a new stream is:
 
 ```sql
 CREATE STREAM <stream_name> (<attribute_name> <attribute_type>,
                              <attribute_name> <attribute_type>, ... );
 ```
+
 ## Parameters
 
 The following parameters are used to configure a stream definition.
@@ -22,8 +23,8 @@ The following parameters are used to configure a stream definition.
 | Parameter     | Description |
 | ------------- |-------------|
 | `stream name`      | The name of the stream created. (We recommend defining stream names in `PascalCase`.) |
-| `attribute name`   | Uniquely identifiable name of the stream attribute. (It is recommended to define attribute names in `camelCase`.)|    |
-| `attribute type`   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
+| `attribute name`   | Uniquely identifiable name of the stream attribute. (It is recommended to define attribute names in `camelCase`.)|     |
+| `attribute type`   | The type of each attribute defined in the schema. This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
 
 To use and refer stream and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format, enclose them in ``` ` ```. For example: ``` `$test(0)` ```
 
@@ -43,4 +44,4 @@ CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
 ## Using Streams as Source and Sink
 
-You can use streams as sinks and sources for stream workers. For more information, refer to [Stream Source](../source/stream-source.md) and [Stream Sink](../sink/stream-sink.md).
+You can use streams as sinks and sources for stream workers.
