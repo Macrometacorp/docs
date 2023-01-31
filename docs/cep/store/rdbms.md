@@ -2,9 +2,9 @@
 title: rdbms (Store)
 ---
 
-This extension assigns data sources and connection instructions to event
-tables. It also implements read-write operations on connected data
-sources.
+This extension assigns data sources and connection instructions to event tables. It also implements read-write operations on connected data sources.
+
+Macrometa supports RDBMS stores such as MySQL, PostgresQL, and Oracle.
 
 ## Syntax
 
