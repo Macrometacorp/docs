@@ -1,3 +1,5 @@
+## **Practice 2: Use the Execution Plan to optimize indexes**
+
 Proper indexing is key to query performance. C8QL provides an `Execution Plan` for all valid queries to show optimization rules and indexes being used.  Click the `Execution Plan` button,  below the query editor,  to view the plan. 
 
 The `Indexes used` section of the execution plan shows which indexes are utilized by the query. If there are no indexes used or there are no fields matching the `FILTER` attributes create a new index with those attributes.
