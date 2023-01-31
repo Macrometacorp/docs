@@ -42,7 +42,7 @@ CREATE TABLE SensorTable (sensorId string, temperature double);
 Supported stores include:
 
 - [Macrometa collections](../../collections/index.md) (also called tables)
-- [RDBMS](rdbms.md) such as such as MySQL, PostgresQL, and Oracle.
+- [MySQL, PostgresQL, SQLServer, and Oracle](rdbms.md)
 
 ## Sample Store Queries
 
