@@ -3,29 +3,28 @@ sidebar_position: 40
 title: Windows in Queries
 ---
 
-### From
-
 A window can be an input to a query, similar to streams.
 
-Note !!!
-     When window is used as an input to a query, another window cannot be applied on top of this.
+:::note
+When window is used as an input to a query, another window cannot be applied on top of it.
+:::
 
-**Syntax**
+## Syntax
 
 ```sql
-insert into <output stream>
-select <attribute name>, <attribute name>, ...
-from <window>
+INSERT INTO <output stream>
+SELECT <attribute name>, <attribute name>, ...
+FROM <window>
 ```
 
-**Example**
+## Example
 
-This Stream Application calculates the maximum temperature within the last 5 minutes.
-
-```
+```sql
 CREATE WINDOW FiveMinTempWindow (roomNo int, temp double) time(5 min);
 
-insert into MaxSensorReadingStream
-select max(temp) as maxValue, roomNo
-from FiveMinTempWindow;
+INSERT INTO MaxSensorReadingStream
+SELECT max(temp) as maxValue, roomNo
+FROM FiveMinTempWindow;
 ```
+
+This stream worker calculates the maximum temperature within the last five minutes.
