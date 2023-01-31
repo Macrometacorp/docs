@@ -1,7 +1,8 @@
 ---
-sidebar_position: 60
-title: CREATE STREAM
+title: Stream Source
 ---
+
+STREAM SOURCE CONTENT
 
 A stream is a logical series of events ordered in time. Its schema is defined via the _stream definition_. A stream definition contains the stream name and a set of attributes with specific types and uniquely identifiable names within the stream. All events associated to the stream will have the same schema (i.e., have the same attributes in the same order).
 
@@ -41,7 +42,3 @@ This example creates a stream called `TempStream` with the following attributes:
 ```sql
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 ```
-
-## Using Streams as Source and Sink
-
-You can use streams as sinks and sources for stream workers.
