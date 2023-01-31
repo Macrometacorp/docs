@@ -1,29 +1,25 @@
 ---
 sidebar_position: 30
-title: Join (Window)
+title: Operators on Named Windows
 ---
-
-## Operators on Named Windows
 
 The following operators can be performed on named windows.
 
-### Insert
+## Insert
 
 This allows events to be inserted into windows. This is similar to inserting events into streams.
 
-**Syntax**
+### Syntax
 
-```
-insert into <window>
-select <attribute name>, <attribute name>, ...
-from <input stream>
+```sql
+INSERT INTO <window>
+SELECT <attribute name>, <attribute name>, ...
+FROM <input stream>
 ```
 
 To insert only events of a specific event type, add the `current events`, `expired events` or the `all events` keyword between `insert` and `into` keywords (similar to how it is done for streams).
 
-For more information, see [Event Type](#event-type).
-
-**Example**
+### Insert Example
 
 This query inserts all events from the `TempStream` stream to the `OneMinTempWindow` window.
 
@@ -36,7 +32,7 @@ select *
 from TempStream;
 ```
 
-### Join (Window)
+## Join (Window)
 
 To allow a stream to retrieve information from a window based on a condition.
 
