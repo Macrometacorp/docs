@@ -77,37 +77,63 @@ pp = pprint.PrettyPrinter(indent=4)
 </Tabs>
 
 
-### Step 3. Create Collection
+### Step 3. 
+
+
 
 Create a collection called `ddos` to which we will subscribe. If a collection by that name already exists, the existing collection is used instead.
+
+Add to the collection the information we defined in the `data` variable, then subscribe to the collection. In this example, we are adding IP addresses to block.
+
+Delete the data from the collection. If the collection becomes empty, the collection is deleted too.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="JavaScript">
 
 ```js
-async function createCollection () {
-  console.log("\n1. Log in.");
-  console.log("\n2. Create collection.");
-  try {
-    console.log(`Creating the collection ${collectionName}...`);
-    const existsColl = await client.hasCollection(collectionName);
-    if (existsColl === false) {
-      await client.createCollection(collectionName, { stream: true });
-    }
-    // Add an onChange listener for collection
-    listener = await client.onCollectionChange(collectionName);
-    
-    // Decode the message printed here in readable format
-    listener.on("message", (msg) => {
-      const receivedMsg = msg && JSON.parse(msg);
-      console.log("message=>", Buffer.from(receivedMsg.payload, "base64").toString("ascii"))
-    });
-    listener.on("open", () => console.log("Connection open"));
-    listener.on("close", () => console.log("Connection closed"));
-  } catch (e) {
-    await console.log("Collection creation did not succeed due to " + e);
-  }
+async function main () {
+	async function createCollection () {
+		console.log("\n1. Log in.");
+		console.log("\n2. Create collection.");
+		try {
+		  console.log(`Creating the collection ${collectionName}...`);
+		  const existsColl = await client.hasCollection(collectionName);
+		  if (existsColl === false) {
+			await client.createCollection(collectionName, { stream: true });
+		  }
+		  // Add an onChange listener for collection
+		  listener = await client.onCollectionChange(collectionName);
+
+		  // Decode the message printed here in readable format
+		  listener.on("message", (msg) => {
+			const receivedMsg = msg && JSON.parse(msg);
+			console.log("message=>", Buffer.from(receivedMsg.payload, "base64").toString("ascii"))
+		  });
+		  listener.on("open", () => console.log("Connection open"));
+		  listener.on("close", () => console.log("Connection closed"));
+		} catch (e) {
+		  await console.log("Collection creation did not succeed due to " + e);
+		}
+	}
+	await createCollection();
+
+	async function insertData () {
+		console.log(`\n3. Insert data`);
+		await client.insertDocumentMany(collectionName, data);
+	}
+	await sleep(2000);
+	await insertData();
+
+	async function deleteData () {
+		console.log("\n4. Delete data");
+		await client.deleteCollection(collectionName);
+	}
+	await sleep(10000);
+	// Closing OnChange listener
+	await listener.close();
+	await deleteData();  
 }
+main();
 ```
 
 </TabItem>
@@ -136,34 +162,6 @@ if __name__ == '__main__':
             return
 
         client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
-```
-
-</TabItem>
-</Tabs>
-
-
-### Step 4. Add Data and Subscribe to Collection
-
-Add to the collection the information we defined in the `data` variable, then subscribe to the collection.
-
-In this example, we are adding IP addresses to block.
-
-<Tabs groupId="operating-systems">
-<TabItem value="js" label="JavaScript">
-
-```js
-async function insertData () {
-  console.log(`\n3. Insert data`);
-  await client.insertDocumentMany(collectionName, data);
-}
-```
-
-</TabItem>
-
-<TabItem value="py" label="Python">
-
-```py
-if __name__ == '__main__':
 
     # Step3: Subscribe to receive documents in realtime (PUSH model)
     print(f"\n3. SUBSCRIBE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
@@ -179,40 +177,6 @@ if __name__ == '__main__':
     # Step5: Wait to close the callback.
     print("\n5. Waiting to close callback")
     rt_thread.join(2)
-```
-
-</TabItem>
-</Tabs>
-
-
-### Step 5. Delete Data
-
-Delete the data from the collection. If the collection becomes empty, the collection is deleted too.
-
-<Tabs groupId="operating-systems">
-<TabItem value="js" label="JavaScript">
-
-```js
-async function deleteData () {
-  console.log("\n4. Delete data");
-  await client.deleteCollection(collectionName);
-}
-(async function () {
-  await createCollection();
-  await sleep(2000);
-  await insertData();
-  await sleep(10000);
-  await listener.close();
-  await deleteData();
-})();
-```
-
-</TabItem>
-
-<TabItem value="py" label="Python">
-
-```py
-if __name__ == '__main__':
 
     # Step 6: Delete data.
     print(f"\n6. DELETE_DATA: region: {URL}, collection: {COLLECTION_NAME}")
@@ -249,45 +213,49 @@ const sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 };
 
-async function createCollection () {
-  console.log("\n1. Log in.");
-  console.log("\n2. Create collection.");
-  try {
-    console.log(`Creating the collection ${collectionName}...`);
-    const existsColl = await client.hasCollection(collectionName);
-    if (existsColl === false) {
-      await client.createCollection(collectionName, { stream: true });
-    }
-    // Add an onChange listener for collection
-    listener = await client.onCollectionChange(collectionName);
-    
-    // Decode the message printed here in readable format
-    listener.on("message", (msg) => {
-      const receivedMsg = msg && JSON.parse(msg);
-      console.log("message=>", Buffer.from(receivedMsg.payload, "base64").toString("ascii"))
-    });
-    listener.on("open", () => console.log("Connection open"));
-    listener.on("close", () => console.log("Connection closed"));
-  } catch (e) {
-    await console.log("Collection creation did not succeed due to " + e);
-  }
+async function main () {
+	async function createCollection () {
+		console.log("\n1. Log in.");
+		console.log("\n2. Create collection.");
+		try {
+		  console.log(`Creating the collection ${collectionName}...`);
+		  const existsColl = await client.hasCollection(collectionName);
+		  if (existsColl === false) {
+			await client.createCollection(collectionName, { stream: true });
+		  }
+		  // Add an onChange listener for collection
+		  listener = await client.onCollectionChange(collectionName);
+
+		  // Decode the message printed here in readable format
+		  listener.on("message", (msg) => {
+			const receivedMsg = msg && JSON.parse(msg);
+			console.log("message=>", Buffer.from(receivedMsg.payload, "base64").toString("ascii"))
+		  });
+		  listener.on("open", () => console.log("Connection open"));
+		  listener.on("close", () => console.log("Connection closed"));
+		} catch (e) {
+		  await console.log("Collection creation did not succeed due to " + e);
+		}
+	}
+	await createCollection();
+
+	async function insertData () {
+		console.log(`\n3. Insert data`);
+		await client.insertDocumentMany(collectionName, data);
+	}
+	await sleep(2000);
+	await insertData();
+
+	async function deleteData () {
+		console.log("\n4. Delete data");
+		await client.deleteCollection(collectionName);
+	}
+	await sleep(10000);
+	// Closing OnChange listener
+	await listener.close();
+	await deleteData();  
 }
-async function insertData () {
-  console.log(`\n3. Insert data`);
-  await client.insertDocumentMany(collectionName, data);
-}
-async function deleteData () {
-  console.log("\n4. Delete data");
-  await client.deleteCollection(collectionName);
-}
-(async function () {
-  await createCollection();
-  await sleep(2000);
-  await insertData();
-  await sleep(10000);
-  await listener.close();
-  await deleteData();
-})();
+main();
 ```
 
 </TabItem>
