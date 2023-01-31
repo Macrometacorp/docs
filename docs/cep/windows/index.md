@@ -1,6 +1,6 @@
 ---
-sidebar_position: 60
-title: Named Window
+sidebar_position: 1
+title: Create Named Window
 ---
 
 A named window is a window that can be shared across multiple queries. Events can be inserted to a named window from one or more queries and it can produce output events based on the named window type.
