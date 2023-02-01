@@ -2,6 +2,8 @@
 title: Streaming ML
 ---
 
+import DocCardList from '@theme/DocCardList';
+
 This extension provides streaming machine learning (clustering, classification, and regression) on event streams.
 <grid cols={3}>
   <card heading="Bayesian Linear Regression" href="/cep/query-guide/functions/streaming-ml/bayesianregression" />
@@ -11,3 +13,5 @@ This extension provides streaming machine learning (clustering, classification, 
   <card heading="Linear Bayesian Regression" href="/cep/query-guide/functions/streaming-ml/bayesianregression" />
   <card heading="Linear Binary Classification Perceptron" href="/cep/query-guide/functions/streaming-ml/updateperceptronclassifier" />
 </grid>
+
+<DocCardList />
