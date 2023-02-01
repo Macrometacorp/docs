@@ -77,15 +77,13 @@ pp = pprint.PrettyPrinter(indent=4)
 </Tabs>
 
 
-### Step 3. 
+### Step 3. Add Code
 
+Add code to perform the following actions:
 
-
-Create a collection called `ddos` to which we will subscribe. If a collection by that name already exists, the existing collection is used instead.
-
-Add to the collection the information we defined in the `data` variable, then subscribe to the collection. In this example, we are adding IP addresses to block.
-
-Delete the data from the collection. If the collection becomes empty, the collection is deleted too.
+1. Create a collection called `ddos` to which we will subscribe. If a collection by that name already exists, the existing collection is used instead.
+1. Add `data` to the collection, then subscribe to the collection. In this example, we are adding IP addresses to block.
+1. Delete `data` from the collection. If the collection becomes empty, the collection is deleted too.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="JavaScript">
@@ -100,6 +98,7 @@ async function main () {
 		  const existsColl = await client.hasCollection(collectionName);
 		  if (existsColl === false) {
 			await client.createCollection(collectionName, { stream: true });
+      console.log(`Collection created`);
 		  }
 		  // Add an onChange listener for collection
 		  listener = await client.onCollectionChange(collectionName);
