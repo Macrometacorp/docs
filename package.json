@@ -16,10 +16,10 @@
     "write-translations": "docusaurus write-translations"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.3.0",
-    "@docusaurus/plugin-sitemap": "^2.3.0",
-    "@docusaurus/preset-classic": "^2.3.0",
-    "@docusaurus/theme-search-algolia": "^2.3.0",
+    "@docusaurus/core": "~2.2.0",
+    "@docusaurus/plugin-sitemap": "~2.2.0",
+    "@docusaurus/preset-classic": "~2.2.0",
+    "@docusaurus/theme-search-algolia": "~2.2.0",
     "@fontsource/lato": "^4.5.8",
     "@fontsource/open-sans": "^4.5.10",
     "@fontsource/source-code-pro": "^4.5.11",
