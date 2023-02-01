@@ -85,6 +85,10 @@ Add code to perform the following actions:
 1. Add `data` to the collection, then subscribe to the collection. In this example, we are adding IP addresses to block.
 1. Delete `data` from the collection. If the collection becomes empty, the collection is deleted too.
 
+:::note
+An existing collection must have streams enabled.
+:::
+
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="JavaScript">
 
@@ -142,7 +146,7 @@ main();
 ```py
 if __name__ == '__main__':
 
-    # Step1: Open connection to GDN. You will be routed to closest region.
+    # Step 1: Open connection to GDN. You will be routed to closest region.
     print(f"\n1. CONNECT: federation: {URL}")
     client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
@@ -162,18 +166,18 @@ if __name__ == '__main__':
 
         client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
 
-    # Step3: Subscribe to receive documents in realtime (PUSH model)
+    # Step 3: Subscribe to receive real-time updates when changes are made to the collection.
     print(f"\n3. SUBSCRIBE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
     rt_thread = threading.Thread(target=create_callback)
     rt_thread.start()
     time.sleep(10)
     print(f"Callback registered for collection: {COLLECTION_NAME}")
 
-    # Step4: Subscribe to receive documents in real-time (PUSH model)
+    # Step 4: Insert documents into the collection to trigger a notification.
     print(f"\n4. INSERT_DOCUMENTS: region: {URL},  collection: {COLLECTION_NAME}")
     client.insert_document(COLLECTION_NAME, document=data)
 
-    # Step5: Wait to close the callback.
+    # Step 5: Wait to close the callback.
     print("\n5. Waiting to close callback")
     rt_thread.join(2)
 
@@ -287,7 +291,7 @@ pp = pprint.PrettyPrinter(indent=4)
 
 if __name__ == '__main__':
 
-    # Step1: Open connection to GDN. You will be routed to closest region.
+    # Step 1: Open connection to GDN. You will be routed to closest region.
     print(f"\n1. CONNECT: federation: {URL}")
     client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
@@ -307,18 +311,18 @@ if __name__ == '__main__':
 
         client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
 
-    # Step3: Subscribe to receive documents in realtime (PUSH model)
+    # Step 3: Subscribe to receive documents in realtime (PUSH model)
     print(f"\n3. SUBSCRIBE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
     rt_thread = threading.Thread(target=create_callback)
     rt_thread.start()
     time.sleep(10)
     print(f"Callback registered for collection: {COLLECTION_NAME}")
 
-    # Step4: Subscribe to receive documents in real-time (PUSH model)
+    # Step 4: Subscribe to receive documents in real-time (PUSH model)
     print(f"\n4. INSERT_DOCUMENTS: region: {URL},  collection: {COLLECTION_NAME}")
     client.insert_document(COLLECTION_NAME, document=data)
 
-    # Step5: Wait to close the callback.
+    # Step 5: Wait to close the callback.
     print("\n5. Waiting to close callback")
     rt_thread.join(2)
 
