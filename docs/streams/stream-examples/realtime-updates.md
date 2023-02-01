@@ -256,7 +256,7 @@ async function main () {
 		await client.deleteCollection(collectionName);
 	}
 	await sleep(10000);
-	// Closing OnChange listener
+	// Close OnChange listener
 	await listener.close();
 	await deleteData();  
 }
