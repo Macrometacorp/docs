@@ -22,11 +22,11 @@ This is created by generating unique values using input stream attributes.
 #### Syntax
 
 ```sql
-partition with ( &lt;expression> of &lt;stream name>,
-                    &lt;expression> of &lt;stream name>, ... )
+partition with ( <expression> of <stream name>,
+                    <expression> of <stream name>, ... )
 begin
-    &lt;query>
-    &lt;query>
+    <query>
+    <query>
     ...
 end;
 ```
@@ -51,12 +51,12 @@ This is created by mapping each partition key to a range condition of the input 
 #### Syntax
 
 ```sql
-partition with ( &lt;condition> as &lt;partition key> or
-                    &lt;condition> as &lt;partition key> or ... of &lt;stream name>,
+partition with ( <condition> as <partition key> or
+                    <condition> as <partition key> or ... of <stream name>,
                     ... )
 begin
-    &lt;query>
-    &lt;query>
+    <query>
+    <query>
     ...
 end;
 ```
