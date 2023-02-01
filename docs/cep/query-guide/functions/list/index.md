@@ -62,3 +62,6 @@ select list:remove(
             "Cake") as productList
 from NewListStream;
 ```
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
