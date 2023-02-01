@@ -5,6 +5,4 @@ title: Source Types
 
 This section contains information about various source types supported in Macrometa stream workers.
 
-import DocCardList from '@theme/DocCardList';
-
 <DocCardList />

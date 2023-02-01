@@ -6,6 +6,4 @@ Geospatial functions provides\ data related to geographic (geo) functionality. F
 
 For all geospatial functions, you can choose to use coordinates or a `geo.json.geometry` object.
 
-import DocCardList from '@theme/DocCardList';
-
 <DocCardList />

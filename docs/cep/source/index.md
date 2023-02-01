@@ -7,6 +7,4 @@ Sources receive events from multiple transports and in various data formats, and
 
 The pages in this section show you how to use various sources in Macrometa GDN stream workers, including streams, HTTP, and Kafka.
 
-import DocCardList from '@theme/DocCardList';
-
 <DocCardList />
