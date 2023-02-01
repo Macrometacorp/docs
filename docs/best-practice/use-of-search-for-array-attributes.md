@@ -1,4 +1,7 @@
-##**Practice 5: Use of SEARCH for array attributes**
+---
+sidebar_position: 50
+title: Use of SEARCH for array attributes
+---
 
 If the user wants to `FILTER` against an array of values the `ALL`, `ANY`, and `NONE` operators are used. Array indexes would not help because those are not utilized. Users can create `SEARCH VIEW` to optimize these queries.
 

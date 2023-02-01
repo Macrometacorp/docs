@@ -1,4 +1,7 @@
-##**Practice 4: Multiple collections vs single large collection**
+---
+sidebar_position: 50
+title: Multiple collections vs single large collection
+---
 
 Query performance is linked, in part, to the number of documents in the collections and the indexes used. When a single collection contains a large number of complex documents optimizing for performance becomes difficult. Designing collections around purpose-built documents and indexes for returning specific results makes query writing simpler and improves performance.
 

@@ -1,10 +1,13 @@
-##**Practice 3: Use subqueries in place of multiple for loops**
+---
+sidebar_position: 50
+title: Use subqueries in place of multiple for loops
+---
 
 For a query containing multiple `FOR` loops, the number of iterations to evaluate the query is equal to the number of documents in each collection multiplied by one another. 
 
 For example,  if there are `x`, `y`, and `z` documents in `collection1`, `collection2`, and `collection3` respectively, then there will be `x * y * z` iterations done to evaluate the query.
 
-```sql
+```
 FOR i in collection1
 	FOR j in collection2
 		FOR k in collection3
@@ -15,7 +18,7 @@ Instead of multiple nested `FOR` loops, we can store the results of a subquery i
 
 An example of an unoptimized query with multiple `FOR` loops. Here we can see the `FILTER` conditions are applied after the last `FOR` loop. This is inefficient and possibly difficult to understand.
 
-```sql
+```
 FOR customer in Accounts
   FOR car IN Cars
     FOR job IN Orders
@@ -40,7 +43,7 @@ RETURN {
 
 In this optimized example, we use a subquery to retrieve a projection of a smaller subset of data. This reduces the number of iterations required to return the final results.
 
-```sql
+```
 LET customerCars = (
   FOR customer IN Accounts 
     FILTER customer.id == 123

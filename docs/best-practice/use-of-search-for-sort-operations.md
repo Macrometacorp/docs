@@ -1,4 +1,7 @@
-##**Practice 6: Use of SEARCH for SORT operations**
+---
+sidebar_position: 50
+title: Use of SEARCH for SORT operations
+---
 
 Due to known limitations, if `SORT` operation is specified in the query, indexes are not used for attributes specified in `FILTER` part. The alternative to this is to create a `SEARCH VIEW` with the required attributes. The attribute on which sort need to be done, use it as a primary sort attribute in the `SEARCH VIEW` 
 Note: Only `1` attribute can be added as a `Primary Sort` attribute
