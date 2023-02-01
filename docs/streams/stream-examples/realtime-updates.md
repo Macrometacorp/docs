@@ -13,7 +13,7 @@ This tutorial demonstrates how to use Macrometa GDN as a real-time database with
 
 <Prerequisites />
 
-## Code
+## Step-by-Step Instructions
 
 This page guides you through creating a collection, subscribing to the collection, and automatically adding and deleting data to the collection.
 
@@ -104,6 +104,7 @@ async function main () {
 			await client.createCollection(collectionName, { stream: true });
       console.log(`Collection created`);
 		  }
+
 		  // Add an onChange listener for collection
 		  listener = await client.onCollectionChange(collectionName);
 
@@ -132,7 +133,8 @@ async function main () {
 		await client.deleteCollection(collectionName);
 	}
 	await sleep(10000);
-	// Closing OnChange listener
+
+	// Close OnChange listener
 	await listener.close();
 	await deleteData();  
 }
@@ -146,11 +148,11 @@ main();
 ```py
 if __name__ == '__main__':
 
-    # Step 1: Open connection to GDN. You will be routed to closest region.
-    print(f"\n1. CONNECT: federation: {URL}")
+    # Open connection to GDN. You will be routed to closest region.
+    print(f"\n1. CONNECT: Server: {URL}")
     client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
-    # Step 2: Create a collection if one does not exist
+    # Create a collection if one does not exist
     print(f"\n2. CREATE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
     if client.has_collection(COLLECTION_NAME):
         collection = client.collection(COLLECTION_NAME)
@@ -166,22 +168,22 @@ if __name__ == '__main__':
 
         client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
 
-    # Step 3: Subscribe to receive real-time updates when changes are made to the collection.
+    # Subscribe to receive real-time updates when changes are made to the collection.
     print(f"\n3. SUBSCRIBE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
     rt_thread = threading.Thread(target=create_callback)
     rt_thread.start()
     time.sleep(10)
     print(f"Callback registered for collection: {COLLECTION_NAME}")
 
-    # Step 4: Insert documents into the collection to trigger a notification.
+    # Insert documents into the collection to trigger a notification.
     print(f"\n4. INSERT_DOCUMENTS: region: {URL},  collection: {COLLECTION_NAME}")
     client.insert_document(COLLECTION_NAME, document=data)
 
-    # Step 5: Wait to close the callback.
+    # Wait to close the callback.
     print("\n5. Waiting to close callback")
     rt_thread.join(2)
 
-    # Step 6: Delete data.
+    # Delete data.
     print(f"\n6. DELETE_DATA: region: {URL}, collection: {COLLECTION_NAME}")
     collection.truncate()
     client.delete_collection(COLLECTION_NAME)
@@ -291,11 +293,11 @@ pp = pprint.PrettyPrinter(indent=4)
 
 if __name__ == '__main__':
 
-    # Step 1: Open connection to GDN. You will be routed to closest region.
-    print(f"\n1. CONNECT: federation: {URL}")
+    # Open connection to GDN. You will be routed to closest region.
+    print(f"\n1. CONNECT: Server: {URL}")
     client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
-    # Step 2: Create a collection if one does not exist
+    # Create a collection if one does not exist
     print(f"\n2. CREATE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
     if client.has_collection(COLLECTION_NAME):
         collection = client.collection(COLLECTION_NAME)
@@ -311,22 +313,22 @@ if __name__ == '__main__':
 
         client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
 
-    # Step 3: Subscribe to receive documents in realtime (PUSH model)
+    # Subscribe to receive documents in realtime (PUSH model)
     print(f"\n3. SUBSCRIBE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
     rt_thread = threading.Thread(target=create_callback)
     rt_thread.start()
     time.sleep(10)
     print(f"Callback registered for collection: {COLLECTION_NAME}")
 
-    # Step 4: Subscribe to receive documents in real-time (PUSH model)
+    # Subscribe to receive documents in real-time (PUSH model)
     print(f"\n4. INSERT_DOCUMENTS: region: {URL},  collection: {COLLECTION_NAME}")
     client.insert_document(COLLECTION_NAME, document=data)
 
-    # Step 5: Wait to close the callback.
+    # Wait to close the callback.
     print("\n5. Waiting to close callback")
     rt_thread.join(2)
 
-    # Step 6: Delete data.
+    # Delete data.
     print(f"\n6. DELETE_DATA: region: {URL}, collection: {COLLECTION_NAME}")
     collection.truncate()
     client.delete_collection(COLLECTION_NAME)
