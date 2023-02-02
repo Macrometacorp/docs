@@ -48,7 +48,7 @@ These config settings are set when you subscribe to a stream.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
-```python
+```py
 # Create subscriber
 subscriber = client.subscribe(
     stream="quickStart", local=False, subscription_name="sub_1", consumer_type=CONSUMER_TYPES.SHARED, receiver_queue_size=1000
