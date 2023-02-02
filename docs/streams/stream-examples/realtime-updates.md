@@ -81,7 +81,7 @@ pp = pprint.PrettyPrinter(indent=4)
 
 Add code to perform the following actions:
 
-1. Create a collection called `ddos` to which we will subscribe. If a collection by that name already exists, the existing collection is used instead.
+1. Create a [document collection](../../collections/index.md) called `ddos` to which you subscribe. If a collection by that name already exists, the existing collection is used instead.
 1. Add `data` to the collection, then subscribe to the collection. In this example, we are adding IP addresses to block.
 1. Delete `data` from the collection. If the collection becomes empty, the collection is deleted too.
 
@@ -96,16 +96,16 @@ An existing collection must have streams enabled.
 async function main () {
 	async function createCollection () {
 		console.log("\n1. Log in.");
+
+    // Create a collection if one does not exist
 		console.log("\n2. Create collection.");
 		try {
 		  console.log(`Creating the collection ${collectionName}...`);
 		  const existsColl = await client.hasCollection(collectionName);
 		  if (existsColl === false) {
 			await client.createCollection(collectionName, { stream: true });
-      console.log(`Collection created`);
 		  }
-
-		  // Add an onChange listener for collection
+		  // Subscribe to be notified when changes are made to collection.
 		  listener = await client.onCollectionChange(collectionName);
 
 		  // Decode the message printed here in readable format
@@ -113,6 +113,8 @@ async function main () {
 			const receivedMsg = msg && JSON.parse(msg);
 			console.log("message=>", Buffer.from(receivedMsg.payload, "base64").toString("ascii"))
 		  });
+
+      // Open connection to GDN. You will be routed to closest region.
 		  listener.on("open", () => console.log("Connection open"));
 		  listener.on("close", () => console.log("Connection closed"));
 		} catch (e) {
@@ -133,7 +135,7 @@ async function main () {
 		await client.deleteCollection(collectionName);
 	}
 	await sleep(10000);
-
+  
 	// Close OnChange listener
 	await listener.close();
 	await deleteData();  
@@ -221,6 +223,8 @@ const sleep = (milliseconds) => {
 async function main () {
 	async function createCollection () {
 		console.log("\n1. Log in.");
+
+    // Create a collection if one does not exist.
 		console.log("\n2. Create collection.");
 		try {
 		  console.log(`Creating the collection ${collectionName}...`);
@@ -228,14 +232,15 @@ async function main () {
 		  if (existsColl === false) {
 			await client.createCollection(collectionName, { stream: true });
 		  }
-		  // Add an onChange listener for collection
-		  listener = await client.onCollectionChange(collectionName);
 
-		  // Decode the message printed here in readable format
+		  // Subscribe to be notified when changes are made to collection.
+		  listener = await client.onCollectionChange(collectionName);
 		  listener.on("message", (msg) => {
 			const receivedMsg = msg && JSON.parse(msg);
 			console.log("message=>", Buffer.from(receivedMsg.payload, "base64").toString("ascii"))
 		  });
+
+      // Open connection to GDN. You will be routed to closest region.
 		  listener.on("open", () => console.log("Connection open"));
 		  listener.on("close", () => console.log("Connection closed"));
 		} catch (e) {
@@ -244,6 +249,7 @@ async function main () {
 	}
 	await createCollection();
 
+  // Insert documents into the collection to trigger a notification.
 	async function insertData () {
 		console.log(`\n3. Insert data`);
 		await client.insertDocumentMany(collectionName, data);
@@ -251,12 +257,14 @@ async function main () {
 	await sleep(2000);
 	await insertData();
 
+  // Delete data.
+
 	async function deleteData () {
 		console.log("\n4. Delete data");
 		await client.deleteCollection(collectionName);
 	}
 	await sleep(10000);
-	// Close OnChange listener
+
 	await listener.close();
 	await deleteData();  
 }
@@ -304,8 +312,7 @@ if __name__ == '__main__':
     else:
         collection = client.create_collection(COLLECTION_NAME, stream=True)
 
-    # Subscribe to be notified when changes are made to collection.
-
+    # Subscribe to receive real-time updates when changes are made to the collection.
     def create_callback():
         def callback_fn(event):
             pp.pprint(event)
@@ -313,14 +320,13 @@ if __name__ == '__main__':
 
         client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
 
-    # Subscribe to receive documents in realtime (PUSH model)
     print(f"\n3. SUBSCRIBE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
     rt_thread = threading.Thread(target=create_callback)
     rt_thread.start()
     time.sleep(10)
     print(f"Callback registered for collection: {COLLECTION_NAME}")
 
-    # Subscribe to receive documents in real-time (PUSH model)
+    # Insert documents into the collection to trigger a notification.
     print(f"\n4. INSERT_DOCUMENTS: region: {URL},  collection: {COLLECTION_NAME}")
     client.insert_document(COLLECTION_NAME, document=data)
 
