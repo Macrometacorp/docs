@@ -4,7 +4,7 @@ title: Query
 ---
 
 
-Query defines the processing logic in Stream. It consumes events from one or more streams, [named-windows](../windows/index.md), [tables](table-collection.md), and/or [named-aggregations](../aggregations/index.md), process the events in a streaming manner, and generate output events into a [stream](stream.md), [named-window](../windows/index.md), or [table](table-collection.md).
+Query defines the processing logic in Stream. It consumes events from one or more streams, [named-windows](../windows/index.md), [tables](table-collection.md), and/or [named-aggregations](../aggregations/index.md), process the events in a streaming manner, and generate output events into a [stream](stream.md), [named-window](../windows/index.md), or [store](../store/index.md).
 
 **Purpose**
 
