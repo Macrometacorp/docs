@@ -9,7 +9,7 @@ The `type` parameter of the `map.type` defines the map type to be used in conver
 
 For detailed information about the parameters see the documentation of the relevant mapper.
 
-### Map Attributes
+## Map Attributes
 
 `attributes` is an optional annotation used with `map.type` to define custom mapping. When `attributes` is not provided, each mapper assumes that the incoming events adheres to its own default message format and attempt to convert the events from that format. By adding the `attributes` annotation, you can selectively extract data from the incoming message and assign them to the attributes.
 
@@ -27,7 +27,7 @@ There are two ways to configure `attributes`. In both cases, add the attributes 
   ... ( '<mapping for attribute1>', '<mapping for attributeN>')
   ```
 
-### Supported Source Mapping Types
+## Supported Source Mapping Types
 
 The following is the list of some source mapping types supported by stream.
 
