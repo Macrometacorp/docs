@@ -1,97 +1,4 @@
----
-sidebar_position: 40
-title: Table (Collection)
----
 
-A table is a stored version of an stream or a table of events. Its schema is defined via the _table definition_ that is similar to a stream definition. These events are stored in database. In Macrometa GDN, tables are called [collections](../../collections/index.md).
-
-## Table Purpose
-
-Tables allow the stream worker to work with stored events. By defining a schema for tables, the stream processor enables them to be processed by queries using their defined attributes with the streaming data. You can also query the state of the stored events in the table.
-
-### Table Syntax
-
-The syntax for a new table definition is as follows:
-
-```
-CREATE TABLE <table name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
-```
-
-The following parameters are configured in a table definition:
-
-| Parameter     | Description |
-| ------------- |-------------|
-| `table name`      | The name of the table defined. (`PascalCase` is used for table name as a convention.) |
-| `attribute name`   | The schema of the table is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
-| `attribute type`   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.     |
-
-**Example**
-
-The following defines a table named `RoomTypeTable` with `roomNo` and `type` attributes of data types `int` and `string` respectively.
-
-```
-CREATE TABLE RoomTypeTable (roomNo int, type string);
-```
-
-## Indexes
-
-Indexes allow tables to be searched/modified much faster.
-
-Indexes can be configured together with primary keys.
-
-When more than one attribute is used for index, each one of them is used to index the table for fast access to the data.
-
-**Example 1**
-
-```
-CREATE SOURCE StockTable WITH (type='database',collection='StockTable',PrimaryKey='symbol', Index='key1', Index='key2') (symbol string, price float, volume long);
-```
-
-**Example 2**
-
-```js
--- Creates a persistent index named `SamplePersistentIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
-CREATE UNIQUE INDEX SamplePersistentIndex ON TABLE SampleGDNTable WITH(type="persistent", sparse="true", deduplicate="true") (sensorId);
-
--- Creates a hash index named `SampleHashIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
-CREATE UNIQUE INDEX SampleHashIndex ON TABLE SampleGDNTable WITH(type="hash", sparse="true", deduplicate="true") (sensorId);
-
--- Creates a skiplist index named `SampleSkiplistIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
-CREATE UNIQUE INDEX SampleSkiplistIndex ON TABLE SampleGDNTable WITH(type="skiplist", sparse="true", deduplicate="true") (sensorId);
-
--- Creates a fulltext index named `SampleFullTextIndex` on `SampleGDNTable` with following properties {minLength=3}.
-CREATE INDEX SampleFullTextIndex ON TABLE SampleGDNTable WITH(type="fulltext", minLength="3") (sensorId);
-
--- Creates a geo index named `SampleGeoIndex` on `SampleGDNTable` with following properties {geoJson=false}.
-CREATE INDEX SampleGeoIndex ON TABLE SampleGDNTable WITH(type="geo", geoJson="false") (sensorId);
-
--- Creates a ttl index named `SampleTTLIndex` on `SampleGDNTable` with following properties {expireAfter=3600}.
-CREATE INDEX SampleTTLIndex ON TABLE SampleGDNTable WITH(type="ttl", expireAfter="3600") (sensorId);
-```
-
-## Store
-
-Store is a table that refers to data/events stored in data stores outside of stream. Store is defined via the `@store` annotation, and the store schema is defined via a **table definition** associated with it.
-
-**Purpose**
-
-Store allows the stream processor to search, retrieve and manipulate data stored in database through stream queries.
-
-**Syntax**
-
-The syntax for a defining store and it's associated table definition is as follows:
-
-```
-CREATE SOURCE TableName WITH (type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN') (attribute1 Type1, attributeN TypeN);
-```
-
-**Example**
-
-The following defines a database having a table `RoomTypeTable` with columns `roomNo` of `INTEGER` and `type` of `VARCHAR(255)` mapped to Stream data types `int` and `string` respectively.
-
-```
-CREATE SOURCE RoomTypeTable WITH (type="database", collection="RoomTypeTable") (roomNo int, type string);
-```
 
 **Operators on Table**
 
@@ -333,33 +240,47 @@ INSERT INTO ServerRoomTempStream
 FROM TempStream[ServerRoomTable.roomNo == roomNo in ServerRoomTable];
 ```
 
-TAKEN FROM CREATE STREAM WORKERS
+## Sample Store Queries
 
-## Table
+This section shows some of the queries that you might use on a stream worker store.
 
-Table is similar to collection, is a structured representation of data with a defined schema.
-
-Syntax:
+### Insert into a Store
 
 ```sql
-   CREATE TABLE GLOBAL TableName(property type);
+INSERT INTO SensorTable
+SELECT *
+FROM SampleStream;
 ```
-Example:
+
+### Join with a Store
+
 ```sql
-   CREATE TABLE GLOBAL SweetProductionCollection(name string, amount double);
+INSERT INTO OutputStream
+SELECT st.sensorId, st.temperature, ts.type AS type
+FROM TempStream AS ts JOIN SensorTable AS st
+    ON ts.sensorId == st.sensorId;
 ```
 
-Or equivalent using STORE:
+### Delete from a Store
+
 ```sql
-   CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="global", collection.type="DOC", map.type='json') (name string, amount double);
+DELETE SensorTable
+	ON SensorTable.sensorId == sensorId
+FROM DeleteStream;
 ```
 
-The stream worker will use the Macrometa collections with the default query parameters explained in the chart below.
+### Update in a Store
 
-| Name             | Description                                                                                                                       | Default Value | Possible Data Types | Optional |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|
-| collection       | This specifies the name of the collection to which events must written.                                                           | STRING        | No                  |
-| replication.type | Specifies if the replication type of the collection. Note: Type must be `global`. Local collections are not currently allowed.    | local         | STRING              | No       |
-| collection.type  | This specifies the type of the data collection contains. Possible values can be `doc` and `edge`.                                 | doc           | STRING              | Yes      |
-| from             | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.      | _from         | STRING              | Yes      |
-| to               | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a destination node of the edge. | _to           | STRING              | Yes      |
+```sql
+UPDATE SensorTable
+	SET SensorTable.temperature = temperature
+	ON SensorTable.sensorId == sensorId
+FROM TemperatureStream;
+```
+
+### Look Up in a Store
+
+```sql
+INSERT INTO ExistingSensorStream
+FROM SensorStream[SensorTable.sensorId == sensorId in SensorTable]
+```
