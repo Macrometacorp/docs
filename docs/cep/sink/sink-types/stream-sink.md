@@ -6,11 +6,9 @@ Stream sinks consume events from streams and publish them using multiple transpo
 
 ## Purpose
 
-Stream sink provides a way to publish stream events of a stream to external systems by converting events to their supported format.
+Stream sinks provides a way to publish the events of a stream to external systems by converting events to their supported format.
 
 ## Syntax
-
-To configure a stream to publish events via a sink, add the sink configuration to a stream definition by adding the `sink.type` annotation with the required parameter values.
 
 The stream sink syntax is as follows:
 
@@ -18,7 +16,7 @@ The stream sink syntax is as follows:
    CREATE SINK SinkName WITH (type="stream", stream="STRING", replication.type="STRING", map.type='type') (strings);
 ```
 
-Or you can use:
+Or you can use the syntax shortcut `CREATE SINK STREAM`:
 
 ```sql
 CREATE SINK STREAM SampleStreamSink (data string);
@@ -42,5 +40,3 @@ CREATE SINK ProductionAlertStream WITH (type= 'stream', stream='ProductionAlertS
 ```sql
 CREATE SINK STREAM UserIdPurchaseStream(userId string, totalItems long, totalPrice double);
 ```
-
-When creating a stream to use as a sink, you can use the syntax shortcut `CREATE SINK STREAM`.
