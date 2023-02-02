@@ -48,6 +48,7 @@ These config settings are set when you subscribe to a stream.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
+
 ```py
 # Create subscriber
 subscriber = client.subscribe(
@@ -57,6 +58,7 @@ subscriber = client.subscribe(
 </TabItem>
 
 <TabItem value="js" label="JavaScript SDK">
+
 ```js
 // Create subscriber
 stream.consumer("my-subscription", "test.macrometa.io", {
@@ -64,6 +66,7 @@ stream.consumer("my-subscription", "test.macrometa.io", {
   receiverQueueSize: 1000,
 }
 ```
+
 </TabItem>
 </Tabs>
 
