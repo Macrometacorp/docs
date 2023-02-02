@@ -1,5 +1,5 @@
 ---
-title: tcp (Sink)
+title: tcp
 ---
 
 A stream worker application can be configured to publish events via the TCP transport by adding the `type='tcp'` annotation at the top of an event stream definition.
