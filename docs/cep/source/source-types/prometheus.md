@@ -1,5 +1,5 @@
 ---
-title: prometheus (Source)
+title: prometheus
 ---
 
 This source consumes Prometheus metrics that are exported from a specified URL as stream worker events by sending HTTP requests to the URL.
