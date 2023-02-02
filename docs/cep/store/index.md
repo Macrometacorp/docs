@@ -5,6 +5,8 @@ title: Create Stores
 
 A _store_ is a place to keep your data. Stores allow creating, reading, updating, and deleting events or records stored on external data stores. This is useful for use cases when there is a need to access a common database used by various other systems, to retrieve and transfer data.
 
+Macrometa allows you to use [Macrometa collections](../../collections/index.md) (also called tables) as stores.
+
 ## Store Syntax
 
 Stores can be created as part of your stream worker using one of the following syntaxes.
@@ -36,13 +38,6 @@ For example:
 ```sql
 CREATE TABLE SensorTable (sensorId string, temperature double);
 ```
-
-## Supported Stores
-
-Supported stores include:
-
-- [Macrometa collections](../../collections/index.md) (also called tables)
-- [MySQL, PostgresQL, SQLServer, and Oracle](rdbms.md)
 
 ## Sample Store Queries
 
