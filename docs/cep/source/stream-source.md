@@ -70,11 +70,11 @@ The following is the list of source mapping types supported by stream.
 
 |Source mapping type | Description|
 | ------------- |-------------|
-| [CSV](sourcemapper/csv.md) | Converts CSV-like delimiter separated events to stream events.|
-| [JSON](sourcemapper/json.md) | Converts JSON messages to stream events.|
-| [Key-Value](sourcemapper/keyvalue.md) | Converts key-value hash maps to stream events.|
-| [PassThrough](sourcemapper/passThrough.md) | Omits data conversion on stream events.|
-| [Text](sourcemapper/text.md) | Converts plain text messages to stream events.|
+| [CSV](source-mapping/csv.md) | Converts CSV-like delimiter separated events to stream events.|
+| [JSON](source-mapping/json.md) | Converts JSON messages to stream events.|
+| [Key-Value](source-mapping/keyvalue.md) | Converts key-value hash maps to stream events.|
+| [PassThrough](source-mapping/passThrough.md) | Omits data conversion on stream events.|
+| [Text](source-mapping/text.md) | Converts plain text messages to stream events.|
 
 :::tip
 When the `map.type` annotation is not provided `map.type='passThrough'` is used as default, that passes the consumed stream events directly to the streams without any data conversion.
