@@ -1,9 +1,8 @@
 ---
-title: avro (Source Mapper)
+title: avro
 ---
 
-This extension is an Avro to Event input mapper. Transports that accept Avro messages can use this extension to convert the incoming Avro
-messages to stream worker events. The Avro schema to be used for creating Avro messages can be specified as a parameter in the stream definition.
+This extension is an Avro to Event input mapper. Transports that accept Avro messages can use this extension to convert the incoming Avro messages to stream worker events. The Avro schema to be used for creating Avro messages can be specified as a parameter in the stream definition.
 
 If no Avro schema is specified, a flat Avro schema of the `record` type is generated with the stream attributes as schema fields. The generated/specified Avro schema is used to convert Avro messages to stream worker events.
 
