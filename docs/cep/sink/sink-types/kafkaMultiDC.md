@@ -1,5 +1,5 @@
 ---
-title: kafkaMultiDC (Sink)
+title: kafkaMultiDC
 ---
 
 A Kafka sink publishes events processed by gdn SP to a topic with a partition for a Kafka cluster. The events can be published in the `TEXT`, `JSON` or `Binary` format. If the topic is not already created in the Kafka cluster, the Kafka sink creates the default partition for the given topic. The publishing topic and partition can be a dynamic value taken from the stream worker event. To configure a sink to publish events via the Kafka transport, and using two Kafka brokers to publish events to the same topic, the `type` parameter must have `kafkaMultiDC` as its value.

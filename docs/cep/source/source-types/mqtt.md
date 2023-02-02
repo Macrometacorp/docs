@@ -1,5 +1,5 @@
 ---
-title: MQTT Source
+title: MQTT
 ---
 
 The MQTT source receives events to be processed by Macrometa from a topic in the MQTT server.

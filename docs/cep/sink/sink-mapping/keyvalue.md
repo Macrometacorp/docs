@@ -1,5 +1,5 @@
 ---
-title: key-value (Sink Mapper)
+title: keyvalue
 ---
 
 The `Event to Key-Value Map` output mapper extension allows you to convert Stream App events processed by gdn SP to key-value map events before publishing them. You can either use pre-defined keys where conversion takes place without extra configurations, or use custom keys with which the messages can be published.

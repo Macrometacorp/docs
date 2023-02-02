@@ -1,5 +1,5 @@
 ---
-title: MQTT Sink
+title: MQTT
 ---
 
 The MQTT sink publishes messages to a topic in the MQTT server. If the required topic does not exist, then the MQTT sink creates the topic and publishes messages to it.

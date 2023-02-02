@@ -1,5 +1,5 @@
 ---
-title: text (Source Mapper)
+title: text
 ---
 
 This extension is a text to stream worker event input mapper. Transports that accept text messages can use this extension to convert the incoming text message to a stream worker event. Users can either use a predefined text format where event conversion happens without any additional configurations, or specify a regex to map a text message using custom configurations.

@@ -1,5 +1,5 @@
 ---
-title: keyvalue (Source Mapper)
+title: keyvalue
 ---
 
 `Key-Value Map to Event` input mapper extension allows transports that accept events as key value maps to convert those events to stream worker events. You can either receive predefined keys where conversion takes place without extra configurations, or use custom keys to map from the message.

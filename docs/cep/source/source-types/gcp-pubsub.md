@@ -1,5 +1,5 @@
 ---
-title: Google Pubsub (Source)
+title: Google Pubsub
 ---
 
 The Google PubSub source receives events to be processed by Macrometa from a topic in a Google PubSub server. Here, a subscriber client creates a subscription to that topic and consumes messages via the subscription. The subscription applications receive only the messages that are published after the subscription is created.
