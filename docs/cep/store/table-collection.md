@@ -3,11 +3,11 @@ sidebar_position: 40
 title: Table (Collection)
 ---
 
-A table is a stored version of an stream or a table of events. Its schema is defined via the _table definition_ that is similar to a stream definition. These events are stored in database.
+A table is a stored version of an stream or a table of events. Its schema is defined via the _table definition_ that is similar to a stream definition. These events are stored in database. In Macrometa GDN, tables are called [collections](../../collections/index.md).
 
 ## Table Purpose
 
-Tables allow the stream processor to work with stored events. By defining a schema for tables, the stream processor enables them to be processed by queries using their defined attributes with the streaming data. You can also interactively query the state of the stored events in the table.
+Tables allow the stream worker to work with stored events. By defining a schema for tables, the stream processor enables them to be processed by queries using their defined attributes with the streaming data. You can also query the state of the stored events in the table.
 
 ### Table Syntax
 
@@ -332,3 +332,75 @@ CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 INSERT INTO ServerRoomTempStream
 FROM TempStream[ServerRoomTable.roomNo == roomNo in ServerRoomTable];
 ```
+
+TAKEN FROM CREATE STREAM WORKERS
+
+## Table
+
+Table is similar to collection, is a structured representation of data with a defined schema.
+
+Syntax:
+
+```sql
+   CREATE TABLE GLOBAL TableName(property type);
+```
+Example:
+```sql
+   CREATE TABLE GLOBAL SweetProductionCollection(name string, amount double);
+```
+
+Or equivalent using STORE:
+```sql
+   CREATE STORE SweetProductionCollection WITH (type="database", collection="SweetProductionCollection", replication.type="global", collection.type="DOC", map.type='json') (name string, amount double);
+```
+
+The stream worker will use the Macrometa collections with the default query parameters explained in the chart below.
+
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+<th>Default Value</th>
+<th>Possible Data Types</th>
+<th>Optional</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>collection</td>
+<td>This specifies the name of the collection to which events must written.</td>
+<td></td>
+<td>STRING</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>replication.type</td>
+<td>Specifies if the replication type of the collection. <b>Note:</b> Type must be `global`. Local collections are not currently allowed.</td>
+<td>local</td>
+<td>STRING</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>collection.type</td>
+<td>This specifies the type of the data collection contains. Possible values can be `doc` and `edge`.</td>
+<td>doc</td>
+<td>STRING</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>from</td>
+<td>If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.</td>
+<td>_from</td>
+<td>STRING</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>to</td>
+<td>If `collection.type` is specified as `edge`, this field indicates which field to be considered as a destination node of the edge.</td>
+<td>_to</td>
+<td>STRING</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
