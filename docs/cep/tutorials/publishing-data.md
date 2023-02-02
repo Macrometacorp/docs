@@ -15,9 +15,9 @@ schemas. This schema is defined via an output stream definition.
  
 A sink configuration consists of three parts.
  
-   + `sink.type`: This annotation defines the sink type via which the data is published, and allows you to configure the sink parameters (which change depending on the sink type). For the complete list of supported sink types, see [Stream Query Guide - Sink](../query-guide/stream.md#sink).
+   + `sink.type`: This annotation defines the sink type via which the data is published, and allows you to configure the sink parameters (which change depending on the sink type). For the complete list of supported sink types, see [Sink Types](../sink/sink-types/index.md).
    
-   + `map.type`: This annotation specifies the format in which the data is published, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Stream Query Guide - Sink Mapper](../query-guide/stream.md#sink-mapper).
+   + `map.type`: This annotation specifies the format in which the data is published, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Sink Mapping](../sink/sink-mapping/index.md).
    
    + `attributes`: This annotation specifies a custom mapping based on which events in the streaming integration flow that need to be published are identified. This is useful when the attributes of the output messages you want the Streaming Integrator to publish are different to the corresponding attribute name in the stream definition. e.g., In a scenario where the Streaming Integrator is publishing the average temperature per second, the temperature can be referred to as  `avgTemp` in the output stream definition in your Stream application. However, you want to publish it with the `Temperature` to the streaming application to which you are publishing. In this instance, you need a custom mapping to indicate that `Temperature` is the same as `avgTemp`.
    
@@ -48,7 +48,7 @@ To create a stream application with the sink configuration defined inline, follo
     CREATE STREAM <Stream_Name> (attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
 
-    For example: 
+    For example:
 
     ```sql
     CREATE STREAM PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
