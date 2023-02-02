@@ -3,8 +3,7 @@ sidebar_position: 20
 title: Query
 ---
 
-
-Query defines the processing logic in Stream. It consumes events from one or more streams, [named-windows](named-window.md), [tables](table-collection.md), and/or [named-aggregations](../aggregations/index.md), process the events in a streaming manner, and generate output events into a [stream](stream.md), [named-window](named-window.md), or [table](table-collection.md).
+A query defines the processing logic in stream workers. It consumes events from one or more streams, [named-windows](named-window.md), [tables](table-collection.md), and/or [named-aggregations](../aggregations/index.md), process the events in a streaming manner, and generate output events into a [stream](../sink/sink-types/stream-sink.md), [named-window](named-window.md), or [table](table-collection.md).
 
 **Purpose**
 
