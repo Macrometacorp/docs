@@ -32,28 +32,7 @@ To update a database with Macrometa Global Data Network (GDN), you must first es
 Set the variables required to run the code.
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="JavaScript">
-
-```js
-// Variables
-const collectionName = "ddos";
-let listener;
-const data = [
-  { ip: "10.1.1.1", action: "block", rule: "blocklistA" },
-  { ip: "20.1.1.2", action: "block", rule: "blocklistA" },
-  { ip: "30.1.1.3", action: "block", rule: "blocklistB" },
-  { ip: "40.1.1.4", action: "block", rule: "blocklistA" },
-  { ip: "50.1.1.5", action: "block", rule: "blocklistB" }
-];
-
-const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds));
-};
-```
-
-</TabItem>
-
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
 import threading
@@ -74,6 +53,28 @@ pp = pprint.PrettyPrinter(indent=4)
 ```
 
 </TabItem>
+
+<TabItem value="js" label="JavaScript SDK">
+
+```js
+// Variables
+const collectionName = "ddos";
+let listener;
+const data = [
+  { ip: "10.1.1.1", action: "block", rule: "blocklistA" },
+  { ip: "20.1.1.2", action: "block", rule: "blocklistA" },
+  { ip: "30.1.1.3", action: "block", rule: "blocklistB" },
+  { ip: "40.1.1.4", action: "block", rule: "blocklistA" },
+  { ip: "50.1.1.5", action: "block", rule: "blocklistB" }
+];
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+};
+```
+
+</TabItem>
+
 </Tabs>
 
 
@@ -90,14 +91,60 @@ An existing collection must have streams enabled.
 :::
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="JavaScript">
+<TabItem value="py" label="Python SDK">
+
+```py
+if __name__ == '__main__':
+
+    # Open connection to GDN. You will be routed to closest region.
+    print(f"\n1. CONNECT: Server: {URL}")
+    client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+
+    # Create a collection if one does not exist
+    print(f"\n2. CREATE_COLLECTION: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    if client.has_collection(COLLECTION_NAME):
+        collection = client.collection(COLLECTION_NAME)
+    else:
+        collection = client.create_collection(COLLECTION_NAME, stream=True)
+
+    # Subscribe to receive real-time updates when changes are made to the collection.
+    def create_callback():
+        def callback_fn(event):
+            pp.pprint(event)
+            return
+
+        client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
+
+    print(f"\n3. SUBSCRIBE_COLLECTION: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    rt_thread = threading.Thread(target=create_callback)
+    rt_thread.start()
+    time.sleep(10)
+    print(f"Callback registered for collection: {COLLECTION_NAME}")
+
+    # Insert documents into the collection to trigger a notification.
+    print(f"\n4. INSERT_DOCUMENTS: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    client.insert_document(COLLECTION_NAME, document=data)
+
+    # Wait to close the callback.
+    print("\n5. Waiting to close callback")
+    rt_thread.join(2)
+
+    # Delete data.
+    print(f"\n6. DELETE_DATA: Tenant: {URL}, Collection: {COLLECTION_NAME}")
+    collection.truncate()
+    client.delete_collection(COLLECTION_NAME)
+```
+
+</TabItem>
+
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 async function main () {
 	async function createCollection () {
 		console.log("\n1. Log in.");
 
-    // Create a collection if one does not exist
+    // Create a collection if one does not exist.
 		console.log("\n2. Create collection.");
 		try {
 		  console.log(`Creating the collection ${collectionName}...`);
@@ -105,10 +152,9 @@ async function main () {
 		  if (existsColl === false) {
 			await client.createCollection(collectionName, { stream: true });
 		  }
+
 		  // Subscribe to be notified when changes are made to collection.
 		  listener = await client.onCollectionChange(collectionName);
-
-		  // Decode the message printed here in readable format
 		  listener.on("message", (msg) => {
 			const receivedMsg = msg && JSON.parse(msg);
 			console.log("message=>", Buffer.from(receivedMsg.payload, "base64").toString("ascii"))
@@ -123,6 +169,7 @@ async function main () {
 	}
 	await createCollection();
 
+  // Insert documents into the collection to trigger a notification.
 	async function insertData () {
 		console.log(`\n3. Insert data`);
 		await client.insertDocumentMany(collectionName, data);
@@ -130,65 +177,17 @@ async function main () {
 	await sleep(2000);
 	await insertData();
 
+  // Delete data.
 	async function deleteData () {
 		console.log("\n4. Delete data");
 		await client.deleteCollection(collectionName);
 	}
 	await sleep(10000);
-  
-	// Close OnChange listener
+
 	await listener.close();
 	await deleteData();  
 }
 main();
-```
-
-</TabItem>
-
-<TabItem value="py" label="Python">
-
-```py
-if __name__ == '__main__':
-
-    # Open connection to GDN. You will be routed to closest region.
-    print(f"\n1. CONNECT: Server: {URL}")
-    client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
-
-    # Create a collection if one does not exist
-    print(f"\n2. CREATE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
-    if client.has_collection(COLLECTION_NAME):
-        collection = client.collection(COLLECTION_NAME)
-    else:
-        collection = client.create_collection(COLLECTION_NAME, stream=True)
-
-    # Subscribe to be notified when changes are made to collection.
-
-    def create_callback():
-        def callback_fn(event):
-            pp.pprint(event)
-            return
-
-        client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
-
-    # Subscribe to receive real-time updates when changes are made to the collection.
-    print(f"\n3. SUBSCRIBE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
-    rt_thread = threading.Thread(target=create_callback)
-    rt_thread.start()
-    time.sleep(10)
-    print(f"Callback registered for collection: {COLLECTION_NAME}")
-
-    # Insert documents into the collection to trigger a notification.
-    print(f"\n4. INSERT_DOCUMENTS: region: {URL},  collection: {COLLECTION_NAME}")
-    client.insert_document(COLLECTION_NAME, document=data)
-
-    # Wait to close the callback.
-    print("\n5. Waiting to close callback")
-    rt_thread.join(2)
-
-    # Delete data.
-    print(f"\n6. DELETE_DATA: region: {URL}, collection: {COLLECTION_NAME}")
-    collection.truncate()
-    client.delete_collection(COLLECTION_NAME)
 ```
 
 </TabItem>
@@ -198,7 +197,75 @@ if __name__ == '__main__':
 ## Full Demo File
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="JavaScript">
+<TabItem value="py" label="Python SDK">
+
+```py
+from c8 import C8Client
+import threading
+import pprint
+import time
+
+URL = "play.paas.macrometa.io"
+GEO_FABRIC = "_system"
+API_KEY = "my API key" # Change this to your API key
+
+COLLECTION_NAME = "ddos"
+
+# Variables - Data
+data = [
+    {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
+    {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
+    {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
+    {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
+    {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
+]
+
+pp = pprint.PrettyPrinter(indent=4)
+
+if __name__ == '__main__':
+
+    # Open connection to GDN. You will be routed to closest region.
+    print(f"\n1. CONNECT: Server: {URL}")
+    client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+
+    # Create a collection if one does not exist
+    print(f"\n2. CREATE_COLLECTION: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    if client.has_collection(COLLECTION_NAME):
+        collection = client.collection(COLLECTION_NAME)
+    else:
+        collection = client.create_collection(COLLECTION_NAME, stream=True)
+
+    # Subscribe to receive real-time updates when changes are made to the collection.
+    def create_callback():
+        def callback_fn(event):
+            pp.pprint(event)
+            return
+
+        client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
+
+    print(f"\n3. SUBSCRIBE_COLLECTION: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    rt_thread = threading.Thread(target=create_callback)
+    rt_thread.start()
+    time.sleep(10)
+    print(f"Callback registered for collection: {COLLECTION_NAME}")
+
+    # Insert documents into the collection to trigger a notification.
+    print(f"\n4. INSERT_DOCUMENTS: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    client.insert_document(COLLECTION_NAME, document=data)
+
+    # Wait to close the callback.
+    print("\n5. Waiting to close callback")
+    rt_thread.join(2)
+
+    # Delete data.
+    print(f"\n6. DELETE_DATA: Tenant: {URL}, Collection: {COLLECTION_NAME}")
+    collection.truncate()
+    client.delete_collection(COLLECTION_NAME)
+```
+
+</TabItem>
+
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -258,7 +325,6 @@ async function main () {
 	await insertData();
 
   // Delete data.
-
 	async function deleteData () {
 		console.log("\n4. Delete data");
 		await client.deleteCollection(collectionName);
@@ -269,75 +335,6 @@ async function main () {
 	await deleteData();  
 }
 main();
-```
-
-</TabItem>
-
-<TabItem value="py" label="Python">
-
-```py
-from c8 import C8Client
-import threading
-import pprint
-import time
-
-
-URL = "play.paas.macrometa.io"
-GEO_FABRIC = "_system"
-API_KEY = "my API key" # Change this to your API key
-
-COLLECTION_NAME = "ddos"
-
-# Variables - Data
-data = [
-    {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
-    {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
-    {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
-    {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
-    {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
-]
-
-pp = pprint.PrettyPrinter(indent=4)
-
-if __name__ == '__main__':
-
-    # Open connection to GDN. You will be routed to closest region.
-    print(f"\n1. CONNECT: Server: {URL}")
-    client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
-
-    # Create a collection if one does not exist
-    print(f"\n2. CREATE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
-    if client.has_collection(COLLECTION_NAME):
-        collection = client.collection(COLLECTION_NAME)
-    else:
-        collection = client.create_collection(COLLECTION_NAME, stream=True)
-
-    # Subscribe to receive real-time updates when changes are made to the collection.
-    def create_callback():
-        def callback_fn(event):
-            pp.pprint(event)
-            return
-
-        client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
-
-    print(f"\n3. SUBSCRIBE_COLLECTION: region: {URL},  collection: {COLLECTION_NAME}")
-    rt_thread = threading.Thread(target=create_callback)
-    rt_thread.start()
-    time.sleep(10)
-    print(f"Callback registered for collection: {COLLECTION_NAME}")
-
-    # Insert documents into the collection to trigger a notification.
-    print(f"\n4. INSERT_DOCUMENTS: region: {URL},  collection: {COLLECTION_NAME}")
-    client.insert_document(COLLECTION_NAME, document=data)
-
-    # Wait to close the callback.
-    print("\n5. Waiting to close callback")
-    rt_thread.join(2)
-
-    # Delete data.
-    print(f"\n6. DELETE_DATA: region: {URL}, collection: {COLLECTION_NAME}")
-    collection.truncate()
-    client.delete_collection(COLLECTION_NAME)
 ```
 
 </TabItem>
