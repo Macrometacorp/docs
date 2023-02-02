@@ -1,14 +1,15 @@
+---
+sidebar_position: 40
+title: Error Handling at Source
+---
 
-
-## Error Handling at Stream Source
-
-When errors are thrown by stream elements subscribed to the stream, the error gets propagated up to the stream that delivered the event to those stream elements. By default the error is logged and dropped at the stream, but this behavior can be altered by by adding `OnError` property to the corresponding stream definition.
+When errors are thrown by elements subscribed to the source, the error is propagated up to the source that delivered the event to those stream worker. By default, the error is logged and dropped at the source, but this behavior can be altered by by adding `OnError` property to the corresponding source definition.
 
 ### OnError Property
 
-`OnError` property can help users to capture the error and the associated event, and handle them gracefully by sending them to a fault stream.
+The `OnError` property can help users to capture the error and the associated event, and handle them gracefully by sending them to a fault stream.
 
-The `OnError` property and the required `action` to be specified as below.
+The `OnError` property and the required `action` must be specified as below.
 
 ```sql
 CREATE SOURCE <stream name> WITH (OnError.action='<action>') (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
