@@ -66,7 +66,7 @@ The table below provides a brief description of a the potential parts of a strea
 | [Query](query.md)	    | A logical construct that processes events in a streaming manner by consuming data from one or more streams, tables, windows and aggregations, and publishes output events into a stream, table or a window. |
 | [Sink](../sink/index.md)      | A construct that consumes events arriving at a stream, maps them to a predefined data format (such as `JSON`, `binary`, etc), and publishes them to external endpoints (such as `E-mail`, `TCP`, `Kafka`, `HTTP`, etc). |
 | [Source](../source/index.md)    | A construct that consumes data from external sources (such as `database`, `stream`, `TCP`, `Kafka`, `HTTP`, etc) with various event formats such as `JSON`, `binary`, etc, convert then to stream events, and passes into streams for processing. |
-| [Stream](stream.md)    | A logical series of events ordered in time with a uniquely identifiable name, and a defined set of typed attributes defining its schema. |
+| [Stream](../source/source-types/stream-source.md)   | A logical series of events ordered in time with a uniquely identifiable name, and a defined set of typed attributes defining its schema. |
 | Stream/Query Callback | A mechanism to programmatically consume output events from streams or queries. |
 | [Table](table-collection.md)     | A structured representation of data stored with a defined schema. Stored data is backed by C8DB. The tables (aka collections) can be `local` or `geo-replicated`. Similarly the tables can be `document` or `graph` collections. The tables can be accessed and manipulated at runtime. |
 | [Trigger](../trigger.md)     | Triggers allow events to be periodically generated based on time or other conditions. |
