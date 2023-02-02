@@ -118,27 +118,20 @@ Create a stream worker.
 
   # Create a stream worker with indexes.
    gdnsl stream-worker create 
-      --name "my-rdbmc-cdc" 
-      --description "This stream app will explain the usage of rdbms store extension using MySQL database" 
-      --trigger "ceprdbmsTrigger WITH (interval=5 sec);"
+      --name "my-stream-worker" 
+      --description "This stream worker uses a trigger to produce periodic events." 
+      --trigger "myTrigger WITH (interval=5 sec);"
       --store " StockTable WITH 
-                ( type="rdbms", 
-                  jdbc.url="jdbc:mysql://dummy-mysql-server.com:3306/MySQLDB?useSSL=false", 
-                  username="my-username", 
-                  password="my-password", 
-                  jdbc.driver.name="com.mysql.jdbc.Driver",
-                  field.length="symbol:100", 
-                  table.check.query="SELECT 1 FROM StockTable LIMIT", 
-                  PrimaryKey='id', 
-                  PrimaryKey='symbol', 
-                  Index='volume') 
+                ( type="database", 
+                  collection=’SampleTable’, 
+                  map.type=’json’, ) 
 	              (id string, symbol string, price float, volume long);"
       --query " INSERT INTO StockTable
                 SELECT convert(count(), 'string')  as id, 
                       convert(count(), 'string') as symbol, 
                       23.33f as price, 
                       eventTimestamp() as volume 
-                FROM ceprdbmsTrigger; "
+                FROM myTrigger; "
 
    # Create a stream worker from a file.
    gdnsl stream-worker create -file "cargo-stream-worker.json" --regions "gdn-us-west,gdn-ap-west"
@@ -345,27 +338,20 @@ Update a stream worker.
 
   # Update a stream worker with indexes.
    gdnsl stream-worker update 
-      --name "my-rdbmc-cdc" 
-      --description "This stream app will explain the usage of rdbms store extension using MySQL database" 
-      --trigger "ceprdbmsTrigger WITH (interval=5 sec);"
+      --name "my-stream-worker" 
+      --description "This stream worker uses a trigger to produce periodic events." 
+      --trigger "myTrigger WITH (interval=7 sec);"
       --store " StockTable WITH 
-                ( type="rdbms", 
-                  jdbc.url="jdbc:mysql://dummy-mysql-server.com:3306/MySQLDB?useSSL=false", 
-                  username="my-username", 
-                  password="my-password", 
-                  jdbc.driver.name="com.mysql.jdbc.Driver",
-                  field.length="symbol:100", 
-                  table.check.query="SELECT 1 FROM StockTable LIMIT", 
-                  PrimaryKey='id', 
-                  PrimaryKey='symbol', 
-                  Index='volume') 
-                  (id string, symbol string, price float, volume long);"
+                ( type="database", 
+                  collection=’SampleTable’, 
+                  map.type=’json’, ) 
+	              (id string, symbol string, price float, volume long);"
       --query " INSERT INTO StockTable
                 SELECT convert(count(), 'string')  as id, 
                       convert(count(), 'string') as symbol, 
                       23.33f as price, 
                       eventTimestamp() as volume 
-                FROM ceprdbmsTrigger; "
+                FROM myTrigger; "
 
    # Update a stream worker from a file.
    gdnsl stream-worker update --file "cargo-stream-worker.json" --regions "gdn-us-west,gdn-ap-west"
