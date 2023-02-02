@@ -1,7 +1,7 @@
-
-
-
-### Source Mapper
+---
+sidebar_position: 1
+title: Source Mapping
+---
 
 Each `source.type` configuration can have a mapping denoted by the `map.type` annotation that defines how to convert the incoming event format to Stream events.
 
@@ -11,7 +11,7 @@ For detailed information about the parameters see the documentation of the relev
 
 ### Map Attributes
 
-`attributes` is an optional annotation used with `map.type` to define custom mapping. When `attributes` is not provided, each mapper assumes that the incoming events adheres to its own default message format and attempt to convert the events from that format. By adding the `attributes` annotation, users can selectively extract data from the incoming message and assign them to the attributes.
+`attributes` is an optional annotation used with `map.type` to define custom mapping. When `attributes` is not provided, each mapper assumes that the incoming events adheres to its own default message format and attempt to convert the events from that format. By adding the `attributes` annotation, you can selectively extract data from the incoming message and assign them to the attributes.
 
 There are two ways to configure `attributes`. In both cases, add the attributes in parentheses after the query:
 
@@ -29,9 +29,9 @@ There are two ways to configure `attributes`. In both cases, add the attributes 
 
 ### Supported Source Mapping Types
 
-The following is the list of source mapping types supported by stream.
+The following is the list of some source mapping types supported by stream.
 
-|Source mapping type | Description|
+|Source Mapping Type | Description|
 | ------------- |-------------|
 | [CSV](csv.md) | Converts CSV-like delimiter separated events to stream events.|
 | [JSON](json.md) | Converts JSON messages to stream events.|
@@ -40,7 +40,7 @@ The following is the list of source mapping types supported by stream.
 | [Text](text.md) | Converts plain text messages to stream events.|
 
 :::tip
-When the `map.type` annotation is not provided `map.type='passThrough'` is used as default, that passes the consumed stream events directly to the streams without any data conversion.
+When the `map.type` annotation is not provided `map.type='passThrough'` is used as default, that passes the consumed stream events directly to the stream worker without any data conversion.
 :::
 
 ## Example 1
@@ -55,7 +55,7 @@ Receive `JSON` messages via `stream`, and direct them to `InputStream` stream fo
 }
 ```
 
-The configuration of the `stream` source and `JSON` source mapper to achieve the above is as follows.
+The configuration of the `stream` source and `JSON` source mapper to achieve the above is:
 
 ```sql
 CREATE SOURCE InputStream WITH (source.type='stream', streams.list='foo', map.type='json') (name string, age int, country string);
@@ -79,13 +79,13 @@ Receive `JSON` messages via `database`, and direct them to `StockStream` stream 
 }
 ```
 
-The configuration of the `database` source and the custom `JSON` source mapping to achieve the above is as follows.
+The configuration of the `database` source and the custom `JSON` source mapping to achieve the above is:
 
 ```sql
 CREATE SOURCE StockStream WITH (source.type='database', collection='foo', map.type='json', enclosing.element="$.portfolio",) (symbol = "stock.company.symbol", price = "stock.price", volume = "stock.volume");
 ```
 
-The same can also be configured by omitting the attribute names as below.
+The same can also be configured by omitting the attribute names as below:
 
 ```sql
 CREATE SOURCE StockStream WITH (source.type='database', collection='foo', map.type='json', enclosing.element="$.portfolio",) ("stock.company.symbol", "stock.price", "stock.volume");
