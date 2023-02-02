@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Create Sinks
+title: Sinks
 ---
 
 The pages in this section show you how to use various sinks in Macrometa GDN stream workers, including streams, HTTP, and Kafka.
