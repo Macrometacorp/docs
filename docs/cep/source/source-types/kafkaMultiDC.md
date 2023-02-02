@@ -1,12 +1,12 @@
 ---
-title: kafkaMultiDC (Source)
+title: kafkaMultiDC
 ---
 
 The Kafka Multi-Datacenter(DC) source receives records from the same
 topic in brokers deployed in two different kafka clusters. It filters
 out all the duplicate messages and ensures that the events are received
 in the correct order using sequential numbering. It receives events in
-formats such as `TEXT`, `JSON`, and `Binary`.The Kafka Source
+formats such as `TEXT`, `JSON`, and `Binary`. The Kafka Source
 creates the default partition `0` for a given topic, if the topic has
 not yet been created in the Kafka cluster.
 

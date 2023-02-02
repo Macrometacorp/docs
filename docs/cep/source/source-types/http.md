@@ -1,5 +1,5 @@
 ---
-title: http (Source)
+title: http
 ---
 
 HTTP source receives POST requests via HTTP and HTTPS protocols in format such as `text` and `JSON`. It also supports basic

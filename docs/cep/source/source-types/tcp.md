@@ -1,10 +1,8 @@
 ---
-title: tcp (Source)
+title: tcp
 ---
 
-A stream worker application can be configured to receive events via the TCP transport by adding the `type='tcp'` annotation at the top
-of an event stream definition. When this is defined the associated stream will receive events from the TCP transport on the host and port
-defined in the system.
+A stream worker application can be configured to receive events via the TCP transport by adding the `type='tcp'` annotation at the top of an event stream definition. When this is defined the associated stream will receive events from the TCP transport on the host and port defined in the system.
 
 ## Syntax
 
