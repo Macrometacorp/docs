@@ -1,9 +1,8 @@
 ---
-title: http-service (Source)
+title: http-service
 ---
 
-The http-service source receives POST requests via HTTP and HTTPS protocols in format such as `text` and `JSON` and sends responses
-via its corresponding http-service-response sink correlated through a unique `source.id`.
+The http-service source receives POST requests via HTTP and HTTPS protocols in format such as `text` and `JSON` and sends responses via its corresponding http-service-response sink correlated through a unique `source.id`.
 
 For request and response correlation, it generates a `messageId` upon each incoming request and expose it via transport
 properties in the format `trp:messageId` to correlate them with the responses at the http-service-response sink.

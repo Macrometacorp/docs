@@ -1,5 +1,5 @@
 ---
-title: log (Sink)
+title: log
 ---
 
 This is a sink that can be used as a logger. This will log the output events in the output stream with user specified priority and a prefix.
