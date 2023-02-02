@@ -1,5 +1,5 @@
 ---
-title: avro (Sink Mapper)
+title: avro
 ---
 
 This extension is a stream worker event to Avro Message output mapper. Transports that publish messages to Avro sink can use this extension to convert stream worker events to Avro messages.

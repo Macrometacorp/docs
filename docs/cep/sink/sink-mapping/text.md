@@ -1,5 +1,5 @@
 ---
-title: text (Sink Mapper)
+title: text
 ---
 
 This extension is an Event to Text output mapper. Transports that publish
