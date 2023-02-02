@@ -211,7 +211,7 @@ API_KEY = "my API key" # Change this to your API key
 
 COLLECTION_NAME = "ddos"
 
-# Variables - Data
+# Variables
 data = [
     {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
     {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
