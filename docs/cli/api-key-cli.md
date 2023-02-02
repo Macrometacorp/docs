@@ -20,7 +20,7 @@ API key commands.
   gdnsl apikey --key-id testKey
 
   # Validate an apikey.
-  gdnsl apikey --validate "anurag_macrometa.io.testKey.bpluElGqCbBIlkhDQrVsu4zBB2GxtPb3YCWcNsXSInmn"
+  gdnsl apikey --validate "xxx" # Replace with your API key.
 
   # Create an api key.
   gdnsl apikey --key-id testKey --create 

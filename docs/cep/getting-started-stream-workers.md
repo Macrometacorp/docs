@@ -6,7 +6,7 @@ title: Getting Started with Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page guides you through creating your first stream worker. This stream worker automatically creates a collection and a stream. Once published, the stream worker listens to the collection for new writes and adds them to the stream.
+This page guides you through creating your first stream worker. Once published, the stream worker will listen for new data to be written to a collection, and subsequently write that data to a stream. There's no need to create the dependencies beforehand, in this case the collection and the stream, as the stream worker will create them for you at run time.
 
 After you create the stream worker, there are instructions for testing it. 
 
