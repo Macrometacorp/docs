@@ -43,23 +43,26 @@ The downside to restricting the receiver queue size of consumers is that that li
 
 These config settings are set when you subscribe to a stream.
 
-Python SDK example:
-
+<Tabs groupId="operating-systems">
+<TabItem value="py" label="Python SDK">
 ```python
 # Create subscriber
 subscriber = client.subscribe(
     stream="quickStart", local=False, subscription_name="sub_1", consumer_type=CONSUMER_TYPES.SHARED, receiver_queue_size=1000
 )
 ```
+</TabItem>
 
-JavaScript SDK example:
-
+<TabItem value="js" label="JavaScript SDK">
 ```js
+// Create subscriber
 stream.consumer("my-subscription", "test.macrometa.io", {
   subscriptionType: Shared,
   receiverQueueSize: 1000,
 }
 ```
+</TabItem>
+</Tabs>
 
 ## Message Retention and Expiry
 
