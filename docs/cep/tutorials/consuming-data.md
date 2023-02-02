@@ -10,15 +10,15 @@ Typically the first step  in a stream processing flow is to consume the data to 
 
 For the stream processor to consume events, the following is required.
 
-* Message schema: To identify the messages to select for stream processing. The schema of the messages is defined via a *stream*.
+- Message schema: To identify the messages to select for stream processing. The schema of the messages is defined via a _stream_.
 
-* Source: The messages are consumed from different sources including streaming applications, cloud-based applications, databases, and files. The source is defined via a *source configuration*.
+- Source: The messages are consumed from different sources including streaming applications, cloud-based applications, databases, and files. The source is defined via a _source configuration_.
 
 A source configuration consists of the following:
   
-- `source.type`: This annotation defines the source type via which the messages are consumed, and allows you to configure the source parameters (which change depending on the source type). For the complete list of supported source types, see [Streams Query Guide - Source](../query-guide/stream.md#source)
+- `source.type`: This annotation defines the source type via which the messages are consumed, and allows you to configure the source parameters (which change depending on the source type). For the complete list of supported source types, see [Sources](../source/index.md).
 
-- `map.type`: This annotation specifies the format in which messages are consumed, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Streams Query Guide - Source Mapper](../query-guide/stream#source-mapper)
+- `map.type`: This annotation specifies the format in which messages are consumed, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Source Mappers](../source/source-mapper/index.md).
 
 - `attributes`: This annotation specifies a custom mapping based on which events to be selected into the stream processing flow are identified. This is useful when the attributes of the incoming messages you want the stream processor to consume are different to the corresponding attribute name in the stream definition.
 
@@ -65,13 +65,13 @@ Following are the steps to create a stream worker:
     ```sql
 	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream') (transNo int, product string, price int, quantity int, salesValue long);
     ```
-    
+
 1. Configure parameters for the source you added. For example, you can specify the collection name for the stream source in the example used.
-    
+
     ```sql
 	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream', stream.list='SalesTotalsEP') (transNo int, product string, price int, quantity int, salesValue long);
     ```
-       
+
 1. Add an `@map` annotation to the source configuration as shown below.
 
     ```sql
@@ -83,19 +83,20 @@ Following are the steps to create a stream worker:
     ```sql
     CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream', stream.list='SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
     ```
-    
+
 :::info
         Mapping is explained in detail in the [Consuming a message in default format](#consume-messages-in-default-format) and [Consuming a message in custom format](#consume-messages-in-custom-format) sections. However, note that you need to add a mapping type to complete a source configuration. If no mapping type i specified, an error is indicated.
 :::
-        
-1.  To query a stream, specify how the output is derived and the name of an output stream to which this output is directed.
+
+1. To query a stream, specify how the output is derived and the name of an output stream to which this output is directed.
+
     ```sql
     insert into <OUTPUT_STREAM_NAME>
     select <ATTRIBUTE1_Name>, <ATTRIBUTE2_NAME>, ... 
     from <INPUT_STREAM_NAME>
     group by <ATTRIBUTE_NAME>;
     ```
-    
+
     For example:
 
     ```sql
@@ -104,18 +105,17 @@ Following are the steps to create a stream worker:
     from ConsumerSalesTotalsStream
     group by productinsert into PublishSalesTotalsStream;
     ```
-    
+
 1. Complete the stream worker by defining an output stream with a connected sink configuration.
 
 :::tip
         In the example used, you can define the `PublishSalesTotals` stream that you already specified as the output stream in the query, and connect a `stream` sink to it as follows. Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
 :::
 
-
     ```sql
 	CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream='SalesTotals', replication.type='local') (transNo int, product string, price int, quantity int, salesValue long);
     ```
-        
+
 1. Save the Stream Worker. The completed application is as follows:
 
     ```js
@@ -157,13 +157,13 @@ Stream processor consumes a message in the default format when it makes no chang
     ```sql
 	CREATE SOURCE <Stream_Name> WITH (type='SOURCE_TYPE', PARAMETER1_NAME='PARAMETER1_VALUE', map.type='MAP_TYPE') (attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
-    
+
     The map type specifies the format in which the messages are received.  For example:
-    
+
     ```sql
 	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', map.type='json', map.attributes.transNo = '$.transaction', map.attributes.product = 'product', map.attributes.quantity = 'quantity', map.attributes.salesValue = '$.sales', map.attributes.price = 'price') (transNo int, product string, price int, quantity int, salesValue long);
     ```
-    
+
 3. Save the stream worker. If you save the stream worker that was created using the example configurations, the completed stream worker is as follows.
 
     ```js
@@ -180,9 +180,9 @@ Stream processor consumes a message in the default format when it makes no chang
     from ConsumerSalesTotalsStream WINDOW SLIDING_TIME(1 min)
     group by product;
     ```
-    
+
 4. To check whether the above stream worker works as expected, publish some messages. For example, a stream using JSON can produce output such as:
-    
+
     ```json
     {
         "transNo": 1,
@@ -200,17 +200,18 @@ Stream processor consumes a message in the custom format when it makes changes t
 :::info
     For this section, you can edit the same stream worker that you saved in the [Consume messages in default format](#consume-messages-in-default-format) subsection.
 :::
-    
+
 1. Open your stream worker with a source configuration.
 
 2. In the `map.type` annotation within the source configuration, add the `attributes` annotation with mappings for different attributes. This can be done in two ways as shown below.  
 
-    * Defining attributes as keys and mapping content as values in the following format.
+    - Defining attributes as keys and mapping content as values in the following format.
 
         ```sql
 		CREATE SOURCE <Stream_Name> WITH (type='SOURCE_TYPE', PARAMETER1_NAME='PARAMETER1_VALUE', map.type='MAP_TYPE', @attributes( attributeN='mapping_N', attribute1='mapping_1')) (attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
         ```
-:::tip 
+
+:::tip
             In the Stream worker used as an example in the previous section, assume that when receiving events, the `transNo` attribute is received as `transaction` and the `salesValue` attribute is received as `sales`.  The mapping type is JSON. therefore, you can  add the mappings as JSONPath expressions.
 :::
 

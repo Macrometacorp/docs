@@ -26,16 +26,15 @@ The following parameters are used to configure a stream definition.
 | Parameter&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 |----------------|-------------|
 | `query name`   | The name of the query. Since naming the query (i.e the `@name('<query name>')` annotation) is optional, when the name is not provided Stream assign a system generated name for the query. |
-| `input`        | Defines the means of event consumption via [streams](stream.md), [named-windows](named-window.md), [tables](table-collection.md), and/or [named-aggregations](../aggregations/index.md), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
+| `input`        | Defines the means of event consumption via [streams](../source/stream-source.md), [named-windows](named-window.md), [tables](table-collection.md), and/or [named-aggregations](../aggregations/index.md), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
 | `projection`   | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
-| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](stream.md), [named-window](named-window.md), or [table](table-collection.md)  |
+| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](../sink/sink-types/stream-sink.md), [named-window](named-window.md), or [table](table-collection.md)  |
 
 ### Example
 
 A query consumes events from the `TempStream` stream and output only the `roomNo` and `temp` attributes to the `RoomTempStream` stream, from which another query consumes the events and sends all its attributes to `AnotherRoomTempStream` stream.
 
-```
-
+```sql
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
 insert into RoomTempStream
