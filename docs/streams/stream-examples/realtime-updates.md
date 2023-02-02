@@ -84,7 +84,7 @@ Add code to perform the following actions:
 
 1. Create a [document collection](../../collections/index.md) called `ddos` to which you subscribe. If a collection by that name already exists, the existing collection is used instead.
 1. Add `data` to the collection, then subscribe to the collection. In this example, we are adding IP addresses to block.
-1. Delete `data` from the collection. If the collection becomes empty, then the collection is deleted too.
+1. Delete the collection.
 
 :::note
 An existing collection must have streams enabled.
@@ -101,7 +101,7 @@ if __name__ == '__main__':
     client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
     # Create a collection if one does not exist
-    print(f"\n2. CREATE_COLLECTION: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    print(f"\n2. CREATE_COLLECTION: Server: {URL},  Collection: {COLLECTION_NAME}")
     if client.has_collection(COLLECTION_NAME):
         collection = client.collection(COLLECTION_NAME)
     else:
@@ -115,23 +115,22 @@ if __name__ == '__main__':
 
         client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
 
-    print(f"\n3. SUBSCRIBE_COLLECTION: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    print(f"\n3. SUBSCRIBE_COLLECTION: Server: {URL},  Collection: {COLLECTION_NAME}")
     rt_thread = threading.Thread(target=create_callback)
     rt_thread.start()
     time.sleep(10)
     print(f"Callback registered for collection: {COLLECTION_NAME}")
 
     # Insert documents into the collection to trigger a notification.
-    print(f"\n4. INSERT_DOCUMENTS: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    print(f"\n4. INSERT_DOCUMENTS: Server: {URL},  Collection: {COLLECTION_NAME}")
     client.insert_document(COLLECTION_NAME, document=data)
 
     # Wait to close the callback.
     print("\n5. Waiting to close callback")
     rt_thread.join(2)
 
-    # Delete data.
-    print(f"\n6. DELETE_DATA: Tenant: {URL}, Collection: {COLLECTION_NAME}")
-    collection.truncate()
+    # Delete collection.
+    print(f"\n6. DELETE_COLLECTION: Server: {URL}, Collection: {COLLECTION_NAME}")
     client.delete_collection(COLLECTION_NAME)
 ```
 
@@ -153,7 +152,7 @@ async function main () {
 			await client.createCollection(collectionName, { stream: true });
 		  }
 
-		  // Subscribe to be notified when changes are made to collection.
+      // Subscribe to be notified when changes are made to collection.
 		  listener = await client.onCollectionChange(collectionName);
 		  listener.on("message", (msg) => {
 			const receivedMsg = msg && JSON.parse(msg);
@@ -177,15 +176,15 @@ async function main () {
 	await sleep(2000);
 	await insertData();
 
-  // Delete data.
-	async function deleteData () {
-		console.log("\n4. Delete data");
+  // Delete collection.
+	async function deleteCollection () {
+		console.log("\n4. Delete collection");
 		await client.deleteCollection(collectionName);
 	}
 	await sleep(10000);
 
 	await listener.close();
-	await deleteData();  
+	await deleteCollection();  
 }
 main();
 ```
@@ -229,7 +228,7 @@ if __name__ == '__main__':
     client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
     # Create a collection if one does not exist
-    print(f"\n2. CREATE_COLLECTION: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    print(f"\n2. CREATE_COLLECTION: Server: {URL},  Collection: {COLLECTION_NAME}")
     if client.has_collection(COLLECTION_NAME):
         collection = client.collection(COLLECTION_NAME)
     else:
@@ -243,23 +242,22 @@ if __name__ == '__main__':
 
         client.on_change(COLLECTION_NAME, callback=callback_fn, timeout=15)
 
-    print(f"\n3. SUBSCRIBE_COLLECTION: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    print(f"\n3. SUBSCRIBE_COLLECTION: Server: {URL},  Collection: {COLLECTION_NAME}")
     rt_thread = threading.Thread(target=create_callback)
     rt_thread.start()
     time.sleep(10)
     print(f"Callback registered for collection: {COLLECTION_NAME}")
 
     # Insert documents into the collection to trigger a notification.
-    print(f"\n4. INSERT_DOCUMENTS: Tenant: {URL},  Collection: {COLLECTION_NAME}")
+    print(f"\n4. INSERT_DOCUMENTS: Server: {URL},  Collection: {COLLECTION_NAME}")
     client.insert_document(COLLECTION_NAME, document=data)
 
     # Wait to close the callback.
     print("\n5. Waiting to close callback")
     rt_thread.join(2)
 
-    # Delete data.
-    print(f"\n6. DELETE_DATA: Tenant: {URL}, Collection: {COLLECTION_NAME}")
-    collection.truncate()
+    # Delete collection.
+    print(f"\n6. DELETE_COLLECTION: Server: {URL}, Collection: {COLLECTION_NAME}")
     client.delete_collection(COLLECTION_NAME)
 ```
 
@@ -300,7 +298,7 @@ async function main () {
 			await client.createCollection(collectionName, { stream: true });
 		  }
 
-		  // Subscribe to be notified when changes are made to collection.
+      // Subscribe to be notified when changes are made to collection.
 		  listener = await client.onCollectionChange(collectionName);
 		  listener.on("message", (msg) => {
 			const receivedMsg = msg && JSON.parse(msg);
@@ -324,15 +322,15 @@ async function main () {
 	await sleep(2000);
 	await insertData();
 
-  // Delete data.
-	async function deleteData () {
-		console.log("\n4. Delete data");
+  // Delete collection.
+	async function deleteCollection () {
+		console.log("\n4. Delete collection");
 		await client.deleteCollection(collectionName);
 	}
 	await sleep(10000);
 
 	await listener.close();
-	await deleteData();  
+	await deleteCollection();  
 }
 main();
 ```
