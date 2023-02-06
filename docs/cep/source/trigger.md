@@ -31,9 +31,9 @@ The following types of triggers are currently supported:
 
 |Trigger type| Description|
 |-------------|-----------|
-|`'start'`| An event is triggered when a stream is started.|
+|`start`| An event is triggered when a stream is started.|
 |`every <time interval>`| An event is triggered periodically at the given time interval. Minimum supported time interval is millisecond. |
-|`'<cron expression>'`| An event is triggered periodically based on the given cron expression. For configuration details, see [CronTrigger](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/tutorials/tutorial-lesson-06.html). |
+|`<cron expression>`| An event is triggered periodically based on the given cron expression. For configuration details, see [CronTrigger](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/tutorials/tutorial-lesson-06.html). |
 
 ## Examples
 
