@@ -5,7 +5,7 @@ title: Error Handling at Source
 
 When errors are thrown by elements subscribed to the source, the error is propagated up to the source that delivered the event to those stream worker. By default, the error is logged and dropped at the source, but this behavior can be altered by by adding `OnError` property to the corresponding source definition.
 
-### OnError Property
+## OnError Property
 
 The `OnError` property can help users to capture the error and the associated event, and handle them gracefully by sending them to a fault stream.
 
@@ -22,7 +22,7 @@ The following actions can be specified to `OnError` property to handle erroneous
 
 - `STREAM`: Creates a fault stream and redirects the event and the error to it. The created fault stream will have all the attributes defined in the base stream to capture the error causing event, and in addition it also contains `_error` attribute of type `object` to containing the error information. The fault stream can be referred by adding `!` in front of the base stream name as `!<stream name>`.
 
-### Example
+## Example
 
 Handle errors in `TempStream` by redirecting the errors to a fault stream.
 
