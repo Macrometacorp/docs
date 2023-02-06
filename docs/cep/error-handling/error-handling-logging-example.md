@@ -5,7 +5,7 @@ title: Logging Example
 
 # Error Handling: Logging Example
 
-This example explains how errors are handled at the sink level. In the following example, the stream worker attempts to publish abnormal glucose reading events to an unavailable HTTP endpoint, and the error is recorded to the logs.
+This example explains how errors are handled at the sink level with `log` mode. In the following example, the stream worker attempts to publish abnormal glucose reading events to an unavailable HTTP endpoint, and the error is recorded to the logs.
 
 ```sql
 -- Defines `GlucoseReadingStream` stream, which contains events related to glucose readings.
