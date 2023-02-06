@@ -27,13 +27,7 @@ The `type` parameter of `CREATE SOURCE` annotation defines the source type that 
 
 ## Supported Stream Source Types
 
-The following is the list of some source types supported by stream workers. For a full list, refer to [Source Types](source-types/index.md).
-
-|Source type | Description|
-| ------------- |-------------|
-| `database` | Allow the stream worker to consume events from collections (doc, graphs) running in the same or different geo fabric. |
-| `stream` | Allow the stream worker to consume events from streams (local, geo-replicated) running in the same or different geo fabric. |
-| `kafka` | Subscribe to Kafka topic to consume events.|
+All source types supported by Macrometa stream workers are documented in [Source Types](source-types/index.md).
 
 ## Source Mapping
 
