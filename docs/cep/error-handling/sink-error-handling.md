@@ -10,13 +10,13 @@ There can be cases where external systems becoming unavailable or coursing error
 The `on.error` parameter of the `sink.type` annotation can be specified as below.
 
 ```sql
-CREATE SINK <stream name> WITH (sink.type='<sink type>', on.error.action='<on error action>', <key>='<value>', ...) (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
+@OnError(action='on error action')
+CREATE SINK <stream name> WITH (sink.type='<sink type>', on.error='<on error action>', <key>='<value>', ...) (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
 ```  
 
 The following actions can be specified to `on.error` parameter of `sink.type` annotation to handle erroneous scenarios.
 
 - `WAIT` : Publishing threads wait in `back-off and re-trying` mode, and only send the events when the connection is re-established. During this time the threads will not consume any new messages causing the systems to introduce back pressure on the systems that publishes to it.
-
 - `STREAM`: Pushes the failed events with the corresponding error to the associated fault stream the sink belongs to.
 
 ## Example 1
@@ -43,4 +43,31 @@ CREATE SINK TempStream WITH (sink.type='kafka', on.error.action='STREAM', topic=
 insert into IgnoreStream;
 select deviceID, roomNo, temp, _error
 from !TempStream#log("Error Occurred!")
+```
+
+## Example 3
+
+This is a complete stream worker that demonstrates how to make a stream worker create a stream and send errors to it as they occur.
+
+```sql
+@App:name('sw-error-handling2')
+@App:qlVersion('2')
+
+CREATE SOURCE Stream1
+WITH (type='stream', stream.list='Stream1', replication.type='local', map.type='json')
+(v int);
+
+@OnError(action='stream')
+CREATE SINK Stream2
+WITH (type='stream', stream='Stream2', replication.type='local', on.error='stream', map.type='json')
+(v int);
+
+CREATE SINK STREAM Stream2Error (v int, _error object);
+
+-- Data Processing
+@info(name='Query1')
+INSERT INTO Stream2 SELECT v as v FROM Stream1;
+
+@info(name='Error handling')
+INSERT INTO Stream2Error SELECT v, _error  FROM !Stream2#log("Error handling");
 ```

@@ -31,3 +31,5 @@ The following sinks support error handling:
 - jms
 - http
 - queryworker
+
+### Sink Error Handling Example
