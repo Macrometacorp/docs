@@ -6,7 +6,9 @@ title: Messages
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Messages are the basic unit of GDN streams. Producers publish messages to streams, and consumers process the message and send and acknowledgment.
+Messages are the basic unit of GDN streams. Producers publish messages to streams, and consumers process the message and send and acknowledgment. 
+
+A message has the following properties:
 
 - **Value -** The data carried by the message. All GDN stream messages carry raw bytes, although message data can also conform to data schemas in the future.
 - **Key -** Messages can optionally be tagged with keys, which can be useful for things like stream compaction.
@@ -16,71 +18,17 @@ Messages are the basic unit of GDN streams. Producers publish messages to stream
 - **Publish time -** The timestamp of when the message was published, automatically applied by the producer.
 - **Event time -** An optional timestamp that applications can attach to the message representing when something happened, such as when the message was processed. The event time of a message is 0 if none is explicitly set.
 
-## Stream as Message Queue
-
-Message queues are essential components of many large-scale data architectures. If every single work object that passes through your system absolutely _must_ be processed in spite of the slowness or downright failure of this or that system component, then there's a good chance that you'll need a message queue to step in and ensure that unprocessed data is retained---with correct ordering---until the required actions are taken.
-
-### Benefits of Using GDN Streams as a Message Queue
-
-GDN Streams is a great choice for a message queue because:
-
-- It was built with persistent storage in mind.
-- It offers automatic load balancing across consumers for messages on a stream.
-- You can use the same GDN stream to act as a real-time message bus and as a message queue, or just one or the other.
-- You can set aside some streams for real-time purposes and other streams for message queue purposes, or use specific GeoFabrics for either purpose.
-
-### Client Configuration Changes
-
-To use a stream as a message queue, you should distribute the receiver load on that topic across several consumers. The optimal number of consumers will depend on the load.
-
-Consumer settings:
-
-- Establish a [shared subscription](subscriptions.md#shared) and use the same subscription name as the other consumers. Otherwise the subscription is not shared, and the consumers can't act as a processing ensemble.
-- If you want to have tight control over message dispatching across consumers, then set the consumers' **receiver queue** size very low (potentially even to 0 if necessary).
-
-Each stream has a receiver queue that determines how many messages the consumer will attempt to fetch at a time. A receiver queue of 1,000 (the default), for example, means that the consumer will attempt to process 1,000 messages from the stream's backlog upon connection. Setting the receiver queue to zero essentially means ensuring that each consumer is only doing one thing at a time.
-
-The downside to restricting the receiver queue size of consumers is that that limits the potential throughput of those consumers. Whether the performance/control trade-off is worthwhile will depend on your use case.
-
-These config settings are set when you subscribe to a stream.
-
-<Tabs groupId="operating-systems">
-<TabItem value="py" label="Python SDK">
-
-```py
-# Create subscriber
-subscriber = client.subscribe(
-    stream="quickStart", local=False, subscription_name="sub_1", consumer_type=CONSUMER_TYPES.SHARED, receiver_queue_size=1000
-)
-```
-</TabItem>
-
-<TabItem value="js" label="JavaScript SDK">
-
-```js
-// Create subscriber
-stream.consumer("my-subscription", "test.macrometa.io", {
-  subscriptionType: Shared,
-  receiverQueueSize: 1000,
-}
-```
-
-</TabItem>
-</Tabs>
-
-## Message Retention and Expiration
-
 By default, GDN does the following:
 
-- Immediately deletes all messages that have been acknowledged by a consumer.
-- Persistently stores all unacknowledged messages in a message backlog for up to three days.
+- Deletes all messages that have been acknowledged by a consumer.
+- Stores all unacknowledged messages in a message backlog for up to three days.
 
 GDN streams has two features, however, that enable you to override this default behavior:
 
 - Message _retention_ allows you to store messages that have been acknowledged by a consumer.
 - Message _expiration_ allows you to set a time to live (TTL) for messages that have not yet been acknowledged.
 
-All message retention and expiration is managed at the geofabric level.
+All message retention and expiration is managed at the geofabric level. You can also add a [message queue](./message-queues/index.md) to a specific stream limit the number of messages in the backlog.
 
 The diagram below illustrates both concepts:
 
