@@ -1,5 +1,5 @@
 ---
-title: SSE Source
+title: SSE
 ---
 
 HTTP SSE source sends a request to a given URL and listens to the response stream.

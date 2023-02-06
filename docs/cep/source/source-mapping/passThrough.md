@@ -1,5 +1,5 @@
 ---
-title: passThrough (Source Mapper)
+title: passThrough
 ---
 
 This input mapper allows you to convert protobuf messages into Events.

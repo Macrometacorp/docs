@@ -1,5 +1,5 @@
 ---
-title: passThrough (Sink Mapper)
+title: passThrough
 ---
 
 Pass-through mapper passed events (Event\[\]) through without any mapping or modifications.
