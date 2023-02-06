@@ -1,6 +1,6 @@
 ---
 sidebar_position: 30
-title: Create Indexes
+title: Table Indexes
 ---
 
 Indexes allow tables to be searched/modified much faster. For more information about indexing tables (collections), refer to [Indexing](../../../../collections/indexing/index.md).
