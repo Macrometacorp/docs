@@ -1,5 +1,5 @@
 ---
-sidebar_position: 25
+sidebar_position: 10
 title: Set Message Queue
 ---
 
