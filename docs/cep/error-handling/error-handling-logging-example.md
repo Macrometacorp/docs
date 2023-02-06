@@ -8,18 +8,17 @@ title: Logging Example
 This example explains how errors are handled at the sink level. In the following example, the stream worker attempts to publish abnormal glucose reading events to an unavailable HTTP endpoint, and the error is recorded to the logs.
 
 ```sql
--- Defines `GlucoseReadingStream` stream which contains events related to Glucose readings.
+-- Defines `GlucoseReadingStream` stream, which contains events related to glucose readings.
 CREATE STREAM GlucoseReadingStream (locationRoom string,
     locationBed string, timeStamp string, sensorID long,
     patientFirstName string, patientLastName string,
     sensorValue double);
 
 
--- If `HTTP` endpoint which defined in `sink` annotation is unavailable then it logs the event with the error and drops the event.
--- Errors can be gracefully handled by configuring `on.error` parameter.
+-- If `HTTP` endpoint defined in `sink` annotation is unavailable, then it logs the event with the error and drops the event.
 
-@OnError(action='stream')
-CREATE SINK AbnormalGlucoseReadingStream WITH (type = 'http', OnError.action="stream", publisher.url = "http://xyz:8080/logger", method = "POST", map.type = 'json') (timeStampInLong long, locationRoom string, locationBed string, sensorID long, patientFullName string, sensorReadingValue double);
+@OnError(action='log')
+CREATE SINK AbnormalGlucoseReadingStream WITH (type = 'http', OnError.action="log", publisher.url = "http://xyz:8080/logger", method = "POST", map.type = 'json') (timeStampInLong long, locationRoom string, locationBed string, sensorID long, patientFullName string, sensorReadingValue double);
 
 @info(name='abnormal-reading-identifier')
 insert into AbnormalGlucoseReadingStream
