@@ -1,5 +1,5 @@
 ---
-title: prometheus (Sink)
+title: prometheus
 ---
 
 This sink publishes events processed by stream worker into Prometheus metrics and exposes them to the Prometheus server at the specified URL. The created metrics can be published to Prometheus via `server` or `pushGateway`, depending on your preference. The metric types that are supported by the Prometheus sink are `counter`, `gauge`, `histogram`, and `summary`. The values and labels of the Prometheus metrics can be updated through the events.

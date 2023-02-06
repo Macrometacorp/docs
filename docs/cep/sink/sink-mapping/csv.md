@@ -1,5 +1,5 @@
 ---
-title: csv (Sink Mapper)
+title: csv
 ---
 
 This output mapper extension allows you to convert stream worker events processed by the GDN stream processor to CSV message before publishing them. You can either use custom placeholder to map a custom CSV message or use predefined CSV format where event conversion takes place without extra configurations.

@@ -1,5 +1,5 @@
 ---
-title: http-service-response (Sink)
+title: http-service-response
 ---
 
 The http-service-response sink send responses of the requests consumed by its corresponding http-service source, by mapping the response messages to formats such as `text` and `JSON`.

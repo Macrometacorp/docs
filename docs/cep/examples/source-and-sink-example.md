@@ -38,7 +38,7 @@ When a JSON message is written to the collection `TemperatureStream`, it automat
 }
 ```
 
-To process custom input messages, refer to Sinkmapper in [Functions](../query-guide/functions/index.md).
+To process custom input messages, refer to [Sink Mapping](../sink/sink-mapping/index.md).
 
 ## Output
 
@@ -50,4 +50,4 @@ The message is published to `TemperatureOnlyStream` as
 {"temperature":"35.4"}
 ```
 
-To output messages using other message formats, refer to Sourcemapper in [Functions](../query-guide/functions/index.md).
+To output messages using other message formats, refer to [Source Mapping](../source/source-mapping/index.md).

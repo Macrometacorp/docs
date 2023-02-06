@@ -1,5 +1,5 @@
 ---
-title: text (Sink Mapper)
+title: text
 ---
 
 This extension is an Event to Text output mapper. Transports that publish
@@ -8,8 +8,7 @@ text messages. Users can use a predefined text format where event
 conversion is carried out without any additional configurations, or use
 custom placeholder(using `{{` and `}}`) to map custom text messages.
 
-You can also enable mustache based custom mapping. In mustache-based custom mapping, you can use custom placeholder (using `{{` and `}}`
-or `{{{` and `}}}`) to map custom text. In mustache-based custom
+You can also enable mustache based custom mapping. In mustache-based custom mapping, you can use custom placeholder (using `{{` and `}}` or `{{{` and `}}}`) to map custom text. In mustache-based custom
 mapping, all variables are HTML escaped by default. For example: `&` is
 replaced with `&amp;` `"` is replaced with `&quot;` `=` is replaced with
 `&#61;` If you want to return unescaped HTML, use the triple mustache

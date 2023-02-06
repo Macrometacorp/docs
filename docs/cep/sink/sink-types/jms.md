@@ -1,5 +1,5 @@
 ---
-title: jms (Sink)
+title: jms
 ---
 
 JMS sink allows users to subscribe to a JMS broker and publish JMS messages.

@@ -10,8 +10,6 @@ Errors in stream apps can be handled at the Streams and in the Sinks. This examp
 There can be cases where external systems becoming unavailable or coursing errors when the events are published to them.
 By default sinks log and drop the events causing event losses, and this can be handled gracefully by adding `OnError.action="<action>",` to the `WITH()` property for creating a sink.
 
-Refer to the [stream query guide](../query-guide/stream.md#error-handling) for more information.
-
 In the following example, we attempt to publish abnormal Glucose reading events to an unavailable HTTP endpoint, and the error is recorded to the logs.
 
 ```sql
@@ -52,14 +50,13 @@ After processing, the following log gets printed in the console:
 ERROR {io.macrometa.cep.core.stream.output.sink.Sink} - Error on 'ErrorHandling'. Dropping event at Sink 'http' at 'AbnormalGlucoseReadingStream' as its still trying to reconnect!, events dropped '{"event":{"timeStampInLong":1576829362,"locationRoom":"1024","locationBed":"Level2","sensorID":10348,"patientFullName":"Alex John","sensorReadingValue":250.0}}'`
 ```
 
-## Wait & Retry
+## Wait and Retry
 
 This example shows how errors are handled at Sink level by `wait and retry` mode.
 
 In this mode, publishing threads wait in back-off and re-trying mode, and only send the events when the connection is re-established. During this time the threads will not consume any new messages causing the systems to introduce back pressure on the systems that publish to it.
 
-Refer to the [stream query guide](../query-guide/stream.md#error-handling) for more information.
-
+For more information, refer to [Source Error Handling](../source/source-error-handling.md) and [Sink Error Handling](../sink/sink-error-handling.md).
 
 ```sql
 -- Defines `GlucoseReadingStream` stream which contains events related to Glucose readings.
@@ -89,7 +86,6 @@ Above is a simple example to publish abnormal Glucose reading events to an unava
 ### Prerequisites
 
 Download the mock logger service from [here](https://github.com/mohanvive/siddhi-mock-services/releases/download/v2.0.0/logservice-1.0.0.jar).
-
 
 ### Input & Output
 
