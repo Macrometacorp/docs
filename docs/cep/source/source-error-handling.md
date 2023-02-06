@@ -12,7 +12,8 @@ The `OnError` property can help users to capture the error and the associated ev
 The `OnError` property and the required `action` must be specified as below.
 
 ```sql
-CREATE SOURCE <stream name> WITH (OnError.action='<action>') (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
+@OnError(action='<action>')
+CREATE SOURCE <stream name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
 ```
 
 The `action` parameter of the `OnError` property defines the action to be executed during failure scenarios.
@@ -41,8 +42,8 @@ The stream worker extends the above use case by adding failure generation and er
 
 ```sql
 -- Define fault stream to handle error occurred at TempStream subscribers
-
-CREATE STREAM TempStream WITH(OnError.action="STREAM") (deviceID long, roomNo int, temp double;
+@OnError(action="STREAM")
+CREATE STREAM TempStream (deviceID long, roomNo int, temp double;
 
 -- Handling error by simply logging the event and error.
 @name('handle-error')
