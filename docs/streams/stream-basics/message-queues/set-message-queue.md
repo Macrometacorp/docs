@@ -3,6 +3,9 @@ sidebar_position: 10
 title: Set Message Queue
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 To use a stream as a message queue:
 
 1. Establish a [shared subscription](subscriptions.md#shared) and use the same subscription name as the other consumers. 
