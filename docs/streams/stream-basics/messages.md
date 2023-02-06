@@ -70,7 +70,7 @@ stream.consumer("my-subscription", "test.macrometa.io", {
 </TabItem>
 </Tabs>
 
-## Message Retention and Expiry
+## Message Retention and Expiration
 
 By default, GDN does the following:
 
@@ -80,9 +80,9 @@ By default, GDN does the following:
 GDN streams has two features, however, that enable you to override this default behavior:
 
 - Message _retention_ allows you to store messages that have been acknowledged by a consumer.
-- Message _expiry_ allows you to set a time to live (TTL) for messages that have not yet been acknowledged.
+- Message _expiration_ allows you to set a time to live (TTL) for messages that have not yet been acknowledged.
 
-All message retention and expiry is managed at the geofabric level.
+All message retention and expiration is managed at the geofabric level.
 
 The diagram below illustrates both concepts:
 
@@ -90,8 +90,8 @@ The diagram below illustrates both concepts:
 
 With message retention, shown at the top, a retention policy applied to all streams in a database dictates that some messages are durably stored in GDN even though they've already been acknowledged. Acknowledged messages that are not covered by the retention policy are deleted. Without a retention policy, all of the acknowledged messages would be deleted.
 
-With message expiry, shown at the bottom, some messages are deleted, even though they haven't been acknowledged, because they've expired according to the TTL applied to the namespace. For example, because a TTL of five minutes has been applied and the messages haven't been acknowledged but are 10 minutes old.
+With message expiration, shown at the bottom, some messages are deleted, even though they haven't been acknowledged, because they've expired according to the TTL applied to the namespace. For example, because a TTL of five minutes has been applied and the messages haven't been acknowledged but are 10 minutes old.
 
 :::note
-Contact support@macrometa.com if you need to change the message expiry TTL.
+Contact support@macrometa.com if you need to change the message expiration TTL.
 :::
