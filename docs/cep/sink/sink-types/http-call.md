@@ -1,5 +1,5 @@
 ---
-title: http-call (Sink)
+title: http-call
 ---
 
 The http-call sink publishes messages to endpoints via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats `text` or `JSON` and consume responses through its corresponding http-call-response source. It also supports calling endpoints protected with basic authentication or OAuth 2.0.

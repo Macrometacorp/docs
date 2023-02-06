@@ -27,7 +27,7 @@ Stream workers are declarative specs that define the processing logic to process
 </tr>
 <tr class="even">
 <td>Table</td>
-<td>A structured representation of data stored with a defined schema. Stored data can be backed by In-Memory, or external data stores such as RDBMS, MongoDB, etc. The tables can be accessed and manipulated at runtime.</td>
+<td>A structured representation of data stored with a defined schema. The tables can be accessed and manipulated at runtime.</td>
 </tr>
 <tr class="odd">
 <td>Executional Element</td>

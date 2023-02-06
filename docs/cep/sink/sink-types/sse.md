@@ -1,5 +1,5 @@
 ---
-title: SSE Sink
+title: SSE
 ---
 
 HTTP SSE sink sends events to all subscribers.

@@ -1,5 +1,5 @@
 ---
-title: csv (Source Mapper)
+title: csv
 ---
 
 This extension is used to convert a CSV message to stream worker event input mapper. You can either receive a predefined CSV message where event conversion takes place without extra configurations or receive custom CSV message where a custom place order maps from a custom CSV message.

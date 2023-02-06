@@ -1,5 +1,5 @@
 ---
-title: http (Sink)
+title: http
 ---
 
 HTTP sink publishes messages via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats `text` and `JSON`. It can also publish to endpoints protected by basic authentication or OAuth 2.0.
