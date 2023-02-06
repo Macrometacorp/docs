@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Create Stores
+title: Stores
 ---
 
 A _store_ is a place to keep your data. Stores allow creating, reading, updating, and deleting events or records stored on external data stores. This is useful for use cases when there is a need to access a common database used by various other systems, to retrieve and transfer data.

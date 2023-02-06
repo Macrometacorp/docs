@@ -1,17 +1,17 @@
 ---
 sidebar_position: 1
-title: Create Sinks
+title: Sinks
 ---
 
 The pages in this section show you how to use various sinks in Macrometa GDN stream workers, including streams, HTTP, and Kafka.
 
 Sinks are used to publish events to an external source after being processed. Sinks consume events from streams and publish them via multiple transports to external endpoints in various data formats.
 
-### Sink Configuration
+## Sink Configuration
 
 A sink configuration allows users to define a mapping to convert the stream events into the required output data format, such as `JSON`, `TEXT`, and so on, and publish the events to the configured endpoints. When customizations to such mappings are not provided, the stream converts events to the predefined event format based on the stream definition and the configured message mapper type before publishing the events.
 
-### Syntax
+## Syntax
 
 General syntax for creating a sink requires a sink name and definition of the `type` of sink. There are other parameters that depend on the type of sink you are using. For more information, refer to the pages in this section.
 
@@ -19,7 +19,7 @@ General syntax for creating a sink requires a sink name and definition of the `t
 CREATE SINK <stream name> WITH (sink.type='<sink type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.payload'<payload mapping>')) (<attribute1> <type>, <attributeN> <type>);
 ```
 
-### Dynamic Properties
+## Dynamic Properties
 
 The sink and sink mapper properties that are categorized as `dynamic` have the ability to absorb attribute values
 dynamically from the events of their associated streams. This can be configured by enclosing the relevant
