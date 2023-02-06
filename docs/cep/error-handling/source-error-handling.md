@@ -22,7 +22,7 @@ The following actions can be specified to `OnError` property to handle erroneous
 
 - `STREAM`: Creates a fault stream and redirects the event and the error to it. The created fault stream will have all the attributes defined in the base stream to capture the error causing event, and in addition it also contains `_error` attribute of type `object` to containing the error information. The fault stream can be referred by adding `!` in front of the base stream name as `!<stream name>`.
 
-## Example
+## Example 1
 
 Handle errors in `TempStream` by redirecting the errors to a fault stream.
 
@@ -32,7 +32,7 @@ The configuration of `TempStream` stream and `OnError` property is as follows:
 CREATE STREAM TempStream WITH(OnError.action="STREAM") (deviceID long, roomNo int, temp double;
 ```
 
-Stream infers and automatically defines the fault stream of `TempStream` as given below.
+The stream infers and automatically defines the fault stream of `TempStream` as given below.
 
 ```sql
 CREATE STREAM !TempStream (deviceID long, roomNo int, temp double, _error object);
@@ -50,4 +50,31 @@ CREATE STREAM TempStream (deviceID long, roomNo int, temp double;
 insert into IgnoreStream
 select deviceID, roomNo, temp, _error
 from !TempStream#log("Error Occurred!");
+```
+
+## Example 2
+
+This stream worker creates a stream when it detects an error and sends the error to the stream it creates.
+
+```sql
+@App:name('sw-error-handling1')
+@App:qlVersion('2')
+
+@OnError(action='stream')
+CREATE SOURCE Stream1
+WITH (type='stream', stream.list='Stream1', replication.type='local', map.type='json')
+(v int);
+
+CREATE SINK STREAM Stream1Error (v int, _error object);
+
+CREATE SINK Stream2
+WITH (type='stream', stream='Stream2', replication.type='local', map.type='json')
+(v int);
+
+-- Data Processing
+@info(name='Query1')
+INSERT INTO Stream2 SELECT v as v FROM Stream1;
+
+@info(name='Error handling')
+INSERT INTO Stream1Error SELECT v, _error  FROM !Stream1#log("Error handling");
 ```
