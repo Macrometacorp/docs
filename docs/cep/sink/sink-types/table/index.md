@@ -5,13 +5,13 @@ title: Table (Collection)
 
 A table is a stored version of an stream or a table of events. Its schema is defined in the _table definition_ that is similar to a stream definition. These events are stored in database. In Macrometa GDN, tables are called [collections](../../../../collections/index.md).
 
-## Table Purpose
+## Purpose
 
 Tables allow the stream worker to work with stored events. By defining a schema for tables, the stream processor enables them to be processed by queries using their defined attributes with the streaming data. You can also query the state of the stored events in the table.
 
 Any table defined in a stream worker is automatically a sink for that stream worker.
 
-### Table Syntax
+### Syntax
 
 The syntax for a new table definition is as follows:
 
@@ -19,7 +19,7 @@ The syntax for a new table definition is as follows:
 CREATE TABLE (GLOBAL|SPOT)? <table_name> (<attribute_name> <attribute_type>, ...);
 ```
 
-### Table Parameters
+### Parameters
 
 The following parameters are configured in a table definition:
 
@@ -31,7 +31,7 @@ The following parameters are configured in a table definition:
 | from        | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.      | _from         | STRING              | Yes      |
 | to          | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a destination node of the edge. | _to      | STRING              | Yes      |
 
-### Table Examples
+### Examples
 
 The following defines a local table named `RoomTypeTable` with `roomNo` and `type` attributes of data types `int` and `string` respectively.
 
