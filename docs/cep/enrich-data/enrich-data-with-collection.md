@@ -9,7 +9,7 @@ For this purpose, consider a scenario where you receive sales records generated 
 
 ## Create a Stream Worker
 
-For more information about stream workers and how they work, refer [Stream Workers](index.md).
+For more information about stream workers and how they work, refer to [Stream Workers](index.md).
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Stream Worker**.
@@ -94,7 +94,7 @@ Define the input stream and the Macrometa collection that need to be joined as f
 
 #### Define the Source Stream
 
-This stream is where the data is coming from. For more information about defining a STREAM in a stream worker, refer to [STREAM](../query-guide/stream.md) in the [Query Guide](../query-guide/index.md). For more information about streams in general, refer to [Streams](../../streams/index.md).
+This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Stream Source](../source/source-types/stream-source.md). For more information about streams in general, refer to [Streams](../../streams/index.md).
 
 ```sql
 CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
@@ -156,8 +156,6 @@ Note the following about the `from` clause:
 - The input data is taken from both a stream and a table. You need to assign a unique reference for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream` stream is referred to as `t`, and the `UserTable` table is referred to as `u`.
 - The `join` keyword joins the stream and the table together and defines the unique references.
 - The condition for the stream and the table to be joined is `t.userId == u.userId`, which means that for an event to be taken from the `TransactionStream` for the join, one or more events that have the same value for the `userId` must exist in the `UserTable` table and vice versa.
-
-
 
 ## Test the Stream Worker
 

@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Create Triggers
 ---
 
-Triggers allow events to be periodically generated. A trigger also works like a [stream](stream-source.md) with a predefined schema. You can use a trigger as a source of events for a stream worker in place of `CREATE SOURCE` or `CREATE STREAM`.
+Triggers allow events to be periodically generated. A trigger also works like a [stream source](source-types/stream-source.md) with a predefined schema.
 
 ## Purpose
 
