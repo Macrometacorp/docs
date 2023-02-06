@@ -3,11 +3,11 @@ sidebar_position: 40
 title: Create Triggers
 ---
 
-Triggers allow events to be periodically generated. A trigger also works like a [stream](source/stream-source.md) with a predefined schema.
+Triggers allow events to be periodically generated. A trigger also works like a [stream](stream-source.md) with a predefined schema. You can use a trigger as a source of events for a stream worker in place of `CREATE SOURCE` or `CREATE STREAM`.
 
 ## Purpose
 
-For some use cases, the system should be able to periodically generate events based on a specified time interval to perform some periodic executions.
+For some use cases, the system should be able to periodically generate events based on a specified time interval to periodically execute queries.
 
 A trigger can be performed for a `'start'` operation, for a given `<time interval>`, or for a given `'<cron expression>'`.
 
@@ -33,11 +33,19 @@ The following types of triggers are currently supported:
 |-------------|-----------|
 |`'start'`| An event is triggered when a stream is started.|
 |`every <time interval>`| An event is triggered periodically at the given time interval. Minimum supported time interval is millisecond. |
-|`'<cron expression>'`| An event is triggered periodically based on the given cron expression. For configuration details, see <a target="_blank" href="http://www.quartz-scheduler.org/documentation/quartz-2.1.7/tutorials/tutorial-lesson-06.html">quartz-scheduler</a>. |
+|`'<cron expression>'`| An event is triggered periodically based on the given cron expression. For configuration details, see [CronTrigger](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/tutorials/tutorial-lesson-06.html). |
 
 ## Examples
 
-- Triggering events regularly at specific time intervals
+- Trigger an event when the stream is started.
+  
+  The following query triggers an event when the stream is started:
+
+  ```js
+  CREATE TRIGGER InitTrigger WITH (expression = 'start');
+  ```
+
+- Trigger events regularly at specific time intervals.
 
     The following query triggers events every five minutes:
 
@@ -45,7 +53,7 @@ The following types of triggers are currently supported:
     CREATE TRIGGER FiveMinTriggerStream WITH(interval= 5 min);
     ```
 
-- Triggering events at a specific time on specified days
+- Trigger events at a specific time on specified days.
 
     The following query triggers an event at 10.15 AM every weekday:
 
