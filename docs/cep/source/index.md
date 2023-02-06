@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Sources
 ---
 
-Sources receive events from multiple transports and in various data formats, and direct them into streams for processing.
+Sources receive events from multiple transports and in various data formats, and direct them into streams for processing. A source is the stream of data that the stream worker processes with queries and sends to one or more sinks.
 
 A source configuration allows you to define a mapping in order to convert each incoming event from its native data format to a stream event. When customizations to such mappings are not provided, the stream processor assumes that the arriving event adheres to the predefined format based on the stream definition and the configured message mapping type.
 
