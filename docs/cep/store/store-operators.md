@@ -1,34 +1,34 @@
+---
+sidebar_position: 40
+title: Table Queries
+---
 
+You can perform queries on tables in stream workers using the following operators.
 
-**Operators on Table**
-
-The following operators can be performed on tables.
-
-## Insert
+## INSERT
 
 This allows events to be inserted into tables. This is similar to inserting events into streams.
 
 :::warning
-If the table is defined with primary keys, and if you insert duplicate data, primary key constrain violations can occur.
-In such cases use the `update or insert into` operation.
+If you insert duplicate data into a table that is defined with primary keys, then primary key constrain violations can occur.
+In such cases, use the [Update or Insert Into](#update-or-insert) operation.
 :::
-**Syntax**
 
-```
+### INSERT Syntax
+
+```sql
 INSERT INTO <table>
 SELECT <attribute name>, <attribute name>, ...
 FROM <input stream>
 ```
 
-Similar to streams, you need to use the `current events`, `expired events` or the `all events` keyword between `insert` and `into` keywords in order to insert only the specific event types.
+Similar to streams, you need to use the `current events`, `expired events`, or the `all events` keyword between `insert` and `into` keywords in order to insert only the specific event types.
 
-For more information, see [Event Type](#event-type)
-
-**Example**
+### INSERT Example
 
 This query inserts all the events from the `TempStream` stream to the `TempTable` table.
 
-```
+```sql
 INSERT INTO TempTable
 SELECT *
 FROM TempStream;
@@ -244,13 +244,7 @@ FROM TempStream[ServerRoomTable.roomNo == roomNo in ServerRoomTable];
 
 This section shows some of the queries that you might use on a stream worker store.
 
-### Insert into a Store
 
-```sql
-INSERT INTO SensorTable
-SELECT *
-FROM SampleStream;
-```
 
 ### Join with a Store
 

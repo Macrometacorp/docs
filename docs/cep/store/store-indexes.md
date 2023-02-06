@@ -1,22 +1,21 @@
+---
+sidebar_position: 30
+title: Create Indexes
+---
 
+Indexes allow tables to be searched/modified much faster. For more information about indexing tables (collections), refer to [Indexing](../../collections/indexing/index.md).
 
-## Store Indexes
+Indexes can be configured together with primary keys. When more than one attribute is used for index, each one of them is used to index the table for fast access to the data.
 
-Indexes allow tables to be searched/modified much faster.
+## Example 1
 
-Indexes can be configured together with primary keys.
-
-When more than one attribute is used for index, each one of them is used to index the table for fast access to the data.
-
-**Example 1**
-
-```
+```sql
 CREATE SOURCE StockTable WITH (type='database',collection='StockTable',PrimaryKey='symbol', Index='key1', Index='key2') (symbol string, price float, volume long);
 ```
 
-**Example 2**
+## Example 2
 
-```js
+```sql
 -- Creates a persistent index named `SamplePersistentIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
 CREATE UNIQUE INDEX SamplePersistentIndex ON TABLE SampleGDNTable WITH(type="persistent", sparse="true", deduplicate="true") (sensorId);
 
