@@ -5,7 +5,7 @@ title: Error Handling Examples
 
 ## Logging
 
-Errors in stream apps can be handled at the Streams and in the Sinks. This example explains how errors are handled at Sink level.
+This example explains how errors are handled at the sink level.
 
 There can be cases where external systems becoming unavailable or coursing errors when the events are published to them.
 By default sinks log and drop the events causing event losses, and this can be handled gracefully by adding `OnError.action="<action>",` to the `WITH()` property for creating a sink.
