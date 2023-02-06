@@ -5,6 +5,17 @@ title: Error Handling at Sink
 
 There can be cases where external systems becoming unavailable or coursing errors when the events are published to them. By default sinks log and drop the events causing event losses, and this can be handled gracefully by configuring `on.error` parameter of the `sink.type` annotation.
 
+## Supported Sink Types
+
+The following sinks support error handling:
+
+- database
+- stream
+- table
+- jms
+- http
+- queryworker
+
 ## on.error Parameter
 
 The `on.error` parameter of the `sink.type` annotation can be specified as below.
