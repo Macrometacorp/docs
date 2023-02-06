@@ -6,7 +6,7 @@ title: Messages
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Messages are the basic unit of GDN streams. Producers publish messages to streams, and consumers then consume them streams and acknowledge when the message has been processed.
+Messages are the basic unit of GDN streams. Producers publish messages to streams, and consumers process the message and send and acknowledgment.
 
 |Component | Purpose|
 |---------|--------|
