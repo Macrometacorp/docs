@@ -1,5 +1,5 @@
 ---
-title: http-call-response (Source)
+title: http-call-response
 ---
 
 The http-call-response source receives the responses for the calls made by its corresponding http-call sink, and maps them from formats such as `text` and `JSON`.

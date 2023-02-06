@@ -1,5 +1,5 @@
 ---
-title: Google Pub-Sub (Sink)
+title: Google Pub-Sub
 ---
 
 The Google PubSub sink publishes messages to a topic in the Google PubSub server. If the required topic does not exist, Google PubSub Sink creates the topic and publishes messages to it.

@@ -1,5 +1,5 @@
 ---
-title: binary (Source Mapper)
+title: binary
 ---
 
 This extension is a binary input mapper that converts events received in `binary` format to stream worker events before they are processed.

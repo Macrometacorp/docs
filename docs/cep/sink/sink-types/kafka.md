@@ -1,5 +1,5 @@
 ---
-title: kafka (Sink)
+title: kafka
 ---
 
 A Kafka sink publishes events processed by GDN stream worker to a topic with a partition for a Kafka cluster.If the topic is not already created in the Kafka cluster, the Kafka sink creates the default partition for the given topic. The publishing topic and partition can be a dynamic value taken from the GDN stream worker event.

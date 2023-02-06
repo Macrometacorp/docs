@@ -1,5 +1,5 @@
 ---
-title: json (Sink Mapper)
+title: json
 ---
 
 This extension is an Event to JSON output mapper. Transports that publish messages can utilize this extension to convert Stream App events to JSON messages. You can either send a pre-defined JSON format or a custom JSON message.

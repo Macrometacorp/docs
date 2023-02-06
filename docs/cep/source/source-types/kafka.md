@@ -1,12 +1,8 @@
 ---
-title: kafka (Source)
+title: kafka
 ---
 
-A Kafka source receives events to be processed by GDP stream workers from a topic
-with a partition for a Kafka cluster. The events received can be in the
-`TEXT`, `JSON`, or `Binary` format. If the topic is not already
-created in the Kafka cluster, the Kafka sink creates the default
-partition for the given topic.
+A Kafka source receives events to be processed by GDP stream workers from a topic with a partition for a Kafka cluster. The events received can be in the `TEXT`, `JSON`, or `Binary` format. If the topic is not already created in the Kafka cluster, the Kafka sink creates the default partition for the given topic.
 
 ## Syntax
 
