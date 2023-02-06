@@ -1,5 +1,5 @@
 ---
-sidebar_position: 90
+sidebar_position: 30
 title: Error Handling at Sink
 ---
 

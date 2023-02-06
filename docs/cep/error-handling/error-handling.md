@@ -1,6 +1,6 @@
 ---
-sidebar_position: 190
-title: Error Handling
+sidebar_position: 40
+title: Error Handling Examples
 ---
 
 ## Logging
