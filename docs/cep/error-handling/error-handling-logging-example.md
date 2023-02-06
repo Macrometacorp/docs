@@ -7,6 +7,8 @@ title: Logging Example
 
 This example explains how errors are handled at the sink level with `log` mode. In the following example, the stream worker attempts to publish abnormal glucose reading events to an unavailable HTTP endpoint, and the error is recorded to the logs.
 
+For more information, refer to [Source Error Handling](source-error-handling.md) and [Sink Error Handling](sink-error-handling.md).
+
 ```sql
 -- Defines `GlucoseReadingStream` stream, which contains events related to glucose readings.
 CREATE STREAM GlucoseReadingStream (locationRoom string,
