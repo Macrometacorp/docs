@@ -69,4 +69,4 @@ The table below provides a brief description of a the potential parts of a strea
 | [Stream](../source/source-types/stream-source.md)   | A logical series of events ordered in time with a uniquely identifiable name, and a defined set of typed attributes defining its schema. |
 | Stream/Query Callback | A mechanism to programmatically consume output events from streams or queries. |
 | [Table](../store/table-collection.md)     | A structured representation of data stored with a defined schema. Stored data is backed by C8DB. The tables (aka collections) can be `local` or `geo-replicated`. Similarly the tables can be `document` or `graph` collections. The tables can be accessed and manipulated at runtime. |
-| [Trigger](../trigger.md)     | Triggers allow events to be periodically generated based on time or other conditions. |
+| [Trigger](../source/trigger.md)     | Triggers allow events to be periodically generated based on time or other conditions. |
