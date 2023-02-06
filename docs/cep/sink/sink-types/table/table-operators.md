@@ -11,7 +11,7 @@ This operator allows events to be inserted into tables. This is similar to inser
 
 :::warning
 If you insert duplicate data into a table that is defined with primary keys, then primary key constrain violations can occur.
-In such cases, use the [Update or Insert Into](#update-or-insert) operation.
+In such cases, use the [Update or Insert Into](#update-or-insert-into) operation.
 :::
 
 ### INSERT Syntax
@@ -57,7 +57,7 @@ FROM TempStream;
 This operator allows a stream to retrieve information from a table in a streaming manner.
 
 :::note
-Joins can also be performed with two [streams](../source/source-types/stream-source.md), [aggregations](../aggregations/index.md) or against externally [named windows](../windows/index.md).
+Joins can also be performed with two [streams](../../../source/source-types/stream-source.md), [aggregations](../../../aggregations/index.md) or against externally [named windows](../../../windows/index.md).
 :::
 
 ### JOIN Syntax
