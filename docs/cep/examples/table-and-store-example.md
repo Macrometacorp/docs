@@ -40,6 +40,6 @@ The stored values can be retrieved by joining tables and stores with the streams
 The data in `TemperatureDetailsTable` can be retrieved using on-demand queries as shown below, using the `On Demand Query REST API`.
 
 ```sql
-select *
-from TemperatureDetailsTable
+SELECT *
+FROM TemperatureDetailsTable
 ```
