@@ -8,7 +8,7 @@ To use a stream as a message queue:
 1. Establish a [shared subscription](subscriptions.md#shared) and use the same subscription name as the other consumers. 
 1. Set the **receiver queue** for the consumers.
 
-Use the following settings to establish a message queue. Change `receiver_queue_size` to update the message limit. 
+When you subscribe to a stream, use the following configuration settings depending on your SDK:
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
