@@ -63,24 +63,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: 'img/macrometa-preview-dark.png',
-      metadata: [
-        {
-          name: 'og:title',
-          content: 'Macrometa Docs'
-        },
-        {
-          name: 'og:description',
-          content: 'Powering the next generation of apps and APIs. Store, process, and serve data within milliseconds of everyone on the planet.'
-        },
-        {
-          name: 'og:url',
-          content: `${host}/docs/`
-        },
-        {
-          name: 'og:image',
-          content: `${host}/img/macrometa-preview-dark.png`
-        }
-      ],
+      metadata: [],
       algolia: {
         appId: 'GHXKYI4VEC', // public + read only and safe to commit
         apiKey: '91737ee0cdeab53f4cc7a1c650eee730', // public + read only and safe to commit
