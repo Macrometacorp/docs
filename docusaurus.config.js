@@ -120,6 +120,11 @@ const config = {
             href: '/api'
           },
           {
+            position: 'left',
+            label: 'Tools',
+            href: '/development'
+          },
+          {
             className: 'navbar__item--external',
             href: 'https://support.macrometa.com/',
             label: 'Support',

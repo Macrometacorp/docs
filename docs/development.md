@@ -22,4 +22,12 @@ slug: /development
     heading="SDKs"
     href="/sdks"
   />
+  <card
+    heading="Postman Collection"
+    href="https://www.postman.com/macrometa"
+  />
+  <card
+    heading="Jupyter Notebooks"
+    href="https://github.com/Macrometacorp/notebooks"
+  />
 </grid>
