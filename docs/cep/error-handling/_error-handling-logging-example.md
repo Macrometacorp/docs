@@ -1,3 +1,5 @@
+This example uses CEP logs, which are not yet available to customers.
+
 ---
 sidebar_position: 50
 title: Logging Example
