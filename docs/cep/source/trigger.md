@@ -31,9 +31,9 @@ The following types of triggers are currently supported:
 
 |Trigger type| Description|
 |-------------|-----------|
-|`'start'`| An event is triggered when a stream is started.|
+|`start`| An event is triggered when a stream is started.|
 |`every <time interval>`| An event is triggered periodically at the given time interval. Minimum supported time interval is millisecond. |
-|`'<cron expression>'`| An event is triggered periodically based on the given cron expression. For configuration details, see [CronTrigger](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/tutorials/tutorial-lesson-06.html). |
+|`<cron expression>`| An event is triggered periodically based on the given cron expression. For configuration details, see [CronTrigger](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/tutorials/tutorial-lesson-06.html). |
 
 ## Examples
 
@@ -41,22 +41,39 @@ The following types of triggers are currently supported:
   
   The following query triggers an event when the stream is started:
 
-  ```js
+  ```sql
   CREATE TRIGGER InitTrigger WITH (expression = 'start');
   ```
 
 - Trigger events regularly at specific time intervals.
 
-    The following query triggers events every five minutes:
+  The following query triggers events every five minutes:
 
-    ```js
-    CREATE TRIGGER FiveMinTriggerStream WITH(interval= 5 min);
-    ```
+  ```sql
+  CREATE TRIGGER FiveMinTriggerStream WITH(interval = 5 min);
+  ```
 
 - Trigger events at a specific time on specified days.
 
-    The following query triggers an event at 10.15 AM every weekday:
+  The following query triggers an event at 10.15 AM every weekday:
 
-    ```js
-    CREATE TRIGGER FiveMinTriggerStream1 WITH (expression='0 15 10 ? * MON-FRI');
-    ```
+  ```sql
+  CREATE TRIGGER FiveMinTriggerStream1 WITH (expression = '0 15 10 ? * MON-FRI');
+  ```
+
+- The following stream worker uses a trigger that runs a query worker every minute as the source.
+
+  ```sql
+  @App:name("runQueryWorker")
+  @App:description("Execute a query worker every minute.")
+  @App:qlVersion("2")
+
+  CREATE TRIGGER InitTrigger WITH (interval = 1 minute);
+
+  -- query.worker.name is the name of a query worker that already exists in the GeoFabric.
+  CREATE SINK queryWorkerStream WITH (type='query-worker', query.worker.name='queryWorkerSample')(startTime string);
+
+  INSERT INTO queryWorkerStream
+  SELECT time:dateFormat(eventTimestamp(), 'yyyy/MM/dd HH:mm:ss') as startTime
+  FROM InitTrigger
+  ```
