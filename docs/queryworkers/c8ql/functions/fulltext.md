@@ -2,7 +2,7 @@
 title: Fulltext Functions
 ---
 
-C8QL offers the following functions to filter data based on [fulltext indexes](../../../collections/index.mding/working-with-indexes#fulltext).
+C8QL offers the following functions to filter data based on [fulltext indexes](../../../collections/indexing/working-with-indexes#fulltext).
 
 ## FULLTEXT()
 

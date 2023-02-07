@@ -89,4 +89,4 @@ GDN provides the following methods of data retrieval:
 
 - Queries filter documents based on specified criteria, compute new data, and update or delete existing documents. Queries can be as simple as a "query by example" or as complex as "joins" using many collections or traversing graph structures. GDN queries are written in the [C8 Query Language (C8QL)](../../queryworkers/c8ql/index.md).
 - Cursors are used to iterate over the result of queries, so that you get easily processable batches instead of one big hunk.
-- Indexes can speed up your searches. Refer to the [Indexing](../index.mding/index.md) section for more information.
+- Indexes can speed up your searches. Refer to the [Indexing](../indexing/index.md) section for more information.
