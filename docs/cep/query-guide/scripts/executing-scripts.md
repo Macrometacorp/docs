@@ -78,7 +78,7 @@ To write custom function calls, follow the procedure below:
    
 ## Transform complex json data using Custom Functions
 
-Parsing complex JSON data would be good application to write custom functions. Consider that nested json data is received over an input stream. Defining a message schema while defining a stream as explained in [Consuming Data - Introduction](./consuming-data.md#introduction) can be cumbersome or error prone.
+Parsing complex JSON data would be good application to write custom functions. Consider that nested json data is received over an input stream. Defining a message schema while defining a stream as explained in [Consuming Data](../../tutorials/consuming-data.md) can be cumbersome or error prone.
 
 In the below example we will see how complex data can be parsed using custom javascript function.
 
@@ -86,26 +86,26 @@ To write custom function calls, follow the procedure below:
 
 1. Open the GUI. Click on `Stream Workers` tab.
 
-1. Click on **New** to start defining a new stream worker.
+2. Click on **New** to start defining a new stream worker.
 
-1. Enter a **Name** as `ProcessEmployeeData` or feel free to chose any other name for the stream worker.
+3. Enter a **Name** as `ProcessEmployeeData` or feel free to chose any other name for the stream worker.
 
-1. Enter a **Description**.
+4. Enter a **Description**.
 
-1. Define an input collection:
+5. Define an input collection:
 
     ```sql
 	CREATE SOURCE CompanyXInputStream WITH (type = 'database', collection = "CompanyXInputStream", collection.type="doc" , replication.type="global", map.type='json') (seqNo string, name string, address string);
     ```
    
-1. Define an output stream:
+6. Define an output stream:
 
     ```sql
 	CREATE SINK CompanyXProfessionalInfo WITH (type = 'stream', stream = "CompanyXProfessionalInfo", replication.type="local") (name string, workAddress string);
 
     ```   
 
-1. Consider that `CompanyXInputStream` will receive employee data in below format.
+7. Consider that `CompanyXInputStream` will receive employee data in below format.
 
     ```json
     {
@@ -130,9 +130,9 @@ To write custom function calls, follow the procedure below:
     }
     ```
 
-1. Consider that we want to convert `address.work` in the well formatted string.
+8. Consider that we want to convert `address.work` in the well formatted string.
 
-1. Define a javascript function to process `address` field.
+9. Define a javascript function to process `address` field.
 
     ```js
     define function getWorkAddress[javascript] return string {
@@ -144,7 +144,7 @@ To write custom function calls, follow the procedure below:
     };
     ```
    
-1. Write a query to a stream to transfom data using `getWorkAddress` function.
+10. Write a query to a stream to transfom data using `getWorkAddress` function.
 
     ```sql
     -- Data Processing
@@ -154,7 +154,7 @@ To write custom function calls, follow the procedure below:
     from CompanyXInputStream;
     ```
 
-1. Save the stream worker. The completed stream worker is as follows.
+11. Save the stream worker. The completed stream worker is as follows.
 
     ```sql
 	@App:name("ProcessEmployeeData")
