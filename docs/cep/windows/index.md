@@ -25,6 +25,40 @@ The following parameters are configured in a named window definition:
 | `<window type>(<parameter>, ...)`   | The window type associated with the window and its parameters.     |
 | `output <event type>` | This is optional. Keywords such as `current events`, `expired events`, and `all events` (the default) can be used to specify when the window output should be exposed. |
 
+## Window Types
+
+WINDOW SLIDING_TIME()
+WINDOW TUMBLING_TIME()
+WINDOW SLIDING_LENGTH()
+WINDOW TUMBLING_LENGTH()
+WINDOW SLIDING_TIME_LENGTH()
+WINDOW SESSION()
+WINDOW TUMBLING()
+WINDOW SORT()
+WINDOW CRON()
+WINDOW SLIDING_EXTERNAL_TIME()
+WINDOW TUMBLING_EXTERNAL_TIME()
+WINDOW DELAY()
+WINDOW SLIDING_EXPRESSION()
+WINDOW TUMBLING_EXPRESSION()
+
+#window.time()
+#window.timeBatch()
+#window.length()
+#window.lengthBatch()
+#window.timeLength()
+#window.session()
+#window.batch()
+#window.sort()
+#window.cron()
+#window.externalTime()
+#window.externalTimeBatch()
+#window.delay()
+#window.expression()
+#window.expressionBatch()
+
+
+
 ## Example 1
 
 ```sql
