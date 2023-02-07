@@ -121,7 +121,7 @@ const config = {
           },
           {
             position: 'left',
-            label: 'Tools',
+            label: 'Developer Tools',
             href: '/development'
           },
           {
