@@ -10,7 +10,7 @@ The stream processor allows you to perform a wide range of transformations to th
 
 ## Transform data using Operators
 
-The operators that you can configure inline within stream workers in order to carry out data transformations are listed in the [Stream Query Guide](../query-guide/index.md).
+The operators that you can configure inline within stream workers in order to carry out data transformations are listed in the [Stream Query Guide](../query-guide/index).
 
 To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
 the temperature of a room every second are transformed to indicate the average temperature and the average humidity as at each second.
@@ -28,7 +28,7 @@ the temperature of a room every second are transformed to indicate the average t
 	   CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
     ```
        
-   > For more information about defining input streams to receive events, see the [Consuming Data page](consuming-data.md).
+   > For more information about defining input streams to receive events, see the [Consuming Data page](consuming-data).
            
 7. Define the output stream which will receive the average temperature of each incomming message in the TempStream. The output stream definition is as follows:
  
@@ -101,6 +101,6 @@ The stream processor offers a variety of options to carry out data transformatio
 These transformations involve converting the message format to a different format after a the message is received, or 
 converting the format before publishing the message. This is managed via mapping. For detailed instructions to convert message formats via mapping, see the following guides:
  
- - [Consuming Messages - Supported Message Formats](consuming-data.md#supported-message-formats)
- - [Publishing Messages - Supported Message Formats](publishing-data.md#supported-message-formats)
+ - [Consuming Messages - Supported Message Formats](consuming-data#supported-message-formats)
+ - [Publishing Messages - Supported Message Formats](publishing-data#supported-message-formats)
 

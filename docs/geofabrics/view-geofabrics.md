@@ -6,7 +6,7 @@ title: View GeoFabrics
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page lists several methods for viewing GeoFabrics. Which GeoFabrics you can access depends on your assigned [Permissions](../account-management/permissions/index.md).
+This page lists several methods for viewing GeoFabrics. Which GeoFabrics you can access depends on your assigned [Permissions](../account-management/permissions/index).
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -29,7 +29,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric list](../cli/fabrics-cli.md#gdnsl-fabric-list) CLI command to list GeoFabrics and [gdnsl fabric describe](../cli/fabrics-cli.md#gdnsl-fabric-describe) CLI command to view GeoFabric details.
+Use the [gdnsl fabric list](../cli/fabrics-cli#gdnsl-fabric-list) CLI command to list GeoFabrics and [gdnsl fabric describe](../cli/fabrics-cli#gdnsl-fabric-describe) CLI command to view GeoFabric details.
 
 </TabItem>
 </Tabs>

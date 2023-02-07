@@ -23,7 +23,7 @@ wants to check the frequency with which a specific product needs to be repaired 
 If a specific product is brought back for repairs within two months more than five times, the manager of purchases needs
 to be notified via a mail. To do this, create a Stream application as follows.
 
-1. Start creating a new stream application and add the QL version. You can name it `DefectDetectionApp`. For instructions, see [Creating a Stream Application](create-stream-worker.md).
+1. Start creating a new stream application and add the QL version. You can name it `DefectDetectionApp`. For instructions, see [Creating a Stream Application](create-stream-worker).
 
     ```sql
     @App:name("DefectDetectionApp")
@@ -72,7 +72,7 @@ to be notified via a mail. To do this, create a Stream application as follows.
 
             * `<5:>` indicates that an output is generated only when the matching condition is met five times.
 
-            * A time window of `2 months` is added to consider only a period of two months in a sliding manner when counting the number of times the matching condition for the pattern is met. For more information about time windows, see [Summarizing Data - Calculate and store clock-time based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values)
+            * A time window of `2 months` is added to consider only a period of two months in a sliding manner when counting the number of times the matching condition for the pattern is met. For more information about time windows, see [Summarizing Data - Calculate and store clock-time based aggregate values](summarizing-data#calculate-and-store-clock-time-based-aggregate-values)
 
     3. To specify that the output has to directed to the `DefectiveProductsStream`, add the `insert into` clause as follows.
 
@@ -103,7 +103,7 @@ To understand how to combine several patterns logically and match events, consid
 needs to observe the factory output, identify any production decreases and check whether those decreases have reached
 maximum threshold which requires him to take action. To do this, you can create a Stream application as follows:
 
-1. Start creating a new stream application and add the QL version. You can name it `ProductionDecreaseDetectionApp` For instructions, see [Creating a Stream Application](create-stream-worker.md).
+1. Start creating a new stream application and add the QL version. You can name it `ProductionDecreaseDetectionApp` For instructions, see [Creating a Stream Application](create-stream-worker).
 
     ```sql
     @App:name("ProductionDecreaseDetectionApp")
@@ -122,7 +122,7 @@ maximum threshold which requires him to take action. To do this, you can create 
 	CREATE SINK ProductionDecreaseAlertStream WITH (type='log', prefix='Decrease in production detected:') (productName string, originalAmount long, laterAmount long, factoryBranch string);
     ```
 
-    The output directed to this stream is published via a sink of the `c8streams` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data.md).
+    The output directed to this stream is published via a sink of the `c8streams` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data).
 
 4. To apply the pattern so that the production trend can be observed, add the `from` clause as follows.
 
@@ -140,7 +140,7 @@ maximum threshold which requires him to take action. To do this, you can create 
 
         - The condition that should be met for `e1` and `e2` to be compared is `e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10`. This means, both the events should report the production of the same product, and there should be a decrease in production that is greater than 10 between the `e1` and `e2` events.
 
-        - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner. For more information about time windows, see [Calculate and store clock time-based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values).
+        - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner. For more information about time windows, see [Calculate and store clock time-based aggregate values](summarizing-data#calculate-and-store-clock-time-based-aggregate-values).
     :::
 
 5. To present the required output by deriving values for the attributes of the `ProductionDecreaseAlertStream` output stream you created, add the `select` clause as follows.
@@ -176,7 +176,7 @@ from every (e1=ProductionStream) -> e2=ProductionStream[e1.productName == e2.pro
 
 This section explains how to analyze data by observing scenarios where events do not occur. To understand how this is done, consider a taxi service company that tracks the movements of the taxis it runs and wants to be notified of unexpected delays. Consider a specific scenario where the manager needs to contact SDK if the taxi has not reached either of two specified locations within 15 minutes. For this, you can create a stream application as follows:
 
-1. Start creating a new stream application and add the QL version. You can name it `DelayDetectionApp` For instructions, see [Creating a Stream Application](create-stream-worker.md).
+1. Start creating a new stream application and add the QL version. You can name it `DelayDetectionApp` For instructions, see [Creating a Stream Application](create-stream-worker).
 
     ```sql
     @App:name("DelayDetectionApp")
@@ -196,7 +196,7 @@ This section explains how to analyze data by observing scenarios where events do
 
     ```
 
-    The output directed to this stream is published via a sink of the `http` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data.md).
+    The output directed to this stream is published via a sink of the `http` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data).
 
 4. To specify the pattern to be used to detect the delays, add the `from` clause as follows.
 
@@ -239,7 +239,7 @@ select LocationStream.taxiID, LocationStream.driverID, 'Unexpected Delay' as mes
 from not LocationStream[latitude == 44.0096 and longitude == 81.2735] for 15 minutes or not LocationStream[latitude == 43.0096 and longitude == 81.2737] for 15 minutes;
 ```
 
-For the complete list of methods in which you can apply patterns to detect non occuring events, see [Stream Query Guide - Detecting Non-Occurring Events](../query-guide/query.md#detecting-non-occurring-events).
+For the complete list of methods in which you can apply patterns to detect non occuring events, see [Stream Query Guide - Detecting Non-Occurring Events](../query-guide/query#detecting-non-occurring-events).
 
 ## Correlating events to find a trend(sequence)
 
@@ -252,7 +252,7 @@ This section explains how you can use sequences to detect trends in events that 
 
 Counting and matching multiple events over a given period is done via sequences when you need to identify trends in events that occur in a specific order. To understand how this is done, consider a scenario where the temperature is read from a sensor and you need to identify the peaks in temperature. If an event (i.e., a single reading) is a peak, it should report a temperaature greater than that reported by the event that occured immediately before it as well as the event that occurred immediately after it. Therefore, to identify the peaks, follow the procedure below:
 
-1. Start creating a new stream application and add the QL version. You can name it `TemperaturePeaksApp` For instructions, see [Creating a Stream Application](create-stream-worker.md).
+1. Start creating a new stream application and add the QL version. You can name it `TemperaturePeaksApp` For instructions, see [Creating a Stream Application](create-stream-worker).
 
     ```sql
     @App:name("TemperaturePeaksApp")
@@ -271,7 +271,7 @@ Counting and matching multiple events over a given period is done via sequences 
 	CREATE SINK PeakTempStream WITH (type='stream', stream.list='TemperaturePeak]:') (initialTemp double, peakTemp double);
     ```
 
-   The output directed to this stream is published via a sink of the `stream` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data.md).
+   The output directed to this stream is published via a sink of the `stream` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data).
 
 4. To specify how to identify the peaks, add a `from` clause as follows.
 
@@ -349,7 +349,7 @@ Logical sequences are used to identify logical relationships between events that
 		CREATE STREAM HumidStream (deviceID long, humid double);
  		```
 
-       The output directed to this stream is published via a sink of the `stream` type. For more information about publishing data via sinks, see the [Publishing Data guide](publishing-data.md).
+       The output directed to this stream is published via a sink of the `stream` type. For more information about publishing data via sinks, see the [Publishing Data guide](publishing-data).
 
 3. Now let's define an output stream to publish the temperature and humidity.
 
@@ -398,8 +398,8 @@ Logical sequences are used to identify logical relationships between events that
 
 ## Correlating two streams of data and unify
 
-For a detailed explanation, see [Enrich data by connecting with another stream of data](../enrich-data/enrich-data-with-stream.md).
+For a detailed explanation, see [Enrich data by connecting with another stream of data](../enrich-data/enrich-data-with-stream).
 
 ## Correlate a stream and a static data source to enrich
 
-For a detailed explanation, see [Enrich data by connecting with a data store](../enrich-data/enrich-data-external-services.md).
+For a detailed explanation, see [Enrich data by connecting with a data store](../enrich-data/enrich-data-external-services).

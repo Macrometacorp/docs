@@ -29,7 +29,7 @@ A _collection_ is a group of documents with a unique name and identifier. For th
 
 ![Create a collection](/img/quickstart/create-doc-view.png)
 
-Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
+Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index) locations.
 
 Our collection is now accessible worldwide! However, it's empty. Let's fix that.
 
@@ -92,7 +92,7 @@ Macrometa returns all records in the collection. You can view it as a **Table** 
 
 ## Step 5: Save the query as an API endpoint
 
-Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
+Macrometa allows you to save a query as a [Query Worker](queryworkers/index).
 
 1. Click **Save Query**.
 1. Name the query **getAddresses** and click **Save**. This saves the query so you can use it again.
@@ -113,7 +113,7 @@ In the previous step, you created the `getAddresses` Query Worker, which is basi
 1. Click **API Endpoint** and record the API Usage information.
 1. Test the query.
 
-To test a query, enter any necessary information in the [bind parameters](queryworkers/bind-parameters.md) and click **Run Query** or use the `curl` API call. The screenshot below shows how to enter information for testing.
+To test a query, enter any necessary information in the [bind parameters](queryworkers/bind-parameters) and click **Run Query** or use the `curl` API call. The screenshot below shows how to enter information for testing.
 
 ![Test a query](/img/quickstart/test-query.png)
 

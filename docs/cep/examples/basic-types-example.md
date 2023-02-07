@@ -5,7 +5,7 @@ title: Basic Types Example
 
 This page provides introduction to basic stream worker attribute types which are `int`, `long`, `float`, `double`, `string`, and `object`, and some key functions such as `convert()`, `instanceOf...()`, and `cast()`.
 
-In stream workers, other types such as [list](../query-guide/functions/list/index.md), [map](../query-guide/functions/map/index.md), etc, should be passed as an `object` into streams.
+In stream workers, other types such as [list](../query-guide/functions/list/index), [map](../query-guide/functions/map/index), etc, should be passed as an `object` into streams.
 
 ## Input
 

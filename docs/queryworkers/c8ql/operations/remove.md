@@ -7,7 +7,7 @@ The `REMOVE` keyword can be used to remove documents from a collection. On a sin
 
 For sharded collections, the entire query and/or remove operation may not be transactional, especially if it involves different shards and/or DB-Servers.
 
-Each `REMOVE` operation is restricted to a single collection, and the [collection name](remove.md) must not be dynamic. Only a single `REMOVE` statement per collection is allowed per C8QL query, and it cannot be followed by read or write operations that access the same collection, by traversal operations, or C8QL functions that can read documents.
+Each `REMOVE` operation is restricted to a single collection, and the [collection name](remove) must not be dynamic. Only a single `REMOVE` statement per collection is allowed per C8QL query, and it cannot be followed by read or write operations that access the same collection, by traversal operations, or C8QL functions that can read documents.
 
 The syntax for a remove operation is:
 
@@ -15,7 +15,7 @@ The syntax for a remove operation is:
 REMOVE keyExpression IN collection options
 ```
 
-*collection* must contain the name of the collection to remove the documents from. *keyExpression* must be an expression that contains the document identification. This can either be a string (which must then contain the [document key](remove.md)) or a document, which must contain a *_key* attribute.
+*collection* must contain the name of the collection to remove the documents from. *keyExpression* must be an expression that contains the document identification. This can either be a string (which must then contain the [document key](remove)) or a document, which must contain a *_key* attribute.
 
 The following queries are thus equivalent:
 

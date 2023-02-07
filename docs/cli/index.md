@@ -13,7 +13,7 @@ You can use commands with the GDN Command Line Interface (CLI) to perform many o
 
 ## Prerequisites
 
-Install Node.js and npm. We recommend using a version manager such as [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) (Node Version Manager).
+Install Node.js and npm. We recommend using a version manager such as [nvm](https://github.com/nvm-sh/nvm/blob/master/README) (Node Version Manager).
 
 ## Install GDN CLI
 

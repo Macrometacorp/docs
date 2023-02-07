@@ -95,9 +95,9 @@ All collections in the list that do not specify their own direction will use the
 
 ## Conditional shortest path
 
-The SHORTEST_PATH computation will only find an unconditioned shortest path. With this construct it is not possible to define a condition like: "Find the shortest path where all edges are of type *X*". If you want to do this, use a normal [Traversal](traversals.md) instead with the option `{bfs: true}` in combination with `LIMIT 1`.
+The SHORTEST_PATH computation will only find an unconditioned shortest path. With this construct it is not possible to define a condition like: "Find the shortest path where all edges are of type *X*". If you want to do this, use a normal [Traversal](traversals) instead with the option `{bfs: true}` in combination with `LIMIT 1`.
 
-Please also consider [to use `WITH`](../operations/with.md) to specify the collections you expect to be involved.
+Please also consider [to use `WITH`](../operations/with) to specify the collections you expect to be involved.
 
 ## Examples
 

@@ -61,7 +61,7 @@ gdnsl import COLLECTION-NAME [flags]
 
   --columns                 String should be a comma separated list of column names.
 
-  --primary-key string      If specified, this attribure will be used as _key of the new document. It must follow the [naming conventions](../naming-conventions.md#document-keys). If document already contains _key then it will be renamed as old_key.
+  --primary-key string      If specified, this attribure will be used as _key of the new document. It must follow the [naming conventions](../naming-conventions#document-keys). If document already contains _key then it will be renamed as old_key.
 
   --replace                 If true existing document having same _key in the colletion, shall be replaced.
 

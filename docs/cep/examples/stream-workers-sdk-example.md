@@ -9,7 +9,7 @@ import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
 import Steps from '../../_partials/_get-started-steps.md';
 import ConnectToGDN from '../../_partials/_connect-to-gdn-code-block.md';
 
-This article is an introduction to using stream workers (sometimes called stream apps) with [Macrometa SDKs](../../sdks/index.md).
+This article is an introduction to using stream workers (sometimes called stream apps) with [Macrometa SDKs](../../sdks/index).
 
 <Prerequisites />
 

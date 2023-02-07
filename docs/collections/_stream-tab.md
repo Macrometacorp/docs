@@ -2,7 +2,7 @@ Each collection in Macrometa GDN can be a stream. Collection streams use the Web
 
 The Stream tab is only displayed if streams are enabled on that collection.
 
-For more information about streams, refer to [Streams](../streams/index.md) and [Stream Workers](../cep/index.md).
+For more information about streams, refer to [Streams](../streams/index) and [Stream Workers](../cep/index).
 
 ## View a collection stream
 

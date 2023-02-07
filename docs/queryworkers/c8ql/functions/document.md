@@ -137,7 +137,7 @@ Determine the number of attribute keys of an object / document.
 - **doc** (object): a document / object
 - returns **attrCount** (number): the number of attribute keys in *doc*, regardless of their values
 
-*LENGTH()* can also determine the [number of elements](../functions/array.md#length) in an array, the [amount of documents](database.md#length) in a collection and the [character length](../functions/string.md#length) of a string.
+*LENGTH()* can also determine the [number of elements](../functions/array#length) in an array, the [amount of documents](database#length) in a collection and the [character length](../functions/string#length) of a string.
 
 ## MATCHES()
 
@@ -275,9 +275,9 @@ MERGE_RECURSIVE(
 
 `PARSE_IDENTIFIER(documentHandle) → parts`
 
-Parse a [document handle](document.md) and return its individual parts as separate attributes.
+Parse a [document handle](document) and return its individual parts as separate attributes.
 
-This function can be used to easily determine the [collection name](document.md) and key of a given document.
+This function can be used to easily determine the [collection name](document) and key of a given document.
 
 - **documentHandle** (string\|object): a document identifier string (e.g. *_users/1234*) or a regular document from a collection. Passing either a non-string or a non-document or a document without an *_id* attribute will result in an error.
 - returns **parts** (object): an object with the attributes `collection` and *key*

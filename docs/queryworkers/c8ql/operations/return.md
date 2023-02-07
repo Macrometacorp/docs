@@ -45,7 +45,7 @@ FOR u IN users
 
 Note: `RETURN` will close the current scope and eliminate all local variables in it. This is important to remember when working with [subqueries](../examples/#subqueries).
 
-[Dynamic attribute names](../data-types.md) are supported as well:
+[Dynamic attribute names](../data-types) are supported as well:
 
 ```js
 FOR u IN users
@@ -87,7 +87,7 @@ RETURN MERGE(
 ]
 ```
 
-Keep in mind that if the key expression evaluates to the same value multiple times, only one of the key/value pairs with the duplicate name will survive [MERGE()](../functions/document.md#merge). To avoid this, you can go without dynamic attribute names, use static names instead and return all document properties as attribute values:
+Keep in mind that if the key expression evaluates to the same value multiple times, only one of the key/value pairs with the duplicate name will survive [MERGE()](../functions/document#merge). To avoid this, you can go without dynamic attribute names, use static names instead and return all document properties as attribute values:
 
 ```js
 FOR u IN users

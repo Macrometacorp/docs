@@ -78,7 +78,7 @@ To write custom function calls, follow the procedure below:
    
 ## Transform complex json data using Custom Functions
 
-Parsing complex JSON data would be good application to write custom functions. Consider that nested json data is received over an input stream. Defining a message schema while defining a stream as explained in [Consuming Data - Introduction](./consuming-data.md#introduction) can be cumbersome or error prone.
+Parsing complex JSON data would be good application to write custom functions. Consider that nested json data is received over an input stream. Defining a message schema while defining a stream as explained in [Consuming Data - Introduction](./consuming-data#introduction) can be cumbersome or error prone.
 
 In the below example we will see how complex data can be parsed using custom javascript function.
 

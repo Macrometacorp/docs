@@ -11,7 +11,7 @@ This page shows you different methods for performing ad hoc queries.
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
-To see the full example, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example.md).
+To see the full example, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example).
 
 ```py
 q = "select * from SampleCargoAppDestTable limit 3"
@@ -22,7 +22,7 @@ print(result)
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-To see the full example, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example.md).
+To see the full example, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example).
 
 ```js
 const q = "select * from SampleCargoAppDestTable limit 3";
@@ -38,7 +38,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl stream-worker](../../cli/stream-workers-cli.md) CLI command to submit an ad hoc query.
+Use the [gdnsl stream-worker](../../cli/stream-workers-cli) CLI command to submit an ad hoc query.
 
 ```bash
 # Submit an ad hoc Stream query and get the result records from a store.

@@ -8,10 +8,10 @@ import TabItem from '@theme/TabItem';
 
 API keys are the recommended authentication method for access by apps and APIs.
 
-- You can apply granular permissions to API keys. For more information, refer to [Permissions](../permissions/index.md).
+- You can apply granular permissions to API keys. For more information, refer to [Permissions](../permissions/index).
 - You can manage API keys in multiple ways, including the web console.
 
-For more information about creating and managing API keys, refer to [Manage API Keys](../api-keys/index.md).
+For more information about creating and managing API keys, refer to [Manage API Keys](../api-keys/index).
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">

@@ -9,14 +9,14 @@ This page shows you how to use Akamai EdgeWorkers with Macrometa SDKs and API ca
 
 ## Create or Update EdgeWorker Metadata
 
-The first step to working with EdgeWorkers is to create EdgeWorker metadata. You can see more about parameters of metadata object in [Manage Integrations](../../docs/akamai/manage-integrations.md).
+The first step to working with EdgeWorkers is to create EdgeWorker metadata. You can see more about parameters of metadata object in [Manage Integrations](../../docs/akamai/manage-integrations).
 
 You can also check if there is existing metadata set up, update metadata, and delete metadata.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label=" JavaScript SDK">
 
-- Step 1. [Install the SDK](../../docs/sdks/install-sdks.md).
+- Step 1. [Install the SDK](../../docs/sdks/install-sdks).
 - Step 2. Create an instance of the jsC8.
 - Step 3. Access Function commands `client.function.<function method>`.
 

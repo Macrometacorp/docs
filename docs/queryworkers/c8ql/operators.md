@@ -61,7 +61,7 @@ Literal `%` and `_` need to be escaped with a backslash. Backslashes need to be 
 
 The pattern matching performed by the `LIKE` operator is case-sensitive.
 
-The regular expression operators `=~` and `!~` expect their left-hand operands to be strings, and their right-hand operands to be strings containing valid regular expressions as specified in the documentation for the C8QL function [REGEX_TEST()](functions/string.md).
+The regular expression operators `=~` and `!~` expect their left-hand operands to be strings, and their right-hand operands to be strings containing valid regular expressions as specified in the documentation for the C8QL function [REGEX_TEST()](functions/string).
 
 ## Array comparison operators
 
@@ -175,9 +175,9 @@ RETURN [-x, +y]
 // [5, 1]
 ```
 
-For exponentiation, there is a [numeric function](functions/numeric.md) `POW()`. The syntax `base ** exp` is not supported.
+For exponentiation, there is a [numeric function](functions/numeric) `POW()`. The syntax `base ** exp` is not supported.
 
-For string concatenation, you must use the [string function](functions/string.md) `CONCAT()`. Combining two strings with a plus operator (`"foo" + "bar"`) will not work!
+For string concatenation, you must use the [string function](functions/string) `CONCAT()`. Combining two strings with a plus operator (`"foo" + "bar"`) will not work!
 
 Some example arithmetic operations:
 
@@ -191,7 +191,7 @@ Some example arithmetic operations:
 +9.99
 ```
 
-The arithmetic operators accept operands of any type. Passing non-numeric values to an arithmetic operator will cast the operands to numbers using the type casting rules applied by the [TO_NUMBER()](functions/type-cast.md) function:
+The arithmetic operators accept operands of any type. Passing non-numeric values to an arithmetic operator will cast the operands to numbers using the type casting rules applied by the [TO_NUMBER()](functions/type-cast) function:
 
 - `null` will be converted to `0`
 - `false` will be converted to `0`, true will be converted to `1`

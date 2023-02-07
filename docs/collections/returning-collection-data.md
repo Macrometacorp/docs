@@ -10,7 +10,7 @@ This page describes how to retrieve larger result sets from a collection with th
 
 There are two recommended approaches depending on the volume of data being returned. The [Cursor](https://www.macrometa.com/docs/api#/operations/createQueryCursor) endpoint from Macrometa API can be used to fetch up to 30,000 records, this is an approximation based on platform limits. Attempting to return more than 30,000 from the endpoint may cause the query to exceed the query execution time limit and raise an error. The [Collection Export](https://www.macrometa.com/docs/api#/operations/ExportCollectionData) endpoint from Macrometa API is the recommended approach when retrieving an entire collection.
 
-Create a connection to the GDN using the jsc8 SDK. You will need an API key, JWT, or Email/Password to complete authentication. For more information, refer to [Authentication](../account-management/auth/index.md).
+Create a connection to the GDN using the jsc8 SDK. You will need an API key, JWT, or Email/Password to complete authentication. For more information, refer to [Authentication](../account-management/auth/index).
 
 ### SDK download
 

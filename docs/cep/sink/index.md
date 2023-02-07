@@ -41,14 +41,14 @@ The following is a list of some of the sink types supported by stream workers:
 
 |Source type | Description|
 | ------------- |-------------|
-| [database](../query-guide/table-collection.md) | Allow the stream worker to publish events to collections (doc, graphs) in the same or different geofabric. |
-| [Kafka](sink-types/kafka.md) | Publish events to Kafka topic. |
-| [stream](sink-types/stream-sink.md) | Publish events to a stream. |
-| [TCP](sink-types/tcp.md) | Publish events to a TCP service. |
+| [database](../query-guide/table-collection) | Allow the stream worker to publish events to collections (doc, graphs) in the same or different geofabric. |
+| [Kafka](sink-types/kafka) | Publish events to Kafka topic. |
+| [stream](sink-types/stream-sink) | Publish events to a stream. |
+| [TCP](sink-types/tcp) | Publish events to a TCP service. |
 
 ## Sink Mappers
 
-You can map different sink formats using sink mappers. For more information, refer to [Sink Mapping](sink-mapping/index.md).
+You can map different sink formats using sink mappers. For more information, refer to [Sink Mapping](sink-mapping/index).
 
 ## Example Stream Sink
 

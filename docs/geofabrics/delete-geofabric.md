@@ -6,7 +6,7 @@ title: Delete GeoFabrics
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page lists several methods for deleting GeoFabrics. Which GeoFabrics you can access depends on your assigned [Permissions](../account-management/permissions/index.md).
+This page lists several methods for deleting GeoFabrics. Which GeoFabrics you can access depends on your assigned [Permissions](../account-management/permissions/index).
 
 :::caution
 Deleting a GeoFabric removes all entities, including collections and stream workers, associated with it. Be sure you want to do this, because it cannot be undone!
@@ -30,7 +30,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric delete](../cli/fabrics-cli.md#gdnsl-fabric-delete) CLI command to delete GeoFabrics.
+Use the [gdnsl fabric delete](../cli/fabrics-cli#gdnsl-fabric-delete) CLI command to delete GeoFabrics.
 
 </TabItem>
 </Tabs>

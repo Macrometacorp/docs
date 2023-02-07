@@ -16,9 +16,9 @@ By the end of this tutorial, you will:
 - Understand the basics of Graph Edge collections.
 
 :::note
-Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../../cli/index.md), [API](https://www.macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
+Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../../cli/index), [API](https://www.macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
 
-If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../../../cli/queries-cli.md) command.
+If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../../../cli/queries-cli) command.
 :::
 
 ## Prerequisites
@@ -49,9 +49,9 @@ This tutorial guides you through several sets of tasks. To get the most out of t
 
 Enjoy and have fun!
 
-- [Part 1 - Basic Document Tasks](c8ql-crud.md)
-- [Part 2 - Filter Results](filter-results.md)
-- [Part 3 - Sort and Limit](sort-and-limit.md)
-- [Part 4 - Import Traits and Merge](import-and-merge.md)
-- [Part 5 - Graph Traversal](graph-traversal.md)
+- [Part 1 - Basic Document Tasks](c8ql-crud)
+- [Part 2 - Filter Results](filter-results)
+- [Part 3 - Sort and Limit](sort-and-limit)
+- [Part 4 - Import Traits and Merge](import-and-merge)
+- [Part 5 - Graph Traversal](graph-traversal)
 - [Part 6 - Geospatial Queries](geospatial-queries)

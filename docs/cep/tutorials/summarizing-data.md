@@ -33,7 +33,7 @@ The following sections explain how to calculate and store time-based aggregation
 
 To calculate and store time-based aggregation values for the scenario explained above, follow the procedure below.
 
-1. Start creating a new stream worker. You can name it `TradeApp` For instructions, see [Creating a Stream Worker](create-stream-worker.md).
+1. Start creating a new stream worker. You can name it `TradeApp` For instructions, see [Creating a Stream Worker](create-stream-worker).
 
     ```sql
     @App:name("TradeApp");
@@ -166,7 +166,7 @@ This subsection demonstrates how to summarize data for a short term based on tim
 
 To demonstrate this, consider a factory manager who wants to be able to check the production for the last hour at any given time. Every event represents a production run. For this purpose, a Stream worker can be created as follows:
 
-1. Start creating a new stream worker. You can name it `PastHourProductionApp` For instructions, see [Creating a Stream Worker](create-stream-worker.md).
+1. Start creating a new stream worker. You can name it `PastHourProductionApp` For instructions, see [Creating a Stream Worker](create-stream-worker).
 
    ```sql
    @App:name('PastHourProductionApp');
@@ -186,7 +186,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     ```
 
     :::note
-        A sink annotation is connected to the output stream to log the output events. You can view the logged events by clicking on the **Log Viewer** on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
+        A sink annotation is connected to the output stream to log the output events. You can view the logged events by clicking on the **Log Viewer** on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data).
     :::
 
 4. To define how the output is derived, add the `select` statement:
@@ -208,7 +208,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 
         (For example, when the stream processor calculates the total production during the time 13.00-14.00, next it calculates the total production during the time 13.01-14.01 after the 13.01 minute as elapsed.) 
         
-        For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate.md).
+        For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate).
     :::
 
 6. To group by the product name, add the `group by` clause as follows.
@@ -245,7 +245,7 @@ This subsection demonstrates how to summarize data for a specific number of even
 
 To demonstrate this, assume that a factory manager wants to track the maximum production in every 10 production runs. IOn order to do so, let's create a Stream worker as follows:
 
-1. Start creating a new stream worker. You can name it `ProductionApp` For instructions, see [Creating a Stream Worker](create-stream-worker.md).
+1. Start creating a new stream worker. You can name it `ProductionApp` For instructions, see [Creating a Stream Worker](create-stream-worker).
 
    ```sql
    @App:name('MaximumProductionApp')
@@ -265,7 +265,7 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
     ```
 
     :::note
-        A sink annotation is connected to the output stream to log the output events. You can view the logged events by simply clicking on the `Log Viewer` button on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
+        A sink annotation is connected to the output stream to log the output events. You can view the logged events by simply clicking on the `Log Viewer` button on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data).
     :::
         
 4. To define the subset of events to be considered based on the number of events, add the `from` clause with a `lengthBatch` window as follows.
@@ -274,7 +274,7 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
     from ProductionStream window lengthBatch(10)
     ```
     
-    `window lengthBatch` indicates that the window added is a length window that considers events in batches when determining subsets. The number of events in each batch is `10`. For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate.md).
+    `window lengthBatch` indicates that the window added is a length window that considers events in batches when determining subsets. The number of events in each batch is `10`. For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate).
 
 5. To derive the values for the `DetectedMaximumProductionStream` output stream, add the `select` statement as follows.
 

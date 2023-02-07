@@ -94,7 +94,7 @@ SELECT * FROM users WHERE id = $1 AND name = $2 -- right
 </TabItem>
 </Tabs>
 
-If you need to do string processing (concatenation, etc.) in the query, you need to use [C8QL string functions](c8ql/functions/string.md) to do so:
+If you need to do string processing (concatenation, etc.) in the query, you need to use [C8QL string functions](c8ql/functions/string) to do so:
 
 ```js
 FOR u IN users

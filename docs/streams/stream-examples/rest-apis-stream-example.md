@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import Prerequisites from '../../_partials/_prerequisites-api-key.md';
 import Steps from '../../_partials/_api-example-steps.md';
 
-This page shows you how to perform a basic pub-sub streams workflow using the Macrometa API. For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
+This page shows you how to perform a basic pub-sub streams workflow using the Macrometa API. For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index).
 
 ## Prerequisites
 
