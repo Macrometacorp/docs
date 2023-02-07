@@ -35,10 +35,10 @@ The following parameters are configured when defining a script.
 
 | Parameter     | Description |
 | ------------- |-------------|
-| `function name`| 	The name of the function. By convention, `camelCase` is used for the function name.|
-|`language name`| The name of the programming language used to define the script. Currently, Macrometa supports `javascript`.|
-| `return type`| The attribute type of the function’s return. This can be `int`, `long`, `float`, `double`, `string`, `bool`, or `object`. Here the function implementer should be responsible for returning the output attribute on the defined return type for proper functionality.
-|`operation of the function`| Here, the execution logic of the function is added. This logic should be written in the language specified under the `language name`, and it should return the output in the data type specified in the `return type` parameter.
+| function name | 	The name of the function. By convention, `camelCase` is used for the function name.|
+| language name | The name of the programming language used to define the script. Currently, Macrometa supports `javascript`.|
+| return type | The attribute type of the function’s return. This can be `int`, `long`, `float`, `double`, `string`, `bool`, or `object`. Here the function implementer should be responsible for returning the output attribute on the defined return type for proper functionality.
+| operation of the function| The execution logic of the function. This logic should be written in the language specified under the `language name`, and it should return the output in the data type specified in the `return type` parameter.
 
 ## Example 1
 
