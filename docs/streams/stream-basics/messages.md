@@ -27,13 +27,9 @@ GDN streams has two features, however, that enable you to override this default 
 
 All message retention and expiration is managed at the geofabric level. You can also add a [message queue](./message-queues/index.md) to a specific stream limit the number of messages in the backlog.
 
-The diagram below illustrates both concepts:
+The following diagram illustrates both concepts:
 
 ![stream-retention-expiry](/img/stream-retention-expiry.png)
-
-With message retention, shown at the top, a retention policy applied to all streams in a database dictates that some messages are durably stored in GDN even though they've already been acknowledged. Acknowledged messages that are not covered by the retention policy are deleted. Without a retention policy, all of the acknowledged messages would be deleted.
-
-With message expiration, shown at the bottom, some messages are deleted, even though they haven't been acknowledged, because they've expired according to the TTL applied to the namespace. For example, because a TTL of five minutes has been applied and the messages haven't been acknowledged but are 10 minutes old.
 
 :::note
 Contact support@macrometa.com if you need to change the message expiration TTL.
