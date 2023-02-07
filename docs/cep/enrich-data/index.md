@@ -20,4 +20,4 @@ Enrichment is inherently either joining data or doing calculations, but not all 
 Aside from the topics in this section, here are some additional resources for joining and enriching data.
 
 - [Stream Joins](../examples/data-pipelines#stream-joins) - An example showing how to join two streams based on a condition.
-- [Functions](../query-guide/functions/index) - Built-in functions provide many options for enriching your data.
+- [Functions](../query-guide/functions/index.md) - Built-in functions provide many options for enriching your data.

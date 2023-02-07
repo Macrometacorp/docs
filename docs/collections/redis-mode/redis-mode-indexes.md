@@ -3,7 +3,7 @@ title: Redis Mode Indexes
 sidebar_position: 40
 ---
 
-Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../indexing/index).
+Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../index.mding/index.md).
 
 ## Redis Mode Indexes
 

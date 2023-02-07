@@ -3,7 +3,7 @@ sidebar_position: 60
 title: Data Summarizations (Aggregations) Examples
 ---
 
-This page explains ways to aggregate or transform your data. For more information information on [windows](../query-guide/query#window) refer to [Stream Worker Query Guide](../query-guide/index).
+This page explains ways to aggregate or transform your data. For more information information on [windows](../query-guide/query#window) refer to [Stream Worker Query Guide](../query-guide/index.md).
 
 ## Sliding Time
 

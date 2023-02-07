@@ -29,7 +29,7 @@ A _collection_ is a group of documents with a unique name and identifier. For th
 
 ![Create a collection](/img/quickstart/create-doc-view.png)
 
-Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index) locations.
+Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
 
 Our collection is now accessible worldwide! However, it's empty. Let's fix that.
 
@@ -92,7 +92,7 @@ Macrometa returns all records in the collection. You can view it as a **Table** 
 
 ## Step 5: Save the query as an API endpoint
 
-Macrometa allows you to save a query as a [Query Worker](queryworkers/index).
+Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
 
 1. Click **Save Query**.
 1. Name the query **getAddresses** and click **Save**. This saves the query so you can use it again.

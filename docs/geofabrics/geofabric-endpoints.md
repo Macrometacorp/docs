@@ -6,7 +6,7 @@ title: Get GeoFabrics Endpoints
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page lists several methods for accessing the unique global or regional endpoints (URLs) for your GeoFabrics. You should use these unique URLs as endpoints when making requests against fabric assets such as collections and streams. Which GeoFabrics you can access depends on your assigned [Permissions](../account-management/permissions/index).
+This page lists several methods for accessing the unique global or regional endpoints (URLs) for your GeoFabrics. You should use these unique URLs as endpoints when making requests against fabric assets such as collections and streams. Which GeoFabrics you can access depends on your assigned [Permissions](../account-management/permissions/index.md).
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">

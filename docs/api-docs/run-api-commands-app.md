@@ -8,7 +8,7 @@ This page provides instructions for running API commands from the Macrometa cons
 ## Prerequisites
 
 - Access to a Macrometa account with the permissions for the command that you want to run.
-- An API key if you want to use one. For more information about managing API keys, refer to [Manage API Keys](../account-management/api-keys/index).
+- An API key if you want to use one. For more information about managing API keys, refer to [Manage API Keys](../account-management/api-keys/index.md).
 
 ## Run API Commands
 

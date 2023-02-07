@@ -171,7 +171,7 @@ The extra attribute, here called _distance_, is returned as part of the _loc_ va
 Great job! You can now use C8QL queries to enter, sort, and manipulate various kinds of data in interesting ways. Here is what you might do next:
 
 - Learn how to turn queries into endpoints with [Query Workers](../../query-workers).
-- Read through [C8QL Examples](../examples/index) for more ideas about what to do with C8QL.
-- Dig deeper into C8QL [Functions](../functions/index) and [Operations](../operations/index).
+- Read through [C8QL Examples](../examples/index.md) for more ideas about what to do with C8QL.
+- Dig deeper into C8QL [Functions](../functions/index.md) and [Operations](../operations/index.md).
 
 Have fun!

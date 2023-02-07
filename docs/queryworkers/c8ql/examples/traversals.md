@@ -5,7 +5,7 @@ title: Traversals
 
 ## Finding the start vertex via a geo query
 
-Our first example will locate the start vertex for a graph traversal via [a geo index](../../../collections/indexing/geo-indexes).
+Our first example will locate the start vertex for a graph traversal via [a geo index](../../../collections/index.mding/geo-indexes).
 
 We use the city graph and its geo indices: ![cities_graph\(1\)](/img/cities_graph.png)
 

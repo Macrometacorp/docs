@@ -8,7 +8,7 @@ This page provides instructions for running API commands from the Macrometa docu
 ## Prerequisites
 
 - Access to a Macrometa account with the permissions for the command that you want to run.
-- Appropriate authentication credentials. Refer to [Authentication](../account-management/auth/index) for more information.
+- Appropriate authentication credentials. Refer to [Authentication](../account-management/auth/index.md) for more information.
 
 ## Run API Commands
 

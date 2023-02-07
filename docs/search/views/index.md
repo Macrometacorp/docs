@@ -72,4 +72,4 @@ Indexed collections                 | Unlimited    | 1
 
 Search views guarantee the best execution plan (merge join) when querying multiple attributes.
 
-For more information about full-text indexes, refer to [Indexing](../../collections/indexing/fulltext-indexes).
+For more information about full-text indexes, refer to [Indexing](../../collections/index.mding/fulltext-indexes).

@@ -265,7 +265,7 @@ Assume that in the previous example, you do not need the device ID for further p
     FROM FilteredResultsStream;
     ```
 
-Modifying and replacing is also demonstrated in the [Enrich Data](../enrich-data/index) and [Transforming Data](transforming-data) pages.
+Modifying and replacing is also demonstrated in the [Enrich Data](../enrich-data/index.md) and [Transforming Data](transforming-data) pages.
 
 ## Handling attributes with `null` values
 

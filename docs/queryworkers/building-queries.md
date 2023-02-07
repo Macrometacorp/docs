@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Building Queries
 ---
 
-This page explains how to create a query in Macrometa. To learn more about what you can do with queries and the language for writing them, refer to [SQL in Macrometa](sql/index) and [C8 Query Language](c8ql/../index).
+This page explains how to create a query in Macrometa. To learn more about what you can do with queries and the language for writing them, refer to [SQL in Macrometa](sql/index.md) and [C8 Query Language](c8ql/../index.md).
 
 ## Query Editor
 

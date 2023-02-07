@@ -23,7 +23,7 @@ In this getting started guide, you will add search functionality to the Address 
 7. Follow steps 5 and 6 two more times, but add `firstName` in the second Mapping Definition and `email` in the third Mapping Definition.
 8. Click **Create**.
 
-Macrometa distributes this view index to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index) locations.
+Macrometa distributes this view index to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
 
 Our view is now accessible worldwide, and your three address collection key values are indexed and ready to query!
 
@@ -50,7 +50,7 @@ Our view is now accessible worldwide, and your three address collection key valu
 
 ## Step 3. Save the Query as an API Endpoint
 
-Macrometa allows you to save a query as a [Query Worker](../queryworkers/index).
+Macrometa allows you to save a query as a [Query Worker](../queryworkers/index.md).
 
 1. Click **Save Query**.
 2. Name the query **getContactBySearchTerm** and then click **Save**. This saves the query so you can use it again.

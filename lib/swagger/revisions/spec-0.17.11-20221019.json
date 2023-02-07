@@ -15596,7 +15596,7 @@
         "tags": ["Query Workers"]
       }
     },
-    "/_fabric/{fabric}/_api/index": {
+    "/_fabric/{fabric}/_api/index.md": {
       "get": {
         "description": "Fetch the list of all indexes of a collection.",
         "operationId": "getIndexes",
@@ -15648,7 +15648,7 @@
         "tags": ["Indexes"]
       }
     },
-    "/_fabric/{fabric}/_api/index/fulltext": {
+    "/_fabric/{fabric}/_api/index.md/fulltext": {
       "post": {
         "description": "Create full-text index, if it does not already exist.",
         "operationId": "createIndex#fulltext",
@@ -15708,7 +15708,7 @@
         "tags": ["Indexes"]
       }
     },
-    "/_fabric/{fabric}/_api/index/general": {
+    "/_fabric/{fabric}/_api/index.md/general": {
       "post": {
         "description": "Create a new index.\n\n**Note**: Indexing the system attribute _id is not supported for user-defined indexes. Manually creating an index using _id as an index attribute fails with an error.",
         "operationId": "createIndex:general",
@@ -15774,7 +15774,7 @@
         "tags": ["Indexes"]
       }
     },
-    "/_fabric/{fabric}/_api/index/geo": {
+    "/_fabric/{fabric}/_api/index.md/geo": {
       "post": {
         "description": "Create a geo index.\n\n**Note**: Geo indexes are always sparse, meaning that documents that do not contain the index attributes or have non-numeric values in the index attributes are not indexed.",
         "operationId": "createIndex#geo",
@@ -15840,7 +15840,7 @@
         "tags": ["Indexes"]
       }
     },
-    "/_fabric/{fabric}/_api/index/hash": {
+    "/_fabric/{fabric}/_api/index.md/hash": {
       "post": {
         "description": "Create a hash index.\n\n**Note**:\n- In a sparse index all documents are excluded from the index that do not contain at least one of the specified index attributes (i.e. *fields*) or that have a value of *null* in any of the specified index attributes. Such documents are not indexed and are not taken into account for uniqueness checks if the *unique* flag is set.\n- In a non-sparse index, these documents are indexed (for non-present indexed attributes, a value of *null* is used) and are taken into account for uniqueness checks if the *unique* flag is set.\n- Unique indexes on non-shard keys are not supported in a cluster.",
         "operationId": "createIndex:hash",
@@ -15906,7 +15906,7 @@
         "tags": ["Indexes"]
       }
     },
-    "/_fabric/{fabric}/_api/index/persistent": {
+    "/_fabric/{fabric}/_api/index.md/persistent": {
       "post": {
         "description": "Create a hash index.\n\n **Note**:\n- In a sparse index all documents are excluded from the index that do not contain at least one of the specified index attributes (i.e. *fields*) or that have a value of *null* in any of the specified index attributes. Such documents are not indexed and are not taken into account for uniqueness checks if the unique flag is set.\n- In a non-sparse index, these documents are indexed (for non-present indexed attributes, a value of *null* is used) and are taken into account for uniqueness checks if the *unique* flag is set.\n- Unique indexes on non-shard keys are not supported in a cluster.",
         "operationId": "createIndex:persistent",
@@ -15972,7 +15972,7 @@
         "tags": ["Indexes"]
       }
     },
-    "/_fabric/{fabric}/_api/index/skiplist": {
+    "/_fabric/{fabric}/_api/index.md/skiplist": {
       "post": {
         "description": "Create a hash index.\n\n**Note**:\n- In a sparse index all documents are excluded from the index that do not contain at least one of the specified index attributes (i.e. *fields*) or that have a value of *null* in any of the specified index attributes. Such documents are not indexed and are not taken into account for uniqueness checks if the *unique* flag is set.\n- In a non-sparse index, these documents are indexed (for non-present indexed attributes, a value of *null* is used) and are taken into account for uniqueness checks if the *unique* flag is set.\n- Unique indexes on non-shard keys are not supported in a cluster.",
         "operationId": "createIndex:skiplist",
@@ -16038,7 +16038,7 @@
         "tags": ["Indexes"]
       }
     },
-    "/_fabric/{fabric}/_api/index/ttl": {
+    "/_fabric/{fabric}/_api/index.md/ttl": {
       "post": {
         "description": "Create a hash index.",
         "operationId": "createIndex:ttl",
@@ -16104,7 +16104,7 @@
         "tags": ["Indexes"]
       }
     },
-    "/_fabric/{fabric}/_api/index/{collection}/{indexName}": {
+    "/_fabric/{fabric}/_api/index.md/{collection}/{indexName}": {
       "delete": {
         "description": "Remove an index.",
         "operationId": "dropIndex",

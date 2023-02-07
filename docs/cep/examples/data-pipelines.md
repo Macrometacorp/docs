@@ -9,7 +9,7 @@ This page explains ways to create data pipelines.
 
 This example shows joining two stream based on a condition.
 
-For more information on other [join operations](../query-guide/query#join-stream), refer to the [Stream Worker Query Guide](../query-guide/index).
+For more information on other [join operations](../query-guide/query#join-stream), refer to the [Stream Worker Query Guide](../query-guide/index.md).
 
 ### Stream Joins Example
 
@@ -54,7 +54,7 @@ When events are sent to `TemperatureStream` stream and `HumidityStream` stream, 
 
 ## Partition Events by Value
 
-This example shows partitioning events by attribute values. For more informatiON ON [partition](../query-guide/partition/index) refer the [Stream Query Guide](../query-guide/index).
+This example shows partitioning events by attribute values. For more informatiON ON [partition](../query-guide/partition/index.md) refer the [Stream Query Guide](../query-guide/index.md).
 
 ### Partition Events by Value Example
 

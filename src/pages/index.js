@@ -9,7 +9,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 // import Grid from '../components/Grid';
 
 /* Styles */
-// import styles from './index.module.css';
+// import styles from './index.md.module.css';
 
 /* Fonts */
 import '@fontsource/source-code-pro'

@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Enrich Data with a Collection
 ---
 
-This page explains how to enrich the data in a specific stream by joining it with a Macrometa [collection](../../collections/index).
+This page explains how to enrich the data in a specific stream by joining it with a Macrometa [collection](../../collections/index.md).
 
 For this purpose, consider a scenario where you receive sales records generated from multiple locations as events from an external system.
 
@@ -94,7 +94,7 @@ Define the input stream and the Macrometa collection that need to be joined as f
 
 #### Define the Source Stream
 
-This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Stream Source](../source/source-types/stream-source). For more information about streams in general, refer to [Streams](../../streams/index).
+This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Stream Source](../source/source-types/stream-source). For more information about streams in general, refer to [Streams](../../streams/index.md).
 
 ```sql
 CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
@@ -102,7 +102,7 @@ CREATE STREAM TransactionStream (userId long, transactionAmount double, location
 
 #### Define the Table (Collection)
 
-`CREATE TABLE` defines where the stream worker stores your data. In this case, it will be a [Document Store Collection](../../collections/documents/index) For more information about defining a TABLE in a stream worker, refer to [Table (Collection)](../query-guide/table-collection). For more information about collections in general, refer to [Collections](../../collections/index).
+`CREATE TABLE` defines where the stream worker stores your data. In this case, it will be a [Document Store Collection](../../collections/documents/index.md) For more information about defining a TABLE in a stream worker, refer to [Table (Collection)](../query-guide/table-collection). For more information about collections in general, refer to [Collections](../../collections/index.md).
 
 ```sql
 CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);

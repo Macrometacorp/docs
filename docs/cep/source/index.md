@@ -27,8 +27,8 @@ The `type` parameter of `CREATE SOURCE` annotation defines the source type that 
 
 ## Supported Stream Source Types
 
-All source types supported by Macrometa stream workers are documented in [Source Types](source-types/index).
+All source types supported by Macrometa stream workers are documented in [Source Types](source-types/index.md).
 
 ## Source Mapping
 
-For more information about the `map.type` annotation and source mapping, refer to [Source Mapping](source-mapping/index).
+For more information about the `map.type` annotation and source mapping, refer to [Source Mapping](source-mapping/index.md).

@@ -92,7 +92,7 @@ If you store a document having the array which does contain elements not having 
 GDN supports creating array indexes with a single <i>[\*]</i> operator per index attribute. For example, creating an index as follows is _not_ supported:
 
 ```cURL
-curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/hash?collection=c1' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index.md/hash?collection=c1' \
  -H 'Authorization: bearer <token>'                                                             \ 
  -d '{ "fields": ["tags[*].name[*].value" ], "type" : "hash"}'
 ```
@@ -233,7 +233,7 @@ One can create sorted indexes (type "skiplist" and "persistent") that index the 
 For example, to create a vertex centric index of the above type, you would simply do
 
 ```cURL
-curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index.md/skiplist?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "fields": [ "type" : "skiplist", ."fields": [ "_from", "timestamp" ] }'
 ```
@@ -255,7 +255,7 @@ will be considerably faster in case there are many edges originating in vertex `
 // Returns information about the indexes
 
 ```cURL
-curl -X 'GET' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index?collection=collectionName' \
+curl -X 'GET' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index.md?collection=collectionName' \
  -H 'Authorization: bearer <token>' 
 ```
 
@@ -268,7 +268,7 @@ Indexes should be created using the general method `ensureIndex`.
 ensures that an index exists
 
 ```cURL
-curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/<indexType>?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index.md/<indexType>?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ <Index description> }'
 ```
@@ -299,11 +299,11 @@ Calling this method returns an index object. Whether or not the index object exi
 **Examples**
 
 ```cURL
-curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index.md/hash?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "type": "hash", "fields": [ "a" ], "sparse": true }'
  
-curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index.md/hash?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "type": "hash", "fields": [ "a", "b"], "unique": true }'
 ```
@@ -311,7 +311,7 @@ curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/ha
 ```
 
 **Dropping an index:**
-curl -X 'DELETE' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/<collectionName>/<indexName>' \
+curl -X 'DELETE' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index.md/<collectionName>/<indexName>' \
  -H 'Authorization: bearer <token>'
 ```
 

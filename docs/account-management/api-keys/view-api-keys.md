@@ -31,7 +31,7 @@ To see API key permissions:
 1. Click the **API Keys** tab.
 1. Click the API key in the list that you want to change permissions for.
 
-   Macrometa displays permissions for that API key. Refer to [Permissions](../permissions/index) for information about each permission level.
+   Macrometa displays permissions for that API key. Refer to [Permissions](../permissions/index.md) for information about each permission level.
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -49,7 +49,7 @@ Use the [gdnsl apikey](../../cli/api-key-cli) CLI command to view and validate A
 
 Use the [gdnsl apikey get](../../cli/api-key-cli#gdnsl-apikey-get) CLI command to view API key access levels.
 
-Refer to [Permissions](../permissions/index) for information about each permission level.
+Refer to [Permissions](../permissions/index.md) for information about each permission level.
 
 </TabItem>
 </Tabs>
