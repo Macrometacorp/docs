@@ -50,7 +50,7 @@ The following types of triggers are currently supported:
   The following query triggers events every five minutes:
 
   ```sql
-  CREATE TRIGGER FiveMinTriggerStream WITH(interval= 5 min);
+  CREATE TRIGGER FiveMinTriggerStream WITH(interval = 5 min);
   ```
 
 - Trigger events at a specific time on specified days.
@@ -58,7 +58,7 @@ The following types of triggers are currently supported:
   The following query triggers an event at 10.15 AM every weekday:
 
   ```sql
-  CREATE TRIGGER FiveMinTriggerStream1 WITH (expression='0 15 10 ? * MON-FRI');
+  CREATE TRIGGER FiveMinTriggerStream1 WITH (expression = '0 15 10 ? * MON-FRI');
   ```
 
 - The following stream worker uses a trigger that runs a query worker every minute as the source.
@@ -68,7 +68,7 @@ The following types of triggers are currently supported:
   @App:description("Execute a query worker every minute.")
   @App:qlVersion("2")
 
-  CREATE TRIGGER InitTrigger WITH (interval=1 minute);
+  CREATE TRIGGER InitTrigger WITH (interval = 1 minute);
 
   -- query.worker.name is the name of a query worker that already exists in the GeoFabric.
   CREATE SINK queryWorkerStream WITH (type='query-worker', query.worker.name='queryWorkerSample')(startTime string);
