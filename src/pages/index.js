@@ -12,27 +12,17 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 // import styles from './index.module.css';
 
 /* Fonts */
-import '@fontsource/source-code-pro'
+import '@fontsource/source-code-pro';
 
 export default function Homepage() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout>
       <Head>
-        <meta title="Macrometa Docs" />
-        <meta property="og:title" content="Macrometa Docs" />
-        <meta property="og:url" content="https://www.macrometa.com/docs" />
-        <meta property="og:image" content="https://www.macrometa.com/docs/assets/images/map.png" />
-        <meta
-          property="og:description"
-          description="Powering the next generation of apps and APIs. Build performant apps on the edge with our lightning-fast, stateful serverless global data platform"
-        />
-        <link rel="canonical" href="https://www.macrometa.com/docs" />
         <link rel="preload" href="https://fonts.macrometa.com/averta/averta-cyrillic-regular.woff2" as="font" crossorigin />
         <link rel="preload" href="https://fonts.macrometa.com/averta/averta-cyrillic-semibold.woff2" as="font" crossorigin />
       </Head>
       <Redirect to={`${siteConfig.baseUrl}quickstart`} />
-
       {/* <div className={styles.heroBanner}>
         <h1>
           Documentation
