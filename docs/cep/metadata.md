@@ -45,7 +45,7 @@ The description format is:
 
 ## Docstrings and Other Information
 
-By convention, you can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/**` and `**/`. This is similar to a docstring in functions.
+You can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/**` and `**/`. This is similar to a docstring in functions.
 
 The format is:
 
@@ -65,5 +65,19 @@ Testing the Stream Worker:
 
 Error handling uses `@OnError(action='...')` before a source or stream to define how errors are handled. For more information, refer to [Error Handling](error-handling/index.md).
 
-## App Playback
+## Event Playback
 
+When the `@app:playback` annotation is added to the stream worker, the timestamp of the event (specified in an attribute) is treated as the current time. This results in events being processed faster.
+
+The following elements are configured with this annotation.
+
+|Annotation| Description|
+| ------------- |-------------|
+| idle.time | If no events are received during a time interval specified (in milliseconds) with this element, then the source system time is incremented by a number of seconds specified via the `increment` element.|
+| increment | The number of seconds by which the source system time must be incremented if no events are received during the time interval specified in the `idle.time` element. |
+
+In the following example, the stream worker system time is incremented by two seconds if no events arrive for a time interval of 100 milliseconds.
+
+```js
+@app:playback(idle.time = '100 millisecond', increment = '2 sec') 
+```
