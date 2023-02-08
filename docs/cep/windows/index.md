@@ -31,7 +31,7 @@ Macrometa supports the following window types:
 
 | Window Type     | Description |
 | ------------- |-------------|
-| WINDOW SLIDING_TIME()     | A sliding time window that holds events that arrived during the last windowTime period at a given time, and gets updated for each event arrival and expiration. For more information, refer to [Time](../query-guide/functions/core/time.md).   |
+| WINDOW SLIDING_TIME()     | A sliding time window that holds events that arrived during the last windowTime period at a given time, and gets updated for each event arrival and expiration. For more information, refer to [Time](../window-types/sliding-time.md).   |
 |      |    |
 |      |    |
 |      |    |
