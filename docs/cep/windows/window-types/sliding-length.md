@@ -2,21 +2,21 @@
 title: WINDOW SLIDING_LENGTH()
 ---
 
-A _sliding length window_ that holds the last `window.length` events at a given time, and gets updated for each arrival and expiration.
+A _sliding length window_ that holds the last `length` events at a given time, and gets updated for each arrival and expiration.
 
 ## Syntax
 
-    WINDOW SLIDING_LENGTH()(<INT> window.length)
+    WINDOW SLIDING_LENGTH(length <INT>)
 
 ## Query Parameters
 
 | Name          | Description     | Default Value | Possible Data Types | Optional | Dynamic |
 |----------|---------------------------------------|-------------|-----------------|----------|---------|
-| window.length | The number of events that should be included in a sliding length window. |          | INT        | No       | No      |
+| length | The number of events that should be included in a sliding length window. |          | INT        | No       | No      |
 
 ## Example
 
-    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) WINDOW SLIDING_LENGTH(10) output all events;
+    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) SLIDING_LENGTH(10) output all events;
 
     @info(name = 'query0')
     INSERT INTO StockEventWindow
