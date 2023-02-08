@@ -314,22 +314,22 @@ Filter conditions can be applied both before and/or after the window.
 
 **Core windows**
 
-Following are some core Stream windows, for more windows refer [here](functions/unique).
+Following are some core stream worker windows. For more windows, refer [here](functions/unique/deduplicate.md).
 
 | Core window function                                         | Description|
 |--------------------------------------------------------------|-------------|
-| [time](functions/core/time.md)                      | Retains events based on time in a sliding manner.|
-| [timeBatch](functions/core/timeBatch.md)                 | Retains events based on time in a tumbling/batch manner. |
-| [length](functions/core/length.md)                       | Retains events based on number of events in a sliding manner. |
-| [lengthBatch](functions/core/lengthBatch.md)             | Retains events based on number of events in a tumbling/batch manner. |
-| [timeLength](functions/core/timeLength.md)               | Retains events based on time and number of events in a sliding manner. |
-| [session](functions/core/session.md)                     | Retains events for each session based on session key. |
-| [batch](functions/core/batch.md)                                | Retains events of last arrived event chunk. |
-| [sort](functions/core/sort.md)                           | Retains top-k or bottom-k events based on a parameter value. |
-| [cron](functions/core/cron.md)                           | Retains events based on cron time in a tumbling/batch manner. |
-| [externalTime](functions/core/externalTime.md)           | Retains events based on event time value passed as a parameter in a sliding manner.|
-| [externalTimeBatch](functions/core/externalTimeBatch.md) | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
-| [delay](functions/core/delay.md)                         | Retains events and delays the output by the given time period in a sliding manner.|
+| [WINDOW SLIDING_TIME() ](../windows/window-types/sliding-time.md) | Retains events based on time in a sliding manner.|
+| [timeBatch](../windows/window-types/timeBatch.md)                 | Retains events based on time in a tumbling/batch manner. |
+| [length](../windows/window-types/length.md)                       | Retains events based on number of events in a sliding manner. |
+| [lengthBatch](../windows/window-types/lengthBatch.md)             | Retains events based on number of events in a tumbling/batch manner. |
+| [timeLength](../windows/window-types/timeLength.md)               | Retains events based on time and number of events in a sliding manner. |
+| [session](../windows/window-types/session.md)                     | Retains events for each session based on session key. |
+| [batch](../windows/window-types/batch.md)                         | Retains events of last arrived event chunk. |
+| [sort](../windows/window-types/sort.md)                           | Retains top-k or bottom-k events based on a parameter value. |
+| [cron](../windows/window-types/cron.md)                           | Retains events based on cron time in a tumbling/batch manner. |
+| [externalTime](../windows/window-types/externalTime.md)           | Retains events based on event time value passed as a parameter in a sliding manner.|
+| [externalTimeBatch](../windows/window-types/externalTimeBatch.md) | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
+| [delay](../windows/window-types/delay.md)                         | Retains events and delays the output by the given time period in a sliding manner.|
 
 **Example 1**
 
@@ -473,7 +473,7 @@ from TempStream window sliding_time(1)
 ```
 
 :::note
-This is just to illustrate how expired events work. Use the [delay](functions/core/delay.md) window for use cases where we need to delay events by a given time period.
+This is just to illustrate how expired events work. Use the [delay](../windows/window-types/delay.md) window for use cases where we need to delay events by a given time period.
 :::
 
 ### Aggregate Function
