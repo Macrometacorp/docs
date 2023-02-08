@@ -318,17 +318,17 @@ Following are some core stream worker windows. For more windows, refer [here](fu
 
 | Core window function                                         | Description|
 |--------------------------------------------------------------|-------------|
-| [WINDOW SLIDING_TIME() ](../windows/window-types/sliding-time) | Retains events based on time in a sliding manner.|
-| [WINDOW TUMBLING_TIME()](../windows/window-types/tumbling-time) | Retains events based on time in a tumbling/batch manner. |
-| [WINDOW SLIDING_LENGTH()](../windows/window-types/sliding-length)                       | Retains events based on number of events in a sliding manner. |
-| [WINDOW TUMBLING_LENGTH()](../windows/window-types/tumbling-length.md)             | Retains events based on number of events in a tumbling/batch manner. |
+| [SLIDING_TIME()](../windows/window-types/sliding-time) | Retains events based on time in a sliding manner.|
+| [TUMBLING_TIME()](../windows/window-types/tumbling-time) | Retains events based on time in a tumbling (batch) manner. |
+| [SLIDING_LENGTH()](../windows/window-types/sliding-length) | Retains events based on number of events in a sliding manner. |
+| [TUMBLING_LENGTH()](../windows/window-types/tumbling-length.md) | Retains events based on number of events in a tumbling (batch) manner. |
 | [timeLength](../windows/window-types/timeLength.md)               | Retains events based on time and number of events in a sliding manner. |
 | [session](../windows/window-types/session.md)                     | Retains events for each session based on session key. |
 | [batch](../windows/window-types/batch.md)                         | Retains events of last arrived event chunk. |
 | [sort](../windows/window-types/sort.md)                           | Retains top-k or bottom-k events based on a parameter value. |
-| [cron](../windows/window-types/cron.md)                           | Retains events based on cron time in a tumbling/batch manner. |
+| [cron](../windows/window-types/cron.md)                           | Retains events based on cron time in a tumbling (batch) manner. |
 | [externalTime](../windows/window-types/externalTime.md)           | Retains events based on event time value passed as a parameter in a sliding manner.|
-| [externalTimeBatch](../windows/window-types/externalTimeBatch.md) | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
+| [externalTimeBatch](../windows/window-types/externalTimeBatch.md) | Retains events based on event time value passed as a parameter in a a tumbling (batch) manner.|
 | [delay](../windows/window-types/delay.md)                         | Retains events and delays the output by the given time period in a sliding manner.|
 
 **Example 1**
