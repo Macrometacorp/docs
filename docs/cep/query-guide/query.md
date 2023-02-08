@@ -319,8 +319,8 @@ Following are some core stream worker windows. For more windows, refer [here](fu
 | Core window function                                         | Description|
 |--------------------------------------------------------------|-------------|
 | [WINDOW SLIDING_TIME() ](../windows/window-types/sliding-time.md) | Retains events based on time in a sliding manner.|
-| [timeBatch](../windows/window-types/timeBatch.md)                 | Retains events based on time in a tumbling/batch manner. |
-| [length](../windows/window-types/length.md)                       | Retains events based on number of events in a sliding manner. |
+| [WINDOW TUMBLING_TIME()](../windows/window-types/tumbling-time.md) | Retains events based on time in a tumbling/batch manner. |
+| [WINDOW SLIDING_LENGTH()](../windows/window-types/sliding-length.md)                       | Retains events based on number of events in a sliding manner. |
 | [lengthBatch](../windows/window-types/lengthBatch.md)             | Retains events based on number of events in a tumbling/batch manner. |
 | [timeLength](../windows/window-types/timeLength.md)               | Retains events based on time and number of events in a sliding manner. |
 | [session](../windows/window-types/session.md)                     | Retains events for each session based on session key. |
