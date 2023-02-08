@@ -19,7 +19,7 @@ CREATE SOURCE StockTable WITH (type='database',collection='StockTable',PrimaryKe
 -- Creates a persistent index named `SamplePersistentIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
 CREATE UNIQUE INDEX SamplePersistentIndex ON TABLE SampleGDNTable WITH(type="persistent", sparse="true", deduplicate="true") (sensorId);
 
--- Creates a hash index named `SampleHashIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
+-- Creates a hash index named `SampleHashIndex` on `SampleGDNTable` with properties {unique=true, sparse=true, deduplicate=true}.
 CREATE UNIQUE INDEX SampleHashIndex ON TABLE SampleGDNTable WITH(type="hash", sparse="true", deduplicate="true") (sensorId);
 
 -- Creates a skiplist index named `SampleSkiplistIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
