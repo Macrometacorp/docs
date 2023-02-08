@@ -6,7 +6,7 @@ A _sliding time window_ that holds events that arrived during the last window ti
 
 ## Syntax
 
-    time(<INT|LONG|TIME> window.time)
+    WINDOW SLIDING_TIME(<INT|LONG|TIME> window.time)
 
 ## Query Parameters
 
@@ -16,7 +16,7 @@ A _sliding time window_ that holds events that arrived during the last window ti
 
 ## Example
 
-    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) time(20) output all events;
+    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) WINDOW SLIDING_TIME(20) output all events;
 
     @info(name = 'query0')
     INSERT INTO cseEventWindow
