@@ -31,6 +31,6 @@ CREATE INDEX SampleFullTextIndex ON TABLE SampleGDNTable WITH(type="fulltext", m
 -- Creates a geo index named `SampleGeoIndex` on `SampleGDNTable` with property {geoJson=false}.
 CREATE INDEX SampleGeoIndex ON TABLE SampleGDNTable WITH(type="geo", geoJson="false") (sensorId);
 
--- Creates a ttl index named `SampleTTLIndex` on `SampleGDNTable` with following properties {expireAfter=3600}.
+-- Creates a ttl index named `SampleTTLIndex` on `SampleGDNTable` with property {expireAfter=3600}.
 CREATE INDEX SampleTTLIndex ON TABLE SampleGDNTable WITH(type="ttl", expireAfter="3600") (sensorId);
 ```
