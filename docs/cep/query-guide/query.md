@@ -322,7 +322,7 @@ Following are some core stream worker windows. For more windows, refer [here](fu
 | [TUMBLING_TIME()](../windows/window-types/tumbling-time) | Retains events based on time in a tumbling (batch) manner. |
 | [SLIDING_LENGTH()](../windows/window-types/sliding-length) | Retains events based on number of events in a sliding manner. |
 | [TUMBLING_LENGTH()](../windows/window-types/tumbling-length.md) | Retains events based on number of events in a tumbling (batch) manner. |
-| [timeLength](../windows/window-types/timeLength.md)               | Retains events based on time and number of events in a sliding manner. |
+| [SLIDING_TIME_LENGTH()](../windows/window-types/sliding-time-length.md)               | Retains events based on time and number of events in a sliding manner. |
 | [session](../windows/window-types/session.md)                     | Retains events for each session based on session key. |
 | [batch](../windows/window-types/batch.md)                         | Retains events of last arrived event chunk. |
 | [sort](../windows/window-types/sort.md)                           | Retains top-k or bottom-k events based on a parameter value. |
