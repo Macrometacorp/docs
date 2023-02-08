@@ -31,17 +31,16 @@ Macrometa supports the following window types:
 
 | Window Type     | Description |
 | ------------- |-------------|
-| [WINDOW SLIDING_TIME()](window-types/sliding-time)    | A sliding time window that holds events that arrived during the last windowTime period at a given time, and gets updated for each event arrival and expiration.   |
-| [WINDOW TUMBLING_TIME()](window-types/tumbling-time)   | A tumbling time batch window that holds and processes events that arrive during the `window.time` period as a batch.   |
-| [WINDOW SLIDING_LENGTH()](window-types/sliding-length) | A sliding length window that holds the last `window.length` events at a given time, and gets updated for each arrival and expiration.   |
-|      |    |
+| [WINDOW SLIDING_TIME()](window-types/sliding-time)    | Retains events based on time in a sliding manner.   |
+| [WINDOW TUMBLING_TIME()](window-types/tumbling-time)   | Retains events based on time in a tumbling (batch) manner.   |
+| [WINDOW SLIDING_LENGTH()](window-types/sliding-length) | Retains events based on number of events in a sliding manner.   |
+| [WINDOW TUMBLING_LENGTH()](window-types/tumbling-length.md)     | Retains events based on number of events in a tumbling (batch) manner.   |
 |      |    |
 |      |    |
 |      |    |
 
 
 
-WINDOW TUMBLING_LENGTH()
 WINDOW SLIDING_TIME_LENGTH()
 WINDOW SESSION()
 WINDOW TUMBLING()
@@ -53,7 +52,6 @@ WINDOW DELAY()
 WINDOW SLIDING_EXPRESSION()
 WINDOW TUMBLING_EXPRESSION()
 
-#window.length()
 #window.lengthBatch()
 #window.timeLength()
 #window.session()
