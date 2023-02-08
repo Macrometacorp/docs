@@ -27,6 +27,9 @@ const config = {
     require.resolve('./src/css/fonts.css'),
     require.resolve('./src/css/tailwind.css')
   ],
+  customFields: {
+    'VERCEL_ANALYTICS_ID': process.env.VERCEL_ANALYTICS_ID
+  },
 
   presets: [
     [

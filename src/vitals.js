@@ -1,6 +1,6 @@
 import { onCLS, onFID, onFCP, onLCP, onTTFB } from 'web-vitals';
+import siteConfig from '@generated/docusaurus.config';
 const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
-// const vitalsUrl = 'https://vitals.vercel-insights.com/v1/vitals';
 
 function getConnectionSpeed() {
   return 'connection' in navigator &&
@@ -11,7 +11,7 @@ function getConnectionSpeed() {
 }
 
 function sendAnalytics(metric) {
-  const analyticsId = process.env.VERCEL_ANALYTICS_ID;
+  const analyticsId = siteConfig.customFields.VERCEL_ANALYTICS_ID;
   console.log(analyticsId);
   if (!analyticsId) {
     return;
