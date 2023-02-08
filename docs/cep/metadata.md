@@ -45,7 +45,7 @@ The description format is:
 
 ## Docstrings and Other Information
 
-You can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/**` and `**/`. This is similar to a docstring in functions.
+You can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/**` and `**/`. This is similar to a `docstring` in functions.
 
 The format is:
 
