@@ -37,7 +37,7 @@ FROM TempStream;
 To allow a stream to retrieve information from a window based on a condition.
 
 :::note
-A join can also be performed with two [streams](../../streams/index.md), [aggregation](../aggregations/index.md), or with [tables (collections)](../sink/sink-types/table/index.md).
+A join can also be performed with two [streams](../../streams/index.md), [aggregation](../aggregations/index.md), or with [tables (collections)](../sink/table/index.md).
 :::
 
 ### JOIN Syntax
