@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Table Indexes
 ---
 
-Indexes allow tables to be searched/modified much faster. For more information about indexing tables (collections), refer to [Indexing](../../../../collections/indexing/index.md).
+Indexes allow tables to be searched/modified much faster. For more information about indexing tables (collections), refer to [Indexing](../../../collections/indexing/index.md).
 
 Indexes can be configured together with primary keys. When more than one attribute is used for index, each one of them is used to index the table for fast access to the data.
 
