@@ -28,7 +28,7 @@ CREATE UNIQUE INDEX SampleSkiplistIndex ON TABLE SampleGDNTable WITH(type="skipl
 -- Creates a fulltext index named `SampleFullTextIndex` on `SampleGDNTable` with property {minLength=3}.
 CREATE INDEX SampleFullTextIndex ON TABLE SampleGDNTable WITH(type="fulltext", minLength="3") (sensorId);
 
--- Creates a geo index named `SampleGeoIndex` on `SampleGDNTable` with following properties {geoJson=false}.
+-- Creates a geo index named `SampleGeoIndex` on `SampleGDNTable` with property {geoJson=false}.
 CREATE INDEX SampleGeoIndex ON TABLE SampleGDNTable WITH(type="geo", geoJson="false") (sensorId);
 
 -- Creates a ttl index named `SampleTTLIndex` on `SampleGDNTable` with following properties {expireAfter=3600}.
