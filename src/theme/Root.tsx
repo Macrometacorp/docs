@@ -1,9 +1,6 @@
 import React from 'react';
 import { Analytics } from '@vercel/analytics/react';
-import { 
-  reportWebVitals,
-  sendToVercelAnalytics
-} from '../vitals';
+import { reportWebVitals } from '../vitals';
 
 export default function Root({ children }) {
   return (
@@ -14,4 +11,4 @@ export default function Root({ children }) {
   );
 }
 
-reportWebVitals(sendToVercelAnalytics);
+reportWebVitals();

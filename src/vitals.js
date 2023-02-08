@@ -1,3 +1,4 @@
+import { onCLS, onFID, onFCP, onLCP, onTTFB } from 'web-vitals';
 const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
 
 function getConnectionSpeed() {
@@ -8,22 +9,7 @@ function getConnectionSpeed() {
     : '';
 }
 
-export const reportWebVitals = onPerfEntry => {
-  if (typeof document === 'undefined') {
-    return;
-  }
-  if (onPerfEntry && onPerfEntry instanceof Function) {
-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-      getCLS(onPerfEntry);
-      getFID(onPerfEntry);
-      getFCP(onPerfEntry);
-      getLCP(onPerfEntry);
-      getTTFB(onPerfEntry);
-    });
-  }
-};
-
-export function sendToVercelAnalytics(metric) {
+function sendAnalytics(metric) {
   const analyticsId = process.env.REACT_APP_VERCEL_ANALYTICS_ID;
   if (!analyticsId) {
     return;
@@ -40,9 +26,10 @@ export function sendToVercelAnalytics(metric) {
   };
 
   const blob = new Blob([new URLSearchParams(body).toString()], {
-    // This content type is necessary for `sendBeacon`
+    /* Content type required for navigator.sendBeacon */
     type: 'application/x-www-form-urlencoded',
   });
+
   if (navigator.sendBeacon) {
     navigator.sendBeacon(vitalsUrl, blob);
   } else
@@ -53,3 +40,14 @@ export function sendToVercelAnalytics(metric) {
       keepalive: true,
     });
 }
+
+export const reportWebVitals = () => {
+  if (typeof document === 'undefined') {
+    return;
+  }
+  onCLS(sendAnalytics);
+  onFID(sendAnalytics);
+  onFCP(sendAnalytics);
+  onLCP(sendAnalytics);
+  onTTFB(sendAnalytics);
+};
