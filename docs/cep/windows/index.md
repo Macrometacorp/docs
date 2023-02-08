@@ -35,13 +35,13 @@ Macrometa supports the following window types:
 | [TUMBLING_TIME()](window-types/tumbling-time)   | Retains events based on time in a tumbling (batch) manner.   |
 | [SLIDING_LENGTH()](window-types/sliding-length) | Retains events based on number of events in a sliding manner.   |
 | [TUMBLING_LENGTH()](window-types/tumbling-length.md)     | Retains events based on number of events in a tumbling (batch) manner.   |
-|      |    |
+| [SLIDING_TIME_LENGTH()](window-types/sliding-time-length.md)     | Retains events based on time and number of events in a sliding manner.   |
 |      |    |
 |      |    |
 
 
 
-WINDOW SLIDING_TIME_LENGTH()
+WINDOW 
 WINDOW SESSION()
 WINDOW TUMBLING()
 WINDOW SORT()
