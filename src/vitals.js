@@ -12,7 +12,6 @@ function getConnectionSpeed() {
 
 function sendAnalytics(metric) {
   const analyticsId = siteConfig.customFields.VERCEL_ANALYTICS_ID;
-  console.log(analyticsId);
   if (!analyticsId) {
     return;
   }
