@@ -1,5 +1,6 @@
 import { onCLS, onFID, onFCP, onLCP, onTTFB } from 'web-vitals';
 const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
+// const vitalsUrl = 'https://vitals.vercel-insights.com/v1/vitals';
 
 function getConnectionSpeed() {
   return 'connection' in navigator &&
@@ -10,7 +11,7 @@ function getConnectionSpeed() {
 }
 
 function sendAnalytics(metric) {
-  const analyticsId = process.env.REACT_APP_VERCEL_ANALYTICS_ID;
+  const analyticsId = process.env.VERCEL_ANALYTICS_ID;
   if (!analyticsId) {
     return;
   }
