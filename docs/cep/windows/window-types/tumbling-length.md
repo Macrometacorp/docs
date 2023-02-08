@@ -6,15 +6,15 @@ A batch (tumbling) length window that holds and process a number of events as sp
 
 ## Syntax
 
-    WINDOW TUMBLING_LENGTH(<INT> window.length)
-    WINDOW TUMBLING_LENGTH(<INT> window.length, <BOOL> stream.current.event)
+    WINDOW TUMBLING_LENGTH(length <INT>)
+    WINDOW TUMBLING_LENGTH(length <INT>, current.event <BOOL>)
 
 ## Query Parameters
 
 | Name      | Description       | Default Value | Possible Data Types | Optional | Dynamic |
 |-----------|---------------------|------------|--------------|----------|---------|
-| window.length        | The number of events the window should tumble.        |      | INT  | No       | No      |
-| stream.current.event | Let the window stream the current events out as and when they arrive to the window while expiring them in batches. | false | BOOL    | Yes      | No      |
+| length        | The number of events the window should tumble.        |      | INT  | No       | No      |
+| current.event | Let the window stream the current events out as and when they arrive to the window while expiring them in batches. | false | BOOL    | Yes      | No      |
 
 ## Example 1
 
@@ -41,7 +41,7 @@ This window sends the arriving events directly to the output letting the `sumPri
 ## Example 3
 
     CREATE STREAM InputEventStream (symbol string, price float, volume int);
-    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) WINDOW TUMBLING_LENGTH(10) output all events;
+    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) TUMBLING_LENGTH(10) output all events;
 
     @info(name = 'query0')
     INSERT INTO StockEventWindow
