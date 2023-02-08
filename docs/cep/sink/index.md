@@ -35,7 +35,7 @@ The attribute names in the double curly braces are replaced with the values from
 
 ## Sink Types
 
-The `type` parameter of the `sink.type` annotation defines the sink type that publishes the events. The other parameters of the `sink.type` annotation depends upon the selected sink type, and here some of its parameters can be optional and/or dynamic.
+The `type` parameter of the `sink.type` annotation defines the sink type that publishes the events. The other parameters of the `sink.type` annotation depends upon the selected sink type, and here some of its parameters can be optional and dynamic.
 
 For a full list of sink types supported by Macrometa stream workers, refer to [Sink Types](sink-types/index.md).
 
