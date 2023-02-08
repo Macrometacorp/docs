@@ -1,12 +1,12 @@
 ---
-title: length (Window)
+title: WINDOW SLIDING_LENGTH()
 ---
 
-A sliding length window that holds the last `window.length` events at a given time, and gets updated for each arrival and expiration.
+A _sliding length window_ that holds the last `window.length` events at a given time, and gets updated for each arrival and expiration.
 
 ## Syntax
 
-    length(<INT> window.length)
+    WINDOW SLIDING_LENGTH()(<INT> window.length)
 
 ## Query Parameters
 
@@ -16,15 +16,15 @@ A sliding length window that holds the last `window.length` events at a given ti
 
 ## Example
 
-    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) length(10) output all events;
+    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) WINDOW SLIDING_LENGTH(10) output all events;
 
     @info(name = 'query0')
-    insert into StockEventWindow
-    from StockEventStream;
+    INSERT INTO StockEventWindow
+    FROM StockEventStream;
 
     @info(name = 'query1')
-    insert all events into outputStream 
-    select symbol, sum(price) as price
-    from StockEventWindow;
+    INSERT all events INTO outputStream 
+    SELECT symbol, sum(price) AS price
+    FROM StockEventWindow;
 
-This processes the last 10 events in a sliding manner.
+This query processes the last 10 events in a sliding manner.
