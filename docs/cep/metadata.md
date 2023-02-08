@@ -37,7 +37,7 @@ The description format is:
 
 ## Query Language Version (Required)
 
-`qlVersion` is used for backwards compatibility with deprecated stream workers. All new stream workers use version 2, as shown below.
+`qlVersion` is used for backwards compatibility with deprecated stream workers. All new stream workers use version 2 as shown below.
 
 ```js
 @App:qlVersion("2")
