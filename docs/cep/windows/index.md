@@ -31,10 +31,10 @@ Macrometa supports the following window types:
 
 | Window Type     | Description |
 | ------------- |-------------|
-| [WINDOW SLIDING_TIME()](window-types/sliding-time)    | Retains events based on time in a sliding manner.   |
-| [WINDOW TUMBLING_TIME()](window-types/tumbling-time)   | Retains events based on time in a tumbling (batch) manner.   |
-| [WINDOW SLIDING_LENGTH()](window-types/sliding-length) | Retains events based on number of events in a sliding manner.   |
-| [WINDOW TUMBLING_LENGTH()](window-types/tumbling-length.md)     | Retains events based on number of events in a tumbling (batch) manner.   |
+| [SLIDING_TIME()](window-types/sliding-time)    | Retains events based on time in a sliding manner.   |
+| [TUMBLING_TIME()](window-types/tumbling-time)   | Retains events based on time in a tumbling (batch) manner.   |
+| [SLIDING_LENGTH()](window-types/sliding-length) | Retains events based on number of events in a sliding manner.   |
+| [TUMBLING_LENGTH()](window-types/tumbling-length.md)     | Retains events based on number of events in a tumbling (batch) manner.   |
 |      |    |
 |      |    |
 |      |    |
@@ -52,7 +52,6 @@ WINDOW DELAY()
 WINDOW SLIDING_EXPRESSION()
 WINDOW TUMBLING_EXPRESSION()
 
-#window.lengthBatch()
 #window.timeLength()
 #window.session()
 #window.batch()
@@ -69,7 +68,7 @@ WINDOW TUMBLING_EXPRESSION()
 ## Example 1
 
 ```sql
-CREATE WINDOW SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second);
+CREATE WINDOW SensorWindow (name string, value float, roomNo int, deviceID string) TUMBLING_TIME(1 second);
 ```
 
 This query returns all output when events arrive and when events expire from the window. The event type is not specified, so the stream worker returns both current and expired events as the output.
@@ -77,7 +76,7 @@ This query returns all output when events arrive and when events expire from the
 ## Example 2
 
 ```sql
-CREATE WINDOW SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second) output expired events;
+CREATE WINDOW SensorWindow (name string, value float, roomNo int, deviceID string) TUMBLING_TIME(1 second) output expired events;
 ```
 
 This query returns an output only when events expire from the window. The event type of the window is `expired events`, so the stream worker only returns the events that have expired from the window as the output.
