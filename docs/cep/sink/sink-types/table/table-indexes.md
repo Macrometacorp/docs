@@ -22,7 +22,7 @@ CREATE UNIQUE INDEX SamplePersistentIndex ON TABLE SampleGDNTable WITH(type="per
 -- Creates a hash index named `SampleHashIndex` on `SampleGDNTable` with properties {unique=true, sparse=true, deduplicate=true}.
 CREATE UNIQUE INDEX SampleHashIndex ON TABLE SampleGDNTable WITH(type="hash", sparse="true", deduplicate="true") (sensorId);
 
--- Creates a skiplist index named `SampleSkiplistIndex` on `SampleGDNTable` with following properties {unique=true, sparse=true, deduplicate=true}.
+-- Creates a skiplist index named `SampleSkiplistIndex` on `SampleGDNTable` with properties {unique=true, sparse=true, deduplicate=true}.
 CREATE UNIQUE INDEX SampleSkiplistIndex ON TABLE SampleGDNTable WITH(type="skiplist", sparse="true", deduplicate="true") (sensorId);
 
 -- Creates a fulltext index named `SampleFullTextIndex` on `SampleGDNTable` with property {minLength=3}.
