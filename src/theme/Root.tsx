@@ -1,9 +1,11 @@
 import React from 'react';
-import { inject } from '@vercel/analytics';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function Root({ children }) {
-  inject();
   return (
-    <>{children}</>
+    <>
+      {children}
+      <Analytics />
+    </>
   );
 }
