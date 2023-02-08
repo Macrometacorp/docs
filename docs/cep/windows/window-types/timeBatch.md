@@ -1,15 +1,15 @@
 ---
-title: timeBatch (Window)
+title: WINDOW TUMBLING_TIME()
 ---
 
-A batch (tumbling) time window that holds and process events that arrive during `window.time` period as a batch.
+A _tumbling time batch window_ holds and processes events that arrive during the `window.time` period as a batch.
 
 ## Syntax
 
-    timeBatch(<INT|LONG|TIME> window.time)
-    timeBatch(<INT|LONG|TIME> window.time, <INT|LONG> start.time)
-    timeBatch(<INT|LONG|TIME> window.time, <BOOL> stream.current.event)
-    timeBatch(<INT|LONG|TIME> window.time, <INT|LONG> start.time, <BOOL> stream.current.event)
+    WINDOW TUMBLING_TIME()(<INT|LONG|TIME> window.time)
+    WINDOW TUMBLING_TIME()(<INT|LONG|TIME> window.time, <INT|LONG> start.time)
+    WINDOW TUMBLING_TIME()(<INT|LONG|TIME> window.time, <BOOL> stream.current.event)
+    WINDOW TUMBLING_TIME()(<INT|LONG|TIME> window.time, <INT|LONG> start.time, <BOOL> stream.current.event)
 
 ## Query Parameters
 
@@ -26,7 +26,7 @@ A batch (tumbling) time window that holds and process events that arrive during 
     @info(name = 'query1')
     insert into OutputStream
     select symbol, sum(price) as price
-    from InputEventStream window tumbling_time(20 sec);
+    from InputEventStream WINDOW TUMBLING_TIME(20 sec);
 
 This window collects and processes incoming events as a batch every 20 seconds and then outputs them to a stream.
 
@@ -37,14 +37,14 @@ This window collects and processes incoming events as a batch every 20 seconds a
     @info(name = 'query1')
     insert into OutputStream
     select symbol, sum(price) as sumPrice
-    from InputEventStream window tumbling_time(20 sec, true);
+    from InputEventStream WINDOW TUMBLING_TIME(20 sec, true);
 
 This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually and on every 20 second interval it clears the window as a batch resetting the `sumPrice` to zero.
 
 ## Example 3
 
     CREATE STREAM InputEventStream (symbol string, price float, volume int);
-    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) timeBatch(20 sec) output all events;
+    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) WINDOW TUMBLING_TIME(20 sec) output all events;
 
     @info(name = 'query0')
     insert into StockEventWindow
