@@ -9,6 +9,9 @@ function getConnectionSpeed() {
 }
 
 export const reportWebVitals = onPerfEntry => {
+  if (typeof document === 'undefined') {
+    return;
+  }
   if (onPerfEntry && onPerfEntry instanceof Function) {
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
       getCLS(onPerfEntry);
