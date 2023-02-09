@@ -22,9 +22,9 @@ This example creates a sink to log events that arrive from a stream called `Temp
 CREATE SINK TemperatureOnlyStream WITH (type='stream', stream="TemperatureOnlyStream", replication.type="local", map.type='json') (temperature double);
 
 @info(name = 'Simple-selection')
-insert into TemperatureOnlyStream
-select temperature
-from TemperatureStream;
+INSERT INTO TemperatureOnlyStream
+SELECT temperature
+FROM TemperatureStream;
 ```
 
 ## Input

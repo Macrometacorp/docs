@@ -19,9 +19,9 @@ CREATE TABLE GLOBAL SensorIdInfoTable (sensorId string, roomNo string);
 
 @info(name = 'Join-query')
 -- Selects `sensorId`, `roomNo`, and `temperature` attributes from stream and table, and adds events to `TemperatureLogTable`.
-insert into TemperatureLogTable
-select t.sensorId as sensorId, s.roomNo as roomNo, t.temperature as temperature
-from TemperatureStream as t join SensorIdInfoTable as s
+INSERT INTO TemperatureLogTable
+SELECT t.sensorId as sensorId, s.roomNo as roomNo, t.temperature as temperature
+FROM TemperatureStream as t join SensorIdInfoTable as s
      on t.sensorId == s.sensorId;
 ```
 
@@ -40,6 +40,6 @@ The stored values can be retrieved by joining tables and stores with the streams
 The data in `TemperatureDetailsTable` can be retrieved using on-demand queries as shown below, using the `On Demand Query REST API`.
 
 ```sql
-select *
-from TemperatureDetailsTable
+SELECT *
+FROM TemperatureDetailsTable
 ```

@@ -18,9 +18,9 @@ CREATE STREAM TemperatureStream (sensorId string, temperature double);
 CREATE SINK TemperatureOnlyStream WITH (type='stream', topic='Temperature') (temperature double);
 
 @info(name = 'Simple-selection')
-insert into TemperatureOnlyStream
-select temperature
-from TemperatureStream;
+INSERT INTO TemperatureOnlyStream
+SELECT temperature
+FROM TemperatureStream;
 ```
 
 ## Input

@@ -172,13 +172,13 @@ CREATE SINK STREAM OverallTemperatureStream(avgTemperature double, maxTemperatur
 CREATE SINK STREAM SensorIdTemperatureStream(sensorId string, avgTemperature double, maxTemperature double);
 
 @info(name = 'Overall-analysis')
-insert into OverallTemperatureStream
+INSERT INTO OverallTemperatureStream
 -- Calculate average, maximum, and count for `temperature` attribute.
-select avg(temperature) as avgTemperature,
+SELECT avg(temperature) as avgTemperature,
        max(temperature) as maxTemperature,
        count() as numberOfEvents
 -- Aggregate every `4` events in a batch manner.
-from TemperatureStream window lengthBatch(4);
+FROM TemperatureStream window lengthBatch(4);
 
 @info(name = 'SensorId-analysis')
 INSERT INTO SensorIdTemperatureStream
