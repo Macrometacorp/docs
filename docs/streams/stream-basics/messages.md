@@ -25,7 +25,7 @@ GDN streams has two features, however, that enable you to override this default 
 - Message _retention_ allows you to store messages that have been acknowledged by a consumer.
 - Message _expiration_ allows you to set a time to live (TTL) for messages that have not yet been acknowledged.
 
-All message retention and expiration is managed at the geofabric level. You can also add a [message queue](./message-queues/index.md) to a specific stream limit the number of messages in the backlog.
+All message retention and expiration is managed at the geofabric level. You can also add a [message queue](./message-queues/) to a specific stream limit the number of messages in the backlog.
 
 The following diagram illustrates both concepts:
 
