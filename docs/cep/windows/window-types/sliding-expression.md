@@ -12,7 +12,7 @@ A sliding window that holds the last number of events defined by an expression a
 
 | Name          | Description     | Default Value | Possible Data Types | Optional | Dynamic |
 |----------|---------------------------------------|-------------|-----------------|----------|---------|
-| expression | An expression that defines what events should be included in a sliding length window. All possible expressions are allowed. |          | STR        | No       | No      |
+| expression | An expression that defines what events should be included in a sliding window. All possible expressions are allowed. |          | STR        | No       | No      |
 
 ## Example
 
