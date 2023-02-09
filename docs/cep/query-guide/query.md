@@ -316,22 +316,22 @@ Filter conditions can be applied both before and/or after the window.
 
 Following are some core stream worker windows. For more windows, refer [here](functions/unique/deduplicate).
 
-| Core window function                                                          | Description                                                                                    |
-| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| [SLIDING_TIME()](../windows/window-types/sliding-time)                        | Retains events based on time in a sliding manner.                                              |
-| [TUMBLING_TIME()](../windows/window-types/tumbling-time)                      | Retains events based on time in a tumbling (batch) manner.                                     |
-| [SLIDING_LENGTH()](../windows/window-types/sliding-length)                    | Retains events based on number of events in a sliding manner.                                  |
-| [TUMBLING_LENGTH()](../windows/window-types/tumbling-length)               | Retains events based on number of events in a tumbling (batch) manner.                         |
-| [SLIDING_TIME_LENGTH()](../windows/window-types/sliding-time-length)       | Retains events based on time and number of events in a sliding manner.                         |
-| [SESSION()](../windows/window-types/session)                               | Retains events for each session based on session key.                                          |
-| [TUMBLING()](../windows/window-types/tumbling)                             | Retains events of last arrived event batch.                                                    |
-| [SORT()](../windows/window-types/sort)                                     | Retains top-k or bottom-k events based on a parameter value.                                   |
-| [CRON()](../windows/window-types/cron)                                     | Retains events based on cron time in a tumbling (batch) manner.                                |
-| [SLIDING_EXTERNAL_TIME()](../windows/window-types/sliding-external-time)   | Retains events based on event time value passed as a parameter in a sliding manner.            |
-| [TUMBLING_EXTERNAL_TIME()](../windows/window-types/tumbling-external-time) | Retains events based on event time value passed as a parameter in a a tumbling (batch) manner. |
-| [DELAY()](../windows/window-types/delay)                                   | Retains events and delays the output by the given time period in a sliding manner.             |
+| Core window function              | Description                  |
+| --------------------------------- | ------------------------------- |
+| [CRON()](../windows/window-types/cron)               | Retains events based on cron time in a tumbling (batch) manner.          |
+| [DELAY()](../windows/window-types/delay)             | Retains events and delays the output by the given time period in a sliding manner.             |
+| [SESSION()](../windows/window-types/session)  | Retains events for each session based on session key.      |
+| [SORT()](../windows/window-types/sort)       | Retains top-k or bottom-k events based on a parameter value.   |
+| [TUMBLING()](../windows/window-types/tumbling)       | Retains events of last arrived event batch.        |
 | [SLIDING_EXPRESSION()](../windows/window-types/sliding-expression)           | Retains events based on an expression in a sliding manner.              |
 | [TUMBLING_EXPRESSION()](../windows/window-types/tumbling-expression)             | Retains events based on an expression in a tumbling (batch) manner.              |
+| [SLIDING_EXTERNAL_TIME()](../windows/window-types/sliding-external-time)   | Retains events based on event time value passed as a parameter in a sliding manner.            |
+| [TUMBLING_EXTERNAL_TIME()](../windows/window-types/tumbling-external-time) | Retains events based on event time value passed as a parameter in a a tumbling (batch) manner. |
+| [SLIDING_LENGTH()](../windows/window-types/sliding-length)                    | Retains events based on number of events in a sliding manner.            |
+| [TUMBLING_LENGTH()](../windows/window-types/tumbling-length)               | Retains events based on number of events in a tumbling (batch) manner.   |
+| [SLIDING_TIME()](../windows/window-types/sliding-time)  | Retains events based on time in a sliding manner.  |
+| [SLIDING_TIME_LENGTH()](../windows/window-types/sliding-time-length)       | Retains events based on time and number of events in a sliding manner.   |
+| [TUMBLING_TIME()](../windows/window-types/tumbling-time)| Retains events based on time in a tumbling (batch) manner.               |
 
 **Example 1**
 
