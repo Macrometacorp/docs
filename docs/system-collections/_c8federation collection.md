@@ -1,6 +1,6 @@
 ---
-sidebar_position: 30
-title: Confluent Python client
+sidebar_position: 10
+title: _c8Federation Collection
 ---
 
 Collection Name: _c8federation
