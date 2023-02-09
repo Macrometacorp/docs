@@ -16,15 +16,18 @@ A _sliding time window_ that holds events that arrived during the last window ti
 
 ## Example
 
-    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) SLIDING_TIME(20) output all events;
+```sql
+CREATE STREAM cseEventStream (symbol string, price float, volume int);
+CREATE WINDOW cseEventWindow (symbol string, price float, volume int) SLIDING_TIME(20) output all events;
 
-    @info(name = 'query0')
-    INSERT INTO cseEventWindow
-    FROM cseEventStream;
+@info(name = 'query0')
+INSERT INTO cseEventWindow
+FROM cseEventStream;
 
-    @info(name = 'query1')
-    INSERT all events INTO outputStream 
-    SELECT symbol, sum(price) AS price
-    FROM cseEventWindow;
+@info(name = 'query1')
+INSERT all events INTO outputStream 
+SELECT symbol, sum(price) AS price
+FROM cseEventWindow;
+```
 
 This query processes events that arrived within the last 20 milliseconds.

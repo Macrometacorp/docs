@@ -17,6 +17,7 @@ A _sliding length window_ that holds the last `length` events at a given time, a
 ## Example
 
 ```sql
+CREATE STREAM cseEventStream (symbol string, price float, volume int);
 CREATE WINDOW StockEventWindow (symbol string, price float, volume int) SLIDING_LENGTH(10) output all events;
 
 @info(name = 'query0')
