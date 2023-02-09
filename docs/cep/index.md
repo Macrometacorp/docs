@@ -6,7 +6,7 @@ title: Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A _stream worker_ performs complex event processing on data in motion, also called [streams](../streams/index.md). Macrometa GDN allows you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
+A _stream worker_ performs complex event processing on data in motion, also called [streams](../streams/). Macrometa GDN allows you to integrate streaming data and take appropriate actions. Most stream processing use cases involve collecting, analyzing, and integrating or acting on data generated during business activities by various sources.
 
 | Stage | Description |
 |-------|-------------|
@@ -29,7 +29,7 @@ You can process streams to perform the following actions with your data:
 - Extract, transform, and load (ETL) collections, tailing files, and scraping HTTP endpoints.
 - Integrating stream data and trigger actions based on the data. This can be a single service request or a complex enterprise integration flow.
 - Consume and publish events.
-- Run pre-made and custom [functions](query-guide/functions/index.md).
+- Run pre-made and custom [functions](query-guide/functions/).
 - Write custom [JavaScript functions](query-guide/custom-script-functions.md) to interact with your streams.
 - Query, modify, and join the data stored in [tables](query-guide/table-collection.md) which support primary key constraints and indexing.
 - Rule processing based on single event using [`filter`](query-guide/query.md#filter) operator, `if-then-else` and `match` [functions](query-guide/query.md#function), and many others.
@@ -50,7 +50,7 @@ The stream processing engine receives data event-by-event and processes them in 
 - Process them to transform, enrich, and generate insights.
 - Publish them to multiple types of sinks.
 
-To use stream processor, you need to write the processing logic as a stream application using streaming SQL language which is discussed in the [Stream Query Guide](query-guide/index.md).
+To use stream processor, you need to write the processing logic as a stream application using streaming SQL language which is discussed in the [Stream Query Guide](query-guide/).
 
 When the stream application is published, it:
 
