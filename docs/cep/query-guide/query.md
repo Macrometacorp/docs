@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Query
 ---
 
-A query defines the processing logic in stream workers. Each query consumes events from one or more streams, [named-windows][named-window](../windows/index.md), [tables](../sink/table/index.md), and/or [named-aggregations](../aggregations/index.md), process the events in a streaming manner, and generate output events into a [stream](../sink/sink-types/stream-sink.md), [named-window](../windows/index.md), or [table](../sink/table/index.md).
+A query defines the processing logic in stream workers. Each query consumes events from one or more streams, [named-windows][named-window](../windows/index.md), [tables](../table/index.md), and/or [named-aggregations](../aggregations/index.md), process the events in a streaming manner, and generate output events into a [stream](../sink/sink-types/stream-sink.md), [named-window](../windows/index.md), or [table](../table/index.md).
 
 **Purpose**
 
@@ -25,9 +25,9 @@ The following parameters are used to configure a stream definition.
 | Parameter  | Description |
 |----------------|-------------|
 | `query name`   | (Optional) The name of the query. If not provided, the stream randomly generates a name. |
-| `input`        | Defines the means of event consumption via [streams](../source/source-types/stream-source.md), [named-windows](../windows/index.md), [tables](../sink/table/index.md), and/or [named-aggregations](../aggregations/index.md), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
+| `input`        | Defines the means of event consumption via [streams](../source/source-types/stream-source.md), [named-windows](../windows/index.md), [tables](../table/index.md), and/or [named-aggregations](../aggregations/index.md), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
 | `projection`   | (Optional) Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. If not provided, then all the input events are sent to output as-is. |
-| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](../sink/sink-types/stream-sink.md), [named-window](../windows/index.md), or [tables](../sink/table/index.md).  |
+| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](../sink/sink-types/stream-sink.md), [named-window](../windows/index.md), or [tables](../table/index.md).  |
 
 ### Example
 
