@@ -3,17 +3,17 @@ sidebar_position: 80
 title: Custom Script Functions
 ---
 
-Scripts allow you to write functions in JavaScript and execute them within queries for a stream. Functions defined with scripts can be accessed in queries similar to any other inbuilt function. You can use function definitions to define these scripts.
+Scripts enable you to write functions in JavaScript and execute them within queries for a stream. A query can access these custom functions the same way as pre-built functions. Use function definitions to define these scripts.
 
-Function parameters are passed into the function logic as an `Object[]` and with the name `data`.
+Function parameters are passed into the function logic as an `Object[]` with the name `data`.
 
 ## Purpose
 
-Scripts allow you to define a function operation that is not provided in stream worker built-in functions. You do not need to write an extension to define the function logic.
+Scripts enable you to define a function that is not built into stream workers. You do not need to write an extension to define the function logic.
 
 ## Syntax
 
-The syntax for a script definition is as follows.
+The syntax for a script definition is:
 
 ```js
 define function <function name>[<javascript>] return <return type> {
@@ -21,13 +21,13 @@ define function <function name>[<javascript>] return <return type> {
 };
 ```
 
-The defined function can be used in the queries similar to inbuilt functions as follows.
+The defined function can be used in the queries similar to built-in functions:
 
 ```js
 <function name>( (<function parameter>(, <function parameter>)*)? )
 ```
 
-The custom functions defined with these function definitions have higher precedence compared to other functions.
+The custom functions have higher precedence than built-in functions.
 
 ## Parameters
 
@@ -36,9 +36,9 @@ The following parameters are configured when defining a script.
 | Parameter     | Description |
 | ------------- |-------------|
 | function name | 	The name of the function. By convention, `camelCase` is used for the function name.|
-| language name | The name of the programming language used to define the script. Currently, Macrometa supports `javascript`.|
+| language name | The name of the programming language used to define the script. Macrometa supports `javascript`.|
 | return type | The attribute type of the function’s return. This can be `int`, `long`, `float`, `double`, `string`, `bool`, or `object`. Here the function implementer should be responsible for returning the output attribute on the defined return type for proper functionality.
-| operation of the function| The execution logic of the function. This logic should be written in the language specified under the `language name`, and it should return the output in the data type specified in the `return type` parameter.
+| operation of the function| The running logic of the function. This logic should be written in the language specified under the `language name`, and it should return the output in the data type specified in the `return type` parameter.
 
 ## Example 1
 
