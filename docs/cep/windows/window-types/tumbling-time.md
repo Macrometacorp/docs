@@ -21,38 +21,44 @@ A _tumbling time batch window_ holds and processes events that arrive during the
 
 ## Example 1
 
-    CREATE STREAM InputEventStream (symbol string, price float, volume int);
+```sql
+CREATE STREAM InputEventStream (symbol string, price float, volume int);
 
-    @info(name = 'query1')
-    INSERT INTO OutputStream
-    SELECT symbol, sum(price) AS price
-    FROM InputEventStream WINDOW TUMBLING_TIME(20 sec);
+@info(name = 'query1')
+INSERT INTO OutputStream
+SELECT symbol, sum(price) AS price
+FROM InputEventStream WINDOW TUMBLING_TIME(20 sec);
+```
 
 This window collects and processes incoming events as a batch every 20 seconds and then outputs them to a stream.
 
 ## Example 2
 
-    CREATE STREAM InputEventStream (symbol string, price float, volume int);
+```sql
+CREATE STREAM InputEventStream (symbol string, price float, volume int);
 
-    @info(name = 'query1')
-    INSERT INTO OutputStream
-    SELECT symbol, sum(price) AS sumPrice
-    FROM InputEventStream WINDOW TUMBLING_TIME(20 sec, true);
+@info(name = 'query1')
+INSERT INTO OutputStream
+SELECT symbol, sum(price) AS sumPrice
+FROM InputEventStream WINDOW TUMBLING_TIME(20 sec, true);
+```
 
 This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually and on every 20 second interval it clears the window as a batch resetting the `sumPrice` to zero.
 
 ## Example 3
 
-    CREATE STREAM InputEventStream (symbol string, price float, volume int);
-    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) TUMBLING_TIME(20 sec) output all events;
+```sql
+CREATE STREAM InputEventStream (symbol string, price float, volume int);
+CREATE WINDOW StockEventWindow (symbol string, price float, volume int) TUMBLING_TIME(20 sec) output all events;
 
-    @info(name = 'query0')
-    INSERT INTO StockEventWindow
-    FROM InputEventStream;
+@info(name = 'query0')
+INSERT INTO StockEventWindow
+FROM InputEventStream;
 
-    @info(name = 'query1')
-    INSERT all events INTO OutputStream 
-    SELECT symbol, sum(price) AS price
-    FROM StockEventWindow;
+@info(name = 'query1')
+INSERT all events INTO OutputStream 
+SELECT symbol, sum(price) AS price
+FROM StockEventWindow;
+```
 
 This uses a defined window to process events arrived every 20 seconds as a batch and output all events.
