@@ -2,7 +2,7 @@
 title: WINDOW TUMBLING_LENGTH()
 ---
 
-A batch (tumbling) length window that holds and process a number of events as specified in the `window.length`.
+A batch (tumbling) length window that holds and process a number of events as specified in the `length`.
 
 ## Syntax
 
