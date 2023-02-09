@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Query
 ---
 
-A query defines the processing logic in stream workers. It consumes events from one or more streams, [named-windows][named-window](../windows/index.md), [tables](table-collection.md), and/or [named-aggregations](../aggregations/index.md), process the events in a streaming manner, and generate output events into a [stream](../sink/sink-types/stream-sink.md), [named-window][named-window](../windows/index.md), or [table](table-collection.md).
+A query defines the processing logic in stream workers. It consumes events from one or more streams, [named-windows][named-window](../windows/index), [tables](table-collection), and/or [named-aggregations](../aggregations/index), process the events in a streaming manner, and generate output events into a [stream](../sink/sink-types/stream-sink), [named-window][named-window](../windows/index), or [table](table-collection).
 
 **Purpose**
 
@@ -25,9 +25,9 @@ The following parameters are used to configure a stream definition.
 | Parameter  | Description |
 |----------------|-------------|
 | `query name`   | The name of the query. Since naming the query (i.e the `@name('<query name>')` annotation) is optional, when the name is not provided Stream assign a system generated name for the query. |
-| `input`        | Defines the means of event consumption via [streams](../source/source-types/stream-source.md), [named-windows](../windows/index.md), [tables](table-collection.md), and/or [named-aggregations](../aggregations/index.md), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
+| `input`        | Defines the means of event consumption via [streams](../source/source-types/stream-source), [named-windows](../windows/index), [tables](table-collection), and/or [named-aggregations](../aggregations/index), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
 | `projection`   | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
-| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](../sink/sink-types/stream-sink.md), [named-window](../windows/index.md), or [table](table-collection.md)  |
+| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](../sink/sink-types/stream-sink), [named-window](../windows/index), or [table](table-collection)  |
 
 ### Example
 
@@ -314,22 +314,24 @@ Filter conditions can be applied both before and/or after the window.
 
 **Core windows**
 
-Following are some core stream worker windows. For more windows, refer [here](functions/unique/deduplicate.md).
+Following are some core stream worker windows. For more windows, refer [here](functions/unique/deduplicate).
 
-| Core window function                                         | Description|
-|--------------------------------------------------------------|-------------|
-| [SLIDING_TIME()](../windows/window-types/sliding-time) | Retains events based on time in a sliding manner.|
-| [TUMBLING_TIME()](../windows/window-types/tumbling-time) | Retains events based on time in a tumbling (batch) manner. |
-| [SLIDING_LENGTH()](../windows/window-types/sliding-length) | Retains events based on number of events in a sliding manner. |
-| [TUMBLING_LENGTH()](../windows/window-types/tumbling-length.md) | Retains events based on number of events in a tumbling (batch) manner. |
-| [SLIDING_TIME_LENGTH()](../windows/window-types/sliding-time-length.md)               | Retains events based on time and number of events in a sliding manner. |
-| [session](../windows/window-types/session.md)                     | Retains events for each session based on session key. |
-| [batch](../windows/window-types/batch.md)                         | Retains events of last arrived event chunk. |
-| [sort](../windows/window-types/sort.md)                           | Retains top-k or bottom-k events based on a parameter value. |
-| [cron](../windows/window-types/cron.md)                           | Retains events based on cron time in a tumbling (batch) manner. |
-| [externalTime](../windows/window-types/externalTime.md)           | Retains events based on event time value passed as a parameter in a sliding manner.|
-| [externalTimeBatch](../windows/window-types/externalTimeBatch.md) | Retains events based on event time value passed as a parameter in a a tumbling (batch) manner.|
-| [delay](../windows/window-types/delay.md)                         | Retains events and delays the output by the given time period in a sliding manner.|
+| Core window function                                                          | Description                                                                                    |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [SLIDING_TIME()](../windows/window-types/sliding-time)                        | Retains events based on time in a sliding manner.                                              |
+| [TUMBLING_TIME()](../windows/window-types/tumbling-time)                      | Retains events based on time in a tumbling (batch) manner.                                     |
+| [SLIDING_LENGTH()](../windows/window-types/sliding-length)                    | Retains events based on number of events in a sliding manner.                                  |
+| [TUMBLING_LENGTH()](../windows/window-types/tumbling-length)               | Retains events based on number of events in a tumbling (batch) manner.                         |
+| [SLIDING_TIME_LENGTH()](../windows/window-types/sliding-time-length)       | Retains events based on time and number of events in a sliding manner.                         |
+| [SESSION()](../windows/window-types/session)                               | Retains events for each session based on session key.                                          |
+| [TUMBLING()](../windows/window-types/tumbling)                             | Retains events of last arrived event batch.                                                    |
+| [SORT()](../windows/window-types/sort)                                     | Retains top-k or bottom-k events based on a parameter value.                                   |
+| [CRON()](../windows/window-types/cron)                                     | Retains events based on cron time in a tumbling (batch) manner.                                |
+| [SLIDING_EXTERNAL_TIME()](../windows/window-types/sliding-external-time)   | Retains events based on event time value passed as a parameter in a sliding manner.            |
+| [TUMBLING_EXTERNAL_TIME()](../windows/window-types/tumbling-external-time) | Retains events based on event time value passed as a parameter in a a tumbling (batch) manner. |
+| [DELAY()](../windows/window-types/delay)                                   | Retains events and delays the output by the given time period in a sliding manner.             |
+| [SLIDING_EXPRESSION()](../windows/window-types/sliding-expression)           | Retains events based on an expression in a sliding manner.              |
+| [TUMBLING_EXPRESSION()](../windows/window-types/tumbling-expression)             | Retains events based on an expression in a tumbling (batch) manner.              |
 
 **Example 1**
 
@@ -473,7 +475,7 @@ from TempStream window sliding_time(1)
 ```
 
 :::note
-This is just to illustrate how expired events work. Use the [delay](../windows/window-types/delay.md) window for use cases where we need to delay events by a given time period.
+This is just to illustrate how expired events work. Use the [delay](../windows/window-types/delay) window for use cases where we need to delay events by a given time period.
 :::
 
 ### Aggregate Function
