@@ -17,15 +17,17 @@ A _sliding time window_ that at a given time holds the last `length` events that
 
 ## Example
 
-    CREATE STREAM cseEventStream (symbol string, price float, volume int);
-    CREATE WINDOW cseEventWindow (symbol string, price float, volume int) SLIDING_TIME_LENGTH(2 sec, 10);
+```sql
+CREATE STREAM cseEventStream (symbol string, price float, volume int);
+CREATE WINDOW cseEventWindow (symbol string, price float, volume int) SLIDING_TIME_LENGTH(2 sec, 10);
 
-    @info(name = 'query0')
-    INSERT INTO cseEventWindow
-    FROM cseEventStream;
+@info(name = 'query0')
+INSERT INTO cseEventWindow
+FROM cseEventStream;
 
-    @info(name = 'query1')
-    INSERT all events INTO outputStream
-    FROM cseEventWindow SELECT symbol, price, volume;
+@info(name = 'query1')
+INSERT all events INTO outputStream
+FROM cseEventWindow SELECT symbol, price, volume;
+```
 
 This window holds the last 10 events that arrived during the last two seconds and gets updated for every event arrival and expiration.
