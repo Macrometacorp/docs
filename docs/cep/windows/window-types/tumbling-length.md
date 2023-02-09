@@ -18,38 +18,44 @@ A batch (tumbling) length window that holds and process a number of events as sp
 
 ## Example 1
 
-    CREATE STREAM InputEventStream (symbol string, price float, volume int);
+```sql
+CREATE STREAM InputEventStream (symbol string, price float, volume int);
 
-    @info(name = 'query1')
-    INSERT INTO OutputStream
-    SELECT symbol, sum(price) AS price
-    FROM InputEventStream WINDOW TUMBLING_LENGTH(10);
+@info(name = 'query1')
+INSERT INTO OutputStream
+SELECT symbol, sum(price) AS price
+FROM InputEventStream WINDOW TUMBLING_LENGTH(10);
+```
 
 This collect and process 10 events as a batch and output them.
 
 ## Example 2
 
-    CREATE STREAM InputEventStream (symbol string, price float, volume int);
+```sql
+CREATE STREAM InputEventStream (symbol string, price float, volume int);
 
-    @info(name = 'query1')
-    INSERT INTO OutputStream
-    SELECT symbol, sum(price) AS sumPrice
-    FROM InputEventStream WINDOW TUMBLING_LENGTH(10, true);
+@info(name = 'query1')
+INSERT INTO OutputStream
+SELECT symbol, sum(price) AS sumPrice
+FROM InputEventStream WINDOW TUMBLING_LENGTH(10, true);
+```
 
 This window sends the arriving events directly to the output letting the `sumPrice` to increase gradually. After every 10 events, it clears the window as a batch and resets the `sumPrice` to zero.
 
 ## Example 3
 
-    CREATE STREAM InputEventStream (symbol string, price float, volume int);
-    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) TUMBLING_LENGTH(10) output all events;
+```sql
+CREATE STREAM InputEventStream (symbol string, price float, volume int);
+CREATE WINDOW StockEventWindow (symbol string, price float, volume int) TUMBLING_LENGTH(10) output all events;
 
-    @info(name = 'query0')
-    INSERT INTO StockEventWindow
-    FROM InputEventStream;
+@info(name = 'query0')
+INSERT INTO StockEventWindow
+FROM InputEventStream;
 
-    @info(name = 'query1')
-    INSERT all events INTO OutputStream 
-    SELECT symbol, sum(price) AS price
-    FROM StockEventWindow;
+@info(name = 'query1')
+INSERT all events INTO OutputStream 
+SELECT symbol, sum(price) AS price
+FROM StockEventWindow;
+```
 
 This uses a defined window to process 10 events as a batch and output all events.
