@@ -9,7 +9,7 @@ A table is a stored version of an stream or a table of events. Its schema is def
 
 Tables allow the stream worker to work with stored events. By defining a schema for tables, the stream processor enables them to be processed by queries using their defined attributes with the streaming data. You can also query the state of the stored events in the table.
 
-Any table defined in a stream worker is automatically a sink for that stream worker.
+Any table defined in a stream worker is automatically a sink and a store for that stream worker.
 
 ### Syntax
 
