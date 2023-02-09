@@ -16,15 +16,17 @@ A _sliding length window_ that holds the last `length` events at a given time, a
 
 ## Example
 
-    CREATE WINDOW StockEventWindow (symbol string, price float, volume int) SLIDING_LENGTH(10) output all events;
+```sql
+CREATE WINDOW StockEventWindow (symbol string, price float, volume int) SLIDING_LENGTH(10) output all events;
 
-    @info(name = 'query0')
-    INSERT INTO StockEventWindow
-    FROM StockEventStream;
+@info(name = 'query0')
+INSERT INTO StockEventWindow
+FROM StockEventStream;
 
-    @info(name = 'query1')
-    INSERT all events INTO outputStream 
-    SELECT symbol, sum(price) AS price
-    FROM StockEventWindow;
+@info(name = 'query1')
+INSERT all events INTO outputStream 
+SELECT symbol, sum(price) AS price
+FROM StockEventWindow;
+```
 
 This query processes the last 10 events in a sliding manner.
