@@ -18,7 +18,7 @@ A window that holds an incoming events batch. When a new set of events arrives, 
 ## Example 1
 
 ```sql
-CREATE STREAM consumerItemStream (itemId string, price float)
+CREATE STREAM consumerItemStream (itemId string, price float);
 
 INSERT INTO outputStream
 SELECT price, str:groupConcat(itemId) AS itemIds
