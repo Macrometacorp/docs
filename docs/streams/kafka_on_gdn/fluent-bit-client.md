@@ -73,7 +73,7 @@ bin/fluent-bit \
     -p rdkafka.request.required.acks=1
 ```
 
-Note: The full list of properties can be found [here](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md).
+Note: The full list of properties can be found [here](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION).
 
 ### Verify
 

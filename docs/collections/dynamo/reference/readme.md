@@ -110,10 +110,10 @@ If you want to sign and send AWS requests in a modern browser, or an environment
 
 ## Examples
 
-1. [Create a Table](createTable.md)
-2. [Create New Item](createNewItem.md)
-3. [Read an Item](readAnItem.md)
-4. [Update an Item](updateAnItem.md)
-5. [Delete an Item](deleteAnItem.md)
-6. [Update Table](updateTable.md)
-7. [Delete a Table](deleteTable.md)
+1. [Create a Table](createTable)
+2. [Create New Item](createNewItem)
+3. [Read an Item](readAnItem)
+4. [Update an Item](updateAnItem)
+5. [Delete an Item](deleteAnItem)
+6. [Update Table](updateTable)
+7. [Delete a Table](deleteTable)

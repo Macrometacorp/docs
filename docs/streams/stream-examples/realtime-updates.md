@@ -5,9 +5,9 @@ title: Real-Time DB Updates Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
-import Steps from '../../_partials/_get-started-steps.md';
-import ConnectToGDN from '../../_partials/_connect-to-gdn-code-block.md';
+import Prerequisites from '../../_partials/_prerequisites-sdk-api-key';
+import Steps from '../../_partials/_get-started-steps';
+import ConnectToGDN from '../../_partials/_connect-to-gdn-code-block';
 
 This tutorial demonstrates how to use Macrometa GDN as a real-time database with local latencies across the globe.
 
@@ -82,7 +82,7 @@ const sleep = (milliseconds) => {
 
 Add code to perform the following actions:
 
-1. Create a [document collection](../../collections/index.md) called `ddos` to which you subscribe. If a collection by that name already exists, the existing collection is used instead.
+1. Create a [document collection](../../collections/index) called `ddos` to which you subscribe. If a collection by that name already exists, the existing collection is used instead.
 1. Add `data` to the collection, then subscribe to the collection. In this example, we are adding IP addresses to block.
 1. Delete the collection.
 

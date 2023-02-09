@@ -6,7 +6,7 @@ import Card from "@site/src/components/Card";
 import Grid from "@site/src/components/Grid";
 
 export default {
-  ...MDXComponents,
+  ..XComponents,
   DocCardList: DocCardList,
   card: Card,
   grid: Grid

@@ -89,7 +89,7 @@ CONTAINS("foobarbaz", "ba", true) // 3
 CONTAINS("foobarbaz", "horse", true) // -1
 ```
 
-To determine if or at which position a value is included in an array, see the [POSITION() array function](array.md#position).
+To determine if or at which position a value is included in an array, see the [POSITION() array function](array#position).
 
 ## COUNT()
 
@@ -229,7 +229,7 @@ LENGTH("foobar") // 6
 LENGTH("电脑坏了") // 4
 ```
 
-_LENGTH()_ can also determine the [number of elements](array.md#length) in an array, the [number of attribute keys](document.md#length) of an object / document and the [amount of documents](database.md#length) in a collection.
+_LENGTH()_ can also determine the [number of elements](array#length) in an array, the [number of attribute keys](document#length) of an object / document and the [amount of documents](database#length) in a collection.
 
 ## LEVENSHTEIN_DISTANCE()
 

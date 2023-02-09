@@ -25,12 +25,12 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey get](../../cli/api-key-cli.md#gdnsl-apikey-set) CLI command to get user attributes.
+Use the [gdnsl apikey get](../../cli/api-key-cli#gdnsl-apikey-set) CLI command to get user attributes.
 
 </TabItem>
 <TabItem value="c8ql" label="C8QL">
 
-Use the [CURRENT_APIKEY_ATTRIBUTE](../../queryworkers/c8ql/functions/database.md#current_apikey_attribute) to return user attributes with a C8QL query.
+Use the [CURRENT_APIKEY_ATTRIBUTE](../../queryworkers/c8ql/functions/database#current_apikey_attribute) to return user attributes with a C8QL query.
 
 </TabItem>
 </Tabs>

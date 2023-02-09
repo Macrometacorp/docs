@@ -12,7 +12,7 @@ After you create the stream worker, there are instructions for testing it.
 
 ## Create a Stream Worker
 
-Refer to the [Stream Workers](/cep/index.md) section for an explanation of how stream workers function.
+Refer to the [Stream Workers](/cep/index) section for an explanation of how stream workers function.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Stream Workers**.

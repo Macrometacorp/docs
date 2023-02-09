@@ -21,7 +21,7 @@ Macrometa GDN uses 64-bit unsigned integer values to maintain collection IDs. Wh
 
 ## collection name
 
-A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](../references/naming-conventions.md) for more information on valid collection names.
+A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](../references/naming-conventions) for more information on valid collection names.
 
 ## confirm all writes
 

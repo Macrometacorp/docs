@@ -122,7 +122,7 @@ DOCUMENT( [ "users/john", "users/amy" ] )
 ```
 
 Please also consider to use
-[`DOCUMENT` in conjunction with `WITH`](../operations/with.md)
+[`DOCUMENT` in conjunction with `WITH`](../operations/with)
 
 ## LENGTH()
 
@@ -135,6 +135,6 @@ It calls [COLLECTION_COUNT()](#collection_count) internally.
 - **coll** (collection): a collection (not string)
 - returns **documentCount** (number): the total amount of documents in _coll_
 
-_LENGTH()_ can also determine the [number of elements](array.md#length) in an array,
-the [number of attribute keys](document.md#length) of an object / document and
-the [character length](string.md#length) of a string.
+_LENGTH()_ can also determine the [number of elements](array#length) in an array,
+the [number of attribute keys](document#length) of an object / document and
+the [character length](string#length) of a string.

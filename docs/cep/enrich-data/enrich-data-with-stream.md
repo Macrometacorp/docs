@@ -36,7 +36,7 @@ To understand how this is done, consider a scenario where you receive informatio
     ```
 
     !!!info
-        A sink annotation is connected to the output stream to publish the output events. For more information about adding sinks to publish events, see the [Publishing Data guide](../tutorials/publishing-data.md).
+        A sink annotation is connected to the output stream to publish the output events. For more information about adding sinks to publish events, see the [Publishing Data guide](../tutorials/publishing-data).
 
 4. To specify how the join is performed, and how to use the combined information, write a query to a stream as follows.
 
@@ -97,4 +97,4 @@ To understand how this is done, consider a scenario where you receive informatio
             having w.amount > d.amount * 0.95;
         ```
 
-For the different types of joins you can perform via streams, see [Stream Query Guide - Join](../query-guide/query.md#join-stream)
+For the different types of joins you can perform via streams, see [Stream Query Guide - Join](../query-guide/query#join-stream)

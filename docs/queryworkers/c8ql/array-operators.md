@@ -132,7 +132,7 @@ RETURN (
 ]
 ```
 
-Note that the elements are not de-duplicated. For a flat array with only unique elements, a combination of [UNIQUE()](functions/array.md) and [FLATTEN()](functions/array.md) is advisable.
+Note that the elements are not de-duplicated. For a flat array with only unique elements, a combination of [UNIQUE()](functions/array) and [FLATTEN()](functions/array) is advisable.
 
 ## Inline expressions
 
@@ -207,7 +207,7 @@ The pseudo-variable `CURRENT` can be used to access the current array element. T
 
 ### Inline limit
 
-The number of elements returned can be restricted with `LIMIT`. It works the same as the [limit operation](operations/limit.md). `LIMIT` must come after `FILTER` and before `RETURN`, if they are present.
+The number of elements returned can be restricted with `LIMIT`. It works the same as the [limit operation](operations/limit). `LIMIT` must come after `FILTER` and before `RETURN`, if they are present.
 
 ```js
 FOR u IN users

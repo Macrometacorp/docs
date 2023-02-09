@@ -23,7 +23,7 @@ Move documents from one collection to another or delete multiple documents. Clic
 
 ## Import Documents
 
-Import documents from a file. For more information, refer to [Add Documents from a File](add-document.md#add-documents-from-a-file).
+Import documents from a file. For more information, refer to [Add Documents from a File](add-document#add-documents-from-a-file).
 
 ## Export Documents
 
@@ -45,7 +45,7 @@ Click to turn streams on or off for this collection. When streams are enabled, y
 
 ## Create Document
 
-Create a new document inside the selected collection and add data in the form of attributes and values. For more information, refer to [Add Documents to Collection](add-document.md).
+Create a new document inside the selected collection and add data in the form of attributes and values. For more information, refer to [Add Documents to Collection](add-document).
 
 ## Delete Document
 

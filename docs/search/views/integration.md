@@ -9,9 +9,9 @@ To minimize performance reduction, we do not constantly synchronize search views
 
 You can link documents and edge collections to search views so your graphs can be treated as both flat and interconnected data structures. For example, you can find the most relevant vertices by searching and sorting with a search view, then perform a regular tree search on each vertex.
 
-Edit the [object definition](index.md#object-definition) to manage links between search views and collections. You can index any attribute at any depth, including nested attributes, and define Analyzers to process values for each field. To produce results, Analyzers you specify in the query must be defined in the search view.
+Edit the [object definition](index#object-definition) to manage links between search views and collections. You can index any attribute at any depth, including nested attributes, and define Analyzers to process values for each field. To produce results, Analyzers you specify in the query must be defined in the search view.
 
-By default, array elements are indexed individually as if each element is the value of the source attribute. You can use Analyzers to transform strings into multiple tokens that are handled similarly to an array of strings. Refer to [C8QL SEARCH operation](../../queryworkers/c8ql/operations/search.md) for details. Primitive values other than strings (`null`, `true`, `false`, numbers) are indexed unchanged. You can choose to index nested object values under the respective attribute path, including objects in arrays.
+By default, array elements are indexed individually as if each element is the value of the source attribute. You can use Analyzers to transform strings into multiple tokens that are handled similarly to an array of strings. Refer to [C8QL SEARCH operation](../../queryworkers/c8ql/operations/search) for details. Primitive values other than strings (`null`, `true`, `false`, numbers) are indexed unchanged. You can choose to index nested object values under the respective attribute path, including objects in arrays.
 
 You can manage search views by using:
 

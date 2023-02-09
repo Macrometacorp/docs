@@ -51,7 +51,7 @@ In case that the index was successfully created, an object with the index detail
 
 ## Fulltext C8QL Functions
 
-Fulltext C8QL functions are detailed in [Fulltext functions](../../queryworkers/c8ql/functions/fulltext.md).
+Fulltext C8QL functions are detailed in [Fulltext functions](../../queryworkers/c8ql/functions/fulltext).
 
 ## Create Fulltext Index in GDN Console
 
@@ -65,6 +65,6 @@ Fulltext C8QL functions are detailed in [Fulltext functions](../../queryworkers/
    - **Fields -** Single attribute path.
    - **Name -** The name of the index. If left blank, then Macrometa autogenerates the name.
    - **Min. length -** The minimum character of words in the index.
-   - **Create in Background -** If true, will create an index in the background rather than lock the collection while the index is created. This allows for basic CRUD operations to occur while the index is created. For more information, refer to [Create Index in Background](create-index-in-background.md).
+   - **Create in Background -** If true, will create an index in the background rather than lock the collection while the index is created. This allows for basic CRUD operations to occur while the index is created. For more information, refer to [Create Index in Background](create-index-in-background).
 
 1. Click **Create**.

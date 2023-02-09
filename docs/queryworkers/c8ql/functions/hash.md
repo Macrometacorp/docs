@@ -21,8 +21,8 @@ The hash value returned by this function is a number. The hash algorithm is not 
 
 See the following string functions:
 
-- [CRC32()](string.md#crc32)
-- [FNV64()](string.md#fnv64)
-- [MD5()](string.md#md5)
-- [SHA1()](string.md#sha1)
-- [SHA512()](string.md#sha512)
+- [CRC32()](string#crc32)
+- [FNV64()](string#fnv64)
+- [MD5()](string#md5)
+- [SHA1()](string#sha1)
+- [SHA512()](string#sha512)

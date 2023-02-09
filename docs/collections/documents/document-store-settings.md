@@ -5,9 +5,9 @@ sidebar_position: 50
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import ViewCollectionSettings from '../_partials/_view-collection-settings.md';
-import DocAndGraphSettings from '../_partials/_doc-and-graph-settings.mdx';
-import CollectionSettingsApi from '../_partials/_collection-settings-api.md';
+import ViewCollectionSettings from '../_partials/_view-collection-settings';
+import DocAndGraphSettings from '../_partials/_doc-and-graph-settingsx';
+import CollectionSettingsApi from '../_partials/_collection-settings-api';
 
 <Tabs groupId="operating-systems">
 <TabItem value="ui" label="UI">
@@ -25,7 +25,7 @@ You can view and update document store collection settings in the Settings tab.
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use [gdnsl collection describe](../../cli/collections-cli.md#gdnsl-collection-describe) to view information about a collection.
+Use [gdnsl collection describe](../../cli/collections-cli#gdnsl-collection-describe) to view information about a collection.
 
 Results will be similar to this code block:
 
@@ -48,7 +48,7 @@ Results will be similar to this code block:
 }
 ```
 
-Use [gdnsl collection update](../../cli/collections-cli.md#gdnsl-collection-update) to change collection settings.
+Use [gdnsl collection update](../../cli/collections-cli#gdnsl-collection-update) to change collection settings.
 
 </TabItem>
 <TabItem value="api" label="API">

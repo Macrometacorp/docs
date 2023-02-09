@@ -247,7 +247,7 @@ LOG10(0) // null
 
 `MAX(anyArray) → max`
 
-Return the greatest element of _anyArray_. The array is not limited to numbers. Refer to [Type and Value Order](../type-and-value-order.md).
+Return the greatest element of _anyArray_. The array is not limited to numbers. Refer to [Type and Value Order](../type-and-value-order).
 
 - **anyArray** (array): an array of numbers, _null_ values are ignored
 - returns **max** (any\|null): the element with the greatest value. If the array is empty or contains _null_ values only, the function will return _null_.
@@ -279,7 +279,7 @@ MEDIAN( [ 999, 80, 4, 4, 4, 3, 3, 3 ] ) // 4
 
 `MIN(anyArray) → min`
 
-Return the smallest element of _anyArray_. The array is not limited to numbers. Refer to [Type and Value Order](../type-and-value-order.md) for more information.
+Return the smallest element of _anyArray_. The array is not limited to numbers. Refer to [Type and Value Order](../type-and-value-order) for more information.
 
 - **anyArray** (array): an array of numbers, _null_ values are ignored
 - returns **min** (any\|null): the element with the smallest value. If the array is empty or contains _null_ values only, the function will return _null_.
@@ -393,7 +393,7 @@ Result:
 
 Return an array of numbers in the specified range, optionally with increments other than 1. The _start_ and _stop_ arguments are truncated to integers unless a _step_ argument is provided.
 
-Also see the [range operator](../operators.md#range-operator) for ranges with integer bounds and a step size of 1.
+Also see the [range operator](../operators#range-operator) for ranges with integer bounds and a step size of 1.
 
 - **start** (number): the value to start the range at (inclusive)
 - **stop** (number): the value to end the range with (inclusive)
@@ -426,7 +426,7 @@ ROUND(-2.50) // -2
 ROUND(-2.51) // -3
 ```
 
-Rounding towards zero, also known as _trunc()_ in C/C++, can be achieved with a combination of the [ternary operator](../operators.md#ternary-operator), [CEIL()](#ceil) and [FLOOR()](#floor):
+Rounding towards zero, also known as _trunc()_ in C/C++, can be achieved with a combination of the [ternary operator](../operators#ternary-operator), [CEIL()](#ceil) and [FLOOR()](#floor):
 
 ```js
 value >= 0 ? FLOOR(value) : CEIL(value)

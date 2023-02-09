@@ -35,4 +35,4 @@ In above example, the documents of *users* are sorted, the first two results get
 Variables, expressions and subqueries can not be used for *offset* and *count*. The values for *offset* and *count* must be known at query compile time, which means that you can only use number literals, bind parameters or expressions that can be resolved at query compile time.
 :::
 
-Where a `LIMIT` is used in relation to other operations in a query has meaning. `LIMIT` operations before `FILTER`s in particular can change the result significantly, because the operations are executed in the order in which they are written in the query. See [FILTER](filter.md#order-of-operations) for a detailed example.
+Where a `LIMIT` is used in relation to other operations in a query has meaning. `LIMIT` operations before `FILTER`s in particular can change the result significantly, because the operations are executed in the order in which they are written in the query. See [FILTER](filter#order-of-operations) for a detailed example.

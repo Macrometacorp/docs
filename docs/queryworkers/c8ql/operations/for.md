@@ -11,13 +11,13 @@ The versatile `FOR` keyword can be used to iterate over a collection or View, al
 FOR variableName IN expression
 ```
 
-There is also a special variant for [graph traversals](../graphs/traversals.md):
+There is also a special variant for [graph traversals](../graphs/traversals):
 
 ```js
 FOR vertexVariableName, edgeVariableName, pathVariableName IN traversalExpression
 ```
 
-For Views, there is a special (optional) [`SEARCH` keyword](search.md):
+For Views, there is a special (optional) [`SEARCH` keyword](search):
 
 ```js
 FOR variableName IN viewName SEARCH searchExpression

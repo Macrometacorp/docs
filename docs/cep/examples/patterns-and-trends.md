@@ -51,7 +51,7 @@ After processing the above input events, the event arriving at `HighTempAlertStr
 
 Counting patterns allow to match multiple events that might have been received for the same matching condition. The number of events matched per condition can be limited with condition postfixes.
 
-Refer the [Stream Query Guide](../query-guide/index.md) for more information.
+Refer the [Stream Query Guide](../query-guide/index) for more information.
 
 ### Counting Pattern Example
 

@@ -3,16 +3,16 @@ title: Document Store Indexes
 sidebar_position: 50
 ---
 
-Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../indexing/index.md).
+Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../indexing/index).
 
 ## Document Store Indexes
 
 You can create the following types of index for a document collection:
 
-- [Geo Index](../indexing/geo-indexes.md)
-- [Fulltext Index](../indexing/fulltext-indexes.md)
-- [Persistent Index](../indexing/persistent-indexes.md)
-- [TTL Index](../indexing/ttl-indexes.md)
+- [Geo Index](../indexing/geo-indexes)
+- [Fulltext Index](../indexing/fulltext-indexes)
+- [Persistent Index](../indexing/persistent-indexes)
+- [TTL Index](../indexing/ttl-indexes)
 
 Refer to each index type for more information about the index and for instructions on how to create and use it.
 

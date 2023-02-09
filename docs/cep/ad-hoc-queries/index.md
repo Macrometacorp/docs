@@ -35,5 +35,5 @@ In order to execute ad hoc queries, the stream worker you are using should have 
 
 ## Next Steps
 
-- [Perform ad hoc queries](perform-ad-hoc-queries.md).
-- [Look at ad hoc query examples](ad-hoc-examples.md).
+- [Perform ad hoc queries](perform-ad-hoc-queries).
+- [Look at ad hoc query examples](ad-hoc-examples).

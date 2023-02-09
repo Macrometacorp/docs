@@ -56,7 +56,7 @@ If you were to rename or translate one trait, then you would need to find all ot
 
 ## Import Traits Data
 
-Below you find the traits data. Follow the pattern shown in [Create Documents](c8ql-crud.md#create-documents) to import it:
+Below you find the traits data. Follow the pattern shown in [Create Documents](c8ql-crud#create-documents) to import it:
 
 1. Create a document collection named **Traits**.
 1. Assign the data to a variable in C8QL, `LET data = [ ... ]`.
@@ -164,7 +164,7 @@ The results return a Trait document with all fields for each trait for each char
 ]
 ```
 
-This is a bit too much information, so let's only return English labels using the [array expansion](../array-operators.md#array-expansion) notation:
+This is a bit too much information, so let's only return English labels using the [array expansion](../array-operators#array-expansion) notation:
 
 ```js
 FOR c IN Characters
@@ -240,8 +240,8 @@ Results will be similar to the following:
 
 Because you used an object `{ traits: ... }` which has the same attribute name _traits_ as the original character attribute, the latter is overwritten by the merge.
 
-For more information, refer to [MERGE()](../functions/document.md#merge).
+For more information, refer to [MERGE()](../functions/document#merge).
 
 ## Next Steps
 
-Great job! You can now combine data from different collections. When you're ready, continue the tutorial in [Part 5 - Graph Traversal](graph-traversal.md).
+Great job! You can now combine data from different collections. When you're ready, continue the tutorial in [Part 5 - Graph Traversal](graph-traversal).

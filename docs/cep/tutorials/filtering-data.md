@@ -16,7 +16,7 @@ To understand the different ways you can filter the specific data you need to tr
 ### Filtering based on exact match of attribute
 
  
-1. Start creating a new stream worker. For more information, see [Creating a Stream Worker](create-stream-worker.md).
+1. Start creating a new stream worker. For more information, see [Creating a Stream Worker](create-stream-worker).
 
 2. Enter a name for the stream worker via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
 
@@ -26,7 +26,7 @@ To understand the different ways you can filter the specific data you need to tr
     CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
     ```
 
-   >* For more information about defining input streams to receive events, see the [Consuming Data](./consuming-data.md).
+   >* For more information about defining input streams to receive events, see the [Consuming Data](./consuming-data).
    
 4. Define an output stream `Room2233Stream` to emit the result
 
@@ -265,7 +265,7 @@ Assume that in the previous example, you do not need the device ID for further p
     FROM FilteredResultsStream;
     ```
 
-Modifying and replacing is also demonstrated in the [Enrich Data](../enrich-data/index.md) and [Transforming Data](transforming-data.md) pages.
+Modifying and replacing is also demonstrated in the [Enrich Data](../enrich-data/index) and [Transforming Data](transforming-data) pages.
 
 ## Handling attributes with `null` values
 

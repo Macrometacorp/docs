@@ -17,7 +17,7 @@ Read through the complete example below to see how to perform tasks with SDKs or
 ## Pre-requisites
 
 - You must have a Macrometa account with admin privileges
-- [Install the SDK](install-sdks.md) that corresponds to the programming language you want to use.
+- [Install the SDK](install-sdks) that corresponds to the programming language you want to use.
 
 ## SDK Example
 

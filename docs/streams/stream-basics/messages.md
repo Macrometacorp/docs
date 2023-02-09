@@ -34,7 +34,7 @@ To use a stream as a message queue, you should distribute the receiver load on t
 
 Consumer settings:
 
-- Establish a [shared subscription](subscriptions.md#shared) and use the same subscription name as the other consumers. Otherwise the subscription is not shared, and the consumers can't act as a processing ensemble.
+- Establish a [shared subscription](subscriptions#shared) and use the same subscription name as the other consumers. Otherwise the subscription is not shared, and the consumers can't act as a processing ensemble.
 - If you want to have tight control over message dispatching across consumers, then set the consumers' **receiver queue** size very low (potentially even to 0 if necessary).
 
 Each stream has a receiver queue that determines how many messages the consumer will attempt to fetch at a time. A receiver queue of 1,000 (the default), for example, means that the consumer will attempt to process 1,000 messages from the stream's backlog upon connection. Setting the receiver queue to zero essentially means ensuring that each consumer is only doing one thing at a time.

@@ -100,7 +100,7 @@ Take an input _value_ of any type and convert it into an array value.
   - _null_ is converted to an empty array
   - Boolean values, numbers and strings are converted to an array containing the original value as its single element
   - Arrays keep their original value
-  - Objects / documents are converted to an array containing their attribute **values** as array elements, just like [VALUES()](document.md#values)
+  - Objects / documents are converted to an array containing their attribute **values** as array elements, just like [VALUES()](document#values)
 
 ```js
 TO_ARRAY(null) // []

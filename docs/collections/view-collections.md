@@ -38,10 +38,10 @@ You can filter collections by _name_ or by _type_.
 
 When viewing your collections, you can click **New Collection** to create a new collection. For full instructions, refer to the following topics:
 
-- [Create a Document Store](documents/create-document-store.md)
-- [Create a Key-Value Store](keyvalue/create-key-value-store.md)
-- [Create a Dynamo Table](dynamo/create-dynamo-table.md)
-- [Create a Graph Edge](graph-edge/create-graph-edge.md)
+- [Create a Document Store](documents/create-document-store)
+- [Create a Key-Value Store](keyvalue/create-key-value-store)
+- [Create a Dynamo Table](dynamo/create-dynamo-table)
+- [Create a Graph Edge](graph-edge/create-graph-edge)
 
 </TabItem>
 <TabItem value="apo" label="REST API">
@@ -55,9 +55,9 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection list](../cli/collections-cli.md#gdnsl-collection-list) CLI command to see what collections exist.
+Use the [gdnsl collection list](../cli/collections-cli#gdnsl-collection-list) CLI command to see what collections exist.
 
-Use the [gdnsl collection describe](../cli/collections-cli.md#gdnsl-collection-describe) CLI command to learn more about a specific collection.
+Use the [gdnsl collection describe](../cli/collections-cli#gdnsl-collection-describe) CLI command to learn more about a specific collection.
 
 Output from these commands looks similar to the following:
 

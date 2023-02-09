@@ -31,4 +31,4 @@ Return the first alternative that is a document, and *null* if none of the alter
 
 ## Ternary operator
 
-For conditional evaluation, check out the [ternary operator](../operators.md#ternary-operator).
+For conditional evaluation, check out the [ternary operator](../operators#ternary-operator).

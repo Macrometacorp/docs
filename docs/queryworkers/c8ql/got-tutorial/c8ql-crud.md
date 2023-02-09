@@ -9,7 +9,7 @@ You can perform basic document tasks such as create, read, update, and delete (C
 
 Before we can insert documents with C8QL, we need a place to put them in: a collection.
 
-For this tutorial, [Create a Document Store collection](../../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../../collections/index.md).
+For this tutorial, [Create a Document Store collection](../../../collections/documents/create-document-store) in the console. For more information about collections, refer to [Collections](../../../collections/index).
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Collections**.
@@ -19,9 +19,9 @@ For this tutorial, [Create a Document Store collection](../../../collections/doc
 
 ## Create Documents
 
-You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](../operations/insert.md) operation and [Queries and Query Workers](../../index.md).
+You can create documents one at a time or in a batch. In this section, you use C8QL queries to do both. For more information, refer to the [INSERT](../operations/insert) operation and [Queries and Query Workers](../../index).
 
-For more information about this task, refer to [Add Documents to a Collection](../../../collections/documents/add-document.md).
+For more information about this task, refer to [Add Documents to a Collection](../../../collections/documents/add-document).
 
 ### Add One Document to the Collection
 
@@ -42,7 +42,7 @@ Add one document to the collection with a query.
 
 1. Click **Run Query**.
 
-Macrometa returns an empty list, because the query did not [RETURN](../operations/return.md) anything. We'll do that in a later step.
+Macrometa returns an empty list, because the query did not [RETURN](../operations/return) anything. We'll do that in a later step.
 
 If you want to see your new record, click **Collections** and then click **Characters**. Your brand new Ned Stark record is right there.
 
@@ -195,7 +195,7 @@ All three system attributes starting with an underscore `_` are read-only. The `
 
 ### Read Specific Documents
 
-You can use either the document key or the document ID to retrieve a specific document with the help of a C8QL function [DOCUMENT()](../functions/document.md).
+You can use either the document key or the document ID to retrieve a specific document with the help of a C8QL function [DOCUMENT()](../functions/document).
 
 :::note
 Document keys will be different for you. Update the queries accordingly.
@@ -277,7 +277,7 @@ Macrometa returns something like this:
 ]
 ```
 
-For more information, refer to the [DOCUMENT()](../functions/document.md) function documentation.
+For more information, refer to the [DOCUMENT()](../functions/document) function documentation.
 
 ## Update Documents
 
@@ -411,4 +411,4 @@ Re-run the [insert queries](#create-documents) at the top with all character doc
 
 ## Next Steps
 
-Great job! You have created a collection and performed basic CRUD operations. When you're ready, continue the tutorial in [Part 2 - Filter Results](filter-results.md).
+Great job! You have created a collection and performed basic CRUD operations. When you're ready, continue the tutorial in [Part 2 - Filter Results](filter-results).

@@ -10,9 +10,9 @@ This feature is in beta. Please contact support if you have any problems.
 
 Supported clients:
 
-- [Kafka Java Client](kafka-java-client.md)
-- [Kafka Python Client](kafka-python-client.md)
-- [Confluent Python Client](confluent-python-client.md)
-- [KafkaJS Client](kafkajs-client.md)
-- [Kafka Node Client](kafka-nodejs-client.md)
-- [Fluent Bit Client](fluent-bit-client.md)
+- [Kafka Java Client](kafka-java-client)
+- [Kafka Python Client](kafka-python-client)
+- [Confluent Python Client](confluent-python-client)
+- [KafkaJS Client](kafkajs-client)
+- [Kafka Node Client](kafka-nodejs-client)
+- [Fluent Bit Client](fluent-bit-client)

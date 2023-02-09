@@ -10,10 +10,10 @@ This page describes how to create API keys.
 
 After creating the API key, best practice is to save the automatically generated `KeyID` string somewhere secure.
 
-To learn about how to grant permissions to an API key, refer to [Update API Keys](update-api-keys.md).
+To learn about how to grant permissions to an API key, refer to [Update API Keys](update-api-keys).
 
 :::note
-If you create a new fabric after you create an API key, then the API key permissions will not apply to the newly-created fabric. You will need to [update the API key](update-api-keys.md) permissions.
+If you create a new fabric after you create an API key, then the API key permissions will not apply to the newly-created fabric. You will need to [update the API key](update-api-keys) permissions.
 :::
 
 <Tabs groupId="operating-systems">
@@ -141,7 +141,7 @@ print("API Key Created: ", resp)
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey](../../cli/api-key-cli.md) CLI command to create API keys.
+Use the [gdnsl apikey](../../cli/api-key-cli) CLI command to create API keys.
 
 </TabItem>
 </Tabs>

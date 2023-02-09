@@ -35,11 +35,11 @@ The following is a list of sink mapping types supported by stream workers:
 
 |Sink Mapping Type | Description|
 | ------------- |-------------|
-| [CSV](csv.md) | Converts CSV-like delimiter separated events to stream events.|
-| [JSON](json.md) | Converts JSON messages to stream events.|
-| [Key-Value](keyvalue.md) | Converts key-value hash maps to stream events.|
-| [PassThrough](passThrough.md) | Omits data conversion on stream events.|
-| [Text](text.md) | Converts plain text messages to stream events.|
+| [CSV](csv) | Converts CSV-like delimiter separated events to stream events.|
+| [JSON](json) | Converts JSON messages to stream events.|
+| [Key-Value](keyvalue) | Converts key-value hash maps to stream events.|
+| [PassThrough](passThrough) | Omits data conversion on stream events.|
+| [Text](text) | Converts plain text messages to stream events.|
 
 :::tip
 When the `map.type` annotation is not provided, `map.type='passThrough'` is used as default, that passes the outgoing events directly to the sinks without any data conversion.

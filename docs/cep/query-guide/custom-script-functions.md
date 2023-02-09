@@ -72,7 +72,7 @@ from TempStream;
 
 ## Example 2
 
-Parsing complex JSON data is a good use case for writing custom functions. Consider an example where nested JSON data is received over an input stream. Defining a message schema while defining a stream as explained in [Consuming Data](../tutorials/consuming-data.md) can be cumbersome or error-prone, so creating a custom function would allow fine-grained control over how the message is parsed.
+Parsing complex JSON data is a good use case for writing custom functions. Consider an example where nested JSON data is received over an input stream. Defining a message schema while defining a stream as explained in [Consuming Data](../tutorials/consuming-data) can be cumbersome or error-prone, so creating a custom function would allow fine-grained control over how the message is parsed.
 
 This example demonstrates how complex data can be parsed using a custom JavaScript function.
 

@@ -11,7 +11,7 @@ You can access all the familiar Redis commands using the Macrometa SDK or API.
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
 
-- Step 1. [Install the SDK](../../sdks/install-sdks.md).
+- Step 1. [Install the SDK](../../sdks/install-sdks).
 - Step 2. Create an instance of the C8Client
 - Step 3. Access Redis commands `client.redis.<Redis command>`.
 

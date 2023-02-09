@@ -64,7 +64,7 @@ The path weight is lower: 1.5 + 1.5 + 1.0 + 1.0 + 2.0 + 1.5 = **8.5**.
 
 ## Syntax
 
-The syntax for k Shortest Paths queries is similar to the one for [Shortest Path](shortest-path.md) and there are also two options to either use a named graph or a set of edge collections. It only emits a path variable however, whereas SHORTEST_PATH emits a vertex and an edge variable.
+The syntax for k Shortest Paths queries is similar to the one for [Shortest Path](shortest-path) and there are also two options to either use a named graph or a set of edge collections. It only emits a path variable however, whereas SHORTEST_PATH emits a vertex and an edge variable.
 
 :::note
 It is highly recommended that you use a **LIMIT** statement, as k Shortest Paths is a potentially expensive operation. On large connected graphs it can return a large number of paths, or perform an expensive (but unsuccessful) search for more short paths.
@@ -94,7 +94,7 @@ FOR path
     * **weightAttribute** (string): a top-level edge attribute that should be used to read the edge weight. If the attribute does not exist or is not numeric, the *defaultWeight* will be used instead.
     * **defaultWeight** (number): this value will be used as fallback if there is no *weightAttribute* in the edge document, or if it's not a number. The default is 1.
 
-- `LIMIT` (see [LIMIT operation](../operations/limit.md), *optional*): the maximal number of paths to return. It is highly recommended to use a `LIMIT` for `K_SHORTEST_PATHS`.
+- `LIMIT` (see [LIMIT operation](../operations/limit), *optional*): the maximal number of paths to return. It is highly recommended to use a `LIMIT` for `K_SHORTEST_PATHS`.
 
 ### Working with collection sets
 

@@ -9,7 +9,7 @@ A query may execute intermediate transaction commits in case the running transac
 
 For sharded collections, the entire query and/or update operation may not be transactional, especially if it involves different shards and/or DB-Servers.
 
-Each `UPDATE` operation is restricted to a single collection, and the [collection name](update.md) must not be dynamic. Only a single `UPDATE` statement per collection is allowed per C8QL query, and it cannot be followed by read or write operations that access the same collection, by traversal operations, or C8QL functions that can read documents.
+Each `UPDATE` operation is restricted to a single collection, and the [collection name](update) must not be dynamic. Only a single `UPDATE` statement per collection is allowed per C8QL query, and it cannot be followed by read or write operations that access the same collection, by traversal operations, or C8QL functions that can read documents.
 
 The system attributes *_id*, *_key* and *_rev* cannot be updated, *_from* and *_to* can.
 

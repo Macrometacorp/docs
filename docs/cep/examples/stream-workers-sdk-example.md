@@ -5,11 +5,11 @@ title: Stream Workers SDK Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
-import Steps from '../../_partials/_get-started-steps.md';
-import ConnectToGDN from '../../_partials/_connect-to-gdn-code-block.md';
+import Prerequisites from '../../_partials/_prerequisites-sdk-api-key';
+import Steps from '../../_partials/_get-started-steps';
+import ConnectToGDN from '../../_partials/_connect-to-gdn-code-block';
 
-This article is an introduction to using stream workers (sometimes called stream apps) with [Macrometa SDKs](../../sdks/index.md).
+This article is an introduction to using stream workers (sometimes called stream apps) with [Macrometa SDKs](../../sdks/index).
 
 <Prerequisites />
 

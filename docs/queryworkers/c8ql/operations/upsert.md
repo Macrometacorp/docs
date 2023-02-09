@@ -9,7 +9,7 @@ A query may execute intermediate transaction commits in case the running transac
 
 For sharded collections, the entire query and/or upsert operation may not be transactional, especially if it involves different shards and/or DB-Servers.
 
-Each `UPSERT` operation is restricted to a single collection, and the [collection name](upsert.md) must not be dynamic. Only a single `UPSERT` statement per collection is allowed per C8QL query, and it cannot be followed by read or write operations that access the same collection, by traversal operations, or C8QL functions that can read documents.
+Each `UPSERT` operation is restricted to a single collection, and the [collection name](upsert) must not be dynamic. Only a single `UPSERT` statement per collection is allowed per C8QL query, and it cannot be followed by read or write operations that access the same collection, by traversal operations, or C8QL functions that can read documents.
 
 The syntax for an upsert operation is:
 

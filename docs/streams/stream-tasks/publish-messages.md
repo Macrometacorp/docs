@@ -11,7 +11,7 @@ This page explains how to publish messages to a stream in Macrometa.
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the Python SDK](../../sdks/install-sdks) before you can run this code.
 
 ```py
 from operator import concat
@@ -42,7 +42,7 @@ sendData()
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-You must [Install the JavaScript SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the JavaScript SDK](../../sdks/install-sdks) before you can run this code.
 
 ```js
 // Connect to GDN.

@@ -18,7 +18,7 @@ To view your data:
 
 1. Log in to your Macrometa account.
 2. Click **Collections**.
-3. Select your [Redis Mode collection](../../collections/redis-mode/index.md).
+3. Select your [Redis Mode collection](../../collections/redis-mode/index).
 
    Data is displayed on the Data tab of the collection.
 

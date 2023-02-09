@@ -19,7 +19,7 @@ Click to turn streams on or off for this collection. When streams are enabled, y
 
 ## Create New Pair
 
-Create a new key-value pair inside the selected collection and add data. For more information, refer to [Add Key-Value Pairs](add-key-value-pairs.md).
+Create a new key-value pair inside the selected collection and add data. For more information, refer to [Add Key-Value Pairs](add-key-value-pairs).
 
 ## Delete Pair
 

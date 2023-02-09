@@ -2,17 +2,17 @@
 title: Array Functions
 ---
 
-C8QL provides functions for higher-level array manipulation. Also see the [numeric functions](numeric.md) for functions that work on number arrays. If you want to concatenate the elements of an array equivalent to `join()` in JavaScript, see [CONCAT()](string#concat) and [CONCAT_SEPARATOR()](string#concat_separator) in the string functions chapter.
+C8QL provides functions for higher-level array manipulation. Also see the [numeric functions](numeric) for functions that work on number arrays. If you want to concatenate the elements of an array equivalent to `join()` in JavaScript, see [CONCAT()](string#concat) and [CONCAT_SEPARATOR()](string#concat_separator) in the string functions chapter.
 
 Apart from that, C8QL also offers several language constructs:
 
-- simple [array access](../data-types.md#arrays--lists) of individual elements,
-- [array operators](../array-operators.md) for array expansion and contraction, optionally with inline filter, limit and projection,
-- [array comparison operators](../operators.md#array-comparison-operators) to compare each element in an array to a value or the elements of another array,
-- loop-based operations on arrays using [FOR](../operations/for.md),
-  [SORT](../operations/sort.md),
-  [LIMIT](../operations/limit.md),
-  as well as [COLLECT](../operations/collect.md) for grouping,
+- simple [array access](../data-types#arrays--lists) of individual elements,
+- [array operators](../array-operators) for array expansion and contraction, optionally with inline filter, limit and projection,
+- [array comparison operators](../operators#array-comparison-operators) to compare each element in an array to a value or the elements of another array,
+- loop-based operations on arrays using [FOR](../operations/for),
+  [SORT](../operations/sort),
+  [LIMIT](../operations/limit),
+  as well as [COLLECT](../operations/collect) for grouping,
   which also offers efficient aggregation.
 
 ## APPEND()
@@ -94,7 +94,7 @@ RETURN FIRST([])
 
 Turn an array of arrays into a flat array. All array elements in *array* will be expanded in the result array. Non-array elements are added as they are. The function will recurse into sub-arrays up to the specified depth. Duplicates will not be removed.
 
-Also see [array contraction](../array-operators.md#array-contraction).
+Also see [array contraction](../array-operators#array-contraction).
 
 - **array** (array): array with elements of arbitrary type, including nested arrays
 - **depth** (number, *optional*):  flatten up to this many levels, the default is 1
@@ -161,7 +161,7 @@ Determine the number of elements in an array.
 - **anyArray** (array): array with elements of arbitrary type
 - returns **length** (number): the number of array elements in *anyArray*.
 
-*LENGTH()* can also determine the [number of attribute keys](document.md#length) of an object / document, the [amount of documents](database.md#length) in a collection and the [character length](string.md#length) of a string.
+*LENGTH()* can also determine the [number of attribute keys](document#length) of an object / document, the [amount of documents](database#length) in a collection and the [character length](string#length) of a string.
 
 | Input  | Length |
 |--------|--------|
@@ -295,7 +295,7 @@ Return whether *search* is contained in *array*. Optionally return the position.
 - **returnIndex** (bool, *optional*): if set to *true*, the position of the match is returned instead of a boolean. The default is *false*.
 - returns **position** (bool\|number): *true* if *search* is contained in *anyArray*, *false* otherwise. If *returnIndex* is enabled, the position of the match is returned (positions start at 0), or *-1* if it's not found.
 
-To determine if or at which position a string occurs in another string, see the [CONTAINS() string function](string.md#contains).
+To determine if or at which position a string occurs in another string, see the [CONTAINS() string function](string#contains).
 
 **Examples**
 

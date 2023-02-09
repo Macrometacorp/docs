@@ -5,7 +5,7 @@ title: Geo-Spatial Indexes
 
 GDN features [Google S2](http://s2geometry.io/){:target="_blank"} based geospatial index. Indexing is supported for a subset of the [**GeoJSON**](#geojson) geometry types as well as simple latitude longitude pairs.
 
-C8QL's geospatial functions and GeoJSON constructors are described in [Geo functions](working-with-indexes.md).
+C8QL's geospatial functions and GeoJSON constructors are described in [Geo functions](working-with-indexes).
 
 The geospatial index supports containment and intersection queries for various geometric 2D shapes. You should be mainly using AQL queries to perform these types of operations. The index can operate in **two different modes**, depending on if you want to use the GeoJSON data-format or not. The modes are mainly toggled by using the `geoJson` field when creating the index.
 
@@ -23,7 +23,7 @@ This index assumes coordinates with the latitude between -90 and 90 degrees and 
    - **Fields -** Choose between one or two attribute paths, latitude and/or longitude, from the collection.
    - **Name -** The name of the index. If left blank, then Macrometa autogenerates the name.
    - **Geo JSON -** Set to true if attributes are stored in arrays []. Otherwise, set it to false. For more information, refer to [GeoJSON Mode](#geojson-mode) and [Non-GeoJSON Mode](#non-geojson-mode).
-   - **Create in Background -** If true, will create an index in the background rather than lock the collection while the index is created. This allows for basic CRUD operations to occur while the index is created. For more information, refer to [Create Index in Background](create-index-in-background.md).
+   - **Create in Background -** If true, will create an index in the background rather than lock the collection while the index is created. This allows for basic CRUD operations to occur while the index is created. For more information, refer to [Create Index in Background](create-index-in-background).
 
 1. Click **Create**.
 
@@ -77,9 +77,9 @@ In case that the index was successfully created, an object with the index detail
 
 ## Indexed GeoSpatial Queries
 
-The geospatial index supports a variety of C8QL queries, which can be built with the help of the [geo utility functions](working-with-indexes.md). There are three specific geo functions that can be optimized, provided that they are used correctly: `GEO_DISTANCE, GEO_CONTAINS, GEO_INTERSECTS`. Additionally, there is a built-in support to optimize the older geo functions `DISTANCE`, `NEAR` and `WITHIN` (the last two only if they are used in their 4 argument version, without _distanceName_).
+The geospatial index supports a variety of C8QL queries, which can be built with the help of the [geo utility functions](working-with-indexes). There are three specific geo functions that can be optimized, provided that they are used correctly: `GEO_DISTANCE, GEO_CONTAINS, GEO_INTERSECTS`. Additionally, there is a built-in support to optimize the older geo functions `DISTANCE`, `NEAR` and `WITHIN` (the last two only if they are used in their 4 argument version, without _distanceName_).
 
-When in doubt whether your query is being properly optimized, check the [C8QL explain](working-with-indexes.md) output to check for index usage.
+When in doubt whether your query is being properly optimized, check the [C8QL explain](working-with-indexes) output to check for index usage.
 
 ## Query for Results near Origin (NEAR type query)
 

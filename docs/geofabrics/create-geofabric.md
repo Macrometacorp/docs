@@ -6,7 +6,7 @@ title: Create a GeoFabric
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page lists several methods for creating GeoFabrics. Whether or not you can create GeoFabrics depends on your assigned [Permissions](../account-management/permissions/index.md).
+This page lists several methods for creating GeoFabrics. Whether or not you can create GeoFabrics depends on your assigned [Permissions](../account-management/permissions/index).
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -31,7 +31,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric create](../cli/fabrics-cli.md#gdnsl-fabric-create) CLI command to create GeoFabrics.
+Use the [gdnsl fabric create](../cli/fabrics-cli#gdnsl-fabric-create) CLI command to create GeoFabrics.
 
 </TabItem>
 </Tabs>

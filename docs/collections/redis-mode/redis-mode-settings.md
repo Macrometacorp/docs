@@ -5,8 +5,8 @@ sidebar_position: 50
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import ViewCollectionSettings from '../_partials/_view-collection-settings.md';
-import CollectionSettingsApi from '../_partials/_collection-settings-api.md';
+import ViewCollectionSettings from '../_partials/_view-collection-settings';
+import CollectionSettingsApi from '../_partials/_collection-settings-api';
 
 You can view and update Redis mode collection settings in the Settings tab.
 
@@ -18,6 +18,6 @@ You can view and update Redis mode collection settings in the Settings tab.
 - **Type -** The data model type of the selected collection.
 - **Status -** Current status of the selected collection.
 
-You can also [Delete](../delete-collection.md) or [Truncate](../truncate-collection.md) the collection.
+You can also [Delete](../delete-collection) or [Truncate](../truncate-collection) the collection.
 
 ![Redis Mode Settings Tab](/img/collections/redis-mode-settings.png)

@@ -9,7 +9,7 @@ This example shows how errors are handled at the sink level with `wait and retry
 
 In this mode, publishing threads wait in back-off and re-trying mode, and only send the events when the connection is re-established. During this time the threads will not consume any new messages causing the systems to introduce back pressure on the systems that publish to it.
 
-For more information, refer to [Source Error Handling](source-error-handling.md) and [Sink Error Handling](sink-error-handling.md).
+For more information, refer to [Source Error Handling](source-error-handling) and [Sink Error Handling](sink-error-handling).
 
 Here is a simple example to publish abnormal glucose reading events to an unavailable HTTP endpoint. The error is handled by `wait and retry` mode.
 

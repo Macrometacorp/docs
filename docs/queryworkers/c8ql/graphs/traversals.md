@@ -166,7 +166,7 @@ In the current state, `AND` combined filters can be optimized, but `OR` combined
 
 Filtering on paths allows for the most powerful filtering and may have the highest impact on performance. Using the path variable you can filter on specific iteration depths. You can filter for absolute positions in the path by specifying a positive number (which then qualifies for the optimizations), or relative positions to the end of the path by specifying a negative number.
 
-The following examples are based on the [traversal graph](../graphs/traversals.md#).
+The following examples are based on the [traversal graph](../graphs/traversals#).
 
 ### Pruning
 
