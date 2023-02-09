@@ -43,14 +43,14 @@ CREATE STREAM PatientRegistrationStream (
 INSERT INTO PatientRegistrationStream
 SELECT seqNo, name, age,
 -- `convert()` used to convert `float` type to `double`.
-       convert(height, 'double') as height,
+       convert(height, 'double') AS height,
 
        weight, photo,
 -- `instanceOfString()` checks if the photo is an instance of `string`.
-       instanceOfString(photo) as isPhotoString,
+       instanceOfString(photo) AS isPhotoString,
 
        isEmployee,
 -- `cast()` cast the value of wardNo to `int`.
-       cast(wardNo, 'int') as wardNo
+       cast(wardNo, 'int') AS wardNo
 FROM PatientRegistrationInputStream;
 ```

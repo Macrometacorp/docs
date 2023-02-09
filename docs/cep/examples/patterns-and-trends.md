@@ -24,7 +24,7 @@ CREATE SINK HighTempAlertStream WITH (type = 'log') (roomNo int, initialTemp dou
 @info(name='temperature-increase-identifier')
 -- Identify if the temperature of a room increases by 5 degrees within 10 min.
 INSERT INTO HighTempAlertStream
-SELECT e1.roomNo, e1.temp as initialTemp, e2.temp as finalTemp
+SELECT e1.roomNo, e1.temp AS initialTemp, e2.temp AS finalTemp
 FROM every( e1 = TemperatureStream ) ->
     e2 = TemperatureStream[ e1.roomNo == roomNo
         and (e1.temp + 5) <= temp ]
@@ -71,7 +71,7 @@ CREATE SINK TemperatureDiffStream WITH (type = 'log') (roomNo int, tempDiff doub
 -- Calculates the temperature difference between two regulator events. Here, when at least one TemperatureStream event needs to arrive between two RegulatorStream events.
 -- Finds the temperature difference between the first and last temperature event.
 INSERT INTO TemperatureDiffStream
-SELECT e1.roomNo, e2[0].temp - e2[last].temp as tempDiff
+SELECT e1.roomNo, e2[0].temp - e2[last].temp AS tempDiff
 FROM every( e1 = RegulatorStream)
     -> e2 = TemperatureStream[e1.roomNo == roomNo] < 1: >
     -> e3 = RegulatorStream[e1.roomNo == roomNo];

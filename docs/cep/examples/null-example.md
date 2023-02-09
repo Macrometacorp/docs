@@ -29,7 +29,7 @@ CREATE TABLE GLOBAL ProductInfoTable (item string, discount double);
 @info(name = 'Check-for-null')
 -- Checks if `price` contains `null` value.
 INSERT INTO ProductValidationStream
-SELECT item, price is null as isPriceNull
+SELECT item, price is null AS isPriceNull
 -- Filter events with `item` not having `null` value.
 FROM ProductInputStream [not(item is null)];
 
@@ -38,14 +38,14 @@ INSERT INTO DiscountValidationStream
 SELECT s.item, s.price, t.discount,
 -- Check if `math:power()` returns `null`.
        math:power(t.discount, 2) is null
-            as isFunctionReturnsNull,
+            AS isFunctionReturnsNull,
 -- Check if streams `t` and `s` are `null`.
-       t is null as isTNull,
-       s is null as isSNull,
+       t is null AS isTNull,
+       s is null AS isSNull,
 -- Check if streams attributes `t.discount` and `s.item` are `null`.
-       t.discount is null as isTDiscountNull,
-       s.item is null as isSItemNull
-FROM ProductInputStream as s
-    left outer join ProductInfoTable as t
+       t.discount is null AS isTDiscountNull,
+       s.item is null AS isSItemNull
+FROM ProductInputStream AS s
+    left outer join ProductInfoTable AS t
     on s.item == t.item;
 ```

@@ -22,7 +22,7 @@ INSERT ALL events INTO OverallTemperatureStream
 -- Calculate average, maximum, and count for `temperature` attribute.
 SELECT avg(temperature) AS avgTemperature,
        max(temperature) AS maxTemperature,
-       count() as numberOfEvents
+       count() AS numberOfEvents
 -- Aggregate events over `1 minute` sliding window
 FROM TemperatureStream window time(1 min);
 -- Output when events are added, and removed (expired) from `window time()`.
@@ -32,8 +32,8 @@ FROM TemperatureStream window time(1 min);
 INSERT INTO SensorIdTemperatureStream
 SELECT sensorId,
 -- Calculate average, and maximum for `temperature`, by grouping events by `sensorId`.
-       avg(temperature) as avgTemperature,
-       max(temperature) as maxTemperature
+       avg(temperature) AS avgTemperature,
+       max(temperature) AS maxTemperature
 -- Aggregate events over `30 seconds` sliding window
 FROM TemperatureStream window time(30 sec)       
 GROUP BY sensorId
@@ -126,9 +126,9 @@ CREATE SINK STREAM SensorIdTemperatureStream(sensorId string, avgTemperature dou
 @info(name = 'Overall-analysis')
 INSERT INTO OverallTemperatureStream
 -- Calculate average, maximum, and count for `temperature` attribute.
-SELECT avg(temperature) as avgTemperature,
-       max(temperature) as maxTemperature,
-       count() as numberOfEvents
+SELECT avg(temperature) AS avgTemperature,
+       max(temperature) AS maxTemperature,
+       count() AS numberOfEvents
 -- Aggregate last `4` events in a sliding manner.
 FROM TemperatureStream window length(4);
 
@@ -137,8 +137,8 @@ FROM TemperatureStream window length(4);
 INSERT INTO SensorIdTemperatureStream
 SELECT sensorId,
 -- Calculate average, and maximum for `temperature`, by grouping events by `sensorId`.
-       avg(temperature) as avgTemperature,
-       max(temperature) as maxTemperature
+       avg(temperature) AS avgTemperature,
+       max(temperature) AS maxTemperature
 -- Aggregate last `5` events in a sliding manner.
 FROM TemperatureStream window length(5)
 GROUP BY sensorId
@@ -174,9 +174,9 @@ CREATE SINK STREAM SensorIdTemperatureStream(sensorId string, avgTemperature dou
 @info(name = 'Overall-analysis')
 INSERT INTO OverallTemperatureStream
 -- Calculate average, maximum, and count for `temperature` attribute.
-SELECT avg(temperature) as avgTemperature,
-       max(temperature) as maxTemperature,
-       count() as numberOfEvents
+SELECT avg(temperature) AS avgTemperature,
+       max(temperature) AS maxTemperature,
+       count() AS numberOfEvents
 -- Aggregate every `4` events in a batch manner.
 FROM TemperatureStream window lengthBatch(4);
 
@@ -224,8 +224,8 @@ CREATE SINK STREAM UserIdPurchaseStream(userId string, totalItems long, totalPri
 -- Calculate count and sum of `price` per `userId` during the session.
 INSERT INTO OutOfOrderUserIdPurchaseStream
 SELECT userId,
-       count() as totalItems,
-       sum(price) as totalPrice
+       count() AS totalItems,
+       sum(price) AS totalPrice
 -- Aggregate events over a `userId` based session window with `1 minute` session gap.
 FROM PurchaseStream window session(1 min, userId)
 GROUP BY userId;
@@ -289,7 +289,7 @@ FROM OneMinTimeWindow;
 -- Calculate average of `temperature`, by grouping events by `sensorId`, on the `OneMinTimeWindow` window.
 INSERT INTO AvgTemperaturePerSensorStream
 SELECT sensorId,
-       avg(temperature) as avgTemperature
+       avg(temperature) AS avgTemperature
 FROM OneMinTimeWindow
 GROUP BY sensorId;
 ```

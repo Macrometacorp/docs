@@ -22,8 +22,8 @@ CREATE STREAM HumidityStream (roomNo string, humidity double);
 -- Join latest `temperature` and `humidity` events arriving within 1 minute for each `roomNo`.
 INSERT INTO TemperatureHumidityStream
 SELECT t.roomNo, t.temperature, h.humidity
-FROM TemperatureStream window unique:time(roomNo, 1 min) as t
-    join HumidityStream window unique:time(roomNo, 1 min) as h
+FROM TemperatureStream window unique:time(roomNo, 1 min) AS t
+    join HumidityStream window unique:time(roomNo, 1 min) AS h
     on t.roomNo == h.roomNo;
 
 
@@ -31,7 +31,7 @@ FROM TemperatureStream window unique:time(roomNo, 1 min) as t
 INSERT INTO EnrichedTemperatureStream
 SELECT t.roomNo, t.temperature, h.humidity
 -- Join when events arrive in `TemperatureStream`.
-FROM TemperatureStream as t
+FROM TemperatureStream AS t
 -- When events get matched in `time()` window, all matched events are emitted, else `null` is emitted.
     LEFT OUTER JOIN HumidityStream window sliding_time(1 min) AS h
     ON t.roomNo == h.roomNo;

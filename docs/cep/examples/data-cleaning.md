@@ -17,7 +17,7 @@ CREATE STREAM TemperatureStream (sensorId string, temperature double);
 INSERT INTO ValidTemperatureStream
 SELECT sensorId,
 -- if `temperature` > -2, `isValid`, then return `true`, else `false` 
-	ifThenElse(temperature > -2, 'Valid', 'InValid') as isValid 
+	ifThenElse(temperature > -2, 'Valid', 'InValid') AS isValid 
 FROM TemperatureStream;
 
 @info(name = 'ComplexIfElseQuery') 
