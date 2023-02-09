@@ -31,35 +31,20 @@ Macrometa supports the following window types:
 
 | Window Type     | Description |
 | ------------- |-------------|
-| [SLIDING_TIME()](window-types/sliding-time)    | Retains events based on time in a sliding manner.   |
-| [TUMBLING_TIME()](window-types/tumbling-time)   | Retains events based on time in a tumbling (batch) manner.   |
+| [CRON()](window-types/cron)     | Retains events based on cron time in a tumbling (batch) manner.   |
+| [DELAY()](window-types/delay)     | Retains events and delays the output by the given time period in a sliding manner.   |
+| [SESSION()](window-types/session)    | Retains events for each session based on session key.   |
+| [SORT()](window-types/sort)     | Retains top-k or bottom-k events based on a parameter value.   |
+| [TUMBLING()](window-types/tumbling)     | Retains events of last arrived event batch.   |
+| [SLIDING_EXPRESSION()](window-types/sliding-expression)     | Retains events based on an expression in a sliding manner.   |
+| [TUMBLING_EXPRESSION()](window-types/tumbling-expression)     | Retains events based on an expression in a tumbling (batch) manner.   |
+| [SLIDING_EXTERNAL_TIME()](window-types/sliding-external-time)     | Retains events based on event time value passed as a parameter in a sliding manner.   |
+| [TUMBLING_EXTERNAL_TIME()](window-types/tumbling-external-time)     | Retains events based on event time value passed as a parameter in a a tumbling (batch) manner.   |
 | [SLIDING_LENGTH()](window-types/sliding-length) | Retains events based on number of events in a sliding manner.   |
-| [TUMBLING_LENGTH()](window-types/tumbling-length.md)     | Retains events based on number of events in a tumbling (batch) manner.   |
-| [SLIDING_TIME_LENGTH()](window-types/sliding-time-length.md)     | Retains events based on time and number of events in a sliding manner.   |
-| [SESSION()](window-types/session.md)    | Retains events for each session based on session key.   |
-| [TUMBLING()](window-types/tumbling.md)     | Retains events of last arrived event batch.   |
-|      |    |
-|      |    |
-|      |    |
-|      |    |
-
-WINDOW SORT()
-WINDOW CRON()
-WINDOW SLIDING_EXTERNAL_TIME()
-WINDOW TUMBLING_EXTERNAL_TIME()
-WINDOW DELAY()
-WINDOW SLIDING_EXPRESSION()
-WINDOW TUMBLING_EXPRESSION()
-
-#window.sort()
-#window.cron()
-#window.externalTime()
-#window.externalTimeBatch()
-#window.delay()
-#window.expression()
-#window.expressionBatch()
-
-
+| [TUMBLING_LENGTH()](window-types/tumbling-length)     | Retains events based on number of events in a tumbling (batch) manner.   |
+| [SLIDING_TIME()](window-types/sliding-time)    | Retains events based on time in a sliding manner.   |
+| [SLIDING_TIME_LENGTH()](window-types/sliding-time-length)     | Retains events based on time and number of events in a sliding manner.   |
+| [TUMBLING_TIME()](window-types/tumbling-time)   | Retains events based on time in a tumbling (batch) manner.   |
 
 ## Example 1
 
