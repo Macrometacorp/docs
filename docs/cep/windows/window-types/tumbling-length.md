@@ -46,7 +46,7 @@ This window sends the arriving events directly to the output letting the `sumPri
 
 ```sql
 CREATE STREAM InputEventStream (symbol string, price float, volume int);
-CREATE WINDOW StockEventWindow (symbol string, price float, volume int) TUMBLING_LENGTH(10) output all events;
+CREATE WINDOW StockEventWindow (symbol string, price float, volume int) TUMBLING_LENGTH(10) OUTPUT all events;
 
 @info(name = 'query0')
 INSERT INTO StockEventWindow
