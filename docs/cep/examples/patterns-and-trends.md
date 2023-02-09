@@ -122,7 +122,7 @@ CREATE SINK RegulatorActionStream WITH (type='log') (roomNo int, action string);
 INSERT INTO RegulatorActionStream
 SELECT e1.roomNo,
 -- Checks whether pattern triggered due to removal of room key.
-    ifThenElse( e2 is null, 'none', 'stop' ) as action
+    ifThenElse( e2 is null, 'none', 'stop' ) AS action
 FROM every e1=RegulatorStateChangeStream[ action == 'on' ]
      -> e2=RoomKeyStream
             [ e1.roomNo == roomNo and action == 'removed' ]
@@ -170,7 +170,7 @@ CREATE SINK RoomTemperatureAlertStream WITH (type='log') (roomNo int);
 
 -- Alerts if no temperature event having a temperature less than what is set in regulator arrives within 5 minutes after switching on the regulator.
 INSERT INTO RoomTemperatureAlertStream
-SELECT e1.roomNo as roomNo
+SELECT e1.roomNo AS roomNo
 FROM e1=RegulatorStateChangeStream[action == 'on']
      -> not TemperatureStream[e1.roomNo == roomNo and
         temp <= e1.tempSet] for 30 sec;
@@ -210,7 +210,7 @@ begin
 
 -- Identifies the peak stock price (top rate of the stock price trend)
     INSERT INTO PeakStockRateStream
-    SELECT e1.symbol, e2.price as rateAtPeak
+    SELECT e1.symbol, e2.price AS rateAtPeak
     FROM every e1=StockRateStream,
     	e2=StockRateStream[e1.price < price],
     	e3=StockRateStream[e2.price > price]
@@ -256,8 +256,8 @@ begin
     @info(name = 'temperature-trend-analyzer')
     INSERT INTO PeakTemperatureStream 
 -- Projects the lowest, highest and the first drop in the temperature trend
-    SELECT e1.roomNo, e1.temp as initialTemp,
-        e2[last].temp as peakTemp, e3.temp as firstDropTemp
+    SELECT e1.roomNo, e1.temp AS initialTemp,
+        e2[last].temp AS peakTemp, e3.temp AS firstDropTemp
 
 -- Identifies the trend of the temperature in a room
     FROM every e1=TemperatureStream,
@@ -311,8 +311,8 @@ CREATE SINK StateNotificationStream WITH (type='log') (deviceID long, tempSensor
 
 -- Identifies a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.
 INSERT INTO StateNotificationStream
-SELECT e1.deviceID, e2.isActive as tempSensorActive,
-    e3.isActive as humidSensorActive
+SELECT e1.deviceID, e2.isActive AS tempSensorActive,
+    e3.isActive AS humidSensorActive
 FROM every e1=RegulatorStream[isOn == true],
     e2=TempSensorStream and e3=HumidSensorStream;
 ```

@@ -85,7 +85,7 @@ const streamWorkerDef = `@App:name('stream_worker_tutorial')
   CREATE TABLE GLOBAL tutorialAppOutputTable (id string, temperature double);
   @info(name='Query')
   INSERT INTO tutorialAppOutputTable
-  SELECT concatFn(roomNo,'-',deviceID) as id, temperature
+  SELECT concatFn(roomNo,'-',deviceID) AS id, temperature
   FROM tutorialAppInputStream;`;
 
 const run = async function () {
@@ -269,7 +269,7 @@ STREAM_WORKER ="""
   CREATE TABLE GLOBAL tutorialAppOutputTable (id string, temperature double);
   @info(name='Query')
   INSERT INTO tutorialAppOutputTable
-  SELECT concatFn(roomNo,'-',deviceID) as id, temperature
+  SELECT concatFn(roomNo,'-',deviceID) AS id, temperature
   FROM tutorialAppInputStream;
 """
 
