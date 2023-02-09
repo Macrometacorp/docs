@@ -1,5 +1,5 @@
 ---
-title: WINDOW TUMBLING()
+title: TUMBLING()
 ---
 
 A window that holds an incoming events batch. When a new set of events arrives, the old events are expired. Tumbling windows can be used to aggregate events that comes in batches. If it has the parameter length specified, then the batch window processes the batch as several chunks.

@@ -1,5 +1,5 @@
 ---
-title: WINDOW SLIDING_EXTERNAL_TIME()
+title: SLIDING_EXTERNAL_TIME()
 ---
 
 A sliding time window based on external time. It holds events that arrived during the last window `time` period from the external timestamp, and gets updated on every monotonically increasing timestamp.

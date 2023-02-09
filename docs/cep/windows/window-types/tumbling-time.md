@@ -1,5 +1,5 @@
 ---
-title: WINDOW TUMBLING_TIME()
+title: TUMBLING_TIME()
 ---
 
 A _tumbling time batch window_ holds and processes events that arrive during the `time` period as a batch.

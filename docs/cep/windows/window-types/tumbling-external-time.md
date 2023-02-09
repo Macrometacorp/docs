@@ -1,5 +1,5 @@
 ---
-title: WINDOW TUMBLING_EXTERNAL_TIME()
+title: TUMBLING_EXTERNAL_TIME()
 ---
 
 A batch (tumbling) time window based on external time, that holds events arrived during `windowTime` periods, and gets updated for every `windowTime`.

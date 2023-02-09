@@ -1,5 +1,5 @@
 ---
-title: WINDOW SLIDING_TIME() 
+title: SLIDING_TIME() 
 ---
 
 A _sliding time window_ that holds events that arrived during the last window time period at a given time, and gets updated for each event arrival and expiration.

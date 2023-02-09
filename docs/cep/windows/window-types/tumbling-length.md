@@ -1,5 +1,5 @@
 ---
-title: WINDOW TUMBLING_LENGTH()
+title: TUMBLING_LENGTH()
 ---
 
 A batch (tumbling) length window that holds and process a number of events as specified in the `length`.

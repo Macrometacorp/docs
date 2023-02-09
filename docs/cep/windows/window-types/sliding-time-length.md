@@ -1,5 +1,5 @@
 ---
-title: WINDOW SLIDING_TIME_LENGTH()
+title: SLIDING_TIME_LENGTH()
 ---
 
 A _sliding time window_ that at a given time holds the last `length` events that arrived during last `time` period, and gets updated for every event arrival and expiration.

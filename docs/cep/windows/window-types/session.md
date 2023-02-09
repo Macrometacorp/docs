@@ -1,5 +1,5 @@
 ---
-title: WINDOW SESSION()
+title: SESSION()
 ---
 
 Holds events that belong to a session. Events that belong to a specific session are identified by a session key, and a session gap is determines the time period after which the session is considered to be expired. To have meaningful aggregation on session windows, the events need to be aggregated based on the session key via a `group by` clause.

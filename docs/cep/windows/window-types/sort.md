@@ -1,5 +1,5 @@
 ---
-title: WINDOW SORT()
+title: SORT()
 ---
 
 This window holds a batch of events that equal the number specified as the window `length` and sorts them in the given order.

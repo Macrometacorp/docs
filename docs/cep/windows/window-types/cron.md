@@ -1,5 +1,5 @@
 ---
-title: WINDOW CRON()
+title: CRON()
 ---
 
 This window outputs the arriving events as and when they arrive and resets (expires) the window periodically based on the given cron expression.

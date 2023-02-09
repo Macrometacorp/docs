@@ -1,5 +1,5 @@
 ---
-title: WINDOW DELAY()
+title: DELAY()
 ---
 
 A delay window holds events for a specific time period that is regarded as a delay period before processing them.

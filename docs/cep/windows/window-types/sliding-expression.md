@@ -1,5 +1,5 @@
 ---
-title: WINDOW SLIDING_EXPRESSION()
+title: SLIDING_EXPRESSION()
 ---
 
 A sliding window that holds the last number of events defined by an expression at a given time, and gets updated for each arrival and expiration.
