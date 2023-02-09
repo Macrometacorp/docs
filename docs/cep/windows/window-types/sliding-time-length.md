@@ -27,7 +27,8 @@ FROM cseEventStream;
 
 @info(name = 'query1')
 INSERT all events INTO outputStream
-FROM cseEventWindow SELECT symbol, price, volume;
+SELECT symbol, price, volume
+FROM cseEventWindow;
 ```
 
 This window holds the last 10 events that arrived during the last two seconds and gets updated for every event arrival and expiration.
