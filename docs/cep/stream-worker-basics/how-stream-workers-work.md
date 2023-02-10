@@ -14,7 +14,7 @@ When the stream worker is published, it:
 3. Generates new events based on the processing done at the queries.
 4. Sends newly-generated events through output to streams, publishing them to many different types of sinks.
 
-Best practice is to keep stream worker functionality limited to one business use case per stream worker. Additionally, stream workers can use shared sinks and sources to reduce code duplication and improve maintainability.
+When published, stream workers also create any query workers, tables (collections), and streams included in the definition if they do not already exist.
 
 ## Stream Worker Flow Diagram
 
