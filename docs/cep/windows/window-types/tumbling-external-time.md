@@ -15,7 +15,7 @@ A batch (tumbling) time window based on external time, that holds events arrived
 
 | Name                   | Description        | Default Value           | Possible Data Types | Optional | Dynamic |
 |--------------|---------------------------------------|--------------------------|------------------|----------|---------|
-| timestamp              | The Unix timestamp in milliseconds which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. Example: 1676061507472 |                        | LONG                | No       | Yes     |
+| timestamp              | The Unix timestamp in milliseconds which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. Max. int is 2^32, or 2147483647. |                        | LONG                | No       | Yes     |
 | window.time            | The batch time period for which the window should hold events.    |                      | INT LONG TIME       | No       | No      |
 | start             | User defined start time. This could either be a constant (of type `int`, `long`, or `time`) or an attribute of the corresponding stream (of type `long`). If an attribute is provided, initial value of attribute would be considered as startTime. | Timestamp of first event     | INT LONG TIME       | Yes      | Yes     |
 | timeout      | Time to wait for arrival of new event, before flushing and giving output for events belonging to a specific batch.    | System waits till an event from next batch arrives to flush current batch | INT LONG TIME       | Yes      | No      |
