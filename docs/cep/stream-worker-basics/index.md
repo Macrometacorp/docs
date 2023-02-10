@@ -9,4 +9,8 @@ If you are new to stream workers, this section explains in basic terms what stre
 
 If you haven't already, check out [Getting Started with Stream Workers](../getting-started-stream-workers.md) for a quick introduction.
 
+:::note
+Best practice is to keep stream worker functionality limited to one business use case per stream worker. Additionally, stream workers can use shared sinks and sources to reduce code duplication and improve maintainability.
+:::
+
 <DocCardList />
