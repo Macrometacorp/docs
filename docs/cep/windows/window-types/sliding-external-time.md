@@ -17,10 +17,6 @@ A sliding time window based on external time. It holds events that arrived durin
 
 ## Example
 
-:::note
-To run this code block, replace `eventTime` with a Unix timestamp in milliseconds.
-:::
-
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume int, eventTime long);
 CREATE WINDOW cseEventWindow (symbol string, price float, volume int, eventTime long) SLIDING_EXTERNAL_TIME(eventTime, 20 sec) OUTPUT expired events;
