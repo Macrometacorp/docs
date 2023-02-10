@@ -25,3 +25,9 @@ When the stream application is published, it:
 4. Finally, sends newly-generated events through output to streams.
 
 Best practice is to keep stream worker functionality limited to one business use case per stream worker. Additionally, stream workers can use shared sinks and sources to reduce code duplication and improve maintainability.
+
+## Stream Worker Flow Diagram
+
+The following diagram depicts some of the key Stream QL elements of Stream Application and how events flow through the elements.
+
+![Event Flow](/img/event-flow.png?raw=true "Event Flow")
