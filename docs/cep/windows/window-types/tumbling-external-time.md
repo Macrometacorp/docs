@@ -23,13 +23,9 @@ A batch (tumbling) time window based on external time, that holds events arrived
 
 ## Example 1
 
-:::note
-To run this code block, replace `eventTime` with a Unix timestamp in milliseconds.
-:::
-
 ```sql
-CREATE STREAM cseEventStream (symbol string, price float, volume int);
-CREATE WINDOW cseEventWindow (symbol string, price float, volume int) TUMBLING_EXTERNAL_TIME(eventTime, 1 sec) OUTPUT expired events;
+CREATE STREAM cseEventStream (symbol string, price float, volume int, eventTime long);
+CREATE WINDOW cseEventWindow (symbol string, price float, volume int, eventTime long) TUMBLING_EXTERNAL_TIME(eventTime, 1 sec) OUTPUT expired events;
 
 @info(name = 'query0')
 INSERT INTO cseEventWindow
@@ -45,24 +41,18 @@ This will processing events that arrive every second from the eventTime.
 
 ## Example 2
 
-:::note
-To run this code block, replace `eventTime` with a Unix timestamp in milliseconds.
-:::
-
 ```sql
-CREATE WINDOW cseEventWindow (symbol string, price float, volume int) TUMBLING_EXTERNAL_TIME(eventTime, 20 sec, 0) OUTPUT expired events;
+CREATE STREAM cseEventStream (symbol string, price float, volume int, eventTime long);
+CREATE WINDOW cseEventWindow (symbol string, price float, volume int, eventTime long) TUMBLING_EXTERNAL_TIME(eventTime, 20 sec, 0) OUTPUT expired events;
 ```
 
 This processes events that arrive every 1 seconds from the eventTime. Starts on 0th millisecond of an hour.
 
 ## Example 3
 
-:::note
-To run this code block, replace `eventTime` with a Unix timestamp in milliseconds.
-:::
-
 ```sql
-CREATE WINDOW cseEventWindow (symbol string, price float, volume int) TUMBLING_EXTERNAL_TIME(eventTime, 2 sec, eventTimestamp, 100) OUTPUT expired events;
+CREATE STREAM cseEventStream (symbol string, price float, volume int, eventTime long, eventTimestamp long);
+CREATE WINDOW cseEventWindow (symbol string, price float, volume int, eventTime long, eventTimestamp long) TUMBLING_EXTERNAL_TIME(eventTime, 2 sec, eventTimestamp, 100) OUTPUT expired events;
 ```
 
 This processes events that arrive every two seconds from the eventTime. Considers the first event's eventTimestamp value as startTime. Waits 100 milliseconds for the arrival of a new event before flushing current batch.
