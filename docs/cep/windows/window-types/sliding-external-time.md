@@ -12,7 +12,7 @@ A sliding time window based on external time. It holds events that arrived durin
 
 | Name        | Description            | Default Value | Possible Data Types | Optional | Dynamic |
 |-------------|------------------------|---------------|---------------------|----------|---------|
-| timestamp   | The Unix timestamp in milliseconds which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. Example: 1676061507472 |               | LONG     | No       | Yes     |
+| timestamp   | The Unix timestamp in milliseconds which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. Max. int is 2^32, or 2147483647. |               | LONG     | No       | Yes     |
 | window.time | The sliding time period for which the window should hold events.      |          | INT LONG TIME    | No      | No      |
 
 ## Example
