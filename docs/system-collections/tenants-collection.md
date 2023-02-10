@@ -1,7 +1,7 @@
 ---
 sidebar_position: 50
 title: _tenants Collection
-slug: plans-collection
+slug: tenants-collection
 ---
 
 Collection Name: _tenants
