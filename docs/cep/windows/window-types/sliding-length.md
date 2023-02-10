@@ -22,7 +22,7 @@ CREATE WINDOW StockEventWindow (symbol string, price float, volume int) SLIDING_
 
 @info(name = 'query0')
 INSERT INTO StockEventWindow
-FROM StockEventStream;
+FROM cseEventStream;
 
 @info(name = 'query1')
 INSERT all events INTO outputStream 
