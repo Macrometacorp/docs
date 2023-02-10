@@ -25,6 +25,7 @@ A batch (tumbling) time window based on external time, that holds events arrived
 
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume int, eventTime long);
+CREATE SINK OutputStream WITH (type='stream', stream='OutputStream') (symbol string, price double);
 CREATE WINDOW cseEventWindow (symbol string, price float, volume int, eventTime long) TUMBLING_EXTERNAL_TIME(eventTime, 1 sec) OUTPUT expired events;
 
 @info(name = 'query0')
@@ -32,7 +33,7 @@ INSERT INTO cseEventWindow
 FROM cseEventStream;
 
 @info(name = 'query1')
-INSERT expired events INTO outputStream 
+INSERT expired events INTO OutputStream 
 SELECT symbol, sum(price) AS price
 FROM cseEventWindow;
 ```
