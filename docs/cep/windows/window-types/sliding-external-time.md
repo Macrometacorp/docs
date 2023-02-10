@@ -12,14 +12,18 @@ A sliding time window based on external time. It holds events that arrived durin
 
 | Name        | Description            | Default Value | Possible Data Types | Optional | Dynamic |
 |-------------|------------------------|---------------|---------------------|----------|---------|
-| timestamp   | The time which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. |               | LONG     | No       | Yes     |
+| timestamp   | The Unix timestamp in milliseconds which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. Example: 1676060729 |               | LONG     | No       | Yes     |
 | time | The sliding time period for which the window should hold events.      |          | INT LONG TIME    | No      | No      |
 
 ## Example
 
+:::note
+To test this code block, replace `eventTime` with a Unix timestamp in milliseconds.
+:::
+
 ```sql
-CREATE STREAM StockEventStream (symbol string, price float, volume int);
-CREATE WINDOW cseEventWindow (symbol string, price float, volume int) SLIDING_EXTERNAL_TIME(eventTime, 20 sec) OUTPUT expired events;
+CREATE STREAM cseEventStream (symbol string, price float, volume int, eventTime long);
+CREATE WINDOW cseEventWindow (symbol string, price float, volume int, eventTime long) SLIDING_EXTERNAL_TIME(eventTime, 20 sec) OUTPUT expired events;
 
 @info(name = 'query0')
 INSERT INTO cseEventWindow
@@ -27,7 +31,7 @@ FROM cseEventStream;
 
 @info(name = 'query1')
 INSERT expired events INTO outputStream
-SELECT symbol, sum(price) AS price
+SELECT symbol, price
 FROM cseEventWindow;
 ```
 
