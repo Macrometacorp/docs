@@ -19,13 +19,17 @@ A batch (tumbling) length window that holds and process a number of events as sp
 ## Example 1
 
 ```sql
-CREATE STREAM InputEventStream (symbol string, price float, volume int);
-CREATE WINDOW StockEventWindow (symbol string, price float, volume int) TUMBLING_EXPRESSION(num <3000) OUTPUT all events;
+CREATE STREAM cseEventStream (symbol string, price float, volume int);
+CREATE WINDOW cseEventWindow (symbol string, price float, volume int) TUMBLING_EXPRESSION('count() < 5');
+
+@info(name = 'query0')
+INSERT INTO cseEventWindow
+FROM cseEventStream;
 
 @info(name = 'query1')
 INSERT INTO OutputStream
 SELECT symbol, sum(price) AS price
-FROM StockEventWindow WINDOW TUMBLING_EXPRESSION('sum(price) < 100 and eventTimestamp(last) - eventTimestamp(first) < 3000');
+FROM cseEventWindow;
 ```
 
-This collects and processes the events that meet the expression criteria and outputs them.
+This collects and processes the events and only provides output after receiving five valid messages from cseEventStream.
