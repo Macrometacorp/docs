@@ -19,6 +19,7 @@ A sliding time window based on external time. It holds events that arrived durin
 
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume int, eventTime long);
+CREATE SINK OutputStream WITH (type='stream', stream='OutputStream') (symbol string, price float);
 CREATE WINDOW cseEventWindow (symbol string, price float, volume int, eventTime long) SLIDING_EXTERNAL_TIME(eventTime, 20 sec) OUTPUT expired events;
 
 @info(name = 'query0')
@@ -26,7 +27,7 @@ INSERT INTO cseEventWindow
 FROM cseEventStream;
 
 @info(name = 'query1')
-INSERT expired events INTO outputStream
+INSERT expired events INTO OutputStream
 SELECT symbol, price
 FROM cseEventWindow;
 ```

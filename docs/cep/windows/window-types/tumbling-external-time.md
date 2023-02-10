@@ -37,7 +37,7 @@ SELECT symbol, sum(price) AS price
 FROM cseEventWindow;
 ```
 
-This will processing events that arrive every second from the eventTime.
+This processes events that arrive every second from the eventTime.
 
 ## Example 2
 
