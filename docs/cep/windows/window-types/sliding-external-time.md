@@ -2,18 +2,18 @@
 title: SLIDING_EXTERNAL_TIME()
 ---
 
-A sliding time window based on external time. It holds events that arrived during the last window `time` period from the external timestamp, and gets updated on every monotonically increasing timestamp.
+A sliding time window based on external time. It holds events that arrived during the last window `window.time` period from the external timestamp, and gets updated on every monotonically increasing timestamp.
 
 ## Syntax
 
-    WINDOW SLIDING_EXTERNAL_TIME(<LONG> timestamp, <INT|LONG|TIME> time)
+    WINDOW SLIDING_EXTERNAL_TIME(<LONG> timestamp, <INT|LONG|TIME> window.time)
 
 ## Query Parameters
 
 | Name        | Description            | Default Value | Possible Data Types | Optional | Dynamic |
 |-------------|------------------------|---------------|---------------------|----------|---------|
 | timestamp   | The Unix timestamp in milliseconds which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. Example: 1676060729 |               | LONG     | No       | Yes     |
-| time | The sliding time period for which the window should hold events.      |          | INT LONG TIME    | No      | No      |
+| window.time | The sliding time period for which the window should hold events.      |          | INT LONG TIME    | No      | No      |
 
 ## Example
 
