@@ -13,7 +13,7 @@ A batch (tumbling) length window that holds and process a number of events as sp
 
 | Name      | Description       | Default Value | Possible Data Types | Optional | Dynamic |
 |-----------|---------------------|------------|--------------|----------|---------|
-| expression        | An expression that defines what events the window should tumble. All possible expressions are allowed.         |      | STR  | No       | No      |
+| expression        | An expression that defines what events the window should tumble. All possible valid expressions are allowed.         |      | STR  | No       | No      |
 | current.event | Let the window stream the current events out as and when they arrive to the window while expiring them in batches. | false | BOOL    | Yes      | No      |
 
 ## Example 1
