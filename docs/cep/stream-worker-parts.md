@@ -8,40 +8,7 @@ title: Stream Worker Basics
 
 ## Stream Worker Syntax
 
-StreamApp is a collection of Stream QL elements composed together as a script. Here each stream query element must be separated by a semicolon `;`.
 
-### High-Level Syntax
-
-High level syntax of StreamApp is as follows:
-
-```js
-<stream worker>  :
-        <worker annotation> *
-        ( <stream definition> | <table definition> | ... ) +
-        ( <query> | <partition> ) +
-        ;
-```
-
-### Syntax Example
-
-For example, this stream application with the name `Temperature-Analytics` creates a stream named `TempStream` and a query named `5minAvgQuery`.
-
-Stream workers are named by adding `@app:name('<name>')` annotation on the top of the stream worker spec. When the annotation is not added, Macrometa assigns a random UUID as the name of the stream worker.
-
-```js
-@App:name("Temperature-Analytics")
-@App:description("This stream worker creates a stream and query.")
-@App:qlVersion("2")
-
-CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
-CREATE SINK STREAM OutputStream (roomNo int, avgTemp double);
-
-@name('5minAvgQuery')
-insert into OutputStream
-select roomNo, avg(temp) as avgTemp
-from TempStream window sliding_time(5 min)
-group by roomNo;
-```
 
 ## Stream Worker Flow Diagram
 
