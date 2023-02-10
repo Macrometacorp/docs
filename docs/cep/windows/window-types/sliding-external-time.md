@@ -18,7 +18,7 @@ A sliding time window based on external time. It holds events that arrived durin
 ## Example
 
 :::note
-To test this code block, replace `eventTime` with a Unix timestamp in milliseconds.
+To run this code block, replace `eventTime` with a Unix timestamp in milliseconds.
 :::
 
 ```sql
