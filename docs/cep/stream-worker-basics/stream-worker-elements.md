@@ -19,8 +19,12 @@ Events are part of a stream worker definition, they are what a stream worker con
 [
 [Source](../source/)    | A construct that consumes data from external sources (such as `database`, `stream`, `TCP`, `Kafka`, `HTTP`, etc) with various event formats such as `JSON`, `binary`, etc, convert then to stream events, and passes into streams for processing.
 
-## Trigger
+### Trigger
 Trigger](../source/trigger)     | Triggers allow events to be periodically generated based on time or other conditions.
+
+### Query Worker
+
+Can create query worker to use in processing, can also use query worker as source.
 
 ## Sink (Required)
 [Sink](../sink/)      | A construct that consumes events arriving at a stream, maps them to a predefined data format (such as `JSON`, `binary`, etc), and publishes them to external endpoints (such as `E-mail`, `TCP`, `Kafka`, `HTTP`, etc).
@@ -39,7 +43,7 @@ Queries use functions and partitions
 [Inner Stream](../query-guide/partition/inner-stream) | A positionable stream that connects portioned queries with each other within the partition.
 [Partition](../query-guide/partition/)	| A logical container that isolates the processing of queries based on the partition keys derived from the events.
 
-## Query Worker
+
 
 ## Named Window
 
