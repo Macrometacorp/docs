@@ -12,18 +12,22 @@ A sliding window that holds the last number of events defined by an expression a
 
 | Name          | Description     | Default Value | Possible Data Types | Optional | Dynamic |
 |----------|---------------------------------------|-------------|-----------------|----------|---------|
-| expression | An expression that defines what events should be included in the sliding window. All possible expressions are allowed. |          | STR        | No       | No      |
+| expression | An expression that defines what events should be included in a sliding window. All possible expressions are allowed. |          | STR        | No       | No      |
 
 ## Example
 
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume int);
-CREATE WINDOW StockEventWindow (symbol string, price float, volume int) EXPRESSION('count()<40');
+CREATE WINDOW cseEventWindow (symbol string, price float, volume int) SLIDING_EXPRESSION('count() <= 20');
+
+@info(name = 'query0')
+INSERT INTO cseEventWindow
+FROM cseEventStream;
 
 @info(name = 'query1')
 INSERT INTO OutputStream
 SELECT symbol, sum(price) AS price
-FROM StockEventWindow WINDOW SLIDING_EXPRESSION('count()<=20');
+FROM cseEventWindow;
 ```
 
 This query holds a number of events less than or equal to 20.
