@@ -34,7 +34,7 @@ Stream workers are named by adding `@app:name('<name>')` annotation on the top o
 
 Each required element is labeled with comments.
 
-```js
+```sql
 -- Metadata with name, description, and query language version.
 @App:name("Temperature-Analytics")
 @App:description("This stream worker creates a stream and query.")
