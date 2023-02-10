@@ -15,13 +15,17 @@ A batch (tumbling) time window based on external time, that holds events arrived
 
 | Name                   | Description        | Default Value           | Possible Data Types | Optional | Dynamic |
 |--------------|---------------------------------------|--------------------------|------------------|----------|---------|
-| timestamp              | The time which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. |                        | LONG                | No       | Yes     |
+| timestamp              | The Unix timestamp in milliseconds which the window determines as current time and will act upon. The value of this parameter should be monotonically increasing. Example: 1676060729 |                        | LONG                | No       | Yes     |
 | time            | The batch time period for which the window should hold events.    |                      | INT LONG TIME       | No       | No      |
 | start             | User defined start time. This could either be a constant (of type `int`, `long`, or `time`) or an attribute of the corresponding stream (of type `long`). If an attribute is provided, initial value of attribute would be considered as startTime. | Timestamp of first event     | INT LONG TIME       | Yes      | Yes     |
 | timeout      | Time to wait for arrival of new event, before flushing and giving output for events belonging to a specific batch.    | System waits till an event from next batch arrives to flush current batch | INT LONG TIME       | Yes      | No      |
 | replace.with.batchtime | This indicates to replace the expired event timeStamp as the batch end timeStamp        | System waits till an event from next batch arrives to flush current batch | BOOL          | Yes      | No      |
 
 ## Example 1
+
+:::note
+To run this code block, replace `eventTime` with a Unix timestamp in milliseconds.
+:::
 
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume int);
@@ -41,6 +45,10 @@ This will processing events that arrive every second from the eventTime.
 
 ## Example 2
 
+:::note
+To run this code block, replace `eventTime` with a Unix timestamp in milliseconds.
+:::
+
 ```sql
 CREATE WINDOW cseEventWindow (symbol string, price float, volume int) TUMBLING_EXTERNAL_TIME(eventTime, 20 sec, 0) OUTPUT expired events;
 ```
@@ -48,6 +56,10 @@ CREATE WINDOW cseEventWindow (symbol string, price float, volume int) TUMBLING_E
 This processes events that arrive every 1 seconds from the eventTime. Starts on 0th millisecond of an hour.
 
 ## Example 3
+
+:::note
+To run this code block, replace `eventTime` with a Unix timestamp in milliseconds.
+:::
 
 ```sql
 CREATE WINDOW cseEventWindow (symbol string, price float, volume int) TUMBLING_EXTERNAL_TIME(eventTime, 2 sec, eventTimestamp, 100) OUTPUT expired events;
