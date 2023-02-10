@@ -6,6 +6,8 @@ title: Set Message Queue
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+This page shows you several ways to use a stream as a message queue.
+
 To use a stream as a message queue:
 
 1. Establish a [shared subscription](../subscriptions#shared) and use the same subscription name as the other consumers. 

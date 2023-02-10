@@ -50,9 +50,9 @@ The stream processing engine receives data event-by-event and processes them in 
 - Process them to transform, enrich, and generate insights.
 - Publish them to multiple types of sinks.
 
-To use stream processor, you need to write the processing logic as a stream application using streaming SQL language which is discussed in the [Stream Query Guide](query-guide/).
+To use process streams, you need to write the processing logic as a stream worker query, which is discussed in [Stream Worker Queries](query-guide/).
 
-When the stream application is published, it:
+When the stream worker is published, it:
 
 1. Consumes data one-by-one as events.
 2. Pipe the events to queries through various streams for processing.
