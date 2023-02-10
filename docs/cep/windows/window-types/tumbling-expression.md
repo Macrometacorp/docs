@@ -2,7 +2,7 @@
 title: TUMBLING_EXPRESSION()
 ---
 
-A batch (tumbling) length window that holds and process a number of events as specified in the `length`.
+A batch (tumbling) window that holds and process a number of events as specified in the `expression`.
 
 ## Syntax
 
