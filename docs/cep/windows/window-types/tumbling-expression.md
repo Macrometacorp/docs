@@ -21,6 +21,7 @@ A batch (tumbling) window that holds and process a number of events as specified
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume int);
 CREATE WINDOW cseEventWindow (symbol string, price float, volume int) TUMBLING_EXPRESSION('count() < 5');
+CREATE SINK STREAM OutputStream (symbol string, price double);
 
 @info(name = 'query0')
 INSERT INTO cseEventWindow
