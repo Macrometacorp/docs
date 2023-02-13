@@ -23,13 +23,14 @@ This window holds a batch of events that equal the number specified as the windo
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume long);
 CREATE WINDOW cseEventWindow (symbol string, price float, volume long) SORT(2,volume, 'asc');
+CREATE SINK STREAM OutputStream (volume long);
 
 @info(name = 'query0')
 INSERT INTO cseEventWindow
 FROM cseEventStream;
 
 @info(name = 'query1')
-INSERT all events INTO outputStream 
+INSERT all events INTO OutputStream 
 SELECT volume
 FROM cseEventWindow;
 ```
