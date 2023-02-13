@@ -19,13 +19,14 @@ A _sliding length window_ that holds the last `length` events at a given time, a
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume int);
 CREATE WINDOW StockEventWindow (symbol string, price float, volume int) SLIDING_LENGTH(10) output all events;
+CREATE SINK STREAM OutputStream (symbol string, price double);
 
 @info(name = 'query0')
 INSERT INTO StockEventWindow
 FROM cseEventStream;
 
 @info(name = 'query1')
-INSERT all events INTO outputStream 
+INSERT all events INTO OutputStream 
 SELECT symbol, sum(price) AS price
 FROM StockEventWindow;
 ```
