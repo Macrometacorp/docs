@@ -19,8 +19,9 @@ A window that holds an incoming events batch. When a new set of events arrives, 
 
 ```sql
 CREATE STREAM consumerItemStream (itemId string, price float);
+CREATE SINK STREAM OutputStream (price float, itemIds string);
 
-INSERT INTO outputStream
+INSERT INTO OutputStream
 SELECT price, str:groupConcat(itemId) AS itemIds
 FROM consumerItemStream WINDOW TUMBLING()
 GROUP BY price;
