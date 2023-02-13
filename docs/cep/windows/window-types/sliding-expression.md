@@ -19,6 +19,7 @@ A sliding window that holds the last number of events defined by an expression a
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume int);
 CREATE WINDOW cseEventWindow (symbol string, price float, volume int) SLIDING_EXPRESSION('count() <= 20');
+CREATE SINK STREAM OutputStream (symbol string, price double);
 
 @info(name = 'query0')
 INSERT INTO cseEventWindow
