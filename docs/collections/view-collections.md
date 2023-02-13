@@ -55,9 +55,9 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection list](../cli/collections-cli.md#gdnsl-collection-list) CLI command to see what collections exist.
+Use the [gdnsl collection list](../cli/collections-cli#gdnsl-collection-list) CLI command to see what collections exist.
 
-Use the [gdnsl collection describe](../cli/collections-cli.md#gdnsl-collection-describe) CLI command to learn more about a specific collection.
+Use the [gdnsl collection describe](../cli/collections-cli#gdnsl-collection-describe) CLI command to learn more about a specific collection.
 
 Output from these commands looks similar to the following:
 

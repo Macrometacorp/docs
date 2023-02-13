@@ -27,20 +27,15 @@ Functions allow you to:
 |----------|-------------|
 | and	     | Returns the results of AND operation for all the events.|
 | avg	     | Calculates the average for all the events.|
-| batch	     | A window that holds an incoming events batch.|
 | cast	     | Converts the first parameter according to the cast.to parameter.|
 | coalesce	     | Returns the value of the first input parameter that is not null, and all input parameters have to be on the same type.|
 | convert	     | Converts the first input parameter according to the `convertedTo` parameter.|
 | count	     | Returns the count of all the events.|
 | createSet	     | Includes the given input parameter in a java.util.HashSet and returns the set.|
-| cron	     | This window outputs the arriving events as and when they arrive, and resets (expires) the window periodically based on the given cron expression.|
 | currentTimeMillis	     | Returns the current timestamp of stream processor application in milliseconds.|
 | default	     | Checks if the `attribute` parameter is null and if so returns the value of the `default` parameter.|
-| delay	     | A delay window holds events for a specific time period that is regarded as a delay period before processing them.|
 | distinctCount	     | This returns the count of distinct occurrences for a given arg.|
 | eventTimestamp	     | Returns the timestamp of the processed event.|
-| externalTime	     | A sliding time window based on external time.|
-| externalTimeBatch	     | A batch (tumbling) time window based on external time.|
 | ifThenElse	     | Evaluates the `condition` parameter and returns value of the `if.expression`.|
 | instanceOfBoolean	     | Checks whether the parameter is an instance of Boolean or not.|
 | instanceOfDouble	     | Checks whether the parameter is an instance of Double or not.|
@@ -48,8 +43,6 @@ Functions allow you to:
 | instanceOfInteger	     | Checks whether the parameter is an instance of Integer or not.|
 | instanceOfLong	     | Checks whether the parameter is an instance of Long or not.|
 | instanceOfString	     | Checks whether the parameter is an instance of String or not.|
-| length	     | A sliding length window that holds the last `window.length` events at a given time, and gets updated for each arrival and expiration.|
-| lengthBatch	     | A batch (tumbling) length window that holds and process a number of events as specified in the window.length.|
 | log	     | Logs the message on the given priority with or without the processed event.|
 | max	     | Returns the maximum value for all the events.|
 | maxForever	     | This is the attribute aggregator to store the maximum value for a given attribute.|
@@ -59,14 +52,9 @@ Functions allow you to:
 | minimum	     | Returns the minimum value of the input parameters.|
 | or	     | Returns the results of OR operation for all the events.|
 | pol2Cart	     | The pol2Cart function calculating the cartesian coordinates x & y for the given theta.|
-| session	     | Holds events that belong to a session.|
 | sizeOfSet	     | Returns the size of an object of type java.util.Set.|
-| sort	     | This window holds a batch of events that equal the number specified as the windowLength and sorts them in the given order.|
 | stdDev	     | Returns the calculated standard deviation for all the events.|
 | sum	     | Returns the sum for all the events.|
-| time	     | A sliding time window that holds events that arrived during the last windowTime period at a given time.|
-| timeBatch	     | A batch (tumbling) time window that holds and process events that arrive during `window.time` period as a batch.|
-| timeLength	     | A sliding time window that, at a given time holds the last window.length events.|
 | unionSet	     | Union multiple sets.|
 | uuid	     | Generates a UUID (Universally Unique Identifier).|
 
