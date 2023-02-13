@@ -65,27 +65,36 @@ For more information about queries in stream workers, refer to [Stream Worker Qu
 
 ### Functions
 
-_Functions_ enhance Macrometa Stream QL, the language used to write stream workers, by incorporating additional capabilities such as math, geospatial, and sentiment analysis. Macrometa Stream QL provides various in-built functions to access and manage event data according to our requirements. Functions can accept zero or more parameters, perform actions and return the result.
+_Functions_ enhance Macrometa Stream QL, the language used to write stream workers, by incorporating additional capabilities such as math, geospatial, and sentiment analysis. Functions can accept zero or more parameters, perform actions, and return the result.
 
-
+For more information about using functions, refer to [Functions](../query-guide/functions/).
 
 ### Partition
 
-[Inner Stream](../query-guide/partition/inner-stream) | A positionable stream that connects portioned queries with each other within the partition.
-[Partition](../query-guide/partition/)	| A logical container that isolates the processing of queries based on the partition keys derived from the events.
+A _partition_ is a logical container that isolates the processing of queries based on the partition keys derived from the events.
 
+For more information about using partitions, refer to [Partition](../query-guide/partition/).
 
+### Inner Stream
 
-## Named Window
+An _inner stream_ is a positionable stream that connects portioned queries with each other within the partition.
 
-[Named Window](../windows/)     | A structured representation of data stored with a defined schema and eviction policy. Window data is stored `In-Memory` and automatically cleared by the named window constrain. Other stream processor elements can only query the values in windows at runtime but they cannot modify them. 
+For more information about using inner streams, refer to [Inner Stream](../query-guide/partition/inner-stream).
 
 ## Named Aggregation
 
-[Named Aggregation](../aggregations/)     | A structured representation of data that's incrementally aggregated and stored with a defined schema and aggregation granularity such as seconds, minutes, hours, etc. Aggregation data is stored in `database`. Other stream processor elements can only query the values in windows at runtime but they cannot modify them.
+A _named aggregation_ is the structured representation of data that's incrementally aggregated and stored with a defined schema and aggregation granularity such as seconds, minutes, hours, and so on. Aggregation data is stored in a Macrometa collection (`database`). Other stream processor elements can query the values in aggregation windows at runtime, but they cannot modify them.
 
-## Table
+For more information about aggregations, refer to [Named Aggregation](../aggregations/).
 
-Collection and store
+## Named Window
 
-[Table](../query-guide/table-collection)     | A structured representation of data stored with a defined schema. Stored data is backed by C8DB. The tables (aka collections) can be `local` or `geo-replicated`. Similarly the tables can be `document` or `graph` collections. The tables can be accessed and manipulated at runtime.
+A _named window_ is the structured representation of data stored with a defined schema and eviction policy. Window data is stored in memory and is automatically cleared by the named window constrain. Other stream processor elements can query the values in windows at runtime, but they cannot modify them.
+
+For more information about windows, refer to [Named Windows](../windows).
+
+## Table (Collection)
+
+A _table_ is the structured representation of data stored with a defined schema. Stored data is backed by Macrometa collections. The tables (collections) can be `local` or `geo-replicated`. Similarly, the tables can be `document` or `graph` collections. Tables can be accessed and manipulated at runtime.
+
+For more information about tables, refer to [Table](../query-guide/table-collection).
