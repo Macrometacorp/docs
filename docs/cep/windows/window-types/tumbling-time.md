@@ -23,6 +23,7 @@ A _tumbling time batch window_ holds and processes events that arrive during the
 
 ```sql
 CREATE STREAM InputEventStream (symbol string, price float, volume int);
+CREATE SINK STREAM OutputStream (symbol string, price double);
 
 @info(name = 'query1')
 INSERT INTO OutputStream
@@ -36,6 +37,7 @@ This window collects and processes incoming events as a batch every 20 seconds a
 
 ```sql
 CREATE STREAM InputEventStream (symbol string, price float, volume int);
+CREATE SINK STREAM OutputStream (symbol string, sumPrice double);
 
 @info(name = 'query1')
 INSERT INTO OutputStream
@@ -50,6 +52,8 @@ This window sends the arriving events directly to the output letting the `sumPri
 ```sql
 CREATE STREAM InputEventStream (symbol string, price float, volume int);
 CREATE WINDOW StockEventWindow (symbol string, price float, volume int) TUMBLING_TIME(20 sec) output all events;
+CREATE SINK STREAM OutputStream (symbol string, price double);
+
 
 @info(name = 'query0')
 INSERT INTO StockEventWindow
