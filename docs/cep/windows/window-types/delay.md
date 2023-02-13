@@ -20,7 +20,7 @@ A delay window holds events for a specific time period that is regarded as a del
 CREATE WINDOW delayWindow(symbol string, volume int) DELAY(1 hour);
 CREATE STREAM PurchaseStream(symbol string, volume int);
 CREATE STREAM DeliveryStream(symbol string);
-CREATE STREAM OutputStream(symbol string);
+CREATE SINK STREAM OutputStream(symbol string);
 
 @info(name='query1')
 INSERT INTO delayWindow
