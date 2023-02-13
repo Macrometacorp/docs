@@ -27,12 +27,14 @@
     "@mdx-js/react": "^1.6.21",
     "@stoplight/elements": "7.6.3",
     "@types/react": "^17.0.1",
+    "@vercel/analytics": "^0.1.8",
     "clsx": "^1.1.1",
     "dotenv": "^16.0.0",
     "posthog-docusaurus": "^1.0.3",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "web-vitals": "^3.1.1"
   },
   "devDependencies": {
     "buffer": "^6.0.3",
