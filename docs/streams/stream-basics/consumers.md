@@ -38,3 +38,61 @@ Client libraries can provide their own listener implementations for consumers. I
 ## Cursor
 
 A cursor is the subscription position for a stream consumer. You can think of it like the cursor on your page, marking where you are.
+
+## How to create consumers?
+
+It is possible to use our JavaScript or Python SDK to create producers.
+
+<Tabs groupId="modify-single">
+<TabItem value="javascript" label=" JavaScript SDK">
+
+- Step 1. [Install the SDK](../../sdks/install-sdks.md).
+- Step 2. Create an instance of the jsC8.
+- Step 3. Request `stream` object.
+- Step 4. Request One Time Password and create consumer.
+
+```js
+const jsc8 = require("jsc8");
+
+const BASE_URL = "https://play.paas.macrometa.io/"
+
+client = new jsc8({
+    url: BASE_URL,
+    apiKey: "xxxxxx",
+    fabricName: "_system",
+});
+
+const streamName = "streamQuickstart";
+const subscriptionName = "consumer-subscription"
+
+async function consumer() {
+  try {
+    await console.log("\nConnecting consumer to global stream...");
+
+    // Request stream object
+    const stream = client.stream(streamName, false);
+    // Request One Time Password
+    const consumerOTP = await stream.getOtp();
+    // Create consumer
+    const consumer = stream.consumer(subscriptionName, BASE_URL, {
+      otp: consumerOTP,
+    });
+    // Run consumer - open connection to server
+    consumer.on("message", (msg) => {
+      const { payload, messageId } = JSON.parse(msg);
+      // Received message payload
+      console.log(Buffer.from(payload, "base64").toString("ascii"));
+      // Send message acknowledgement
+      consumer.send(JSON.stringify({ messageId }));
+    });
+  } catch (e) {
+    await console.log("Could not receive messages " + e);
+  }
+}
+
+consumer();
+
+
+```
+</TabItem>
+</Tabs>

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 30
+sidebar_position: 25
 title: Producers
 ---
 
@@ -24,3 +24,85 @@ Messages published by producers can be compressed during transportation in order
 ## Batching
 
 If batching is enabled, then the producer accumulates and sends a batch of messages in a single request. Batching size is defined by the maximum number of messages and maximum publish latency.
+
+## How to create producers?
+
+It is possible to use our JavaScript or Python SDK to create producers.
+
+<Tabs groupId="modify-single">
+<TabItem value="javascript" label=" JavaScript SDK">
+
+- Step 1. [Install the SDK](../../sdks/install-sdks.md).
+- Step 2. Create an instance of the jsC8.
+- Step 3. Request `stream` object.
+- Step 4. Request One Time Password and create producer.
+
+```js
+const jsc8 = require("jsc8");
+
+const BASE_URL = "https://play.paas.macrometa.io/"
+
+client = new jsc8({
+    url: BASE_URL,
+    apiKey: "xxxxxx",
+    fabricName: "_system",
+});
+
+const streamName = "streamQuickstart";
+
+async function createStream() {
+  if (await client.hasStream(streamName, false)) {
+    console.log("This stream already exists!");
+    console.log(`Existing Producer = c8globals.${streamName}`);
+  } else {
+    console.log("\nCreating global stream...");
+    const streamInfo = await client.createStream(streamName, is_local);
+    console.log(`New Producer = ${streamInfo.result["stream-id"]}`);
+  }
+}
+
+async function producer() {
+  try {
+    // Create stream only if stream does not exist
+    createStream();
+    await console.log("\nConnecting producer to global stream...");
+
+    // Request stream object
+    const stream = client.stream(streamName, false);
+    // Request One Time Password
+    const producerOTP = await stream.getOtp();
+    // Create producer
+    const producer = await stream.producer(BASE_URL, {
+      otp: producerOTP,
+    });
+
+    // Run producer - Open connection to server
+    producer.on("open", () => {});
+
+    // Set messages in interval of 1000 ms
+    setInterval(() => {
+      // If your message is an object, convert the object to a string.
+      // e.g. const message = JSON.stringify({message:'Hello World'});
+      const message = `Hello Macrometa Stream! Here is your random message number ${Math.floor(
+        Math.random() * 101
+      )}`;
+      let payloadObj = { payload: Buffer.from(message).toString("base64") };
+      producer.send(JSON.stringify(payloadObj));
+    }, 1000);
+
+    producer.onclose = function () {
+      console.log("Closed WebSocket:Producer connection for " + streamName);
+    };
+  } catch (e) {
+    await console.log("Error while creating stream publisher" + e);
+  }
+}
+
+producer();
+
+
+```
+
+</TabItem>
+</Tabs>
+
