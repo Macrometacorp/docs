@@ -18,6 +18,7 @@ This window outputs the arriving events as and when they arrive and resets (expi
 
 ```sql
 CREATE STREAM  InputEventStream (symbol string, price float, volume int);
+CREATE SINK STREAM OutputStream (symbol string, totalPrice double);
 
 @info(name = 'query1')
 INSERT INTO OutputStream
@@ -32,6 +33,7 @@ This lets the `totalPrice` gradually increase and resets to zero as a batch ever
 ```sql
 CREATE STREAM StockEventStream (symbol string, price float, volume int);
 CREATE WINDOW StockEventWindow (symbol string, price float, volume int) CRON('*/5 * * * * ?');
+CREATE SINK STREAM OutputStream (symbol string, totalPrice double);
 
 @info(name = 'query0')
 INSERT INTO StockEventWindow
