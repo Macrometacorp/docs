@@ -3,41 +3,72 @@ sidebar_position: 40
 title:  Stream Worker Elements
 ---
 
-The page below provides a brief description of all the potential parts of a stream worker.
+The page below provides a brief description of all the potential parts of a stream worker. Items marked as _required_ are necessary components for every stream worker. For example, every stream worker needs a [source](#source-required), but not all stream workers need an [aggregation](#named-aggregation).
 
 ## Event
 
-An event is a single event object associated with a stream. All events of a stream contains a timestamp and an identical set of typed attributes based on the schema of the stream they belong to.
+An _event_ is a single event object associated with a stream. All events of a stream contains a timestamp and an identical set of typed attributes based on the schema of the stream they belong to.
 
 Events are part of a stream worker definition, they are what a stream worker consumes and processes.
 
+## Stream
+
+A _stream_ is a logical series of events ordered in time with a uniquely identifiable name and a defined set of typed attributes defining its schema. Streams can be used in stream workers as sources or sinks.
+
+For more information about streams in general, refer to [Streams](../../streams/).
+
+For more information about using streams in stream workers, refer to [Stream Source](../source/source-types/stream-source) and [Stream Sink](../sink/sink-types/stream-sink).
+
 ## Metadata (Required)
 
-
+_Metadata_ includes some required elements, such as the name and the query language version, and some items that are just helpful, like descriptions. Metadata is always listed first in the stream worker order.
 
 ## Source (Required)
-[
-[Source](../source/)    | A construct that consumes data from external sources (such as `database`, `stream`, `TCP`, `Kafka`, `HTTP`, etc) with various event formats such as `JSON`, `binary`, etc, convert then to stream events, and passes into streams for processing.
+
+In the simplest termers, a _source_ is where the events the stream worker processes come from; the source of events. Stream workers can have multiple sources.
+
+In more technical terms, a source is a construct that consumes data from external sources (such as `database`, `stream`, `TCP`, `Kafka`, `HTTP`, and so on) with various event formats such as `JSON` or `binary`, converts then to stream events, and then passes into streams for processing.
+
+For more information about sources, refer to [Sources](../source/).
 
 ### Trigger
-Trigger](../source/trigger)     | Triggers allow events to be periodically generated based on time or other conditions.
+
+_Triggers_ allow events to be periodically generated based on time or other conditions. You can use a trigger as a stream worker source.
+
+For more information about metadata, refer to [Trigger](../source/trigger).
 
 ### Query Worker
 
-Can create query worker to use in processing, can also use query worker as source.
+You can access your Macrometa data collections by writing a _query_ in [SQL](../../queryworkers/sql/) or [C8QL](../../queryworkers/c8ql/). GDN stores named and parameterized queries as _query workers_ that you can run from a dedicated REST endpoint.
+
+You can use a query worker as a stream worker source or to process stream events. Stream workers can either create new stream workers or use existing ones.
+
+For more information about query workers in general, refer to [Queries and Query Workers](../../queryworkers/).
 
 ## Sink (Required)
-[Sink](../sink/)      | A construct that consumes events arriving at a stream, maps them to a predefined data format (such as `JSON`, `binary`, etc), and publishes them to external endpoints (such as `E-mail`, `TCP`, `Kafka`, `HTTP`, etc).
 
-## Stream
+In the simplest terms, a _sink_ is where the stream worker sends processed events. If the source is the origin, then the sink is the destination. Stream workers can have multiple sinks.
 
-[Stream](../source/source-types/stream-source)   | A logical series of events ordered in time with a uniquely identifiable name, and a defined set of typed attributes defining its schema. Streams can be sources or sinks.
+In more technical terms, a sink is a construct that consumes events arriving at a stream, maps them to a predefined data format (such as `JSON`, `binary`, and so on), and then publishes them to external endpoints (such as`TCP`, `Kafka`, `HTTP`, and so on).
+
+For more information about sinks, refer to [Sinks](../sink/).
 
 ## Query (Required)
-[Query](../query-guide/query)	    | A logical construct that processes events in a streaming manner by consuming data from one or more streams, tables, windows and aggregations, and publishes output events into a stream, table or a window.
 
-Queries use functions and partitions
+A _query_ is a stream worker is a logical construct that processes events in a streaming manner by consuming data from one or more streams, tables, windows, and aggregations, and then publishes output events into a stream, table, or a window.
+
+Queries often use functions and partitions as part of their processing.
+
+You can use queries to query windows, aggregations, and tables.
+
+For more information about queries in stream workers, refer to [Stream Worker Queries](../query-guide/).
+
 ### Functions
+
+_Functions_ enhance Macrometa Stream QL, the language used to write stream workers, by incorporating additional capabilities such as math, geospatial, and sentiment analysis. Macrometa Stream QL provides various in-built functions to access and manage event data according to our requirements. Functions can accept zero or more parameters, perform actions and return the result.
+
+
+
 ### Partition
 
 [Inner Stream](../query-guide/partition/inner-stream) | A positionable stream that connects portioned queries with each other within the partition.
@@ -58,5 +89,3 @@ Queries use functions and partitions
 Collection and store
 
 [Table](../query-guide/table-collection)     | A structured representation of data stored with a defined schema. Stored data is backed by C8DB. The tables (aka collections) can be `local` or `geo-replicated`. Similarly the tables can be `document` or `graph` collections. The tables can be accessed and manipulated at runtime.
-
-Stream/Query Callback | A mechanism to programmatically consume output events from streams or queries. |
