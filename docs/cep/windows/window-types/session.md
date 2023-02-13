@@ -22,6 +22,7 @@ Holds events that belong to a session. Events that belong to a specific session 
 
 ```sql
 CREATE STREAM PurchaseEventStream (user string, item_number int, price float, quantity int);
+CREATE SINK STREAM OutputStream (user string, totalQuantity long, totalPrice double);
 
 @info(name='query1')
 INSERT INTO OutputStream
@@ -36,6 +37,7 @@ From the events arriving at the PurchaseEventStream, a session window with five 
 
 ```sql
 CREATE STREAM PurchaseEventStream (user string, item_number int, price float, quantity int);
+CREATE SINK STREAM OutputStream (user string, totalQuantity long, totalPrice double);
 
 @info(name='query2')
 INSERT INTO OutputStream
