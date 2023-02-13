@@ -201,7 +201,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams delete](../../cli/streams-cli.md#gdnsl-streams-delete) CLI commands to delete existing streams.
+Use the [gdnsl streams delete](../../cli/streams-cli#gdnsl-streams-delete) CLI commands to delete existing streams.
 
 </TabItem>
 </Tabs>

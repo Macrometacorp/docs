@@ -34,8 +34,8 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Use the following CLI commands to view existing streams:
 
-- [gdnsl streams list](../../cli/streams-cli.md#gdnsl-streams-list)
-- [gdnsl streams describe](../../cli/streams-cli.md#gdnsl-streams-describe)
+- [gdnsl streams list](../../cli/streams-cli#gdnsl-streams-list)
+- [gdnsl streams describe](../../cli/streams-cli#gdnsl-streams-describe)
 
 </TabItem>
 </Tabs>

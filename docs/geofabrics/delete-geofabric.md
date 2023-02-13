@@ -30,7 +30,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric delete](../cli/fabrics-cli.md#gdnsl-fabric-delete) CLI command to delete GeoFabrics.
+Use the [gdnsl fabric delete](../cli/fabrics-cli#gdnsl-fabric-delete) CLI command to delete GeoFabrics.
 
 </TabItem>
 </Tabs>

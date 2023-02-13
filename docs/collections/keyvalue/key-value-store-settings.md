@@ -28,7 +28,7 @@ In the Settings tab, you can [Delete](../delete-collection.md) or [Truncate](../
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use [gdnsl collection describe](../../cli/collections-cli.md#gdnsl-collection-describe) to view information about a collection.
+Use [gdnsl collection describe](../../cli/collections-cli#gdnsl-collection-describe) to view information about a collection.
 
 Results will be similar to this code block:
 
@@ -51,7 +51,7 @@ Results will be similar to this code block:
 }
 ```
 
-Use [gdnsl collection update](../../cli/collections-cli.md#gdnsl-collection-update) to change collection settings.
+Use [gdnsl collection update](../../cli/collections-cli#gdnsl-collection-update) to change collection settings.
 
 </TabItem>
 <TabItem value="api" label="API">

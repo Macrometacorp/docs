@@ -26,7 +26,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl user get](../../cli/users-cli.md#gdnsl-user-get) CLI command to get user attributes.
+Use the [gdnsl user get](../../cli/users-cli#gdnsl-user-get) CLI command to get user attributes.
 
 </TabItem>
 <TabItem value="c8ql" label="C8QL">
