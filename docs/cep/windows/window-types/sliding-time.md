@@ -19,13 +19,14 @@ A _sliding time window_ that holds events that arrived during the last window ti
 ```sql
 CREATE STREAM cseEventStream (symbol string, price float, volume int);
 CREATE WINDOW cseEventWindow (symbol string, price float, volume int) SLIDING_TIME(20) output all events;
+CREATE SINK STREAM OutputStream (symbol string, price double);
 
 @info(name = 'query0')
 INSERT INTO cseEventWindow
 FROM cseEventStream;
 
 @info(name = 'query1')
-INSERT all events INTO outputStream 
+INSERT all events INTO OutputStream 
 SELECT symbol, sum(price) AS price
 FROM cseEventWindow;
 ```
