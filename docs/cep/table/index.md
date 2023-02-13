@@ -11,6 +11,8 @@ Tables allow the stream worker to work with stored events. By defining a schema 
 
 Any table defined in a stream worker is automatically a store for that stream worker. Tables can be stores or [sinks](../sink/).
 
+You can query table contents using [Table Operators](table-operators).
+
 ## Syntax
 
 There are two ways to define tables.
