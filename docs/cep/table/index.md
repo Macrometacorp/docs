@@ -11,7 +11,11 @@ Tables allow the stream worker to work with stored events. By defining a schema 
 
 Any table defined in a stream worker is automatically a store for that stream worker. Tables can be stores or [sinks](../sink/).
 
-### Syntax
+## Syntax
+
+There are two ways to define tables.
+
+### CREATE TABLE
 
 The syntax for a new table definition is as follows:
 
@@ -19,7 +23,27 @@ The syntax for a new table definition is as follows:
 CREATE TABLE (GLOBAL|SPOT)? <table_name> (<attribute_name> <attribute_type>, ...);
 ```
 
-### Parameters
+For example:
+
+```sql
+CREATE TABLE SensorTable (sensorId string, temperature double);
+```
+
+### CREATE STORE
+
+You can also use general store syntax:
+
+```sql
+CREATE STORE (GLOBAL|SPOT)? <table_name> WITH(type="<store_type>", propKey=”propVal”, … , PrimaryKey='<attribute_name>', Index='<attribute_name>')(<attribute_name> <attribute_type>, ...);
+```
+
+For example:
+
+```sql
+CREATE STORE SensorTable WITH(type=’database’, collection=’SampleTable’, map.type=’json’) (sensorId string, temperature double);
+```
+
+## Parameters
 
 The following parameters are configured in a table definition:
 
@@ -31,7 +55,7 @@ The following parameters are configured in a table definition:
 | from        | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.      | _from         | STRING              | Yes      |
 | to          | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a destination node of the edge. | _to      | STRING              | Yes      |
 
-### Examples
+## Examples
 
 The following defines a local table named `RoomTypeTable` with `roomNo` and `type` attributes of data types `int` and `string` respectively.
 
@@ -42,5 +66,5 @@ CREATE TABLE RoomTypeTable (roomNo int, type string);
 The following defines a global table named `SweetProductionCollection` with `name` and `amount` attributes of data types `string` and `double`.
 
 ```sql
-   CREATE TABLE GLOBAL SweetProductionCollection (name string, amount double);
+CREATE TABLE GLOBAL SweetProductionCollection (name string, amount double);
 ```
