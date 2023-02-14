@@ -22,10 +22,10 @@ There are two ways to define tables.
 The syntax for a new table definition is as follows:
 
 ```sql
-CREATE TABLE (GLOBAL|SPOT)? <table_name> (<attribute_name> <attribute_type>, ...);
+CREATE TABLE (GLOBAL|LOCAL)? <table_name> (<attribute_name> <attribute_type>, ...);
 ```
 
-For example:
+For example, this statement creates a global collection:
 
 ```sql
 CREATE TABLE SensorTable (sensorId string, temperature double);
@@ -36,10 +36,10 @@ CREATE TABLE SensorTable (sensorId string, temperature double);
 You can also use general store syntax:
 
 ```sql
-CREATE STORE (GLOBAL|SPOT)? <table_name> WITH(type="<store_type>", propKey=”propVal”, … , PrimaryKey='<attribute_name>', Index='<attribute_name>')(<attribute_name> <attribute_type>, ...);
+CREATE STORE (GLOBAL|LOCAL)? <table_name> WITH(type="<store_type>", propKey=”propVal”, … , PrimaryKey='<attribute_name>', Index='<attribute_name>')(<attribute_name> <attribute_type>, ...);
 ```
 
-For example:
+For example, this statement creates a global collection:
 
 ```sql
 CREATE STORE SensorTable WITH(type=’database’, collection=’SampleTable’, map.type=’json’) (sensorId string, temperature double);
@@ -52,6 +52,7 @@ The following parameters are configured in a table definition:
 | Parameter     | Description |
 | ------------- |-------------|
 | table name      | The name of the table defined. (`PascalCase` is used for table name as a convention.) |
+| GLOBAL or LOCAL      | Whether the table is globally or locally replicated. Default is `GLOBAL`. |
 | attribute name   | The schema of the table is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
 | attribute type   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
 | from        | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.      | _from         | STRING              | Yes      |
