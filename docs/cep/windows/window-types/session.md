@@ -47,3 +47,54 @@ GROUP BY user;
 ```
 
 From the events arriving at the PurchaseEventStream, a session window with five seconds session gap is processed based on the `user` attribute as the session group identification key. This session window is kept active for two seconds after the session expiration to capture late (out-of-order) event arrivals. If the event timestamp falls in to the last session the session is reactivated. Then all events falling into the same session are aggregated based on the `user` attribute and output to the OutputStream.
+
+## Example 3
+
+This example shows aggregating events over continuous activity sessions in a sliding manner.
+
+### Stream Worker Code
+
+```sql
+CREATE STREAM PurchaseStream(userId string, item string, price double);
+
+CREATE SINK STREAM OutOfOrderUserIdPurchaseStream(userId string, totalItems long, totalPrice double);
+CREATE SINK STREAM UserIdPurchaseStream(userId string, totalItems long, totalPrice double);
+
+@info(name = 'Session-analysis')
+-- Calculate count and sum of `price` per `userId` during the session.
+INSERT INTO OutOfOrderUserIdPurchaseStream
+SELECT userId,
+       count() as totalItems,
+       sum(price) as totalPrice
+-- Aggregate events over a `userId` based session window with `1 minute` session gap.
+FROM PurchaseStream WINDOW SESSION(1 min, userId)
+GROUP BY userId;
+-- Output when events are added to the session.
+
+@info(name = 'Session-analysis-with-late-event-arrivals')
+-- Calculate count and sum of `price` per `userId` during the session.
+INSERT INTO UserIdPurchaseStream
+SELECT userId,
+       count() AS totalItems,
+       sum(price) AS totalPrice
+-- Aggregate events over a `userId` based session window with `1 minute` session gap,
+-- and `20 seconds` of allowed latency to capture late event arrivals.
+FROM PurchaseStream WINDOW SESSION(1 min, userId, 20 sec)
+GROUP BY userId;
+-- Output when events are added to the session.
+```
+
+### Session Aggregation Behavior
+
+When events are sent to `PurchaseStream`, the following events are emitted at `UserIdPurchaseStream` via the `Session-analysis` query, and `OutOfOrderUserIdPurchaseStream` via the `Session-analysis-with-late-event-arrivals` query.
+
+| Time |Event Timestamp | Input to `PurchaseStream` | Output at `UserIdPurchaseStream` | Output at `OutOfOrderUserIdPurchaseStream` |
+|---|---|---|---|---|
+| 9:00:00 | 9:00:00 | [`'1001'`, `'cake'`, `18.0`]        | [`'1001'`, `1`, `18.0`]  | [`'1001'`, `1`, `18.0`]|
+| 9:00:20 | 9:00:20 | [`'1002'`, `'croissant'`, `23.0`]   | [`'1002'`, `1`, `23.0`]  | [`'1002'`, `1`, `23.0`] |
+| 9:00:40 | 9:00:40 | [`'1002'`, `'cake'`, `22.0`]        | [`'1002'`, `2`, `45.0`]  | [`'1002'`, `2`, `45.0`]  |
+| 9:01:05 | **9:00:50** | [`'1001'`, `'pie'`, `22.0`]         |  No events, as event arrived late, and did not fall into a session.|[`'1001'`, `2`, `40.0`] |
+| 9:01:10 | 9:01:10 | [`'1001'`, `'cake'`, `10.0`]        | [`'1001'`, `1`, `10.0`]  | [`'1001'`, `3`, `50.0`]|
+| 9:01:50 | 9:01:50 | [`'1002'`, `'cake'`, `20.0`]        | [`'1002'`, `1`, `20.0`]  | [`'1002'`, `1`, `23.0`] |
+| 9:02:40 | 9:02:40 | [`'1001'`, `'croissant'`, `23.0`]   | [`'1001'`, `1`, `23.0`]  | [`'1001'`, `1`, `23.0`] |
+
