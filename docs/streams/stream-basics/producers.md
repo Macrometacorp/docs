@@ -33,9 +33,10 @@ It is possible to use our JavaScript or Python SDK to create producers.
 <TabItem value="javascript" label=" JavaScript SDK">
 
 - Step 1. [Install the SDK](../../sdks/install-sdks.md).
-- Step 2. Create an instance of the jsC8.
-- Step 3. Request `stream` object.
-- Step 4. Request One Time Password and create producer.
+- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
+- Step 3. Create an instance of the jsC8.
+- Step 4. Request `stream` object.
+- Step 5. Request One Time Password and create producer.
 
 ```js
 const jsc8 = require("jsc8");
@@ -73,7 +74,7 @@ async function producer() {
     const producerOTP = await stream.getOtp();
     // Create producer
     const producer = await stream.producer(BASE_URL, {
-      otp: producerOTP,
+      otp: producerOTP
     });
 
     // Run producer - Open connection to server
@@ -99,8 +100,6 @@ async function producer() {
 }
 
 producer();
-
-
 ```
 
 </TabItem>

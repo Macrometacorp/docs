@@ -47,9 +47,10 @@ It is possible to use our JavaScript or Python SDK to create producers.
 <TabItem value="javascript" label=" JavaScript SDK">
 
 - Step 1. [Install the SDK](../../sdks/install-sdks.md).
-- Step 2. Create an instance of the jsC8.
-- Step 3. Request `stream` object.
-- Step 4. Request One Time Password and create consumer.
+- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
+- Step 3. Create an instance of the jsC8.
+- Step 4. Request `stream` object.
+- Step 5. Request One Time Password and create consumer.
 
 ```js
 const jsc8 = require("jsc8");
@@ -75,7 +76,7 @@ async function consumer() {
     const consumerOTP = await stream.getOtp();
     // Create consumer
     const consumer = stream.consumer(subscriptionName, BASE_URL, {
-      otp: consumerOTP,
+      otp: consumerOTP
     });
     // Run consumer - open connection to server
     consumer.on("message", (msg) => {
@@ -91,8 +92,6 @@ async function consumer() {
 }
 
 consumer();
-
-
 ```
 </TabItem>
 </Tabs>
