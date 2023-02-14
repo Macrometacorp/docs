@@ -11,23 +11,49 @@ The stream processor groups common types of events together with a schema. This 
 By default, all streams created by stream workers are sources. The syntax for defining a new stream in a stream worker is:
 
 ```sql
-CREATE STREAM <stream_name> (<attribute_name> <attribute_type>,
+   CREATE SOURCE SinkName WITH (
+      type="stream", 
+      stream.list="STRING[STRING,]", 
+      replication.type="STRING", 
+      subscription.initial.position="STRING",
+      num.consumers="INT",
+      num.listener.threads="INT",
+      num.io.threads="INT",
+      receiver.queue.size="INT",      
+      map.type='type')  
+    (<attribute_name> <attribute_type>[,
+     <attribute_name> <attribute_type>] );
+```
+
+Or you can use the syntax shortcut `CREATE STREAM`:
+
+```sql
+CREATE STREAM <stream_name> <GLOBAL | LOCAL> (<attribute_name> <attribute_type>,
                              <attribute_name> <attribute_type>, ... );
 ```
+Or you can use the syntax shortcut for local stream `CREATE STREAM`:
+
+```sql
+CREATE SINK STREAM  SampleStreamSink (data string);
+```
+
 
 ## Parameters
 
 The following parameters are used to configure a stream definition.
 
-| Parameter     | Description |
-| ------------- |-------------|
-| `stream name`      | The name of the stream created. (By convention, stream names use `PascalCase`.) |
-| `attribute name`   | Uniquely identifiable name of the stream attribute. (By convention, attribute names are defined in `camelCase`.)|     |
-| `attribute type`   | The type of each attribute defined in the schema. This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
+| Parameter     | Description | Default Value | Possible Data Types | Optional |
+| ------------- |-------------| ------------- | ------------------- | -------- |
+| `stream.list` | The list of streams the sources will consume events.| -    | STRING        | No                  |
+| replication.type | Specifies if the replication type of the streams. Possible values can be `local` and `global`      | local         | STRING         | Yes      |
+| `subscription.initial.position` | Subscription's initial position of the stream. Possible Values: [Earliest,Latest]| Lates | STRING | Yes|
+| `subscription.type` | Subscription's type of the stream. Possible Values: [Exclusive, Shared, Failover, Key_Shared]. | Shared | STRING | Yes|
+| `num.consumers` | Number of consumers | 1 | INT | Yes |
+| `num.listener.threads` | the number of listener threads | 1 | INT | Yes |
+| `num.io.threads` | The number of listener threads | 1 | INT | Yes |
+| `receiver.queue.size` | The number of messages accumulated by a consumer before an application calls | 1000 | INT | Yes |
 
 To use and refer stream and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format, enclose them in ``` ` ```. For example: ``` `$test(0)` ```
-
-To make the stream process events with multi-threading and asynchronously, add `Async` to the `WITH()` property. For example: `WITH(async='true')`
 
 ## Example
 
