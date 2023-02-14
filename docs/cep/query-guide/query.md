@@ -43,24 +43,27 @@ The following parameters are used to configure a stream definition.
 | `projection`   | Generates output event attributes using `SELECT`, functions, aggregation functions, and `GROUP BY` operations, and filters the generated the output operations before sending them out. The projection is optional, and when it is left out, all the input events are sent to the output as-is. |
 | `output action`| Defines output action (such as `INSERT INTO`, `UPDATE`, `DELETE`, and so on) that needs to be performed by the generated events on a stream, named window, or table.  |
 
-### Example
+## Example
 
 A query consumes events from the `TempStream` stream and output only the `roomNo` and `temp` attributes to the `RoomTempStream` stream, from which another query consumes the events and sends all its attributes to `AnotherRoomTempStream` stream.
 
 ```sql
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
-insert into RoomTempStream
-select roomNo, temp
-from TempStream;
+INSERT INTO RoomTempStream
+SELECT roomNo, temp
+FROM TempStream;
 
-insert into AnotherRoomTempStream
-from RoomTempStream;
+INSERT INTO AnotherRoomTempStream
+FROM RoomTempStream;
 ```
 
 :::tip "Inferred Stream"
 Here, the `RoomTempStream` and `AnotherRoomTempStream` streams are an inferred streams, which means their stream definitions are inferred from the queries and they can be used same as any other defined stream without any restrictions.  
 :::
+
+
+
 
 ### Value
 
@@ -70,125 +73,47 @@ Stream supports values of type `STRING`, `INT` (Integer), `LONG`, `DOUBLE`, `FLO
 
 The syntax of each type and their example use as a constant value is as follows,
 
-<table style={{ width:100 + "%" }}>
-    <tr>
-        <th style={{ width:10 + "%" }}>Attribute Type</th>
-        <th style={{ width:50 + "%" }}>Format</th>
-        <th style={{ width:40 + "%" }}>Example</th>
-    </tr>
-    <tr>
-        <td>int</td>
-        <td>`&ltdigit&gt+`</td>
-        <td>`123`, `-75`, `+95`</td>
-    </tr>
-    <tr>
-        <td>long</td>
-        <td>`&ltdigit&gt+L`</td>
-        <td>`123000L`, `-750l`, `+154L`</td>
-    </tr>
-    <tr>
-        <td>float</td>
-        <td>`(&ltdigit&gt+)?('.'&ltdigit&gt*)?(E(-|+)?&ltdigit&gt+)?F`</td>
-        <td>`123.0f`, `-75.0e-10F`,`+95.789f`</td>
-    </tr>
-    <tr>
-        <td>double</td>
-        <td>`(&ltdigit&gt+)?('.'&ltdigit&gt*)?(E(-|+)?&ltdigit&gt+)?D?`</td>
-        <td>`123.0`,`123.0D`,`-75.0e-10D`,`+95.789d`</td>
-    </tr>
-    <tr>
-        <td>bool</td>
-        <td>`(true|false)`</td>
-        <td>`true`, `false`, `TRUE`, `FALSE`</td>
-    </tr>
-    <tr>
-        <td>string</td>
-        <td>`'(&lt;char&gt;*!('|"|"""|&ltnew line&gt))'` or  `"(&lt;char&gt;* !("|"""|&ltnew line&gt))"` or `"""(&lt;char&gt;* !("""))"""` </td>
-        <td>`'Any text.'`, `"Text with 'single' quotes."`, <pre>"""
-Text with 'single' quotes,
-"double" quotes, and new lines.
-"""</pre></td>
-    </tr>
-</table>
+| Attribute Type | Format     | Example                 |
+|----------------|----------|---------------------|
+| int            | `+`        | `123`, `-75`, `+95`        |
+| long           | `+L`       | `123000L`, `-750l`, `+154L`|
+| float          | `(+)?('.'*)?(E(-|+)?+)?F`           | `123.0f`, `-75.0e-10F`,`+95.789f`                         |
+| double         | `(+)?('.'*)?(E(-|+)?+)?D?`          | `123.0`,`123.0D`,`-75.0e-10D`,`+95.789d`                  |
+| bool           | `(true|false)`       | `true`, `false`, `TRUE`, `FALSE`                          |
+| string         | `'(;*!('|"|"""|))'` or  `"(;* !("|"""|))"` or `"""(;* !("""))"""`  | `'Any text.'`, `"Text with 'single' quotes."`, """ Text with 'single' quotes, "double" quotes, and new lines. """ |
+
 
 **_Time_**
 
 Time is a special type of `LONG` value that denotes time using digits and their unit in the format `(<digit>+ <unit>)+`. At execution, the `time` gets converted into **milliseconds** and returns a `LONG` value.
 
-<table style={{ width:100 + "%" }}>
-    <tr>
-        <th>
-            Unit  
-        </th>
-        <th>
-            Syntax
-        </th>
-    </tr>
-    <tr>
-        <td>
-            Year
-        </td>
-        <td>
-            `year` | `years`
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Month
-        </td>
-        <td>
-            `month` | `months`
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Week
-        </td>
-        <td>
-            `week` | `weeks`
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Day
-        </td>
-        <td>
-            `day` | `days`
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Hour
-        </td>
-        <td>
+| Unit  | Syntax |
+|------------|-----------------------------|
+| Year | `year` | `years`|
+| Month | `month` | `months`|
+| Week | `week` | `weeks`  |
+| Day | `day` | `days`|
+| 
+Hour
+    | 
            `hour` | `hours`
-        </td>
-    </tr>
-    <tr>
-        <td>
+           |
+| 
            Minutes
-        </td>
-        <td>
+  | 
            `minute` | `minutes` | `min`
-        </td>
-    </tr>
-    <tr>
-        <td>
+           |
+| 
            Seconds
-        </td>
-        <td>
+  | 
            `second` | `seconds` | `sec`
-        </td>
-    </tr>
-    <tr>
-        <td>
+           |
+| 
            Milliseconds
-        </td>
-        <td>
+         | 
            `millisecond` | `milliseconds`
-        </td>
-    </tr>
-</table>
+         |
+
 
 **Example**
 
@@ -431,7 +356,7 @@ Event type helps to specify when a query should output events to the stream, suc
 
 Event type should be defined in between `insert` and `into` keywords for insert queries as follows.
 
-```
+```sql
 insert <event type> into <output stream>
 select <attribute name>, <attribute name>, ...
 from <input stream> window <window name>(<parameter>, <parameter>, ... )
@@ -439,7 +364,7 @@ from <input stream> window <window name>(<parameter>, <parameter>, ... )
 
 Event type should be defined next to the `for` keyword for delete queries as follows.
 
-```
+```sql
 select <attribute name>, <attribute name>, ...
 from <input stream> window <window name>(<parameter>, <parameter>, ... )
 delete <table> (for <event type>)?
@@ -448,7 +373,7 @@ delete <table> (for <event type>)?
 
 Event type should be defined next to the `for` keyword for update queries as follows.
 
-```
+```sql
 select <attribute name>, <attribute name>, ...
 from <input stream> window <window name>(<parameter>, <parameter>, ... )
 update <table> (for <event type>)?
@@ -458,7 +383,7 @@ update <table> (for <event type>)?
 
 Event type should be defined next to the `for` keyword for update or insert queries as follows.
 
-```
+```sql
 select <attribute name>, <attribute name>, ...
 from <input stream> window <window name>(<parameter>, <parameter>, ... )
 update or insert into <table> (for <event type>)?
