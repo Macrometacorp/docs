@@ -20,25 +20,28 @@ The query then processes the events in a streaming manner and generates output e
 
 A query provides a way to process the events in the order they arrive and produce output using both stateful and stateless complex event processing and stream processing operations.
 
-**Syntax**
+## Syntax
 
-The high level query syntax for defining processing logics is as follows:
+The high-level query syntax for defining processing logics is as follows:
 
-```
+```sql
 @name('<query name>')
 <output action>
 <projection>
-from <input>
+FROM <input>
+<other grouping clauses>
 ```
+
+## Parameters
 
 The following parameters are used to configure a stream definition.
 
 | Parameter  | Description |
 |----------------|-------------|
-| `query name`   | The name of the query. Since naming the query (i.e the `@name('<query name>')` annotation) is optional, when the name is not provided Stream assign a system generated name for the query. |
-| `input`        | Defines the means of event consumption via [streams](../source/source-types/stream-source), [named-windows](../windows/), [tables](table-collection), and/or [named-aggregations](../aggregations/), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
-| `projection`   | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
-| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](../sink/sink-types/stream-sink), [named-window](../windows/), or [table](table-collection)  |
+| `query name`   | The name of the query. Since naming the query (i.e the `@name('<query name>')` annotation) is optional, when the name is not provided, Macrometa assigns a system-generated name for the query. |
+| `input`        | Defines the means of event consumption via streams, named windows, tables, and/or named-aggregations, and defines the processing logic. |
+| `projection`   | Generates output event attributes using `SELECT`, functions, aggregation functions, and `GROUP BY` operations, and filters the generated the output operations before sending them out. The projection is optional, and when it is left out, all the input events are sent to the output as-is. |
+| `output action`| Defines output action (such as `INSERT INTO`, `UPDATE`, `DELETE`, and so on) that needs to be performed by the generated events on a stream, named window, or table.  |
 
 ### Example
 
