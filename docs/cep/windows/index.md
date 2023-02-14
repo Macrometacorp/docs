@@ -52,7 +52,7 @@ Macrometa supports the following window types:
 CREATE WINDOW SensorWindow (name string, value float, roomNo int, deviceID string) TUMBLING_TIME(1 second);
 ```
 
-This query returns all output when events arrive and when events expire from the window. The event type is not specified, so the stream worker returns both current and expired events as the output.
+This query returns all output when events arrive and when events expire from the window. The event type is not specified, so the stream worker returns both current and expired events as the output. This example uses the [TUMBLING_TIME window](window-types/tumbling-time.md).
 
 ## Example 2
 
@@ -60,4 +60,54 @@ This query returns all output when events arrive and when events expire from the
 CREATE WINDOW SensorWindow (name string, value float, roomNo int, deviceID string) TUMBLING_TIME(1 second) output expired events;
 ```
 
-This query returns an output only when events expire from the window. The event type of the window is `expired events`, so the stream worker only returns the events that have expired from the window as the output.
+This query returns an output only when events expire from the window. The event type of the window is `expired events`, so the stream worker only returns the events that have expired from the window as the output. This example uses the [TUMBLING_TIME window](window-types/tumbling-time.md).
+
+## Example 3
+
+This example shows a stream worker that defines a named window and summarizes data based on the window. This example uses the [SLIDING_TIME window](window-types/sliding-time.md) as the named window, but any window can be defined and used as a named window.
+
+### Stream Worker Code
+
+```sql
+CREATE STREAM TemperatureStream (sensorId string, temperature double);
+
+CREATE SINK STREAM MinMaxTemperatureOver1MinStream(minTemperature double, maxTemperature double);
+CREATE SINK STREAM AvgTemperaturePerSensorStream(sensorId string, avgTemperature double);
+
+-- Define a named window with name `OneMinTimeWindow` to retain events over `1 minute` in a sliding manner.
+CREATE WINDOW OneMinTimeWindow (sensorId string, temperature double) SLIDING_TIME(1 min) ;
+
+@info(name = 'Insert-to-window')
+-- Insert events in to the named time window.
+INSERT INTO OneMinTimeWindow
+FROM TemperatureStream;
+
+@info(name = 'Min-max-analysis')
+-- Calculate minimum and maximum of `temperature` on events in `OneMinTimeWindow` window.
+INSERT INTO MinMaxTemperatureOver1MinStream
+SELECT min(temperature) AS minTemperature,
+       max(temperature) AS maxTemperature
+FROM OneMinTimeWindow;
+
+@info(name = 'Per-sensor-analysis')
+-- Calculate average of `temperature`, by grouping events by `sensorId`, on the `OneMinTimeWindow` window.
+INSERT INTO AvgTemperaturePerSensorStream
+SELECT sensorId,
+       avg(temperature) AS avgTemperature
+FROM OneMinTimeWindow
+GROUP BY sensorId;
+```
+
+### Named Window Aggregation Behavior
+
+When events are sent to `TemperatureStream` stream, the following events are emitted at `MinMaxTemperatureOver1MinStream` via `Min-max-analysis` query, and `AvgTemperaturePerSensorStream` via `Per-sensor-analysis` query.
+
+|Time | Input to `TemperatureStream` | Output at `MinMaxTemperatureOver1MinStream` | Output at `AvgTemperaturePerSensorStream` |
+|---|---|---|---|
+| 9:00:10 | [`'1001'`, `21.0`] | [`21.0`, `21.0`] | [`'1001'`, `21.0`] |
+| 9:00:20 | [`'1002'`, `25.0`] | [`21.0`, `25.0`] | [`'1002'`, `25.0`] |
+| 9:00:35 | [`'1002'`, `26.0`] | [`21.0`, `26.0`] | [`'1002'`, `25.5`] |
+| 9:00:40 | [`'1002'`, `27.0`] | [`21.0`, `27.0`] | [`'1002'`, `26.0`] |
+| 9:00:55 | [`'1001'`, `19.0`] | [`19.0`, `27.0`] | [`'1001'`, `20.0`] |
+| 9:01:30 | [`'1002'`, `22.0`] | [`19.0`, `27.0`] | [`'1002'`, `25.0`] |
+| 9:02:10 | [`'1001'`, `18.0`] | [`18.0`, `22.0`] | [`'1001'`, `18.0`] |

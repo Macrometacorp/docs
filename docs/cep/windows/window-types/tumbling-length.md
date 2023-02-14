@@ -62,3 +62,52 @@ FROM StockEventWindow;
 ```
 
 This uses a defined window to process 10 events as a batch and output all events.
+
+## Example 4
+
+This example shows aggregating events based on event count in a batch (tumbling) manner.
+
+### Stream Worker Code
+
+```sql
+CREATE STREAM TemperatureStream(sensorId string, temperature double);
+
+CREATE SINK STREAM OverallTemperatureStream(avgTemperature double, maxTemperature double, numberOfEvents long);
+CREATE SINK STREAM SensorIdTemperatureStream(sensorId string, avgTemperature double, maxTemperature double);
+
+@info(name = 'Overall-analysis')
+INSERT INTO OverallTemperatureStream
+-- Calculate average, maximum, and count for `temperature` attribute.
+SELECT avg(temperature) AS avgTemperature,
+       max(temperature) AS maxTemperature,
+       count() AS numberOfEvents
+-- Aggregate every `4` events in a batch manner.
+FROM TemperatureStream WINDOW TUMBLING_LENGTH(4);
+
+@info(name = 'SensorId-analysis')
+INSERT INTO SensorIdTemperatureStream
+SELECT sensorId,
+-- Calculate average, and maximum for `temperature`, by grouping events by `sensorId`.
+       avg(temperature) AS avgTemperature,
+       max(temperature) AS maxTemperature
+-- Aggregate every `5` events in a batch manner.
+FROM TemperatureStream WINDOW TUMBLING_LENGTH(5)
+GROUP BY sensorId
+-- Output events only when `avgTemperature` is greater than or equal to `20.0`.
+HAVING avgTemperature >= 20.0;
+```
+
+### Batch Event Count Aggregation Behavior
+
+When events are sent to `TemperatureStream`, the following events are emitted at `OverallTemperatureStream` via the `Overall-analysis` query, and `SensorIdTemperatureStream` via the `SensorId-analysis` query.
+
+| Input to `TemperatureStream` | Output at `OverallTemperatureStream` | Output at `SensorIdTemperatureStream` |
+|---|---|---|
+| [`'1001'`, `19.0`] | -  | - |
+| [`'1002'`, `26.0`] | -  | -|
+| [`'1002'`, `24.0`] | -  | -|
+| [`'1001'`, `20.0`] | [`22.5`, `26.0`, `4`]  | - |
+| [`'1001'`, `21.0`] | - | [`'1002'`, `25.5`, `24.0`], <br/>[`'1001'`, `20.0`, `19.0`] |
+| [`'1002'`, `22.0`] | -  | - |
+| [`'1001'`, `21.0`] | -  | - |
+| [`'1002'`, `22.0`] | [`21.5`, `22.0`, `4`] | - |
