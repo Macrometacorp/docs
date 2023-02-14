@@ -45,20 +45,22 @@ The description format is:
 
 ## Docstrings and Other Information
 
-You can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/**` and `**/`. This is similar to a `docstring` in functions.
+You can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/*` and `*/`. This is similar to a `docstring` in functions.
 
-The format is:
+The format is for a block comment is:
 
 ```js
-/**
-Testing the Stream Worker:
-    1. Open Stream `SampleCargoAppDestStream` in Console. The output can be monitored here.
+/* 
+This
+is
+a comment.
+*/
+```
 
-    2. Upload following data into `SampleCargoAppInputTable` C8DB Collection.
-        {"weight": 1}
-        {"weight": 2}
-    ...
-**/
+You can also write line comments by starting a line with `--` (double dashes).
+
+```sql
+-- This is a comment.
 ```
 
 ## Error Handling
