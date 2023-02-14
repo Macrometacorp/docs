@@ -3,9 +3,20 @@ sidebar_position: 20
 title: Query
 ---
 
-A query defines the processing logic in stream workers. It consumes events from one or more streams, [named-windows][named-window](../windows/), [tables](table-collection), and/or [named-aggregations](../aggregations/), process the events in a streaming manner, and generate output events into a [stream](../sink/sink-types/stream-sink), [named-window][named-window](../windows/), or [table](table-collection).
+A _stream worker query_ defines the processing logic in stream workers. A query consumes events from one or more:
 
-**Purpose**
+- [streams](../source/source-types/stream-source.md)
+- [named windows](../windows/)
+- [tables](table-collection)
+- [named aggregations](../aggregations/)
+
+The query then processes the events in a streaming manner and generates output events into one or more:
+
+- [streams](../sink/sink-types/stream-sink)
+- [named windows](../windows/)
+- [tables](table-collection)
+
+## Purpose
 
 A query provides a way to process the events in the order they arrive and produce output using both stateful and stateless complex event processing and stream processing operations.
 
