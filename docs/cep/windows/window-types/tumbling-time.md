@@ -66,3 +66,56 @@ FROM StockEventWindow;
 ```
 
 This uses a defined window to process events arrived every 20 seconds as a batch and output all events.
+
+## Example 4
+
+This example shows aggregating events over time in a batch (tumbling) manner.
+
+### Stream Worker Code
+
+```sql
+CREATE STREAM TemperatureStream(sensorId string, temperature double);
+
+CREATE SINK STREAM OverallTemperatureStream(avgTemperature double, maxTemperature double, numberOfEvents long);
+CREATE SINK STREAM SensorIdTemperatureStream(sensorId string, avgTemperature double, maxTemperature double);
+
+@info(name = 'Overall-analysis')
+-- Calculate average, maximum, and count for `temperature` attribute.
+INSERT INTO OverallTemperatureStream
+SELECT avg(temperature) AS avgTemperature,
+       max(temperature) AS maxTemperature,
+       count() AS numberOfEvents
+-- Aggregate events every `1 minute`, from the arrival of the first event.
+FROM TemperatureStream WINDOW TUMBLING_TIME(1 min);
+
+
+@info(name = 'SensorId-analysis')
+INSERT INTO SensorIdTemperatureStream
+SELECT sensorId,
+-- Calculate average, and maximum for `temperature`, by grouping events by `sensorId`.
+       avg(temperature) AS avgTemperature,
+       max(temperature) AS maxTemperature
+-- Aggregate events every `30 seconds` from epoch timestamp `0`.
+FROM TemperatureStream WINDOW TUMBLING_TIME(30 sec, 0)
+GROUP BY sensorId
+-- Output events only when `avgTemperature` is greater than `20.0`.
+WHERE avgTemperature > 20.0;
+```
+
+### Batch Time Aggregation Behavior
+
+When events are sent to `TemperatureStream`, the following events are emitted at `OverallTemperatureStream` via the `Overall-analysis` query, and `SensorIdTemperatureStream` via the `SensorId-analysis` query.
+
+|Time | Input to `TemperatureStream` | Output at `OverallTemperatureStream` | Output at `SensorIdTemperatureStream` |
+|---|---|---|---|
+| 9:00:10 | [`'1001'`, `21.0`] | - | - |
+| 9:00:20 | [`'1002'`, `25.0`] | - | - |
+| 9:00:30 | -                  | - | [`'1001'`, `21.0`, `21.0`],[`'1002'`, `25.0`, `25.0`] |
+| 9:00:35 | [`'1002'`, `26.0`] | - | - |
+| 9:00:40 | [`'1002'`, `27.0`] | - | - |
+| 9:00:55 | [`'1001'`, `19.0`] | - | - |
+| 9:00:00 | -                  | - | [`'1002'`, `26.5`, `26.0`] |
+| 9:01:10 | -                  | [`23.6`, `27.0`, `5`]  | - |
+| 9:01:20 | [`'1001'`, `21.0`] | - | - |
+| 9:01:30 | -                  | - | [`'1001'`, `21.0`, `21.0`] |
+| 9:02:10 | -                  | [`21.0`, `21.0`, `1`]  | - |
