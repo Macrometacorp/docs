@@ -73,7 +73,7 @@ async function producer() {
     // Request One Time Password
     const producerOTP = await stream.getOtp();
     // Create producer
-    const producer = await stream.producer(BASE_URL, {
+    const producer = await stream.producer(BASE_URL.replace("https://",""), {
       otp: producerOTP
     });
 

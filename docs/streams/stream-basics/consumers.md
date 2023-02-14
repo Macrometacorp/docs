@@ -75,7 +75,7 @@ async function consumer() {
     // Request One Time Password
     const consumerOTP = await stream.getOtp();
     // Create consumer
-    const consumer = stream.consumer(subscriptionName, BASE_URL, {
+    const consumer = stream.consumer(subscriptionName, BASE_URL.replace("https://",""), {
       otp: consumerOTP
     });
     // Run consumer - open connection to server

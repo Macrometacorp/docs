@@ -74,7 +74,7 @@ async function producer() {
     // Request One Time Password
     const producerOTP = await stream.getOtp();
     // Create producer
-    const producer = await stream.producer(BASE_URL, {
+    const producer = await stream.producer(BASE_URL.replace("https://",""), {
       otp: producerOTP
     });
 
@@ -142,7 +142,7 @@ async function consumer() {
     // Request One Time Password
     const consumerOTP = await stream.getOtp();
     // Create consumer
-    const consumer = stream.consumer(subscriptionName, BASE_URL, {
+    const consumer = stream.consumer(subscriptionName, BASE_URL.replace("https://",""), {
       otp: consumerOTP,
       subscriptionType: "Shared"
     });
@@ -202,7 +202,7 @@ async function consumer() {
     // Request One Time Password
     const consumerOTP = await stream.getOtp();
     // Create consumer
-    const consumer = stream.consumer(subscriptionName, BASE_URL, {
+    const consumer = stream.consumer(subscriptionName, BASE_URL.replace("https://",""), {
       otp: consumerOTP,
       subscriptionType: "Shared"
     });
