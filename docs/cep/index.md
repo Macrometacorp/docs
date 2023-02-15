@@ -34,7 +34,7 @@ You can process streams to perform the following actions with your data:
 - Consume and publish events.
 - Run pre-made and custom [functions](query-guide/functions/index.md).
 - Write custom [JavaScript functions](query-guide/custom-script-functions.md) to interact with your streams.
-- Query, modify, and join the data stored in [tables](query-guide/table-collection.md) which support primary key constraints and indexing.
+- Query, modify, and join the data stored in [tables](table/index.md) which support primary key constraints and indexing.
 - Rule processing based on single event using [`filter`](query-guide/query.md#filter) operator, `if-then-else` and `match` [functions](query-guide/query.md#function), and many others.
 
 These actions allow you to build robust global data processing and integration pipelines at the edge by combining powerful stream processing, multi-model database and geo-replicated streams capabilities.

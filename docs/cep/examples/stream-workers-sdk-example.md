@@ -276,8 +276,8 @@ CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "Sa
 -- Define Stream SampleCargoAppDestStream
 CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
 
--- Defining a Destination table to dump the data from the stream
-CREATE STORE SampleCargoAppDestTable WITH (type = 'database', replication.type="global", stream = "SampleCargoAppDestTable") (weight int);
+-- Defining a destination table to dump the data from the stream
+CREATE TABLE SampleCargoAppDestTable (weight int);
 
 -- Data Processing
 @info(name='Query')
@@ -349,7 +349,8 @@ Append the following lines of code inside the `try` block of main function. Look
     -- Define Stream SampleCargoAppDestStream
     CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
   
-    CREATE STORE SampleCargoAppDestTable WITH (type = 'database', replication.type="global", stream = "SampleCargoAppDestTable") (weight int);
+    -- Defining a destination table to dump the data from the stream
+    CREATE TABLE SampleCargoAppDestTable (weight int);
   
     -- Data Processing
     @info(name='Query')
@@ -590,8 +591,8 @@ CREATE SOURCE SampleCargoAppInputTable WITH (type = 'database', collection = "Sa
 -- Define Stream SampleCargoAppDestStream
 CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
 
--- Defining a Destination table to dump the data from the stream
-CREATE STORE SampleCargoAppDestTable WITH (type = 'database', replication.type="global", stream = "SampleCargoAppDestTable") (weight int);
+-- Defining a destination table to dump the data from the stream
+CREATE TABLE SampleCargoAppDestTable (weight int);
 
 -- Data Processing
 @info(name='Query')
@@ -780,7 +781,8 @@ async function main () {
     -- Define Stream SampleCargoAppDestStream
     CREATE SINK SampleCargoAppDestStream WITH (type = 'stream', stream = "SampleCargoAppDestStream", replication.type="local") (weight int);
   
-    CREATE STORE SampleCargoAppDestTable WITH (type = 'database', replication.type="global", stream = "SampleCargoAppDestTable") (weight int);
+    -- Defining a destination table to dump the data from the stream
+    CREATE TABLE SampleCargoAppDestTable (weight int);
   
     -- Data Processing
     @info(name='Query')
