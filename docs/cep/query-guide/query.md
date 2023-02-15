@@ -93,26 +93,10 @@ Time is a special type of `LONG` value that denotes time using digits and their 
 | Month | `month` | `months`|
 | Week | `week` | `weeks`  |
 | Day | `day` | `days`|
-| 
-Hour
-    | 
-           `hour` | `hours`
-           |
-| 
-           Minutes
-  | 
-           `minute` | `minutes` | `min`
-           |
-| 
-           Seconds
-  | 
-           `second` | `seconds` | `sec`
-           |
-| 
-           Milliseconds
-         | 
-           `millisecond` | `milliseconds`
-         |
+| Hour | `hour` | `hours` |
+| Minutes | `minute` | `minutes` | `min` |
+| Seconds | `second` | `seconds` | `sec` |
+| Milliseconds | `millisecond` | `milliseconds` |
 
 
 **Example**
@@ -121,7 +105,7 @@ Hour
 
 ### Select
 
-The select clause in stream query defines the output event attributes of the query. Following are some basic query projection operations supported by select.
+The select clause in a stream worker query defines the output event attributes of the query. Following are some basic query projection operations supported by select.
 
 ### Function
 
@@ -704,7 +688,7 @@ Following are the supported operations of a join clause.
 
 - **Inner join (join)**
 
-    This is the default behaviour of a join operation. `join` is used as the keyword to join both the streams. The output is generated only if there is a matching event in both the streams.
+    This is the default behavior of a join operation. `join` is used as the keyword to join both the streams. The output is generated only if there is a matching event in both the streams.
 
 - **Left outer join**
 
