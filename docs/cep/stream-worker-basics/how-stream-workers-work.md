@@ -16,15 +16,20 @@ When the stream worker is published, it:
 
 When published, stream workers also create any query workers, tables (collections), and streams included in the definition if they do not already exist.
 
-## Stream Processing Flow
+## Basic Stream Processing Flow
 
-The following are the major components of our stream processing engine.
+The following are the major components of our stream worker engine. Events are collected by sources such as services and deices, they are analyzed by the stream worker queries, and then sent out as events to sinks that can be acted on.
 
 ![Stream Processing Architecture](/img/cep-overview.png)
 
-
 ## Stream Worker Flow Diagram
 
-The following diagram depicts some of the key elements of stream worker and how events flow through them. For more information about parts of a stream worker, refer to [Stream Worker Elements](stream-worker-elements).
+The following diagram depicts some of the key elements of stream worker and how events flow through them.
+
+1. Sources send event input in a stream.
+2. The stream is processed by queries, which might use windows, tables, aggregations, and partitions.
+3. After processing, events are sent to sinks.
+
+For more information about parts of a stream worker, refer to [Stream Worker Elements](stream-worker-elements).
 
 ![Event Flow](/img/event-flow.png?raw=true "Event Flow")
