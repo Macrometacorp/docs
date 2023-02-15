@@ -48,7 +48,7 @@ The following parameters are used to configure a stream definition.
 | replication.type | Specifies if the replication type of the streams. Possible values can be `LOCAL` and `GLOBAL`.      | LOCAL         | STRING         | Yes      |
 | subscription.initial.position | Subscription's initial position in the stream. Possible values: [Earliest,Latest]| Latest | STRING | Yes|
 | `subscription.type` | Stream subscription type. Possible Values: [Exclusive, Shared, Failover, Key_Shared]. | Shared | STRING | Yes|
-| `num.consumers` | Number of consumers | 1 | INT | Yes |
+| num.consumers | Number of consumers. | 1 | INT | Yes |
 | `num.listener.threads` | the number of listener threads | 1 | INT | Yes |
 | `num.io.threads` | The number of listener threads | 1 | INT | Yes |
 | `receiver.queue.size` | The number of messages accumulated by a consumer before an application calls | 1000 | INT | Yes |
