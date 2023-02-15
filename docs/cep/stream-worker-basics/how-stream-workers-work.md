@@ -16,6 +16,13 @@ When the stream worker is published, it:
 
 When published, stream workers also create any query workers, tables (collections), and streams included in the definition if they do not already exist.
 
+## Stream Processing Flow
+
+The following are the major components of our stream processing engine.
+
+![Stream Processing Architecture](/img/cep-overview.png)
+
+
 ## Stream Worker Flow Diagram
 
 The following diagram depicts some of the key elements of stream worker and how events flow through them. For more information about parts of a stream worker, refer to [Stream Worker Elements](stream-worker-elements).
