@@ -38,9 +38,3 @@ You can process streams to perform the following actions with your data:
 - Rule processing based on single event using [`filter`](query-guide/query.md#filter) operator, `if-then-else` and `match` [functions](query-guide/query.md#function), and many others.
 
 These actions allow you to build robust global data processing and integration pipelines at the edge by combining powerful stream processing, multi-model database and geo-replicated streams capabilities.
-
-## Stream Processing Flow
-
-The following are the major components of our stream processing engine.
-
-![Stream Processing Architecture](/img/cep-overview.png)
