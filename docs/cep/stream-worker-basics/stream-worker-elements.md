@@ -97,4 +97,4 @@ For more information about windows, refer to [Named Windows](../windows).
 
 A _table_ is the structured representation of data stored with a defined schema. Stored data is backed by Macrometa collections. The tables (collections) can be `local` or `geo-replicated`. Similarly, the tables can be `document` or `graph` collections. Tables can be accessed and manipulated at runtime.
 
-For more information about tables, refer to [Table](../query-guide/table-collection).
+For more information about tables, refer to [Table](../table/).
