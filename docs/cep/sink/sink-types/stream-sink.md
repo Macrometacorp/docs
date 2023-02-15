@@ -40,7 +40,7 @@ CREATE SINK STREAM  SampleStreamSink (data string);
 |------------------|----------------------------------|---------------|---------------------|----------|
 | stream      | The streams to which the sink needs to publish events.|     | STRING        | No                  |
 | replication.type | Specifies if the replication type of the streams. Possible values can be `local` and `global`      | local         | STRING         | Yes      |
-| num.io.threads | The number of io threads | 1 | INT | Yes|
+| num.io.threads | The number of I/O threads. | 1 | INT | Yes|
 | key.shared.attributes | The attributes to be included into message's key| - | STRING | Yes|
 
 ## Example 1
