@@ -39,7 +39,7 @@ Client libraries can provide their own listener implementations for consumers. I
 
 A cursor is the subscription position for a stream consumer. You can think of it like the cursor on your page, marking where you are.
 
-## How to create consumers?
+## Create Consumers
 
 It is possible to use our JavaScript or Python SDK to create producers.
 
