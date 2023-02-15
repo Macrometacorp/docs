@@ -80,12 +80,12 @@ The syntax of each type and their example use as a constant value is as follows,
 | float          | `(+)?('.'*)?(E(-|+)?+)?F`           | `123.0f`, `-75.0e-10F`,`+95.789f`                         |
 | double         | `(+)?('.'*)?(E(-|+)?+)?D?`          | `123.0`,`123.0D`,`-75.0e-10D`,`+95.789d`                  |
 | bool           | `(true|false)`       | `true`, `false`, `TRUE`, `FALSE`                          |
-| string         | `'(;*!('|"|"""|))'` or  `"(;* !("|"""|))"` or `"""(;* !("""))"""`  | `'Any text.'`, `"Text with 'single' quotes."`, """ Text with 'single' quotes, "double" quotes, and new lines. """ |
+| string         | `'(;*!('|"|"""|))'` or  `"(;* !("|"""|))"` or `"""(;* !("""))"""`  | `'Any text.'`, `"Text with 'single' quotes."`, ```""" Text with 'single' quotes, "double" quotes, and new lines. """``` |
 
 
 **_Time_**
 
-Time is a special type of `LONG` value that denotes time using digits and their unit in the format `(<digit>+ <unit>)+`. At execution, the `time` gets converted into **milliseconds** and returns a `LONG` value.
+Time is a special type of `LONG` value that denotes time using digits and their unit in the format `(<digit>+ <unit>)+`. At execution, the `time` gets converted into milliseconds and returns a `LONG` value.
 
 | Unit  | Syntax |
 |------------|-----------------------------|
