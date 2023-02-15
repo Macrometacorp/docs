@@ -45,7 +45,7 @@ The following parameters are used to configure a stream definition.
 | Parameter     | Description | Default Value | Possible Data Types | Optional |
 | ------------- |-------------| ------------- | ------------------- | -------- |
 | stream.list | The list of streams the sources will consume events.| -    | STRING        | No                  |
-| replication.type | Specifies if the replication type of the streams. Possible values can be `local` and `global`      | local         | STRING         | Yes      |
+| replication.type | Specifies if the replication type of the streams. Possible values can be `local` and `global`.      | local         | STRING         | Yes      |
 | `subscription.initial.position` | Subscription's initial position of the stream. Possible Values: [Earliest,Latest]| Lates | STRING | Yes|
 | `subscription.type` | Subscription's type of the stream. Possible Values: [Exclusive, Shared, Failover, Key_Shared]. | Shared | STRING | Yes|
 | `num.consumers` | Number of consumers | 1 | INT | Yes |
