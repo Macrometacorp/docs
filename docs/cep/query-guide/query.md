@@ -67,9 +67,9 @@ Here, the `RoomTempStream` and `AnotherRoomTempStream` streams are an inferred s
 
 ### Value
 
-Values are typed data, that can be manipulated, transferred and stored. Values can be referred by the attributes defined in definitions such as streams, and tables.
+Values are typed data that can be manipulated, transferred, and stored. Values can be referred to by the attributes defined in definitions such as streams and tables.
 
-Stream supports values of type `STRING`, `INT` (Integer), `LONG`, `DOUBLE`, `FLOAT`, `BOOL` (Boolean) and `OBJECT`.
+Stream supports values of type `STRING`, `INT` (Integer), `LONG`, `DOUBLE`, `FLOAT`, `BOOL` (Boolean), and `OBJECT`.
 
 The syntax of each type and their example use as a constant value is as follows,
 
