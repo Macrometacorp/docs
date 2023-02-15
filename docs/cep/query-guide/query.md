@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Query
 ---
 
-A query defines the processing logic in stream workers. It consumes events from one or more streams, [named-windows][named-window](../windows/), [tables](table-collection), and/or [named-aggregations](../aggregations/), process the events in a streaming manner, and generate output events into a [stream](../sink/sink-types/stream-sink), [named-window][named-window](../windows/), or [table](table-collection).
+A query defines the processing logic in stream workers. It consumes events from one or more streams, [named-windows][named-window](../windows/), [tables](../table/), and/or [named-aggregations](../aggregations/), process the events in a streaming manner, and generate output events into a [stream](../sink/sink-types/stream-sink), [named-window][named-window](../windows/), or [table](../table/).
 
 **Purpose**
 
@@ -25,9 +25,9 @@ The following parameters are used to configure a stream definition.
 | Parameter  | Description |
 |----------------|-------------|
 | `query name`   | The name of the query. Since naming the query (i.e the `@name('<query name>')` annotation) is optional, when the name is not provided Stream assign a system generated name for the query. |
-| `input`        | Defines the means of event consumption via [streams](../source/source-types/stream-source), [named-windows](../windows/), [tables](table-collection), and/or [named-aggregations](../aggregations/), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
+| `input`        | Defines the means of event consumption via [streams](../source/source-types/stream-source), [named-windows](../windows/), [tables](../table/), and/or [named-aggregations](../aggregations/), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
 | `projection`   | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
-| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](../sink/sink-types/stream-sink), [named-window](../windows/), or [table](table-collection)  |
+| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](../sink/sink-types/stream-sink), [named-window](../windows/), or [table](../table/)  |
 
 ### Example
 
@@ -50,9 +50,9 @@ Here, the `RoomTempStream` and `AnotherRoomTempStream` streams are an inferred s
 
 ### Value
 
-Values are typed data, that can be manipulated, transferred and stored. Values can be referred by the attributes defined in definitions such as streams, and tables.
+Values are typed data that can be manipulated, transferred, and stored. Values can be referred to by the attributes defined in definitions such as streams and tables.
 
-Stream supports values of type `STRING`, `INT` (Integer), `LONG`, `DOUBLE`, `FLOAT`, `BOOL` (Boolean) and `OBJECT`.
+Stream supports values of type `STRING`, `INT` (Integer), `LONG`, `DOUBLE`, `FLOAT`, `BOOL` (Boolean), and `OBJECT`.
 
 The syntax of each type and their example use as a constant value is as follows,
 

@@ -40,7 +40,7 @@ Topics in [Redis](../queryworkers/redis/) were updated as a result of this chang
 ### Akamai EdgeWorker Support Updates - Preview
 
 - Delete functionality improved. Refer to the [Function API](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType) for more information.
-- You can now invoke EdgeWorkers with stream workers. [Edge Functions](../cep/query-guide/functions/edge-functions) was added as a result of this change.
+- You can now invoke EdgeWorkers with stream workers. [Edge Functions](../cep/query-guide/functions/edge-functions/) was added as a result of this change.
   - In the Stream Workers Samples tab in the Macrometa web console, Sample-Function-Worker was added.
 - Added API error response codes. [Functions API](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType) were updated as a result of this change.
 - `groupIdWithPrefix` has been added to EdgeWorker metadata. You should delete your existing metadata and create new metadata through APIs before creating new EdgeWorkers.
