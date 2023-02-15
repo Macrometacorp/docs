@@ -52,5 +52,5 @@ FROM InboundTraffic WINDOW SLIDING_TIME(2 sec) as IT
 JOIN SuspiciousIPTable as SIP
 ON  IT.ip == SIP.blocked_ip
 GROUP BY ip
-HAVING requestCount > 50 ;
+WHERE requestCount > 50 ;
 ```

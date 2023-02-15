@@ -94,7 +94,7 @@ SELECT sensorId,
 FROM TemperatureStream WINDOW TUMBLING_LENGTH(5)
 GROUP BY sensorId
 -- Output events only when `avgTemperature` is greater than or equal to `20.0`.
-HAVING avgTemperature >= 20.0;
+WHERE avgTemperature >= 20.0;
 ```
 
 ### Batch Event Count Aggregation Behavior

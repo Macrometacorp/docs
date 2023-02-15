@@ -95,7 +95,7 @@ INSERT INTO ServerRoomTempStream
 SELECT deviceID, RoomTypeTable.type as roomType, type, temp
 FROM TempStream JOIN RoomTypeTable
 ON RoomTypeTable.roomNo == TempStream.roomNo
-HAVING roomType == 'server-room';
+WHERE roomType == 'server-room';
 ```
 
 ### Supported JOIN Types

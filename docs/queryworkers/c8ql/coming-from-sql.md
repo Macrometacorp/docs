@@ -485,7 +485,7 @@ SELECT YEAR(dateRegister) AS year,
   FROM users
   WHERE active = 1
   GROUP BY year, month
-  HAVING number > 20;
+  WHERE number > 20;
 ```
 
 C8QL:
