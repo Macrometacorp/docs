@@ -50,7 +50,7 @@ The following parameters are used to configure a stream definition.
 | subscription.type | Stream subscription type. Possible Values: [Exclusive, Shared, Failover, Key_Shared]. | Shared | STRING | Yes|
 | num.consumers | Number of consumers. | 1 | INT | Yes |
 | `num.listener.threads` | the number of listener threads | 1 | INT | Yes |
-| `num.io.threads` | The number of listener threads | 1 | INT | Yes |
+| num.io.threads | The number of listener threads. | 1 | INT | Yes |
 | `receiver.queue.size` | The number of messages accumulated by a consumer before an application calls | 1000 | INT | Yes |
 
 To use and refer stream and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format, enclose them in ``` ` ```. For example: ``` `$test(0)` ```
