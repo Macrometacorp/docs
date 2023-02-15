@@ -41,7 +41,7 @@ A cursor is the subscription position for a stream consumer. You can think of it
 
 ## Create Consumers
 
-It is possible to use our JavaScript or Python SDK to create producers.
+It is possible to use our JavaScript or Python SDK to create consumers.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label=" JavaScript SDK">
