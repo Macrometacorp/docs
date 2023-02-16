@@ -56,6 +56,27 @@ The side menu in the web console has been updated and organized.
 
 Screenshots and instructions were updated as a result of this change.
 
+### New Parameters for Stream Source and Stream Sink
+
+The following parameters were added to stream source:
+
+- stream.list
+- replication.type
+- subscription.initial.position
+- num.consumers
+- num.listener.threads
+- num.io.threads
+- receiver.queue.size
+
+[Stream Source](../cep/source/source-types/stream-source.md) was updated as a result of this change.
+
+The following parameters were added to stream sink:
+
+- num.io.threads
+- key.shared.attributes
+
+[Stream Sink](../cep/sink/sink-types/stream-sink.md) was updated as a result of this change.
+
 ### Streams Process Messages with _delete Fields in Database Extension (CEP-440)
 
 In previous versions of Macrometa, the `database` extension for streams skipped messages with a `_delete` field, because they mark deleted collection documents.
@@ -86,6 +107,7 @@ This release includes the following API changes.
 | CEP-406  | Corrected wrong sample code in stream worker ad hoc query API reference.  |
 | CEP-409  | Corrected HTTP-Source API endpoint description.  |
 | DB-1726  | [Search View] APIs using a disabled Search View are informed that they are operating on a disabled View through response header.  |
+| STRM-518 | Added a new endpoint for SSE support in streams. `GET /_fabric/_system/_api/streams/<stream-name>/sse` |
 
 ## Defect Fixes
 
