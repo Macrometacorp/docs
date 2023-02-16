@@ -26,10 +26,10 @@ The high-level query syntax for defining processing logics is as follows:
 
 ```sql
 @name('<query name>')
-<output action>
+<OUTPUT ACTION>
 <projection>
 FROM <input>
-<other grouping clauses>
+<grouping clauses>
 ```
 
 ## Parameters
@@ -39,11 +39,12 @@ The following parameters are used to configure a stream definition.
 | Parameter  | Description |
 |----------------|-------------|
 | `query name`   | The name of the query. Since naming the query (i.e the `@name('<query name>')` annotation) is optional, when the name is not provided, Macrometa assigns a system-generated name for the query. |
-| `input`        | Defines the means of event consumption via streams, named windows, tables, and/or named-aggregations, and defines the processing logic. |
-| `projection`   | Generates output event attributes using `SELECT`, functions, aggregation functions, and `GROUP BY` operations, and filters the generated the output operations before sending them out. The projection is optional, and when it is left out, all the input events are sent to the output as-is. |
-| `output action`| Defines output action (such as `INSERT INTO`, `UPDATE`, `DELETE`, and so on) that needs to be performed by the generated events on a stream, named window, or table.  |
+| `OUTPUT ACTION` | Defines output action (such as `INSERT INTO`, `UPDATE`, `DELETE`, and so on) that needs to be performed by the generated events on a stream, named window, or table.  |
+| `projection`   | Generates output event attributes using `SELECT`, functions, and aggregation functions, and filters the generated the output operations before sending them out. The projection is optional, and when it is left out, all the input events are sent to the output as-is. |
+| `FROM <input>`        | Defines the means of event consumption via streams, named windows, tables, and/or named-aggregations, and defines the processing logic. |
+| `grouping clauses` | `GROUP BY` functions to group and organize output.  |
 
-## Example
+## Example 1
 
 A query consumes events from the `TempStream` stream and output only the `roomNo` and `temp` attributes to the `RoomTempStream` stream, from which another query consumes the events and sends all its attributes to `AnotherRoomTempStream` stream.
 
@@ -58,10 +59,22 @@ INSERT INTO AnotherRoomTempStream
 FROM RoomTempStream;
 ```
 
-:::tip "Inferred Stream"
-Here, the `RoomTempStream` and `AnotherRoomTempStream` streams are an inferred streams, which means their stream definitions are inferred from the queries and they can be used same as any other defined stream without any restrictions.  
-:::
+In this example, the `RoomTempStream` and `AnotherRoomTempStream` streams are an inferred streams, which means their stream definitions are inferred from the queries and they can be used same as any other defined stream without any restrictions.  
 
+## Example 2
+
+```sql
+CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
+
+CREATE SINK OutputStream WITH (type='stream', stream='OutputStream', map.type='json') (roomNo int, avgTemp double);
+
+INSERT INTO OutputStream
+SELECT roomNo, avg(temp) AS avgTemp
+FROM TempStream
+GROUP BY roomNo;
+```
+
+This query takes the `roomNo` and `temp` values from TempStream, averages the temperatures, groups them by room number, outputs them into OutputStream.
 
 
 
@@ -1023,71 +1036,3 @@ from every e1=RegulatorStream, e2=TempStream and e3=HumidStream;
 
 ### Output rate limiting
 
-Output rate limiting allows queries to output events periodically based on a specified condition.
-
-**Purpose**
-
-This allows you to limit the output to avoid overloading the subsequent executions, and to remove unnecessary information.
-
-**Syntax**
-
-The syntax of an output rate limiting configuration is as follows:
-
-```
-insert into <output stream>
-select <attribute name>, <attribute name>, ...
-from <input stream> ...
-output <rate limiting configuration>
-```
-
-Stream supports three types of output rate limiting configurations as explained in the following table:
-
-Rate limiting configuration|Syntax| Description
----------|---------|--------
-Based on time | `<output event> every <time interval>` | This outputs `<output event>` every `<time interval>` time interval.
-Based on number of events | `<output event> every <event interval> events` | This outputs `<output event>` for every `<event interval>` number of events.
-Snapshot based output | `snapshot every <time interval>`| This outputs all events in the window (or the last event if no window is defined in the query) for every given `<time interval>` time interval.
-
-Here the `<output event>` specifies the event(s) that should be returned as the output of the query.
-The possible values are as follows:
-- `first` : Only the first event processed by the query during the specified time interval/sliding window is emitted.
-- `last` : Only the last event processed by the query during the specified time interval/sliding window is emitted.
-- `all` : All the events processed by the query during the specified time interval/sliding window are emitted. **When no `<output event>` is defined, `all` is used by default.**
-
-**Examples**
-
-- Returning events based on the number of events
-
-    Here, events are emitted every time the specified number of events arrive. You can also specify whether to emit only the first event/last event, or all the events out of the events that arrived.
-
-    In this example, the last temperature per sensor is emitted for every 10 events.
-
-    <pre>
-    insert into LowRateTempStream
-    select temp, deviceID
-    from TempStreamselect
-    group by deviceID
-    output last every 10 events;    </pre>
-
-- Returning events based on time
-
-    Here events are emitted for every predefined time interval. You can also specify whether to emit only the first event, last event, or all events out of the events that arrived during the specified time interval.
-
-    In this example, emits all temperature events every 10 seconds  
-
-    <pre>
-    insert into LowRateTempStream
-    from TempStreamoutput
-    output every 10 sec;    </pre>
-
-- Returning a periodic snapshot of events
-
-    This method works best with windows. When an input stream is connected to a window, snapshot rate limiting emits all the current events that have arrived and do not have corresponding expired events for every predefined time interval.
-    If the input stream is not connected to a window, only the last current event for each predefined time interval is emitted.
-
-    This query emits a snapshot of the events in a time window of 5 seconds every 1 second.
-
-    <pre>
-    insert into SnapshotTempStream
-    from TempStream window sliding_time(5 sec)
-    output snapshot every 1 sec;    </pre>
