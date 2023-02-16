@@ -32,22 +32,22 @@ Or you can use the syntax shortcut `CREATE STREAM`:
 CREATE STREAM <stream_name> <GLOBAL | LOCAL> (<attribute_name> <attribute_type>,
                              <attribute_name> <attribute_type>, ... );
 ```
+
 Or you can use the syntax shortcut for local stream `CREATE STREAM`:
 
 ```sql
 CREATE SINK STREAM  SampleStreamSink (data string);
 ```
 
-
-## Parameters
+## Query Parameters
 
 The following parameters are used to configure a stream definition.
 
 | Parameter     | Description | Default Value | Possible Data Types | Optional |
 | ------------- |-------------| ------------- | ------------------- | -------- |
-| stream.list | The list of streams the sources will consume events.| -    | STRING        | No                  |
+| stream.list | The list of streams the sources will consume events. | -    | STRING        | No                  |
 | replication.type | Specifies if the replication type of the streams. Possible values can be `LOCAL` and `GLOBAL`.      | LOCAL         | STRING         | Yes      |
-| subscription.initial.position | Subscription's initial position in the stream. Possible values: [Earliest,Latest]| Latest | STRING | Yes|
+| subscription.initial.position | Subscription's initial position in the stream. Possible values: [Earliest,Latest]. | Latest | STRING | Yes|
 | subscription.type | Stream subscription type. Possible Values: [Exclusive, Shared, Failover, Key_Shared]. | Shared | STRING | Yes|
 | num.consumers | Number of consumers. | 1 | INT | Yes |
 | num.listener.threads | The number of listener threads. | 1 | INT | Yes |
