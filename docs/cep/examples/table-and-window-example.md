@@ -51,6 +51,6 @@ SELECT ip, count(ip) as requestCount, currentTimeMillis() as incidentTime
 FROM InboundTraffic WINDOW SLIDING_TIME(2 sec) as IT
 JOIN SuspiciousIPTable as SIP
 ON  IT.ip == SIP.blocked_ip
-GROUP BY ip
-WHERE requestCount > 50 ;
+WHERE requestCount > 50
+GROUP BY ip;
 ```
