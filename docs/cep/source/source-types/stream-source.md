@@ -16,6 +16,7 @@ By default, all streams created by stream workers are sources. The syntax for de
       stream.list="STRING[STRING,]", 
       replication.type="STRING", 
       subscription.initial.position="STRING",
+      subscription.type="STRING",
       num.consumers="INT",
       num.listener.threads="INT",
       num.io.threads="INT",
