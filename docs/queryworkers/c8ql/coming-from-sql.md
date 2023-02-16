@@ -484,8 +484,8 @@ SELECT YEAR(dateRegister) AS year,
        COUNT(*) AS number 
   FROM users
   WHERE active = 1
-  GROUP BY year, month
-  WHERE number > 20;
+  WHERE number > 20
+  GROUP BY year, month;
 ```
 
 C8QL:
