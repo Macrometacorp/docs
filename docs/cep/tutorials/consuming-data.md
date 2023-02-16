@@ -4,8 +4,6 @@ sidebar_position: 3
 
 # Consuming Data
 
-## Introduction
-
 Typically the first step  in a stream processing flow is to consume the data to be cleaned, enriched, transformed or summarized to produce the required output.
 
 For the stream processor to consume events, the following is required.
@@ -23,11 +21,11 @@ A source configuration consists of the following:
 - `attributes`: This annotation specifies a custom mapping based on which events to be selected into the stream processing flow are identified. This is useful when the attributes of the incoming messages you want the stream processor to consume are different to the corresponding attribute name in the stream definition.
 
 :::tip
-        Say the stream processor is reading employee records. The employee name might be defined as `emp No` in the source from which you are extracting the records. However, the corresponding attribute name in the stream definition is `employeeNo` because that is how you want to refer to the attribute in the stream processor. In this instance, you need a custom mapping to indicate that `emp No` is the same as `employeeNo`.
+Say the stream processor is reading employee records. The employee name might be defined as `emp No` in the source from which you are extracting the records. However, the corresponding attribute name in the stream definition is `employeeNo` because that is how you want to refer to the attribute in the stream processor. In this instance, you need a custom mapping to indicate that `emp No` is the same as `employeeNo`.
 :::
 
 :::note
-	Stream processors are a combination of stream functions and windows. Stream processors are more advanced than stream functions as they can retain and arbitrarily emit events, and they are more advanced than windows because they can add additional attributes to the events. Stream processors help to achieve complex execution logics that cannot be achieved by other constructs such as functions, aggregate functions, stream functions, and windows.
+Stream processors are a combination of stream functions and windows. Stream processors are more advanced than stream functions as they can retain and arbitrarily emit events, and they are more advanced than windows because they can add additional attributes to the events. Stream processors help to achieve complex execution logics that cannot be achieved by other constructs such as functions, aggregate functions, stream functions, and windows.
 :::
 
 ## Stream Worker for Consuming Data
@@ -84,9 +82,9 @@ Following are the steps to create a stream worker:
     CREATE SOURCE ConsumerSalesTotalsStream WITH (type='stream', stream.list='SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
     ```
 
-:::info
-        Mapping is explained in detail in the [Consuming a message in default format](#consume-messages-in-default-format) and [Consuming a message in custom format](#consume-messages-in-custom-format) sections. However, note that you need to add a mapping type to complete a source configuration. If no mapping type i specified, an error is indicated.
-:::
+    :::info
+    Mapping is explained in detail in the [Consuming a message in default format](#consume-messages-in-default-format) and [Consuming a message in custom format](#consume-messages-in-custom-format) sections. However, note that you need to add a mapping type to complete a source configuration. If no mapping type i specified, an error is indicated.
+    :::
 
 1. To query a stream, specify how the output is derived and the name of an output stream to which this output is directed.
 
@@ -108,9 +106,9 @@ Following are the steps to create a stream worker:
 
 1. Complete the stream worker by defining an output stream with a connected sink configuration.
 
-:::tip
-        In the example used, you can define the `PublishSalesTotals` stream that you already specified as the output stream in the query, and connect a `stream` sink to it as follows. Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
-:::
+    :::tip
+    In the example used, you can define the `PublishSalesTotals` stream that you already specified as the output stream in the query, and connect a `stream` sink to it as follows. Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
+    :::
 
     ```sql
 	CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream='SalesTotals', replication.type='local') (transNo int, product string, price int, quantity int, salesValue long);
@@ -198,7 +196,7 @@ Stream processor consumes a message in the default format when it makes no chang
 Stream processor consumes a message in the custom format when it makes changes to the names of the attributes of the message schema before it processes the message. To understand how messages are consumed in custom format, follow the procedure below.
 
 :::info
-    For this section, you can edit the same stream worker that you saved in the [Consume messages in default format](#consume-messages-in-default-format) subsection.
+For this section, you can edit the same stream worker that you saved in the [Consume messages in default format](#consume-messages-in-default-format) subsection.
 :::
 
 1. Open your stream worker with a source configuration.
@@ -212,28 +210,28 @@ Stream processor consumes a message in the custom format when it makes changes t
         ```
 
 :::tip
-            In the Stream worker used as an example in the previous section, assume that when receiving events, the `transNo` attribute is received as `transaction` and the `salesValue` attribute is received as `sales`.  The mapping type is JSON. therefore, you can  add the mappings as JSONPath expressions.
+In the Stream worker used as an example in the previous section, assume that when receiving events, the `transNo` attribute is received as `transaction` and the `salesValue` attribute is received as `sales`.  The mapping type is JSON. therefore, you can  add the mappings as JSONPath expressions.
 :::
 
-        | **Stream Attribute Name** | **JSON Event Attribute Name** | **JSONPath Expression** |
-        |---------------------------|-------------------------------|-------------------------|
-        | `transNo`                 | `transaction`                 | `$.transaction`         |
-        | `salesValue`              | `sales`                       | `$.sales`               |
-        
-        The mapping can be defined as follows.
-        
-        ```sql
-		CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', @attributes(transNo = '$.transaction', salesValue = '$.sales')) (transNo int, product string, price int, quantity int, salesValue long);
-        ```
-        
-    * Defining the mapping content of all attributes in the same order as how the attributes are defined in stream definition.
+| **Stream Attribute Name** | **JSON Event Attribute Name** | **JSONPath Expression** |
+|---------------------------|-------------------------------|-------------------------|
+| `transNo`                 | `transaction`                 | `$.transaction`         |
+| `salesValue`              | `sales`                       | `$.sales`               |
+    
+The mapping can be defined as follows.
+    
+    ```sql
+    CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', @attributes(transNo = '$.transaction', salesValue = '$.sales')) (transNo int, product string, price int, quantity int, salesValue long);
+    ```
+    
+* Defining the mapping content of all attributes in the same order as how the attributes are defined in stream definition.
 
-        ```sql
-		CREATE SOURCE <Stream_Name> WITH (type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', map.type='MAP_TYPE', @attributes( 'mapping_1', 'mapping_N')) (attribute1_name attribute1_type, attributeN_name attributeN_type, ...);
-        ``` 
-        
-        e.g., If you consider the same example, mapping can be defined as follows.
-              
-        ```sql
-		CREATE SOURCE ConsumerSalesTotalsStream(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', @attributes(transNo = '$.transaction', product = product, price = price, quantity = quantity, salesValue = '$.sales')) (transNo int, product string, price int, quantity int, salesValue long);
-        ```
+    ```sql
+    CREATE SOURCE <Stream_Name> WITH (type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', map.type='MAP_TYPE', @attributes( 'mapping_1', 'mapping_N')) (attribute1_name attribute1_type, attributeN_name attributeN_type, ...);
+    ``` 
+    
+    e.g., If you consider the same example, mapping can be defined as follows.
+            
+    ```sql
+    CREATE SOURCE ConsumerSalesTotalsStream(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', @attributes(transNo = '$.transaction', product = product, price = price, quantity = quantity, salesValue = '$.sales')) (transNo int, product string, price int, quantity int, salesValue long);
+    ```
