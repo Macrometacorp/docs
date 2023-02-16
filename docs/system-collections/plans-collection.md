@@ -4,23 +4,30 @@ title: _plans Collection
 slug: plans-collection
 ---
 
-Collection Name: _plans
-Collection Type: Document (System)
-Stream Enabled: True
-Distribution: Global
-Overview:
+### Collection Information
+- **Collection Name:** _plans
+- **Collection Type:** Document (System)
+- **Stream Enabled:** True
+- **Distribution:** Global
+
+### Overview:
 The _plans collection is a system-level collection that stores records for each defined plan. Plans have feature gates, limits, metrics, price, and other metadata. Plans can be used to control feature access and limits for child tenants.
 
 A plan is optional for the tenant and, if not specified, will use the configuration in the `_c8federation` system collection. The limits are stored in the `defaultLimits`record, enabled or disabled by the `enableRateLimits` record.
-_plans configuration records:
-Related Endpoints:
-Administration
-Related System Collections:
-_c8federation
-_tenants
-Description:
+<!-- _plans configuration records: -->
+
+#### Related Endpoints:
+[Administration](/api#/operations/ReturnListOfTenants)
+
+#### Related System Collections:
+`_c8federation`
+`_tenants`
+
+#### Description:
 Each _plans configuration record is a JSON object containing
-Collection Definition:
+
+### Collection Definition:
+```json
 { "id": "214",
   "name": "_plans",
   "status": 3,
@@ -33,8 +40,9 @@ Collection Definition:
   "isSystem": true,
   "globallyUniqueId": "_plans",
   "searchEnabled": false }
-
-Sample Record:
+```
+### Sample Record:
+```json
 {
 		"_id": "_plans/Macrometa:PLAYGROUND",
 		"_key": "Macrometa:PLAYGROUND",
@@ -418,42 +426,61 @@ Sample Record:
 			}
 		]
 	}
+```
+### Collection Schema and Details
 
-_id: 
+#### _id: 
 A unique and automatically generated value that combines the collection name and the _key value. This value is unique at the fabric level. 
-_key: 
-A unique and user-defined or automatically generated value. Auto-generated values are based on the defKeyGenerator collection in the _c8federation collection. This value is unique at the collection level. 
-_planId:
+
+#### _key: 
+A unique and user-defined or automatically generated value. Auto-generated values are based on the defKeyGenerator collection in the [_c8federation collection](/docs/system-collections/c8federation-collection). This value is unique at the collection level. 
+
+####  _planId:
 A key-value attribute containing an integer value to identify an individual plan.
-_rev: 
+
+#### _rev: 
 A unique and automatically generated value is used by the system to track revisions and resolve conflicts. This value is not generally used by the user.
-_active:
+
+#### _active:
 A key-value attribute containing a boolean value to configure the active status of an individual plan.
-attribution:
+
+#### attribution:
 A key-value attribute containing a string value to set the attribution. Attributions are used to group individual plans logically.
-avantGarde:
+
+#### avantGarde:
 A key-value attribute containing a boolean value to enable/disable the account upgrade workflow.
-demo:
+
+#### demo:
 A key-value attribute containing a boolean value to enable/disable the demo account on the tenant.
-description:
+
+#### description:
 A key-value pair containing a string value describing the individual plan. 
-featureGates:
-An array of strings listing the available feature gates on the tenant. The feature gates are individually configured from the `_tenants` system collection records.
-isBundle:
+
+#### featureGates:
+An array of strings listing the available feature gates on the tenant. The feature gates are individually configured from the [_tenants collection](/docs/system-collections/tenants-collection) records.
+
+#### isBundle:
 A key-value pair containing a boolean value to configure the …
-isUpgradable:
+
+#### isUpgradable:
 A key-value pair containing a boolean value to configure the …
-label:
+
+#### label:
 A key-value pair containing a string value to configure the display label of the plan. 
-metadata:
+
+#### metadata:
 A key-value attribute containing an integer value to set the order of the plan list.
-metrics:
+
+#### metrics:
 An array of JSON objects containing metadata about the individual plan metrics. Each object includes the following attributes: name, value, metricType, stripeCategory, dashboardCategory, service, and operation.
-name:
+
+#### name:
 A key-value attribute containing a string value describing name metadata for a plan.
-pricing:
+
+#### pricing:
 A key-value attribute containing a string value describing pricing metadata for a plan.
-stripePricings:
+
+#### stripePricings:
 An array of JSON objects containing metadata for 
 
 

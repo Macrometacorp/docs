@@ -4,22 +4,29 @@ title: _users Collection
 slug: users-collection
 ---
 
-Collection Name: _user
-Collection Type: Document
-Stream Enabled: True
-Distribution: Global
-Overview:
+### Collection Information
+
+- **Collection Name:** _users
+- **Collection Type:** Document (System)
+- **Stream Enabled:** True
+- **Distribution:** Global
+
+### Overview
 
 The `_users` collection is a system-level collection with records containing attributes and metadata for an individual user or API Key at the tenant level. 
-_user configuration records:
-Description:
+
+<!-- _user configuration records: -->
+
+#### Description
 A JSON object with attributes and metadata for a specific user. These attributes are used for permissions configuration for individual collections and streams and default access permissions. A user is a child of a tenant.
-Related Endpoints
-Users
-Related System Collections
-_account
-_tenants
-Collection Definition:
+#### Related Endpoints
+[Users](/docs/api#/operations/ListAvailableUsers)
+#### Related System Collections
+-  _account
+- _tenants
+
+### Collection Definition
+```json
 { "id": "4",
 "name": "_users",
 "status": 3,
@@ -32,8 +39,45 @@ Collection Definition:
 "isSystem": true,
 "globallyUniqueId": "_users",
 "searchEnabled": false}
+```
 
-Sample Record:
+### Collection Schema and Details
+
+#### _id: 
+A unique and automatically generated value that combines the collection name and the _key value. This value is unique at the fabric level. 
+
+#### _key: 
+A unique and user-defined or automatically generated value. Auto-generated values are based on the defKeyGenerator collection in the _c8federation collection. This value is unique at the collection level. 
+
+#### _rev: 
+A unique and automatically generated value is used by the system to track revisions and resolve conflicts. This value is not generally used by the user.
+
+#### apikey:
+A JSON object containing a “hash” and “parent” attribute used to determine the _user record type. There are two record types in the _users collection, user and API Key records. The “parent” attribute for API Key records is the parent tenant under which the record was created. The “parent” attribute is empty for user records.
+
+#### authData:
+A JSON object containing an ”active” attribute with a boolean value and a “simple” object with a “hash”, “method”, and “salt” attribute used during authentication.
+
+#### Billing:
+A JSON object containing a “permissions” object to configure boolean “read” and “write” attributes. This controls access to the billing API endpoints.
+
+#### databases:
+A JSON object containing an object for each fabric on the tenant. Each fabric object contains the following objects; “collections”, “permissions”, and “streams”. The boolean “read” and “write” attributes control access to the collections and streams and define a default permission level.
+
+#### email:
+A key-value attribute containing the email address associated with the user. This must be unique for each user at a tenant level.
+
+#### source:
+Deprecated attribute
+
+#### tenant:
+A key-value attribute containing the UUID of the tenant associated with the user.
+
+#### user:
+A key-value attribute containing the user ID. This is a string value. 
+
+### Sample Record:
+```json
 {
   "_id": "_users/test.user.apikey",
   "_key": "test.user.apikey",
@@ -85,29 +129,4 @@ Sample Record:
   "tenant": "test.user_macrometa.com",
   "user": "test.user"
 }
-
-
-
-Collection Schema and Details:
-_id: 
-A unique and automatically generated value that combines the collection name and the _key value. This value is unique at the fabric level. 
-_key: 
-A unique and user-defined or automatically generated value. Auto-generated values are based on the defKeyGenerator collection in the _c8federation collection. This value is unique at the collection level. 
-_rev: 
-A unique and automatically generated value is used by the system to track revisions and resolve conflicts. This value is not generally used by the user.
-apikey:
-A JSON object containing a “hash” and “parent” attribute used to determine the _user record type. There are two record types in the _users collection, user and API Key records. The “parent” attribute for API Key records is the parent tenant under which the record was created. The “parent” attribute is empty for user records.
-authData:
-A JSON object containing an ”active” attribute with a boolean value and a “simple” object with a “hash”, “method”, and “salt” attribute used during authentication.
-Billing:
-A JSON object containing a “permissions” object to configure boolean “read” and “write” attributes. This controls access to the billing API endpoints.
-databases:
-A JSON object containing an object for each fabric on the tenant. Each fabric object contains the following objects; “collections”, “permissions”, and “streams”. The boolean “read” and “write” attributes control access to the collections and streams and define a default permission level.
-email:
-A key-value attribute containing the email address associated with the user. This must be unique for each user at a tenant level.
-source:
-Deprecated attribute
-tenant:
-A key-value attribute containing the UUID of the tenant associated with the user.
-user:
-A key-value attribute containing the user ID. This is a string value. 
+```
