@@ -1,10 +1,11 @@
 ---
 sidebar_position: 10
-title: _c8Federation Collection
+title: _c8federation Collection
 slug: c8federation-collection
 ---
 
 ### Collection Information
+
 - **Collection Name:** _c8federation
 - **Collection Type:** Document (System)
 - **Stream Enabled:** True
@@ -20,10 +21,10 @@ The `_c8federation` collection is a system-level collection containing records t
 [Administration](/api#/operations/ReturnListOfTenants)
 
 #### Related System Collections
-`_dnsEvents`
-`_dnsRecords`
-`_dnsErrors`
-`_otp`
+- _dnsEvents
+- _dnsRecords
+- _dnsErrors
+- _otp
 
 #### Description
 The `_c8federation` collection contains records to control federation and tenant level features, limits, etc. This is the primary configuration collection for each GDN instance.
