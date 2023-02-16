@@ -76,345 +76,7 @@ GROUP BY roomNo;
 
 This query takes the `roomNo` and `temp` values from TempStream, averages the temperatures, groups them by room number, outputs them into OutputStream.
 
-
-
-### Value
-
-Values are typed data that can be manipulated, transferred, and stored. Values can be referred to by the attributes defined in definitions such as streams and tables.
-
-Stream supports values of type `STRING`, `INT` (Integer), `LONG`, `DOUBLE`, `FLOAT`, `BOOL` (Boolean), and `OBJECT`.
-
-The syntax of each type and their example use as a constant value is as follows,
-
-| Attribute Type | Format     | Example                 |
-|----------------|----------|---------------------|
-| int            | `+`        | `123`, `-75`, `+95`        |
-| long           | `+L`       | `123000L`, `-750l`, `+154L`|
-| float          | `(+)?('.'*)?(E(-|+)?+)?F`           | `123.0f`, `-75.0e-10F`,`+95.789f`                         |
-| double         | `(+)?('.'*)?(E(-|+)?+)?D?`          | `123.0`,`123.0D`,`-75.0e-10D`,`+95.789d`                  |
-| bool           | `(true|false)`       | `true`, `false`, `TRUE`, `FALSE`                          |
-| string         | `'(;*!('|"|"""|))'` or  `"(;* !("|"""|))"` or `"""(;* !("""))"""`  | `'Any text.'`, `"Text with 'single' quotes."`, ```""" Text with 'single' quotes, "double" quotes, and new lines. """``` |
-
-
-**_Time_**
-
-Time is a special type of `LONG` value that denotes time using digits and their unit in the format `(<digit>+ <unit>)+`. At execution, the `time` gets converted into milliseconds and returns a `LONG` value.
-
-| Unit  | Syntax |
-|------------|-----------------------------|
-| Year | `year` | `years`|
-| Month | `month` | `months`|
-| Week | `week` | `weeks`  |
-| Day | `day` | `days`|
-| Hour | `hour` | `hours` |
-| Minutes | `minute` | `minutes` | `min` |
-| Seconds | `second` | `seconds` | `sec` |
-| Milliseconds | `millisecond` | `milliseconds` |
-
-
-**Example**
-
-1 hour and 25 minutes can by written as `1 hour and 25 minutes` which is equal to the `LONG` value `5100000`.
-
-### Select
-
-The select clause in a stream worker query defines the output event attributes of the query. Following are some basic query projection operations supported by select.
-
-### Function
-
-Functions are pre-configured operations that can consumes zero, or more parameters and always produce a single value as result. It can be used anywhere an attribute can be used.
-
-**Purpose**
-
-Functions encapsulate pre-configured reusable execution logic allowing users to execute the logic anywhere just by calling the function. This also make writing StreamApps simple and easy to understand.
-
-**Syntax**
-
-The syntax of function is as follows,
-
-```sql
-<function name>( <parameter>* )
-```
-
-Here `<function name>` uniquely identifies the function. The `<parameter>` defined input parameters the function can accept. The input parameters can be attributes, constant values, results of other functions, results of mathematical or logical expressions, or time values. The number and type of parameters a function accepts depend on the function itself.
-
-:::note
-Functions, mathematical expressions, and logical expressions can be used in a nested manner.
-:::
-
-**Example 1**
-
-Function name `add` accepting two input parameters, is called with an attribute named `input` and a constant value `75`.  
-
-```
-add(input, 75)
-```
-
-**Example 2**
-
-Function name `alertAfter` accepting two input parameters, is called with a time value of `1 hour and 25 minutes` and a mathematical addition operation of `startTime` + `56`.
-
-```
-add(1 hour and 25 minutes, startTime + 56)
-```
-
-**Inbuilt functions**
-
-Following are some inbuilt Stream functions, for more functions refer [Functions](#function).
-
-|Inbuilt function | Description|
-| ------------- |-------------|
-| [eventTimestamp](functions#eventtimestamp-function) | Returns event's timestamp. |
-| [currentTimeMillis](functions#currenttimemillis-function) | Returns current time of StreamApp runtime. |
-| [default](functions#default-function) | Returns a default value if the parameter is null. |
-| [ifThenElse](functions#ifthenelse-function) | Returns parameters based on a conditional parameter. |
-| [UUID](functions#uuid-function) | Generates a UUID. |
-| [cast](functions#cast-function) | Casts parameter type. |
-| [convert](functions#convert-function) | Converts parameter type. |
-| [coalesce](functions#coalesce-function) | Returns first not null input parameter. |
-| [maximum](functions#maximum-function) | Returns the maximum value of all parameters. |
-| [minimum](functions#minimum-function) | Returns the minimum value of all parameters. |
-| [instanceOfBoolean](functions#instanceofboolean-function) | Checks if the parameter is an instance of Boolean. |
-| [instanceOfDouble](functions#instanceofdouble-function) | Checks if the parameter is an instance of Double. |
-| [instanceOfFloat](functions#instanceoffloat-function) | Checks if the parameter is an instance of Float. |
-| [instanceOfInteger](functions#instanceofinteger-function) | Checks if the parameter is an instance of Integer. |
-| [instanceOfLong](functions#instanceoflong-function) | Checks if the parameter is an instance of Long. |
-| [instanceOfString](functions#instanceOfString-function) | Checks if the parameter is an instance of String. |
-| [createSet](functions#createset-function) | Creates  HashSet with given input parameters. |
-| [sizeOfSet](functions#sizeofset-function) | Returns number of items in the HashSet, that's passed as a parameter. |
-
-**Example**
-
-Query that converts the `roomNo` to `string` using `convert` function, finds the maximum temperature reading with `maximum` function, and adds a unique `messageID` using the `UUID` function.
-
-```
-insert into RoomTempStream
-select convert(roomNo, 'string') as roomNo,
-       maximum(tempReading1, tempReading2) as temp,
-       UUID() as messageID
-from TempStream;
-```
-
-### Filter
-
-Filters provide a way of filtering input stream events based on a specified condition. It accepts any type of condition including a combination of functions and/or attributes  that produces a Boolean result. Filters allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.  
-
-**Purpose**
-
-Filter helps to select the events that are relevant for the processing and omit the ones that are not.
-
-**Syntax**
-
-Filter conditions should be defined in square brackets (`[]`) next to the input stream as shown below.
-
-```
-insert into <output stream>
-select <attribute name>, <attribute name>, ...
-from <input stream>[<filter condition>] ;
-```
-
-**Example**
-
-Query to filter `TempStream` stream events, having `roomNo` within the range of 100-210 and temperature greater than 40 degrees,
-and insert them into `HighTempStream` stream.
-
-```
-insert into HighTempStream
-select roomNo, temp
-from TempStream[(roomNo >= 100 and roomNo < 210) and temp > 40];
-```
-
-### Window
-
-Window provides a way to capture a subset of events from an input stream and retain them for a period of time based on a specified criterion. The criterion defines when and how the events should be evicted from the windows. Such as events getting evicted from the window based on the time duration, or number of events and they events are evicted in a sliding (one by one) or tumbling (batch) manner.
-
-Within a query, each input stream can at most have only one window associated with it.
-
-**Purpose**
-
-Windows help to retain events based on a criterion, such that the values of those events can be aggregated, or checked if an event of interest is within the window or not.
-
-**Syntax**
-
-Define the window by using the `window <window-name>` next to the input stream as shown below.
-
-```
-insert <output event type>? into <output stream>
-select <attribute name>, <attribute name>, ...
-from <input stream> window <window name>(<parameter>, <parameter>, ... );
-```
-
-:::note
-Filter conditions can be applied both before and/or after the window.
-:::
-
-**Core windows**
-
-Following are some core stream worker windows. For more windows, refer [here](functions/unique/deduplicate).
-
-| Core window function              | Description                  |
-| --------------------------------- | ------------------------------- |
-| [CRON()](../windows/window-types/cron)               | Retains events based on cron time in a tumbling (batch) manner.          |
-| [DELAY()](../windows/window-types/delay)             | Retains events and delays the output by the given time period in a sliding manner.             |
-| [SESSION()](../windows/window-types/session)  | Retains events for each session based on session key.      |
-| [SORT()](../windows/window-types/sort)       | Retains top-k or bottom-k events based on a parameter value.   |
-| [TUMBLING()](../windows/window-types/tumbling)       | Retains events of last arrived event batch.        |
-| [SLIDING_EXPRESSION()](../windows/window-types/sliding-expression)           | Retains events based on an expression in a sliding manner.              |
-| [TUMBLING_EXPRESSION()](../windows/window-types/tumbling-expression)             | Retains events based on an expression in a tumbling (batch) manner.              |
-| [SLIDING_EXTERNAL_TIME()](../windows/window-types/sliding-external-time)   | Retains events based on event time value passed as a parameter in a sliding manner.            |
-| [TUMBLING_EXTERNAL_TIME()](../windows/window-types/tumbling-external-time) | Retains events based on event time value passed as a parameter in a a tumbling (batch) manner. |
-| [SLIDING_LENGTH()](../windows/window-types/sliding-length)                    | Retains events based on number of events in a sliding manner.            |
-| [TUMBLING_LENGTH()](../windows/window-types/tumbling-length)               | Retains events based on number of events in a tumbling (batch) manner.   |
-| [SLIDING_TIME()](../windows/window-types/sliding-time)  | Retains events based on time in a sliding manner.  |
-| [SLIDING_TIME_LENGTH()](../windows/window-types/sliding-time-length)       | Retains events based on time and number of events in a sliding manner.   |
-| [TUMBLING_TIME()](../windows/window-types/tumbling-time)| Retains events based on time in a tumbling (batch) manner.               |
-
-**Example 1**
-
-Query to find out the maximum temperature out of the **last 10 events**, using the window of `length` 10 and `max()` aggregation function, from the `TempStream` stream and insert the results into the `MaxTempStream` stream.
-
-```
-select max(temp) as maxTemp
-from TempStream window sliding_length(10)
-insert into MaxTempStream;
-```
-
-Here, the `length` window operates in a sliding manner where the following 3 event subsets are calculated and outputted when a list of 12 events are received in sequential order.
-
-|Subset|Event Range|
-|------|-----------|
-| 1 | 1 - 10 |
-| 2 | 2 - 11 |
-| 3 | 3 - 12 |
-
-**Example 2**
-
-Query to find out the maximum temperature out of the **every 10 events**, using the window of `lengthBatch` 10 and `max()` aggregation function, from the `TempStream` stream and insert the results into the `MaxTempStream` stream.
-
-```
-insert into MaxTempStream
-select max(temp) as maxTemp
-from TempStream window tumbling_length(10);
-```
-
-Here, the window operates in a batch/tumbling manner where the following three event subsets are calculated and outputted when a list of 30 events are received in a sequential order.
-
-|Subset|Event Range|
-|------|-----------|
-| 1    | 1 - 10      |
-| 2    | 11 - 20     |
-| 3    | 21 - 30     |
-
-**Example 3**
-
-Query to find out the maximum temperature out of the events arrived **during last 10 minutes**, using the window of `time` 10 minutes and `max()` aggregation function, from the `TempStream` stream and insert the results into the `MaxTempStream` stream.
-
-```
-insert into MaxTempStream
-select max(temp) as maxTemp
-from TempStream window sliding_time(10 min);
-```
-
-Here, the `time` window operates in a sliding manner with millisecond accuracy, where it will process events in the following three time durations and output aggregated events when a list of events are received in a sequential order.
-
-|Subset|Time Range (in ms)|
-|------|-----------|
-| 1 | 1:00:00.001 - 1:10:00.000 |
-| 2 | 1:00:01.001 - 1:10:01.000 |
-| 3 | 1:00:01.033 - 1:10:01.034 |
-
-**Example 4**
-
-Query to find out the maximum temperature out of the events arriving **every 10 minutes**, using the window of `timeBatch` 10 and `max()` aggregation function, from the `TempStream` stream and insert the results into the `MaxTempStream` stream.
-
-```
-insert into MaxTempStream
-select max(temp) as maxTemp
-from TempStream window tumbling_time(10 min);
-```
-
-Here, the window operates in a batch/tumbling manner where the window will process events in the following three time durations and output aggregated events when a list of events are received in a sequential order.
-
-|Subset|Time Range (in ms)|
-|------|-----------|
-| 1 | 1:00:00.001 - 1:10:00.000 |
-| 2 | 1:10:00.001 - 1:20:00.000 |
-| 3 | 1:20:00.001 - 1:30:00.000 |
-
-### Event Type
-
-Query output depends on the `current` and `expired` event types it produces based on its internal processing state. By default all queries produce `current` events upon event arrival to the query. The queries containing windows additionally produce `expired` events when events expire from the windows.
-
-**Purpose**
-
-Event type helps to specify when a query should output events to the stream, such as output upon current events, expired events or upon both current and expired events.
-
-**Syntax**
-
-Event type should be defined in between `insert` and `into` keywords for insert queries as follows.
-
-```sql
-insert <event type> into <output stream>
-select <attribute name>, <attribute name>, ...
-from <input stream> window <window name>(<parameter>, <parameter>, ... )
-```
-
-Event type should be defined next to the `for` keyword for delete queries as follows.
-
-```sql
-select <attribute name>, <attribute name>, ...
-from <input stream> window <window name>(<parameter>, <parameter>, ... )
-delete <table> (for <event type>)?
-    on <condition>
-```
-
-Event type should be defined next to the `for` keyword for update queries as follows.
-
-```sql
-select <attribute name>, <attribute name>, ...
-from <input stream> window <window name>(<parameter>, <parameter>, ... )
-update <table> (for <event type>)?
-    set <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
-    on <condition>
-```
-
-Event type should be defined next to the `for` keyword for update or insert queries as follows.
-
-```sql
-select <attribute name>, <attribute name>, ...
-from <input stream> window <window name>(<parameter>, <parameter>, ... )
-update or insert into <table> (for <event type>)?
-    set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
-    on <condition>
-```
-
-:::note
-Controlling query output based on the event types neither alters query execution nor its accuracy.  
-:::
-
-The event types can be defined using the following keywords to manipulate query output.
-
-| Event types | Description |
-|-------------------|-------------|
-| `current events` | Outputs events only when incoming events arrive to be processed by the query.  This is default behavior when no specific event type is specified.|
-| `expired events` | Outputs events only when events expires from the window. |
-| `all events` | Outputs events when incoming events arrive to be processed by the query as well as  when events expire from the window. |
-
-**Example**
-
-Query to output only the expired events from a 1 minute time window to the `DelayedTempStream` stream. This can be used for delaying the events by a minute.
-
-```
-insert expired events into DelayedTempStream
-select *
-from TempStream window sliding_time(1)
-```
-
-:::note
-This is just to illustrate how expired events work. Use the [delay](../windows/window-types/delay) window for use cases where we need to delay events by a given time period.
-:::
-
-### Aggregate Function
+## Aggregate Function
 
 Aggregate functions are pre-configured aggregation operations that can consumes zero, or more parameters from multiple events and always produce a single value as result. They can be only used in the query projection (as part of the `select` clause). When a query comprises a window, the aggregation will be contained to the events in the window, and when it does not have a window, the aggregation is performed from the first event the query has received.
 
@@ -428,7 +90,7 @@ Aggregate function can be used in query projection (as part of the `select` clau
 
 The syntax of aggregate function is as follows,
 
-```
+```sql
 insert into <output stream>
 select <aggregate function>(<parameter>, <parameter>, ... ) as <attribute name>, <attribute2 name>, ...
 from <input stream> window <window name>(<parameter>, <parameter>, ... );
@@ -436,11 +98,11 @@ from <input stream> window <window name>(<parameter>, <parameter>, ... );
 
 Here `<aggregate function>` uniquely identifies the aggregate function. The `<parameter>` defines input parameters the aggregate function can accept. The input parameters can be attributes, constant values, results of other functions or aggregate functions, results of mathematical or logical expressions, or time values. The number and type of parameters an aggregate function accepts depend on the function itself.
 
-**Inbuilt aggregate functions**
+### Built-In Aggregate Functions
 
 Following are some inbuilt aggregation functions.
 
-|Inbuilt aggregate function | Description|
+| Aggregate Function | Description|
 | ------------- |-------------|
 | [sum](functions#sum-aggregate-function) | Calculates the sum from a set of values. |
 | [count](functions#count-aggregate-function) | Calculates the count from a set of values. |
@@ -465,7 +127,7 @@ select avg(temp) as avgTemp, max(temp) as maxTemp, min(temp) as minTemp
 from TempStream window sliding_time(10 min);
 ```
 
-### Group By
+## Group By
 
 Group By provides a way of grouping events based on one or more specified attributes to perform aggregate operations.
 
@@ -497,7 +159,7 @@ from TempStream window sliding_time(10 min)
 group by roomNo, deviceID;
 ```
 
-### Having
+## Having
 
 Having provide a way of filtering events based on a specified condition of the query output stream attributes. It accepts any type of condition including a combination of functions and/or attributes that produces a Boolean result. Having, allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.  
 
@@ -531,7 +193,7 @@ group by roomNo
 having avgTemp > 30;
 ```
 
-### Order By
+## Order By
 
 Order By, orders the query results in ascending and or descending order based on one or more specified attributes. When an attribute is used for order by, by default Stream orders the events in ascending order of that attribute's value, and by adding `desc` keyword, the events can be ordered in descending order. When more than one attribute is defined the attributes defined towards the left will have more precedence in ordering than the ones defined in right.  
 
@@ -566,7 +228,7 @@ group by roomNo, deviceID
 order by avgTemp, roomNo desc;
 ```
 
-### Limit & Offset
+## Limit & Offset
 
 These provide a way to select the number of events (via limit) from the desired index (by specifying an offset) from the output event chunks produced by the query.
 
@@ -617,7 +279,7 @@ limit 3
 offset 2;
 ```
 
-### Join (Stream)
+## Join (Stream)
 
 Joins allow you to get a combined result from two streams in real-time based on a specified condition.
 
@@ -744,7 +406,7 @@ Following are the supported operations of a join clause.
       full outer join TwitterStream window sliding_length(1) as T
       on S.symbol== T.symbol;    </pre>
 
-### Patterns
+## Patterns
 
 This is a state machine implementation that allows you to detect patterns in the events that arrive over time. This can correlate events within a single stream or between multiple streams.
 
@@ -789,7 +451,7 @@ Here, the matching process begins for each event in the `TempStream` stream (bec
 and if  another event arrives within 10 minutes with a value for the `temp` attribute that is greater than or equal to `e1.temp + 5`
 of the event e1, an output is generated via the `AlertStream`.
 
-#### Counting Pattern
+### Counting Pattern
 
 Counting patterns allow you to match multiple events that may have been received for the same matching condition.
 The number of events matched per condition can be limited via condition postfixes.
@@ -835,7 +497,7 @@ select e1.roomNo, e2[0].temp - e2[last].temp as tempDiff
 from every( e1=RegulatorStream) -> e2=TempStream[e1.roomNo==roomNo]<1:> -> e3=RegulatorStream[e1.roomNo==roomNo];
 ```
 
-#### Logical Patterns
+### Logical Patterns
 
 Logical patterns match events that arrive in temporal order and correlate them with logical relationships such as `and`,
 `or` and `not`.
@@ -861,7 +523,7 @@ Key Word|Description
 
 Here the `not` pattern can be followed by either an `and` clause or the effective period of `not` can be concluded after a given `<time period>`. Further in Stream more than two streams cannot be matched with logical conditions using `and`, `or`, or `not` clauses at this point.
 
-#### Detecting Non-occurring Events
+### Detecting Non-occurring Events
 
 Stream allows you to detect non-occurring events via multiple combinations of the key words specified above as shown in the table below.
 
@@ -924,7 +586,7 @@ select e1.roomNo as roomNo
 from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] for 5 min;
 ```
 
-### Sequence
+## Sequence
 
 Sequence is a state machine implementation that allows you to detect the sequence of event occurrences over time.
 Here **all matching events need to arrive consecutively** to match the sequence condition, and there cannot be any non-matching events arriving within a matching sequence of events.
@@ -964,7 +626,7 @@ select e1.temp as initialTemp, e2.temp as finalTemp
 from every e1=TempStream, e2=TempStream[e1.temp + 1 < temp];
 ```
 
-#### Counting Sequence
+### Counting Sequence
 
 Counting sequences allow you to match multiple events for the same matching condition.
 The number of events matched per condition can be limited via condition postfixes such as **Counting Patterns**, or by using the
@@ -1003,7 +665,7 @@ select e1.temp as initialTemp, e2[last].temp as peakTemp
 from every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last].temp > temp];
 ```
 
-#### Logical Sequence
+### Logical Sequence
 
 Logical sequences identify logical relationships using `and`, `or` and `not` on consecutively arriving events.
 
@@ -1033,6 +695,3 @@ insert into StateNotificationStream
 select e2.temp, e3.humid
 from every e1=RegulatorStream, e2=TempStream and e3=HumidStream;
 ```
-
-### Output rate limiting
-
