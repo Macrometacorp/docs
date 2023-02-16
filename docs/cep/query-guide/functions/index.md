@@ -16,9 +16,6 @@ Functions encapsulate pre-configured reusable execution logic allowing users to 
 
 Functions allow you to:
 
-- Use different data sources.
-- Use different sinks, such as GDN Streams, Kafka, and ActiveMQ.
-- Appropriate format mapping, such as JSON or CSV.
 - Perform different kinds of processing, such as math, string, statistics, and geospatial.
 - Aggregate data.
 - Write logical expressions.
@@ -36,81 +33,6 @@ Here `<function name>` uniquely identifies the function. The `<parameter>` defin
 :::note
 Functions, mathematical expressions, and logical expressions can be used in a nested manner.
 :::
-
-## Core Functions
-
-| Function | Description |
-|----------|-------------|
-| and	     | Returns the results of AND operation for all the events.|
-| avg	     | Calculates the average for all the events.|
-| cast	     | Converts the first parameter according to the cast.to parameter.|
-| coalesce	     | Returns the value of the first input parameter that is not null, and all input parameters have to be on the same type.|
-| convert	     | Converts the first input parameter according to the `convertedTo` parameter.|
-| count	     | Returns the count of all the events.|
-| createSet	     | Includes the given input parameter in a java.util.HashSet and returns the set.|
-| currentTimeMillis	     | Returns the current timestamp of stream processor application in milliseconds.|
-| default	     | Checks if the `attribute` parameter is null and if so returns the value of the `default` parameter.|
-| distinctCount	     | This returns the count of distinct occurrences for a given arg.|
-| eventTimestamp	     | Returns the timestamp of the processed event.|
-| ifThenElse	     | Evaluates the `condition` parameter and returns value of the `if.expression`.|
-| instanceOfBoolean	     | Checks whether the parameter is an instance of Boolean or not.|
-| instanceOfDouble	     | Checks whether the parameter is an instance of Double or not.|
-| instanceOfFloat	     | Checks if the parameter is an instance of Float or not.|
-| instanceOfInteger	     | Checks whether the parameter is an instance of Integer or not.|
-| instanceOfLong	     | Checks whether the parameter is an instance of Long or not.|
-| instanceOfString	     | Checks whether the parameter is an instance of String or not.|
-| log	     | Logs the message on the given priority with or without the processed event.|
-| max	     | Returns the maximum value for all the events.|
-| maxForever	     | This is the attribute aggregator to store the maximum value for a given attribute.|
-| maximum	     | Returns the maximum value of the input parameters.|
-| min	     | Returns the minimum value for all the events.|
-| minForever	     | This is the attribute aggregator to store the minimum value for a given attribute throughout the lifetime of the query regardless of any windows.|
-| minimum	     | Returns the minimum value of the input parameters.|
-| or	     | Returns the results of OR operation for all the events.|
-| pol2Cart	     | The pol2Cart function calculating the cartesian coordinates x & y for the given theta.|
-| sizeOfSet	     | Returns the size of an object of type java.util.Set.|
-| stdDev	     | Returns the calculated standard deviation for all the events.|
-| sum	     | Returns the sum for all the events.|
-| unionSet	     | Union multiple sets.|
-| uuid	     | Generates a UUID (Universally Unique Identifier).|
-
-## Execution Functions
-
-| Functions | Description |
-|---------------------|-------------|
-| Anonymizer	         | The Anonymizer function provides a function for anonymizing various data types. This function returns a fake value for anonymizing which matches the original data. For example, an email would be replaced with a fake email. |
-| Cache	              | The `cache` function provides a persistent cache per tenant. |
-| Context	            | This function provides useful environment properties such as current region where the Stream App is running.|
-| Geo Spatial	        | This function provides geo data related functionality such as checking whether a given geo coordinate is within a predefined geo-fence, finding distance between two geo coordinates etc. |
-| JSON	               | This function provides capability to retrieve, insert, and modify JSON elements. |
-| List	               | This function provides capability to generate and manipulate list data objects.|
-| Map	                | This function provides capability to generate and manipulate map (key-value) data objects.|
-| Math	               | This function provides useful mathematical functions such as power, round, random, cos, log, etc. |
-| Regex	              | This function provides basic RegEx execution capabilities such as `find`, `match`, etc. |
-| Reorder	            | This function orders out-of-order event arrivals using algorithms such as K-Slack and alpha K-Stack.|
-| Sentiment	          |This function performs sentiment analysis using AFINN Wordlist-based approach.|
-| Streaming ML	       | This function provides streaming machine learning (clustering, classification and regression) on event streams. |
-| Time	               | This function provides time related functionality such as getting current time, current date, manipulating/formatting dates, etc. |
-
-## IO Functions
-
-| Function     | Description|
-| ------------ |-------------|
-|Apache Kafka (beta)|This function receives and publishes events from/to Apache Kafka.|
-|Google Pub-Sub | This an function that receives and publishes events from/to Google Pub/Sub.   |
-|HTTP and HTTPS| The **http** function receives and publishes events via HTTP and HTTPS transports, calls external services, and serves incoming requests and provide synchronous responses. |
-|MQTT|This function receives and publishes events to and from MQTT.|
-|S3|This function allows to publish events to Amazon AWS S3 buckets.|
-|SSE|This function receives and publishes events from SSE server.|
-
-## Format Mapper Functions
-
-| Function     | Description|
-| ------------- |-------------|
-|CSV|This function converts messages with CSV format to/from stream processor events.|
-|JSON|This function converts JSON messages to/from stream processor events.|
-|Key-Value|This function converts events having Key-Value maps to/from stream processor events.|
-|Text|This function that converts text messages to/from stream processor events.|
 
 ## Example 1
 
@@ -133,11 +55,11 @@ add(1 hour and 25 minutes, startTime + 56)
 Query that converts the `roomNo` to `string` using `convert` function, finds the maximum temperature reading with `maximum` function, and adds a unique `messageID` using the `UUID` function.
 
 ```sql
-insert into RoomTempStream
-select convert(roomNo, 'string') as roomNo,
-       maximum(tempReading1, tempReading2) as temp,
-       UUID() as messageID
-from TempStream;
+INSERT INTO RoomTempStream
+SELECT convert(roomNo, 'string') AS roomNo,
+       maximum(tempReading1, tempReading2) AS temp,
+       UUID() AS messageID
+FROM TempStream;
 ```
 
 ## Example 4
