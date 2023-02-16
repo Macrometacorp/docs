@@ -28,6 +28,7 @@ Or you can use the syntax shortcut `CREATE SINK STREAM`:
 ```sql
 CREATE SINK STREAM <GLOBAL | LOCAL> SampleStreamSink (data string);
 ```
+
 Or you can use the syntax shortcut for local stream `CREATE SINK STREAM`:
 
 ```sql
@@ -38,10 +39,10 @@ CREATE SINK STREAM  SampleStreamSink (data string);
 
 | Name             | Description         | Default Value | Possible Data Types | Optional |
 |------------------|----------------------------------|---------------|---------------------|----------|
-| stream      | The streams to which the sink needs to publish events.|     | STRING        | No                  |
-| replication.type | Specifies if the replication type of the streams. Possible values can be `local` and `global`      | local         | STRING         | Yes      |
+| stream      | The streams to which the sink needs to publish events. |     | STRING        | No                  |
+| replication.type | Specifies if the replication type of the streams. Possible values can be `LOCAL` and `GLOBAL`.      | LOCAL         | STRING         | Yes      |
 | num.io.threads | The number of I/O threads. | 1 | INT | Yes|
-| key.shared.attributes | The attributes to be included into message's key| - | STRING | Yes|
+| key.shared.attributes | The attributes to be included into the message key. | - | STRING | Yes|
 
 ## Example 1
 
