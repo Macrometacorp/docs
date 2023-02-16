@@ -62,6 +62,8 @@ FROM <input stream> WINDOW <window name>(<parameter>, <parameter>, ... )
 Controlling query output based on the event types neither alters query execution nor its accuracy.  
 :::
 
+## Parameters
+
 The event types can be defined using the following keywords to manipulate query output.
 
 | Event types | Description |
@@ -70,7 +72,7 @@ The event types can be defined using the following keywords to manipulate query 
 | `expired events` | Outputs events only when events expires from the window. |
 | `all events` | Outputs events when incoming events arrive to be processed by the query as well as  when events expire from the window. |
 
-Example
+## Example
 
 Query to output only the expired events from a one-minute time window to `DelayedTempStream`. This can be used for delaying the events by a minute.
 
