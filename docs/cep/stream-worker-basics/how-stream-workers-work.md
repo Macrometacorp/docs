@@ -32,4 +32,4 @@ The following diagram depicts some of the key elements of stream worker and how 
 
 For more information about parts of a stream worker, refer to [Stream Worker Elements](stream-worker-elements).
 
-![Event Flow](/img/event-flow.png?raw=true "Event Flow")
+![Event Flow](/img/event-flow.png "Event Flow")
