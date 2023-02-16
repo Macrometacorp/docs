@@ -57,7 +57,7 @@ To understand the different ways you can filter the specific data you need to tr
         ```
 
         :::tip
-            As a best practice, name your queries using the `@info` annotation. In this example, you can name the query `Filtering` as follows.
+        As a best practice, name your queries using the `@info` annotation. In this example, you can name the query `Filtering` as follows.
         :::
 
         ```sql
@@ -83,13 +83,13 @@ To understand the different ways you can filter the specific data you need to tr
     SELECT *
     FROM InputTempStream [roomNo=='2233'];
     ```
-        
+
 ### Filtering based on regex pattern
- 
+
 You can filter events by providing a condition where only events that match a specific Regex pattern are taken for further processing.
- 
+
 For this purpose, you can use the `TemperatureApp` stream worker that you created in the previous example. However, instead of filtering the readings for a specific room no, you can filter the readings for many rooms of which the room number matches a specific regex pattern.
-     
+
 Assume that you want to filter the temperature readings for a specific rage of rooms located in the Southern wing and used for purpose B. Also assume that this can be derived from the room number because the first three characters of the room no represent the wing, and the eighth character represents the purpose. e.g., in room no `SOU5438B765`, the first three characters `SOU` represent the Southern wing, and the eighth character `B` represents purpose B.
     
 To filter events as described, follow the procedure below.
