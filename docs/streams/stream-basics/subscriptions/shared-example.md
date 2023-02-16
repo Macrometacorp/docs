@@ -27,6 +27,10 @@ The best way to test various stream functionality is to create one producer and 
 To test the code open three terminals simultaneously and run producer file `producer.js` in one of them with `node producer.js`. After that run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal.
 If there is no error you should see messages in both consumers.
 
+:::note
+You can run the code examples in any order but keep in mind that if you run `producer.js` code first it will instantly generate data (endless stream of data). If none of the consumers are running those first messages will not be picked up.
+:::
+
 
 ## Code example for producer
 
@@ -59,7 +63,7 @@ async function createStream() {
   } else {
     console.log("\nCreating global stream...");
     // To create a global stream, set the second parameter to false
-    // There is an option to create a local stream, which is only accessible within the fabric
+    // There is an option to create a local stream, which is only accessible within the region
     const streamInfo = await client.createStream(streamName, false);
     console.log(`New Producer = ${streamInfo.result["stream-id"]}`);
   }
@@ -135,10 +139,24 @@ client = new jsc8({
 const streamName = "streamQuickstart";
 const subscriptionName = "consumer-subscription"
 
+async function createStream() {
+    if (await client.hasStream(streamName, false)) {
+      console.log("This stream already exists!");
+      console.log(`Existing Consumer = c8globals.${streamName}`);
+    } else {
+      console.log("\nCreating global stream...");
+      // To create a global stream, set the second parameter to false
+      // There is an option to create a local stream, which is only accessible within the region
+      const streamInfo = await client.createStream(streamName, false);
+      console.log(`New Consumer = ${streamInfo.result["stream-id"]}`);
+    }
+  }
+
 async function consumer() {
   try {
     await console.log("\nConnecting consumer to global stream...");
-
+    // Create stream only if stream does not exist
+    createStream();
     // Request stream object
     const stream = client.stream(streamName, false);
     // Request One Time Password
@@ -195,10 +213,24 @@ client = new jsc8({
 const streamName = "streamQuickstart";
 const subscriptionName = "consumer-subscription"
 
+async function createStream() {
+    if (await client.hasStream(streamName, false)) {
+      console.log("This stream already exists!");
+      console.log(`Existing Consumer = c8globals.${streamName}`);
+    } else {
+      console.log("\nCreating global stream...");
+      // To create a global stream, set the second parameter to false
+      // There is an option to create a local stream, which is only accessible within the region
+      const streamInfo = await client.createStream(streamName, false);
+      console.log(`New Consumer = ${streamInfo.result["stream-id"]}`);
+    }
+  }
+
 async function consumer() {
   try {
     await console.log("\nConnecting consumer to global stream...");
-
+    // Create stream only if stream does not exist
+    createStream();
     // Request stream object
     const stream = client.stream(streamName, false);
     // Request One Time Password

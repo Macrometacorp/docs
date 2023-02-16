@@ -66,10 +66,24 @@ client = new jsc8({
 const streamName = "streamQuickstart";
 const subscriptionName = "consumer-subscription"
 
+async function createStream() {
+    if (await client.hasStream(streamName, false)) {
+      console.log("This stream already exists!");
+      console.log(`Existing Consumer = c8globals.${streamName}`);
+    } else {
+      console.log("\nCreating global stream...");
+      // To create a global stream, set the second parameter to false
+      // There is an option to create a local stream, which is only accessible within the region
+      const streamInfo = await client.createStream(streamName, false);
+      console.log(`New Consumer = ${streamInfo.result["stream-id"]}`);
+    }
+  }
+
 async function consumer() {
   try {
     await console.log("\nConnecting consumer to global stream...");
-
+    // Create stream only if stream does not exist
+    createStream();
     // Request stream object
     const stream = client.stream(streamName, false);
     // Request One Time Password
