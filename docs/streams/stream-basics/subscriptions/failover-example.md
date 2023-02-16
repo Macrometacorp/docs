@@ -51,7 +51,7 @@ async function createStream() {
     console.log("\nCreating global stream...");
     // To create a global stream, set the second parameter to false
     // There is an option to create a local stream, which is only accessible within the fabric
-    const streamInfo = await client.createStream(streamName, is_local);
+    const streamInfo = await client.createStream(streamName, false);
     console.log(`New Producer = ${streamInfo.result["stream-id"]}`);
   }
 }
