@@ -5,16 +5,16 @@ title: Query
 
 A _stream worker query_ defines the processing logic in stream workers. A query consumes events from one or more:
 
-- [streams](../source/source-types/stream-source.md)
+- [streams](../source/source-types/stream-source)
 - [named windows](../windows/)
-- [tables](table-collection)
+- [tables](../table/)
 - [named aggregations](../aggregations/)
 
 The query then processes the events in a streaming manner and generates output events into one or more:
 
 - [streams](../sink/sink-types/stream-sink)
 - [named windows](../windows/)
-- [tables](table-collection)
+- [tables](../table/)
 
 ## Purpose
 
@@ -91,7 +91,7 @@ Aggregate function can be used in query projection (as part of the `select` clau
 The syntax of aggregate function is as follows,
 
 ```sql
-insert into <output stream>
+INSERT INTO <output stream>
 select <aggregate function>(<parameter>, <parameter>, ... ) as <attribute name>, <attribute2 name>, ...
 from <input stream> window <window name>(<parameter>, <parameter>, ... );
 ```
@@ -122,7 +122,7 @@ Following are some inbuilt aggregation functions.
 Query to calculate average, maximum, and minimum values on `temp` attribute of the `TempStream` stream in a sliding manner, from the events arrived over the last 10 minutes and to produce outputs `avgTemp`, `maxTemp` and `minTemp` respectively to the `AvgTempStream` output stream.
 
 ```
-insert into AvgTempStream
+INSERT INTO AvgTempStream
 select avg(temp) as avgTemp, max(temp) as maxTemp, min(temp) as minTemp
 from TempStream window sliding_time(10 min);
 ```
@@ -140,7 +140,7 @@ Group By allows users to aggregate values of multiple events based on the given 
 The syntax for the Group By with aggregate function is as follows.
 
 ```
-insert into <output stream>
+INSERT INTO <output stream>
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
 from <input stream> window <window name>(...)
 group by <attribute1 name>, <attribute2 name>, ...;
@@ -153,7 +153,7 @@ Here the group by attributes should be defined next to the `group by` keyword se
 Query to calculate the average `temp` per `roomNo` and `deviceID` combination, from the events arrived from `TempStream` stream, during the last 10 minutes time-window in a sliding manner.
 
 ```
-insert into AvgTempStream
+INSERT INTO AvgTempStream
 select roomNo, deviceID, avg(temp) as avgTemp
 from TempStream window sliding_time(10 min)
 group by roomNo, deviceID;
@@ -172,7 +172,7 @@ Having helps to select the events that are relevant for the output based on the 
 The syntax for the Having clause is as follows.
 
 ```
-insert into <output stream>
+INSERT INTO <output stream>
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
 from <input stream> window <window name>( ... )
 group by <attribute1 name>, <attribute2 name> ...
@@ -186,7 +186,7 @@ Here the having `<condition>` should be defined next to the `having` keyword and
 Query to calculate the average `temp` per `roomNo` for the last 10 minutes, and alerts if the `avgTemp` exceeds 30 degrees.
 
 ```
-insert into AlertStream
+INSERT INTO AlertStream
 select roomNo, avg(temp) as avgTemp
 from TempStream window sliding_time(10 min)
 group by roomNo
@@ -206,7 +206,7 @@ Order By helps to sort the events in the outputs chunks produced by the query. O
 The syntax for the Order By clause is as follows:
 
 ```
-insert into <output stream>
+INSERT INTO <output stream>
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
 from <input stream> window <window name>( ... )
 group by <attribute1 name>, <attribute2 name> ...
@@ -221,7 +221,7 @@ Here the order by attributes should be defined next to the `order by` keyword se
 Query to calculate the average `temp` per `roomNo` and `deviceID` combination on every 10 minutes batches, and order the generated output events in ascending order by `avgTemp` and then by descending order of `roomNo` (if the more than one event have the same `avgTemp` value).
 
 ```
-insert into AvgTempStream
+INSERT INTO AvgTempStream
 select roomNo, deviceID, avg(temp) as avgTemp
 from TempStream window tumbling_time(10 min)
 group by roomNo, deviceID
@@ -241,7 +241,7 @@ Limit & Offset helps to output only the selected set of events from large event 
 The syntax for the Limit & Offset clauses is as follows:
 
 ```
-insert into <output stream>
+INSERT INTO <output stream>
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
 from <input stream> window <window name>( ... )
 group by <attribute1 name>, <attribute2 name> ...
@@ -258,7 +258,7 @@ Here both `limit` and `offset` are optional, when `limit` is omitted the query w
 Query to calculate the average `temp` per `roomNo` and `deviceID` combination for every 10 minutes batches, from the events arriving at the `TempStream` stream, and emit only two events having the highest `avgTemp` value.
 
 ```
-insert into HighestAvgTempStream
+INSERT INTO HighestAvgTempStream
 select roomNo, deviceID, avg(temp) as avgTemp
 from TempStream window timeBatch(10 min)
 group by roomNo, deviceID
@@ -270,7 +270,7 @@ limit 2;
 Query to calculate the average `temp` per `roomNo` and `deviceID` combination for every 10 minutes batches, for events that arriving at the `TempStream` stream, and emits only the third, forth and fifth events when sorted in descending order based on their `avgTemp` value.
 
 ```
-insert into HighestAvgTempStream
+INSERT INTO HighestAvgTempStream
 select roomNo, deviceID, avg(temp) as avgTemp
 from TempStream window timeBatch(10 min)
 group by roomNo, deviceID
@@ -382,7 +382,7 @@ Following are the supported operations of a join clause.
     from StockStream window sliding_time(1 min) as S
       left outer join TwitterStream window sliding_length(1) as T
       on S.symbol== T.symbol
-    insert into outputStream ;    </pre>
+    INSERT INTO outputStream ;    </pre>
 
 - **Right outer join**
 
@@ -400,7 +400,7 @@ Following are the supported operations of a join clause.
     match for the `symbol` attribute in the other stream or not.
 
     <pre>
-    insert into outputStream
+    INSERT INTO outputStream
     select S.symbol as symbol, T.tweet, S.price
     from StockStream window sliding_time(1 min) as S
       full outer join TwitterStream window sliding_length(1) as T
@@ -424,7 +424,7 @@ from (every)? <event reference>=<input stream>[<filter condition>] ->
     (every)? <event reference>=<input stream [<filter condition>] ->
     ...
     (within <time gap>)?     
-insert into <output stream>
+INSERT INTO <output stream>
 ```
 
 | Items| Description |
@@ -441,7 +441,7 @@ Stream also supports pattern matching with counting events and matching events i
 This query sends an alert if the temperature of a room increases by 5 degrees within 10 min.
 
 ```
-insert into AlertStream
+INSERT INTO AlertStream
 select e1.roomNo, e1.temp as initialTemp, e2.temp as finalTemp
 from every( e1=TempStream ) -> e2=TempStream[ e1.roomNo == roomNo and (e1.temp + 5) <= temp ]
     within 10 min;
@@ -461,7 +461,7 @@ The number of events matched per condition can be limited via condition postfixe
 Each matching condition can contain a collection of events with the minimum and maximum number of events to be matched as shown in the syntax below.
 
 ```
-insert into <output stream>
+INSERT INTO <output stream>
 select <event reference>([event index])?.<attribute name>, ...
 from (every)? <event reference>=<input stream>[<filter condition>] (<<min count>:<max count>>)? ->  
     ...
@@ -492,7 +492,7 @@ The following stream worker calculates the temperature difference between two re
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 CREATE STREAM RegulatorStream (deviceID long, roomNo int, tempSet double, isOn bool);
 
-insert into TempDiffStream
+INSERT INTO TempDiffStream
 select e1.roomNo, e2[0].temp - e2[last].temp as tempDiff
 from every( e1=RegulatorStream) -> e2=TempStream[e1.roomNo==roomNo]<1:> -> e3=RegulatorStream[e1.roomNo==roomNo];
 ```
@@ -505,7 +505,7 @@ Logical patterns match events that arrive in temporal order and correlate them w
 **Syntax**
 
 ```
-insert into <output stream>
+INSERT INTO <output stream>
 select <event reference>([event index])?.<attribute name>, ...
 from (every)? (not)? <event reference>=<input stream>[<filter condition>]
           ((and|or) <event reference>=<input stream>[<filter condition>])? (within <time gap>)? ->  
@@ -557,7 +557,7 @@ Following stream worker, sends the `stop` control action to the regulator when t
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
 CREATE STREAM RoomKeyStream (deviceID long, roomNo int, action string);
 
-insert into RegulatorActionStream
+INSERT INTO RegulatorActionStream
 select e1.roomNo, ifThenElse( e2 is null, 'none', 'stop' ) as action
 from every( e1=RegulatorStateChangeStream[ action == 'on' ] ) ->
       e2=RoomKeyStream[ e1.roomNo == roomNo and action == 'removed' ] or e3=RegulatorStateChangeStream[ e1.roomNo == roomNo and action == 'off']
@@ -570,7 +570,7 @@ This stream worker generates an alert if we have switch off the regulator before
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
-insert into AlertStream
+INSERT INTO AlertStream
 select e1.roomNo as roomNo
 from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] and e2=RegulatorStateChangeStream[action == 'off'];
 ```
@@ -581,7 +581,7 @@ This stream worker generates an alert if the temperature does not reduce to 12 d
 CREATE STREAM RegulatorStateChangeStream (deviceID long, roomNo int, tempSet double, action string);
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
 
-insert into AlertStream
+INSERT INTO AlertStream
 select e1.roomNo as roomNo
 from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] for 5 min;
 ```
@@ -601,7 +601,7 @@ This allows you to detect a specified event sequence over a specified time perio
 The syntax for a sequence query is as follows:
 
 ```
-insert into <output stream>
+INSERT INTO <output stream>
 select <event reference>.<attribute name>, <event reference>.<attribute name>, ...
 from (every)? <event reference>=<input stream>[<filter condition>],
     <event reference>=<input stream [<filter condition>],
@@ -621,7 +621,7 @@ from (every)? <event reference>=<input stream>[<filter condition>],
 This query generates an alert if the increase in the temperature between two consecutive temperature events exceeds one degree.
 
 ```sql
-insert into AlertStream
+INSERT INTO AlertStream
 select e1.temp as initialTemp, e2.temp as finalTemp
 from every e1=TempStream, e2=TempStream[e1.temp + 1 < temp];
 ```
@@ -639,7 +639,7 @@ The matching events can also be retrieved using event indexes, similar to how it
 Each matching condition in a sequence can contain a collection of events as shown below.
 
 ```
-insert into <output stream>
+INSERT INTO <output stream>
 select <event reference>.<attribute name>, <event reference>.<attribute name>, ...
 from (every)? <event reference>=<input stream>[<filter condition>](+|*|?)?,
     <event reference>=<input stream [<filter condition>](+|*|?)?,
@@ -660,7 +660,7 @@ This stream worker identifies temperature peeks.
 ```
 CREATE STREAM TempStream(deviceID long, roomNo int, temp double);
 
-insert into PeekTempStream
+INSERT INTO PeekTempStream
 select e1.temp as initialTemp, e2[last].temp as peakTemp
 from every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last].temp > temp];
 ```
@@ -673,8 +673,8 @@ Logical sequences identify logical relationships using `and`, `or` and `not` on 
 The syntax for a logical sequence is as follows:
 
 ```
-insert into <output stream>
-select <event reference>([event index])?.<attribute name>, ...
+INSERT INTO <output stream>
+SELECT <event reference>([event index])?.<attribute name>, ...
 from (every)? (not)? <event reference>=<input stream>[<filter condition>]
           ((and|or) <event reference>=<input stream>[<filter condition>])? (within <time gap>)?,
     ...
@@ -691,7 +691,7 @@ CREATE STREAM TempStream(deviceID long, temp double);
 CREATE STREAM HumidStream(deviceID long, humid double);
 CREATE STREAM RegulatorStream(deviceID long, isOn bool);
 
-insert into StateNotificationStream
-select e2.temp, e3.humid
+INSERT INTO StateNotificationStream
+SELECT e2.temp, e3.humid
 from every e1=RegulatorStream, e2=TempStream and e3=HumidStream;
 ```
