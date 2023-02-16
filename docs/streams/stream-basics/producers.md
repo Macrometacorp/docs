@@ -57,7 +57,9 @@ async function createStream() {
     console.log(`Existing Producer = c8globals.${streamName}`);
   } else {
     console.log("\nCreating global stream...");
-    const streamInfo = await client.createStream(streamName, is_local);
+    // To create a global stream, set the second parameter to false
+    // There is an option to create a local stream, which is only accessible within the fabric
+    const streamInfo = await client.createStream(streamName, false);
     console.log(`New Producer = ${streamInfo.result["stream-id"]}`);
   }
 }
