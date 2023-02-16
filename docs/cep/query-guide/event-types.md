@@ -66,7 +66,7 @@ Controlling query output based on the event types neither alters query execution
 
 The event types can be defined using the following keywords to manipulate query output.
 
-| Event types | Description |
+| Event Types | Description |
 |-------------------|-------------|
 | `current events` | Outputs events only when incoming events arrive to be processed by the query.  This is default behavior when no specific event type is specified.|
 | `expired events` | Outputs events only when events expires from the window. |
