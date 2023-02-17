@@ -1,12 +1,14 @@
 ---
-title: time (Window)
+title: time
 ---
 
 This is a sliding time window that holds the latest unique events that arrived during the previous time window. The unique events are determined based on the value for a specified unique key parameter. The window is updated with the arrival and expiration of each event. When a new event that arrives within a window time period has the same value for the unique key parameter as an existing event in the window, the previous event is replaced by the new event.
 
 ## Syntax
 
-    unique:time(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
+```sql
+    WINDOW UNIQUE:time(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
+```
 
 ## Query Parameters
 
@@ -17,10 +19,12 @@ This is a sliding time window that holds the latest unique events that arrived d
 
 ## Example 1
 
+```sql
     CREATE STREAM CseEventStream (symbol string, price float, volume int)
 
-    from CseEventStream WINDOW UNIQUE:time(symbol, 1 sec)
-    select symbol, price, volume
-    insert expired events into OutputStream ;
+    FROM CseEventStream WINDOW UNIQUE:time(symbol, 1 sec)
+    SELECT symbol, price, volume
+    INSERT expired events INTO OutputStream ;
+```
 
-In this query, the window holds the latest unique events that arrived within the last second from the `CseEventStream`, and returns the expired events to the `OutputStream` stream. During any given second, each event in the window should have a unique value for the `symbol` attribute. If a new event that arrives within the same second has the same value for the symbol attribute as an existing event in the window, the existing event expires.
+In this query, the window holds the latest unique events that arrived within the last second from the `CseEventStream`, and returns the expired events to the `OutputStream`. During any given second, each event in the window should have a unique value for the `symbol` attribute. If a new event that arrives within the same second has the same value for the symbol attribute as an existing event in the window, the existing event expires.
