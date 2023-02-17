@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 200
 title: Subscriptions
 ---
 
@@ -7,7 +7,25 @@ A subscription is a named configuration rule that determines how messages are de
 
 ![stream-subscription-modes](/img/stream-subscription-modes.png)
 
+To configure a subscription:
+
+1. Create a [producer](../producers.md).
+1. Create at least two [consumers](../consumers.md) with the same subscription name. For example, `consumer-subscription`.
+
+To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
+
 ## Exclusive
+
+To use shared (round robin) mode we need to change consumers configuration to `Shared` ([Shown in code example below](#code-example-for-consumer-1)). Messages are delivered in a round robin distribution across consumers, and any given message is delivered to only one consumer.
+
+:::note
+There are two important things to be aware of when using shared mode:
+
+Message ordering is not guaranteed.
+You cannot use cumulative acknowledgment with shared mode.
+:::
+
+When setting up consumers _exclusive_ mode is the default mode. Only a single consumer is allowed to attach to the subscription. If more than one consumer attempts to subscribe to a stream using the **same subscription**, then the consumer receives an error.
 
 In _exclusive_ mode, only a single consumer is allowed to attach to the subscription. If more than one consumer attempts to subscribe to a stream using the same subscription, then the consumer receives an error.
 
@@ -38,6 +56,8 @@ There are two important things to be aware of when using shared mode:
 [Shared Code Example](../../../streams/stream-basics/subscriptions/shared-example.md)
 
 ## Failover
+
+To use failover mode we need to change consumers configuration to `Failover` ([Shown in code example below](#code-example-for-consumer-1)). In failover mode, multiple consumers can attach to the same subscription. A master consumer is picked for the stream to receives messages. When the master consumer disconnects, all non-acknowledged and subsequent messages are delivered to the next consumer in line.
 
 In _failover_ mode, multiple consumers can attach to the same subscription. A master consumer is picked for the stream to receives messages. When the master consumer disconnects, all non-acknowledged and subsequent messages are delivered to the next consumer in line.
 
