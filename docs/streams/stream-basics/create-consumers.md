@@ -3,7 +3,17 @@ sidebar_position: 40
 title: Create Consumers
 ---
 
-It is possible to use our JavaScript or Python SDK to create consumers.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+This page describes how to create a consumer.
+
+## Prerequisites
+
+- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create streams.
+- Appropriate SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
+
+## Create Consumer Code
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label=" JavaScript SDK">

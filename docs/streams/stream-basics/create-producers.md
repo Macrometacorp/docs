@@ -3,7 +3,17 @@ sidebar_position: 30
 title: Create Producers
 ---
 
-It is possible to use our JavaScript or Python SDK to create producers.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+This page describes how to create a producer.
+
+## Prerequisites
+
+- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create streams.
+- Appropriate SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
+
+## Create Producer Code
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label=" JavaScript SDK">
