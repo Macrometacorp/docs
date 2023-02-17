@@ -1,5 +1,5 @@
 ---
-sidebar_position: 80
+sidebar_position: 45
 title: Custom Script Functions
 ---
 
@@ -65,14 +65,14 @@ CREATE FUNCTION concatFn[javascript] return string {
 };
 
 -- Query to apply the custom function to the relevant attributes of the input stream definition.
-insert into DeviceTempStream
-select concatFn(roomNo,'-',deviceID) as id, temp
-from TempStream;
+INSERT INTO DeviceTempStream
+SELECT concatFn(roomNo,'-',deviceID) AS id, temp
+FROM TempStream;
 ```
 
 ## Example 2
 
-Parsing complex JSON data is a good use case for writing custom functions. Consider an example where nested JSON data is received over an input stream. Defining a message schema while defining a stream as explained in [Consuming Data](../tutorials/consuming-data.md) can be cumbersome or error-prone, so creating a custom function would allow fine-grained control over how the message is parsed.
+Parsing complex JSON data is a good use case for writing custom functions. Consider an example where nested JSON data is received over an input stream. Defining a message schema while defining a stream can be cumbersome or error-prone, so creating a custom function would allow fine-grained control over how the message is parsed.
 
 This example demonstrates how complex data can be parsed using a custom JavaScript function.
 
@@ -140,7 +140,7 @@ CREATE FUNCTION getWorkAddress[javascript] return string {
 
 -- Data processing query to the stream to transform data using the `getWorkAddress` function.
 @info(name='Query')
-insert into CompanyXProfessionalInfo
-select name, getWorkAddress(address) as workAddress
-from CompanyXInputStream;
+INSERT INTO CompanyXProfessionalInfo
+SELECT name, getWorkAddress(address) AS workAddress
+FROM CompanyXInputStream;
 ```
