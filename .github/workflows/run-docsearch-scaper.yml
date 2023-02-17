@@ -2,8 +2,9 @@ name: Run Search Indexing
 on:
   deployment_status:
     branches: [main]
-  workflow_dispatch:
-  run-e2es:
+
+jobs:
+  publish:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     name: Run DocSearch Scraper
