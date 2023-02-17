@@ -10,7 +10,7 @@
 
 html[data-theme='dark'] {
   --docs-card-background-color: rgba(25, 27, 31, 0.8);
-  --docs-card-border-color: rgba(25, 27, 31, 0.8);
+  --docs-card-border-color: var(--color-neutral-700);
   --docs-card-description-color: var(--color-primary-300);
   --docs-card-title-color: var(--color-white);
 
