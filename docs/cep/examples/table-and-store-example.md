@@ -19,10 +19,10 @@ CREATE TABLE GLOBAL SensorIdInfoTable (sensorId string, roomNo string);
 
 @info(name = 'Join-query')
 -- Selects `sensorId`, `roomNo`, and `temperature` attributes from stream and table, and adds events to `TemperatureLogTable`.
-insert into TemperatureLogTable
-select t.sensorId as sensorId, s.roomNo as roomNo, t.temperature as temperature
-from TemperatureStream as t join SensorIdInfoTable as s
-     on t.sensorId == s.sensorId;
+INSERT INTO TemperatureLogTable
+SELECT t.sensorId AS sensorId, s.roomNo AS roomNo, t.temperature AS temperature
+FROM TemperatureStream AS t JOIN SensorIdInfoTable AS s
+     ON t.sensorId == s.sensorId;
 ```
 
 ## Event at Table and Store
