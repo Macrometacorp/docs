@@ -19,8 +19,8 @@ Event type should be defined in between `INSERT` and `INTO` keywords for insert 
 
 ```sql
 INSERT <event type> INTO <output stream>
-select <attribute name>, <attribute name>, ...
-from <input stream> window <window name>(<parameter>, <parameter>, ... )
+SELECT <attribute name>, <attribute name>, ...
+FROM <input stream> WINDOW <window name>(<parameter>, <parameter>, ... )
 ```
 
 ### DELETE
