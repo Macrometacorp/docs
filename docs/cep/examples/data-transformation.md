@@ -28,7 +28,7 @@ FROM TemperatureStream;
 @info(name = 'Overall-analysis')
 -- Calculate approximated temperature to the first digit 
 INSERT INTO events into OverallTemperatureStream
-SELECT sensorId, math:floor(temperature) as approximateTemp 
+SELECT sensorId, math:floor(temperature) AS approximateTemp 
 FROM FahrenheitTemperatureStream;
 
 @info(name = 'RangeFilter') 
@@ -73,7 +73,7 @@ SELECT jsonObj,
     json:isExists(jsonObj, '$.salary') AS isSalaryAvailable,
 
 -- Stringify the JSON object
-    json:toString(jsonObj) as jsonString
+    json:toString(jsonObj) AS jsonString
 FROM PersonalDetails;
 
 

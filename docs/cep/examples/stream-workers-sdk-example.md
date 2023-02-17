@@ -407,7 +407,7 @@ client.delete_restql("insertWeight")
 
 # Run ad hoc query against the store.
 print("--- Running an ad hoc query against the store `SampleCargoAppDestTable`")
-q = "select * from SampleCargoAppDestTable limit 3"
+q = "SELECT * FROM SampleCargoAppDestTable limit 3"
 result = app.query(q)
 print(result)
 
@@ -435,7 +435,7 @@ Append the following lines of code inside the `try` block of main function. Look
 
     // Run query against the store.
     console.log("--- Running an Ad Hoc query against the store `SampleCargoAppDestTable`");
-    const q = "select * from SampleCargoAppDestTable limit 3";
+    const q = "SELECT * FROM SampleCargoAppDestTable limit 3";
     result = await app.query(q);
     console.log(result);
 
@@ -636,7 +636,7 @@ client.delete_restql("insertWeight")
 
 # Run ad hoc query against the store.
 print("--- Running an ad hoc query against the store `SampleCargoAppDestTable`")
-q = "select * from SampleCargoAppDestTable limit 3"
+q = "SELECT * FROM SampleCargoAppDestTable limit 3"
 result = app.query(q)
 print(result)
 
@@ -822,7 +822,7 @@ async function main () {
 
     // Run ad hoc query against the store.
     console.log("--- Running an ad hoc query against the store `SampleCargoAppDestTable`");
-    const q = "select * from SampleCargoAppDestTable limit 3";
+    const q = "SELECT * FROM SampleCargoAppDestTable limit 3";
     result = await app.query(q);
     console.log(result);
 
