@@ -58,25 +58,27 @@ The last temperature per sensor is emitted for every 10 events.
     OUTPUT LAST every 10 events;
 ```
 
-- Returning events based on time
+### Returning Events Based on Time
 
-    Here events are emitted for every predefined time interval. You can also specify whether to emit only the first event, last event, or all events out of the events that arrived during the specified time interval.
+In this example, events are emitted for every predefined time interval. You can also specify whether to emit only the first event, last event, or all events out of the events that arrived during the specified time interval.
 
-    In this example, emits all temperature events every 10 seconds  
+This query emits all temperature events every 10 seconds  
 
-    <pre>
+```sql
     INSERT INTO LowRateTempStream
     FROM TempStreamoutput
-    output every 10 sec;    </pre>
+    OUTPUT every 10 sec;
+```
 
-- Returning a periodic snapshot of events
+### Returning a Periodic Snapshot of Events
 
-    This method works best with windows. When an input stream is connected to a window, snapshot rate limiting emits all the current events that have arrived and do not have corresponding expired events for every predefined time interval.
-    If the input stream is not connected to a window, only the last current event for each predefined time interval is emitted.
+This method works best with [windows](../windows/). When an input stream is connected to a window, snapshot rate limiting emits all the current events that have arrived and do not have corresponding expired events for every predefined time interval.
+If the input stream is not connected to a window, then only the last current event for each predefined time interval is emitted.
 
-    This query emits a snapshot of the events in a time window of 5 seconds every 1 second.
+This query emits a snapshot of the events in a time window of 5 seconds every 1 second.
 
-    <pre>
+```sql
     INSERT INTO SnapshotTempStream
     FROM TempStream window sliding_time(5 sec)
-    OUTPUT snapshot every 1 sec;    </pre>
+    OUTPUT snapshot every 1 sec;
+```
