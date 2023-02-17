@@ -1,9 +1,9 @@
 ---
-sidebar_position: 30
-title: Operators on Named Windows
+sidebar_position: 40
+title: Operators for Named Windows
 ---
 
-The following operators can be performed on named windows.
+The following operators can be used on named windows.
 
 ## INSERT
 
