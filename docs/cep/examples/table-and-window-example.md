@@ -47,9 +47,9 @@ CREATE TABLE SuspiciousIPTable (blocked_ip string);
 CREATE SINK STREAM Alarm (ip string, requestCount long , incidentTime long);
 
 INSERT INTO Alarm
-SELECT ip, count(ip) as requestCount, currentTimeMillis() as incidentTime
-FROM InboundTraffic WINDOW SLIDING_TIME(2 sec) as IT
-JOIN SuspiciousIPTable as SIP
+SELECT ip, count(ip) AS requestCount, currentTimeMillis() AS incidentTime
+FROM InboundTraffic WINDOW SLIDING_TIME(2 sec) AS IT
+JOIN SuspiciousIPTable AS SIP
 ON  IT.ip == SIP.blocked_ip
 GROUP BY ip
 HAVING requestCount > 50 ;
