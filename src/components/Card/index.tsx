@@ -13,7 +13,7 @@ interface Card {
 export default function Card(props: Card): JSX.Element {
   return (
     <Link className={styles.cardWrapper} to={props.href}>
-      <span className={styles.cardTitle}>{props.heading}</span><br/>
+      <span className={styles.cardTitle}>{props.heading}</span>
       <span className={styles.cardDescription}>{props.description}</span>
     </Link>
   );
