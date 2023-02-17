@@ -8,7 +8,7 @@ title: Overview
 
 Macrometa's Global Data Network (GDN) is a distributed backend for building global applications. 
 
-### Getting Started
+## Getting Started
 
 <grid cols={3}>
   <card
@@ -28,7 +28,7 @@ Macrometa's Global Data Network (GDN) is a distributed backend for building glob
   />
 </grid>
 
-### Global Data Mesh
+## Global Data Mesh
 
 Store and serve any kind of data, anywhere in the world, with high throughput and ultra-low latency reads and writes.
 
@@ -50,7 +50,7 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
   />
 </grid>
 
-**Collections**
+#### Collections
 
 <grid cols={3}>
   <card
@@ -64,9 +64,9 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
     href="/collections/documents"
   />
   <card
-    heading="Dynamo-mode Collections"
-    description="Full-featured compatibility with AWS DynamoDB SDKs and CLI."
-    href="/collections/dynamo/create-dynamo-table"
+    heading="Key-Value Collections"
+    description="High-throughput KV collections powering a wide range of use cases."
+    href="/collections/keyvalue"
   />
   <card
     heading="Graph Edge Collection"
@@ -74,9 +74,9 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
     href="/collections/keyvalue"
   />
   <card
-    heading="Key-Value Collections"
-    description="High-throughput KV collections powering a wide range of use cases."
-    href="/collections/keyvalue"
+    heading="Dynamo-mode Collections"
+    description="Full-featured compatibility with AWS DynamoDB SDKs and CLI."
+    href="/collections/dynamo/create-dynamo-table"
   />
   <card
     heading="Redis-mode Collections"
@@ -85,7 +85,7 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
   />
 </grid>
 
-### Edge Compute
+## Edge Compute
 
 Deploy compute runtimes and complex event-driven workloads alongside your data, and within milliseconds of your customers.
 
@@ -100,7 +100,7 @@ Deploy compute runtimes and complex event-driven workloads alongside your data, 
   />
 </grid>
 
-### Access
+## Access
 
 <grid cols={3}>
   <card
@@ -121,7 +121,7 @@ Deploy compute runtimes and complex event-driven workloads alongside your data, 
   />
 </grid>
 
-### Network
+## Network
 
 <grid cols={3}>
   <card
@@ -134,14 +134,14 @@ Deploy compute runtimes and complex event-driven workloads alongside your data, 
 
 If you're still curious as to why you should build on Macrometa rather than on the centralized cloud (AWS, GCP, or Azure), please keep reading.
 
-**1. Low-latency Everywhere**
+#### 1. Low-latency Everywhere
 
 Deliver ultra-low latency apps, APIs, and event-driven workloads closer to the pulse of your business. With Macrometa, your data is no longer centralized in a specific region, but rather replicated and available for reads and writes (N-Active) from 175+ locations around the world. This allows you to build stateful real-time applications closer to your end-users than ever before. Check out [Global Data Mesh](https://www.macrometa.com/platform/global-data-mesh) to learn more.
 
-**2. Faster Time-To-Production**
+#### 2. Faster Time-To-Production
 
 The Global Data Network is a converged platform consisting of a poly-model database (Key-Value, Document, Search, Graph), a stream engine, complex event processing, and compute capabilities. Utilizing a single platform as opposed to stitching together a variety of services _a la carte_ in the public cloud allows you to build, iterate, and execute faster. Check out [Edge Compute](https://www.macrometa.com/platform/edge-compute) to learn more.
 
-**3. Lower Total Cost of Ownership (TCO)**
+#### 3. Lower Total Cost of Ownership (TCO)
 
 Multiple cloud services are often needed to build global applications. When it's time to scale out to support a global audience, you will end up utilizing several databases, maintaining copies of your data within multiple regions, and the costs will add up very quickly. The Global Data Network allows you to maintain and query a single copy of data with extremely low latency from anywhere in the world. Your development team will be free to spend more time on the business logic and less time focusing on data replication and network orchestration.
