@@ -2,6 +2,10 @@
     "index_name": "prod_DOCS",
     "start_urls": [
       {
+        "url": "https://www.macrometa.com/docs",
+        "tags": ["Documentation"]
+      },
+      {
         "url": "https://www.macrometa.com/docs/quickstart",
         "tags": ["Quickstart"]
       },
