@@ -15,14 +15,13 @@ This page describes how to create a producer.
 
 ## Create Producer Code
 
+1. Change `BASE_URL` if necessary and insert `apiKey`.
+1. Create an instance of the jsC8.
+1. Request `stream` object.
+1. Request One Time Password and create producer.
+
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label=" JavaScript SDK">
-
-- Step 1. [Install the SDK](../../sdks/install-sdks.md).
-- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
-- Step 3. Create an instance of the jsC8.
-- Step 4. Request `stream` object.
-- Step 5. Request One Time Password and create producer.
 
 ```js
 const jsc8 = require("jsc8");
