@@ -46,6 +46,6 @@ SELECT s.item, s.price, t.discount,
        t.discount is null AS isTDiscountNull,
        s.item is null AS isSItemNull
 FROM ProductInputStream AS s
-    left outer join ProductInfoTable AS t
-    on s.item == t.item;
+    LEFT OUTER JOIN ProductInfoTable AS t
+    ON s.item == t.item;
 ```
