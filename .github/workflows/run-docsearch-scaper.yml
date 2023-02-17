@@ -1,11 +1,10 @@
 name: Run Search Indexing
 on:
-  push:
+  deployment_status:
     branches: [main]
   workflow_dispatch:
-
-jobs:
-  publish:
+  run-e2es:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     name: Run DocSearch Scraper
     steps:
@@ -15,3 +14,27 @@ jobs:
           algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
           algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
           file: 'algolia.config.json'
+
+# name: Run Search Indexing
+# on:
+#   push:
+#     branches: [main]
+#   workflow_dispatch:
+
+# jobs:
+#   publish:
+#     runs-on: ubuntu-latest
+#     name: Run DocSearch Scraper
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: UnlyEd/github-action-await-vercel@v1.2.39
+#         env:
+#           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+#         with:
+#           deployment-url: docs-orcin-seven.vercel.app
+#           timeout: 600
+#       - uses: darrenjennings/algolia-docsearch-action@master
+#         with:
+#           algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
+#           algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
+#           file: 'algolia.config.json'
