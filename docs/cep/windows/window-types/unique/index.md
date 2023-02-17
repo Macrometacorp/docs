@@ -31,5 +31,5 @@ CREATE STREAM DriverChangeStream (trainID STRING, driver STRING);
 
 INSERT expired events INTO PreviousDriverChangeStream
 SELECT trainID, driver
-FROM DriverChangeStream WINDOW UNIQUE:EVER(trainID);
+FROM DriverChangeStream WINDOW UNIQUE:ever(trainID);
 ```
