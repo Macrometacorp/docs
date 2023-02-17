@@ -64,9 +64,9 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
     href="/collections/documents"
   />
   <card
-    heading="Dynamo-mode Collections"
-    description="Full-featured compatibility with AWS DynamoDB SDKs and CLI."
-    href="/collections/dynamo/create-dynamo-table"
+    heading="Key-Value Collections"
+    description="High-throughput KV collections powering a wide range of use cases."
+    href="/collections/keyvalue"
   />
   <card
     heading="Graph Edge Collection"
@@ -74,9 +74,9 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
     href="/collections/keyvalue"
   />
   <card
-    heading="Key-Value Collections"
-    description="High-throughput KV collections powering a wide range of use cases."
-    href="/collections/keyvalue"
+    heading="Dynamo-mode Collections"
+    description="Full-featured compatibility with AWS DynamoDB SDKs and CLI."
+    href="/collections/dynamo/create-dynamo-table"
   />
   <card
     heading="Redis-mode Collections"
