@@ -35,12 +35,12 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
 <grid cols={3}>
   <card
     heading="Graphs"
-    description="Dynamic, high-throughput graph store with ultra low-latency queries."
+    description="Dynamic, high-throughput graphs with ultra low-latency queries."
     href="/graphs"
   />
   <card
     heading="Search"
-    description="Flexible full-text search and similarity ranking."
+    description="Flexible full-text search, similarity ranking, and more."
     href="/search/search"
   />
   <card
@@ -50,7 +50,7 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
   />
 </grid>
 
-#### Collections
+**Collections**
 
 <grid cols={3}>
   <card
