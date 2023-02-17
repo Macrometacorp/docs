@@ -91,12 +91,8 @@ Deploy compute runtimes and complex event-driven workloads alongside your data, 
 
 <grid cols={3}>
   <card
-    heading="Queries"
-    href="/queryworkers"
-  />
-  <card
     heading="Query Workers"
-    href="/queryworkers/query-workers"
+    href="/queryworkers"
   />
   <card
     heading="Stream Workers"
