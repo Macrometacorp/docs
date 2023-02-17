@@ -70,7 +70,7 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
   />
   <card
     heading="Graph Edge Collection"
-    description="High-throughput KV collections powering a wide range of use cases."
+    description="Document type used by Graphs to model relationships between nodes."
     href="/collections/keyvalue"
   />
   <card
