@@ -90,7 +90,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'quickstart',
+            docId: 'index',
             position: 'left',
             label: 'Docs',
           },
