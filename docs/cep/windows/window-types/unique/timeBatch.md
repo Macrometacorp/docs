@@ -29,4 +29,4 @@ This is a batch (tumbling) time window that is updated with the latest events ba
     INSERT all events INTO OutputStream ;
 ```
 
-This window holds the latest unique events that arrive from the `CseEventStream` at a given time, and returns all the events to the `OutputStream` stream. It is updated every second based on the latest values for the `symbol` attribute.
+This window holds the latest unique events that arrive from the `CseEventStream` at a given time, and returns all the events to the `OutputStream`. It is updated every second based on the latest values for the `symbol` attribute.
