@@ -60,19 +60,19 @@ to be notified via a mail. To do this, create a Stream application as follows.
         ```
 
         :::note
-            Note the following about the above `from` clause:
+        Note the following about the above `from` clause:
         :::
-            * The input is derived from two streams. Therefore, first, both streams considered are specified and a unique reference is assigned to each stream. The `PurchasesStream` is referred to as `e1` and the `RepairsStream` is referred to as `e2`.
+         * The input is derived from two streams. Therefore, first, both streams considered are specified and a unique reference is assigned to each stream. The `PurchasesStream` is referred to as `e1` and the `RepairsStream` is referred to as `e2`.
 
-            * The matching condition to be met is that both streams should have an event where the values for both `productName` and `custID` attributes are the same.
+         * The matching condition to be met is that both streams should have an event where the values for both `productName` and `custID` attributes are the same.
 
-            * The event in the `PurchasesStream` stream need to arrive before the matching event in the `RepairsStream` stream.
+         * The event in the `PurchasesStream` stream need to arrive before the matching event in the `RepairsStream` stream.
 
-            * The matching event in the `RepairsStream` stream should arrive within two months after the arrival of the event in the `PurchasesStream` stream.
+         * The matching event in the `RepairsStream` stream should arrive within two months after the arrival of the event in the `PurchasesStream` stream.
 
-            * `<5:>` indicates that an output is generated only when the matching condition is met five times.
+         * `<5:>` indicates that an output is generated only when the matching condition is met five times.
 
-            * A time window of `2 months` is added to consider only a period of two months in a sliding manner when counting the number of times the matching condition for the pattern is met. For more information about time windows, see [Summarizing Data - Calculate and store clock-time based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values)
+         * A time window of `2 months` is added to consider only a period of two months in a sliding manner when counting the number of times the matching condition for the pattern is met. For more information about time windows, see [Summarizing Data - Calculate and store clock-time based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values)
 
     3. To specify that the output has to directed to the `DefectiveProductsStream`, add the `insert into` clause as follows.
 
@@ -132,15 +132,15 @@ maximum threshold which requires him to take action. To do this, you can create 
     ```
 
     :::note
-        Note the following about the `from`clause:<br/>
+    Note the following about the `from`clause:<br/>
 
-        - Here, two events from the same stream are compared to identify whether the production has decreased. The unique reference for the first event is `e1`, and the unique reference for the second event is `e2`.
+    - Here, two events from the same stream are compared to identify whether the production has decreased. The unique reference for the first event is `e1`, and the unique reference for the second event is `e2`.
 
-        - `e2` arrives after `e1`, but it is not necessarily the event that arrives immediately after `e1`.
+    - `e2` arrives after `e1`, but it is not necessarily the event that arrives immediately after `e1`.
 
-        - The condition that should be met for `e1` and `e2` to be compared is `e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10`. This means, both the events should report the production of the same product, and there should be a decrease in production that is greater than 10 between the `e1` and `e2` events.
+    - The condition that should be met for `e1` and `e2` to be compared is `e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10`. This means, both the events should report the production of the same product, and there should be a decrease in production that is greater than 10 between the `e1` and `e2` events.
 
-        - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner. For more information about time windows, see [Calculate and store clock time-based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values).
+    - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner. For more information about time windows, see [Calculate and store clock time-based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values).
     :::
 
 5. To present the required output by deriving values for the attributes of the `ProductionDecreaseAlertStream` output stream you created, add the `select` clause as follows.
@@ -280,13 +280,13 @@ Counting and matching multiple events over a given period is done via sequences 
     ```
 
     :::note
-        Note the following about the `from` clause:<br/>
+    Note the following about the `from` clause:<br/>
 
-        - `every` indicates that all the events in the `TempStream` must be checked for the given conditions.<br/>
-        
-        - Here, `e2` is the reference for the event identified as the peak temperature. The `e2=TempStream[e1.temp <= temp]+` condition specifies that to be identified as an event reporting a peak temperature, an event should have one or more preceding events that reports a lower or an equal temperature.<br/>
-        
-        - The `e3=TempStream[e2[last].temp > temp]` condition specifies a condition for `e3` which is the event that follows `e2`. It indicates that `e2`, the peak temperature event should be the last event before `e3`, and that the temperature reported by `e2` must be greater than the temperature reported by `e3`.
+    - `every` indicates that all the events in the `TempStream` must be checked for the given conditions.<br/>
+    
+    - Here, `e2` is the reference for the event identified as the peak temperature. The `e2=TempStream[e1.temp <= temp]+` condition specifies that to be identified as an event reporting a peak temperature, an event should have one or more preceding events that reports a lower or an equal temperature.<br/>
+    
+    - The `e3=TempStream[e2[last].temp > temp]` condition specifies a condition for `e3` which is the event that follows `e2`. It indicates that `e2`, the peak temperature event should be the last event before `e3`, and that the temperature reported by `e2` must be greater than the temperature reported by `e3`.
     :::  
 
 5. To specify how to derive the values for the attributes in the `PeakTempStream` output stream are derived, add a `select` clause as follows.

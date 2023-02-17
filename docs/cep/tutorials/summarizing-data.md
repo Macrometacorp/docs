@@ -4,8 +4,6 @@ sidebar_position: 7
 
 # Summarizing Data
 
-## Introduction
-
 Summarizing data refers to obtaining aggregates in an incremental manner for a specified set of time periods.
 
 ## Summarization by clock-time
@@ -47,17 +45,18 @@ To calculate and store time-based aggregation values for the scenario explained 
     ```
     
     :::info
-        In addition to the `symbol`, `price`, and `quantity` attributes to capture the input details already mentioned, the above stream definition includes an attribute named timestamp to capture the time at which the sales transaction occurs. The aggregations are executed based on this time. This attribute's value could either be a long value (reflecting the Unix timestamp in milliseconds), or a string value adhering to one of the following formats.
+    In addition to the `symbol`, `price`, and `quantity` attributes to capture the input details already mentioned, the above stream definition includes an attribute named timestamp to capture the time at which the sales transaction occurs. The aggregations are executed based on this time. This attribute's value could either be a long value (reflecting the Unix timestamp in milliseconds), or a string value adhering to one of the following formats.
         
-        * **`<YYYY>-<MM>-<dd> <HH>:<mm>:<ss> <Z>`**: This format can be used if the timezone needs to be specified explicitly. Here the ISO 8601 UTC offset must be provided for <Z> . e.g., +05:30 reflects the India Time Zone. If time is not in GMT, this value must be provided.)
-        * **`<yyyy>-<MM>-<dd> <HH>:<mm>:<ss>`**: This format can be used if the timezone is in GMT.
+        * `<YYYY>-<MM>-<dd> <HH>:<mm>:<ss> <Z>`: This format can be used if the timezone needs to be specified explicitly. Here the ISO 8601 UTC offset must be provided for <Z> . e.g., +05:30 reflects the India Time Zone. If time is not in GMT, this value must be provided.)
+        * `<yyyy>-<MM>-<dd> <HH>:<mm>:<ss>`: This format can be used if the timezone is in GMT.
     :::
 
 3. Create an aggregation as follows. You can name it `TradeAggregation`.
 
     :::info
-        The system uses the aggregation name you define here as part of the database table name. Table name is `<StreamWorker_Name>-<Aggregation_Name>_<Granularity>`. System will automatically create a collection `TradeApp-TradeAggregation_HOUR` as we will be calculating the aggregation hourly in the next step.
-    :::    
+    The system uses the aggregation name you define here as part of the database table name. Table name is `<StreamWorker_Name>-<Aggregation_Name>_<Granularity>`. System will automatically create a collection `TradeApp-TradeAggregation_HOUR` as we will be calculating the aggregation hourly in the next step.
+    :::
+
     ```sql
     CREATE AGGREGATION TradeAggregation WITH(store.type='database', store.replication.type='global')
     ```
@@ -186,7 +185,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     ```
 
     :::note
-        A sink annotation is connected to the output stream to log the output events. You can view the logged events by clicking on the **Log Viewer** on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
+    A sink annotation is connected to the output stream to log the output events. You can view the logged events by clicking on the **Log Viewer** on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
     :::
 
 4. To define how the output is derived, add the `select` statement:
@@ -204,11 +203,11 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     ```
 
     :::note
-        `window time` indicates that the window added is a time window. The time considered is one hour. The window is a sliding window which considers the last hour at any given time.
+    `window time` indicates that the window added is a time window. The time considered is one hour. The window is a sliding window which considers the last hour at any given time.
 
-        (For example, when the stream processor calculates the total production during the time 13.00-14.00, next it calculates the total production during the time 13.01-14.01 after the 13.01 minute as elapsed.) 
-        
-        For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate.md).
+    (For example, when the stream processor calculates the total production during the time 13.00-14.00, next it calculates the total production during the time 13.01-14.01 after the 13.01 minute as elapsed.) 
+    
+    For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate.md).
     :::
 
 6. To group by the product name, add the `group by` clause as follows.
@@ -265,7 +264,7 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
     ```
 
     :::note
-        A sink annotation is connected to the output stream to log the output events. You can view the logged events by simply clicking on the `Log Viewer` button on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
+    A sink annotation is connected to the output stream to log the output events. You can view the logged events by simply clicking on the `Log Viewer` button on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
     :::
         
 4. To define the subset of events to be considered based on the number of events, add the `from` clause with a `lengthBatch` window as follows.
@@ -308,6 +307,5 @@ CREATE SINK DetectedMaximumProductionStream WITH (type='logger', prefix='Maximum
 insert into DetectedMaximumProductionStream
 select name, max(amount) as maximumValue
 from ProductionStream window lengthBatch(10)
-group by name
-;
+group by name;
 ```
