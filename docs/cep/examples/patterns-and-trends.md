@@ -27,8 +27,8 @@ INSERT INTO HighTempAlertStream
 SELECT e1.roomNo, e1.temp AS initialTemp, e2.temp AS finalTemp
 FROM every( e1 = TemperatureStream ) ->
     e2 = TemperatureStream[ e1.roomNo == roomNo
-        and (e1.temp + 5) <= temp ]
-    within 10 min;
+        AND (e1.temp + 5) <= temp ]
+    WITHIN 10 min;
 ```
 
 ### Simple Pattern Input
@@ -125,10 +125,10 @@ SELECT e1.roomNo,
     ifThenElse( e2 is null, 'none', 'stop' ) AS action
 FROM every e1=RegulatorStateChangeStream[ action == 'on' ]
      -> e2=RoomKeyStream
-            [ e1.roomNo == roomNo and action == 'removed' ]
-        or e3=RegulatorStateChangeStream
-            [ e1.roomNo == roomNo and action == 'off']
-having action != 'none'            ;
+            [ e1.roomNo == roomNo AND action == 'removed' ]
+        OR e3=RegulatorStateChangeStream
+            [ e1.roomNo == roomNo AND action == 'off']
+HAVING action != 'none'            ;
 ```
 
 ### Logical Pattern Input
@@ -172,7 +172,7 @@ CREATE SINK RoomTemperatureAlertStream WITH (type='log') (roomNo int);
 INSERT INTO RoomTemperatureAlertStream
 SELECT e1.roomNo AS roomNo
 FROM e1=RegulatorStateChangeStream[action == 'on']
-     -> not TemperatureStream[e1.roomNo == roomNo and
+     -> NOT TemperatureStream[e1.roomNo == roomNo AND
         temp <= e1.tempSet] for 30 sec;
 ```
 
@@ -214,7 +214,7 @@ begin
     FROM every e1=StockRateStream,
     	e2=StockRateStream[e1.price < price],
     	e3=StockRateStream[e2.price > price]
-        within 10 min;
+        WITHIN 10 min;
 end;
 ```
 
