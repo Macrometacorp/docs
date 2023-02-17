@@ -669,6 +669,11 @@ html[data-theme='dark'] .sl-text-warning {
   padding-top: 0.5rem;
 }
 
+.markdown > h4 {
+  --ifm-h4-font-size: 17px;
+  padding-top: 0.5rem;
+}
+
 .markdown > p {
   margin-bottom: 1rem;
 }

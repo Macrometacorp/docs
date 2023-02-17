@@ -50,7 +50,7 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
   />
 </grid>
 
-**Collections**
+#### Collections
 
 <grid cols={3}>
   <card
