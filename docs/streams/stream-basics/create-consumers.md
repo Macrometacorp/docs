@@ -15,10 +15,7 @@ This page describes how to create a consumer.
 
 ## Create Consumer Code
 
-1. Change `BASE_URL` if necessary and insert `apiKey`.
-1. Create an instance of the jsC8.
-1. Request `stream` object.
-1. Request One Time Password and create consumer.
+When this code runs, it creates a new `jsc8` client, requests a stream object, and creates a consumer.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label=" JavaScript SDK">
@@ -30,7 +27,7 @@ const BASE_URL = "https://play.paas.macrometa.io/"
 
 client = new jsc8({
     url: BASE_URL,
-    apiKey: "xxxxxx",
+    apiKey: "xxxxxx", // Update this with your API key
     fabricName: "_system",
 });
 
