@@ -8,10 +8,7 @@ import TabItem from '@theme/TabItem';
 
 This page describes how to create a producer.
 
-## Prerequisites
-
-- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create streams.
-- Appropriate SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
+<Prerequisites />
 
 ## Create Producer Code
 
