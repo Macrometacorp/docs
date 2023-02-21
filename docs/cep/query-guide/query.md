@@ -5,16 +5,16 @@ title: Query
 
 A _stream worker query_ defines the processing logic in stream workers. A query consumes events from one or more:
 
-- [streams](../source/source-types/stream-source)
-- [named windows](../windows/)
-- [tables](../table/)
-- [named aggregations](../aggregations/)
+- [Sources](../source/)
+- [Named Windows](../windows/)
+- [Tables](../table/)
+- [Named Aggregations](../aggregations/)
 
 The query then processes the events in a streaming manner and generates output events into one or more:
 
-- [streams](../sink/sink-types/stream-sink)
-- [named windows](../windows/)
-- [tables](../table/)
+- [Sinks](../sink/)
+- [Named Windows](../windows/)
+- [Tables](../table/)
 
 ## Purpose
 
