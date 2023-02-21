@@ -25,9 +25,9 @@ This is a batch or tumbling time length window that is updated with the latest e
 ```sql
     CREATE STREAM CseEventStream (symbol string, price float, volume int)
 
-    FROM CseEventStream WINDOW UNIQUE:timeLengthBatch(symbol, 1 sec, 20)
+    INSERT all events INTO OutputStream
     SELECT symbol, price, volume
-    INSERT all events INTO OutputStream;
+    FROM CseEventStream WINDOW UNIQUE:timeLengthBatch(symbol, 1 sec, 20);
 ```
 
 This window holds the latest unique events that arrive from the `CseEventStream` at a given time, and returns all the events to the `OutputStream`. It is updated every second based on the latest values for the `symbol` attribute.
