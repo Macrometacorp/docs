@@ -1,13 +1,15 @@
 ---
-title: timeLengthBatch (Window)
+title: timeLengthBatch
 ---
 
 This is a batch or tumbling time length window that is updated with the latest events based on a unique key parameter. The window tumbles upon the elapse of the time window, or when a number of unique events have arrived. If a new event that arrives within the period of the window has a value for the key parameter which matches the value of an existing event, the existing event expires and it is replaced by the new event.
 
 ## Syntax
 
-    unique:timeLengthBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT> window.length)
-    unique:timeLengthBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT|LONG> start.time, <INT> window.length)
+```sql
+    WINDOW UNIQUE:timeLengthBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT> window.length)
+    WINDOW UNIQUE:timeLengthBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT|LONG> start.time, <INT> window.length)
+```
 
 ## Query Parameters
 
@@ -20,10 +22,12 @@ This is a batch or tumbling time length window that is updated with the latest e
 
 ## Example 1
 
+```sql
     CREATE STREAM CseEventStream (symbol string, price float, volume int)
 
-    from CseEventStream WINDOW UNIQUE:timeLengthBatch(symbol, 1 sec, 20)
-    select symbol, price, volume
-    insert all events into OutputStream;
+    INSERT all events INTO OutputStream
+    SELECT symbol, price, volume
+    FROM CseEventStream WINDOW UNIQUE:timeLengthBatch(symbol, 1 sec, 20);
+```
 
-This window holds the latest unique events that arrive from the `CseEventStream` at a given time, and returns all the events to the `OutputStream` stream. It is updated every second based on the latest values for the `symbol` attribute.
+This window holds the latest unique events that arrive from the `CseEventStream` at a given time, and returns all the events to the `OutputStream`. It is updated every second based on the latest values for the `symbol` attribute.
