@@ -25,7 +25,7 @@ FROM <input stream> WINDOW <window name>(<parameter>, <parameter>, ... );
 
 Here `<aggregate function>` uniquely identifies the aggregate function. The `<parameter>` defines input parameters the aggregate function can accept. The input parameters can be attributes, constant values, results of other functions or aggregate functions, results of mathematical or logical expressions, or time values. The number and type of parameters an aggregate function accepts depend on the function itself.
 
-You can also create _named aggregations_. For more information, refer to [Aggregations](../aggregations/index.md).
+You can also create _named aggregations_. For more information, refer to [Named Aggregations](../aggregations/index.md).
 
 ## Aggregate Functions
 
