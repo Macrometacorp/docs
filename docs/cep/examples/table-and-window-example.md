@@ -3,7 +3,7 @@ sidebar_position: 6
 title: Table and Window Example
 ---
 
-This example is to help you understand source, sink, table, and wWindow.
+This example is to help you understand source, sink, table, and window.
 
 In the application below, a Macrometa document-based collection plays role of `source` to our SW IntrusionDetectionSystem.
 Consider InboundTrafficData as an audit collection where client IPs are added as they make requests to the server.
@@ -11,7 +11,7 @@ As a new record is added, an event is emitted by collection streams associated w
 
 It is quite possible that your stream worker, `IntrusionDetectionSystem`, might get burst of events having the same IP, and you need to gauge. Windows store events as and when they arrive and automatically expire/clean them based on the given window constraint.
 
-In our IntrusionDetectionSystem stream worker, we have associated a `sliding window` of two seconds on incoming events. The window will hold all the events that appear within two seconds. The query groups all the events by IP and if the count on any of these groups is more than 50, meaning that more than 50 events occurred from the same IP within two seconds, then we can assume that this is suspicious traffic.
+In our `IntrusionDetectionSystem` stream worker, we have associated a `sliding window` of two seconds on incoming events. The window will hold all the events that appear within two seconds. The query groups all the events by IP and if the count on any of these groups is more than 50, meaning that more than 50 events occurred from the same IP within two seconds, then we can assume that this is suspicious traffic.
 
 In addition to the window, we have a `Table` which serves reference data for our application. A table is a stored collection of events, and its schema is defined via the table definition. Unlike `stream`, `table` is stateful and supports interactive queries for the state of the stored events. In our case, `SuspiciousIPTable` stores pre-defined suspicious IPs which we are using to verify if it matches IPs in suspicious traffic.
 
