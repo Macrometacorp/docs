@@ -27,9 +27,10 @@ system going out to memory.
 ```sql
     CREATE STREAM LoginEvents (timestamp long, ip string);
 
-    FROM LoginEvents WINDOW UNIQUE:ever(ip)
+    INSERT events INTO UniqueIps
     SELECT count(ip) AS ipCount
-    INSERT events INTO UniqueIps;
+    FROM LoginEvents WINDOW UNIQUE:ever(ip)    
+    
 ```
 
 This query collects all unique events based on the `ip` attribute by
@@ -42,9 +43,9 @@ the query counts the unique `ip`s arrived so far and outputs the
 ```sql
     CREATE STREAM DriverChangeStream (trainID string, driver string);
 
-    FROM DriverChangeStream WINDOW UNIQUE:ever(trainID)
-    SELECT trainID, driver
     INSERT expired events INTO PreviousDriverChangeStream;
+    SELECT trainID, driver
+    FROM DriverChangeStream WINDOW UNIQUE:ever(trainID)
 ```
 
 Query collects all unique events based on the `trainID` attribute by
@@ -58,10 +59,10 @@ expired events are emitted via `PreviousDriverChangeStream`.
     CREATE STREAM StockStream (symbol string, price float);
     CREATE STREAM PriceRequestStream(symbol string);
 
+    INSERT events INTO PriceResponseStream;
+    SELECT s.symbol AS symbol, s.price AS price
     FROM StockStream WINDOW UNIQUE:ever(symbol) AS s JOIN PriceRequestStream AS p
     ON s.symbol == p.symbol
-    SELECT s.symbol AS symbol, s.price AS price
-    INSERT events INTO PriceResponseStream;
 ```
 
 Query stores the last unique event for each `symbol` attribute of
