@@ -22,9 +22,9 @@ This is a batch (tumbling) window that holds a specific number of unique events 
 ```sql
     CREATE WINDOW CseEventWindow (symbol string, price float, volume int);
 
-    FROM CseEventStream WINDOW UNIQUE:firstLengthBatch(symbol, 10)
+    INSERT all events INTO OutputStream
     SELECT symbol, price, volume
-    INSERT all events INTO OutputStream ;
+    FROM CseEventStream WINDOW UNIQUE:firstLengthBatch(symbol, 10);
 ```
 
 The window in this configuration holds the first unique events from the `CseEventStream` stream every second, and outputs them all into the the `OutputStream` stream. All the events in a window during a given second should have a unique value for the `symbol` attribute.
