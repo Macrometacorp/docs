@@ -26,5 +26,3 @@ yarn-error.log*
 .vercel
 _ignore
 .idea
-package.json
-yarn.lock
