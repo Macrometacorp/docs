@@ -1,13 +1,13 @@
 ---
 sidebar_position: 80
-title: Group By
+title: GROUP BY
 ---
 
-_Group by_ provides a way of grouping events based on one or more specified attributes to perform aggregate operations.
+`GROUP BY` provides a way of grouping events based on one or more specified attributes to perform aggregate operations.
 
 ## Purpose
 
-Group by allows users to aggregate values of multiple events based on the given group-by fields.
+`GROUP BY` allows users to aggregate values of multiple events based on the given group-by fields.
 
 ## Syntax
 
