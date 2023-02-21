@@ -1,6 +1,6 @@
 ---
 sidebar_position: 100
-title: Order By
+title: ORDER BY
 ---
 
 `ORDER BY` orders the query results in ascending and or descending order based on one or more specified attributes. When an attribute is used for order by, by default Stream orders the events in ascending order of that attribute's value, and by adding `desc` keyword, the events can be ordered in descending order. When more than one attribute is defined the attributes defined towards the left will have more precedence in ordering than the ones defined in right.  
