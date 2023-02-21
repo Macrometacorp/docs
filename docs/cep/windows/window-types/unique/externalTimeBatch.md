@@ -1,5 +1,5 @@
 ---
-title: externalTimeBatch (Window)
+title: externalTimeBatch
 ---
 
 This is a batch (tumbling) time window that is determined based on an
@@ -7,18 +7,19 @@ external time, i.e., time stamps that are specified via an attribute in
 the events. It holds the latest unique events that arrived during the
 last window time period.
 
-The unique events are determined based on the
-value for a specified unique key parameter. When a new event arrives
+The unique events are determined based on the value for a specified unique key parameter. When a new event arrives
 within the time window with a value for the unique key parameter that is
 the same as that of an existing event in the window, the existing event
 expires and it is replaced by the new event.
 
 ## Syntax
 
-    unique:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time)
-    unique:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time)
-    unique:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out)
-    unique:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out, <BOOL> replace.time.stamp.with.batch.end.time)
+```sql
+    WINDOW UNIQUE:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time)
+    WINDOW UNIQUE:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time)
+    WINDOW UNIQUE:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out)
+    WINDOW UNIQUE:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out, <BOOL> replace.time.stamp.with.batch.end.time)
+```
 
 ## Query Parameters
 
@@ -33,19 +34,20 @@ expires and it is replaced by the new event.
 
 ## Example 1
 
+```sql
     CREATE STREAM LoginEvents (timestamp long, ip string);
 
-    insert into UniqueIps 
-    select timestamp, ip, count() as total
-    from LoginEvents WINDOW UNIQUE:externalTimeBatch(ip, timestamp, 1 sec, 0, 2 sec);
+    INSERT INTO UniqueIps 
+    SELECT timestamp, ip, count() AS total
+    FROM LoginEvents WINDOW UNIQUE:externalTimeBatch(ip, timestamp, 1 sec, 0, 2 sec);
+```
 
 In this query, the window holds the latest unique events that arrive
 from the `LoginEvent` stream during each second. The latest events are
 determined based on the external time stamp.
 
-At a given time, all the
-events held in the window have unique values for the `ip` and
+At a given time, all the events held in the window have unique values for the `ip` and
 monotonically increasing values for `timestamp` attributes. The events
 in the window are inserted into the `UniqueIps` output stream. The
-system waits for 2 seconds for the arrival of a new event before
+system waits two seconds for the arrival of a new event before
 flushing the current batch.
