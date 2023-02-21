@@ -76,56 +76,11 @@ GROUP BY roomNo;
 
 This query takes the `roomNo` and `temp` values from TempStream, averages the temperatures, groups them by room number, outputs them into OutputStream.
 
-## Aggregate Function
 
-Aggregate functions are pre-configured aggregation operations that can consumes zero, or more parameters from multiple events and always produce a single value as result. They can be only used in the query projection (as part of the `SELECT` clause). When a query comprises a window, the aggregation will be contained to the events in the window, and when it does not have a window, the aggregation is performed from the first event the query has received.
 
-**Purpose**
 
-Aggregate functions encapsulate pre-configured reusable aggregate logic allowing users to aggregate values of multiple events together. When used with batch/tumbling windows this can also help to reduce the number of output events produced.  
 
-**Syntax**
 
-Aggregate function can be used in query projection (as part of the `SELECT` clause) alone or as a part of another expression. In all cases, the output produced by the query should be properly mapped to the output stream attribute using the `as` keyword.
-
-The syntax of aggregate function is as follows,
-
-```sql
-INSERT INTO <output stream>
-SELECT <aggregate function>(<parameter>, <parameter>, ... ) as <attribute name>, <attribute2 name>, ...
-from <input stream> window <window name>(<parameter>, <parameter>, ... );
-```
-
-Here `<aggregate function>` uniquely identifies the aggregate function. The `<parameter>` defines input parameters the aggregate function can accept. The input parameters can be attributes, constant values, results of other functions or aggregate functions, results of mathematical or logical expressions, or time values. The number and type of parameters an aggregate function accepts depend on the function itself.
-
-### Built-In Aggregate Functions
-
-Following are some inbuilt aggregation functions.
-
-| Aggregate Function | Description|
-| ------------- |-------------|
-| [sum](functions#sum-aggregate-function) | Calculates the sum from a set of values. |
-| [count](functions#count-aggregate-function) | Calculates the count from a set of values. |
-| [distinctcount](functions#distinctcount-aggregate-function) | Calculates the distinct count based on a parameter from a set of values. |
-| [avg](functions#avg-aggregate-function) | Calculates the average from a set of values.|
-| [max](functions#max-aggregate-function) | Finds the maximum value from a set of values. |
-| [min](functions#min-aggregate-function) | Finds the minimum value from a set of values. |
-| [maxForever](functions#maxForever-aggregate-function) | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
-| [minForever](functions#minForever-aggregate-function) | Finds the minimum value from all events throughout its lifetime irrespective of the windows. |
-| [stddev](functions#stdDev-aggregate-function) | Calculates the standard deviation from a set of values. |
-| [and](functions#and-aggregate-function) | Calculates boolean and from a set of values. |
-| [or](functions#or-aggregate-function) | Calculates boolean or from a set of values. |
-| [unionSet](functions#unionSet-aggregate-function) | Calculates union as a Set from a set of values. |
-
-**Example**
-
-Query to calculate average, maximum, and minimum values on `temp` attribute of the `TempStream` stream in a sliding manner, from the events arrived over the last 10 minutes and to produce outputs `avgTemp`, `maxTemp` and `minTemp` respectively to the `AvgTempStream` output stream.
-
-```
-INSERT INTO AvgTempStream
-SELECT avg(temp) as avgTemp, max(temp) as maxTemp, min(temp) as minTemp
-from TempStream window sliding_time(10 min);
-```
 
 ## Group By
 
