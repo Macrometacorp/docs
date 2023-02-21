@@ -24,9 +24,9 @@ A batch-time or tumbling window that holds the unique events according to the un
 ```sql
     CREATE STREAM CseEventStream (symbol string, price float, volume int)
 
-    FROM CseEventStream WINDOW UNIQUE:firstTimeBatch(symbol,1 sec)
+    INSERT all events INTO OutputStream
     SELECT symbol, price, volume
-    INSERT all events INTO OutputStream ;
+    FROM CseEventStream WINDOW UNIQUE:firstTimeBatch(symbol,1 sec);
 ```
 
 This holds the first unique events that arrive from the `cseEventStream` input stream during each second, based on the symbol,as a batch, and returns all the events to the `OutputStream`.
