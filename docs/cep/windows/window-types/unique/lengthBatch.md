@@ -22,9 +22,9 @@ This is a batch (tumbling) window that holds a specified number of latest unique
 ```sql
     CREATE WINDOW CseEventWindow (symbol string, price float, volume int);
 
-    FROM CseEventStream WINDOW UNIQUE:lengthBatch(symbol, 10)
+    INSERT expired events INTO OutputStream
     SELECT symbol, price, volume
-    INSERT expired events INTO OutputStream ;
+    FROM CseEventStream WINDOW UNIQUE:lengthBatch(symbol, 10);
 ```
 
 In this query, the window at any give time holds the last 10 unique events from the `CseEventStream` stream. Each of the 10 events within the window at a given time has a unique value for the symbol attribute. If a new event has the same value for the symbol attribute as an existing event within the window length, the existing event expires and it is replaced by the new event. The query returns expired individual events as well as expired batches of events to the `OutputStream` stream.
