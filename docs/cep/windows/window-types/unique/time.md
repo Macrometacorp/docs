@@ -22,9 +22,9 @@ This is a sliding time window that holds the latest unique events that arrived d
 ```sql
     CREATE STREAM CseEventStream (symbol string, price float, volume int)
 
+    INSERT expired events INTO OutputStream
+    SELECT symbol, price, volume    
     FROM CseEventStream WINDOW UNIQUE:time(symbol, 1 sec)
-    SELECT symbol, price, volume
-    INSERT expired events INTO OutputStream ;
 ```
 
 In this query, the window holds the latest unique events that arrived within the last second from the `CseEventStream`, and returns the expired events to the `OutputStream`. During any given second, each event in the window should have a unique value for the `symbol` attribute. If a new event that arrives within the same second has the same value for the symbol attribute as an existing event in the window, the existing event expires.
