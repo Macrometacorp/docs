@@ -7,7 +7,7 @@ A _named window_ is a window that can be shared across multiple queries. Events 
 
 Window provides a way to capture a subset of events from an input stream and retain them for a period of time based on a specified criterion. The criterion defines when and how the events should be evicted from the windows. Such as events getting evicted from the window based on the time duration, or number of events and they events are evicted in a sliding (one by one) or tumbling (batch) manner.
 
-A window can be an input to a query, similar to streams.
+A window can be an input to a query, similar to streams. For more information, refer to [Window Queries](../query-guide/windows-queries.md) and [Window Operators](window-operators.md).
 
 :::note
 When window is used as an input to a query, another window cannot be applied on top of it.

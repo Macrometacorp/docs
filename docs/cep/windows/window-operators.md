@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Operators for Named Windows
 ---
 
-The following operators can be used on named windows.
+The following operators can be used on named windows. For more information about querying windows, refer to [Window Queries](../query-guide/windows-queries.md).
 
 ## INSERT
 
