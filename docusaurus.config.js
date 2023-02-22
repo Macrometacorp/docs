@@ -2,7 +2,6 @@
 require("dotenv").config();
 
 const {
-  redirectsPlugin,
   tailwindPlugin,
   webpackPlugin,
 } = require('./src/plugins');
@@ -10,17 +9,17 @@ const {
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
-const host = process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview' ? `https://${process.env.VERCEL_URL}` : 'https://macrometa.com';
-const isDev = process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV;
+const host = process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview' ? `https://${process.env.VERCEL_URL}` : 'https://www.macrometa.com';
+const isDev = process.env.NODE_ENV === 'development' || (process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Macrometa',
   tagline: 'Macrometa GDN Documentation',
   url: host,
-  baseUrl: isDev ? '/' : '/docs/',
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  baseUrl: isDev ? '/docs/' : '/docs/',
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'macrometacorp',
   projectName: 'docs',
@@ -28,6 +27,9 @@ const config = {
     require.resolve('./src/css/fonts.css'),
     require.resolve('./src/css/tailwind.css')
   ],
+  customFields: {
+    'VERCEL_ANALYTICS_ID': process.env.VERCEL_ANALYTICS_ID
+  },
 
   presets: [
     [
@@ -37,7 +39,7 @@ const config = {
           path: 'docs',
           breadcrumbs: false,
           editUrl: ({ docPath }) =>
-            `https://github.com/macrometacorp/docs/edit/master/docs/${docPath}`,
+            `https://github.com/macrometacorp/docs/edit/main/docs/${docPath}`,
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: true,
@@ -55,7 +57,6 @@ const config = {
   ],
 
   plugins: [
-    redirectsPlugin,
     tailwindPlugin,
     webpackPlugin,
     'posthog-docusaurus'
@@ -65,24 +66,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: 'img/macrometa-preview-dark.png',
-      metadata: [
-        {
-          name: 'og:title',
-          content: 'Macrometa Docs'
-        },
-        {
-          name: 'og:description',
-          content: 'Powering the next generation of apps and APIs. Store, process, and serve data within milliseconds of everyone on the planet.'
-        },
-        {
-          name: 'og:url',
-          content: `${host}/docs/`
-        },
-        {
-          name: 'og:image',
-          content: `${host}/img/macrometa-preview-dark.png`
-        }
-      ],
+      metadata: [],
       algolia: {
         appId: 'GHXKYI4VEC', // public + read only and safe to commit
         apiKey: '91737ee0cdeab53f4cc7a1c650eee730', // public + read only and safe to commit
@@ -100,13 +84,13 @@ const config = {
           alt: 'Macrometa Logo',
           src: 'img/macrometa-logo.svg',
           srcDark: 'img/macrometa-logo-dark.svg',
-          href: 'https://macrometa.com',
+          href: 'https://www.macrometa.com',
           target: '_self'
         },
         items: [
           {
             type: 'doc',
-            docId: 'quickstart',
+            docId: 'index',
             position: 'left',
             label: 'Docs',
           },
@@ -120,6 +104,11 @@ const config = {
             position: 'left',
             label: 'API Reference',
             href: '/api'
+          },
+          {
+            position: 'left',
+            label: 'Developer Tools',
+            href: '/development'
           },
           {
             className: 'navbar__item--external',

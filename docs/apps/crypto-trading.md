@@ -15,7 +15,7 @@ Read our blog post [How To Build A Crypto Arbitrage Trading Bot](https://www.mac
 
 1. Log in to the [Macrometa Console](https://auth-play.macrometa.io/) 
 2. Go to the Collections tab and create a new document collection named `trades` with `collection stream enabled` checked. For more information about creating document collections, refer to [Create a Document Collection](https://macrometa.com/docs/collections/documents/create-document-store).
-3. Click **Compute > Stream Workers**.
+3. Click **Stream Workers**.
 4. Click **New Stream Worker** named `Crypto-Trading-App`.
 5. Copy and past the [code example](#crypto-app-stream-worker-code) into the editor.
 6. Click **Save**. Macrometa validates your code.
@@ -91,108 +91,108 @@ FROM TradesSell;
 -- Fire Coinbase Pro BTC/USD requests initiated by a trigger
 -------------------------------------------------------------------------------
 INSERT INTO UsdCryptoTraderRequestStream
-SELECT time:currentTimestamp() as triggered_time 
+SELECT time:currentTimestamp() AS triggered_time 
 FROM CryptoTraderEventsTrigger;
 
 -- Fire Bitstamp BTC/EUR requests initiated by a trigger
 -------------------------------------------------------------------------------
 INSERT INTO EurCryptoTraderRequestStream
-SELECT time:currentTimestamp() as triggered_time 
+SELECT time:currentTimestamp() AS triggered_time 
 FROM CryptoTraderEventsTrigger;
 
 -- Fire Bitflyer BTC/JPY requests initiated by a trigger
 -------------------------------------------------------------------------------
 INSERT INTO JpyCryptoTraderRequestStream
-SELECT time:currentTimestamp() as triggered_time 
+SELECT time:currentTimestamp() AS triggered_time 
 FROM CryptoTraderEventsTrigger;
 
 -- Coinbase Pro BTC/USD strategy generation
 -------------------------------------------------------------------------------------------------
 @info(name='Query for BTC/USD close and average prices within moving 10 events windows')
 INSERT INTO CryptoTraderQuotesAvgUSDNew
-SELECT "Coinbase Pro" as exchange, "USA" as quote_region,
-        "BTC/USD" as symbol, avg(convert(price, 'double')) as ma, convert(price, 'double') as close, 
-        time:timestampInMilliseconds()/1000 as timestamp
+SELECT "Coinbase Pro" AS exchange, "USA" AS quote_region,
+        "BTC/USD" AS symbol, avg(convert(price, 'double')) AS ma, convert(price, 'double') AS close, 
+        time:timestampInMilliseconds()/1000 AS timestamp
 FROM UsdCryptoTraderTickerResponseStream[context:getVar('region') == 'play-us-west'] WINDOW SLIDING_LENGTH(10);
 
 @info(name='Query for BTC/USD trading strategy BUY')
 INSERT INTO TradesBuy
 SELECT e2.exchange, e2.quote_region, e2.symbol, e2.timestamp,
-       context:getVar('region') as trade_location,
-       e2.close as trade_price, "MA Trading" as trade_strategy,
-          'BUY' as trade_type
+       context:getVar('region') AS trade_location,
+       e2.close AS trade_price, "MA Trading" AS trade_strategy,
+          'BUY' AS trade_type
 FROM every e1=CryptoTraderQuotesAvgUSDNew[e1.close < e1.ma], e2=CryptoTraderQuotesAvgUSDNew[e2.close > e2.ma];
 
 @info(name='Query for BTC/USD trading strategy SELL')
 INSERT INTO TradesSell
 SELECT e2.exchange, e2.quote_region, e2.symbol, e2.timestamp,
-       context:getVar('region') as trade_location,
-       e2.close as trade_price, "MA Trading" as trade_strategy,
-          'SELL' as trade_type
+       context:getVar('region') AS trade_location,
+       e2.close AS trade_price, "MA Trading" AS trade_strategy,
+          'SELL' AS trade_type
 FROM every e1=CryptoTraderQuotesAvgUSDNew[e1.close > e1.ma], e2=CryptoTraderQuotesAvgUSDNew[e2.close < e2.ma];
 
 DELETE trades for expired events 
        ON trades.trade_location == trade_location and trades.symbol == symbol and trades.timestamp < timestamp 
-SELECT context:getVar('region') as trade_location, symbol, timestamp
+SELECT context:getVar('region') AS trade_location, symbol, timestamp
 FROM CryptoTraderQuotesAvgUSDNew WINDOW SLIDING_TIME(10);
 
 -- Bitstamp BTC/EUR trading strategy generation
 -----------------------------------------------------------------------------------------
 @info(name='Query for BTC/EUR close and average prices within moving 10 events windows')
 INSERT INTO CryptoTraderQuotesAvgEURNew
-SELECT "Bitstamp" as exchange, "Europe" as quote_region,
-        "BTC/EUR" as symbol, avg(convert(last, 'double')) as ma, convert(last, 'double') as close, 
-        time:timestampInMilliseconds()/1000 as timestamp
+SELECT "Bitstamp" AS exchange, "Europe" AS quote_region,
+        "BTC/EUR" AS symbol, avg(convert(last, 'double')) AS ma, convert(last, 'double') AS close, 
+        time:timestampInMilliseconds()/1000 AS timestamp
 FROM EurCryptoTraderTickerResponseStream[context:getVar('region') == 'play-us-west'] WINDOW SLIDING_LENGTH(10);
 
 @info(name='Query for BTC/EUR trading strategy BUY')
 INSERT INTO TradesBuy
 SELECT e2.exchange, e2.quote_region, e2.symbol, e2.timestamp,
-       context:getVar('region') as trade_location,
-       e2.close as trade_price, "MA Trading" as trade_strategy,
-          'BUY' as trade_type
+       context:getVar('region') AS trade_location,
+       e2.close AS trade_price, "MA Trading" AS trade_strategy,
+          'BUY' AS trade_type
 FROM every e1=CryptoTraderQuotesAvgEURNew[e1.close < e1.ma], e2=CryptoTraderQuotesAvgEURNew[e2.close > e2.ma];
 
 @info(name='Query for BTC/EUR trading strategy SELL')
 INSERT INTO TradesSell
 SELECT e2.exchange, e2.quote_region, e2.symbol, e2.timestamp,
-       context:getVar('region') as trade_location,
-       e2.close as trade_price, "MA Trading" as trade_strategy,
-          'SELL' as trade_type
+       context:getVar('region') AS trade_location,
+       e2.close AS trade_price, "MA Trading" AS trade_strategy,
+          'SELL' AS trade_type
 FROM every e1=CryptoTraderQuotesAvgEURNew[e1.close > e1.ma], e2=CryptoTraderQuotesAvgEURNew[e2.close < e2.ma];
 
 DELETE trades for expired events 
        ON trades.trade_location == trade_location and trades.symbol == symbol and trades.timestamp < timestamp 
-SELECT context:getVar('region') as trade_location, symbol, timestamp
+SELECT context:getVar('region') AS trade_location, symbol, timestamp
 FROM CryptoTraderQuotesAvgEURNew WINDOW SLIDING_TIME(10);
 
 -- Bitflyer BTC/JPY strategy generation
 ----------------------------------------------------------------------------------------------
 @info(name='Query for BTC/JPY close and average prices within moving 10 events windows')
 INSERT INTO CryptoTraderQuotesAvgJPYNew
-SELECT "Bitflyer" as exchange, "Asia-Pacific" as quote_region,
-        "BTC/JPY" as symbol, avg(ltp) as ma, ltp as close, 
-        time:timestampInMilliseconds()/1000 as timestamp
+SELECT "Bitflyer" AS exchange, "Asia-Pacific" AS quote_region,
+        "BTC/JPY" AS symbol, avg(ltp) AS ma, ltp AS close, 
+        time:timestampInMilliseconds()/1000 AS timestamp
 FROM JpyCryptoTraderTickerResponseStream[context:getVar('region') == 'play-us-west'] WINDOW SLIDING_LENGTH(10);
 
 @info(name='Query for BTC/JPY trading strategy BUY')
 INSERT INTO TradesBuy
 SELECT e2.exchange, e2.quote_region, e2.symbol, e2.timestamp,
-       context:getVar('region') as trade_location,
-       e2.close as trade_price, "MA Trading" as trade_strategy,
-          'BUY' as trade_type
+       context:getVar('region') AS trade_location,
+       e2.close AS trade_price, "MA Trading" AS trade_strategy,
+          'BUY' AS trade_type
 FROM every e1=CryptoTraderQuotesAvgJPYNew[e1.close < e1.ma], e2=CryptoTraderQuotesAvgJPYNew[e2.close > e2.ma];
 
 @info(name='Query for BTC/JPY trading strategy SELL')
 INSERT INTO TradesSell
 SELECT e2.exchange, e2.quote_region, e2.symbol, e2.timestamp,
-       context:getVar('region') as trade_location,
-       e2.close as trade_price, "MA Trading" as trade_strategy,
-          'SELL' as trade_type
+       context:getVar('region') AS trade_location,
+       e2.close AS trade_price, "MA Trading" AS trade_strategy,
+          'SELL' AS trade_type
 FROM every e1=CryptoTraderQuotesAvgJPYNew[e1.close > e1.ma], e2=CryptoTraderQuotesAvgJPYNew[e2.close < e2.ma];
  
 DELETE trades for expired events 
        ON trades.trade_location == trade_location and trades.symbol == symbol and trades.timestamp < timestamp 
-SELECT context:getVar('region') as trade_location, symbol, timestamp
+SELECT context:getVar('region') AS trade_location, symbol, timestamp
 FROM CryptoTraderQuotesAvgJPYNew WINDOW SLIDING_TIME(10);
 ```

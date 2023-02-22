@@ -4,22 +4,22 @@ title: sum (Aggregate Function)
 
 Returns the sum for all the events.
 
-Syntax
+## Syntax
 
     <LONG|DOUBLE> sum(<INT|LONG|DOUBLE|FLOAT> arg)
 
-QUERY PARAMETERS
+## Query Parameters
 
 | Name | Description                        | Default Value | Possible Data Types   | Optional | Dynamic |
 |------|------------------------------------|---------------|-----------------------|----------|---------|
 | arg  | The value that needs to be summed. |               | INT LONG DOUBLE FLOAT | No       | Yes     |
 
-## Example 1
+## Example
 
 ```js
-    insert into outputStream
-    select sum(volume) as sumOfVolume
-    from inputStream;
+insert into outputStream
+select sum(volume) as sumOfVolume
+from inputStream;
 ```
 
 This returns the sum of volume values as a long value for each event arrival and expiration.

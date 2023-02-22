@@ -15,9 +15,9 @@ schemas. This schema is defined via an output stream definition.
  
 A sink configuration consists of three parts.
  
-   + `sink.type`: This annotation defines the sink type via which the data is published, and allows you to configure the sink parameters (which change depending on the sink type). For the complete list of supported sink types, see [Stream Query Guide - Sink](../query-guide/stream.md#sink).
+   + `sink.type`: This annotation defines the sink type via which the data is published, and allows you to configure the sink parameters (which change depending on the sink type). For the complete list of supported sink types, see [Sink Types](../sink/sink-types/index.md).
    
-   + `map.type`: This annotation specifies the format in which the data is published, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Stream Query Guide - Sink Mapper](../query-guide/stream.md#sink-mapper).
+   + `map.type`: This annotation specifies the format in which the data is published, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Sink Mapping](../sink/sink-mapping/index.md).
    
    + `attributes`: This annotation specifies a custom mapping based on which events in the streaming integration flow that need to be published are identified. This is useful when the attributes of the output messages you want the Streaming Integrator to publish are different to the corresponding attribute name in the stream definition. e.g., In a scenario where the Streaming Integrator is publishing the average temperature per second, the temperature can be referred to as  `avgTemp` in the output stream definition in your Stream application. However, you want to publish it with the `Temperature` to the streaming application to which you are publishing. In this instance, you need a custom mapping to indicate that `Temperature` is the same as `avgTemp`.
    
@@ -30,7 +30,7 @@ This section explains how to configure a basic sink without mapping.
 
 To create a stream application with the sink configuration defined inline, follow the steps below.
 
-1. Open the GUI and start creating a new Stream application. For more information, see [Creating a Stream Application](create-stream-app.md).
+1. Open the GUI and start creating a new Stream application. For more information, see [Creating a Stream Application](create-stream-worker.md).
 
 2. Enter a name for the stream application as shown below.
     ```sql
@@ -48,7 +48,7 @@ To create a stream application with the sink configuration defined inline, follo
     CREATE STREAM <Stream_Name> (attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
 
-    For example: 
+    For example:
 
     ```sql
     CREATE STREAM PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
@@ -130,20 +130,20 @@ Stream processor publishes events in default format when it does not make any ch
 3. Save the stream application. If you save the stream application that was created using the example configurations, 
 the completed stream application is as follows.
 
-    ```sql
-    @App:name("SalesTotalsApp")
-    @App:description("Description of the plan")
-    @App:qlVersion("2")
-    
-	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='database', collection.name='SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
-    
-	CREATE SINK PublishSalesTotalsStream WITH (type='stream', stream.list='Sales Totals', map.type=text) (transNo int, product string, price int, quantity int, salesValue long);
-    
-    select transNo, product, price, quantity, salesValue
-    from ConsumerSalesTotalsStream
-    group by product
-    insert into PublishSalesTotalsStream;
-    ```
+```sql
+@App:name("SalesTotalsApp")
+@App:description("Description of the plan")
+@App:qlVersion("2")
+
+CREATE SOURCE ConsumerSalesTotalsStream WITH (type='database', collection.name='SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
+
+CREATE SINK PublishSalesTotalsStream WITH (type='stream', stream.list='Sales Totals', map.type=text) (transNo int, product string, price int, quantity int, salesValue long);
+
+select transNo, product, price, quantity, salesValue
+from ConsumerSalesTotalsStream
+group by product
+insert into PublishSalesTotalsStream;
+```
 
 ### Publishing data in custom format
 
@@ -156,7 +156,7 @@ In this section, you can update the same stream application that you saved in th
 
 2. Within the `map.type` annotation of the sink configuration, add a `map.payload` annotation. There are two ways to configure this:
 
-    * Some mappers such as `xml`, `json`, and `text` accept only one output payload using the following format: 
+    * Some mappers such as `json` and `text` accept only one output payload using the following format: 
         ```js
         map.payload="<PAYLOAD>"
         ```

@@ -24,27 +24,32 @@ This page describes how to create geo-replicated streams and set up queues and p
 <TabItem value="js" label="Javascript">
 
 ```js
+// Connect to GDN.
 const jsc8 = require("jsc8");
 const readline = require("readline");
 const globalUrl = "https://play.paas.macrometa.io";
+const apiKey = "xxxx"; //Change this to your API Key
 
-// Create an authenticated instance with an API key (recommended) or JSON web token (JWT).
+// Create an authenticated instance with an API key (recommended)
 const client = new jsc8({
   url: globalUrl,
-  apiKey:
-    "XXXX",
+  apiKey: apiKey,
   fabricName: "_system"
 });
-// const client = new jsc8({ url: gdnUrl, token: "XXXX", fabricName: "_system" });
 
-// Or use email and password to authenticate a client instance
-// const client = new jsc8(globalUrl);
-// await client.login("your@email.com", "password");
+/* Authenticate via JSON Web Token (JWT)
+const client = new jsc8({ url: globalUrl, token: "XXXX", fabricName: "_system" });
+*/
+  
+/* Create an authenticated client instance via email and password
+const client = new jsc8(globalUrl);
+await client.login("your@email.com", "password");
+*/
 
 // Variables
 const stream = "streamQuickstart";
 let prefix_text = "";
-const is_local = false; //For a global stream pass True and False for local stream
+const is_local = false; //For a local stream pass this variable as True, or False for a global stream
 
 // Get the right prefix for the stream
 if (is_local) {
@@ -53,19 +58,10 @@ if (is_local) {
   prefix_text = "c8globals.";
 }
 
-async function getDCList () {
-  const dcListAll = await client.listUserFabrics();
-  const dcListObject = await dcListAll.find(function (o) {
-    return o.name === "_system";
-  });
-  const dcList = dcListObject.options.dcList.split(",");
-  console.log("dcList: ", dcList);
-}
-
 async function createMyStream () {
   let streamName = { "stream-id": "" };
   if (await client.hasStream(stream, is_local)) {
-    console.log("Stream already exists");
+    console.log("This stream already exists!");
     streamName["stream-id"] = prefix_text + stream;
     console.log(`Old Producer = ${streamName["stream-id"]}`);
   } else {
@@ -76,21 +72,37 @@ async function createMyStream () {
 
 async function sendData () {
   console.log("\n ------- Publish Messages  ------");
-  const producer = await client.createStreamProducer(stream);
+  const producer = await client.createStreamProducer(stream, is_local);
 
   producer.on("open", () => {
-    for (let i = 0; i < 10; i++) {
-      const msg1 = `Persistent hello from (${JSON.stringify(i)})`;
-      const data = {
-        payload: Buffer.from(msg1).toString("base64")
-      };
+    const input = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
 
-      console.log(`Stream: ${msg1}`);
-      producer.send(JSON.stringify(data));
+    // Repeatedly ask the user for message to be published to the stream. User can always exit by typing 0
+    var recursiveUserInput = () => {
+      input.question(
+        "Enter your message to publish or Type 0 to exit:\n",
+        (userInput) => {
+          if (userInput === "0") {
+            producer.close();
+            return input.close();
+          }
+
+          const data = {
+            payload: Buffer.from(userInput).toString("base64")
+          };
+          producer.send(JSON.stringify(data));
+          console.log(`Message sent: ${userInput}`);
+          recursiveUserInput();
+        }
+      );
     }
+    recursiveUserInput();
   });
-  producer.onclose = function (e) {
-    console.log("Closed WebSocket:Producer connection for " + streamName);
+  producer.onclose = function () {
+    console.log("Closed WebSocket:Producer connection for " + stream);
   };
 }
 
@@ -98,7 +110,24 @@ async function receiveData () {
   console.log("\n ------- Receive Messages  ------");
   const consumer = await client.createStreamReader(
     stream,
-    "test-subscription-1"
+    "test-subscription-1",
+    is_local
+  );
+  
+  // Close consumer connection when user types 0
+  const input = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  input.question(
+    "Type '0' to exit anytime:\n",
+    (userInput) => {
+      if (userInput === "0") {
+        consumer.close();
+        return input.close();
+      } 
+    }
   );
 
   consumer.on("message", (msg) => {
@@ -107,6 +136,7 @@ async function receiveData () {
     // Send message acknowledgement
     consumer.send(JSON.stringify({ messageId }));
   });
+
   consumer.onclose = function () {
     console.log("Closed WebSocket:Consumer connection for " + stream);
   };
@@ -119,11 +149,11 @@ async function selectAction () {
   });
 
   input.question(
-    "Type 'w' or '1' to write data. Type 'r' or '0' to read data: ",
+    "Type 'w' to write data. Type 'r' to read data: ",
     (userInput) => {
-      if (userInput === "w" || userInput === "1") {
+      if (userInput === "w") {
         sendData();
-      } else if (userInput === "r" || userInput === "0") {
+      } else if (userInput === "r") {
         receiveData();
       } else {
         console.log("Invalid user input. Stopping program.");
@@ -135,7 +165,6 @@ async function selectAction () {
 }
 
 (async function () {
-  await getDCList();
   await createMyStream();
   await selectAction();
 })();
@@ -152,35 +181,34 @@ import base64
 import json
 import warnings
 from c8 import C8Client
-import six
 warnings.filterwarnings("ignore")
 
+# Connect to GDN.
 URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "my API key" # Change this to your API key
+API_KEY = "xxxxx" # Change this to your API key
+is_local = False
 prefix_text = ""
-is_local = False # For a global stream pass True and False for local stream
 demo_stream = 'streamQuickstart'
 
-client = C8Client(protocol='https', host=URL, port=443, apikey = API_KEY, geofabric = GEO_FABRIC)
-
-# Get the right prefix for the stream
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+# Get the right prefix for the stream.
 if is_local:
     prefix_text = "c8locals."
 else:
     prefix_text = "c8globals."
 
+# Create global and local streams.
 def createStream():
     """ This function creates a stream """
-    streamName = {"stream-id": ""}
+    stream_name = {"stream-id": ""}
     if client.has_stream(demo_stream, local = is_local):
         print("Stream already exists")
-        streamName["stream-id"] = concat(prefix_text, demo_stream)
-        print ("Old producer =",  streamName["stream-id"])
+        stream_name["stream-id"] = concat(prefix_text, demo_stream)
+        print ("Old Producer =",  stream_name["stream-id"])
     else:
-        #print(client.create_stream(demo_stream, local=is_local))
-        streamName = client.create_stream(demo_stream, local=is_local)
-        print ("New producer =",  streamName["stream-id"])
+        stream_name = client.create_stream(demo_stream, local=is_local)
+        print ("New Producer =",  stream_name["stream-id"])
 
 # Create the producer and publish messages.
 def sendData():
@@ -192,29 +220,33 @@ def sendData():
             break
         producer.send(user_input)
 
-# Create the subscriber and receive data
+
+# Create the subscriber and receive data.
 def receiveData():
     """ This function receives data from a stream """
     subscriber = client.subscribe(stream=demo_stream, local=is_local,
         subscription_name="test-subscription-1")
-    for i in range(10):
-        print("In ",i)
+    while True:
+        print("\nListening for message...")
         m1 = json.loads(subscriber.recv())  # Listen on stream for any receiving messages
-        msg1 = base64.b64decode(m1["payload"])
-        print(F"Received message '{msg1}' id='{m1['messageId']}'") # Print the received message
+        msg1 = base64.b64decode(m1["payload"]).decode('utf-8')
+        print(F"Received message: '{msg1}'") 
+    # Output the ID of the received message
+        # print(F"Message ID:'{m1['messageId']}'")
         subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
-
 
 createStream()
 
-# Select choice
-user_input = input("Type 'w' or '1' to write data. Type 'r' or '0' to read data: ")
-if user_input == "w" or user_input == '1':
+# User enters choice.
+# On one terminal use 'r' to start the subscriber to read data
+# Then on another terminal use 'w' to start the producer and publish message
+user_input = input("Type 'w' to write data, type 'r' read data, and type '0' to quit at any time: ")
+if user_input == "w":
     sendData()
-elif user_input == "r" or user_input == '0':
+elif user_input == "r":
     receiveData()
 else:
-    print ("Invalid user input. Stopping program")
+    print ("Invalid user input. Stopping program") 
 ```
 
 </TabItem>

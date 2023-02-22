@@ -4,7 +4,7 @@ title: cmToyd (Function)
 
 This converts the input given in centimeters into yards.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:cmToyd(<INT|LONG|FLOAT|DOUBLE> p1)
 

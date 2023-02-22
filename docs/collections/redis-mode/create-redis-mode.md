@@ -14,7 +14,7 @@ This page explains how to create a new Document Store collection.
 Follow these instructions to create a new collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Data > Collections**.
+2. Click **Collections**.
 3. Click **New Collection**.
 4. Click **Redis Mode**.
 5. Enter a **Collection Name** then click **Create**.
@@ -93,12 +93,12 @@ createCollection()
 </TabItem>
 <TabItem value="apo" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
+Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://www.macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection](../../cli/collections-cli.md) CLI command to create a Document Store collection.
+Use the [gdnsl collection](../../cli/collections-cli) CLI command to create a Document Store collection.
 
 </TabItem>
 </Tabs>  

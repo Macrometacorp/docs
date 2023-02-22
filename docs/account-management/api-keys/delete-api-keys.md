@@ -11,9 +11,7 @@ This page describes how to delete API keys.
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-1. Log in to your [Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Access > API Keys**.
-1. Click the trash icon next to the API key and click **Delete**.
+On the API Keys tab, click the trash icon next to an API key and then click **Delete**.
 
 </TabItem>
 <TabItem value="js" label="Javascript">
@@ -107,7 +105,7 @@ else:
 </TabItem>
 <TabItem value="RA" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove an API Key](https://macrometa.com/docs/api#/operations/RemoveApiKey).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove an API Key](https://www.macrometa.com/docs/api#/operations/RemoveApiKey).
 
 ```js
 URL = "api-gdn.macrometa.io"
@@ -126,9 +124,9 @@ else:
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey clear](../../cli/api-key-cli.md#gdnsl-apikey-clear) CLI command to clear some or all access levels from an API key.
+Use the [gdnsl apikey clear](../../cli/api-key-cli#gdnsl-apikey-clear) CLI command to clear some or all access levels from an API key.
 
-Use the [gdnsl apikey](../../cli/api-key-cli.md) CLI command to delete an API key.
+Use the [gdnsl apikey](../../cli/api-key-cli) CLI command to delete an API key.
 
 </TabItem>
 </Tabs>

@@ -4,7 +4,7 @@ title: yTod (Function)
 
 This converts the given input in years into days.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:yTod(<INT|LONG|FLOAT|DOUBLE> p1)
 

@@ -12,7 +12,7 @@ This page provides instructions for running API commands from the Macrometa docu
 
 ## Run API Commands
 
-1. In an internet browser, navigate to the [Macrometa GDN API](https://macrometa.com/docs/api#/) page.
+1. In an internet browser, navigate to the [Macrometa GDN API](https://www.macrometa.com/docs/api#/) page.
 1. In the left sidebar, select the endpoint that you want to access.
 1. In the Auth pane, enter the authorization method and the JWT or API key.
    - API key: `apikey <YOUR API KEY>`

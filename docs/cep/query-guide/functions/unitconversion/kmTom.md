@@ -4,7 +4,7 @@ title: kmTom (Function)
 
 This converts the input given in kilometers into meters.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kmTom(<INT|LONG|FLOAT|DOUBLE> p1)
 

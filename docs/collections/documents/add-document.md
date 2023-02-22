@@ -15,7 +15,7 @@ By default, a new document has only one attribute, `_key`. Defining the document
 Follow these instructions to add documents to an existing document collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Data > Collections**.
+1. Click **Collections**.
 1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
 1. Click **New Document**.
 1. (Optional) Enter a `_key`.
@@ -32,7 +32,7 @@ Follow these instructions to add documents to an existing document collection fr
 ![Import a Document](/img/collections/import-docs.png)
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Data > Collections**.
+1. Click **Collections**.
 1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
 1. Click the import icon, which is a down arrow pointing to a file box.
 1. Click **Choose File**, then browse to the file containing the documents you want to import.

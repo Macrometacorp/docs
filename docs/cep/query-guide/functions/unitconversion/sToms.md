@@ -4,7 +4,7 @@ title: sToms (Function)
 
 This converts the input given in seconds into milliseconds.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:sToms(<INT|LONG|FLOAT|DOUBLE> p1)
 

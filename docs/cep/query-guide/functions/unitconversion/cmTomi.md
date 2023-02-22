@@ -4,7 +4,7 @@ title: cmTomi (Function)
 
 This converts the input given in centimeters into miles.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:cmTomi(<INT|LONG|FLOAT|DOUBLE> p1)
 

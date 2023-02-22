@@ -4,19 +4,19 @@ title: avg (Aggregate Function)
 
 Calculates the average for all the events.
 
-Syntax
+## Syntax
 
 ```js
     <DOUBLE> avg(<INT|LONG|DOUBLE|FLOAT> arg)
 ```
 
-QUERY PARAMETERS
+## Query Parameters
 
 | Name | Description                         | Default Value | Possible Data Types   | Optional | Dynamic |
 |------|-------------------------------------|---------------|-----------------------|----------|---------|
 | arg  | The value that need to be averaged. |               | INT LONG DOUBLE FLOAT | No       | Yes     |
 
-## Example 1
+## Example
 
 ```js
     insert into barStream
@@ -24,4 +24,4 @@ QUERY PARAMETERS
     from fooStream WINDOW TUMBLING_TIME;
 ```
 
-avg(temp) returns the average temp value for all the events based on their arrival and expiration.
+`avg(temp)` returns the average temp value for all the events based on their arrival and expiration.

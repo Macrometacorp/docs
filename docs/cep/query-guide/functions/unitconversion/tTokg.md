@@ -4,7 +4,7 @@ title: tTokg (Function)
 
 This converts the input given in tonnes into kilograms.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:tTokg(<INT|DOUBLE> p1)
 
@@ -19,4 +19,3 @@ Syntax
     unitconversion:tTokg(inValue)
 
 The tonne value is converted into kilograms as `1000.0`.
-

@@ -4,7 +4,7 @@ title: kgTooz (Function)
 
 This converts the input given in kilograms into ounces.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kgTooz(<INT|LONG|FLOAT|DOUBLE> p1)
 

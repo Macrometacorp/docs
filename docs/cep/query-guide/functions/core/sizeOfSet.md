@@ -2,19 +2,20 @@
 title: sizeOfSet (Function)
 ---
 
-Returns the size of an object of type java.util.Set.
+Returns the size of an object of type `java.util.Set`.
 
-Syntax
+## Syntax
 
     <INT> sizeOfSet(<OBJECT> set)
 
 ## Query Parameters
 
-| Name | Description                                                                                                                                | Default Value | Possible Data Types | Optional | Dynamic |
-|------|--------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| set  | The set object. This parameter should be of type java.util.Set. A set object may be created by the `set` attribute aggregator. |               | OBJECT              | No       | Yes     |
+| Name | Description        | Default Value | Possible Data Types | Optional | Dynamic |
+|------|-----------------------------|---------------|---------------------|----------|---------|
+| set  | The set object. This parameter should be of type java.util.Set. A set object may be created by the `set` attribute aggregator. |            | OBJECT    | No       | Yes     |
 
-## Example 1
+## Example
+
     insert into initStream
     select initSet(symbol) as initialSet
     from stockStream;
