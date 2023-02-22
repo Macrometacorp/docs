@@ -3,11 +3,13 @@ sidebar_position: 80
 title: HAVING | WHERE
 ---
 
-`HAVING` and `WHERE` provide a way of filtering events based on a specified condition of the query output stream attributes. It accepts any type of condition including a combination of functions and attributes that produces a Boolean result. They allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.  
+`HAVING` and `WHERE` provide a way of filtering events based on a specified condition of the query output stream attributes. It accepts any type of condition including a combination of functions and attributes that produces a Boolean result. They allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.
 
 ## Purpose
 
 `HAVING` and `WHERE` help to select the events that are relevant for the output based on the attributes those are produced by the `SELECT` clause and omit the ones that are not.
+
+In Macrometa, `HAVING` and `WHERE` are interchangeable. In SQL, the `WHERE` clause cannot be used with aggregates, but the `HAVING` clause can.
 
 ## Syntax
 
