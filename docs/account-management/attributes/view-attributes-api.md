@@ -25,7 +25,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey get](../../cli/api-key-cli.md#gdnsl-apikey-set) CLI command to get user attributes.
+Use the [gdnsl apikey get](../../cli/api-key-cli#gdnsl-apikey-set) CLI command to get user attributes.
 
 </TabItem>
 <TabItem value="c8ql" label="C8QL">

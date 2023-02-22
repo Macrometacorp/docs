@@ -2,7 +2,7 @@
 title: SSE
 ---
 
-HTTP SSE sink sends events to all subscribers.
+HTTP SSE sink sends events to all subscribers within the GDN only.
 
 ## SSE Sink Syntax
 

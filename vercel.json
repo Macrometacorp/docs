@@ -3,8 +3,17 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/", "destination": "/docs", "permanent": false },
-    { "source": "/docs", "destination": "/docs/quickstart", "permanent": false },
+    { "source": "/docs/authentication", "destination": "/docs/account-management/auth", "permanent": true },
     { "source": "/docs/c8ql/got-tutorial", "destination": "/docs/queryworkers/c8ql/got-tutorial", "permanent": true },
+    { "source": "/docs/c8ql/graphs/", "destination": "/docs/queryworkers/c8ql/graphs", "permanent": true },
+    { "source": "/docs/cep/query-guide/functions/json/toString", "destination": "/docs/cep/query-guide/functions/json/tostring", "permanent": true },
+    { "source": "/docs/cep/query-guide/functions/sink/http", "destination": "/docs/cep/sink/http", "permanent": true },
+    { "source": "/docs/cep/query-guide/functions/source/http", "destination": "/docs/cep/source/http", "permanent": true },
+    { "source": "/docs/cep/reference/", "destination": "/docs/cep", "permanent": true },
+    { "source": "/docs/cep/reference/functions", "destination": "/docs/cep/query-guide/functions", "permanent": true },
+    { "source": "/docs/cep/reference/geospatial", "destination": "/docs/cep/query-guide/functions/geospatial", "permanent": true },
+    { "source": "/docs/cep/reference/query-guide", "destination": "/docs/cep/query-guide", "permanent": true },
+    { "source": "/docs/cep/stream-workers-example", "destination": "/docs/cep/examples/stream-workers-sdk-example", "permanent": true },
     { "source": "/docs/collections/graphs/", "destination": "/docs/graphs", "permanent": true },
     { "source": "/docs/collections/graphs/:match*", "destination": "/docs/graphs/:match*", "permanent": true },
     { "source": "/docs/demos/cloudflare-workers", "destination": "/docs/tutorials/cloudflare-workers", "permanent": true },
@@ -18,16 +27,7 @@
     { "source": "/docs/gdnsl/commands", "destination": "/docs/essentials/CLI/commands", "permanent": true },
     { "source": "/docs/keyvalue", "destination": "/docs/collections/keyvalue", "permanent": true },
     { "source": "/docs/troubleshooting", "destination": "/docs/references/troubleshooting", "permanent": true },
-    { "source": "/docs/c8ql/graphs/", "destination": "/docs/queryworkers/c8ql/graphs", "permanent": true },
     { "source": "/docs/streams/tutorials/using_rest_api/", "destination": "/docs/collections/documents/tutorials/using_rest_api", "permanent": true },
-    { "source": "/docs/cep/stream-workers-example", "destination": "/docs/cep/examples/stream-workers-sdk-example", "permanent": true },
-    { "source": "/docs/cep/reference/geospatial", "destination": "/docs/cep/query-guide/functions/geospatial", "permanent": true },
-    { "source": "/docs/cep/reference/", "destination": "/docs/cep", "permanent": true },
-    { "source": "/docs/cep/query-guide/functions/source/http.md", "destination": "/docs/cep/source/http.md", "permanent": true },
-    { "source": "/docs/cep/reference/query-guide", "destination": "/docs/cep/query-guide", "permanent": true },
-    { "source": "/docs/cep/query-guide/functions/sink/http.md", "destination": "/docs/cep/sink/http.md", "permanent": true },
-    { "source": "/docs/cep/reference/functions", "destination": "/docs/cep/query-guide/functions", "permanent": true },
-    { "source": "/docs/what-is-macrometa", "destination": "/docs/quickstart", "permanent": true },
-    { "source": "/docs/authentication", "destination": "/docs/account-management/auth", "permanent": true }
+    { "source": "/docs/what-is-macrometa", "destination": "/docs/quickstart", "permanent": true }
   ]
 }

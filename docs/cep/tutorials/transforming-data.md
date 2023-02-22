@@ -4,8 +4,6 @@ sidebar_position: 4
 
 # Transforming Data
 
-## Introduction
-
 The stream processor allows you to perform a wide range of transformations to the input data received. The transformations are carried out via operators that are defined inline within the stream worker.
 
 ## Transform data using Operators

@@ -19,17 +19,17 @@ CREATE STREAM InputTemperatureStream (sensorId string, temperature double);
 @info(name = 'Pass-through')
 
 -- Query to consume events from `InputTemperatureStream`, produce new events by selecting all the attributes from the incoming events, and outputs them to `TemperatureStream`.
-insert into TemperatureAndSensorStream
-select *
-from InputTemperatureStream;
+INSERT INTO TemperatureAndSensorStream
+SELECT *
+FROM InputTemperatureStream;
 
 @info(name = 'Simple-selection')
 
 -- Selects only the `temperature` attribute from events, and outputs to `TemperatureOnlyStream`.
 -- Consumes events from `TemperatureAndSensorStream`. The schema of the stream is inferred from the previous query, hence no need to be defined.
-insert into TemperatureOnlyStream
-select temperature
-from TemperatureAndSensorStream;
+INSERT INTO TemperatureOnlyStream
+SELECT temperature
+FROM TemperatureAndSensorStream;
 ```
 
 ## Events at Each Stream

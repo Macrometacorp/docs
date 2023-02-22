@@ -29,7 +29,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl user clear](../../cli/api-key-cli.md#gdnsl-user-clear) CLI command to remove attributes.
+Use the [gdnsl user clear](../../cli/api-key-cli#gdnsl-user-clear) CLI command to remove attributes.
 
 </TabItem>
 </Tabs>

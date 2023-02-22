@@ -27,7 +27,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl user](../../cli/users-cli.md) CLI command to delete a user from the Macrometa account.
+Use the [gdnsl user](../../cli/users-cli) CLI command to delete a user from the Macrometa account.
 
 </TabItem>
 </Tabs>

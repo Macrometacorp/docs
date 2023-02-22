@@ -38,7 +38,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl stream-worker](../../cli/stream-workers-cli.md) CLI command to submit an ad hoc query.
+Use the [gdnsl stream-worker](../../cli/stream-workers-cli) CLI command to submit an ad hoc query.
 
 ```bash
 # Submit an ad hoc Stream query and get the result records from a store.

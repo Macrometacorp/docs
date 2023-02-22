@@ -124,9 +124,9 @@ else:
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey clear](../../cli/api-key-cli.md#gdnsl-apikey-clear) CLI command to clear some or all access levels from an API key.
+Use the [gdnsl apikey clear](../../cli/api-key-cli#gdnsl-apikey-clear) CLI command to clear some or all access levels from an API key.
 
-Use the [gdnsl apikey](../../cli/api-key-cli.md) CLI command to delete an API key.
+Use the [gdnsl apikey](../../cli/api-key-cli) CLI command to delete an API key.
 
 </TabItem>
 </Tabs>

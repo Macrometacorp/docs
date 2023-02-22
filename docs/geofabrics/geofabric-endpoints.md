@@ -26,7 +26,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric describe](../cli/fabrics-cli.md#gdnsl-fabric-describe) CLI command to get unique GeoFabric `regional_urls` and `global_url`.
+Use the [gdnsl fabric describe](../cli/fabrics-cli#gdnsl-fabric-describe) CLI command to get unique GeoFabric `regional_urls` and `global_url`.
 
 </TabItem>
 </Tabs>
