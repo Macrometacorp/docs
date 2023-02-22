@@ -94,11 +94,11 @@ When a consumer subscribes to a GDN stream, by default it subscribes to one spec
 - By explicitly defining a list of streams
 
 :::note
-When subscribing to multiple streams by regex, all streams must be in the same `geofabric`.
+When subscribing to multiple streams by regex, all streams must be in the same geofabric.
 :::
 
 When subscribing to multiple streams, the GDN stream client will automatically make a call to the GDN API to discover the streams that match the regex pattern/list and then subscribe to all of them. If any of the streams don't currently exist, the consumer will auto-subscribe to them once the streams are created.
 
 ### No Ordering Guarantees
 
-When a consumer subscribes to multiple streams, all ordering guarantees normally provided by GDN on single stream do not hold. If your use case for GDN involves any strict ordering requirements, then we strongly recommend against using this feature.
+When a consumer subscribes to multiple streams, all ordering guarantees normally provided by GDN on single stream do not hold. If your use case for GDN involves any strict ordering requirements, best practice is not to use multi-stream subscriptions.

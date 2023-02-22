@@ -19,7 +19,7 @@ This page describes how to create a producer.
 1. Request One Time Password and create producer.
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label=" JavaScript SDK">
+<TabItem value="javascript" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");

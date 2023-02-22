@@ -16,7 +16,7 @@ This page describes how to create a consumer.
 When this code runs, it creates a new `jsc8` client, requests a stream object, and creates a consumer.
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label=" JavaScript SDK">
+<TabItem value="javascript" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
