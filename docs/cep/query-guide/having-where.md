@@ -9,7 +9,7 @@ title: HAVING | WHERE
 
 `HAVING` and `WHERE` help to select the events that are relevant for the output based on the attributes those are produced by the `SELECT` clause and omit the ones that are not.
 
-In Macrometa, `HAVING` and `WHERE` are interchangeable. In SQL, the `WHERE` clause cannot be used with aggregates, but the `HAVING` clause can.
+In Macrometa, `HAVING` and `WHERE` are interchangeable.
 
 ## Syntax
 
