@@ -34,7 +34,6 @@ In the diagram below, only Consumer-A is allowed to consume messages.
 Exclusive mode is the default subscription mode.
 
 ![stream-exclusive-subscriptions](/img/stream-exclusive-subscriptions.png)
-[Exclusive Code Example](../../../streams/stream-basics/subscriptions/exclusive-example.md)
 
 ## Shared
 
@@ -53,8 +52,6 @@ There are two important things to be aware of when using shared mode:
 
 ![stream-shared-subscriptions](/img/stream-shared-subscriptions.png)
 
-[Shared Code Example](../../../streams/stream-basics/subscriptions/shared-example.md)
-
 ## Failover
 
 To use failover mode we need to change consumers configuration to `Failover` ([Shown in code example below](#code-example-for-consumer-1)). In failover mode, multiple consumers can attach to the same subscription. A master consumer is picked for the stream to receives messages. When the master consumer disconnects, all non-acknowledged and subsequent messages are delivered to the next consumer in line.
@@ -64,7 +61,6 @@ In _failover_ mode, multiple consumers can attach to the same subscription. A ma
 In the diagram below, Consumer-C-1 is the master consumer while Consumer-C-2 would be the next in line to receive messages if Consumer-C-1 disconnected.
 
 ![stream-failover-subscriptions](/img/stream-failover-subscriptions.png)
-[Failover Code Example](../../../streams/stream-basics/subscriptions/failover-example.md)
 
 ## Key_Shared
 
