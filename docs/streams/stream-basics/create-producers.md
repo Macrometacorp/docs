@@ -13,10 +13,7 @@ This page describes how to create a producer.
 
 ## Create Producer Code
 
-1. Change `BASE_URL` if necessary and insert `apiKey`.
-1. Create an instance of the jsC8.
-1. Request `stream` object.
-1. Request One Time Password and create producer.
+When this code runs, it creates a new `jsc8` client, requests a stream object, and then creates a producer.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript SDK">
@@ -56,7 +53,7 @@ async function main () {
 
       // Request stream object
       const stream = client.stream(streamName, false);
-      // Request One Time Password
+      // Request one-time password
       const producerOTP = await stream.getOtp();
       // Create producer
       const producer = await stream.producer(BASE_URL.replace("https://",""), {

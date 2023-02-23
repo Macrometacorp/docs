@@ -13,7 +13,7 @@ This page describes how to create a consumer.
 
 ## Create Consumer Code
 
-When this code runs, it creates a new `jsc8` client, requests a stream object, and creates a consumer.
+When this code runs, it creates a new `jsc8` client, requests a stream object, and then creates a consumer.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript SDK">
@@ -53,7 +53,7 @@ async function main () {
       createStream();
       // Request stream object
       const stream = client.stream(streamName, false);
-      // Request One Time Password
+      // Request one-time password
       const consumerOTP = await stream.getOtp();
       // Create consumer
       const consumer = await stream.consumer(subscriptionName, BASE_URL.replace("https://",""), {
