@@ -9,8 +9,8 @@ A subscription is a named configuration rule that determines how messages are de
 
 To configure a subscription:
 
-1. Create a [producer](producers.md).
-1. Create at least two [consumers](consumers.md) with the same subscription name. For example, `consumer-subscription`.
+1. Create a [producer](producers).
+1. Create at least two [consumers](consumers) with the same subscription name. For example, `consumer-subscription`.
 
 To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
 
@@ -25,7 +25,7 @@ Message ordering is not guaranteed.
 You cannot use cumulative acknowledgment with shared mode.
 :::
 
-When setting up consumers _exclusive_ mode is the default mode. Only a single consumer is allowed to attach to the subscription. If more than one consumer attempts to subscribe to a stream using the **same subscription**, then the consumer receives an error.
+When setting up consumers _exclusive_ mode is the default mode. Only a single consumer is allowed to attach to the subscription. If more than one consumer attempts to subscribe to a stream using the same subscription, then the consumer receives an error.
 
 In _exclusive_ mode, only a single consumer is allowed to attach to the subscription. If more than one consumer attempts to subscribe to a stream using the same subscription, then the consumer receives an error.
 
