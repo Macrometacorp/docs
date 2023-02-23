@@ -6,6 +6,7 @@
     "build": "docusaurus build",
     "clear": "docusaurus clear",
     "deploy": "docusaurus deploy",
+    "verceld": "mkdir public ; mkdir public/docs ; npm run build && cp -r ./build/* ./public/docs",
     "docusaurus": "docusaurus",
     "reinstall": "yarn clear && rm -rf node_modules && yarn install",
     "serve": "docusaurus serve",
@@ -15,11 +16,10 @@
     "write-translations": "docusaurus write-translations"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.1.0",
-    "@docusaurus/plugin-client-redirects": "2.1.0",
-    "@docusaurus/plugin-sitemap": "2.1.0",
-    "@docusaurus/preset-classic": "^2.1.0",
-    "@docusaurus/theme-search-algolia": "2.1.0",
+    "@docusaurus/core": "~2.2.0",
+    "@docusaurus/plugin-sitemap": "~2.2.0",
+    "@docusaurus/preset-classic": "~2.2.0",
+    "@docusaurus/theme-search-algolia": "~2.2.0",
     "@fontsource/lato": "^4.5.8",
     "@fontsource/open-sans": "^4.5.10",
     "@fontsource/source-code-pro": "^4.5.11",
@@ -27,12 +27,14 @@
     "@mdx-js/react": "^1.6.21",
     "@stoplight/elements": "7.6.3",
     "@types/react": "^17.0.1",
+    "@vercel/analytics": "^0.1.8",
     "clsx": "^1.1.1",
     "dotenv": "^16.0.0",
     "posthog-docusaurus": "^1.0.3",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "web-vitals": "^3.1.1"
   },
   "devDependencies": {
     "buffer": "^6.0.3",

@@ -4,7 +4,7 @@ title: sTons (Function)
 
 This converts the input given in seconds into nanoseconds.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:sTons(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -18,5 +18,4 @@ Syntax
 
     unitconversion:sTons(1)
 
-The second value `1` is converted into nanoseconds as `1000000000.0`
-.
+The second value `1` is converted into nanoseconds as `1000000000.0`.

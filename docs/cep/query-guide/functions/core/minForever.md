@@ -4,24 +4,24 @@ title: minForever (Aggregate Function)
 
 This is the attribute aggregator to store the minimum value for a given attribute throughout the lifetime of the query regardless of any windows.
 
-Syntax
+## Syntax
 
 ```js
-    <INT|LONG|DOUBLE|FLOAT> minForever(<INT|LONG|DOUBLE|FLOAT> arg)
+<INT|LONG|DOUBLE|FLOAT> minForever(<INT|LONG|DOUBLE|FLOAT> arg)
 ```
 
-QUERY PARAMETERS
+## Query Parameters
 
 | Name | Description                                                    | Default Value | Possible Data Types   | Optional | Dynamic |
 |------|----------------------------------------------------------------|---------------|-----------------------|----------|---------|
 | arg  | The value that needs to be compared to find the minimum value. |               | INT LONG DOUBLE FLOAT | No       | Yes     |
 
-## Example 1
+## Example
 
 ```js
-    insert into outputStream
-    select minForever(temp) as max
-    from inputStream;
+insert into outputStream
+select minForever(temp) as max
+from inputStream;
 ```
 
-minForever(temp) returns the minimum temp value recorded for all the events throughout the lifetime of the query.
+`minForever(temp)` returns the minimum temp value recorded for all the events throughout the lifetime of the query.

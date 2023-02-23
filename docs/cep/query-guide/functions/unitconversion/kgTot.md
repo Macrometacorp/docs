@@ -4,7 +4,7 @@ title: kgTot (Function)
 
 This converts the input given in kilograms into tonnes.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kgTot(<INT|LONG|FLOAT|DOUBLE> p1)
 

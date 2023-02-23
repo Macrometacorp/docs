@@ -21,12 +21,12 @@ To view GeoFabric endpoints in the Macrometa Web console:
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to get [Information about the GeoFabric](https://macrometa.com/docs/api#/operations/InformationOfTheGeo-fabric), including the `regional_urls` and `global_url`.
+Use our interactive API Reference with code generation in 18 programming languages to get [Information about the GeoFabric](https://www.macrometa.com/docs/api#/operations/InformationOfTheGeo-fabric), including the `regional_urls` and `global_url`.
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric describe](../cli/fabrics-cli.md#gdnsl-fabric-describe) CLI command to get unique GeoFabric `regional_urls` and `global_url`.
+Use the [gdnsl fabric describe](../cli/fabrics-cli#gdnsl-fabric-describe) CLI command to get unique GeoFabric `regional_urls` and `global_url`.
 
 </TabItem>
 </Tabs>

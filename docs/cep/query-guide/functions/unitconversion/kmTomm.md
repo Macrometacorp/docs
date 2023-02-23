@@ -4,7 +4,7 @@ title: kmTomm (Function)
 
 This converts the input given in kilometers into millimeters.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kmTomm(<INT|LONG|FLOAT|DOUBLE> p1)
 

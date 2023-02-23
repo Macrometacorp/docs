@@ -36,9 +36,9 @@ To create the required edge documents to store these relations in the database, 
 
 ### Create a Graph Edge collection
 
-Create a new [Graph Edge collection](../../../collections/graphs/index.md) called **ChildOf**.
+Create a new [Graph Edge collection](../../../collections/graph-edge/add-edges.md) called **ChildOf**.
 
-1. Click **Data > Collections**.
+1. Click **Collections**.
 1. Click **New Collection**.
 1. Click **Graph Edge**.
 1. Name the collection **ChildOf** and then click **Create**.

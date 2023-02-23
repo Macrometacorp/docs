@@ -42,7 +42,7 @@ To query based on coordinates, you must create a [geo index](../../../collection
 
 To create a geo index:
 
-1. Click **Data > Collections**.
+1. Click **Collections**.
 1. Click **Locations**.
 1. Click the **Indexes** tab.
 1. Click the plus icon to add a new index.

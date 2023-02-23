@@ -4,7 +4,7 @@ title: dToh (Function)
 
 This converts the input given in days into hours.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:dToh(<INT|LONG|FLOAT|DOUBLE> p1)
 

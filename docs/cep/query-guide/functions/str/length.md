@@ -4,7 +4,7 @@ title: length (Function)
 
 Returns the length of the input string.
 
-Syntax
+## Syntax
 
     <INT> str:length(<STRING> input.string)
 
@@ -18,5 +18,4 @@ Syntax
 
     length("Hello World")
 
-This outputs the length of the provided string. In this scenario, the,
-output is `11`.
+This outputs the length of the provided string. In this scenario, the output is `11`.

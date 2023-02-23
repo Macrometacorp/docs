@@ -4,7 +4,7 @@ title: mTos (Function)
 
 This converts the input given in minutes into seconds.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:mTos(<INT|LONG|FLOAT|DOUBLE> p1)
 

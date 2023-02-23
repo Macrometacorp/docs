@@ -4,7 +4,7 @@ title: cmToft (Function)
 
 This converts the input given in centimeters into feet.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:cmToft(<INT|LONG|FLOAT|DOUBLE> p1)
 

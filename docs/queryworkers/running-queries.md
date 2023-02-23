@@ -11,8 +11,8 @@ You can run a query in the Macrometa console, from the Macrometa CLI, or using a
 
 ### Run a Query in the Console
 
-1. Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Compute > Query Workers**.
+1. Log in to your [Macrometa account](https://auth-play.macrometa.io/).
+1. Click **Query Workers**.
 1. In the Editor, select **C8QL** or **SQL**, depending on which language you want to write the query in.
 1. Write a [SQL](sql/index.md) [C8QL](c8ql/index.md) query.
 1. Enter any required [bind parameter](bind-parameters.md) values.
@@ -23,7 +23,7 @@ Macrometa runs the query and displays the [Query Result](#query-result) for that
 ### Run a Query with CLI
 
 1. Install the CLI as described in [Install gdnsl](../cli/#install-gdnsl-cli).
-2. Enter queries using `gdnsl query`. For more information and examples, refer to the CLI [Queries](../cli/queries-cli.md) documentation.
+2. Enter queries using `gdnsl query`. For more information and examples, refer to the CLI [Queries](../cli/queries-cli) documentation.
 
 ## API Endpoint
 

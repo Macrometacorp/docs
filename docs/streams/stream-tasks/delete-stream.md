@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 Delete a stream.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Data > Streams**.
+1. Click **Streams**.
 
    Macrometa displays a list of streams and their attributes.
 
@@ -96,7 +96,7 @@ deleteMyStream()
 </TabItem>
 <TabItem value="api-py" label="API - Python">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://macrometa.com/docs/api#/operations/DeleteStream).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://www.macrometa.com/docs/api#/operations/DeleteStream).
 
 ```py
 import requests
@@ -129,7 +129,7 @@ print("\nStream Deleted: ", resp.text)
 </TabItem>
 <TabItem value="api-js" label="API - JS">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://macrometa.com/docs/api#/operations/DeleteStream).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://www.macrometa.com/docs/api#/operations/DeleteStream).
 
 ```js
 class APIRequest {
@@ -201,7 +201,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams delete](../../cli/streams-cli.md#gdnsl-streams-delete) CLI commands to delete existing streams.
+Use the [gdnsl streams delete](../../cli/streams-cli#gdnsl-streams-delete) CLI commands to delete existing streams.
 
 </TabItem>
 </Tabs>

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 This page describes how to retrieve larger result sets from a collection with the default limit of 1,000 documents per query.
 
-There are two recommended approaches depending on the volume of data being returned. The [Cursor](https://macrometa.com/docs/api#/operations/createQueryCursor) endpoint from Macrometa API can be used to fetch up to 30,000 records, this is an approximation based on platform limits. Attempting to return more than 30,000 from the endpoint may cause the query to exceed the query execution time limit and raise an error. The [Collection Export](https://macrometa.com/docs/api#/operations/ExportCollectionData) endpoint from Macrometa API is the recommended approach when retrieving an entire collection.
+There are two recommended approaches depending on the volume of data being returned. The [Cursor](https://www.macrometa.com/docs/api#/operations/createQueryCursor) endpoint from Macrometa API can be used to fetch up to 30,000 records, this is an approximation based on platform limits. Attempting to return more than 30,000 from the endpoint may cause the query to exceed the query execution time limit and raise an error. The [Collection Export](https://www.macrometa.com/docs/api#/operations/ExportCollectionData) endpoint from Macrometa API is the recommended approach when retrieving an entire collection.
 
 Create a connection to the GDN using the jsc8 SDK. You will need an API key, JWT, or Email/Password to complete authentication. For more information, refer to [Authentication](../account-management/auth/index.md).
 
@@ -45,7 +45,7 @@ From source,
 
 ### Cursor
 
-We can create a cursor to receive the results from our request. A cursor details where we left off when reading a stream of responses from API, so we can continue to read the batch of required data. When calling the `query` method request options are provided as key/value pairs. For a detailed explanation of options visit the [API reference](https://macrometa.com/docs/api#/operations/createQueryCursor). Set the `batchSize` to the required value (code ex. 1000) and the `stream` value to true. This will permit the results from the query to be returned as a stream, allowing us to return subsequent batches of data. In response, the entire result set is loaded into the cursor (code ex. `cursor`). Therefore we must be mindful of client-side memory capacity when running queries that can potentially return a large result set.
+We can create a cursor to receive the results from our request. A cursor details where we left off when reading a stream of responses from API, so we can continue to read the batch of required data. When calling the `query` method request options are provided as key/value pairs. For a detailed explanation of options visit the [API reference](https://www.macrometa.com/docs/api#/operations/createQueryCursor). Set the `batchSize` to the required value (code ex. 1000) and the `stream` value to true. This will permit the results from the query to be returned as a stream, allowing us to return subsequent batches of data. In response, the entire result set is loaded into the cursor (code ex. `cursor`). Therefore we must be mindful of client-side memory capacity when running queries that can potentially return a large result set.
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">

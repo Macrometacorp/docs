@@ -4,7 +4,7 @@ title: gTokg (Function)
 
 This converts the input given in grams into kilograms.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:gTokg(<INT|LONG|FLOAT|DOUBLE> p1)
 

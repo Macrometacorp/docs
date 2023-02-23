@@ -4,6 +4,7 @@ title: Data Pipeline Examples
 ---
 
 This page explains ways to create data pipelines.
+
 ## Stream Joins
 
 This example shows joining two stream based on a condition.
@@ -21,16 +22,16 @@ CREATE STREAM HumidityStream (roomNo string, humidity double);
 -- Join latest `temperature` and `humidity` events arriving within 1 minute for each `roomNo`.
 INSERT INTO TemperatureHumidityStream
 SELECT t.roomNo, t.temperature, h.humidity
-FROM TemperatureStream window unique:time(roomNo, 1 min) as t
-    join HumidityStream window unique:time(roomNo, 1 min) as h
-    on t.roomNo == h.roomNo;
+FROM TemperatureStream window unique:time(roomNo, 1 min) AS t
+    JOIN HumidityStream window unique:time(roomNo, 1 min) AS h
+    ON t.roomNo == h.roomNo;
 
 
 @info(name = 'Join-on-temperature')
 INSERT INTO EnrichedTemperatureStream
 SELECT t.roomNo, t.temperature, h.humidity
 -- Join when events arrive in `TemperatureStream`.
-FROM TemperatureStream as t
+FROM TemperatureStream AS t
 -- When events get matched in `time()` window, all matched events are emitted, else `null` is emitted.
     LEFT OUTER JOIN HumidityStream window sliding_time(1 min) AS h
     ON t.roomNo == h.roomNo;
@@ -51,11 +52,11 @@ When events are sent to `TemperatureStream` stream and `HumidityStream` stream, 
 | 9:01:20 | [`'1001'`, `17.0`] | -                  | [`'1001'`, `17.0`, `62.0`] | [`'1001'`, `17.0`, `60.0`], <br/>[`'1001'`, `17.0`, `62.0`] |
 | 9:02:10 | [`'1002'`, `23.5`] | - | - | [`'1002'`, `23.5`, `null`] |
 
-## PartitiON Events by Value
+## Partition Events by Value
 
-This example shows partitioning events by attribute values. For more informatiON ON [partition](../query-guide/partition.md) refer the [Stream Query Guide](../query-guide/index.md).
+This example shows partitioning events by attribute values. For more informatiON ON [partition](../query-guide/partition/index.md) refer the [Stream Query Guide](../query-guide/index.md).
 
-### PartitiON Events by Value Example
+### Partition Events by Value Example
 
 ```sql
 CREATE STREAM LoginStream ( userID string, loginSuccessful bool);
@@ -70,19 +71,19 @@ begin
 -- Calculates success and failure login attempts FROM the last 3 events of each `userID`.
     INSERT INTO #LoginAttempts
     SELECT userID, loginSuccessful, count() AS attempts
-    FROM LoginStream window sliding_length(3)
+    FROM LoginStream WINDOW SLIDING_LENGTH(3)
     GROUP BY loginSuccessful;
 -- Inserts results to `#LoginAttempts` inner stream that is only accessible within the partitiON instance.
 
     @info(name='Alert-query')
 -- Consumes events FROM the inner stream, and suspends `userID`s that have 3 consecutive login failures.
     INSERT INTO UserSuspensionStream
-    SELECT userID, "3 consecutive login failures!" AS message
+    SELECT userID, "Three consecutive login failures!" AS message
     FROM #LoginAttempts[loginSuccessful==false and attempts==3];
 end;
 ```
 
-### PartitiON Behavior
+### Partition Behavior
 
 When events are sent to `LoginStream` stream, following events will be generated at `#LoginAttempts` inner stream via `Aggregation-query` query, and `UserSuspensionStream` via `Alert-query` query:
 
@@ -196,6 +197,7 @@ SELECT str:fillTemplate("""
     }""", orderId, items, store) AS discountedOrder
 FROM GroupedItemStream;
 ```
+
 ### Scatter and Gather (JSON) Input
 
 Below event is sent to `PurchaseStream`:

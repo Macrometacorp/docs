@@ -16,11 +16,11 @@ To understand the different ways you can filter the specific data you need to tr
 ### Filtering based on exact match of attribute
 
  
-1. Start creating a new stream worker. For more information, see [Creating a Stream Worker](./create-stream-app.md).
+1. Start creating a new stream worker. For more information, see [Creating a Stream Worker](create-stream-worker.md).
 
-1. Enter a name for the stream worker via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
+2. Enter a name for the stream worker via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
 
-1. Define an input stream to specify the schema based on which events are selected.
+3. Define an input stream to specify the schema based on which events are selected.
 
     ```sql
     CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
@@ -28,13 +28,13 @@ To understand the different ways you can filter the specific data you need to tr
 
    >* For more information about defining input streams to receive events, see the [Consuming Data](./consuming-data.md).
    
-1. Define an output stream `Room2233Stream` to emit the result
+4. Define an output stream `Room2233Stream` to emit the result
 
     ```sql
 	  CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
     ```
 
-1. Add a query to generate filtered temperature readings as follows. For this example, let's assume that you want to filter only temperature readings for a specific room number (e.g., room no `2233`).
+5. Add a query to generate filtered temperature readings as follows. For this example, let's assume that you want to filter only temperature readings for a specific room number (e.g., room no `2233`).
 
     1. Add the `from` clause and enter `InputTempStream` as the input stream from which the input data. However, because you only need to extract readings for room no `2233`, include a filter in the `from` clause as shown below:
 
@@ -57,7 +57,7 @@ To understand the different ways you can filter the specific data you need to tr
         ```
 
         :::tip
-            As a best practice, name your queries using the `@info` annotation. In this example, you can name the query `Filtering` as follows.
+        As a best practice, name your queries using the `@info` annotation. In this example, you can name the query `Filtering` as follows.
         :::
 
         ```sql
@@ -67,7 +67,7 @@ To understand the different ways you can filter the specific data you need to tr
         FROM InputTempStream [roomNo=='2233']
         ```
 
-1. The saved stream worker is as follows:
+6. The saved stream worker is as follows:
 
     ```sql
     @App:name("TemperatureApp")
@@ -83,13 +83,13 @@ To understand the different ways you can filter the specific data you need to tr
     SELECT *
     FROM InputTempStream [roomNo=='2233'];
     ```
-        
+
 ### Filtering based on regex pattern
- 
+
 You can filter events by providing a condition where only events that match a specific Regex pattern are taken for further processing.
- 
+
 For this purpose, you can use the `TemperatureApp` stream worker that you created in the previous example. However, instead of filtering the readings for a specific room no, you can filter the readings for many rooms of which the room number matches a specific regex pattern.
-     
+
 Assume that you want to filter the temperature readings for a specific rage of rooms located in the Southern wing and used for purpose B. Also assume that this can be derived from the room number because the first three characters of the room no represent the wing, and the eighth character represents the purpose. e.g., in room no `SOU5438B765`, the first three characters `SOU` represent the Southern wing, and the eighth character `B` represents purpose B.
     
 To filter events as described, follow the procedure below.
@@ -265,7 +265,7 @@ Assume that in the previous example, you do not need the device ID for further p
     FROM FilteredResultsStream;
     ```
 
-Modifying and replacing is also demonstrated in the [Enriching Data](enriching-data.md) and [Transforming Data](transforming-data.md) pages.
+Modifying and replacing is also demonstrated in the [Enrich Data](../enrich-data/index.md) and [Transforming Data](transforming-data.md) pages.
 
 ## Handling attributes with `null` values
 

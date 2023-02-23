@@ -16,7 +16,7 @@ Creating a new document or updating a document will fail if the uniqueness is vi
 ## Create Persistent Index in GDN Console
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Data > Collections**.
+1. Click **Collections**.
 1. Click the collection that you want to create an index for.
 1. Click **Indexes**.
 1. In **Type**, select **Persistent Index**.
@@ -37,7 +37,7 @@ unique array index.
 Ensures that a unique persistent index exists
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                              \    
  -d '{ "fields": [ "type" : "persistent", "fields::["field1", ..., "fieldn" ], "unique": true}'
 ```
@@ -48,7 +48,7 @@ All documents in the collection must differ in terms of the indexed attributes. 
 
 To create a sparse unique index, set the *sparse* attribute to `true`:
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName'  \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName'  \
  -H 'Authorization: bearer <token>'                                                                               \
  -d '{ "fields": [ "type" : "persistent", "fields: ["field1", ..., "fieldn" ], "unique": true, "sparse" : true}'
 ```
@@ -62,7 +62,7 @@ In case that the index was successfully created, an object with the index detail
 
 To ensure that a non-unique persistent index exists
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                              \
  -d '{ "fields": [ "type" : "persistent", "fields::["field1", ..., "fieldn" ]}'
 ```

@@ -4,7 +4,7 @@ title: parseLong (Function)
 
 This function returns the long value of the string received.
 
-Syntax
+## Syntax
 
     <LONG> math:parseLong(<STRING> p1)
 

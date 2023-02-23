@@ -4,19 +4,19 @@ title: max (Aggregate Function)
 
 Returns the maximum value for all the events.
 
-Syntax
+## Syntax
 
 ```js
     <INT|LONG|DOUBLE|FLOAT> max(<INT|LONG|DOUBLE|FLOAT> arg)
 ```
 
-QUERY PARAMETERS
+## Query Parameters
 
 | Name | Description                                                    | Default Value | Possible Data Types   | Optional | Dynamic |
 |------|----------------------------------------------------------------|---------------|-----------------------|----------|---------|
 | arg  | The value that needs to be compared to find the maximum value. |               | INT LONG DOUBLE FLOAT | No       | Yes     |
 
-## Example 1
+## Example
 
 ```js
     insert into barStream
@@ -24,4 +24,4 @@ QUERY PARAMETERS
     from fooStream WINDOW TUMBLING_TIME(10 sec);
 ```
 
-max(temp) returns the maximum temp value recorded for all the events based on their arrival and expiration.
+`max(temp)` returns the maximum temp value recorded for all the events based on their arrival and expiration.
