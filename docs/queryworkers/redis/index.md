@@ -149,5 +149,4 @@ For Redis MSET and HMSET commands, using same keys for the command will give an 
 :::
 
 :::note
-For Redis MSET and HMSET commands, using same keys for the command will give an invalid command args error.
 
