@@ -3,6 +3,9 @@ sidebar_position: 20
 title: Exclusive Code Example
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Exclusive
 
 When setting up consumers _exclusive_ mode is the default mode. Only a single consumer is allowed to attach to the subscription. If more than one consumer attempts to subscribe to a stream using the **same subscription**, then the consumer receives an error.
@@ -25,8 +28,8 @@ You can run the code examples in any order but keep in mind that if you run `pro
 
 ## Code example for producer
 
-<Tabs groupId="modify-single">
-<TabItem value="javascript" label=" JavaScript SDK">
+<Tabs groupId="operating-systems">
+<TabItem value="js" label=" JavaScript">
 
 - Step 1. [Install the SDK](../../../sdks/install-sdks.md).
 - Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
@@ -101,12 +104,71 @@ producer();
 ```
 
 </TabItem>
+
+<TabItem value="py" label="Python">
+
+- Step 1. [Install the SDK](../../../sdks/install-sdks.md).
+- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
+- Step 3. Create an instance of the C8Client.
+- Step 4. Request `stream` object.
+- Step 5. Request One Time Password and create producer.
+
+
+```python
+import os
+import random
+import time
+
+from c8 import C8Client
+
+""" For Python SDK we can omit https:// part of the URL """
+BASE_URL = "play.paas.macrometa.io/"
+
+stream_name = "stream_quickstart"
+
+""" Connect to GDN """
+client = C8Client(
+    protocol='https',
+    host=BASE_URL,
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system"
+)
+
+""" Create stream"""
+def create_stream():
+    has_stream = client.has_stream(stream_name)
+    """ Create a stream if stream does not exist """
+    if has_stream:
+        print("This stream already exists!")
+        print(f"Existing Producer = c8globals.${stream_name}")
+    else:
+        print("\nCreating global stream...")
+        stream_info = client.create_stream(stream_name, False)
+        print(f"New Producer = ${stream_info['stream-id']}")
+
+
+""" Create producer and send data through a stream """
+def create_producer():
+    create_stream()
+
+    producer = client.create_stream_producer(stream_name, local=False)
+    while True:
+        message = f"Hello Macrometa Stream! Here is your random message number {random.randint(1, 100)}"
+        producer.send(message)
+        time.sleep(1)
+
+
+create_producer()
+```
+
+</TabItem>
 </Tabs>
 
 ## Code example for consumer 1
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label=" JavaScript SDK">
+<TabItem value="javascript" label=" JavaScript">
 
 - Step 1. [Install the SDK](../../../sdks/install-sdks.md).
 - Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
@@ -170,6 +232,53 @@ async function consumer() {
 consumer();
 ```
 </TabItem>
+<TabItem value="python" label="Python">
+
+- Step 1. [Install the SDK](../../../sdks/install-sdks.md).
+- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
+- Step 3. Create an instance of the C8Client.
+- Step 4. Request `stream` object.
+- Step 5. Request One Time Password and create producer.
+
+```python
+import base64
+import json
+import os
+from c8 import C8Client
+
+""" For Python SDK we can omit https:// part of the URL """
+BASE_URL = "play.paas.macrometa.io/"
+
+stream_name = "stream_quickstart"
+
+""" Connect to GDN """
+client = C8Client(
+    protocol='https',
+    host=BASE_URL,
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system"
+)
+
+""" Create consumer and receive data through a stream """
+def create_consumer():
+    print("\nConnecting consumer to global stream...")
+    consumer = client.subscribe(
+        stream_name,
+        local=False,
+        subscription_name="consumer_subscription"
+        )
+    while True:
+        message = json.loads(consumer.recv())
+        decoded_message = base64.b64decode(message['payload']).decode('utf-8')
+        print(f"Received message '{decoded_message}' id='{message['messageId']}'")
+        consumer.send(json.dumps(
+            {'messageId': message['messageId']}))
+
+
+create_consumer()
+```
+</TabItem>
 </Tabs>
 
 :::note
@@ -179,7 +288,7 @@ Keep in mind that both consumers need to have same subscription name. In both co
 ## Code example for consumer 2
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label=" JavaScript SDK">
+<TabItem value="javascript" label=" JavaScript">
 
 - Step 1. [Install the SDK](../../../sdks/install-sdks.md).
 - Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
@@ -241,6 +350,53 @@ async function consumer() {
 }
 
 consumer();
+```
+</TabItem>
+<TabItem value="python" label="Python">
+
+- Step 1. [Install the SDK](../../../sdks/install-sdks.md).
+- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
+- Step 3. Create an instance of the C8Client.
+- Step 4. Request `stream` object.
+- Step 5. Request One Time Password and create producer.
+
+```python
+import base64
+import json
+import os
+from c8 import C8Client
+
+""" For Python SDK we can omit https:// part of the URL """
+BASE_URL = "play.paas.macrometa.io/"
+
+stream_name = "stream_quickstart"
+
+""" Connect to GDN """
+client = C8Client(
+    protocol='https',
+    host=BASE_URL,
+    port=443,
+    apikey="xxxxxx",
+    geofabric="_system"
+)
+
+""" Create consumer and receive data through a stream """
+def create_consumer():
+    print("\nConnecting consumer to global stream...")
+    consumer = client.subscribe(
+        stream_name,
+        local=False,
+        subscription_name="consumer_subscription"
+        )
+    while True:
+        message = json.loads(consumer.recv())
+        decoded_message = base64.b64decode(message['payload']).decode('utf-8')
+        print(f"Received message '{decoded_message}' id='{message['messageId']}'")
+        consumer.send(json.dumps(
+            {'messageId': message['messageId']}))
+
+
+create_consumer()
 ```
 </TabItem>
 </Tabs>
