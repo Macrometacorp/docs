@@ -148,6 +148,5 @@ For Redis SET and SORTED SET datatype commands, using the same keys for the comm
 For Redis MSET and HMSET commands, using same keys for the command will give an invalid command args error.
 :::
 
-:::note
 
 :::
