@@ -11,7 +11,7 @@ The stream processor groups common types of events together with a schema. This 
 By default, all streams created by stream workers are sources. The syntax for defining a new stream in a stream worker is:
 
 ```sql
-CREATE STREAM <stream_name> (<attribute_name> <attribute_type>,
+CREATE STREAM (GLOBAL|LOCAL)? <stream_name> (<attribute_name> <attribute_type>,
                              <attribute_name> <attribute_type>, ... );
 ```
 
@@ -21,9 +21,10 @@ The following parameters are used to configure a stream definition.
 
 | Parameter     | Description |
 | ------------- |-------------|
-| `stream name`      | The name of the stream created. (By convention, stream names use `PascalCase`.) |
-| `attribute name`   | Uniquely identifiable name of the stream attribute. (By convention, attribute names are defined in `camelCase`.)|     |
-| `attribute type`   | The type of each attribute defined in the schema. This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
+ GLOBAL or LOCAL      | Whether the stream is globally or locally replicated. Default is `LOCAL`. |
+| stream name      | The name of the stream created. (By convention, stream names use `PascalCase`.) |
+| attribute name   | Uniquely identifiable name of the stream attribute. (By convention, attribute names are defined in `camelCase`.)|     |
+| attribute type   | The type of each attribute defined in the schema. This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
 
 To use and refer stream and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format, enclose them in ``` ` ```. For example: ``` `$test(0)` ```
 
