@@ -13,12 +13,12 @@ This page describes how to create a [consumer](consumers.md).
 
 ## Create Consumer Code
 
-When this code runs, it creates a new `jsc8` client, requests a stream object, and then creates a consumer.
+When this code runs, it creates a new client, requests a stream object, and then creates a consumer.
+
+If you're using JavaScript, the code creates a `jsc8` client. If Python, it creates a `C8Client`
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript SDK">
-
-When this code runs, it creates a new `jsc8` client, requests a stream object, and then creates a consumer.
 
 ```js
 const jsc8 = require("jsc8");
@@ -81,8 +81,6 @@ main();
 </TabItem>
 
 <TabItem value="python" label="Python">
-
-When this code runs, it creates a new `C8Client` client, requests a stream object, and then creates a consumer.
 
 ```python
 import base64
