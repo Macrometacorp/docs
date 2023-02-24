@@ -7,7 +7,7 @@ Messages are the basic unit of GDN streams. Producers publish messages to stream
 
 A message has the following properties:
 
-- **Value -** The data carried by the message. All GDN stream messages carry raw bytes, although message data can also conform to data schemas in the future.
+- **Value -** The data carried by the message. All GDN messages carry raw bytes.
 - **Key -** Messages can optionally be tagged with keys, which can be useful for things like stream compaction.
 - **Properties -** An optional key-value map of user-defined properties.
 - **Producer name -** The name of the producer that produced the message. Producers are automatically given default names, but you can apply your own explicitly as well.
