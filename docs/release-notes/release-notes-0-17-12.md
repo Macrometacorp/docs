@@ -107,7 +107,6 @@ This release includes the following API changes.
 | CEP-406  | Corrected wrong sample code in stream worker ad hoc query API reference.  |
 | CEP-409  | Corrected HTTP-Source API endpoint description.  |
 | DB-1726  | [Search View] APIs using a disabled Search View are informed that they are operating on a disabled View through response header.  |
-| STRM-518 | Added a new endpoint for SSE support in streams. `GET /_fabric/_system/_api/streams/<stream-name>/sse` |
 
 ## Defect Fixes
 
