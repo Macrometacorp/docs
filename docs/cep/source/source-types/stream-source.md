@@ -11,7 +11,7 @@ The stream processor groups common types of events together with a schema. This 
 By default, all streams created by stream workers are sources. The syntax for defining a new stream in a stream worker is:
 
 ```sql
-   CREATE SOURCE SinkName WITH (
+   CREATE SOURCE (GLOBAL|LOCAL)? SinkName WITH (
       type="stream", 
       stream.list="STRING[STRING,]", 
       replication.type="STRING", 
@@ -45,6 +45,7 @@ The following parameters are used to configure a stream definition.
 
 | Parameter     | Description | Default Value | Possible Data Types | Optional |
 | ------------- |-------------| ------------- | ------------------- | -------- |
+| GLOBAL or LOCAL      | Whether the stream is globally or locally replicated. Default is `LOCAL`. |
 | stream.list | The list of streams the sources will consume events. | -    | STRING        | No                  |
 | replication.type | Specifies if the replication type of the streams. Possible values can be `LOCAL` and `GLOBAL`.      | LOCAL         | STRING         | Yes      |
 | subscription.initial.position | Subscription's initial position in the stream. Possible values: [Earliest,Latest]. | Latest | STRING | Yes|
