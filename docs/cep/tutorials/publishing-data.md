@@ -130,20 +130,20 @@ Stream processor publishes events in default format when it does not make any ch
 3. Save the stream application. If you save the stream application that was created using the example configurations, 
 the completed stream application is as follows.
 
-    ```sql
-    @App:name("SalesTotalsApp")
-    @App:description("Description of the plan")
-    @App:qlVersion("2")
-    
-	CREATE SOURCE ConsumerSalesTotalsStream WITH (type='database', collection.name='SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
-    
-	CREATE SINK PublishSalesTotalsStream WITH (type='stream', stream.list='Sales Totals', map.type=text) (transNo int, product string, price int, quantity int, salesValue long);
-    
-    select transNo, product, price, quantity, salesValue
-    from ConsumerSalesTotalsStream
-    group by product
-    insert into PublishSalesTotalsStream;
-    ```
+```sql
+@App:name("SalesTotalsApp")
+@App:description("Description of the plan")
+@App:qlVersion("2")
+
+CREATE SOURCE ConsumerSalesTotalsStream WITH (type='database', collection.name='SalesTotalsEP', map.type='json') (transNo int, product string, price int, quantity int, salesValue long);
+
+CREATE SINK PublishSalesTotalsStream WITH (type='stream', stream.list='Sales Totals', map.type=text) (transNo int, product string, price int, quantity int, salesValue long);
+
+select transNo, product, price, quantity, salesValue
+from ConsumerSalesTotalsStream
+group by product
+insert into PublishSalesTotalsStream;
+```
 
 ### Publishing data in custom format
 

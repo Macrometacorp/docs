@@ -23,12 +23,12 @@ CREATE SINK HighTempAlertStream WITH (type = 'log') (roomNo int, initialTemp dou
 
 @info(name='temperature-increase-identifier')
 -- Identify if the temperature of a room increases by 5 degrees within 10 min.
-insert into HighTempAlertStream
-select e1.roomNo, e1.temp as initialTemp, e2.temp as finalTemp
-from every( e1 = TemperatureStream ) ->
+INSERT INTO HighTempAlertStream
+SELECT e1.roomNo, e1.temp AS initialTemp, e2.temp AS finalTemp
+FROM every( e1 = TemperatureStream ) ->
     e2 = TemperatureStream[ e1.roomNo == roomNo
-        and (e1.temp + 5) <= temp ]
-    within 10 min;
+        AND (e1.temp + 5) <= temp ]
+    WITHIN 10 min;
 ```
 
 ### Simple Pattern Input
@@ -70,9 +70,9 @@ CREATE SINK TemperatureDiffStream WITH (type = 'log') (roomNo int, tempDiff doub
 
 -- Calculates the temperature difference between two regulator events. Here, when at least one TemperatureStream event needs to arrive between two RegulatorStream events.
 -- Finds the temperature difference between the first and last temperature event.
-insert into TemperatureDiffStream
-select e1.roomNo, e2[0].temp - e2[last].temp as tempDiff
-from every( e1 = RegulatorStream)
+INSERT INTO TemperatureDiffStream
+SELECT e1.roomNo, e2[0].temp - e2[last].temp AS tempDiff
+FROM every( e1 = RegulatorStream)
     -> e2 = TemperatureStream[e1.roomNo == roomNo] < 1: >
     -> e3 = RegulatorStream[e1.roomNo == roomNo];
 ```
@@ -119,16 +119,16 @@ CREATE SINK RegulatorActionStream WITH (type='log') (roomNo int, action string);
 
 
 -- Sends a stop action on RegulatorActionStream stream, if a removed action is triggered in RoomKeyStream before the regulator state changing to off which is notified in RegulatorStateChangeStream.
-insert into RegulatorActionStream
-select e1.roomNo,
+INSERT INTO RegulatorActionStream
+SELECT e1.roomNo,
 -- Checks whether pattern triggered due to removal of room key.
-    ifThenElse( e2 is null, 'none', 'stop' ) as action
-from every e1=RegulatorStateChangeStream[ action == 'on' ]
+    ifThenElse( e2 is null, 'none', 'stop' ) AS action
+FROM every e1=RegulatorStateChangeStream[ action == 'on' ]
      -> e2=RoomKeyStream
-            [ e1.roomNo == roomNo and action == 'removed' ]
-        or e3=RegulatorStateChangeStream
-            [ e1.roomNo == roomNo and action == 'off']
-having action != 'none'            ;
+            [ e1.roomNo == roomNo AND action == 'removed' ]
+        OR e3=RegulatorStateChangeStream
+            [ e1.roomNo == roomNo AND action == 'off']
+HAVING action != 'none'            ;
 ```
 
 ### Logical Pattern Input
@@ -169,10 +169,10 @@ CREATE SINK RoomTemperatureAlertStream WITH (type='log') (roomNo int);
 
 
 -- Alerts if no temperature event having a temperature less than what is set in regulator arrives within 5 minutes after switching on the regulator.
-insert into RoomTemperatureAlertStream
-select e1.roomNo as roomNo
-from e1=RegulatorStateChangeStream[action == 'on']
-     -> not TemperatureStream[e1.roomNo == roomNo and
+INSERT INTO RoomTemperatureAlertStream
+SELECT e1.roomNo AS roomNo
+FROM e1=RegulatorStateChangeStream[action == 'on']
+     -> NOT TemperatureStream[e1.roomNo == roomNo AND
         temp <= e1.tempSet] for 30 sec;
 ```
 
@@ -209,12 +209,12 @@ partition with (symbol of StockRateStream)
 begin
 
 -- Identifies the peak stock price (top rate of the stock price trend)
-    insert into PeakStockRateStream
-    select e1.symbol, e2.price as rateAtPeak
-    from every e1=StockRateStream,
+    INSERT INTO PeakStockRateStream
+    SELECT e1.symbol, e2.price AS rateAtPeak
+    FROM every e1=StockRateStream,
     	e2=StockRateStream[e1.price < price],
     	e3=StockRateStream[e2.price > price]
-        within 10 min;
+        WITHIN 10 min;
 end;
 ```
 
@@ -254,13 +254,13 @@ partition with (roomNo of TemperatureStream)
 begin
 
     @info(name = 'temperature-trend-analyzer')
-    insert into PeakTemperatureStream 
+    INSERT INTO PeakTemperatureStream 
 -- Projects the lowest, highest and the first drop in the temperature trend
-    select e1.roomNo, e1.temp as initialTemp,
-        e2[last].temp as peakTemp, e3.temp as firstDropTemp
+    SELECT e1.roomNo, e1.temp AS initialTemp,
+        e2[last].temp AS peakTemp, e3.temp AS firstDropTemp
 
 -- Identifies the trend of the temperature in a room
-    from every e1=TemperatureStream,
+    FROM every e1=TemperatureStream,
          e2=TemperatureStream[ifThenElse(e2[last].temp is null,
                 e1.temp <= temp, e2[last].temp <= temp)]+,
          e3=TemperatureStream[e2[last].temp > temp];
@@ -310,10 +310,10 @@ CREATE SINK StateNotificationStream WITH (type='log') (deviceID long, tempSensor
 
 
 -- Identifies a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.
-insert into StateNotificationStream
-select e1.deviceID, e2.isActive as tempSensorActive,
-    e3.isActive as humidSensorActive
-from every e1=RegulatorStream[isOn == true],
+INSERT INTO StateNotificationStream
+SELECT e1.deviceID, e2.isActive AS tempSensorActive,
+    e3.isActive AS humidSensorActive
+FROM every e1=RegulatorStream[isOn == true],
     e2=TempSensorStream and e3=HumidSensorStream;
 ```
 

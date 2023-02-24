@@ -35,16 +35,9 @@ The attribute names in the double curly braces are replaced with the values from
 
 ## Sink Types
 
-The `type` parameter of the `sink.type` annotation defines the sink type that publishes the events. The other parameters of the `sink.type` annotation depends upon the selected sink type, and here some of its parameters can be optional and/or dynamic.
+The `type` parameter of the `sink.type` annotation defines the sink type that publishes the events. The other parameters of the `sink.type` annotation depends upon the selected sink type, and here some of its parameters can be optional and dynamic.
 
-The following is a list of some of the sink types supported by stream workers:
-
-|Source type | Description|
-| ------------- |-------------|
-| [database](../query-guide/table-collection.md) | Allow the stream worker to publish events to collections (doc, graphs) in the same or different geofabric. |
-| [Kafka](sink-types/kafka.md) | Publish events to Kafka topic. |
-| [stream](sink-types/stream-sink.md) | Publish events to a stream. |
-| [TCP](sink-types/tcp.md) | Publish events to a TCP service. |
+For a full list of sink types supported by Macrometa stream workers, refer to [Sink Types](sink-types/index.md) and to [Tables](../table/).
 
 ## Sink Mappers
 

@@ -1,9 +1,9 @@
 ---
-sidebar_position: 30
-title: Operators on Named Windows
+sidebar_position: 40
+title: Operators for Named Windows
 ---
 
-The following operators can be performed on named windows.
+The following operators can be used on named windows. For more information about querying windows, refer to [Window Queries](../query-guide/windows-queries.md).
 
 ## INSERT
 
@@ -37,7 +37,7 @@ FROM TempStream;
 To allow a stream to retrieve information from a window based on a condition.
 
 :::note
-A join can also be performed with two [streams](../../streams/index.md), [aggregation](../aggregations/index.md), or with [tables (collections)](../query-guide/table-collection.md).
+A join can also be performed with two [streams](../../streams/index.md), [aggregation](../aggregations/index.md), or with [tables (collections)](../table/index.md).
 :::
 
 ### JOIN Syntax
