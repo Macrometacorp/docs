@@ -32,7 +32,7 @@ You can process streams to perform the following actions with your data:
 - Extract, transform, and load (ETL) collections, tailing files, and scraping HTTP endpoints.
 - Integrating stream data and trigger actions based on the data. This can be a single service request or a complex enterprise integration flow.
 - Consume and publish events.
-- Run pre-made and custom [functions](query-guide/functions/index.md).
+- Run pre-made and custom [functions](query-guide/functions/).
 - Write custom [JavaScript functions](query-guide/custom-script-functions.md) to interact with your streams.
 - Query, modify, and join the data stored in [tables](table/index.md) which support primary key constraints and indexing.
 - Rule processing based on single event using [`filter`](query-guide/query.md#filter) operator, `if-then-else` and `match` [functions](query-guide/query.md#function), and many others.
