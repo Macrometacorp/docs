@@ -36,7 +36,7 @@ The following properties can be configured in an index definition. Available pro
 
 | Property | Description |
 | --------- | ----------- |
-| type          | Index type. This field is required. Options are: [fulltext](../../collections/indexing/fulltext-indexes), [geo](../../collections/indexing/geo-indexes), [hash](../../collections/indexing/index#hash-index), [persistent](../../collections/indexing/persistent-indexes), [skiplist](../../collections/indexing/index#skiplist-index), [ttl](../../collections/indexing/ttl-indexes).            |
+| type          | Index type. This field is required. Options are: [fulltext](../../collections/indexing/fulltext-indexes), [geo](../../collections/indexing/geo-indexes), [hash](../../collections/indexing/index.md#hash-index), [persistent](../../collections/indexing/persistent-indexes), [skiplist](../../collections/indexing/index.md#skiplist-index), [ttl](../../collections/indexing/ttl-indexes).            |
 
 ### Fulltext Index Properties
 
@@ -70,7 +70,7 @@ CREATE INDEX SampleGeoIndex ON TABLE SampleGDNTable WITH(type="geo", geoJson="fa
 
 ### Hash Index Properties
 
-The following properties apply to [hash indexes](../../collections/indexing/index#hash-index). They are all optional.
+The following properties apply to [hash indexes](../../collections/indexing/index.md#hash-index). They are all optional.
 
 | Property    | Description                                                | Default Value |
 | ----------- | ---------------------------------------------------------- | ------------- |
@@ -104,7 +104,7 @@ CREATE UNIQUE INDEX SamplePersistentIndex ON TABLE SampleGDNTable WITH(type="per
 
 ### Skiplist Index Properties
 
-The following properties apply to [skiplist indexes](../../collections/indexing/index#skiplist-index). They are all optional.
+The following properties apply to [skiplist indexes](../../collections/indexing/index.md#skiplist-index). They are all optional.
 
 | Property    | Description                                                | Default Value |
 | ----------- | ---------------------------------------------------------- | ------------- |
