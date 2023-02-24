@@ -13,15 +13,13 @@ For more information about indexing tables (collections), refer to [Indexing](..
 
 ## Syntax
 
-There are two ways to create an index.
-
-### CREATE INDEX
-
 You can use the `CREATE INDEX` command on a Macrometa table (collection) that your stream worker uses as a source or store:
 
 ```sql
 CREATE (UNIQUE)? INDEX index-name ON TABLE table-name [WITH (type="<type>", optional properties...)] (fields_to_index...)
 ```
+
+## Parameters
 
 The following parameters are configured in an index definition:
 
@@ -31,24 +29,6 @@ The following parameters are configured in an index definition:
 | index-name      | Name for the index.                                       |
 | table-name      | Name of the table to create indexes.                      |
 | fields_to_index | Comma separated list of 1:* index fields without types (i.e id, name). |
-
-### CREATE SOURCE with an Index
-
-You can incorporate it into a source definition for a `database` (Macrometa collection) source. For more information about source definitions, refer to [Sources](../source/index.md).
-
-```sql
-CREATE SOURCE <source_name> WITH (type="database", collection="<collection>", PrimaryKey="<primary-key-field>", Index="<index-name-1>", Index="<index-name-2>"...) (<attribute_name> <attribute_type>, <attribute_name> <attribute_type>...);
-```
-
-| Parameter           | Description                 |
-|---------------------|---------------------------------|
-| source_name         | The name of the source to be created.               |
-| type                | The type of the source (e.g. 'database', 'kafka', 's3', etc.). In this case, it must be `database`        |
-| collection          | The name of the collection or table containing the source data.              |
-| PrimaryKey          | The name of the primary key field for the source.          |
-| Index               | One or more comma-separated index names to be created for the source.            |
-| attribute_name          | The name of the field to be included in the source.            |
-| attribute_type     | The data type of the field, specified as a string (e.g. 'string', 'integer', 'float', etc.).  |
 
 ## Properties
 
@@ -154,7 +134,7 @@ Example:
 CREATE INDEX SampleTTLIndex ON TABLE SampleGDNTable WITH(type="ttl", expireAfter="3600") (sensorId);
 ```
 
-## Example 1
+## Example
 
 ```sql
 CREATE TABLE SampleGDNTable (sensorId string, temperature double);
@@ -162,13 +142,3 @@ CREATE UNIQUE INDEX SamplePersistentIndex ON TABLE SampleGDNTable WITH(type="per
 ```
 
 This example creates a table named `SampleGDNTable` with two fields: `sensorId` of type `string` and `temperature` of type `double`. The second statement creates a unique, persistent index named `SamplePersistentIndex` on the `SampleGDNTable` table with `sensorId` as the field to index.
-
-## Example 2
-
-```sql
-CREATE SOURCE StockTable WITH (type='database',collection='StockTable',PrimaryKey='symbol', Index='key1', Index='key2') (symbol string, price float, volume long);
-```
-
-This example creates a source named `StockTable` of type `'database'` and connects to a collection with the same name. The `PrimaryKey` parameter specifies the primary key field for the source, which is symbol in this case. The `Index` parameters specify one or more index names to be created for the source. In this example, the indexes `key1` and `key2` are created for the source.
-
-After the index parameters, you can include a list of fields for the source, each followed by its data type. In this example, the source has three fields: `symbol` of type `string`, `price` of type `float`, and `volume` of type `long`.
