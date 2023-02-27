@@ -1,5 +1,6 @@
 ---
-title: Stream Source
+title: CREATE STREAM as Source
+sidebar_position: 40
 ---
 
 A stream is a logical series of events ordered in time. Its schema is defined via the _stream definition_. A stream definition contains the stream name and a set of attributes with specific types and uniquely identifiable names within the stream. All events associated to the stream will have the same schema (i.e., have the same attributes in the same order).
