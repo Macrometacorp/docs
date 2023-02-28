@@ -1,5 +1,5 @@
 ---
-title: Query Worker as Source
+title: Query Worker Source
 sidebar_position: 50
 ---
 
