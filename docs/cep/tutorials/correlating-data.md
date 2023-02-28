@@ -23,7 +23,7 @@ wants to check the frequency with which a specific product needs to be repaired 
 If a specific product is brought back for repairs within two months more than five times, the manager of purchases needs
 to be notified via a mail. To do this, create a Stream application as follows.
 
-1. Start creating a new stream application and add the QL version. You can name it `DefectDetectionApp`. For instructions, see [Creating a Stream Application](create-stream-worker.md).
+1. Start creating a new stream application and add the QL version. You can name it `DefectDetectionApp`.
 
     ```sql
     @App:name("DefectDetectionApp")
@@ -103,7 +103,7 @@ To understand how to combine several patterns logically and match events, consid
 needs to observe the factory output, identify any production decreases and check whether those decreases have reached
 maximum threshold which requires him to take action. To do this, you can create a Stream application as follows:
 
-1. Start creating a new stream application and add the QL version. You can name it `ProductionDecreaseDetectionApp` For instructions, see [Creating a Stream Application](create-stream-worker.md).
+1. Start creating a new stream application and add the QL version. You can name it `ProductionDecreaseDetectionApp`.
 
     ```sql
     @App:name("ProductionDecreaseDetectionApp")
@@ -176,7 +176,7 @@ from every (e1=ProductionStream) -> e2=ProductionStream[e1.productName == e2.pro
 
 This section explains how to analyze data by observing scenarios where events do not occur. To understand how this is done, consider a taxi service company that tracks the movements of the taxis it runs and wants to be notified of unexpected delays. Consider a specific scenario where the manager needs to contact SDK if the taxi has not reached either of two specified locations within 15 minutes. For this, you can create a stream application as follows:
 
-1. Start creating a new stream application and add the QL version. You can name it `DelayDetectionApp` For instructions, see [Creating a Stream Application](create-stream-worker.md).
+1. Start creating a new stream application and add the QL version. You can name it `DelayDetectionApp`.
 
     ```sql
     @App:name("DelayDetectionApp")
@@ -252,7 +252,7 @@ This section explains how you can use sequences to detect trends in events that 
 
 Counting and matching multiple events over a given period is done via sequences when you need to identify trends in events that occur in a specific order. To understand how this is done, consider a scenario where the temperature is read from a sensor and you need to identify the peaks in temperature. If an event (i.e., a single reading) is a peak, it should report a temperaature greater than that reported by the event that occured immediately before it as well as the event that occurred immediately after it. Therefore, to identify the peaks, follow the procedure below:
 
-1. Start creating a new stream application and add the QL version. You can name it `TemperaturePeaksApp` For instructions, see [Creating a Stream Application](create-stream-worker.md).
+1. Start creating a new stream application and add the QL version. You can name it `TemperaturePeaksApp`.
 
     ```sql
     @App:name("TemperaturePeaksApp")
@@ -395,11 +395,3 @@ Logical sequences are used to identify logical relationships between events that
     select e2.temp, e3.humid
     from every e1=RegulatorStream, e2=TempStream and e3=HumidStream;
     ```
-
-## Correlating two streams of data and unify
-
-For a detailed explanation, see [Enrich data by connecting with another stream of data](../enrich-data/enrich-data-with-stream.md).
-
-## Correlate a stream and a static data source to enrich
-
-For a detailed explanation, see [Enrich data by connecting with a data store](../enrich-data/enrich-data-external-services.md).
