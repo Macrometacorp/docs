@@ -71,3 +71,41 @@ CREATE SOURCE queryWorkerResponse WITH (type='query-worker', `sink.id`="queryWor
 ```
 
 This example creates a source based on an existing query worker called `queryWorkerResponse`. It maps the content to JSON format and sends it to the `queryWorkerReturn` sink.
+
+## Example 3
+
+```sql
+-- Creates the `queryWorker` query-worker sink with the given query.
+CREATE QUERY-WORKER queryWorker WITH (query='FOR i IN 1..3 return { value: i, time: @startTime } ') (startTime string);
+
+-- Sources to listen to query-worker responses.
+CREATE SOURCE queryWorkerResponse WITH (type='query-worker', `sink.id`="queryWorker", map.type="json") (value long, time string);
+CREATE SOURCE queryWorkerAsSelectResponse WITH (type='query-worker', `sink.id`="queryWorkerReturnAsSelect", map.type="json") (value long, time string);
+
+-- Define output stream
+CREATE SINK STREAM QWResponseStream(value long, time string);
+
+-- Define 10sec event trigger
+CREATE TRIGGER InitTrigger WITH (interval=10 sec);
+
+-- Create query-worker as select creates the `queryWorkerReturnAsSelect` query-worker and executes it every time when an event receives by the InitTrigger.
+CREATE QUERY-WORKER queryWorkerReturnAsSelect WITH (query='FOR i IN 4..6 return { value: i, time: @startTime } ') (startTime string)
+AS SELECT time:dateFormat(eventTimestamp(), 'yyyy/MM/dd HH:mm:ss') as startTime
+FROM InitTrigger;
+
+-- Executes `queryWorker` when an event receives by the InitTrigger.
+INSERT INTO queryWorker
+SELECT time:dateFormat(eventTimestamp(), 'yyyy/MM/dd HH:mm:ss') as startTime
+FROM InitTrigger;
+
+-- Emits events received by queryWorkerResponse and queryWorkerAsSelectResponse sources into the QWResponseStream.
+INSERT INTO QWResponseStream
+SELECT *
+FROM queryWorkerResponse;
+
+INSERT INTO QWResponseStream
+SELECT *
+FROM queryWorkerAsSelectResponse;
+```
+
+This example is identical to **Sample-Query-Worker-Create** in the Stream Workers Samples tab.
