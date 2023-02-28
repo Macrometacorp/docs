@@ -22,7 +22,7 @@ The high-level syntax of stream worker is as follows:
 There are four elements required in a stream worker. For more information about stream worker elements, refer to [Stream Worker Elements](stream-worker-elements).
 
 - _Metadata_ to provide information like the stream worker name.
-- At least one [source](../source/) of incoming events, such as a [stream](../source/source-types/stream-source), [kafka](../source/source-types/kafka), or [http](../source/source-types/http).
+- At least one [source](../source/) of incoming events, such as a [stream](../source/stream-source), [kafka](../source/source-types/kafka), or [http](../source/source-types/http).
 - At least one [sink](../sink/) to receive processed data, such as a [stream](../sink/sink-types/stream-sink), [http](../sink/sink-types/http), or [s3](../sink/sink-types/s3).
 - At least one query to process incoming events. For more information about queries, refer to [Stream Worker Queries](../query-guide/).
 

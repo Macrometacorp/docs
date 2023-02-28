@@ -17,7 +17,7 @@ You can speed up reference time by creating one or more [Table Indexes](table-in
 
 ## Syntax
 
-There are two ways to define tables.
+There are several ways to define tables.
 
 ### CREATE TABLE
 
@@ -31,6 +31,19 @@ For example, this statement creates a global collection:
 
 ```sql
 CREATE TABLE SensorTable (sensorId string, temperature double);
+```
+
+### CREATE TABLE AS SELECT
+
+The `CREATE TABLE AS SELECT` statement creates a new table by selecting data from an existing stream and applying filters or transformations. The new table can be used for persistent storage, querying, and analysis.
+
+The syntax for `CREATE TABLE AS SELECT` is as follows:
+
+```sql
+CREATE TABLE <table_name> (<attribute_name> <attribute_type>, ...)
+[WITH ( property_name = expression [, ...] )]
+  AS SELECT  select_expr [, ...]
+FROM from_stream … ;
 ```
 
 ### CREATE STORE
@@ -59,8 +72,11 @@ The following parameters are configured in a table definition:
 | attribute type   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
 | from        | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.      | _from         | STRING              | Yes      |
 | to          | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a destination node of the edge. | _to      | STRING              | Yes      |
+| [WITH (property_name = expression [, ...])] | Optional properties for the new table, such as a time-to-live or a partition key. |
+| SELECT select_expr [, ...] | The selection criteria for the new table. |
+| FROM from_stream … | The name of the existing stream to select data from. |
 
-## Examples
+## Example 1
 
 The following defines a local table named `RoomTypeTable` with `roomNo` and `type` attributes of data types `int` and `string` respectively.
 
@@ -68,8 +84,20 @@ The following defines a local table named `RoomTypeTable` with `roomNo` and `typ
 CREATE TABLE RoomTypeTable (roomNo int, type string);
 ```
 
+## Example 2
+
 The following defines a global table named `SweetProductionCollection` with `name` and `amount` attributes of data types `string` and `double`.
 
 ```sql
 CREATE TABLE GLOBAL SweetProductionCollection (name string, amount double);
 ```
+
+## Example 3
+
+```sql
+CREATE TABLE StockTable (symbol string, price float, volume long)
+AS SELECT symbol, price, volume
+FROM InputStream[price > 500] WINDOW SLIDING_LENGTH(1);
+```
+
+In this example, `StockTable` is created with three attributes: `symbol`, `price`, and `volume`. The new table is created by selecting data from `InputStream`, where the price is greater than 500, and applying a [SLIDING_LENGTH window](../windows/window-types/sliding-length) with a length of 1. The resulting table will contain only those tuples from `InputStream` where the price is greater than 500, and will have the attributes `symbol`, `price`, and `volume`.

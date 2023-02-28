@@ -1,5 +1,6 @@
 ---
-title: Stream Source
+title: CREATE STREAM as Source
+sidebar_position: 40
 ---
 
 A stream is a logical series of events ordered in time. Its schema is defined via the _stream definition_. A stream definition contains the stream name and a set of attributes with specific types and uniquely identifiable names within the stream. All events associated to the stream will have the same schema (i.e., have the same attributes in the same order).
@@ -8,7 +9,11 @@ The stream processor groups common types of events together with a schema. This 
 
 ## Syntax
 
-By default, all streams created by stream workers are sources. The syntax for defining a new stream in a stream worker is:
+By default, all streams created by stream workers are sources.
+
+### CREATE STREAM
+
+The syntax for defining a new stream in a stream worker is:
 
 ```sql
    CREATE SOURCE (GLOBAL|LOCAL)? SinkName WITH (
@@ -54,10 +59,13 @@ The following parameters are used to configure a stream definition.
 | num.listener.threads | The number of listener threads. | 1 | INT | Yes |
 | num.io.threads | The number of listener threads. | 1 | INT | Yes |
 | receiver.queue.size | The number of messages accumulated by a consumer before an application calls. | 1000 | INT | Yes |
+| [WITH (property_name = expression [, ...])] | Optional properties for the new stream, such as a time-to-live or a partition key. |
+| SELECT select_expr [, ...] | The selection criteria for the new stream. |
+| FROM from_stream … | The name of the existing stream to select data from. This can include a window or aggregation. |
 
 To use and refer stream and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format, enclose them in ``` ` ```. For example: ``` `$test(0)` ```
 
-## Example
+## Example 1
 
 This example creates a stream called `TempStream` with the following attributes:
 
@@ -65,6 +73,12 @@ This example creates a stream called `TempStream` with the following attributes:
 - `roomNo` of type `int`
 - `temp` of type `double`
 
+## Example 2
+
 ```sql
-CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
+CREATE STREAM StockStream (symbol string, price float, volume long)
+AS SELECT symbol, price, volume
+FROM InputStream[price > 500] WINDOW SLIDING_LENGTH(1);
 ```
+
+In this example, `StockStream` is created with three attributes: `symbol`, `price`, and `volume`. The new stream is created by selecting data from `InputStream`, where the price is greater than 500, and applying a [SLIDING_LENGTH window](../windows/window-types/sliding-length) with a length of 1. The resulting stream will contain only those tuples from `InputStream` where the price is greater than 500, and will have the attributes `symbol`, `price`, and `volume`.
