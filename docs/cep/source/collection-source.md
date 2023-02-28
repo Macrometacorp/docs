@@ -7,6 +7,10 @@ You can create collections with your stream worker, and store incoming data in i
 
 This page explains how to use collections as sources. For information about using collections as stores, refer to [Tables (Collections)](../table/).
 
+:::note
+If you want to use an existing Macrometa collection as a source, then you still need to define it in the stream worker and you must enable streaming on the collection.
+:::
+
 ## Syntax
 
 ```sql
