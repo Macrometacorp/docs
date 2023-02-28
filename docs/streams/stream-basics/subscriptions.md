@@ -24,7 +24,7 @@ In the diagram below, only Consumer-A is allowed to consume messages.
 
 ## Shared
 
-In shared mode (also referred to as _round robin_), messages are distributed across consumers so that any given message is delivered to only one consumer.
+In shared mode, also referred to as _round robin_, messages are distributed across consumers so that any given message is delivered to only one consumer.
 
 When a consumer disconnects, all of its unacknowledged messages reschedule to be sent to the remaining consumers.
 
