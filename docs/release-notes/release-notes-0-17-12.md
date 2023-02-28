@@ -68,7 +68,7 @@ The following parameters were added to stream source:
 - num.io.threads
 - receiver.queue.size
 
-[Stream Source](../cep/source/source-types/stream-source.md) was updated as a result of this change.
+[Stream Source](../cep/source/stream-source.md) was updated as a result of this change.
 
 The following parameters were added to stream sink:
 
