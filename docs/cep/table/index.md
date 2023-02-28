@@ -35,7 +35,7 @@ CREATE TABLE SensorTable (sensorId string, temperature double);
 
 ### CREATE TABLE AS SELECT
 
-The `CREATE TABLE AS SELECT` statement creates a new table by selecting data from an existing stream and applying filters or transformations. The new table can be used for persistent storage, querying, or analysis.
+The `CREATE TABLE AS SELECT` statement creates a new table by selecting data from an existing stream and applying filters or transformations. The new table can be used for persistent storage, querying, and analysis.
 
 The syntax for `CREATE TABLE AS SELECT` is as follows:
 
