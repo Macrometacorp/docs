@@ -44,6 +44,12 @@ The following parameters are used to configure a stream definition.
 | `FROM <input>`        | Defines the means of event consumption via streams, named windows, tables, and/or named-aggregations, and defines the processing logic. |
 | `grouping clauses` | `GROUP BY` functions to group and organize output. For more information, refer to [GROUP BY](group-by).  |
 
+## Query Output
+
+Order of queries based on their output can drastically affect how your stream worker behaves.
+
+In general, have queries that insert data into windows or aggregations before queries that insert data into tables.
+
 ## Query Projections
 
 Query projection allow you to filter and transform streaming data by choosing which fields or attributes of a data stream you want to include or exclude in query results. By selecting only the necessary fields and performing any necessary calculations or aggregations, query projection can help to reduce the amount of data that needs to be processed and improve the overall performance of streaming applications.
