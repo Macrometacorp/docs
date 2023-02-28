@@ -23,7 +23,7 @@ wants to check the frequency with which a specific product needs to be repaired 
 If a specific product is brought back for repairs within two months more than five times, the manager of purchases needs
 to be notified via a mail. To do this, create a Stream application as follows.
 
-1. Start creating a new stream application and add the QL version. You can name it `DefectDetectionApp`. For instructions, see [Creating a Stream Application](create-stream-worker.md).
+1. Start creating a new stream application and add the QL version. You can name it `DefectDetectionApp`.
 
     ```sql
     @App:name("DefectDetectionApp")
