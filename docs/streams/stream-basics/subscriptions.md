@@ -14,9 +14,9 @@ To configure a subscription:
 
 Refer to the following sections for code examples for each subscription type:
 
-- [Exclusive subscription](/exclusive-example.md)
-- [Shared subscription](/shared-example.md)
-- [Failover subscription](/failover-example.md)
+- [Exclusive subscription](exclusive-example.md)
+- [Shared subscription](shared-example.md)
+- [Failover subscription](failover-example.md)
 
 ## Exclusive
 
