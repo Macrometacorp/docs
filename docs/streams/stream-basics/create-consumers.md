@@ -80,7 +80,7 @@ main();
 ```
 </TabItem>
 
-<TabItem value="python" label="Python">
+<TabItem value="python" label="Python SDK">
 
 ```python
 import base64
