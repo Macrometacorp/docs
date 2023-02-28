@@ -17,7 +17,7 @@ A _stream_ is a logical series of events ordered in time with a uniquely identif
 
 For more information about streams in general, refer to [Streams](../../streams/).
 
-For more information about using streams in stream workers, refer to [Stream Source](../source/source-types/stream-source) and [Stream Sink](../sink/sink-types/stream-sink).
+For more information about using streams in stream workers, refer to [Create Stream as Source](../source/stream-source) and [Stream Sink](../sink/sink-types/stream-sink).
 
 ## Metadata (Required)
 
