@@ -120,7 +120,7 @@ For more information, refer to [HAVING | WHERE](having-where.md).
 
 ### Use Expressions
 
-This uses attributes with mathematical and logical expressions in the precedence order given below, and assigns them to the output attribute using `AS`.
+You can use attributes with mathematical and logical expressions in the precedence order given below, and assigns them to the output attribute using `AS`.
 
 #### Expression Example
 
