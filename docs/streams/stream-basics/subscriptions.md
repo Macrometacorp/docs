@@ -12,7 +12,11 @@ To configure a subscription:
 1. Create a [producer](producers.md).
 1. Create at least two [consumers](consumers.md) with the same subscription name. For example, `consumer-subscription`.
 
-To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
+Refer to the following sections for code examples for each subscription type:
+
+- [Exclusive subscription](/exclusive-example.md)
+- [Shared subscription](/shared-example.md)
+- [Failover subscription](/failover-example.md)
 
 ## Exclusive
 

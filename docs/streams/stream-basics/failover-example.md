@@ -1,41 +1,26 @@
 ---
-sidebar_position: 20
-title: Exclusive Code Example
+sidebar_position: 230
+title: Failover Subscription Example
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
 
-## Exclusive
+This page describes how to configure a failover subscription for two or more streams. Refer to the [failover subscription](/subscriptions.md#failover) section for details and limitations.
 
-When setting up consumers _exclusive_ mode is the default mode. Only a single consumer is allowed to attach to the subscription. If more than one consumer attempts to subscribe to a stream using the **same subscription**, then the consumer receives an error.
+To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
 
-# Prerequisites
-1. You should have Macrometa account. If you don't have one it is possible to create free account - [create a free developer account](https://auth-play.macrometa.io/sign-up).
-2. You should have _Node.js_ >= v14 installed.
+The consumers must have the same consumer name.
 
-## How to use code examples
+<Prerequisites />
 
-The best way to test various stream functionality is to create one producer and two consumers. (There can be more consumers but two is enough to test how messages are distributed between consumers). First step would be to create `producer.js` file and copy code shown in [code example for producer](#code-example-for-producer). After that we can create two consumers in the similar manner, in new file `consumer-1` copy [code example for consumer 1](#code-example-for-consumer-1) and in second new file `consumer-2` copy [code example for consumer 2](#code-example-for-consumer-2).
+## Producer Example
 
-To test the code open three terminals simultaneously and run producer file `producer.js` in one of them with `node producer.js`. After that run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal.
-If there is no error you should see messages in both consumers.
+This code creates a stream if one doesn't already exist, then creates a producer.
 
-:::note
-You can run the code examples in any order but keep in mind that if you run `producer.js` code first it will instantly generate data (endless stream of data). If none of the consumers are running those first messages will not be picked up.
-:::
-
-
-## Code example for producer
-
-<Tabs groupId="operating-systems">
-<TabItem value="js" label=" JavaScript">
-
-- Step 1. [Install the SDK](../../../sdks/install-sdks.md).
-- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
-- Step 3. Create an instance of the jsC8.
-- Step 4. Request `stream` object.
-- Step 5. Request One Time Password and create producer.
+<Tabs groupId="modify-single">
+<TabItem value="javascript" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -102,17 +87,8 @@ async function producer() {
 
 producer();
 ```
-
 </TabItem>
-
-<TabItem value="py" label="Python">
-
-- Step 1. [Install the SDK](../../../sdks/install-sdks.md).
-- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
-- Step 3. Create an instance of the C8Client.
-- Step 4. Request `stream` object.
-- Step 5. Request One Time Password and create producer.
-
+<TabItem value="py" label="Python SDK">
 
 ```python
 import os
@@ -161,20 +137,15 @@ def create_producer():
 
 create_producer()
 ```
-
 </TabItem>
 </Tabs>
 
-## Code example for consumer 1
+## Consumer 1 Example
+
+This code creates a stream if one doesn't already exist, then creates the first consumer.
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label=" JavaScript">
-
-- Step 1. [Install the SDK](../../../sdks/install-sdks.md).
-- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
-- Step 3. Create an instance of the jsC8.
-- Step 4. Request `stream` object.
-- Step 5. Request One Time Password and create consumer.
+<TabItem value="javascript" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -214,7 +185,8 @@ async function consumer() {
     const consumerOTP = await stream.getOtp();
     // Create consumer
     const consumer = await stream.consumer(subscriptionName, BASE_URL.replace("https://",""), {
-      otp: consumerOTP
+      otp: consumerOTP,
+      subscriptionType: "Failover"
     });
     // Run consumer - open connection to server
     consumer.on("message", (msg) => {
@@ -234,12 +206,6 @@ consumer();
 </TabItem>
 <TabItem value="python" label="Python SDK">
 
-- Step 1. [Install the SDK](../../../sdks/install-sdks.md).
-- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
-- Step 3. Create an instance of the C8Client.
-- Step 4. Request `stream` object.
-- Step 5. Request One Time Password and create producer.
-
 ```python
 import base64
 import json
@@ -266,8 +232,9 @@ def create_consumer():
     consumer = client.subscribe(
         stream_name,
         local=False,
-        subscription_name="consumer_subscription"
-        )
+        subscription_name="consumer_subscription",
+        consumer_type="Failover"
+    )
     while True:
         message = json.loads(consumer.recv())
         decoded_message = base64.b64decode(message['payload']).decode('utf-8')
@@ -281,20 +248,12 @@ create_consumer()
 </TabItem>
 </Tabs>
 
-:::note
-Keep in mind that both consumers need to have same subscription name. In both consumer code examples subscription name is `consumer-subscription`.
-:::
+## Consumer 2 Example
 
-## Code example for consumer 2
+This code creates a stream if one doesn't already exist, then creates the second consumer.
 
 <Tabs groupId="modify-single">
-<TabItem value="javascript" label=" JavaScript">
-
-- Step 1. [Install the SDK](../../../sdks/install-sdks.md).
-- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
-- Step 3. Create an instance of the jsC8.
-- Step 4. Request `stream` object.
-- Step 5. Request One Time Password and create consumer.
+<TabItem value="javascript" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -334,7 +293,8 @@ async function consumer() {
     const consumerOTP = await stream.getOtp();
     // Create consumer
     const consumer = await stream.consumer(subscriptionName, BASE_URL.replace("https://",""), {
-      otp: consumerOTP
+      otp: consumerOTP,
+      subscriptionType: "Failover"
     });
     // Run consumer - open connection to server
     consumer.on("message", (msg) => {
@@ -352,13 +312,7 @@ async function consumer() {
 consumer();
 ```
 </TabItem>
-<TabItem value="python" label="Python">
-
-- Step 1. [Install the SDK](../../../sdks/install-sdks.md).
-- Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
-- Step 3. Create an instance of the C8Client.
-- Step 4. Request `stream` object.
-- Step 5. Request One Time Password and create producer.
+<TabItem value="python" label="Python SDK">
 
 ```python
 import base64
@@ -386,8 +340,9 @@ def create_consumer():
     consumer = client.subscribe(
         stream_name,
         local=False,
-        subscription_name="consumer_subscription"
-        )
+        subscription_name="consumer_subscription",
+        consumer_type="Failover"
+    )
     while True:
         message = json.loads(consumer.recv())
         decoded_message = base64.b64decode(message['payload']).decode('utf-8')

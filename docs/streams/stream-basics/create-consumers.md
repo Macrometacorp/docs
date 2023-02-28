@@ -13,7 +13,7 @@ This page describes how to create a [consumer](consumers.md).
 
 ## Create Consumer Code
 
-When this code runs, it creates a new client, requests a stream object, and then creates a consumer.
+This code creates a new client, requests a stream object, and then creates a consumer.
 
 If you're using JavaScript, the code creates a `jsc8` client. If Python, it creates a `C8Client`
 
