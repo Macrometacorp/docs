@@ -16,16 +16,6 @@ To use a stream as a message queue:
 When you subscribe to a stream, use the following configuration settings depending on your SDK:
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python SDK">
-
-```py
-# Create subscriber
-subscriber = client.subscribe(
-    stream="quickStart", local=False, subscription_name="sub_1", consumer_type=CONSUMER_TYPES.SHARED, receiver_queue_size=1000
-)
-```
-</TabItem>
-
 <TabItem value="js" label="JavaScript SDK">
 
 ```js
@@ -34,6 +24,17 @@ stream.consumer("my-subscription", "test.macrometa.io", {
   subscriptionType: Shared,
   receiverQueueSize: 1000,
 }
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python SDK">
+
+```py
+# Create subscriber
+subscriber = client.subscribe(
+    stream="quickStart", local=False, subscription_name="sub_1", consumer_type=CONSUMER_TYPES.SHARED, receiver_queue_size=1000
+)
 ```
 
 </TabItem>
