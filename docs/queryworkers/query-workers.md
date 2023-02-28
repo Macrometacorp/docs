@@ -9,6 +9,8 @@ You can create and update query workers from the Macrometa web console, command 
 
 Each query worker functions as an endpoint. Query workers exist on the GeoFabric level along with other data like collections and documents.
 
+Query workers can be used as sources for [stream workers](../cep/). For more information, refer to [Query Worker as Source](../cep/source/query-worker-source).
+
 ## Create a New Query Worker
 
 When you save a query, it becomes a query worker.
