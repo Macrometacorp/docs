@@ -107,7 +107,7 @@ FROM InputStream;
 
 You can use the `WHERE` or `HAVING` clauses to filter the incoming data stream based on a specific field value.
 
-For example, to select only the customer data where the `age` field is greater than 30, you could use the following query:
+For example, to select only customer data where the `age` field is greater than 30, you could use the following query:
 
 ```sql
 INSERT INTO OutputStream
