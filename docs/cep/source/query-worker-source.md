@@ -34,7 +34,7 @@ FROM from_stream … ;
 You can also use general source syntax:
 
 ```sql
-CREATE SOURCE <source_name> WITH (type = 'query-worker', <static_key>='<value>', map.type='json') (<attribute1>='<attribute mapping>', <attribute2>='<attribute mapping>')
+CREATE SOURCE <source_name> WITH (type = 'query-worker', sink.id='<value>', map.type='json') (<attribute1>='<attribute mapping>', <attribute2>='<attribute mapping>')
 ```
 
 ## Parameters
@@ -42,10 +42,11 @@ CREATE SOURCE <source_name> WITH (type = 'query-worker', <static_key>='<value>',
 The following table shows the parameters for creating a query worker:
 
 | Parameter                   | Description                                              | Type   |
-| --------------------------- | -------------------------------------------------------- | ------ |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------- | ------ |
 | worker-name                 | Name of the query worker.                                | string |
 | parameters_for_query_worker | One or more parameter attributes for the query worker. This must be provided with the type (i.e `id int`). | string |
 | properties                  | Optional properties for the query worker.                | string |
+| sink.id                     | Identifier to correlate the `query-worker` source with its corresponding `query-worker` sink that published the messages.       |  string      |
 
 ## Properties
 
