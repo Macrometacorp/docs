@@ -15,10 +15,25 @@ For more information about metadata, refer to [Metadata](../metadata).
 
 ## 2. CREATE Statements
 
+Stream workers require the statements to create structures such as sources, windows, aggregations, and tables to be grouped together. The order of the creation statements is also important. If they are not in the correct order, then the stream worker will not behave as you intend.
 
+This order is required, but there might be more than one of each item.
+
+1. **Source.** This might be `CREATE SOURCE`, `CREATE TRIGGER`, or `CREATE STREAM`.
+2. **Intermediate structures.** This might be `CREATE WINDOW` or `CREATE AGGREGATION`.
+3. **Sink or store.** This might be `CREATE SINK` or `CREATE TABLE`.
+
+If the stream worker is particularly large, then you might have several entries of sources, structures, and sinks. In every case
 
 ## 3. Queries
 
+Queries are last in the stream worker order, after everything else is defined.
+
+For more about query syntax and order, refer to [Stream Worker Query](../query-guide/query).
+
+## Complex Stream Workers
+
+If the stream worker is particularly large, then you might have several entries of sources, structures, and sinks. In every case, best practice is to keep them in the defined order.
 
 ## Example
 
@@ -47,7 +62,7 @@ Testing the stream worker:
 
 */
 
--- CREATE statements
+-- CREATE statements, in the correct order
 CREATE SOURCE InboundTraffic WITH (type = 'database', collection = "InboundTrafficData", collection.type="doc" , replication.type="global", map.type='json') (ip string);
 
 CREATE TABLE SuspiciousIPTable (blocked_ip string);
