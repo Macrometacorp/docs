@@ -42,7 +42,7 @@ CREATE SOURCE <source_name> WITH (type = 'query-worker', sink.id='<value>', map.
 The following table shows the parameters for creating a query worker:
 
 | Parameter                   | Description                                              | Type   |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------- | ------ |
+| --------------------------- | -------------------------------------------------------- | ------ |
 | worker-name                 | Name of the query worker.                                | string |
 | parameters_for_query_worker | One or more parameter attributes for the query worker. This must be provided with the type (i.e `id int`). | string |
 | properties                  | Optional properties for the query worker.                | string |
