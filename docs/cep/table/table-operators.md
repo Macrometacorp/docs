@@ -57,7 +57,7 @@ FROM TempStream;
 This operator allows a stream to retrieve information from a table in a streaming manner.
 
 :::note
-Joins can also be performed with two [streams](../source/source-types/stream-source.md), [aggregations](../aggregations/index.md) or against externally [named windows](../windows/index.md).
+Joins can also be performed with two [streams](../source/stream-source.md), [aggregations](../aggregations/index.md) or against externally [named windows](../windows/index.md).
 :::
 
 ### JOIN Syntax
