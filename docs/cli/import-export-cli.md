@@ -17,16 +17,16 @@ gdnsl import COLLECTION-NAME [flags]
 ```bash
 
   # Import documents in the "addresses" collection
-  gdnsl import addresses --json "[{\"name\": \"John\"}, {\"lname\": \"Doe\"}]"
+  gdnsl import addresses --json "[{"name": "John"}, {"lname": "Doe"}]"
 
   # Import documents in the "addresses" collection with primaryKey as "name"
-  gdnsl import addresses --json "[{\"name\": \"John\"}, {\"lname\": \"Doe\"}]" --primary-key "name"
+  gdnsl import addresses --json "[{"name": "John"}, {"lname": "Doe"}]" --primary-key "name"
 
   # Import documents with existing document having same _key in the colletion, shall be replaced
-  gdnsl import addresses --json "[{\"name\": \"John\"}, {\"lname\": \"Doe\"}]" --replace
+  gdnsl import addresses --json "[{"name": "John"}, {"lname": "Doe"}]" --replace
 
   # Import documents with extra information for errors and unprocessed documents returned in the result
-  gdnsl import addresses --json "[{\"name\": \"John\"}, {\"lname\": \"Doe\"}]" --details
+  gdnsl import addresses --json "[{"name": "John"}, {"lname": "Doe"}]" --details
 
   # Import documents in the "addresses" collection
   gdnsl import addresses --csv "John,Doe\nJane,Doe" --columns "name,lname"
@@ -61,9 +61,9 @@ gdnsl import COLLECTION-NAME [flags]
 
   --columns                 String should be a comma separated list of column names.
 
-  --primary-key string      If specified, this attribure will be used as _key of the new document. It must follow the [naming conventions](../naming-conventions.md#document-keys). If document already contains _key then it will be renamed as old_key.
+  --primary-key string      If specified, this attribute will be used as _key of the new document. It must follow the [naming conventions](../naming-conventions.md#document-keys). If document already contains _key then it will be renamed as old_key.
 
-  --replace                 If true existing document having same _key in the colletion, shall be replaced.
+  --replace                 If true existing document having same _key in the collection, shall be replaced.
 
   --details                 If true extra information for errors and unprocessed documents will be returned in the result.
 
