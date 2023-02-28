@@ -70,4 +70,4 @@ When subscribing to multiple streams by regex, all streams must be in the same g
 
 When subscribing to multiple streams, the GDN stream client automatically calls the GDN API to discover and subscribe to any streams that match the regex pattern. The consumer also automatically subscribes to any future lists created with the regex pattern.
 
-When a consumer subscribes to multiple streams, all ordering guarantees normally provided by GDN on single stream do not hold. If your use case for GDN involves any strict ordering requirements, best practice is not to use multi-stream subscriptions.
+When a consumer subscribes to multiple streams, all ordering guarantees normally provided by GDN on single stream do not hold. If your use case for GDN involves any strict ordering requirements, then best practice is not to use multi-stream subscriptions.
