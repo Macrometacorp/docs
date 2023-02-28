@@ -91,7 +91,7 @@ main();
 
 </TabItem>
 
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```python
 import os
