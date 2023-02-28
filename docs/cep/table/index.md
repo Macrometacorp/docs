@@ -5,6 +5,10 @@ title: Tables (Collections)
 
 A _table_ is a stored version of an stream or a table of events. Its schema is defined in the _table definition_ that is similar to a stream definition. These events are stored in database. In Macrometa GDN, tables are called [collections](../../collections/).
 
+:::note
+If you want to use an existing Macrometa collection as a store, then you still need to define it in the stream worker and you must enable streaming on the collection.
+:::
+
 ## Purpose
 
 Tables allow the stream worker to work with stored events. By defining a schema for tables, the stream processor enables them to be processed by queries using their defined attributes with the streaming data. You can also query the state of the stored events in the table.
