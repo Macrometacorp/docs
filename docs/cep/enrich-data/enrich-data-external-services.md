@@ -7,7 +7,7 @@ This section explains how to enrich the data in a specific stream by connecting 
 
 To understand how this is done, consider an example where you have some credit card numbers, but need to connect with an external service to identify the credit card companies that issued them, and then save that information in a database.
 
-1. Start creating a new stream worker. You can name it `CCTypeIdentificationApp` For instructions, see [Creating a Stream Worker](../tutorials/create-stream-worker.md).
+1. Start creating a new stream worker. You can name it `CCTypeIdentificationApp`.
 
 2. Define the input stream from which the input data (i.e., the credit card no in this example) must be taken.
 
