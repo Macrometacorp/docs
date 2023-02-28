@@ -232,7 +232,7 @@ async function consumer() {
 consumer();
 ```
 </TabItem>
-<TabItem value="python" label="Python">
+<TabItem value="python" label="Python SDK">
 
 - Step 1. [Install the SDK](../../../sdks/install-sdks.md).
 - Step 2. Change `BASE_URL` if necessary and insert `apiKey`.
