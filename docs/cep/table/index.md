@@ -51,7 +51,7 @@ FROM from_stream … ;
 You can also use general store syntax:
 
 ```sql
-CREATE STORE (GLOBAL|LOCAL)? <table_name> WITH(type="database", propKey=”propVal”, … , PrimaryKey='<attribute_name>', Index='<attribute_name>')(<attribute_name> <attribute_type>, ...);
+CREATE STORE (GLOBAL|LOCAL)? <table_name> WITH(type="database", propKey=”propVal”, … , Index='<attribute_name>')(<attribute_name> <attribute_type>, ...);
 ```
 
 For example, this statement creates a global collection:
