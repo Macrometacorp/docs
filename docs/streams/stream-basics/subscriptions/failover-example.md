@@ -5,7 +5,7 @@ title: Failover Subscription Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
+import Prerequisites from '../../../_partials/_prerequisites-sdk-api-key.md';
 
 This page describes how to configure a failover subscription for two or more streams. Refer to the [failover subscription](index.md#failover) section for details and limitations.
 

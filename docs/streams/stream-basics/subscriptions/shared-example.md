@@ -5,7 +5,7 @@ title: Shared Subscription Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
+import Prerequisites from '../../../_partials/_prerequisites-sdk-api-key.md';
 
 This page describes how to configure a shared subscription for one or more streams. Refer to the [shared subscription](index.md#shared) section for details and limitations.
 
