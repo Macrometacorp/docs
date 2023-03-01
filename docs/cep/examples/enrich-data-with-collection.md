@@ -54,9 +54,9 @@ CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
 
 CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
 
-insert into EnrichedTransactionStream
-from UserTable as u join TransactionStream as t on u.userId == t.userId;
-select u.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
+INSERT INTO EnrichedTransactionStream
+SELECT u.userId, str:concat( u.firstName, " ", u.lastName) AS userName, transactionAmount, location
+FROM UserTable AS u JOIN TransactionStream AS t ON u.userId == t.userId
 ```
 
 ## Stream Worker Explanation
@@ -113,18 +113,18 @@ Define the query for a stream to join the stream and the table, and then handle 
 The `insert into` clause defines an output stream into which the enriched data is directed.
 
 ```sql
-insert into EnrichedTransactionStream;
+INSERT INTO EnrichedTransactionStream;
 ```
 
 #### Select Data
 
-A `select` clause specifies how the value for each attribute in the output stream is derived. The variables used for the attributes are defined in the next line where you [join data](#join-data).
+A `SELECT` clause specifies how the value for each attribute in the output stream is derived. The variables used for the attributes are defined in the next line where you [join data](#join-data).
 
 ```sql
-select u.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
+SELECT u.userId, str:concat( u.firstName, " ", u.lastName) AS userName, transactionAmount, location
 ```
 
-Note the following in the `select` statement:
+Note the following in the `SELECT` statement:
 
 - The `userId` attribute name is common to both the stream and the table. Therefore, you need to specify from where this attribute needs to be taken. Here, you can also specify `t.userId` instead of `u.userId`.
 - You are specifying the output generated to include an attribute named `userName`. The value for that is derived
@@ -133,16 +133,16 @@ by concatenating the values of the `firstName` and `lastName` attributes in the 
 
 #### Join Data
 
-The `from` clause together with the `join` keyword join the table and the stream.
+The `FROM` clause together with the `JOIN` keyword join the table and the stream.
 
 ```sql
-from UserTable as u join TransactionStream as t on u.userId == t.userId
+FROM UserTable AS u JOIN TransactionStream AS t ON u.userId == t.userId
 ```
 
-Note the following about the `from` clause:
+Note the following about the `FROM` clause:
 
 - The input data is taken from both a stream and a table. You need to assign a unique reference for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream` stream is referred to as `t`, and the `UserTable` table is referred to as `u`.
-- The `join` keyword joins the stream and the table together and defines the unique references.
+- The `JOIN` keyword joins the stream and the table together and defines the unique references.
 - The condition for the stream and the table to be joined is `t.userId == u.userId`, which means that for an event to be taken from the `TransactionStream` for the join, one or more events that have the same value for the `userId` must exist in the `UserTable` table and vice versa.
 
 ## Test the Stream Worker
