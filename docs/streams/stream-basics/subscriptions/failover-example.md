@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
 
-This page describes how to configure a failover subscription for two or more streams. Refer to the [failover subscription](subscriptions.md#failover) section for details and limitations.
+This page describes how to configure a failover subscription for two or more streams. Refer to the [failover subscription](index.md#failover) section for details and limitations.
 
 To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
 

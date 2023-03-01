@@ -9,8 +9,8 @@ A subscription is a named configuration rule that determines how messages are de
 
 To configure a subscription:
 
-1. Create a [producer](producers.md).
-1. Create at least two [consumers](consumers.md) with the same subscription name. For example, `consumer-subscription`.
+1. Create a [producer](../producers.md).
+1. Create at least two [consumers](../consumers.md) with the same subscription name. For example, `consumer-subscription`.
 
 Refer to the following sections for code examples for each subscription type:
 

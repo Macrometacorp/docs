@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
 
-This page describes how to configure an exclusive subscription for one stream. Refer to the [exclusive subscription](subscriptions.md#exclusive) section for details.
+This page describes how to configure an exclusive subscription for one stream. Refer to the [exclusive subscription](index.md#exclusive) section for details.
 
 To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
 
