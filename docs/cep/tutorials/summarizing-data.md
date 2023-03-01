@@ -31,7 +31,7 @@ The following sections explain how to calculate and store time-based aggregation
 
 To calculate and store time-based aggregation values for the scenario explained above, follow the procedure below.
 
-1. Start creating a new stream worker. You can name it `TradeApp` For instructions, see [Creating a Stream Worker](create-stream-worker.md).
+1. Start creating a new stream worker. You can name it `TradeApp`.
 
     ```sql
     @App:name("TradeApp");
@@ -165,7 +165,7 @@ This subsection demonstrates how to summarize data for a short term based on tim
 
 To demonstrate this, consider a factory manager who wants to be able to check the production for the last hour at any given time. Every event represents a production run. For this purpose, a Stream worker can be created as follows:
 
-1. Start creating a new stream worker. You can name it `PastHourProductionApp` For instructions, see [Creating a Stream Worker](create-stream-worker.md).
+1. Start creating a new stream worker. You can name it `PastHourProductionApp`.
 
    ```sql
    @App:name('PastHourProductionApp');
@@ -244,7 +244,7 @@ This subsection demonstrates how to summarize data for a specific number of even
 
 To demonstrate this, assume that a factory manager wants to track the maximum production in every 10 production runs. IOn order to do so, let's create a Stream worker as follows:
 
-1. Start creating a new stream worker. You can name it `ProductionApp` For instructions, see [Creating a Stream Worker](create-stream-worker.md).
+1. Start creating a new stream worker. You can name it `ProductionApp`.
 
    ```sql
    @App:name('MaximumProductionApp')

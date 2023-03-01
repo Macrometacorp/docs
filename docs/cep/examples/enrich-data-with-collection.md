@@ -1,9 +1,9 @@
 ---
-sidebar_position: 10
+sidebar_position: 100
 title: Enrich Data with a Collection
 ---
 
-This page explains how to enrich the data in a specific stream by joining it with a Macrometa [collection](../../collections/index.md).
+This example explains how to enrich the data in a specific stream by joining it with a Macrometa [collection](../../collections/index.md).
 
 For this purpose, consider a scenario where you receive sales records generated from multiple locations as events from an external system.
 

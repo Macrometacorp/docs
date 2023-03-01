@@ -30,7 +30,7 @@ This section explains how to configure a basic sink without mapping.
 
 To create a stream application with the sink configuration defined inline, follow the steps below.
 
-1. Open the GUI and start creating a new Stream application. For more information, see [Creating a Stream Application](create-stream-worker.md).
+1. Open the GUI and start creating a new Stream application.
 
 2. Enter a name for the stream application as shown below.
     ```sql
