@@ -110,7 +110,7 @@ Define the query for a stream to join the stream and the table, and then handle 
 
 #### Insert Data
 
-The `insert into` clause defines an output stream into which the enriched data is directed.
+The `INSERT INTO` clause defines an output stream into which the enriched data is directed.
 
 ```sql
 INSERT INTO EnrichedTransactionStream;
