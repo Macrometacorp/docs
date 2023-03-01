@@ -79,48 +79,48 @@ CREATE SINK CashFlowStream WITH (type='stream', stream.list='CashFlowStream') (b
 
 Define the query for a stream to join the streams and then handle the result. This section examines the query line by line.
 
+#### Insert Data
 
-1. To specify how the join is performed, and how to use the combined information, write a query to a stream as follows.
+The `INSERT INTO` clause inserts the results into the `CashFlowStream` output stream
 
-    1. To perform the join, add the `from` clause as follows.
+```sql
+INSERT INTO CashFlowStream
+```
 
-        ```sql
-        from CashWithdrawalStream window sliding_time(1 min) as w 
-		join CashDepositsStream window sliding_time(1 min) as d 
-		on w.branchID == d.branchID
-        ```
+#### Select Data
 
-        :::info
-        Observe the following about the above `from` clause:
+A `SELECT` clause specifies how the value for each attribute in the output stream is derived. The variables used for the attributes are defined in the next line where you [join data](#join-data).
 
-        * Both the input streams have attributes of the same name. To identify each name, you must specify a reference
-            for each stream. In this example, the reference for the `CashWithdrawalStream` is `w`, and the reference for the `CashDepositsStream` stream is `d`.
-        * You need to use `join` as the keyword to join two streams. The join condition is ` w.branchID == d.branchID` 
-            where branch IDs are matched. An event in the `CashWithdrawalStream` stream is directed to the `CashFlowStream` if there are events with the same branch ID in the `CashDepositStream` and vice versa.
-        :::
-    2. To specify how the value for each attribute is derived, add a `select` statement as follows.
+```sql
+SELECT w.branchID AS branchID, w.amount AS withdrawalAmount, d.amount AS depositAmount
+```
 
-        ```sql
-        select w.branchID as branchID, w.amount as withdrawalAmount, d.amount as depositAmount
-        ```
+Note the following in the `SELECT` statement:
 
-        :::info
-        The `branchID` attribute name is common to both input streams. Therefore, you can also specify `d.branchID as branchID` instead of `w.branchId as branchId`.
-        :::
-    3. To filter only events where total cash withdrawals are greater than 95% of the cash deposits, add a `having` clause as follows.
+- The `branchID` attribute name is common to both input streams. Therefore, you can also specify `d.branchID as branchID` instead of `w.branchId as branchId`.
+- You can apply any of the range of streams functions available to further enrich the joined output.
 
-        ```sql
-        having w.amount > d.amount * 0.95 
-        ```
+#### Join Data
 
-    4. To insert the results into the `CashFlowStream` output stream, add the `insert into` clause as follows.
+The `FROM` clause together with the `JOIN` keyword join the two input streams and create a [SLIDING_TIME window](../windows/window-types/sliding-time.md).
 
-        ```sql
-        insert into CashFlowStream;
-        ```
+To perform the join, add the `from` clause as follows.
 
-    5. The completed stream worker is as follows:
+```sql
+FROM CashWithdrawalStream WINDOW SLIDING_TIME(1 min) AS w 
+    JOIN CashDepositsStream WINDOW SLIDING_TIME(1 min) AS d 
+    ON w.branchID == d.branchID
+```
 
+Note the following about the above `FROM` clause:
 
+- Both the input streams have attributes of the same name. To identify each name, you must specify a reference for each stream. In this example, the reference for the `CashWithdrawalStream` is `w`, and the reference for the `CashDepositsStream` stream is `d`.
+- You need to use `join` as the keyword to join two streams. The join condition is ` w.branchID == d.branchID` where branch IDs are matched. An event in the `CashWithdrawalStream` stream is directed to the `CashFlowStream` if there are events with the same branch ID in the `CashDepositStream` and vice versa.
 
-For the different types of joins you can perform via streams, see [Stream Query Guide - Join](../query-guide/query.md#join-stream)
+#### Filter Events
+
+The `HAVING` clause filters events so that only events where total cash withdrawals are greater than 95% of the cash deposits are inserted into the sink stream.
+
+```sql
+HAVING w.amount > d.amount * 0.95 
+```
