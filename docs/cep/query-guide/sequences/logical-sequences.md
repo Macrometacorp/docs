@@ -17,7 +17,7 @@ FROM (every)? (NOT)? <event reference>=<input stream>[<filter condition>]
     ...
 ```
 
-Keywords such as `AND`, `OR`, or `NOT` can be used to illustrate the logical relationship, similar to how it is done in [logical patterns](patterns#logical-patterns).
+Keywords such as `AND`, `OR`, or `NOT` can be used to illustrate the logical relationship.
 
 ## Example 1
 
