@@ -1,5 +1,5 @@
 ---
-sidebar_position: 220
+sidebar_position: 20
 title: Shared Subscription Example
 ---
 
@@ -11,11 +11,9 @@ This page describes how to configure a shared subscription for one or more strea
 
 To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
 
-The consumers must have the same consumer name.
-
 <Prerequisites />
 
-## Producer Example
+## Create Producer
 
 This code creates a stream if one doesn't already exist, then creates a producer.
 
@@ -141,7 +139,7 @@ create_producer()
 </TabItem>
 </Tabs>
 
-## Consumer 1 Example
+## Create Consumer 1
 
 This code creates a stream if one doesn't already exist, then creates the first consumer.
 
@@ -249,9 +247,11 @@ create_consumer()
 </TabItem>
 </Tabs>
 
-## Consumer 2 Example
+## Create Consumer 2
 
 This code creates a stream if one doesn't already exist, then creates the second consumer.
+
+The name of consumer 2 must match the name of consumer 1.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript SDK">

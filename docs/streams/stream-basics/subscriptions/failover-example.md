@@ -1,26 +1,24 @@
 ---
-sidebar_position: 210
-title: Exclusive Subscription Example
+sidebar_position: 30
+title: Failover Subscription Example
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
 
-This page describes how to configure an exclusive subscription for one stream. Refer to the [exclusive subscription](subscriptions.md#exclusive) section for details.
+This page describes how to configure a failover subscription for two or more streams. Refer to the [failover subscription](subscriptions.md#failover) section for details and limitations.
 
 To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
 
-The consumers must have the same consumer name.
-
 <Prerequisites />
 
-## Producer Example
+## Create Producer
 
 This code creates a stream if one doesn't already exist, then creates a producer.
 
-<Tabs groupId="operating-systems">
-<TabItem value="js" label="JavaScript SDK">
+<Tabs groupId="modify-single">
+<TabItem value="javascript" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
@@ -87,9 +85,7 @@ async function producer() {
 
 producer();
 ```
-
 </TabItem>
-
 <TabItem value="py" label="Python SDK">
 
 ```python
@@ -139,11 +135,10 @@ def create_producer():
 
 create_producer()
 ```
-
 </TabItem>
 </Tabs>
 
-## Consumer 1 Example
+## Create Consumer 1
 
 This code creates a stream if one doesn't already exist, then creates the first consumer.
 
@@ -188,7 +183,8 @@ async function consumer() {
     const consumerOTP = await stream.getOtp();
     // Create consumer
     const consumer = await stream.consumer(subscriptionName, BASE_URL.replace("https://",""), {
-      otp: consumerOTP
+      otp: consumerOTP,
+      subscriptionType: "Failover"
     });
     // Run consumer - open connection to server
     consumer.on("message", (msg) => {
@@ -234,8 +230,9 @@ def create_consumer():
     consumer = client.subscribe(
         stream_name,
         local=False,
-        subscription_name="consumer_subscription"
-        )
+        subscription_name="consumer_subscription",
+        consumer_type="Failover"
+    )
     while True:
         message = json.loads(consumer.recv())
         decoded_message = base64.b64decode(message['payload']).decode('utf-8')
@@ -249,9 +246,11 @@ create_consumer()
 </TabItem>
 </Tabs>
 
-## Consumer 2 Example
+## Create Consumer 2
 
 This code creates a stream if one doesn't already exist, then creates the second consumer.
+
+The name of consumer 2 must match the name of consumer 1.
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript SDK">
@@ -294,7 +293,8 @@ async function consumer() {
     const consumerOTP = await stream.getOtp();
     // Create consumer
     const consumer = await stream.consumer(subscriptionName, BASE_URL.replace("https://",""), {
-      otp: consumerOTP
+      otp: consumerOTP,
+      subscriptionType: "Failover"
     });
     // Run consumer - open connection to server
     consumer.on("message", (msg) => {
@@ -340,8 +340,9 @@ def create_consumer():
     consumer = client.subscribe(
         stream_name,
         local=False,
-        subscription_name="consumer_subscription"
-        )
+        subscription_name="consumer_subscription",
+        consumer_type="Failover"
+    )
     while True:
         message = json.loads(consumer.recv())
         decoded_message = base64.b64decode(message['payload']).decode('utf-8')
