@@ -1,5 +1,5 @@
 ---
-sidebar_position: 140
+sidebar_position: 1
 title: Sequences
 ---
 
@@ -34,82 +34,10 @@ FROM (every)? <event reference>=<input stream>[<filter condition>],
 
 ## Example
 
-This query generates an alert if the increase in the temperature between two consecutive temperature events exceeds one degree.
-
 ```sql
 INSERT INTO AlertStream
-SELECT e1.temp as initialTemp, e2.temp as finalTemp
+SELECT e1.temp AS initialTemp, e2.temp AS finalTemp
 FROM every e1=TempStream, e2=TempStream[e1.temp + 1 < temp];
 ```
 
-## Counting Sequences
-
-Counting sequences allow you to match multiple events for the same matching condition.
-The number of events matched per condition can be limited via condition postfixes such as [counting patterns](patterns#counting-pattern), or by using the `*`, `+`, and `?` operators.
-
-The matching events can also be retrieved using event indexes, similar to how it is done in counting patterns.
-
-### Counting Sequence Syntax
-
-Each matching condition in a sequence can contain a collection of events as shown below.
-
-```sql
-INSERT INTO <output stream>
-SELECT <event reference>.<attribute name>, <event reference>.<attribute name>, ...
-FROM (every)? <event reference>=<input stream>[<filter condition>](+|*|?)?,
-    <event reference>=<input stream [<filter condition>](+|*|?)?,
-    ...
-    (WITHIN <time gap>)?     
-```
-
-### Postfix Symbols
-
-|Postfix Symbol|Required/Optional |Description|
-|---------|---------|---------|
-| `+` | Optional |This matches **one or more** events to the given condition. |
-| `*` | Optional |This matches **zero or more** events to the given condition. |
-| `?` | Optional |This matches **zero or one** events to the given condition. |
-
-### Counting Sequence Example
-
-This stream worker identifies temperature peaks.
-
-```sql
-CREATE STREAM TempStream(deviceID long, roomNo int, temp double);
-
-INSERT INTO PeekTempStream
-SELECT e1.temp as initialTemp, e2[last].temp as peakTemp
-FROM every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last].temp > temp];
-```
-
-## Logical Sequences
-
-Logical sequences identify logical relationships using `and`, `or` and `not` on consecutively arriving events.
-
-### Logical Sequence Syntax
-
-The syntax for a logical sequence is:
-
-```sql
-INSERT INTO <output stream>
-SELECT <event reference>([event index])?.<attribute name>, ...
-FROM (every)? (not)? <event reference>=<input stream>[<filter condition>]
-          ((and|or) <event reference>=<input stream>[<filter condition>])? (within <time gap>)?,
-    ...
-```
-
-Keywords such as `and`, `or`, or `not` can be used to illustrate the logical relationship, similar to how it is done in [logical patterns](patterns#logical-patterns).
-
-### Logical Sequence Example
-
-This stream worker notifies the state when a regulator event is immediately followed by both temperature and humidity events.
-
-```sql
-CREATE STREAM TempStream(deviceID long, temp double);
-CREATE STREAM HumidStream(deviceID long, humid double);
-CREATE STREAM RegulatorStream(deviceID long, isOn bool);
-
-INSERT INTO StateNotificationStream
-SELECT e2.temp, e3.humid
-FROM every e1=RegulatorStream, e2=TempStream and e3=HumidStream;
-```
+This query generates an alert if the increase in the temperature between two consecutive temperature events exceeds one degree.
