@@ -22,6 +22,7 @@ CREATE STREAM CashDepositsStream(branchID int, amount long);
 -- Define an output stream to which the combined information from both the input streams can to be directed after the join.
 CREATE SINK CashFlowStream WITH (type='stream', stream='CashFlowStream') (branchID int, withdrawalAmount long, depositAmount long);
 
+-- Query joins the input streams and inserts events where total cash withdrawals are greater than 95% of the cash deposits into the sink stream
 INSERT INTO CashFlowStream
 SELECT w.branchID AS branchID, w.amount AS withdrawalAmount, d.amount AS depositAmount
 FROM CashWithdrawalStream WINDOW SLIDING_TIME(1 min) AS w 
