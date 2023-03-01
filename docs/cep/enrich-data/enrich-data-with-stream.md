@@ -7,38 +7,80 @@ This example explains how to enrich the data in a specific stream by joining it 
 
 Consider a scenario where you receive information about cash withdrawals and cash deposits at different bank branches from two separate applications. Therefore, this two types of information are captured via two separate streams. To compare the withdrawals with deposits and observe whether enough deposits are being made to manage the withdrawals, you need to join both these streams.
 
-1. Open the GUI. Click the **Stream Worker** tab.
+## Stream Worker Code
 
-2. Click **New** to define a new stream worker.
+```sql
+@App:name("BankTransactionsApp")
+@App:qlVersion("2")
 
-3. Type a **Name** for the stream worker. For example, `BankTransactionsApp`.
+-- Define an input stream to capture information about withdrawals.
+CREATE STREAM CashWithdrawalStream(branchID int, amount long);
 
-4. Type a **Description**.
+-- Define an input stream to capture information about deposits.
+CREATE STREAM CashDepositsStream(branchID int, amount long);
 
-5. Define the two input streams via which you are receiving information about withdrawals and deposits.
+-- Define an output stream to which the combined information from both the input streams can to be directed after the join.
+CREATE SINK CashFlowStream WITH (type='stream', stream='CashFlowStream') (branchID int, withdrawalAmount long, depositAmount long);
 
-    1. Create a stream named `CashWithdrawalStream` to capture information about withdrawals as follows.
+INSERT INTO CashFlowStream
+SELECT w.branchID AS branchID, w.amount AS withdrawalAmount, d.amount AS depositAmount
+FROM CashWithdrawalStream WINDOW SLIDING_TIME(1 min) AS w 
+    JOIN CashDepositsStream WINDOW SLIDING_TIME(1 min) AS d 
+    ON w.branchID == d.branchID
+    HAVING w.amount > d.amount * 0.95;
+```
 
-        ```sql
-        CREATE STREAM CashWithdrawalStream(branchID int, amount long);
-        ```
+## Stream Worker Explanation
 
-    2. Create a stream named `CashDepositsStream` to capture information about deposits as follows.
+This section explains the parts of this stream worker and what they are doing.
 
-        ```sql
-        CREATE STREAM CashDepositsStream(branchID int, amount long);
-        ```
+### Metadata
 
-6. Now let's define an output stream to which the combined information from both the input streams need to be directed after the join.
+This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid. For more information about stream worker metadata, refer to [Metadata](../metadata).
+
+- **Name** - `@App:name("BankTransactionsApp")`
+- **Query language version (optional)** - @App:qlVersion("2")
+
+:::note
+`qlVersion` is only used for backwards compatibility with deprecated stream workers.
+:::
+
+### Input and Output
+
+Define the input stream and  that need to be joined as follows. If the stream or collection do not exist, then Macrometa creates them when you publish the stream worker.
+
+#### Define the Source Streams
+
+This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Create Stream as Source](../source/stream-source.md). For more information about streams in general, refer to [Streams](../../streams/index.md).
+
+Define the two input streams via which you are receiving information about withdrawals and deposits.
+
+- `CashWithdrawalStream` to capture information about withdrawals.
 
     ```sql
-	CREATE SINK CashFlowStream WITH (type='stream', stream.list='CashFlowStream') (branchID int, withdrawalAmount long, depositAmount long);
+    CREATE STREAM CashWithdrawalStream(branchID int, amount long);
     ```
 
-    !!!info
-    A sink annotation is connected to the output stream to publish the output events. For more information about adding sinks to publish events, see the [Publishing Data guide](../tutorials/publishing-data.md).
+- `CashDepositsStream` to capture information about deposits.
 
-7. To specify how the join is performed, and how to use the combined information, write a query to a stream as follows.
+    ```sql
+    CREATE STREAM CashDepositsStream(branchID int, amount long);
+    ```
+
+#### Define the Sink
+
+The sink is where the stream worker sends your data. This output stream is where the combined information from both the input streams will to be sent after the join.
+
+```sql
+CREATE SINK CashFlowStream WITH (type='stream', stream.list='CashFlowStream') (branchID int, withdrawalAmount long, depositAmount long);
+```
+
+### Data Enrichment Query
+
+Define the query for a stream to join the streams and then handle the result. This section examines the query line by line.
+
+
+1. To specify how the join is performed, and how to use the combined information, write a query to a stream as follows.
 
     1. To perform the join, add the `from` clause as follows.
 
@@ -79,22 +121,6 @@ Consider a scenario where you receive information about cash withdrawals and cas
 
     5. The completed stream worker is as follows:
 
-        ```sql
-        @App:name("BankTransactionsApp")
-        @App:qlVersion("2")
 
-        CREATE STREAM CashWithdrawalStream(branchID int, amount long);
-
-        CREATE STREAM CashDepositsStream(branchID int, amount long);
-
-        CREATE SINK CashFlowStream WITH (type='stream', stream='CashFlowStream') (branchID int, withdrawalAmount long, depositAmount long);
-
-        insert into CashFlowStream
-        select w.branchID as branchID, w.amount as withdrawalAmount, d.amount as depositAmount
-        from CashWithdrawalStream window sliding_time(1 min) as w 
-            join CashDepositsStream window sliding_time(1 min) as d 
-            on w.branchID == d.branchID
-            having w.amount > d.amount * 0.95;
-        ```
 
 For the different types of joins you can perform via streams, see [Stream Query Guide - Join](../query-guide/query.md#join-stream)
