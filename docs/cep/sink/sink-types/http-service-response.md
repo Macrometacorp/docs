@@ -6,7 +6,9 @@ The http-service-response sink send responses of the requests consumed by its co
 
 ## Syntax
 
-    CREATE SINK <NAME> WITH (type="http-service-response", map.type="<STRING>", source.id="<STRING>", message.id="<STRING>", headers="<STRING>")
+```sql
+CREATE SINK <NAME> WITH (type="http-service-response", map.type="<STRING>", source.id="<STRING>", message.id="<STRING>", headers="<STRING>")
+```
 
 ## Query Parameters
 
@@ -18,14 +20,16 @@ The http-service-response sink send responses of the requests consumed by its co
 
 ## Example 1
 
-    CREATE SOURCE AddStream WITH (type='http-service', receiver.url='http://localhost:5005/add', source.id='adder', map.type='json, map.attributes="messageId='trp:messageId', value1='$.event.value1', value2='$.event.value2'") (messageId string, value1 long, value2 long);
+```sql
+CREATE SOURCE AddStream WITH (type='http-service', receiver.url='http://localhost:5005/add', source.id='adder', map.type='json', map.attributes="messageId='trp:messageId',value1='$.event.value1',value2='$.event.value2'") (messageId string, value1 long, value2 long);
 
-    CREATE SINK ResultStream WITH (type='http-service-response', source.id='adder', message.id='{{messageId}}', map.type='json') (messageId string, results long);
+CREATE SINK ResultStream WITH (type='http-service-response', source.id='adder', message.id='{{messageId}}', map.type='json') (messageId string, results long);
 
-    @info(name = 'query1')
-    from AddStream
-    select messageId, value1 + value2 as results
-    insert into ResultStream;
+@info(name = 'query1')
+from AddStream
+select messageId, value1 + value2 as results
+insert into ResultStream;
+```
 
 The http-service source on stream `AddStream` listens on url `http://localhost:5005/stocks` for JSON messages with format:
 

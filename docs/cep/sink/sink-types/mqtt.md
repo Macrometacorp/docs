@@ -6,7 +6,7 @@ The MQTT sink publishes messages to a topic in the MQTT server. If the required 
 
 ## MQTT Sink Syntax
 
-```js
+```sql
 CREATE SINK <name> WITH (type="mqtt", url="<STRING>", topic="<STRING>", map.type="<STRING>", username="<STRING>", password="<STRING>", client.id="<STRING>", quality.of.service="<STRING>", clean.session="<BOOL>", message.retain="<STRING>", keep.alive="<INT>", connection.timeout="<INT>");
 ```
 
@@ -27,7 +27,7 @@ CREATE SINK <name> WITH (type="mqtt", url="<STRING>", topic="<STRING>", map.type
 
 ## MQTT Sink Example
 
-```js
+```sql
 CREATE SINK SinkStream WITH (type="mqtt", url="tcp://test.mosquitto.org:1883", topic="topicA", map.type="json", clean.session="true", message.retain="false", quality.of.service= "1", keep.alive= "60",connection.timeout="30") (startTime long);
 ```
 

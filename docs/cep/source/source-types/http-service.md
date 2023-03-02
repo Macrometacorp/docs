@@ -13,7 +13,9 @@ It also supports basic authentication to ensure events are received from authori
 
 ## Syntax
 
-    CREATE SOURCE <NAME> WITH (type="http-service", map.type="<STRING>", receiver.url="<STRING>", source.id="<STRING>", connection.timeout="<INT>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>")
+```sql
+CREATE SOURCE <NAME> WITH (type="http-service", map.type="<STRING>", receiver.url="<STRING>", source.id="<STRING>", connection.timeout="<INT>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>")
+```
 
 ## Query Parameters
 
@@ -50,18 +52,20 @@ It also supports basic authentication to ensure events are received from authori
 
 ## Example
 
-    @App:name('Sample-HTTP-Source')
-    @App:description("This application shows how to receive POST requests via Stream Workers API.")
-    @App:qlVersion('2')
+```sql
+@App:name('Sample-HTTP-Source')
+@App:description("This application shows how to receive POST requests via Stream Workers API.")
+@App:qlVersion('2')
 
-    CREATE SOURCE AddStream WITH (type='http-service', source.id='adder', map.type='json', map.attributes.messageId='trp:messageId', map.attributes.value1='$.event.value1', map.attributes.value2='$.event.value2') (messageId string, value1 long, value2 long);
+CREATE SOURCE AddStream WITH (type='http-service', source.id='adder', map.type='json', map.attributes.messageId='trp:messageId', map.attributes.value1='$.event.value1', map.attributes.value2='$.event.value2') (messageId string, value1 long, value2 long);
 
-    CREATE SINK ResultStream WITH (type='http-service-response', source.id='adder', message.id='{{messageId}}', map.type = 'json') (messageId string, results long);
+CREATE SINK ResultStream WITH (type='http-service-response', source.id='adder', message.id='{{messageId}}', map.type = 'json') (messageId string, results long);
 
-    @info(name = 'query1')
-    insert into ResultStream
-    select messageId, value1 + value2 as results
-    from AddStream;
+@info(name = 'query1')
+insert into ResultStream
+select messageId, value1 + value2 as results
+from AddStream;
+```
 
 Above sample listens events for JSON messages on the format:
 

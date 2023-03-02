@@ -12,7 +12,9 @@ not yet been created in the Kafka cluster.
 
 ## Syntax
 
-    CREATE SOURCE <NAME> WITH (type="kafkaMultiDC", map.type="<STRING>", bootstrap.servers="<STRING>", topic="<STRING>", partition.no="<INT>", is.binary.message="<BOOL>", optional.configuration="<STRING>")
+```sql
+CREATE SOURCE <NAME> WITH (type="kafkaMultiDC", map.type="<STRING>", bootstrap.servers="<STRING>", topic="<STRING>", partition.no="<INT>", is.binary.message="<BOOL>", optional.configuration="<STRING>")
+```
 
 ## Query Parameters
 
@@ -26,14 +28,16 @@ not yet been created in the Kafka cluster.
 
 ## Example 1
 
-    @App:name('TestExecutionPlan')
-    CREATE STREAM BarStream (symbol string, price float, volume long);
+```sql
+@App:name('TestExecutionPlan')
+CREATE STREAM BarStream (symbol string, price float, volume long);
 
-    @info(name = 'query1')
-    CREATE SOURCE FooStream WITH (type='kafkaMultiDC', topic='kafka_topic', bootstrap.servers='host1:9092,host1:9093', partition.no='1', map.type='json') (symbol string, price float, volume long);
+@info(name = 'query1')
+CREATE SOURCE FooStream WITH (type='kafkaMultiDC', topic='kafka_topic', bootstrap.servers='host1:9092,host1:9093', partition.no='1', map.type='json') (symbol string, price float, volume long);
 
-    insert into BarStream
-    from FooStream select symbol, price, volume;
+insert into BarStream
+from FooStream select symbol, price, volume;
+```
 
 The following query listens to `kafka_topic` topic, deployed in the broker host1:9092 and host1:9093, with partition 1. A thread is created
 for each broker. The receiving JSON events are mapped to a stream worker event and sent to the FooStream.
