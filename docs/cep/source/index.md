@@ -25,10 +25,14 @@ CREATE SOURCE <source_name> WITH (type = 'source_type', <static_key>='<value>', 
 
 The `type` parameter of `CREATE SOURCE` annotation defines the source type that receives events. The other parameters of `source.type` annotation depends upon the selected source type, and here some of its parameters can be optional.
 
-## Supported Stream Source Types
-
 All source types supported by Macrometa stream workers are documented in [Source Types](source-types/index.md).
 
-## Source Mapping
+## Map Type
+
+The `map.type` parameter specifies the format in which messages are consumed, and allows you to configure the mapping parameters, which change based of the mapping type/format selected.
 
 For more information about the `map.type` annotation and source mapping, refer to [Source Mapping](source-mapping/index.md).
+
+## Attributes
+
+The `attributes` are a custom mapping based on which events to be selected into the stream processing flow are identified. This is useful when the attributes of the incoming messages you want the stream processor to consume are different to the corresponding attribute name in the stream definition.
