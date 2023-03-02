@@ -48,7 +48,7 @@ FROM TradeStream
 
 In addition to the `symbol`, `price`, and `quantity` attributes to capture the input details, the input stream definition includes an attribute named timestamp to capture the time at which the sales transaction occurs. The aggregations are executed based on this time. This attribute's value could either be a long value (reflecting the Unix timestamp in milliseconds), or a string value adhering to one of the following formats.
 
-- `<YYYY>-<MM>-<dd> <HH>:<mm>:<ss> <Z>`: This format can be used if the timezone needs to be specified explicitly. Here the ISO 8601 UTC offset must be provided for <Z> . e.g., +05:30 reflects the India Time Zone. If time is not in GMT, this value must be provided.)
+- `<YYYY>-<MM>-<dd> <HH>:<mm>:<ss> <Z>`: This format can be used if the timezone needs to be specified explicitly. Here the ISO 8601 UTC offset must be provided for `<Z>`, e.g., +05:30 reflects the India Time Zone. If time is not in GMT, this value must be provided.
 - `<yyyy>-<MM>-<dd> <HH>:<mm>:<ss>`: This format can be used if the timezone is in GMT.
 
 ### Output and Store
