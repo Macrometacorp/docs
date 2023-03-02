@@ -56,6 +56,12 @@ The side menu in the web console has been updated and organized.
 
 Screenshots and instructions were updated as a result of this change.
 
+### New @App:instances Annotation for Stream Workers
+
+You can now run multiple stream worker instances with the same query.
+
+[Stream Worker Metadata](../cep/metadata) has been updated as a result of this change.
+
 ### New Parameters for Stream Source and Stream Sink
 
 The following parameters were added to stream source:
@@ -68,7 +74,7 @@ The following parameters were added to stream source:
 - num.io.threads
 - receiver.queue.size
 
-[Stream Source](../cep/source/stream-source.md) was updated as a result of this change.
+[Stream Source](../cep/source/stream-source) was updated as a result of this change.
 
 The following parameters were added to stream sink:
 
