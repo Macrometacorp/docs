@@ -89,20 +89,18 @@ To calculate and store time-based aggregation values for the scenario explained 
         
 5. The completed stream worker is as follows.
 
-    ```sql
-    @App:name("TradeApp")
-    @App:qlVersion("2")
+```sql
+@App:name("TradeApp")
+@App:qlVersion("2")
 
-    CREATE STREAM TradeStream (symbol string, price double, quantity long, timestamp long);
+CREATE STREAM TradeStream (symbol string, price double, quantity long, timestamp long);
 
-    CREATE AGGREGATION TradeAggregation WITH(store.type='database', store.replication.type='global')
-   
-    @info(name = 'CalculatingAggregates')
-    select symbol, avg(price) as avgPrice, sum(quantity) as total
-    from TradeStream
-    group by symbol
-    aggregate by timestamp every hour;
-    ```
+CREATE AGGREGATION TradeAggregation WITH(store.type='database', store.replication.type='global')
+SELECT symbol, AVG(price) AS avgPrice, SUM(quantity) AS total
+FROM TradeStream
+    GROUP BY symbol
+    AGGREGATE BY timestamp EVERY hour;
+```
 
 ### Retrieve the stored aggregate values
 
