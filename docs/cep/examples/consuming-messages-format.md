@@ -14,7 +14,21 @@ In this example, the stream worker consumes a message in the default format when
 @App:description("Description of the plan")
 
 -- The source definition mapping specifies the format in which the messages are received.
-CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', map.type='json', map.attributes.transNo = '$.transaction', map.attributes.product = 'product', map.attributes.quantity = 'quantity', map.attributes.salesValue = '$.salesValue', map.attributes.price = 'price') (transNo int, product string, price int, quantity int, salesValue long);
+CREATE SOURCE ConsumerSalesTotalsStream WITH (
+   type='http', 
+   map.type='json', 
+   map.attributes.transNo = '$.transaction', 
+   map.attributes.product = 'product', 
+   map.attributes.quantity = 'quantity', 
+   map.attributes.salesValue = '$.salesValue', 
+   map.attributes.price = 'price'
+) ( 
+   transNo int, 
+   product string, 
+   price int, 
+   quantity int, 
+   salesValue long
+);
 
 -- Sink definition for output.
 CREATE SINK STREAM SalesTotals (product string, totalSale long);
@@ -48,7 +62,18 @@ This example is the same as the previous example except for the mapping in the s
 @App:description("Description of the plan")
 
 -- The source definition mapping specifies the format in which the messages are received.
-CREATE SOURCE ConsumerSalesTotalsStream WITH (type='http', receiver.url='http://localhost:5005/SalesTotalsEP', map.type='json', @attributes(transNo = '$.transaction', salesValue = '$.sales')) (transNo int, product string, price int, quantity int, salesValue long);
+CREATE SOURCE ConsumerSalesTotalsStream WITH (
+    type='http', 
+    receiver.url='http://localhost:5005/SalesTotalsEP', 
+    map.type='json', 
+    attributes.transNo = '$.transaction', 
+    attributes.salesValue = '$.sales'
+ ) (
+     transNo int, 
+     product string, 
+     price int, 
+     quantity int, 
+     salesValue long);
 
 -- Sink definition for output.
 CREATE SINK STREAM SalesTotals (product string, totalSale long);
