@@ -128,28 +128,28 @@ To do this, let's add the definitions and queries required for retrieval to the 
     
 4. The completed stream worker is as follows:
 
-    ```sql
-    @App:name("TradeApp")
-    @App:qlVersion("2")
-    
-    CREATE STREAM TradeStream (symbol string, price double, quantity long, timestamp long);
-    
-    CREATE SINK STREAM TradeSummaryStream (symbol string, total long, avgPrice double);
-    
-    CREATE AGGREGATION TradeAggregation
-    select symbol, avg(price) as avgPrice, sum(quantity) as total
-    from TradeStream
-    group by symbol
-    aggregate by timestamp every hour;
-    
-    @info(name = 'RetrievingAggregates') 
-    insert into TradeSummaryStream
-    select a.symbol, a.total, a.avgPrice 
-    from TradeStream as b join TradeAggregation as a
-        on a.symbol == b.symbol 
-        within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30" 
-        per "days" ;
-    ```
+```sql
+@App:name("TradeApp")
+@App:qlVersion("2")
+
+CREATE STREAM TradeStream (symbol string, price double, quantity long, timestamp long);
+
+CREATE SINK STREAM TradeSummaryStream (symbol string, total long, avgPrice double);
+
+CREATE AGGREGATION TradeAggregation
+SELECT symbol, AVG(price) AS avgPrice, SUM(quantity) AS total
+FROM TradeStream
+GROUP BY symbol
+AGGREGATE BY timestamp EVERY hour;
+
+@INFO(name = 'RetrievingAggregates') 
+INSERT INTO TradeSummaryStream
+SELECT a.symbol, a.total, a.avgPrice 
+FROM TradeStream AS b JOIN TradeAggregation AS a
+    ON a.symbol = b.symbol 
+    WITHIN "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30" 
+    PER "days" ;
+```
 
 ## Summarization by Windowing Criteria
 
@@ -222,19 +222,19 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 
 8. The completed stream worker is as follows:
     
-    ```sql
-    @App:name('PastHourProductionApp')
-    @App:qlVersion("2")
-    
-    CREATE STREAM ProductionStream (name string, amount long);
-    
-    CREATE SINK PastHourProductionStream WITH (type='logger', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
-    
-    insert into PastHourProductionStream
-    select name, sum(amount) as pastHourTotal
-    from ProductionStream window time(1 hour)
-    group by name;
-    ```
+```sql
+@App:name('PastHourProductionApp')
+@App:qlVersion("2")
+
+CREATE STREAM ProductionStream (name string, amount long);
+
+CREATE SINK PastHourProductionStream WITH (type='logger', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
+
+INSERT INTO PastHourProductionStream
+SELECT name, SUM(amount) AS pastHourTotal
+FROM ProductionStream WINDOW time(1 hour)
+GROUP BY name;
+```
 
 ### Performing a length-based summarization to a batch of events
 
@@ -302,8 +302,8 @@ CREATE STREAM ProductionStream (name string, amount long);
 
 CREATE SINK DetectedMaximumProductionStream WITH (type='logger', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
 
-insert into DetectedMaximumProductionStream
-select name, max(amount) as maximumValue
-from ProductionStream window lengthBatch(10)
-group by name;
+INSERT INTO DetectedMaximumProductionStream
+SELECT name, MAX(amount) AS maximumValue
+FROM ProductionStream WINDOW lengthBatch(10)
+GROUP BY name;
 ```
