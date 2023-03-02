@@ -33,7 +33,7 @@ FROM (every)? <event reference>=<input stream>[<filter condition>] ->
 
 Stream also supports pattern matching with counting events and matching events in a logical order such as (`and`, `or`, and `not`).
 
-## Example
+## Example 1
 
 This query sends an alert if the temperature of a room increases by 5 degrees within 10 min.
 
@@ -46,3 +46,42 @@ FROM every( e1=TempStream ) -> e2=TempStream[ e1.roomNo == roomNo and (e1.temp +
 
 Here, the matching process begins for each event in the `TempStream` stream (because `every` is used with `e1=TempStream`),
 and if  another event arrives within 10 minutes with a value for the `temp` attribute that is greater than or equal to `e1.temp + 5` of the event e1, an output is sent to `AlertStream`.
+
+## Example 2
+
+This stream worker shows a simple pattern that detects high-temperature event occurrence of a continuous event stream. The application sends an alert if the temperature of a room increases by five degrees within ten minutes.
+
+### Stream Worker Code
+
+```sql
+-- Defines `TemperatureStream` having information of room temperature such as `roomNo` and `temp`.
+CREATE STREAM TemperatureStream(roomNo int, temp double);
+
+-- Defines `HighTempAlertStream` which contains the alerts for high temperature.
+CREATE SINK HighTempAlertStream WITH (type = 'log') (roomNo int, initialTemp double, finalTemp double);
+
+@info(name='temperature-increase-identifier')
+-- Identify if the temperature of a room increases by 5 degrees within 10 min.
+INSERT INTO HighTempAlertStream
+SELECT e1.roomNo, e1.temp AS initialTemp, e2.temp AS finalTemp
+FROM every( e1 = TemperatureStream ) ->
+    e2 = TemperatureStream[ e1.roomNo == roomNo
+        AND (e1.temp + 5) <= temp ]
+    WITHIN 10 min;
+```
+
+### Simple Pattern Input
+
+Below events are sent to `TemperatureStream` within 10 minutes:
+
+[`2`, `35`]
+
+[`2`, `37`]
+
+[`2`, `40`]
+
+### Simple Pattern Output
+
+After processing the above input events, the event arriving at `HighTempAlertStream` is:
+
+[`2`, `35.0`, `40.0`]
