@@ -73,7 +73,8 @@ CREATE SOURCE ConsumerSalesTotalsStream WITH (
      product string, 
      price int, 
      quantity int, 
-     salesValue long);
+     salesValue long
+ );
 
 -- Sink definition for output.
 CREATE SINK STREAM SalesTotals (product string, totalSale long);
