@@ -7,10 +7,6 @@ title: Macrometa Storefront
 
 ### On GDN
 
-| **Tenant** | **Fabric** | **Password** | **GUI** |
-|----------- |----------|-----------|--------------|
-| demo-samsung-store@macrometa.io | `_system` | `xxxxxxxxxx` | [**Macrometa Storefront**](https://macrometacorp.github.io/demo-samsung-store/) |
-
 ![Macrometa Storefront](/img/mm-storefront.png)
 
 The goal of this Demo is to provide a fully-functional web application that utilizes multi-model Macrometa GDN. Increasingly, modern web apps are built using a multitude of different data models. Developers break their large applications into individual components and select the best data model for each job.
