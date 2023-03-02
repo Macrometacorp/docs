@@ -62,7 +62,7 @@ GROUP BY product;
 
 In the stream worker used as an example in the previous section, assume that when receiving events, the `transNo` attribute is received as `transaction` and the `salesValue` attribute is received as `sales`.  The mapping type is JSON. therefore, you can add the mappings as JSONPath expressions.
 
-| **Stream Attribute Name** | **JSON Event Attribute Name** | **JSONPath Expression** |
+| Stream Attribute Name | JSON Event Attribute Name | JSONPath Expression |
 |---------------------------|-------------------------------|-------------------------|
 | `transNo`                 | `transaction`                 | `$.transaction`         |
 | `salesValue`              | `sales`                       | `$.sales`               |
