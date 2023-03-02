@@ -36,7 +36,7 @@ Square brackets can be used to indicate the event index where `1` can be used as
 - `e1[last]` refers to the last event.
 - `e1[last - 1]` refers to the event before the last event.
 
-## Example
+## Example 1
 
 ```sql
 CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
@@ -48,3 +48,51 @@ FROM every( e1=RegulatorStream) -> e2=TempStream[e1.roomNo==roomNo]<1:> -> e3=Re
 ```
 
 This stream worker calculates the temperature difference between two regulator events.
+
+## Example 2
+
+This stream worker calculates the temperature difference between two regulator events. Here, when at least one `TemperatureStream` event occurs between two RegulatorStream events the pattern is valid and logs can be seen.
+
+### Stream Worker Code
+
+```sql
+-- Defines `TemperatureStream` having information on room temperature such as `sensorID`, `roomNo` and `temp`.
+CREATE STREAM TemperatureStream (sensorID long, roomNo int, temp double);
+
+
+-- Defines `RegulatorStream` which contains the events from regulator with attributes `deviceID`, `roomNo`, `tempSet`, and `isOn`.
+CREATE STREAM RegulatorStream (deviceID long, roomNo int, tempSet double, isOn bool);
+
+-- Defines `TemperatureDiffStream` which contains the events related to temperature difference.
+CREATE SINK TemperatureDiffStream WITH (type = 'log') (roomNo int, tempDiff double);
+
+-- Calculates the temperature difference between two regulator events. Here, when at least one TemperatureStream event needs to arrive between two RegulatorStream events.
+-- Finds the temperature difference between the first and last temperature event.
+INSERT INTO TemperatureDiffStream
+SELECT e1.roomNo, e2[0].temp - e2[last].temp AS tempDiff
+FROM every( e1 = RegulatorStream)
+    -> e2 = TemperatureStream[e1.roomNo == roomNo] < 1: >
+    -> e3 = RegulatorStream[e1.roomNo == roomNo];
+```
+
+### Counting Pattern Input
+
+- First, below event is sent to `RegulatorStream`:
+
+    [`21`, `2`, `25`, `true`]
+
+- Below events are sent to `TemperatureStream`:
+
+    [`21`, `2`, `29`]
+
+    [`21`, `2`, `26`]
+
+- Finally, below event is sent again to `RegulatorStream`,
+
+    [`21`, `2`, `30`, `true`]
+
+### Counting Pattern Output
+
+After processing the above input events, the event arriving at `TemperatureDiffStream` is:
+
+[`2`, `3.0`]
