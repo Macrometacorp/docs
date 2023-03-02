@@ -27,13 +27,13 @@ To understand how this is done, consider an example where you have some credit c
     - The `publisher.url` parameter specifies the URL to which the outgoing events need to be published via HTTP.
     :::
 
-4. To capture the response of the external application once it returns the credit card type, create a stream as follows. For more information about consuming data, see the [Consuming Data guide](../tutorials/consuming-data.md).
+4. To capture the response of the external application once it returns the credit card type, create a stream as follows.
 
     ```sql
     CREATE SOURCE EnrichedCreditCardInfoStream WITH (creditCardNo string, creditCardType string);
     ```
 
-5. Assuming the external application sends its output via HTTP transport, connect a source of the `http`type to the `EnrichedCreditCardStream` stream as follows. For more information about consuming events, see the [Consuming Data guide](../tutorials/consuming-data.md).
+5. Assuming the external application sends its output via HTTP transport, connect a source of the `http`type to the `EnrichedCreditCardStream` stream as follows.
 
     ```sql
 	CREATE SOURCE EnrichedCreditCardInfoStream WITH (source.type='http-call-response', sink.id='cardTypeSink', map.type='json', attributes.creditCardNo = 'trp:creditCardNo', attributes.creditCardType = ".") (creditCardNo string,creditCardType string);
