@@ -4,14 +4,11 @@ sidebar_position: 6
 
 # Filtering Data
 
-## Introduction
-
 When you receive input data, it may consist of data that is not required to generate the required output, null values for certain attributes, etc.  You can filter data to refine the received data. 
 
 ## Filtering data based on Conditions
 
 To understand the different ways you can filter the specific data you need to transform and enrich in order to generate the required output, follow the procedures below:
-    
 
 ### Filtering based on exact match of attribute
 
@@ -26,8 +23,6 @@ To understand the different ways you can filter the specific data you need to tr
     CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
     ```
 
-   >* For more information about defining input streams to receive events, see the [Consuming Data](./consuming-data.md).
-   
 4. Define an output stream `Room2233Stream` to emit the result
 
     ```sql
@@ -343,4 +338,4 @@ To do this, follow the procedure below:
     FROM FilteredResultsStream;
     ```
     
- 5. Save the stream worker. 
+ 5. Save the stream worker.
