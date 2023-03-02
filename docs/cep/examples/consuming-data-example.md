@@ -2,7 +2,7 @@
 title: Consuming Data Example
 ---
 
-This stream worker consumes all data from `ConsumerSalesTotalsStream`, groups it by product, and then sends it to `PublishSalesTotalsStream`. The stream worker includes an optional sink and query, currently commented out, for testing.
+This stream worker consumes all data from `ConsumerSalesTotalsStream` and then sends it to `PublishSalesTotalsStream`. The stream worker includes an optional sink and query, currently commented out, for testing.
 
 ```sql
 @App:name("SalesTotalsApp")
@@ -19,8 +19,7 @@ CREATE SOURCE PublishSalesTotalsStream WITH (type='stream', stream.list='SalesTo
 -- Transfers data between sources
 INSERT INTO PublishSalesTotalsStream
 SELECT *
-FROM ConsumerSalesTotalsStream
-GROUP BY product;
+FROM ConsumerSalesTotalsStream;
 
 -- Sends data to stream (Optional, used for testing)
 -- INSERT INTO ConsumerSales
