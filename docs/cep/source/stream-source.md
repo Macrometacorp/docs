@@ -1,5 +1,5 @@
 ---
-title: CREATE STREAM as Source
+title: Stream Source
 sidebar_position: 40
 ---
 

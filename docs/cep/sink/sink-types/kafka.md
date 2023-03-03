@@ -8,7 +8,9 @@ To configure a sink to use the Kafka transport, the `type` parameter should have
 
 ## Syntax
 
-    CREATE SINK <NAME> WITH (type="kafka", map.type="<STRING>", bootstrap.servers="<STRING>", topic="<STRING>", partition.no="<INT>", sequence.id="<STRING>", key="<STRING>", is.binary.message="<BOOL>", optional.configuration="<STRING>")
+```sql
+CREATE SINK <NAME> WITH (type="kafka", map.type="<STRING>", bootstrap.servers="<STRING>", topic="<STRING>", partition.no="<INT>", sequence.id="<STRING>", key="<STRING>", is.binary.message="<BOOL>", optional.configuration="<STRING>")
+```
 
 ## Query Parameters
 
@@ -24,26 +26,30 @@ To configure a sink to use the Kafka transport, the `type` parameter should have
 
 ## Example 1
 
-    @App:name('TestExecutionPlan')
-    CREATE STREAM FooStream (symbol string, price float, volume long);
-    
-    CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
+```sql
+@App:name('TestExecutionPlan')
+CREATE STREAM FooStream (symbol string, price float, volume long);
 
-    @info(name = 'query1')
-    insert into BarStream
-    from FooStream select symbol, price, volume ;
+CREATE SINK BarStream WITH (type='kafka', topic='topic_with_partitions', partition.no='0', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
+
+@info(name = 'query1')
+insert into BarStream
+from FooStream select symbol, price, volume;
+```
 
 This Kafka sink configuration publishes to 0th partition of the topic named `topic_with_partitions`.
 
 ## Example 2
 
-    @App:name('TestExecutionPlan')
-    CREATE STREAM FooStream (symbol string, price float, volume long);
+```sql
+@App:name('TestExecutionPlan')
+CREATE STREAM FooStream (symbol string, price float, volume long);
 
-    CREATE SINK BarStream WITH (type='kafka', topic='{{symbol}}', partition.no='{{volume}}', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
+CREATE SINK BarStream WITH (type='kafka', topic='{{symbol}}', partition.no='{{volume}}', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
 
-    @info(name = 'query1')
-    insert into BarStream
-    from FooStream select symbol, price, volume ;
+@info(name = 'query1')
+insert into BarStream
+from FooStream select symbol, price, volume;
+```
 
 This query publishes dynamic topic and partitions that are taken from the stream worker event. The value for `partition.no` is taken from the `volume` attribute, and the topic value is taken from the `symbol` attribute.

@@ -6,7 +6,7 @@ The Google PubSub sink publishes messages to a topic in the Google PubSub server
 
 ## Syntax
 
-```js
+```sql
 CREATE SINK <name> WITH (type="googlepubsub", project.id="<STRING>", topic.id="<STRING>", credential.path="<STRING>", map.type=<"STRING>")
 ```
 
@@ -20,7 +20,7 @@ CREATE SINK <name> WITH (type="googlepubsub", project.id="<STRING>", topic.id="<
 
 ## Example 1
 
-```js
+```sql
 CREATE SINK InputStream WITH (type = 'googlepubsub', map.type= 'text', project.id = 'sp-path-1547649404768', credential.path = '<path-to-credentials>', topic.id ='topicA') (message string);
 ```
 
