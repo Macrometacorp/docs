@@ -75,7 +75,7 @@ The following parameters were added to stream sink:
 - num.io.threads
 - key.shared.attributes
 
-[Stream Sink](../cep/sink/sink-types/stream-sink.md) was updated as a result of this change.
+[Stream Sink](../cep/sink/stream-sink.md) was updated as a result of this change.
 
 ### Streams Process Messages with _delete Fields in Database Extension (CEP-440)
 
