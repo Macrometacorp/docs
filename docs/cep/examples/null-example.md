@@ -50,7 +50,7 @@ After processing, the following events will be arriving at each stream:
 - ProductValidationStream: [`Cake`, `false`]
 - DiscountValidationStream: [`Cake`, `12.0`, `null`, `true`, `true`, `false`, `true`, `false`]
 
-## Example 2 - Handling Attributes with `null` Values
+## Example 2 - Handling Attributes with Null Values
 
 Assume that some events arrive with null values for the `roomNo` attribute, and you want to assign the value `unknown` in such scenarios.
 
