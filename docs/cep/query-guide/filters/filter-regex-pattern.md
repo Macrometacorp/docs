@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Filter Based on Regex Pattern
 ---
 
-You can filter events by providing a condition where only events that match a specific Regex pattern are taken for further processing.
+This example demonstrates how you can filter events by providing a condition where only events that match a specific Regex pattern are taken for further processing.
 
 Assume that you want to filter the temperature readings for a specific rage of rooms located in the Southern wing and used for purpose B. Also assume that this can be derived from the room number because the first three characters of the room number represent the wing, and the eighth character represents the purpose. e.g., in room no `SOU5438B765`, the first three characters `SOU` represent the Southern wing, and the eighth character `B` represents purpose B.
 
