@@ -18,6 +18,7 @@ CREATE STREAM ProductionStream (name string, amount long);
 -- Define an output stream to publish the production for the last hour.
 CREATE SINK PastHourProductionStream WITH (type='logger', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
 
+-- Query to process events
 INSERT INTO PastHourProductionStream
 SELECT name, SUM(amount) AS pastHourTotal
 FROM ProductionStream WINDOW SLIDING_TIME(1 hour)
