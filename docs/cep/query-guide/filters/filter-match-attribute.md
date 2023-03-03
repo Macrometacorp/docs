@@ -16,10 +16,9 @@ CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
 -- Define an output stream to publish the results.
 CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
 
--- Query to generate filtered temperature readings
+-- Query to generate filtered temperature readings for a specific room number (e.g., room no `2233`).
 @info(name = 'Get temperature for roomNo: 2233')
 INSERT INTO Room2233Stream
 SELECT *
--- Filter only temperature readings for a specific room number (e.g., room no `2233`)
 FROM InputTempStream [roomNo=='2233'];
 ```
