@@ -6,7 +6,9 @@ A Kafka sink publishes events processed by gdn SP to a topic with a partition fo
 
 ## Syntax
 
-    CREATE SINK <NAME> WITH (type="kafkaMultiDC", map.type="<STRING>", bootstrap.servers="<STRING>", topic="<STRING>", sequence.id="<STRING>", key="<STRING>", partition.no="<INT>", is.binary.message="<BOOL>", optional.configuration="<STRING>")
+```sql
+CREATE SINK <NAME> WITH (type="kafkaMultiDC", map.type="<STRING>", bootstrap.servers="<STRING>", topic="<STRING>", sequence.id="<STRING>", key="<STRING>", partition.no="<INT>", is.binary.message="<BOOL>", optional.configuration="<STRING>")
+```
 
 ## Query Parameters
 
@@ -22,13 +24,15 @@ A Kafka sink publishes events processed by gdn SP to a topic with a partition fo
 
 ## Example 1
 
-    @App:name('TestExecutionPlan')
-    CREATE STREAM FooStream (symbol string, price float, volume long);
+```sql
+@App:name('TestExecutionPlan')
+CREATE STREAM FooStream (symbol string, price float, volume long);
 
-    @info(name = 'query1')
-    CREATE SINK BarStream WITH (type='kafkaMultiDC', topic='myTopic', partition.no='0', bootstrap.servers='host1:9092, host2:9092', map.type='text') (symbol string, price float, volume long);
+@info(name = 'query1')
+CREATE SINK BarStream WITH (type='kafkaMultiDC', topic='myTopic', partition.no='0', bootstrap.servers='host1:9092, host2:9092', map.type='text') (symbol string, price float, volume long);
 
-    insert into BarStream
-    from FooStream select symbol, price, volume ;
+insert into BarStream
+from FooStream select symbol, price, volume;
+```
 
 This query publishes to the default (i.e., 0th) partition of the brokers in two data centers.

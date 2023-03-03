@@ -1,9 +1,9 @@
 ---
-sidebar_position: 30
+sidebar_position: 25
 title: Producers
 ---
 
-A _producer_ is an application or process that publishes messages to the stream. Once published, they can be processed with [stream workers](../../cep/index.md).
+A _producer_ is an application or process that publishes messages to the stream. Once published, they can be processed with [stream workers](../../cep/).
 
 ## Send Modes
 

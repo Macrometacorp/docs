@@ -25,10 +25,8 @@ the temperature of a room every second are transformed to indicate the average t
     ```sql
 	   CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
     ```
-       
-   > For more information about defining input streams to receive events, see the [Consuming Data page](consuming-data.md).
            
-7. Define the output stream which will receive the average temperature of each incomming message in the TempStream. The output stream definition is as follows:
+7. Define the output stream which will receive the average temperature of each incoming message in the TempStream. The output stream definition is as follows:
  
     ```sql
        CREATE SINK OutputStream WITH (type='stream', stream='OutputStream', map.type='json') (roomNo int, avgTemp double);
@@ -93,12 +91,3 @@ The stream processor offers a variety of options to carry out data transformatio
 | map    |Converts events into maps and performs transformations such as concatenating and removing attributes.|
 | reorder| Rearranges the order of the incoming event flow.|
 | json   |Performs manipulations to JSON strings.|
-
-## Transforming message formats
-
-These transformations involve converting the message format to a different format after a the message is received, or 
-converting the format before publishing the message. This is managed via mapping. For detailed instructions to convert message formats via mapping, see the following guides:
- 
- - [Consuming Messages - Supported Message Formats](consuming-data.md#supported-message-formats)
- - [Publishing Messages - Supported Message Formats](publishing-data.md#supported-message-formats)
-

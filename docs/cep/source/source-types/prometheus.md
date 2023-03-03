@@ -7,7 +7,9 @@ Based on the source configuration, it analyzes metrics from the text response an
 
 ## Syntax
 
-    CREATE SOURCE <NAME> WITH (type="prometheus", map.type="<STRING>", target.url="<STRING>", scrape.interval="<INT>", scrape.timeout="<INT>", scheme="<STRING>", metric.name="<STRING>", metric.type="<STRING>", username="<STRING>", password="<STRING>", client.truststore.file="<STRING>", client.truststore.password="<STRING>", headers="<STRING>", job="<STRING>", instance="<STRING>", grouping.key="<STRING>")
+```sql
+CREATE SOURCE <NAME> WITH (type="prometheus", map.type="<STRING>", target.url="<STRING>", scrape.interval="<INT>", scrape.timeout="<INT>", scheme="<STRING>", metric.name="<STRING>", metric.type="<STRING>", username="<STRING>", password="<STRING>", client.truststore.file="<STRING>", client.truststore.password="<STRING>", headers="<STRING>", job="<STRING>", instance="<STRING>", grouping.key="<STRING>")
+```
 
 ## Query Parameters
 
@@ -46,7 +48,9 @@ Based on the source configuration, it analyzes metrics from the text response an
 
 ## Example 1
 
-    CREATE SOURCE FooStream1 WITH (type= 'prometheus', target.url= 'http://localhost:9080/metrics', metric.type= 'counter', metric.name= 'sweet_production_counter', map.type='keyvalue') (metric_name string, metric_type string, help string, subtype string, name string, quantity string, value double);
+```sql
+CREATE SOURCE FooStream1 WITH (type= 'prometheus', target.url= 'http://localhost:9080/metrics', metric.type= 'counter', metric.name= 'sweet_production_counter', map.type='keyvalue') (metric_name string, metric_type string, help string, subtype string, name string, quantity string, value double);
+```
 
 In this example, the Prometheus source sends an HTTP request to the `target.url` and analyzes the response. From the analyzed response, the source retrieves the Prometheus counter metrics with the `sweet_production_counter` name and converts the filtered metrics into stream worker events using the key-value mapper. The generated maps have keys and values as follows:
 
@@ -62,7 +66,9 @@ value -> value_of_metric
 
 ## Example 2
 
-    CREATE SOURCE FooStream2 WITH (type='prometheus', target.url= 'http://localhost:9080/metrics', metric.type='summary', metric.name='sweet_production_summary', map.type='keyvalue') (metric_name string, metric_type string, help string, subtype string, name string, quantity string, quantile string, value double);
+```sql
+CREATE SOURCE FooStream2 WITH (type='prometheus', target.url= 'http://localhost:9080/metrics', metric.type='summary', metric.name='sweet_production_summary', map.type='keyvalue') (metric_name string, metric_type string, help string, subtype string, name string, quantity string, quantile string, value double);
+```
 
 In this example, the Prometheus source sends an HTTP request to the `target.url` and analyzes the response. From the analyzed response, the source retrieves the Prometheus summary metrics with the `sweet_production_summary` name and converts the filtered metrics into stream worker events using the key-value mapper. The generated maps have keys and values as follows:
 
@@ -79,7 +85,9 @@ value -> value_of_metric
 
 ## Example 3
 
-    CREATE SOURCE FooStream3 WITH (type= 'prometheus', target.url= 'http://localhost:9080/metrics', metric.type= 'histogram', metric.name= 'sweet_production_histogram', map.type='keyvalue') (metric_name string, metric_type string, help string, subtype string, name string, quantity string, le string, value double);
+```sql
+CREATE SOURCE FooStream3 WITH (type= 'prometheus', target.url= 'http://localhost:9080/metrics', metric.type= 'histogram', metric.name= 'sweet_production_histogram', map.type='keyvalue') (metric_name string, metric_type string, help string, subtype string, name string, quantity string, le string, value double);
+```
 
 In this example, the prometheus source sends an HTTP request to the `target.url` and analyzes the response. From the analyzed response, the source retrieves the Prometheus histogram metrics with the `sweet_production_histogram` name and converts the filtered metrics into stream worker events using the key-value mapper. The generated maps have keys and values as follows:
 
