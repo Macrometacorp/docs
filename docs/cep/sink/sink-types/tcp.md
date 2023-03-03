@@ -6,7 +6,9 @@ A stream worker application can be configured to publish events via the TCP tran
 
 ## Syntax
 
-    CREATE SINK <NAME> WITH (type="tcp", map.type="<STRING>", url="<STRING>", sync="<STRING>", tcp.no.delay="<BOOL>", keep.alive="<BOOL>", worker.threads="<INT|LONG>")
+```sql
+CREATE SINK <NAME> WITH (type="tcp", map.type="<STRING>", url="<STRING>", sync="<STRING>", tcp.no.delay="<BOOL>", keep.alive="<BOOL>", worker.threads="<INT|LONG>")
+```
 
 ## Query Parameters
 
@@ -20,6 +22,8 @@ A stream worker application can be configured to publish events via the TCP tran
 
 ## Example 1
 
-    CREATE SINK Foo WITH (type = 'tcp', url='tcp://localhost:8080/abc', sync='true' map.type='binary') (attribute1 string, attribute2 int);
+```sql
+CREATE SINK Foo WITH (type = 'tcp', url='tcp://localhost:8080/abc', sync='true' map.type='binary') (attribute1 string, attribute2 int);
+```
 
 A sink of type `tcp` has been defined. All events arriving at Foo stream via TCP transport will be sent to the URL `tcp://localhost:8080/abc` in a synchronous manner.

@@ -18,7 +18,7 @@ To configure a stream that consumes events via a source, add the source configur
 The source syntax is as follows:
 
 ```sql
-CREATE SOURCE <source_name> WITH (type = 'source_type', <static_key>='<value>', map.type='json') (<attribute1>='<attribute mapping>', <attribute2>='<attribute mapping>')
+CREATE SOURCE <source_name> WITH (type = 'source_type', <static_key>='<value>', map.type='<type>') (<attribute1>='<attribute mapping>', <attribute2>='<attribute mapping>')
 ```
 
 ## Source Type

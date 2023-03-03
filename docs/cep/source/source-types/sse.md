@@ -6,7 +6,7 @@ HTTP SSE source sends a request to a given URL and listens to the response strea
 
 ## SSE Source Syntax
 
-```js
+```sql
 CREATE SOURCE <name> WITH (type="sse-server", receiver.url="<STRING>", worker.count="<INT>", headers="<STRING>");
 ```
 
@@ -20,7 +20,7 @@ CREATE SOURCE <name> WITH (type="sse-server", receiver.url="<STRING>", worker.co
 
 ## SSE Source Example
 
-```js
+```sql
 CREATE SOURCE  ListenStream WITH (type='sse', map.type="json", receiver.url='http://localhost:8020/testsse') (param1 string);
 ```
 
