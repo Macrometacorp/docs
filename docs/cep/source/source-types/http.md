@@ -8,7 +8,9 @@ transport properties in the format `trp:<header>`.
 
 ## Syntax
 
-    CREATE SOURCE <NAME> WITH (type="http", map.type="<STRING>", receiver.url="<STRING>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>")
+```sql
+CREATE SOURCE <NAME> WITH (type="http", map.type="<STRING>", receiver.url="<STRING>", basic.auth.enabled="<STRING>", worker.count="<INT>", socket.idle.timeout="<INT>", ssl.verify.client="<STRING>", ssl.protocol="<STRING>", tls.store.type="<STRING>", ssl.configurations="<STRING>", request.size.validation.configurations="<STRING>", header.validation.configurations="<STRING>", server.bootstrap.configurations="<STRING>", trace.log.enabled="<BOOL>")
+```
 
 ## Query Parameters
 
@@ -42,45 +44,49 @@ transport properties in the format `trp:<header>`.
 
 ## Example 1
 
-    @App:name("http-source")
-    @App:qlVersion("2")
+```sql
+@App:name("http-source")
+@App:qlVersion("2")
 
-    CREATE SOURCE SampleHTTPSource WITH (type = 'http', map.type='json') (msg string);
+CREATE SOURCE SampleHTTPSource WITH (type = 'http', map.type='json') (msg string);
 
-    CREATE SINK STREAM SampleHTTPInputStream (msg string);
+CREATE SINK STREAM SampleHTTPInputStream (msg string);
 
-    INSERT INTO SampleHTTPInputStream
-    SELECT msg
-    FROM SampleHTTPSource;
+INSERT INTO SampleHTTPInputStream
+SELECT msg
+FROM SampleHTTPSource;
+```
 
 It maps the incoming messages and sends them to `SampleHTTPInputStream` for processing.
 
 ## Example 2
 
-    @App:name('Sample-HTTP-Source')
-    @App:description("This application how to receive POST requests via Stream Workers API.")
-    @App:qlVersion('2')
+```sql
+@App:name('Sample-HTTP-Source')
+@App:description("This application how to receive POST requests via Stream Workers API.")
+@App:qlVersion('2')
 
-    /**
-    Testing the Stream Application:
-        1. Open Stream `SampleHTTPOutputStream` in Console to monitor the output.
+/**
+Testing the Stream Application:
+    1. Open Stream `SampleHTTPOutputStream` in Console to monitor the output.
 
-        2. Go to Stream Workers API and try `Publish message via HTTP-Source stream.` endpoint. Run it with
-        application name set to `Sample-HTTP-Source`, stream name set to `SampleHTTPSource`, and body with the next data:
-            {"carId":"c1","longitude":18.4334, "latitude":30.2123}
+    2. Go to Stream Workers API and try `Publish message via HTTP-Source stream.` endpoint. Run it with
+    application name set to `Sample-HTTP-Source`, stream name set to `SampleHTTPSource`, and body with the next data:
+        {"carId":"c1","longitude":18.4334, "latitude":30.2123}
 
-        3. This application read the carId, longitude and latitude from the `SampleHTTPSource` and sends it to
-        sink stream `SampleHTTPOutputStream`
-    **/
+    3. This application read the carId, longitude and latitude from the `SampleHTTPSource` and sends it to
+    sink stream `SampleHTTPOutputStream`
+**/
 
-    -- Defines `SampleHTTPSource` stream to process events having `carId`, `longitude`, and `latitude`.
-    CREATE SOURCE SampleHTTPSource WITH (type = 'http', map.type='json') (carId string, longitude double, latitude double);
+-- Defines `SampleHTTPSource` stream to process events having `carId`, `longitude`, and `latitude`.
+CREATE SOURCE SampleHTTPSource WITH (type = 'http', map.type='json') (carId string, longitude double, latitude double);
 
-    -- Defines `SampleHTTPOutputStream` to emit the events after the data is processed by external service
-    CREATE SINK STREAM SampleHTTPOutputStream (carId string, longitude double, latitude double);
+-- Defines `SampleHTTPOutputStream` to emit the events after the data is processed by external service
+CREATE SINK STREAM SampleHTTPOutputStream (carId string, longitude double, latitude double);
 
-    -- Note: Consume data received from the external service
-    @info(name = 'ConsumeProcessedData')
-    INSERT INTO SampleHTTPOutputStream
-    SELECT carId, longitude, latitude
-    FROM SampleHTTPSource;
+-- Note: Consume data received from the external service
+@info(name = 'ConsumeProcessedData')
+INSERT INTO SampleHTTPOutputStream
+SELECT carId, longitude, latitude
+FROM SampleHTTPSource;
+```

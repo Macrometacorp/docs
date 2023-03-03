@@ -1,5 +1,6 @@
 ---
 title: Stream Sink
+sidebar_position: 50
 ---
 
 Stream sinks consume events from streams and publish them using multiple transports to external endpoints in various data formats.
