@@ -260,7 +260,6 @@ Assume that in the previous example, you do not need the device ID for further p
     FROM FilteredResultsStream;
     ```
 
-
 ## Handling attributes with `null` values
 
 To understand this section, you can reuse the `TemperatureApp` stream worker that you created in the [Filtering data based on conditions](##filtering-data-based-on-conditions).
