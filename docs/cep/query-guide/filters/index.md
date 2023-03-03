@@ -3,7 +3,9 @@ sidebar_position: 50
 title: Filters
 ---
 
-Filters provide a way of filtering input stream events based on a specified condition. It accepts any type of condition including a combination of functions and/or attributes  that produces a Boolean result. Filters allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.  
+Filters provide a way of filtering input stream events based on a specified condition. It accepts any type of condition including a combination of functions and/or attributes  that produces a Boolean result. Filters allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.
+
+For more filtering examples, refer to [Data Cleaning Examples](../../examples/data-cleaning).
 
 ## Purpose
 
