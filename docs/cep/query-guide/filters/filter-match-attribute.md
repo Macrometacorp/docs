@@ -13,7 +13,7 @@ This example demonstrates how you can filter data based on the exact match of an
 -- Define an input stream to specify the schema based on which events are selected.
 CREATE STREAM InputTempStream (deviceID long, roomNo string, temp double);
 
--- Define an output stream to publish the result.
+-- Define an output stream to publish the results.
 CREATE SINK Room2233Stream WITH (type='stream', stream='Room2233Stream', map.type='json') (deviceID long, roomNo string, temp double);
 
 -- Query to generate filtered temperature readings
