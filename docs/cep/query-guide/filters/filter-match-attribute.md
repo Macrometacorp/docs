@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Filter Based on Exact Match
+title: Filter Based on Exact Attribute Match
 ---
 
 This example demonstrates how you can filter data based on the exact match of an attribute.
