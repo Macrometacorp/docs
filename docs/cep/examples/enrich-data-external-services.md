@@ -8,8 +8,8 @@ This example demonstrates how to enrich the data in a specific stream by connect
 To understand how this is done, assume you have some credit card numbers, but need to connect with an external service to identify the credit card companies that issued them, and then save that information in a database.
 
 ```sql
-@APP:name("CCTypeIdentificationApp")
-@APP:qlVersion("2")
+@App:name("CCTypeIdentificationApp")
+@App:qlVersion("2")
 
 -- Define the input stream for the credit card numbers.
 CREATE STREAM CreditCardStream (creditCardNo STRING);
