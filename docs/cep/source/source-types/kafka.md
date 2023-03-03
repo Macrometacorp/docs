@@ -6,7 +6,9 @@ A Kafka source receives events to be processed by GDP stream workers from a topi
 
 ## Syntax
 
-    CREATE SOURCE <NAME> WITH (type="kafka", map.type="<STRING>", bootstrap.servers="<STRING>", topic.list="<STRING>", group.id="<STRING>", threading.option="<STRING>", partition.no.list="<STRING>", seq.enabled="<BOOL>", is.binary.message="<BOOL>", topic.offsets.map="<STRING>", enable.offsets.commit="<BOOL>", optional.configuration="<STRING>")
+```sql
+CREATE SOURCE <NAME> WITH (type="kafka", map.type="<STRING>", bootstrap.servers="<STRING>", topic.list="<STRING>", group.id="<STRING>", threading.option="<STRING>", partition.no.list="<STRING>", seq.enabled="<BOOL>", is.binary.message="<BOOL>", topic.offsets.map="<STRING>", enable.offsets.commit="<BOOL>", optional.configuration="<STRING>")
+```
 
 ## Query Parameters
 
@@ -25,27 +27,31 @@ A Kafka source receives events to be processed by GDP stream workers from a topi
 
 ## Example 1
 
-    @App:name('TestExecutionPlan')
-    CREATE STREAM BarStream (symbol string, price float, volume long);
+```sql
+@App:name('TestExecutionPlan')
+CREATE STREAM BarStream (symbol string, price float, volume long);
 
-    CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic,kafka_topic2', group.id='test', threading.option='partition.wise', bootstrap.servers='localhost:9092', partition.no.list='0,1', map.type='json') (symbol string, price float, volume long);
+CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic,kafka_topic2', group.id='test', threading.option='partition.wise', bootstrap.servers='localhost:9092', partition.no.list='0,1', map.type='json') (symbol string, price float, volume long);
 
-    @info(name = 'query1')
-    insert into BarStream
-    from FooStream select symbol, price, volume ;
+@info(name = 'query1')
+insert into BarStream
+from FooStream select symbol, price, volume;
+```
 
 This kafka source configuration listens to the `kafka_topic` and `kafka_topic2` topics with `0` and `1` partitions. A thread is created
 for each topic and partition combination. The events are received in the JSON format, mapped to a stream worker event, and sent to a stream named `FooStream`.
 
 ## Example 2
 
-    @App:name('TestExecutionPlan')
-    CREATE STREAM BarStream (symbol string, price float, volume long);
+```sql
+@App:name('TestExecutionPlan')
+CREATE STREAM BarStream (symbol string, price float, volume long);
 
-    CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic', group.id='test', threading.option='single.thread', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
+CREATE SOURCE FooStream WITH (type='kafka', topic.list='kafka_topic', group.id='test', threading.option='single.thread', bootstrap.servers='localhost:9092', map.type='json') (symbol string, price float, volume long);
 
-    @info(name = 'query1')
-    insert into BarStream
-    from FooStream select symbol, price, volume ;
+@info(name = 'query1')
+insert into BarStream
+from FooStream select symbol, price, volume;
+```
 
 This Kafka source configuration listens to the `kafka_topic` topic for the default partition because no `partition.no.list` is defined. Only one thread is created for the topic. The events are received in the JSON format, mapped to a stream worker event, and sent to a stream named `FooStream`.

@@ -6,7 +6,9 @@ JMS sink allows users to subscribe to a JMS broker and publish JMS messages.
 
 ## Syntax
 
-    CREATE SINK <NAME> WITH (type="jms", map.type="<STRING>", connection.factory.jndi.name="<STRING>", factory.initial="<STRING>", provider.url="<STRING>", connection.factory.type="<STRING>", connection.username="<STRING>", connection.password="<STRING>", connection.factory.nature="<STRING>")
+```sql
+CREATE SINK <NAME> WITH (type="jms", map.type="<STRING>", connection.factory.jndi.name="<STRING>", factory.initial="<STRING>", provider.url="<STRING>", connection.factory.type="<STRING>", connection.username="<STRING>", connection.password="<STRING>", connection.factory.nature="<STRING>")
+```
 
 ## Query Parameters
 
@@ -23,12 +25,16 @@ JMS sink allows users to subscribe to a JMS broker and publish JMS messages.
 
 ## Example 1
 
-    CREATE SINK inputStream WITH (type='jms', map.type='text', factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost', destination='DAS_JMS_OUTPUT_TEST', connection.factory.type='topic', connection.factory.jndi.name='TopicConnectionFactory') (name string, age int, country string);
+```sql
+CREATE SINK inputStream WITH (type='jms', map.type='text', factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost', destination='DAS_JMS_OUTPUT_TEST', connection.factory.type='topic', connection.factory.jndi.name='TopicConnectionFactory') (name string, age int, country string);
+```
 
 This example shows how to publish to an ActiveMQ topic.
 
 ## Example 2
 
-    CREATE SINK inputStream WITH (type='jms', map.type='text', factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST') (name string, age int, country string);
+```sql
+CREATE SINK inputStream WITH (type='jms', map.type='text', factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST') (name string, age int, country string);
+```
 
 This example shows how to publish to an ActiveMQ queue. Note that we are not providing properties like connection factory type.

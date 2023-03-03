@@ -6,7 +6,9 @@ A stream worker application can be configured to receive events via the TCP tran
 
 ## Syntax
 
-    CREATE SOURCE <NAME> WITH (type="tcp", map.type="<STRING>", context="<STRING>")
+```sql
+CREATE SOURCE <NAME> WITH (type="tcp", map.type="<STRING>", context="<STRING>")
+```
 
 ## Query Parameters
 

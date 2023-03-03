@@ -82,7 +82,7 @@ Define the input stream and the Macrometa collection that need to be joined as f
 
 #### Define the Source Stream
 
-This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Create Stream as Source](../source/stream-source.md). For more information about streams in general, refer to [Streams](../../streams/index.md).
+This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Stream Source](../source/stream-source.md). For more information about streams in general, refer to [Streams](../../streams/index.md).
 
 ```sql
 CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);

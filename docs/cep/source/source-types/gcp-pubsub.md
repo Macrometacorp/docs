@@ -8,7 +8,7 @@ A subscription connects a topic to a subscriber application, enabling the applic
 
 ## Syntax
 
-```js
+```sql
 CREATE SOURCE <name> WITH (type="googlepubsub", project.id="<STRING>", topic.id="<STRING>", subscription.id="<STRING>", credential.id="<STRING>", map.type="<STRING>")
 ```
 
@@ -23,7 +23,7 @@ CREATE SOURCE <name> WITH (type="googlepubsub", project.id="<STRING>", topic.id=
 
 ## Example 1
 
-```js
+```sql
 CREATE SOURCE OutputStream WITH (type='googlepubsub', map.type='text', topic.id='topicA', project.id='sp-path-1547649404768', credential.id = 'PUB_SUB_FAST', subscription.id='subA') (message String);
 ```
 

@@ -16,12 +16,12 @@ Messages can be received from streams either synchronously (sync) or asynchronou
 
 ## Acknowledgement (ack)
 
-When a consumer has successfully processed a message, it needs to send an acknowledgement to the Global Data Network (GDN) so that the GDN can discard the message. If no acknowledgement is received, then the GDN stores the message based on [retention and expiry rules](messages.md#message-retention-and-expiry).
+When a consumer has successfully processed a message, it must send an acknowledgement to the Global Data Network (GDN) so that the GDN can discard the message. If no acknowledgement is received, then the GDN stores the message based on [retention and expiry rules](messages#message-retention-and-expiry).
 
 Messages can be acknowledged either one by one or cumulatively. With cumulative acknowledgement, the consumer only needs to acknowledge the last message it received. All messages in the stream, up to and including, the provided message will not be re-delivered to that consumer.
 
 :::note
-Cumulative acknowledgement cannot be used with [shared subscription mode](subscriptions.md#shared), because shared mode involves multiple consumers having access to the same subscription.
+Cumulative acknowledgement cannot be used with [shared subscription mode](subscriptions#shared), because shared mode involves multiple consumers having access to the same subscription.
 :::
 
 ## Readers
