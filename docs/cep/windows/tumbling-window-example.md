@@ -15,9 +15,10 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
 -- Define an input stream to capture details about each production run.
 CREATE STREAM ProductionStream (name string, amount long);
 
--- Define an output stream to publish the production for the last ten runs.
+-- Define an output stream to publish the maximum production for the last ten runs.
 CREATE SINK DetectedMaximumProductionStream WITH (type='logger', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
 
+-- Query to process events
 INSERT INTO DetectedMaximumProductionStream
 SELECT name, MAX(amount) AS maximumValue
 FROM ProductionStream WINDOW TUMBLING_LENGTH(10)
@@ -34,35 +35,12 @@ A sink annotation is connected to the output stream to log the output events. Yo
 
 ## Processing
 
+`INSERT INTO` defines where the processed results are sent, which in this case, is `DetectedMaximumProductionStream`.
 
-        
-1. To define the subset of events to be considered based on the number of events, add the `from` clause with a `lengthBatch` window as follows.
+The maximum is derived by applying the `max()` function is applied to the `amount` attribute to derive the maximum value of the `ProductionStream` input stream.
 
-    ```sql
-    from ProductionStream window lengthBatch(10)
-    ```
-    
-    `window lengthBatch` indicates that the window added is a length window that considers events in batches when determining subsets. The number of events in each batch is `10`. For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate.md).
+To specify that the processing done as defined via the `SELECT` statement applies to a tumbling length window, the `FROM` clause includes the tumbling (batch) window.
 
-2. To derive the values for the `DetectedMaximumProductionStream` output stream, add the `select` statement as follows.
+`WINDOW TUMBLING_LENGTH` indicates that the window added is a length window that considers events in batches when determining subsets. The number of events in each batch is `10`.
 
-    ```sql
-    select name, max(amount) as maximumValue
-    ```
-    
-    Here, the `max()` function is applied to the `amount` attribute to derive the maximum value.
-    
-3. To group by the product name, add the `group by` clause as follows.
-
-    ```sql
-    group by name
-    ```
-    
-4. To insert the maximum production detected into the `DetectedMaximumProductionStream` output stream, add the `insert into` clause as follows.
-    ```sql
-    insert into DetectedMaximumProductionStream
-    ```
-
-The completed stream worker is as follows.
-
-
+The `GROUP BY` clause groups results by the product name.
