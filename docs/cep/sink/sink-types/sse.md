@@ -6,7 +6,7 @@ HTTP SSE sink sends events to all subscribers within the GDN only.
 
 ## SSE Sink Syntax
 
-```js
+```sql
 CREATE SINK <name> WITH (type="sse-server", server.port="<INT>", server.path="<STRING>", worker.count="<INT>", headers="<STRING>");
 ```
 
@@ -21,6 +21,6 @@ CREATE SINK <name> WITH (type="sse-server", server.port="<INT>", server.path="<S
 
 ## SSE Sink Example
 
-```js
+```sql
 CREATE SINK  PublishStream WITH (type='sse-server', map.type="json", server.port='8020', server.path='testsse') (param1 string);
 ```

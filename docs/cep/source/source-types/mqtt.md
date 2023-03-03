@@ -6,7 +6,7 @@ The MQTT source receives events to be processed by Macrometa from a topic in the
 
 ## MQTT Source Syntax
 
-```js
+```sql
 CREATE SOURCE <name> WITH (type='mqtt', url= '<STRING>',  topic='<STRING>', map.type='<STRING>', username="<STRING>", password="<STRING>", client.id="<STRING>", quality.of.service="<STRING>", clean.session="<BOOL>", message.retain="<STRING>", keep.alive="<INT>", connection.timeout="<INT>);
 ```
 
@@ -26,7 +26,7 @@ CREATE SOURCE <name> WITH (type='mqtt', url= '<STRING>',  topic='<STRING>', map.
 
 ## Parameters Example
 
-```js
+```sql
 CREATE SOURCE SourceStream WITH (type='mqtt', url= 'tcp://test.mosquitto.org:1883',  topic='demo1', map.type='json', clean.session="true", quality.of.service= "1", keep.alive= "60",connection.timeout="30") (startTime long);
 ```
 
