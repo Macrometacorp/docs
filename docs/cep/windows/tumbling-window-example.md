@@ -20,7 +20,7 @@ CREATE SINK DetectedMaximumProductionStream WITH (type='logger', prefix='Maximum
 
 INSERT INTO DetectedMaximumProductionStream
 SELECT name, MAX(amount) AS maximumValue
-FROM ProductionStream WINDOW lengthBatch(10)
+FROM ProductionStream WINDOW TUMBLING_LENGTH(10)
 GROUP BY name;
 ```
 
