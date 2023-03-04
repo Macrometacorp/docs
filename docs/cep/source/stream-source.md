@@ -16,7 +16,7 @@ By default, all streams created by stream workers are sources.
 The syntax for defining a new stream in a stream worker is:
 
 ```sql
-   CREATE SOURCE (GLOBAL|LOCAL)? SinkName WITH (
+   CREATE SOURCE (GLOBAL|LOCAL)? StreamName WITH (
       type="stream", 
       stream.list="STRING[STRING,]", 
       replication.type="STRING", 
@@ -25,7 +25,11 @@ The syntax for defining a new stream in a stream worker is:
       num.consumers="INT",
       num.listener.threads="INT",
       num.io.threads="INT",
-      receiver.queue.size="INT",      
+      receiver.queue.size="INT",
+      stream.url="STRING",
+      stream.admin.url="STRING",
+      auth.plugin="STRING",
+      auth.params="STRING",
       map.type='type')  
     (<attribute_name> <attribute_type>[,
      <attribute_name> <attribute_type>] );
@@ -59,6 +63,10 @@ The following parameters are used to configure a stream definition.
 | num.listener.threads | The number of listener threads. | 1 | INT | Yes |
 | num.io.threads | The number of listener threads. | 1 | INT | Yes |
 | receiver.queue.size | The number of messages accumulated by a consumer before an application calls. | 1000 | INT | Yes |
+| stream.url | The URL of the Pulsar broker, e.g. pulsar_ssl://my-broker:6651. | NULL | STRING | Yes |
+| stream.admin.url | The admin URL of the Pulsar broker, e.g. https://my-broker:8080. | NULL | STRING | Yes |
+| auth.plugin | The required autentication plugin, e.g. org.apache.pulsar.client.impl.auth.AuthenticationToken. | NULL | STRING | Yes |
+| auth.params | The required autentication parameters, e.g. JWT in case auth.plugin="org.apache.pulsar.client.impl.auth.AuthenticationToken". | NULL | STRING | Yes |
 | [WITH (property_name = expression [, ...])] | Optional properties for the new stream, such as a time-to-live or a partition key. |
 | SELECT select_expr [, ...] | The selection criteria for the new stream. |
 | FROM from_stream … | The name of the existing stream to select data from. This can include a window or aggregation. |
