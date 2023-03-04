@@ -50,7 +50,7 @@ CREATE SINK STREAM  SampleStreamSink (data string);
 | num.io.threads | The number of I/O threads. | 1 | INT | Yes|
 | key.shared.attributes | The attributes to be included into the message key. | - | STRING | Yes|
 | stream.url | The URL of the Pulsar broker, e.g. pulsar_ssl://my-broker:6651. | NULL | STRING | Yes |
-| stream.admin.url | The admin URL of the Pulsar broker, e.g. https://my-broker:8080. | NULL | STRING | Yes |
+| stream.admin.url | The admin URL of the Pulsar broker, e.g. https://my-broker:443. | NULL | STRING | Yes |
 | auth.plugin | The required autentication plugin, e.g. org.apache.pulsar.client.impl.auth.AuthenticationToken. | NULL | STRING | Yes |
 | auth.params | The required autentication parameters, e.g. JWT in case auth.plugin="org.apache.pulsar.client.impl.auth.AuthenticationToken". | NULL | STRING | Yes |
 
