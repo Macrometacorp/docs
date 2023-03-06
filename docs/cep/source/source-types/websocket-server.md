@@ -2,9 +2,7 @@
 title: websocket-server
 ---
 
-The [WebSocket source](websocket.md) receives events to be processed by Macrometa from a topic in a WebSocket server.
-
-Under this configuration, GDN receives events via the WebSocket server and they are passed to Foo stream for processing.
+The [WebSocket source](websocket.md) receives events through the server which are then passed to the `example` stream for processing.
 
 ## Syntax
 

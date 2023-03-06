@@ -2,9 +2,9 @@
 title: websocket-server
 ---
 
-The [WebSocket sink](websocket.md) sends events to be processed by Macrometa from a topic in a WebSocket server.
+The [WebSocket sink](websocket.md) sends events through the server which are then passed to the `example` stream. All events received by `example` stream are then sent to the WebSocket server
 
-Under this configuration, GDN receives events via the WebSocket server and they are passed to Foo stream for processing.
+Clients can connect to ws://localhost:9025/abc to receive events from the stream.
 
 ## Syntax
 

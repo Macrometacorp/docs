@@ -4,6 +4,8 @@ title: websocket
 
 The WebSocket sink sends events to be processed by Macrometa from a topic in a [WebSocket server](websocket-server.md).
 
+All events delivered to `example` stream are also sent to the WebSocket server.
+
 Configure the server before using the following procedure.
 
 ## Syntax
