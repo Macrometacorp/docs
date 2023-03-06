@@ -4,12 +4,12 @@ title: websocket
 
 The WebSocket source receives events to be processed by Macrometa from a topic in a [WebSocket server](websocket-server.md).
 
-
+Configure the server before using the following procedure.
 
 ## Syntax
 
 ```sql
-CREATE SOURCE <NAME> WITH (type="websocket", map.type="<STRING>", sub.protocol="<STRING>", headers="<STRING>", idle.timeout="<INT>", truststore.path="<STRING>", truststore.password="<STRING>"))
+CREATE SOURCE <NAME> WITH (type="websocket", url="<SERVER URL>", map.type="<STRING>", sub.protocol="<STRING>", headers="<STRING>", idle.timeout="<INT>", truststore.path="<STRING>", truststore.password="<STRING>"))
 ```
 
 
@@ -17,7 +17,7 @@ CREATE SOURCE <NAME> WITH (type="websocket", map.type="<STRING>", sub.protocol="
 
 | Name | Description      | Default Value | Possible Data Types | Optional | Dynamic |
 |------|------------------|---------------|---------------------|----------|---------|
-| url   | The URL of the remote endpoint. `ws` or `wss`. | - | STRING | No | No |
+| url   | The URL of the remote endpoint. Must be `ws` or `wss`. | - | STRING | No | No |
 | sub.protocol | The negotiable sub-protocol if required by server. Use format: `subprotocol1, subprotocol2,...` | null | STRING | Yes | No |
 | headers | Any specific headers which need to send to the server. Use format: `'key1:value1', 'key2:value2',...` | Yes | No |
 | idle.timeout | Idle timeout of the connection | `-1` | INT | Yes | No |
@@ -28,7 +28,7 @@ CREATE SOURCE <NAME> WITH (type="websocket", map.type="<STRING>", sub.protocol="
 ## Example
 
 ```sql
-CREATE SOURCE <NAME> WITH (type = 'websocket', url = 'ws://localhost:8025/websockets/abc', map.type='xml')
+CREATE SOURCE <NAME> WITH (type='websocket', url ='ws://localhost:8025/websockets/abc', map.type='xml')
 
 CREATE STREAM example (attribute1 string, attribute2 int);
 ```
