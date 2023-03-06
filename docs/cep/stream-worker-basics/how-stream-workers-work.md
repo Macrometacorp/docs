@@ -18,7 +18,7 @@ When published, stream workers also create any query workers, tables (collection
 
 ## Basic Stream Processing Flow
 
-The following are the major components of our stream worker engine. Events are collected by sources such as services and deices, they are analyzed by the stream worker queries, and then sent out as events to sinks that can be acted on.
+The following are the major components of our stream worker engine. Events are collected by sources such as services and devices, they are analyzed by the stream worker queries, and then sent out as events to sinks that can be acted on.
 
 ![Stream Processing Architecture](/img/cep-overview.png)
 
