@@ -1,5 +1,5 @@
 ---
-sidebar_position: 30
+sidebar_position: 70
 title: Aggregate Functions
 ---
 
@@ -33,10 +33,10 @@ This table provides links to some built-in aggregation functions:
 
 | Aggregate Function | Description |
 | --- | --- |
-| and | Calculates boolean and from a set of values. |
-| avg | Calculates the average from a set of values. |
-| count | Calculates the count from a set of values. |
-| distinctcount | Calculates the distinct count based on a parameter from a set of values. |
+| [and](../../query-guide/functions/core/and) | Calculates boolean and from a set of values. |
+| [avg](../query-guide/functions/core/avg) | Calculates the average from a set of values. |
+| [count](../query-guide/functions/core/count) | Calculates the count from a set of values. |
+| [distinctcount](../query-guide/functions/core/distinctCount) | Calculates the distinct count based on a parameter from a set of values. |
 | max | Finds the maximum value from a set of values. |
 | maxForever | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
 | min | Finds the minimum value from a set of values. |
