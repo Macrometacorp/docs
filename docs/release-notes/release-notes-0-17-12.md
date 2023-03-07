@@ -56,6 +56,12 @@ The side menu in the web console has been updated and organized.
 
 Screenshots and instructions were updated as a result of this change.
 
+### New function in Stream Workers
+
+Introduced frequency() function.
+
+[Frequency](../cep/query-guide/functions/frequency.md)
+
 ### New Parameters for Stream Source and Stream Sink
 
 The following parameters were added to stream source:
