@@ -2,7 +2,7 @@
 title: frequency (Aggregate Function)
 ---
 
-Counts the number of occurrences of different values of a given attribute without needing to use GROUP BY {attribute}
+Counts the number of occurrences of different values of a given attribute without needing to use `GROUP BY {attribute}`.
 
 ## Syntax
 
