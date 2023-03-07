@@ -15,10 +15,15 @@ The stream sink syntax is as follows:
 
 ```sql
    CREATE SINK SinkName WITH (
-     type="stream", stream="STRING", 
+     type="stream", 
+     stream="STRING", 
      replication.type="STRING",
      num.io.threads="INT",
-     key.shared.attributes="STRING, STRING, ...",
+     key.shared.attribute="STRING, STRING, ...",
+     stream.url="STRING",
+     stream.admin.url="STRING",
+     auth.plugin="STRING",
+     auth.params="STRING",
      map.type='type')       
     (<attribute_name> <attribute_type>,
      <attribute_name> <attribute_type>, ... );;
@@ -44,6 +49,11 @@ CREATE SINK STREAM  SampleStreamSink (data string);
 | replication.type | Specifies if the replication type of the streams. Possible values can be `LOCAL` and `GLOBAL`.      | LOCAL         | STRING         | Yes      |
 | num.io.threads | The number of I/O threads. | 1 | INT | Yes|
 | key.shared.attributes | The attributes to be included into the message key. | - | STRING | Yes|
+| stream.url | The URL of the Pulsar broker, e.g. pulsar_ssl://my-broker:6651. | NULL | STRING | Yes |
+| stream.admin.url | The admin URL of the Pulsar broker, e.g. https://my-broker:443. | NULL | STRING | Yes |
+| auth.plugin | The required autentication plugin, e.g. org.apache.pulsar.client.impl.auth.AuthenticationToken. | NULL | STRING | Yes |
+| auth.params | The required autentication parameters, e.g. JWT in case auth.plugin="org.apache.pulsar.client.impl.auth.AuthenticationToken". | NULL | STRING | Yes |
+
 
 ## Example 1
 
