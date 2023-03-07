@@ -58,7 +58,7 @@ Screenshots and instructions were updated as a result of this change.
 
 ### New Function in Stream Workers
 
-Introduced frequency() function.
+Introduced `frequency()` function.
 
 [Frequency](../cep/query-guide/functions/frequency.md) was added as a result of this change.
 
