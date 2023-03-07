@@ -7,7 +7,7 @@ This page explains ways to transform your data.
 
 The stream processor allows you to perform a wide range of transformations to the input data received. The transformations are carried out via operators that are defined inline within the stream worker.
 
-## Transform Data using Operators
+## Transform Data Using Operators
 
 The operators that you can configure inline within stream workers in order to carry out data transformations are listed in the [Stream Query Guide](../query-guide/).
 
