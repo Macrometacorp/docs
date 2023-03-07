@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Getting started with Search
+title: Getting Started with Search
 ---
 
 In this getting started guide, you will add search functionality to the Address Book app that you build in the [Macrometa Quickstart](https://www.macrometa.com/docs/quickstart).
