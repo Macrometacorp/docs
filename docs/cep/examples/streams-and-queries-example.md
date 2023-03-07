@@ -3,9 +3,9 @@ sidebar_position: 2
 title: Streams and Queries Example
 ---
 
-This page provides an example of `streams` and `queries`, and how multiple queries can be chained to one another.
+This page provides an example of streams and queries, and how multiple queries can be chained to one another.
 
-There are multiple type of queries such as `window query`, `join query`, `pattern query`, etc. Below example explains how `pass-through` and `selection queries` work. For more info refer the [Stream Query Guide](../query-guide/index.md).
+There are multiple type of queries such as window query, join query, pattern query, and so on. Below example explains how pass-through and selection queries work. For more information, refer the [Stream Query Guide](../query-guide/).
 
 ## Example
 
