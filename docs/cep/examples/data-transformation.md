@@ -116,7 +116,7 @@ Below event is sent to `InputStream`:
 ```json
 [
     {
-        "name" : "streamapp.user",
+        "name" : "streamworker.user",
         "address" : {
             "country": "USA"
         },
@@ -127,9 +127,9 @@ Below event is sent to `InputStream`:
 
 ### Transform JSON Output
 
-After processing, the following events arrive:
+After processing, the following events arrive.
 
-- OutputStream:
+#### OutputStream
 
 ```json
 [ 
@@ -138,12 +138,12 @@ After processing, the following events arrive:
             "country":"USA"
         },
         "contact":"+9xxxxxxxx",
-        "name":"streamapp.user"
+        "name":"streamworker.user"
     }
 ]
 ```
 
-- PreprocessedStream:
+#### PreprocessedStream
 
 ```json
 [
