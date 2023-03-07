@@ -56,7 +56,7 @@ The side menu in the web console has been updated and organized.
 
 Screenshots and instructions were updated as a result of this change.
 
-### New function in Stream Workers
+### New Function in Stream Workers
 
 Introduced frequency() function.
 
