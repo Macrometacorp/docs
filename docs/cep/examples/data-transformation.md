@@ -5,6 +5,32 @@ title: Data Transformation Examples
 
 This page explains ways to transform your data.
 
+The stream processor allows you to perform a wide range of transformations to the input data received. The transformations are carried out via operators that are defined inline within the stream worker.
+
+## Transform Data using Operators
+
+The operators that you can configure inline within stream workers in order to carry out data transformations are listed in the [Stream Query Guide](../query-guide/).
+
+To show how an inline operators are configured, consider an example where readings from a sensor that indicates  the temperature of a room every second are transformed to indicate the average temperature and the average humidity as at each second.
+
+```sql
+@App:name("TemperatureApp")
+@App:description("Calculate an average temperature of the room")
+@App:qlVersion("2")
+
+-- Define the input stream. Each event indicates the device ID, the room number, and the temperature.
+CREATE STREAM TempStream (deviceID long, roomNo int, temp double);
+
+-- Define the output stream that will receive the average temperature of each incoming message in the TempStream.
+CREATE SINK OutputStream WITH (type='stream', stream='OutputStream', map.type='json') (roomNo int, avgTemp double);
+
+-- Calculate average temp, group by room number, and insert into OutputStream.
+INSERT INTO OutputStream
+SELECT roomNo, avg(temp) AS avgTemp
+FROM TempStream
+GROUP BY roomNo;
+```
+
 ## Math and Logical Operations
 
 This example shows the use of math or logical operations on events.
