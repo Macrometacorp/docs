@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Table Operators
 ---
 
-You can perform queries on tables in stream workers using the following operators.
+You can perform queries on tables in stream workers using the following operators. You can also join a table and a stream. For more information, refer to [JOIN (Table)](../query-guide/join/join-table).
 
 ## INSERT
 
