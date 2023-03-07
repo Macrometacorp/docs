@@ -1,6 +1,5 @@
 ---
-sidebar_position: 30
-title: Join (Aggregation)
+title: JOIN (Aggregation)
 ---
 
 A _join_ allows a stream to retrieve calculated aggregate values from the aggregation.
@@ -93,19 +92,19 @@ from TradeStream as b join TradeAggregation as a
     per b.perValue;
 ```
 
-## Supported Join Types
+## Supported JOIN Types
 
-Aggregation join supports the following join operations.
+Aggregation `JOIN` supports the following join operations.
 
-### Inner Join (Default)
+### INNER JOIN (Default)
 
-This is the default behavior of a join operation. `join` is used as the keyword to join the stream with the aggregation. The output is generated only if there is a matching event in the stream and the aggregation.
+This is the default behavior of a JOIN operation. `JOIN` is used as the keyword to join the stream with the aggregation. The output is generated only if there is a matching event in the stream and the aggregation.
 
-### Left Outer Join
+### LEFT OUTER JOIN
 
-The `left outer join` operation allows you to join a stream on left side with a aggregation on the right side based on a condition.
+The `LEFT OUTER JOIN` operation allows you to join a stream on left side with a aggregation on the right side based on a condition.
 It returns all the events of left stream even if there are no matching events in the right aggregation by having null values for the attributes of the right aggregation.
 
-### Right Outer Join
+### RIGHT OUTER JOIN
 
-This is similar to a `left outer join`. `right outer join` is used as the keyword to join a stream on right side with a aggregation on the left side based on a condition. It returns all the events of the right stream even if there are no matching events in the left aggregation.
+This is similar to a `LEFT OUTER JOIN`. `RIGHT OUTER JOIN` is used as the keyword to join a stream on right side with a aggregation on the left side based on a condition. It returns all the events of the right stream even if there are no matching events in the left aggregation.
