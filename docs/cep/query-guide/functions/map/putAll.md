@@ -2,9 +2,9 @@
 title: putAll (Function)
 ---
 
-Function returns the updated map after adding all the key-value pairs from another map. If there are duplicate keys, the key will be assignedn new values from the map that's being copied.
+Function returns the updated map after adding all the key-value pairs from another map. If there are duplicate keys, the key will be assigned new values from the map that's being copied.
 
-Syntax
+## Syntax
 
     <OBJECT> map:putAll(<OBJECT> to.map, <OBJECT> from.map)
 

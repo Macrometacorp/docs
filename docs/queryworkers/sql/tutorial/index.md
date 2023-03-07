@@ -15,9 +15,9 @@ By the end of this tutorial, you will:
 - Be able to search, sort, and filter content with SQL queries.
 
 :::note
-Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../../cli/index.md), [API](https://macrometa.com/docs/api), or one of our several SDKs. We will primarily use SDKs for sending requests with queries.
+Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../../cli/), [API](https://www.macrometa.com/docs/api), or one of our several SDKs. We will primarily use SDKs for sending requests with queries.
 
-If you are more comfortable working in the CLI, then you can enter any SQL command using the [gdnsl query](../../../cli/queries-cli.md) command.
+If you are more comfortable working in the CLI, then you can enter any SQL command using the [gdnsl query](../../../cli/queries-cli) command.
 :::
 
 ## Prerequisites

@@ -3,7 +3,7 @@ sidebar_position: 40
 title: API Endpoints
 ---
 
-Any query or Query Worker can be used as an API endpoint.
+Any query or query worker can be used as an API endpoint.
 
 ## Create an API Endpoint
 

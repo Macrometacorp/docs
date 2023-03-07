@@ -7,7 +7,7 @@ For more information about streams, refer to [Streams](../streams/index.md) and 
 ## View a collection stream
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **COLLECTIONS**.
+1. Click **Collections**.
 1. Click the collection for which you want to view the stream.
 1. Click **Stream**. If the Stream tab is not visible, then streams are not enabled on the collection.
 

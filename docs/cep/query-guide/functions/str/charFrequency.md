@@ -4,7 +4,7 @@ title: charFrequency (Function)
 
 Gives the frequency of a char in `input string`.
 
-Syntax
+## Syntax
 
     <LONG> str:charFrequency(<STRING> input.string, <STRING> char)
 
@@ -19,5 +19,4 @@ Syntax
 
     str:charFrequency("gdn,ABM,NSFT", ",")
 
-This counts the number of occurrences of `,` in the given
-`input.string`. In this scenario, the output will is `2`.
+This counts the number of occurrences of `,` in the given `input.string`. In this scenario, the output will is `2`.

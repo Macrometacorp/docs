@@ -6,7 +6,7 @@ Splits the `input.string` into substrings using the value parsed in the
 `split.string` and returns the substring at the position specified in
 the `group.number`.
 
-Syntax
+## Syntax
 
     <STRING> str:split(<STRING> input.string, <STRING> split.string, <INT> group.number)
 
@@ -24,4 +24,4 @@ Syntax
 
 This splits the given `input.string` by given `split.string` and returns
 the string in the index given by group.number. In this scenario, the
-output will is "gdn".
+output is "gdn".

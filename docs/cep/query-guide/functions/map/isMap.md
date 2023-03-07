@@ -4,7 +4,7 @@ title: isMap (Function)
 
 Function checks if the object is type of a map.
 
-Syntax
+## Syntax
 
     <BOOL> map:isMap(<OBJECT|INT|LONG|FLOAT|DOUBLE|FLOAT|BOOL|STRING> arg)
 

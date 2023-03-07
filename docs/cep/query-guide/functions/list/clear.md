@@ -4,7 +4,7 @@ title: clear (Function)
 
 Function returns the cleared list.
 
-Syntax
+## Syntax
 
     <OBJECT> list:clear(<OBJECT> list)
 

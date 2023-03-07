@@ -1,18 +1,18 @@
 ---
-sidebar_position: 30
+sidebar_position: 25
 title: Producers
 ---
 
-A producer is an app or process that publishes messages to the stream. Once published, they can be processed with [stream workers](../../cep/index.md).
+A _producer_ is an application or process that publishes messages to the stream. Once published, they can be processed with [stream workers](../../cep/).
 
-## Send modes
+## Send Modes
 
-Producers can send messages to GDN  either synchronously (sync) or asynchronously (async).
+Producers can send messages to GDN either synchronously (sync) or asynchronously (async).
 
 | Mode       | Description  |
 |-----------|---------------------|
-| Sync send  | The producer will wait for acknowledgement from the broker after sending each message. If acknowledgment isn't received then the producer will consider the send operation a failure |
-| Async send | The producer will put the message in a blocking queue and return immediately. The client library will then send the message to the broker in the background. If the queue is full, the producer could be blocked or fail immediately when calling the API, depending on arguments passed to the producer. |
+| Sync send  | The producer waits for acknowledgement from the broker after sending each message. If acknowledgment isn't received, then the producer considers the send operation a failure. |
+| Async send | The producer puts the message in a blocking queue and return immediately. The client library then sends the message to the broker in the background. If the queue is full, then the producer could be blocked or fail immediately when calling the API, depending on arguments passed to the producer. |
 
 ## Compression
 
@@ -23,4 +23,4 @@ Messages published by producers can be compressed during transportation in order
 
 ## Batching
 
-If batching is enabled, the producer will accumulate and send a batch of messages in a single request. Batching size is defined by the maximum number of messages and maximum publish latency.
+If batching is enabled, then the producer accumulates and sends a batch of messages in a single request. Batching size is defined by the maximum number of messages and maximum publish latency.

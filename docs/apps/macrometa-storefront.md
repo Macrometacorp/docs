@@ -7,10 +7,6 @@ title: Macrometa Storefront
 
 ### On GDN
 
-| **Tenant** | **Fabric** | **Password** | **GUI** |
-|----------- |----------|-----------|--------------|
-| demo-samsung-store@macrometa.io | `_system` | `xxxxxxxxxx` | [**Macrometa Storefront**](https://macrometacorp.github.io/demo-samsung-store/) |
-
 ![Macrometa Storefront](/img/mm-storefront.png)
 
 The goal of this Demo is to provide a fully-functional web application that utilizes multi-model Macrometa GDN. Increasingly, modern web apps are built using a multitude of different data models. Developers break their large applications into individual components and select the best data model for each job.
@@ -21,5 +17,5 @@ This demo includes the following components:
 
 * **Product catalog/shopping cart** - Macrometa GDN Docs offers fast, predictable performance for the key-value lookups needed in the product catalog, as well as the shopping cart and order history.
 * **Search** - Macrometa GDN Search service enables full-text search for our storefront, enabling users to find products based on a variety of terms including product name, and category.
-* **Best sellers list** - Macrometa GDN Stream Apps reads order information from GDN Docs Streams, creating a leaderboard of the “Top 20” purchased products.
-* **Serverless service backend** – Cloudflare Workers and Macrometa GDN C8QL powers the interface layer between the frontend and backend, and invokes serverless compute with low latency in region closest to the user.
+* **Best sellers list** - Macrometa Stream Workers read order information from a Collection Stream, creating a leaderboard of the "Top 20" purchased products.
+* **Serverless backend** – Macrometa Query Workers provides an interface between the web app and the backend, providing ultra-low latency data and compute.

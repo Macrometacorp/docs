@@ -5,24 +5,21 @@ title: REST API Streams Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Prerequisites from '../../_partials/_prerequisites-api-key.md';
+import Steps from '../../_partials/_api-example-steps.md';
 
 This page shows you how to perform a basic pub-sub streams workflow using the Macrometa API. For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
 
 ## Prerequisites
 
-- A Macrometa account with sufficient permissions to create streams.
-- An API key. For more information, refer to [Create API Keys](../../account-management/api-keys/create-api-keys).
-- Appropriate SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
+<Prerequisites />
 
 ## REST API Streams Example
 
-1. Copy and paste the code block below in your favorite IDE.
-1. Update constants with your values, such as the API key.
-1. Run the code.
-1. (Optional) Log in to the Macrometa console to view the streams.
+<Steps />
 
 <Tabs groupId="operating-systems">
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 const WebSocket = require('ws');
@@ -32,28 +29,9 @@ class APIRequest {
     "Content-Type": "application/json"
   };
 
-  constructor (url) {
-    this._url = url;
+  constructor (httpUrl, apiKey) {
+    this._url = httpUrl;
     this._headers.authorization = `apikey ${apiKey}`; // apikey keyword is needed here
-  }
-
-  login (email, password) {
-    const endpoint = "/_open/auth";
-
-    const self = this;
-
-    return new Promise(function (resolve, reject) {
-      self
-        .req(endpoint, {
-          body: { email, password },
-          method: "POST"
-        })
-        .then(({ jwt, ...data }) => {
-          self._headers.authorization = `bearer ${jwt}`;
-          resolve(data);
-        })
-        .catch(reject);
-    });
   }
 
   _handleResponse (response, resolve, reject) {
@@ -77,8 +55,8 @@ class APIRequest {
 }
 
 const apiKey = "XXXXX" // Use your API key here
-let url = "api-play.paas.macrometa.io";
-const httpUrl = `https://${url}`;
+const globalUrl = "api-play.paas.macrometa.io";
+const httpUrl = `https://${globalUrl}`;
 const tenant = "XXXXX" // Use your tenant name here
 
 const stream = "api_tutorial_streams";
@@ -121,8 +99,8 @@ const run = async function () {
 
     const dcUrl = localDcDetails.tags.url;
 
-    url = isGlobal
-      ? url
+    const url = isGlobal
+      ? globalUrl
       : `api-${dcUrl}`;
 
     const otpConsumer = await connection.req(`/apid/otp`, {
@@ -236,13 +214,13 @@ run();
 <TabItem value="py" label="Python">
 
 ```py
-import requests
-import json
-from websocket import create_connection
 import base64
+import json
+import requests
 import six
 import threading
 import time
+from websocket import create_connection
 
 # Constants
 URL = "api-play.paas.macrometa.io"

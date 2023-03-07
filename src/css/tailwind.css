@@ -96,6 +96,9 @@
     --ifm-heading-color: var(--color-neutral-800);
     --ifm-heading-font-family: var(--font-family-base);
     
+    --ifm-hr-background-color: var(--color-neutral-100);
+    --ifm-hr-margin-vertical: 2rem;
+    
     --ifm-link-color: var(--color-primary-500);
     --ifm-link-decoration: none;
 
@@ -155,6 +158,7 @@
     --ifm-color-secondary-dark: var(--color-primary-300);
 
     --ifm-heading-color: var(--color-white);
+    --ifm-hr-background-color: var(--color-neutral-700);
     --ifm-font-color-base: var(--color-neutral-200);
     
     --ifm-footer-background-color: var(--color-primary-600);
@@ -666,6 +670,11 @@ html[data-theme='dark'] .sl-text-warning {
 
 .markdown > h3 {
   --ifm-h3-font-size: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.markdown > h4 {
+  --ifm-h4-font-size: 17px;
   padding-top: 0.5rem;
 }
 

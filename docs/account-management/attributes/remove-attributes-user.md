@@ -24,12 +24,12 @@ Follow these instructions to remove attributes from users using the GDN console 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove All Attributes](https://macrometa.com/docs/api#/operations/ClearAllAttributesForUser) or [Remove One Attribute](https://macrometa.com/docs/api#/operations/ClearTheAttributesForUser).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove All Attributes](https://www.macrometa.com/docs/api#/operations/ClearAllAttributesForUser) or [Remove One Attribute](https://www.macrometa.com/docs/api#/operations/ClearTheAttributesForUser).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl user clear](../../cli/api-key-cli.md#gdnsl-user-clear) CLI command to remove attributes.
+Use the [gdnsl user clear](../../cli/api-key-cli#gdnsl-user-clear) CLI command to remove attributes.
 
 </TabItem>
 </Tabs>

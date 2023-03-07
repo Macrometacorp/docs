@@ -4,7 +4,7 @@ title: round (Function)
 
 This function returns the value of the input argument rounded off to the closest integer/long value.
 
-Syntax
+## Syntax
 
     <INT|LONG> math:round(<FLOAT|DOUBLE> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:round(inValue) as roundValue
     from InValueStream;
 
-The function rounds off `inValue1` to the closest int/long value and directs the output to the output stream, `OutMediationStream`. For example, round(3252.353) returns 3252.
+The function rounds off `inValue1` to the closest int/long value and directs the output to the output stream, `OutMediationStream`. For example, `round(3252.353)` returns 3252.

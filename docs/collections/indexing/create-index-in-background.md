@@ -17,30 +17,30 @@ To create an index in the background, just specify `inBackground: true`, like in
 
 ```cURL
 // create the hash index in the background
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "type": "hash", "fields": [ "value" ], "unique": false, "inBackground": true }'
  
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/hash?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "type": "hash", "fields": [ "email" ], "unique": true, "inBackground": true }'
  
  
 // skiplist indexes work also of course
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "skiplist", "fields": [ "abc", "def" ], "unique": true, "inBackground": true }'
 
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/skiplist?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "skiplist", "fields": [ "abc", "def" ], "sparse": true, "inBackground": true }'
 
 // Also supported on fulltext and Geo indexes
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "fulltext", "fields": [ "text" ], "minLength": 4, "inBackground": true }'
  
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "type": "geo", "fields": [ "latitude", "longitude" ], "minLength": 4, "inBackground": true }'
 ```

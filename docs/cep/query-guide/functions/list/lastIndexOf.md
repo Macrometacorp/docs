@@ -4,7 +4,7 @@ title: lastIndexOf (Function)
 
 Function returns the index of the given value.
 
-Syntax
+## Syntax
 
     <INT> list:lastIndexOf(<OBJECT> list, <OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
 
@@ -19,4 +19,4 @@ Syntax
 
     list:lastIndexOf(stockSymbols. `IBM`)
 
-Returns the last index of the element `IBM` if present else it returns -1.
+Returns the last index of the element `IBM` if present, else it returns -1.

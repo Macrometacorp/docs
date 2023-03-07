@@ -4,7 +4,7 @@ title: addAll (Function)
 
 Function returns the updated list after adding all the values from the given list.
 
-Syntax
+## Syntax
 
     <OBJECT> list:addAll(<OBJECT> to.list, <OBJECT> from.list)
     <OBJECT> list:addAll(<OBJECT> to.list, <OBJECT> from.list, <BOOL> is.distinct)
@@ -21,10 +21,10 @@ Syntax
 
     list:putAll(toList, fromList)
 
-If `toList` contains values (`IBM`, `gdn`), and if `fromList` contains values (`IBM`, `XYZ`) then the function returns updated `toList` with values (`IBM`, `gdn`, `IBM`, `XYZ`).
+If `toList` contains values (`IBM`, `gdn`), and if `fromList` contains values (`IBM`, `XYZ`), then the function returns updated `toList` with values (`IBM`, `gdn`, `IBM`, `XYZ`).
 
 ## Example 2
 
     list:putAll(toList, fromList, true)
 
-If `toList` contains values (`IBM`, `gdn`), and if `fromList` contains values (`IBM`, `XYZ`) then the function returns updated `toList` with values (`IBM`, `gdn`, `XYZ`).
+If `toList` contains values (`IBM`, `gdn`), and if `fromList` contains values (`IBM`, `XYZ`), then the function returns updated `toList` with values (`IBM`, `gdn`, `XYZ`).

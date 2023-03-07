@@ -4,7 +4,7 @@ title: kgToLT (Function)
 
 This converts the input given in kilograms into imperial tons.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kgToLT(<INT|LONG|FLOAT|DOUBLE> p1)
 

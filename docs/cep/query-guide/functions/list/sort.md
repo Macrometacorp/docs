@@ -4,7 +4,7 @@ title: sort (Function)
 
 Function returns lists sorted in ascending or descending order.
 
-Syntax
+## Syntax
 
     <OBJECT> list:sort(<OBJECT> list)
     <OBJECT> list:sort(<OBJECT> list, <STRING> order)

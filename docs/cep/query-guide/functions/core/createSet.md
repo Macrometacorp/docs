@@ -2,15 +2,15 @@
 title: createSet (Function)
 ---
 
-Includes the given input parameter in a java.util.HashSet and returns the set.
+Includes the given input parameter in a `java.util.HashSet` and returns the set.
 
-Syntax
+## Syntax
 
 ```js
     <OBJECT> createSet(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL> input)
 ```
 
-QUERY PARAMETERS
+## Query Parameters
 
 | Name  | Description                                    | Default Value | Possible Data Types               | Optional | Dynamic |
 |-------|------------------------------------------------|---------------|-----------------------------------|----------|---------|
@@ -24,4 +24,4 @@ QUERY PARAMETERS
     from stockStream;
 ```
 
-For every incoming stockStream event, the initStream stream produces a set object having only one element: the symbol in the incoming stockStream.
+For every incoming `stockStream` event, the `initStream` stream produces a set object having only one element: the symbol in the incoming `stockStream`.

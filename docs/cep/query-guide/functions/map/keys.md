@@ -4,7 +4,7 @@ title: keys (Function)
 
 Function to return the keys of the map as a list.
 
-Syntax
+## Syntax
 
     <OBJECT> map:keys(<OBJECT> map)
 

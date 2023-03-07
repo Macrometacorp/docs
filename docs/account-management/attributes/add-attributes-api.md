@@ -25,7 +25,7 @@ Follow these instructions to add attributes to API keys using the GDN console we
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Update API Key Attributes](https://macrometa.com/docs/api#/operations/UpdateTheAttributesForApiKey).
+Use our interactive API Reference with code generation in 18 programming languages to [Update API Key Attributes](https://www.macrometa.com/docs/api#/operations/UpdateTheAttributesForApiKey).
 
 </TabItem>
 </Tabs>

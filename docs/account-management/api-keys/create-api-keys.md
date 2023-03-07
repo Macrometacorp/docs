@@ -22,10 +22,10 @@ If you create a new fabric after you create an API key, then the API key permiss
 Follow these instructions to create a new API key using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Account**.
-3. Click the **API Keys** tab.
-4. Click **New API Key**.
-5. Enter a unique ID.
+1. Click **Account**.
+1. Click the **API Keys** tab.
+1. Click **New API Key**.
+1. Enter a unique ID.
 
 </TabItem>
 <TabItem value="js" label="Javascript">
@@ -118,7 +118,7 @@ else:
 </TabItem>
 <TabItem value="RA" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create an API Key](https://macrometa.com/docs/api#/operations/CreateApiKey).
+Use our interactive API Reference with code generation in 18 programming languages to [Create an API Key](https://www.macrometa.com/docs/api#/operations/CreateApiKey).
 
 ```js
 # Create an API Key
@@ -141,7 +141,7 @@ print("API Key Created: ", resp)
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey](../../cli/api-key-cli.md) CLI command to create API keys.
+Use the [gdnsl apikey](../../cli/api-key-cli) CLI command to create API keys.
 
 </TabItem>
 </Tabs>

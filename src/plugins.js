@@ -2,41 +2,6 @@
 const { ProvidePlugin } = require('webpack');
 const path = require('path');
 
-const redirectsPlugin = [
-  '@docusaurus/plugin-client-redirects',
-  {
-    redirects: [
-      {
-        from: [
-          '/essentials',
-          '/essentials/overview'
-        ],
-        to: '/quickstart'
-      },
-      {
-        from: '/essentials/CLI/commands',
-        to: '/cli/'
-      },
-      {
-        from: '/essentials/geofabrics',
-        to: '/geofabrics/'
-      },
-      {
-        from: '/essentials/troubleshooting',
-        to: '/references/troubleshooting'
-      },
-      {
-        from: '/c8ql/got-tutorial',
-        to: '/queryworkers/c8ql/got-tutorial/'
-      },
-      {
-        from: '/troubleshooting',
-        to: '/references/troubleshooting'
-      }
-    ]
-  }
-];
-
 const tailwindPlugin = (context, options) => {
     return {
       name: 'tailwind-plugin',
@@ -88,7 +53,6 @@ const webpackPlugin = (context, options) => {
 };
 
 module.exports = {
-  redirectsPlugin,
   tailwindPlugin,
   webpackPlugin
 };

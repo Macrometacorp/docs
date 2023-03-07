@@ -1,0 +1,16 @@
+name: Update Search Index
+
+on:
+  deployment_status:
+
+jobs:
+  publish:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'production'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: darrenjennings/algolia-docsearch-action@master
+        with:
+          algolia_application_id: ${{ secrets.ALGOLIA_APP_ID }}
+          algolia_api_key: ${{ secrets.ALGOLIA_API_KEY }}
+          file: 'algolia.config.json'

@@ -4,7 +4,7 @@ title: isEmpty (Function)
 
 Function checks if the list is empty.
 
-Syntax
+## Syntax
 
     <BOOL> list:isEmpty(<OBJECT> list)
 
@@ -18,4 +18,4 @@ Syntax
 
     list:isEmpty(stockSymbols)
 
-Returns `true` if the stockSymbols list is empty else it returns `false`.
+Returns `true` if the stockSymbols list is empty, else it returns `false`.

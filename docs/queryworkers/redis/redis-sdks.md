@@ -3,10 +3,10 @@ sidebar_position: 20
 title: Redis SDK and API Commands
 ---
 
-You can access all the familiar Redis commands using the Macrometa SDK or API.
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+You can access all the familiar Redis commands using the Macrometa SDK or API.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
@@ -72,8 +72,8 @@ print(response)
 
 Use our interactive API Reference with code generation in 18 programming languages:
 
-- [RedisPost](https://macrometa.com/docs/api#/operations/RedisPost)
-- [RedisGet](https://macrometa.com/docs/api#/operations/RedisGet)
+- [RedisPost](https://www.macrometa.com/docs/api#/operations/RedisPost)
+- [RedisGet](https://www.macrometa.com/docs/api#/operations/RedisGet)
 
 </TabItem>
 </Tabs>

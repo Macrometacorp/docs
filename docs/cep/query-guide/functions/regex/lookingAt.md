@@ -4,15 +4,15 @@ title: lookingAt (Function)
 
 Matches the input.sequence from the beginning against the regex pattern, and unlike `regex:matches() it does not require that the entire input.sequence be matched.`
 
-Syntax
+## Syntax
 
     <BOOL> regex:lookingAt(<STRING> regex, <STRING> input.sequence)
 
 ## Query Parameters
 
-| Name           | Description                                                                                                    | Default Value | Possible Data Types | Optional | Dynamic |
+| Name           | Description          | Default Value | Possible Data Types | Optional | Dynamic |
 |----------------|----------------------------------------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| regex          | A regular expression. For example, `\d\d(.*)gdn`.                                                             |               | STRING              | No       | Yes     |
+| regex          | A regular expression. For example, `\d\d(.*)gdn`. |               | STRING              | No       | Yes     |
 | input.sequence | The input sequence to be matched with the regular expression. For example, `21 products are produced by gdn`. |               | STRING              | No       | Yes     |
 
 ## Example 1

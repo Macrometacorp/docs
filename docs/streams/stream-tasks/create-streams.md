@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 Create a stream.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Streams**.
+1. Click **Streams**.
 
    Macrometa displays a list of streams and their attributes.
 
@@ -102,7 +102,7 @@ createMyStream()
 </TabItem>
 <TabItem value="api-py" label="API - Python">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream](https://macrometa.com/docs/api#/operations/CreateStream).
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream](https://www.macrometa.com/docs/api#/operations/CreateStream).
 
 ```py
 import requests
@@ -129,7 +129,7 @@ print("\nStream Created: ", resp.text)
 </TabItem>
 <TabItem value="api-js" label="API - JS">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://macrometa.com/docs/api#/operations/CreateStream).
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://www.macrometa.com/docs/api#/operations/CreateStream).
 
 ```js
 class APIRequest {

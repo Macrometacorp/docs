@@ -4,7 +4,7 @@ title: clear (Function)
 
 Function returns the cleared map.
 
-Syntax
+## Syntax
 
     <OBJECT> map:clear(<OBJECT> map)
 

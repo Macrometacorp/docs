@@ -4,7 +4,7 @@ title: log2 (Function)
 
 This function returns the base 2 logarithm of `p1`.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:log2(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:log2(inValue) as lnValue
     from InValueStream;
 
-If the `inValue` in the input stream is given, the function calculates the base 2 logarithm of the same and returns the value to the output stream, `OutMediationStream`. For example log2(91d) returns 6.507794640198696.
+If the `inValue` in the input stream is given, then the function calculates the base 2 logarithm of the same and returns the value to the output stream, `OutMediationStream`. For example `log2(91d)` returns 6.507794640198696.

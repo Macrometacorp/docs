@@ -13,5 +13,6 @@ You must create a Redis Mode collection before you can use Redis with Macrometa.
 
 - [Macrometa API](../../api-docs/index.md)
 - [C8QL](../../queryworkers/c8ql/index.md)
+- [SDKs](../../queryworkers/redis/redis-sdks.md)
 
 For more information about using Redis in Macrometa, refer to [Redis](../../queryworkers/redis/index.md).

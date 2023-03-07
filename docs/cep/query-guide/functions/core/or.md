@@ -2,26 +2,26 @@
 title: or (Aggregate Function)
 ---
 
-eturns the results of OR operation for all the events.
+Returns the results of OR operation for all the events.
 
-Syntax
+## Syntax
 
 ```js
-    <BOOL> or(<BOOL> arg)
+<BOOL> or(<BOOL> arg)
 ```
 
-QUERY PARAMETERS
+## Query Parameters
 
 | Name | Description                              | Default Value | Possible Data Types | Optional | Dynamic |
 |------|------------------------------------------|---------------|---------------------|----------|---------|
 | arg  | The value that needs to be OR operation. |               | BOOL                | No       | Yes     |
 
-## Example 1
+## Example
 
 ```js
-    insert into alertStream
-    select or(isFraud) as isFraudTransaction
-    from cscStream WINDOW TUMBLING_LENGTH(10);
+insert into alertStream
+select or(isFraud) as isFraudTransaction
+from cscStream WINDOW TUMBLING_LENGTH(10);
 ```
 
-This returns the result for OR operation of isFraud values as a boolean value for event chunk expiration by window length batch.
+This returns the result for OR operation of `isFraud` values as a boolean value for event chunk expiration by window length batch.

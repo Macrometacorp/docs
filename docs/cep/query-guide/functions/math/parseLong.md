@@ -4,7 +4,7 @@ title: parseLong (Function)
 
 This function returns the long value of the string received.
 
-Syntax
+## Syntax
 
     <LONG> math:parseLong(<STRING> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:parseLong(inValue) as output
     from InValueStream;
 
-The function converts the `inValue` to its corresponding long value and directs the result to the output stream, OutMediationStream. For example, parseLong("123") returns 123.
+The function converts the `inValue` to its corresponding long value and directs the result to the output stream, OutMediationStream. For example, `parseLong("123")` returns 123.

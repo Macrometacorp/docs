@@ -4,7 +4,7 @@ title: remove (Function)
 
 Function returns the updated list after removing the element with the specified value.
 
-Syntax
+## Syntax
 
     <OBJECT> list:remove(<OBJECT> list, <OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
 

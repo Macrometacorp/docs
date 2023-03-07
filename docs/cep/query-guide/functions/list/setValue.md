@@ -4,7 +4,7 @@ title: setValue (Function)
 
 Function returns the updated list after replacing the element in the given index by the given value.
 
-Syntax
+## Syntax
 
     <OBJECT> list:setValue(<OBJECT> list, <INT> index, <OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
 
@@ -20,4 +20,4 @@ Syntax
 
     list:set(stockSymbols, 0, 'IBM')
 
-Function returns the updated list after replacing the value at 0th index with the value `IBM`
+Function returns the updated list after replacing the value at 0th index with the value `IBM`.

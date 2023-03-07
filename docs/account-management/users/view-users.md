@@ -23,12 +23,12 @@ You can view all users of any GeoFabric for which you have read permissions.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [List Available Users](https://macrometa.com/docs/api#/operations/ListAvailableUsers) or [Fetch User Data](https://macrometa.com/docs/api#/operations/FetchUser) on a specific user.
+Use our interactive API Reference with code generation in 18 programming languages to [List Available Users](https://www.macrometa.com/docs/api#/operations/ListAvailableUsers) or [Fetch User Data](https://www.macrometa.com/docs/api#/operations/FetchUser) on a specific user.
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl user](../../cli/users-cli.md) CLI command to view a list of users on the Macrometa account.
+Use the [gdnsl user](../../cli/users-cli) CLI command to view a list of users on the Macrometa account.
 
 </TabItem>
 </Tabs>

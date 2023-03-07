@@ -21,12 +21,12 @@ Follow these instructions to view user attributes from users using the GDN conso
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Get User Attributes](https://macrometa.com/docs/api#/operations/GetTheAttributesForUser).
+Use our interactive API Reference with code generation in 18 programming languages to [Get User Attributes](https://www.macrometa.com/docs/api#/operations/GetTheAttributesForUser).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl user get](../../cli/users-cli.md#gdnsl-user-get) CLI command to get user attributes.
+Use the [gdnsl user get](../../cli/users-cli#gdnsl-user-get) CLI command to get user attributes.
 
 </TabItem>
 <TabItem value="c8ql" label="C8QL">

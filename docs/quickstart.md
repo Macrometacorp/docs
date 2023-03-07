@@ -3,9 +3,9 @@ sidebar_position: 10
 title: Quickstart
 ---
 
-Macrometa Global Data Network (GDN) is a geo-distributed, real-time, coordination-free materialized views engine. GDN supports multiple data models, making it flexible and compatible with many database types.
+Let's get started with Macrometa by creating a global address book. In this tutorial, you will be creating a document [collection](https://macrometa.com/docs/collections/), inserting and querying some user data, and finally creating a fully operational API via [Query Workers](https://macrometa.com/docs/queryworkers/). This tutorial is Macrometa's version of "Hello, world!", is simplistic by design, and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms. 
 
-Get started with Macrometa by creating a simple address book. This tutorial is Macrometa's version of "Hello, world!" It is simplistic by design and demonstrates how you can quickly use our stateful serverless backend to run a globally distributed database with local read-write latencies around 50ms.
+If you've already completed this tutorial, then you can [add search to your application](https://macrometa.com/docs/search/getting-started).
 
 ## Prerequisites
 
@@ -146,4 +146,7 @@ REMOVE @_key
 IN addresses
 ```
 
-You have a full functional API for your application. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-restql).
+You have a fully-functional API for your application. [We made a front-end for you to take your new back-end for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
+
+
+## Next Up: [Add Search to your app](https://www.macrometa.com/docs/search/getting-started)

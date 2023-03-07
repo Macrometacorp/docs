@@ -2,10 +2,9 @@
 title: reverse (Function)
 ---
 
-Returns the input string in the reverse order character-wise and
-string-wise.
+Returns the input string in the reverse order character-wise and string-wise.
 
-Syntax
+## Syntax
 
     <STRING> str:reverse(<STRING> input.string)
 

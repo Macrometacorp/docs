@@ -4,7 +4,7 @@ title: getDouble (Function)
 
 Function retrieves the `double` value specified in the given path of the JSON element.
 
-Syntax
+## Syntax
 
     <DOUBLE> json:getDouble(<STRING|OBJECT> json, <STRING> path)
 

@@ -31,7 +31,7 @@ Playground accounts can not be used in production. Review our [Terms of Service]
 | Memory per Query				| 256 MB			|
 
 
-The following limits apply to streams:
+**Stream Limits:**
 
 | Name 											| Play Tier Quota 	|
 |------											|-----------------	|
@@ -41,9 +41,9 @@ The following limits apply to streams:
 | Max Subscriptions Count                       | 14    			|
 | Max Backlog Storage (MB)                      | 100   	        |
 | Max Backlog Message TTL in Minutes 			| 240 				|
-| Max Dispatch Throttling Rate (KB) 			| 4096				|
+| Max Dispatch Throttling Rate (Bytes) 			| 4096				|
 
-The following limits apply to Stream Workers:
+**Stream Worker Limits:**
 
 | Name 											| Play Tier Quota 	|
 |------											|-----------------	|

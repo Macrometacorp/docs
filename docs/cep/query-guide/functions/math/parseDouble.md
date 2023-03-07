@@ -4,7 +4,7 @@ title: parseDouble (Function)
 
 This function returns the double value of the string received.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:parseDouble(<STRING> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:parseDouble(inValue) as output
     from InValueStream;
 
-If the `inValue` in the input stream holds a value, this function converts it into the corresponding double value and directs it to the output stream, OutMediationStream. For example, parseDouble("123") returns 123.0.
+If the `inValue` in the input stream holds a value, this function converts it into the corresponding double value and directs it to the output stream, OutMediationStream. For example, `parseDouble("123")` returns 123.0.

@@ -11,22 +11,29 @@ You can run a query in the Macrometa console, from the Macrometa CLI, or using a
 
 ### Run a Query in the Console
 
-1. Write a [C8QL](c8ql/index.md) query.
-2. Enter any required [bind parameter](bind-parameters.md) values.
-3. Click **Run Query**.
+1. Log in to your [Macrometa account](https://auth-play.macrometa.io/).
+1. Click **Query Workers**.
+1. In the Editor, select **C8QL** or **SQL**, depending on which language you want to write the query in.
+1. Write a [SQL](sql/index.md) [C8QL](c8ql/index.md) query.
+1. Enter any required [bind parameter](bind-parameters.md) values.
+1. Click **Run Query**.
 
 Macrometa runs the query and displays the [Query Result](#query-result) for that query. Each query you run displays another Query Result unless you navigate away from the page or clear the results.
 
 ### Run a Query with CLI
 
 1. Install the CLI as described in [Install gdnsl](../cli/#install-gdnsl-cli).
-2. Enter queries using `gdnsl query`. For more information and examples, refer to the CLI [Queries](../cli/queries-cli.md) documentation.
+2. Enter queries using `gdnsl query`. For more information and examples, refer to the CLI [Queries](../cli/queries-cli) documentation.
 
 ## API Endpoint
 
 For more information, refer to [API Endpoints](api-endpoints.md).
 
 ## Execution Plan
+
+:::note
+Execution Plan is only available with C8QL queries.
+:::
 
 After you write a query, click **Execution Plan** to see a detailed breakdown of the query compilation and execution pipeline. Basically, it shows you _how_ Macrometa performs the query. The details given can be helpful when tuning or debugging complex queries.
 
@@ -38,7 +45,7 @@ Query results vary based on the query. Queries that return information display t
 
 ![Query Result](/img/queries/query-result.png)
 
-The result of a C8QL query is an array of values. The individual values in the result array might have a homogeneous structure, depending on what is actually queried.
+The result of a query is an array of values. The individual values in the result array might have a homogeneous structure, depending on what is actually queried.
 
 For example, when returning data from a collection with inhomogeneous documents (the individual documents in the collection have different attribute names) without modification, the result values will as well have an inhomogeneous structure. Each result value itself is a document:
 

@@ -4,7 +4,7 @@ title: isExists (Function)
 
 Function checks whether there is a JSON element present in the given path or not.
 
-Syntax
+## Syntax
 
     <BOOL> json:isExists(<STRING|OBJECT> json, <STRING> path)
 
@@ -19,10 +19,10 @@ Syntax
 
     json:isExists(json, '$.name')
 
-If the `json` is the format `{'name' : 'John', 'age' : 23}`, the function returns `true` as there is an element in the given path.
+If the `json` is the format `{'name' : 'John', 'age' : 23}`, then the function returns `true` as there is an element in the given path.
 
 ## Example 2
 
     json:isExists(json, '$.salary')
 
-If the `json` is the format `{'name' : 'John', 'age' : 23}`, the function returns `false` as there is no element in the given path.
+If the `json` is the format `{'name' : 'John', 'age' : 23}`, then the function returns `false` as there is no element in the given path.

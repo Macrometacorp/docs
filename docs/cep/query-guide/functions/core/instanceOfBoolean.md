@@ -4,7 +4,7 @@ title: instanceOfBoolean (Function)
 
 Checks whether the parameter is an instance of Boolean or not.
 
-Syntax
+## Syntax
 
     <BOOL> instanceOfBoolean(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> arg)
 
@@ -17,17 +17,19 @@ Syntax
 ## Example 1
 
 ```js
-    insert into barStream
-    select instanceOfBoolean(switchState) as state
-    from fooStream;
+insert into barStream
+select instanceOfBoolean(switchState) as state
+from fooStream;
 ```
+
 This returns true if the value of switchState is true.
 
 ## Example 2
 
 ```js
-    insert into barStream
-    select instanceOfBoolean(value) as state
-    from fooStream;
+insert into barStream
+select instanceOfBoolean(value) as state
+from fooStream;
 ```
+
 if the value = 32 then this returns false as the value is not an instance of the boolean.

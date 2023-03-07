@@ -4,7 +4,7 @@ title: size (Function)
 
 Function to return the size of the map.
 
-Syntax
+## Syntax
 
     <INT> map:size(<OBJECT> map)
 

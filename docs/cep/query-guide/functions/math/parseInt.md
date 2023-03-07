@@ -5,7 +5,7 @@ title: parseInt (Function)
 
 This function returns the integer value of the received string.
 
-Syntax
+## Syntax
 
     <INT> math:parseInt(<STRING> p1)
 
@@ -23,4 +23,4 @@ Syntax
     select math:parseInt(inValue) as output
     from InValueStream;
 
-The function converts the `inValue` into its corresponding integer value and directs the output to the output stream, OutMediationStream. For example, parseInt("123") returns 123.
+The function converts the `inValue` into its corresponding integer value and directs the output to the output stream, OutMediationStream. For example, `parseInt("123")` returns 123.

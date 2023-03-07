@@ -20,12 +20,12 @@ Follow these instructions to view API key attributes using the GDN console web U
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Get API Key Attributes](https://macrometa.com/docs/api#/operations/GetTheAttributesForApiKey).
+Use our interactive API Reference with code generation in 18 programming languages to [Get API Key Attributes](https://www.macrometa.com/docs/api#/operations/GetTheAttributesForApiKey).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey get](../../cli/api-key-cli.md#gdnsl-apikey-set) CLI command to get user attributes.
+Use the [gdnsl apikey get](../../cli/api-key-cli#gdnsl-apikey-set) CLI command to get user attributes.
 
 </TabItem>
 <TabItem value="c8ql" label="C8QL">

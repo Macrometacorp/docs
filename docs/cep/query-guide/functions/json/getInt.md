@@ -4,7 +4,7 @@ title: getInt (Function)
 
 Function retrieves the `int` value specified in the given path of the JSON element.
 
-Syntax
+## Syntax
 
     <INT> json:getInt(<STRING|OBJECT> json, <STRING> path)
 
@@ -19,16 +19,16 @@ Syntax
 
     json:getInt(json,'$.age')
 
-If the `json` is the format `{'name' : 'John', 'age' : 23}`, the function returns `23` as there is a matching int at `$.age`.
+If the `json` is the format `{'name' : 'John', 'age' : 23}`, then the function returns `23` as there is a matching int at `$.age`.
 
 ## Example 2
 
     json:getInt(json,'$.salary')
 
-If the `json` is the format `{'name' : 'John', 'age' : 23}`, the function returns `null` as there are no matching element at `$.salary`.
+If the `json` is the format `{'name' : 'John', 'age' : 23}`, then the function returns `null` as there are no matching element at `$.salary`.
 
 ## Example 3
 
     json:getInt(json,'$.name')
 
-If the `json` is the format `{'name' : 'John', 'age' : 23}`, the function returns `null` as there are no matching int at `$.name`.
+If the `json` is the format `{'name' : 'John', 'age' : 23}`, then the function returns `null` as there are no matching int at `$.name`.

@@ -4,7 +4,7 @@ title: getLong (Function)
 
 Function retrieves the `long` value specified in the given path of the JSON element.
 
-Syntax
+## Syntax
 
     <LONG> json:getLong(<STRING|OBJECT> json, <STRING> path)
 

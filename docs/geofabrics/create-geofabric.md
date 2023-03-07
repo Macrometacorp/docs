@@ -14,7 +14,7 @@ This page lists several methods for creating GeoFabrics. Whether or not you can 
 To create a GeoFabric in the Macrometa web console:
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/) in the `_system` GeoFabric.
-2. Click **Geo Fabrics** to navigate to the GeoFabrics management page. If you do not see the **Geo Fabrics** link, then you might not be logged in to the `_system` GeoFabric.
+2. Click **Geo Fabrics** to navigate to the GeoFabrics management page. If you do not see the **Fabrics** link, then you might not be logged in to the `_system` GeoFabric.
 3. Click **New Geo Fabric**.
 4. Enter a GeoFabric **Name**.
 5. Select at least two Edge Locations across which you want the GeoFabric distributed.
@@ -26,12 +26,12 @@ After creating the GeoFabric, click the GeoFabric name on the list to view its u
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create GeoFabrics](https://macrometa.com/docs/api#/operations/CreateGeo-fabric).
+Use our interactive API Reference with code generation in 18 programming languages to [Create GeoFabrics](https://www.macrometa.com/docs/api#/operations/CreateGeo-fabric).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric create](../cli/fabrics-cli.md#gdnsl-fabric-create) CLI command to create GeoFabrics.
+Use the [gdnsl fabric create](../cli/fabrics-cli#gdnsl-fabric-create) CLI command to create GeoFabrics.
 
 </TabItem>
 </Tabs>

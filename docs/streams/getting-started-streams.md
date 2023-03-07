@@ -19,6 +19,8 @@ This page guides you through creating a stream, publishing messages to it, and s
 
 <Steps />
 
+**Note:** The code snippets in each step aren't the same as the code in the full demo file at the end.
+
 If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
 
 ### Step 1. Connect to GDN
@@ -109,9 +111,11 @@ async function streams() {
     try{
       await console.log("Creating local stream...");
       const stream_local = await client.createStream("testStream-local", true);
-
-      await console.log("Creating global stream...");
+      console.log('Local Stream:', stream_local.result["stream-id"]);
+      
+      await console.log("\nCreating global stream...");
       const stream_global = await client.createStream("testStream-global", false);
+      console.log('Global Stream:', stream_global.result["stream-id"]);    
 
     } catch(e){
       await console.log("Streams could not be fetched because "+ e);
@@ -323,101 +327,148 @@ else:
 ```js
 // Connect to GDN.
 const jsc8 = require("jsc8");
-// Choose one of the following methods to access the GDN. API key is recommended.
-const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "xxxxx", fabricName: '_system'});
-console.log("Authentication done!!...");
+const readline = require("readline");
+const globalUrl = "https://play.paas.macrometa.io";
+const apiKey = "xxxx"; //Change this to your API Key
 
-// Get GeoFabric details.
-async function getFabric() {
-    try {
-      await console.log("Getting the fabric details...");
-      let result = await client.get();
+// Create an authenticated instance with an API key (recommended)
+const client = new jsc8({
+  url: globalUrl,
+  apiKey: apiKey,
+  fabricName: "_system"
+});
+
+/* Authenticate via JSON Web Token (JWT)
+const client = new jsc8({ url: globalUrl, token: "XXXX", fabricName: "_system" });
+*/
   
-      await console.log("result is: ", result);
-    } catch(e) {
-      await console.log("Fabric details could not be fetched because "+ e);
-    }
+/* Create an authenticated client instance via email and password
+const client = new jsc8(globalUrl);
+await client.login("your@email.com", "password");
+*/
+
+// Variables
+const stream = "streamQuickstart";
+let prefix_text = "";
+const is_local = false; //For a local stream pass this variable as True, or False for a global stream
+
+// Get the right prefix for the stream
+if (is_local) {
+  prefix_text = "c8locals.";
+} else {
+  prefix_text = "c8globals.";
 }
 
-// Create global and local streams.
-async function createStreams() {
-    try{
-      console.log("Creating local stream...");
-      await client.createStream("testStream-local", true);
-
-      console.log("Creating global stream...");
-      await client.createStream("testStream-global", false);
-
-    } catch(e) {
-      await console.log("Streams could not be created because "+ e);
-    }
-}
-
-// Subscribe to stream
-async function createConsumer() {
-  const dcList = await getDCList();
-  await console.log("dcList: ", dcList);
-
-  try{
-    console.log("Creating local stream...");
-    await client.createStream("my-stream", true);
-  } catch(e) {
-    await console.log("Stream could not be created because "+ e);
+async function createMyStream () {
+  let streamName = { "stream-id": "" };
+  if (await client.hasStream(stream, is_local)) {
+    console.log("This stream already exists!");
+    streamName["stream-id"] = prefix_text + stream;
+    console.log(`Old Producer = ${streamName["stream-id"]}`);
+  } else {
+    streamName = await client.createStream(stream, is_local);
+    console.log(`New Producer = ${streamName.result["stream-id"]}`);
   }
+}
 
-  // Here the last boolean value tells if the stream is local or global. false means that it is global.
-  const consumer = await client.createStreamReader("my-stream", "my-subscription", true);
+async function sendData () {
+  console.log("\n ------- Publish Messages  ------");
+  const producer = await client.createStreamProducer(stream, is_local);
+
+  producer.on("open", () => {
+    const input = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    // Repeatedly ask the user for message to be published to the stream. User can always exit by typing 0
+    var recursiveUserInput = () => {
+      input.question(
+        "Enter your message to publish or Type 0 to exit:\n",
+        (userInput) => {
+          if (userInput === "0") {
+            producer.close();
+            return input.close();
+          }
+
+          const data = {
+            payload: Buffer.from(userInput).toString("base64")
+          };
+          producer.send(JSON.stringify(data));
+          console.log(`Message sent: ${userInput}`);
+          recursiveUserInput();
+        }
+      );
+    }
+    recursiveUserInput();
+  });
+  producer.onclose = function () {
+    console.log("Closed WebSocket:Producer connection for " + stream);
+  };
+}
+
+async function receiveData () {
+  console.log("\n ------- Receive Messages  ------");
+  const consumer = await client.createStreamReader(
+    stream,
+    "test-subscription-1",
+    is_local
+  );
+  
+  // Close consumer connection when user types 0
+  const input = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  input.question(
+    "Type '0' to exit anytime:\n",
+    (userInput) => {
+      if (userInput === "0") {
+        consumer.close();
+        return input.close();
+      } 
+    }
+  );
 
   consumer.on("message", (msg) => {
     const { payload, messageId } = JSON.parse(msg);
-    
-    // Received message payload
     console.log(Buffer.from(payload, "base64").toString("ascii"));
-
     // Send message acknowledgement
     consumer.send(JSON.stringify({ messageId }));
   });
+
+  consumer.onclose = function () {
+    console.log("Closed WebSocket:Consumer connection for " + stream);
+  };
 }
 
-// Publish messages to stream.
-async function createProducer() {
-    try {
-      await console.log("Creating local stream...");
-      const stream = client.stream("my-stream", true);
-      const producerOTP = await stream.getOtp();
-      const producer = await stream.producer("play.paas.macrometa.io", {
-        otp: producerOTP,
-      });
-      producer.on("open", () => {
-        // If your message is an object, then convert the object to a string.
-        // e.g. const message = JSON.stringify({message:'Hello World'});
-        const message = "Hello World";
-        const payloadObj = { payload: Buffer.from(message).toString("base64") };
-        producer.send(JSON.stringify(payloadObj));
-      });
-      producer.on("message", (msg) => {
-        console.log(msg, "Sent successfully");
-      });
-    } catch(e) {
-      await console.log("Publishing could not be done because "+ e);
+async function selectAction () {
+  const input = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  input.question(
+    "Type 'w' to write data. Type 'r' to read data: ",
+    (userInput) => {
+      if (userInput === "w") {
+        sendData();
+      } else if (userInput === "r") {
+        receiveData();
+      } else {
+        console.log("Invalid user input. Stopping program.");
+        return false;
+      }
+      input.close();
     }
+  );
 }
 
-async function getDCList() {
-    const geo_fabric = "_system"
-    let dcListAll = await client.listUserFabrics();
-    let dcListObject = await dcListAll.find(function(o) { return o.name === geo_fabric; });
-    return dcListObject.options.dcList.split(",");
-}
-
-async function main() {
-    await getFabric();
-    await createStreams();
-    await createConsumer();
-    await createProducer();
-};
-
-main();
+(async function () {
+  await createMyStream();
+  await selectAction();
+})();
 ```
 
 </TabItem>

@@ -5,17 +5,22 @@ title: Query Workers
 
 After you build a query, you can save it as a _query worker_, similar to a SQL stored procedures. Query workers are cached across all GeoFabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.
 
-You can create and update query workers from the GUI, command line, or REST API. Each query worker is tied to a specific query text and parameter set. You can set optional or mandatory default values for query parameters.
+You can create and update query workers from the Macrometa web console, command line, or REST API. Each query worker is tied to a specific query text and parameter set. You can set optional or mandatory default values for query parameters.
 
 Each query worker functions as an endpoint. Query workers exist on the GeoFabric level along with other data like collections and documents.
+
+Query workers can be used as sources and sinks for [stream workers](../cep/). For more information, refer to [Query Worker Source](../cep/source/query-worker-source) and [Query Worker Sink](../cep/sink/query-worker-sink).
 
 ## Create a New Query Worker
 
 When you save a query, it becomes a query worker.
 
-1. Write a [C8QL](c8ql/index.md) query.
-2. Click **Save Query**.
-3. Enter a **Name** and then click **Save**.
+1. Log in to your Macrometa account](https://auth-play.macrometa.io/).
+2. click **Query Workers**.
+3. In the Editor, select **C8QL** or **SQL**, depending on which language you want to write the query worker in.
+4. Write a [SQL](sql/index.md) [C8QL](c8ql/index.md) query.
+5. Click **Save Query**.
+6. Enter a **Name** and then click **Save**.
 
 ## View Query Workers
 
@@ -45,18 +50,21 @@ Click the red minus sign to permanently delete the query worker.
 
 To edit a query worker:
 
-1. In **Queries**, click **Query Workers**.
-2. Double-click the query worker that you want to change. Macrometa opens it in the Editor tab.
-3. Make any changes to the query and then click **Update Query**.
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
+1. Click **Query Workers**.
+1. Click **Query Workers**.
+1. Double-click the query worker that you want to change. Macrometa opens it in the Editor tab.
+1. Make any changes to the query and then click **Update Query**.
 
 ## Import Query Workers
 
 To import custom queries from a saved file:
 
-1. In Macrometa, navigate to **Queries**.
-2. Click **Query Workers**.
-3. Click **Import Queries**.
-4. Select a file and then click **Import**.
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
+2. click **Query Workers**.
+3. Click **Query Workers**.
+4. Click **Import Queries**.
+5. Select a file and then click **Import**.
 
 :::note
 The file must be a JSON file matching the format on the screen, otherwise Macrometa cannot understand the query.
@@ -66,6 +74,7 @@ The file must be a JSON file matching the format on the screen, otherwise Macrom
 
 To export custom queries and download them as a JSON file:
 
-1. In Macrometa, navigate to **Queries**.
-2. Click **Query Workers**.
-3. Click **Export Queries**.
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
+2. click **Query Workers**.
+3. Click **Query Workers**.
+4. Click **Export Queries**.

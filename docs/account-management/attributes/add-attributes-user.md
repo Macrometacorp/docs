@@ -26,7 +26,7 @@ Follow these instructions to add attributes to users using the GDN console web U
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Update User Attributes](https://macrometa.com/docs/api#/operations/CreateTheAttributesForUser).
+Use our interactive API Reference with code generation in 18 programming languages to [Update User Attributes](https://www.macrometa.com/docs/api#/operations/CreateTheAttributesForUser).
 
 </TabItem>
 </Tabs>

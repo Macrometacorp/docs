@@ -4,7 +4,7 @@ title: create (Function)
 
 Function creates a map pairing the keys and their corresponding values.
 
-Syntax
+## Syntax
 
     <OBJECT> map:create()
     <OBJECT> map:create(<OBJECT|INT|LONG|FLOAT|DOUBLE|FLOAT|BOOL|STRING> key1, <OBJECT|INT|LONG|FLOAT|DOUBLE|FLOAT|BOOL|STRING> value1)

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Search
+title: Search Views
 slug: search
 ---
 

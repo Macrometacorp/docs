@@ -98,7 +98,7 @@ if (isLocalStreams) {
 </TabItem>
 <TabItem value="api-py" label="API - Python">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a Subscription from All Streams](https://macrometa.com/docs/api#/operations/DeleteAllSubscriptions) or [Remove a Subscription from a Specific Stream](https://macrometa.com/docs/api#/operations/DeleteSubscription).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove a Subscription from All Streams](https://www.macrometa.com/docs/api#/operations/DeleteAllSubscriptions) or [Remove a Subscription from a Specific Stream](https://www.macrometa.com/docs/api#/operations/DeleteSubscription).
 
 ```py
 import requests
@@ -149,7 +149,7 @@ print("Subscription unsubscribed (removed from all ", type, " streams): ", resp.
 </TabItem>
 <TabItem value="api-js" label="API - JS">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a Subscription from All Streams](https://macrometa.com/docs/api#/operations/DeleteAllSubscriptions) or [Remove a Subscription from a Specific Stream](https://macrometa.com/docs/api#/operations/DeleteSubscription).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove a Subscription from All Streams](https://www.macrometa.com/docs/api#/operations/DeleteAllSubscriptions) or [Remove a Subscription from a Specific Stream](https://www.macrometa.com/docs/api#/operations/DeleteSubscription).
 
 ```js
 class APIRequest {
@@ -247,7 +247,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams subscription](../../cli/streams-cli.md#gdnsl-streams-subscription) CLI commands to delete existing stream subscriptions.
+Use the [gdnsl streams subscription](../../cli/streams-cli#gdnsl-streams-subscription) CLI commands to delete existing stream subscriptions.
 
 </TabItem>
 </Tabs>

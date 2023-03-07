@@ -4,7 +4,7 @@ title: removeAll (Function)
 
 Function returns the updated list after removing all the element with the specified list.
 
-Syntax
+## Syntax
 
     <OBJECT> list:removeAll(<OBJECT> list, <OBJECT> given.list)
 
@@ -19,4 +19,4 @@ Syntax
 
     list:removeAll(stockSymbols, latestStockSymbols)
 
-This returns the updated list, stockSymbols after removing all the values in latestStockSymbols.
+This returns the updated list, stockSymbols, after removing all the values in latestStockSymbols.

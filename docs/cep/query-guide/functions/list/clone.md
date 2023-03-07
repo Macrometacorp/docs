@@ -4,7 +4,7 @@ title: clone (Function)
 
 Function returns the cloned list.
 
-Syntax
+## Syntax
 
     <OBJECT> list:clone(<OBJECT> list)
 
@@ -12,7 +12,7 @@ Syntax
 
 | Name | Description                           | Default Value | Possible Data Types | Optional | Dynamic |
 |------|---------------------------------------|---------------|---------------------|----------|---------|
-| list | The list to which needs to be cloned. |               | OBJECT              | No       | Yes     |
+| list | The list which needs to be cloned. |               | OBJECT              | No       | Yes     |
 
 ## Example 1
 

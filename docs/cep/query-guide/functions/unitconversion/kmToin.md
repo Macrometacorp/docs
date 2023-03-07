@@ -4,7 +4,7 @@ title: kmToin (Function)
 
 This converts the input given in kilometers into inches.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:kmToin(<INT|LONG|FLOAT|DOUBLE> p1)
 

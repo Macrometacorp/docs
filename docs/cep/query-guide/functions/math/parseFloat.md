@@ -4,7 +4,7 @@ title: parseFloat (Function)
 
 This function returns the float value of the received string.
 
-Syntax
+## Syntax
 
     <FLOAT> math:parseFloat(<STRING> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:parseFloat(inValue) as output
     from InValueStream;
 
-The function converts the input value given in `inValue`,into its corresponding float value and directs the result into the output stream, OutMediationStream. For example, parseFloat("123") returns 123.0.
+The function converts the input value given in `inValue`, into its corresponding float value and directs the result into the output stream, OutMediationStream. For example, `parseFloat("123")` returns 123.0.

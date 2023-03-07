@@ -4,7 +4,7 @@ title: get (Function)
 
 Function returns the value at the specific index, null if index is out of range.
 
-Syntax
+## Syntax
 
     <OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> list:get(<OBJECT> list, <INT> index)
 

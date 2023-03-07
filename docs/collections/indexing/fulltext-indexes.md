@@ -32,7 +32,7 @@ If the index attribute is neither a string, an object or an array, its contents 
 Ensures that a fulltext index exists:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
  -d '{ "fields": [ "type" : "fulltext", ."fields": ["field"],  "minLength": <minLength> }'
 ```
@@ -56,7 +56,7 @@ Fulltext C8QL functions are detailed in [Fulltext functions](../../queryworkers/
 ## Create Fulltext Index in GDN Console
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **COLLECTIONS**.
+1. Click **Collections**.
 1. Click the collection that you want to create an index for.
 1. Click **Indexes**.
 1. In **Type**, select **Fulltext Index**.

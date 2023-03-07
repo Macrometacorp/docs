@@ -14,7 +14,7 @@ This index assumes coordinates with the latitude between -90 and 90 degrees and 
 ## Create Geo Index in GDN Console
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **COLLECTIONS**.
+1. Click **Collections**.
 1. Click the collection that you want to create an index for.
 1. Click **Indexes**.
 1. In **Type**, select **Geo Index**.
@@ -32,7 +32,7 @@ This index assumes coordinates with the latitude between -90 and 90 degrees and 
 To create an index in GeoJSON mode execute:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName'  \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName'  \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "fields": [ "type" : "geo", ."fields": ["geometry"],  "geoJson": true }'
 ```
@@ -52,7 +52,7 @@ This index mode exclusively supports indexing on coordinate arrays. Values that 
 To create a geo-spatial index on all documents using _latitude_ and _longitude_ as separate attribute paths, two paths need to be specified in the _fields_ array:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \  
  -d '{ "fields": [ "type" : "geo", ."fields": ["latitude", "longitude"] }'
 ```
@@ -62,7 +62,7 @@ The first field is always defined to be the _latitude_ and the second is the _lo
 Alternatively you can specify only one field:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "geo", ."fields": ["location"],  "geoJson": false }'
 ```
@@ -332,7 +332,7 @@ Example with two polygons, the second one with a hole:
 ensures that a geo index exists
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "geo", ."fields": ["location"]}'
 ```
@@ -348,7 +348,7 @@ In case that the index was successfully created, an object with the index detail
 To create a geo index on an array attribute that contains longitude first, set the _geoJson_ attribute to `true`. This corresponds to the format described in [RFC 7946 Position](https://tools.ietf.org/html/rfc7946#section-3.1.1){:target="_blank"}
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "geo", ."fields": ["location"],  "geoJson": true }'
 ```
@@ -356,7 +356,7 @@ curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?
 To create a geo-spatial index on all documents using _latitude_ and _longitude_ as separate attribute paths, two paths need to be specified in the _fields_ array:
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName'  \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName'  \
  -H 'Authorization: bearer <token>'                                                                        \
  -d '{ "fields": [ "type" : "geo", ."fields": ["latitude", "longitude" ] }'
 ```
@@ -366,7 +366,7 @@ In case that the index was successfully created, an object with the index detail
 ensures that a geo index exists
 
 ```cURL
-curl -X 'POST' 'https://api-gdn.eng.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
+curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
  -d '{ "fields": [ "type" : "geo", ."fields": [ "location" ] }'
 ```

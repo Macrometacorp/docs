@@ -1,15 +1,15 @@
 <p align="center">
-  <a href="https://macrometa.com">
+  <a href="https://www.macrometa.com">
     <img src="https://www.macrometa.com/docs/img/macrometa-icon-purple.png" alt="Logo" width="120">
   </a>
 
-  <h2 align="center"><a href="https://macrometa.com/docs">Macrometa Docs</a></h3>
+  <h2 align="center"><a href="https://www.macrometa.com/docs">Macrometa Docs</a></h3>
   <br />
   <p align="center">
     Macrometa is a secure, global data platform with integrated pub/sub, stream processing, search, functions, and containers. Create stateful APIs and real-time, event-driven, streaming data apps in minutes – not months.
     <br />
     <br />
-    <a href="https://macrometa.com/docs">Explore the Docs 🚀</a>
+    <a href="https://www.macrometa.com/docs">Explore the Docs 🚀</a>
     ·
     <a href="https://github.com/macrometacorp/docs/issues">Report a Bug 🐛</a>
     <br />
@@ -35,12 +35,16 @@ Before reporting an issue, check that there is not an issue already open for the
 
 To make a contribution, you need to:
 
-1. Clone the latest master branch: `git clone git@github.com:Macrometacorp/docs.git`
+1. Clone the latest `main` branch: `git clone git@github.com:Macrometacorp/docs.git`
 2. Create your feature branch: `git checkout -b my-new-contribution`
 3. Add your changes: `git add .`
 4. Commit your changes: `git commit -am "Add a contribution message"`
 5. Push to the branch: `git push -u origin my-new-feature`
 6. Create a pull request
+
+### Redirects
+
+Redirects can be found in `./vercel.json`.
 
 ### Pull Requests
 

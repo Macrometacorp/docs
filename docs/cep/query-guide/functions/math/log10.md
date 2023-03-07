@@ -4,7 +4,7 @@ title: log10 (Function)
 
 This function returns the base 10 logarithm of `p1`.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:log10(<INT|LONG|FLOAT|DOUBLE> p1)
 
@@ -22,4 +22,4 @@ Syntax
     select math:log10(inValue) as lnValue
     from InValueStream;
 
-If the `inValue` in the input stream is given, the function calculates the base 10 logarithm of the same and directs the result to the output stream, `OutMediatioStream`. For example, log10(19.234) returns 1.2840696117100832.
+If the `inValue` in the input stream is given, the function calculates the base 10 logarithm of the same and directs the result to the output stream, `OutMediatioStream`. For example, `log10(19.234)` returns 1.2840696117100832.

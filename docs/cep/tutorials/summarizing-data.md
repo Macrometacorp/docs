@@ -4,8 +4,6 @@ sidebar_position: 7
 
 # Summarizing Data
 
-## Introduction
-
 Summarizing data refers to obtaining aggregates in an incremental manner for a specified set of time periods.
 
 ## Summarization by clock-time
@@ -13,7 +11,7 @@ Summarizing data refers to obtaining aggregates in an incremental manner for a s
 Performing clock-time based based summarization involves calculating, storing, and then retrieving aggregations for a selected range of time granularities. This process is carried out in two parts:
 
 1. Calculating the aggregations for the selected time granularities and storing the results.
-2. Retrieving previously calculated aggregations for selected time granularities. 
+2. Retrieving previously calculated aggregations for selected time granularities.
 
 To understand data summarization further, consider the scenario where a business that sells multiple brands stores its sales data in a physical database for the purpose of retrieving them later to perform sales analysis. Each sales transaction is received with the following details:
 
@@ -25,14 +23,15 @@ The Sales Analyst needs to retrieve the total number of items sold of each brand
 
 :::info
 It is not always required to maintain a physical database for incremental analysis, but it enables you to try out your aggregations with ease.
-:::    
+:::
+
 The following sections explain how to calculate and store time-based aggregations for this scenarios, and then retrieve them.
 
 ### Calculate and store clock-time-based aggregate values
 
 To calculate and store time-based aggregation values for the scenario explained above, follow the procedure below.
 
-1. Start creating a new stream application. You can name it `TradeApp` For instructions, see [Creating a Stream Application](create-stream-app.md).
+1. Start creating a new stream worker. You can name it `TradeApp`.
 
     ```sql
     @App:name("TradeApp");
@@ -46,19 +45,20 @@ To calculate and store time-based aggregation values for the scenario explained 
     ```
     
     :::info
-        In addition to the `symbol`, `price`, and `quantity` attributes to capture the input details already mentioned, the above stream definition includes an attribute named timestamp to capture the time at which the sales transaction occurs. The aggregations are executed based on this time. This attribute's value could either be a long value (reflecting the Unix timestamp in milliseconds), or a string value adhering to one of the following formats.
+    In addition to the `symbol`, `price`, and `quantity` attributes to capture the input details already mentioned, the above stream definition includes an attribute named timestamp to capture the time at which the sales transaction occurs. The aggregations are executed based on this time. This attribute's value could either be a long value (reflecting the Unix timestamp in milliseconds), or a string value adhering to one of the following formats.
         
-        * **`<YYYY>-<MM>-<dd> <HH>:<mm>:<ss> <Z>`**: This format can be used if the timezone needs to be specified explicitly. Here the ISO 8601 UTC offset must be provided for <Z> . e.g., +05:30 reflects the India Time Zone. If time is not in GMT, this value must be provided.)
-        * **`<yyyy>-<MM>-<dd> <HH>:<mm>:<ss>`**: This format can be used if the timezone is in GMT.
+        * `<YYYY>-<MM>-<dd> <HH>:<mm>:<ss> <Z>`: This format can be used if the timezone needs to be specified explicitly. Here the ISO 8601 UTC offset must be provided for <Z> . e.g., +05:30 reflects the India Time Zone. If time is not in GMT, this value must be provided.)
+        * `<yyyy>-<MM>-<dd> <HH>:<mm>:<ss>`: This format can be used if the timezone is in GMT.
     :::
 
 3. Create an aggregation as follows. You can name it `TradeAggregation`.
 
     :::info
-        The system uses the aggregation name you define here as part of the database table name. Table name is `<Aggregation_Name>_<Granularity>`. System will automatically create a collection `TradeAggregation_HOUR` in `c8db` as we will be calculating the aggregation hourly in the next step.
-    :::    
+    The system uses the aggregation name you define here as part of the database table name. Table name is `<StreamWorker_Name>-<Aggregation_Name>_<Granularity>`. System will automatically create a collection `TradeApp-TradeAggregation_HOUR` as we will be calculating the aggregation hourly in the next step.
+    :::
+
     ```sql
-    CREATE AGGREGATION TradeAggregation
+    CREATE AGGREGATION TradeAggregation WITH(store.type='database', store.replication.type='global')
     ```
 
 4. To calculate aggregations, include a query as follows:
@@ -87,7 +87,7 @@ To calculate and store time-based aggregation values for the scenario explained 
         aggregate by timestamp every hour;
         ```
         
-5. The completed stream application is as follows.
+5. The completed stream worker is as follows.
 
     ```sql
     @App:name("TradeApp")
@@ -95,7 +95,7 @@ To calculate and store time-based aggregation values for the scenario explained 
 
     CREATE STREAM TradeStream (symbol string, price double, quantity long, timestamp long);
 
-    CREATE AGGREGATION TradeAggregation
+    CREATE AGGREGATION TradeAggregation WITH(store.type='database', store.replication.type='global')
    
     @info(name = 'CalculatingAggregates')
     select symbol, avg(price) as avgPrice, sum(quantity) as total
@@ -106,29 +106,29 @@ To calculate and store time-based aggregation values for the scenario explained 
 
 ### Retrieve the stored aggregate values
 
-This section involves retrieving the aggregate values that you calculated and persisted in the [Calculate and store clock-time-based aggregate values subsection](#calculate-and-store-clock-time-based-aggregate-values). 
+This section involves retrieving the aggregate values that you calculated and persisted in the [Calculate and store clock-time-based aggregate values subsection](#calculate-and-store-clock-time-based-aggregate-values).
 
-To do this, let's add the definitions and queries required for retrieval to the `TradeApp` stream application that you have already created in the previous section.
+To do this, let's add the definitions and queries required for retrieval to the `TradeApp` stream worker that you have already created in the previous section.
 
-1. Open the `TradeApp` stream application.
+1. Open the `TradeApp` stream worker in the editor by clicking the **Edit** icon on the stream workers tab.
 
-2. To retrieve aggregations, you need to make retrieval requests. To capture these requests as events, let's define a stream as follows.
+2. To retrieve aggregations, you need to make retrieval requests. To process these requests, let's define a stream as follows:
     ```sql
-    CREATE STREAM TradeSummaryRetrievalStream (symbol string);
+    CREATE SINK STREAM TradeSummaryStream (symbol string, total long, avgPrice double);
     ```
     
-3. To process the events captured via the `TradeSummaryRetrievalStream` stream you defined, add a new query as follows.
+3. To retrieve and process the events, add a new query as follows:
 
     ```sql
     insert into TradeSummaryStream
     select a.symbol, a.total, a.avgPrice 
-    from TradeSummaryRetrievalStream as b join TradeAggregation as a
+    from TradeStream as b join TradeAggregation as a
         on a.symbol == b.symbol 
         within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30" 
         per "days" ;
     ```
     
-4. The completed stream application is as follows.
+4. The completed stream worker is as follows:
 
     ```sql
     @App:name("TradeApp")
@@ -136,7 +136,7 @@ To do this, let's add the definitions and queries required for retrieval to the 
     
     CREATE STREAM TradeStream (symbol string, price double, quantity long, timestamp long);
     
-    CREATE STREAM TradeSummaryRetrievalStream (symbol string);
+    CREATE SINK STREAM TradeSummaryStream (symbol string, total long, avgPrice double);
     
     CREATE AGGREGATION TradeAggregation
     select symbol, avg(price) as avgPrice, sum(quantity) as total
@@ -147,7 +147,7 @@ To do this, let's add the definitions and queries required for retrieval to the 
     @info(name = 'RetrievingAggregates') 
     insert into TradeSummaryStream
     select a.symbol, a.total, a.avgPrice 
-    from TradeSummaryRetrievalStream as b join TradeAggregation as a
+    from TradeStream as b join TradeAggregation as a
         on a.symbol == b.symbol 
         within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30" 
         per "days" ;
@@ -163,32 +163,32 @@ The window can apply to a batch of events or in a sliding manner. This is furthe
 
 This subsection demonstrates how to summarize data for a short term based on time and well as how to do a summarization in a sliding manner.
 
-To demonstrate this, consider a factory manager who wants to be able to check the production for the last hour at any given time. Every event represents a production run. For this purpose, a Stream application can be created as follows:
+To demonstrate this, consider a factory manager who wants to be able to check the production for the last hour at any given time. Every event represents a production run. For this purpose, a Stream worker can be created as follows:
 
-1. Start creating a new stream application. You can name it `PastHourProductionApp` For instructions, see [Creating a Stream Application](create-stream-app.md).
+1. Start creating a new stream worker. You can name it `PastHourProductionApp`.
 
    ```sql
    @App:name('PastHourProductionApp');
    @App:qlVersion("2")
    ```
 
-2. To capture details about each production run, define an input stream as follows.
+2. To capture details about each production run, define an input stream:
 
     ```sql
-    CREATE STREAM ProductionStream (name string, amount long, timestamp long);
+    CREATE STREAM ProductionStream (name string, amount long);
     ```
     
-3. To publish the production for the last hour, define the output stream as follows.
+3. To publish the production for the last hour, define the output stream:
 
     ```sql
-	CREATE STREAM PastHourProductionStream WITH (type='log', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
+    CREATE SINK PastHourProductionStream WITH (type='logger', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
     ```
 
     :::note
-        A sink annotation is connected to the output stream to log the output events. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
+    A sink annotation is connected to the output stream to log the output events. You can view the logged events by clicking on the **Log Viewer** on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
     :::
 
-4. To define how the output is derived, add the `select` statement as follows:
+4. To define how the output is derived, add the `select` statement:
 
     ```sql
     select name, sum(amount) as pastHourTotal
@@ -199,15 +199,15 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 5. To specify that the processing done as defined via the `select` statement applies to a time window, add the `from` clause and include the time window as shown below. This must be added above the `select` clause.
 
     ```sql
-    from ProductionStream#window.time(1 hour)
+    from ProductionStream window time(1 hour)
     ```
 
     :::note
-        `window.time` indicates that the window added is a time window. The time considered is one hour. The window is a sliding window which considers the last hour at any given time.
+    `window time` indicates that the window added is a time window. The time considered is one hour. The window is a sliding window which considers the last hour at any given time.
 
-        (For example, when the stream processor calculates the total production during the time 13.00-14.00, next it calculates the total production during the time 13.01-14.01 after the 13.01 minute as elapsed.) 
-        
-        For details about other window types supported, see [Plugins- Unique](../reference/extensions/execution/unique.md).
+    (For example, when the stream processor calculates the total production during the time 13.00-14.00, next it calculates the total production during the time 13.01-14.01 after the 13.01 minute as elapsed.) 
+    
+    For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate.md).
     :::
 
 6. To group by the product name, add the `group by` clause as follows.
@@ -222,19 +222,19 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     insert into PastHourProductionStream
     ```
 
-8. The completed stream application is as follows:
+8. The completed stream worker is as follows:
     
     ```sql
     @App:name('PastHourProductionApp')
     @App:qlVersion("2")
     
-    CREATE STREAM ProductionStream (name string, amount long, timestamp long);
+    CREATE STREAM ProductionStream (name string, amount long);
     
-	CREATE STREAM PastHourProductionStream WITH (type='log', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
+    CREATE SINK PastHourProductionStream WITH (type='logger', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
     
     insert into PastHourProductionStream
     select name, sum(amount) as pastHourTotal
-    from ProductionStream#window.time(1 hour)
+    from ProductionStream window time(1 hour)
     group by name;
     ```
 
@@ -242,9 +242,9 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 
 This subsection demonstrates how to summarize data for a specific number of events as well as how to do that summarization for batches of events.
 
-To demonstrate this, assume that a factory manager wants to track the maximum production in every 10 production runs. IOn order to do so, let's create a Stream application as follows:
+To demonstrate this, assume that a factory manager wants to track the maximum production in every 10 production runs. IOn order to do so, let's create a Stream worker as follows:
 
-1. Start creating a new stream application. You can name it `ProductionApp` For instructions, see [Creating a Stream Application](create-stream-app.md).
+1. Start creating a new stream worker. You can name it `ProductionApp`.
 
    ```sql
    @App:name('MaximumProductionApp')
@@ -260,20 +260,20 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
 3. To output the maximum production detected every 10 production runs, define an output stream as follows.
 
     ```sql
-	CREATE STREAM DetectedMaximumProductionStream WITH (type='log', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
+    CREATE SINK DetectedMaximumProductionStream WITH (type='logger', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
     ```
 
     :::note
-        A sink annotation is connected to the output stream to log the output events. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
+    A sink annotation is connected to the output stream to log the output events. You can view the logged events by simply clicking on the `Log Viewer` button on the stream worker editor tab. For more information about adding sinks to publish events, see the [Publishing Data](publishing-data.md).
     :::
         
 4. To define the subset of events to be considered based on the number of events, add the `from` clause with a `lengthBatch` window as follows.
 
     ```sql
-    from ProductionStream#window.lengthBatch(10)
+    from ProductionStream window lengthBatch(10)
     ```
     
-    `window.lengthBatch` indicates that the window added is a length window that considers events in batches when determin ing subsets. The number of events in each batch is `10`. For details about other window types supported, see [Plugins - Unique](../reference/extensions/execution/unique.md).
+    `window lengthBatch` indicates that the window added is a length window that considers events in batches when determining subsets. The number of events in each batch is `10`. For details about other window types supported, see [Functions - Unique](../query-guide/functions/unique/deduplicate.md).
 
 5. To derive the values for the `DetectedMaximumProductionStream` output stream, add the `select` statement as follows.
 
@@ -294,19 +294,18 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
     insert into DetectedMaximumProductionStream
     ```
 
-The completed stream application is as follows.
+The completed stream worker is as follows.
 
 ```sql
 @App:name('MaximumProductionApp') 
 @App:qlVersion("2")
 
-CREATE STREAM ProductionStream (name string, amount long, timestamp long);
+CREATE STREAM ProductionStream (name string, amount long);
 
-CREATE STREAM DetectedMaximumProductionStream WITH (type='log', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
+CREATE SINK DetectedMaximumProductionStream WITH (type='logger', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
 
 insert into DetectedMaximumProductionStream
 select name, max(amount) as maximumValue
-from ProductionStream#window.lengthBatch(10)
-group by name
-;
+from ProductionStream window lengthBatch(10)
+group by name;
 ```

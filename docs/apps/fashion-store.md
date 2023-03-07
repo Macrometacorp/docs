@@ -9,13 +9,13 @@ Fashion store Demo is a full-stack sample web application that creates a storefr
 
 | **Tenant** | **Fabric** | **Password** | **GUI** | **Source Code**|
 |----------- |----------|-----------|--------------|-----------|
-| fashionstore@macrometa.io | `_system` | `xxxxxxxxxx` | [**Fashion Store App**](http://fashionstore.demo.macrometa.io/) ||
+| demo-fashionstore@macrometa.io | `_system` | `xxxxxxxxxx` | [**Fashion Store App**](https://fashion-store.macrometa.io/) ||
 
 ### On GDN (Dynamo Mode)
 
 | **Tenant** | **Fabric** | **Password** | **GUI** | **Source Code**|
 |----------- |----------|-----------|--------------|-----------|
-| fashionstore-dynamo@macrometa.io | `_system` | `xxxxxxxxx` | [**Fashion Store Dynamo App**](http://fashionstore-dynamo.demo.macrometa.io/) ||
+| demo-fashionstore-dynamo@macrometa.io | `_system` | `xxxxxxxxx` | [**Fashion Store Dynamo App**](https://fashion-store-dynamo.macrometa.io/) ||
 
 ![Fashion Store](/img/fashion-store.png)
 

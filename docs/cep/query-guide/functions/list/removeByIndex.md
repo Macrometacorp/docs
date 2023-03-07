@@ -4,7 +4,7 @@ title: removeByIndex (Function)
 
 Function returns the updated list after removing the element with the specified index.
 
-Syntax
+## Syntax
 
     <OBJECT> list:removeByIndex(<OBJECT> list, <INT> index)
 
@@ -19,4 +19,4 @@ Syntax
 
     list:removeByIndex(stockSymbols, 0)
 
-This returns the updated list, stockSymbols after removing value at 0 th index.
+This returns the updated list, stockSymbols, after removing value at 0 th index.

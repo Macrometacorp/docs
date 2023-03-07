@@ -22,12 +22,12 @@ On the Users tab, you can select a user to access their details and change their
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Modify User](https://macrometa.com/docs/api#/operations/ModifyUser) passwords.
+Use our interactive API Reference with code generation in 18 programming languages to [Modify User](https://www.macrometa.com/docs/api#/operations/ModifyUser) passwords.
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl user](../../cli/users-cli.md) CLI command to replace a user password on the Macrometa account.
+Use the [gdnsl user](../../cli/users-cli) CLI command to replace a user password on the Macrometa account.
 
 </TabItem>
 </Tabs>

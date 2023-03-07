@@ -4,7 +4,7 @@ title: tTog (Function)
 
 This converts the input given in tonnes into grams.
 
-Syntax
+## Syntax
 
     <DOUBLE> unitconversion:tTog(<INT|DOUBLE> p1)
 

@@ -4,7 +4,7 @@ title: getFloat (Function)
 
 Function retrieves the `float` value specified in the given path of the JSON element.
 
-Syntax
+## Syntax
 
     <FLOAT> json:getFloat(<STRING|OBJECT> json, <STRING> path)
 

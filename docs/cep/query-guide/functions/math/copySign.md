@@ -4,7 +4,7 @@ title: copySign (Function)
 
 This function returns a value of an input with the received `magnitude` and `sign` of another input. It wraps the `java.lang.Math.copySign()` function.
 
-Syntax
+## Syntax
 
     <DOUBLE> math:copySign(<INT|LONG|FLOAT|DOUBLE> magnitude, <INT|LONG|FLOAT|DOUBLE> sign)
 
@@ -23,4 +23,4 @@ Syntax
     select math:copySign(inValue1,inValue2) as copysignValue
     from InValueStream;
 
-If two values are provided as `inValue1` and `inValue2`, the function copies the magnitude and sign of the second argument into the first one and directs the result to the output stream, OutMediatonStream. For example, copySign(5.6d, -3.0d) returns -5.6.
+If two values are provided as `inValue1` and `inValue2`, the function copies the magnitude and sign of the second argument into the first one and directs the result to the output stream, OutMediatonStream. For example, `copySign(5.6d, -3.0d)` returns -5.6.
