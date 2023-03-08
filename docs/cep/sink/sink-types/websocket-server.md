@@ -4,7 +4,7 @@ title: websocket-server
 
 The [WebSocket sink](websocket.md) sends events through the server which are then passed to the `example` stream. All events received by `example` stream are then sent to the WebSocket server
 
-Clients can connect to ws://localhost:9025/abc to receive events from the stream.
+Clients can connect to `ws://localhost:9025/abc` to receive events from the stream.
 
 ## Syntax
 
