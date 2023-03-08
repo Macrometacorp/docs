@@ -14,7 +14,6 @@ Configure the server before using the following procedure.
 CREATE SINK <NAME> WITH (type="websocket", url="<SERVER URL>", map.type="<STRING>", sub.protocol="<STRING>", headers="<STRING>", idle.timeout="<INT>", truststore.path="<STRING>", truststore.password="<STRING>"))
 ```
 
-
 ## Query Parameters
 
 | Name | Description      | Default Value | Possible Data Types | Optional | Dynamic |
