@@ -14,7 +14,6 @@ Configure the server before using the following procedure.
 CREATE SINK <NAME> WITH (type="websocket", url="<SERVER URL>", map.type="<STRING>", sub.protocol="<STRING>", headers="<STRING>", idle.timeout="<INT>", truststore.path="<STRING>", truststore.password="<STRING>"))
 ```
 
-
 ## Query Parameters
 
 | Name | Description      | Default Value | Possible Data Types | Optional | Dynamic |
@@ -25,7 +24,6 @@ CREATE SINK <NAME> WITH (type="websocket", url="<SERVER URL>", map.type="<STRING
 | idle.timeout | Idle timeout of the connection | `-1` | INT | Yes | No |
 | truststore.path | The file path to the location of the truststore. If a custom truststore is not specified, then the system uses the default truststore file - wso2carbon.jks in the `${carbon.home}/resources/security` directory. | `${carbon.home}/resources/security/client-truststore.jks` | STRING | Yes | No |
 | truststore.password | The password for the truststore. A custom password can be specified if required. | `wso2carbon` | STRING | Yes | No |
-
 
 ## Example
 
