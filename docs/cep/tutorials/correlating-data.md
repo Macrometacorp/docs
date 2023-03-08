@@ -122,7 +122,7 @@ maximum threshold which requires him to take action. To do this, you can create 
 	CREATE SINK ProductionDecreaseAlertStream WITH (type='log', prefix='Decrease in production detected:') (productName string, originalAmount long, laterAmount long, factoryBranch string);
     ```
 
-    The output directed to this stream is published via a sink of the `c8streams` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data.md).
+    The output directed to this stream is published via a sink of the `c8streams` type.
 
 4. To apply the pattern so that the production trend can be observed, add the `from` clause as follows.
 
@@ -196,7 +196,7 @@ This section explains how to analyze data by observing scenarios where events do
 
     ```
 
-    The output directed to this stream is published via a sink of the `http` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data.md).
+    The output directed to this stream is published via a sink of the `http` type.
 
 4. To specify the pattern to be used to detect the delays, add the `from` clause as follows.
 
@@ -271,7 +271,7 @@ Counting and matching multiple events over a given period is done via sequences 
 	CREATE SINK PeakTempStream WITH (type='stream', stream.list='TemperaturePeak]:') (initialTemp double, peakTemp double);
     ```
 
-   The output directed to this stream is published via a sink of the `stream` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data.md).
+   The output directed to this stream is published via a sink of the `stream` type.
 
 4. To specify how to identify the peaks, add a `from` clause as follows.
 
@@ -349,7 +349,7 @@ Logical sequences are used to identify logical relationships between events that
 		CREATE STREAM HumidStream (deviceID long, humid double);
  		```
 
-       The output directed to this stream is published via a sink of the `stream` type. For more information about publishing data via sinks, see the [Publishing Data guide](publishing-data.md).
+       The output directed to this stream is published via a sink of the `stream` type.
 
 3. Now let's define an output stream to publish the temperature and humidity.
 
