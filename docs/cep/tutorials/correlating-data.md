@@ -72,7 +72,7 @@ to be notified via a mail. To do this, create a Stream application as follows.
 
          * `<5:>` indicates that an output is generated only when the matching condition is met five times.
 
-         * A time window of `2 months` is added to consider only a period of two months in a sliding manner when counting the number of times the matching condition for the pattern is met. For more information about time windows, see [Summarizing Data - Calculate and store clock-time based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values)
+         * A time window of `2 months` is added to consider only a period of two months in a sliding manner when counting the number of times the matching condition for the pattern is met.
 
     3. To specify that the output has to directed to the `DefectiveProductsStream`, add the `insert into` clause as follows.
 
@@ -140,7 +140,7 @@ maximum threshold which requires him to take action. To do this, you can create 
 
     - The condition that should be met for `e1` and `e2` to be compared is `e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10`. This means, both the events should report the production of the same product, and there should be a decrease in production that is greater than 10 between the `e1` and `e2` events.
 
-    - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner. For more information about time windows, see [Calculate and store clock time-based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values).
+    - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner.
     :::
 
 5. To present the required output by deriving values for the attributes of the `ProductionDecreaseAlertStream` output stream you created, add the `select` clause as follows.
@@ -208,7 +208,7 @@ This section explains how to analyze data by observing scenarios where events do
 
 	- Two conditions are given. The alert is generated when either of the two conditions has not occurred. To indicate this, the `or` keyword is used between the two conditions.
 
-	- The given conditions indicate that the taxi should have reached either the `latitude == 44.0096 and longitude == 81.2735` location or the `latitude == 43.0096 and longitude == 81.2737` location. Either of the locations should be reached within 15 minutes. Therefore, each location is specified as a separate condition and a time window of 15 minutes is applied to each condition in a sliding manner. For more information about time windows, see the [Stream Query Guide - Calculate and store clock time-based aggregate values](summarizing-data/#calculate-and-store-clock-time-based-aggregate-values).
+	- The given conditions indicate that the taxi should have reached either the `latitude == 44.0096 and longitude == 81.2735` location or the `latitude == 43.0096 and longitude == 81.2737` location. Either of the locations should be reached within 15 minutes. Therefore, each location is specified as a separate condition and a time window of 15 minutes is applied to each condition in a sliding manner.
 
 5. To derive the information relating to the delay to be published as the output, add the `select` clause as follows.
 

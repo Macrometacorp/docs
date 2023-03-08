@@ -1,5 +1,4 @@
 ---
-sidebar_position: 120
 title: JOIN (Stream)
 ---
 
