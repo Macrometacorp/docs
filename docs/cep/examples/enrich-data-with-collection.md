@@ -7,69 +7,57 @@ This example explains how to enrich the data in a specific stream by joining it 
 
 For this purpose, consider a scenario where you receive sales records generated from multiple locations as events from an external system.
 
-## Create a Stream Worker
+## Stream Worker Code
 
-For more information about stream workers and how they work, refer to [Stream Workers](index.md).
+```sql
+@App:name("EnrichingTransactionsApp")
+@App:qlVersion("2")
+@App:description('An application for enriching transactions.')
+/**
+Test the stream worker:
+1. If they are not already present, then run the following query to add the records to the UserTable collection.
 
-1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Stream Worker**.
-1. In the Editor tab, define the stream worker. Copy and paste the following code block in the code editor on the Editor tab.
+    LET data = [
+    {"userId":1200001,"firstName":"Raleigh","lastName":"McGilvra"},
+    {"userId":1200002,"firstName":"Marty","lastName":"Mueller"},
+    {"userId":1200003,"firstName":"Kelby","lastName":"Mattholie"}
+    ]
 
-    ```sql
-    @App:name("EnrichingTransactionsApp")
-    @App:qlVersion("2")
-    @App:description('An application for enriching transactions.')
-    /**
-    Test the stream worker:
-    1. If they are not already present, then run the following query to add the records to the UserTable collection.
+    FOR d IN data
+        INSERT d INTO UserTable
 
-        LET data = [
-        {"userId":1200001,"firstName":"Raleigh","lastName":"McGilvra"},
-        {"userId":1200002,"firstName":"Marty","lastName":"Mueller"},
-        {"userId":1200003,"firstName":"Kelby","lastName":"Mattholie"}
-        ]
+2. Open a stream window to view c8locals.EnrichedTransactionStream output.
 
-        FOR d IN data
-            INSERT d INTO UserTable
+3. Send the following message to c8locals.TransactionStream:
 
-    2. Open a stream window to view c8locals.EnrichedTransactionStream output.
+    "userId":1200002,"transactionAmount":803,"location":"Chicago",
 
-    3. Send the following message to c8locals.TransactionStream:
+    c8locals.EnrichedTransactionStream output should be:
 
-        "userId":1200002,"transactionAmount":803,"location":"Chicago",
+    {"transactionAmount":803.0,"location":"Chicago","userName":"Marty Mueller","userId":1200002,}
 
-        c8locals.EnrichedTransactionStream output should be:
+1. Send the following message to c8locals.TransactionStream:
 
-        {"transactionAmount":803.0,"location":"Chicago","userName":"Marty Mueller","userId":1200002,}
+    "userId":1200001,"transactionAmount":1023,"location":"New York"
 
-   4. Send the following message to c8locals.TransactionStream:
+    c8locals.EnrichedTransactionStream output should be:
 
-        "userId":1200001,"transactionAmount":1023,"location":"New York"
+    {"transactionAmount":1023.0,"location":"New York","userName":"Raleigh McGilvra","userId":1200001}
 
-        c8locals.EnrichedTransactionStream output should be:
+**/
 
-        {"transactionAmount":1023.0,"location":"New York","userName":"Raleigh McGilvra","userId":1200001}
+-- Define the stream.
+CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
 
-    **/
+-- Define the table (collection).
+CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
 
-    -- Define the stream.
-    CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
+CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
 
-    -- Define the table (collection).
-    CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
-
-    CREATE SINK EnrichedTransactionStream WITH (type='stream', stream='EnrichedTransactionStream', map.type='json') (userId long, userName string, transactionAmount double, location string);
-
-    insert into EnrichedTransactionStream
-    from UserTable as u join TransactionStream as t on u.userId == t.userId;
-    select u.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
-   
-    ```
-
-1. Click **Validate**. Macrometa checks to see that your code is valid.
-1. Click **Save**.
-1. Select edge locations, and then click **Save**. The locations that you select represent where the data for this stream worker will live.
-1. Click **Publish** to publish your stream worker. When you do this, it will begin to run the code as defined and will continue until you unpublish it.
+INSERT INTO EnrichedTransactionStream
+SELECT u.userId, str:concat( u.firstName, " ", u.lastName) AS userName, transactionAmount, location
+FROM UserTable AS u JOIN TransactionStream AS t ON u.userId == t.userId
+```
 
 ## Stream Worker Explanation
 
@@ -77,7 +65,7 @@ This section explains the parts of this stream worker and what they are doing.
 
 ### Metadata
 
-This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid.
+This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid. For more information about stream worker metadata, refer to [Metadata](../metadata).
 
 - **Name** - `@App:name("EnrichingTransactionsApp")`
 - **Query language version (optional)** - @App:qlVersion("2")
@@ -122,21 +110,21 @@ Define the query for a stream to join the stream and the table, and then handle 
 
 #### Insert Data
 
-The `insert into` clause defines an output stream into which the enriched data is directed.
+The `INSERT INTO` clause defines an output stream into which the enriched data is directed.
 
 ```sql
-insert into EnrichedTransactionStream;
+INSERT INTO EnrichedTransactionStream;
 ```
 
 #### Select Data
 
-A `select` clause specifies how the value for each attribute in the output stream is derived. The variables used for the attributes are defined in the next line where you [join data](#join-data).
+A `SELECT` clause specifies how the value for each attribute in the output stream is derived. The variables used for the attributes are defined in the next line where you [join data](#join-data).
 
 ```sql
-select u.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
+SELECT u.userId, str:concat( u.firstName, " ", u.lastName) AS userName, transactionAmount, location
 ```
 
-Note the following in the `select` statement:
+Note the following in the `SELECT` statement:
 
 - The `userId` attribute name is common to both the stream and the table. Therefore, you need to specify from where this attribute needs to be taken. Here, you can also specify `t.userId` instead of `u.userId`.
 - You are specifying the output generated to include an attribute named `userName`. The value for that is derived
@@ -145,16 +133,16 @@ by concatenating the values of the `firstName` and `lastName` attributes in the 
 
 #### Join Data
 
-The `from` clause together with the `join` keyword join the table and the stream.
+The `FROM` clause together with the `JOIN` keyword join the table and the stream.
 
 ```sql
-from UserTable as u join TransactionStream as t on u.userId == t.userId
+FROM UserTable AS u JOIN TransactionStream AS t ON u.userId == t.userId
 ```
 
-Note the following about the `from` clause:
+Note the following about the `FROM` clause:
 
 - The input data is taken from both a stream and a table. You need to assign a unique reference for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream` stream is referred to as `t`, and the `UserTable` table is referred to as `u`.
-- The `join` keyword joins the stream and the table together and defines the unique references.
+- The `JOIN` keyword joins the stream and the table together and defines the unique references.
 - The condition for the stream and the table to be joined is `t.userId == u.userId`, which means that for an event to be taken from the `TransactionStream` for the join, one or more events that have the same value for the `userId` must exist in the `UserTable` table and vice versa.
 
 ## Test the Stream Worker
