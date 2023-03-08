@@ -30,7 +30,7 @@ CREATE SINK <NAME> WITH (type="websocket", url="<SERVER URL>", map.type="<STRING
 ## Example
 
 ```sql
-CREATE SINK <NAME> WITH (type='websocket', url ='ws://localhost:8025/websockets/abc', map.type='xml')
+CREATE SINK <NAME> WITH (type='websocket', url ='ws://localhost:8025/websockets/abc', map.type='json')
 
 CREATE STREAM example (attribute1 string, attribute2 int);
 ```

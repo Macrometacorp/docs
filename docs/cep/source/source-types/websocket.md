@@ -28,7 +28,7 @@ CREATE SOURCE <NAME> WITH (type="websocket", url="<SERVER URL>", map.type="<STRI
 ## Example
 
 ```sql
-CREATE SOURCE <NAME> WITH (type='websocket', url ='ws://localhost:8025/websockets/abc', map.type='xml')
+CREATE SOURCE <NAME> WITH (type='websocket', url ='ws://localhost:8025/websockets/abc', map.type='json')
 
 CREATE STREAM example (attribute1 string, attribute2 int);
 ```
