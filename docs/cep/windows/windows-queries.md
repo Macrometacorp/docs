@@ -1,17 +1,15 @@
 ---
-sidebar_position: 60
+sidebar_position: 50
 title: Window Queries
 ---
 
 This page explains how to use windows in queries.
 
-For more examples of ways to query windows, refer to [Operators for Named Windows](../windows/window-operators.md).
-
-To learn about different types of windows, refer to [Window Types](../windows/window-types/index.md)
+To learn about different types of windows, refer to [Window Types](window-types/)
 
 ## Syntax
 
-If you are using a [named window](../windows/index.md) defined with a CREATE statement, then you can use the following syntax:
+If you are using a named window defined with a CREATE statement, then you can use the following syntax:
 
 ```sql
 INSERT INTO <output stream>

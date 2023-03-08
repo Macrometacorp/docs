@@ -33,18 +33,18 @@ This table provides links to some built-in aggregation functions:
 
 | Aggregate Function | Description |
 | --- | --- |
-| and | Calculates boolean and from a set of values. |
-| avg | Calculates the average from a set of values. |
-| count | Calculates the count from a set of values. |
-| distinctcount | Calculates the distinct count based on a parameter from a set of values. |
-| max | Finds the maximum value from a set of values. |
-| maxForever | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
-| min | Finds the minimum value from a set of values. |
-| minForever | Finds the minimum value from all events throughout its lifetime irrespective of the windows. |
-| or | Calculates boolean or from a set of values. |
-| stddev | Calculates the standard deviation from a set of values. |
-| sum | Calculates the sum from a set of values. |
-| unionSet | Calculates union as a Set from a set of values. |
+| [and](functions/core/and) | Calculates boolean and from a set of values. |
+| [avg](functions/core/avg) | Calculates the average from a set of values. |
+| [count](functions/core/count) | Calculates the count from a set of values. |
+| [distinctcount](functions/core/distinctCount) | Calculates the distinct count based on a parameter from a set of values. |
+| [max](functions/core/max) | Finds the maximum value from a set of values. |
+| [maxForever](functions/core/maxForever) | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
+| [min](functions/core/min) | Finds the minimum value from a set of values. |
+| [minForever](functions/core/minForever) | Finds the minimum value from all events throughout its lifetime irrespective of the windows. |
+| [or](functions/core/or) | Calculates boolean or from a set of values. |
+| [stddev](functions/core/stdDev) | Calculates the standard deviation from a set of values. |
+| [sum](functions/core/sum) | Calculates the sum from a set of values. |
+| [unionSet](functions/core/unionSet) | Calculates union as a Set from a set of values. |
 
 ## Example
 
