@@ -25,7 +25,6 @@ CREATE SINK <NAME> WITH (type="websocket", url="<SERVER URL>", map.type="<STRING
 | truststore.path | The file path to the location of the truststore. If a custom truststore is not specified, then the system uses the default truststore file - wso2carbon.jks in the `${carbon.home}/resources/security` directory. | `${carbon.home}/resources/security/client-truststore.jks` | STRING | Yes | No |
 | truststore.password | The password for the truststore. A custom password can be specified if required. | `wso2carbon` | STRING | Yes | No |
 
-
 ## Example
 
 ```sql
