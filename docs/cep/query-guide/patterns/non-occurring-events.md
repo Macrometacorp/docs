@@ -1,9 +1,11 @@
 ---
 sidebar_position: 40
-title: Detecting Non-occurring Events
+title: Detecting Non-Occurring Events
 ---
 
 Stream workers allow you to detect non-occurring events via multiple combinations of the keywords specified above as shown in the table below.
+
+For another example, refer to [Detecting Non-Occurrence of Events Example](../../examples/correlating-events/detect-non-occurence)
 
 ### Non-occurring Event Patterns
 
