@@ -1,6 +1,6 @@
 ---
 sidebar_position: 40
-title: Nulls Example
+title: Null Handling Examples
 ---
 
 This page provides examples of using nulls in stream workers.
