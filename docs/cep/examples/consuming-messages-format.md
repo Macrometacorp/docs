@@ -4,7 +4,7 @@ title: Consuming Messages in Different Formats
 
 This page shows you examples of different ways to map stream worker messages to change how messages are consumed.
 
-## Default Format
+## Consuming Messages in Default Format
 
 In this example, the stream worker consumes a message in the default format when it makes no changes to the names of the attributes of the message schema before it processes the message.
 
