@@ -73,13 +73,21 @@ The following parameters were added to stream source:
 - num.listener.threads
 - num.io.threads
 - receiver.queue.size
+- stream.url
+- stream.admin.url
+- auth.plugin
+- auth.params
 
 [Stream Source](../cep/source/stream-source.md) was updated as a result of this change.
 
 The following parameters were added to stream sink:
 
 - num.io.threads
-- key.shared.attributes
+- key.shared.attribute
+- stream.url
+- stream.admin.url
+- auth.plugin
+- auth.params
 
 [Stream Sink](../cep/sink/stream-sink.md) was updated as a result of this change.
 
