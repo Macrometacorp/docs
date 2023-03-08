@@ -5,6 +5,8 @@ title: Patterns
 
 _Patterns_ are a state machine implementation that allows you to detect patterns in the events that arrive over time. This can correlate events within a single stream or between multiple streams.
 
+For more examples, refer to [Correlating Events to Find a Pattern](../examples/correlating-events/pattern-examples).
+
 ## Purpose
 
 Patterns allow you to identify trends in events over a time period.
