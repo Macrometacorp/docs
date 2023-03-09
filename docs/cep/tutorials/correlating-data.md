@@ -27,7 +27,7 @@ to be notified via a mail. To do this, create a Stream application as follows.
 
     ```sql
     @App:name("DefectDetectionApp")
-	@App:qlVersion("2")
+    @App:qlVersion("2")
     ```
 
 2. Define the input streams into which the events compared are received.
@@ -56,7 +56,7 @@ to be notified via a mail. To do this, create a Stream application as follows.
     2. To specify the input streams from which the input events to be analyzed for pattern detection are taken, add a `from` clause as follows.
 
         ```sql
-        from every (e1=PurchasesStream) -> e2=RepairsStream[e1.productName==e2.productName and e1.custID==e2.custID]<5:> within 2 months
+        FROM every (e1=PurchasesStream) -> e2=RepairsStream[e1.productName==e2.productName and e1.custID==e2.custID]<5:> within 2 months
         ```
 
         :::note
@@ -119,15 +119,23 @@ maximum threshold which requires him to take action. To do this, you can create 
 3. Now define an output stream as follows to present the observed production trend after applying the logical pattern.
 
     ```sql
-	CREATE SINK ProductionDecreaseAlertStream WITH (type='log', prefix='Decrease in production detected:') (productName string, originalAmount long, laterAmount long, factoryBranch string);
+	CREATE SINK ProductionDecreaseAlertStream WITH (
+	   type='log', 
+	   prefix='Decrease in production detected:'
+	 ) (
+	    productName string, 
+	    originalAmount long, 
+	    laterAmount long, 
+	    factoryBranch string
+	 );
     ```
 
-    The output directed to this stream is published via a sink of the `c8streams` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data.md).
+    The output directed to this stream is published via a sink of the `c8streams` type.
 
 4. To apply the pattern so that the production trend can be observed, add the `from` clause as follows.
 
     ```sql
-    from every (e1=ProductionStream) -> e2=ProductionStream[e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10]
+    FROM every (e1=ProductionStream) -> e2=ProductionStream[e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10]
          within 10 min
     ```
 
@@ -165,7 +173,9 @@ The completed stream application is as follows.
 
 CREATE STREAM ProductionStream(productName string, factoryBranch string, productionAmount long);
 
-CREATE SINK ProductionDecreaseAlertStream WITH (type='log', prefix='Decrease in production detected:') (productName string, originalAmount long, laterAmount long, factoryBranch string);
+CREATE SINK ProductionDecreaseAlertStream WITH (
+   type='log', 
+   prefix='Decrease in production detected:') (productName string, originalAmount long, laterAmount long, factoryBranch string);
 
 insert into ProductionDecreaseAlertStream
 select e1.productName, e1.productionAmount as originalAmount, e2.productionAmount as laterAmount, e1.factoryBranch
@@ -192,16 +202,25 @@ This section explains how to analyze data by observing scenarios where events do
 3. To publish delay notification as a message, define an output stream as follows.
 
     ```sql
-	CREATE SINK AlertStream WITH (type='http', publisher.url='http://headoffice:8080/endpoint', map.type = 'json') (taxiID string, driverID string, message string);
+     CREATE SINK AlertStream WITH (
+	type='http', 
+	publisher.url='http://headoffice:8080/endpoint', 
+	map.type = 'json'
+     ) (
+	 taxiID string, 
+	 driverID string, 
+	 message string
+     );
 
     ```
 
-    The output directed to this stream is published via a sink of the `http` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data.md).
+    The output directed to this stream is published via a sink of the `http` type.
 
 4. To specify the pattern to be used to detect the delays, add the `from` clause as follows.
 
     ```sql
-    from not LocationStream[latitude == 44.0096 and longitude == 81.2735] for 15 minutes or not LocationStream[latitude == 43.0096 and longitude == 81.2737] for 15 minutes
+    FROM NOT LocationStream[latitude == 44.0096 AND longitude == 81.2735] for 15 minutes 
+      OR NOT LocationStream[latitude == 43.0096 AND longitude == 81.2737] for 15 minutes
     ```
 
 	- The `not` keyword is added to indicate that the SI should look for instances where an event has _not_ occurred when the given conditions are met.
@@ -213,7 +232,7 @@ This section explains how to analyze data by observing scenarios where events do
 5. To derive the information relating to the delay to be published as the output, add the `select` clause as follows.
 
     ```sql
-    select LocationStream.taxiID, LocationStream.driverID, 'Unexpected Delay' as message
+    SELECT LocationStream.taxiID, LocationStream.driverID, 'Unexpected Delay' as message
     ```
 
    The alert message is a standard message that is assigned as a static value to the `message` attribute.
@@ -221,7 +240,7 @@ This section explains how to analyze data by observing scenarios where events do
 6. To insert the results into the `AlertStream` so that the message about the delay can be published, add the `insert into` clause as follows.
 
     ```sql
-    insert into AlertStream;
+    INSERT INTO AlertStream;
     ```
 
 The completed stream application is as follows.
@@ -232,11 +251,19 @@ The completed stream application is as follows.
 
 CREATE STREAM LocationStream (taxiID string, driverID string, latitude double, longitude double);
 
-CREATE SINK AlertStream WITH (type='http', publisher.url='http://headoffice:8080/endpoint', map.type = 'json') (taxiID string, driverID string, message string);
+CREATE SINK AlertStream WITH (
+   type='http', 
+   publisher.url='http://headoffice:8080/endpoint', 
+   map.type = 'json'
+ ) (
+   taxiID string, 
+   driverID string, 
+   message string);
 
 insert into AlertStream
 select LocationStream.taxiID, LocationStream.driverID, 'Unexpected Delay' as message
-from not LocationStream[latitude == 44.0096 and longitude == 81.2735] for 15 minutes or not LocationStream[latitude == 43.0096 and longitude == 81.2737] for 15 minutes;
+from not LocationStream[latitude == 44.0096 and longitude == 81.2735] 
+  for 15 minutes or not LocationStream[latitude == 43.0096 and longitude == 81.2737] for 15 minutes;
 ```
 
 For the complete list of methods in which you can apply patterns to detect non occuring events, see [Stream Query Guide - Detecting Non-Occurring Events](../query-guide/query.md#detecting-non-occurring-events).
@@ -268,15 +295,15 @@ Counting and matching multiple events over a given period is done via sequences 
 3. To report the peaks once they are identified, define an output stream as follows.
 
     ```sql
-	CREATE SINK PeakTempStream WITH (type='stream', stream.list='TemperaturePeak]:') (initialTemp double, peakTemp double);
+    CREATE SINK PeakTempStream WITH (type='stream', stream.list='TemperaturePeak]:') (initialTemp double, peakTemp double);
     ```
 
-   The output directed to this stream is published via a sink of the `stream` type. For more information about publishing data via sinks, see the [Publishing Data](publishing-data.md).
+   The output directed to this stream is published via a sink of the `stream` type.
 
 4. To specify how to identify the peaks, add a `from` clause as follows.
 
     ```sql
-    from every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last].temp > temp]
+    FROM every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last].temp > temp]
     ```
 
     :::note
@@ -292,7 +319,7 @@ Counting and matching multiple events over a given period is done via sequences 
 5. To specify how to derive the values for the attributes in the `PeakTempStream` output stream are derived, add a `select` clause as follows.
 
     ```sql
-    select e1.temp as initialTemp, e2[last].temp as peakTemp
+    SELECT e1.temp as initialTemp, e2[last].temp as peakTemp
     ```
 
     Here, the temperature reported by `e2` event is selected to be output as `peakTemp` because it is greater than the temperatures reported by events occuring before and after `e2`. The temperature reported by the event immediately before `e2` is selected as `initialTemp`.
@@ -300,7 +327,7 @@ Counting and matching multiple events over a given period is done via sequences 
 6. To insert the output generated into the `PeakTempStream` output stream, add an `insert into` clause as follows.
 
     ```sql
-    insert into PeakTempStream;
+    INSERT INTO PeakTempStream;
     ```
 
 The completed stream application is as follows.
@@ -333,34 +360,34 @@ Logical sequences are used to identify logical relationships between events that
 
     1. Define the input stream that captures the state of the regulator as follows.
 
-        ```sql
-        CREATE STREAM RegulatorStream (deviceID long, isOn bool);
-        ```
+    ```sql
+    CREATE STREAM RegulatorStream (deviceID long, isOn bool);
+    ```
 
     2. Define the input stream that captures the temperature as follows.
 
-        ```sql
-        CREATE STREAM TempStream (deviceID long, temp double);
-        ```
+    ```sql
+    CREATE STREAM TempStream (deviceID long, temp double);
+    ```
 
     3. Define the input stream that captures the humidity as follows.
 
-		```sql
-		CREATE STREAM HumidStream (deviceID long, humid double);
- 		```
+    ```sql
+    CREATE STREAM HumidStream (deviceID long, humid double);
+    ```
 
-       The output directed to this stream is published via a sink of the `stream` type. For more information about publishing data via sinks, see the [Publishing Data guide](publishing-data.md).
+    The output directed to this stream is published via a sink of the `stream` type.
 
 3. Now let's define an output stream to publish the temperature and humidity.
 
-	```sql
-	CREATE SINK StateNotificationStream WITH (type='c8streams', stream.list='RoomState]:') (temp double, humid double);
-	```
+    ```sql
+    CREATE SINK StateNotificationStream WITH (type='c8streams', stream.list='RoomState]:') (temp double, humid double);
+    ```
 
 4. To apply the logical sequence to derive the output, add the `from` clause as follows.
 
     ```sql
-    from every e1=RegulatorStream, e2=TempStream and e3=HumidStream
+    FROM every e1=RegulatorStream, e2=TempStream and e3=HumidStream
     ```
 
     Here, the unique references `e1`, `e2`, and `e3` are assigned to the first, second, and thid events respectively. `e1` must arrive at the `RegulatorStream` stream, `e2` must arrive at the `TempStream` stream, and `e3` must arrive at the `HumidStream` stream in that order. The output event is generated only after all three of these input events have arrived.
@@ -368,7 +395,7 @@ Logical sequences are used to identify logical relationships between events that
 5. To derive values for the attributes of the `StateNotificationStream` output stream, add a `select` clause as follows.
 
     ```sql
-    select e2.temp, e3.humid
+    SELECT e2.temp, e3.humid
     ```
 
     To generate the output event, the value for the `temp` attribute must be taken from the `e2` (second) event, and the value for the `humid` attribute must be taken from the `e3` (third) event.
@@ -376,7 +403,7 @@ Logical sequences are used to identify logical relationships between events that
 6. To direct the output to the `StateNotificationStream` output stream so that it can be logged, add an `insert into` clause as follows.
 
     ```sql
-    insert into StateNotificationStream;
+    INSERT INTO StateNotificationStream;
     ```
 
 7. The completed stream application is as follows.
@@ -385,13 +412,13 @@ Logical sequences are used to identify logical relationships between events that
     @App:name("RoomStateApp")
     @App:qlVersion("2")
     
-	CREATE STREAM RegulatorStream (deviceID long, isOn bool);
-	CREATE STREAM TempStream (deviceID long, temp double);
-	CREATE STREAM HumidStream (deviceID long, humid double);
+    CREATE STREAM RegulatorStream (deviceID long, isOn bool);
+    CREATE STREAM TempStream (deviceID long, temp double);
+    CREATE STREAM HumidStream (deviceID long, humid double);
 
-	CREATE SINK StateNotificationStream WITH (type='c8streams', stream.list='RoomState]:') (temp double, humid double);
+    CREATE SINK StateNotificationStream WITH (type='c8streams', stream.list='RoomState]:') (temp double, humid double);
     
-    insert into StateNotificationStream
-    select e2.temp, e3.humid
-    from every e1=RegulatorStream, e2=TempStream and e3=HumidStream;
+    INSERT INTO StateNotificationStream
+    SELECT e2.temp, e3.humid
+    FROM every e1=RegulatorStream, e2=TempStream AND e3=HumidStream;
     ```
