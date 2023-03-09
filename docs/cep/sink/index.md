@@ -16,7 +16,17 @@ A sink configuration allows users to define a mapping to convert the stream even
 General syntax for creating a sink requires a sink name and definition of the `type` of sink. There are other parameters that depend on the type of sink you are using. For more information, refer to the pages in this section.
 
 ```sql
-CREATE SINK <stream name> WITH (type='<sink type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.payload'<payload mapping>')) (<attribute1> <type>, <attributeN> <type>);
+CREATE SINK <stream name> WITH (
+   type='<sink type>', 
+   <static.key>='<value>', 
+   <dynamic.key>='{{<value>}}', 
+   map.type='<map type>', 
+   <static.key>='<value>', 
+   <dynamic.key>='{{<value>}}', 
+   map.payload'<payload mapping>'
+ )) (
+     <attribute1> <type>, 
+     <attributeN> <type>);
 ```
 
 A sink configuration consists of three parts.
@@ -62,5 +72,17 @@ The attribute names in the double curly braces are replaced with the values from
 ## Example MQTT Sink
 
 ```sql
-CREATE SINK SinkStream WITH (type="mqtt", url="tcp://test.mosquitto.org:1883", topic="topicA", map.type="json", clean.session="true", message.retain="false", quality.of.service= "1", keep.alive= "60",connection.timeout="30") (startTime long);
+CREATE SINK SinkStream WITH (
+   type="mqtt", 
+   url="tcp://test.mosquitto.org:1883", 
+   topic="topicA", 
+   map.type="json", 
+   clean.session="true", 
+   message.retain="false", 
+   quality.of.service= "1", 
+   keep.alive= "60",
+   connection.timeout="30"
+) (
+    startTime long
+);
 ```
