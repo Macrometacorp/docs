@@ -43,6 +43,7 @@ Macrometa supports Redis client protocol up to version 6.2. Following table show
 Our platform has limitation on certan commands. Commands that are mentioned below return different result in some edge cases.
 
 - [**SETRANGE**](#setrange)
+- [**SINTERSTORE**](#sinterstore)
 
 ### SETRANGE
 
@@ -80,3 +81,71 @@ Response of Macrometa platform:
 
 Response from Redis server:
 `(integer) 37`
+
+### SINTERSTORE
+
+SINTERSTORE gives the wrong value when an existing key is given as the destination.
+
+
+We will add three different keys with SADD:
+
+```js
+[
+  "SADD",
+  "key_1",
+  "a",
+  "b",
+  "c",
+  "d"
+]
+```
+
+```js
+[
+  "SADD",
+  "key_2",
+  "c"
+]
+```
+
+```js
+[
+  "SADD",
+  "key_3",
+  "a",
+  "c",
+  "e"
+]
+```
+With SINTERSTORE, we will try to store the set in an existing key:
+
+
+```js
+[
+  "SINTERSTORE",
+  "key_2",
+  "key_1",
+  "key_2",
+  "key_3"
+]
+```
+
+Result will be:
+
+```js
+{
+  "code": 200,
+  "result": 0
+}
+```
+
+Response from Redis server:
+`(integer) 1`
+
+:::note
+For Redis SET and SORTED SET datatype commands, using the same keys for the command gives a syntax error.
+
+For Redis MSET and HMSET commands, using same keys for the command will give an invalid command args error.
+:::
+
+
