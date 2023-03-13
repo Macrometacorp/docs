@@ -50,7 +50,7 @@ Add the following data to the `customer` collection:
 }
 ```
 
-In this example, customer 1 is partner 1 and customer 2 is partner 2.
+In these examples, customer 1 is partner 1 and customer 2 is partner 2.
 
 ## Example 1 - Attribute Can Only View
 
