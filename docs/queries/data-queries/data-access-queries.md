@@ -8,7 +8,6 @@ import TabItem from '@theme/TabItem';
 
 Retrieving data from the database with C8QL does always include a **RETURN** operation. It can be used to return a static value, such as a string:
 
-
 <Tabs groupId="modify-single">
 <TabItem value="c8ql" label="C8QL">
 
@@ -30,7 +29,6 @@ The query result is always an array of elements, even if a single element was re
 
 The function `DOCUMENT()` can be called to retrieve a single document via its document handle, for instance:
 
-
 <Tabs groupId="modify-single">
 <TabItem value="c8ql" label="C8QL">
 
@@ -51,7 +49,6 @@ SELECT * FROM users WHERE _id='users/phil'
 `RETURN` is usually accompanied by a `FOR` loop to iterate over the documents of a collection.
 
 The following query executes the loop body for all documents of a collection called `users`. Each document is returned unchanged in this example:
-
 
 <Tabs groupId="modify-single">
 <TabItem value="c8ql" label="C8QL">
@@ -81,7 +78,6 @@ FOR doc IN users
 For every user document, an object with two attributes is returned. The value of the attribute `user` is set to the content of the user document, and `newAttribute` is a static attribute with the boolean value _true_.
 
 Operations like **FILTER**, **SORT** and **LIMIT** can be added to the loop body to narrow and order the result. Instead of above shown call to `DOCUMENT()`, one can also retrieve the document that describes user `phil` like so:
-
 
 <Tabs groupId="modify-single">
 <TabItem value="c8ql" label="C8QL">
@@ -127,7 +123,7 @@ SELECT * FROM users WHERE status='active' ORDER BY name
 </Tabs>
 
 :::note
-Operations do not have to occur in a fixed order and that their order can influence the result significantly. Limiting the number of documents before a filter is usually not what you want, because it easily misses a lot of documents that would fulfill the filter criterion, but are ignored because of a premature `LIMIT` clause.  Because of the aforementioned reasons, `LIMIT` is usually put at the very end, after `FILTER`, `SORT` and other operations.
+Operations do not have to occur in a fixed order and that their order can influence the result significantly. Limiting the number of documents before a filter is usually not what you want, because it easily misses a lot of documents that would fulfill the filter criterion, but are ignored because of a premature `LIMIT` clause.  Because of the aforementioned reasons, `LIMIT` is usually put at the very end, after `FILTER`, `SORT`, and other operations.
 :::
 
-Refer to [C8QL Operations](c8ql/operations/index.md) for more information.
+Refer to [C8QL Operations](../c8ql/operations/index) for more information.
