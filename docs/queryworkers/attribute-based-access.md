@@ -26,7 +26,7 @@ For this example, configure an API key for each of the following users, then add
     - **Attribute -** `employee`
     - **Value -** `staff`
 
-Refer to the [Add Attributes to API Keys](../account-management/attributes/add-attributes-api.md) section for instructions on adding attributes to API keys.
+Refer to [Add Attributes to API Keys](../account-management/attributes/add-attributes-api.md) for instructions on adding attributes to API keys.
 
 Create two collections that will contain customer data for the examples: `item` and `customer`.
 
