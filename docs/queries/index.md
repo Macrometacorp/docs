@@ -8,5 +8,5 @@ You can access your Macrometa data collections by writing a _query_ in [SQL](sql
 When the user saves a query, the query is automatically converted to an API and is deployed globally to serve the users from the region closest to them with local latencies.
 
 :::note
-Best practice is to use query workers to build applications integrated with GDN instead of directly querying C8QL. For more information, refer to [Query Workers](query-workers.md).
+Best practice is to use query workers to build applications integrated with GDN instead of directly querying C8QL. For more information, refer to [Query Workers](../queryworkers/).
 :::
