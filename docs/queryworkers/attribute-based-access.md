@@ -121,7 +121,7 @@ On the other hand, if Partner 1 tries to run the same command to edit data belon
 
 ```
 curl -X 'POST' \\
-    '<https://fulfillment.eng.macrometa.io/_fabric/_system/_api/restql/execute/PartnerOrders>' \\
+    '<https://fulfillment.eng.macrometa.io/_fabric/_system/_api/restql/execute/PartnerOrdersUpdate>' \\
     -H 'accept: application/json' \\
     -H 'Content-Type: application/json' \\
     -H 'Authorization: apikey <PARTNER 1 API KEY>' \\
@@ -163,12 +163,52 @@ In this example, employees can see all items and orders but cannot update them, 
 The name of this query worker is `ViewOrders`.
 
 ```sql
-OR doc IN orders
+FOR doc IN orders
     FILTER doc.partner == CURRENT_APIKEY_ATTRIBUTE("partner") OR 
             CURRENT_USER_ATTRIBUTE("employee") == "admin" OR
             CURRENT_USER_ATTRIBUTE("employee") == "staff"
     RETURN doc
 ```
+
+Partner 1 can run a command to add data to their order:
+
+```
+curl -X 'POST' \\
+    '<https://fulfillment.eng.macrometa.io/_fabric/_system/_api/restql/execute/ViewOrders>' \\
+    -H 'accept: application/json' \\
+    -H 'Content-Type: application/json' \\
+    -H 'Authorization: apikey <PARTNER 1 API KEY>' \\
+    -d '{ "bindVars": {}}'
+```
+
+The result shows the added data:
+
+```sql
+{
+   { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" }
+}
+```
+
+Similarly, if an employee is logged onto their account they can run a command to view all data:
+
+```
+curl -X 'POST' \\
+    '<https://fulfillment.eng.macrometa.io/_fabric/_system/_api/restql/execute/ViewOrders>' \\
+    -H 'accept: application/json' \\
+    -H 'Content-Type: application/json' \\
+    -H 'Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cC...' \\
+    -d '{ "bindVars": {}}'
+```
+
+The result shows data for both customers since the employee has view access to both.
+
+```sql
+{
+   { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" },
+   { "customer": 2, "item": "drill", "ordered": 1, "partner": "partner2" }
+}
+```
+
 
 The name of this Query Worker is `OrdersUpdate`.
 
@@ -181,42 +221,7 @@ FOR doc IN orders
     RETURN NEW
 ```
 
-
-
-```
-curl -X 'POST' \\
-    '<https://fulfillment.eng.macrometa.io/_fabric/_system/_api/restql/execute/ViewOrders>' \\
-    -H 'accept: application/json' \\
-    -H 'Content-Type: application/json' \\
-    -H 'Authorization: apikey <PARTNER 1 API KEY>' \\
-    -d '{ "bindVars": {}}'
-```
-
-Result:
-
-```sql
-{
-   { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" }
-}
-```
-
-```
-curl -X 'POST' \\
-    '<https://fulfillment.eng.macrometa.io/_fabric/_system/_api/restql/execute/ViewOrders>' \\
-    -H 'accept: application/json' \\
-    -H 'Content-Type: application/json' \\
-    -H 'Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cC...' \\
-    -d '{ "bindVars": {}}'
-```
-
-Result:
-
-```sql
-{
-   { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" },
-   { "customer": 2, "item": "drill", "ordered": 1, "partner": "partner2" }
-}
-```
+Partner 1 can run a command to add data to their order:
 
 ```
 curl -X 'POST' \\
@@ -234,6 +239,8 @@ Result:
    { "customer": 1, "item": "hammer", "ordered": 3, "partner": "partner1" }
 }
 ```
+
+Similarly, if an employee is logged onto their account they can run a command to add data:
 
 ```
 curl -X 'POST' \\
