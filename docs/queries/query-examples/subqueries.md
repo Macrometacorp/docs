@@ -43,7 +43,7 @@ RETURN ( RETURN 1 )
 [ [ 1 ] ]
 ```
 
-To avoid such a nested data structure,  [FIRST()](../functions/array#first) can be used for example:
+To avoid such a nested data structure,  [FIRST()](../c8ql/functions/array#first) can be used for example:
 
 ```js
 RETURN FIRST( RETURN 1 )

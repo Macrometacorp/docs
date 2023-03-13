@@ -11,7 +11,7 @@ The versatile `FOR` keyword can be used to iterate over a collection or View, al
 FOR variableName IN expression
 ```
 
-There is also a special variant for [graph traversals](../graphs/traversals.md):
+There is also a special variant for [graph traversals](../../graph-queries/traversals.md):
 
 ```js
 FOR vertexVariableName, edgeVariableName, pathVariableName IN traversalExpression
@@ -29,14 +29,14 @@ Note that Views cannot be used as edge collections in traversals:
 FOR v IN 1..3 ANY startVertex viewName /* invalid! */
 ```
 
-Each array element returned by *expression* is visited exactly once. It is required that *expression* returns an array in all cases. The empty array is allowed, too. The current array element is made available for further processing in the variable specified by *variableName*.
+Each array element returned by _expression_ is visited exactly once. It is required that _expression_ returns an array in all cases. The empty array is allowed, too. The current array element is made available for further processing in the variable specified by _variableName_.
 
 ```js
 FOR u IN users
   RETURN u
 ```
 
-This will iterate over all elements from the array *users* (note: this array consists of all documents from the collection named "users" in this case) and make the current array element available in variable *u*. *u* is not modified in this example but simply pushed into the result using the `RETURN` keyword.
+This will iterate over all elements from the array _users_ (note: this array consists of all documents from the collection named "users" in this case) and make the current array element available in variable _u_. _u_ is not modified in this example but simply pushed into the result using the `RETURN` keyword.
 
 :::note
 When iterating over collection-based arrays as shown here, the order of documents is undefined unless an explicit sort order is defined using a `SORT` statement.
@@ -59,7 +59,7 @@ FOR u IN users
     RETURN { "user" : u, "location" : l }
 ```
 
-In this example, there are two array iterations: an outer iteration over the array *users* plus an inner iteration over the array *locations*. The inner array is traversed as many times as there are elements in the outer array.  For each iteration, the current values of *users* and *locations* are made available for further processing in the variable *u* and *l*.
+In this example, there are two array iterations: an outer iteration over the array _users_ plus an inner iteration over the array _locations_. The inner array is traversed as many times as there are elements in the outer array.  For each iteration, the current values of _users_ and _locations_ are made available for further processing in the variable _u_ and _l_.
 
 ## Options
 
@@ -73,7 +73,7 @@ FOR variableName IN expression OPTIONS {option: value, ...}
 
 For collections, index hints are provided though this inline options mechanism. Hints can be specified in two different formats.
 
-The first format option is the simplest, just a single index name. This should be sufficient for many cases. Whenever there is a choice to potentially use an index for this `FOR` loop, the optimizer will first check if the specified index can be used. If so, it will use it, regardless of whether it would normally use a different index. If it cannot use that index, then it will fall back to its normal logic to select another index. 
+The first format option is the simplest, just a single index name. This should be sufficient for many cases. Whenever there is a choice to potentially use an index for this `FOR` loop, the optimizer will first check if the specified index can be used. If so, it will use it, regardless of whether it would normally use a different index. If it cannot use that index, then it will fall back to its normal logic to select another index.
 
 If the optional `forceIndexHint: true` is specified, then it will not fall back, and instead generate an error.
 

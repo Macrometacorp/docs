@@ -11,9 +11,9 @@ The two common scenarios when you want to join documents of collections are:
 
 Unlike many NoSQL databases, GDN does support joins in C8QL queries. This is similar to the way traditional relational databases handle this. However, because documents allow for more flexibility, joins are also more flexible. The following sections provide solutions for common questions.
 
-So far we have only dealt with one collection (*users*) at a time. We also have a collection *relations* that stores relationships between users. We will now use this extra collection to create a result from two collections.
+So far we have only dealt with one collection (_users_) at a time. We also have a collection _relations_ that stores relationships between users. We will now use this extra collection to create a result from two collections.
 
-First of all, we'll query a few users together with their friends' ids. For that, we'll use all *relations* that have a value of *friend* in their *type* attribute. Relationships are established by using the *friendOf* and *thisUser* attributes in the *relations* collection, which point to the *userId* values in the *users* collection.
+First of all, we'll query a few users together with their friends' ids. For that, we'll use all _relations_ that have a value of _friend_ in their _type_ attribute. Relationships are established by using the _friendOf_ and _thisUser_ attributes in the _relations_ collection, which point to the _userId_ values in the _users_ collection.
 
 ## One-To-Many
 
@@ -381,7 +381,7 @@ written.save("authors/2938210813", "books/2980088317", { pages: "11-20" })
 }
 ```
 
-In order to get all books with their authors you can use a [graph traversal](../graphs/traversals#working-with-collection-sets)
+In order to get all books with their authors you can use a [graph traversal](../graph-queries/traversals#working-with-collection-sets)
 
 ```js
 FOR b IN books
@@ -623,7 +623,7 @@ We will start with a SQL-ish result set and return each tuple (user name, friend
     }
 ```
 
-We iterate over the collection users. Only the 'active' users will be examined. For each of these users we will search for up to 4 friends. We locate friends by comparing the *userId* of our current user with the *friendOf* attribute of the *relations* document. For each of those relations found we return the users name and the userId of the friend.
+We iterate over the collection users. Only the 'active' users will be examined. For each of these users we will search for up to 4 friends. We locate friends by comparing the _userId_ of our current user with the _friendOf_ attribute of the _relations_ document. For each of those relations found we return the users name and the userId of the friend.
 
 ### Horizontal lists
 
@@ -677,11 +677,11 @@ FOR u IN users
 ]
 ```
 
-In this query we are still iterating over the users in the *users* collection and for each matching user we are executing a subquery to create the matching list of related users.
+In this query we are still iterating over the users in the _users_ collection and for each matching user we are executing a subquery to create the matching list of related users.
 
 ### Self joins
 
-To not only return friend ids but also the names of friends, we could "join" the *users* collection once more (something like a "self join"):
+To not only return friend ids but also the names of friends, we could "join" the _users_ collection once more (something like a "self join"):
 
 ```js
 FOR u IN users
@@ -761,13 +761,13 @@ FOR user IN users
 ]
 ```
 
-So, for each user we pick the list of their friends and count them. The ones where count equals zero are the lonely people. Using *RETURN 1* in the subquery saves even more precious CPU cycles and gives the optimizer more alternatives.
+So, for each user we pick the list of their friends and count them. The ones where count equals zero are the lonely people. Using _RETURN 1_ in the subquery saves even more precious CPU cycles and gives the optimizer more alternatives.
 
 ### Index usage
 
 Especially on joins you should make sure indices can be used to speed up your query. Please note that sparse indices don't qualify for joins:
 
-In joins you typically would also want to join documents not containing the property you join with. However sparse indices don't contain references to documents that don't contain the indexed attributes - thus they would be missing from the join operation. For that reason you should provide non-sparse indices. 
+In joins you typically would also want to join documents not containing the property you join with. However sparse indices don't contain references to documents that don't contain the indexed attributes - thus they would be missing from the join operation. For that reason you should provide non-sparse indices.
 
 ### Pitfalls
 
@@ -797,4 +797,4 @@ So if the above queries return 10k matches each, the result of the Join tuples q
 
 Using indices on the properties can speed up the operation significantly. You can use the explain helper to revalidate your query actually uses them.
 
-If you work with joins on edge collections you would typically aggregate over the internal fields *_id*, *_from* and *_to* (where *_id* equals *userId*, *_from* *friendOf* and *_to* would be *thisUser* in our examples). GDN implicitly creates indices on them.
+If you work with joins on edge collections you would typically aggregate over the internal fields __id_, __from_ and __to_ (where __id_ equals _userId_, __from_ _friendOf_ and __to_ would be _thisUser_ in our examples). GDN implicitly creates indices on them.

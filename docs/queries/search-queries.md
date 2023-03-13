@@ -1,6 +1,6 @@
 ---
-sidebar_position: 40
-title: Search Patterns
+sidebar_position: 60
+title: Search Queries
 ---
 
 In today's world, a fundamental requirement for running a successful business is to be able to quickly and accurately locate certain information from large data repositories. This is called _indexing_ and _searching_.
@@ -10,7 +10,7 @@ GDN brings two main advantages over other data stores:
 - GDN is equipped with a state-of-the-art indexing and search facility that enables users to perform sophisticated search operations on [multi-model](https://www.macrometa.com/topics/multi-model-database) data storage including key-value pairs, documents, and graphs.
   - You do not need to reformat data to make it compatible with GDN search.
   - GDN search is capable of complex operations such as faceted search and geospatial serach.
-- Any time we update Macrometa GDN, [search indexes](views/index.md) are automatically updated globally.
+- Any time we update Macrometa GDN, [search indexes](../search/views/) are automatically updated globally.
 
 This page provides detailed examples of possible search query patterns. All examples use the GDN Web console and HTTP REST API.
 

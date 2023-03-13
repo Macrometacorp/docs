@@ -11,7 +11,7 @@ For all vertices that were visited during this process in the range between `min
 
 1. The visited vertex.
 2. The edge pointing to it.
-3. The complete path from startVertex to the visited vertex as object with an attribute `edges` and an attribute `vertices`, each a list of the coresponding elements. These lists are sorted, which means the first element in `vertices` is the `startVertex` and the last is the visited vertex, and the n-th element in `edges` connects the n-th element with the (n+1)-th element in `vertices`.
+3. The complete path from startVertex to the visited vertex as object with an attribute `edges` and an attribute `vertices`, each a list of the corresponding elements. These lists are sorted, which means the first element in `vertices` is the `startVertex` and the last is the visited vertex, and the n-th element in `edges` connects the n-th element with the (n+1)-th element in `vertices`.
 
 ## Example execution
 
@@ -38,7 +38,7 @@ The query will remember the state (red circle) and will emit the first result **
 
 ![traversal_graph3](/img/traversal_graph3.png)
 
-We have limited the query with a `max` depth of *2*, so it will not pick any neighbor of **E**, as the path from **A** to **E** already requires *2* steps. Instead, we will go back one level to **B** and continue with any other direct neighbor there:
+We have limited the query with a `max` depth of _2_, so it will not pick any neighbor of **E**, as the path from **A** to **E** already requires _2_ steps. Instead, we will go back one level to **B** and continue with any other direct neighbor there:
 
 ![traversal_graph4](/img/traversal_graph4.png)
 
@@ -62,7 +62,6 @@ After these steps there is no further result left. So all together this query ha
 4. **A** → **G**
 5. **A** → **G** → **H**
 6. **A** → **G** → **J**
-
 
 ## Syntax
 
@@ -91,13 +90,13 @@ FOR vertex[, edge[, path]]
 - **vertex** (object): the current vertex in a traversal
 - **edge** (object, `optional`): the current edge in a traversal
 - **path** (object, `optional`): representation of the current path with two members:
-  * `vertices`: an array of all vertices on this path
-  * `edges`: an array of all edges on this path
+  - `vertices`: an array of all vertices on this path
+  - `edges`: an array of all edges on this path
 
 `IN` `min..max`: the minimal and maximal depth for the traversal:
 
-- **min** (number, `optional`): edges and vertices returned by this query will start at the traversal depth of *min* (thus edges and vertices below will not be returned). If not specified, it defaults to 1. The minimal possible value is 0.
-- **max** (number, `optional`): up to *max* length paths are traversed. If omitted, *max* defaults to *min*. Thus only the vertices and edges in the range of *min* are returned. *max* can not be specified without *min*.
+- *_min_* (number, `optional`): edges and vertices returned by this query will start at the traversal depth of *min* (thus edges and vertices below will not be returned). If not specified, it defaults to 1. The minimal possible value is 0.
+- *_max_* (number, `optional`): up to _max_ length paths are traversed. If omitted, _max_ defaults to _min_. Thus only the vertices and edges in the range of _min_ are returned. *max* can not be specified without _min_.
 
 `OUTBOUND|INBOUND|ANY`: follow outgoing, incoming, or edges pointing in either direction in the traversal; Please note that this can't be replaced by a bind parameter.
 
@@ -107,7 +106,7 @@ FOR vertex[, edge[, path]]
 
 `PRUNE` **condition**: A condition, like in a FILTER statement, which will be evaluated in every step of the traversal, as early as possible. The semantics of this condition is as follows:
 
-- If the condition evaluates to `true` this path will be considered as a result, it might still be post filtered or ignored due to depth constraints. However the search will not continue from this path, namely there will be no result having this path as a prefix. 
+- If the condition evaluates to `true` this path will be considered as a result, it might still be post filtered or ignored due to depth constraints. However the search will not continue from this path, namely there will be no result having this path as a prefix.
 e.g.: Take the path: `(A) -> (B) -> (C)`  starting at `A` and PRUNE on `B` will result in `(A)` and `(A) -> (B)` being valid paths, and `(A) -> (B) -> (C)` not returned, it got pruned on B.
 - If the condition evaluates to `false` we will continue our search beyond this path.
 
@@ -116,18 +115,18 @@ There is only one `PRUNE` condition possible, but it can contain an arbitrary am
 `OPTIONS` **options** (object, `optional`): used to modify the execution of the traversal. Only the following attributes have an effect, all others are ignored:
 
 - **uniqueVertices** (string): optionally ensure vertex uniqueness
-  * "path" – it is guaranteed that there is no path returned with a duplicate vertex
-  * "global" – it is guaranteed that each vertex is visited at most once during the traversal, no matter how many paths lead from the start vertex to this one. If you start with a `min depth > 1` a vertex that was found before *min* depth might not be returned at all (it still might be part of a path). **Note:** Using this configuration the result is not deterministic any more. If there are multiple paths from *startVertex* to *vertex*, one of those is picked.
-  * "none" (default) – no uniqueness check is applied on vertices
+  - "path" – it is guaranteed that there is no path returned with a duplicate vertex
+  - "global" – it is guaranteed that each vertex is visited at most once during the traversal, no matter how many paths lead from the start vertex to this one. If you start with a `min depth > 1` a vertex that was found before _min_ depth might not be returned at all (it still might be part of a path). **Note:** Using this configuration the result is not deterministic any more. If there are multiple paths from _startVertex_ to _vertex_, one of those is picked.
+  - "none" (default) – no uniqueness check is applied on vertices
 
 - **uniqueEdges** (string): optionally ensure edge uniqueness
-  * "path" (default) – it is guaranteed that there is no path returned with a duplicate edge
-  * "global" – it is guaranteed that each edge is visited at most once during the traversal, no matter how many paths lead from the start vertex to this edge. If you start with a `min depth > 1`, an edge that was found before *min* depth might not be returned at all (it still might be part of a path). **Note:** Using this configuration the result is not deterministic any more. If there are multiple paths from *startVertex* over *edge* one of those is picked.
-  * "none" – no uniqueness check is applied on edges. **Note:** Using this configuration the traversal will follow cycles in edges.
+  - "path" (default) – it is guaranteed that there is no path returned with a duplicate edge
+  - "global" – it is guaranteed that each edge is visited at most once during the traversal, no matter how many paths lead from the start vertex to this edge. If you start with a `min depth > 1`, an edge that was found before _min_ depth might not be returned at all (it still might be part of a path). **Note:** Using this configuration the result is not deterministic any more. If there are multiple paths from _startVertex_ over _edge_ one of those is picked.
+  - "none" – no uniqueness check is applied on edges. **Note:** Using this configuration the traversal will follow cycles in edges.
 
 - **bfs** (bool): optionally use the alternative breadth-first traversal algorithm
-  * true – the traversal will be executed breadth-first. The results will first contain all vertices at depth 1. Than all vertices at depth 2 and so on.
-  * false (default) – the traversal will be executed depth-first. It will first return all paths from *min* depth to *max* depth for one vertex at depth 1. Than for the next vertex at depth 1 and so on.
+  - true – the traversal will be executed breadth-first. The results will first contain all vertices at depth 1. Than all vertices at depth 2 and so on.
+  - false (default) – the traversal will be executed depth-first. It will first return all paths from _min_ depth to _max_ depth for one vertex at depth 1. Than for the next vertex at depth 1 and so on.
 
 ## Working with collection sets
 
@@ -142,7 +141,7 @@ FOR vertex[, edge[, path]]
 
 Instead of `GRAPH graphName` you may specify a list of edge collections. Vertex collections are determined by the edges in the edge collections. The traversal options are the same as with the [named graph variant](#working-with-named-graphs).
 
-If the same edge collection is specified multiple times, it will behave as if it were specified only once. Specifying the same edge collection is only allowed when the collections do not have conflicting traversal directions. 
+If the same edge collection is specified multiple times, it will behave as if it were specified only once. Specifying the same edge collection is only allowed when the collections do not have conflicting traversal directions.
 
 ## Traversing in mixed directions
 
@@ -158,7 +157,7 @@ All collections in the list that do not specify their own direction will use the
 
 ## Using filters and the explainer to extrapolate the costs
 
-All three variables emitted by the traversals might as well be used in filter statements. For some of these filter statements the optimizer can detect that it is possible to prune paths of traversals earlier, hence filtered results will not be emitted to the variables in the first place. This may significantly improve the performance of your query. Whenever a filter is not fulfilled, the complete set of *vertex*, *edge* and *path* will be skipped. All paths with a length greater than *max* will never be computed.
+All three variables emitted by the traversals might as well be used in filter statements. For some of these filter statements the optimizer can detect that it is possible to prune paths of traversals earlier, hence filtered results will not be emitted to the variables in the first place. This may significantly improve the performance of your query. Whenever a filter is not fulfilled, the complete set of _vertex_, _edge_ and _path_ will be skipped. All paths with a length greater than _max_ will never be computed.
 
 In the current state, `AND` combined filters can be optimized, but `OR` combined filters cannot.
 
@@ -166,7 +165,7 @@ In the current state, `AND` combined filters can be optimized, but `OR` combined
 
 Filtering on paths allows for the most powerful filtering and may have the highest impact on performance. Using the path variable you can filter on specific iteration depths. You can filter for absolute positions in the path by specifying a positive number (which then qualifies for the optimizations), or relative positions to the end of the path by specifying a negative number.
 
-The following examples are based on the [traversal graph](../graphs/traversals.md#).
+The following examples are based on the traversal graph.
 
 ### Pruning
 
@@ -197,6 +196,7 @@ With the second filter, we remove all paths that do not end in `G` namely all sh
 
 :::note
 You can also prune as soon as you reach a certain collection with the following example:
+
 ```js
     FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
         PRUNE IS_SAME_COLLECTION('circles', v)
@@ -215,7 +215,7 @@ Filtering on paths allows for the second most powerful filtering and may have th
         RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-will filter all paths where the start edge (index 0) has the attribute *theTruth* equal to *true*. The resulting paths will be up to 5 items long.
+will filter all paths where the start edge (index 0) has the attribute _theTruth_ equal to _true_. The resulting paths will be up to 5 items long.
 
 ### Filtering vertices on the path
 
@@ -239,10 +239,10 @@ And of course you can combine these filters in any way you like:
         RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-The query will filter all paths where the first edge has the attribute *theTruth* equal to *true*, the first vertex is "G" and the second edge has the attribute *theFalse* equal to *false*. The resulting paths will be up to 5 items long.
+The query will filter all paths where the first edge has the attribute _theTruth_ equal to _true_, the first vertex is "G" and the second edge has the attribute _theFalse_ equal to _false_. The resulting paths will be up to 5 items long.
 
 :::note
-Although we have defined a *min* of 1, we will only get results of depth 2. This is because for all results in depth 1 the second edge does not exist and hence cannot fulfill the condition here.
+Although we have defined a _min_ of 1, we will only get results of depth 2. This is because for all results in depth 1 the second edge does not exist and hence cannot fulfill the condition here.
 :::
 
 #### Filter on the entire path
@@ -279,7 +279,7 @@ It is guaranteed that at least one, but potentially more edges fulfill the condi
 
 Filtering on the path influences the Iteration on your graph. If certain conditions aren't met, the traversal may stop continuing along this path.
 
-In contrast filters on vertex or edge only express whether you're interested in the actual value of these documents. Thus, it influences the list of returned documents (if you return v or e) similar as specifying a non-null `min` value. If you specify a min value of 2, the traversal over the first two nodes of these paths has to be executed - you just won't see them in your result array. 
+In contrast filters on vertex or edge only express whether you're interested in the actual value of these documents. Thus, it influences the list of returned documents (if you return v or e) similar as specifying a non-null `min` value. If you specify a min value of 2, the traversal over the first two nodes of these paths has to be executed - you just won't see them in your result array.
 
 Similar are filters on vertices or edges - the traverser has to walk along these nodes, since you may be interested in documents further down the path.
 
@@ -342,7 +342,7 @@ Results:
     ]
   ```
 
-As you can see, we can express this in two ways: with or without *max* parameter in the expression.
+As you can see, we can express this in two ways: with or without _max_ parameter in the expression.
 
 ### Filter examples
 
@@ -409,7 +409,6 @@ Results:
 As you can see, combining two `FILTER` statements with an `AND` has the same result.
 
 ## Comparing OUTBOUND / INBOUND / ANY
-
 
 All our previous examples traversed the graph in `OUTBOUND` edge direction. You may however want to also traverse in reverse direction (`INBOUND`) or both (`ANY`). Since `circles/A` only has outbound edges, we start our queries from `circles/E`:
 
@@ -552,9 +551,8 @@ Optimization rules applied:
 
 ```
 
-We now see two queries: In one we add a variable *localScopeVar*, which is outside the scope of the traversal itself - it is not known inside of the traverser.
+We now see two queries: In one we add a variable _localScopeVar_, which is outside the scope of the traversal itself - it is not known inside of the traverser.
 
 Therefore, this filter can only be executed after the traversal, which may be undesired in large graphs. The second query on the other hand only operates on the path, and therefore this condition can be used during the execution of the traversal.
 
 Paths that are filtered out by this condition won't be processed at all.
-
