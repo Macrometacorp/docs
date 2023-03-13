@@ -138,7 +138,7 @@ The result is empty because the attempt failed:
 
 ## Example 3
 
-In this example, partners cannot view employee data.
+In this example, partners attempt to view employee data and are blocked because they do not have proper access:
 
 The name of this Query Worker is `Employees`.
 
@@ -148,16 +148,13 @@ FOR doc IN employees
     RETURN doc
 ```
 
-Query result:
+The result is empty because API keys with the `partner` attribute do not have access to the `employees` collection:
 
 ```sql
 {
    {}
 }
 ```
-
-
-
 
 ## Example 4
 
