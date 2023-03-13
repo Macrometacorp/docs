@@ -7,7 +7,7 @@ After you [build a query](building-queries.md), you might want to run it. You mi
 
 ## Run a Query
 
-You can run a query in the Macrometa console, from the Macrometa CLI, or using an [API endpoint](api-endpoints.md).
+You can run a query in the Macrometa console, from the Macrometa CLI, or using an [API endpoint](../queryworkers/api-endpoints).
 
 ### Run a Query in the Console
 
@@ -27,7 +27,7 @@ Macrometa runs the query and displays the [Query Result](#query-result) for that
 
 ## API Endpoint
 
-For more information, refer to [API Endpoints](api-endpoints.md).
+For more information, refer to [API Endpoints](../queryworkers/api-endpoints).
 
 ## Execution Plan
 
