@@ -1,6 +1,6 @@
 ---
 title: Bind Parameters
-sidebar_position: 60
+sidebar_position: 45
 ---
 import Tabs from '@theme/Tabs'; 
 import TabItem from '@theme/TabItem';
