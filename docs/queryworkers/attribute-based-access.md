@@ -158,7 +158,7 @@ The result is empty because API keys with the `partner` attribute do not have ac
 
 ## Example 4
 
-In this example, employees can see all items and orders but cannot update them, and partners can view and update their own items.
+In this example, employees can see all items and orders but cannot update them. Partners can view and update only their own items.
 
 The name of this query worker is `ViewOrders`.
 
