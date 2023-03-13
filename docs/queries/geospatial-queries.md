@@ -45,7 +45,7 @@ After you import the dataset into the
 
 Many of the following examples use [bind parameter](bind-parameters). They are indicated by the `@` prefix, such as `@distance`. You can replace them with numbers such as 5000, 10000, or other values to see different results.
 
-## Locate Restaurants Within a Radius
+### Locate Restaurants Within a Radius
 
 ```sql
 LET statueOfLiberty = GEO_POINT(-74.044500, 40.689306)
@@ -59,7 +59,7 @@ FOR doc IN restaurants
 
 This query demonstrates how to locate all restaurants within a given radius of a specified location, in this case, within a number of meters of the Statue of Liberty.
 
-## Locate Restaurants Within a Range of Distances
+### Locate Restaurants Within a Range of Distances
 
 ```sql
 LET statueOfLiberty = GEO_POINT(-74.044500, 40.689306)
@@ -74,22 +74,24 @@ FOR doc IN restaurants
 
 This query demonstrates how to locate all restaurants within a range of distances from a specified location, in this case, between a minimum and maximum number of meters from the Statue of Liberty.
 
-Locate the Nearest Restaurants
-sql
-Copy code
+### Locate the Nearest Restaurants
+
+```sql
 LET statueOfLiberty = GEO_POINT(-74.044500, 40.689306)
  FOR restaurant IN restaurants
     LET location = GEO_POINT(restaurant.longitude, restaurant.latitude)
    SORT GEO_DISTANCE(statueOfLiberty, location) ASC
    LIMIT @limit
    RETURN restaurant
-This code block demonstrates how to locate the nearest restaurants to a specified location, in this case, the 5 restaurants nearest to the Statue of Liberty.
+```
 
-Locate Restaurants Within a Polygon
-sql
-Copy code
+This query demonstrates how to locate the nearest restaurants to a specified location, in this case, the five restaurants nearest to the Statue of Liberty.
+
+### Locate Restaurants Within a Polygon
+
+```sql
 // Find restaurants contained with a given polygon. 
-// The polygon covers a 10 miles radius around the Statue of Liberty.
+// The polygon covers a 10-mile radius around the Statue of Liberty.
 LET polygon = GEO_POLYGON([
         [ -74.1172, 40.7577 ],
         [ -74.1172, 40.6206 ],
@@ -97,14 +99,16 @@ LET polygon = GEO_POLYGON([
         [ -73.9719, 40.7577 ],
         [ -74.1172, 40.7577 ]])
 FOR restaurant IN restaurants
-  LET location = GEO_POINT(restaurant.longitude, restaurant.latitude) 
+  LET location = GEO_POINT(restaurant.longitude, restaurant.latitude)
   FILTER GEO_CONTAINS(polygon, location)
   RETURN restaurant
-This code block demonstrates how to locate restaurants within a given polygon, in this case, restaurants within a 10-mile radius around the Statue of Liberty.
+```
 
-Locate Restaurants by Keyword and Proximity
-sql
-Copy code
+This query demonstrates how to locate restaurants within a given polygon, in this case, restaurants within a 10-mile radius around the Statue of Liberty.
+
+### Locate Restaurants by Keyword and Proximity
+
+```sql
 LET statueOfLiberty = GEO_POINT(-74.044500, 40.689306)
 FOR doc IN restaurant_view
   SEARCH ANALYZER(doc.categories IN TOKENS("Taco Burrito Ice Cream", "text_en"), "text_en")
@@ -112,4 +116,6 @@ FOR doc IN restaurant_view
   SORT GEO_DISTANCE(statueOfLiberty, location) ASC
   LIMIT 10
   RETURN doc
-This code block demonstrates how to locate restaurants based on keyword search and proximity to a specified location, in this case, the 5 restaurants that serve either Taco, Burrito, or Ice Cream and are close to the Statue of Liberty.
+```
+
+This query demonstrates how to locate restaurants based on keyword search and proximity to a specified location, in this case, the five restaurants that serve either Taco, Burrito, or Ice Cream and are close to the Statue of Liberty.
