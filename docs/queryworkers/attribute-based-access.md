@@ -138,9 +138,9 @@ The result is empty because the attempt failed:
 
 ## Example 3
 
-In this example, partners attempt to view employee data and are blocked because they do not have proper access:
+In this example, partners attempt to view employee data and are blocked because they do not have proper access.
 
-The name of this Query Worker is `Employees`.
+The name of this query worker is `Employees`:
 
 ```sql
 FOR doc IN employees
@@ -160,7 +160,7 @@ The result is empty because API keys with the `partner` attribute do not have ac
 
 In this example, employees can see all items and orders but cannot update them, and partners can view and update their own items.
 
-The name of this Query Worker is `ViewOrders`.
+The name of this query worker is `ViewOrders`.
 
 ```sql
 OR doc IN orders
