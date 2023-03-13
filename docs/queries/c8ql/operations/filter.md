@@ -14,7 +14,7 @@ FILTER expression
 
 `expression` must be a condition that evaluates to either _false_ or _true_. If the condition result is false, the current element is skipped, so it will not be processed further and not be part of the result. If the condition is true, the current element is not skipped and can be further processed.
 
-See [Operators](../c8ql/operators.md) for a list of comparison operators, logical operators etc. that you can use in conditions.
+See [Operators](../operators.md) for a list of comparison operators, logical operators etc. that you can use in conditions.
 
 ```js
 FOR u IN users
