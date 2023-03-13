@@ -3,10 +3,7 @@ sidebar_position: 3
 title: k Shortest Paths
 ---
 
-## General idea
-
-
-This type of query is supposed to find the first *k* paths in order of length (or weight) between two given documents, *startVertex* and *targetVertex* in your graph.
+This type of query is supposed to find the first _k_ paths in order of length (or weight) between two given documents, _startVertex_ and _targetVertex_ in your graph.
 
 Every such path will be returned as a JSON object with three components:
 
@@ -14,7 +11,7 @@ Every such path will be returned as a JSON object with three components:
 - an array containing the `edges` on the path
 - the `weight` of the path, that is the sum of all edge weights
 
-If no *weightAttribute* is given, the weight of the path is just its length.
+If no _weightAttribute_ is given, the weight of the path is just its length.
 
 **Example**
 
@@ -26,7 +23,7 @@ Each ellipse stands for a train station with the name of the city written inside
 
 Let us assume that we want to go from **Aberdeen** to **London** by train.
 
-We expect to see the following vertices on *the* shortest path, in this order:
+We expect to see the following vertices on _the_ shortest path, in this order:
 
 1. Aberdeen
 2. Leuchars
@@ -86,15 +83,15 @@ FOR path
 - `IN` `OUTBOUND|INBOUND|ANY`: defines in which direction edges are followed (outgoing, incoming, or both)
 
 - `K_SHORTEST_PATHS`: the keyword to compute k Shortest Paths
-    * **startVertex** `TO` **targetVertex** (both string\|object): the two vertices between which the paths will be computed. This can be specified in the form of a ID string or in the form of a document with the attribute `_id`. All other values will lead to a warning and an empty result. If one of the specified documents does not exist, the result is empty as well and there is no warning.
+  - **startVertex** `TO` **targetVertex** (both string\|object): the two vertices between which the paths will be computed. This can be specified in the form of a ID string or in the form of a document with the attribute `_id`. All other values will lead to a warning and an empty result. If one of the specified documents does not exist, the result is empty as well and there is no warning.
 
 - `GRAPH` **graphName** (string): the name identifying the named graph. Its vertex and edge collections will be looked up.
 
-- `OPTIONS` **options** (object, *optional*): used to modify the execution of the traversal. Only the following attributes have an effect, all others are ignored:
-    * **weightAttribute** (string): a top-level edge attribute that should be used to read the edge weight. If the attribute does not exist or is not numeric, the *defaultWeight* will be used instead.
-    * **defaultWeight** (number): this value will be used as fallback if there is no *weightAttribute* in the edge document, or if it's not a number. The default is 1.
+- `OPTIONS` **options** (object, _optional_): used to modify the execution of the traversal. Only the following attributes have an effect, all others are ignored:
+  - **weightAttribute** (string): a top-level edge attribute that should be used to read the edge weight. If the attribute does not exist or is not numeric, the _defaultWeight_ will be used instead.
+  - **defaultWeight** (number): this value will be used as fallback if there is no _weightAttribute_ in the edge document, or if it's not a number. The default is 1.
 
-- `LIMIT` (see [LIMIT operation](../operations/limit.md), *optional*): the maximal number of paths to return. It is highly recommended to use a `LIMIT` for `K_SHORTEST_PATHS`.
+- `LIMIT` (see [LIMIT operation](../c8ql/operations/limit.md), _optional_): the maximal number of paths to return. It is highly recommended to use a `LIMIT` for `K_SHORTEST_PATHS`.
 
 ### Working with collection sets
 
@@ -107,11 +104,11 @@ FOR path
   [LIMIT offset, count]
 ```
 
-Instead of `GRAPH graphName` you can specify a list of edge collections. The involved vertex collections are determined by the edges of the given edge collections. 
+Instead of `GRAPH graphName` you can specify a list of edge collections. The involved vertex collections are determined by the edges of the given edge collections.
 
 ### Traversing in mixed directions
 
-For k shortest paths with a list of edge collections you can optionally specify the direction for some of the edge collections. Say for example you have three edge collections *edges1*, *edges2* and *edges3*, where in *edges2* the direction has no relevance, but in *edges1* and *edges3* the direction should be taken into account. In this case you can use `OUTBOUND` as general search direction and `ANY` specifically for *edges2* as follows:
+For k shortest paths with a list of edge collections you can optionally specify the direction for some of the edge collections. Say for example you have three edge collections _edges1_, _edges2_ and _edges3_, where in _edges2_ the direction has no relevance, but in _edges1_ and _edges3_ the direction should be taken into account. In this case you can use `OUTBOUND` as general search direction and `ANY` specifically for _edges2_ as follows:
 
 ```js
 FOR vertex IN OUTBOUND K_SHORTEST_PATHS
@@ -290,7 +287,7 @@ Results:
 []
 ```
 
-We can use the attribute *travelTime* that connections have as edge weights to take into account which connections are quicker. A high default weight is set, to be used if an edge has no *travelTime* attribute (not the case with the example graph). This returns the top three routes with the fewest changes and favoring the least travel time for the connection **Saint Andrews** to **Cologne**:
+We can use the attribute _travelTime_ that connections have as edge weights to take into account which connections are quicker. A high default weight is set, to be used if an edge has no _travelTime_ attribute (not the case with the example graph). This returns the top three routes with the fewest changes and favoring the least travel time for the connection **Saint Andrews** to **Cologne**:
 
 ```js
     FOR p IN OUTBOUND K_SHORTEST_PATHS 'places/StAndrews' TO 'places/Cologne'
