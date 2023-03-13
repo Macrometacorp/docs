@@ -7,7 +7,7 @@ This section explains how to sort and limit your query results.
 
 ## Limit the Result Count
 
-It might not always be necessary to return all documents that a `FOR` loop would normally return. In those cases, you can limit the amount of documents with a `LIMIT()` operation. For more information, refer to [LIMIT()](../operations/limit.md) operation documentation.
+It might not always be necessary to return all documents that a `FOR` loop would normally return. In those cases, you can limit the amount of documents with a `LIMIT()` operation. For more information, refer to [LIMIT()](../c8ql/operations/limit) operation documentation.
 
 In the example below, `LIMIT` is followed by a number for the maximum document count.
 
@@ -51,7 +51,7 @@ The second query skips the first two names and returns the next five. Both resul
 
 ## Sort by Name
 
-The order in which matching records were returned by the queries shown until now was basically random. To return them in a defined order, you can add a `SORT()` operation. It can have a big impact on the result if combined with a `LIMIT()`, because the result becomes predictable if you sort first. For more information, refer to [SORT()](../operations/sort.md) operation documentation.
+The order in which matching records were returned by the queries shown until now was basically random. To return them in a defined order, you can add a `SORT()` operation. It can have a big impact on the result if combined with a `LIMIT()`, because the result becomes predictable if you sort first. For more information, refer to [SORT()](../c8ql/operations/sort) operation documentation.
 
 This example returns the first ten documents and sorts by name.
 
@@ -175,4 +175,4 @@ A filter is applied to avoid documents without age attribute. The remaining docu
 
 ## Next Steps
 
-Great job! You can now sort and limit your query results. When you're ready, continue the tutorial in [Part 4 - Import Traits and Merge](import-and-merge.md).
+Great job! You can now sort and limit your query results. When you're ready, continue the tutorial in [Part 4 - Import Traits and Merge](import-and-merge).
