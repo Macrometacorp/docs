@@ -1,6 +1,6 @@
 ---
 title: Query Errors
-sidebar_position: 90
+sidebar_position: 60
 ---
 
 This page describes errors that might occur during the query parsing or execution.
