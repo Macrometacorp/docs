@@ -11,7 +11,7 @@ For this example, assume the following organizations each have employees who mus
 
 Each partner store needs an API key with appropriate attributes to limit their access. Additionally, individual supplier employees need similar limitations.
 
-For this example, configure an API key for each of the following users:
+For this example, configure an API key for each of the following users, then add an attribute with these values:
 
 - Partner 1:
     - **Attribute -** `partner`
@@ -50,11 +50,13 @@ Add the following data to the `customer` collection:
 }
 ```
 
+In this example, customer 1 is partner 1 and customer 2 is partner 2.
+
 ## Example 1
 
 In this example, partners can see their own items but cannot update them.
 
-The name of this Query Worker is `PartnerItems`.
+The query worker `PartnerItems` displays data from a collection to which the active user can access:
 
 ```sql
 FOR doc IN items
@@ -62,7 +64,7 @@ FOR doc IN items
     RETURN doc
 ```
 
-When we execute this Query Worker, we only see items for this partner:
+When Partner 1 wants to view their data, they can run a command with their API key similar to the following:
 
 ```sql
 curl -X 'POST' \\
@@ -73,7 +75,7 @@ curl -X 'POST' \\
   -d '{ "bindVars": {}}'
 ```
 
-Result:
+Note that in the results, only data with the `partner1` attribute displays:
 
 ```sql
 {
@@ -86,15 +88,7 @@ Result:
 
 In this example, partners can see their orders and update them when they are filled.
 
-The name of this Query Worker is `PartnerOrders`:
-
-```sql
-FOR doc IN orders
-    FILTER doc.partner == CURRENT_APIKEY_ATTRIBUTE("partner")
-    RETURN doc
-```
-
-The name of this Query Worker is `PartnerOrdersUpdate`:
+The query worker `PartnerOrdersUpdate` updates data in the collection if the active user has access:
 
 ```sql
 FOR doc IN orders
@@ -104,41 +98,26 @@ FOR doc IN orders
     RETURN NEW
 ```
 
-
-
-```
-curl -X 'POST' \\
-    '<https://fulfillment.eng.macrometa.io/_fabric/_system/_api/restql/execute/PartnerOrders>' \\
-    -H 'accept: application/json' \\
-    -H 'Content-Type: application/json' \\
-    -H 'Authorization: apikey <PARTNER 1 API KEY>' \\
-    -d '{ "bindVars": {}}'
-```
-
-When you run the `PartnerOrders` query, you should see a result similar to the following:
-
-```sql
-{
-   { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" }
-}
-```
+When Partner 1 wants to update their data, they can run a command with their API key similar to the following:
 
 ```
 curl -X 'POST' \\
-    '<https://fulfillment.eng.macrometa.io/_fabric/_system/_api/restql/execute/PartnerOrders>' \\
+    '<https://fulfillment.eng.macrometa.io/_fabric/_system/_api/restql/execute/PartnerOrdersUpdate>' \\
     -H 'accept: application/json' \\
     -H 'Content-Type: application/json' \\
-    -H 'Authorization: apikey <PARTNER 1 API KEY>' \\
+    -H 'Authorization: apikey acme_key.897b6e...' \\
     -d '{ "bindVars": { "customer": 1}}'
 ```
 
-When you run the `PartnerOrdersUpdate` query, you should see a result similar to the following:
+The displayed results show the added data:
 
 ```sql
 {
    { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" },
 }
 ```
+
+On the other hand, if Partner 1 tries to run the same command to edit data belonging to Partner 2:
 
 ```
 curl -X 'POST' \\
@@ -149,15 +128,13 @@ curl -X 'POST' \\
     -d '{ "bindVars": { "customer": 2}}'
 ```
 
-Result:
+The result is empty because the attempt failed:
 
 ```sql
 {
    {}
 }
 ```
-
-
 
 ## Example 3
 
