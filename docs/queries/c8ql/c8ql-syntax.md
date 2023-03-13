@@ -1,4 +1,5 @@
 ---
+sidebar_position: 10
 title: C8QL Syntax
 ---
 
