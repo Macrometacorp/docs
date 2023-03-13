@@ -8,13 +8,12 @@ title: C8QL
 The C8 query language (C8QL) can be used to create, retrieve and modify data that are stored in the Macrometa geo-distributed fast data platform.
 
 :::note
-If this is your first time with C8QL then be sure to check out the [C8QL GoT Tutorial](got-tutorial/index.md) before you head off to the in-depth documentation!
+If this is your first time with C8QL then be sure to check out the [C8QL GoT Tutorial](../got-tutorial/index.md) before you head off to the in-depth documentation!
 :::
 
 The general workflow when executing a query is as follows:
 
 - A client application ships a C8QL query to the fabric. The query text contains everything Macrometa needs to compile the result set.
-
 - Macrometa will parse the query, execute it and compile the results. If the query is invalid or cannot be executed, the server will return an error that the client can process and react to. If the query can be executed successfully, the server will return the query results (if any) to the client.
 
 C8QL is mainly a declarative language, meaning that a query expresses what result should be achieved but not how it should be achieved. C8QL aims to be human-readable and therefore uses keywords from the English language.
