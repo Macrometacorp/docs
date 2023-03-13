@@ -36,7 +36,7 @@ INSERT document
     INTO collection options
 ```
 
-Refer to [INSERT](../c8ql/operations/insert.md) for more details.
+Refer to [INSERT](c8ql/operations/insert.md) for more details.
 
 ### Inserting a single row / document
 
@@ -122,7 +122,7 @@ UPDATE document IN collection options
 UPDATE keyExpression WITH document IN collection options
 ```
 
-Refer to [UPDATE](../c8ql/operations/update.md) for more details.
+Refer to [UPDATE](c8ql/operations/update.md) for more details.
 
 ### Updating a single row / document
 
@@ -293,7 +293,7 @@ The REPLACE keyword completely modifies documents in a collection. There are two
     REPLACE keyExpression WITH document IN collection options
 ```
 
-Refer to [REPLACE](../c8ql/operations/replace.md) for more details.
+Refer to [REPLACE](c8ql/operations/replace.md) for more details.
 
 ### Replacing a single row / document
 
@@ -341,7 +341,7 @@ FOR user IN backup
 
 SQL uses DELETE statements to remove rows from a table. In C8QL, the REMOVE keyword allows you to remove documents from a collection.
 
-Refer to [REMOVE](../c8ql/operations/remove.md) for more details.
+Refer to [REMOVE](c8ql/operations/remove.md) for more details.
 
 ### Deleting a single row / document
 
@@ -382,7 +382,7 @@ When you want to retrieve rows from a table in SQL, you query the database with 
 
 Here, `FOR` iterates over documents in a collection. `RETURN` determines what the query returns to the client.
 
-Refer to [FOR](../c8ql/operations/for.md) for more details.
+Refer to [FOR](c8ql/operations/for.md) for more details.
 
 ### Selecting all rows / documents from a table / collection, with all columns / attributes
 
@@ -445,7 +445,7 @@ FOR user IN users
 
 There are a series of functions and clauses in both SQL and C8QL to group or further refine the result-set to get the information you need. For instance, counting documents, finding the smallest or largest value, and so on.
 
-Refer to [COLLECT](../c8ql/operations/collect.md) for more details.
+Refer to [COLLECT](c8ql/operations/collect.md) for more details.
 
 ### Counting rows / documents in a table / collection
 

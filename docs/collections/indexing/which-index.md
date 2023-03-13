@@ -135,5 +135,5 @@ For example, the following queries cannot use a sparse index on `attr` because t
 Sparse skiplist indexes can be used for sorting if the optimizer can safely detect that the index range does not include `null` for any of the index attributes.
 
 :::note
-If you intend to use [joins](../../queryworkers/c8ql/examples/joins.md) it may be clever to use non-sparsity and maybe even uniqueness for that attribute, else all items containing the `null` value will match against each other and thus produce large results.
+If you intend to use [joins](../../queries/c8ql/examples/joins.md) it may be clever to use non-sparsity and maybe even uniqueness for that attribute, else all items containing the `null` value will match against each other and thus produce large results.
 :::
