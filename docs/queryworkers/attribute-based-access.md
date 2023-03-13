@@ -158,7 +158,7 @@ The result is empty because API keys with the `partner` attribute do not have ac
 
 ## Example 4
 
-In this example, employees can see all items and orders but cannot update them.
+In this example, employees can see all items and orders but cannot update them, and partners can view and update their own items.
 
 The name of this Query Worker is `ViewOrders`.
 
@@ -180,6 +180,8 @@ FOR doc IN orders
     UPDATE doc WITH {"ordered": doc.ordered + 1} IN orders
     RETURN NEW
 ```
+
+
 
 ```
 curl -X 'POST' \\
