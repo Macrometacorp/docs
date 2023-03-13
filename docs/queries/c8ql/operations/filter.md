@@ -12,9 +12,9 @@ General syntax
 FILTER expression
 ```
 
-`expression` must be a condition that evaluates to either *false* or *true*. If the condition result is false, the current element is skipped, so it will not be processed further and not be part of the result. If the condition is true, the current element is not skipped and can be further processed.
+`expression` must be a condition that evaluates to either _false_ or _true_. If the condition result is false, the current element is skipped, so it will not be processed further and not be part of the result. If the condition is true, the current element is not skipped and can be further processed.
 
-See [Operators](../operators.md) for a list of comparison operators, logical operators etc. that you can use in conditions.
+See [Operators](../c8ql/operators.md) for a list of comparison operators, logical operators etc. that you can use in conditions.
 
 ```js
 FOR u IN users
@@ -31,13 +31,13 @@ FOR u IN users
   RETURN u
 ```
 
-In the above example, all array elements of *users*  that have an attribute *active* with value *true* and that have an attribute *age* with a value less than *39* (including *null* ones) will be included in the result. All other elements of *users* will be skipped and not be included in the result produced by `RETURN`. Refer to [Queries with Null Attributes](../queries-null-attributes.md) for a description of the impact of non-existent or null attributes.
+In the above example, all array elements of _users_  that have an attribute _active_ with value _true_ and that have an attribute _age_ with a value less than _39_ (including _null_ ones) will be included in the result. All other elements of _users_ will be skipped and not be included in the result produced by `RETURN`. Refer to [Queries with Null Attributes](../queries-null-attributes.md) for a description of the impact of non-existent or null attributes.
 
 Order of operations
 -------------------
 
 :::note
-The positions of `FILTER` statements can influence the result of a query. There are 16 active users in the [test data](../examples/index.md#example-data) for instance:
+The positions of `FILTER` statements can influence the result of a query. There are 16 active users in the [test data](../../query-examples/index.md#example-data) for instance:
 :::
 
 ```js
@@ -65,7 +65,7 @@ FOR u IN users
   RETURN u
 ```
 
-This might just return the Chloe document, because the `LIMIT` is applied before the second `FILTER`. No more than 5 documents arrive at the second `FILTER` block, and not all of them fulfill the gender criterion, eventhough there are more than 5 active female users in the collection. A more deterministic result can be achieved by adding a `SORT` block:
+This might just return the Chloe document, because the `LIMIT` is applied before the second `FILTER`. No more than 5 documents arrive at the second `FILTER` block, and not all of them fulfill the gender criterion, even though there are more than 5 active female users in the collection. A more deterministic result can be achieved by adding a `SORT` block:
 
 ```js
 FOR u IN users
@@ -76,7 +76,7 @@ FOR u IN users
   RETURN u
 ```
 
-This will return the users Mariah and Mary. If sorted by age in *DESC* order, then the Sophia, Emma and Madison documents are returned. A `FILTER` after a `LIMIT` is not very common however, and you probably want such a query instead:
+This will return the users Mariah and Mary. If sorted by age in _DESC_ order, then the Sophia, Emma and Madison documents are returned. A `FILTER` after a `LIMIT` is not very common however, and you probably want such a query instead:
 
 ```js
 FOR u IN users
@@ -86,4 +86,4 @@ FOR u IN users
   RETURN u
 ```
 
-The significance of where `FILTER` blocks are placed allows that this single keyword can assume the roles of two SQL keywords, *WHERE* as well as *HAVING*. C8QL's `FILTER` thus works with `COLLECT` aggregates the same as with any other intermediate result, document attribute etc.
+The significance of where `FILTER` blocks are placed allows that this single keyword can assume the roles of two SQL keywords, _WHERE_ as well as _HAVING_. C8QL's `FILTER` thus works with `COLLECT` aggregates the same as with any other intermediate result, document attribute etc.
