@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Quickstart
 ---
 
-Let's get started with Macrometa by creating a global address book. In this tutorial, you will be creating a document [collection](collections/), inserting and querying some user data, and finally creating a fully operational API via [Query Workers](queryworkers/). This tutorial is Macrometa's version of "Hello, world!", is simplistic by design, and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms. 
+Let's get started with Macrometa by creating a global address book. In this tutorial, you will be creating a document [collection](collections/), inserting and querying some user data, and finally creating a fully operational API via [Query Workers](queryworkers/). This tutorial is Macrometa's version of "Hello, world!", is simplistic by design, and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms.
 
 If you've already completed this tutorial, then you can [add search to your application](search/getting-started).
 

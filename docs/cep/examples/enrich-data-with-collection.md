@@ -151,7 +151,7 @@ Use the following procedure to verify that the stream worker functions as expect
 
 ### 1. Load UserTable Collection with User Data
 
-Run the following query using one of the methods described in [Running Queries](../../queryworkers/running-queries.md) to add the records to the collection. Each line is a separate record.
+Run the following query using one of the methods described in [Running Queries](../../queries/running-queries.md) to add the records to the collection. Each line is a separate record.
 
 ```sql
 LET data = [
