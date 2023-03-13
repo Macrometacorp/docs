@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Building Queries
 ---
 
-This page explains how to create a query in Macrometa. To learn more about what you can do with queries and the language for writing them, refer to [SQL in Macrometa](sql/index.md) and [C8 Query Language](c8ql/../index.md).
+This page explains how to create a query in Macrometa. To learn more about what you can do with queries and the language for writing them, refer to [SQL in Macrometa](sql/index) and [C8 Query Language](c8ql/../index).
 
 ## Query Editor
 
@@ -13,7 +13,7 @@ To write a query, log into Macrometa and navigate to the Editor tab of the Query
 
 ## Bind Parameters
 
-[Bind parameters](bind-parameters.md) are created with the '@' symbol and display fields for the corresponding key and value. You can use this to pass values to your query or query worker in the Query Builder.
+[Bind parameters](bind-parameters) are created with the '@' symbol and display fields for the corresponding key and value. You can use this to pass values to your query or query worker in the Query Builder.
 
 ![Bind parameters](/img/queries/bind-parameters.png)
 
@@ -31,5 +31,5 @@ This tool is not available with SQL.
 
 After you write a query, you can do the following:
 
-- [Run the query](running-queries.md).
-- Save the query as a [query worker](query-workers.md).
+- [Run the query](running-queries).
+- Save the query as a [query worker](../queryworkers/query-workers).
