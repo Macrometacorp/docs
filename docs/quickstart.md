@@ -107,7 +107,7 @@ In the previous step, you created the `getAddresses` Query Worker, which is basi
 1. Click **API Endpoint** and record the API Usage information.
 1. Test the query.
 
-To test a query, enter any necessary information in the [bind parameters](queryworkers/bind-parameters.md) and click **Run Query** or use the `curl` API call. The screenshot below shows how to enter information for testing.
+To test a query, enter any necessary information in the [bind parameters](queries/bind-parameters.md) and click **Run Query** or use the `curl` API call. The screenshot below shows how to enter information for testing.
 
 ![Test a query](/img/quickstart/test-query.png)
 
