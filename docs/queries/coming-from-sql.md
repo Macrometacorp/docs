@@ -1,11 +1,11 @@
 ---
-sidebar_position: 4
+sidebar_position: 70
 title: Coming from SQL
 ---
 
 If you worked with a relational database management system (RDBMS) such as MySQL, MariaDB or PostgreSQL, you will be familiar with its query language, a dialect of SQL (Structured Query Language).
 
-C8's query language is called C8QL. There are some similarities between both languages despite the different data models of the database systems. The most notable difference is probably the concept of `loops` in C8QL, which makes it feel more like a programming language. The loops suits the schema-less model more natural and makes the query language very powerful while remaining easy to read and write.
+Macrometa's query language is called C8QL. There are some similarities between both languages despite the different data models of the database systems. The most notable difference is probably the concept of `loops` in C8QL, which makes it feel more like a programming language. The loops suits the schema-less model more natural and makes the query language very powerful while remaining easy to read and write.
 
 The C8 Query Language (C8QL) is similar to the Structured Query Language (SQL) in its purpose. Both support reading and modifying collection data, however C8QL does not support data definition operations, such as creating and dropping databases, collections and indexes.
 
@@ -36,7 +36,7 @@ INSERT document
     INTO collection options
 ```
 
-Refer to [INSERT](../c8ql/operations/insert.md) for more details.
+Refer to [INSERT](c8ql/operations/insert) for more details.
 
 ### Inserting a single row / document
 
@@ -122,7 +122,7 @@ UPDATE document IN collection options
 UPDATE keyExpression WITH document IN collection options
 ```
 
-Refer to [UPDATE](../c8ql/operations/update.md) for more details.
+Refer to [UPDATE](c8ql/operations/update) for more details.
 
 ### Updating a single row / document
 
@@ -293,7 +293,7 @@ The REPLACE keyword completely modifies documents in a collection. There are two
     REPLACE keyExpression WITH document IN collection options
 ```
 
-Refer to [REPLACE](../c8ql/operations/replace.md) for more details.
+Refer to [REPLACE](c8ql/operations/replace) for more details.
 
 ### Replacing a single row / document
 
@@ -341,7 +341,7 @@ FOR user IN backup
 
 SQL uses DELETE statements to remove rows from a table. In C8QL, the REMOVE keyword allows you to remove documents from a collection.
 
-Refer to [REMOVE](../c8ql/operations/remove.md) for more details.
+Refer to [REMOVE](c8ql/operations/remove) for more details.
 
 ### Deleting a single row / document
 
@@ -382,7 +382,7 @@ When you want to retrieve rows from a table in SQL, you query the database with 
 
 Here, `FOR` iterates over documents in a collection. `RETURN` determines what the query returns to the client.
 
-Refer to [FOR](../c8ql/operations/for.md) for more details.
+Refer to [FOR](c8ql/operations/for) for more details.
 
 ### Selecting all rows / documents from a table / collection, with all columns / attributes
 
@@ -445,7 +445,7 @@ FOR user IN users
 
 There are a series of functions and clauses in both SQL and C8QL to group or further refine the result-set to get the information you need. For instance, counting documents, finding the smallest or largest value, and so on.
 
-Refer to [COLLECT](../c8ql/operations/collect.md) for more details.
+Refer to [COLLECT](c8ql/operations/collect) for more details.
 
 ### Counting rows / documents in a table / collection
 
@@ -641,7 +641,7 @@ In the main, C8QL is a declarative language. Queries express what results you wa
 
 It also aims to be client independent, meaning that the language and syntax are the same for all clients, no matter what programming language the clients use. Additionally, it supports complex query patterns and the various data models Macrometa offers.
 
-C8QL also supports several aggregation and string functions. For more information, see [C8QL Functions](coming-from-sql.md).
+C8QL also supports several aggregation and string functions. For more information, see [C8QL Functions](coming-from-sql).
 
 ## How do browse vectors translate into document queries?
 
@@ -753,4 +753,4 @@ RETURN { hobbies: oneDocument.hobbies[*].name }
 ]
 ```
 
-More complex [array](functions/array.md) and [object manipulations](functions/document.md) can be done using C8QL functions and [operators](operators.md).
+More complex [array](c8ql/functions/array) and [object manipulations](c8ql/functions/document) can be done using C8QL functions and [operators](c8ql/operators).

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: C8QL GoT Tutorial
+title: C8QL Query Tutorial
 ---
 
 This tutorial is an introduction to C8QL, the GDN query language. This tutorial assumes no pre-existing knowledge, starting with basic operations and working up to more advanced.
@@ -16,9 +16,9 @@ By the end of this tutorial, you will:
 - Understand the basics of Graph Edge collections.
 
 :::note
-Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../../cli/), [API](https://www.macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
+Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../cli/), [API](https://www.macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
 
-If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../../../cli/queries-cli) command.
+If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../../cli/queries-cli) command.
 :::
 
 ## Prerequisites

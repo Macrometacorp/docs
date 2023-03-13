@@ -75,7 +75,7 @@ FROM MyTrigger;
 For this example needs to be generated EdgeWorker with name `my-fn-name`.
 The easiest way is to:
 
-1. Generate EdgeWorker based on [Query Worker](https://www.macrometa.com/docs/queryworkers/building-queries) with the next query:
+1. Generate EdgeWorker based on [Query Worker](https://www.macrometa.com/docs/queries/building-queries) with the next query:
 
     ```sql
     FOR doc IN my-colection LIMIT 1 RETURN doc

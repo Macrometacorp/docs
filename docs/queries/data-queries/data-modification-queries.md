@@ -14,13 +14,13 @@ C8QL supports the following data-modification operations:
 - **REMOVE**: remove existing documents from a collection
 - **UPSERT**: conditionally insert or update documents in a collection
 
-Below you find some simple example queries that use these operations. The operations are detailed in [C8QL Operations](c8ql/operations/index.md).
+Below you find some simple example queries that use these operations. The operations are detailed in [C8QL Operations](../c8ql/operations/index.md).
 
 ## Transactional Execution
   
 On a single server, data-modification operations are executed transactionally. If a data-modification operation fails, any changes made by it will be rolled back automatically as if they never happened.
 
-In a cluster, C8QL data-modification queries are currently not executed transactionally. Additionally, `update`, `replace`, `upsert` and `remove` C8QL queries currently require the `_key` attribute to be specified for all documents that should be modified or removed, even if a shared key attribute other than `_key` was chosen for the collection. This restriction may be overcome in a future release of C8.
+In a cluster, C8QL data-modification queries are currently not executed transactionally. Additionally, `update`, `replace`, `upsert`, and `remove` C8QL queries currently require the `_key` attribute to be specified for all documents that should be modified or removed, even if a shared key attribute other than `_key` was chosen for the collection. This restriction may be overcome in a future release of C8.
 
 ## Modifying a single document
 
@@ -42,7 +42,7 @@ INSERT {
 <TabItem value="sql" label="SQL">
 
 ```sql
-INSERT INTO users (firstName,name,profesion) VALUES('Anna','Pavlova','artist')
+INSERT INTO users (firstName,name,profession) VALUES('Anna','Pavlova','artist')
 ```
 
 </TabItem>
@@ -141,9 +141,7 @@ UPDATE users SET status='active', location='Beijing' WHERE _key='PhilCarpenter'
 </TabItem>
 </Tabs>
 
-
 Replace is an alternative to update where all attributes of the document are replaced.
-
 
 ```js
 REPLACE {
@@ -154,7 +152,6 @@ REPLACE {
     level: "premium"
 } IN users
 ```
-
 
 Removing a document if you know its key is simple as well:
 
@@ -180,7 +177,6 @@ DELETE FROM users WHERE _key='GilbertoGil'
 
 </TabItem>
 </Tabs>
-
 
 ## Modifying multiple documents
 

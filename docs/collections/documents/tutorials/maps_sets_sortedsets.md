@@ -3,17 +3,17 @@ sidebar_position: 5
 title: Maps, Sets, SortedSets
 ---
 
-The other day I came across a question about how to model popuplar Redis datatypes using Macrometa GDN. Macrometa GDN is a geo-replicated multi-model realtime database. So modelling Redis basic datatypes in Macrometa can be done easily. 
+The other day I came across a question about how to model popuplar Redis datatypes using Macrometa GDN. Macrometa GDN is a geo-replicated multi-model realtime database. So modelling Redis basic datatypes in Macrometa can be done easily.
 
 By modelling these data types in GDN, developers can use ( i.e., `read-write`) these data types globally from regions closest to their Apps & APIs with very low latency. The GDN will take care of doing the necessary geo-replication and convergence.
 
 The popular data types in Redis are
 
-* `Strings` - Strings are the most basic kind of Redis value.
-* `Lists` - Redis Lists are simply lists of strings, sorted by insertion order.
-* `Sets` - Redis Sets are an unordered collection of Strings.
-* `Hashes` - Redis Hashes are maps between string fields and string values. Basically a map. 
-* `SortedSets` - Redis Sorted Sets are, similarly to Redis Sets, non repeating collections of Strings. The difference is that every member of a Sorted Set is associated with score, that is used in order to take the sorted set ordered, from the smallest to the greatest score. While members are unique, scores may be repeated.
+- `Strings` - Strings are the most basic kind of Redis value.
+- `Lists` - Redis Lists are simply lists of strings, sorted by insertion order.
+- `Sets` - Redis Sets are an unordered collection of Strings.
+- `Hashes` - Redis Hashes are maps between string fields and string values. Basically a map.
+- `SortedSets` - Redis Sorted Sets are, similarly to Redis Sets, non repeating collections of Strings. The difference is that every member of a Sorted Set is associated with score, that is used in order to take the sorted set ordered, from the smallest to the greatest score. While members are unique, scores may be repeated.
 
 All of the above can be represented in Macrometa GDN.
 
@@ -75,7 +75,7 @@ You **remove** a `map`, using following C8QL statement:
 ```
 
 :::note
-Please see [C8QL GoT Tutorial](../../../queryworkers/c8ql/got-tutorial/index.md) and [C8QL Examples](../../../queryworkers/c8ql/examples/index.md) for more examples on how you can use C8QL.
+Please see [C8QL GoT Tutorial](../../../queries/got-tutorial/) and [C8QL Examples](../../../queries/c8ql/examples/) for more examples on how you can use C8QL.
 :::
 
 ## Sets
@@ -174,11 +174,11 @@ Finally, removing an entry from a highscore list is a straight-forward remove op
 
 ## Advanced
 
-Let's build on this simple example and create slightly more advanced `highscore` list use cases. 
+Let's build on this simple example and create slightly more advanced `highscore` list use cases.
 
-* multi-game highscore lists
-* joining data
-* maintaining a “last updated” date
+- multi-game highscore lists
+- joining data
+- maintaining a “last updated” date
 
 ### Multi-game highscore lists
 
@@ -190,8 +190,8 @@ Though Redis provides a few commands to aggregate data from multiple sorted sets
 
 In GDN, multi-game highscore lists can be implemented in two variants i.e.,
 
-* Store all highscores in the same collection or 
-* Store using multiple collections (e.g. one per game).
+- Store all highscores in the same collection or
+- Store using multiple collections (e.g. one per game).
 
 Storing highscores for different games in separate collections has the advantage that they’re really isolated. It is easy to get rid of a specific highscore list by simply dropping its collection. It is also easy to get right query-wise.
 
@@ -201,7 +201,7 @@ On the downside, the `multi-collection` solution will make cross-game operations
 
 Let’s focus on this and put all highscores of all games into a single collection.
 
-The first adjustment that needs to be made is that we cannot use `_key` for user ids anymore. This is because user ids may repeat now (a user may be contained in more than one list). 
+The first adjustment that needs to be made is that we cannot use `_key` for user ids anymore. This is because user ids may repeat now (a user may be contained in more than one list).
 
 So we need to change the design and make the combination of `game` and `user` a new unique key i.e. , create following 2 indexes -
 
@@ -209,7 +209,7 @@ So we need to change the design and make the combination of `game` and `user` a 
 persistent index --> unique: true, fields: [ "user", "game" ] 
 sorted persistent index --> fields: [ "game", "score" ] 
 ```
- 
+
 We can use the unique hash index on `user` and `game` to ensure there is at most one entry for per user per game. It also allows use to find out quickly whether we already have an entry for that particular combination of game and user. Because we are not using `_key` we could now also switch to numeric ids if we preferred that.
 
 The other index on `game` and `score` is sorted. It can be used to quickly retrieve the leaderboard for a given game. As it is primarily sorted by game, it can also be used to enumerate all entries for a given game.
@@ -335,7 +335,7 @@ If we want to remove entries older than roughly 2 days, regardless of the associ
 ```bash
 ttl index ---> fields: [ "date" ]
 ```
- 
+
 If we instead want to find (and remove) the oldest entries for individual games, we need to create the index on game and date:
 
 ```bash
@@ -355,4 +355,4 @@ This index allows to efficiently get rid of the oldest entries per game:
 
 :::note
 REMOVE was limited to the oldest 1000 entries. This was done to make the query return fast. The removal query can be repeated while there are still entries to remove.
-:::    
+:::

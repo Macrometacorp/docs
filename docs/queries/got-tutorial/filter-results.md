@@ -9,7 +9,7 @@ So far, we either looked up a single document, or returned the entire character 
 
 To find documents that fulfill certain criteria more complex than key equality, there is the `FILTER` operation in C8QL, which enables us to formulate arbitrary conditions for documents to match.
 
-For more information, refer to [FILTER](../operations/filter.md) operation documentation.
+For more information, refer to [FILTER](../c8ql/operations/filter) operation documentation.
 
 In the previous section, we provided step-by-step instructions for every query. In this section, we provide code blocks that you can experiment with. You can paste them in your query editor as-is, but we encourage you to experiment with them. You will learn more if you play around and try your own queries based on our examples.
 
@@ -33,7 +33,7 @@ FOR c IN Characters
     RETURN c
 ```
 
-There are six characters that meet that criteria, which is a lot of lines to scroll through. You can shoose to return only part of the document, such as the `name` attribute.
+There are six characters that meet that criteria, which is a lot of lines to scroll through. You can choose to return only part of the document, such as the `name` attribute.
 
 ```js
 FOR c IN Characters
@@ -107,7 +107,7 @@ That query result looks similar to:
 
 You might notice that it returns name and age of 30 characters, most with an age of `null`. `null` is the fallback value if an attribute is requested by the query, but no such attribute exists in the document.
 
-Because `null` compares to numbers as lower, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`). For more information, refer to [Type and Value Order](../type-and-value-order.md).
+Because `null` compares to numbers as lower, it accidentally fulfills the age criterion `c.age < 13` (`null < 13`). For more information, refer to [Type and Value Order](../c8ql/type-and-value-order).
 
 ### Filter by Multiple Conditions
 
@@ -166,8 +166,8 @@ This returns characters named Jon or named Joffrey.
 ]
 ```
 
-For more informations, refer to [Filter operations](../operations/filter.md).
+For more informations, refer to [Filter operations](../c8ql/operations/filter).
 
 ## Next Steps
 
-Great job! You can now query your collection for documents based on conditions. When you're ready, continue the tutorial in [Part 3 - Sort and Limit](sort-and-limit.md).
+Great job! You can now query your collection for documents based on conditions. When you're ready, continue the tutorial in [Part 3 - Sort and Limit](sort-and-limit).

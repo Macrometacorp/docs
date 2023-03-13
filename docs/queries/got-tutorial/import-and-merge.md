@@ -164,7 +164,7 @@ The results return a Trait document with all fields for each trait for each char
 ]
 ```
 
-This is a bit too much information, so let's only return English labels using the [array expansion](../array-operators.md#array-expansion) notation:
+This is a bit too much information, so let's only return English labels using the [array expansion](../c8ql/array-operators.md#array-expansion) notation:
 
 ```js
 FOR c IN Characters
@@ -240,7 +240,7 @@ Results will be similar to the following:
 
 Because you used an object `{ traits: ... }` which has the same attribute name _traits_ as the original character attribute, the latter is overwritten by the merge.
 
-For more information, refer to [MERGE()](../functions/document.md#merge).
+For more information, refer to [MERGE()](../c8ql/functions/document.md#merge).
 
 ## Next Steps
 
