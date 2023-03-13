@@ -6,7 +6,7 @@ slug: analyzers
 
 _Analyzers_ enable you to break search inputs into sets of sub-values that C8Search can use for improved searching and sorting. When you use an Analyzer in a View, C8Search gathers the attributes of all documents in collections linked to the view, and creates appropriate sub-values and metadata. We provide built-in Analyzers and enable you to create custom Analyzers to suit the needs of your application.
 
-You can use the [`TOKENS()` function](../queryworkers/c8ql/functions/search#tokens) to tokenize phrases and turn them into strings for C8QL search queries.
+You can use the [`TOKENS()` function](../queries/c8ql/functions/search#tokens) to tokenize phrases and turn them into strings for C8QL search queries.
 
 An Analyzer processes values based on its [type](#types), [properties](#properties), and [features](#features).
 
@@ -18,7 +18,7 @@ Sub-nested elements of arrays are also unpacked and indexed individually, and al
 
 Refer to the following links for more information about value handling:
 
-- [SEARCH operation](../queryworkers/c8ql/operations/search): How to query indexed values such as numbers and nested values.
+- [SEARCH operation](../queries/c8ql/operations/search): How to query indexed values such as numbers and nested values.
 - [Search views](views/index.md): How we index compound data types (`arrays`, `objects`).
 
 ## Naming Conventions
