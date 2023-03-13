@@ -126,4 +126,4 @@ SELECT * FROM users WHERE status='active' ORDER BY name
 Operations do not have to occur in a fixed order and that their order can influence the result significantly. Limiting the number of documents before a filter is usually not what you want, because it easily misses a lot of documents that would fulfill the filter criterion, but are ignored because of a premature `LIMIT` clause.  Because of the aforementioned reasons, `LIMIT` is usually put at the very end, after `FILTER`, `SORT`, and other operations.
 :::
 
-Refer to [C8QL Operations](../c8ql/operations/index) for more information.
+Refer to [C8QL Operations](../c8ql/operations/) for more information.
