@@ -43,7 +43,7 @@ You can access your Macrometa data collections by writing a _query_ in [SQL](../
 
 You can use a query worker as a stream worker source or to process stream events. Stream workers can either create new stream workers or use existing ones.
 
-For more information about query workers in general, refer to [Queries and Query Workers](../../queryworkers/).
+For more information about query workers in general, refer to [Query Workers](../../queryworkers/).
 
 ## Sink (Required)
 

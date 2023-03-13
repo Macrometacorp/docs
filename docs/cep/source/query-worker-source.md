@@ -5,7 +5,7 @@ sidebar_position: 50
 
 You can use a new or existing [query worker](../../queryworkers/query-workers) as a stream worker source.
 
-For more information about writing queries and creating query workers, refer to [Queries and Query Workers](../../queryworkers/).
+For more information about writing queries and creating query workers, refer to [Query Workers](../../queryworkers/).
 
 ## Syntax
 
