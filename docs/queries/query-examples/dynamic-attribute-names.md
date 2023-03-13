@@ -59,6 +59,7 @@ This will return:
 :::note
 Attribute name expressions and regular, unquoted attribute names can be mixed.
 :::
+
 ## Subquery solution
 
 A generalized solution is to let a subquery or another function produce the dynamic attribute names, and finally pass them through the `ZIP()` function to create an object from them.
@@ -93,7 +94,7 @@ FOR doc IN documents
 
 The subquery will only let attribute names pass that contain the letter `a`. The results of the subquery are then made available to the main query and will be returned. But the attribute names in the result are still `name` and `value`, so we're not there yet.
 
-So let us also employ C8QL's [ZIP()](../functions/document#zip) function, which can create an object from two arrays:
+So let us also employ C8QL's [ZIP()](../c8ql/functions/document#zip) function, which can create an object from two arrays:
 
 - the first parameter to `ZIP()` is an array with the attribute names
 - the second parameter to `ZIP()` is an array with the attribute values
