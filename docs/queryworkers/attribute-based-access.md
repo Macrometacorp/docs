@@ -56,7 +56,7 @@ In this example, customer 1 is partner 1 and customer 2 is partner 2.
 
 In this example, partners can see their own items but cannot update them.
 
-The query worker `PartnerItems` displays data from a collection to which the active user can access:
+The query worker `PartnerItems` displays data from a collection that partners can access:
 
 ```sql
 FOR doc IN items
