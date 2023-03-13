@@ -4,8 +4,8 @@
   "redirects": [
     { "source": "/", "destination": "/docs", "permanent": false },
     { "source": "/docs/authentication", "destination": "/docs/account-management/auth", "permanent": true },
-    { "source": "/docs/c8ql/got-tutorial", "destination": "/docs/queryworkers/c8ql/got-tutorial", "permanent": true },
-    { "source": "/docs/c8ql/graphs/", "destination": "/docs/queryworkers/c8ql/graphs", "permanent": true },
+    { "source": "/docs/c8ql/got-tutorial", "destination": "/docs/queries/c8ql/got-tutorial", "permanent": true },
+    { "source": "/docs/c8ql/graphs/", "destination": "/docs/queries/c8ql/graphs", "permanent": true },
     { "source": "/docs/cep/query-guide/functions/json/toString", "destination": "/docs/cep/query-guide/functions/json/tostring", "permanent": true },
     { "source": "/docs/cep/query-guide/functions/sink/http", "destination": "/docs/cep/sink/http", "permanent": true },
     { "source": "/docs/cep/query-guide/functions/source/http", "destination": "/docs/cep/source/http", "permanent": true },
