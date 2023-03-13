@@ -52,7 +52,7 @@ Add the following data to the `customer` collection:
 
 In this example, customer 1 is partner 1 and customer 2 is partner 2.
 
-## Example 1
+## Example 1 - Attribute Can Only View
 
 In this example, partners can see their own items but cannot update them.
 
