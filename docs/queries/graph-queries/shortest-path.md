@@ -30,13 +30,11 @@ So obviously we will have the vertices **A**, **B**, **C** and **D** on the shor
 |    C   | B → C |
 |    D   | C → D |
 
-
 :::note
 The first edge will always be `null` because there is no edge pointing to the `startVertex`.
 :::
 
 ## Syntax
-
 
 Now let's see how we can write a shortest path query. You have two options here, you can either use a named graph or a set of edge collections (anonymous graph).
 
@@ -50,24 +48,24 @@ FOR vertex[, edge]
   [OPTIONS options]
 ```
 
-* `FOR`: emits up to two variables:
+- `FOR`: emits up to two variables:
 
-  * **vertex** (object): the current vertex on the shortest path
-  * **edge** (object, *optional*): the edge pointing to the vertex
+  - **vertex** (object): the current vertex on the shortest path
+  - **edge** (object, _optional_): the edge pointing to the vertex
 
-* `IN` `OUTBOUND|INBOUND|ANY`: defines in which direction edges are followed
+- `IN` `OUTBOUND|INBOUND|ANY`: defines in which direction edges are followed
   (outgoing, incoming, or both)
 
-  * `startVertex` TO `targetVertex` (both string\|object): the two vertices between which the shortest path will be computed. This can be specified in the form of an ID string or in the form of a document with the attribute `_id`. All other values will lead to a warning and an empty result. If one of the specified documents does not exist, the result is empty as well and there is no warning.
+  - `startVertex` TO `targetVertex` (both string\|object): the two vertices between which the shortest path will be computed. This can be specified in the form of an ID string or in the form of a document with the attribute `_id`. All other values will lead to a warning and an empty result. If one of the specified documents does not exist, the result is empty as well and there is no warning.
 
-* `GRAPH` **graphName** (string): the name identifying the named graph. Its vertex and
+- `GRAPH` **graphName** (string): the name identifying the named graph. Its vertex and
   edge collections will be looked up.
 
-* `OPTIONS` **options** (object, *optional*): used to modify the execution of the
+- `OPTIONS` **options** (object, _optional_): used to modify the execution of the
   traversal. Only the following attributes have an effect, all others are ignored:
 
-  * **weightAttribute** (string): a top-level edge attribute that should be used to read the edge weight. If the attribute is not existent or not numeric, the *defaultWeight* will be used instead.
-  * **defaultWeight** (number): this value will be used as fallback if there is no *weightAttribute* in the edge document, or if it's not a number. The default is 1.
+  - **weightAttribute** (string): a top-level edge attribute that should be used to read the edge weight. If the attribute is not existent or not numeric, the _defaultWeight_ will be used instead.
+  - **defaultWeight** (number): this value will be used as fallback if there is no _weightAttribute_ in the edge document, or if it's not a number. The default is 1.
 
 ### Working with collection sets
 
@@ -83,7 +81,7 @@ Instead of `GRAPH graphName` you may specify a list of edge collections (anonymo
 
 ### Traversing in mixed directions
 
-For shortest path with a list of edge collections you can optionally specify the direction for some of the edge collections. Say for example you have three edge collections *edges1*, *edges2* and *edges3*, where in *edges2* the direction has no relevance, but in *edges1* and *edges3* the direction should be taken into account. In this case you can use `OUTBOUND` as general search direction and `ANY` specifically for *edges2* as follows:
+For shortest path with a list of edge collections you can optionally specify the direction for some of the edge collections. Say for example you have three edge collections _edges1_, _edges2_ and _edges3_, where in _edges2_ the direction has no relevance, but in _edges1_ and _edges3_ the direction should be taken into account. In this case you can use `OUTBOUND` as general search direction and `ANY` specifically for _edges2_ as follows:
 
 ```sql
 FOR vertex IN OUTBOUND SHORTEST_PATH
@@ -95,9 +93,9 @@ All collections in the list that do not specify their own direction will use the
 
 ## Conditional shortest path
 
-The SHORTEST_PATH computation will only find an unconditioned shortest path. With this construct it is not possible to define a condition like: "Find the shortest path where all edges are of type *X*". If you want to do this, use a normal [Traversal](traversals.md) instead with the option `{bfs: true}` in combination with `LIMIT 1`.
+The SHORTEST_PATH computation will only find an unconditioned shortest path. With this construct it is not possible to define a condition like: "Find the shortest path where all edges are of type _X_". If you want to do this, use a normal [Traversal](traversals.md) instead with the option `{bfs: true}` in combination with `LIMIT 1`.
 
-Please also consider [to use `WITH`](../operations/with.md) to specify the collections you expect to be involved.
+Please also consider [to use `WITH`](../c8ql/operations/with.md) to specify the collections you expect to be involved.
 
 ## Examples
 
@@ -159,7 +157,7 @@ Result:
   [object C8QueryCursor, count: 4, cached: false, hasMore: false]
 ```
 
-We can see our expectations are fulfilled. We find the vertices in the correct ordering and the first edge is *null*, because no edge is pointing to the start vertex on t his path.
+We can see our expectations are fulfilled. We find the vertices in the correct ordering and the first edge is _null_, because no edge is pointing to the start vertex on t his path.
 
 We can also compute shortest paths based on documents found in collections:
 
