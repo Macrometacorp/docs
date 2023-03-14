@@ -43,7 +43,6 @@ FOR d IN data
 Run the following query to add data to the `customer` collection:
 
 ```sql
-
 LET data = [
 { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" },
 { "customer": 2, "item": "drill", "ordered": 1, "partner": "partner2" },
@@ -131,13 +130,8 @@ curl -X 'POST' \
     -d '{ "bindVars": { "customer": 2}}'
 ```
 
-If the user running the command does not have access to the data, the result is empty:
+If the user running the command does not have access to the data, the result is empty.
 
-```sql
-{
-   {}
-}
-```
 
 ## Example - Limit Access by Attribute
 
