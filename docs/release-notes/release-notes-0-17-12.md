@@ -28,7 +28,7 @@ The following features updates are included in this release.
 - You can now enter SQL queries in the Macrometa query editor and save them as query workers.
 - Other SQL functionality improvements.
 
-Topics in [Queries and Query Workers](../queryworkers/) and [SQL in Macrometa](../queryworkers/sql/) were updated as a result of this change.
+Topics in [Queries](../queries/) and [SQL in Macrometa](../queries/sql/) were updated as a result of this change.
 
 ### Redis Support Updates - Beta
 
