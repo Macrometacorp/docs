@@ -3,10 +3,10 @@ sidebar_position: 10
 title: Create Stream Workers
 ---
 
-This page explains how to create stream workers in Macrometa, but it assumes you have the code already written. To learn more about writing stream workers, refer to [Stream Worker Basics](../stream-worker-basics/) or look at [Stream Worker Examples](../examples/).
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+This page explains how to create stream workers in Macrometa, but it assumes you have the code already written. To learn more about writing stream workers, refer to [Stream Worker Basics](../stream-worker-basics/) or look at [Stream Worker Examples](../examples/).
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
