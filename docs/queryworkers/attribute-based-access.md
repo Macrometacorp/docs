@@ -45,14 +45,14 @@ Run the following query to add data to the `customer` collection:
 ```sql
 LET data = [
 { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" },
-{ "customer": 2, "item": "drill", "ordered": 1, "partner": "partner2" },
+{ "customer": 2, "item": "drill", "ordered": 1, "partner": "partner2" }
 ]
 
 FOR d IN data
     INSERT d INTO customer
 ```
 
-In these examples, customer 1 is partner 1 and customer 2 is partner 2.
+In these examples, Customer 1 is Partner 1 and Customer 2 is Partner 2.
 
 ## Example - Attribute Can Only View
 
@@ -82,7 +82,7 @@ Note that in the results, only data with the `partner1` attribute displays:
 ```sql
 {
    { "item": "hammer", "price": 5.99, "count": 55, "partner": "partner1" },
-   { "item": "screwdriver", "price": 3.99, "count": 15, "partner": "partner1" },
+   { "item": "screwdriver", "price": 3.99, "count": 15, "partner": "partner1" }
 }
 ```
 
@@ -115,7 +115,7 @@ The displayed results show the added data:
 
 ```sql
 {
-   { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" },
+   { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" }
 }
 ```
 
