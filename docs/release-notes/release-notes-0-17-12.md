@@ -33,9 +33,9 @@ Topics in [Queries and Query Workers](../queryworkers/) and [SQL in Macrometa](.
 ### Redis Support Updates - Beta
 
 - Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
-- Macrometa documentation now clarifies [Redis limitations](../queryworkers/redis/#limitations) and [Redis Data Formats](../queryworkers/redis/data-type-format).
+- Macrometa documentation now clarifies [Redis limitations](../queries/redis/limitations) and [Redis Data Formats](../queries/redis/data-type-format).
 
-Topics in [Redis](../queryworkers/redis/) were updated as a result of this change.
+Topics in [Redis](../queries/redis/) were updated as a result of this change.
 
 ### Akamai EdgeWorker Support Updates - Preview
 
