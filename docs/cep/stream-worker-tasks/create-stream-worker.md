@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 Follow these instructions to create a new stream worker using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Stream Workers**.
+1. Click **Compute > Stream Workers**.
 1. If you already have a stream worker written, then paste the code in the Editor tab and skip the following substeps. Otherwise, click **New Stream Worker**.
    1. In the **Name** field, enter a name for your stream worker. No spaces or special characters are allowed except hyphens (-) and underscores (_). Best practice is not write a name that describes what the stream worker does.
    1. (Optional) Enter a description. Best practice is to include a description so that other users (or future you) understand what the stream worker is for.
