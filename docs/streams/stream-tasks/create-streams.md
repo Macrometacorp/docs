@@ -18,10 +18,10 @@ Create a stream.
 
    Macrometa displays a list of streams and their attributes.
 
-3. Click **New Stream**.
-4. Enter a stream **Name**.
-5. Select **Replication** type: **Local** or **Global**. Default is **Local**.
-6. Click **Create**.
+1. Click **New Stream**.
+1. Enter a stream **Name**.
+1. Select **Replication** type: **Local** or **Global**. Default is **Local**.
+1. Click **Create**.
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
