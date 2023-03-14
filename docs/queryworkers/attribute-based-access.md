@@ -26,29 +26,38 @@ Refer to [Add Attributes to API Keys](../account-management/attributes/add-attri
 
 Create two collections that will contain customer data for the examples: `item` and `customer`.
 
-Add the following data to the `item` collection:
+Run the following query to add data to the `item` collection:
 
 ```sql
-INSERT {
-    "item": "hammer", "price": 5.99, "count": 55, "partner": "partner1",
-    "item": "screwdriver", "price": 3.99, "count": 15, "partner": "partner1",
-    "item": "pliers", "price": 4.95, "count": 28, "partner": "partner2"
-    "item": "drill", "price": 42.90, "count": 5, "partner": "partner2"
-} INTO item
+LET data = [
+{ "item": "hammer", "price": 5.99, "count": 55, "partner": "partner1" },
+{ "item": "screwdriver", "price": 3.99, "count": 15, "partner": "partner1" },
+{ "item": "pliers", "price": 4.95, "count": 28, "partner": "partner2" },
+{ "item": "drill", "price": 42.90, "count": 5, "partner": "partner2" }
+]
+
+FOR d IN data
+    INSERT d INTO item
 ```
 
+Run the following query to add data to the `customer` collection:
+
 ```sql
-INSERT {
-    "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1"
-    "customer": 2, "item": "drill", "ordered": 1, "partner": "partner2"
-} INTO customer
+
+LET data = [
+{ "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" },
+{ "customer": 2, "item": "drill", "ordered": 1, "partner": "partner2" },
+]
+
+FOR d IN data
+    INSERT d INTO customer
 ```
 
 In these examples, customer 1 is partner 1 and customer 2 is partner 2.
 
-## Example 1 - Attribute Can Only View
+## Example - Attribute Can Only View
 
-In this example, partners can see their own items but cannot update them.
+This query worker allows partners to see their own items but not update them.
 
 The query worker `PartnerItems` displays data from a collection that partners can access:
 
@@ -78,9 +87,9 @@ Note that in the results, only data with the `partner1` attribute displays:
 }
 ```
 
-## Example 2
+## Example - Attribute Can View and Edit
 
-In this example, partners can see their orders and update them when they are filled.
+This query worker allows partners to see their own items, but not update them.
 
 The query worker `PartnerOrdersUpdate` updates data in the collection if the active user has access:
 
@@ -122,7 +131,7 @@ curl -X 'POST' \
     -d '{ "bindVars": { "customer": 2}}'
 ```
 
-The result is empty because the attempt failed:
+If the user running the command does not have access to the data, the result is empty:
 
 ```sql
 {
@@ -130,9 +139,9 @@ The result is empty because the attempt failed:
 }
 ```
 
-## Example 3
+## Example - Limit Access by Attribute
 
-In this example, employees can see all items and orders but cannot update them. Partners can view and update only their own items.
+This query worker allows employees to see all items and orders but not update them. Partners can view and update only their own items.
 
 The name of this query worker is `ViewOrders`.
 
