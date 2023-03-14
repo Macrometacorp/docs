@@ -1,0 +1,18 @@
+---
+sidebar_position: 20
+title: Supported Commands
+---
+
+## Supported Commands
+
+Macrometa supports Redis client protocol up to version 6.2. Following table shows the list of supported Redis commands:
+
+| Feature      | Supported | Supported commands     |
+| :---        |    :----:   |          :--- |
+| String      | Yes       | - APPEND - DECR - DECRBY - GET - GETDEL - GETEX - GETRANGE - GETSET - INCR - INCRBY - INCRBYFLOAT - MGET - MSET - MSETNX - PSETEX - SET - SETBIT - SETEX - SETNX - SETRANGE - STRLEN - BITCOUNT - BITOP - BITPOS - GETBIT   |
+| Hash   | Yes        | - HDEL - HEXISTS - HGET - HGETALL - HINCRBY - HINCRBYFLOAT - HKEYS - HLEN - HMGET - HMSET - HSCAN - HSET - HSETNX - HSTRLEN - HRANDFIELD - HVALS      |
+| List   | Yes        | - LINDEX - LINSERT - LLEN - LMOVE - LPOP - LPOS - LPUSH - LPUSHX - LRANGE - LREM - LSET - LTRIM - RPOP - RPOPLPUSH - RPUSH - RPUSHX      |
+| Set   | Yes        | - SADD - SCARD - SDIFF - SDIFFSTORE - SINTER - SINTERSTORE - SISMEMBER - SMEMBERS - SMISMEMBER - SMOVE - SPOP - SRANDMEMBER - SREM - SSCAN - SUNION - SUNIONSTORE      |
+| SortedSet   | Yes        | - ZADD - ZCARD - ZCOUNT - ZDIFF - ZDIFFSTORE - ZINCRBY - ZINTER - ZINTERSTORE - ZLEXCOUNT - ZMSCORE - ZPOPMAX - ZPOPMIN - ZRANDMEMBER - ZRANGE - ZRANGEBYLEX - ZRANGEBYSCORE - ZRANGESTORE - ZRANK - ZREM - ZREMRANGEBYLEX - ZREMRANGEBYRANK - ZREMRANGEBYSCORE - ZREVRANGE - ZREVRANGEBYLEX - ZREVRANGEBYSCORE - ZREVRANK - ZSCAN - ZSCORE - ZUNION - ZUNIONSTORE      |
+| Generic   | Yes        | - COPY - DEL - EXISTS - EXPIRE - EXPIREAT - PERSIST - PEXPIRE - PEXPIREAT - PTTL - RANDOMKEY - RENAME - RENAMENX - SCAN - TTL - TYPE - UNLINK      |
+| Server   | Yes        | - ECHO - PING - PIPELINE - DBSIZE - FLUSHDB - TIME      |
