@@ -53,7 +53,7 @@ FOR doc IN posts
   RETURN doc
 ```
 
-It is possible to add the [array expansion operator](../../queryworkers/c8ql/array-operators.md#array-expansion) <i>[\*]</i>, but it is not mandatory. You may use it to indicate that an array index is used, it is purely cosmetic however:
+It is possible to add the [array expansion operator](../../queries/c8ql/array-operators.md#array-expansion) <i>[\*]</i>, but it is not mandatory. You may use it to indicate that an array index is used, it is purely cosmetic however:
 
 ```js
 FOR doc IN posts

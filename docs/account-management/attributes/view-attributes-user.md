@@ -31,7 +31,7 @@ Use the [gdnsl user get](../../cli/users-cli#gdnsl-user-get) CLI command to get 
 </TabItem>
 <TabItem value="c8ql" label="C8QL">
 
-Use the [CURRENT_USER_ATTRIBUTE](../../queryworkers/c8ql/functions/database.md#current_user_attribute) to return user attributes with a C8QL query.
+Use the [CURRENT_USER_ATTRIBUTE](../../queries/c8ql/functions/database.md#current_user_attribute) to return user attributes with a C8QL query.
 
 </TabItem>
 </Tabs>

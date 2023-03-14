@@ -15,7 +15,7 @@ CREATE STREAM TemperatureStream (sensorId string, temperature double);
 
 -- Creates a sink to publish events from stream workers:
 
-CREATE SINK TemperatureOnlyStream WITH (type='stream', topic='Temperature') (temperature double);
+CREATE SINK TemperatureOnlyStream WITH (type='stream', stream='Temperature') (temperature double);
 
 @info(name = 'Simple-selection')
 INSERT INTO TemperatureOnlyStream

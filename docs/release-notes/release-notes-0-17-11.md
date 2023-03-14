@@ -33,13 +33,13 @@ This release adds support for Akamai edge workers as functions in GDN. For more 
 
 Macrometa now supports SQL queries. Support will be expanded in future releases.
 
-[SQL in Macrometa](../queryworkers/sql/index.md) was added as a result of this feature.
+[SQL in Macrometa](../queries/sql/index.md) was added as a result of this feature.
 
 ### Redis Support - Beta
 
 Macrometa now offers Redis support.
 
-[Redis Mode Collections](../collections/redis-mode/index.md) and [Redis in Macrometa](../queryworkers/redis/index.md) were added as a result of this feature.
+[Redis Mode Collections](../collections/redis-mode/index.md) and [Redis in Macrometa](../queries/redis/index.md) were added as a result of this feature.
 
 ### Kafka Support - Beta
 
