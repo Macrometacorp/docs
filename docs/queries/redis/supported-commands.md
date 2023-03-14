@@ -3,8 +3,6 @@ sidebar_position: 20
 title: Supported Commands
 ---
 
-## Supported Commands
-
 Macrometa supports Redis client protocol up to version 6.2. Following table shows the list of supported Redis commands:
 
 | Feature      | Supported | Supported commands     |
