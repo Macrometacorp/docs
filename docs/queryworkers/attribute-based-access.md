@@ -52,7 +52,7 @@ FOR d IN data
     INSERT d INTO customer
 ```
 
-In these examples, customer 1 is partner 1 and customer 2 is partner 2.
+In these examples, Customer 1 is Partner 1 and Customer 2 is Partner 2.
 
 ## Example - Attribute Can Only View
 
