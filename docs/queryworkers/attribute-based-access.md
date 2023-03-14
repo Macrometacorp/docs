@@ -45,7 +45,7 @@ Run the following query to add data to the `customer` collection:
 ```sql
 LET data = [
 { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" },
-{ "customer": 2, "item": "drill", "ordered": 1, "partner": "partner2" },
+{ "customer": 2, "item": "drill", "ordered": 1, "partner": "partner2" }
 ]
 
 FOR d IN data
@@ -82,7 +82,7 @@ Note that in the results, only data with the `partner1` attribute displays:
 ```sql
 {
    { "item": "hammer", "price": 5.99, "count": 55, "partner": "partner1" },
-   { "item": "screwdriver", "price": 3.99, "count": 15, "partner": "partner1" },
+   { "item": "screwdriver", "price": 3.99, "count": 15, "partner": "partner1" }
 }
 ```
 
@@ -115,7 +115,7 @@ The displayed results show the added data:
 
 ```sql
 {
-   { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" },
+   { "customer": 1, "item": "hammer", "ordered": 2, "partner": "partner1" }
 }
 ```
 
