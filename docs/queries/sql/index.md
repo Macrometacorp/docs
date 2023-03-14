@@ -24,4 +24,4 @@ The general workflow when executing a query is as follows:
 - [JavaScript SDK](https://github.com/Macrometacorp/jsC8)
 - [Python SDK](https://github.com/Macrometacorp/pyC8)
 
-If this is your first time with SQL, then you might want to check out the [SQL Tutorial](tutorial/index.md) before you head off to the in-depth documentation.
+If this is your first time with SQL, then you might want to check out the [SQL Getting Started](getting-started-sql.md) before you head off to the in-depth documentation.
