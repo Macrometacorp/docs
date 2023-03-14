@@ -18,7 +18,7 @@ When you save a query, it becomes a query worker.
 1. Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Compute > Query Workers**.
 3. In the Editor, select **C8QL** or **SQL**, depending on which language you want to write the query worker in.
-4. Write a [SQL](../queries/sql/index.md) [C8QL](../queries/c8ql/index.md) query.
+4. Write a [SQL](../queries/sql/index.md) or [C8QL](../queries/c8ql/index.md) query.
 5. Click **Save Query**.
 6. Enter a **Name** and then click **Save**.
 
