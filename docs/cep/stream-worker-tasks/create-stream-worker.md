@@ -30,29 +30,25 @@ Follow these instructions to create a new stream worker using the GDN console we
 1. Click **Save**.
 1. Select edge locations to which your stream worker will be deployed and then click **Save**.
 
-   Your stream worker is now created in an unpublished state.
+   Your stream worker is now created in an unpublished state. To publish it, click **Publish**.
 
 </TabItem>
-<TabItem value="py" label="Python SDK">
+<TabItem value="sdk" label="SDK">
 
-Python SDK instructions and code, as generic as possible.
-
-</TabItem>
-<TabItem value="js" label="JavaScript SDK">
-
-JavaScript SDK instructions and code, as generic as possible.
+To see how to create stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example).
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 
-18 programming languages to 
-[Task Name](Link to API command).
+Use our interactive API Reference with code generation in 18 programming languages to:
+
+1. [Validate a Stream Worker Definition](https://www.macrometa.com/docs/api#/operations/validate)
+2. [Create a Stream Worker](https://www.macrometa.com/docs/api#/operations/create) - Note that if you set `isActive` to `true`, then this command publishes the stream worker as well.
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection](../../cli/collections-cli.md) CLI command to create a Document Store collection.
+Use the [gdnsl stream-worker create](../../cli/stream-workers-cli#gdnsl-stream-worker-created) CLI command to validate and create an unpublished stream worker.
 
 </TabItem>
 </Tabs>
