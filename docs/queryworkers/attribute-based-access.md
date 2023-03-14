@@ -132,7 +132,6 @@ curl -X 'POST' \
 
 If the user running the command does not have access to the data, the result is empty.
 
-
 ## Example - Limit Access by Attribute
 
 This query worker allows employees to see all items and orders but not update them. Partners can view and update only their own items.
