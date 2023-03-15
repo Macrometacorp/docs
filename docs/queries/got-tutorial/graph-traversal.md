@@ -290,7 +290,7 @@ Tywin <- Jaime <- Joffrey
 Tywin <- Cersei <- Joffrey
 ```
 
-As a quick fix, change the last line of the query to `RETURN DISTINCT v.name` to return each value only once. Keep in mind though, that there are [traversal options](../graph-queries/traversals#syntax) to suppress duplicate vertices early on.
+As a quick fix, change the last line of the query to `RETURN DISTINCT v.name` to return each value only once. Keep in mind though, that there are [traversal options](../../graphs/graph-queries/traversals.md#syntax) to suppress duplicate vertices early on.
 
 ## Traverse with Variable Depth
 
