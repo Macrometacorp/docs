@@ -232,7 +232,7 @@ Append the following lines of code inside the `try` block of main function. Look
 </TabItem>
 </Tabs>
 
-### Step 4. Update Stream Worker
+### Step 5. Update Stream Worker
 
 The code below adds a second data processing step. It updates the stream worker to store the input data into itself and another collection called `SampleCargoAppDestTable`.
 
@@ -380,7 +380,7 @@ Append the following lines of code inside the `try` block of main function. Look
 </TabItem>
 </Tabs>
 
-### Step 5. Insert data and run an Ad Hoc Query
+### Step 6. Insert data and run an Ad Hoc Query
 
 In this example, we use a query worker `insertWeight` to insert data into `SampleCargoAppInputTable` and then we run an ad hoc query on the store `SampleCargoAppDestTable` used in the stream worker. It gets the records that you inserted into `SampleCargoAppInputTable`.
 
@@ -444,7 +444,7 @@ Append the following lines of code inside the `try` block of main function. Look
 </TabItem>  
 </Tabs>
 
-### Step 6. Delete Stream Worker
+### Step 7. Delete Stream Worker
 
 You're done with this stream worker, so time to delete it.
 
