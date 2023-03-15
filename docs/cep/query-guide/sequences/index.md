@@ -6,6 +6,8 @@ title: Sequences
 _Sequences_ are a state machine implementation that allow you to detect the sequence of event occurrences over time.
 Here all matching events must arrive consecutively to match the sequence condition, and there cannot be any non-matching events arriving within a matching sequence of events. This can correlate events within a single stream or between multiple streams.
 
+For more examples, refer to [Correlating Events to Find a Trend (Sequence)](../../examples/correlating-events/sequence-examples).
+
 ## Purpose
 
 Sequences allows you to detect a specified event sequence over a specified time period.
