@@ -14,7 +14,7 @@ Deleting a stream worker cannot be undone. You cannot recover a deleted stream w
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to create a new stream worker using the GDN console web UI.
+Follow these instructions to delete a new stream worker using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Stream Workers**.
