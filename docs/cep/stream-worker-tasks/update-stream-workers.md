@@ -16,10 +16,11 @@ Follow these instructions to update a stream worker using the GDN console web UI
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Stream Workers**.
 3. Click the **Stream Workers** tab.
-4. Find the stream worker you want to update in the stream worker list
+4. Find the stream worker you want to update in the stream worker list, then click the pencil icon next to it.
 
+   Macrometa opens the stream worker code in the Editor tab. You can now update the code. To change regions, click **Update Regions**.
 
-
+5. When finished, click **Update**.
 
 </TabItem>
 <TabItem value="sdk" label="SDK">
