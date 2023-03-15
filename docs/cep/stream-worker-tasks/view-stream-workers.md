@@ -1,12 +1,12 @@
 ---
-sidebar_position: 40
-title: Update Stream Workers
+sidebar_position: 30
+title: View Stream Workers
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to update Macrometa stream workers.
+This page explains how to view Macrometa stream workers. You can view them either as a list or view details of a specific stream worker.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
