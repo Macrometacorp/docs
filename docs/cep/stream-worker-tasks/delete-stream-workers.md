@@ -25,7 +25,7 @@ Follow these instructions to delete a new stream worker using the GDN console we
 </TabItem>
 <TabItem value="sdk" label="SDK">
 
-To see how to delete stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example#step-4-activate-and-deactivate-stream-worker).
+To see how to delete stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example#step-6-delete-stream-worker).
 
 </TabItem>
 <TabItem value="api" label="REST API">
