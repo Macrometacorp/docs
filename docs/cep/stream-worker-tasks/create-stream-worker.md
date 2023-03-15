@@ -6,7 +6,7 @@ title: Create Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create stream workers in Macrometa, but it assumes you have the code already written. To learn more about writing stream workers, refer to [Stream Worker Basics](../stream-worker-basics/) or look at [Stream Worker Examples](../examples/).
+This page explains how to create stream workers in Macrometa, assuming you have the code already written. To learn more about writing stream workers, refer to [Stream Worker Basics](../stream-worker-basics/) or look at [Stream Worker Examples](../examples/).
 
 After you create the stream worker, it is saved in an inactive, unpublished state. For instructions on how to publish (activate) it, refer to [Publish/Unpublish Stream Workers](publish-unpublish-stream-workers).
 
