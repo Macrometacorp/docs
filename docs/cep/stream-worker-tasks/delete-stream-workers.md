@@ -5,7 +5,7 @@ title: Delete Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to delete stream workers in Macrometa.
+This page explains how to delete Macrometa stream workers.
 
 :::warning
 Deleting a stream worker cannot be undone. You cannot recover a deleted stream worker, you can only re-create it.
