@@ -5,7 +5,7 @@ title: Publish/Unpublish Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to publish stream workers in Macrometa. After you [create a stream worker](create-stream-worker), you must publish it in order for it to run. If you want to stop it from running, then you can unpublish it.
+This page explains how to publish stream Macrometa workers. After you [create a stream worker](create-stream-worker), you must publish it in order for it to run. If you want to stop it from running, then you can unpublish it.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
