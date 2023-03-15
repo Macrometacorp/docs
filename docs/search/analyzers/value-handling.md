@@ -9,5 +9,5 @@ Sub-nested elements of arrays are also unpacked and indexed individually, and al
 
 Refer to the following links for more information about value handling:
 
-- [SEARCH operation](../queries/c8ql/operations/search): How to query indexed values such as numbers and nested values.
+- [SEARCH operation](../queries/c8ql/operations/search.md): How to query indexed values such as numbers and nested values.
 - [Search views](index.md): How we index compound data types (`arrays`, `objects`).
