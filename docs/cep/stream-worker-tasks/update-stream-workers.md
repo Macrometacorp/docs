@@ -25,20 +25,17 @@ Follow these instructions to update a stream worker using the GDN console web UI
 </TabItem>
 <TabItem value="sdk" label="SDK">
 
-To see how to create stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example).
+To see how to update stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example#step-5-update-stream-worker).
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to:
-
-1. [Validate a Stream Worker Definition](https://www.macrometa.com/docs/api#/operations/validate)
-2. [Create a Stream Worker](https://www.macrometa.com/docs/api#/operations/create) - Note that if you set `isActive` to `true`, then this command publishes the stream worker as well.
+Use our interactive API Reference with code generation in 18 programming languages to [Update a Stream Worker](https://www.macrometa.com/docs/api#/operations/update).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl stream-worker create](../../cli/stream-workers-cli#gdnsl-stream-worker-created) CLI command to validate and create an unpublished stream worker.
+Use the [gdnsl stream-worker update](../../cli/stream-workers-cli#gdnsl-stream-worker-update) CLI command to validate and create an unpublished stream worker.
 
 </TabItem>
 </Tabs>
