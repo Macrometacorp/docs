@@ -66,12 +66,14 @@ maximum threshold that requires the supervisor to take action.
 CREATE STREAM ProductionStream(productName string, factoryBranch string, productionAmount long);
 
 -- Define an output stream to present the observed production trend after applying the logical pattern.
-CREATE SINK ProductionDecreaseAlertStream WITH (type='log', prefix='Decrease in production detected:') (productName string, originalAmount long, laterAmount long, factoryBranch string);
+CREATE SINK ProductionDecreaseAlertStream WITH (type='log', prefix='Decrease in production detected:') 
+(productName string, originalAmount long, laterAmount long, factoryBranch string);
 
 -- Query to apply the pattern so that the production decrease can be observed.
 INSERT INTO ProductionDecreaseAlertStream
 SELECT e1.productName, e1.productionAmount AS originalAmount, e2.productionAmount AS laterAmount, e1.factoryBranch
-FROM EVERY (e1=ProductionStream) -> e2=ProductionStream[e1.productName == e2.productName AND e1.productionAmount - e2.productionAmount > 10] WITHIN 10 min;
+FROM EVERY (e1=ProductionStream) -> e2=ProductionStream[e1.productName == e2.productName AND e1.productionAmount - e2.productionAmount > 10] 
+WITHIN 10 min;
 ```
 
 ### Multi-Pattern Query Explanation
