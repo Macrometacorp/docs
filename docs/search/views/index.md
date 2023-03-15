@@ -8,7 +8,7 @@ Our _search views_ facilitate swift, advanced full-text queries on unstructured 
 ## What is a Search View?
 
 
-A search view represents documents in specified source collections and applies an implementation-specific transformation. Combining Boolean and generalized ranking retrieval, search views use the Vector Space Model (VSM) to represent documents and queries as vectors based on query _terms_, including single words, keywords, and phrases. [Analyzers](../analyzers.md) can enhance value analysis with tokenization.
+A search view represents documents in specified source collections and applies an implementation-specific transformation. Combining Boolean and generalized ranking retrieval, search views use the Vector Space Model (VSM) to represent documents and queries as vectors based on query _terms_, including single words, keywords, and phrases. [Analyzers](../analyzers/index.md) can enhance value analysis with tokenization.
 
 Document relevance is determined by comparing the proximity of the document and query vectors. This is measured by the cosine similarity, which calculates the cosine of the angle between the two vectors. The expression for calculating relevance of document `d` to query `q` is:
 
