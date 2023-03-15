@@ -10,7 +10,7 @@ This page explains how to publish stream Macrometa workers. After you [create a 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to create a new stream worker using the GDN console web UI.
+Follow these instructions to publish or unpublish a new stream worker using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Stream Workers**.
