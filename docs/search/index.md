@@ -24,7 +24,7 @@ GDN Search provides the following capabilities:
 We provide _search views_ and _analyzers_ that boost the efficiency of your search queries:
 
 - A [search view](views/index.md) is a virtual collection that provides fast full-text searching over multiple linked collections.
-- An [analyzer](analyzers.md) parses input values and transforms them into sets of sub-values for the following use cases:
+- An [analyzer](analyzers/index.md) parses input values and transforms them into sets of sub-values for the following use cases:
 
   - Tokenization (splitting text into words and normalizing them).
   - Language-specific word stemming.

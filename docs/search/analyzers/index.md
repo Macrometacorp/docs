@@ -8,7 +8,7 @@ _Analyzers_ enable you to break search inputs into sets of sub-values that C8Sea
 
 You can use the [`TOKENS()` function](../queries/c8ql/functions/search#tokens) to tokenize phrases and turn them into strings for C8QL search queries.
 
-An Analyzer processes values based on its [type](/types.md), [properties](/properties.md), and [features](/features.md).
+An Analyzer processes values based on its [type](types.md), [properties](properties.md), and [features](features.md).
 
 ## Built-in Analyzers
 

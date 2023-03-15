@@ -11,7 +11,7 @@ Each search view represents an inverted index that contains the search configura
 
 A search view represents all documents available in a specified set of source collections. Each search view is an abstraction of some transformation applied to documents in the collections. The type of transformation is specific to the search view implementation and can be as simple as an identity transformation.
 
-A search view combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the _terms_ of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](../analyzers.md) to boost value analysis with tokenization.
+A search view combines Boolean and generalized ranking retrieval and ranks each Boolean-approved document. For ranking text retrieval, we use the Vector Space Model (VSM) which uses documents and queries to represent vectors in a space formed by the _terms_ of the query. A term can include single words, keywords, and phrases. You can use [Analyzers](../analyzers/index.md) to boost value analysis with tokenization.
 
 The document vectors that are closer to a query vector are more relevant. The closeness is expressed as the cosine of the angle between two vectors ([cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity)). We evaluate the following expression to define how relevant document `d` is to query `q`:
 

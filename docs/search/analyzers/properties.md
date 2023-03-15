@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Properties
 ---
 
-The properties available for an Analyzer depend on its [type](/types.md):
+The properties available for an Analyzer depend on its [type](types.md):
 
 - [Identity](#identity)
 - [Delimiter](#delimiter)
