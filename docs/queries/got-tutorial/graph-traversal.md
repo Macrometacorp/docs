@@ -219,7 +219,7 @@ The start vertex is followed by `ChildOf`, which is our edge collection. The exa
 
 ### Traversal Query Explanation
 
-This `FOR` loop doesn't iterate over a collection or an array, it walks the graph and iterates over the connected vertices it finds, with the vertex document assigned to a variable (here: `v`). It can also emit the edges it walked as well as the full path from start to end to [another two variables](../graph-queries/traversals#syntax).
+This `FOR` loop doesn't iterate over a collection or an array, it walks the graph and iterates over the connected vertices it finds, with the vertex document assigned to a variable (here: `v`). It can also emit the edges it walked as well as the full path from start to end to [another two variables](../../graphs/graph-queries/traversals#syntax).
 
 In above query, the traversal is restricted to a minimum and maximum traversal depth of 1 (how many steps to take from the start vertex), and to only follow edges in `OUTBOUND` direction. The edges point from child to parent, and the parent is one step away from the child, thus it returns the parents of the child we start at.
 
@@ -233,7 +233,7 @@ You could also do this in two steps, using the document ID.
         RETURN c._id
     ```
 
-1. Use the ID returned in the following code block to return parent names.
+2. Use the ID returned in the following code block to return parent names.
 
     ```js
     FOR v IN 1..1 OUTBOUND "Characters/2901776" ChildOf
