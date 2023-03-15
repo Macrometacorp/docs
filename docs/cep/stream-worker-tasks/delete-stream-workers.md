@@ -35,7 +35,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl stream-worker delete](../../cli/stream-workers-cl#gdnsl-stream-worker-delete) CLI command to delete a stream worker.
+Use the [gdnsl stream-worker delete](../../cli/stream-workers-cli#gdnsl-stream-worker-delete) CLI command to delete a stream worker.
 
 </TabItem>
 </Tabs>
