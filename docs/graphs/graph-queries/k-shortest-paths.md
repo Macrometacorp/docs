@@ -91,7 +91,7 @@ FOR path
   - **weightAttribute** (string): a top-level edge attribute that should be used to read the edge weight. If the attribute does not exist or is not numeric, the _defaultWeight_ will be used instead.
   - **defaultWeight** (number): this value will be used as fallback if there is no _weightAttribute_ in the edge document, or if it's not a number. The default is 1.
 
-- `LIMIT` (see [LIMIT operation](../c8ql/operations/limit.md), _optional_): the maximal number of paths to return. It is highly recommended to use a `LIMIT` for `K_SHORTEST_PATHS`.
+- `LIMIT` (see [LIMIT operation](../../queries/c8ql/operations/limit.md), _optional_): the maximal number of paths to return. It is highly recommended to use a `LIMIT` for `K_SHORTEST_PATHS`.
 
 ### Working with collection sets
 
