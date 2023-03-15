@@ -22,7 +22,8 @@ CREATE SINK AlertStream WITH (type='http', publisher.url='http://headoffice:8080
 -- Query to detect delays.
 INSERT INTO AlertStream
 SELECT LocationStream.taxiID, LocationStream.driverID, 'Unexpected Delay' AS message
-FROM NOT LocationStream[latitude == 44.0096 AND longitude == 81.2735] FOR 15 minutes OR NOT LocationStream[latitude == 43.0096 AND longitude == 81.2737] FOR 15 minutes;
+FROM NOT LocationStream[latitude == 44.0096 AND longitude == 81.2735] 
+ FOR 15 minutes OR NOT LocationStream[latitude == 43.0096 AND longitude == 81.2737] FOR 15 minutes;
 ```
 
 ## Query Explanation
