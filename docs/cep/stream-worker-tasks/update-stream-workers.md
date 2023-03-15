@@ -35,7 +35,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl stream-worker update](../../cli/stream-workers-cli#gdnsl-stream-worker-update) CLI command to validate and create an unpublished stream worker.
+Use the [gdnsl stream-worker update](../../cli/stream-workers-cli#gdnsl-stream-worker-update) CLI command to update a stream worker.
 
 </TabItem>
 </Tabs>
