@@ -186,7 +186,7 @@ Match documents where the attribute at **path** is present _and_ was indexed by 
 
 - **path** (attribute path expression): the attribute to test in the document
 - **type** (string): string literal `"analyzer"`
-- **analyzer** (string, _optional_): name of an [Analyzer](../../../search/analyzers.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
+- **analyzer** (string, _optional_): name of an [Analyzer](../../../search/analyzers/index.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
 - returns nothing: the function can only be called in a [SEARCH operation](../operations/search) and throws an error otherwise
 
 ```js
@@ -270,7 +270,7 @@ The phrase can be expressed as an arbitrary number of _phraseParts_ separated by
 - **phrasePart** (string): text to search for in the tokens. May consist of several words/tokens, which will be split using the specified _analyzer_
 - **skipTokens** (number, _optional_): amount of words/tokens to treat
   as wildcards
-- **analyzer** (string, _optional_): name of an [Analyzer](../../../search/analyzers.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
+- **analyzer** (string, _optional_): name of an [Analyzer](../../../search/analyzers/index.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
 - returns nothing: the function can only be called in a [SEARCH operation](../operations/search) and throws an error otherwise
 
 Given a View indexing an attribute _text_ with the `"text_en"` Analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
@@ -377,7 +377,7 @@ Split the **input** string with the help of the specified **analyzer** into an a
 It has a regular return value unlike all other Search C8QL functions and is thus not limited to `SEARCH` operations. It is independent of Views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
 
 - **input** (string): text to tokenize
-- **analyzer** (string): name of an [Analyzer](../../../search/analyzers.md).
+- **analyzer** (string): name of an [Analyzer](../../../search/analyzers/index.md).
 - returns **tokenArray** (array): array of strings with zero or more elements, each element being a token.
 
 Example query showcasing the `"text_de"` Analyzer (tokenization with stemming, case conversion and accent removal for German text):

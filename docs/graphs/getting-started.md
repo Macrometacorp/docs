@@ -90,7 +90,7 @@ Finding the neighbor's of a `vertex` is one crucial question one might have abou
 9. Perform any map-reduce like computation as is possible in the Pregel framework by Google, for example “Pagerank” or “Find connected components”.
 10. Solve the traveling salesman problem in the graph.
 
-GDN provides several [Graph Functions](../queries/graph-queries/graph-functions) for working with edges and vertices, to analyze them and their relations.
+GDN provides several [Graph Functions](../graphs/graph-queries/graph-functions.md) for working with edges and vertices, to analyze them and their relations.
 
 ### Breadth-first search
 
