@@ -10,7 +10,7 @@ import Steps from '../../_partials/_api-example-steps.md';
 
 This page shows you how to perform a basic graph workflow using the Macrometa API.
 
-## Reasons to Use the API
+## Why Use the API?
 
 An _edge collection_ contains edge documents and shares its namespace with all other types of collections. You can manage edge documents via standard collection API wrappers, but using edge collection API wrappers provides additional safeguards:
 
@@ -28,7 +28,7 @@ For more information about using Macrometa APIs, refer to [APIs](../../api-docs/
 ## Graph API Example
 
 <Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python SDK">
+  <TabItem value="py" label="Python">
 
 ```py
 """ This file is a demo on using edge collections and graphs """
@@ -192,7 +192,7 @@ print("Graph and Collections Deleted: ", result)
 ```
 
   </TabItem>
-  <TabItem value="js" label="JavaScript SDK">
+  <TabItem value="js" label="JavaScript">
 
 ```js
     class APIRequest {
