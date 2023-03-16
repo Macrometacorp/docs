@@ -30,84 +30,116 @@ This guide will help you understand the fundamentals of working with graphs in M
 Create collections to hold the data that you will use to create graphs.
 
 1. [Create a document collection](../collections/documents/create-document-store) named `cities`.
-2. [Create an edge collection](../collections/graph-edge/create-graph-edge.md)
+   1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
+   1. Click **Collections** and then click **New Collection**.
+   1. Click **Document Store**.
+   1. In **Collection Name**, enter `cities` and then click **Create**.
+
+1. [Create an edge collection](../collections/graph-edge/create-graph-edge.md) named `flights`.
+   1. In **Collections**, click **New Collection**.
+   1. Click **Graph Edge**.
+   1. In **Collection Name**, enter `flights` and then click **Create**.
+
+You now have two empty collections, ready to receive data.
 
 ## Upload Data with Queries
 
-Add data to the collections with C8QL queries.
+Add data to the collections with C8QL queries. For more information about Macrometa queries, refer to [Queries](../queries/).
 
-1. Add data to the `cities` collection by executing the following query in the Query Workers tab:
+1. Click **Query Workers**.
+1. To populate the `cities` collection, copy the following query and paste it in the editor.
 
-```JavaScript
-LET c = [
-	{"_key": "sanfrancisco", "location": [-122.416667, 37.783333]},
-	{"_key": "newyork", "location": [-74.0059, 40.7127]},
-	{"_key": "detroit", "location": [-83.045833, 42.331389]},
-	{"_key": "paris", "location": [2.3508, 48.8567]},
-	{"_key": "dublin", "location": [-6.260278, 53.349722]},
-	{"_key": "singapore", "location": [103.8, 1.3]},
-	{"_key": "houston", "location": [-95.383056, 29.762778]},
-	{"_key": "seattle", "location": [-122.333056, 47.609722]}
-]
-FOR city IN c
-    INSERT city IN cities
-```
+	```JavaScript
+	LET c = [
+		{"_key": "sanfrancisco", "location": [-122.416667, 37.783333]},
+		{"_key": "newyork", "location": [-74.0059, 40.7127]},
+		{"_key": "detroit", "location": [-83.045833, 42.331389]},
+		{"_key": "paris", "location": [2.3508, 48.8567]},
+		{"_key": "dublin", "location": [-6.260278, 53.349722]},
+		{"_key": "singapore", "location": [103.8, 1.3]},
+		{"_key": "houston", "location": [-95.383056, 29.762778]},
+		{"_key": "seattle", "location": [-122.333056, 47.609722]}
+	]
+	FOR city IN c
+		INSERT city IN cities
+	```
 
-3. Create an edge collection named flights. To populate the flights collection, execute the following query:
+1. Click **Run Query**.
 
-```JavaScript
-LET e = [
-	{"_from": "cities/sanfrancisco", "_to": "cities/singapore", "distance": 13600},
-	{"_from": "cities/sanfrancisco", "_to": "cities/newyork", "distance": 4000},
-	{"_from": "cities/sanfrancisco", "_to": "cities/detroit", "distance": 3300},
-	{"_from": "cities/sanfrancisco", "_to": "cities/houston", "distance": 2600},
-	{"_from": "cities/detroit", "_to": "cities/sanfrancisco", "distance": 3300},
-	{"_from": "cities/detroit", "_to": "cities/newyork", "distance": 800},
-	{"_from": "cities/newyork", "_to": "cities/sanfrancisco", "distance": 4000},
-	{"_from": "cities/newyork", "_to": "cities/detroit", "distance": 800},
-	{"_from": "cities/newyork", "_to": "cities/dublin", "distance": 5100},
-	{"_from": "cities/newyork", "_to": "cities/paris", "distance": 5800},
-	{"_from": "cities/newyork", "_to": "cities/houston", "distance": 2300},
-	{"_from": "cities/dublin", "_to": "cities/newyork", "distance": 5100},
-	{"_from": "cities/dublin", "_to": "cities/paris", "distance": 800},
-	{"_from": "cities/paris", "_to": "cities/newyork", "distance": 5800},
-	{"_from": "cities/paris", "_to": "cities/dublin", "distance": 800},
-	{"_from": "cities/paris", "_to": "cities/singapore", "distance": 10700},
-	{"_from": "cities/singapore", "_to": "cities/sanfrancisco", "distance": 13600},
-	{"_from": "cities/singapore", "_to": "cities/paris", "distance": 10700},
-	{"_from": "cities/houston", "_to": "cities/sanfrancisco", "distance": 2600},
-	{"_from": "cities/houston", "_to": "cities/newyork", "distance": 2300}
-]
-FOR edge IN e
-    INSERT edge IN flights
-```
+   Macrometa returns an empty list, and records were added to the `cities` collection.
+
+1. To populate the `flights` collection, click **New Query**, then copy the following query and paste it in the editor.
+
+	```JavaScript
+	LET e = [
+		{"_from": "cities/sanfrancisco", "_to": "cities/singapore", "distance": 13600},
+		{"_from": "cities/sanfrancisco", "_to": "cities/newyork", "distance": 4000},
+		{"_from": "cities/sanfrancisco", "_to": "cities/detroit", "distance": 3300},
+		{"_from": "cities/sanfrancisco", "_to": "cities/houston", "distance": 2600},
+		{"_from": "cities/detroit", "_to": "cities/sanfrancisco", "distance": 3300},
+		{"_from": "cities/detroit", "_to": "cities/newyork", "distance": 800},
+		{"_from": "cities/newyork", "_to": "cities/sanfrancisco", "distance": 4000},
+		{"_from": "cities/newyork", "_to": "cities/detroit", "distance": 800},
+		{"_from": "cities/newyork", "_to": "cities/dublin", "distance": 5100},
+		{"_from": "cities/newyork", "_to": "cities/paris", "distance": 5800},
+		{"_from": "cities/newyork", "_to": "cities/houston", "distance": 2300},
+		{"_from": "cities/dublin", "_to": "cities/newyork", "distance": 5100},
+		{"_from": "cities/dublin", "_to": "cities/paris", "distance": 800},
+		{"_from": "cities/paris", "_to": "cities/newyork", "distance": 5800},
+		{"_from": "cities/paris", "_to": "cities/dublin", "distance": 800},
+		{"_from": "cities/paris", "_to": "cities/singapore", "distance": 10700},
+		{"_from": "cities/singapore", "_to": "cities/sanfrancisco", "distance": 13600},
+		{"_from": "cities/singapore", "_to": "cities/paris", "distance": 10700},
+		{"_from": "cities/houston", "_to": "cities/sanfrancisco", "distance": 2600},
+		{"_from": "cities/houston", "_to": "cities/newyork", "distance": 2300}
+	]
+	FOR edge IN e
+		INSERT edge IN flights
+	```
+
+1. Click **Run Query**.
+
+   Macrometa returns an empty list, and records were added to the `flights` collection.
+
+Congratulations! Your collections now contain all the records necessary to create a graph.
 
 ## Create an Index
 
-2. Add a Geo Index to the cities collection with the fields `location` and Geo JSON set to true.
+Add a geo index to the `cities` collection. For more information about this type of index, refer to [Geo-Spatial Indexes](../collections/indexing/geo-indexes).
 
+1. Click **Collections**, then click **cities**.
+1. Click **Indexes**, then click the plus to add an index.
+1. Enter the following information:
+   - **Type**: Geo Index
+   - **Fields**: location
+   - **Geo JSON**: True (select the checkbox)
 
+1. Click **Create**.
+
+   Macrometa returns you to the list of indexes, where you can see your new index.
 
 ## Create a Graph
 
-Create a graph named airline with and edges in flights and both from and to vertices in cities.
+And now for the really fun part!
 
-## Query your Graph
+1. Click **Graphs**, and then click **New Graph**.
+1. Enter the following information:
+   - **Name**: airline
+   - **Edge Definitions**: flights
+   - **From Collections**: cities
+   - **To Collections**: cities
 
-Storing (and retrieving) a graph is one thing, but the actual problems only begin when you want to query information about a graph.
+1. Click **Create**.
 
-Finding the neighbor's of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when you deal with graphs (or relations) in practice, you usually have a lot more questions, here are a few that come to mind:
+   Macrometa returns you to the graph list, where you can see your new graph.
 
-1. Find all neighbor's of a `vertex` only using `edges` with a given `property` or `label`.
-2. Find all neighbor's of a `vertex` with a given `property` or `label`.
-3. Find all paths with a fixed length L in the graph starting at some given `vertex`.
-4. Find the shortest (or lightest when working with weights) path from vertex `V` to vertex `W`.
-5. Find the distances between any two vertices in the graph.
-6. Perform a depth first search for some vertex starting at a given vertex.
-7. Perform a breadth first search for some vertex starting at a given vertex.
-8. Find a minimal spanning tree for the graph.
-9. Perform any map-reduce like computation as is possible in the Pregel framework by Google, for example “Pagerank” or “Find connected components”.
-10. Solve the traveling salesman problem in the graph.
+Congratulations, you have a graph! You can click it to view it. To be honest, it probably isn't that impressive to look at, so let's run some queries and see what this data can really do.
+
+## Query the Graph
+
+Storing a graph is one thing, but the actual problems only begin when you want to query information about a graph.
+
+Finding the neighbors of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when you deal with graphs or relations in practice, you usually have a lot more questions.
 
 GDN provides several [Graph Functions](../graphs/graph-queries/graph-functions.md) for working with edges and vertices, to analyze them and their relations.
 
