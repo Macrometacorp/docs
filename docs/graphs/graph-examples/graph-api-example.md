@@ -199,55 +199,193 @@ if DELETE_GRAPH:
   <TabItem value="js" label="JavaScript">
 
 ```js
-    class APIRequest {
-      _headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      };
+const https = require("https");
+const httpUrl = "https://api-play.paas.macrometa.io";
+const geoFabric = "_system";
+const apiKey = "your_api_key"; // Replace with your API key
 
-      constructor(url) {
-        this._url = url;
-      }
+const collectionName1 = "teachers";
+const collectionName2 = "lectures";
+const edgeCollName = "teach";
+const graphName = "lectureteacher";
 
-      login(email, password) {
-        const endpoint = "/_open/auth";
+const deleteGraph = true;
+const deleteCollections = true;
 
-        const self = this;
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: "apikey " + apiKey
+};
 
-        return new Promise(function (resolve, reject) {
-          self
-            .req(endpoint, {
-              body: { email, password },
-              method: "POST",
-            })
-            .then(({ jwt, ...data }) => {
-              self._headers.authorization = `bearer ${jwt}`;
-              resolve(data);
-            })
-            .catch(reject);
-        });
-      }
+// Function for making HTTP requests using the native https module
+function httpRequest(url, options, payload) {
+  return new Promise((resolve, reject) => {
+    const req = https.request(url, options, res => {
+      let data = "";
+      res.on("data", chunk => {
+        data += chunk;
+      });
+      res.on("end", () => {
+        resolve(JSON.parse(data));
+      });
+    });
 
-      _handleResponse(response, resolve, reject) {
-        if (response.ok) {
-          resolve(response.json());
-        } else {
-          reject(response);
-        }
-      }
+    req.on("error", error => {
+      reject(error);
+    });
 
-      req(endpoint, { body, ...options } = {}) {
-        const self = this;
-        return new Promise(function (resolve, reject) {
-          fetch(self._url + endpoint, {
-            headers: self._headers,
-            body: body ? JSON.stringify(body) : undefined,
-            ...options,
-          }).then((response) => self._handleResponse(response, resolve, reject));
-        });
-      }
+    if (payload) {
+      req.write(JSON.stringify(payload));
     }
-    TBD
+
+    req.end();
+  });
+}
+
+// Function for creating a collection
+async function createCollection(name, type = 2) {
+  const url = `${httpUrl}/_fabric/${geoFabric}/_api/collection`;
+  const options = {
+    method: "POST",
+    headers
+  };
+  const payload = { name, type };
+  return httpRequest(url, options, payload);
+}
+
+// Function for inserting a document into a collection
+async function insertDocument(collectionName, payload) {
+  const url = `${httpUrl}/_api/document/${collectionName}`;
+  const options = {
+    method: "POST",
+    headers
+  };
+  return httpRequest(url, options, payload);
+}
+
+// Function for creating a graph
+async function createGraph(payload) {
+  const url = `${httpUrl}/_api/graph`;
+  const options = {
+    method: "POST",
+    headers
+  };
+  return httpRequest(url, options, payload);
+}
+
+// Function for traversing the graph
+async function graphTraversal(edgeCollName, vertex, direction) {
+  const url = `${httpUrl}/_api/edges/${edgeCollName}`;
+  const params = new URLSearchParams({ vertex, direction });
+  const options = {
+    method: "GET",
+    headers
+  };
+  return httpRequest(`${url}?${params}`, options);
+}
+
+// Function for deleting the graph and collections
+async function deleteGraphAndCollections(graphName, dropCollections) {
+  const url = `${httpUrl}/_api/graph/${graphName}`;
+  const params = new URLSearchParams({ dropCollections });
+  const options = {
+    method: "DELETE",
+    headers
+  };
+  return httpRequest(`${url}?${params}`, options);
+}
+
+// Main execution
+(async () => {
+  // Create document collections and insert data
+  console.log("\nDocument collection 1 created:", await createCollection(collectionName1));
+  console.log("\nDocument collection 2 created:", await createCollection(collectionName2));
+
+  console.log("\nDocuments inserted:", await insertDocument(collectionName1, [
+    {
+      _key: "Jean",
+      firstname: "Jean",
+      lastname: "Picard",
+      email: "jean.picard@macrometa.io"
+    },
+    {
+      _key: "James",
+      firstname: "James",
+      lastname: "Kirk",
+      email: "james.kirk@macrometa.io"
+    },
+    {
+      _key: "Han",
+      firstname: "Han",
+      lastname: "Solo",
+      email: "han.solo@macrometa.io"
+    },
+    {
+      _key: "Bruce",
+      firstname: "Bruce",
+      lastname: "Wayne",
+      email: "bruce.wayne@macrometa.io"
+    }
+  ]));
+
+  console.log("\nDocuments inserted:", await insertDocument(collectionName2, [
+  { _id: "lectures/CSC101", difficulty: "easy", _key: "CSC101", firstname: "Jean" },
+  { _id: "lectures/CSC102", difficulty: "hard", _key: "CSC102", firstname: "Jean" },
+  { _id: "lectures/CSC103", difficulty: "hard", _key: "CSC103", firstname: "Jean" },
+  { _id: "lectures/CSC104", difficulty: "moderate", _key: "CSC104", firstname: "Jean" }
+  ]));
+  
+  // Create edge collection
+  console.log("\nEdge collection created:", await createCollection(edgeCollName, 3));
+  
+  console.log("\nDocuments inserted:", await insertDocument(edgeCollName, [
+  {
+  _key: "Jean-CSC101",
+  _from: "teachers/Jean",
+  _to: "lectures/CSC101",
+  online: false
+  },
+  {
+  _key: "Jean-CSC102",
+  _from: "teachers/Jean",
+  _to: "lectures/CSC102",
+  online: true
+  },
+  {
+  _key: "Jean-CSC103",
+  _from: "teachers/Jean",
+  _to: "lectures/CSC103",
+  online: false
+  },
+  {
+  _key: "Bruce-CSC101",
+  _from: "teachers/Bruce",
+  _to: "lectures/CSC101",
+  online: true
+  }
+  ]));
+  
+  // Create a graph
+  console.log("\nGraph created:", await createGraph({
+  edgeDefinitions: [
+  {
+  collection: edgeCollName,
+  from: [collectionName1],
+  to: [collectionName2]
+  }
+  ],
+  name: graphName,
+  options: {}
+  }));
+  
+  // Graph traversal
+  console.log("\nGraph traversal:", await graphTraversal(edgeCollName, "teachers/Jean", "out"));
+  
+  // Delete graph and collections
+  if (deleteGraph) {
+  console.log("Graph and collections deleted:", await deleteGraphAndCollections(graphName, deleteCollections));
+  }
+  })();
 ```
 
   </TabItem>
