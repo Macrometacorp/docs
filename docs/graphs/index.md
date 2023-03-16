@@ -43,7 +43,7 @@ Graphs can be used to model and manage complex relationships between users, role
 
 ### Transportation and Logistics
 
-By representing transportation networks, routes, and schedules as a graph, businesses can optimize routing, minimize transit times, and improve overall efficiency.
+By representing transportation networks, routes, and schedules as a graph, businesses can optimize routing, minimize transit times, automate fleet management, and improve overall efficiency.
 
 ### Recommendation Engines
 
@@ -52,6 +52,10 @@ Graphs can be used to model relationships between products, customers, and their
 ### Social Networks
 
 Macrometa graphs can be used to represent connections between users in a social network, allowing you to write queries related to friend recommendations, influence analysis, and community detection.
+
+### Network Management
+
+Graphs can be used to model complex networks, such as telecommunication or computer networks, making it easier to monitor, optimize, and troubleshoot network performance and connectivity issues.
 
 ## For the Math Geeks
 
