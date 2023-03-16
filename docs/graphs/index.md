@@ -37,41 +37,17 @@ For more information, refer to [Graph Queries](graph-queries/).
 
 Graphs allow you to structure your models in line with your domain and group them logically in collections and giving you the power to query them in the same graph queries. Here are some common use cases for graphs in Macrometa GDN:
 
-### Social Networks
+### Access Control and Permissions
 
-Macrometa graphs can be used to represent connections between users in a social network, allowing for efficient queries related to friend recommendations, influence analysis, and community detection.
-
-### Fraud Detection
-
-By modeling financial transactions and user behaviors as a graph, Macrometa can help identify suspicious patterns and potential fraud in real-time, enabling businesses to take preventive measures.
+Graphs can be used to model and manage complex relationships between users, roles, and resources in a system, simplifying access control and permission management.
 
 ### Recommendation Engines
 
 Graphs can be used to model relationships between products, customers, and their preferences, enabling personalized recommendations based on user behavior, product similarities, or collaborative filtering.
 
-### Supply Chain Optimization
-
-By representing suppliers, manufacturers, distributors, and customers as a graph, businesses can optimize their supply chain networks, identify bottlenecks, and reduce costs.
-
-### Knowledge Graphs
-
-Macrometa graphs can be used to build knowledge graphs that connect entities and their relationships across various domains, supporting semantic search, natural language processing, and AI applications.
-
-### Network Management
-
-Graphs can be used to model complex networks, such as telecommunication or computer networks, making it easier to monitor, optimize, and troubleshoot network performance and connectivity issues.
-
 ### Transportation and Logistics
 
 By representing transportation networks, routes, and schedules as a graph, businesses can optimize routing, minimize transit times, and improve overall efficiency.
-
-### Geospatial Analysis
-
-Macrometa's geo-distributed capabilities can be leveraged to model and analyze spatial relationships between geographic entities, such as cities, landmarks, and natural features.
-
-### Access Control and Permissions
-
-Graphs can be used to model and manage complex relationships between users, roles, and resources in a system, simplifying access control and permission management.
 
 ## For the Math Geeks
 
