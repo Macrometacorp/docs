@@ -10,6 +10,7 @@ The properties available for an Analyzer depend on its [type](types.md):
 - [Stem](#stem)
 - [Norm](#norm)
 - [N-gram](#n-gram)
+  - [Example](#example)
 - [Text](#text)
 
 All properties with default settings are optional.
