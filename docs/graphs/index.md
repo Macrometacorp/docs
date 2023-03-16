@@ -35,19 +35,23 @@ For more information, refer to [Graph Queries](graph-queries/).
 
 ## Use Cases for Graphs
 
-Graphs allow you to structure your models in line with your domain and group them logically in collections and giving you the power to query them in the same graph queries. Here are some common use cases for graphs in Macrometa GDN:
+Graphs allow you to structure your models in line with your domain and group them logically in collections and giving you the power to query them in the same graph queries. Here are some common use cases for graphs in Macrometa GDN.
 
 ### Access Control and Permissions
 
 Graphs can be used to model and manage complex relationships between users, roles, and resources in a system, simplifying access control and permission management.
 
+### Transportation and Logistics
+
+By representing transportation networks, routes, and schedules as a graph, businesses can optimize routing, minimize transit times, and improve overall efficiency.
+
 ### Recommendation Engines
 
 Graphs can be used to model relationships between products, customers, and their preferences, enabling personalized recommendations based on user behavior, product similarities, or collaborative filtering.
 
-### Transportation and Logistics
+### Social Networks
 
-By representing transportation networks, routes, and schedules as a graph, businesses can optimize routing, minimize transit times, and improve overall efficiency.
+Macrometa graphs can be used to represent connections between users in a social network, allowing you to write queries related to friend recommendations, influence analysis, and community detection.
 
 ## For the Math Geeks
 
