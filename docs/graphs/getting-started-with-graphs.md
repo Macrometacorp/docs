@@ -135,17 +135,17 @@ And now for the really fun part!
 
 Congratulations, you have a graph! You can click it to view it. To be honest, it probably isn't that impressive to look at, so let's run some queries and see what this data can really do.
 
-## Query the Graph
+## Query your Graph
 
-Storing a graph is one thing, but the actual problems only begin when you want to query information about a graph.
+Working with graphs involves not only storing them but also querying information about the graph structure.
 
-Finding the neighbors of a `vertex` is one crucial question one might have about a graph (or relation, which is the same thing). However, when you deal with graphs or relations in practice, you usually have a lot more questions.
+While finding the neighbors of a vertex is a common task when working with graphs or relations, there are numerous other queries you might want to perform.
 
-GDN provides several [Graph Functions](../graphs/graph-queries/graph-functions.md) for working with edges and vertices, to analyze them and their relations.
+Here are some queries that you can run in the query editor to get you started.
 
-### Breadth-first search
+### Breadth-First Search
 
-Get all cities with a direct flight to New York:
+Find all cities with a direct flight to New York:
 
 ```JavaScript
 WITH cities
@@ -153,9 +153,9 @@ WITH cities
 	 RETURN city
 ```
 
-### Shortest path
+### Shortest Path
 
-Get the shortest path from San Francisco to Paris:
+Determine the shortest path from San Francisco to Paris:
 
 ```JavaScript
 WITH cities
@@ -168,7 +168,9 @@ WITH cities
      RETURN path
 ```
 
-### Get the distance on the shortest path from San Francisco to Paris
+### Shortest Path Distance
+
+Calculate the distance along the shortest path from San Francisco to Paris:
 
 ```JavaScript
 WITH cities
@@ -181,9 +183,9 @@ WITH cities
 	RETURN SUM(path)
 ```
 
-### Nearest cities
+### Nearest Cities
 
-Get the 2 nearest cities to a specified latitude and longitude.
+Find the two nearest cities to a specified latitude and longitude:
 
 ```JavaScript
 FOR loc IN NEAR(cities, 53.35, -6.26, 2, "distance")
@@ -195,9 +197,9 @@ RETURN {
     }
 ```
 
-### Cities within a given distance
+### Cities Within a Given Distance
 
-Get the cities that are no more than 2500km away from Houston.
+List cities within 2,500 km of Houston:
 
 ```JavaScript
 LET city = DOCUMENT("cities/houston")
@@ -209,3 +211,9 @@ RETURN {
 	distance: loc.distance / 1000
     }
 ```
+
+## Next Steps
+
+Keep exploring your graph, or make a new one! Macrometa provides several [Graph Functions](../graphs/graph-queries/graph-functions.md) for working with edges and vertices, to analyze them and their relations.
+
+You can also take a look at [Graph Queries](graph-queries/) or [Graph Examples](graph-examples/).
