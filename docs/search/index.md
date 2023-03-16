@@ -6,8 +6,6 @@ slug: search
 
 Macrometa GDN Search is a full-text search engine that supports key values, documents, and graphs as data models. Compared to a a [full-text index](../collections/indexing/fulltext-indexes.md), Macrometa Search is more configurable and customizable, combining Boolean and generalized ranking retrieval techniques to refine your search results. All Boolean-approved results are ranked by relevance to the respective query using the Vector Space Model in conjunction with BM25 or TF-IDF weighting schemes.
 
-
-
 GDN Search provides the following capabilities:
 
 - Complex searches with Boolean operators
@@ -23,8 +21,8 @@ GDN Search provides the following capabilities:
 
 We provide _search views_ and _analyzers_ that boost the efficiency of your search queries:
 
-- A [search view](views/index.md) is a virtual collection that provides fast full-text searching over multiple linked collections.
-- An [analyzer](analyzers/index.md) parses input values and transforms them into sets of sub-values for the following use cases:
+- A [search view](views/) is a virtual collection that provides fast full-text searching over multiple linked collections.
+- An [analyzer](analyzers/) parses input values and transforms them into sets of sub-values for the following use cases:
 
   - Tokenization (splitting text into words and normalizing them).
   - Language-specific word stemming.
