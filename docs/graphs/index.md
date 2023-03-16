@@ -61,10 +61,6 @@ Macrometa graphs can be used to build knowledge graphs that connect entities and
 
 Graphs can be used to model complex networks, such as telecommunication or computer networks, making it easier to monitor, optimize, and troubleshoot network performance and connectivity issues.
 
-### Biological Networks
-
-Macrometa graphs can be employed to model biological systems, such as protein-protein interactions, gene regulatory networks, and metabolic pathways, aiding in drug discovery and systems biology research.
-
 ### Transportation and Logistics
 
 By representing transportation networks, routes, and schedules as a graph, businesses can optimize routing, minimize transit times, and improve overall efficiency.
