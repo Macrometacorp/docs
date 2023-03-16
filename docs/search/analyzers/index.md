@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 title: Analyzers
-slug: analyzers
 ---
 
 _Analyzers_ enable you to break search inputs into sets of sub-values that C8Search can use for improved searching and sorting. When you use an Analyzer in a View, C8Search gathers the attributes of all documents in collections linked to the view, and creates appropriate sub-values and metadata. We provide built-in Analyzers and enable you to create custom Analyzers to suit the needs of your application.
