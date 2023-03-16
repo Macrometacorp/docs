@@ -3,25 +3,40 @@ title: Getting Started with Graphs
 sidebar_position: 10
 ---
 
-In this getting started guide you will learn how to work with Graphs by creating relationships between collections that allow you to run semantic queries on airline flight data.
+In this getting started guide, you'll explore how to work with graphs in Macrometa by establishing relationships between collections, enabling you to run complex queries on airline flight data.
 
-_Graphs_ enable you to group your data and perform more powerful queries across connected documents. A graph consists of _vertices_ and _edges_. Vertices are stored in collections and linked by an edge document. Edges are stored as documents in edge collections, and vertices can be a document or an edge.
+## About Graphs
 
-The _edge definition_ determines which collections are used in a named graph. A named graph must contain at least one edge definition.
+Graphs provide a mechanism to model your data and perform sophisticated queries across interconnected documents. A graph is composed of vertices and edges.
 
- You can turn documents into graph structures for semantic queries with nodes, edges, and properties. Graphs directly connect data items between different collections. You can use graphs to refer to documents in different tables without a nested join. Graphs can also find patterns of document connections, such as the shortest path between two vertices in a graph.
+- Vertices are stored in collections and linked by an edge document. Vertices can be either a document or an edge
+- Edges are stored as documents in edge collections. The edge definition delineates which collections are employed in a named graph.
+- A named graph must contain at least one edge definition.
 
-Edges in one edge collection may point to several vertex collections. You can add attributes to edges to do things like labelling connections.
+By transforming documents into graph structures, you can conduct semantic queries using nodes, edges, and properties. Graphs directly connect data items between different collections. You can use graphs to refer to documents in different tables without a nested join. Graphs can also find patterns of document connections, such as the shortest path between two vertices in a graph.
 
-Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. In queries you can define in which directions the edge relations may be followed:
+Edges in one edge collection might point to several vertex collections. You can also assign attributes to edges to perform tasks like categorizing connections.
+
+Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. When executing queries, you can define the direction in which edge relations can be traversed:
 
 - OUTBOUND: `_from` → `_to`
 - INBOUND: `_from` ← `_to`
 - ANY: `_from` ↔ `_to`.
 
-## Dataset
+This guide will help you understand the fundamentals of working with graphs in Macrometa, even if you are new to the concept. By leveraging graphs, you can unlock powerful query capabilities and gain insights from your data that might not be possible with traditional relational databases.
 
-1. Create a document collection named cities and add data to the collection by executing the following query in the `Query Workers` tab:
+## Create Collections
+
+Create collections to hold the data that you will use to create graphs.
+
+1. [Create a document collection](../collections/documents/create-document-store) named `cities`.
+2. [Create an edge collection](../collections/graph-edge/create-graph-edge.md)
+
+## Upload Data with Queries
+
+Add data to the collections with C8QL queries.
+
+1. Add data to the `cities` collection by executing the following query in the Query Workers tab:
 
 ```JavaScript
 LET c = [
@@ -37,8 +52,6 @@ LET c = [
 FOR city IN c
     INSERT city IN cities
 ```
-
-2. Add a Geo Index to the cities collection with the fields `location` and Geo JSON set to true.
 
 3. Create an edge collection named flights. To populate the flights collection, execute the following query:
 
@@ -68,6 +81,12 @@ LET e = [
 FOR edge IN e
     INSERT edge IN flights
 ```
+
+## Create an Index
+
+2. Add a Geo Index to the cities collection with the fields `location` and Geo JSON set to true.
+
+
 
 ## Create a Graph
 
