@@ -1,6 +1,6 @@
 ---
 title: Getting Started with Graphs
-sidebar_position: 20
+sidebar_position: 10
 ---
 
 In this getting started guide you will learn how to work with Graphs by creating relationships between collections that allow you to run semantic queries on airline flight data.
