@@ -12,12 +12,6 @@ Today’s applications are required to be highly responsive and always online. T
 
 A tenant account (and credentials) with Macrometa GDN.
 
-## API Browser
-
-Your best friend when working with REST APIs is the REST API browser available in [GDN](https://play.paas.macrometa.io) console. From there, you can execute various rest apis and see exactly what the inputs and outputs are.
-
-![GDN API Browser](/img/gdn-api-browser.png)
-
 ## Working with Graphs
 
 _Edge documents (edges)_ are similar to standard documents but with two additional required fields `_from` and `_to`. Values of these fields must be the handles of "from" and "to" vertex documents linked by the edge document in question. Here is an example of a valid edge document:
