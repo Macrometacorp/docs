@@ -209,8 +209,8 @@ const collectionName2 = "lectures";
 const edgeCollName = "teach";
 const graphName = "lectureteacher";
 
-const deleteGraph = true;
-const deleteCollections = true;
+const deleteGraph = true; // Change to False if you want to keep the graph
+const deleteCollections = true; // Change to False if you want to keep the collections
 
 const headers = {
   "Content-Type": "application/json",
