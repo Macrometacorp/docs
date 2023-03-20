@@ -13,9 +13,9 @@ To get started with graphs in Macrometa GDN, follow these steps.
 
 ### Create Vertex Collections
 
-Vertex collections are used to store the vertices or nodes of your graph. Each vertex represents an entity in your data model, such as a person, a product, or an event.
+Vertex collections are [document collections](../collections/documents/) used to store the vertices or nodes of your graph. Each vertex represents an entity in your data model, such as a person, a product, or an event.
 
-A vertex can be a document in a [document collection](../collections/documents/) or of an [edge collection](../collections/graph-edge/), so `edges` can be used as `vertices`. Which collections are used within a named graph is defined via _edge definitions_.
+A vertex can be a document in a document collection or of an [edge collection](../collections/graph-edge/), so `edges` can be used as `vertices`. Which collections are used within a named graph is defined via _edge definitions_.
 
 ### Create Edge Collections
 
