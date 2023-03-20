@@ -30,7 +30,7 @@ FOR doc IN viewName
 
 The `SEARCH` statement, in contrast to `FILTER`, is treated as a part of the `FOR` operation, not as an individual statement. It can not be placed freely in a query nor multiple times in the body of a `FOR` loop. `FOR ... IN` must be followed by the name of a View, not a collection. The `SEARCH` operation has to follow next, other operations before `SEARCH` such as `FILTER`, `COLLECT` etc. are not allowed in this position. Subsequent operations are possible after `SEARCH` and the expression however, including `SORT` to order the search results based on a ranking value computed by the Search View.
 
-`expression` must be an Search expression. The full power of Search is harnessed and exposed via special [Search functions](../functions/search.md), during both the search and sort stages. On top of that, common C8QL operators are supported:
+`expression` must be an Search expression. The full power of Search is harnessed and exposed via special [Search functions](../../../search/functions.md), during both the search and sort stages. On top of that, common C8QL operators are supported:
 
 - `AND`
 - `OR`
@@ -197,7 +197,7 @@ FOR doc IN viewName
 
 If the (left-most) fields and their sorting directions match up with the [primary sort order](search.md) definition of the View then the `SORT` operation is optimized away.
 
-Apart from simple sorting, it is possible to sort the matched View documents by relevance score (or a combination of score and attribute values if desired). The document search via the `SEARCH` keyword and the sorting via the [Search Scoring Functions](../functions/search.md#scoring-functions), namely `BM25()` and `TFIDF()`, are closely intertwined.
+Apart from simple sorting, it is possible to sort the matched View documents by relevance score (or a combination of score and attribute values if desired). The document search via the `SEARCH` keyword and the sorting via the [Search Scoring Functions](../../../search/functions.md#scoring-functions), namely `BM25()` and `TFIDF()`, are closely intertwined.
 
 The query given in the `SEARCH` expression is not only used to filter documents, but also is used with the scoring functions to decide which document matches the query best. Other documents in the View also affect this decision.
 
@@ -210,7 +210,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-The [BOOST() function](../functions/search.md#boost) can be used to fine-tune the resulting ranking by weighing sub-expressions in `SEARCH` differently.
+The [BOOST() function](../../../search/functions.md#boost) can be used to fine-tune the resulting ranking by weighing sub-expressions in `SEARCH` differently.
 
 If there is no `SEARCH` operation prior to calls to scoring functions or if the search expression does not filter out documents (e.g. `SEARCH true`) then a score of `0` will be returned for all documents.
 

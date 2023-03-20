@@ -5,7 +5,7 @@ title: Analyzers
 
 _Analyzers_ enable you to break search inputs into sets of sub-values that C8Search can use for improved searching and sorting. When you use an Analyzer in a View, C8Search gathers the attributes of all documents in collections linked to the view, and creates appropriate sub-values and metadata. We provide built-in Analyzers and enable you to create custom Analyzers to suit the needs of your application.
 
-You can use the [`TOKENS()` function](../../queries/c8ql/functions/search.md#tokens) to tokenize phrases and turn them into strings for C8QL search queries.
+You can use the [`TOKENS()` function](../search-queries.md#token-search) to tokenize phrases and turn them into strings for C8QL search queries.
 
 An Analyzer processes values based on its [type](types.md), [properties](properties.md), and [features](features.md).
 
