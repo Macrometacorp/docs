@@ -5,14 +5,14 @@ title: Source and Sink Example
 
 Sources and sinks are used to consume and publish events to external systems.
 
-There are multiple source and sink types, but this example only explains Macrometa source with a stream sink. For more info refer to the [Stream Worker Query Guide](../query-guide/index.md).
+There are multiple source and sink types, but this example only explains Macrometa source with a stream sink. For more info refer to [Sources](../source/) and [Sinks](../sink/).
 
 ## Example
 
 This example creates a source from which a stream consumes JSON messages:
 
 ```sql
-C8DB source to consume `JSON` messages from.
+-- Macrometa collection source to consume `JSON` messages from.
 CREATE SOURCE TemperatureStream WITH (type='database', collection='TemperatureStream', collection.type="doc", replication.type="global", map.type='json') (sensorId string, temperature double);
 ```
 

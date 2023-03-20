@@ -7,7 +7,7 @@ A _named aggregation_ allows you to obtain aggregates in an incremental manner f
 
 This not only allows you to calculate aggregations with varied time granularity, but also allows you to access them in an interactive  manner for reports, dashboards, and for further processing. Its schema is defined via the _aggregation definition_.
 
-You can also create [Distributed Aggregations](distributed-aggregations.md) or [Joins](join-aggregations.md).
+You can also create [Distributed Aggregations](distributed-aggregations.md) or [Joins](../query-guide/join/join-aggregations).
 
 ## Purpose
 

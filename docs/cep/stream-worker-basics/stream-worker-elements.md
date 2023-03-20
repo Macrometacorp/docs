@@ -39,11 +39,11 @@ For more information about metadata, refer to [Trigger](../source/trigger).
 
 ### Query Worker
 
-You can access your Macrometa data collections by writing a _query_ in [SQL](../../queryworkers/sql/) or [C8QL](../../queryworkers/c8ql/). GDN stores named and parameterized queries as _query workers_ that you can run from a dedicated REST endpoint.
+You can access your Macrometa data collections by writing a _query_ in [SQL](../../queries/sql/) or [C8QL](../../queries/c8ql/). GDN stores named and parameterized queries as _query workers_ that you can run from a dedicated REST endpoint.
 
 You can use a query worker as a stream worker source or to process stream events. Stream workers can either create new stream workers or use existing ones.
 
-For more information about query workers in general, refer to [Queries and Query Workers](../../queryworkers/).
+For more information about query workers in general, refer to [Query Workers](../../queryworkers/).
 
 ## Sink (Required)
 

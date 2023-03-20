@@ -18,10 +18,10 @@ Create a stream.
 
    Macrometa displays a list of streams and their attributes.
 
-3. Click **New Stream**.
-4. Enter a stream **Name**.
-5. Select **Replication** type: **Local** or **Global**. Default is **Local**.
-6. Click **Create**.
+1. Click **New Stream**.
+1. Enter a stream **Name**.
+1. Select **Replication** type: **Local** or **Global**. Default is **Local**.
+1. Click **Create**.
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
@@ -35,22 +35,24 @@ from c8 import C8Client
 # Connect to GDN.
 URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "xxxxxx" # Change this to your API key
-is_local = False # For a global stream pass True and False for local stream
+API_KEY = "xxxxxx" # Change this to your API key.
+is_local = False # For a global stream pass True and False for local stream.
 prefix_text = ""
 demo_stream = "streamQuickstart"
 
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
-# Get the right prefix for the stream
+# Get the right prefix for the stream.
 if is_local:
     prefix_text = "c8locals."
 else:
     prefix_text = "c8globals."
 
+# Create the stream.
 def createStream():
     """ This function creates a stream """
     stream_name = {"stream-id": ""}
+    # Check if stream already exists.
     if client.has_stream(demo_stream, local=is_local):
         print("Stream already exists")
         stream_name["stream-id"] = concat(prefix_text, demo_stream)

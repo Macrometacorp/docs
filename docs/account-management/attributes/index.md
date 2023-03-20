@@ -25,3 +25,5 @@ The company wants to provide restricted queries that partners and employees can 
 To enforce these restrictions, the fulfillment company can add _attributes_ to API keys and user accounts. In this example, each partner is given a unique API key which they use to access their order information. On the other hand, employees have user accounts with their company login credentials.
 
 When you assign an attribute, you can also assign a value to further restrict permissions. For example, an `employee` attribute can have a `staff` or `admin` value to signify levels of permission.
+
+For examples demonstrating how to use attributes in queries, refer to [Attribute-Based Access Control](../../queryworkers/attribute-based-access.md).

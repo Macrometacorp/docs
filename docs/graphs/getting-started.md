@@ -37,6 +37,7 @@ LET c = [
 FOR city IN c
     INSERT city IN cities
 ```
+
 2. Add a Geo Index to the cities collection with the fields `location` and Geo JSON set to true.
 
 3. Create an edge collection named flights. To populate the flights collection, execute the following query:
@@ -89,8 +90,6 @@ Finding the neighbor's of a `vertex` is one crucial question one might have abou
 9. Perform any map-reduce like computation as is possible in the Pregel framework by Google, for example “Pagerank” or “Find connected components”.
 10. Solve the traveling salesman problem in the graph.
 
-GDN provides several [Graph Functions](graph-functions.md) for working with edges and vertices, to analyze them and their relations.
-
 ### Breadth-first search
 
 Get all cities with a direct flight to New York:
@@ -116,7 +115,7 @@ WITH cities
      RETURN path
 ```
 
-### Get the distance on the shortest path from San Francisco to Paris:
+### Get the distance on the shortest path from San Francisco to Paris
 
 ```JavaScript
 WITH cities
