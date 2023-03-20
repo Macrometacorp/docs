@@ -187,7 +187,7 @@ Match documents where the attribute at **path** is present _and_ was indexed by 
 
 - **path** (attribute path expression): the attribute to test in the document
 - **type** (string): string literal `"analyzer"`
-- **analyzer** (string, _optional_): name of an [Analyzer](analyzers/index.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
+- **analyzer** (string, _optional_): name of an [Analyzer](../analyzers/index.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
 - returns nothing: the function can only be called in a [SEARCH operation](operations.md) and throws an error otherwise
 
 ```js
