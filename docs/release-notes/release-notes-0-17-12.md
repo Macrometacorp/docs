@@ -60,7 +60,7 @@ Screenshots and instructions were updated as a result of this change.
 
 Introduced `frequency()` function.
 
-[Frequency](../cep/query-guide/functions/frequency.md) was added as a result of this change.
+[Frequency](../cep/query-guide/functions/core/frequency) was added as a result of this change.
 
 ### New Parameters for Stream Source and Stream Sink
 
