@@ -411,7 +411,7 @@ It will match `{ "text": "Lorem ipsum, dolor sit amet." }` for instance. If you 
 
 ## Scoring Functions
 
-Scoring functions return a ranking value for the documents found by a [SEARCH operation](../queries/c8ql/operations/search.md). The better the documents match the search expression the higher the returned number.
+Scoring functions return a ranking value for the documents found by a [SEARCH operation](queries/operations.md). The better the documents match the search expression the higher the returned number.
 
 The first argument to any scoring function is always the document emitted by a `FOR` operation over an Search View.
 
