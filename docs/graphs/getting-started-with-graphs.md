@@ -17,7 +17,7 @@ By transforming documents into graph structures, you can conduct semantic querie
 
 Edges in one edge collection might point to several vertex collections. You can also assign attributes to edges to perform tasks like categorizing connections.
 
-Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. When executing queries, you can define the direction in which edge relations can be traversed:
+Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. When running queries, you can define the direction in which edge relations can be traversed:
 
 - OUTBOUND: `_from` → `_to`
 - INBOUND: `_from` ← `_to`
