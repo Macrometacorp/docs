@@ -6,7 +6,7 @@ title: Create Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create stream workers in Macrometa, but it assumes you have the code already written. To learn more about writing stream workers, refer to [Stream Worker Basics](../stream-worker-basics/) or look at [Stream Worker Examples](../examples/).
+This page explains how to create stream workers in Macrometa, assuming you have the stream worker definition written already. To learn more about writing stream workers, refer to [Stream Worker Basics](../stream-worker-basics/) or look at [Stream Worker Examples](../examples/).
 
 After you create the stream worker, it is saved in an inactive, unpublished state. For instructions on how to publish (activate) it, refer to [Publish/Unpublish Stream Workers](publish-unpublish-stream-workers).
 
@@ -50,7 +50,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl stream-worker create](../../cli/stream-workers-cli#gdnsl-stream-worker-created) CLI command to validate and create an unpublished stream worker.
+Use the [gdnsl stream-worker create](../../cli/stream-workers-cli#gdnsl-stream-worker-create) CLI command to validate and create an unpublished stream worker.
 
 </TabItem>
 </Tabs>

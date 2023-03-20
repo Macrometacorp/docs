@@ -5,17 +5,17 @@ title: Publish/Unpublish Stream Workers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to publish stream workers in Macrometa. After you [create a stream worker](create-stream-worker), you must publish it in order for it to run. If you want to stop it from running, then you can unpublish it.
+This page explains how to publish stream Macrometa workers. After you [create a stream worker](create-stream-worker), you must publish it in order for it to run. If you want to stop it from running, then you can unpublish it.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to create a new stream worker using the GDN console web UI.
+Follow these instructions to publish or unpublish a new stream worker using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Compute > Stream Workers**.
 3. Click the **Stream Workers** tab.
-4. Find the stream worker you want to publish or unpublish in the stream worker list and click the toggle to change its publish status.
+4. Find the stream worker you want to publish or unpublish in the stream worker list, and then click the toggle to change its publish status.
 
 </TabItem>
 <TabItem value="sdk" label="SDK">
