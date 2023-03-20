@@ -15,7 +15,7 @@ Follow these instructions to create a new search view using the GDN console web 
 1. Enter information about the view and then click **Create**.
 
    - **Name -** The user-defined name for the search view.
-   - **Mapping Definition -** - Optional. Choose existing data from which to create an index.
+   - **Mapping Definition -** Optional. Choose existing data from which to create an index.
     - **Collection -** Select an existing collection.
     - **Field -** Enter a field name for the selected collection.
     - **Analyzer -** Select a text analyzer or identity analyzer to break up search inputs for improved searching and sorting.
