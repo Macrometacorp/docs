@@ -31,7 +31,7 @@ Your three address collection key values are indexed and ready to query. Macrome
 
 ## Query the View
 
-To query the search view, we can create a query in Macrometa and save it as a query worker.
+To query the search view, we can create a query in Macrometa to run it on the fly or save it as a [query worker](../queryworkers/index.md).
 
 1. On the side menu, click **Query Workers**.
 1. The code block below is a search query that will allow you to pass in a query parameter to search you index. Copy and paste it in the code editor on line 1.
@@ -54,19 +54,13 @@ To query the search view, we can create a query in Macrometa and save it as a qu
 
 ## Save the Query as an API Endpoint
 
-
-
-Macrometa allows you to save a query as a [Query Worker](../queryworkers/index.md).
+When you save a query worker, you can access it via REST API from anywhere in the world in under 50ms.
 
 1. Click **Save Query**.
 1. Name the query **getContactBySearchTerm** and then click **Save**. This saves the query so you can use it again.
 1. Click **Run Query**.
 1. Click **API Endpoint**.
 
-Macrometa displays a cURL command that you can use to access this endpoint from anywhere in the world in under 50ms.
-
 This query requires a value to be passed with each request, so you must enter one in the bind parameters or else the query will fail with an error.
 
 ![Create a Query Worker](/img/quickstart/create-query-worker.png)
-
-You have created your first view and made it a RESTful endpoint with a query worker. [We made a front-end for you to take your new backend for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
