@@ -214,6 +214,4 @@ RETURN {
 
 ## Next Steps
 
-Keep exploring your graph, or make a new one! Macrometa provides several [Graph Functions](../graphs/graph-queries/graph-functions.md) for working with edges and vertices, to analyze them and their relations.
-
-You can also take a look at [Graph Queries](graph-queries/) or [Graph Examples](graph-examples/).
+Keep exploring your graph, or make a new one! You can read through [Graph Queries](graph-queries/) or take a look at our [Graph Examples](graph-examples/).
