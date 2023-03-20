@@ -13,7 +13,7 @@ If an attribute path expressions is needed, then you have to reference a documen
 
 ## Search Functions
 
-Search functions can be used in a [SEARCH operation](../operations/search.md) to form an Search expression to filter a View. The functions control the Search functionality without having a returnable value in C8QL.
+Search functions can be used in a [SEARCH operation](../queries/c8ql/operations/search.md) to form an Search expression to filter a View. The functions control the Search functionality without having a returnable value in C8QL.
 
 The `TOKENS()` function is an exception. It can be used standalone as well, without a `SEARCH` statement, and has a return value which can be used elsewhere in the query.
 
@@ -27,7 +27,7 @@ The `TOKENS()` function is an exception, it requires the Analyzer name to be pas
 
 - **expr** (expression): any valid search expression
 - **analyzer** (string): name of an Analyzer.
-- returns nothing: the function can only be called in a [SEARCH operation](../operations/search.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [SEARCH operation](../queries/c8ql/operations/search.md) and throws an error otherwise
 
 Assuming a View definition with an Analyzer whose name and type is `delimiter`:
 
