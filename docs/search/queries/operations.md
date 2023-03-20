@@ -3,7 +3,7 @@ sidebar_position: 10
 title: SEARCH Operations
 ---
 
-The `SEARCH` keyword starts the language construct to filter Views of type Search. Conceptually, a View is just another document data source, similar to an array or a document/edge collection, over which you can iterate using a [FOR operation](for.md) in C8QL:
+The `SEARCH` keyword starts the language construct to filter Views of type Search. Conceptually, a View is just another document data source, similar to an array or a document/edge collection, over which you can iterate using a [FOR operation](../../queries/c8ql/operations/for.md) in C8QL:
 
 ```js
 FOR doc IN viewName
@@ -16,7 +16,7 @@ The optional `SEARCH` operation provides the capabilities to:
 - match documents located in different collections backed by a fast index
 - sort the result set based on how closely each document matched the search conditions
 
-See [Search Views](search.md) on how to set up a View.
+See [Search Views](../index.md) on how to set up a View.
 
 ## General Syntax
 
@@ -30,7 +30,7 @@ FOR doc IN viewName
 
 The `SEARCH` statement, in contrast to `FILTER`, is treated as a part of the `FOR` operation, not as an individual statement. It can not be placed freely in a query nor multiple times in the body of a `FOR` loop. `FOR ... IN` must be followed by the name of a View, not a collection. The `SEARCH` operation has to follow next, other operations before `SEARCH` such as `FILTER`, `COLLECT` etc. are not allowed in this position. Subsequent operations are possible after `SEARCH` and the expression however, including `SORT` to order the search results based on a ranking value computed by the Search View.
 
-`expression` must be an Search expression. The full power of Search is harnessed and exposed via special [Search functions](../../../search/functions.md), during both the search and sort stages. On top of that, common C8QL operators are supported:
+`expression` must be an Search expression. The full power of Search is harnessed and exposed via special [Search functions](../functions.md), during both the search and sort stages. On top of that, common C8QL operators are supported:
 
 - `AND`
 - `OR`
@@ -107,11 +107,11 @@ FOR doc IN myView
 []
 ```
 
-You can use the special `includeAllFields` [View property](search.md) to index all (sub-)fields of the source documents if desired.
+You can use the special `includeAllFields` [View property](../views/optional-properties.md) to index all (sub-)fields of the source documents if desired.
 
 ## Arrays and trackListPositions
 
-Array elements are indexed individually and can be searched for as if the attribute had each single value at the same time. They behave like a _disjunctive superposition_ of their values as long as the [**trackListPositions**](search.md) View setting is `false` (default).
+Array elements are indexed individually and can be searched for as if the attribute had each single value at the same time. They behave like a _disjunctive superposition_ of their values as long as the [**trackListPositions**](../views/optional-properties.md) View setting is `false` (default).
 
 Therefore, array comparison operators such as `ALL IN` or `ANY ==` aren't really necessary. Consider the following document:
 
@@ -133,7 +133,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-This is different to `FILTER` operations, where you would use an [array comparison operator](../operators.md#array-comparison-operators) to find an element in the array:
+This is different to `FILTER` operations, where you would use an [array comparison operator](../../queries/c8ql/operators.md#array-comparison-operators) to find an element in the array:
 
 ```js
 FOR doc IN collection
@@ -155,7 +155,7 @@ SEARCH doc.value.nested.deep == 2
 
 Conversely, there will be no match if an array index is specified but `trackListPositions` is disabled.
 
-String tokens (see [Analyzers](search.md)) are also indexed individually, but not all Analyzer types return multiple tokens. If the Analyzer does, then comparison tests are done per token/word. For example, given the field `text` is analyzed with `"text_en"` and contains the string `"a quick brown fox jumps over the lazy dog"`, the following expression will be true:
+String tokens (see [Analyzers](../analyzers/index.md)) are also indexed individually, but not all Analyzer types return multiple tokens. If the Analyzer does, then comparison tests are done per token/word. For example, given the field `text` is analyzed with `"text_en"` and contains the string `"a quick brown fox jumps over the lazy dog"`, the following expression will be true:
 
 ```js
 ANALYZER(doc.text == 'fox', "text_en")
@@ -187,7 +187,7 @@ ANALYZER(doc.text[2] == 'jump', "text_en")
 
 ## SEARCH with SORT
 
-The documents emitted from a View can be sorted by attribute values with the standard [SORT() operation](sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
+The documents emitted from a View can be sorted by attribute values with the standard [SORT() operation](../../queries/c8ql/operations/sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
 
 ```js
 FOR doc IN viewName
@@ -195,9 +195,9 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-If the (left-most) fields and their sorting directions match up with the [primary sort order](search.md) definition of the View then the `SORT` operation is optimized away.
+If the (left-most) fields and their sorting directions match up with the [primary sort order](../views/primary-sort-order.md) definition of the View then the `SORT` operation is optimized away.
 
-Apart from simple sorting, it is possible to sort the matched View documents by relevance score (or a combination of score and attribute values if desired). The document search via the `SEARCH` keyword and the sorting via the [Search Scoring Functions](../../../search/functions.md#scoring-functions), namely `BM25()` and `TFIDF()`, are closely intertwined.
+Apart from simple sorting, it is possible to sort the matched View documents by relevance score (or a combination of score and attribute values if desired). The document search via the `SEARCH` keyword and the sorting via the [Search Scoring Functions](../functions.md#scoring-functions), namely `BM25()` and `TFIDF()`, are closely intertwined.
 
 The query given in the `SEARCH` expression is not only used to filter documents, but also is used with the scoring functions to decide which document matches the query best. Other documents in the View also affect this decision.
 
@@ -210,7 +210,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-The [BOOST() function](../../../search/functions.md#boost) can be used to fine-tune the resulting ranking by weighing sub-expressions in `SEARCH` differently.
+The [BOOST() function](../functions.md#boost) can be used to fine-tune the resulting ranking by weighing sub-expressions in `SEARCH` differently.
 
 If there is no `SEARCH` operation prior to calls to scoring functions or if the search expression does not filter out documents (e.g. `SEARCH true`) then a score of `0` will be returned for all documents.
 
