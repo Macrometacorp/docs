@@ -4,7 +4,7 @@ title: Search Views
 slug: search
 ---
 
-Macrometa GDN Search is a full-text search engine that supports key values, documents, and graphs as data models. Compared to a a [full-text index](../collections/indexing/fulltext-indexes.md), Macrometa Search is more configurable and customizable, combining Boolean and generalized ranking retrieval techniques to refine your search results. All Boolean-approved results are ranked by relevance to the respective query using the Vector Space Model in conjunction with BM25 or TF-IDF weighting schemes.
+Macrometa GDN Search is a full-text search engine that supports key values, documents, and graphs as data models. Compared to a [full-text index](../collections/indexing/fulltext-indexes.md), Macrometa Search is more configurable and customizable, combining Boolean and generalized ranking retrieval techniques to refine your search results. All Boolean-approved results are ranked by relevance to the respective query using the Vector Space Model in conjunction with BM25 or TF-IDF weighting schemes.
 
 GDN Search provides the following capabilities:
 
