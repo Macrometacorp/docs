@@ -40,7 +40,7 @@ Create collections to hold the data that you will use to create graphs.
    1. Click **Graph Edge**.
    1. In **Collection Name**, enter `flights` and then click **Create**.
 
-You now have two empty collections, ready to receive data.
+You now have two empty collections that are ready to receive data.
 
 ## Upload Data with Queries
 
