@@ -1,9 +1,7 @@
 ---
-sidebar_position: 2
+sidebar_position: 20
 title: Shortest Path
 ---
-
-## General idea
 
 This type of query is supposed to find the shortest path between two given documents (`startVertex` and `targetVertex`) in your graph. For all vertices on this shortest path you will get a result in form of a set with two items:
 
