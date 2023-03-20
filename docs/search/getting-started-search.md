@@ -27,13 +27,11 @@ Refer to the [Search Views](/search/views/index.md) section for an explanation o
 1. Perform the previous three steps again for `firstName` and `email`.
 1. Click **Create**.
 
-Macrometa distributes this view index to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
-
-Our view is now accessible worldwide, and your three address collection key values are indexed and ready to query.
+Your three address collection key values are indexed and ready to query. Macrometa distributes this view index to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
 
 ## Query the View
 
-
+To query the search view, we can create a query in Macrometa and save it as a query worker.
 
 1. On the side menu, click **Query Workers**.
 1. The code block below is a search query that will allow you to pass in a query parameter to search you index. Copy and paste it in the code editor on line 1.
