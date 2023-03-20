@@ -6,7 +6,13 @@ title: Getting Started with Search
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+This page guides you through creating your first search view. 
+
 In this getting started guide, you will add search functionality to the Address Book app that you build in the [Macrometa Quickstart](https://www.macrometa.com/docs/quickstart).
+
+## Prerequisites
+
+- An address collection created during the [Quickstart tutorial](https://www.macrometa.com/docs/quickstart).
 
 ## Create a Search View
 
