@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Search Operations
 ---
 
-The `SEARCH` keyword starts the language construct to filter Views of type Search. Conceptually, a View is just another document data source, similar to an array or a document/edge collection, over which you can iterate using a [FOR operation](../../queries/c8ql/operations/for.md) in C8QL:
+The `SEARCH` keyword starts the language construct to filter Views of type Search. Conceptually, a View is just another document data source, similar to an array or a document/edge collection, over which you can iterate using a [FOR operation](../queries/c8ql/operations/for.md) in C8QL:
 
 ```js
 FOR doc IN viewName
@@ -107,11 +107,11 @@ FOR doc IN myView
 []
 ```
 
-You can use the special `includeAllFields` [View property](../views/optional-properties.md) to index all (sub-)fields of the source documents if desired.
+You can use the special `includeAllFields` [View property](/search/views/optional-properties.md) to index all (sub-)fields of the source documents if desired.
 
 ## Arrays and trackListPositions
 
-Array elements are indexed individually and can be searched for as if the attribute had each single value at the same time. They behave like a _disjunctive superposition_ of their values as long as the [**trackListPositions**](../views/optional-properties.md) View setting is `false` (default).
+Array elements are indexed individually and can be searched for as if the attribute had each single value at the same time. They behave like a _disjunctive superposition_ of their values as long as the [**trackListPositions**](/search/views/optional-properties.md) View setting is `false` (default).
 
 Therefore, array comparison operators such as `ALL IN` or `ANY ==` aren't really necessary. Consider the following document:
 
@@ -133,7 +133,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-This is different to `FILTER` operations, where you would use an [array comparison operator](../../queries/c8ql/operators.md#array-comparison-operators) to find an element in the array:
+This is different to `FILTER` operations, where you would use an [array comparison operator](../queries/c8ql/operators.md#array-comparison-operators) to find an element in the array:
 
 ```js
 FOR doc IN collection
@@ -155,7 +155,7 @@ SEARCH doc.value.nested.deep == 2
 
 Conversely, there will be no match if an array index is specified but `trackListPositions` is disabled.
 
-String tokens (see [Analyzers](../analyzers/index.md)) are also indexed individually, but not all Analyzer types return multiple tokens. If the Analyzer does, then comparison tests are done per token/word. For example, given the field `text` is analyzed with `"text_en"` and contains the string `"a quick brown fox jumps over the lazy dog"`, the following expression will be true:
+String tokens (see [Analyzers](/search/analyzers/index.md)) are also indexed individually, but not all Analyzer types return multiple tokens. If the Analyzer does, then comparison tests are done per token/word. For example, given the field `text` is analyzed with `"text_en"` and contains the string `"a quick brown fox jumps over the lazy dog"`, the following expression will be true:
 
 ```js
 ANALYZER(doc.text == 'fox', "text_en")
@@ -187,7 +187,7 @@ ANALYZER(doc.text[2] == 'jump', "text_en")
 
 ## SEARCH with SORT
 
-The documents emitted from a View can be sorted by attribute values with the standard [SORT() operation](../../queries/c8ql/operations/sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
+The documents emitted from a View can be sorted by attribute values with the standard [SORT() operation](../queries/c8ql/operations/sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
 
 ```js
 FOR doc IN viewName
@@ -195,7 +195,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-If the (left-most) fields and their sorting directions match up with the [primary sort order](../views/primary-sort-order.md) definition of the View then the `SORT` operation is optimized away.
+If the (left-most) fields and their sorting directions match up with the [primary sort order](views/primary-sort-order.md) definition of the View then the `SORT` operation is optimized away.
 
 Apart from simple sorting, it is possible to sort the matched View documents by relevance score (or a combination of score and attribute values if desired). The document search via the `SEARCH` keyword and the sorting via the [Search Scoring Functions](functions.md#scoring-functions), namely `BM25()` and `TFIDF()`, are closely intertwined.
 
