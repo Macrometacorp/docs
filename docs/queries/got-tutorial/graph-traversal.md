@@ -199,7 +199,7 @@ The last part of the query inserts the connections created with the FOR loops in
 
 ## Traverse to the Parents
 
-Now that edges link character documents (vertices), you have a graph that can query to find out who the parents are of another character. In graph terms, you'll start at a vertex and follow the edges to other vertices with a [graph traversal](../../graphs/graph-queries/traversals.md).
+Now that edges link character documents (vertices), you have a graph that can query to find out who the parents are of another character. In graph terms, you'll start at a vertex and follow the edges to other vertices with a [graph traversal](../../graphs/graph-queries/traversal-queries/).
 
 ```js
 FOR c IN Characters
@@ -219,7 +219,7 @@ The start vertex is followed by `ChildOf`, which is our edge collection. The exa
 
 ### Traversal Query Explanation
 
-This `FOR` loop doesn't iterate over a collection or an array, it walks the graph and iterates over the connected vertices it finds, with the vertex document assigned to a variable (here: `v`). It can also emit the edges it walked as well as the full path from start to end to [another two variables](../../graphs/graph-queries/traversals.md#syntax).
+This `FOR` loop doesn't iterate over a collection or an array, it walks the graph and iterates over the connected vertices it finds, with the vertex document assigned to a variable (here: `v`). It can also emit the edges it walked as well as the full path from start to end to [another two variables](../../graphs/graph-queries/traversal-queries/#syntax).
 
 In above query, the traversal is restricted to a minimum and maximum traversal depth of 1 (how many steps to take from the start vertex), and to only follow edges in `OUTBOUND` direction. The edges point from child to parent, and the parent is one step away from the child, thus it returns the parents of the child we start at.
 
@@ -290,7 +290,7 @@ Tywin <- Jaime <- Joffrey
 Tywin <- Cersei <- Joffrey
 ```
 
-As a quick fix, change the last line of the query to `RETURN DISTINCT v.name` to return each value only once. Keep in mind though, that there are [traversal options](../../graphs/graph-queries/traversals.md#syntax) to suppress duplicate vertices early on.
+As a quick fix, change the last line of the query to `RETURN DISTINCT v.name` to return each value only once. Keep in mind though, that there are [traversal options](../../graphs/graph-queries/traversal-queries/#syntax) to suppress duplicate vertices early on.
 
 ## Traverse with Variable Depth
 
