@@ -33,7 +33,7 @@ We provide _search views_ and _analyzers_ that boost the efficiency of your sear
   - Case conversion.
   - Removal of diacritical (accent) marks.
 
-## Use Cases
+## Queries
 
 GDN Search features are integrated into C8QL as a SEARCH operation and a set of C8QL functions. Some use cases include:
 
