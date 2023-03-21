@@ -49,7 +49,7 @@ FOR review IN sample1_view1
 | Rhodes Hotel |
 | ... |
 
-You only need the ANALYZER() function to use a custom analyzer. To use the default analyzer, you can use:
+You only need the ANALYZER() function to use a custom analyzer. The default analyzer retrieves the same results:
 
 ```sql
 FOR review IN sample1_view1
@@ -59,7 +59,7 @@ RETURN review.Property_Name
 
 ## Matching with Negations
 
-You can search for items that do not have exact matching with specified criteria using the negations. In this scenario inequality can be checked with the `!=` operator to return everything from the view index except the documents which do not satisfy the criterion.
+Negations enable you to search for items that do not have exact matching. In this scenario, check for inequality with the `!=` operator.
 
 ```sql
 FOR review IN sample1_view1
@@ -75,11 +75,9 @@ RETURN review.Property_Name
 | Rhodes Hotel |
 | ... |
 
-### Matching Multiple Strings
+You can expand this to include multiple values. Use the logical `OR` operator, `IN` operator, or bind parameters.
 
-Exact value matching can be conducted considering several item values. You can use the logical `OR` operator, `IN` operator, or bind parameters.
-
-The following examples query the same results:
+For example, these queries both return the same result:
 
 ```sql
 FOR review IN sample1_view1
@@ -93,6 +91,8 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
+The returned result:
+
 ```sql
 {
   "hotel_names": [
@@ -102,7 +102,7 @@ FOR review IN sample1_view1
 }
 ```
 
-For the following example, you must specify the bind parameter:
+This example uses a bind parameter (`@hotel_names`):
 
 ```sql
 FOR review IN sample1_view1
@@ -110,7 +110,7 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-These examples query a list of items (1,860 items in total) as shown below.
+These examples query a list of 1,860 items.
 
 | Property_Name |
 | --- |
@@ -124,7 +124,7 @@ These examples query a list of items (1,860 items in total) as shown below.
 
 You can search for strings or tokens that start with one or more substrings with the _prefix_ feature of Macrometa GDN.
 
-In the following example, we want to find all hotels starting with the word `The `.
+This example searches for all hotels starting with the word `The `:
 
 ```sql
 FOR review IN sample1_view1
@@ -132,7 +132,7 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-This example queries a list of 3,963 records as shown below.
+The result is a list of 3,963 reviews.
 
 | Property_Name |
 | --- |
@@ -142,7 +142,7 @@ This example queries a list of 3,963 records as shown below.
 | The Savoy |
 | ... |
 
-You can also include multiple prefixes. In the following example, we want to find all hotels starting with `The ` or `Hotel ``
+You can expand the search to include `Hotel `:
 
 ```sql
 FOR review IN sample1_view1
@@ -150,9 +150,9 @@ FOR review IN sample1_view1
   RETURN review.Property_Name
 ```
 
-This example queries a list of 4,524 reviews that satisfy these criteria.
+The result is a list of 4,524 reviews.
 
-The following example shows how prefix matching is conducted on multiple attributes. In this scenario, we want to find all hotels starting with `The ` and the review titles that start with `Awesome `.
+You can also expand the search to include prefixes for multiple attributes. For example, all hotels starting with `The ` and reviews starting with `Awesome `:
 
 ```sql
 FOR review IN sample1_view1
@@ -163,7 +163,7 @@ FOR review IN sample1_view1
   }
 ```
 
-This should result in the following three reviews:
+The results display three reviews:
 
 | Property_Name | Review_Title |
 | --- | --- |

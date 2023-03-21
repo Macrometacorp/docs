@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Search Example
+title: Search Examples
 ---
 
 This page provides detailed examples of possible search query patterns. All examples use the GDN Web console and HTTP REST API.
@@ -8,7 +8,7 @@ This page provides detailed examples of possible search query patterns. All exam
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
-- A fabric named _Hotels_ with a document collection named _hotel\_reviews_.
+- A fabric named `Hotels` with a document collection named `hotel_reviews`.
 
 ## Sample Data
 
@@ -23,7 +23,7 @@ Each review has the following attributes used for indexing:
 - Location of the reviewer.
 - Date of review.
 
-To import the data into your GDN environment, you can copy of the contents of the JSON file into the `data` array of the following cURL command:
+To import the data into your GDN environment, run the following cURL command with the JSON contents pasted into the `data` array:
 
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/import/hotel_reviews' \
