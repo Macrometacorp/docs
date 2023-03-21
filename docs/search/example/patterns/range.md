@@ -25,7 +25,6 @@ curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sa
        }
    }
 }
-'
 ```
 
 ### Compare to a Number

@@ -29,7 +29,7 @@ curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sa
 }
 ```
 
-After defining the search view, use a [query](../../queries/index.md) to retrieve a list of for Rhodes Hotel:
+After defining the search view, use a [query](../../../queries/index.md) to retrieve a list for Rhodes Hotel:
 
 ```sql
 FOR review IN sample1_view1
