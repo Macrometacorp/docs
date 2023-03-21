@@ -5,7 +5,7 @@ title: Search Queries
 
 The `SEARCH` keyword starts the language construct to filter Views of type Search. Conceptually, a View is just another document data source, similar to an array or a document/edge collection, over which you can iterate using a [FOR operation](../queries/c8ql/operations/for.md) in C8QL:
 
-```js
+```sql
 FOR doc IN viewName
   RETURN doc
 ```
@@ -22,7 +22,7 @@ See [Search Views](../index.md) on how to set up a View.
 
 The `SEARCH` keyword is followed by an Search filter expressions, which is mostly comprised of calls to Search C8QL functions.
 
-```js
+```sql
 FOR doc IN viewName
   SEARCH expression OPTIONS {…}
   ...
@@ -46,7 +46,8 @@ The `SEARCH` statement, in contrast to `FILTER`, is treated as a part of the `FO
 :::warning
 The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against Views will not follow the language rules as per the defined Analyzer locale.
 :::
-```js
+
+```sql
 FOR doc IN viewName
   SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en")
 RETURN doc
@@ -63,14 +64,14 @@ Document attributes which are not configured to be indexed by a View are treated
 
 For example, given a collection `myCol` with the following documents:
 
-```js
+```sql
 { "someAttr": "One", "anotherAttr": "One" }
 { "someAttr": "Two", "anotherAttr": "Two" }
 ```
 
 … with a View where `someAttr` is indexed by the following View `myView`:
 
-```js
+```sql
 {
   "type": "search",
   "links": {
@@ -85,7 +86,7 @@ For example, given a collection `myCol` with the following documents:
 
 … a search on `someAttr` yields the following result:
 
-```js
+```sql
 FOR doc IN myView
   SEARCH doc.someAttr == "One"
   RETURN doc
@@ -97,7 +98,7 @@ FOR doc IN myView
 
 A search on `anotherAttr` yields an empty result because only `someAttr` is indexed by the View:
 
-```js
+```sql
 FOR doc IN myView
   SEARCH doc.anotherAttr == "One"
   RETURN doc
@@ -127,7 +128,7 @@ Therefore, array comparison operators such as `ALL IN` or `ANY ==` aren't really
 
 A View which is configured to index the field `value` including sub-fields will index the individual numbers under the path `value.nested.deep`, which can be queried for like:
 
-```js
+```sql
 FOR doc IN viewName
   SEARCH doc.value.nested.deep == 2
   RETURN doc
@@ -135,7 +136,7 @@ FOR doc IN viewName
 
 This is different to `FILTER` operations, where you would use an [array comparison operator](../queries/c8ql/operators.md#array-comparison-operators) to find an element in the array:
 
-```js
+```sql
 FOR doc IN collection
   FILTER doc.value.nested.deep ANY == 2
   RETURN doc
@@ -143,13 +144,13 @@ FOR doc IN collection
 
 You can set `trackListPositions` to `true` if you want to query for a value at a specific array index:
 
-```js
+```sql
 SEARCH doc.value.nested.deep[1] == 2
 ```
 
 With `trackListPositions` enabled there will be **no match** for the document anymore if the specification of an array index is left out in the expression:
 
-```js
+```sql
 SEARCH doc.value.nested.deep == 2
 ```
 
@@ -157,13 +158,13 @@ Conversely, there will be no match if an array index is specified but `trackList
 
 String tokens (see [Analyzers](/search/analyzers/index.md)) are also indexed individually, but not all Analyzer types return multiple tokens. If the Analyzer does, then comparison tests are done per token/word. For example, given the field `text` is analyzed with `"text_en"` and contains the string `"a quick brown fox jumps over the lazy dog"`, the following expression will be true:
 
-```js
+```sql
 ANALYZER(doc.text == 'fox', "text_en")
 ```
 
 Note that the `"text_en"` Analyzer stems the words, so this is also true:
 
-```js
+```sql
 ANALYZER(doc.text == 'jump', "text_en")
 ```
 
@@ -175,13 +176,13 @@ So a comparison will actually test if a word is contained in the text. With `tra
 
 … the following will be true:
 
-```js
+```sql
 ANALYZER(doc.text == 'jump', "text_en")
 ```
 
 With `trackListPositions: true` you would need to specify the index of the array element `"jumps over the"` to be true:
 
-```js
+```sql
 ANALYZER(doc.text[2] == 'jump', "text_en")
 ```
 
@@ -189,7 +190,7 @@ ANALYZER(doc.text[2] == 'jump', "text_en")
 
 The documents emitted from a View can be sorted by attribute values with the standard [SORT() operation](../queries/c8ql/operations/sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
 
-```js
+```sql
 FOR doc IN viewName
   SORT doc.text, doc.value DESC
   RETURN doc
@@ -203,7 +204,7 @@ The query given in the `SEARCH` expression is not only used to filter documents,
 
 Therefore the Search scoring functions can work _only_ on documents emitted from a View, as both the corresponding `SEARCH` expression and the View itself are consulted in order to sort the results.
 
-```js
+```sql
 FOR doc IN viewName
   SEARCH ...
   SORT BM25(doc) DESC
@@ -224,7 +225,7 @@ The `SEARCH` operation accepts an options object with the following attributes:
 
 Given a View with three linked collections `coll1`, `coll2` and `coll3` it is possible to return documents from the first two collections only and ignore the third using the `collections` option:
 
-```js
+```sql
 FOR doc IN viewName
   SEARCH true OPTIONS { collections: ["coll1", "coll2"] }
   RETURN doc
