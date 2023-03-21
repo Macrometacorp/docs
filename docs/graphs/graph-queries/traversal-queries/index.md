@@ -3,102 +3,150 @@ sidebar_position: 1
 title: Graph Traversal Queries
 ---
 
-A traversal starts at one specific document (`startVertex`) and follows all edges connected to this document. For all documents (`vertices`) that are targeted by these edges it will again follow all edges connected to them and so on. It is possible to define how many of these follow iterations should be executed at least (`min` depth) and at most (`max` depth).
+A graph traversal query is a type of query used to explore and navigate a graph data structure by traversing its nodes (vertices) and edges, starting from a specific node and following the connections between the nodes based on defined criteria. Graph traversal queries are used to retrieve, analyze, or modify data stored in graph databases.
 
-For all vertices that were visited during this process in the range between `min` depth and `max` depth iterations you will get a result in form of a set with three items:
+## Graph Traversal Applications
 
-- The visited vertex.
-- The edge pointing to it.
-- The complete path from startVertex to the visited vertex as object with an attribute `edges` and an attribute `vertices`, each a list of the corresponding elements. These lists are sorted, which means the first element in `vertices` is the `startVertex` and the last is the visited vertex, and the n-th element in `edges` connects the n-th element with the (n+1)-th element in `vertices`.
+You would use a graph traversal query when you need to investigate complex relationships, hierarchies, or interconnected data points in your data set. These queries are particularly useful in situations where the data's relational aspect is crucial, such as social networks, recommendation engines, fraud detection, knowledge graphs, and routing problems.
+
+Graph traversal queries can help you find the shortest path between two nodes, discover patterns or clusters within the graph, or analyze the connectedness and centrality of nodes. By using graph traversal queries, you can efficiently process large and complex data sets with numerous connections and uncover insights that would be difficult to achieve with traditional relational databases.
+
+## Understanding Graph Traversal
+
+A traversal starts at a specific document or node, referred to as the `startVertex`, and follows all edges connected to it. It then visits all the connected nodes (also called vertices) and continues following their connected edges. This process is repeated iteratively for a predefined number of iterations, defined by the minimum (`min`) and maximum (`max`) depth.
+
+During the traversal process, every visited vertex between the min and max depth is returned as a set of three items:
+
+- The visited vertex: the current node being traversed.
+- The edge pointing to it: the connection between the current node and the previously visited node.
+- The complete path from the `startVertex` to the visited vertex: this is represented as an object with two attributes, `edges` and `vertices`. Both are lists of the corresponding elements in the path, and they are sorted in traversal order. In the vertices list, the first element is the `startVertex`, and the last element is the visited vertex. In the `edges` list, the nth element connects the nth element with the (n+1)th element in the `vertices` list.
 
 ## Syntax
 
-There are two slightly different syntaxes for traversals in C8QL, one for
+When writing a traversal query, you can either use a named graph or a set of edge collections (anonymous graph).
 
-- named graphs and another to
-- specify a [set of edge collections](#working-with-collection-sets)
+### Syntax for Named Graphs
 
-### Working with named graphs
+Use this syntax if you have created a named graph, which is entered as `graphName`.
 
-```js
+```sql
 [WITH collection1[, collection2[, ...collectionN]]]
 FOR vertex[, edge[, path]]
   IN [min[..max]]
   OUTBOUND|INBOUND|ANY startVertex
   GRAPH graphName
+  PRUNE pruneCondition
   [OPTIONS options]
+  [FILTER filterCondition]
+  [LET variableDefinitions]
+  [COLLECT aggregation]
+  [SORT sortOrder]
+  [LIMIT offset, count]
+  [RETURN returnExpression]
 ```
 
-`WITH`:
+### Syntax for Collection Sets
 
-- **collections** (collection, `repeatable`): list of collections that will be involved in the traversal
+Instead of `GRAPH graphName`, you can specify a list of edge collections (anonymous graph). The involved vertex collections are determined by the edges of the given edge collections. The rest of the behavior is similar to the named version.
 
-`FOR`: emits up to three variables:
-
-- **vertex** (object): the current vertex in a traversal
-- **edge** (object, `optional`): the current edge in a traversal
-- **path** (object, `optional`): representation of the current path with two members:
-  - `vertices`: an array of all vertices on this path
-  - `edges`: an array of all edges on this path
-
-`IN` `min..max`: the minimal and maximal depth for the traversal:
-
-- *_min_* (number, `optional`): edges and vertices returned by this query will start at the traversal depth of _min_ (thus edges and vertices below will not be returned). If not specified, it defaults to 1. The minimal possible value is 0.
-- *_max_* (number, `optional`): up to _max_ length paths are traversed. If omitted, _max_ defaults to _min_. Thus only the vertices and edges in the range of _min_ are returned. _max_ can not be specified without _min_.
-
-`OUTBOUND|INBOUND|ANY`: follow outgoing, incoming, or edges pointing in either direction in the traversal; Please note that this can't be replaced by a bind parameter.
-
-- **startVertex** (string|object): a vertex where the traversal will originate from. This can be specified in the form of an ID string or in the form of a document with the attribute `_id`. All other values will lead to a warning and an empty result. If the specified document does not exist, the result is empty as well and there is no warning.
-
-`GRAPH` **graphName** (string): the name identifying the named graph. Its vertex and edge collections will be looked up. Note that the graph name is like a regular string, hence it must be enclosed by quote marks.
-
-`PRUNE` **condition**: A condition, like in a FILTER statement, which will be evaluated in every step of the traversal, as early as possible. The semantics of this condition is as follows:
-
-- If the condition evaluates to `true` this path will be considered as a result, it might still be post filtered or ignored due to depth constraints. However the search will not continue from this path, namely there will be no result having this path as a prefix.
-e.g.: Take the path: `(A) -> (B) -> (C)`  starting at `A` and PRUNE on `B` will result in `(A)` and `(A) -> (B)` being valid paths, and `(A) -> (B) -> (C)` not returned, it got pruned on B.
-- If the condition evaluates to `false` we will continue our search beyond this path.
-
-There is only one `PRUNE` condition possible, but it can contain an arbitrary amount of `AND` or `OR` statements. Also note that you can use the output variables of this traversal in the `PRUNE`, as well as all variables defined before this Traversal statement.
-
-`OPTIONS` **options** (object, `optional`): used to modify the execution of the traversal. Only the following attributes have an effect, all others are ignored:
-
-- **uniqueVertices** (string): optionally ensure vertex uniqueness
-  - "path" – it is guaranteed that there is no path returned with a duplicate vertex
-  - "global" – it is guaranteed that each vertex is visited at most once during the traversal, no matter how many paths lead from the start vertex to this one. If you start with a `min depth > 1` a vertex that was found before _min_ depth might not be returned at all (it still might be part of a path). **Note:** Using this configuration the result is not deterministic any more. If there are multiple paths from _startVertex_ to _vertex_, one of those is picked.
-  - "none" (default) – no uniqueness check is applied on vertices
-
-- **uniqueEdges** (string): optionally ensure edge uniqueness
-  - "path" (default) – it is guaranteed that there is no path returned with a duplicate edge
-  - "global" – it is guaranteed that each edge is visited at most once during the traversal, no matter how many paths lead from the start vertex to this edge. If you start with a `min depth > 1`, an edge that was found before _min_ depth might not be returned at all (it still might be part of a path). **Note:** Using this configuration the result is not deterministic any more. If there are multiple paths from _startVertex_ over _edge_ one of those is picked.
-  - "none" – no uniqueness check is applied on edges. **Note:** Using this configuration the traversal will follow cycles in edges.
-
-- **bfs** (bool): optionally use the alternative breadth-first traversal algorithm
-  - true – the traversal will be executed breadth-first. The results will first contain all vertices at depth 1. Than all vertices at depth 2 and so on.
-  - false (default) – the traversal will be executed depth-first. It will first return all paths from _min_ depth to _max_ depth for one vertex at depth 1. Than for the next vertex at depth 1 and so on.
-
-### Working with collection sets
-
-```js
+```sql
 [WITH collection1[, collection2[, ...collectionN]]]
 FOR vertex[, edge[, path]]
   IN [min[..max]]
   OUTBOUND|INBOUND|ANY startVertex
   edgeCollection1, ..., edgeCollectionN
+  PRUNE pruneCondition
   [OPTIONS options]
+  [FILTER filterCondition]
+  [LET variableDefinitions]
+  [COLLECT aggregation]
+  [SORT sortOrder]
+  [LIMIT offset, count]
+  [RETURN returnExpression]
 ```
 
-Instead of `GRAPH graphName` you may specify a list of edge collections. Vertex collections are determined by the edges in the edge collections. The traversal options are the same as with the [named graph variant](#working-with-named-graphs).
+If the same edge collection is specified multiple times, then it behaves as if it were specified only once. Specifying the same edge collection is only allowed when the collections do not have conflicting traversal directions.
 
-If the same edge collection is specified multiple times, it will behave as if it were specified only once. Specifying the same edge collection is only allowed when the collections do not have conflicting traversal directions.
+### Traversing in Mixed Directions
 
-### Traversing in mixed directions
+For traversals with a list of edge collections, you can optionally specify the direction for some of the edge collections. For example, if you have three edge collections `edges1`, `edges2`, and `edges3`, and in `edges2` the direction has no relevance but in `edges1` and `edges3` the direction should be taken into account. In that case, you could use `OUTBOUND` as the general traversal direction and `ANY` specifically for `edges2` as follows:
 
-For traversals with a list of edge collections you can optionally specify the direction for some of the edge collections. Say for example you have three edge collections `edges1`, `edges2` and `edges3`, where in `edges2` the direction has no relevance but in `edges1` and `edges3` the direction should be taken into account. In this case you can use `OUTBOUND` as general traversal direction and `ANY` specifically for `edges2` as follows:
-
-```js
+```sql
 FOR vertex IN OUTBOUND
   startVertex
   edges1, ANY edges2, edges3
+  [PRUNE pruneCondition]
+  [OPTIONS options]
+  [FILTER filterCondition]
+  [LET variableDefinitions]
+  [COLLECT aggregation]
+  [SORT sortOrder]
+  [LIMIT offset, count]
+  [RETURN returnExpression]
 ```
 
-All collections in the list that do not specify their own direction will use the direction defined after `IN`. This allows to use a different direction for each collection in your traversal.
+All collections in the list that do not specify their own direction use the direction defined after `IN`. This allows you to use a different direction for each collection in your traversal.
+
+## Query Parameters
+
+This section explains the parameters of the queries above. Anything not specific to graph traversal queries (such as `FILTER`, `SORT`, `LIMIT`, `COLLECT`, and `RETURN`) is explained in [C8QL](../../../queries/c8ql/).
+
+### Specifying Collections: WITH
+
+- **collections** (collection, `repeatable`): List the collections involved in the traversal
+
+### Traversal Variables: FOR
+
+This command emits up to three variables:
+
+- **vertex** (object): The current vertex during a traversal.
+- **edge** (object, `optional`): The current edge during a traversal.
+- **path** (object, `optional`): A representation of the current path with two members:
+  - `vertices`: An array of all vertices on this path.
+  - `edges`: An array of all edges on this path.
+
+### Traversal Depth: IN
+
+- `min..max`: Specifies the minimum and maximum depth for the traversal.
+  - **min** (number, `optional`): The traversal starts at depth `min`, excluding edges and vertices below this depth. If not specified, then it defaults to 1. The minimum possible value is 0.
+  - **max** (number, `optional`): Paths with a length up to `max` are traversed. If omitted, then `max` defaults to `min`, returning only vertices and edges within the specified depth range. Note that `max` cannot be specified without `min`.
+
+### Traversal Direction: OUTBOUND|INBOUND|ANY
+
+Choose to follow outgoing, incoming, or both edge directions during traversal. This option cannot be replaced by a bind parameter.
+
+- **startVertex** (string|object): Specifies the starting vertex for the traversal. This can be provided as an ID string or a document containing an `_id` attribute. Any other value will result in a warning and an empty result. If the specified document doesn't exist, then the result will also be empty without a warning.
+
+### Named Graph: GRAPH
+
+**graphName** (string): The name identifying the named graph, which determines the vertex and edge collections to be used. Note that the graph name must enclosed in quote marks, as it's treated as a regular string.
+
+### Traversal PRUNE Condition
+
+- **pruneCondition**: A condition that evaluates to a Boolean value, assessed at every step of the traversal as early as possible. The condition's semantics are as follows:
+
+  - If the condition evaluates to `true`, then the current path is considered a result but might still be subject to post-filtering or depth constraints. However, the search will not continue beyond this path, meaning no results will include this path as a prefix.
+  
+    Example: Consider the path `(A) -> (B) -> (C)`. Starting at `A` and using `PRUNE` on `B` results in `(A)` and `(A) -> (B)` being valid paths, while `(A) -> (B) -> (C)` is not returned because it was pruned at `B`.
+
+  - If the condition evaluates to `false`, then the query continues to search beyond the current path.
+
+Only one `PRUNE` condition is possible, but it can include any number of `AND` or `OR` statements. Note that you can use the output variables from the traversal in the `PRUNE` condition, as well as all variables defined prior to the traversal statement.
+
+### Traversal Query OPTIONS
+
+**options** (object, `optional`): Modify the behavior of the traversal query by specifying options. Only the following attributes have an effect, all others are ignored.
+
+- **uniqueVertices** (string): Optionally ensure vertex uniqueness
+  - "path" – Guarantees that no path with a duplicate vertex is returned.
+  - "global" –  Ensures that each vertex is visited at most once during the traversal, regardless of the number of paths leading from the start vertex to it. If the `min` depth is greater than 1, then a vertex found before the `min` depth might not be returned, even if it is part of a path. This setting makes the result non-deterministic. If multiple paths exist from the `startVertex` to `vertex`, then one of them is chosen.
+  - "none" (default) – No uniqueness check is applied on vertices.
+
+- **uniqueEdges** (string): Optionally ensure edge uniqueness
+  - "path" (default) – Guarantees that no path with a duplicate edge is returned.
+  - "global" – Ensures that each edge is visited at most once during the traversal, regardless of the number of paths leading from the start vertex to it. If the `min` depth is greater than 1, then an edge found before the `min` depth might not be returned, even if it is part of a path. This setting makes the result non-deterministic. If multiple paths exist from the `startVertex` to `vertex`, then one of them is chosen.
+  - "none" – No uniqueness check is applied to edges. With this configuration, the traversal will follow cycles in edges.
+
+- **bfs** (bool): Use the alternative breadth-first traversal algorithm.
+  - true – Executes the traversal using a breadth-first approach. Results will first contain all vertices at depth 1, followed by all vertices at depth 2, and so on.
+  - false (default) – Executes the traversal using a depth-first approach. Results will first return all paths from `min` depth to `max` depth for one vertex at depth 1, then for the next vertex at depth 1, and so on.
