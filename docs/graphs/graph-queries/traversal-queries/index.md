@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 1
 title: Graph Traversal Queries
 ---
 
@@ -68,7 +68,7 @@ There are two slightly different syntaxes for traversals in C8QL, one for
 - named graphs and another to
 - specify a [set of edge collections](#working-with-collection-sets)
 
-## Working with named graphs
+### Working with named graphs
 
 ```js
 [WITH collection1[, collection2[, ...collectionN]]]
@@ -126,7 +126,7 @@ There is only one `PRUNE` condition possible, but it can contain an arbitrary am
   - true – the traversal will be executed breadth-first. The results will first contain all vertices at depth 1. Than all vertices at depth 2 and so on.
   - false (default) – the traversal will be executed depth-first. It will first return all paths from _min_ depth to _max_ depth for one vertex at depth 1. Than for the next vertex at depth 1 and so on.
 
-## Working with collection sets
+### Working with collection sets
 
 ```js
 [WITH collection1[, collection2[, ...collectionN]]]
@@ -141,7 +141,7 @@ Instead of `GRAPH graphName` you may specify a list of edge collections. Vertex 
 
 If the same edge collection is specified multiple times, it will behave as if it were specified only once. Specifying the same edge collection is only allowed when the collections do not have conflicting traversal directions.
 
-## Traversing in mixed directions
+### Traversing in mixed directions
 
 For traversals with a list of edge collections you can optionally specify the direction for some of the edge collections. Say for example you have three edge collections `edges1`, `edges2` and `edges3`, where in `edges2` the direction has no relevance but in `edges1` and `edges3` the direction should be taken into account. In this case you can use `OUTBOUND` as general traversal direction and `ANY` specifically for `edges2` as follows:
 
@@ -208,9 +208,9 @@ Filtering on paths allows for the second most powerful filtering and may have th
 #### Filtering edges on the path
 
 ```js
-    FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.edges[0].theTruth == true
-        RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
+FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.edges[0].theTruth == true
+    RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
 will filter all paths where the start edge (index 0) has the attribute _theTruth_ equal to _true_. The resulting paths will be up to 5 items long.
@@ -220,9 +220,9 @@ will filter all paths where the start edge (index 0) has the attribute _theTruth
 Similar to filtering the edges on the path you can also filter the vertices:
 
 ```js
-    FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.vertices[1]._key == "G"
-        RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
+FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.vertices[1]._key == "G"
+    RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
 #### Combining several filters
