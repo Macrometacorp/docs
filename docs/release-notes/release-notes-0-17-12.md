@@ -33,6 +33,7 @@ Topics in [Queries](../queries/) and [SQL in Macrometa](../queries/sql/) were up
 ### Redis Support Updates - Beta
 
 - Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
+
 - Macrometa documentation now clarifies [Redis limitations](../queries/redis/limitations) and [Redis Data Formats](../queries/redis/data-type-format).
 
 Topics in [Redis](../queries/redis/) were updated as a result of this change.

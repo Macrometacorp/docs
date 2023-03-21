@@ -54,7 +54,6 @@ CREATE SINK STREAM  SampleStreamSink (data string);
 | auth.plugin | The required autentication plugin, e.g. org.apache.pulsar.client.impl.auth.AuthenticationToken. | NULL | STRING | Yes |
 | auth.params | The required autentication parameters, e.g. JWT in case auth.plugin="org.apache.pulsar.client.impl.auth.AuthenticationToken". | NULL | STRING | Yes |
 
-
 ## Example 1
 
 ```sql
