@@ -7,9 +7,9 @@ This section lists different search patterns that are frequently found in GDN.
 
 ## Exact Value Matching
 
-In the most basic version of search is to match the presence of an exact value. The exact value can be either strings, numbers, number ranges, or booleans. Here we can index and search strings using an identity analyzer. 
+The simplest way to search is finding an exact value. The exact value can be strings, numbers, number ranges, or Booleans. Here we can index and search strings using an identity analyzer. 
 
-The view used for exact value matching can be defined as shown in the following example:
+This example indexes and searches for strings using an identity analyzer:
 
 ```bash
 curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sample1_view1/properties' \
@@ -31,10 +31,9 @@ curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sa
        }
    }
 }
-'
 ```
 
-After defining the search view, we can retrieve the list of _Rhodes Hotel_ reviews:
+After defining the search view, use a [query](../../queries/index.md) to retrieve a list of for Rhodes Hotel:
 
 ```sql
 FOR review IN sample1_view1
@@ -50,7 +49,7 @@ FOR review IN sample1_view1
 | Rhodes Hotel |
 | ... |
 
-When using the default Analyzer, you do not need to set the Analyzer context with the ANALYZER() function. The same results can be obtained by running the following query:
+You only need the ANALYZER() function to use a custom analyzer. To use the default analyzer, you can use:
 
 ```sql
 FOR review IN sample1_view1
