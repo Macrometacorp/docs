@@ -45,9 +45,9 @@ This query filters all paths where the first edge has the attribute `theTruth` e
 Although the query has a defined a minimum of 1, it only returns results of depth 2. This is because, for all results in depth 1, the second edge does not exist and cannot fulfill the condition.
 :::
 
-## Filter on the entire path
+## Filtering the Entire Path
 
-With the help of array comparison operators filters can also be defined on the entire path, like ALL edges should have theTruth == true:
+Using array comparison operators, filters can also be defined for the entire path. For example, requiring that `ALL` edges have `theTruth == true`:
 
 ```sql
     FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
@@ -55,7 +55,7 @@ With the help of array comparison operators filters can also be defined on the e
         RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-Or NONE of the edges should have theTruth == true:
+Or `NONE` of the edges should have t`heTruth == true`:
 
 ```sql
     FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
@@ -63,9 +63,9 @@ Or NONE of the edges should have theTruth == true:
         RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-Both examples above are recognized by the optimizer and can potentially use other indexes than the edge index.
+Both examples above are recognized by the optimizer and can potentially use indexes other than the edge index.
 
-It is also possible to define that at least one edge on the path has to fulfill the condition:
+You can also define a condition that at least one edge on the path must fulfill:
 
 ```sql
     FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
@@ -73,12 +73,12 @@ It is also possible to define that at least one edge on the path has to fulfill 
         RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-It is guaranteed that at least one, but potentially more edges fulfill the condition. All of the above filters can be defined on vertices in the exact same way.
+This guarantees that at least one, but possibly more, edges fulfill the condition. You can apply all the above filters to vertices in the same way.
 
-## Filtering on the path vs. Filtering on Vertices or Edges
+## Comparing Path Filtering vs. Vertex or Edge Filtering
 
-Filtering on the path influences the Iteration on your graph. If certain conditions aren't met, the traversal may stop continuing along this path.
+Path filtering affects the iteration on your graph. If certain conditions are not met, then the traversal might stop continuing along this path.
 
-In contrast filters on vertex or edge only express whether you're interested in the actual value of these documents. Thus, it influences the list of returned documents (if you return v or e) similar as specifying a non-null `min` value. If you specify a min value of 2, the traversal over the first two nodes of these paths has to be executed - you just won't see them in your result array.
+In contrast, filters on vertices or edges only determine whether you're interested in the actual value of these documents. This influences the list of returned documents (if you return `v` or `e`) similar to specifying a non-null `min` value. If you specify a `min` value of 2, then the traversal over the first two nodes of these paths has to be executed - you just won't see them in your result array.
 
-Similar are filters on vertices or edges - the traverser has to walk along these nodes, since you may be interested in documents further down the path.
+Filters on vertices or edges are similar - the traverser has to walk along these nodes since you may be interested in documents further down the path.
