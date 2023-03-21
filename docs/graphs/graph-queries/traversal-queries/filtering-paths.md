@@ -32,11 +32,11 @@ FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
 You can combine filters in any way you like:
 
 ```sql
-    FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.edges[0].theTruth == true
-           AND p.edges[1].theFalse == false
-        FILTER p.vertices[1]._key == "G"
-        RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
+FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.edges[0].theTruth == true
+        AND p.edges[1].theFalse == false
+    FILTER p.vertices[1]._key == "G"
+    RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
 This query filters all paths where the first edge has the attribute `theTruth` equal to `true`, the first vertex is "G," and the second edge has the attribute `theFalse` equal to `false`. The resulting paths will be up to five items long.
@@ -50,17 +50,17 @@ Although the query has a defined a minimum of 1, it only returns results of dept
 Using array comparison operators, filters can also be defined for the entire path. For example, requiring that `ALL` edges have `theTruth == true`:
 
 ```sql
-    FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.edges[*].theTruth ALL == true
-        RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
+FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.edges[*].theTruth ALL == true
+    RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-Or `NONE` of the edges should have t`heTruth == true`:
+Or `NONE` of the edges should have `theTruth == true`:
 
 ```sql
-    FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.edges[*].theTruth NONE == true
-        RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
+FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.edges[*].theTruth NONE == true
+    RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
 Both examples above are recognized by the optimizer and can potentially use indexes other than the edge index.
@@ -68,9 +68,9 @@ Both examples above are recognized by the optimizer and can potentially use inde
 You can also define a condition that at least one edge on the path must fulfill:
 
 ```sql
-    FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.edges[*].theTruth ANY == true
-        RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
+FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.edges[*].theTruth ANY == true
+    RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
 This guarantees that at least one, but possibly more, edges fulfill the condition. You can apply all the above filters to vertices in the same way.
