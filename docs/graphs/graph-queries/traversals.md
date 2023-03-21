@@ -1,9 +1,7 @@
 ---
 sidebar_position: 4
-title: Graph Traversals
+title: Graph Traversal Queries
 ---
-
-## General query idea
 
 A traversal starts at one specific document (`startVertex`) and follows all edges connected to this document. For all documents (`vertices`) that are targeted by these edges it will again follow all edges connected to them and so on. It is possible to define how many of these follow iterations should be executed at least (`min` depth) and at most (`max` depth).
 
@@ -13,7 +11,7 @@ For all vertices that were visited during this process in the range between `min
 2. The edge pointing to it.
 3. The complete path from startVertex to the visited vertex as object with an attribute `edges` and an attribute `vertices`, each a list of the corresponding elements. These lists are sorted, which means the first element in `vertices` is the `startVertex` and the last is the visited vertex, and the n-th element in `edges` connects the n-th element with the (n+1)-th element in `vertices`.
 
-## Example execution
+## Example Execution
 
 Let's take a look at a simple example to explain how it works.
 
