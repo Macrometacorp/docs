@@ -43,8 +43,8 @@ FOR vertex[, edge[, path]]
 
 `IN` `min..max`: the minimal and maximal depth for the traversal:
 
-- *_min_* (number, `optional`): edges and vertices returned by this query will start at the traversal depth of *min* (thus edges and vertices below will not be returned). If not specified, it defaults to 1. The minimal possible value is 0.
-- *_max_* (number, `optional`): up to _max_ length paths are traversed. If omitted, _max_ defaults to _min_. Thus only the vertices and edges in the range of _min_ are returned. *max* can not be specified without _min_.
+- *_min_* (number, `optional`): edges and vertices returned by this query will start at the traversal depth of _min_ (thus edges and vertices below will not be returned). If not specified, it defaults to 1. The minimal possible value is 0.
+- *_max_* (number, `optional`): up to _max_ length paths are traversed. If omitted, _max_ defaults to _min_. Thus only the vertices and edges in the range of _min_ are returned. _max_ can not be specified without _min_.
 
 `OUTBOUND|INBOUND|ANY`: follow outgoing, incoming, or edges pointing in either direction in the traversal; Please note that this can't be replaced by a bind parameter.
 
