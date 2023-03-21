@@ -1,19 +1,13 @@
 ---
-sidebar_position: 20
+sidebar_position: 25
 title: Filtering Paths
 ---
 
-Path filtering enables advanced and efficient filtering capabilities, significantly impacting query performance. Using the path variable, you can apply filters based on specific iteration depths.
-
-You can filter for absolute positions in the path by specifying a positive number (thus benefiting from optimization strategies), or for relative positions to the path's end by specifying a negative number.
+Path filtering enables advanced and efficient filtering capabilities, significantly impacting query performance. Using the `path` variable, you can apply filters based on specific iteration depths. You can filter for absolute positions in the path by specifying a positive number (thus benefiting from optimization strategies), or for relative positions to the path's end by specifying a negative number.
 
 The following examples are based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). If create this example graph, then you can run any of the queries listed in this topic.
 
-## Filtering Paths
-
-Filtering on paths is a powerful way to filter data and can have a significant impact on query performance. The `path` variable can be used to filter on specific iteration depths by specifying an absolute or relative position in the path.
-
-### Filtering Edges on the Path
+## Filtering Edges on the Path
 
 ```sql
 FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
@@ -21,11 +15,11 @@ FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
     RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-will filter all paths where the start edge (index 0) has the attribute _theTruth_ equal to _true_. The resulting paths will be up to 5 items long.
+This query filters all paths where the starting edge (index 0) has the attribute `theTruth` equal to `true`. The resulting paths will be up to five items long
 
-### Filtering vertices on the path
+## Filtering Vertices on the Path
 
-Similar to filtering the edges on the path you can also filter the vertices:
+Similar to filtering edges, you can also filter vertices:
 
 ```sql
 FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
@@ -33,9 +27,9 @@ FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
     RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-### Combining several filters
+## Combining Multiple Filters
 
-And of course you can combine these filters in any way you like:
+You can combine filters in any way you like:
 
 ```sql
     FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
@@ -45,13 +39,13 @@ And of course you can combine these filters in any way you like:
         RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-The query will filter all paths where the first edge has the attribute _theTruth_ equal to _true_, the first vertex is "G" and the second edge has the attribute _theFalse_ equal to _false_. The resulting paths will be up to 5 items long.
+This query filters all paths where the first edge has the attribute `theTruth` equal to `true`, the first vertex is "G," and the second edge has the attribute `theFalse` equal to `false`. The resulting paths will be up to five items long.
 
 :::note
-Although we have defined a _min_ of 1, we will only get results of depth 2. This is because for all results in depth 1 the second edge does not exist and hence cannot fulfill the condition here.
+Although the query has a defined a minimum of 1, it only returns results of depth 2. This is because, for all results in depth 1, the second edge does not exist and cannot fulfill the condition.
 :::
 
-### Filter on the entire path
+## Filter on the entire path
 
 With the help of array comparison operators filters can also be defined on the entire path, like ALL edges should have theTruth == true:
 
