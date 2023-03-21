@@ -14,7 +14,7 @@ Named graphs can be defined through the graph-module or via the web interface. T
 
 Both variants (named graphs and loosely coupled collection sets a.k.a. anonymous graphs) are supported by the C8QL language constructs for graph querying. These constructs make full use of optimizations and therefore best performance is to be expected:
 
-- [C8QL Traversals](traversals.md) to follow edges connected to a start vertex, up to a variable depth. It can be combined with C8QL filter conditions.
+- [C8QL Traversals](traversal-queries/) to follow edges connected to a start vertex, up to a variable depth. It can be combined with C8QL filter conditions.
 
 - [C8QL Shortest Path](shortest-path.md) to find the vertices and edges between two given vertices, with as few hops as possible.
 
