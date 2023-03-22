@@ -12,7 +12,7 @@ Shortest path queries enable you to quickly find the shortest path between two v
 
 ## Shortest Path Query in Action
 
-Let's take a look at a simple example to explain how it works. In this high-level example, we have a graph with four vertices labeled A, B, C, and D. The edges are labeled with their weight, or length. The graph looks like this
+In this high-level example, you have a graph with four vertices labeled A, B, C, and D. The edges are labeled with their weight, or length. The graph looks like this:
 
 ![traversal graph](/img/traversal_graph.png)
 
