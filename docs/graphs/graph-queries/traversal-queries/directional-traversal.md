@@ -7,7 +7,7 @@ This page explains directional keywords for graph traversal. You can only specif
 
 All previous examples in this section traversed the graph in the `OUTBOUND` edge direction. However, you might want to also traverse in reverse direction (`INBOUND`) or both (`ANY`). Because `circles/A` only has outbound edges, the queries below start traversing from `circles/E`:
 
-The following examples are based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). If you create this example graph, then you can run any of the queries listed in this topic.
+The following examples are based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). If you create this example graph, then you can run any of the queries listed in this page.
 
 ## OUTBOUND Example
 
