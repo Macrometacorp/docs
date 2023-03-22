@@ -5,20 +5,27 @@ title: Traversal Examples
 
 This page has several examples of graph traversals.
 
-## Example Execution
+## Simple Traversal Explanation
 
-Let's take a look at a simple example to explain how it works.
+Here is a simple example to explain how traversal works. This example goes through each step of a traversal as the query is executed.
 
-This is the graph that we are going to traverse:
+The graph that we are going to traverse is based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). If you create this example graph, then you can run any of the queries listed in this page.
 
 ![traversal_graph](/img/traversal_graph.png)
 
 We use the following parameters for our query:
 
-1. We start at the vertex **A**.
-2. We use a `min` depth of 1.
-3. We use a `max` depth of 2.
-4. We follow only in `OUTBOUND` direction of edges
+- Start at vertex **A**.
+- Use a `min` depth of 1.
+- Use a `max` depth of 2.
+- Traverse (move) only in `OUTBOUND` direction of edges.
+
+Here is the query for a named graph:
+
+```sql
+FOR v IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+  RETURN v._key
+```
 
 ![traversal_graph1](/img/traversal_graph1.png)
 
@@ -49,11 +56,24 @@ And **J**:
 After these steps there is no further result left. So all together this query has returned the following paths:
 
 1. **A** → **B**
-2. **A** → **B** → **E**
-3. **A** → **B** → **C**
+2. **A** → **B** → **C**
+3. **A** → **B** → **E**
 4. **A** → **G**
 5. **A** → **G** → **H**
 6. **A** → **G** → **J**
+
+The query returns the key for each vertex listed above:
+
+```json
+[
+	"B",
+	"C",
+	"E",
+	"G",
+	"H",
+	"J"
+]
+```
 
 ## Examples
 
