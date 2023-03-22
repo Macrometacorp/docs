@@ -9,7 +9,7 @@ In this getting started guide, you'll explore how to work with graphs in Macrome
 
 Graphs provide a mechanism to model your data and perform sophisticated queries across interconnected documents. A graph is composed of _vertices_ and _edges_.
 
-- Vertices are stored in collections and linked by an edge document. Vertices can be either a document or an edge.
+- Vertices are stored as documents in document collections and linked by an edge document.
 - Edges are stored as documents in edge collections. The edge definition delineates which collections are employed in a named graph.
 - A named graph must contain at least one edge definition.
 
