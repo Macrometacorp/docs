@@ -11,6 +11,8 @@ Streams in GDN is built on the [publish-subscribe](https://en.wikipedia.org/wiki
 
 > producer/publisher --> stream --> subscription --> consumer
 
+For more information on these topics, refer to [Stream Basics](stream-basics/).
+
 ### Producers/Publishers
 
 Messages from producers (publishers of messages) are only stored once on a stream, and can be consumed as many times as necessary by consumers. The stream is the source of truth for consumption. Although messages are only stored once on the stream, there can be different ways of consuming these messages.
