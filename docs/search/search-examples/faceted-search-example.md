@@ -11,7 +11,7 @@ curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' 
 --header 'Accept: application/json' \
 --header 'Authorization: <BEARER_TOKEN>' \
 --data-raw '{
-    "name": "sample1_view9",
+    "name": "sample_view",
   "links": {
     "hotel_reviews": {
                     "analyzers": [],
@@ -32,7 +32,7 @@ curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' 
 A number of reviews made for each and every hotel can be calculated using the faceted search query as follows.
 
 ```sql
-FOR review IN sample1_view8
+FOR review IN sample_view
   COLLECT name = review.Property_Name WITH COUNT INTO count
   RETURN { name, count}
 ```

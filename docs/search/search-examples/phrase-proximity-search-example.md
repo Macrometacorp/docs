@@ -8,7 +8,7 @@ Phrase search allows for searching for phrases and nearby words in full text. On
 Let's search for hotel review comments which say `rooms are small` and select the hotel names and their review ratings.
 
 ```sql
-FOR review IN sample1_view8
+FOR review IN sample_view
   SEARCH ANALYZER(PHRASE(review.Review_Text, "rooms are small"), "text_en")
   RETURN {
   Property_Name: review.Property_Name,
@@ -29,7 +29,7 @@ This should query 75 review comments:
 The `PHRASE()` function allows for specifying tokens and the number of wild card tokens in alternating order. This can be effectively utilized for two words with one arbitrary word in between the two words. For example, one could search for review comments specifying the number of nights the reviewer has stayed in the hotel as follows,
 
 ```sql
-FOR review IN sample1_view8
+FOR review IN sample_view
   SEARCH ANALYZER(PHRASE(review.Review_Text, "for", 1, "nights"), "text_en")
   RETURN {
   Property_Name: review.Property_Name,
