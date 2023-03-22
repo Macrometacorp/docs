@@ -16,7 +16,7 @@ Let's take a look at a simple example to explain how it works. In this high-leve
 
 ![traversal graph](/img/traversal_graph.png)
 
-We will use the following parameters for our query:
+Use the following parameters for your query:
 
 - Start at the vertex **A**.
 - Finish with the vertex **D**.
