@@ -8,12 +8,12 @@ You can use prefix substrings to search for strings or tokens starting with spec
 This example searches for all hotels starting with the word `The `:
 
 ```sql
-FOR review IN sample1_view1
+FOR review IN sample_view
   SEARCH ANALYZER(STARTS_WITH(review.Property_Name, "The "), "identity")
   RETURN review.Property_Name
 ```
 
-The result is a list of 3,963 reviews.
+The result is a list starting with:
 
 | Property_Name |
 | --- |
@@ -26,17 +26,15 @@ The result is a list of 3,963 reviews.
 You can expand the search to include `Hotel `:
 
 ```sql
-FOR review IN sample1_view1
+FOR review IN sample_view
   SEARCH ANALYZER(STARTS_WITH(review.Property_Name, "The ") OR STARTS_WITH(review.Property_Name, "Hotel "), "identity")
   RETURN review.Property_Name
 ```
 
-The result is a list of 4,524 reviews.
-
 You can also expand the search to include prefixes for multiple attributes. For example, all hotels starting with `The ` and reviews starting with `Awesome `:
 
 ```sql
-FOR review IN sample1_view1
+FOR review IN sample_view
   SEARCH ANALYZER(STARTS_WITH(review.Property_Name, "The ") AND STARTS_WITH(review.Review_Title, "Awesome "), "identity")
   RETURN {
   Property_Name : review.Property_Name,
