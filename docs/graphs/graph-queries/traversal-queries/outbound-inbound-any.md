@@ -1,23 +1,21 @@
 ---
 sidebar_position: 30
-title: OUTBOUND, INBOUND, ANY
+title: Directional Traversal
 ---
 
-This page discusses directional keywords for traversing graphs.
+This page explains directional keywords for graph traversal. You can only specify direction using these keywords; bind parameters cannot be used for this purpose. Note that during traversal, the traverser may use the same edges multiple times. For example, it might walk from **E** to **F** and then from **F** back to **E** using the same edge, resulting in duplicate nodes in the results.
 
-## Comparing OUTBOUND / INBOUND / ANY
-
-All our previous examples traversed the graph in `OUTBOUND` edge direction. You may however want to also traverse in reverse direction (`INBOUND`) or both (`ANY`). Since `circles/A` only has outbound edges, we start our queries from `circles/E`:
+All previous examples in this section traversed the graph in the `OUTBOUND` edge direction. However, you might want to also traverse in reverse direction (`INBOUND`) or both (`ANY`). Because `circles/A` only has outbound edges, the queries below start traversing from `circles/E`:
 
 ### OUTBOUND Example
 
-The first traversal moves only in the forward (`OUTBOUND`) direction. Therefore from **E** we only can see **F**.
+The first traversal moves only in the forward (`OUTBOUND`) direction. Therefore, traversing from **E** only returns **F**.
 
 Query:
 
-```js
-    FOR v IN 1..3 OUTBOUND 'circles/E' GRAPH 'traversalGraph'
-        RETURN v._key
+```sql
+FOR v IN 1..3 OUTBOUND 'circles/E' GRAPH 'traversalGraph'
+    RETURN v._key
 ```
 
 Result:
@@ -30,10 +28,16 @@ Result:
 
 ### INBOUND Example
 
-```js
-    FOR v IN 1..3 INBOUND 'circles/E' GRAPH 'traversalGraph'
-        RETURN v._key
+Moving in the reverse direction (`INBOUND`) returns the path to **A**: **B** → **A**.
+
+Query:
+
+```sql
+FOR v IN 1..3 INBOUND 'circles/E' GRAPH 'traversalGraph'
+    RETURN v._key
 ```
+
+Result:
 
 ```json
   [
@@ -44,10 +48,16 @@ Result:
 
 ### ANY Example
 
-```js
-    FOR v IN 1..3 ANY 'circles/E' GRAPH 'traversalGraph'
-        RETURN v._key
+Traversing in forward and reverse direction (`ANY`) returns a more diverse result. It includes the simple paths to **F** and **A**, but these vertices have edges in other directions and they will be traversed.
+
+Query:
+
+```sql
+FOR v IN 1..3 ANY 'circles/E' GRAPH 'traversalGraph'
+    RETURN v._key
 ```
+
+Result:
 
 ```json
   [
@@ -59,13 +69,3 @@ Result:
     "G"
   ]
 ```
-
- Walking in reverse direction (`INBOUND`), we see the path to **A**: **B** → **A**.
-
-Walking in forward and reverse direction (`ANY`) we can see a more diverse result. First of all, we see the simple paths to **F** and **A**. However, these vertices have edges in other directions and they will be traversed.
-
-:::note
-The traverser may use identical edges multiple times. For instance, if it walks from **E** to **F**, it will continue to walk from **F** to **E** using the same edge once again. Due to this we will see duplicate nodes in the result.
-:::
-
-Please note that the direction can't be passed in by a bind parameter.
