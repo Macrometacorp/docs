@@ -16,7 +16,6 @@ By default, all streams created by stream workers are sources.
 The syntax for defining a new stream in a stream worker is:
 
 ```sql
-
    CREATE SOURCE (GLOBAL|LOCAL)? StreamName WITH (
       type="stream", 
       stream.list="STRING[STRING,]", 
