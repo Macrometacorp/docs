@@ -21,7 +21,7 @@ Use the following parameters for your query:
 - Start at the vertex **A**.
 - Finish with the vertex **D**.
 
-In this example, the shortest path between **A** and **D** is through vertices A, B, C and D in that order. The shortest path statement will return the following pairs:
+In this example, the shortest path between **A** and **D** is through vertices A, B, C and D in that order. The shortest path statement returns the following pairs:
 
 | Vertex | Edge  |
 |--------|-------|
