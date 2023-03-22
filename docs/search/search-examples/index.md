@@ -28,10 +28,10 @@ To import the data into your GDN environment, run the following cURL command wit
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/import/hotel_reviews' \
 --header 'accept: application/json' \
---header 'Authorization: <BEARER TOKEN>' \
---header 'Content-Type: text/plain' \
+--header 'Authorization: <JSON WEB TOKEN>' \
+--header 'Content-Type: application/json' \
 --data-raw '{
-  "data": [<PASTE DATA HERE>],
+  "data": [<PASTE JSON DATA HERE>],
   "details": false,
   "primaryKey": "",
   "replace": false
