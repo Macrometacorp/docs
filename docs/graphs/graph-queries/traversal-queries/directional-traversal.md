@@ -9,7 +9,7 @@ All previous examples in this section traversed the graph in the `OUTBOUND` edge
 
 The following examples are based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). If you create this example graph, then you can run any of the queries listed in this topic.
 
-### OUTBOUND Example
+## OUTBOUND Example
 
 The first traversal moves only in the forward (`OUTBOUND`) direction. Therefore, traversing from **E** only returns **F**.
 
@@ -28,7 +28,7 @@ Result:
   ]
 ```
 
-### INBOUND Example
+## INBOUND Example
 
 Moving in the reverse direction (`INBOUND`) returns the path to **A**: **B** → **A**.
 
@@ -48,9 +48,9 @@ Result:
   ]
 ```
 
-### ANY Example
+## ANY Example
 
-Traversing in forward and reverse direction (`ANY`) returns a more diverse result. It includes the simple paths to **F** and **A**, but these vertices have edges in other directions and they will be traversed.
+Traversing in forward and reverse direction (`ANY`) returns a more diverse result. It includes the simple paths to **F** and **A**, but these vertices have edges in other directions and they are traversed.
 
 Query:
 
