@@ -11,7 +11,7 @@ This page guides you through creating your first search view.
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
-- An address collection created during the [Quickstart tutorial](https://www.macrometa.com/docs/quickstart).
+- An address collection created during the [Quickstart](https://www.macrometa.com/docs/quickstart).
 
 ## Create a Search View
 
