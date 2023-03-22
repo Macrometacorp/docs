@@ -63,6 +63,10 @@ FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
     RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
+:::note
+If the query result is an empty list, then no matches were found.
+:::
+
 Both examples above are recognized by the optimizer and can potentially use indexes other than the edge index.
 
 You can also define a condition that at least one edge on the path must fulfill:
