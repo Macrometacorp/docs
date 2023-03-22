@@ -16,8 +16,38 @@ A sink configuration allows users to define a mapping to convert the stream even
 General syntax for creating a sink requires a sink name and definition of the `type` of sink. There are other parameters that depend on the type of sink you are using. For more information, refer to the pages in this section.
 
 ```sql
-CREATE SINK <stream name> WITH (sink.type='<sink type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}', map.payload'<payload mapping>')) (<attribute1> <type>, <attributeN> <type>);
+CREATE SINK <stream name> WITH (
+   type='<sink type>', 
+   <static.key>='<value>', 
+   <dynamic.key>='{{<value>}}', 
+   map.type='<map type>', 
+   <static.key>='<value>', 
+   <dynamic.key>='{{<value>}}', 
+   map.payload'<payload mapping>'
+ )) (
+     <attribute1> <type>, 
+     <attributeN> <type>);
 ```
+
+A sink configuration consists of three parts.
+
+### Sink Type
+
+The `type` parameter defines the sink type that publishes the events. The other parameters of the `sink.type` annotation depends upon the selected sink type, and here some of its parameters can be optional and dynamic.
+
+For a full list of sink types supported by Macrometa stream workers, refer to [Sink Types](sink-types/index.md) and to [Tables](../table/).
+
+### Map Type
+
+The `map.type` parameter specifies the format in which the data is published and allows you to configure the mapping parameters, which change based of the mapping type/format selected.
+
+For the complete list of supported mapping types, see [Sink Mapping](sink-mapping/index.md).
+
+### Attributes
+
+The `attributes` parameter specifies a custom mapping based on which events in the streaming integration flow that need to be published are identified. This is useful when the attributes of the output messages you want the stream worker to publish are different to the corresponding attribute name in the stream definition.
+
+For example, in a scenario where the stream worker is publishing the average temperature per second, the temperature can be referred to as  `avgTemp` in the output stream definition in your stream worker. However, you want to publish it with the `Temperature` to the streaming application to which you are publishing. In this instance, you need a custom mapping to indicate that `Temperature` is the same as `avgTemp`.
 
 ## Dynamic Properties
 
@@ -33,16 +63,6 @@ Some valid dynamic properties values are:
 
 The attribute names in the double curly braces are replaced with the values from the events before they are published.
 
-## Sink Types
-
-The `type` parameter of the `sink.type` annotation defines the sink type that publishes the events. The other parameters of the `sink.type` annotation depends upon the selected sink type, and here some of its parameters can be optional and dynamic.
-
-For a full list of sink types supported by Macrometa stream workers, refer to [Sink Types](sink-types/index.md) and to [Tables](../table/).
-
-## Sink Mappers
-
-You can map different sink formats using sink mappers. For more information, refer to [Sink Mapping](sink-mapping/index.md).
-
 ## Example Stream Sink
 
 ```sql
@@ -52,5 +72,17 @@ You can map different sink formats using sink mappers. For more information, ref
 ## Example MQTT Sink
 
 ```sql
-CREATE SINK SinkStream WITH (type="mqtt", url="tcp://test.mosquitto.org:1883", topic="topicA", map.type="json", clean.session="true", message.retain="false", quality.of.service= "1", keep.alive= "60",connection.timeout="30") (startTime long);
+CREATE SINK SinkStream WITH (
+   type="mqtt", 
+   url="tcp://test.mosquitto.org:1883", 
+   topic="topicA", 
+   map.type="json", 
+   clean.session="true", 
+   message.retain="false", 
+   quality.of.service= "1", 
+   keep.alive= "60",
+   connection.timeout="30"
+) (
+    startTime long
+);
 ```
