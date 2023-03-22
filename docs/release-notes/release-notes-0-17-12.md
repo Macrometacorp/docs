@@ -28,14 +28,14 @@ The following features updates are included in this release.
 - You can now enter SQL queries in the Macrometa query editor and save them as query workers.
 - Other SQL functionality improvements.
 
-Topics in [Queries and Query Workers](../queryworkers/) and [SQL in Macrometa](../queryworkers/sql/) were updated as a result of this change.
+Topics in [Queries](../queries/) and [SQL in Macrometa](../queries/sql/) were updated as a result of this change.
 
 ### Redis Support Updates - Beta
 
 - Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
-- Macrometa documentation now clarifies [Redis limitations](../queryworkers/redis/#limitations) and [Redis Data Formats](../queryworkers/redis/data-type-format).
+- Macrometa documentation now clarifies [Redis limitations](../queries/redis/limitations) and [Redis Data Formats](../queries/redis/data-type-format).
 
-Topics in [Redis](../queryworkers/redis/) were updated as a result of this change.
+Topics in [Redis](../queries/redis/) were updated as a result of this change.
 
 ### Akamai EdgeWorker Support Updates - Preview
 
@@ -73,15 +73,23 @@ The following parameters were added to stream source:
 - num.listener.threads
 - num.io.threads
 - receiver.queue.size
+- stream.url
+- stream.admin.url
+- auth.plugin
+- auth.params
 
-[Stream Source](../cep/source/stream-source) was updated as a result of this change.
+[Stream Source](../cep/source/stream-source.md) was updated as a result of this change.
 
 The following parameters were added to stream sink:
 
 - num.io.threads
-- key.shared.attributes
+- key.shared.attribute
+- stream.url
+- stream.admin.url
+- auth.plugin
+- auth.params
 
-[Stream Sink](../cep/sink/sink-types/stream-sink.md) was updated as a result of this change.
+[Stream Sink](../cep/sink/stream-sink.md) was updated as a result of this change.
 
 ### Streams Process Messages with _delete Fields in Database Extension (CEP-440)
 

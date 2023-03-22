@@ -13,7 +13,7 @@ This page explains how to publish stream Macrometa workers. After you [create a 
 Follow these instructions to publish or unpublish a new stream worker using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Stream Workers**.
+2. Click **Compute > Stream Workers**.
 3. Click the **Stream Workers** tab.
 4. Find the stream worker you want to publish or unpublish in the stream worker list, and then click the toggle to change its publish status.
 
