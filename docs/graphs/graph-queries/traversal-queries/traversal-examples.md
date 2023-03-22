@@ -3,57 +3,67 @@ sidebar_position: 40
 title: Traversal Examples
 ---
 
-This page has several examples of graph traversals.
+This page presents several examples of graph traversals, starting with a very simple, no-code explanation and ending with examples of how to filter graph results.
 
-## Simple Traversal Explanation
-
-Here is a simple example to explain how traversal works. This example goes through each step of a traversal as the query is executed.
-
-The graph that we are going to traverse is based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). If you create this example graph, then you can run any of the queries listed in this page.
+The graph in the following examples is based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). ITo follow along, create this example graph and run any of the queries provided in this page.
 
 ![traversal_graph](/img/traversal_graph.png)
 
-We use the following parameters for our query:
+## Simple Traversal Overview
+
+This section provides an explanation of a simple graph traversal using an example. Each step of the traversal process is broken down as the query is executed.
+
+The query uses the following parameters:
 
 - Start at vertex **A**.
 - Use a `min` depth of 1.
 - Use a `max` depth of 2.
 - Traverse (move) only in `OUTBOUND` direction of edges.
 
-Here is the query for a named graph:
+As discussed elsewhere, you can traverse edges and vertexes as a named graph or as a set of collections (anonymous graph, also called collection sets).
+
+Here's the query for a named graph:
 
 ```sql
-FOR v IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+FOR v IN 1..2 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
   RETURN v._key
 ```
 
+And the query for collection sets:
+
+```sql
+FOR v IN 1..2 OUTBOUND 'circles/A' edges RETURN v._key
+```
+
+The traversal begins at vertex **A**:
+
 ![traversal_graph1](/img/traversal_graph1.png)
 
-Now it walks to one of the direct neighbors of **A**, say **B** (note: ordering is not guaranteed!):
+First it moves to a direct neighbor of **A**, for example, **B** (note: ordering is not guaranteed!):
 
 ![traversal_graph2](/img/traversal_graph2.png)
 
-The query will remember the state (red circle) and will emit the first result **A** → **B** (black box). This will also prevent the traverser to be trapped in cycles. Now again it will visit one of the direct neighbors of **B**, say **E**:
+The query saves the state (red circle) and emits the first result **A** → **B** (black box). This also prevents the traverser from getting caught in cycles. Next, it proceeds to a direct neighbor of **B**, such as **E**:
 
 ![traversal_graph3](/img/traversal_graph3.png)
 
-We have limited the query with a `max` depth of _2_, so it will not pick any neighbor of **E**, as the path from **A** to **E** already requires _2_ steps. Instead, we will go back one level to **B** and continue with any other direct neighbor there:
+With a `max` depth limit of 2, the query will not select any neighbor of **E**, because the path from **A** to **E** already takes two steps. Instead, it returns to **B** and explores any remaining direct neighbors:
 
 ![traversal_graph4](/img/traversal_graph4.png)
 
-Again after we produced this result we will step back to **B**. But there is no neighbor of **B** left that we have not yet visited. Hence we go another step back to **A** and continue with any other neighbor there.
+After producing this result, the query steps back to **B**. As there are no unvisited neighbors of **B** left, it goes back to **A** and continues with another neighbor there:
 
 ![traversal_graph5](/img/traversal_graph5.png)
 
-And identical to the iterations before we will visit **H**:
+Following the same pattern as before, the query moves to **H**:
 
 ![traversal_graph6](/img/traversal_graph6.png)
 
-And **J**:
+And then to **J**:
 
 ![traversal_graph7](/img/traversal_graph7.png)
 
-After these steps there is no further result left. So all together this query has returned the following paths:
+Once these steps are completed, no further results remain. The query returns the following paths in total:
 
 1. **A** → **B**
 2. **A** → **B** → **C**
@@ -75,127 +85,169 @@ The query returns the key for each vertex listed above:
 ]
 ```
 
-## Examples
+This simple traversal example demonstrates how to navigate a graph efficiently using specific parameters. By understanding the steps involved in traversing a graph, you can adapt your queries to explore more complex scenarios and retrieve the desired information effectively. As you become more familiar with graph traversal concepts, you will be better equipped to use Macrometa's Global Data Network to its full potential and enhance your data-driven applications.
 
-We will create a simple symmetric traversal demonstration graph:
+## Traversal Queries in a Symmetric Graph
+
+This section demonstrates traversal queries using a simple symmetric graph. The graph is designed to show how different queries return different results, based on the specified depth parameters.
 
 ![traversal graph](/img/traversal_graph.png)
 
-To get started we select the full graph. For better overview we only return the vertex IDs:
+### Full Graph Traversal
 
-```js
-    FOR v IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-      RETURN v._key
+Begin by retrieving the full graph by traversing up to depth 3. To make the results easier to comprehend, only the vertex IDs are returned.
+
+Named graph query:
+
+```sql
+FOR v IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+  RETURN v._key
 ```
 
-```js
-    FOR v IN 1..3 OUTBOUND 'circles/A' edges RETURN v._key
-```
+Collection sets query:
 
-Results:
-
-  ```json
-    [
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "K"
-    ]
-  ```
-
-We can nicely see that it is heading for the first outer vertex, then goes back to the branch to descend into the next tree. After that it returns to our start node, to descend again. As we can see both queries return the same result, the first one uses the named graph, the second uses the edge collections directly.
-
-Now we only want the elements of a specific depth (min = max = 2), the ones that are right behind the fork:
-
-```js
-    FOR v IN 2..2 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-      RETURN v._key
-```
-
-```js
-    FOR v IN 2 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-      RETURN v._key
+```sql
+FOR v IN 1..3 OUTBOUND 'circles/A' edges RETURN v._key
 ```
 
 Results:
 
-  ```json
-    [
-      "C",
-      "E",
-      "H",
-      "J"
-    ]
-  ```
-
-As you can see, we can express this in two ways: with or without _max_ parameter in the expression.
-
-## Filter examples
-
-Now let's start to add some filters. We want to cut of the branch on the right side of the graph, we may filter in two ways:
-
-- we know the vertex at depth 1 has `_key` == `G`
-- we know the `label` attribute of the edge connecting **A** to **G** is `right_foo`
-
-```js
-    FOR v, e, p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.vertices[1]._key != 'G'
-        RETURN v._key
+```json
+  [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+  ]
 ```
 
-```js
-    FOR v, e, p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.edges[0].label != 'right_foo'
-        RETURN v._key
+The traversal starts at the first outer vertex, then returns to the branch and descends into the next tree. It repeats this process until all nodes have been visited. Both queries return the same results: the named graph query uses the graph name, while the collection sets query directly uses edge collections.
+
+### Retrieving Elements at Specific Depth
+
+To retrieve only the elements at a particular depth (exactly two steps away from the starting vertex), right behind the fork, you can use the following techniques.
+
+#### Specify Min and Max Depth
+
+In this named graph query, both `min` and `max` depth parameters are set to `2` (`2..2`).
+
+```sql
+FOR v IN 2..2 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+  RETURN v._key
 ```
 
-Results:
+#### Specify Min Depth Only
 
-  ```json
-    [
-      "B",
-      "C",
-      "D",
-      "E",
-      "F"
-    ]
-  ```
+In this named graph query, only the `min` depth parameter is set to `2`.
 
-As we can see all vertices behind **G** are skipped in both queries. The first filters on the vertex `_key`, the second on an edge label.
-
-:::note
-As soon as a filter is not fulfilled for any of the three elements `v`, `e` or `p`, the complete set of these will be excluded from the result.
-:::
-
-We also may combine several filters, for instance to filter out the right branch (**G**), and the **E** branch:
-
-```js
-    FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.vertices[1]._key != 'G'
-        FILTER p.edges[1].label != 'left_blub'
-        RETURN v._key
+```sql
+FOR v IN 2 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+  RETURN v._key
 ```
 
-```js
-    FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.vertices[1]._key != 'G' AND p.edges[1].label != 'left_blub'
-        RETURN v._key
+#### Traversal Results
+
+Both queries yield the same results.
+
+```json
+  [
+    "C",
+    "E",
+    "H",
+    "J"
+  ]
 ```
 
-Results:
+Understanding how to retrieve elements at a specific depth in a graph traversal is crucial for extracting meaningful insights from your data. By using the `min` and `max` depth parameters, you can effectively target the desired elements in your graph and simplify your query results.
 
-  ```json
-    [
-      "B",
-      "C",
-      "D",
-    ]
-  ```
+## Refining Traversal with Filters
 
-As you can see, combining two `FILTER` statements with an `AND` has the same result.
+This section demonstrates how to apply filters to traversal queries for more precise results. The goal is to exclude specific branches or vertices from the graph. Two filtering approaches are illustrated below:
+
+- Filtering based on the vertex `_key` at depth 1, which is **G** in this case.
+- Filtering based on the label attribute of the edge connecting **A** to **G**, which is  `right_foo`.
+
+### Filtering Branches Using Vertex Key or Edge Label
+
+Suppose you want to exclude all vertices connected to **G**. There are several ways to do that.
+
+#### Filter by Vertex Key
+
+In this named graph query, the filter is applied to the vertex  `_key`.
+
+```sql
+FOR v, e, p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.vertices[1]._key != 'G'
+    RETURN v._key
+```
+
+#### Filter by Edge Label
+
+In this named graph query, the filter is applied to the edge label `right foo`.
+
+```sql
+FOR v, e, p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.edges[0].label != 'right_foo'
+    RETURN v._key
+```
+
+#### Filtered Results
+
+Both queries produce the same results. They exclude all vertices connected to **G**. The first query filters on the vertex `_key`, while the second filters on an edge label. If a filter is not met for any of the elements `v`, `e`, or `p`, then the entire set is excluded from the result.
+
+```json
+  [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  ]
+```
+
+### Combining Multiple Filters
+
+In this section, you'll learn how to combine multiple filters to refine traversal results further. By using several `FILTER` statements, you can efficiently retrieve the exact information you need from your graph.
+
+Consider a scenario where you want to exclude both the right branch (**G**) and the **E** branch from your traversal results.
+
+#### Using Separate Filters
+
+In this named graph query, two separate `FILTER` statements are used.
+
+```sql
+FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.vertices[1]._key != 'G'
+    FILTER p.edges[1].label != 'left_blub'
+    RETURN v._key
+```
+
+#### Combining Filters with AND
+
+In this named graph query, `FILTER` statements are combined using the `AND` operator.
+
+```sql
+FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+    FILTER p.vertices[1]._key != 'G' AND p.edges[1].label != 'left_blub'
+    RETURN v._key
+```
+
+#### Combined Filter Results
+
+Both queries produce the same results.
+
+```json
+  [
+    "B",
+    "C",
+    "D",
+  ]
+```
+
+As shown, using two `FILTER` statements combined with an AND operator achieves the desired outcome. By mastering the use of filters, you can effectively extract specific data from your graph.
