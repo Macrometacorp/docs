@@ -15,7 +15,11 @@ For example, let's say you have two vertex collections: `Users` and `Groups`. Do
 
 ## Edges
 
-An [edge collection](../../collections/graph-edge/) is used to store relations between users and groups. Since multiple users might be in an arbitrary number of groups, this is an _m:n_ relation. The edge collection can be called `UsersInGroups`, with one edge having `_from` pointing to `Users/John` and `_to` pointing to `Groups/BowlingGroupHappyPin`. This makes the user **John** a member of the group **Bowling Group Happy Pin**. Attributes of this relation might contain qualifiers to this relation, such as the permissions of **John** in this group or the date when he joined the group.
+An [edge collection](../../collections/graph-edge/) is used to store relations between users and groups. Since multiple users might be in an arbitrary number of groups, this is an _m:n_ relation.
+
+For example, the edge collection can be called `UsersInGroups`, with one edge having `_from` pointing to `Users/John` and `_to` pointing to `Groups/BowlingGroupHappyPin`. This makes the user **John** a member of the group **Bowling Group Happy Pin**. Attributes of this relation might contain qualifiers to this relation, such as the permissions of **John** in this group or the date when he joined the group.
+
+Edges could also be between connections between customers and products, where each edge is either a customer ordering a product or the customer liking or disliking a product.
 
 If you use documents and their attributes in a sentence, nouns would typically be vertices, and verbs the edges.
 
