@@ -7,17 +7,27 @@ Streams are flows of data in GDN to capture data in motion. Messages are sent vi
 
 ## Streams Workflow
 
-> producer --> stream --> subscription --> consumer
+Streams in GDN is built on the [publish-subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
+
+> producer/publisher --> stream --> subscription --> consumer
+
+For more information on these topics, refer to [Stream Basics](stream-basics/).
+
+### Producers/Publishers
+
+Messages from producers (publishers of messages) are only stored once on a stream, and can be consumed as many times as necessary by consumers. The stream is the source of truth for consumption. Although messages are only stored once on the stream, there can be different ways of consuming these messages.
+
+### Subscriptions
+
+Once a subscription has been created, GDN streams retain all messages even if the consumer disconnects from the server. Retained messages are only discarded when a consumer acknowledges that they've been successfully processed.
+
+### Streams
 
 A stream is a named channel for sending messages. Each stream is backed by a distributed append-only log and can be local (at one edge location only) or global (across all edge locations in the fabric).
 
-Messages from publishers are only stored once on a stream, and can be consumed as many times as necessary by consumers. The stream is the source of truth for consumption. Although messages are only stored once on the stream, there can be different ways of consuming these messages.
+### Consumers
 
 Consumers are grouped together for consuming messages. Each group of consumers is a subscription on a stream. Each consumer group can have its own way of consuming the messages: exclusively, shared, or failover.
-
-Streams in GDN is built on the [publish-subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
-
-Once a subscription has been created, GDN streams retain all messages even if the consumer disconnects from the server. Retained messages are only discarded when a consumer acknowledges that they've been successfully processed.
 
 ## Benefits
 
