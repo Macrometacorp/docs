@@ -47,7 +47,7 @@ FOR vertex[, edge[, path]]
 
 ### Syntax for Collection Sets
 
-Instead of `GRAPH graphName`, you can specify a list of edge collections (anonymous graph). The involved vertex collections are determined by the edges of the given edge collections. The rest of the behavior is similar to the named version.
+Instead of `GRAPH graphName`, you can specify a list of edge collections (anonymous graph). The vertex collections involved are determined by the edges of the given edge collections. Other than that, the syntax is similar to the named version.
 
 ```sql
 [WITH collection1[, collection2[, ...collectionN]]]
