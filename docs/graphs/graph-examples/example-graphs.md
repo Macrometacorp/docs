@@ -29,7 +29,7 @@ With the default "Search Depth" of 2 of the graph viewer you may not see all edg
 
 This graph was designed to demonstrate filters in traversals. It has some labels to filter on it.
 
-![Traversal Graph](img/graphs/traversal_graph.png)
+![Traversal Graph](/img/graphs/traversal_graph.png)
 
 The example has all its vertices in the _circles_ collection, and an _edges_ edge collection to connect them.
 

@@ -14,7 +14,7 @@ Shortest path queries enable you to quickly find the shortest path between two v
 
 In this high-level example, you have a graph with four vertices labeled A, B, C, and D. The edges are labeled with their weight, or length. The graph looks like this:
 
-![traversal graph](img/graphs/traversal_graph.png)
+![traversal graph](/img/graphs/traversal_graph.png)
 
 Use the following parameters for your query:
 
@@ -120,7 +120,7 @@ Please also consider [to use `WITH`](../../queries/c8ql/operations/with.md) to s
 
 These examples are based on the [Traversal Graph](../graph-examples/example-graphs.md#the-traversal-graph). Create a graph based on the example graph to follow along.
 
-![traversal graph](img/graphs/traversal_graph.png)
+![traversal graph](/img/graphs/traversal_graph.png)
 
 ### Shortest Path Example
 

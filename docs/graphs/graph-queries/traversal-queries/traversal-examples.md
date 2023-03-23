@@ -11,7 +11,7 @@ Let's take a look at a simple example to explain how it works.
 
 This is the graph that we are going to traverse:
 
-![traversal_graph](img/graphs/traversal_graph.png)
+![traversal_graph](/img/graphs/traversal_graph.png)
 
 We use the following parameters for our query:
 
@@ -20,31 +20,31 @@ We use the following parameters for our query:
 3. We use a `max` depth of 2.
 4. We follow only in `OUTBOUND` direction of edges
 
-![traversal_graph1](img/graphs/traversal_graph1.png)
+![traversal_graph1](/img/graphs/traversal_graph1.png)
 
 Now it walks to one of the direct neighbors of **A**, say **B** (note: ordering is not guaranteed!):
 
-![traversal_graph2](img/graphs/traversal_graph2.png)
+![traversal_graph2](/img/graphs/traversal_graph2.png)
 
 The query will remember the state (red circle) and will emit the first result **A** → **B** (black box). This will also prevent the traverser to be trapped in cycles. Now again it will visit one of the direct neighbors of **B**, say **E**:
 
-![traversal_graph3](img/graphs/traversal_graph3.png)
+![traversal_graph3](/img/graphs/traversal_graph3.png)
 
 We have limited the query with a `max` depth of _2_, so it will not pick any neighbor of **E**, as the path from **A** to **E** already requires _2_ steps. Instead, we will go back one level to **B** and continue with any other direct neighbor there:
 
-![traversal_graph4](img/graphs/traversal_graph4.png)
+![traversal_graph4](/img/graphs/traversal_graph4.png)
 
 Again after we produced this result we will step back to **B**. But there is no neighbor of **B** left that we have not yet visited. Hence we go another step back to **A** and continue with any other neighbor there.
 
-![traversal_graph5](img/graphs/traversal_graph5.png)
+![traversal_graph5](/img/graphs/traversal_graph5.png)
 
 And identical to the iterations before we will visit **H**:
 
-![traversal_graph6](img/graphs/traversal_graph6.png)
+![traversal_graph6](/img/graphs/traversal_graph6.png)
 
 And **J**:
 
-![traversal_graph7](img/graphs/traversal_graph7.png)
+![traversal_graph7](/img/graphs/traversal_graph7.png)
 
 After these steps there is no further result left. So all together this query has returned the following paths:
 
@@ -59,7 +59,7 @@ After these steps there is no further result left. So all together this query ha
 
 We will create a simple symmetric traversal demonstration graph:
 
-![traversal graph](img/graphs/traversal_graph.png)
+![traversal graph](/img/graphs/traversal_graph.png)
 
 To get started we select the full graph. For better overview we only return the vertex IDs:
 
