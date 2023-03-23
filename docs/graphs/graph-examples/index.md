@@ -3,6 +3,6 @@ title: Graph Examples
 sidebar_position: 1
 ---
 
-This section contains various example graphs to help you get started.
+This section contains graphs that you can learn from or use as starting points.
 
 <DocCardList />
