@@ -9,6 +9,7 @@ You can use the `add samples` tab in the `create graph` window in the web interf
 ## The Knows Graph
 
 A set of persons knowing each other:
+
 ![Persons relation Example Graph](/img/graphs/knows_graph.png)
 
 The _knows_ graph consists of one _vertex collection_ `persons` connected via one _edge collection_ `knows`.
