@@ -31,7 +31,7 @@ curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' 
 '
 ```
 
-Once the view is ready we can specify a token search query which searches for the occurrence of at least one of the praising words `Awesome` or `Excellent` or `Lovely` in a review text and select its review score as the result as shown in the following example.
+This example queries reviews that include praising words `Awesome`, `Excellent`, or `Lovely`, and displays the rating for each review.
 
 ```sql
 FOR review IN sample_view

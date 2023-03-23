@@ -3,9 +3,35 @@ sidebar_position: 30
 title: Phrase and Proximity Search
 ---
 
-Phrase search allows for searching for phrases and nearby words in full text. One may also specify how many arbitrary tokens may occur between the defined tokens for word proximity searches. We can use the same search view defined in the previous section here as well.
+Phrase search enables you to search for phrases and nearby words in full text.
 
-Let's search for hotel review comments which say `rooms are small` and select the hotel names and their review ratings.
+Use the following cURL example to add an identity analyzer to an existing search view. In this example, we use the search view `sample_view`.
+
+```bash
+curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: <BEARER_TOKEN>' \
+--data-raw '{
+    "name": "sample_view",
+  "links": {
+    "hotel_reviews": {
+                    "analyzers": [],
+      "fields": {
+        "Review_Text": {
+          "analyzers": [
+            "text_en"
+          ]
+        }
+      }
+    }
+  },
+  "type": "search"
+}
+'
+```
+
+This example queries all reviews which mention `rooms are small` and displays the hotel name and rating:
 
 ```sql
 FOR review IN sample_view
@@ -16,7 +42,7 @@ FOR review IN sample_view
   }
 ```
 
-This should query 75 review comments:
+The displayed result:
 
 | Property_Name | Review_Rating |
 | --- | --- |
@@ -26,7 +52,7 @@ This should query 75 review comments:
 | Hotel Xenia, Autograph Collection | 5 |
 | ... | ... |
 
-The `PHRASE()` function allows for specifying tokens and the number of wild card tokens in alternating order. This can be effectively utilized for two words with one arbitrary word in between the two words. For example, one could search for review comments specifying the number of nights the reviewer has stayed in the hotel as follows,
+Alternatively, you can use the `PHRASE()` function to specify wild card tokens between words. This example queries reviews which specify the number of nights the reviewer has stayed in the hotel:
 
 ```sql
 FOR review IN sample_view
@@ -36,5 +62,3 @@ FOR review IN sample_view
   Review_Rating: review.Review_Rating
   }
 ```
-
-This example should query 859 results.

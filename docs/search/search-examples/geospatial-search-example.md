@@ -7,7 +7,7 @@ Geospatial search is a less frequently found but very useful feature when it com
 
 Macrometa GDN supports geospatial queries such as finding coordinates and shapes within a radius or an area. 
 
-### Geospatial Datasets
+## Geospatial Datasets
 
 In order to tryout geospatial search capabilities of Macrometa GDN we have selected two datasets from Seattle metropolis of the USA. The [first](https://github.com/Macrometacorp/datasets/blob/master/geospatial-search/city.json) is a map of council districts of the Seattle city. The [second](https://github.com/Macrometacorp/datasets/blob/master/geospatial-search/schools.json) dataset corresponds to public schools of Seattle. These two refined datasets were obtained from the [DATA.GOV](http://DATA.GOV) website.
 
