@@ -111,25 +111,3 @@ FOR review IN sample_view
 ```
 
 When executed the above query should result in 7035 records.
-
-## Compare to Strings
-
-The examples in the previous subsection were purely based on numeric values. However, range comparisons can be made on strings using the standard comparison operators as well as the `IN_RANGE()` function. Before running such string comparison identity search Analyzer has to be defined by invoking the cURL command shown in Listing 2. For example, the following query selects all the hotel names which start with Apex until (exclusive of) hotel names which start with the letter D.
-
-```sql
-FOR review IN sample_view
-  SEARCH ANALYZER(IN_RANGE(review.Property_Name, "Apex", "D", true, false), "identity")
-  SORT review.Review_Rating
-  RETURN review.Property_Name
-```
-
-The execution of the above query results in a list of items (2037 items in total) as follows. 
-
-| Property_Name |
-| --- |
-| Apex London Wall Hotel |
-| Corinthia Hotel London |
-| City View Hotel |
-| City View Hotel |
-| ... |
-
