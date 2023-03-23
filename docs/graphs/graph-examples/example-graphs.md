@@ -55,16 +55,6 @@ Circles have unique numeric labels. Edges have two boolean attributes (_theFalse
 With the default "Search Depth" of 2 of the graph viewer you may not see all nodes of this graph.
 :::
 
-## The k Shortest Paths Graph
-
-The vertices in this graph are train stations of cities in Europe and
-North America and the edges represent train connections between them,
-with the travel time for both directions as edge weight.
-
-![Train Connection Map](/img/train_map.png)
-
-See the [Shortest Paths](../graph-queries/shortest-path.md) page for query examples.
-
 ## The World Graph
 
 <!-- ![World Graph](/img/world_graph.png) -->
