@@ -1,5 +1,5 @@
 ---
-sidebar_position: 30
+sidebar_position: 1
 title: K Shortest Paths Query
 ---
 
