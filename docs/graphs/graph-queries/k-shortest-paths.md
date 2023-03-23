@@ -378,5 +378,3 @@ Results:
   }
 ]
 ```
-
-And finally clean up by removing the named graph.
