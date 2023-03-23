@@ -5,7 +5,7 @@ title: Range Queries
 
 Range queries allow for searching data that are above, below, or within two values. You can compare ranges to a number, numeric range, or strings. This is useful for finding numeric values across many documents.
 
-Range queries are not processed by analyzers. To use a range query, you must modify the cURL command to remove the identity analyzer. Refer to this example and note the empty array for the `analyzers` value:
+Since range queries are not processed by analyzers, you must modify the provided cURL command as follows. Note the empty array for the `analyzers` value:
 
 ```bash
 curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sample_view/properties' \
