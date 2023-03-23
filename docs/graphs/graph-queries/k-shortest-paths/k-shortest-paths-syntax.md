@@ -1,27 +1,29 @@
 ---
 sidebar_position: 20
-title: k Shortest Paths Syntax
+title: K Shortest Paths Syntax
 ---
 
-This type of query is supposed to find the first _k_ paths in order of length (or weight) between two given documents, _startVertex_ and _targetVertex_ in your graph.
+The k shortest paths algorithm identifies the top _k_ shortest paths in terms of length (or weight) between two specified documents, `startVertex` and `targetVertex`, within a graph.
 
-Every such path will be returned as a JSON object with three components:
+## K Shortest Paths Query Output
 
-- An array containing the `vertices` on the path
-- An array containing the `edges` on the path
-- The `weight` of the path, that is the sum of all edge weights
+Each path is returned as a JSON object comprising three elements:
 
-If no _weightAttribute_ is given, the weight of the path is just its length.
+- An array consisting of the `vertices` present on the path.
+- An array containing the `edges` connecting the vertices on the path.
+- The `weight` of the path, representing the sum of all edge weights.
+
+If no `weightAttribute` is provided, then the path's weight defaults to its length.
 
 ## Syntax
 
-The syntax for k Shortest Paths queries is similar to the one for [Shortest Path](shortest-path.md) and there are also two options to either use a named graph or a set of edge collections. It only emits a path variable however, whereas SHORTEST_PATH emits a vertex and an edge variable.
+The syntax for k shortest paths queries is similar to the one for [Shortest Path](shortest-path.md) and there are also two options to either use a named graph or a set of edge collections. It only emits a path variable however, whereas SHORTEST_PATH emits a vertex and an edge variable.
 
 :::note
-It is highly recommended that you use a **LIMIT** statement, as k Shortest Paths is a potentially expensive operation. On large connected graphs it can return a large number of paths, or perform an expensive (but unsuccessful) search for more short paths.
+It is highly recommended that you use a **LIMIT** statement, as k shortest paths is a potentially expensive operation. On large connected graphs it can return a large number of paths, or perform an expensive (but unsuccessful) search for more short paths.
 :::
 
-### Working with named graphs
+### Syntax for Named Graphs
 
 ```json
 FOR path
@@ -36,7 +38,7 @@ FOR path
 
 - `IN` `OUTBOUND|INBOUND|ANY`: defines in which direction edges are followed (outgoing, incoming, or both)
 
-- `K_SHORTEST_PATHS`: the keyword to compute k Shortest Paths
+- `K_SHORTEST_PATHS`: the keyword to compute k shortest paths
   - **startVertex** `TO` **targetVertex** (both string\|object): the two vertices between which the paths will be computed. This can be specified in the form of a ID string or in the form of a document with the attribute `_id`. All other values will lead to a warning and an empty result. If one of the specified documents does not exist, the result is empty as well and there is no warning.
 
 - `GRAPH` **graphName** (string): the name identifying the named graph. Its vertex and edge collections will be looked up.
@@ -47,9 +49,9 @@ FOR path
 
 - `LIMIT` (see [LIMIT operation](../../queries/c8ql/operations/limit.md), _optional_): the maximal number of paths to return. It is highly recommended to use a `LIMIT` for `K_SHORTEST_PATHS`.
 
-### Working with collection sets
+### Syntax for Collection Sets
 
-```js
+```sql
 FOR path
   IN OUTBOUND|INBOUND|ANY K_SHORTEST_PATHS
   startVertex TO targetVertex
@@ -60,11 +62,11 @@ FOR path
 
 Instead of `GRAPH graphName` you can specify a list of edge collections. The involved vertex collections are determined by the edges of the given edge collections.
 
-### Traversing in mixed directions
+### Syntax Traversing in Mixed Directions
 
 For k shortest paths with a list of edge collections you can optionally specify the direction for some of the edge collections. Say for example you have three edge collections _edges1_, _edges2_ and _edges3_, where in _edges2_ the direction has no relevance, but in _edges1_ and _edges3_ the direction should be taken into account. In this case you can use `OUTBOUND` as general search direction and `ANY` specifically for _edges2_ as follows:
 
-```js
+```sql
 FOR vertex IN OUTBOUND K_SHORTEST_PATHS
   startVertex TO targetVertex
   edges1, ANY edges2, edges3
