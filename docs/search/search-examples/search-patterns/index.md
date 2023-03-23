@@ -26,7 +26,7 @@ curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sa
            "trackListPositions": true
        }
    }
-}
+}'
 ```
 
 After defining the analyzer, use a [query](../../../queries/index.md) to retrieve a list for Rhodes Hotel.

@@ -3,9 +3,9 @@ sidebar_position: 20
 title: Full-Text Token Search
 ---
 
-When searching strings it is highly useful to search for tokens in full-text which can occur in any order. Text Analyzers tokenize the full-text strings so that each token can get indexed separately. There are two ways for searching for tokens called Token search and Phrase search. While the former is described in this section the latter is presented in Section 2.5.
+You can search for tokens in full-text occurring in any order. The searched words must be contained in the source string. 
 
-This approach searches for token which can appear in any order. The words that are searched for has to be contained in the source string. First, a text analyzer view has to be defined via invoking a cURL command as follows:
+Use the following cURL example to add an identity analyzer to an existing search view. In this example, we use the search view `sample_view`.
 
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' \
