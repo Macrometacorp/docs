@@ -3,106 +3,99 @@ sidebar_position: 50
 title: Optimizing Traversal Queries
 ---
 
-This page explains how you can optimize your traversal queries.
+When working with graph traversal queries in Macrometa, it's essential to understand how the query optimizer and filter statements can help improve the performance of your queries. The query optimizer in the query execution plan can optimize filters combined with the `AND` operator, but not filters combined with the `OR` operator. Knowing this can help you design filter statements that can be optimized effectively, leading to better query performance.
 
-## Using filters and the explainer to extrapolate the costs
+To learn more about query execution plans, refer to [Execution Plan](../../../queries/running-queries#execution-plan).
 
-All three variables emitted by the traversals might as well be used in filter statements. For some of these filter statements the optimizer can detect that it is possible to prune paths of traversals earlier, hence filtered results will not be emitted to the variables in the first place. This may significantly improve the performance of your query. Whenever a filter is not fulfilled, the complete set of _vertex_, _edge_ and _path_ will be skipped. All paths with a length greater than _max_ will never be computed.
+## Filter Statements and Early Path Pruning
 
-In the current state, `AND` combined filters can be optimized, but `OR` combined filters cannot.
+In a graph traversal query, three variables are emitted:
 
-## Query explainer for optimizations
+- vertex
+- edge
+- path
 
-Let's have a look what the optimizer does behind the curtain and inspect traversal queries using the explainer:
+Filter statements can be applied to these variables to refine the results. When the optimizer in the query detects that certain filter statements can lead to early pruning, then the filtered results are not emitted to the variables, reducing the overall processing time of the query.
 
-```js
-    FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        LET localScopeVar = RAND() > 0.5
-        FILTER p.edges[0].theTruth != localScopeVar
-        RETURN v._key
-```
+When a filter is not fulfilled, the entire set of vertex, edge, and path is skipped, meaning that all paths with a length greater than the specified maximum will never be computed. This prevents unnecessary processing and helps improve query performance.
 
-```bash
-Query String (173 chars, cacheable: false):
-   FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-       LET localScopeVar = RAND() > 0.5
-       FILTER p.edges[0].theTruth != localScopeVar
-       RETURN v._key
- 
-Execution plan:
- Id   NodeType          Est.   Comment
-  1   SingletonNode        1   * ROOT
-  2   TraversalNode        1     - FOR v  /* vertex */, p  /* paths */ IN 1..3  /* min..maxPathDepth */ OUTBOUND 'circles/A' /* startnode */  GRAPH 'traversalGraph'
-  3   CalculationNode      1       - LET localScopeVar = (RAND() > 0.5)   /* simple expression */
-  4   CalculationNode      1       - LET #6 = (p.`edges`[0].`theTruth` != localScopeVar)   /* simple expression */
-  5   FilterNode           1       - FILTER #6
-  6   CalculationNode      1       - LET #8 = v.`_key`   /* attribute expression */
-  7   ReturnNode           1       - RETURN #8
+## Analyzing Query Optimizations with the Execution Plan
 
-Indexes used:
- By   Name   Type   Collection   Unique   Sparse   Selectivity   Fields        Ranges
-  2   edge   edge   edges        false    false       100.00 %   [ `_from` ]   base OUTBOUND
+The query execution plan provides insights into how the optimizer works and how it optimizes graph traversals. By analyzing the execution plan, which consists of different stages, such as NodeType, estimations, and the optimization rules applied, you can better understand the optimization process.
 
-Functions used:
- Name   Deterministic   Cacheable   Uses V8
- RAND   false           false       false  
+The execution plan also shows the indexes used and the traversals on graphs. This information is useful for developers and database administrators, as it can help them optimize queries to improve performance, especially when working with large graphs. By understanding how the query optimizer works and the optimization rules applied, you can modify their queries to make better use of the optimization mechanisms provided by the database engine.
 
-Traversals on graphs:
- Id  Depth  Vertex collections  Edge collections  Options                                  Filter / Prune Conditions
- 2   1..3   circles             edges             uniqueVertices: none, uniqueEdges: path                           
+For more information about running queries and query results, refer to [Running Queries](../../../queries/running-queries).
 
-Optimization rules applied:
- Id   RuleName
-  1   move-calculations-up
-  2   optimize-traversals
-  3   move-calculations-down
+## Practical Examples and Considerations
 
-```
+In this example, there are two queries: identical except that one includes the variable _localScopeVar_, which is outside the scope of the traversal itself - it is not known inside of the traverser. Therefore, the filter in the query can only be executed after the traversal, which might be undesired in large graphs. The second query only operates on the path, and therefore this condition can be used during the execution of the traversal.
 
-```js
-    FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-        FILTER p.edges[0].label == 'right_foo'
-        RETURN v._key
-```
+1. A query with a variable (`localScopeVar`) outside the scope of the traversal. The filter using this variable can only be executed after the traversal, which might result in poor performance for large graphs as the traversal would generate many unnecessary paths before filtering them out.
 
-```bash
-Query String (129 chars, cacheable: true):
-   FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
-       FILTER p.edges[0].label == 'right_foo'
-       RETURN v._key
- 
+  ```sql
+      FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+          LET localScopeVar = RAND() > 0.5
+          FILTER p.edges[0].theTruth != localScopeVar
+          RETURN v._key
+  ```
 
-Execution plan:
- Id   NodeType          Est.   Comment
-  1   SingletonNode        1   * ROOT
-  2   TraversalNode        1     - FOR v  /* vertex */ IN 1..3  /* min..maxPathDepth */ OUTBOUND 'circles/A' /* startnode */  GRAPH 'traversalGraph'
-  5   CalculationNode      1       - LET #7 = v.`_key`   /* attribute expression */
-  6   ReturnNode           1       - RETURN #7
+  The execution plan for the query would look something like this. Notice it takes seven steps to execute and uses three optimization rules.
 
-Indexes used:
- By   Name   Type   Collection   Unique   Sparse   Selectivity   Fields        Ranges
-  2   edge   edge   edges        false    false       100.00 %   [ `_from` ]   base OUTBOUND
-  2   edge   edge   edges        false    false       100.00 %   [ `_from` ]   level 0 OUTBOUND
+  ```bash
+  ...
+  
+  Execution plan:
+  Id   NodeType          Est.   Comment
+    1   SingletonNode        1   * ROOT
+    2   TraversalNode        1     - FOR v  /* vertex */, p  /* paths */ IN 1..3  /* min..maxPathDepth */ OUTBOUND 'circles/A' /* startnode */  GRAPH 'traversalGraph'
+    3   CalculationNode      1       - LET localScopeVar = (RAND() > 0.5)   /* simple expression */
+    4   CalculationNode      1       - LET #6 = (p.`edges`[0].`theTruth` != localScopeVar)   /* simple expression */
+    5   FilterNode           1       - FILTER #6
+    6   CalculationNode      1       - LET #8 = v.`_key`   /* attribute expression */
+    7   ReturnNode           1       - RETURN #8
 
-Traversals on graphs:
- Id  Depth  Vertex collections  Edge collections  Options                                  Filter / Prune Conditions                   
- 2   1..3   circles             edges             uniqueVertices: none, uniqueEdges: path  FILTER (p.`edges`[0].`label` == "right_foo")
+  ...                       
 
-Optimization rules applied:
- Id   RuleName
-  1   move-calculations-up
-  2   move-filters-up
-  3   move-calculations-up-2
-  4   move-filters-up-2
-  5   optimize-traversals
-  6   remove-filter-covered-by-traversal
-  7   remove-unnecessary-calculations-2
-  8   remove-redundant-path-var
+  Optimization rules applied:
+  Id   RuleName
+    1   move-calculations-up
+    2   optimize-traversals
+    3   move-calculations-down
 
-```
+  ```
 
-We now see two queries: In one we add a variable _localScopeVar_, which is outside the scope of the traversal itself - it is not known inside of the traverser.
+1. A query that operates only on the path, where the filter condition can be used during the execution of the traversal. This means that paths that are filtered out by this condition won't be processed at all, improving the query's performance.
 
-Therefore, this filter can only be executed after the traversal, which may be undesired in large graphs. The second query on the other hand only operates on the path, and therefore this condition can be used during the execution of the traversal.
+  ```sql
+      FOR v,e,p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
+          FILTER p.edges[0].label == 'right_foo'
+          RETURN v._key
+  ```
 
-Paths that are filtered out by this condition won't be processed at all.
+  The execution plan for the query would look something like this. Notice it takes six steps to execute and uses eight optimization rules.
+
+  ```bash
+  ...
+
+  Execution plan:
+  Id   NodeType          Est.   Comment
+    1   SingletonNode        1   * ROOT
+    2   TraversalNode        1     - FOR v  /* vertex */ IN 1..3  /* min..maxPathDepth */ OUTBOUND 'circles/A' /* startnode */  GRAPH 'traversalGraph'
+    5   CalculationNode      1       - LET #7 = v.`_key`   /* attribute expression */
+    6   ReturnNode           1       - RETURN #7
+
+  ...
+
+  Optimization rules applied:
+  Id   RuleName
+    1   move-calculations-up
+    2   move-filters-up
+    3   move-calculations-up-2
+    4   move-filters-up-2
+    5   optimize-traversals
+    6   remove-filter-covered-by-traversal
+    7   remove-unnecessary-calculations-2
+    8   remove-redundant-path-var
+
+  ```
