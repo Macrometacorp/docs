@@ -5,9 +5,9 @@ title: Remove Vertex
 
 Deleting vertices with associated edges is currently not handled via C8QL while the [graph management interface](remove-vertex) and the REST API offer a vertex deletion functionality.
 
-However, as shown in this example based on the [knows_graph](/img/knows_graph.png), a query for this use case can be created.
+However, as shown in this example based on the [knows_graph](/img/graphs/knows_graph.png), a query for this use case can be created.
 
-![Example Graph](/img/knows_graph.png)
+![Example Graph](/img/graphs/knows_graph.png)
 
 When deleting vertex **eve** from the graph, we also want the edges `eve -> alice` and `eve -> bob` to be removed.
 
