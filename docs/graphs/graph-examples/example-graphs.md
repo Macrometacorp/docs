@@ -67,6 +67,6 @@ This example has female and male persons as _vertices_ in two _vertex collection
 
 A set of european cities, and their fictional traveling distances as connections:
 
-![Cities Example Graph](/img/cities_graph.png)
+![Cities Example Graph](/img/graphs/cities_graph.png)
 
 The example has the cities as _vertices_ in several _vertex collections_ - `germanCity` and `frenchCity`. The _edges_ are their interconnections in several _edge collections_ `french / german / international Highway`.

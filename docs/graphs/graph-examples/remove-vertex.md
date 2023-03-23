@@ -39,9 +39,9 @@ REMOVE 'eve' IN persons
 The query has to be adjusted to match a graph with multiple vertex/edge collections.
 :::
 
-For example, the [city graph](/img/cities_graph.png) contains several vertex collections - `germanCity` and `frenchCity` and several edge collections -  `french / german / international Highway`.
+For example, the [city graph](/img/graphs/cities_graph.png) contains several vertex collections - `germanCity` and `frenchCity` and several edge collections -  `french / german / international Highway`.
 
-![Example Graph2](/img/cities_graph.png)
+![Example Graph2](/img/graphs/cities_graph.png)
 
 To delete city **Berlin** all edge collections `french / german / international Highway` have to be considered. The **REMOVE** operation has to be applied on all edge collections with `OPTIONS { ignoreErrors: true }`. Not using this option will stop the query whenever a non existing key should be removed in a collection.
 
