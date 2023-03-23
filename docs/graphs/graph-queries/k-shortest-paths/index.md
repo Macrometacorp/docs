@@ -1,40 +1,40 @@
 ---
 sidebar_position: 1
-title: K Shortest Paths Query
+title: k Shortest Paths Query
 ---
 
-_K Shortest Path_ queries are graph traversal algorithms used to find the top K shortest paths between two vertices in a weighted graph. In other words, these queries identify multiple paths between a starting vertex and a destination vertex, ranked by the sum of the weights (such as distances or travel times) of their edges. The paths are sorted in ascending order, with the shortest path first, followed by the next shortest path, and so on, up to the Kth shortest path.
+_k shortest path_ queries are graph traversal algorithms used to find the top K shortest paths between two vertices in a weighted graph. In other words, these queries identify multiple paths between a starting vertex and a destination vertex, ranked by the sum of the weights (such as distances or travel times) of their edges. The paths are sorted in ascending order, with the shortest path first, followed by the next shortest path, and so on, up to the Kth shortest path.
 
-You can use K Shortest Path queries to find multiple optimal routes between two points based on various criteria such as travel time, distance, or any other custom weight assigned to the edges in a graph. This is particularly useful when you want to provide alternate routes or recommendations for points of interest, taking into account various factors that might affect the path selection.
+You can use k shortest path queries to find multiple optimal routes between two points based on various criteria such as travel time, distance, or any other custom weight assigned to the edges in a graph. This is particularly useful when you want to provide alternate routes or recommendations for points of interest, taking into account various factors that might affect the path selection.
 
-When executing K Shortest Path queries in Macrometa GDN, you can use the built-in graph traversal functions provided by the C8QL query language to specify the starting and destination vertices, the weight attribute of the edges, and the maximum number of paths (K) to return. This enables you to efficiently retrieve multiple optimal paths in your application based on the graph data stored in the Macrometa GDN.
+When executing k shortest path queries in Macrometa GDN, you can use the built-in graph traversal functions provided by the C8QL query language to specify the starting and destination vertices, the weight attribute of the edges, and the maximum number of paths (K) to return. This enables you to efficiently retrieve multiple optimal paths in your application based on the graph data stored in the Macrometa GDN.
 
 For more information about Macrometa queries in general, refer to [Queries](../../../queries/) and [Query Workers](../../../queryworkers/).
 
 ## Use Cases
 
-Here are a some use cases for K Shortest Paths queries.
+Here are a some use cases for k shortest paths queries.
 
 ### E-commerce and Retail
 
-- **Supply Chain Optimization**: K Shortest Path queries can identify alternative routes for transporting goods from suppliers to distribution centers, considering factors like cost, time, and reliability, ensuring a more efficient and resilient supply chain.
-- **Personalized Product Recommendations**: K Shortest Path queries can help discover different paths to recommend products based on customer preferences, browsing history, or purchase patterns by analyzing the relationships between products and customers.
+- **Supply Chain Optimization**: k shortest path queries can identify alternative routes for transporting goods from suppliers to distribution centers, considering factors like cost, time, and reliability, ensuring a more efficient and resilient supply chain.
+- **Personalized Product Recommendations**: k shortest path queries can help discover different paths to recommend products based on customer preferences, browsing history, or purchase patterns by analyzing the relationships between products and customers.
 
 ### Video and Digital Media
 
-- **Content Delivery Network (CDN) Optimization**: K Shortest Path queries can find optimal paths for delivering video content to users, considering factors like latency, server load, and network conditions, ensuring a smooth streaming experience.
-- **Live Event Streaming**: When broadcasting live events, K Shortest Path queries can be used to find reliable transmission paths from the event location to distribution points or viewers. This ensures redundancy and minimizes the risk of service interruption due to network failures or congestion.
+- **Content Delivery Network (CDN) Optimization**: k shortest path queries can find optimal paths for delivering video content to users, considering factors like latency, server load, and network conditions, ensuring a smooth streaming experience.
+- **Live Event Streaming**: When broadcasting live events, k shortest path queries can be used to find reliable transmission paths from the event location to distribution points or viewers. This ensures redundancy and minimizes the risk of service interruption due to network failures or congestion.
 
 ### Gaming and E-sports
 
-- **Matchmaking and Team Balancing**: K Shortest Path queries can find alternative ways to balance teams or match players based on skill level, geographic location, or other factors, creating fair and enjoyable gameplay.
-- **Dynamic In-Game Navigation**: K Shortest Path queries can be used for pathfinding in video games, offering different routes for characters to navigate through a game world, providing a more engaging gameplay experience.
+- **Matchmaking and Team Balancing**: k shortest path queries can find alternative ways to balance teams or match players based on skill level, geographic location, or other factors, creating fair and enjoyable gameplay.
+- **Dynamic In-Game Navigation**: k shortest path queries can be used for pathfinding in video games, offering different routes for characters to navigate through a game world, providing a more engaging gameplay experience.
 
 ### Financial Services
 
-- **Risk Management**: K Shortest Path queries can identify routes of exposure to risk, considering factors like counterparty relationships, credit risk, and market risk, helping financial institutions better understand their risk profile and make more informed decisions.
-- **Portfolio Diversification**: K Shortest Path queries can analyze relationships between different investment assets to identify alternative paths for diversifying a portfolio, balancing risk and return.
-- **Fraud Detection**: K Shortest Path queries can help identify unusual patterns in financial transactions, which may indicate potential fraud. By considering different paths between entities, investigators can better understand the relationships between suspicious transactions and trace the flow of funds.
+- **Risk Management**: k shortest path queries can identify routes of exposure to risk, considering factors like counterparty relationships, credit risk, and market risk, helping financial institutions better understand their risk profile and make more informed decisions.
+- **Portfolio Diversification**: k shortest path queries can analyze relationships between different investment assets to identify alternative paths for diversifying a portfolio, balancing risk and return.
+- **Fraud Detection**: k shortest path queries can help identify unusual patterns in financial transactions, which may indicate potential fraud. By considering different paths between entities, investigators can better understand the relationships between suspicious transactions and trace the flow of funds.
 
 ## K Shortest Path Query in Action
 
