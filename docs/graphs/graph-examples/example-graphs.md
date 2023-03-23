@@ -59,7 +59,7 @@ It is used to demonstrate raw traversal operations.
 
 A set of persons and their relations:
 
-<!-- ![Social Example Graph](/img/social_graph.png) -->
+![World Example Graph](/img/graphs/social-graph.png)
 
 This example has female and male persons as _vertices_ in two _vertex collections_ - `female` and `male`. The _edges_ are their connections in the `relation` _edge collection_.
 
