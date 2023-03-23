@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Shortest Path Query
 ---
 
-A _shortest path query_ is a query that finds the shortest path between two given documents in your graph. The two documents are referred to as the `startVertex` and `targetVertex`. When you run this query, you receive the result as an array where each element represents a vertex in the shortest path and consists of two item:
+A _shortest path query_ is a query that finds the shortest path between two given documents in your graph. The two documents are referred to as the `startVertex` and `targetVertex`. When you run this query, you receive the result as an array where each element represents a vertex in the shortest path and consists of two items:
 
 - The vertex itself.
 - The edge pointing to it.
