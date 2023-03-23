@@ -5,7 +5,7 @@ title: Traversal Examples
 
 This page presents several examples of graph traversals, starting with a very simple, no-code explanation and ending with examples of how to filter graph results.
 
-The graph in the following examples is based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). ITo follow along, create this example graph and run any of the queries provided in this page.
+The graph in the following examples is based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). To follow along, create this example graph and run any of the queries provided in this page.
 
 ![traversal_graph](/img/traversal_graph.png)
 
@@ -39,7 +39,7 @@ The traversal begins at vertex **A**:
 
 ![traversal_graph1](/img/traversal_graph1.png)
 
-First it moves to a direct neighbor of **A**, for example, **B** (note: ordering is not guaranteed!):
+First it walks to a direct neighbor of **A**, for example, **B** (note: ordering is not guaranteed!):
 
 ![traversal_graph2](/img/traversal_graph2.png)
 
@@ -55,7 +55,7 @@ After producing this result, the query steps back to **B**. As there are no unvi
 
 ![traversal_graph5](/img/traversal_graph5.png)
 
-Following the same pattern as before, the query moves to **H**:
+Following the same pattern as before, the query walks to **H**:
 
 ![traversal_graph6](/img/traversal_graph6.png)
 
@@ -127,7 +127,7 @@ Results:
   ]
 ```
 
-The traversal starts at the first outer vertex, then returns to the branch and descends into the next tree. It repeats this process until all nodes have been visited. Both queries return the same results: the named graph query uses the graph name, while the collection sets query directly uses edge collections.
+The query visits all the neighbors of the specified vertex, their neighbors, and so on up to depth 3. Both queries return the same results: the named graph query uses the graph name, while the collection sets query directly uses edge collections.
 
 ### Retrieving Elements at Specific Depth
 
@@ -179,7 +179,7 @@ Suppose you want to exclude all vertices connected to **G**. There are several w
 
 #### Filter by Vertex Key
 
-In this named graph query, the filter is applied to the vertex  `_key`.
+In this named graph query, the filter is applied to the `_key` attribute of vertex 1 in the path. The query excludes the paths that go from the start vertex directly to vertex **G**.
 
 ```sql
 FOR v, e, p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
@@ -189,7 +189,7 @@ FOR v, e, p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
 
 #### Filter by Edge Label
 
-In this named graph query, the filter is applied to the edge label `right foo`.
+In this named graph query, the filter is applied to the label attribute of the start vertex of each edge.
 
 ```sql
 FOR v, e, p IN 1..3 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
