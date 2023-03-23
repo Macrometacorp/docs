@@ -25,6 +25,8 @@ It is highly recommended that you use a **LIMIT** statement, as k shortest paths
 
 ### Syntax for Named Graphs
 
+Use this syntax if you have created a named graph, which is entered as `graphName`.
+
 ```sql
 FOR path
   IN OUTBOUND|INBOUND|ANY K_SHORTEST_PATHS
@@ -34,22 +36,9 @@ FOR path
   [LIMIT offset, count]
 ```
 
-- `FOR`: Emits the variable **path** which contains one path as an object containing `vertices`, `edges`, and the `weight` of the path.
-
-- `IN` `OUTBOUND|INBOUND|ANY`: defines in which direction edges are followed (outgoing, incoming, or both)
-
-- `K_SHORTEST_PATHS`: the keyword to compute k shortest paths
-  - **startVertex** `TO` **targetVertex** (both string\|object): the two vertices between which the paths will be computed. This can be specified in the form of a ID string or in the form of a document with the attribute `_id`. All other values will lead to a warning and an empty result. If one of the specified documents does not exist, the result is empty as well and there is no warning.
-
-- `GRAPH` **graphName** (string): the name identifying the named graph. Its vertex and edge collections will be looked up.
-
-- `OPTIONS` **options** (object, _optional_): used to modify the execution of the traversal. Only the following attributes have an effect, all others are ignored:
-  - **weightAttribute** (string): a top-level edge attribute that should be used to read the edge weight. If the attribute does not exist or is not numeric, the _defaultWeight_ will be used instead.
-  - **defaultWeight** (number): this value will be used as fallback if there is no _weightAttribute_ in the edge document, or if it's not a number. The default is 1.
-
-- `LIMIT` (see [LIMIT operation](../../queries/c8ql/operations/limit.md), _optional_): the maximal number of paths to return. It is highly recommended to use a `LIMIT` for `K_SHORTEST_PATHS`.
-
 ### Syntax for Collection Sets
+
+Instead of `GRAPH graphName` you can specify a list of edge collections. The involved vertex collections are determined by the edges of the given edge collections.
 
 ```sql
 FOR path
@@ -60,11 +49,9 @@ FOR path
   [LIMIT offset, count]
 ```
 
-Instead of `GRAPH graphName` you can specify a list of edge collections. The involved vertex collections are determined by the edges of the given edge collections.
-
 ### Syntax Traversing in Mixed Directions
 
-For k shortest paths with a list of edge collections you can optionally specify the direction for some of the edge collections. Say for example you have three edge collections _edges1_, _edges2_ and _edges3_, where in _edges2_ the direction has no relevance, but in _edges1_ and _edges3_ the direction should be taken into account. In this case you can use `OUTBOUND` as general search direction and `ANY` specifically for _edges2_ as follows:
+For k shortest paths with a list of edge collections you can specify the direction for some of the edge collections. For example, if you have three edge collections `edges1`, `edges2`, and `edges3`, where `edges2` has no relevant direction, but `edges1` and `edges3` do, use `OUTBOUND` as the general search direction and `ANY` specifically for `edges2`:
 
 ```sql
 FOR vertex IN OUTBOUND K_SHORTEST_PATHS
@@ -72,4 +59,45 @@ FOR vertex IN OUTBOUND K_SHORTEST_PATHS
   edges1, ANY edges2, edges3
 ```
 
-All collections in the list that do not specify their own direction will use the direction defined after `IN` (here: `OUTBOUND`). This allows to use a different direction for each collection in your path search.
+All collections in the list that do not specify their own direction use the direction defined after `IN` (in this example: `OUTBOUND`). This allows you to use a different direction for each collection in your path search, providing greater flexibility when traversing graphs with mixed edge directions.
+
+## Query Parameters
+
+This section explains the parameters of the queries above.
+
+### FOR
+
+Defines the variable path, which stores a single path as an object containing `vertices`, `edges`, and the `weight` of the path.
+
+### IN OUTBOUND|INBOUND|ANY
+
+Defines in which direction edges are followed.
+
+- **OUTBOUND**: Outgoing
+- **INBOUND**: Incoming
+- **ANY**: Both outgoing and incoming
+
+### startVertex TO targetVertex
+
+Both are string objects.
+
+The two vertices between which the shortest path is computed. This can be specified in the form of an ID string or in the form of a document with the attribute `_id`. All other values will lead to a warning and an empty result. If one of the specified documents does not exist, then the result is empty as well and there is no warning.
+
+### GRAPH graphName
+
+String object. The name identifying the named graph. Its vertex and edge collections are already defined, you do not need to specify them.
+
+### OPTIONS options
+
+Object, _optional_.
+
+Used to modify the way the traversal runs. Only the following attributes have an effect, all others are ignored:
+
+- **weightAttribute** (string): A top-level edge attribute that should be used to read the edge weight. If the attribute does not exist or is not numeric, then the _defaultWeight_ is used instead.
+- **defaultWeight** (number): This value is used as fallback if there is no _weightAttribute_ in the edge document, or if it's not a number. The default is 1.
+
+### LIMIT
+
+An optional parameter that sets the maximum number of paths to return. Using a `LIMIT` for `K_SHORTEST_PATHS` is highly recommended to manage the number of results and prevent excessive resource usage.
+
+For more information, refer to [LIMIT operation](../../../queries/c8ql/operations/limit).
