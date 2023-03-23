@@ -43,7 +43,7 @@ With the default "Search Depth" of 2 of the graph viewer you may not see all nod
 
 This graph was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries. Therefore the graph is named after the [multiple path search (MPS)](multiple-path-search.md) use case.
 
-![Mps Graph](/img/mps_graph.png)
+![Mps Graph](/img/graphs/mps_graph.png)
 
 The example graph consists of _vertices_ in the `mps_verts` collection and _edges_ in the `mps_edges` collection. It is a simple traversal graph with start node _A_ and end node _C_.
 
