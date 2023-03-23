@@ -1,6 +1,6 @@
 ---
 sidebar_position: 30
-title: k Shortest Paths
+title: k Shortest Paths Query
 ---
 
 This type of query is supposed to find the first _k_ paths in order of length (or weight) between two given documents, _startVertex_ and _targetVertex_ in your graph.
@@ -13,7 +13,11 @@ Every such path will be returned as a JSON object with three components:
 
 If no _weightAttribute_ is given, the weight of the path is just its length.
 
-**Example**
+## Add Example Collections and Datasets
+
+If you want to follow along
+
+## Shortest Path Query in Action
 
 Let us take a look at a simple example to explain how it works. This is the graph that we are going to find some shortest path on:
 
@@ -120,7 +124,7 @@ All collections in the list that do not specify their own direction will use the
 
 ## Examples
 
-We load an example graph to get a named graph that reflects some possible train connections in Europe and North America.
+We load an example graph to get a named graph that reflects some possible train connections in Europe.
 
 ![Train Connection Map](/img/train_map.png)
 
