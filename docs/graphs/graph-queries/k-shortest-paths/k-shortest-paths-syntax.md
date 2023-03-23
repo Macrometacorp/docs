@@ -3,6 +3,16 @@ sidebar_position: 20
 title: k Shortest Paths Syntax
 ---
 
+This type of query is supposed to find the first _k_ paths in order of length (or weight) between two given documents, _startVertex_ and _targetVertex_ in your graph.
+
+Every such path will be returned as a JSON object with three components:
+
+- An array containing the `vertices` on the path
+- An array containing the `edges` on the path
+- The `weight` of the path, that is the sum of all edge weights
+
+If no _weightAttribute_ is given, the weight of the path is just its length.
+
 ## Syntax
 
 The syntax for k Shortest Paths queries is similar to the one for [Shortest Path](shortest-path.md) and there are also two options to either use a named graph or a set of edge collections. It only emits a path variable however, whereas SHORTEST_PATH emits a vertex and an edge variable.
