@@ -3,7 +3,9 @@ sidebar_position: 30
 title: k Shortest Paths Examples
 ---
 
-## Add Example Collections and Datasets
+
+
+## Example Datasets
 
 If you want to follow along
 
@@ -34,10 +36,33 @@ IN cities
 ### Add Edges Dataset
 
 ```sql
-
+FOR edgeData IN [
+  { _from: "Cities/Cologne", _to: "Cities/Brussels", travelTime: 1.5 },
+  { _from: "Cities/Brussels", _to: "Cities/Cologne", travelTime: 2 },
+  { _from: "Cities/Brussels", _to: "Cities/Londen", travelTime: 3.5 },
+  { _from: "Cities/Londen", _to: "Cities/Brussels", travelTime: 2.5 },
+  { _from: "Cities/York", _to: "Cities/London", travelTime: 1.8 },
+  { _from: "Cities/London", _to: "Cities/York", travelTime: 2 },
+  { _from: "Cities/London", _to: "Cities/Birmingham", travelTime: 2.5 },
+  { _from: "Cities/Carlisle", _to: "Cities/Birmingham", travelTime: 2 },
+  { _from: "Cities/Birmingham", _to: "Cities/Carlisle", travelTime: 1 },
+  { _from: "Cities/Inverness", _to: "Cities/Aberdeen", travelTime: 3 },
+  { _from: "Cities/Aberdeen", _to: "Cities/Inverness", travelTime: 2.5 },
+  { _from: "Cities/Leuchars", _to: "Cities/Aberdeen", travelTime: 1 },
+  { _from: "Cities/StAndrews", _to: "Cities/Leuchars", travelTime: 0.2 },
+  { _from: "Cities/Leuchars", _to: "Cities/StAndrews", travelTime: 0.2 },
+  { _from: "Cities/Leuchars", _to: "Cities/Edinburgh", travelTime: 1.5 },
+  { _from: "Cities/Edinburgh", _to: "Cities/Leuchars", travelTime: 3 },
+  { _from: "Cities/Edinburgh", _to: "Cities/Glasgow", travelTime: 1 },
+  { _from: "Cities/Glasgow", _to: "Cities/Edinburgh", travelTime: 1 },
+  { _from: "Cities/Edinburgh", _to: "Cities/York", travelTime: 3.5 },
+  { _from: "Cities/York", _to: "Cities/Edinburgh", travelTime: 4 }
+]
+UPSERT { _from: edgeData._from, _to: edgeData._to }
+INSERT edgeData
+UPDATE {}
+IN connections
 ```
-
-
 
 ## Examples
 
