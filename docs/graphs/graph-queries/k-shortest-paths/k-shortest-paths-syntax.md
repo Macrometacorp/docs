@@ -17,15 +17,15 @@ If no `weightAttribute` is provided, then the path's weight defaults to its leng
 
 ## Syntax
 
-The syntax for k shortest paths queries is similar to the one for [Shortest Path](shortest-path.md) and there are also two options to either use a named graph or a set of edge collections. It only emits a path variable however, whereas SHORTEST_PATH emits a vertex and an edge variable.
+The syntax for k shortest paths queries is similar to the one for the [Shortest Path](shortest-path) query syntax, with options to use either a named graph or a set of edge collections. However, k shortest paths only emits a path variable, while `SHORTEST_PATH` emits both vertex and edge variables.
 
 :::note
-It is highly recommended that you use a **LIMIT** statement, as k shortest paths is a potentially expensive operation. On large connected graphs it can return a large number of paths, or perform an expensive (but unsuccessful) search for more short paths.
+It is highly recommended that you use a **LIMIT** statement, as k shortest paths can be a resource-intensive operation. On large connected graphs, it might return numerous paths or perform an expensive (but unsuccessful) search for more short paths.
 :::
 
 ### Syntax for Named Graphs
 
-```json
+```sql
 FOR path
   IN OUTBOUND|INBOUND|ANY K_SHORTEST_PATHS
   startVertex TO targetVertex
@@ -34,7 +34,7 @@ FOR path
   [LIMIT offset, count]
 ```
 
-- `FOR`: emits the variable **path** which contains one path as an object containing `vertices`, `edges`, and the `weight` of the path.
+- `FOR`: Emits the variable **path** which contains one path as an object containing `vertices`, `edges`, and the `weight` of the path.
 
 - `IN` `OUTBOUND|INBOUND|ANY`: defines in which direction edges are followed (outgoing, incoming, or both)
 
