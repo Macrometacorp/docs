@@ -5,9 +5,9 @@ title: Remove Vertex
 
 Deleting vertices with associated edges is currently not handled via C8QL while the [graph management interface](remove-vertex) and the REST API offer a vertex deletion functionality.
 
-However, as shown in this example based on the [knows_graph](/img/knows_graph.png), a query for this use case can be created.
+However, as shown in this example based on the [knows_graph](/img/graphs/knows_graph.png), a query for this use case can be created.
 
-![Example Graph](/img/knows_graph.png)
+![Example Graph](/img/graphs/knows_graph.png)
 
 When deleting vertex **eve** from the graph, we also want the edges `eve -> alice` and `eve -> bob` to be removed.
 
@@ -39,9 +39,9 @@ REMOVE 'eve' IN persons
 The query has to be adjusted to match a graph with multiple vertex/edge collections.
 :::
 
-For example, the [city graph](/img/cities_graph.png) contains several vertex collections - `germanCity` and `frenchCity` and several edge collections -  `french / german / international Highway`.
+For example, the [city graph](/img/graphs/cities_graph.png) contains several vertex collections - `germanCity` and `frenchCity` and several edge collections -  `french / german / international Highway`.
 
-![Example Graph2](/img/cities_graph.png)
+![Example Graph2](/img/graphs/cities_graph.png)
 
 To delete city **Berlin** all edge collections `french / german / international Highway` have to be considered. The **REMOVE** operation has to be applied on all edge collections with `OPTIONS { ignoreErrors: true }`. Not using this option will stop the query whenever a non existing key should be removed in a collection.
 
