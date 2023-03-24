@@ -87,7 +87,9 @@ You can use the `includeAllFields` [View property](/search/views/optional-proper
 
 You can search for individual array elements if your search view has the [trackListPositions](/search/views/optional-properties.md) setting set to `false` (default).
 
-Therefore, array comparison operators such as `ALL IN` or `ANY ==` are unnecessary. Consider the following document:
+Therefore, array comparison operators such as `ALL IN` or `ANY ==` are unnecessary. 
+
+In the following document, the values `1`, `2,` and `3` are indexed and individually searchable.
 
 ```json
 {
