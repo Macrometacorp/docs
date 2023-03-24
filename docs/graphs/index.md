@@ -11,23 +11,23 @@ Vertices represent the entities in the graph, while edges represent the relation
 
 To get started with graphs in Macrometa GDN, follow these steps.
 
-### Create Vertex Collections
+### 1. Create Vertex Collections
 
 Vertex collections are [document collections](../collections/documents/) used to store the vertices or nodes of your graph. Each vertex represents an entity in your data model, such as a person, a product, or an event.
 
 A vertex can be a document in a document collection or an [edge collection](../collections/graph-edge/), so `edges` can be used as `vertices`. The _edge definitions_ define which collections are used within a named graph.
 
-### Create Edge Collections
+### 2. Create Edge Collections
 
 Edge collections are used to store the edges or relationships between vertices in your graph. Each edge represents a connection between two vertices and may include additional attributes describing the nature of the relationship.
 
 Edges are stored as documents in [edge collections](../collections/graph-edge/create-graph-edge.md).
 
-### Define the Graph Structure
+### 3. Define the Graph Structure
 
 Once you have created the necessary vertex and edge collections, you can define your graph structure in Macrometa GDN. This involves specifying which vertex collections and edge collections should be part of the graph, as well as any additional configuration options.
 
-### Query the Graph
+### 4. Query the Graph
 
 With the graph structure in place, you can use Macrometa GDN's query language to perform a variety of graph-related operations, such as traversals, shortest path calculations, and pattern matching. These powerful query capabilities enable you to extract valuable insights from your connected data.
 
