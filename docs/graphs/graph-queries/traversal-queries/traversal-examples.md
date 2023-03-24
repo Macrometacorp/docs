@@ -164,7 +164,7 @@ Both queries yield the same results.
   ]
 ```
 
-Understanding how to retrieve elements at a specific depth in a graph traversal is crucial for extracting meaningful insights from your data. By using the `min` and `max` depth parameters, you can effectively target the desired elements in your graph and simplify your query results.
+To extract meaningful insights from your data, you must understand how to retrieve elements at a specific depth in a graph traversal. By using the `min` and `max` depth parameters, you can effectively target the desired elements in your graph and simplify your query results.
 
 ## Refining Traversal with Filters
 
