@@ -3,34 +3,31 @@ sidebar_position: 40
 title: Search Queries
 ---
 
-The `SEARCH` keyword starts the language construct to filter Views of type Search. Conceptually, a View is just another document data source, similar to an array or a document/edge collection, over which you can iterate using a [FOR operation](../queries/c8ql/operations/for.md) in C8QL:
+You can use the `SEARCH` keyword to filter a query using a search view, providing these features:
+
+- Filter documents based on C8QL Boolean expressions and functions.
+- Match documents located in different collections.
+- Sort the result set based on how closely each document matched the search conditions.
+
+Refer to [Search Views](/search/views/index.md) for information about creating a custom search view.
+
+You must use the `SEARCH` statement in a `FOR...IN` operation. The `SEARCH` statement must be placed after the `FOR` and before any additional operations.
 
 ```sql
-FOR doc IN viewName
-  RETURN doc
-```
-
-The optional `SEARCH` operation provides the capabilities to:
-
-- filter documents based on C8QL Boolean expressions and functions
-- match documents located in different collections backed by a fast index
-- sort the result set based on how closely each document matched the search conditions
-
-See [Search Views](../index.md) on how to set up a View.
-
-## General Syntax
-
-The `SEARCH` keyword is followed by an Search filter expressions, which is mostly comprised of calls to Search C8QL functions.
-
-```sql
-FOR doc IN viewName
-  SEARCH expression OPTIONS {…}
+FOR doc IN <SEARCH_VIEW_NAME>
+  SEARCH <EXPRESSION> OPTIONS {…}
   ...
 ```
 
-The `SEARCH` statement, in contrast to `FILTER`, is treated as a part of the `FOR` operation, not as an individual statement. It can not be placed freely in a query nor multiple times in the body of a `FOR` loop. `FOR ... IN` must be followed by the name of a View, not a collection. The `SEARCH` operation has to follow next, other operations before `SEARCH` such as `FILTER`, `COLLECT` etc. are not allowed in this position. Subsequent operations are possible after `SEARCH` and the expression however, including `SORT` to order the search results based on a ranking value computed by the Search View.
+For example:
 
-`expression` must be an Search expression. The full power of Search is harnessed and exposed via special [Search functions](functions.md), during both the search and sort stages. On top of that, common C8QL operators are supported:
+```sql
+FOR doc IN MySearchView
+  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en")
+RETURN doc
+```
+
+Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [Search functions](functions.md):
 
 - `AND`
 - `OR`
@@ -43,19 +40,13 @@ The `SEARCH` statement, in contrast to `FILTER`, is treated as a part of the `FO
 - `!=`
 - `IN` (array or range), also `NOT IN`
 
-:::warning
-The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against Views will not follow the language rules as per the defined Analyzer locale.
-:::
+`SEARCH` does not support:
 
-```sql
-FOR doc IN viewName
-  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en")
-RETURN doc
-```
+- Alphabetical order
+- Array comparison operators
+- In-line expressions
 
-Note that array comparison operators, inline expressions and a few other things are not supported by `SEARCH`. The server will raise a query error in case of an invalid expression.
-
-The `OPTIONS` keyword and an object can optionally follow the search expression to set [Search Options](#search-options).
+Refer to [Search Options](#search-options) for information about the `OPTIONS` keyword.
 
 ## Handling of non-indexed fields
 
@@ -185,6 +176,8 @@ With `trackListPositions: true` you would need to specify the index of the array
 ```sql
 ANALYZER(doc.text[2] == 'jump', "text_en")
 ```
+
+
 
 ## SEARCH with SORT
 
