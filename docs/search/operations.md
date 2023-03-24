@@ -7,7 +7,7 @@ You can use the `SEARCH` keyword to filter a query using a search view, providin
 
 - Filter documents based on C8QL Boolean expressions and functions.
 - Match documents located in different collections.
-- Sort the result set based on how closely each document matched the search conditions.
+- Sort the result set based on how closely each document matches the search conditions.
 
 Refer to [Search Views](/search/views/index.md) for information about creating a custom search view.
 
