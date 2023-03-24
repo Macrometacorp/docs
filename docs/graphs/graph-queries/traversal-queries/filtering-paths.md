@@ -83,6 +83,6 @@ This guarantees that at least one, but possibly more, edges fulfill the conditio
 
 Path filtering affects the iteration on your graph. If certain conditions are not met, then the traversal might stop continuing along this path.
 
-In contrast, filters on vertices or edges only determine whether you're interested in the actual value of these documents. This influences the list of returned documents (if you return `v` or `e`) similar to specifying a non-null `min` value. If you specify a `min` value of 2, then the traversal over the first two nodes of these paths has to be executed - you just won't see them in your result array.
+In contrast, filters on vertices or edges only determine whether you're interested in the actual value of these documents. This influences the list of returned documents (if you return `v` or `e`) similar to specifying a non-null `min` value. If you specify a `min` value of 2, then you must run the traversal over the first two nodes of these paths - you just won't see them in your result array.
 
 Filters on vertices or edges are similar - the traverser has to walk along these nodes since you may be interested in documents further down the path.
