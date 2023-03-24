@@ -1,6 +1,6 @@
 ---
-sidebar_position: 11
-title: Remove Vertex
+sidebar_position: 30
+title: Remove Vertex Example
 ---
 
 Deleting vertices with associated edges is currently not handled via C8QL while the [graph management interface](remove-vertex) and the REST API offer a vertex deletion functionality.
@@ -23,9 +23,9 @@ REMOVE 'eve' IN persons
 
 This query executed several actions:
 
-* use a graph traversal of depth 1 to get the `_key` of **eve's** adjacent edges
-* remove all of these edges from the `knows` collection
-* remove vertex **eve** from the `persons` collection
+- use a graph traversal of depth 1 to get the `_key` of **eve's** adjacent edges
+- remove all of these edges from the `knows` collection
+- remove vertex **eve** from the `persons` collection
 
 The following query shows a different design to achieve the same result:
 
