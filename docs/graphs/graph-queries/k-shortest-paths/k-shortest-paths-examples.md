@@ -108,7 +108,7 @@ Using `SHORTEST_PATH`:
 ```sql
 FOR v, e IN OUTBOUND SHORTEST_PATH 'places/Aberdeen' TO 'places/London'
 GRAPH 'kShortestPathsGraph'
-    RETURN { place: v.label, travelTime: e.travelTime }
+    RETURN { place: v._key, travelTime: e.travelTime }
 ```
 
 Results:
