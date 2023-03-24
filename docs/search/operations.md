@@ -83,11 +83,11 @@ FOR doc IN myView
 
 You can use the `includeAllFields` [View property](/search/views/optional-properties.md) to index all fields and subfields of the source documents.
 
-## Arrays and trackListPositions
+## Search for Array Elements
 
-Array elements are indexed individually and can be searched for as if the attribute had each single value at the same time. They behave like a _disjunctive superposition_ of their values as long as the [**trackListPositions**](/search/views/optional-properties.md) View setting is `false` (default).
+You can search for individual array elements if your search view has the [trackListPositions](/search/views/optional-properties.md) setting set to `false` (default).
 
-Therefore, array comparison operators such as `ALL IN` or `ANY ==` aren't really necessary. Consider the following document:
+Therefore, array comparison operators such as `ALL IN` or `ANY ==` are unnecessary. Consider the following document:
 
 ```json
 {
