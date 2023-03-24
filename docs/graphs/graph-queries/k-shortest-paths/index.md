@@ -74,7 +74,7 @@ The weight of this path is: 1.5 + 1.5 + 3.5 + 2.0 + 1.5 = **10.0**.
 
 #### Path via Glasgow
 
-Another route goes via Glasgow. This path has seven stations, but it's quicker if the edge weights are compared:
+Another route goes via Glasgow. This path has seven stations, but it's quicker if you compare the edge weights:
 
 1. Aberdeen
 2. Leuchars
