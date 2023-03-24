@@ -11,6 +11,8 @@ You can use the `SEARCH` keyword to filter a query using a search view, allowing
 
 Refer to [Search Views](/search/views/index.md) for information about creating a custom search view.
 
+## Syntax
+
 You must use the `SEARCH` statement in a `FOR...IN` operation. The `SEARCH` statement must be placed after the `FOR` and before any additional operations.
 
 ```sql
