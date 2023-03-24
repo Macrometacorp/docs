@@ -48,46 +48,32 @@ Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` w
 
 Refer to [Search Options](#search-options) for information about the `OPTIONS` keyword.
 
-## Handling of non-indexed fields
+## Search by Document Attribute
 
-Document attributes which are not configured to be indexed by a View are treated by `SEARCH` as non-existent. This affects tests against the documents emitted from the View only.
+You can search for documents by querying document attributes that have been indexed by both the search view and the document store. Refer to [Document Store Indexes](/collections/documents/document-store-indexes.md) for more information about adding attributes to document store indexes.
 
+When you search for a document by its attribute, all attributes (including non-indexed ones) return in the results. However, querying a non-indexed attribute yields no results.
 
-For example, given a collection `myCol` with the following documents:
+For example, if you have documents in a collection with these attributes:
 
 ```sql
 { "someAttr": "One", "anotherAttr": "One" }
 { "someAttr": "Two", "anotherAttr": "Two" }
 ```
 
-… with a View where `someAttr` is indexed by the following View `myView`:
+Only the `someAttr` attribute is indexed in the search view and the document store index.
+
+You can run this query to return all attributes for the first document in the collection:
 
 ```sql
-{
-  "type": "search",
-  "links": {
-    "myCol": {
-      "fields": {
-        "someAttr": {}
-      }
-    }
-  }
-}
-```
-
-… a search on `someAttr` yields the following result:
-
-```sql
-FOR doc IN myView
+FOR doc IN MySearchView
   SEARCH doc.someAttr == "One"
   RETURN doc
 ```
 
-```json
-[ { "someAttr": "One", "anotherAttr": "One" } ]
-```
+The result displays all attributes for the first document, including the non-indexed `anotherAttr`.
 
-A search on `anotherAttr` yields an empty result because only `someAttr` is indexed by the View:
+Alternatively, if you query by the non-indexed `anotherAttr` attribute, the search yields no results:
 
 ```sql
 FOR doc IN myView
@@ -95,11 +81,7 @@ FOR doc IN myView
   RETURN doc
 ```
 
-```json
-[]
-```
-
-You can use the special `includeAllFields` [View property](/search/views/optional-properties.md) to index all (sub-)fields of the source documents if desired.
+You can use the `includeAllFields` [View property](/search/views/optional-properties.md) to index all fields and subfields of the source documents.
 
 ## Arrays and trackListPositions
 
