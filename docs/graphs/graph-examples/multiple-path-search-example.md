@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-title: Multiple Path Search (MPS)
+title: Multiple Path Search (MPS) Example
 ---
 
 The shortest path algorithm is designed to find a single shortest path between two vertices. However, in some cases, there might be multiple shortest paths with the same length, and you might want to retrieve all of them.
