@@ -7,7 +7,7 @@ This page presents several examples of graph traversals, starting with a very si
 
 The graph in the following examples is based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). To follow along, create this example graph and run any of the queries provided in this page.
 
-![traversal_graph](/img/traversal_graph.png)
+![traversal_graph](/img/graphs/traversal_graph.png)
 
 ## Simple Traversal Overview
 
@@ -37,31 +37,31 @@ FOR v IN 1..2 OUTBOUND 'circles/A' edges RETURN v._key
 
 The traversal begins at vertex **A**:
 
-![traversal_graph1](/img/traversal_graph1.png)
+![traversal_graph1](/img/graphs/traversal_graph1.png)
 
 First it walks to a direct neighbor of **A**, for example, **B** (note: ordering is not guaranteed!):
 
-![traversal_graph2](/img/traversal_graph2.png)
+![traversal_graph2](/img/graphs/traversal_graph2.png)
 
 The query saves the state (red circle) and emits the first result **A** → **B** (black box). This also prevents the traverser from getting caught in cycles. Next, it proceeds to a direct neighbor of **B**, such as **E**:
 
-![traversal_graph3](/img/traversal_graph3.png)
+![traversal_graph3](/img/graphs/traversal_graph3.png)
 
 With a `max` depth limit of 2, the query will not select any neighbor of **E**, because the path from **A** to **E** already takes two steps. Instead, it returns to **B** and explores any remaining direct neighbors:
 
-![traversal_graph4](/img/traversal_graph4.png)
+![traversal_graph4](/img/graphs/traversal_graph4.png)
 
 After producing this result, the query steps back to **B**. As there are no unvisited neighbors of **B** left, it goes back to **A** and continues with another neighbor there:
 
-![traversal_graph5](/img/traversal_graph5.png)
+![traversal_graph5](/img/graphs/traversal_graph5.png)
 
 Following the same pattern as before, the query walks to **H**:
 
-![traversal_graph6](/img/traversal_graph6.png)
+![traversal_graph6](/img/graphs/traversal_graph6.png)
 
 And then to **J**:
 
-![traversal_graph7](/img/traversal_graph7.png)
+![traversal_graph7](/img/graphs/traversal_graph7.png)
 
 Once these steps are completed, no further results remain. The query returns the following paths in total:
 
@@ -91,7 +91,7 @@ This simple traversal example demonstrates how to navigate a graph efficiently u
 
 This section demonstrates traversal queries using a simple symmetric graph. The graph is designed to show how different queries return different results, based on the specified depth parameters.
 
-![traversal graph](/img/traversal_graph.png)
+![traversal graph](/img/graphs/traversal_graph.png)
 
 ### Full Graph Traversal
 
