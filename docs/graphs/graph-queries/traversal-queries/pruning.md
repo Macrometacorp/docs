@@ -5,7 +5,7 @@ title: Pruning for Efficient Searches
 
 Pruning allows you to create conditions that reduce the amount of data examined during a search, improving query performance and reducing overhead. You can apply pruning to vertices, edges, paths, and any variables defined earlier in the query.
 
-The following examples are based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). If create this example graph, then you can run any of the queries listed in this page.
+The following examples are based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). If you create this example graph, then you can run any of the queries listed in this page.
 
 ## Pruning with theTruth Edge Condition
 
