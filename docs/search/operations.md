@@ -169,7 +169,7 @@ ANALYZER(doc.text[2] == 'jump', "text_en")
 
 ## SEARCH with SORT
 
-The documents emitted from a View can be sorted by attribute values with the standard [SORT() operation](../queries/c8ql/operations/sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
+The documents emitted from a search view can be sorted by attribute values with the standard [SORT() operation](../queries/c8ql/operations/sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
 
 ```sql
 FOR doc IN viewName
