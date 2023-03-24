@@ -5,7 +5,7 @@ sidebar_position: 80
 
 Depth-first traversal (DFT) and breadth-first traversal (BFT) are two common strategies for exploring and navigating a graph, both used to visit all the vertices and edges of a graph in a systematic manner. Each traversal method has its specific use cases and characteristics.
 
-In the context of Macrometa's global data network, DFT and BFT can be used to explore relationships between vertices and edges within the graph, enabling complex graph analysis and pattern matching. To perform DFT and BFT on Macrometa graphs, you can use [C8QL](../../queries/c8ql/).
+In the context of Macrometa's global data network, DFT and BFT can be used to explore relationships between vertices and edges within the graph, enabling complex graph analysis and pattern matching. To perform DFT and BFT on Macrometa graphs, you can use [C8QL](../../queries/c8ql/), Macrometa's query language.
 
 It is important to remember that both DFT and BFT can be resource-intensive operations, especially when traversing large graphs or exploring many levels deep. It is advisable to limit the traversal depth or use filters to reduce the number of vertices and edges visited during the traversal.
 
