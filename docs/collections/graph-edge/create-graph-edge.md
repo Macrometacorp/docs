@@ -12,7 +12,7 @@ Follow these instructions to create a new collection using the GDN console web U
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Data > Collections**.
 1. Click **New Collection**.
-1. Click **Document Store**.
+1. Click **Graph Edge**.
 1. Enter information about the collection and then click **Create**.
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
