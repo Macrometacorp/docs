@@ -38,7 +38,7 @@ Here are a some use cases for k shortest paths queries.
 
 ## K Shortest Path Query in Action
 
-In this high-level example, there is a graph representing train stations and connections between cities. Each ellipse stands for a train station with the city name written inside of it (the vertices of the graph). Arrows represent train connections between cities (the edges of the graph), and the numbers near the arrows indicate the travel time between stations (used as edge weights).
+In this high-level example, a graph represents train stations and connections between cities. Each ellipse stands for a train station with the city name included in the station name (the vertices of the graph). Arrows represent train connections between cities (the edges of the graph), and the numbers near the arrows indicate the travel time between stations (used as edge weights).
 
 ![Train Connection Map](/img/train_map.png)
 
@@ -74,7 +74,7 @@ The weight of this path is: 1.5 + 1.5 + 3.5 + 2.0 + 1.5 = **10.0**.
 
 #### Path via Glasgow
 
-Another route goes via Glasgow. This path has seven stations, but it's quicker if the edge weights are compared:
+Another route goes via Glasgow. This path has seven stations, but it's quicker if you compare the edge weights:
 
 1. Aberdeen
 2. Leuchars
