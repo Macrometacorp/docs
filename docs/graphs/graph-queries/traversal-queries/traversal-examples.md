@@ -171,7 +171,7 @@ Understanding how to retrieve elements at a specific depth in a graph traversal 
 This section demonstrates how to apply filters to traversal queries for more precise results. The goal is to exclude specific branches or vertices from the graph. Two filtering approaches are illustrated below:
 
 - Filtering based on the vertex `_key` at depth 1, which is **G** in this case.
-- Filtering based on the label attribute of the edge connecting **A** to **G**, which is  `right_foo`.
+- Filtering based on the label attribute of the edge connecting **A** to **G**, which is `right_foo`.
 
 ### Filtering Branches Using Vertex Key or Edge Label
 
