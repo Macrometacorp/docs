@@ -3,49 +3,47 @@ sidebar_position: 30
 title: Remove Vertex Example
 ---
 
-Deleting vertices with associated edges is currently not handled via C8QL while the [graph management interface](remove-vertex) and the REST API offer a vertex deletion functionality.
+C8QL does not provide a direct method to remove vertices with associated edges. However, you can achieve this using a combination of queries. The examples below demonstrate how to remove a vertex and its associated edges from different graphs.
 
-However, as shown in this example based on the [knows_graph](/img/graphs/knows_graph.png), a query for this use case can be created.
+## Removing a Vertex from One Collection
 
-![Example Graph](/img/graphs/knows_graph.png)
+This example, demonstrates how to remove a vertex and its associated edges from a graph. The query removes the vertex **eve** from the `knows_graph`, as well as the edges `eve -> alice` and `eve -> bob`.
 
-When deleting vertex **eve** from the graph, we also want the edges `eve -> alice` and `eve -> bob` to be removed.
+![Knows Example Graph](/img/graphs/knows_graph.png)
 
-The involved graph and its only edge collection has to be known. In this case it is the graph **knows_graph** and the edge collection **knows**.
+This query deletes **eve** and its adjacent edges:
 
-This query will delete **eve** with its adjacent edges:
-
-```js
+```sql
 LET edgeKeys = (FOR v, e IN 1..1 ANY 'persons/eve' GRAPH 'knows_graph' RETURN e._key)
 LET r = (FOR key IN edgeKeys REMOVE key IN knows) 
 REMOVE 'eve' IN persons
 ```
 
-This query executed several actions:
+The query performs the following actions:
 
-- use a graph traversal of depth 1 to get the `_key` of **eve's** adjacent edges
-- remove all of these edges from the `knows` collection
-- remove vertex **eve** from the `persons` collection
+- Traverses the graph with a depth of 1 to retrieve the `_key` of all edges connected to **eve**.
+- Removes all these edges from the `knows` collection.
+- Removes the vertex **eve** from the `persons` collection.
 
-The following query shows a different design to achieve the same result:
+After you run the query, Macrometa returns an empty list. If you examine `knows_graph`, then you will see that the vertex and its associated edges have been removed.
 
-```js
+An alternative query to achieve the same result is to combine the edge retrieval and removal within the same graph traversal:
+
+```sql
 LET edgeKeys = (FOR v, e IN 1..1 ANY 'persons/eve' GRAPH 'knows_graph'
             REMOVE e._key IN knows)
 REMOVE 'eve' IN persons
 ```
 
-:::note
-The query has to be adjusted to match a graph with multiple vertex/edge collections.
-:::
+## Removing a Vertex from Multiple Collections
 
-For example, the [city graph](/img/graphs/cities_graph.png) contains several vertex collections - `germanCity` and `frenchCity` and several edge collections -  `french / german / international Highway`.
+In the [City Graph](example-graphs#the-city-graph) example graph, there are several vertex collections - `germanCity` and `frenchCity`, and several edge collections - `frenchHighway`, `germanHighway`, and `internationalHighway`.
 
-![Example Graph2](/img/graphs/cities_graph.png)
+![City Example Graph2](/img/graphs/cities_graph.png)
 
-To delete city **Berlin** all edge collections `french / german / international Highway` have to be considered. The **REMOVE** operation has to be applied on all edge collections with `OPTIONS { ignoreErrors: true }`. Not using this option will stop the query whenever a non existing key should be removed in a collection.
+To delete city **Berlin**, you must consider all edge collections. The `REMOVE` operation should be applied to all edge collections with `OPTIONS { ignoreErrors: true }`. If you don't use this option, then the query will stop whenever it encounters a non-existing key that should be removed from a collection.
 
-```js
+```sql
 LET edgeKeys = (FOR v, e IN 1..1 ANY 'germanCity/Berlin' GRAPH 'routeplanner' RETURN e._key)
 LET r = (FOR key IN edgeKeys REMOVE key IN internationalHighway
         OPTIONS { ignoreErrors: true } REMOVE key IN germanHighway
@@ -53,3 +51,11 @@ LET r = (FOR key IN edgeKeys REMOVE key IN internationalHighway
         OPTIONS { ignoreErrors: true }) 
 REMOVE 'Berlin' IN germanCity
 ```
+
+The query performs the following actions:
+
+- Traverses the graph with a depth of 1 to retrieve the `_key` of all edges connected to **Berlin**.
+- Removes all these edges from the `internationalHighway`, `germanHighway`, and `frenchHighway` collections using the `ignoreErrors` option to avoid stopping the query if a non-existing key is encountered.
+- Removes the vertex **Berlin** from the `germanCity` collection.
+
+After you run the query, Macrometa returns an empty list. If you examine the `routeplanner` graph, then you will see that the vertex and its associated edges have been removed.
