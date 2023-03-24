@@ -3,18 +3,29 @@ title: Example Graphs
 sidebar_position: 5
 ---
 
-Macrometa comes with a set of easily graspable graphs that are used to demonstrate the APIs.
-You can use the `add samples` tab in the `create graph` window in the web interface and use it to create instances of these graphs in your GDN fabric. Once you've created them, you can view them in Macrometa web console.
+Macrometa has several example graphs that you can create and use to explore the GDN graph functionality. When you create an example graph, Macrometa creates the named graph as well as collections loaded with vertex and edge data.
+
+:::note
+With the default "Search Depth" of 2 of the graph viewer, you might not see all edges of some graphs unless you load the full graph.
+:::
+
+## Create Example Graph
+
+To create an example graph:
+
+1. In the Macrometa web console, navigate to **Graphs**.
+2. Click **New Graph**, and then click **Examples**.
+3. Click **Create** next to the graph that you want to create. The graphs are described below.
 
 ## The Knows Graph
 
-A set of persons knowing each other:
+The Knows Graph shows a group of people that know each other.
 
 ![Persons relation Example Graph](/img/graphs/knows_graph.png)
 
-The _knows_ graph consists of one _vertex collection_ `persons` connected via one _edge collection_ `knows`.
-It will contain five persons _Alice_, _Bob_, _Charlie_, _Dave_ and _Eve_.
-We will have the following directed relations:
+The Knows Graph consists of one vertex collection, `persons`, connected via one edge collection, `knows`.
+It contains five persons: _Alice_, _Bob_, _Charlie_, _Dave_ and _Eve_.
+The person records have the following directed relations:
 
 - _Alice_ knows _Bob_
 - _Bob_ knows _Charlie_
@@ -22,52 +33,40 @@ We will have the following directed relations:
 - _Eve_ knows _Alice_
 - _Eve_ knows _Bob_
 
-:::note
-With the default "Search Depth" of 2 of the graph viewer you may not see all edges of this graph.
-:::
-
 ## The Traversal Graph
 
-This graph was designed to demonstrate filters in traversals. It has some labels to filter on it.
+This graph was designed to demonstrate filters in traversals. It has some labels to filter on in it.
 
 ![Traversal Graph](/img/graphs/traversal_graph.png)
 
-The example has all its vertices in the _circles_ collection, and an _edges_ edge collection to connect them.
+The example stores its vertices in the `circles` document collection and the edges in the  `edges` edge collection.
 
-Circles have unique numeric labels. Edges have two boolean attributes (_theFalse_ always being false, _theTruth_ always being true) and a label sorting _B_ - _D_ to the left side, _G_ - _K_ to the right side. Left and right side split into Paths - at _B_ and _G_ which are each direct neighbors of the root-node _A_. Starting from _A_ the graph has a depth of 3 on all its paths.
-
-:::note
-With the default "Search Depth" of 2 of the graph viewer you may not see all nodes of this graph.
-:::
+The circles records have unique numeric labels. The edges have two boolean attributes (_theFalse_ always being false, _theTruth_ always being true) and a label sorting _B_ - _D_ to the left side, _G_ - _K_ to the right side. Left and right side split into paths - at _B_ and _G_ which are each direct neighbors of the root-node _A_. Starting from _A_ the graph has a depth of 3 on all its paths.
 
 ## The MPS Graph
 
-This graph was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries. Therefore the graph is named after the [multiple path search (MPS)](multiple-path-search.md) use case.
+This graph is named after the [multiple path search (MPS)](multiple-path-search.md) use case. It was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries.
+
+The MPS graph consists of vertices in the `mps_verts` collection and edges in the `mps_edges` collection. It is a simple traversal graph with start node _A_ and end node _C_.
 
 ![Mps Graph](/img/graphs/mps_graph.png)
 
-The example graph consists of _vertices_ in the `mps_verts` collection and _edges_ in the `mps_edges` collection. It is a simple traversal graph with start node _A_ and end node _C_.
-
 ## The World Graph
 
-The world country graph structures its nodes like that: world → continent → country → capital. In some cases edge directions aren't forward (therefore it will be displayed disjunct in the graph viewer). It has two ways of creating it. One using the named graph utilities (_worldCountry_), one without (_worldCountryUnManaged_).
+The world country graph structures its nodes: world → continent → country → capital. In some cases, edge directions aren't forward (therefore it will be displayed disjunct in the graph viewer).
 
-It is used to demonstrate raw traversal operations.
+This graph can be used to demonstrate raw traversal operations. The vertices are stored in `worldVertices`, the edges are stored in `worldEdges`.
 
 ![World Example Graph](/img/graphs/world-graph.png)
 
 ## The Social Graph
 
-A set of persons and their relations:
+This graph shows a set of persons and their relations. Female and male person records are stored as vertices in two vertex collections - `female` and `male`. The edges are their connections in the `relation` edge collection.
 
-![World Example Graph](/img/graphs/social-graph.png)
-
-This example has female and male persons as _vertices_ in two _vertex collections_ - `female` and `male`. The _edges_ are their connections in the `relation` _edge collection_.
+![Social Example Graph](/img/graphs/social-graph.png)
 
 ## The City Graph
 
-A set of european cities, and their fictional traveling distances as connections:
+This graph shows a set of european cities, and their fictional traveling distances as connections. The cities as vertices in two vertex collections - `germanCity` and `frenchCity`. The edges are their interconnections in several edge collections: `frenchHighway`, `germanHighway`, and `internationalHighway`.
 
 ![Cities Example Graph](/img/graphs/cities_graph.png)
-
-The example has the cities as _vertices_ in several _vertex collections_ - `germanCity` and `frenchCity`. The _edges_ are their interconnections in several _edge collections_ `french / german / international Highway`.
