@@ -221,8 +221,6 @@ The `SEARCH` operation accepts an options object with the following attributes:
 
 - `collections` (array, _optional_): array of strings with collection names to restrict the search to certain source collections
 
-**Examples**
-
 Given a View with three linked collections `coll1`, `coll2` and `coll3` it is possible to return documents from the first two collections only and ignore the third using the `collections` option:
 
 ```sql
