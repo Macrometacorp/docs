@@ -42,6 +42,8 @@ Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` w
 - `!=`
 - `IN` (array or range), also `NOT IN`
 
+## Limitations
+
 `SEARCH` does not support:
 
 - Alphabetical order
