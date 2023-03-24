@@ -17,6 +17,6 @@ _Traversals_ are queries that explore the relationships between vertices by foll
 
 _Shortest path_ queries help you find the shortest path between two vertices in a graph. They can be used to determine the most direct route or relationship between entities in your graph data. You can also use edge weights to calculate the shortest path based on specific attributes, such as distance or time, making this query type ideal for route optimization, transportation, and similar use cases.
 
-### k Shortest Path
+### K Shortest Path
 
-_k shortest path_ queries find multiple shortest paths between two vertices in a graph, considering different criteria such as edge weights. This type of query is useful when you want to discover alternative routes or relationships between entities that meet specific criteria. For example, you may want to find the top three shortest paths between two locations based on distance or travel time.
+_K shortest path_ queries find multiple shortest paths between two vertices in a graph, considering different criteria such as edge weights. This type of query is useful when you want to discover alternative routes or relationships between entities that meet specific criteria. For example, you may want to find the top three shortest paths between two locations based on distance or travel time.
