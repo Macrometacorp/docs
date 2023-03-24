@@ -43,7 +43,9 @@ First it walks to a direct neighbor of **A**, for example, **B** (note: ordering
 
 ![traversal_graph2](/img/graphs/traversal_graph2.png)
 
-The query saves the state (red circle) and emits the first result **A** → **B** (black box). This also prevents the traverser from getting caught in cycles. Next, it proceeds to a direct neighbor of **B**, such as **E**:
+The query performs a depth-limited depth-first search. The depth limit is specified by `max`.
+
+In this scenario, the query saves the state (red circle) and emits the first result **A** → **B** (black box). This also prevents the traverser from getting caught in cycles. Next, it proceeds to a direct neighbor of **B**, such as **E**:
 
 ![traversal_graph3](/img/graphs/traversal_graph3.png)
 
