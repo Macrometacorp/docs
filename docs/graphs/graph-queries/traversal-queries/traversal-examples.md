@@ -175,7 +175,7 @@ This section demonstrates how to apply filters to traversal queries for more pre
 
 ### Filtering Branches Using Vertex Key or Edge Label
 
-Suppose you want to exclude all vertices connected to **G**. There are several ways to do that.
+There are multiple ways to exclude all vertices connected to **G**.
 
 #### Filter by Vertex Key
 
