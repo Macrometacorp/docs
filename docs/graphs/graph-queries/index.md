@@ -1,23 +1,9 @@
 ---
 sidebar_position: 1
-title: Graphs
+title: Graphs Queries
 ---
 
 Graph queries allow you to perform complex operations on graph data, which consists of vertices and edges representing entities and their relationships. Graph queries enable you to efficiently explore the relationships between entities in your data and extract meaningful insights. You can perform graph queries using [C8QL](../../queries/c8ql/), Macrometa's query language, which provides a powerful and flexible way to interact with your graph data.
-
-## Named Graphs and Anonymous Graphs
-
-In Macrometa GDN, you can work with graphs using either named graphs or anonymous graphs, depending on your needs and preferences.
-
-### Named Graphs
-
-_Named graphs_ are a way to manage and organize graph data in GDN, where Macrometa handles the collections involved in a graph. To create a named graph, you can use the graph module or the web interface. When defining a named graph, you'll need to specify the name of the graph and the vertex and edge collections involved. Named graphs offer a convenient method for managing graph data, as the underlying document and edge collections are handled by Macrometa.
-
-C8QL language constructs for graph querying fully support both named graphs and anonymous graphs. These constructs provide optimizations to ensure the best performance when querying your graph data, regardless of the chosen approach.
-
-### Anonymous Graphs
-
-_Anonymous graphs_, also known as _collection sets_, are another way to work with graphs in GDN. In this approach, you apply graph functions directly on a combination of document and edge collections, without explicitly defining a named graph. This method offers more flexibility and control over the collections involved in a graph and can be useful for ad-hoc graph queries or when working with multiple collections.
 
 ## Graph Query Types
 
