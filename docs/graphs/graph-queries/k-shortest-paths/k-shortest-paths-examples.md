@@ -144,7 +144,7 @@ Using `K_SHORTEST_PATHS`:
 FOR p IN OUTBOUND K_SHORTEST_PATHS 'places/Aberdeen' TO 'places/London'
 GRAPH 'kShortestPathsGraph'
     LIMIT 1
-    RETURN { places: p.vertices[*].label, travelTimes: p.edges[*].travelTime }
+    RETURN { places: p.vertices[*]._key, travelTimes: p.edges[*].travelTime }
 ```
 
 Results:
