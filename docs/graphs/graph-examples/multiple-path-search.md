@@ -1,40 +1,58 @@
 ---
-sidebar_position: 8
-title: Multiple Path Search
+sidebar_position: 20
+title: Multiple Path Search (MPS)
 ---
 
-The shortest path algorithm can only determine one shortest path.
+The shortest path algorithm is designed to find a single shortest path between two vertices. However, in some cases, there might be multiple shortest paths with the same length, and you might want to retrieve all of them.
 
-For example, if this is the full graph (based on the [mps_graph](/img/graphs/mps_graph.png)):
+Consider the following graph based on the [MPS Graph](example-graphs#the-mps-graph) example:
 
-![Example Graph](/img/graphs/mps_graph.png)
+![MPS Example Graph](/img/graphs/mps_graph.png)
 
-then a shortest path query from **A** to **C** may return the path `A -> B -> C` or `A -> D -> C`, but it's undefined which one (not taking edge weights into account here).
+A [shortest path query](../graph-queries/shortest-path) from **A** to **C** might return either `A -> B -> C` or `A -> D -> C`, but it's not guaranteed which one will be returned (ignoring edge weights in this example).
 
-You can use the efficient shortest path algorithm however, to determine the shortest path length:
+## Finding the Shortest Path Length
 
-```js
-    RETURN LENGTH(
-      FOR v IN OUTBOUND
-        SHORTEST_PATH "mps_verts/A" TO "mps_verts/C" mps_edges
-          RETURN v
-    )   
+You can use the following query to determine the shortest path length:
+
+```sql
+RETURN LENGTH(
+  FOR v IN OUTBOUND
+    SHORTEST_PATH "mps_verts/A" TO "mps_verts/C" mps_edges
+      RETURN v
+)   
 ```
 
-The result is 3 for the example graph (includes the start vertex). Now, subtract 1 to get the edge count / traversal depth. 
+For the example graph, the result is `3`, which includes the start vertex. Subtract 1 to get the edge count or traversal depth.
 
-You can run a pattern matching traversal to find all paths with this length (or longer ones by increasing the min and max depth). Starting point is **A** again, and a filter on the document ID of v (or p.vertices[-1]) ensures that we only retrieve paths that end at point **C**.
+## Retrieving All Paths with the Shortest Length
 
-The following query returns all parts with length 2, start vertex **A** and target vertex **C**:
+To find all paths with the determined length, use a pattern matching traversal. Start at vertex **A** and filter the results to only retrieve paths that end at vertex **C**.
 
-```js
-    FOR v, e, p IN 2..2 OUTBOUND "mps_verts/A" mps_edges
-       FILTER v._id == "mps_verts/C"
-         RETURN CONCAT_SEPARATOR(" -> ", p.vertices[*]._key)
+The following query returns all paths with a length of 2, starting at vertex **A** and ending at vertex **C**:
+
+```sql
+FOR v, e, p IN 2..2 OUTBOUND "mps_verts/A" mps_edges
+    FILTER v._id == "mps_verts/C"
+      RETURN CONCAT_SEPARATOR(" -> ", p.vertices[*]._key)
 ```
 
-A traversal depth of `3..3` would return `A -> E -> F -> C` and `2..3` all three paths.
+Result:
 
-:::note
-Two separate queries are required to compute the shortest path length and to do the pattern matching based on the shortest path length (minus 1), because min and max depth can't be expressions (they have to be known in advance, so either be number literals or bind parameters.
-:::
+```json
+[
+	"A -> B -> C",
+	"A -> D -> C"
+]
+```
+
+A traversal depth of `3..3` would return `A -> E -> F -> C` and `2..3` would return all three paths.
+
+## Limitations
+
+To achieve this result, two separate queries are required:
+
+1. First, compute the shortest path length.
+2. Then, based on the shortest path length (minus 1), perform the pattern matching.
+
+This is because the `min` and `max` depth parameters in the traversal query cannot be expressions. They must be known in advance, either as number literals or bind parameters.
