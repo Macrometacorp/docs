@@ -15,7 +15,7 @@ FOR v, e, p IN 1..5 OUTBOUND 'circles/A' GRAPH 'traversalGraph'
     RETURN { vertices: p.vertices[*]._key, edges: p.edges[*].label }
 ```
 
-This query filters all paths where the starting edge (index 0) has the attribute `theTruth` equal to `true`. The resulting paths will be up to five items long
+This query filters all paths where the starting edge (index 0) has the attribute `theTruth` equal to `true`. The resulting paths will be up to five items long.
 
 ## Filtering Vertices on the Path
 
