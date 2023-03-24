@@ -101,7 +101,7 @@ In this section, you'll find examples of K Shortest Paths queries using a named 
 
 ### Comparing SHORTEST_PATH and K_SHORTEST_PATHS with LIMIT 1
 
-The a route from **Aberdeen** to **London** and compare the outputs of `SHORTEST_PATH` and `K_SHORTEST_PATHS` with LIMIT 1. While both should return a path with the same length (or weight), they might not return the same path.
+The route from **Aberdeen** to **London** and compare the outputs of `SHORTEST_PATH` and `K_SHORTEST_PATHS` with LIMIT 1. While both should return a path with the same length (or weight), they might not return the same path.
 
 Using `SHORTEST_PATH`:
 
