@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Search Queries
 ---
 
-You can use the `SEARCH` keyword to filter a query using a search view, providing these features:
+You can use the `SEARCH` keyword to filter a query using a search view, allowing you to:
 
 - Filter documents based on C8QL Boolean expressions and functions.
 - Match documents located in different collections.
