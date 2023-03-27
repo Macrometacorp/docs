@@ -3,34 +3,33 @@ sidebar_position: 40
 title: Search Queries
 ---
 
-The `SEARCH` keyword starts the language construct to filter Views of type Search. Conceptually, a View is just another document data source, similar to an array or a document/edge collection, over which you can iterate using a [FOR operation](../queries/c8ql/operations/for.md) in C8QL:
+You can use the `SEARCH` keyword to filter a query using a search view, allowing you to:
+
+- Filter documents based on C8QL and SQL Boolean expressions and functions.
+- Match documents located in different collections.
+- Sort the result set based on how closely each document matches the search conditions.
+
+Refer to [Search Views](/search/views/index.md) for information about creating a custom search view.
+
+## Syntax
+
+You must use the `SEARCH` statement in a `FOR...IN` operation. The `SEARCH` statement must be placed after the `FOR` and before any additional operations.
 
 ```sql
-FOR doc IN viewName
-  RETURN doc
-```
-
-The optional `SEARCH` operation provides the capabilities to:
-
-- filter documents based on C8QL Boolean expressions and functions
-- match documents located in different collections backed by a fast index
-- sort the result set based on how closely each document matched the search conditions
-
-See [Search Views](../index.md) on how to set up a View.
-
-## General Syntax
-
-The `SEARCH` keyword is followed by an Search filter expressions, which is mostly comprised of calls to Search C8QL functions.
-
-```sql
-FOR doc IN viewName
-  SEARCH expression OPTIONS {…}
+FOR doc IN <SEARCH_VIEW_NAME>
+  SEARCH <EXPRESSION> OPTIONS {…}
   ...
 ```
 
-The `SEARCH` statement, in contrast to `FILTER`, is treated as a part of the `FOR` operation, not as an individual statement. It can not be placed freely in a query nor multiple times in the body of a `FOR` loop. `FOR ... IN` must be followed by the name of a View, not a collection. The `SEARCH` operation has to follow next, other operations before `SEARCH` such as `FILTER`, `COLLECT` etc. are not allowed in this position. Subsequent operations are possible after `SEARCH` and the expression however, including `SORT` to order the search results based on a ranking value computed by the Search View.
+For example:
 
-`expression` must be an Search expression. The full power of Search is harnessed and exposed via special [Search functions](functions.md), during both the search and sort stages. On top of that, common C8QL operators are supported:
+```sql
+FOR doc IN MySearchView
+  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en")
+RETURN doc
+```
+
+Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [operators](functions.md):
 
 - `AND`
 - `OR`
@@ -43,60 +42,42 @@ The `SEARCH` statement, in contrast to `FILTER`, is treated as a part of the `FO
 - `!=`
 - `IN` (array or range), also `NOT IN`
 
-:::warning
-The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against Views will not follow the language rules as per the defined Analyzer locale.
-:::
+## Limitations
 
-```sql
-FOR doc IN viewName
-  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en")
-RETURN doc
-```
+`SEARCH` does not support:
 
-Note that array comparison operators, inline expressions and a few other things are not supported by `SEARCH`. The server will raise a query error in case of an invalid expression.
+- Alphabetical order
+- Array comparison operators
+- In-line expressions
 
-The `OPTIONS` keyword and an object can optionally follow the search expression to set [Search Options](#search-options).
+Refer to [Search Options](#search-options) for information about the `OPTIONS` keyword.
 
-## Handling of non-indexed fields
+## Search by Document Attribute
 
-Document attributes which are not configured to be indexed by a View are treated by `SEARCH` as non-existent. This affects tests against the documents emitted from the View only.
+You can search for documents by querying document attributes that have been indexed by both the search view and the document store. Refer to [Document Store Indexes](../collections/documents/document-store-indexes.md) for more information about adding attributes to document store indexes.
 
+When you search for a document by its attribute, all attributes (including non-indexed ones) return in the results. However, querying a non-indexed attribute yields no results.
 
-For example, given a collection `myCol` with the following documents:
+For example, if you have documents in a collection with these attributes:
 
 ```sql
 { "someAttr": "One", "anotherAttr": "One" }
 { "someAttr": "Two", "anotherAttr": "Two" }
 ```
 
-… with a View where `someAttr` is indexed by the following View `myView`:
+Only the `someAttr` attribute is indexed in the search view and the document store index.
+
+You can run this query to return all attributes for the first document in the collection:
 
 ```sql
-{
-  "type": "search",
-  "links": {
-    "myCol": {
-      "fields": {
-        "someAttr": {}
-      }
-    }
-  }
-}
-```
-
-… a search on `someAttr` yields the following result:
-
-```sql
-FOR doc IN myView
+FOR doc IN MySearchView
   SEARCH doc.someAttr == "One"
   RETURN doc
 ```
 
-```json
-[ { "someAttr": "One", "anotherAttr": "One" } ]
-```
+The result displays all attributes for the first document, including the non-indexed `anotherAttr`.
 
-A search on `anotherAttr` yields an empty result because only `someAttr` is indexed by the View:
+Alternatively, if you query by the non-indexed `anotherAttr` attribute, the search yields no results:
 
 ```sql
 FOR doc IN myView
@@ -104,17 +85,15 @@ FOR doc IN myView
   RETURN doc
 ```
 
-```json
-[]
-```
+You can use the `includeAllFields` [View property](/search/views/optional-properties.md) to index all fields and subfields of the source documents.
 
-You can use the special `includeAllFields` [View property](/search/views/optional-properties.md) to index all (sub-)fields of the source documents if desired.
+## Search for Array Elements
 
-## Arrays and trackListPositions
+You can search for individual array elements if your search view has the [trackListPositions](/search/views/optional-properties.md) setting set to `false` (default).
 
-Array elements are indexed individually and can be searched for as if the attribute had each single value at the same time. They behave like a _disjunctive superposition_ of their values as long as the [**trackListPositions**](/search/views/optional-properties.md) View setting is `false` (default).
+Therefore, array comparison operators such as `ALL IN` or `ANY ==` are unnecessary. 
 
-Therefore, array comparison operators such as `ALL IN` or `ANY ==` aren't really necessary. Consider the following document:
+In the following document, the values `1`, `2,` and `3` are indexed and individually searchable.
 
 ```json
 {
@@ -188,7 +167,7 @@ ANALYZER(doc.text[2] == 'jump', "text_en")
 
 ## SEARCH with SORT
 
-The documents emitted from a View can be sorted by attribute values with the standard [SORT() operation](../queries/c8ql/operations/sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
+The documents emitted from a search view can be sorted by attribute values with the standard [SORT() operation](../queries/c8ql/operations/sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
 
 ```sql
 FOR doc IN viewName
@@ -221,9 +200,7 @@ The `SEARCH` operation accepts an options object with the following attributes:
 
 - `collections` (array, _optional_): array of strings with collection names to restrict the search to certain source collections
 
-**Examples**
-
-Given a View with three linked collections `coll1`, `coll2` and `coll3` it is possible to return documents from the first two collections only and ignore the third using the `collections` option:
+Given a search view with three linked collections (`coll1`, `coll2`, and `coll3`), you can return documents from the first two collections only and ignore the third using the `collections` option:
 
 ```sql
 FOR doc IN viewName
