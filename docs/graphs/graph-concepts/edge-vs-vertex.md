@@ -23,6 +23,12 @@ Edges could also be between connections between customers and products, where ea
 
 If you use documents and their attributes in a sentence, nouns would typically be vertices, and verbs the edges.
 
+Edges have a direction, with their relations `_from` and `_to` pointing from one document to another document stored in vertex collections. In queries you can define in which directions the edge relations may be followed i.e.,
+
+- OUTBOUND: `_from` → `_to`
+- INBOUND: `_from` ← `_to`
+- ANY: `_from` ↔ `_to`
+
 ## Advantages of this Approach
 
 Graphs give you the advantage of not just being able to have a fixed number of m:n relations in a row, but an arbitrary number. Edges can be traversed in both directions (outbound and inbound), making it easy to determine all groups a user is in, but also to find out which members a certain group has. Users could also be interconnected to create a social network.
