@@ -20,13 +20,13 @@ The C8DB dashboard contains telemetry and metrics for the Macrometa database ser
 
                 - GeoFabric (Child of Admin/User)
 
-- ### Federation
+### Federation
 
-    - **Definition -** A Grafana variable containing the names of each federation instance in Prometheus. The names correspond to the names assigned during GDN creation. 
-    - **Usage -** Specify the federation metrics currently viewed on the C8DB dashboard.
-    - **Threshold -** N/A
+- **Definition -** A Grafana variable containing the names of each federation instance in Prometheus. The names correspond to the names assigned during GDN creation. 
+- **Usage -** Specify the federation metrics currently viewed on the C8DB dashboard.
+- **Threshold -** N/A
     
-- ### Cluster
+### Cluster
     
     - **Definition -** A Grafana variable containing the regions in the selected federation instance. 
     - **Usage -** Specify the region metrics currently viewed on the C8DB dashboard. This is most frequently used to select a specific node within a federation. Regions can contain more than one node.
