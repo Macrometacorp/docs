@@ -38,7 +38,7 @@
     
     Alerts: N/A
     
-    ![Screenshot from 2023-03-24 15-14-46.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-14-46.png)
+    ![Screenshot from 2023-03-24 15-14-46.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-14-46.png)
     
     Sys Load (1m Avg): 
     
@@ -48,7 +48,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 15-15-27.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-15-27.png)
+    ![Screenshot from 2023-03-24 15-15-27.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-15-27.png)
     
     Sys Load (5m Avg): 
     
@@ -58,7 +58,7 @@
     
     Alerts: N/A
     
-    ![Screenshot from 2023-03-24 15-20-58.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-20-58.png)
+    ![Screenshot from 2023-03-24 15-20-58.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-20-58.png)
     
     Sys Load (15m Avg): 
     
@@ -68,7 +68,7 @@
     
     Alerts: N/A
     
-    ![Screenshot from 2023-03-24 15-21-06.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-21-06.png)
+    ![Screenshot from 2023-03-24 15-21-06.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-21-06.png)
     
     RAM Used: 
     
@@ -78,7 +78,7 @@
     
     Alerts: Not define yet
     
-    ![Screenshot from 2023-03-24 15-21-13.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-21-13.png)
+    ![Screenshot from 2023-03-24 15-21-13.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-21-13.png)
     
     Root FS Used: 
     
@@ -88,7 +88,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 15-42-18.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-42-18.png)
+    ![Screenshot from 2023-03-24 15-42-18.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-42-18.png)
     
     CPU Cores: 
     
@@ -98,7 +98,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 15-42-53.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-42-53.png)
+    ![Screenshot from 2023-03-24 15-42-53.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-42-53.png)
     
     Uptime: 
     
@@ -108,7 +108,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 15-44-03.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-44-03.png)
+    ![Screenshot from 2023-03-24 15-44-03.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-44-03.png)
     
     RootFS Total: 
     
@@ -118,7 +118,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 15-43-00.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-43-00.png)
+    ![Screenshot from 2023-03-24 15-43-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-43-00.png)
     
     RAM Total: 
     
@@ -128,7 +128,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 16-12-28.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_16-12-28.png)
+    ![Screenshot from 2023-03-24 16-12-28.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-12-28.png)
     
     SWAP Total: 
     
@@ -138,7 +138,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 16-12-53.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_16-12-53.png)
+    ![Screenshot from 2023-03-24 16-12-53.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-12-53.png)
     
 - Basic CPU/Mem/Net/Disk
     
@@ -150,7 +150,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 16-20-59.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_16-20-59.png)
+    ![Screenshot from 2023-03-24 16-20-59.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-20-59.png)
     
     Memory Basic: 
     
@@ -160,7 +160,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 16-21-25.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_16-21-25.png)
+    ![Screenshot from 2023-03-24 16-21-25.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-21-25.png)
     
     Network Traffic Basic: 
     
@@ -170,7 +170,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 16-22-11.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_16-22-11.png)
+    ![Screenshot from 2023-03-24 16-22-11.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-22-11.png)
     
     Disk Space Used Basic: 
     
@@ -180,7 +180,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 16-22-39.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_16-22-39.png)
+    ![Screenshot from 2023-03-24 16-22-39.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-22-39.png)
     
 - CPU/Memory/Net/Disk
     
@@ -192,7 +192,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 19-16-47.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-16-47.png)
+    ![Screenshot from 2023-03-24 19-16-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-16-47.png)
     
     Memory Stack: 
     
@@ -202,7 +202,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 19-16-32.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-16-32.png)
+    ![Screenshot from 2023-03-24 19-16-32.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-16-32.png)
     
     Network Traffic: 
     
@@ -212,7 +212,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 19-15-54.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-15-54.png)
+    ![Screenshot from 2023-03-24 19-15-54.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-15-54.png)
     
     Disk Space Used: 
     
@@ -222,7 +222,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 19-15-25.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-15-25.png)
+    ![Screenshot from 2023-03-24 19-15-25.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-15-25.png)
     
     Disk IOps: 
     
@@ -232,7 +232,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 19-15-02.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-15-02.png)
+    ![Screenshot from 2023-03-24 19-15-02.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-15-02.png)
     
     I/O Usage Read / Write: 
     
@@ -242,7 +242,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 19-14-27.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-14-27.png)
+    ![Screenshot from 2023-03-24 19-14-27.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-14-27.png)
     
     I/O Usage Times: 
     
@@ -252,7 +252,7 @@
     
     Alerts:
     
-    ![Screenshot from 2023-03-24 19-13-47.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-13-47.png)
+    ![Screenshot from 2023-03-24 19-13-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-13-47.png)
     
 - Memory Meminfo
     
@@ -266,7 +266,7 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-46-01.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-46-01.png)
+        ![Screenshot from 2023-03-24 18-46-01.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-46-01.png)
         
     
     Memory Committed: 
@@ -275,98 +275,98 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-46-47.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-46-47.png)
+        ![Screenshot from 2023-03-24 18-46-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-46-47.png)
         
     
     Memory Active / Inactive Detail: Show the currently in-use and memory that can be reclaim by the system
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-47-22.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-47-22.png)
+        ![Screenshot from 2023-03-24 18-47-22.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-47-22.png)
         
     
     Memory Writeback and Dirty: Show the memory that in-use that will be flush to disk when possible.
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-48-22.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-48-22.png)
+        ![Screenshot from 2023-03-24 18-48-22.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-48-22.png)
         
     
     Memory Shared and Mapped: Memory information field Mapped_bytes/ Shmem_bytes/ MemAvailable_bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-50-33.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-50-33.png)
+        ![Screenshot from 2023-03-24 18-50-33.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-50-33.png)
         
     
     Memory Slab: Show the allocated memory where the kernel object are being store.
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-51-30.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-51-30.png)
+        ![Screenshot from 2023-03-24 18-51-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-51-30.png)
         
     
     Memory Vmalloc: Memory information field VmallocChunk_bytes/ VmallocTotal_bytes/ VmallocUsed_bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-57-24.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-57-24.png)
+        ![Screenshot from 2023-03-24 18-57-24.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-57-24.png)
         
     
     Memory Bounce: Memory information field Bounce_bytes.
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-59-07.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-59-07.png)
+        ![Screenshot from 2023-03-24 18-59-07.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-59-07.png)
         
     
     Memory Anonymous: Memory information field AnonHugePages_bytes/ AnonPages_bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 19-01-41.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-01-41.png)
+        ![Screenshot from 2023-03-24 19-01-41.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-01-41.png)
         
     
     Memory Kernel / CPU: Memory information field KernelStack_bytes/ Percpu_bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 19-09-35.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-09-35.png)
+        ![Screenshot from 2023-03-24 19-09-35.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-09-35.png)
         
     
     Memory HugePages Counter: Memory information field HugePages_Free/ HugePages_Reserved
     
     - Image
         
-        ![Screenshot from 2023-03-24 19-10-20.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-10-20.png)
+        ![Screenshot from 2023-03-24 19-10-20.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-10-20.png)
         
     
     Memory HugePages Size: Memory information field HugePages_Total/ Hugepagesize_bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 19-11-06.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-11-06.png)
+        ![Screenshot from 2023-03-24 19-11-06.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-11-06.png)
         
     
     Memory DirectMap: Memory information field DirectMap1G_bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 19-11-50.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-11-50.png)
+        ![Screenshot from 2023-03-24 19-11-50.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-11-50.png)
         
     
     Memory Unevictable and MLocked: Memory information field Unevictable_bytes/ Mlocked_bytes.
     
     - Image
         
-        ![Screenshot from 2023-03-24 19-12-24.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-12-24.png)
+        ![Screenshot from 2023-03-24 19-12-24.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-12-24.png)
         
     
     Memory NFS: Memory information field NFS_Unstable_bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 19-12-52.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_19-12-52.png)
+        ![Screenshot from 2023-03-24 19-12-52.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-12-52.png)
         
 - Memory Vmstat
     
@@ -374,28 +374,28 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 14-57-12.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_14-57-12.png)
+        ![Screenshot from 2023-03-24 14-57-12.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_14-57-12.png)
         
     
     Memory Pages Swap In / Out: Show the amount of paging activity in the node swap
     
     - Image
         
-        ![Screenshot from 2023-03-24 14-57-57.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_14-57-57.png)
+        ![Screenshot from 2023-03-24 14-57-57.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_14-57-57.png)
         
     
     Memory Page Faults: Show the node is under heavy memory pressure.
     
     - Image
         
-        ![Screenshot from 2023-03-24 14-58-28.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_14-58-28.png)
+        ![Screenshot from 2023-03-24 14-58-28.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_14-58-28.png)
         
     
     OOM Killer: Host Out of memory killer detected
     
     - Image
         
-        ![Screenshot from 2023-03-24 14-59-30.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_14-59-30.png)
+        ![Screenshot from 2023-03-24 14-59-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_14-59-30.png)
         
 - System Timesync
     
@@ -403,28 +403,28 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 15-01-32.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-01-32.png)
+        ![Screenshot from 2023-03-24 15-01-32.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-01-32.png)
         
     
     Time PLL Adjust: Phase-locked loop time constant.
     
     - Image
         
-        ![Screenshot from 2023-03-24 15-02-48.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-02-48.png)
+        ![Screenshot from 2023-03-24 15-02-48.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-02-48.png)
         
     
     Time Synchronized Status: The status synchronized of the clock/ Local clock adjustment
     
     - Image
         
-        ![Screenshot from 2023-03-24 15-03-25.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-03-25.png)
+        ![Screenshot from 2023-03-24 15-03-25.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-03-25.png)
         
     
     Time Misc: Seconds between clock ticks
     
     - Image
         
-        ![Screenshot from 2023-03-24 15-04-00.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_15-04-00.png)
+        ![Screenshot from 2023-03-24 15-04-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-04-00.png)
         
 - System Processes
     
@@ -432,7 +432,7 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-31-00.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-31-00.png)
+        ![Screenshot from 2023-03-24 18-31-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-31-00.png)
         
     
     Processes State: Number of processes in each state
@@ -441,14 +441,14 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-27-50.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-27-50.png)
+        ![Screenshot from 2023-03-24 18-27-50.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-27-50.png)
         
     
     Processes Memory: memory size in bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-29-12.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-29-12.png)
+        ![Screenshot from 2023-03-24 18-29-12.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-29-12.png)
         
     
     PIDs Number and Limit: Process ID limit
@@ -463,14 +463,14 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-45-34.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-45-34.png)
+        ![Screenshot from 2023-03-24 17-45-34.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-45-34.png)
         
     
     System Load: 1m, 5m, 15m load average
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-46-30.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-46-30.png)
+        ![Screenshot from 2023-03-24 17-46-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-46-30.png)
         
     
     Interrupts Detail: Show the total number of interruptions
@@ -481,21 +481,21 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-48-00.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-48-00.png)
+        ![Screenshot from 2023-03-24 17-48-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-48-00.png)
         
     
     CPU time spent in user and system contexts: Total user and system CPU time spent in seconds.
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-49-00.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-49-00.png)
+        ![Screenshot from 2023-03-24 17-49-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-49-00.png)
         
     
     File Descriptors: Maximum/ Current number of open file descriptors.
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-49-50.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-49-50.png)
+        ![Screenshot from 2023-03-24 17-49-50.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-49-50.png)
         
 - Hardware Misc
     
@@ -517,56 +517,56 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-17-11.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-17-11.png)
+        ![Screenshot from 2023-03-24 17-17-11.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-17-11.png)
         
     
     Disk R/W Data: Show in detail the amount of data read/ writes per second
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-18-00.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-18-00.png)
+        ![Screenshot from 2023-03-24 17-18-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-18-00.png)
         
     
     Disk R/W Time: Show in detail the time taken to read/ write data to the disk
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-18-40.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-18-40.png)
+        ![Screenshot from 2023-03-24 17-18-40.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-18-40.png)
         
     
     Disk IOs Weighted:  Show the number of seconds spent doing I/Os
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-20-34.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-20-34.png)
+        ![Screenshot from 2023-03-24 17-20-34.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-20-34.png)
         
     
     Disk R/W Merged: Show the total number of Read/ Write merge.
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-21-24.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-21-24.png)
+        ![Screenshot from 2023-03-24 17-21-24.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-21-24.png)
         
     
     Time Spent Doing I/Os: Total seconds spent doing I/Os
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-22-13.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-22-13.png)
+        ![Screenshot from 2023-03-24 17-22-13.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-22-13.png)
         
     
     Disk IOs Current in Progress: The number of I/Os currently in progress.
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-23-43.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-23-43.png)
+        ![Screenshot from 2023-03-24 17-23-43.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-23-43.png)
         
     
     Disk Iops Discards completed/merged: The total number of discards completed/merge successfully
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-31-33.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-31-33.png)
+        ![Screenshot from 2023-03-24 17-31-33.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-31-33.png)
         
 - Storage Filesystem
     
@@ -574,37 +574,37 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 06-12-08.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_06-12-08.png)
+        ![Screenshot from 2023-03-24 06-12-08.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-12-08.png)
         
-        ![Screenshot from 2023-03-24 06-11-11.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_06-11-11.png)
+        ![Screenshot from 2023-03-24 06-11-11.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-11-11.png)
         
     
     File Nodes Free: Filesystem total free file nodes
     
     - Image
         
-        ![Screenshot from 2023-03-24 06-08-13.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_06-08-13.png)
+        ![Screenshot from 2023-03-24 06-08-13.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-08-13.png)
         
     
     File Descriptor: File descriptor statistics: maximum / allocated
     
     - Image
         
-        ![Screenshot from 2023-03-24 06-07-22.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_06-07-22.png)
+        ![Screenshot from 2023-03-24 06-07-22.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-07-22.png)
         
     
     File Nodes Size: Filesystem total file nodes
     
     - Image
         
-        ![Screenshot from 2023-03-24 06-06-42.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_06-06-42.png)
+        ![Screenshot from 2023-03-24 06-06-42.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-06-42.png)
         
     
     Filesystem in ReadOnly/Error: Filesystem read-only status / Error getting statistics for the given device.
     
     - Image
         
-        ![Screenshot from 2023-03-24 06-05-35.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_06-05-35.png)
+        ![Screenshot from 2023-03-24 06-05-35.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-05-35.png)
         
 - Network Traffic
     
@@ -612,98 +612,98 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-53-17.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-53-17.png)
+        ![Screenshot from 2023-03-24 17-53-17.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-53-17.png)
         
     
     Network Traffic Errors: Network device statistic receive_errs/ transmit_errs
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-54-05.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-54-05.png)
+        ![Screenshot from 2023-03-24 17-54-05.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-54-05.png)
         
     
     Network Traffic Drop: Network device statistic receive_drop/ transmit_drop
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-54-44.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-54-44.png)
+        ![Screenshot from 2023-03-24 17-54-44.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-54-44.png)
         
     
     Network Traffic Compressed: Network device statistic receive/transmit compressed
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-55-27.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-55-27.png)
+        ![Screenshot from 2023-03-24 17-55-27.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-55-27.png)
         
     
     Network Traffic Multicast: Network device statistic receive_multicast
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-57-03.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-57-03.png)
+        ![Screenshot from 2023-03-24 17-57-03.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-57-03.png)
         
     
     Network Traffic Fifo: Network device statistic receive_fifo/transmit_fifo
     
     - Image
         
-        ![Screenshot from 2023-03-24 17-58-57.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_17-58-57.png)
+        ![Screenshot from 2023-03-24 17-58-57.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-58-57.png)
         
     
     Network Traffic Frame: Network device statistic receive_frame
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-10-43.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-10-43.png)
+        ![Screenshot from 2023-03-24 18-10-43.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-10-43.png)
         
     
     Network Traffic Carrier: Network device statistic transmit_carrier
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-11-25.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-11-25.png)
+        ![Screenshot from 2023-03-24 18-11-25.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-11-25.png)
         
     
     Network Traffic Colls: Network device statistic transmit_colls
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-13-30.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-13-30.png)
+        ![Screenshot from 2023-03-24 18-13-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-13-30.png)
         
     
     NF Contrack: Number of currently allocated flow entries for connection tracking/ Maximum size of connection tracking table
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-21-40.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-21-40.png)
+        ![Screenshot from 2023-03-24 18-21-40.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-21-40.png)
         
     
     ARP Entries: ARP entries by device
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-22-07.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-22-07.png)
+        ![Screenshot from 2023-03-24 18-22-07.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-22-07.png)
         
     
     MTU: Node network mtu bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-22-32.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-22-32.png)
+        ![Screenshot from 2023-03-24 18-22-32.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-22-32.png)
         
     
     Spped: Node network interface speed bytes
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-22-53.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-22-53.png)
+        ![Screenshot from 2023-03-24 18-22-53.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-22-53.png)
         
     
     Queue Length: Node network device transmit queue length
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-23-17.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-23-17.png)
+        ![Screenshot from 2023-03-24 18-23-17.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-23-17.png)
         
     
     Softnet Packets: Number of processed / dropped packets
@@ -714,7 +714,7 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 18-23-47.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_18-23-47.png)
+        ![Screenshot from 2023-03-24 18-23-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-23-47.png)
         
 - Network Sockstat
     
@@ -722,35 +722,35 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 05-37-01.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_05-37-01.png)
+        ![Screenshot from 2023-03-24 05-37-01.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-37-01.png)
         
     
     Sockstat UDP: Number of UDP sockets in state inuse
     
     - Image
         
-        ![Screenshot from 2023-03-24 05-36-14.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_05-36-14.png)
+        ![Screenshot from 2023-03-24 05-36-14.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-36-14.png)
         
     
     Sockstat Used: Number of IPv4 sockets in use
     
     - Image
         
-        ![Screenshot from 2023-03-24 05-35-21.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_05-35-21.png)
+        ![Screenshot from 2023-03-24 05-35-21.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-35-21.png)
         
     
     Sockstat Memory Size: Number of TCP/ UDP sockets in state mem_bytes.
     
     - Image
         
-        ![Screenshot from 2023-03-24 05-33-44.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_05-33-44.png)
+        ![Screenshot from 2023-03-24 05-33-44.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-33-44.png)
         
     
     Sockstat FRAG/RAW: Number of FRAG sockets in state inuse / memory.
     
     - Image
         
-        ![Screenshot from 2023-03-24 05-32-41.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_05-32-41.png)
+        ![Screenshot from 2023-03-24 05-32-41.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-32-41.png)
         
 - Network Netstat
     
@@ -758,77 +758,77 @@
     
     - Image
         
-        ![Screenshot from 2023-03-24 05-31-03.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_05-31-03.png)
+        ![Screenshot from 2023-03-24 05-31-03.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-31-03.png)
         
     
     Netstat IP Forwarding: Show the Ip traffic that has been forwarding from the server.
     
     - Image
         
-        ![Screenshot from 2023-03-24 05-30-01.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_05-30-01.png)
+        ![Screenshot from 2023-03-24 05-30-01.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-30-01.png)
         
     
     ICMP In/Out: Incoming / Outgoing ICMP traffic
     
     - Image
         
-        ![Screenshot from 2023-03-24 05-28-34.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_05-28-34.png)
+        ![Screenshot from 2023-03-24 05-28-34.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-28-34.png)
         
     
     ICMP Errors: ICMP error packages
     
     - Image
         
-        ![Screenshot from 2023-03-24 00-18-02.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_00-18-02.png)
+        ![Screenshot from 2023-03-24 00-18-02.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_00-18-02.png)
         
     
     UDP In/Out: Incoming / Outgoing UDP packages.
     
     - Image
         
-        ![Screenshot from 2023-03-24 00-15-33.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_00-15-33.png)
+        ![Screenshot from 2023-03-24 00-15-33.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_00-15-33.png)
         
     
     UDP Errors: UDP packages errors
     
     - Image
         
-        ![Screenshot from 2023-03-24 00-11-31.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_00-11-31.png)
+        ![Screenshot from 2023-03-24 00-11-31.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_00-11-31.png)
         
     
     TCP In/Out: Incoming / Outgoing TCP packages
     
     - Image
         
-        ![Screenshot from 2023-03-24 00-00-06.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-24_00-00-06.png)
+        ![Screenshot from 2023-03-24 00-00-06.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_00-00-06.png)
         
     
     TCP Errors: TCP packages drops during transmition
     
     - Image
         
-        ![Screenshot from 2023-03-23 23-59-23.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-23_23-59-23.png)
+        ![Screenshot from 2023-03-23 23-59-23.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-59-23.png)
         
     
     TCP Connections: Open  TCP connections
     
     - Image
         
-        ![Screenshot from 2023-03-23 23-51-47.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-23_23-51-47.png)
+        ![Screenshot from 2023-03-23 23-51-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-51-47.png)
         
     
     TCP SynCookie: Show TCP Syncookies status
     
     - Image
         
-        ![Screenshot from 2023-03-23 23-47-30.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-23_23-47-30.png)
+        ![Screenshot from 2023-03-23 23-47-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-47-30.png)
         
     
     TCP Direct Transition: Current TCP connections
     
     - Image
         
-        ![Screenshot from 2023-03-23 23-46-34.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-23_23-46-34.png)
+        ![Screenshot from 2023-03-23 23-46-34.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-46-34.png)
         
 - Node Exporter
     
@@ -836,11 +836,13 @@
     
     - Image
         
-        ![Screenshot from 2023-03-23 23-07-41.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-23_23-07-41.png)
+        ![Screenshot from 2023-03-23 23-07-41.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-07-41.png)
         
     
     Node Exporter Scrape: Display the status of all the Prometheus scrape runs.
     
     - Image
         
-        ![Screenshot from 2023-03-23 23-09-14.png](Prometheus%20Node%20Exporter%20Full%20(System%20Health)%206d7432afdf0f4353857d4d757c5f478c/Screenshot_from_2023-03-23_23-09-14.png)
+        ![Screenshot from 2023-03-23 23-09-14.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-09-14.png)
+
+        
