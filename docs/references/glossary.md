@@ -97,9 +97,9 @@ The GeoFabric name is a string consisting of letters, digits, and `-` (dash) cha
 
 Replication of messages and documents across Macrometa GDN [clusters](#cluster), potentially in different datacenters or geographical regions.
 
-## graph, anonymous
+## graph, collection sets
 
-You can use edge collections with vertex collections without the graph management facilities. However, graph consistency is not enforced. If you remove vertices, you have to manually verify that edges pointing to this vertex are removed. Anonymous graphs cannot be viewed using graph viewer in the Web interface. Anonymous graphs might be faster in some scenarios.
+You can use edge collections with vertex collections without the graph management facilities. However, graph consistency is not enforced. If you remove vertices, you have to manually verify that edges pointing to this vertex are removed. Collection sets cannot be viewed using graph viewer in the web console. Collection sets might be faster in some scenarios.
 
 ## graph, general
 
