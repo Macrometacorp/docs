@@ -3,17 +3,15 @@ sidebar_position: 30
 title: Shortest Path Examples
 ---
 
-## Examples
-
 These examples are based on the [Traversal Graph](../../graph-examples/example-graphs.md#the-traversal-graph). Create a graph based on the example graph to follow along.
 
 ![traversal graph](/img/graphs/traversal_graph.png)
 
-### Shortest Path Example
+## Shortest Path Example
 
 You can query the shortest path from **A** to **D** using either the named graph syntax or the collection sets syntax. The results are identical. For information about running queries, refer to [Running Queries](../../../queries/running-queries).
 
-#### Named Graph
+### Named Graph
 
 ```sql
 FOR v, e IN OUTBOUND SHORTEST_PATH 'circles/A' TO 'circles/D' GRAPH 'traversalGraph' 
@@ -24,7 +22,7 @@ This query uses the named graph `'traversalGraph'` and the `OUTBOUND` keyword to
 
 The `RETURN` statement returns an array containing the `_key` attributes of both the vertex (`v._key`) and the edge (`e._key`) of each step along the path. Because this query is using a named graph, the edge collections are inferred from the graph and do not need to be specified explicitly.
 
-#### Collection Sets
+### Collection Sets
 
 ```sql
 FOR v, e IN OUTBOUND SHORTEST_PATH 'circles/A' TO 'circles/D' edges 
@@ -35,11 +33,11 @@ This query specifies the edge collection to traverse (`edges`). The `OUTBOUND` k
 
 The `RETURN` statement returns an array containing the `_key` attributes of both the vertex (`v._key`) and the edge (`e._key`) of each step along the path.
 
-### Traverse Mixed Directions Example
+## Traverse Mixed Directions Example
 
 You can also compute shortest paths based on documents found in collections. You can use either the named graph syntax or the collection sets syntax, the results are identical. For information about running queries, refer to [Running Queries](../../../queries/running-queries).
 
-#### Named Graph
+### Named Graph
 
 ```sql
 FOR a IN circles FILTER a._key == 'A' 
@@ -54,7 +52,7 @@ This query uses a named graph. It first filters the vertex with the key `'A'` fr
 
 The `RETURN` statement returns an array containing the `_key` attributes of both the vertex (`v._key`) and the edge (`e._key`) of each step along the path.
 
-#### Collection Sets
+### Collection Sets
 
 ```sql
 FOR a IN circles FILTER a._key == 'A' 
@@ -68,7 +66,7 @@ This query uses a collection set instead of a named graph. It first filters the 
 
 The `RETURN` statement returns an array containing the `_key` attributes of both the vertex (`v._key`) and the edge (`e._key`) of each step along the path.
 
-### Results
+## Results
 
 Your results will be similar to the following. They will not be identical, because the edges of the Traversal Graph in the Example Graphs are created with randomly assigned `_KEY` values.
 
