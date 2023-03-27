@@ -71,27 +71,14 @@ For more information about creating collections, refer to [Collections](../../co
 
 ### Adding Indexes
 
-After creating these collections and inserting sample data, indexes can be added to optimize query performance:
+After creating these collections and inserting sample data, indexes can be added to optimize query performance.
 
-#### Email Index
+For more information on adding indexes, refer to [Working with Indexes](../../collections/indexing/working-with-indexes) or the [gdnsl index](../../cli/indexes-cli) command.
 
-A "hash" index on the email attribute in the users collection could be added:
+Add the following indexes:
 
-```sql
-CREATE INDEX email_index ON users (email) TYPE hash
-```
-
-This index would speed up queries that filter users based on their email addresses.
-
-#### _from Index
-
-A "hash" index on the `_from` attribute in the `relations` collection could be added:
-
-```sql
-CREATE INDEX from_index ON relations (_from) TYPE hash
-```
-
-This index would optimize queries that involve traversing edges based on their starting vertices.
+- **email_index**: A "hash" index on the `email` attribute in the `users` collection. This index would speed up queries that filter users based on their email addresses.
+- **from_index**: A "hash" index on the `_from` attribute in the `relations` collection. This index would optimize queries that involve traversing edges based on their starting vertices.
 
 ### Running the Query
 
