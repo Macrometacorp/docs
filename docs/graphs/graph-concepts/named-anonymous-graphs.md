@@ -21,6 +21,8 @@ Using named graphs simplifies the process of working with graph data because it 
 
 _Anonymous graphs_, also known as _collection sets_, are another way to work with graphs in GDN. In this approach, you apply graph functions directly on a combination of document and edge collections, without explicitly defining a named graph. This method offers more flexibility and control over the collections involved in a graph and can be useful for ad-hoc graph queries or when working with multiple collections.
 
+Anonymous graphs don’t have edge definitions describing which vertex collection is connected by which edge collection. The graph model has to be maintained in the client-side code. This gives you more freedom than the strict named graphs
+
 With anonymous graphs, you have the freedom to mix and match collections as needed, making it easier to perform complex queries across various datasets. However, this approach requires a deeper understanding of the underlying collections and their relationships.
 
 ## Which One to Use
