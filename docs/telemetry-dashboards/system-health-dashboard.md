@@ -1,692 +1,870 @@
-# Prometheus Node Exporter Full (System Health)
+# System Health Dashboard
 
-### Overview:
+## Overview:
 
-[Grafana Link](https://telemetry-paas.mm.macrometa.io/d/rYdddlPWk/linux-os-prometheus-node-exporter-full?orgId=1&refresh=1m)
+The System Health Dashboard provides telemetry and metrics for
 
-- Data Source
+<!-- [Grafana Link](https://telemetry-paas.mm.macrometa.io/d/rYdddlPWk/linux-os-prometheus-node-exporter-full?orgId=1&refresh=1m) -->
+
+- ### Data Source
     
-    Definition: A collection of data used for visualizations.
+    - Definition: A collection of data used for visualizations.
     
-    Usage: Storage information
+    - Usage: Storage information
     
-    Alerts: N/A
+    - Alerts: N/A
     
-- Job
+- ### Job
     
-    Definition: The name of the Prometheus task used to fetch server metrics.
+    - Definition: The name of the Prometheus task used to fetch server metrics.
     
-    Usage: Define the task that Prometheus will run in order to collect the metrics.
+    - Usage: Define the task that Prometheus will run in order to collect the metrics.
     
-    Alerts: N/A
+    - Alerts: N/A
     
-- Host
+- ### Host
     
-    Definition: This displays the name of the host whose metrics are currently being shown.
+    - Definition: This displays the name of the host whose metrics are currently being shown.
     
-    Usage: Show the nodes of the server that are being monitored.
+    - Usage: Show the nodes of the server that are being monitored.
     
-    Alerts: N/A
+    - Alerts: N/A
     
-- Quick CPU/Mem/Disk
+## Quick CPU/Mem/Disk
     
-    CPU Busy: 
+- ### CPU Busy
     
-    Definition: Show the current CPU usage on the selected host.
+    - Definition: Show the current CPU - Usage on the selected host.
     
-    Usage: Quick display of server CPU resources that are in use.
+    - Usage: Quick display of server CPU resources that are in use.
     
-    Alerts: N/A
+    - Alerts: N/A
     
-    ![Screenshot from 2023-03-24 15-14-46.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-14-46.png)
+    ![Screenshot from 2023-03-24 15-14-46.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-14-46.png)
     
-    Sys Load (1m Avg): 
+- ### Sys Load (1m Avg): 
     
-    Definition: Displays the average system load for the past 1 minute..
+    - Definition: Displays the average system load for the past 1 minute.
     
-    Usage: Quick server load display of the past 1 minute
+    - Usage: Quick server load display of the past 1 minute
     
-    Alerts:
+    - Alerts:
     
-    ![Screenshot from 2023-03-24 15-15-27.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-15-27.png)
+    ![Screenshot from 2023-03-24 15-15-27.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-15-27.png)
     
-    Sys Load (5m Avg): 
+- ### Sys Load (5m Avg): 
     
-    Definition: Shows the average system load for the past 5 minutes.
+    - Definition: Shows the average system load for the past 5 minutes.
     
-    Usage: Quick server load display for the past 5 minutes
+    - Usage: Quick server load display for the past 5 minutes
     
-    Alerts: N/A
+    - Alerts: N/A
     
-    ![Screenshot from 2023-03-24 15-20-58.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-20-58.png)
+    ![Screenshot from 2023-03-24 15-20-58.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-20-58.png)
     
-    Sys Load (15m Avg): 
+- ### Sys Load (15m Avg): 
     
-    Definition: Displays the average system load for the past 15 minutes..
+    - Definition: Displays the average system load for the past 15 minutes.
     
-    Usage: Quick server load display of the past 15 minute
+    - Usage: Quick server load display of the past 15 minute
     
-    Alerts: N/A
+    - Alerts: N/A
     
-    ![Screenshot from 2023-03-24 15-21-06.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-21-06.png)
+    ![Screenshot from 2023-03-24 15-21-06.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-21-06.png)
     
-    RAM Used: 
+- ### RAM Used: 
     
-    Definition: Display the percentage of RAM currently in use.
+    - Definition: Display the percentage of RAM currently in use.
     
-    Usage: Quick RAM usage display
+    - Usage: Quick RAM - Usage display
     
-    Alerts: Not define yet
+    - Alerts: Not define yet
     
-    ![Screenshot from 2023-03-24 15-21-13.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-21-13.png)
+    ![Screenshot from 2023-03-24 15-21-13.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-21-13.png)
     
-    Root FS Used: 
+- ### Root FS Used: 
     
-    Definition: The current amount of hard drive disposable on the node.
+    - Definition: The current amount of hard drive disposable on the node.
     
-    Usage:
+    - Usage:
     
-    Alerts:
+    - Alerts:
     
-    ![Screenshot from 2023-03-24 15-42-18.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-42-18.png)
+    ![Screenshot from 2023-03-24 15-42-18.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-42-18.png)
     
-    CPU Cores: 
+- ### CPU Cores: 
     
-    Definition: How many CPU cores the node has
+    - Definition: How many CPU cores the node has.
     
-    Usage:
+    - Usage:
     
-    Alerts:
+    - Alerts:
     
-    ![Screenshot from 2023-03-24 15-42-53.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-42-53.png)
+    ![Screenshot from 2023-03-24 15-42-53.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-42-53.png)
     
-    Uptime: 
+- ### Uptime: 
     
-    Definition: How long has been since the node was rebooted
+    - Definition: How long has been since the node was rebooted.
     
-    Usage:
+    - Usage:
     
-    Alerts:
+    - Alerts:
     
-    ![Screenshot from 2023-03-24 15-44-03.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-44-03.png)
+    ![Screenshot from 2023-03-24 15-44-03.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-44-03.png)
     
-    RootFS Total: 
+- ### RootFS Total: 
     
-    Definition: The amount of RootFS disk disposable on the server
+    - Definition: The amount of RootFS disk disposable on the server.
     
-    Usage:
+    - Usage:
     
-    Alerts:
+    - Alerts:
     
-    ![Screenshot from 2023-03-24 15-43-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-43-00.png)
+    ![Screenshot from 2023-03-24 15-43-00.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-43-00.png)
     
-    RAM Total: 
+- ### RAM Total: 
     
-    Definition: Total of RAM available for usage
+    - Definition: Total of RAM available for - Usage.
     
-    Usage:
+    - Usage:
     
-    Alerts:
+    - Alerts:
     
-    ![Screenshot from 2023-03-24 16-12-28.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-12-28.png)
+    ![Screenshot from 2023-03-24 16-12-28.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_16-12-28.png)
     
-    SWAP Total: 
+- ### SWAP Total: 
     
-    Definition: The amount of swap is disposable for usage
+    - Definition: The amount of swap is disposable for - Usage.
     
-    Usage:
+    - Usage:
     
-    Alerts:
+    - Alerts:
     
-    ![Screenshot from 2023-03-24 16-12-53.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-12-53.png)
+    ![Screenshot from 2023-03-24 16-12-53.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_16-12-53.png)
     
-Basic CPU/Mem/Net/Disk
+## Basic CPU/Mem/Net/Disk
     
-CPU Basic: 
+- ### CPU Basic: 
     
-Definition: Show the graph of the node CPU metrics collect over time.
+    - Definition: Show the graph of the node CPU metrics collect over time.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 16-20-59.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-20-59.png)
+    ![Screenshot from 2023-03-24 16-20-59.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_16-20-59.png)
     
-Memory Basic: 
+- ### Memory Basic: 
     
-Definition: Show the graph of the memory metrics collected over time.
+    - Definition: Show the graph of the memory metrics collected over time.
     
-Usage:
+    - Usage:
     
- Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 16-21-25.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-21-25.png)
+    ![Screenshot from 2023-03-24 16-21-25.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_16-21-25.png)
     
-Network Traffic Basic: 
+- ### Network Traffic Basic: 
     
-Definition: Show the network traffics in/out collected over time.
+    - Definition: Show the network traffics in/out collected over time.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 16-22-11.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-22-11.png)
+    ![Screenshot from 2023-03-24 16-22-11.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_16-22-11.png)
     
-Disk Space Used Basic: 
+- ### Disk Space Used Basic: 
     
-Definition: Show the percentage of the disk used over time.
+    - Definition: Show the percentage of the disk used over time.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 16-22-39.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_16-22-39.png)
+    ![Screenshot from 2023-03-24 16-22-39.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_16-22-39.png)
     
-CPU/Memory/Net/Disk:
+## CPU/Memory/Net/Disk
     
-CPU: 
+- ### CPU: 
     
-Definition: Show a detail graph of the CPU usage of the data collected over time.
+    - Definition: Show a detail graph of the CPU - Usage of the data collected over time.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 19-16-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-16-47.png)
+    ![Screenshot from 2023-03-24 19-16-47.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-16-47.png)
     
-Memory Stack: 
+- ### Memory Stack: 
     
-Definition: Show a detail graph of the memory usage of the metrics collected over time.
+    - Definition: Show a detail graph of the memory - Usage of the metrics collected over time.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 19-16-32.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-16-32.png)
+    ![Screenshot from 2023-03-24 19-16-32.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-16-32.png)
     
-Network Traffic: 
+- ### Network Traffic: 
     
-Definition: show a in depth  graph of the network traffic metrics collected over time.
+    - Definition: show a in depth  graph of the network traffic metrics collected over time.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 19-15-54.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-15-54.png)
+    ![Screenshot from 2023-03-24 19-15-54.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-15-54.png)
     
-Disk Space Used: 
+- ### Disk Space Used: 
     
-Definition: Show all used space of mounted disk space.
+    - Definition: Show all used space of mounted disk space.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 19-15-25.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-15-25.png)
+    ![Screenshot from 2023-03-24 19-15-25.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-15-25.png)
     
-Disk IOps: 
+- ### Disk IOps: 
     
-Definition: Show disks read/write operation per second over time.
+    - Definition: Show disks read/write operation per second over time.
     
-Usage: 
+    - Usage: 
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 19-15-02.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-15-02.png)
+    ![Screenshot from 2023-03-24 19-15-02.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-15-02.png)
     
-I/O Usage Read / Write: 
+- ### I/O - Usage Read / Write: 
     
-Definition: Show the amount of input/Output data in transaction with the disks
+    - Definition: Show the amount of input/Output data in transaction with the disks.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 19-14-27.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-14-27.png)
+    ![Screenshot from 2023-03-24 19-14-27.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-14-27.png)
     
-I/O Usage Times: 
+- ### I/O - Usage Times: 
     
-Definition: Show the time spends during Input/Output during disks operations.
+    - Definition: Show the time spends during Input/Output during disks operations.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 19-13-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-13-47.png)
+    ![Screenshot from 2023-03-24 19-13-47.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-13-47.png)
     
-Memory Meminfo:
+## Memory Meminfo
     
-Memory Active / Inactive: 
+- ### Memory Active / Inactive: 
     
-Definition: Show the current state of the memory on the node, disposable and in-use ram
+    - Definition: Show the current state of the memory on the node, disposable and in-use RAM.
     
-Usage:
+    - Usage:
     
-Alerts:
+    - Alerts:
     
-![Screenshot from 2023-03-24 18-46-01.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-46-01.png)
+    ![Screenshot from 2023-03-24 18-46-01.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-46-01.png)
         
-Memory Committed: 
+- ### Memory Committed: 
     
-Definition: Show the currently in-use memory and the over all memory of the node
+    - Definition: Show the currently in-use memory and the over all memory of the node.
     
-![Screenshot from 2023-03-24 18-46-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-46-47.png)
-        
-    
-Memory Active / Inactive Detail: Show the currently in-use and memory that can be reclaim by the system
-    
-![Screenshot from 2023-03-24 18-47-22.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-47-22.png)
+    ![Screenshot from 2023-03-24 18-46-47.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-46-47.png)
         
     
-Memory Writeback and Dirty: Show the memory that in-use that will be flush to disk when possible.
-    
-![Screenshot from 2023-03-24 18-48-22.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-48-22.png)
-        
+- ### Memory Active / Inactive Detail: 
 
-Memory Shared and Mapped: Memory information field Mapped_bytes/ Shmem_bytes/ MemAvailable_bytes
+    - Definition: Show the currently in-use and memory that can be reclaim by the system.
     
-![Screenshot from 2023-03-24 18-50-33.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-50-33.png)
+    ![Screenshot from 2023-03-24 18-47-22.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-47-22.png)
         
     
-Memory Slab: Show the allocated memory where the kernel object are being store.
+- ### Memory Writeback and Dirty:
+
+    - Definition: Show the memory that in-use that will be flush to disk when possible.
     
-![Screenshot from 2023-03-24 18-51-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-51-30.png)
+    ![Screenshot from 2023-03-24 18-48-22.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-48-22.png)
         
 
-Memory Vmalloc: Memory information field VmallocChunk_bytes/ VmallocTotal_bytes/ VmallocUsed_bytes
-    
-![Screenshot from 2023-03-24 18-57-24.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-57-24.png)
-        
+- ### Memory Shared and Mapped:
 
-Memory Bounce: Memory information field Bounce_bytes.
+    - Definition: Memory information field Mapped_bytes/ Shmem_bytes/ MemAvailable_bytes.
     
-![Screenshot from 2023-03-24 18-59-07.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-59-07.png)
+    ![Screenshot from 2023-03-24 18-50-33.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-50-33.png)
         
     
-Memory Anonymous: Memory information field AnonHugePages_bytes/ AnonPages_bytes
+- ### Memory Slab: 
+
+    - Definition: Show the allocated memory where the kernel object are being store.
     
-![Screenshot from 2023-03-24 19-01-41.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-01-41.png)
-        
-    
-Memory Kernel / CPU: Memory information field KernelStack_bytes/ Percpu_bytes
-    
-![Screenshot from 2023-03-24 19-09-35.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-09-35.png)
-        
-    
-Memory HugePages Counter: Memory information field HugePages_Free/ HugePages_Reserved
-    
-![Screenshot from 2023-03-24 19-10-20.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-10-20.png)
-        
-    
-Memory HugePages Size: Memory information field HugePages_Total/ Hugepagesize_bytes
-    
-![Screenshot from 2023-03-24 19-11-06.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-11-06.png)
-        
-    
-Memory DirectMap: Memory information field DirectMap1G_bytes
-    
-![Screenshot from 2023-03-24 19-11-50.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-11-50.png)
-        
-    
-Memory Unevictable and MLocked: Memory information field Unevictable_bytes/ Mlocked_bytes.
-    
-![Screenshot from 2023-03-24 19-12-24.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-12-24.png)
+    ![Screenshot from 2023-03-24 18-51-30.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-51-30.png)
         
 
-Memory NFS: Memory information field NFS_Unstable_bytes
+- ### Memory Vmalloc: 
+
+    - Definition: Memory information field VmallocChunk_bytes/ VmallocTotal_bytes/ VmallocUsed_bytes.
     
-![Screenshot from 2023-03-24 19-12-52.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_19-12-52.png)
+    ![Screenshot from 2023-03-24 18-57-24.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-57-24.png)
         
 
-Memory Vmstat
+- ### Memory Bounce: 
+
+    - Definition: Memory information field Bounce_bytes.
     
-Memory Pages In / Out: show the amount of paging activity of your node
-    
-![Screenshot from 2023-03-24 14-57-12.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_14-57-12.png)
+    ![Screenshot from 2023-03-24 18-59-07.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-59-07.png)
         
     
-Memory Pages Swap In / Out: Show the amount of paging activity in the node swap
+- ### Memory Anonymous: 
+
+    - Definition: Memory information field AnonHugePages_bytes/ AnonPages_bytes.
     
-![Screenshot from 2023-03-24 14-57-57.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_14-57-57.png)
+    ![Screenshot from 2023-03-24 19-01-41.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-01-41.png)
         
     
-Memory Page Faults: Show the node is under heavy memory pressure.
+- ### Memory Kernel / CPU: 
+
+    - Definition: Memory information field KernelStack_bytes/ Percpu_bytes.
     
-![Screenshot from 2023-03-24 14-58-28.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_14-58-28.png)
+    ![Screenshot from 2023-03-24 19-09-35.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-09-35.png)
         
     
-OOM Killer: Host Out of memory killer detected
-    
-![Screenshot from 2023-03-24 14-59-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_14-59-30.png)
-        
+- ### Memory HugePages Counter: 
 
-System Timesync:
+    - Definition: Memory information field HugePages_Free/ HugePages_Reserved.
     
-Time Synchronized Drift: Show the current time drift in the current node.
-    
-![Screenshot from 2023-03-24 15-01-32.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-01-32.png)
+    ![Screenshot from 2023-03-24 19-10-20.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-10-20.png)
         
     
-Time PLL Adjust: Phase-locked loop time constant.
-    
-![Screenshot from 2023-03-24 15-02-48.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-02-48.png)
-        
+- ### Memory HugePages Size: 
 
-Time Synchronized Status: The status synchronized of the clock/ Local clock adjustment
+    - Definition: Memory information field HugePages_Total/ Hugepagesize_bytes.
     
-![Screenshot from 2023-03-24 15-03-25.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-03-25.png)
-        
-
-Time Misc: Seconds between clock ticks
-    
-![Screenshot from 2023-03-24 15-04-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_15-04-00.png)
-        
-System Processes:
-    
-Processes Status: Number of processes running / blocked waiting for I/O to complete
-    
-![Screenshot from 2023-03-24 18-31-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-31-00.png)
+    ![Screenshot from 2023-03-24 19-11-06.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-11-06.png)
         
     
-Processes State: Number of processes in each state
-    
-Processes Forks: Total number of forks
-    
-![Screenshot from 2023-03-24 18-27-50.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-27-50.png)
-        
+- ### Memory DirectMap: 
 
-Processes Memory: memory size in bytes
+    - Definition: Memory information field DirectMap1G_bytes.
     
-![Screenshot from 2023-03-24 18-29-12.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-29-12.png)
+    ![Screenshot from 2023-03-24 19-11-50.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-11-50.png)
         
     
-PIDs Number and Limit: Process ID limit
-    
-Process schedule stats and Running / Waiting: Number of seconds CPU spent running a process/ seconds spent by processing waiting for this CPU
-    
-Threads Number and Limit: Number of allocated threads/ Threads limits
-    
-System Misc:
-    
-Context Switches / Interrupts: Total number of context switches/ interrupts
+- ### Memory Unevictable and MLocked: 
 
-![Screenshot from 2023-03-24 17-45-34.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-45-34.png)
+    - Definition: Memory information field Unevictable_bytes/ Mlocked_bytes.
+    
+    ![Screenshot from 2023-03-24 19-12-24.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-12-24.png)
         
 
-System Load: 1m, 5m, 15m load average
+- ### Memory NFS: 
+
+    - Definition: Memory information field NFS_Unstable_bytes.
     
-![Screenshot from 2023-03-24 17-46-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-46-30.png)
+    ![Screenshot from 2023-03-24 19-12-52.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-12-52.png)
         
 
-Interrupts Detail: Show the total number of interruptions
+## Memory Vmstat
     
-Schedule timeslices executed by each cpu: track the number of slices of time that were used to run processes
+- ### Memory Pages In / Out: 
+
+    - Definition: Show the amount of paging activity of your node.
     
-Entropy: Bits of available entropy
-    
-![Screenshot from 2023-03-24 17-48-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-48-00.png)
+    ![Screenshot from 2023-03-24 14-57-12.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_14-57-12.png)
         
     
-CPU time spent in user and system contexts: Total user and system CPU time spent in seconds.
+- ### Memory Pages Swap In / Out: 
+
+    - Definition: Show the amount of paging activity in the node swap.
     
-![Screenshot from 2023-03-24 17-49-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-49-00.png)
+    ![Screenshot from 2023-03-24 14-57-57.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_14-57-57.png)
         
     
-File Descriptors: Maximum/ Current number of open file descriptors.
+- ### Memory Page Faults: 
+
+    - Definition: Show the node is under heavy memory pressure.
     
-![Screenshot from 2023-03-24 17-49-50.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-49-50.png)
-        
-Hardware Misc:
-    
-Hardware temperature monitor Show the temperature of the hardware
-
-Throttle cooling device: Maximum / Current throttle state of the cooling device
-
-Power supply: Status of the power supply
-
-Systemd:
-
-Systemd Sockets: Total number of accepted socket connections
-
-Systemd Units State: Summary of systemd unit states
-
-Storage Disk:
-
-Disk IOps Completed: Show in detail the number of read/ write operation completed per second
-
-![Screenshot from 2023-03-24 17-17-11.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-17-11.png)
-    
-
-Disk R/W Data: Show in detail the amount of data read/ writes per second
-
-![Screenshot from 2023-03-24 17-18-00.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-18-00.png)
-    
-
-Disk R/W Time: Show in detail the time taken to read/ write data to the disk
-
-![Screenshot from 2023-03-24 17-18-40.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-18-40.png)
-    
-
-Disk IOs Weighted:  Show the number of seconds spent doing I/Os
-
-![Screenshot from 2023-03-24 17-20-34.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-20-34.png)
-
-
-Disk R/W Merged: Show the total number of Read/ Write merge.
-
-![Screenshot from 2023-03-24 17-21-24.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-21-24.png)
-    
-
-Time Spent Doing I/Os: Total seconds spent doing I/Os
-
-![Screenshot from 2023-03-24 17-22-13.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-22-13.png)
-    
-
-Disk IOs Current in Progress: The number of I/Os currently in progress.
-
-![Screenshot from 2023-03-24 17-23-43.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-23-43.png)
-    
-
-Disk Iops Discards completed/merged: The total number of discards completed/merge successfully
-    
-![Screenshot from 2023-03-24 17-31-33.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-31-33.png)
-
-
-Storage Filesystem:
-
-Filesystem space available: space available and free to non-root users in bytes.
-
-![Screenshot from 2023-03-24 06-12-08.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-12-08.png)
-    
-![Screenshot from 2023-03-24 06-11-11.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-11-11.png)
-    
-
-File Nodes Free: Filesystem total free file nodes
-
-![Screenshot from 2023-03-24 06-08-13.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-08-13.png)
-
-
-File Descriptor: File descriptor statistics: maximum / allocated
-
-![Screenshot from 2023-03-24 06-07-22.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-07-22.png)
-    
-
-File Nodes Size: Filesystem total file nodes
-
-![Screenshot from 2023-03-24 06-06-42.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-06-42.png)
-    
-
-Filesystem in ReadOnly/Error: Filesystem read-only status / Error getting statistics for the given device.
-
-![Screenshot from 2023-03-24 06-05-35.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_06-05-35.png)
-    
-Network Traffic:
-
-Network Traffic by Packets: Network device statistic receive_packets/ transmit_packets
-
-![Screenshot from 2023-03-24 17-53-17.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-53-17.png)
-    
-
-Network Traffic Errors: Network device statistic receive_errs/ transmit_errs
-
-![Screenshot from 2023-03-24 17-54-05.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-54-05.png)
-    
-
-Network Traffic Drop: Network device statistic receive_drop/ transmit_drop
-
-![Screenshot from 2023-03-24 17-54-44.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-54-44.png)
-    
-
-Network Traffic Compressed: Network device statistic receive/transmit compressed
-
-![Screenshot from 2023-03-24 17-55-27.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-55-27.png)
-    
-
-Network Traffic Multicast: Network device statistic receive_multicast
-
-![Screenshot from 2023-03-24 17-57-03.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-57-03.png)
-    
-
-Network Traffic Fifo: Network device statistic receive_fifo/transmit_fifo
-
-![Screenshot from 2023-03-24 17-58-57.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_17-58-57.png)
-    
-
-Network Traffic Frame: Network device statistic receive_frame
-
-![Screenshot from 2023-03-24 18-10-43.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-10-43.png)
-    
-
-Network Traffic Carrier: Network device statistic transmit_carrier
-
-![Screenshot from 2023-03-24 18-11-25.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-11-25.png)
-    
-
-Network Traffic Colls: Network device statistic transmit_colls
-
-![Screenshot from 2023-03-24 18-13-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-13-30.png)
-    
-
-NF Contrack: Number of currently allocated flow entries for connection tracking/ Maximum size of connection tracking table
-
-![Screenshot from 2023-03-24 18-21-40.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-21-40.png)
-
-
- ARP Entries: ARP entries by device
-
-![Screenshot from 2023-03-24 18-22-07.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-22-07.png)
-    
-
-MTU: Node network mtu bytes
-
-![Screenshot from 2023-03-24 18-22-32.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-22-32.png)
-    
-
-Speed: Node network interface speed bytes
-
-![Screenshot from 2023-03-24 18-22-53.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-22-53.png)
-
-
-Queue Length: Node network device transmit queue length
-
-![Screenshot from 2023-03-24 18-23-17.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-23-17.png)
-    
-
-Softnet Packets: Number of processed / dropped packets
-
-Softnet Out of Quota: Number of times processing packets ran out of quota
-
-Network Operational Status: Network interface status
-
-![Screenshot from 2023-03-24 18-23-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_18-23-47.png)
-    
-Network Sockstat: Sockstat TCP: Number of TCP sockets in state alloc / inuse.
-    
-![Screenshot from 2023-03-24 05-37-01.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-37-01.png)
+    ![Screenshot from 2023-03-24 14-58-28.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_14-58-28.png)
         
     
-Sockstat UDP: Number of UDP sockets in state inuse
+- ### OOM Killer: 
+
+    - Definition: Host Out of memory killer detected.
     
-![Screenshot from 2023-03-24 05-36-14.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-36-14.png)
-        
-    
-Sockstat Used: Number of IPv4 sockets in use
-    
-![Screenshot from 2023-03-24 05-35-21.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-35-21.png)
+    ![Screenshot from 2023-03-24 14-59-30.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_14-59-30.png)
         
 
-Sockstat Memory Size: Number of TCP/ UDP sockets in state mem_bytes.
+## System Timesync
     
-![Screenshot from 2023-03-24 05-33-44.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-33-44.png)
+- ### Time Synchronized Drift: 
+
+    - Definition: Show the current time drift in the current node.
+    
+    ![Screenshot from 2023-03-24 15-01-32.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-01-32.png)
         
     
-Sockstat FRAG/RAW: Number of FRAG sockets in state inuse / memory.
+- ### Time PLL Adjust: 
+
+    - Definition: Phase-locked loop time constant.
     
-![Screenshot from 2023-03-24 05-32-41.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-32-41.png)
+    ![Screenshot from 2023-03-24 15-02-48.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-02-48.png)
         
-Network Netstat:
+
+- ### Time Synchronized Status: 
+
+    - Definition: The status synchronized of the clock/ Local clock adjustment.
     
-Netstat IP IN/Out Octets: Show incoming / Outgoing traffic
-    
-![Screenshot from 2023-03-24 05-31-03.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-31-03.png)
+    ![Screenshot from 2023-03-24 15-03-25.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-03-25.png)
         
+
+- ### Time Misc: 
+
+    - Definition: Seconds between clock ticks.
     
-Netstat IP Forwarding: Show the Ip traffic that has been forwarding from the server.
-    
-![Screenshot from 2023-03-24 05-30-01.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-30-01.png)
+    ![Screenshot from 2023-03-24 15-04-00.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-04-00.png)
         
+## System Processes
     
-ICMP In/Out: Incoming / Outgoing ICMP traffic
+- ### Processes Status: 
+
+    - Definition: Number of processes running / blocked waiting for I/O to complete.
     
-![Screenshot from 2023-03-24 05-28-34.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_05-28-34.png)
-        
-    
-ICMP Errors: ICMP error packages
-    
-![Screenshot from 2023-03-24 00-18-02.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_00-18-02.png)
-        
-    
-UDP In/Out: Incoming / Outgoing UDP packages.
-    
-![Screenshot from 2023-03-24 00-15-33.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_00-15-33.png)
+    ![Screenshot from 2023-03-24 18-31-00.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-31-00.png)
         
     
-UDP Errors: UDP packages errors
+- ### Processes State: 
+
+    - Definition: Number of processes in each state.
     
-![Screenshot from 2023-03-24 00-11-31.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_00-11-31.png)
+- ### Processes Forks: 
+
+    - Definition: Total number of forks.
+    
+    ![Screenshot from 2023-03-24 18-27-50.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-27-50.png)
+        
+
+- ### Processes Memory: 
+    
+    - Definition: Memory size in bytes.
+    
+    ![Screenshot from 2023-03-24 18-29-12.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-29-12.png)
         
     
-TCP In/Out: Incoming / Outgoing TCP packages
+- ### PIDs Number and Limit: 
+
+    - Definition: Process ID limit.
     
-![Screenshot from 2023-03-24 00-00-06.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-24_00-00-06.png)
+- ### Process schedule stats and Running / Waiting:
+
+    - Definition: Number of seconds CPU spent running a process/ seconds spent by processing waiting for this CPU.
+    
+- ### Threads Number and Limit: 
+
+    - Definition: Number of allocated threads/ Threads limits.
+    
+## System Misc
+    
+- ### Context Switches / Interrupts: 
+
+    - Definition: Total number of context switches/ interrupts.
+
+    ![Screenshot from 2023-03-24 17-45-34.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-45-34.png)
+        
+
+- ### System Load:
+
+    - Definition: 1m, 5m, 15m load average.
+    
+    ![Screenshot from 2023-03-24 17-46-30.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-46-30.png)
+        
+
+- ### Interrupts Detail: 
+
+    - Definition: Show the total number of interruptions.
+    
+- ### Schedule timeslices executed by each cpu: 
+
+    - Definition: Track the number of slices of time that were used to run processes.
+    
+- ### Entropy: 
+
+    - Definition: Bits of available entropy.
+    
+    ![Screenshot from 2023-03-24 17-48-00.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-48-00.png)
+        
+
+- ### CPU time spent in user and system contexts: 
+
+    - Definition: Total user and system CPU time spent in seconds.
+    
+    ![Screenshot from 2023-03-24 17-49-00.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-49-00.png)
         
     
-TCP Errors: TCP packages drops during transmition
+- ### File Descriptors: 
+
+    - Definition: Maximum/ Current number of open file descriptors.
     
-![Screenshot from 2023-03-23 23-59-23.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-59-23.png)
+    ![Screenshot from 2023-03-24 17-49-50.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-49-50.png)
+        
+## Hardware Misc
+    
+- ### Hardware temperature monitor
+
+    - Definition: Show the temperature of the hardware.
+
+- ### Throttle cooling device: 
+
+    - Definition: Maximum / Current throttle state of the cooling device.
+
+- ### Power supply: 
+
+    - Definition: Status of the power supply.
+
+## Systemd
+
+- ### Systemd Sockets: 
+
+    - Definition: Total number of accepted socket connections.
+
+- ### Systemd Units State: 
+
+    - Definition: Summary of systemd unit states.
+
+## Storage Disk
+
+- ### Disk IOps Completed: 
+
+    - Definition: Show in detail the number of read/ write operation completed per second.
+
+    ![Screenshot from 2023-03-24 17-17-11.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-17-11.png)
+    
+
+- ### Disk R/W Data: 
+    
+    - Definition: Show in detail the amount of data read/ writes per second.
+
+    ![Screenshot from 2023-03-24 17-18-00.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-18-00.png)
+    
+
+- ### Disk R/W Time: 
+
+    - Definition: Show in detail the time taken to read/ write data to the disk.
+
+    ![Screenshot from 2023-03-24 17-18-40.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-18-40.png)
+    
+
+- ### Disk IOs Weighted: 
+
+    - Definition:  Show the number of seconds spent doing I/Os.
+
+    ![Screenshot from 2023-03-24 17-20-34.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-20-34.png)
+
+
+- ### Disk R/W Merged: 
+
+    - Definition: Show the total number of Read/ Write merge.
+
+    ![Screenshot from 2023-03-24 17-21-24.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-21-24.png)
+    
+
+- ### Time Spent Doing I/Os: 
+
+    - Definition: Total seconds spent doing I/Os
+
+    ![Screenshot from 2023-03-24 17-22-13.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-22-13.png)
+    
+
+- ### Disk IOs Current in Progress: 
+
+    - Definition: The number of I/Os currently in progress.
+
+    ![Screenshot from 2023-03-24 17-23-43.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-23-43.png)
+    
+
+- ### Disk Iops Discards completed/merged: 
+
+    - Definition: The total number of discards completed/merge successfully.
+    
+    ![Screenshot from 2023-03-24 17-31-33.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-31-33.png)
+
+
+## Storage Filesystem
+
+- ### Filesystem space available: 
+
+    - Definition: Space available and free to non-root users in bytes.
+
+    ![Screenshot from 2023-03-24 06-12-08.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_06-12-08.png)
+    
+
+- ### File Nodes Free: 
+
+    - Definition: Filesystem total free file nodes.
+
+    ![Screenshot from 2023-03-24 06-08-13.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_06-08-13.png)
+
+
+- ### File Descriptor: 
+
+    - Definition: File descriptor statistics: maximum / allocated.
+
+    ![Screenshot from 2023-03-24 06-07-22.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_06-07-22.png)
+    
+
+- ### File Nodes Size: 
+
+    - Definition: Filesystem total file nodes.
+
+    ![Screenshot from 2023-03-24 06-06-42.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_06-06-42.png)
+    
+
+- ### Filesystem in ReadOnly/Error: 
+
+    - Definition: Filesystem read-only status / Error getting statistics for the given device.
+
+    ![Screenshot from 2023-03-24 06-05-35.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_06-05-35.png)
+    
+## Network Traffic
+
+- ### Network Traffic by Packets: 
+
+    - Definition: Network device statistic receive_packets/ transmit_packets.
+
+    ![Screenshot from 2023-03-24 17-53-17.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-53-17.png)
+    
+
+- ### Network Traffic Errors: 
+
+    - Definition: Network device statistic receive_errs/ transmit_errs.
+
+    ![Screenshot from 2023-03-24 17-54-05.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-54-05.png)
+    
+
+- ### Network Traffic Drop: 
+
+    - Definition: Network device statistic receive_drop/ transmit_drop.
+
+    ![Screenshot from 2023-03-24 17-54-44.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-54-44.png)
+    
+
+- ### Network Traffic Compressed: 
+
+    - Definition: Network device statistic receive/transmit compressed.
+
+    ![Screenshot from 2023-03-24 17-55-27.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-55-27.png)
+    
+
+- ### Network Traffic Multicast: 
+
+    - Definition: Network device statistic receive_multicast.
+
+    ![Screenshot from 2023-03-24 17-57-03.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-57-03.png)
+    
+
+- ### Network Traffic Fifo: 
+    
+    - Definition: Network device statistic receive_fifo/transmit_fifo.
+
+![Screenshot from 2023-03-24 17-58-57.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_17-58-57.png)
+    
+
+- ### Network Traffic Frame: 
+
+    - Definition: Network device statistic receive_frame.
+
+![Screenshot from 2023-03-24 18-10-43.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-10-43.png)
+    
+
+- ### Network Traffic Carrier: 
+
+    - Definition: Network device statistic transmit_carrier.
+
+![Screenshot from 2023-03-24 18-11-25.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-11-25.png)
+    
+
+- ### Network Traffic Colls: 
+
+    - Definition: Network device statistic transmit_colls.
+
+![Screenshot from 2023-03-24 18-13-30.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-13-30.png)
+    
+
+- ### NF Contrack: 
+
+    - Definition: Number of currently allocated flow entries for connection tracking/ Maximum size of connection tracking table.
+
+![Screenshot from 2023-03-24 18-21-40.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-21-40.png)
+
+
+ - ### ARP Entries: 
+ 
+    - Definition: ARP entries by device
+
+![Screenshot from 2023-03-24 18-22-07.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-22-07.png)
+    
+
+- ### MTU: 
+
+    - Definition: Node network mtu bytes
+
+![Screenshot from 2023-03-24 18-22-32.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-22-32.png)
+    
+
+- ### Speed: 
+
+    - Definition: Node network interface speed bytes.
+
+    ![Screenshot from 2023-03-24 18-22-53.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-22-53.png)
+
+
+- ### Queue Length: 
+
+    - Definition: Node network device transmit queue length.
+
+    ![Screenshot from 2023-03-24 18-23-17.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-23-17.png)
+    
+
+- ### Softnet Packets: 
+
+    - Definition: Number of processed / dropped packets.
+
+- ### Softnet Out of Quota: 
+
+    - Definition: Number of times processing packets ran out of quota.
+
+- ### Network Operational Status: 
+
+    - Definition: Network interface status
+
+    ![Screenshot from 2023-03-24 18-23-47.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_18-23-47.png)
+    
+## Network Sockstat
+
+- ### Sockstat TCP: 
+
+    - Definition: Number of TCP sockets in state alloc / inuse.
+    
+    ![Screenshot from 2023-03-24 05-37-01.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_05-37-01.png)
         
     
-TCP Connections: Open  TCP connections
+- ### Sockstat UDP: 
+
+    - Definition: Number of UDP sockets in state in use.
     
-![Screenshot from 2023-03-23 23-51-47.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-51-47.png)
+    ![Screenshot from 2023-03-24 05-36-14.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_05-36-14.png)
         
     
-TCP SynCookie: Show TCP Syncookies status
+- ### Sockstat Used: 
+
+    - Definition: Number of IPv4 sockets in use.
     
-![Screenshot from 2023-03-23 23-47-30.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-47-30.png)
+    ![Screenshot from 2023-03-24 05-35-21.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_05-35-21.png)
+        
+
+- ### Sockstat Memory Size: 
+
+    - Definition: Number of TCP/ UDP sockets in state mem_bytes.
+    
+    ![Screenshot from 2023-03-24 05-33-44.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_05-33-44.png)
         
     
-TCP Direct Transition: Current TCP connections
+- ### Sockstat FRAG/RAW: 
+
+    - Definition: Number of FRAG sockets in state inuse / memory.
     
-![Screenshot from 2023-03-23 23-46-34.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-46-34.png)
+    ![Screenshot from 2023-03-24 05-32-41.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_05-32-41.png)
         
-Node Exporter:
+## Network Netstat
     
-Node Exporter Scrape Time: Show the time it takes to scrape the information from the node.
+- ### Netstat IP IN/Out Octets: 
+
+    - Definition: Show incoming / Outgoing traffic
     
-![Screenshot from 2023-03-23 23-07-41.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-07-41.png)
+    ![Screenshot from 2023-03-24 05-31-03.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_05-31-03.png)
         
     
-Node Exporter Scrape: Display the status of all the Prometheus scrape runs.
+- ### Netstat IP Forwarding: 
+
+    - Definition: Show the Ip traffic that has been forwarding from the server.
     
-![Screenshot from 2023-03-23 23-09-14.png](/../static/img/telemetry-dashboards/Screenshot_from_2023-03-23_23-09-14.png)
+    ![Screenshot from 2023-03-24 05-30-01.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_05-30-01.png)
+        
+    
+- ### ICMP In/Out: 
+
+    - Definition: Incoming / Outgoing ICMP traffic.
+    
+    ![Screenshot from 2023-03-24 05-28-34.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_05-28-34.png)
+        
+    
+- ### ICMP Errors:
+
+    - Definition: ICMP error packages.
+    
+    ![Screenshot from 2023-03-24 00-18-02.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_00-18-02.png)
+        
+    
+- ### UDP In/Out: 
+
+    - Definition: Incoming / Outgoing UDP packages.
+    
+    ![Screenshot from 2023-03-24 00-15-33.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_00-15-33.png)
+        
+    
+- ### UDP Errors:
+
+    - Definition: UDP packages errors.
+    
+    ![Screenshot from 2023-03-24 00-11-31.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_00-11-31.png)
+        
+    
+- ### TCP In/Out: 
+
+    - Definition: Incoming / Outgoing TCP packages.
+    
+    ![Screenshot from 2023-03-24 00-00-06.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_00-00-06.png)
+        
+    
+- ### TCP Errors: 
+
+    - Definition: TCP packages drops during transmission.
+    
+    ![Screenshot from 2023-03-23 23-59-23.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-23_23-59-23.png)
+        
+    
+- ### TCP Connections: 
+
+    - Definition: Open  TCP connections.
+    
+    ![Screenshot from 2023-03-23 23-51-47.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-23_23-51-47.png)
+        
+    
+- ### TCP SynCookie:
+
+    - Definition: Show TCP Syncookies status.
+    
+    ![Screenshot from 2023-03-23 23-47-30.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-23_23-47-30.png)
+        
+    
+- ### TCP Direct Transition:
+
+    - Definition: Current TCP connections.
+    
+    ![Screenshot from 2023-03-23 23-46-34.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-23_23-46-34.png)
+        
+## Node Exporter
+    
+- ### Node Exporter Scrape Time: 
+
+    - Definition: Show the time it takes to scrape the information from the node.
+    
+    ![Screenshot from 2023-03-23 23-07-41.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-23_23-07-41.png)
+        
+    
+- ### Node Exporter Scrape: 
+
+    - Definition: Display the status of all the Prometheus scrape runs.
+    
+    ![Screenshot from 2023-03-23 23-09-14.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-23_23-09-14.png)
