@@ -5,7 +5,7 @@ title: Search Queries
 
 You can use the `SEARCH` keyword to filter a query using a search view, allowing you to:
 
-- Filter documents based on C8QL Boolean expressions and functions.
+- Filter documents based on C8QL and SQL Boolean expressions and functions.
 - Match documents located in different collections.
 - Sort the result set based on how closely each document matches the search conditions.
 
@@ -54,7 +54,7 @@ Refer to [Search Options](#search-options) for information about the `OPTIONS` k
 
 ## Search by Document Attribute
 
-You can search for documents by querying document attributes that have been indexed by both the search view and the document store. Refer to [Document Store Indexes](/collections/documents/document-store-indexes.md) for more information about adding attributes to document store indexes.
+You can search for documents by querying document attributes that have been indexed by both the search view and the document store. Refer to [Document Store Indexes](../collections/documents/document-store-indexes.md) for more information about adding attributes to document store indexes.
 
 When you search for a document by its attribute, all attributes (including non-indexed ones) return in the results. However, querying a non-indexed attribute yields no results.
 
@@ -164,8 +164,6 @@ With `trackListPositions: true` you would need to specify the index of the array
 ```sql
 ANALYZER(doc.text[2] == 'jump', "text_en")
 ```
-
-
 
 ## SEARCH with SORT
 
