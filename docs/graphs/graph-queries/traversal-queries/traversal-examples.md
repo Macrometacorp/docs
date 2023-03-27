@@ -68,8 +68,8 @@ And then to **J**:
 Once these steps are completed, no further results remain. The query returns the following paths in total:
 
 1. **A** → **B**
-2. **A** → **B** → **C**
-3. **A** → **B** → **E**
+2. **A** → **B** → **E**
+3. **A** → **B** → **C**
 4. **A** → **G**
 5. **A** → **G** → **H**
 6. **A** → **G** → **J**
