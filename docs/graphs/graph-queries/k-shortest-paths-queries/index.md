@@ -38,7 +38,9 @@ Here are a some use cases for k shortest paths queries.
 
 ### Telecom and IoT
 
-- 
+- **Network Slicing Optimization**: k shortest path queries can identify multiple alternative paths for allocating network resources to different slices, ensuring efficient resource sharing and minimizing the impact of network congestion or failures on various services.
+- **5G Traffic Load Balancing**: k shortest path queries can discover multiple routing options for network traffic, allowing operators to balance the traffic load across different paths, reducing congestion and optimizing network performance.
+- **IoT Device-to-Device Communication**: k shortest path queries can identify multiple communication paths between IoT devices, enabling redundancy and resiliency in case of device failures or network congestion, and ensuring reliable data exchange.
 
 ## K Shortest Path Query in Action
 
