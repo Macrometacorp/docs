@@ -57,16 +57,16 @@ BFT is particularly useful for tasks like finding the shortest path between two 
 
 ### BFT Example
 
-C8QL does not provide a built-in function for performing a breadth-first traversal explicitly. However, you can achieve a similar effect by using depth-first traversal and sorting the results by depth. Using the same `socialGraph` example, the query would look like this:
+You can have Macrometa use a breadth-first traversal algorithm by setting the traversal option to `true`. For more information about options, refer to [Traversal Query Parameters](../graph-queries/traversal-queries/index.md#query-parameters).
+
+A query would look something like this:
 
 ```sql
-FOR vertex, edge, path IN 1..3 ANY 'users/12345' GRAPH 'socialGraph'
-  SORT LENGTH(path.edges) // Sort by depth
-  RETURN {
-    user: vertex._key,
-    connection: edge ? edge._key : null,
-    depth: LENGTH(path.edges)
-  }
+FOR vertex, edge, path IN 1..3 ANY 'circles/A' GRAPH 'traversalGraph'
+OPTIONS {bfs: true}
+RETURN {
+user: vertex._key,
+connection: edge ? edge._key : null,
+depth: LENGTH(path.edges)
+}
 ```
-
-By sorting the results by depth, the traversal will mimic a breadth-first traversal. Note that this is an approximation, as the internal traversal algorithm is still depth-first.
