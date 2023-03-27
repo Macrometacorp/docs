@@ -34,4 +34,23 @@ Edges are normal documents that always contain a `_from` and a `_to` attribute, 
 - `_from` is the document handle of the linked vertex (incoming relation)
 - `_to` is the document handle of the linked vertex (outgoing relation)
 
+In queries you can define in which directions the edge relations may be followed i.e.,
+
+- OUTBOUND: `_from` → `_to`
+- INBOUND: `_from` ← `_to`
+- ANY: `_from` ↔ `_to`
+
 To change edge endpoints, you would need to remove the old document/edge and insert a new one. Other fields can be updated as in default collections.
+
+Here is an example of a valid edge document:
+
+```json
+{
+  "_id": "friends/001",
+  "_key": "001",
+  "_rev": "_Wm3dyle--_",
+  "_from": "students/john",
+  "_to": "students/jane",
+  "closeness": 9.5
+}
+```
