@@ -20,7 +20,7 @@ The query uses the following parameters:
 - Use a `max` depth of 2.
 - Traverse (move) only in `OUTBOUND` direction of edges.
 
-You can traverse edges and vertexes as a named graph or as a set of collections (anonymous graph, also called collection sets).
+You can traverse edges and vertices as a named graph or as a set of collections (anonymous graph, also called collection sets).
 
 Here's the query for a named graph:
 
