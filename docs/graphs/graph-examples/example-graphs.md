@@ -45,7 +45,7 @@ The circles records have unique numeric labels. The edges have two boolean attri
 
 ## The MPS Graph
 
-This graph is named after the [multiple path search (MPS)](multiple-path-search.md) use case. It was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries.
+This graph is named after the [multiple path search (MPS)](multiple-path-search-example) use case. It was created to demonstrate a use case of the shortest path algorithm. Even though the algorithm can only determine one shortest path, it is possible to return multiple shortest paths with two separate queries.
 
 The MPS graph consists of vertices in the `mps_verts` collection and edges in the `mps_edges` collection. It is a simple traversal graph with start node _A_ and end node _C_.
 
