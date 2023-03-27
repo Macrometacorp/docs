@@ -1,6 +1,6 @@
 ---
 sidebar_position: 60
-title: Named Graphs and Anonymous Graphs
+title: Named Graphs and Collection Sets
 ---
 
 In Macrometa Global Data Network (GDN), you can work with graphs using either named graphs or collection sets, depending on your needs and preferences. Both approaches offer different levels of convenience and flexibility when managing and querying graph data.
