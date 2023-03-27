@@ -33,3 +33,9 @@ FOR vertex, edge IN
   GRAPH 'graph_name'
   RETURN {vertex, edge}
 ```
+
+## Query Parameters
+
+| Parameter  | Description |
+|----------------|-------------|
+| `graph_name`   | The name of the graph referenced in the query. |
