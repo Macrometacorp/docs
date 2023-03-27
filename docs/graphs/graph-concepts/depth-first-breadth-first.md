@@ -28,18 +28,14 @@ DFT is particularly useful for tasks like searching for cycles in a graph or det
 
 ### DFT Example
 
-Suppose you have a graph named `socialGraph` with a vertex collection `users` and an edge collection `connections` representing the relationships between users. To perform a depth-first traversal starting from a user with the ID `users/12345` and explore up to a depth of 3, you can use the following C8QL query:
+You could run the following query on the [Traversal Graph Example](../graph-examples/example-graphs#the-traversal-graph):
 
 ```sql
-FOR vertex, edge, path IN 1..3 ANY 'users/12345' GRAPH 'socialGraph'
-  RETURN {
-    user: vertex._key,
-    connection: edge ? edge._key : null,
-    depth: LENGTH(path.edges)
-  }
+FOR vertex, edge, path IN 1..3 ANY 'circles/A' GRAPH 'traversalGraph' 
+RETURN { user: vertex._key, connection: edge ? edge._key : null, depth: LENGTH(path.edges) }
 ```
 
-This query will explore the graph up to 3 levels deep, starting from the user with the ID `users/12345`. The `ANY` keyword is used to traverse the graph in any direction (both incoming and outgoing edges).
+This query will explore the graph up to 3 levels deep. The `ANY` keyword is used to traverse the graph in any direction (both incoming and outgoing edges).
 
 ## Breadth-First Traversal (BFT)
 
