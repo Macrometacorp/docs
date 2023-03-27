@@ -19,7 +19,7 @@ Here are some use cases for shortest path queries.
 ### E-commerce and Retail
 
 - **Store Navigation**: Shortest path queries can be used to help customers navigate through a physical store, providing the most efficient route to find their desired products.
-- **Logistics Planning**: Shortest path queries can optimize the routing of delivery vehicles, finding the most efficient routes to deliver products to customers, reducing transportation costs and improving delivery times.
+- **Logistics Planning**: Shortest path queries optimize delivery vehicle routing, determining the most efficient routes for product delivery, reducing transportation costs, and improving delivery times.
 
 ### Video and Digital Media
 
