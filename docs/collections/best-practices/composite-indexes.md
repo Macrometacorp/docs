@@ -3,7 +3,7 @@ sidebar_position: 80
 title: Composite Indexes
 ---
 
-If there are multiple attributes used in [`FILTER`](/docs/queries/c8ql/operations/filte) criteria, it’s recommended to use a composite index by creating a [Persitent Index](/docs/collections/indexing/persistent-indexes) with a comma-separated list of the attributes. 
+If there are multiple attributes used in [`FILTER`](/docs/queries/c8ql/operations/filter) criteria, it’s recommended to use a composite index by creating a [Persitent Index](/docs/collections/indexing/persistent-indexes) with a comma-separated list of the attributes. 
 
 For example, if there are `3` attributes used in `FILTER`, the `composite index` created on these 3 attributes will give better query performance than `3` separate indexes. In the case of separate indexes for each attribute only one index of the indexes would be used, reducing the selectivity.
 
