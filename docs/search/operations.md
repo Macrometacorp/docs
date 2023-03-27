@@ -29,7 +29,7 @@ FOR doc IN MySearchView
 RETURN doc
 ```
 
-Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [Search functions](functions.md):
+Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [operators](functions.md):
 
 - `AND`
 - `OR`
