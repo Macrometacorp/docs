@@ -25,6 +25,12 @@ Anonymous graphs don’t have edge definitions describing which vertex collectio
 
 With anonymous graphs, you have the freedom to mix and match collections as needed, making it easier to perform complex queries across various datasets. However, this approach requires a deeper understanding of the underlying collections and their relationships.
 
-## Which One to Use
+## Which Graph Type to Use
 
-When deciding between named graphs and anonymous graphs, consider factors such as the complexity of your graph data, the frequency of ad-hoc queries, and the need for managing collections. Each approach has its advantages, and the choice depends on your specific requirements and preferences.
+When deciding whether to use anonymous or named graphs in Macrometa GDN, it is important to understand the key differences between the two.
+
+Named graphs guarantee graph integrity, ensuring that no dangling edges are present when inserting or removing vertices or edges. This is particularly helpful when using the same vertex collection across multiple named graphs. However, maintaining this level of integrity requires additional database operations, which might impact performance.
+
+On the other hand, anonymous graphs can offer faster performance for many operations, because they do not enforce the same level of integrity checks as named graphs.
+
+The decision between anonymous and named graphs ultimately depends on your specific needs: If maintaining graph integrity is a priority and you can accommodate the additional computational overhead, then named graphs might be the right choice. However, if performance is the primary concern and you can manage potential issues with dangling edges, then anonymous graphs might be a more suitable option.
