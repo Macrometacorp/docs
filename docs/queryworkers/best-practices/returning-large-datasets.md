@@ -3,7 +3,7 @@ sidebar_position: 50
 title: Returning Large Datasets
 ---
 
-Queries that return large volumes of data may require more than one response to provide the complete results. A common method is using the [`LIMIT`](/docs/queryworkers/c8ql/operations/limit) and `OFFSET` statements in the query. However, this is not the optimized approach. When these options are used, each time the query is invoked query processing is performed. 
+Queries that return large volumes of data may require more than one response to provide the complete results. A common method is using the [`LIMIT`](/docs/queries/c8ql/operations/limit) and `OFFSET` statements in the query. However, this is not the optimized approach. When these options are used, each time the query is invoked query processing is performed. 
 
 A better approach is to use the [`cursor` API](/docs/api#/operations/createQueryCursor).  The response from the cursor API call contains a boolean attribute, `hasMore`. If `hasMore` is true, the next batch of records will be ready on the server. In subsequent calls, the records are returned from the last position. 
 

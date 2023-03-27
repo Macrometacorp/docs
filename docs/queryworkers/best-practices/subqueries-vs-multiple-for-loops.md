@@ -14,7 +14,7 @@ FOR x in collection1
 				return x * y * z;
 ```
 
-Instead of multiple nested `FOR` loops, we can store the results of a [subquery](/docs/queryworkers/c8ql/examples/subqueries) in a variable. Using a variable in a `FOR` loop will decrease the number of iterations. Additionally, we can take a projection of documents returned in each loop based on `FILTER` criteria. Using the expected record count in each `FOR` loop, it can be determined which subquery returns the fewest documents. 
+Instead of multiple nested `FOR` loops, we can store the results of a [subquery](/docs/queries/query-examples/subqueries) in a variable. Using a variable in a `FOR` loop will decrease the number of iterations. Additionally, we can take a projection of documents returned in each loop based on `FILTER` criteria. Using the expected record count in each `FOR` loop, it can be determined which subquery returns the fewest documents. 
 
 ## Example of Query with No Subqueries
 

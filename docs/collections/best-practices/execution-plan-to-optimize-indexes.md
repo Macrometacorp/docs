@@ -3,7 +3,7 @@ sidebar_position: 130
 title: Execution Plan to Optimize Indexes
 ---
 
-Proper indexing is key to query performance. [C8QL](/docs/queryworkers/c8ql/) provides an [`Execution Plan`](/docs/queryworkers/running-queries#execution-plan) for all valid queries to show optimization rules and indexes being used.  Click the `Execution Plan` button,  below the Query Workers editor, to view the plan. The same information is available from the [Explain an C8QL API endpoint](/docs/api#/operations/explainQuery)
+Proper indexing is key to query performance. [C8QL](/docs/queries/c8ql/) provides an [`Execution Plan`](/docs/queries/running-queries#execution-plan) for all valid queries to show optimization rules and indexes being used.  Click the `Execution Plan` button,  below the Query Workers editor, to view the plan. The same information is available from the [Explain an C8QL API endpoint](/docs/api#/operations/explainQuery)
 
 The `Indexes used` section of the execution plan shows which indexes are utilized by the query. If there are no indexes used, or there are no fields matching the `FILTER` attributes, you should create a new index with those attributes. Indexes can be created from the Macrometa Web Console collection page or the [Create index API endpoints](/docs/api#/operations/createIndex:general).
 
