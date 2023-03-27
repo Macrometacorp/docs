@@ -36,6 +36,10 @@ Here are a some use cases for k shortest paths queries.
 - **Portfolio Diversification**: k shortest path queries can analyze relationships between different investment assets to identify alternative paths for diversifying a portfolio, balancing risk and return.
 - **Fraud Detection**: k shortest path queries can help identify unusual patterns in financial transactions, which may indicate potential fraud. By considering different paths between entities, investigators can better understand the relationships between suspicious transactions and trace the flow of funds.
 
+### Telecom and IoT
+
+- 
+
 ## K Shortest Path Query in Action
 
 In this high-level example, a graph represents train stations and connections between cities. Each ellipse stands for a train station with the city name included in the station name (the vertices of the graph). Arrows represent train connections between cities (the edges of the graph), and the numbers near the arrows indicate the travel time between stations (used as edge weights).
