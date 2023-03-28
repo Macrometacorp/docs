@@ -1,4 +1,4 @@
 ---
-title: Graph Tasks
-sidebar_position: 30
+title: Create Edge Collection
+sidebar_position: 20
 ---
