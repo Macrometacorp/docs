@@ -17,7 +17,7 @@ If no `weightAttribute` is provided, then the path's weight defaults to its leng
 
 ## Syntax
 
-The syntax for k shortest paths queries is similar to the one for the [Shortest Path](../shortest-path) query syntax, with options to use either a named graph or a set of edge collections. However, k shortest paths only emits a path variable, while `SHORTEST_PATH` emits both vertex and edge variables.
+The syntax for k shortest paths queries is similar to the one for the [Shortest Path](../shortest-path-queries/shortest-path-syntax) query syntax, with options to use either a named graph or a set of edge collections. However, k shortest paths only emits a path variable, while `SHORTEST_PATH` emits both vertex and edge variables.
 
 :::note
 It is highly recommended that you use a **LIMIT** statement, as k shortest paths can be a resource-intensive operation. On large connected graphs, it might return numerous paths or perform an expensive (but unsuccessful) search for more short paths.
