@@ -2,7 +2,9 @@
 title: SHORTEST_PATH
 ---
 
-The `SHORTEST_PATH` keyword in [C8QL](../../../queries/c8ql/) is used to find the shortest path between two vertices in a graph. It computes the path with the fewest number of edges (hops) between a start vertex and a target vertex. This can be particularly useful for tasks such as finding the shortest route between two points in a transportation network, discovering the shortest chain of connections between two users in a social network, or analyzing the shortest dependency chain in a project management system.
+The `SHORTEST_PATH` keyword in [C8QL](../../../queries/c8ql/) is used to find the shortest path between two vertices in a graph. It computes the path with the fewest number of edges (hops) between a start vertex and a target vertex. If it finds two paths with the same shortest length, then it returns only one.
+
+This keyword can be particularly useful for tasks such as finding the shortest route between two points in a transportation network, discovering the shortest chain of connections between two users in a social network, or analyzing the shortest dependency chain in a project management system.
 
 For more information about using `SHORTEST_PATH`, refer to [Shortest Path Queries](../shortest-path-queries/).
 
@@ -15,7 +17,7 @@ The purpose of the `SHORTEST_PATH` keyword is to identify the most direct route 
 Here's the general syntax for using the `SHORTEST_PATH` keyword in C8QL:
 
 ```sql
-FOR vertex, edge IN
+FOR vertex, edge IN DIRECTION
   SHORTEST_PATH start_vertex TO target_vertex
   GRAPH 'graph_name'
   OPTIONS {weightAttribute: "attribute_name", defaultWeight: 1}
@@ -26,6 +28,7 @@ FOR vertex, edge IN
 
 | Parameter         | Description         |
 |-------------------|---------------------------------------------|
+| IN DIRECTION    |  Defines in which direction edges are followed (OUTBOUND | INBOUND | ANY). |
 | start_vertex       | The starting vertex for the path search.                                |
 | target_vertex      | The target vertex that you want to find the shortest path to.           |
 | GRAPH 'graph_name' | The name of the graph you want to search.                               |
@@ -38,12 +41,12 @@ FOR vertex, edge IN
 Here's an example of finding the shortest path between two users in a social network graph:
 
 ```sql
-FOR user, connection IN
+FOR user, connection IN OUTBOUND
   SHORTEST_PATH 'users/12345' TO 'users/67890'
   GRAPH 'socialGraph'
   RETURN {user: user._key, connection: connection ? connection._key : null}
 ```
 
-In this query, we find the shortest path between the user with the ID `users/12345` and the user with the ID `users/67890` in the `socialGraph`. The query returns an array of objects containing the user and connection information for each vertex and edge in the shortest path.
+This query finds the shortest path between the user with the ID `users/12345` and the user with the ID `users/67890` in the `socialGraph`. The query returns an array of objects containing the user and connection information for each vertex and edge in the shortest path.
 
 It's important to note that `SHORTEST_PATH` returns the unweighted shortest path, meaning it only considers the number of hops (edges) between vertices. If you need to find the shortest path based on a specific attribute, such as distance or cost, you can use the `OPTIONS` parameter to specify a weight attribute and a custom weight function.
