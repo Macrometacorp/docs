@@ -19,7 +19,3 @@ Follow these instructions to create a new collection using the GDN console web U
    - **Geo Distribution -** Select whether to store data globally or locally.
    - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
    - **Wait for sync -** Synchronize to disk before completing document creation or update.
-
-## Create a Document Store Collection with Code
-
-Refer to the [REST API Graph Example](../../graphs/graph-examples/graph-api-example).
