@@ -89,9 +89,7 @@ You can use the `includeAllFields` [View property](/search/views/optional-proper
 
 ## Search for Array Elements
 
-You can search for individual array elements if your search view has the [trackListPositions](/search/views/optional-properties.md) setting set to `false` (default).
-
-Therefore, array comparison operators such as `ALL IN` or `ANY ==` are unnecessary. 
+You can search for individual array elements if your search view has [trackListPositions](/views/optional-properties.md) set to `true`.
 
 In the following document, the values `1`, `2,` and `3` are indexed and individually searchable.
 
@@ -105,7 +103,7 @@ In the following document, the values `1`, `2,` and `3` are indexed and individu
 }
 ```
 
-A View which is configured to index the field `value` including sub-fields will index the individual numbers under the path `value.nested.deep`, which can be queried for like:
+If your search view indexes the `value` field, you can use a query such as `doc.value.nested.deep`:
 
 ```sql
 FOR doc IN viewName
@@ -113,7 +111,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-This is different to `FILTER` operations, where you would use an [array comparison operator](../queries/c8ql/operators.md#array-comparison-operators) to find an element in the array:
+Alternatively, you can use an [array comparison operator](../queries/c8ql/operators.md#array-comparison-operators) with a `FILTER` operation:
 
 ```sql
 FOR doc IN collection
@@ -121,48 +119,18 @@ FOR doc IN collection
   RETURN doc
 ```
 
-You can set `trackListPositions` to `true` if you want to query for a value at a specific array index:
+If `trackListPositions` is disabled on the search view, you must specify the position within the array of the data you want to find. For example:
 
 ```sql
-SEARCH doc.value.nested.deep[1] == 2
+FOR doc IN viewName
+  SEARCH doc.value.nested.deep[1] == 2
+  RETURN doc
 ```
 
-With `trackListPositions` enabled there will be **no match** for the document anymore if the specification of an array index is left out in the expression:
+In this example, `[1]` indicates that the desired result (`2`) is the second value in the array. If you wanted to find the first value, you would instead use:
 
 ```sql
-SEARCH doc.value.nested.deep == 2
-```
-
-Conversely, there will be no match if an array index is specified but `trackListPositions` is disabled.
-
-String tokens (see [Analyzers](/search/analyzers/index.md)) are also indexed individually, but not all Analyzer types return multiple tokens. If the Analyzer does, then comparison tests are done per token/word. For example, given the field `text` is analyzed with `"text_en"` and contains the string `"a quick brown fox jumps over the lazy dog"`, the following expression will be true:
-
-```sql
-ANALYZER(doc.text == 'fox', "text_en")
-```
-
-Note that the `"text_en"` Analyzer stems the words, so this is also true:
-
-```sql
-ANALYZER(doc.text == 'jump', "text_en")
-```
-
-So a comparison will actually test if a word is contained in the text. With `trackListPositions: false`, this means for arrays if the word is contained in any element of the array. For example, given:
-
-```json
-{"text": [ "a quick", "brown fox", "jumps over the", "lazy dog" ] }
-```
-
-… the following will be true:
-
-```sql
-ANALYZER(doc.text == 'jump', "text_en")
-```
-
-With `trackListPositions: true` you would need to specify the index of the array element `"jumps over the"` to be true:
-
-```sql
-ANALYZER(doc.text[2] == 'jump', "text_en")
+SEARCH doc.value.nested.deep[0] == 1
 ```
 
 ## SEARCH with SORT
