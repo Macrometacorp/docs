@@ -21,7 +21,7 @@ FOR doc IN <SEARCH_VIEW_NAME>
   ...
 ```
 
-Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [operators](functions.md):
+Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [operators](search-functions.md):
 
 - `AND`
 - `OR`
@@ -85,11 +85,11 @@ FOR doc IN myView
   RETURN doc
 ```
 
-You can use the `includeAllFields` [View property](/search/views/optional-properties.md) to index all fields and subfields of the source documents.
+You can use the `includeAllFields` [View property](optional-properties.md) to index all fields and subfields of the source documents.
 
 ## Search for Array Elements
 
-You can search for individual array elements if your search view has [trackListPositions](/views/optional-properties.md) set to `true`.
+You can search for individual array elements if your search view has [trackListPositions](optional-properties.md) set to `true`.
 
 In the following document, the values `1`, `2,` and `3` are indexed and individually searchable.
 
@@ -143,7 +143,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-You can also use [Search Scoring Functions](functions.md#scoring-functions) to sort the retrieved documents by relevance. This only works for documents excluded from the search view's index. For example:
+You can also use [Search Scoring Functions](search-functions.md#scoring-functions) to sort the retrieved documents by relevance. This only works for documents excluded from the search view's index. For example:
 
 ```sql
 FOR doc IN viewName
