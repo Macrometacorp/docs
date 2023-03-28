@@ -40,8 +40,8 @@ You can also compute shortest paths based on documents found in collections. You
 ### Named Graph
 
 ```sql
-FOR a IN circles FILTER a._key == 'A' 
-  FOR d IN circles FILTER d._key == 'D' 
+LET a = (FOR a IN circles FILTER a._key == 'A' return a)[0]
+LET d = (FOR d IN circles FILTER d._key == 'D' return d )[0]
     FOR v, e IN 
       OUTBOUND SHORTEST_PATH a TO d 
       GRAPH 'traversalGraph' 
@@ -55,8 +55,8 @@ The `RETURN` statement returns an array containing the `_key` attributes of both
 ### Collection Sets
 
 ```sql
-FOR a IN circles FILTER a._key == 'A' 
-  FOR d IN circles FILTER d._key == 'D' 
+LET a = (FOR a IN circles FILTER a._key == 'A' return a)[0]
+LET d = (FOR d IN circles FILTER d._key == 'D' return d )[0]
     FOR v, e IN 
       OUTBOUND SHORTEST_PATH a TO d edges 
       RETURN [v._key, e._key]
