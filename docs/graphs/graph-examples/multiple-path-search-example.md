@@ -9,7 +9,7 @@ Consider the following graph based on the [MPS Graph](example-graphs#the-mps-gra
 
 ![MPS Example Graph](/img/graphs/mps_graph.png)
 
-A [shortest path query](../graph-queries/shortest-path) from **A** to **C** might return either `A -> B -> C` or `A -> D -> C`, but it's not guaranteed which one will be returned (ignoring edge weights in this example).
+A [shortest path query](../graph-queries/shortest-path-queries/) from **A** to **C** might return either `A -> B -> C` or `A -> D -> C`, but it's not guaranteed which one will be returned (ignoring edge weights in this example).
 
 ## Finding the Shortest Path Length
 
