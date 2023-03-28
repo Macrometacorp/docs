@@ -143,13 +143,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-If the (left-most) fields and their sorting directions match up with the [primary sort order](views/primary-sort-order.md) definition of the View then the `SORT` operation is optimized away.
-
-Apart from simple sorting, it is possible to sort the matched View documents by relevance score (or a combination of score and attribute values if desired). The document search via the `SEARCH` keyword and the sorting via the [Search Scoring Functions](functions.md#scoring-functions), namely `BM25()` and `TFIDF()`, are closely intertwined.
-
-The query given in the `SEARCH` expression is not only used to filter documents, but also is used with the scoring functions to decide which document matches the query best. Other documents in the View also affect this decision.
-
-Therefore the Search scoring functions can work _only_ on documents emitted from a View, as both the corresponding `SEARCH` expression and the View itself are consulted in order to sort the results.
+You can also use [Search Scoring Functions](functions.md#scoring-functions) to sort the retrieved documents by relevance. This only works for documents excluded from the search view's index. For example:
 
 ```sql
 FOR doc IN viewName
@@ -158,17 +152,13 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-The [BOOST() function](functions.md#boost) can be used to fine-tune the resulting ranking by weighing sub-expressions in `SEARCH` differently.
-
-If there is no `SEARCH` operation prior to calls to scoring functions or if the search expression does not filter out documents (e.g. `SEARCH true`) then a score of `0` will be returned for all documents.
-
 ## Search Options
 
-The `SEARCH` operation accepts an options object with the following attributes:
+`SEARCH` also accepts the following optional attribute:
 
-- `collections` (array, _optional_): array of strings with collection names to restrict the search to certain source collections
+- `collections` (array): Array of strings with collection names to restrict the search to certain source collections.
 
-Given a search view with three linked collections (`coll1`, `coll2`, and `coll3`), you can return documents from the first two collections only and ignore the third using the `collections` option:
+If a search view has three linked collections (`coll1`, `coll2`, and `coll3`), you can return documents from specific collections with the `collections` option:
 
 ```sql
 FOR doc IN viewName
@@ -176,4 +166,4 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-The search expression `true` matches all View documents. You can use any valid expression here while limiting the scope to the chosen source collections.
+Alternatively, you can replace `true` with `false` to exclude the specified collections.
