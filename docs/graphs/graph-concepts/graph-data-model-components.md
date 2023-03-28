@@ -1,6 +1,6 @@
 ---
 title: Graph Data Model Components
-sidebar_position: 20
+sidebar_position: 10
 ---
 
 This page discusses the basic components of a graph data model, including edges and their attributes, as well as the concept of document handles.
