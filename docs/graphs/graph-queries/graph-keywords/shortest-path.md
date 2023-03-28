@@ -15,7 +15,7 @@ The purpose of the `SHORTEST_PATH` keyword is to identify the most direct route 
 Here's the general syntax for using the `SHORTEST_PATH` keyword in C8QL:
 
 ```sql
-FOR vertex, edge IN
+FOR vertex, edge IN OUTBOUND|INBOUND|ANY
   SHORTEST_PATH start_vertex TO target_vertex
   GRAPH 'graph_name'
   OPTIONS {weightAttribute: "attribute_name", defaultWeight: 1}
