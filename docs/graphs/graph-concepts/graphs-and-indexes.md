@@ -25,7 +25,7 @@ Traversal performance can be impacted by the choice of indexes on vertex and edg
 
 ### Balancing Indexing
 
-When creating indexes, balance the benefits of indexing with the overhead of maintaining them. Indexes improve query performance but consume storage space and require extra maintenance during data modifications. Create indexes selectively, concentrating on the properties and relationships frequently used in your application's queries.
+When creating indexes, balance the benefits of indexing with the overhead of maintaining them. Indexes improve query performance but consume storage space and require extra maintenance during data modifications. Also, indexes speed up reads, but they might slow down writes. Create indexes selectively, concentrating on the properties and relationships frequently used in your application's queries.
 
 ## Choosing the Right Index Type for Graph Performance
 
@@ -33,7 +33,7 @@ Selecting the appropriate index type for your specific use case and query patter
 
 ### Persistent Index
 
-A persistent index is similar to a skiplist index in terms of supported queries, but it is stored on disk rather than in memory. This index type is useful for large datasets that do not fit in memory, but it might have slightly higher access latency compared to in-memory indexes. If your graph queries involve large datasets and require filtering or sorting based on attribute values, then a persistent index might be an appropriate choice.
+A persistent index is stored on disk rather than in memory. This index type is useful for large datasets that do not fit in memory, but it might have slightly higher access latency compared to in-memory indexes. If your graph queries involve large datasets and require filtering or sorting based on attribute values, then a persistent index might be an appropriate choice.
 
 **Use case**: Large graphs where the index size exceeds available memory, and queries involve sorting or filtering based on attribute values.
 
