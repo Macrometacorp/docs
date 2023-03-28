@@ -10,13 +10,36 @@ The PRUNE keyword is placed right after the traversal FOR statement and before a
 
 In summary, the PRUNE keyword in C8QL allows you to optimize Macrometa graph queries by pruning unnecessary paths during traversal, which can lead to more efficient and faster query execution.
 
+For more information about using `PRUNE`, refer to [Pruning for Efficient Searches](../traversal-queries/traversal-pruning).
+
 ## Purpose
 
-The purpose of the `PRUNE` keyword in C8QL is to control the traversal process by filtering out paths or branches during the graph traversal that do not meet specified conditions. This allows users to efficiently explore specific parts of a graph by pruning unwanted paths early in the traversal, reducing the overall complexity and improving query performance.
+The purpose of the `PRUNE` keyword is to control the traversal process by filtering out paths or branches during the graph traversal that do not meet specified conditions. This allows users to efficiently explore specific parts of a graph by pruning unwanted paths early in the traversal, reducing the overall complexity and improving query performance.
 
 ## Syntax
 
+The syntax for the PRUNE keyword in a C8QL traversal query is as follows:
 
+```sql
+FOR v, e, p IN min_depth..max_depth DIRECTION start_vertex
+  GRAPH 'graph_name'
+  PRUNE pruning_conditions
+  FILTER traversal_conditions
+  RETURN result_expression
+```
+
+## Query Parameters
+
+| Parameter             | Description                    |
+|-----------------------|------------------------------------------------------------|
+| min_depth             | The minimum depth of the traversal.                                 |
+| max_depth             | The maximum depth of the traversal.                                 |
+| DIRECTION             | The direction of the traversal (INBOUND, OUTBOUND, or ANY).        |
+| start_vertex          | The starting vertex for the traversal.                              |
+| GRAPH 'graph_name'    | The name of the graph you want to traverse.                         |
+| PRUNE pruning_conditions | The conditions under which the traversal should stop exploring a specific path.     |
+| FILTER traversal_conditions | Additional conditions that must be met for the traversal to continue.    |
+| RETURN result_expression | The expression defining the result to be returned by the query.  |
 
 ## Example
 
