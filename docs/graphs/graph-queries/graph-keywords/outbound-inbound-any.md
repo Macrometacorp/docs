@@ -4,7 +4,7 @@ title: OUTBOUND | INBOUND | ANY
 
 `OUTBOUND`, `INBOUND`, and `ANY` are used to specify the direction of graph traversal when performing operations such as traversals or finding the shortest path. These keywords help you control how the traversal follows the edges in the graph, allowing you to customize the query to fit your specific use case.
 
-Here's a brief explanation of each direction keyword:
+
 
 ## OUTBOUND
 
@@ -38,3 +38,11 @@ FOR v, e, p IN 1..3 DIRECTION start_vertex
 Replace `DIRECTION` with `OUTBOUND`, `INBOUND`, or `ANY` as required by your specific use case.
 
 By using the appropriate direction keyword in your graph queries, you can control the traversal behavior and obtain the desired results when working with graph data in Macrometa.
+
+## Direction Keywords in Queries
+
+Direction keywords are used in the following queries:
+
+- [Shortest Path Queries](../shortest-path-queries/)
+- [K Shortest Path Queries](../k-shortest-paths-queries/)
+- [Graph Traversal Queries](../traversal-queries/)
