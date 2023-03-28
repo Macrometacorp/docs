@@ -28,7 +28,7 @@ FOR vertex, edge IN DIRECTION
 
 | Parameter         | Description         |
 |-------------------|---------------------------------------------|
-| IN DIRECTION    |  Defines in which direction edges are followed (OUTBOUND | INBOUND | ANY). |
+| IN DIRECTION    |  Defines in which direction edges are followed (OUTBOUND, INBOUND, or ANY). |
 | start_vertex       | The starting vertex for the path search.                                |
 | target_vertex      | The target vertex that you want to find the shortest path to.           |
 | GRAPH 'graph_name' | The name of the graph you want to search.                               |
