@@ -127,6 +127,6 @@ Only one `PRUNE` condition is possible, but it can include any number of `AND` o
   - "global" – Ensures that each edge is visited at most once during the traversal, regardless of the number of paths leading from the start vertex to it. If the `min` depth is greater than 1, then an edge found before the `min` depth might not be returned, even if it is part of a path. This setting makes the result non-deterministic. If multiple paths exist from the `startVertex` to `vertex`, then one of them is chosen.
   - "none" – No uniqueness check is applied to edges. With this configuration, the traversal will follow cycles in edges.
 
-- **bfs** (bool): Use the alternative breadth-first traversal algorithm.
+- **bfs** (bool): Use the alternative breadth-first traversal algorithm. This can consume a lot of memory if the graph is large.
   - true – Executes the traversal using a breadth-first approach. Results will first contain all vertices at depth 1, followed by all vertices at depth 2, and so on.
   - false (default) – Executes the traversal using a depth-first approach. Results will first return all paths from `min` depth to `max` depth for one vertex at depth 1, then for the next vertex at depth 1, and so on.
