@@ -21,14 +21,6 @@ FOR doc IN <SEARCH_VIEW_NAME>
   ...
 ```
 
-For example:
-
-```sql
-FOR doc IN MySearchView
-  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en")
-RETURN doc
-```
-
 Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [operators](functions.md):
 
 - `AND`
@@ -41,6 +33,14 @@ Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` w
 - `>`
 - `!=`
 - `IN` (array or range), also `NOT IN`
+
+For example:
+
+```sql
+FOR doc IN MySearchView
+  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en")
+RETURN doc
+```
 
 ## Limitations
 
@@ -133,9 +133,9 @@ In this example, `[1]` indicates that the desired result (`2`) is the second val
 SEARCH doc.value.nested.deep[0] == 1
 ```
 
-## SEARCH with SORT
+## Search with SORT()
 
-The documents emitted from a search view can be sorted by attribute values with the standard [SORT() operation](../queries/c8ql/operations/sort.md), using one or multiple attributes, in ascending or descending order (or a mix thereof).
+You can retrieve documents that aren't indexed by the search view with the [SORT() operation](../queries/c8ql/operations/sort.md). For example:
 
 ```sql
 FOR doc IN viewName
