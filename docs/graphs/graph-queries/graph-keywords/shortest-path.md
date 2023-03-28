@@ -2,7 +2,7 @@
 title: SHORTEST_PATH
 ---
 
-The `SHORTEST_PATH` keyword  in [C8QL](../../../queries/c8ql/) is used to find the shortest path between two vertices in a graph. It computes the path with the fewest number of edges (hops) between a start vertex and a target vertex. This can be particularly useful for tasks such as finding the shortest route between two points in a transportation network, discovering the shortest chain of connections between two users in a social network, or analyzing the shortest dependency chain in a project management system.
+The `SHORTEST_PATH` keyword in [C8QL](../../../queries/c8ql/) is used to find the shortest path between two vertices in a graph. It computes the path with the fewest number of edges (hops) between a start vertex and a target vertex. This can be particularly useful for tasks such as finding the shortest route between two points in a transportation network, discovering the shortest chain of connections between two users in a social network, or analyzing the shortest dependency chain in a project management system.
 
 For more information about using `SHORTEST_PATH`, refer to [Shortest Path Queries](../shortest-path-queries/).
 
