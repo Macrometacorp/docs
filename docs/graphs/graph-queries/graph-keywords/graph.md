@@ -25,7 +25,7 @@ FOR v, e, p IN min_depth..max_depth DIRECTION start_vertex
 
 ### Shortest Path
 
-This syntax applies to both [shortest path queries](../shortest-path.md) and [k shortest path queries](../k-shortest-paths/).
+This syntax applies to both [shortest path queries](../shortest-path-queries/) and [k shortest path queries](../k-shortest-paths-queries/).
 
 ```sql
 FOR vertex, edge IN
