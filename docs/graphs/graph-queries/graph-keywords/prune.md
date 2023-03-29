@@ -53,6 +53,6 @@ FOR vertex, edge, path
 
 In this example, the `socialNetwork` graph is traversed starting from the user with the ID `users/alice` and exploring the graph using an `OUTBOUND` direction. The traversal depth is set to a range between 1 and 4.
 
-The `PRUNE` keyword is used with the condition `edge.relationshipType == 'blocked'`. This means that if the traversal encounters an edge with a relationshipType attribute of `'blocked'`, then it does not explore that path further.
+The `PRUNE` keyword is used with the condition `edge.relationshipType == 'blocked'`. This means that if the traversal encounters an edge with a relationshipType attribute of `'blocked'`, then it does not explore that path further. Paths up to the blocked relationship are still considered results, though they might still be post-filtered or ignored due to depth constraints.
 
 Finally, the `FILTER` keyword is used to filter the results to include only vertices (users) with an `'active'` status. The query returns a list of active users reachable from `users/alice`, excluding paths with blocked relationships.
