@@ -5,7 +5,7 @@ title: Search Queries
 
 You can use the `SEARCH` keyword to filter a query using a search view, allowing you to:
 
-- Filter documents based on C8QL and SQL Boolean expressions and functions.
+- Filter documents based on [C8QL](../../queries/c8ql/index.md) and [SQL](../../queries/sql/index.md) Boolean expressions and functions.
 - Match documents located in different collections.
 - Sort the result set based on how closely each document matches the search conditions.
 
@@ -38,7 +38,7 @@ For example:
 
 ```sql
 FOR doc IN MySearchView
-  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en")
+  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en") OPTIONS { collections: ["coll1", "coll2"] }
 RETURN doc
 ```
 
