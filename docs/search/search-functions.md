@@ -13,7 +13,7 @@ If an attribute path expressions is needed, then you have to reference a documen
 
 ## Search Functions
 
-Search functions can be used in a [SEARCH operation](search-queries.md) to form an Search expression to filter a View. The functions control the Search functionality without having a returnable value in C8QL.
+Search functions can be used in a [SEARCH operation](search-queries.md) to form a search expression to filter a view. The functions control the search functionality without having a returnable value in C8QL.
 
 The `TOKENS()` function is an exception. It can be used standalone as well, without a `SEARCH` statement, and has a return value which can be used elsewhere in the query.
 
