@@ -119,7 +119,7 @@ FOR doc IN collection
   RETURN doc
 ```
 
-If `trackListPositions` is disabled on the search view, you must specify the position within the array of the data you want to find. For example:
+If `trackListPositions` is disabled on the search view, then you must specify the position within the array of the data you want to find. For example:
 
 ```sql
 FOR doc IN viewName
