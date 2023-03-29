@@ -413,7 +413,7 @@ It will match `{ "text": "Lorem ipsum, dolor sit amet." }` for instance. If you 
 
 Scoring functions return a ranking value for the documents found by a [SEARCH operation](search-queries.md). The better the documents match the search expression the higher the returned number.
 
-The first argument to any scoring function is always the document emitted by a `FOR` operation over an Search View.
+The first argument to any scoring function is always the document emitted by a `FOR` operation over a search view.
 
 To sort the result set by relevance, with the more relevant documents coming first, sort in **descending order** by the score (e.g. `SORT BM25(...) DESC`).
 
