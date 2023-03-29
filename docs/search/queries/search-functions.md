@@ -9,7 +9,7 @@ If you need an attribute path expression, you can reference a document object (`
 
 ## Search Functions
 
-Use search functions in a [SEARCH query](search-queries.md) to filter a view. The functions control the search functionality without having a returnable value in C8QL.
+Use search functions in a [search query](../queries/index.md) to filter a view. The functions control the search functionality without having a returnable value in C8QL.
 
 The `TOKENS()` function is an exception. It can be used standalone as well, without a `SEARCH` statement, and has a return value which can be used elsewhere in the query.
 
@@ -23,7 +23,7 @@ The `TOKENS()` function is an exception, it requires the analyzer name to be pas
 
 - **expr** (expression): any valid search expression
 - **analyzer** (string): name of an analyzer.
-- returns nothing: The function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise.
+- returns nothing: The function can only be called in a [search query](../queries/index.md) and throws an error otherwise.
 
 Assuming a view definition with an analyzer whose name and type is `delimiter`:
 
@@ -96,7 +96,7 @@ Override boost in the context of a search expression with a specified value, mak
 
 - **expr** (expression): any valid search expression
 - **boost** (number): numeric boost value
-- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -150,7 +150,7 @@ Assuming a view with the following documents indexed and processed by the
 Match documents where the attribute at **path** is present.
 
 - **path** (attribute path expression): the attribute to test in the document
-- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -169,7 +169,7 @@ Match documents where the attribute at **path** is present _and_ is of the speci
   - `"numeric"`
   - `"string"`
   - `"analyzer"` (see below)
-- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -184,7 +184,7 @@ Match documents where the attribute at **path** is present _and_ was indexed by 
 - **path** (attribute path expression): the attribute to test in the document
 - **type** (string): string literal `"analyzer"`
 - **analyzer** (string, _optional_): name of an [analyzer](analyzers/index.md). Uses the analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
-- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -209,7 +209,7 @@ The alphabetical order of characters is not taken into account by Search, i.e. r
 - **high** (number\|string): maximum value of the desired range
 - **includeLow** (bool): whether the minimum value shall be included in the range (left-closed interval) or not (left-open interval)
 - **includeHigh** (bool): whether the maximum value shall be included in the range (right-closed interval) or not (right-open interval)
-- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
 
 If _low_ and _high_ are the same, but _includeLow_ and/or _includeHigh_ is set to `false`, then nothing will match. If _low_ is greater than _high_ nothing will match either.
 
@@ -241,7 +241,7 @@ Match documents where at least **minMatchCount** of the specified search express
 
 - **expr** (expression, _repeatable_): any valid search expression
 - **minMatchCount** (number): minimum number of search expressions that should be satisfied
-- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
 
 Assuming a view with a text analyzer, you may use it to match documents where the attribute contains at least two out of three tokens:
 
@@ -268,7 +268,7 @@ The phrase can be expressed as an arbitrary number of _phraseParts_ separated by
 - **skipTokens** (number, _optional_): amount of words/tokens to treat
   as wildcards
 - **analyzer** (string, _optional_): name of an [analyzer](analyzers/index.md). Uses the analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
-- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
 
 Given a view indexing an attribute _text_ with the `"text_en"` analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
 
@@ -322,7 +322,7 @@ The alphabetical order of characters is not taken into account by Search, i.e. r
 
 - **path** (attribute path expression): the path of the attribute to compare against in the document
 - **prefix** (string): a string to search at the start of the text
-- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
 
 To match a document `{ "text": "lorem ipsum..." }` using a prefix and the `"identity"` analyzer you can use it like this:
 
@@ -371,7 +371,7 @@ FOR doc IN viewName
 
 Split the **input** string with the help of the specified **analyzer** into an array. The resulting array can be used in `FILTER` or `SEARCH` statements with the `IN` operator, but also be assigned to variables and returned. This can be used to better understand how a specific analyzer processes an input value.
 
-It has a regular return value unlike all other Search C8QL functions and is thus not limited to `SEARCH` operations. It is independent of views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
+It has a regular return value unlike all other search functions and is thus not limited to `SEARCH` operations. It is independent of views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
 
 - **input** (string): text to tokenize
 - **analyzer** (string): name of an [analyzer](analyzers/index.md).
@@ -407,7 +407,7 @@ It will match `{ "text": "Lorem ipsum, dolor sit amet." }` for instance. If you 
 
 ## Scoring Functions
 
-Scoring functions return a ranking value for the documents found by a [SEARCH operation](search-queries.md). The better the documents match the search expression the higher the returned number.
+Scoring functions return a ranking value for the documents found by a [search query](../queries/index.md). The better the documents match the search expression the higher the returned number.
 
 The first argument to any scoring function is always the document emitted by a `FOR` operation over a search view.
 
