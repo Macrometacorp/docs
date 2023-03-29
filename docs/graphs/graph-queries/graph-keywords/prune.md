@@ -10,7 +10,7 @@ For more information about using `PRUNE`, refer to [Pruning for Efficient Search
 
 ## Purpose
 
-The purpose of the `PRUNE` keyword is to control the traversal process by filtering out paths or branches during the graph traversal that do not meet specified conditions. This allows users to efficiently explore specific parts of a graph by pruning unwanted paths early in the traversal, reducing the overall complexity and improving query performance.
+The purpose of the `PRUNE` keyword is to control the traversal process by filtering out paths or branches during the graph traversal that do not meet specified conditions. This allows users to efficiently explore specific parts of a graph by pruning unwanted paths early in the traversal, reducing the overall complexity, improving query performance, and allowing you to manage resources such as memory and CPU usage more effectively.
 
 ## Syntax
 
