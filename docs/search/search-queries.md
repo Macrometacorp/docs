@@ -9,7 +9,7 @@ You can use the `SEARCH` keyword to filter a query using a search view, allowing
 - Match documents located in different collections.
 - Sort the result set based on how closely each document matches the search conditions.
 
-Refer to [Search Views](/search/views/index.md) for information about creating a custom search view.
+For information about creating a custom search view, refer to [Search Views](/search/views/index.md).
 
 ## Syntax
 
