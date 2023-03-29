@@ -17,7 +17,7 @@ There is also a special variant for [graph traversals](../../../graphs/graph-que
 FOR vertexVariableName, edgeVariableName, pathVariableName IN traversalExpression
 ```
 
-For Views, there is a special (optional) [`SEARCH` keyword](../../../search/search-queries.md):
+For Views, there is a special (optional) [`SEARCH` keyword](../../../search/queries/index.md):
 
 ```js
 FOR variableName IN viewName SEARCH searchExpression

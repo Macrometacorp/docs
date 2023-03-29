@@ -111,7 +111,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-Alternatively, you can use an [array comparison operator](../queries/c8ql/operators.md#array-comparison-operators) with a `FILTER` operation:
+Alternatively, you can use an [array comparison operator](../../queries/c8ql/operators.md#array-comparison-operators) with a `FILTER` operation:
 
 ```sql
 FOR doc IN collection
@@ -135,7 +135,7 @@ SEARCH doc.value.nested.deep[0] == 1
 
 ## Search with SORT()
 
-You can retrieve documents that aren't indexed by the search view with the [SORT() operation](../queries/c8ql/operations/sort.md). For example:
+You can retrieve documents that aren't indexed by the search view with the [SORT() operation](../../queries/c8ql/operations/sort.md). For example:
 
 ```sql
 FOR doc IN viewName
