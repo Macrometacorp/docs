@@ -93,8 +93,8 @@ Object, _optional_.
 
 Used to modify the way the traversal runs. Only the following attributes have an effect, all others are ignored:
 
-- **weightAttribute** (string): A top-level edge attribute that should be used to read the edge weight. If the attribute does not exist or is not numeric, then the _defaultWeight_ is used instead.
-- **defaultWeight** (number): This value is used as fallback if there is no _weightAttribute_ in the edge document, or if it's not a number. The default is 1.
+- **weightAttribute** (string): A top-level edge attribute that should be used to read the edge weight. If the attribute does not exist or is not numeric, then the `defaultWeight` is used instead.
+- **defaultWeight** (number): This value is used as fallback if there is no `weightAttribute` in the edge document, or if it's not a number. The default is 1.
 
 ### LIMIT
 
