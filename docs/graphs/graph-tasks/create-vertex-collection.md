@@ -1,5 +1,5 @@
 ---
-title: Create Vertex Collection
+title: Create a Vertex Collection
 sidebar_position: 10
 ---
 
