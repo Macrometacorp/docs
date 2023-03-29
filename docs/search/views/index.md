@@ -20,9 +20,9 @@ Vector components are precomputed using _term weights_ as coordinates. C8Search 
 
 The [IResearch library](https://github.com/iresearch-toolkit/iresearch) provides searching and ranking capabilities.
 
-## Object Definition
+## Search View Definition
 
-A search view object includes:
+A search view includes:
 
 - Search view configuration directives.
 - Link configuration directives map.
