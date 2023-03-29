@@ -49,4 +49,4 @@ FOR user, connection IN OUTBOUND
 
 This query finds the shortest path between the user with the ID `users/12345` and the user with the ID `users/67890` in the `socialGraph`. The query returns an array of objects containing the user and connection information for each vertex and edge in the shortest path.
 
-It's important to note that `SHORTEST_PATH` returns the unweighted shortest path, meaning it only considers the number of hops (edges) between vertices. If you need to find the shortest path based on a specific attribute, such as distance or cost, you can use the `OPTIONS` parameter to specify a weight attribute and a custom weight function.
+It's important to note that in this example, `SHORTEST_PATH` returns the unweighted shortest path, meaning it only considers the number of hops (edges) between vertices. If you need to find the shortest path based on a specific attribute, such as distance or cost, you can use the `OPTIONS` parameter to specify a weight attribute and a custom weight function.
