@@ -1,5 +1,5 @@
 ---
-title: Create Graph Edge Collection
+title: Create a Graph Edge Collection
 sidebar_position: 20
 ---
 
