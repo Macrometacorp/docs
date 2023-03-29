@@ -4,7 +4,7 @@ title: K_SHORTEST_PATHS
 
 The `K_SHORTEST_PATHS` keyword in [C8QL](../../../queries/c8ql/) is used to find the top k shortest paths between two vertices in a graph. It computes a specified number of shortest paths (k) between a start vertex and a target vertex. This can be useful when you want to find alternative routes or paths in a network, such as finding several shortest routes in a transportation network or multiple connection chains in a social network.
 
-For more information about using `K_SHORTEST_PATHS`, refer to [K Shortest Path Queries](../k-shortest-path-queries/).
+For more information about using `K_SHORTEST_PATHS`, refer to [K Shortest Path Queries](../k-shortest-paths-queries/).
 
 ## Purpose
 
