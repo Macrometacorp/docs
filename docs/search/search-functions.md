@@ -3,24 +3,13 @@ sidebar_position: 50
 title: Search Functions
 ---
 
-Search views utilize functions for processing and filtering data. These functions typically require either an expression or attribute path expression as an argument. Expressions, such as search functions and logical operators, enable you to create search conditions in C8QL syntax. To set an analyzer for search expressions, use the ANALYZER() function, or rely on the default "identity" analyzer.
+Search views utilize functions for processing and filtering data. These functions typically require either an expression or attribute path expression as an argument. Expressions, such as search functions and logical operators, enable you to create search conditions in C8QL syntax. To set an analyzer for search expressions, use the ANALYZER() function. If no analyzer is set, the search view uses the default `identity` analyzer.
 
-When an attribute path expression is needed, reference a document object emitted by a View (e.g., FOR doc IN viewName) and specify the desired attribute (e.g., doc.attr or doc.deeply.nested.attr). The bracket notation (e.g., doc["attr"]) can also be used for this purpose.
-
-
-
-
-Most Search C8QL functions take an expression or attribute path expression as argument.
-
-If an expression is expected, it means that search conditions can expressed in C8QL syntax. They are typically function calls to Search search functions, possibly nested and/or using logical operators for multiple conditions.
-
-You need the `ANALYZER()` function to wrap search (sub-)expressions to set the analyzer for it, unless you want to use the default `"identity"` analyzer. You might not need other Search functions for certain expressions, because comparisons can be done with basic C8QL comparison operators.
-
-If an attribute path expressions is needed, then you have to reference a document object emitted by a View like `FOR doc IN viewName` and the specify which attribute you want to test for. For example `doc.attr` or `doc.deeply.nested.attr`. You can also use the bracket notation `doc["attr"]`.
+If you need an attribute path expression, you can reference a document object (`FOR doc IN viewName`) and specify the desired attribute (`doc.attr` or `doc.nested.attr`). You can also use bracket notation (`doc["attr"]`).
 
 ## Search Functions
 
-Search functions can be used in a [SEARCH operation](search-queries.md) to form a search expression to filter a view. The functions control the search functionality without having a returnable value in C8QL.
+Use search functions in a [SEARCH query](search-queries.md) to filter a view. The functions control the search functionality without having a returnable value in C8QL.
 
 The `TOKENS()` function is an exception. It can be used standalone as well, without a `SEARCH` statement, and has a return value which can be used elsewhere in the query.
 
@@ -36,7 +25,7 @@ The `TOKENS()` function is an exception, it requires the analyzer name to be pas
 - **analyzer** (string): name of an analyzer.
 - returns nothing: The function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise.
 
-Assuming a View definition with an analyzer whose name and type is `delimiter`:
+Assuming a view definition with an analyzer whose name and type is `delimiter`:
 
 ```json
 {
@@ -58,7 +47,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-The expression `doc.text == "bar"` has to be wrapped by `ANALYZER()` in order to set the analyzer to `delimiter`. Otherwise the expression would be evaluated with the default `identity` analyzer. `"foo|bar|baz" == "bar"` would not match, but the View does not even process the indexed fields with the `identity` analyzer. The following query would also return an empty result because of the analyzer mismatch:
+The expression `doc.text == "bar"` has to be wrapped by `ANALYZER()` in order to set the analyzer to `delimiter`. Otherwise the expression would be evaluated with the default `identity` analyzer. `"foo|bar|baz" == "bar"` would not match, but the view does not even process the indexed fields with the `identity` analyzer. The following query would also return an empty result because of the analyzer mismatch:
 
 ```js
 FOR doc IN viewName
@@ -117,7 +106,7 @@ FOR doc IN viewName
   RETURN { text: doc.text, score }
 ```
 
-Assuming a View with the following documents indexed and processed by the
+Assuming a view with the following documents indexed and processed by the
 `text_en` analyzer:
 
 ```js
@@ -154,7 +143,7 @@ Assuming a View with the following documents indexed and processed by the
 ### EXISTS()
 
 :::info
-`EXISTS()` will only match values when the specified attribute has been processed with the link property **storeValues** set to `"id"` in the View definition (the default is `"none"`).
+`EXISTS()` will only match values when the specified attribute has been processed with the link property **storeValues** set to `"id"` in the view definition (the default is `"none"`).
 :::
 `EXISTS(path)`
 
@@ -212,7 +201,7 @@ Match documents where the attribute at **path** is greater than (or equal to) **
 _low_ and _high_ can be numbers or strings (technically also `null`, `true` and `false`), but the data type must be the same for both.
 
 :::warning
-The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against Views will not follow the language rules as per the defined analyzer locale.
+The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against views will not follow the language rules as per the defined analyzer locale.
 :::
 
 - **path** (attribute path expression): the path of the attribute to test in the document
@@ -254,7 +243,7 @@ Match documents where at least **minMatchCount** of the specified search express
 - **minMatchCount** (number): minimum number of search expressions that should be satisfied
 - returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
-Assuming a View with a text analyzer, you may use it to match documents where the attribute contains at least two out of three tokens:
+Assuming a view with a text analyzer, you may use it to match documents where the attribute contains at least two out of three tokens:
 
 ```js
 FOR doc IN viewName
@@ -281,7 +270,7 @@ The phrase can be expressed as an arbitrary number of _phraseParts_ separated by
 - **analyzer** (string, _optional_): name of an [analyzer](analyzers/index.md). Uses the analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
 - returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
-Given a View indexing an attribute _text_ with the `"text_en"` analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
+Given a view indexing an attribute _text_ with the `"text_en"` analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
 
 ```js
 FOR doc IN viewName
@@ -328,7 +317,7 @@ FOR doc IN viewName
 Match the value of the attribute that starts with **prefix**. If the attribute is processed by a tokenizing analyzer (type `"text"` or `"delimiter"`) or if it is an array, then a single token/element starting with the prefix is sufficient to match the document.
 
 :::warning
-The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against Views will not follow the language rules as per the defined analyzer locale.
+The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against views will not follow the language rules as per the defined analyzer locale.
 :::
 
 - **path** (attribute path expression): the path of the attribute to compare against in the document
@@ -343,7 +332,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-This query will match `{ "text": "lorem ipsum" }` as well as `{ "text": [ "lorem", "ipsum" ] }` given a View which indexes the `text` attribute and processes it with the `"text_en"` analyzer:
+This query will match `{ "text": "lorem ipsum" }` as well as `{ "text": [ "lorem", "ipsum" ] }` given a view which indexes the `text` attribute and processes it with the `"text_en"` analyzer:
 
 ```js
 FOR doc IN viewName
@@ -382,7 +371,7 @@ FOR doc IN viewName
 
 Split the **input** string with the help of the specified **analyzer** into an array. The resulting array can be used in `FILTER` or `SEARCH` statements with the `IN` operator, but also be assigned to variables and returned. This can be used to better understand how a specific analyzer processes an input value.
 
-It has a regular return value unlike all other Search C8QL functions and is thus not limited to `SEARCH` operations. It is independent of Views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
+It has a regular return value unlike all other Search C8QL functions and is thus not limited to `SEARCH` operations. It is independent of views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
 
 - **input** (string): text to tokenize
 - **analyzer** (string): name of an [analyzer](analyzers/index.md).
@@ -406,7 +395,7 @@ RETURN TOKENS("Lörem ipsüm, DOLOR SIT Ämet.", "text_de")
 ]
 ```
 
-To search a View for documents where the `text` attribute contains certain words/tokens in any order, you can use the function like this:
+To search a view for documents where the `text` attribute contains certain words/tokens in any order, you can use the function like this:
 
 ```js
 FOR doc IN viewName
@@ -433,7 +422,7 @@ FOR movie IN imdbView
   RETURN movie
 ```
 
-Sorting by more than one score is allowed. You may also sort by a mix of scores and attributes from multiple Views as well as collections:
+Sorting by more than one score is allowed. You may also sort by a mix of scores and attributes from multiple views as well as collections:
 
 ```js
 FOR a IN viewA
