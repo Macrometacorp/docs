@@ -48,7 +48,7 @@ RETURN doc
 
 - Alphabetical order
 - Array comparison operators
-- In-line expressions
+- Inline expressions
 
 Refer to [Search Options](#search-options) for information about the `OPTIONS` keyword.
 
