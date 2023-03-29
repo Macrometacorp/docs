@@ -6,23 +6,40 @@ sidebar_position: 40
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to add edges to a Graph Edge collection.
+This page explains how to add edges to a graph or [Graph Edge collection](../../collections/graph-edge/).
 
-## Add an Edge with the Console
+You can add edges and edge definitions using either the graph commands or the collection commands. Best practice is to use the graph commands in most cases. For more information, refer to [Manipulating Graph Collections](../graph-concepts/manipulating-graph-collections).
+
+<Tabs groupId="operating-systems">
+<TabItem value="console1" label="Web Console - Graph">
+
+Follow these instructions to create a new collection using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+2. Click **Graphs**.
+3. Click the graph to which you want to add edges.
+4. Click the vertex that is the beginning of the edge that you want to add, and then click the link icon (looks like a chain).
+5. Click the vertex that is the end of the edge that you want to add.
+6. (Optional) In the **Create Edge** screen, enter the **_key** if you want to assign a key.
+7. (Optional) In the **Create Edge** screen, select the **Edge Collection** that you want to add the edge to (if you have more than one edge collection in the graph).
+8. Click **Create**.
+
+</TabItem>
+<TabItem value="console2" label="Web Console - Collection">
 
 To add edge documents to a collection:
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Collections**.
-2. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
-3. Click **New Document**.
-4. Enter information in the fields.
+1. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
+1. Click **New Document**.
+1. Enter information in the fields.
    - **_from -** Document `_id` from which the relationship originates.
    - **_to -** Document `_id` to which the relationship is defined.
    - **_key -** Optional. If left blank, then Macrometa automatically generates a key.
-5. Click **Create**.
+1. Click **Create**.
 
-## Add Edges from a File
+#### Add Edges from a File
 
 To add edge documents to a collection from a JSON or CSV file:
 
@@ -38,57 +55,15 @@ To add edge documents to a collection from a JSON or CSV file:
    - **Select Primary Key -** Macrometa can autogenerate your primary key, or you can select one from the file.
    - **Replace docs -** Select this option to overwrite any existing documents with the same `_key`.
 
-## Add Documents with Code
+</TabItem>
+<TabItem value="api" label="REST API">
 
-The example below shows how to use Python or JavaScript to insert documents into an `employees` collection.
+Use our interactive API Reference with code generation in 18 programming languages to [Create a New Edge](https://www.macrometa.com/docs/api#/operations/CreateAnEdge) or [Add a New Edge Definition](https://www.macrometa.com/docs/api#/operations/AddEdgedefinition) between existing vertices.
 
-<Tabs groupId="operating-systems">
-  <TabItem value="py" label="Python">
+</TabItem>
+<TabItem value="cli" label="CLI">
 
-```py
-    client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
-                            email='nemo@nautilus.com', password="xxxxxx",
-                            geofabric='_system')
-    client.insert_document(collection_name='employees', document={'_key':'Jean', 'firstname': 'Jean', 'lastname':'Picard', 'email':'jean.picard@macrometa.io'})
-
-    docs = [
-      {'_kefabricy':'James', 'firstname': 'James', 'lastname':'Kirk', 'email':'james.kirk@mafabriccrometa.io'},
-      {'_kefabricy': 'Han', 'firstname': 'Han', 'lastname':'Solo', 'email':'han.solo@macrfabricometa.io'},
-      {'_kefabricy': 'Bruce', 'firstname': 'Bruce', 'lastname':'Wayne', 'email':'bruce.wayne@mfabricacrometa.io'}
-    ]
-
-    client.insert_document(collection_name='employees', document=docs)
-```
-
-  </TabItem>
-  <TabItem value="js" label="Javascript">
-
-```js
-    const jsc8 = require("jsc8");
-
-    // Create an authenticated instance with a token or API key.
-    // const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
-    // const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "XXXX", fabricName: '_system'});
-    // await console.log("Authentication done!!...");
-
-    // Or use email and password to authenticate client instance.
-    const client = new jsc8("https://play.paas.macrometa.io");
-
-    await client.login("nemo@nautilus.com", "xxxxxx");
-
-    async function insertDoc() {
-        try{
-          await client.insertDocumentMany(
-            "employees",
-            [{ firstname: 'Jean', lastname: 'Picard' },{ firstname: 'Bruce', lastname: 'Wayne' }]
-          );
-        } catch(e){
-          await console.log("Document could not be inserted because "+ e);
-        }
-    }
-
-    insertDoc();
-```
+Use the [gdnsl graph edge create](../../cli/graph-edges-cli#gdnsl-graph-edge-create) CLI command to create a new graph edge.
 
 </TabItem>
 </Tabs>
