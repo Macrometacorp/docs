@@ -3,17 +3,13 @@ sidebar_position: 50
 title: Search Functions
 ---
 
-Most Search C8QL functions take an expression or attribute path expression as argument.
+Search views utilize functions for processing and filtering data. These functions typically require either an expression or attribute path expression as an argument. Expressions, such as search functions and logical operators, enable you to create search conditions in C8QL syntax. To set an analyzer for search expressions, use the ANALYZER() function. If no analyzer is set, the search view uses the default `identity` analyzer.
 
-If an expression is expected, it means that search conditions can expressed in C8QL syntax. They are typically function calls to Search search functions, possibly nested and/or using logical operators for multiple conditions.
-
-You need the `ANALYZER()` function to wrap search (sub-)expressions to set the Analyzer for it, unless you want to use the default `"identity"` Analyzer. You might not need other Search functions for certain expressions, because comparisons can be done with basic C8QL comparison operators.
-
-If an attribute path expressions is needed, then you have to reference a document object emitted by a View like `FOR doc IN viewName` and the specify which attribute you want to test for. For example `doc.attr` or `doc.deeply.nested.attr`. You can also use the bracket notation `doc["attr"]`.
+If you need an attribute path expression, you can reference a document object (`FOR doc IN viewName`) and specify the desired attribute (`doc.attr` or `doc.nested.attr`). You can also use bracket notation (`doc["attr"]`).
 
 ## Search Functions
 
-Search functions can be used in a [SEARCH operation](index.md) to form a search expression to filter a view. The functions control the search functionality without having a returnable value in C8QL.
+Use search functions in a [SEARCH query](search-queries.md) to filter a view. The functions control the search functionality without having a returnable value in C8QL.
 
 The `TOKENS()` function is an exception. It can be used standalone as well, without a `SEARCH` statement, and has a return value which can be used elsewhere in the query.
 
@@ -21,15 +17,15 @@ The `TOKENS()` function is an exception. It can be used standalone as well, with
 
 `ANALYZER(expr, analyzer)`
 
-Sets the Analyzer for the given search expression. The default Analyzer is `identity` for any Search expression. This utility function can be used to wrap a complex expression to set a particular Analyzer. It also sets it for all the nested functions which require such an argument to avoid repeating the Analyzer parameter. If an Analyzer argument is passed to a nested function regardless, then it takes precedence over the Analyzer set via `ANALYZER()`.
+Sets the analyzer for the given search expression. The default analyzer is `identity` for any Search expression. This utility function can be used to wrap a complex expression to set a particular analyzer. It also sets it for all the nested functions which require such an argument to avoid repeating the analyzer parameter. If an analyzer argument is passed to a nested function regardless, then it takes precedence over the analyzer set via `ANALYZER()`.
 
-The `TOKENS()` function is an exception, it requires the Analyzer name to be passed in all cases even if wrapped in an `ANALYZER()` call.
+The `TOKENS()` function is an exception, it requires the analyzer name to be passed in all cases even if wrapped in an `ANALYZER()` call.
 
 - **expr** (expression): any valid search expression
-- **analyzer** (string): name of an Analyzer.
-- returns nothing: The function can only be called in a [SEARCH operation](index.md) and throws an error otherwise.
+- **analyzer** (string): name of an analyzer.
+- returns nothing: The function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise.
 
-Assuming a View definition with an Analyzer whose name and type is `delimiter`:
+Assuming a view definition with an analyzer whose name and type is `delimiter`:
 
 ```json
 {
@@ -43,7 +39,7 @@ Assuming a View definition with an Analyzer whose name and type is `delimiter`:
 }
 ```
 
-… with the Analyzer properties `{ "delimiter": "|" }` and an example document `{ "text": "foo|bar|baz" }` in the collection `coll`, the following query would return the document:
+… with the analyzer properties `{ "delimiter": "|" }` and an example document `{ "text": "foo|bar|baz" }` in the collection `coll`, the following query would return the document:
 
 ```js
 FOR doc IN viewName
@@ -51,7 +47,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-The expression `doc.text == "bar"` has to be wrapped by `ANALYZER()` in order to set the Analyzer to `delimiter`. Otherwise the expression would be evaluated with the default `identity` Analyzer. `"foo|bar|baz" == "bar"` would not match, but the View does not even process the indexed fields with the `identity` Analyzer. The following query would also return an empty result because of the Analyzer mismatch:
+The expression `doc.text == "bar"` has to be wrapped by `ANALYZER()` in order to set the analyzer to `delimiter`. Otherwise the expression would be evaluated with the default `identity` analyzer. `"foo|bar|baz" == "bar"` would not match, but the view does not even process the indexed fields with the `identity` analyzer. The following query would also return an empty result because of the analyzer mismatch:
 
 ```js
 FOR doc IN viewName
@@ -60,7 +56,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-In below query, the search expression is swapped by `ANALYZER()` to set the `text_en` Analyzer for both `PHRASE()` functions:
+In below query, the search expression is swapped by `ANALYZER()` to set the `text_en` analyzer for both `PHRASE()` functions:
 
 ```js
 FOR doc IN viewName
@@ -76,7 +72,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-In the following example `ANALYZER()` is used to set the Analyzer `text_en`, but in the second call to `PHRASE()` a different Analyzer is set (`identity`) which overrules `ANALYZER()`. Therefore, the `text_en` Analyzer is used to find the phrase _foo_ and the `identity` Analyzer to find _bar_:
+In the following example `ANALYZER()` is used to set the analyzer `text_en`, but in the second call to `PHRASE()` a different analyzer is set (`identity`) which overrules `ANALYZER()`. Therefore, the `text_en` analyzer is used to find the phrase _foo_ and the `identity` analyzer to find _bar_:
 
 ```js
 FOR doc IN viewName
@@ -84,7 +80,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-Despite the wrapping `ANALYZER()` function, the Analyzer name can not be omitted in calls to the `TOKENS()` function. Both occurrences of `text_en` are required, to set the Analyzer for the expression `doc.text IN ...` and for the `TOKENS()` function itself:
+Despite the wrapping `ANALYZER()` function, the analyzer name can not be omitted in calls to the `TOKENS()` function. Both occurrences of `text_en` are required, to set the analyzer for the expression `doc.text IN ...` and for the `TOKENS()` function itself:
 
 ```js
 FOR doc IN viewName
@@ -100,7 +96,7 @@ Override boost in the context of a search expression with a specified value, mak
 
 - **expr** (expression): any valid search expression
 - **boost** (number): numeric boost value
-- returns nothing: the function can only be called in a [SEARCH operation](index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -110,8 +106,8 @@ FOR doc IN viewName
   RETURN { text: doc.text, score }
 ```
 
-Assuming a View with the following documents indexed and processed by the
-`text_en` Analyzer:
+Assuming a view with the following documents indexed and processed by the
+`text_en` analyzer:
 
 ```js
 { "text": "foo bar" }
@@ -147,14 +143,14 @@ Assuming a View with the following documents indexed and processed by the
 ### EXISTS()
 
 :::info
-`EXISTS()` will only match values when the specified attribute has been processed with the link property **storeValues** set to `"id"` in the View definition (the default is `"none"`).
+`EXISTS()` will only match values when the specified attribute has been processed with the link property **storeValues** set to `"id"` in the view definition (the default is `"none"`).
 :::
 `EXISTS(path)`
 
 Match documents where the attribute at **path** is present.
 
 - **path** (attribute path expression): the attribute to test in the document
-- returns nothing: the function can only be called in a [SEARCH operation](index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -173,7 +169,7 @@ Match documents where the attribute at **path** is present _and_ is of the speci
   - `"numeric"`
   - `"string"`
   - `"analyzer"` (see below)
-- returns nothing: the function can only be called in a [SEARCH operation](index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -187,8 +183,8 @@ Match documents where the attribute at **path** is present _and_ was indexed by 
 
 - **path** (attribute path expression): the attribute to test in the document
 - **type** (string): string literal `"analyzer"`
-- **analyzer** (string, _optional_): name of an [Analyzer](../analyzers/index.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
-- returns nothing: the function can only be called in a [SEARCH operation](index.md) and throws an error otherwise
+- **analyzer** (string, _optional_): name of an [analyzer](analyzers/index.md). Uses the analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
+- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -205,7 +201,7 @@ Match documents where the attribute at **path** is greater than (or equal to) **
 _low_ and _high_ can be numbers or strings (technically also `null`, `true` and `false`), but the data type must be the same for both.
 
 :::warning
-The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against Views will not follow the language rules as per the defined Analyzer locale.
+The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against views will not follow the language rules as per the defined analyzer locale.
 :::
 
 - **path** (attribute path expression): the path of the attribute to test in the document
@@ -213,11 +209,11 @@ The alphabetical order of characters is not taken into account by Search, i.e. r
 - **high** (number\|string): maximum value of the desired range
 - **includeLow** (bool): whether the minimum value shall be included in the range (left-closed interval) or not (left-open interval)
 - **includeHigh** (bool): whether the maximum value shall be included in the range (right-closed interval) or not (right-open interval)
-- returns nothing: the function can only be called in a [SEARCH operation](index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
 If _low_ and _high_ are the same, but _includeLow_ and/or _includeHigh_ is set to `false`, then nothing will match. If _low_ is greater than _high_ nothing will match either.
 
-To match documents with the attribute `value >= 3` and `value <= 5` using the default `"identity"` Analyzer you would write the following query:
+To match documents with the attribute `value >= 3` and `value <= 5` using the default `"identity"` analyzer you would write the following query:
 
 ```js
 FOR doc IN viewName
@@ -227,7 +223,7 @@ FOR doc IN viewName
 
 This will also match documents which have an array of numbers as `value` attribute where at least one of the numbers is in the specified boundaries.
 
-Using string boundaries and a text Analyzer allows to match documents which have at least one token within the specified character range:
+Using string boundaries and a text analyzer allows to match documents which have at least one token within the specified character range:
 
 ```js
 FOR doc IN valView
@@ -245,9 +241,9 @@ Match documents where at least **minMatchCount** of the specified search express
 
 - **expr** (expression, _repeatable_): any valid search expression
 - **minMatchCount** (number): minimum number of search expressions that should be satisfied
-- returns nothing: the function can only be called in a [SEARCH operation](index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
-Assuming a View with a text Analyzer, you may use it to match documents where the attribute contains at least two out of three tokens:
+Assuming a view with a text analyzer, you may use it to match documents where the attribute contains at least two out of three tokens:
 
 ```js
 FOR doc IN viewName
@@ -271,10 +267,10 @@ The phrase can be expressed as an arbitrary number of _phraseParts_ separated by
 - **phrasePart** (string): text to search for in the tokens. May consist of several words/tokens, which will be split using the specified _analyzer_
 - **skipTokens** (number, _optional_): amount of words/tokens to treat
   as wildcards
-- **analyzer** (string, _optional_): name of an [Analyzer](../analyzers/index.md). Uses the Analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
-- returns nothing: the function can only be called in a [SEARCH operation](index.md) and throws an error otherwise
+- **analyzer** (string, _optional_): name of an [analyzer](analyzers/index.md). Uses the analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
+- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
-Given a View indexing an attribute _text_ with the `"text_en"` Analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
+Given a view indexing an attribute _text_ with the `"text_en"` analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
 
 ```js
 FOR doc IN viewName
@@ -318,17 +314,17 @@ FOR doc IN viewName
 
 `STARTS_WITH(path, prefix)`
 
-Match the value of the attribute that starts with **prefix**. If the attribute is processed by a tokenizing Analyzer (type `"text"` or `"delimiter"`) or if it is an array, then a single token/element starting with the prefix is sufficient to match the document.
+Match the value of the attribute that starts with **prefix**. If the attribute is processed by a tokenizing analyzer (type `"text"` or `"delimiter"`) or if it is an array, then a single token/element starting with the prefix is sufficient to match the document.
 
 :::warning
-The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against Views will not follow the language rules as per the defined Analyzer locale.
+The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against views will not follow the language rules as per the defined analyzer locale.
 :::
 
 - **path** (attribute path expression): the path of the attribute to compare against in the document
 - **prefix** (string): a string to search at the start of the text
-- returns nothing: the function can only be called in a [SEARCH operation](index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
 
-To match a document `{ "text": "lorem ipsum..." }` using a prefix and the `"identity"` Analyzer you can use it like this:
+To match a document `{ "text": "lorem ipsum..." }` using a prefix and the `"identity"` analyzer you can use it like this:
 
 ```js
 FOR doc IN viewName
@@ -336,7 +332,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-This query will match `{ "text": "lorem ipsum" }` as well as `{ "text": [ "lorem", "ipsum" ] }` given a View which indexes the `text` attribute and processes it with the `"text_en"` Analyzer:
+This query will match `{ "text": "lorem ipsum" }` as well as `{ "text": [ "lorem", "ipsum" ] }` given a view which indexes the `text` attribute and processes it with the `"text_en"` analyzer:
 
 ```js
 FOR doc IN viewName
@@ -344,7 +340,7 @@ FOR doc IN viewName
   RETURN doc.text
 ```
 
-Note that it will not match `{ "text": "IPS (in-plane switching)" }` because the Analyzer has stemming enabled, but the prefix was passed in as-is:
+Note that it will not match `{ "text": "IPS (in-plane switching)" }` because the analyzer has stemming enabled, but the prefix was passed in as-is:
 
 ```js
 RETURN TOKENS("IPS (in-plane switching)", "text_en")
@@ -361,7 +357,7 @@ RETURN TOKENS("IPS (in-plane switching)", "text_en")
 ]
 ```
 
-The _s_ is removed from _ips_, which leads to the prefix _ips_ not matching the indexed token _ip_. You may either create a custom text Analyzer with stemming disabled to avoid this issue, or apply stemming to the prefix:
+The _s_ is removed from _ips_, which leads to the prefix _ips_ not matching the indexed token _ip_. You may either create a custom text analyzer with stemming disabled to avoid this issue, or apply stemming to the prefix:
 
 ```js
 FOR doc IN viewName
@@ -373,15 +369,15 @@ FOR doc IN viewName
 
 `TOKENS(input, analyzer) → tokenArray`
 
-Split the **input** string with the help of the specified **analyzer** into an array. The resulting array can be used in `FILTER` or `SEARCH` statements with the `IN` operator, but also be assigned to variables and returned. This can be used to better understand how a specific Analyzer processes an input value.
+Split the **input** string with the help of the specified **analyzer** into an array. The resulting array can be used in `FILTER` or `SEARCH` statements with the `IN` operator, but also be assigned to variables and returned. This can be used to better understand how a specific analyzer processes an input value.
 
-It has a regular return value unlike all other Search C8QL functions and is thus not limited to `SEARCH` operations. It is independent of Views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
+It has a regular return value unlike all other Search C8QL functions and is thus not limited to `SEARCH` operations. It is independent of views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
 
 - **input** (string): text to tokenize
-- **analyzer** (string): name of an [Analyzer](../analyzers/index.md).
+- **analyzer** (string): name of an [analyzer](analyzers/index.md).
 - returns **tokenArray** (array): array of strings with zero or more elements, each element being a token.
 
-Example query showcasing the `"text_de"` Analyzer (tokenization with stemming, case conversion and accent removal for German text):
+Example query showcasing the `"text_de"` analyzer (tokenization with stemming, case conversion and accent removal for German text):
 
 ```js
 RETURN TOKENS("Lörem ipsüm, DOLOR SIT Ämet.", "text_de")
@@ -399,7 +395,7 @@ RETURN TOKENS("Lörem ipsüm, DOLOR SIT Ämet.", "text_de")
 ]
 ```
 
-To search a View for documents where the `text` attribute contains certain words/tokens in any order, you can use the function like this:
+To search a view for documents where the `text` attribute contains certain words/tokens in any order, you can use the function like this:
 
 ```js
 FOR doc IN viewName
@@ -411,7 +407,7 @@ It will match `{ "text": "Lorem ipsum, dolor sit amet." }` for instance. If you 
 
 ## Scoring Functions
 
-Scoring functions return a ranking value for the documents found by a [SEARCH operation](index.md). The better the documents match the search expression the higher the returned number.
+Scoring functions return a ranking value for the documents found by a [SEARCH operation](search-queries.md). The better the documents match the search expression the higher the returned number.
 
 The first argument to any scoring function is always the document emitted by a `FOR` operation over a search view.
 
@@ -426,7 +422,7 @@ FOR movie IN imdbView
   RETURN movie
 ```
 
-Sorting by more than one score is allowed. You may also sort by a mix of scores and attributes from multiple Views as well as collections:
+Sorting by more than one score is allowed. You may also sort by a mix of scores and attributes from multiple views as well as collections:
 
 ```js
 FOR a IN viewA
