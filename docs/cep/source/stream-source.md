@@ -59,6 +59,7 @@ The following parameters are used to configure a stream definition.
 | replication.type | Specifies if the replication type of the streams. Possible values can be `LOCAL` and `GLOBAL`.      | LOCAL         | STRING         | Yes      |
 | subscription.initial.position | Subscription's initial position in the stream. Possible values: [Earliest,Latest]. | Latest | STRING | Yes|
 | subscription.type | Stream subscription type. Possible Values: [Exclusive, Shared, Failover, Key_Shared]. | Shared | STRING | Yes|
+| subscription.mode | In `Durable` subscription mode, the cursor is durable, which retains events and persists the current position. If a Stream Worker is updated/re-published or restarts from a failure, it can recover so that events can continue to be consumed from the last consumed position.<br /> If the subscription mode is `NonDurable` and stream worker is updated/re-published or restarts from a failure, the cursor is lost and can never be recovered, so that events can not continue to be consumed from the last consumed position. Possible Values: [Durable, NonDurable]. | Durable | STRING | Yes|
 | num.consumers | Number of consumers. | 1 | INT | Yes |
 | num.listener.threads | The number of listener threads. | 1 | INT | Yes |
 | num.io.threads | The number of listener threads. | 1 | INT | Yes |
