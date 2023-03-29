@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: k Shortest Paths Query
+title: k Shortest Paths Queries
 ---
 
-_k shortest path_ queries are graph traversal algorithms used to find the top K shortest paths between two vertices in a weighted graph. In other words, these queries identify multiple paths between a starting vertex and a destination vertex, ranked by the sum of the weights (such as distances or travel times) of their edges. The paths are sorted in ascending order, with the shortest path first, followed by the next shortest path, and so on, up to the Kth shortest path.
+A _k shortest path_ query is a graph traversal algorithm used to find the top K shortest paths between two vertices in a weighted graph. In other words, these queries identify multiple paths between a starting vertex and a destination vertex, ranked by the sum of the weights (such as distances or travel times) of their edges. The paths are sorted in ascending order, with the shortest path first, followed by the next shortest path, and so on, up to the Kth shortest path.
 
 You can use k shortest path queries to find multiple optimal routes between two points based on various criteria such as travel time, distance, or any other custom weight assigned to the edges in a graph. This is particularly useful when you want to provide alternate routes or recommendations for points of interest, taking into account various factors that might affect the path selection.
 
