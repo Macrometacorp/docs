@@ -1,6 +1,6 @@
 ---
 title: GDN Graphs vs. Relational Databases
-sidebar_position: 10
+sidebar_position: 20
 ---
 
 This page discusses how graphs are represented and managed in relational databases compared to Macrometa GDN, focusing on concepts such as vertex collections, traversal, edge index, and edge attributes.
