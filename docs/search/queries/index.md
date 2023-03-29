@@ -21,7 +21,7 @@ FOR doc IN <SEARCH_VIEW_NAME>
   ...
 ```
 
-Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [operators](search-functions.md):
+Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [functions](search-functions.md):
 
 - `AND`
 - `OR`
