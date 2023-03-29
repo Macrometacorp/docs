@@ -1,6 +1,6 @@
 ---
-title: Add Edges to Collection
-sidebar_position: 20
+title: Add Graph Edge
+sidebar_position: 40
 ---
 
 import Tabs from '@theme/Tabs';
