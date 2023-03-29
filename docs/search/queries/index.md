@@ -54,7 +54,7 @@ Refer to [Search Options](#search-options) for information about the `OPTIONS` k
 
 ## Search by Document Attribute
 
-You can search for documents by querying document attributes that have been indexed by both the search view and the document store. Refer to [Document Store Indexes](../collections/documents/document-store-indexes.md) for more information about adding attributes to document store indexes.
+You can search for documents by querying document attributes that have been indexed by both the search view and the document store. Refer to [Document Store Indexes](../../collections/documents/document-store-indexes.md) for more information about adding attributes to document store indexes.
 
 When you search for a document by its attribute, all attributes (including non-indexed ones) return in the results. However, querying a non-indexed attribute yields no results.
 
