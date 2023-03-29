@@ -27,7 +27,7 @@ The `TOKENS()` function is an exception, it requires the Analyzer name to be pas
 
 - **expr** (expression): any valid search expression
 - **analyzer** (string): name of an Analyzer.
-- returns nothing: the function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise
+- returns nothing: The function can only be called in a [SEARCH operation](search-queries.md) and throws an error otherwise.
 
 Assuming a View definition with an Analyzer whose name and type is `delimiter`:
 
