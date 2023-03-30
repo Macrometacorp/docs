@@ -40,4 +40,4 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-It will match `{ "text": "Lorem ipsum, dolor sit amet." }` for instance. If you want to search for tokens in a particular order, use [PHRASE()](/phrase.md) instead.
+It will match `{ "text": "Lorem ipsum, dolor sit amet." }` for instance. If you want to search for tokens in a particular order, use [PHRASE()](phrase.md) instead.
