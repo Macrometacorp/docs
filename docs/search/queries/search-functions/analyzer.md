@@ -6,12 +6,14 @@ Sets an analyzer for the search query. The analyzer applies to all nested functi
 
 The default analyzer is `identity`.
 
-Syntax:
+### Syntax
 
 `ANALYZER(expr, analyzer)`
 
 - `expr` (expression): A valid search expression.
 - `analyzer` (string): Name of the analyzer.
+
+### Examples
 
 In this example, assume an analyzer named `delimiter` with the character `|` configured as the delimiter.
 

@@ -4,7 +4,7 @@ title: TOKENS()
 
 The `TOKENS()` function is the only function that you can use freely in the query without a `SEARCH` statement.
 
-Syntax:
+### Syntax
 
 `TOKENS(input, analyzer) → tokenArray`
 
@@ -14,6 +14,8 @@ It has a regular return value unlike all other search functions and is thus not 
 
 - `input` (string): Text to tokenize
 - `analyzer` (string): Name of an [analyzer](../../analyzers/index.md).
+
+### Examples
 
 Example query showcasing the `"text_de"` analyzer, which features tokenization with stemming, case conversion, and accent removal for German text:
 

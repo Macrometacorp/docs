@@ -32,7 +32,7 @@ FOR a IN viewA
 
 Sorts documents using the [Best Matching 25 (BM25) algorithm](https://en.wikipedia.org/wiki/Okapi_BM25).
 
-Syntax:
+### Syntax
 
 `BM25(doc, k, b) → score`
 
@@ -41,6 +41,8 @@ Syntax:
 - `b` (number, _optional_): Determines the scaling by the total text length. The default is `0.75`. At the extreme values of the coefficient _b_, BM25 turns into the ranking functions known as:
   - BM11 for _b_ = `1` (fully scaling the term weight by the total text length).
   - BM15 for _b_ = `0` (no length normalization).
+
+### Example
 
 This query returns a numeric score that represents the computed ranking value.
 
@@ -66,12 +68,14 @@ FOR doc IN viewName
 
 Boost modifies the importance of a specific search expression within a query. Default boost value is `1.0`.
 
-Syntax:
+### Syntax
 
 `BOOST(expr, boost)`
 
 - `expr` (expression): A valid search expression.
 - `boost` (number): Numberic boost value.
+
+### Example
 
 ```js
 FOR doc IN viewName
@@ -120,13 +124,15 @@ The returned result:
 
 Sorts documents using the [term frequency–inverse document frequency algorithm](https://en.wikipedia.org/wiki/TF-IDF) (TF-IDF).
 
-Syntax:
+### Syntax
 
 `TFIDF(doc, normalize) → score`
 
 - `doc` (document): Must be specified by `FOR ... IN viewName`.
 - `normalize` (bool): Specifies whether scores should be normalized. The default is `false`. Optional.
 - returns `score` (number): Computed ranking value.
+
+### Example
 
 Sort by relevance using the TF-IDF score:
 

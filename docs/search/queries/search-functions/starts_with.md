@@ -4,7 +4,7 @@ title: STARTS_WITH()
 
 Match the value of an attribute that starts with a prefix. If the attribute is tokenized or is an array, then a document only needs a single token or element to return in the query.
 
-Syntax:
+### Syntax
 
 `STARTS_WITH(path, prefix)`
 
@@ -12,6 +12,8 @@ Syntax:
 - `prefix` (string): A string to search for at the start of text.
 
 The alphabetical order of characters is not taken into account by Search. Range queries in SEARCH operations against views do not follow the language rules as defined by a locale analyzer.
+
+### Examples
 
 This example returns a `"lorem ipsum"` document using a prefix and an identity analyzer:
 

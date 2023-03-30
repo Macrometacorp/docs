@@ -4,11 +4,13 @@ title: EXISTS()
 
 Match documents where an attribute at `path` is present. To use this function, the view definition must have `storeValues` set to `"id"`.
 
-Syntax:
+### Syntax
 
 `EXISTS(path)`
 
 - `path` (attribute path expression): The path to the attribute in the document.
+
+### Example
 
 ```js
 FOR doc IN viewName
@@ -20,7 +22,7 @@ FOR doc IN viewName
 
 Match documents where an attribute at `path` is present and also matches the specified data type.
 
-Syntax:
+### Syntax
 
 `EXISTS(path, type)`
 
@@ -30,7 +32,9 @@ Syntax:
   - `"bool"` / `"boolean"`
   - `"numeric"`
   - `"string"`
-  - `"analyzer"` (see below)
+  - `"analyzer"` (Refer to [Specify Analyzer](#specify-analyzer).)
+
+### Example
 
 ```js
 FOR doc IN viewName
@@ -42,13 +46,15 @@ FOR doc IN viewName
 
 Match documents where an attribute at `path` is present and also indexed by a specified analyzer.
 
-Syntax:
+### Syntax
 
 `EXISTS(path, "analyzer", analyzer)`
 
 - `path` (attribute path expression): The path to the attribute in the document.
 - `"analyzer"` (string): Specifies to look for an analyzer. Do not change.
 - `analyzer` (string): Optionally, specify the name of an [analyzer](../../analyzers/index.md). Default is `identity`.
+
+### Example
 
 ```js
 FOR doc IN viewName

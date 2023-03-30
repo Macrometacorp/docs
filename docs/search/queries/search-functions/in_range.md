@@ -4,6 +4,8 @@ title: IN_RANGE()
 
 Match documents where the attribute at `path` is greater than (or equal to) `low` and less than (or equal to) `high`.
 
+### Syntax
+
 `IN_RANGE(path, low, high, includeLow, includeHigh)`
 
 The values `low` and `high` can be numbers or strings, but each value must have the same data type.
@@ -15,6 +17,8 @@ The values `low` and `high` can be numbers or strings, but each value must have 
 - `includeHigh` (bool): If `false`, the value specified in `high` is included in the range.
 
 The alphabetical order of characters is not taken into account by search. Range queries in `SEARCH` operations against views do not follow the language rules as defined by a locale analyzer.
+
+### Examples
 
 For example, this query returns documents with the attribute `value` between and including 3 to 5:
 
