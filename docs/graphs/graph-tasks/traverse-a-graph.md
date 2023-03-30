@@ -14,29 +14,19 @@ This page explains several options for traversing Macrometa graphs.
 Follow these instructions to create a new collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click 
-
-</TabItem>
-<TabItem value="py" label="Python SDK">
-
-Python SDK instructions and code, as generic as possible.
-
-</TabItem>
-<TabItem value="js" label="JavaScript SDK">
-
-JavaScript SDK instructions and code, as generic as possible.
+2. Click **Query Workers**.
+3. Enter a graph traversal query in the query editor. For more information about traversal queries, refer to [Graph Traversal Queries](../graph-queries/traversal-queries/).
+4. Click **Run Query**.
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 
-18 programming languages to 
-[Task Name](Link to API command).
+Use our interactive API Reference with code generation in 18 programming languages to [Traverse a Graph](https://www.macrometa.com/docs/api#/operations/ReadIn-OrOutboundEdges).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection](../../cli/collections-cli.md) CLI command to create a Document Store collection.
+Use the [gdnsl graph traversal](../../cli/collections-cli.md) CLI command to traverse a graph.
 
 </TabItem>
 </Tabs>
