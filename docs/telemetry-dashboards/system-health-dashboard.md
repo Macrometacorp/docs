@@ -38,7 +38,7 @@ The System Health Dashboard is a Grafana Telemetry dashboard that monitors key s
 
 - **Usage**: Provides a quick overview of the amount of CPU resources being used by the server.
 
-- **Threshold**: N/A
+- **Threshold**: TBD
 
 - **Example Metric**    
 ![Screenshot from 2023-03-24 15-14-46.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-14-46.png)
@@ -49,7 +49,7 @@ The System Health Dashboard is a Grafana Telemetry dashboard that monitors key s
 
 - **Usage**: Provides a quick snapshot of the server's load over the past 1 minute.
 
-- **Threshold**: N/A
+- **Threshold**: TBD
 
 - **Example Metric**    
 ![Screenshot from 2023-03-24 15-15-27.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-15-27.png)
@@ -60,7 +60,7 @@ The System Health Dashboard is a Grafana Telemetry dashboard that monitors key s
 
 - **Usage**: Provides a quick snapshot of the server's load over the past 5 minutes.
 
-- **Threshold**: N/A
+- **Threshold**: TBD
     
 - **Example Metric**
 ![Screenshot from 2023-03-24 15-20-58.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-20-58.png)
@@ -71,7 +71,7 @@ The System Health Dashboard is a Grafana Telemetry dashboard that monitors key s
 
 - **Usage**: Provides a quick snapshot of the server's load over the past 15 minutes.
 
-- **Threshold**: N/A
+- **Threshold**: TBD
     
 - **Example Metric**
 ![Screenshot from 2023-03-24 15-21-06.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_15-21-06.png)
@@ -203,11 +203,11 @@ The System Health Dashboard is a Grafana Telemetry dashboard that monitors key s
     
 ### CPU: 
 
-- **Definition**: Show a detail graph of the CPU - **Usage** of the data collected over time.
+- **Definition**: The CPU metric displays a detailed graph of the utilization of the central processing unit (CPU) over a specified time period.
 
-- **Usage**:
+- **Usage**: The CPU metric is used to monitor the performance of the system's central processing unit and to determine if the system is running efficiently.
 
-- **Threshold**:
+- **Threshold**: TBD
 
 - **Example Metric**    
 ![Screenshot from 2023-03-24 19-16-47.png](/../static/img/telemetry-dashboards/system-health-imgs/Screenshot_from_2023-03-24_19-16-47.png)
