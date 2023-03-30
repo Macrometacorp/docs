@@ -2,7 +2,11 @@
 title: ANALYZER()
 ---
 
-Sets the analyzer for the given search expression. The default analyzer is `identity` for any Search expression. This utility function can be used to wrap a complex expression to set a particular analyzer. It also sets it for all the nested functions which require such an argument to avoid repeating the analyzer parameter. If an analyzer argument is passed to a nested function regardless, then it takes precedence over the analyzer set via `ANALYZER()`.
+Sets an analyzer for the search query. The analyzer applies to all nested functions which do not have an analyzer argument. If a nested function has its own analyzer set, it takes precedence over what you choose here.
+
+The default analyzer is `identity`.
+
+Syntax:
 
 `ANALYZER(expr, analyzer)`
 
