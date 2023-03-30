@@ -5,7 +5,7 @@ title: uniqueVertices Example
 
 This page provides examples of traversing graphs using the `uniqueVertices` option. For more information about this option, refer to [Traversal Query Syntax](../graph-queries/traversal-queries/traversal-syntax.md).
 
-## Use Case: Identifying Unique Viewers for Personalized Recommendations in OTT Video Streaming
+## Use Case: Identify Unique Viewers for Personalized Recommendations
 
 Consider an OTT video streaming service that wants to improve its content recommendations for viewers. The service wants to identify unique viewers who have recently watched content from a specific genre in order to offer them personalized recommendations and enhance their streaming experience. This approach can help the streaming service increase viewer engagement and promote content tailored to individual preferences.
 
@@ -28,7 +28,7 @@ FOR user, edge, path IN 1..1 OUTBOUND 'content/Sci-Fi' watched
 
 In this query, the graph is traversed using the `OUTBOUND` direction, starting from the 'Sci-Fi' genre vertex in the content collection, and following the `watched` edges to find unique users who have watched content from this genre. The `uniqueVertices: 'global'` option ensures that only distinct users are returned, preventing any duplicates.
 
-## Use Case: Identifying Influential Customers in Financial Services
+## Use Case: Identify Influential Customers in Financial Services
 
 Imagine a financial services company looking to identify influential customers to develop targeted marketing campaigns. The company wants to find customers who have made significant investments and have had a strong influence on their connections' investment decisions. This approach allows the financial services company to focus its marketing efforts on influential customers, leading to increased engagement and potentially higher investment volumes.
 
