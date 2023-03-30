@@ -2,7 +2,7 @@
 title: ANALYZER()
 ---
 
-Sets an analyzer for the search query. The analyzer applies to all nested functions which do not have an analyzer argument. If a nested function has its own analyzer set, it takes precedence over what you choose here.
+Sets an analyzer for the search query. The analyzer applies to all nested functions which do not have an analyzer argument. If a nested function has its own analyzer set, then it takes precedence over what you choose here.
 
 The default analyzer is `identity`.
 
