@@ -13,7 +13,7 @@ You can add edges and edge definitions using either the graph commands or the co
 <Tabs groupId="operating-systems">
 <TabItem value="console1" label="Web Console - Graph">
 
-Follow these instructions to create a new collection using the GDN console web UI.
+Follow these instructions to add a graph edge using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Graphs**.
