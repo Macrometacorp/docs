@@ -3,7 +3,7 @@ sidebar_position: 50
 title: Features
 ---
 
-An Analyzer's _features_ determine the available term matching capabilities. These features are not applicable with custom Views.
+An analyzer's _features_ determine the available term matching capabilities. These features are not applicable with custom search views.
 
 We support the following features for search views:
 
@@ -13,7 +13,7 @@ We support the following features for search views:
 
 Feature availability depends on the following:
 
-- The type of Analyzer being used.
+- The type of analyzer being used.
 - The query filtering and sorting functions required by the result.
 
-For example, a `text` Analyzer uses `frequency`, `norm`, and `position`, and the `PHRASE()` C8QL function requires `frequency` and `position`.
+For example, a `text` analyzer uses `frequency`, `norm`, and `position`, and the `PHRASE()` C8QL function requires `frequency` and `position`.
