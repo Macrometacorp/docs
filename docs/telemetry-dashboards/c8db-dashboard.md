@@ -120,7 +120,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The amount of database storage in use measured in KiB, MiB, or GiB.
 - **Usage -** View the mean, last, max, and min database storage displayed in KiB, MiB, or GiB. 
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 15-07-01.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_15-07-01.png)
     
@@ -130,7 +130,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
 
 - **Usage -** View the mean, last, max, and min index storage displayed in KiB, MiB, or GiB. 
 
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 15-06-33.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_15-06-33.png)
     
@@ -139,7 +139,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
 - **Definition -** The amount of stream storage in use measured in KiB, MiB, or GiB.
 
 - **Usage -** View the mean, last, max, and min stream storage displayed in KiB, MiB, or GiB. ****
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 15-06-03.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_15-06-03.png)
     
@@ -147,7 +147,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The sum of READ and WRITE requests per second by geofabric.
 - **Usage -** View the mean, last, max, and min requests per second, tracking READ and WRITE requests separately.
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-54-05.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-54-05.png)
     
@@ -155,7 +155,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The count of READ and WRITE requests by region.
 - **Usage -** View the mean, last, max, and min request counts tracking individual READS and WRITE by region.
-- **Threshold -**  not set
+- **Threshold -**  TBD
     
 ![Screenshot from 2023-03-23 14-53-29.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-53-29.png)
     
@@ -163,7 +163,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The count of GET requests and Total requests by region.
 - **Usage -** View the GET requests and Total requests by region. 
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-52-31.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-52-31.png)
     
@@ -171,7 +171,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The amount of data transferred per second separated by requests and responses requests measured in KiB. 
 - **Usage -** View the min, max, avg, and last amounts of data measured in  KiB.
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-51-17.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-51-17.png)
     
@@ -179,7 +179,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The sum of data transferred by HTTP requests and responses measured in KB, MB, or GB.
 - **Usage -** View the min, max, avg, and current size of data transferred by HTTP requests and responses.
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-50-36.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-50-36.png)
     
@@ -187,7 +187,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** Time it take to read data in KB per second
 - **Usage -** View the read latency to see read bottleneck issue if value is too high
-- **Threshold -** not set
+- **Threshold -** TBD
     
     ![Screenshot from 2023-03-23 14-46-55.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-46-55.png)
     
@@ -195,7 +195,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** Time it take to write data in Kb per second
 - **Usage -** View the write latency to see write bottleneck issue if value is too high
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-38-34.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-38-34.png)
     
@@ -203,7 +203,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** Data size of request in Kb per second
 - **Usage -** View of the data request query load per second
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-36-40.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-36-40.png)
     
@@ -211,7 +211,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** Data size of response in Kb per second
 - **Usage -** View of the data size response in Kb per second 
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-35-15.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-35-15.png)
     
@@ -219,7 +219,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The amount of document a specific region need to replicate locally.
 - **Usage -** Show how far being a specific node is in respect to it peers node.
-- **Threshold -** not set
+- **Threshold -** TBD
     
     ![Screenshot from 2023-03-23 14-34-09.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-34-09.png)
     
@@ -227,7 +227,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The amount of document coming in to the nodes from other node in a federation
 - **Usage -** Show the load of data being copied to the nodes from other nodes in the federation
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-08-36.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-08-36.png)
     
@@ -235,7 +235,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The amount of document going out from the node to other node in the federation
 - **Usage -** Show the load of data being copied out of the node to other node in the federation
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-31-18.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-31-18.png)
     
@@ -243,7 +243,7 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** The speed in which document are being copied in a node within a federation
 - **Usage -** Show the speed in which document are being copied
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-08-02.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-08-02.png)
     
@@ -251,6 +251,6 @@ The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Ma
     
 - **Definition -** Speed in which document are being send to another node within a federation
 - **Usage -** Show the speed in which documents are being sent to other nodes to be copied
-- **Threshold -** not set
+- **Threshold -** TBD
     
 ![Screenshot from 2023-03-23 14-07-21.png](/../static/img/telemetry-dashboards/c8db-imgs/Screenshot_from_2023-03-23_14-07-21.png)
