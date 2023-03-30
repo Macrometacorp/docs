@@ -69,6 +69,7 @@ The following parameters were added to stream source:
 - stream.list
 - replication.type
 - subscription.initial.position
+- subscription.mode
 - num.consumers
 - num.listener.threads
 - num.io.threads
