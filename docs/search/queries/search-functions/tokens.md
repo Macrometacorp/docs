@@ -2,7 +2,7 @@
 title: TOKENS()
 ---
 
-The `TOKENS()` function is the only function that you can use freely in the query without a `SEARCH` statement.
+The `TOKENS()` function is the only function that you can use freely in the query without a `SEARCH` statement. You must specify an `ANALYZER()` expression.
 
 `TOKENS(input, analyzer) → tokenArray`
 
