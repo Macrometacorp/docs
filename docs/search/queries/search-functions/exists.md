@@ -5,9 +5,10 @@ title: EXISTS()
 :::info
 `EXISTS()` will only match values when the specified attribute has been processed with the link property **storeValues** set to `"id"` in the view definition (the default is `"none"`).
 :::
-`EXISTS(path)`
 
 Match documents where the attribute at **path** is present.
+
+`EXISTS(path)`
 
 - **path** (attribute path expression): the attribute to test in the document
 - returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise

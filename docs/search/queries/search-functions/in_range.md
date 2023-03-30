@@ -2,9 +2,9 @@
 title: IN_RANGE()
 ---
 
-`IN_RANGE(path, low, high, includeLow, includeHigh)`
-
 Match documents where the attribute at **path** is greater than (or equal to) **low** and less than (or equal to) **high**.
+
+`IN_RANGE(path, low, high, includeLow, includeHigh)`
 
 _low_ and _high_ can be numbers or strings (technically also `null`, `true` and `false`), but the data type must be the same for both.
 

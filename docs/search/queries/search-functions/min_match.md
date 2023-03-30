@@ -2,9 +2,9 @@
 title: MIN_MATCH()
 ---
 
-`MIN_MATCH(expr1, ... exprN, minMatchCount)`
-
 Match documents where at least **minMatchCount** of the specified search expressions are satisfied.
+
+`MIN_MATCH(expr1, ... exprN, minMatchCount)`
 
 - **expr** (expression, _repeatable_): any valid search expression
 - **minMatchCount** (number): minimum number of search expressions that should be satisfied

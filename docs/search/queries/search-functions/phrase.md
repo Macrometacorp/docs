@@ -2,11 +2,11 @@
 title: PHRASE()
 ---
 
+Search for a phrase in the referenced attribute. It only matches documents in which the tokens appear in the specified order. To search for tokens in any order use [TOKENS()](/tokens.md) instead.
+
 `PHRASE(path, phrasePart, analyzer)`
 
 `PHRASE(path, phrasePart1, skipTokens1, ... phrasePartN, skipTokensN, analyzer)`
-
-Search for a phrase in the referenced attribute. It only matches documents in which the tokens appear in the specified order. To search for tokens in any order use [TOKENS()](#tokens) instead.
 
 The phrase can be expressed as an arbitrary number of _phraseParts_ separated by _skipTokens_ number of tokens (wildcards).
 
