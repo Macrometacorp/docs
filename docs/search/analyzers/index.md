@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Analyzers
 ---
 
-_Analyzers_ enable you to break search inputs into sets of sub-values that search views can use for improved searching and sorting. When you use an analyzer, the search view gathers the attributes of all documents in liked collections, and creates appropriate sub-values and metadata. You can use pre-made analyzers or create custom ones.
+_Analyzers_ enable you to break search inputs into sets of sub-values that search views can use for improved searching and sorting. When you use an analyzer, the search view gathers the attributes of all documents in liked collections, and creates appropriate sub-values and metadata.
 
 You can use the [`TOKENS()` function](../queries/search-functions/tokens.md) to tokenize phrases and turn them into strings for C8QL search queries.
 
@@ -11,7 +11,7 @@ An analyzer processes values based on its [type](types.md), [properties](propert
 
 ## Built-in Analyzers
 
-We provide a set of built-in analyzers that cannot be removed.
+We provide a set of built-in analyzers.
 
 The identity analyzer uses the `frequency` and `norm` features. All text analyzers tokenize strings with stemming enabled, no stop-words configured, case conversion set to `lower`, and accent mark removal enabled. The text analyzers use the `frequency`, `norm`, and `position` features.
 
