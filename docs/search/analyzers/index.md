@@ -11,7 +11,7 @@ An analyzer processes values based on its [features](features.md).
 
 ## Built-in Analyzers
 
-We provide a set of built-in analyzers.
+Macrometa provides a set of built-in analyzers.
 
 The identity analyzer uses the `frequency` and `norm` features. All text analyzers tokenize strings with stemming enabled, no stop-words configured, case conversion set to `lower`, and accent mark removal enabled. The text analyzers use the `frequency`, `norm`, and `position` features.
 
