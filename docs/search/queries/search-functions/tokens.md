@@ -2,7 +2,7 @@
 title: TOKENS()
 ---
 
-The `TOKENS()` function is the only function that you can use freely in the query without a `SEARCH` statement. You must specify an `ANALYZER()` expression.
+The `TOKENS()` function is the only function that you can use freely in the query without a `SEARCH` statement.
 
 `TOKENS(input, analyzer) → tokenArray`
 
@@ -41,3 +41,11 @@ FOR doc IN viewName
 ```
 
 It will match `{ "text": "Lorem ipsum, dolor sit amet." }` for instance. If you want to search for tokens in a particular order, use [PHRASE()](phrase.md) instead.
+
+When calling a `TOKENS()` function, you must always specify the analyzer name:
+
+```js
+FOR doc IN viewName
+  SEARCH ANALYZER(doc.text IN TOKENS("foo", "text_en"), "text_en")
+  RETURN doc
+```
