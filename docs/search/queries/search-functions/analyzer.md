@@ -12,9 +12,8 @@ Syntax:
 
 - `expr` (expression): any valid search expression
 - `analyzer` (string): name of an analyzer.
-- returns nothing: The function can only be called in a [search query](../../queries/index.md) and throws an error otherwise.
 
-Assuming a view definition with an analyzer whose name and type is `delimiter`:
+In this example, the analyzer uses `|` as a delimiter.
 
 ```json
 {
@@ -28,7 +27,7 @@ Assuming a view definition with an analyzer whose name and type is `delimiter`:
 }
 ```
 
-… with the analyzer properties `{ "delimiter": "|" }` and an example document `{ "text": "foo|bar|baz" }` in the collection `coll`, the following query would return the document:
+Using the `ANALYZER()` function, you can specify a delimiter in several ways. For example:
 
 ```js
 FOR doc IN viewName
@@ -36,7 +35,11 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-The expression `doc.text == "bar"` has to be wrapped by `ANALYZER()` in order to set the analyzer to `delimiter`. Otherwise the expression would be evaluated with the default `identity` analyzer. `"foo|bar|baz" == "bar"` would not match, but the view does not even process the indexed fields with the `identity` analyzer. The following query would also return an empty result because of the analyzer mismatch:
+The second argument specifies the analyzer called `delimiter` which is configured with the [delimiter property](../../analyzers/properties.md).
+
+The expression `doc.text == "bar"` must be wrapped by the `ANALYZER()` function. Otherwise the expression would be evaluated with the default `identity` analyzer. 
+
+`"foo|bar|baz" == "bar"` would not match, but the view does not even process the indexed fields with the `identity` analyzer. The following query would also return an empty result because of the analyzer mismatch:
 
 ```js
 FOR doc IN viewName
