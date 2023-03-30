@@ -23,7 +23,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-The second argument in the `ANALYZER()` function specifies a `delimiter` analyzer which is configured with the [delimiter property](../../analyzers/properties.md). The expression `doc.text == "bar"` must be wrapped by the `ANALYZER()` function. Otherwise, the expression would be evaluated with the default `identity` analyzer. 
+The second argument in the `ANALYZER()` function specifies a `delimiter` analyzer which is configured with a delimiter. The expression `doc.text == "bar"` must be wrapped by the `ANALYZER()` function. Otherwise, the expression would be evaluated with the default `identity` analyzer. 
 
 In the following query, the search expression is swapped by `ANALYZER()` to set the `text_en` analyzer for both `PHRASE()` functions:
 
