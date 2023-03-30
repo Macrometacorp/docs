@@ -2,14 +2,16 @@
 title: MIN_MATCH()
 ---
 
-Match documents where at least `minMatchCount` of the specified search expressions are satisfied.
+Return documents that satisfy multiple search expressions.
 
-`MIN_MATCH(expr1, ... exprN, minMatchCount)`
+Syntax:
 
-- `expr` (expression, _repeatable_): any valid search expression
-- `minMatchCount` (number): minimum number of search expressions that should be satisfied
+`MIN_MATCH(expr1, expr2, minMatchCount)`
 
-Assuming a view with a text analyzer, you may use it to match documents where the attribute contains at least two out of three tokens:
+- `expr` (expression): Each `expr` is a valid search expression. You can include as many as you want.
+- `minMatchCount` (number): Minimum number of search expressions that must be satisfied.
+
+In this example, at least two of the specified search expressions must be satisfied to return results:
 
 ```js
 FOR doc IN viewName
@@ -17,4 +19,4 @@ FOR doc IN viewName
   RETURN doc.text
 ```
 
-This will match `{ "text": "the quick brown fox" }` and `{ "text": "some brown fox" }`, but not `{ "text": "snow fox" }` which only fulfills one of the conditions.
+This returns `{ "text": "the quick brown fox" }` and `{ "text": "some brown fox" }`, but not `{ "text": "snow fox" }` which only fulfills one of the conditions.
