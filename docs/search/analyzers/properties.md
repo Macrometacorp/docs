@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Properties
 ---
 
-The properties available for an Analyzer depend on its [type](types.md):
+The properties available for an analyzer depend on its [type](types.md):
 
 - [Identity](#identity)
 - [Delimiter](#delimiter)
@@ -17,7 +17,7 @@ All properties with default settings are optional.
 
 ## Identity
 
-An identity Analyzer returns the input unmodified and supports no properties.
+An identity analyzer returns the input unmodified and supports no properties.
 
 ## Delimiter
 
@@ -46,7 +46,7 @@ Normalizes text and treats as a single token by converting casing and removing a
 
 ## N-gram
 
-Produces [n-grams](https://en.wikipedia.org/wiki/N-gram) from a specified input. Optionally, you can include the full original input. You can use this Analyzer to implement sub-string matching. Only single-byte characters are supported.
+Produces [n-grams](https://en.wikipedia.org/wiki/N-gram) from a specified input. Optionally, you can include the full original input. You can use this analyzer to implement sub-string matching. Only single-byte characters are supported.
 
 - `min` (number): An unsigned integer for the minimum n-gram length. This value is inclusive.
 - `max` (number): An unsigned integer for the maximum n-gram length. This value is inclusive.
@@ -56,7 +56,7 @@ Produces [n-grams](https://en.wikipedia.org/wiki/N-gram) from a specified input.
 
 ### Example
 
-If you set `min`: `4` and `max`: `5`, the Analyzer produces the following n-grams for the string `"foobar"`:
+If you set `min`: `4` and `max`: `5`, the analyzer produces the following n-grams for the string `"foobar"`:
 
 - `"foobar"` if `preserveOriginal` is `true`
 - `"fooba"`
@@ -88,5 +88,5 @@ There are two methods of stop-word filtering: `stopwords` and `stopwordsPath`. U
 By default, the value of the environment variable `IRESEARCH_TEXT_STOPWORD_PATH` determines the path containing language sub-directories. If the environment variable is undefined, the current working directory is used instead.
 
 - `stopwords` (array): Specify words to omit from the result. To disable stop-word filtering, set `[]`. By default, this array loads words from `stopwordsPath`. If you add a value to this property, you must specify a path for `stopwordsPath` if you want to use files in sub-directories.
-- `stopwordsPath` (string): Specify a path that contains language sub-directories such as `en` containing files with words to omit. Analyzer creation will fail if the specified path is inaccessible, missing language sub-directories, or has no valid files for a required language. If an existing Analyzer encounters one of these issues, the server will fail to start up.
+- `stopwordsPath` (string): Specify a path that contains language sub-directories such as `en` containing files with words to omit. analyzer creation will fail if the specified path is inaccessible, missing language sub-directories, or has no valid files for a required language. If an existing analyzer encounters one of these issues, the server will fail to start up.
 

@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Types
 ---
 
-These Analyzer types are available:
+These analyzer types are available:
 
 - `identity`: Do not transform the query.
 - `delimiter`: Split query into tokens at configurable level.
@@ -12,7 +12,7 @@ These Analyzer types are available:
 - `ngram`: Create n-grams from a whole query with configurable lengths.
 - `text`: Tokenize query into words with optional stemming, normalization, and stop-word filtering.
 
-This table shows the availability of tokenization, stemming, and normalization for each Analyzer type:
+This table shows the availability of tokenization, stemming, and normalization for each analyzer type:
 
 |					| Tokenization | Stemming | Normalization |
 |:------------------|:-------------|:---------|:--------------|
