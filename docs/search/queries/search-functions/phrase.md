@@ -2,7 +2,7 @@
 title: PHRASE()
 ---
 
-Search for a phrase in the referenced attribute. It only matches documents in which the tokens appear in the specified order. To search for tokens in any order use [TOKENS()](/tokens.md) instead.
+Search for a phrase in the referenced attribute. It only matches documents in which the tokens appear in the specified order. To search for tokens in any order use [TOKENS()](tokens.md) instead.
 
 `PHRASE(path, phrasePart, analyzer)`
 
