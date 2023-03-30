@@ -12,7 +12,7 @@ Split the `input` string with the help of the specified `analyzer` into an array
 
 | Key      | Type    | Description                                 |
 |----------|---------|---------------------------------------------|
-| input    | string  | Text to tokenize                            |
+| input    | string  | Text to tokenize.                            |
 | analyzer | string  | Name of an [analyzer](../../analyzers/index.md). |
 
 ### Examples
