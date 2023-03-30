@@ -12,7 +12,6 @@ It has a regular return value unlike all other search functions and is thus not 
 
 - `input` (string): text to tokenize
 - `analyzer` (string): name of an [analyzer](../../analyzers/index.md).
-- returns `tokenArray` (array): array of strings with zero or more elements, each element being a token.
 
 Example query showcasing the `"text_de"` analyzer (tokenization with stemming, case conversion and accent removal for German text):
 

@@ -10,8 +10,8 @@ Syntax:
 
 `ANALYZER(expr, analyzer)`
 
-- `expr` (expression): any valid search expression
-- `analyzer` (string): name of an analyzer.
+- `expr` (expression): A valid search expression.
+- `analyzer` (string): Name of the analyzer.
 
 In this example, assume an analyzer named `delimiter` with the character `|` configured as the delimiter.
 
