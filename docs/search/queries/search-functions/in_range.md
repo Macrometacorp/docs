@@ -14,7 +14,7 @@ The values `low` and `high` can be numbers or strings, but each value must have 
 - `includeLow` (bool): If `true`, the value specified in `low` is included in the range.
 - `includeHigh` (bool): If `false`, the value specified in `high` is included in the range.
 
-The alphabetical order of characters is not taken into account by Search. Range queries in SEARCH operations against views do not follow the language rules as defined by a locale analyzer.
+The alphabetical order of characters is not taken into account by search. Range queries in `SEARCH` operations against views do not follow the language rules as defined by a locale analyzer.
 
 For example, this query returns documents with the attribute `value` between and including 3 to 5:
 
