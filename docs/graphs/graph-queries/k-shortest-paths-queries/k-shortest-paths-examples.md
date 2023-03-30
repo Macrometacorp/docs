@@ -97,7 +97,7 @@ Create a graph called `kShortestPathsGraph`.
 
 In this section, you'll find examples of K Shortest Paths queries using a named graph representing train connections in Europe.
 
-![Train Connection Map](/img/train_map.png)
+![Train Connection Map](/img/graphs/train_map.png)
 
 ### Comparing SHORTEST_PATH and K_SHORTEST_PATHS with LIMIT 1
 
