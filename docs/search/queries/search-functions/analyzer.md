@@ -8,8 +8,8 @@ Sets the analyzer for the given search expression. The default analyzer is `iden
 
 The `TOKENS()` function is an exception, it requires the analyzer name to be passed in all cases even if wrapped in an `ANALYZER()` call.
 
-- **expr** (expression): any valid search expression
-- **analyzer** (string): name of an analyzer.
+- `expr` (expression): any valid search expression
+- `analyzer` (string): name of an analyzer.
 - returns nothing: The function can only be called in a [search query](../../queries/index.md) and throws an error otherwise.
 
 Assuming a view definition with an analyzer whose name and type is `delimiter`:
