@@ -5,7 +5,7 @@ title: Search Queries
 
 You can use the `SEARCH` keyword to filter a query using a search view, allowing you to:
 
-- Filter documents based on C8QL and SQL Boolean expressions and functions.
+- Filter documents based on [C8QL](../../queries/c8ql/index.md) and [SQL](../../queries/sql/index.md) Boolean expressions and functions.
 - Match documents located in different collections.
 - Sort the result set based on how closely each document matches the search conditions.
 
@@ -21,7 +21,7 @@ FOR doc IN <SEARCH_VIEW_NAME>
   ...
 ```
 
-Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [operators](search-functions.md):
+Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [functions](search-functions/index.md):
 
 - `AND`
 - `OR`
@@ -38,7 +38,7 @@ For example:
 
 ```sql
 FOR doc IN MySearchView
-  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en")
+  SEARCH ANALYZER(doc.text == "quick" OR doc.text == "brown", "text_en") OPTIONS { collections: ["coll1", "coll2"] }
 RETURN doc
 ```
 
@@ -143,7 +143,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-You can also use [Search Scoring Functions](search-functions.md#scoring-functions) to sort the retrieved documents by relevance. This only works for documents excluded from the search view's index. For example:
+You can also use [Search Scoring Functions](search-functions/index.md#scoring-functions) to sort the retrieved documents by relevance. This only works for documents excluded from the search view's index. For example:
 
 ```sql
 FOR doc IN viewName
