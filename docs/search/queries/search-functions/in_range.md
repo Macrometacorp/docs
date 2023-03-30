@@ -11,8 +11,8 @@ Match documents where the attribute at `path` is greater than (or equal to) `low
 The values `low` and `high` can be numbers or strings, but each value must have the same data type.
 
 - `path` (attribute path expression): The path to the attribute in the document.
-- `low` (number\|string): Minimum range value.
-- `high` (number\|string): Maximum range value.
+- `low` (number or string): Minimum range value.
+- `high` (number or string): Maximum range value.
 - `includeLow` (bool): If `true`, the value specified in `low` is included in the range.
 - `includeHigh` (bool): If `false`, the value specified in `high` is included in the range.
 
