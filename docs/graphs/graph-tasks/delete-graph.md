@@ -15,7 +15,7 @@ Deleting a graph cannot be undone!
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to create a new collection using the GDN console web UI.
+Follow these instructions to delete a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Graphs**.
