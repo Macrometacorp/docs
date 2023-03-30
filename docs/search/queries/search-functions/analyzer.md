@@ -2,14 +2,14 @@
 title: BOOST()
 ---
 
-`ANALYZER(expr, analyzer)`
-
 Sets the analyzer for the given search expression. The default analyzer is `identity` for any Search expression. This utility function can be used to wrap a complex expression to set a particular analyzer. It also sets it for all the nested functions which require such an argument to avoid repeating the analyzer parameter. If an analyzer argument is passed to a nested function regardless, then it takes precedence over the analyzer set via `ANALYZER()`.
+
+`ANALYZER(expr, analyzer)`
 
 The `TOKENS()` function is an exception, it requires the analyzer name to be passed in all cases even if wrapped in an `ANALYZER()` call.
 
-- **expr** (expression): any valid search expression
-- **analyzer** (string): name of an analyzer.
+- `expr` (expression): any valid search expression
+- `analyzer` (string): name of an analyzer.
 - returns nothing: The function can only be called in a [search query](../../queries/index.md) and throws an error otherwise.
 
 Assuming a view definition with an analyzer whose name and type is `delimiter`:

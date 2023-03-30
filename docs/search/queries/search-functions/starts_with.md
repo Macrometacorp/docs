@@ -2,16 +2,16 @@
 title: STARTS_WITH()
 ---
 
-`STARTS_WITH(path, prefix)`
+Match the value of the attribute that starts with `prefix`. If the attribute is processed by a tokenizing analyzer (type `"text"` or `"delimiter"`) or if it is an array, then a single token/element starting with the prefix is sufficient to match the document.
 
-Match the value of the attribute that starts with **prefix**. If the attribute is processed by a tokenizing analyzer (type `"text"` or `"delimiter"`) or if it is an array, then a single token/element starting with the prefix is sufficient to match the document.
+`STARTS_WITH(path, prefix)`
 
 :::warning
 The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against views will not follow the language rules as per the defined analyzer locale.
 :::
 
-- **path** (attribute path expression): the path of the attribute to compare against in the document
-- **prefix** (string): a string to search at the start of the text
+- `path` (attribute path expression): the path of the attribute to compare against in the document
+- `prefix` (string): a string to search at the start of the text
 - returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 To match a document `{ "text": "lorem ipsum..." }` using a prefix and the `"identity"` analyzer you can use it like this:

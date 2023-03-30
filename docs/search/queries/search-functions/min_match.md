@@ -2,12 +2,12 @@
 title: MIN_MATCH()
 ---
 
+Match documents where at least `minMatchCount` of the specified search expressions are satisfied.
+
 `MIN_MATCH(expr1, ... exprN, minMatchCount)`
 
-Match documents where at least **minMatchCount** of the specified search expressions are satisfied.
-
-- **expr** (expression, _repeatable_): any valid search expression
-- **minMatchCount** (number): minimum number of search expressions that should be satisfied
+- `expr` (expression, _repeatable_): any valid search expression
+- `minMatchCount` (number): minimum number of search expressions that should be satisfied
 - returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 Assuming a view with a text analyzer, you may use it to match documents where the attribute contains at least two out of three tokens:

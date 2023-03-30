@@ -2,12 +2,12 @@
 title: BOOST()
 ---
 
-`BOOST(expr, boost)`
-
 Override boost in the context of a search expression with a specified value, making it available for scorer functions. By default, the context has a boost value equal to `1.0`.
 
-- **expr** (expression): any valid search expression
-- **boost** (number): numeric boost value
+`BOOST(expr, boost)`
+
+- `expr` (expression): any valid search expression
+- `boost` (number): numeric boost value
 - returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 ```js
