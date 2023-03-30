@@ -10,10 +10,12 @@ The `TOKENS()` function is the only function that you can use freely in the quer
 
 Split the `input` string with the help of the specified `analyzer` into an array. The resulting array can be used in `FILTER` or `SEARCH` statements with the `IN` operator, but also be assigned to variables and returned. This can be used to better understand how a specific analyzer processes an input value.
 
-It has a regular return value unlike all other search functions and is thus not limited to `SEARCH` operations. It is independent of views. A wrapping `ANALYZER()` call in a search expression does not affect the _analyzer_ argument nor allow you to omit it.
+It has a regular return value unlike all other search functions and is thus not limited to `SEARCH` operations. A wrapping `ANALYZER()` call in a search expression does not affect the `analyzer` argument nor allow you to omit it.
 
-- `input` (string): Text to tokenize
-- `analyzer` (string): Name of an [analyzer](../../analyzers/index.md).
+| Key      | Type    | Description                                 |
+|----------|---------|---------------------------------------------|
+| input    | string  | Text to tokenize                            |
+| analyzer | string  | Name of an [analyzer](../../analyzers/index.md). |
 
 ### Examples
 

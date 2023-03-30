@@ -8,7 +8,10 @@ Match documents where an attribute at `path` is present. To use this function, t
 
 `EXISTS(path)`
 
-- `path` (attribute path expression): The path to the attribute in the document.
+| Key  | Type                    | Description                                 |
+|------|-------------------------|---------------------------------------------|
+| path | attribute path expression | The path to the attribute in the document. |
+
 
 ### Example
 

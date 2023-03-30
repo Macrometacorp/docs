@@ -8,8 +8,11 @@ Return documents that satisfy multiple search expressions.
 
 `MIN_MATCH(expr1, expr2, minMatchCount)`
 
-- `expr` (expression): Each `expr` is a valid search expression. You can include as many as you want.
-- `minMatchCount` (number): Minimum number of search expressions that must be satisfied.
+| Key           | Type       | Description                                                     |
+|---------------|------------|-----------------------------------------------------------------|
+| expr          | expression | Each `expr` is a valid search expression. You can include as many as you want. |
+| minMatchCount | number     | Minimum number of search expressions that must be satisfied.    |
+
 
 ### Example
 

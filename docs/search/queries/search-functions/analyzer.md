@@ -10,8 +10,11 @@ The default analyzer is `identity`.
 
 `ANALYZER(expr, analyzer)`
 
-- `expr` (expression): A valid search expression.
-- `analyzer` (string): Name of the analyzer.
+| Key       | Type    | Description              |
+|-----------|---------|--------------------------|
+| expr      | expression | A valid search expression. |
+| analyzer  | string  | Name of the analyzer.    |
+
 
 ### Examples
 

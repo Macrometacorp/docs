@@ -10,17 +10,18 @@ Search for a phrase in the referenced attribute. It only matches documents in wh
 
 `PHRASE(path, phrasePart1, skipTokens1, ... phrasePartN, skipTokensN, analyzer)`
 
-The phrase can be expressed as an arbitrary number of _phraseParts_ separated by _skipTokens_ number of tokens (wildcards).
+The phrase can be expressed as an arbitrary number of `phraseParts` separated by `skipTokens_number` of tokens (wildcards).
 
-- `path` (attribute path expression): the attribute to test in the document
-- `phrasePart` (string): text to search for in the tokens. May consist of several words/tokens, which will be split using the specified _analyzer_
-- `skipTokens` (number, _optional_): amount of words/tokens to treat
-  as wildcards
-- `analyzer` (string, _optional_): name of an [analyzer](../../analyzers/index.md). Uses the analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
+| Key         | Type                    | Description                                                                                   |
+|-------------|-------------------------|-----------------------------------------------------------------------------------------------|
+| path        | attribute path expression | The path to the attribute in the document.                                                  |
+| phrasePart  | string                  | Text to search for in tokens.                                                               |
+| skipTokens  | number (optional)     | Number of words or tokens to treat as wildcards.                                            |
+| analyzer    | string (optional)     | Name of an [analyzer](../../analyzers/index.md). If not specified, uses the analyzer of a wrapping `ANALYZER()` call. Otherwise, defaults to `identity`. |
 
 ### Examples
 
-Given a view indexing an attribute _text_ with the `"text_en"` analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
+Given a view indexing an attribute `text` with the `"text_en"` analyzer and a document `{ "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit" }`, the following query would match it:
 
 ```js
 FOR doc IN viewName
@@ -41,7 +42,7 @@ following search expression:
 PHRASE(doc.text, "ipsum", 2, "amet", "text_en")
 ```
 
-The _skipTokens_ value of `2` defines how many wildcard tokens have to appear between _ipsum_ and _amet_. A _skipTokens_ value of `0` means that the tokens must be adjacent. Negative values are allowed, but not very useful. These three search expressions are equivalent:
+The `skipTokens` value of `2` defines how many wildcard tokens have to appear between _ipsum_ and _amet_. A `skipTokens` value of `0` means that the tokens must be adjacent. Negative values are allowed, but not very useful. These three search expressions are equivalent:
 
 ```js
 PHRASE(doc.text, "lorem ipsum", "text_en")
@@ -51,7 +52,7 @@ PHRASE(doc.text, "ipsum", -1, "lorem", "text_en")
 
 `PHRASE(path, [ phrasePart1, skipTokens1, ... phrasePartN, skipTokensN ], analyzer)`
 
-The `PHRASE()` function also accepts an array as second argument with _phrasePart_ and _skipTokens_ parameters as elements. This syntax variation enables the usage of computed expressions:
+The `PHRASE()` function also accepts an array as second argument with `phrasePart` and `skipTokens` parameters as elements. This syntax variation enables the usage of computed expressions:
 
 ```js
 LET proximityCondition = [ "foo", ROUND(RAND()*10), "bar" ]
