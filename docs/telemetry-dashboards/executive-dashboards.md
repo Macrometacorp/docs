@@ -204,7 +204,7 @@ The Executive dashboard contains a collection of metrics to display the overall 
 - **Example Metric**
 ![Screenshot from 2023-03-23 21-48-28.png](/../static/img/telemetry-dashboards/executive-imgs/Screenshot_from_2023-03-23_21-48-28.png)
     
-### Disk IOPS ### Read & Write
+### Disk IOPS Read / Write
     
 - **Definition** The number of disk input/output operations, including both read and write operations, per second.
     
