@@ -2,15 +2,13 @@
 title: TOKENS()
 ---
 
-The `TOKENS()` function is the only function that you can use freely in the query without a `SEARCH` statement.
+The `TOKENS()` function is the only function that you can use freely in the query without a `SEARCH` statement. A wrapping `ANALYZER()` call in a search expression does not affect the `analyzer` argument nor allow you to omit it.
 
 ### Syntax
 
 `TOKENS(input, analyzer) → tokenArray`
 
-Split the `input` string with the help of the specified `analyzer` into an array. The resulting array can be used in `FILTER` or `SEARCH` statements with the `IN` operator, but also be assigned to variables and returned. This can be used to better understand how a specific analyzer processes an input value.
-
-It has a regular return value unlike all other search functions and is thus not limited to `SEARCH` operations. A wrapping `ANALYZER()` call in a search expression does not affect the `analyzer` argument nor allow you to omit it.
+Split the `input` string with the help of the specified `analyzer` into an array. You can use the resulting array in `FILTER` or `SEARCH` statements with the `IN` operator.
 
 | Key      | Type    | Description                                 |
 |----------|---------|---------------------------------------------|
