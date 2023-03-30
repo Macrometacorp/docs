@@ -3,13 +3,13 @@ sidebar_position: 30
 title: Scoring Functions
 ---
 
-Scoring functions return a ranking value for the documents found by a [search query](../queries/index.md). The better the documents match the search expression the higher the returned number.
+Scoring functions return a ranking value for the documents found by a [search query](../queries/index.md). A higher number indicates a better match.
 
-The first argument to any scoring function is always the document emitted by a `FOR` operation over a search view.
+The first argument to any scoring function is always the document specified by a `FOR` operation.
 
-To sort the result set by relevance, with the more relevant documents coming first, sort in `descending order` by the score (e.g. `SORT BM25(...) DESC`).
+To sort documents with the most relevant ones shown first, use descending order `DESC`.
 
-You may calculate custom scores based on a scoring function using document attributes and numeric functions (e.g. `TFIDF(doc) * LOG(doc.value)`):
+You can calculate custom scores based on a scoring function using document attributes and numeric functions (e.g. `TFIDF(doc) * LOG(doc.value)`):
 
 ```js
 FOR movie IN imdbView
@@ -18,7 +18,7 @@ FOR movie IN imdbView
   RETURN movie
 ```
 
-Sorting by more than one score is allowed. You may also sort by a mix of scores and attributes from multiple views as well as collections:
+You can sort by a mix of scores and attributes from multiple search views and collections:
 
 ```js
 FOR a IN viewA
@@ -36,11 +36,11 @@ Syntax:
 
 `BM25(doc, k, b) → score`
 
-- `doc` (document): must be emitted by `FOR ... IN viewName`
-- `k` (number, _optional_): calibrates the text term frequency scaling. The default is `1.2`. A _k_ value of `0` corresponds to a binary model (no term frequency), and a large value corresponds to using raw term frequency
-- `b` (number, _optional_): determines the scaling by the total text length. The default is `0.75`. At the extreme values of the coefficient _b_, BM25 turns into the ranking functions known as:
-  - BM11 for _b_ = `1` (corresponds to fully scaling the term weight by the total text length)
-  - BM15 for _b_ = `0` (corresponds to no length normalization)
+- `doc` (document): Must be specified by `FOR ... IN viewName`
+- `k` (number, _optional_): Calibrates the text term frequency scaling. The default is `1.2`. A _k_ value of `0` corresponds to a binary model (no term frequency), and a large value corresponds to using raw term frequency
+- `b` (number, _optional_): Determines the scaling by the total text length. The default is `0.75`. At the extreme values of the coefficient _b_, BM25 turns into the ranking functions known as:
+  - BM11 for _b_ = `1` (fully scaling the term weight by the total text length).
+  - BM15 for _b_ = `0` (no length normalization).
 
 This query returns a numeric score that represents the computed ranking value.
 
@@ -64,14 +64,14 @@ FOR doc IN viewName
 
 ## BOOST()
 
-Override boost in the context of a search expression with a specified value, making it available for scorer functions. Default boost value is `1.0`.
+Boost modifies the importance of a specific search expression within a query. Default boost value is `1.0`.
 
 Syntax:
 
 `BOOST(expr, boost)`
 
-- `expr` (expression): any valid search expression
-- `boost` (number): numeric boost value
+- `expr` (expression): A valid search expression.
+- `boost` (number): Numberic boost value.
 
 ```js
 FOR doc IN viewName
@@ -92,7 +92,7 @@ Assuming a view with the following documents indexed and processed by the
 { "text": "baz" }
 ```
 
-… the result of above query would be:
+The returned result:
 
 ```json
 [
@@ -118,15 +118,15 @@ Assuming a view with the following documents indexed and processed by the
 
 ## TFIDF()
 
-Sorts documents using the [term frequency–inverse document frequency algorithm](https://en.wikipedia.org/wiki/TF-IDF){:target="_blank"} (TF-IDF).
+Sorts documents using the [term frequency–inverse document frequency algorithm](https://en.wikipedia.org/wiki/TF-IDF) (TF-IDF).
 
 Syntax:
 
 `TFIDF(doc, normalize) → score`
 
-- `doc` (document): must be emitted by `FOR ... IN viewName`
-- `normalize` (bool, _optional_): specifies whether scores should be normalized. The default is _false_.
-- returns `score` (number): computed ranking value
+- `doc` (document): Must be specified by `FOR ... IN viewName`.
+- `normalize` (bool): Specifies whether scores should be normalized. The default is `false`. Optional.
+- returns `score` (number): Computed ranking value.
 
 Sort by relevance using the TF-IDF score:
 
