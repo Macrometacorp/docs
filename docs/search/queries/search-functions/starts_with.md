@@ -12,7 +12,7 @@ The alphabetical order of characters is not taken into account by Search, i.e. r
 
 - **path** (attribute path expression): the path of the attribute to compare against in the document
 - **prefix** (string): a string to search at the start of the text
-- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 To match a document `{ "text": "lorem ipsum..." }` using a prefix and the `"identity"` analyzer you can use it like this:
 

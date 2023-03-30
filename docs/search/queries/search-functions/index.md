@@ -7,4 +7,4 @@ Search views utilize functions for processing and filtering data. These function
 
 If you need an attribute path expression, you can reference a document object (`FOR doc IN viewName`) and specify the desired attribute (`doc.attr` or `doc.nested.attr`). You can also use bracket notation (`doc["attr"]`).
 
-Use search functions in a [search query](../queries/index.md) to filter a view. The functions control the search functionality without having a returnable value in C8QL.
+Use search functions in a [search query](../../queries/index.md) to filter a view. The functions control the search functionality without having a returnable value in C8QL.

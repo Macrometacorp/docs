@@ -8,7 +8,7 @@ Match documents where at least **minMatchCount** of the specified search express
 
 - **expr** (expression, _repeatable_): any valid search expression
 - **minMatchCount** (number): minimum number of search expressions that should be satisfied
-- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 Assuming a view with a text analyzer, you may use it to match documents where the attribute contains at least two out of three tokens:
 

@@ -8,7 +8,7 @@ Override boost in the context of a search expression with a specified value, mak
 
 - **expr** (expression): any valid search expression
 - **boost** (number): numeric boost value
-- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName

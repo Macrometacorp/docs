@@ -10,7 +10,7 @@ title: EXISTS()
 Match documents where the attribute at **path** is present.
 
 - **path** (attribute path expression): the attribute to test in the document
-- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -29,7 +29,7 @@ Match documents where the attribute at **path** is present _and_ is of the speci
   - `"numeric"`
   - `"string"`
   - `"analyzer"` (see below)
-- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName
@@ -43,8 +43,8 @@ Match documents where the attribute at **path** is present _and_ was indexed by 
 
 - **path** (attribute path expression): the attribute to test in the document
 - **type** (string): string literal `"analyzer"`
-- **analyzer** (string, _optional_): name of an [analyzer](../analyzers/index.md). Uses the analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
-- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
+- **analyzer** (string, _optional_): name of an [analyzer](../../analyzers/index.md). Uses the analyzer of a wrapping `ANALYZER()` call if not specified or defaults to `"identity"`
+- returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 ```js
 FOR doc IN viewName

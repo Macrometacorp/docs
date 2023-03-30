@@ -10,7 +10,7 @@ The `TOKENS()` function is an exception, it requires the analyzer name to be pas
 
 - **expr** (expression): any valid search expression
 - **analyzer** (string): name of an analyzer.
-- returns nothing: The function can only be called in a [search query](../queries/index.md) and throws an error otherwise.
+- returns nothing: The function can only be called in a [search query](../../queries/index.md) and throws an error otherwise.
 
 Assuming a view definition with an analyzer whose name and type is `delimiter`:
 

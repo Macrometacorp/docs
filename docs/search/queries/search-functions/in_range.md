@@ -17,7 +17,7 @@ The alphabetical order of characters is not taken into account by Search, i.e. r
 - **high** (number\|string): maximum value of the desired range
 - **includeLow** (bool): whether the minimum value shall be included in the range (left-closed interval) or not (left-open interval)
 - **includeHigh** (bool): whether the maximum value shall be included in the range (right-closed interval) or not (right-open interval)
-- returns nothing: the function can only be called in a [search query](../queries/index.md) and throws an error otherwise
+- returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
 If _low_ and _high_ are the same, but _includeLow_ and/or _includeHigh_ is set to `false`, then nothing will match. If _low_ is greater than _high_ nothing will match either.
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 40
 title: Search Queries
 ---
 
@@ -21,7 +21,7 @@ FOR doc IN <SEARCH_VIEW_NAME>
   ...
 ```
 
-Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [functions](search-functions.md):
+Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [functions](search-functions/index.md):
 
 - `AND`
 - `OR`
@@ -143,7 +143,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-You can also use [Search Scoring Functions](search-functions.md#scoring-functions) to sort the retrieved documents by relevance. This only works for documents excluded from the search view's index. For example:
+You can also use [Search Scoring Functions](search-functions/index.md#scoring-functions) to sort the retrieved documents by relevance. This only works for documents excluded from the search view's index. For example:
 
 ```sql
 FOR doc IN viewName
