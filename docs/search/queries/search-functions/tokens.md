@@ -15,7 +15,7 @@ It has a regular return value unlike all other search functions and is thus not 
 - `input` (string): Text to tokenize
 - `analyzer` (string): Name of an [analyzer](../../analyzers/index.md).
 
-Example query showcasing the `"text_de"` analyzer which features tokenization with stemming, case conversion, and accent removal for German text):
+Example query showcasing the `"text_de"` analyzer, which features tokenization with stemming, case conversion, and accent removal for German text:
 
 ```js
 RETURN TOKENS("Lörem ipsüm, DOLOR SIT Ämet.", "text_de")
