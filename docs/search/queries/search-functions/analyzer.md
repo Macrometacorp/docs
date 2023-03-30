@@ -1,6 +1,7 @@
 ---
 title: BOOST()
 ---
+
 `ANALYZER(expr, analyzer)`
 
 Sets the analyzer for the given search expression. The default analyzer is `identity` for any Search expression. This utility function can be used to wrap a complex expression to set a particular analyzer. It also sets it for all the nested functions which require such an argument to avoid repeating the analyzer parameter. If an analyzer argument is passed to a nested function regardless, then it takes precedence over the analyzer set via `ANALYZER()`.
