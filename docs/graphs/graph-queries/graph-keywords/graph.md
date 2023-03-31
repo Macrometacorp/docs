@@ -1,5 +1,6 @@
 ---
 title: GRAPH
+sidebar_position: 10
 ---
 
 The `GRAPH` keyword in [C8QL](../../../queries/c8ql/) is used to specify a named graph in your Macrometa database when performing graph operations, such as traversals or finding the shortest path. A named graph groups together vertex and edge collections representing a specific graph structure, simplifying complex graph data management.
