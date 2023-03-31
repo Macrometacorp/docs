@@ -192,30 +192,35 @@ These instructions provide several methods of adding an edge collection to a gra
 <Tabs groupId="operating-systems5">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to add a vertex collection to a graph using the GDN console web UI.
+Follow these instructions to add an edge collection to a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Graphs**.
-1. Click **Edit** next to the graph that you want to add a vertex collection to.
-1. Click in the **From Collections**, **To Collections**, or **Vertex Collections** field, and then select the vertex collection that you want to add. You can do this more than once.
-1. Click **Update**.
+2. Click **Graphs**.
+3. Click **Edit** next to the graph that you want to add a edge collection to.
+4. Click the plus icon.
+
+   A new set of three relationship fields appear. You can do this more than once.
+
+5. Click in the **Edge Collections** field, and then select the edge collection that you want to add.
+6. Select the **From Collections** and **To Collections** associated with this edge collection.
+7. Click **Update**.
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Add a Vertex Collection](https://www.macrometa.com/docs/api#/operations/AddVertexCollection).
+Use our interactive API Reference with code generation in 18 programming languages to [Add an Edge Definition](https://www.macrometa.com/docs/api#/operations/AddEdgeCollection).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to add a vertex collection to a graph.
+Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to add an edge collection to a graph.
 
 </TabItem>
 </Tabs>
 
-## Remove a Vertex Collection
+## Remove an Edge Collection
 
-These instructions provide several methods of removing vertex collections from a graph.
+These instructions provide several methods of removing an edge collection from a graph.
 
 <Tabs groupId="operating-systems5">
 <TabItem value="console" label="Web Console">
