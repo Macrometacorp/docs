@@ -52,7 +52,7 @@ Follow these instructions to view a graph vertex using the GDN console web UI.
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Graphs**.
 3. Click the graph that you want to view a vertex for.
-4. Click the node that you want to view.
+4. Click the vertex that you want to view.
 5. Click **Edit**.
 
    Macrometa displays the vertex record associated with the vertex that you clicked.
@@ -72,7 +72,69 @@ Use the [gdnsl graph vertex describe](../../cli/graph-vertex-cli#gdnsl-graph-ver
 
 ## Update a Vertex
 
+These instructions provide several methods of updating a graph vertex. Updating means that you to specify which vertex properties to update and leave the rest of the properties unchanged. If you want to update all the properties, then you should [Replace a Vertex](#replace-a-vertex).
+
+<Tabs groupId="operating-systems2">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to update a graph vertex using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+2. Click **Graphs**.
+3. Click the graph for which you want to update a vertex.
+4. Click the vertex that you want to update.
+5. Click **Edit**.
+
+   Macrometa opens the vertex record in an editing window.
+
+6. Update any information necessary.
+7. Click **Save**.
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Update a Vertex](https://www.macrometa.com/docs/api#/operations/UpdateAVertex).
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl graph vertex update](../../cli/graph-vertex-cli#gdnsl-graph-vertex-update) CLI command to update a graph vertex.
+
+</TabItem>
+</Tabs>
+
 ## Replace a Vertex
+
+These instructions provide several methods of replacing a graph vertex. This command completely overwrites the existing vertex document with a new one, including any properties that were not explicitly included in the new document. In other words, all properties not present in the new document are removed. If you only want to update some of the properties, then you should [Update a Vertex](#update-a-vertex).
+
+<Tabs groupId="operating-systems3">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to replace a graph vertex using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+2. Click **Graphs**.
+3. Click the graph for which you want to replace a vertex.
+4. Click the vertex that you want to replace.
+5. Click **Edit**.
+
+   Macrometa opens the vertex record in an editing window.
+
+6. Update any information necessary.
+7. Click **Save**.
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Replace a Vertex](https://www.macrometa.com/docs/api#/operations/ReplaceAVertex).
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl graph vertex replace](../../cli/graph-vertex-cli#gdnsl-graph-vertex-replace) CLI command to replace a graph vertex.
+
+</TabItem>
+</Tabs>
 
 ## Delete a Vertex
 
