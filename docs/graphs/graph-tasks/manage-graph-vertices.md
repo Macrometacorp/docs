@@ -218,7 +218,7 @@ These instructions provide several methods of removing a vertex collection from 
 <Tabs groupId="operating-systems5">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to update a graph using the GDN console web UI.
+Follow these instructions to remove a vertex collection from a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Graphs**.
