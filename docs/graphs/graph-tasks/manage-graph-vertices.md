@@ -185,7 +185,7 @@ Use the [gdnsl graph describe](../../cli/graph-cli#gdnsl-graph-describe) CLI com
 
 ## Add a Vertex Collection
 
-These instructions provide several methods of adding vertex collections to a graph.
+These instructions provide several methods of adding a vertex collection to a graph.
 
 <Tabs groupId="operating-systems5">
 <TabItem value="console" label="Web Console">
@@ -213,7 +213,7 @@ Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command
 
 ## Remove a Vertex Collection
 
-These instructions provide several methods of removing vertex collections from a graph.
+These instructions provide several methods of removing a vertex collection from a graph.
 
 <Tabs groupId="operating-systems5">
 <TabItem value="console" label="Web Console">
