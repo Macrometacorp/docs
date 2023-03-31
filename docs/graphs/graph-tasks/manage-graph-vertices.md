@@ -10,6 +10,8 @@ This page explains various methods for managing vertices, also called nodes, in 
 
 ## Create a Vertex
 
+These instructions provide several methods of creating a new vertex in an existing graph.
+
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
@@ -39,6 +41,34 @@ Use the [gdnsl graph vertex create](../../cli/graph-vertex-cli#gdnsl-graph-verte
 </Tabs>
 
 ## View a Vertex
+
+These instructions provide several methods of viewing a graph vertex.
+
+<Tabs groupId="operating-systems2">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to view a graph vertex using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+2. Click **Graphs**.
+3. Click the graph that you want to view a vertex for.
+4. Click the node that you want to view.
+5. Click **Edit**.
+
+   Macrometa displays the vertex record associated with the vertex that you clicked.
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Get (View) a Vertex](https://www.macrometa.com/docs/api#/operations/GetAVertex).
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl graph vertex describe](../../cli/graph-vertex-cli#gdnsl-graph-vertex-describe) CLI command to view a graph vertex.
+
+</TabItem>
+</Tabs>
 
 ## Update a Vertex
 
