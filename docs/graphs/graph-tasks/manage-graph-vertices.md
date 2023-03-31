@@ -6,7 +6,7 @@ sidebar_position: 80
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains various methods for managing vertices, also called nodes, in your Macrometa graphs.
+This page explains various methods for managing vertices, also called nodes, in Macrometa graphs.
 
 ## Create a Vertex
 
@@ -53,7 +53,7 @@ Follow these instructions to view a graph vertex using the GDN console web UI.
 2. Click **Graphs**.
 3. Click the graph that you want to view a vertex for.
 4. Click the vertex that you want to view.
-5. Click **Edit**.
+5. Click **Edit** (the pencil icon).
 
    Macrometa displays the vertex record associated with the vertex that you clicked.
 
@@ -83,7 +83,7 @@ Follow these instructions to update a graph vertex using the GDN console web UI.
 2. Click **Graphs**.
 3. Click the graph for which you want to update a vertex.
 4. Click the vertex that you want to update.
-5. Click **Edit**.
+5. Click **Edit** (the pencil icon).
 
    Macrometa opens the vertex record in an editing window.
 
@@ -116,7 +116,7 @@ Follow these instructions to replace a graph vertex using the GDN console web UI
 2. Click **Graphs**.
 3. Click the graph for which you want to replace a vertex.
 4. Click the vertex that you want to replace.
-5. Click **Edit**.
+5. Click **Edit** (the pencil icon).
 
    Macrometa opens the vertex record in an editing window.
 
@@ -138,8 +138,103 @@ Use the [gdnsl graph vertex replace](../../cli/graph-vertex-cli#gdnsl-graph-vert
 
 ## Delete a Vertex
 
+These instructions provide several methods of deleting a vertex from a graph.
+
+<Tabs groupId="operating-systems3">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to delete a graph vertex using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+2. Click **Graphs**.
+3. Click the graph for which you want to delete a vertex.
+4. Click the vertex that you want to delete.
+5. Click **Delete** (the trash can icon).
+6. In the **Delete node** window, indicate whether you want to delete the edges and then click **Delete**.
+7. Macrometa asks you to confirm the deletion. Click **Yes**.
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Remove (Delete) a Vertex](https://www.macrometa.com/docs/api#/operations/RemoveAVertex).
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl graph vertex delete](../../cli/graph-vertex-cli#gdnsl-graph-vertex-delete) CLI command to delete a graph vertex.
+
+</TabItem>
+</Tabs>
+
 ## List Vertex Collections
+
+These instructions provide several methods of listing vertex collections associated with a graph.
+
+<Tabs groupId="operating-systems4">
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [List Vertex Collections](https://www.macrometa.com/docs/api#/operations/ListVertexCollections).
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl graph describe](../../cli/graph-cli#gdnsl-graph-describe) CLI command to get a list of vertex collections for a graph.
+
+</TabItem>
+</Tabs>
 
 ## Add a Vertex Collection
 
+These instructions provide several methods of adding vertex collections to a graph.
+
+<Tabs groupId="operating-systems5">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to add a vertex collection to a graph using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **Graphs**.
+1. Click **Edit** next to the graph that you want to add a vertex collection to.
+1. Click in the **From Collections**, **To Collections**, or **Vertex Collections** field, and then select the vertex collection that you want to add. You can do this more than once.
+1. Click **Update**.
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Add a Vertex Collection](https://www.macrometa.com/docs/api#/operations/AddVertexCollection).
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to add a vertex collection to a graph.
+
+</TabItem>
+</Tabs>
+
 ## Remove a Vertex Collection
+
+These instructions provide several methods of removing vertex collections from a graph.
+
+<Tabs groupId="operating-systems5">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to update a graph using the GDN console web UI.
+
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **Graphs**.
+1. Click **Edit** next to the graph that you want to add a vertex collection to.
+1. In the **From Collections**, **To Collections**, or **Vertex Collections** field, click the **X** next to the vertex collection that you want to remove. You can do this more than once.
+1. Click **Update**.
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Remove a Vertex Collection](https://www.macrometa.com/docs/api#/operations/RemoveVertexCollection).
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to remove a vertex collection from a graph.
+
+</TabItem>
+</Tabs>
