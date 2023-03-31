@@ -20,6 +20,47 @@ Each vertex in the `accounts` collection represents a bank account, and each edg
 
 ### C8QL Query
 
-We can use the `bfs` traversal option to traverse the graph and identify patterns of suspicious activity that may indicate fraudulent behavior. 
+The `bfs` option can be used in a [C8QL](../../queries/c8ql/) query to traverse the graph and identify patterns of suspicious activity that may indicate fraudulent behavior.
 
-For example, suppose we have identified a single account as potentially fraudulent. We can use the `bfs` traversal option to identify all accounts that are directly or indirectly connected to the fraudulent account through a sequence of transactions. Then, we can analyze the transaction patterns of these connected accounts to see if there are any commonalities or anomalies that suggest fraudulent behavior.
+For example, suppose the bank has identified a single account as potentially fraudulent. It can use the `bfs` traversal option to identify all accounts that are directly or indirectly connected to the fraudulent account through a sequence of transactions. Then, the bank can analyze the transaction patterns of these connected accounts to see if there are any commonalities or anomalies that suggest fraudulent behavior.
+
+```sql
+LET startingAccount = 'accounts/fraudulentAccount'
+FOR v, e, p IN 1..5 OUTBOUND startingAccount transactions
+    FILTER p.vertices[*].status ALL != 'closed' AND p.vertices[0]._id != p.vertices[-1]._id
+    RETURN p.vertices[*]._key
+```
+
+This query uses the `FOR` statement to start at the `startingAccount` node and traverse the graph for up to five levels of depth using the `OUTBOUND` keyword. The `FILTER` statement removes any paths that include a closed account or a path that loops back to the starting node.
+
+The `RETURN` statement returns the `_key` property of all vertices in the traversed paths, which are the account IDs that are directly or indirectly connected to the starting fraudulent account. These IDs can be used for further analysis to identify patterns of suspicious activity.
+
+## Use Case: Identify Influential Players in a Game Community
+
+For the gaming and e-sports industry, identifying influential players can be a valuable strategy for community building and marketing. An influential player may have a large following, contribute frequently to forums and social media, and have high engagement rates. By identifying these players, game companies can target them for promotional campaigns, provide them with exclusive content, and encourage them to advocate for their products.
+
+### Game Community Graph Structure
+
+Suppose there is a graph where each node represents a player in a game community, and each edge represents a relationship between two players. The edges might represent social connections, gameplay interactions, or forum engagement.
+
+- Vertex collections: `players`
+- Edge collections: `relationships`
+
+### C8QL Query
+
+The `bfs` traversal option can be used to identify influential players in the game community. The company starts by selecting a player with a high number of followers or engagement, and then traverses the graph to identify other players who are directly or indirectly connected to this influential player. The company can then analyze the relationship patterns of these connected players to identify other influential players.
+
+```sql
+LET startingPlayer = 'players/influentialPlayer'
+FOR v, e, p IN 1..3 OUTBOUND startingPlayer relationships
+    FILTER p.edges[*].type ALL IN ['social', 'gameplay'] AND p.vertices[0]._id != p.vertices[-1]._id
+    COLLECT player = p.vertices[-1], score = LENGTH(p) INTO groups
+    SORT score DESC
+    RETURN { player: player, score: score }
+```
+
+In this query, the `FOR` statement starts at the `startingPlayer` node and traverses the graph for up to three levels of depth using the `OUTBOUND` keyword. The `FILTER` statement removes any paths that include a self-loop or a non-social or non-gameplay edge.
+
+The `COLLECT` statement groups the results by the last vertex in the path (i.e., the connected player) and the length of the path (i.e., the distance from the starting player). The `SORT` statement sorts the groups in descending order by path length, which indicates the influence score of each connected player. Finally, the `RETURN` statement returns an object containing the player and their influence score.
+
+By analyzing the results of this query, game companies can identify influential players and use this information to develop targeted marketing campaigns, provide special incentives, or engage them in community-building activities.
