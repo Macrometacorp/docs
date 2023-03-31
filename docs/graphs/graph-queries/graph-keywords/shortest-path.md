@@ -1,5 +1,6 @@
 ---
 title: SHORTEST_PATH
+sidebar_position: 40
 ---
 
 The `SHORTEST_PATH` keyword in [C8QL](../../../queries/c8ql/) is used to find the shortest path between two vertices in a graph. By default the shortest path is calculated by the number of edges (hops) between a start vertex and a target vertex. You can specify a weight attribute, in which case the shortest path would be the one with the smallest sum of weights over the edges in the path. If it finds two paths with the same shortest length, then it returns only one.

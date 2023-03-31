@@ -1,5 +1,6 @@
 ---
 title: OUTBOUND | INBOUND | ANY
+sidebar_position: 20
 ---
 
 `OUTBOUND`, `INBOUND`, and `ANY` are used to specify the direction of graph traversal when performing operations such as traversals or finding the shortest path. These keywords help you control how the traversal follows the edges in the graph, allowing you to customize the query to fit your specific use case.
