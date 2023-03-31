@@ -222,7 +222,7 @@ Follow these instructions to remove a vertex collection from a graph using the G
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Graphs**.
-1. Click **Edit** next to the graph that you want to add a vertex collection to.
+1. Click **Edit** next to the graph that you want to remove a vertex collection from.
 1. In the **From Collections**, **To Collections**, or **Vertex Collections** field, click the **X** next to the vertex collection that you want to remove. You can do this more than once.
 1. Click **Update**.
 
