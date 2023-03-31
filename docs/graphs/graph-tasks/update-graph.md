@@ -11,7 +11,7 @@ This page describes various methods of updating Macrometa graphs. While you cann
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to create a new collection using the GDN console web UI.
+Follow these instructions to update a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Graphs**.
