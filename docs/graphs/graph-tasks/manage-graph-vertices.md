@@ -13,7 +13,7 @@ This page explains various methods for managing vertices, also called nodes, in 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to create a new collection using the GDN console web UI.
+Follow these instructions to create a graph vertex using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Graphs**.
@@ -28,12 +28,12 @@ Follow these instructions to create a new collection using the GDN console web U
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Task Name](Link to API command).
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Vertex](https://www.macrometa.com/docs/api#/operations/CreateAVertex).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection](../../cli/collections-cli.md) CLI command to create a Document Store collection.
+Use the [gdnsl graph vertex create](../../cli/graph-vertex-cli#gdnsl-graph-vertex-create) CLI command to create a new graph vertex.
 
 </TabItem>
 </Tabs>
