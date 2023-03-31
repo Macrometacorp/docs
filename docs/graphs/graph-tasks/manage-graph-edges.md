@@ -163,7 +163,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph edge delete](../../cli/graph-vertex-cli#gdnsl-graph-edge-delete) CLI command to delete a graph edge.
+Use the [gdnsl graph edge delete](../../cli/graph-edge-cli#gdnsl-graph-edge-delete) CLI command to delete a graph edge.
 
 </TabItem>
 </Tabs>
@@ -220,28 +220,28 @@ Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command
 
 ## Remove an Edge Collection
 
-These instructions provide several methods of removing an edge collection from a graph.
+These instructions provide several methods of removing an edge collection from a graph. If the graph only has one edge collection, then you can change it, but you cannot remove it.
 
 <Tabs groupId="operating-systems5">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to update a graph using the GDN console web UI.
+Follow these instructions to remove an edge collection from a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 1. Click **Graphs**.
-1. Click **Edit** next to the graph that you want to add a vertex collection to.
-1. In the **From Collections**, **To Collections**, or **Vertex Collections** field, click the **X** next to the vertex collection that you want to remove. You can do this more than once.
+1. Click **Edit** next to the graph that you want to remove an edge collection from.
+1. In the **Edge Collections** field, click the **X** next to the edge collection that you want to remove.
 1. Click **Update**.
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a Vertex Collection](https://www.macrometa.com/docs/api#/operations/RemoveVertexCollection).
+Use our interactive API Reference with code generation in 18 programming languages to [Remove an Edge Definition](https://www.macrometa.com/docs/api#/operations/RemoveAnEdgedefinitionFromTheGraph).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to remove a vertex collection from a graph.
+Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to remove an edge collection from a graph.
 
 </TabItem>
 </Tabs>
