@@ -11,7 +11,7 @@ To sort documents with the most relevant ones shown first, use descending order 
 
 You can calculate custom scores based on a scoring function using document attributes and numeric functions (e.g. `TFIDF(doc) * LOG(doc.value)`):
 
-```js
+```sql
 FOR movie IN imdbView
   SEARCH PHRASE(movie.title, "Star Wars", "text_en")
   SORT BM25(movie) * LOG(movie.runtime + 1) DESC
@@ -20,7 +20,7 @@ FOR movie IN imdbView
 
 You can sort by a mix of scores and attributes from multiple search views and collections:
 
-```js
+```sql
 FOR a IN viewA
   FOR c IN coll
     FOR b IN viewB
@@ -48,7 +48,7 @@ This query returns a numeric score that represents the computed ranking value.
 
 Sorting by relevance with BM25 at default settings:
 
-```js
+```sql
 FOR doc IN viewName
   SEARCH ...
   SORT BM25(doc) DESC
@@ -57,7 +57,7 @@ FOR doc IN viewName
 
 Sorting by relevance, with double-weighted term frequency and with full text length normalization:
 
-```js
+```sql
 FOR doc IN viewName
   SEARCH ...
   SORT BM25(doc, 2.4, 1) DESC
@@ -77,7 +77,9 @@ Boost modifies the importance of a specific search expression within a query. De
 
 ### Example
 
-```js
+This example searches for documents that contain keywords `foo` or `bar`, and sorts the results based on their relevance using the BM25 scoring function.
+
+```sql
 FOR doc IN viewName
   SEARCH ANALYZER(BOOST(doc.text == "foo", 2.5) OR doc.text == "bar", "text_en")
   LET score = BM25(doc)
@@ -88,7 +90,7 @@ FOR doc IN viewName
 Assuming a view with the following documents indexed and processed by the
 `text_en` analyzer:
 
-```js
+```sql
 { "text": "foo bar" }
 { "text": "foo" }
 { "text": "bar" }
@@ -98,7 +100,7 @@ Assuming a view with the following documents indexed and processed by the
 
 The returned result:
 
-```json
+```sqlon
 [
   {
     "text": "foo bar",
@@ -119,7 +121,6 @@ The returned result:
 ]
 ```
 
-
 ## TFIDF()
 
 Sorts documents using the [term frequency–inverse document frequency algorithm](https://en.wikipedia.org/wiki/TF-IDF) (TF-IDF).
@@ -134,27 +135,27 @@ Sorts documents using the [term frequency–inverse document frequency algorithm
 
 ### Example
 
-Sort by relevance using the TF-IDF score:
+This example searches for documents and sorts by relevance using the TF-IDF score:
 
-```js
+```sql
 FOR doc IN viewName
   SEARCH ...
   SORT TFIDF(doc) DESC
   RETURN doc
 ```
 
-Sort by relevance using a normalized TF-IDF score:
+This example searches for documents and sorts by relevance using a normalized TF-IDF score:
 
-```js
+```sql
 FOR doc IN viewName
   SEARCH ...
   SORT TFIDF(doc, true) DESC
   RETURN doc
 ```
 
-Sort by the value of the `text` attribute in ascending order, then by the TFIDF score in descending order where the attribute values are equivalent:
+This example searches for documents and sorts by the `text` attribute in ascending order, then sorts by the TFIDF score in descending order where the attribute values are equivalent:
 
-```js
+```sql
 FOR doc IN viewName
   SEARCH ...
   SORT doc.text, TFIDF(doc) DESC
