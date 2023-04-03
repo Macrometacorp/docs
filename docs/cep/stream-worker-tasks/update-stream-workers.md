@@ -25,7 +25,7 @@ Follow these instructions to update a stream worker using the GDN console web UI
 </TabItem>
 <TabItem value="sdk" label="SDK">
 
-To see how to update stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example#step-5-update-stream-worker).
+To see how to update stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/basic-examples/stream-workers-sdk-example#step-5-update-stream-worker).
 
 </TabItem>
 <TabItem value="api" label="REST API">
