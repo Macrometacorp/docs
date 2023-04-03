@@ -1,6 +1,6 @@
 ---
 title: Delete a Graph
-sidebar_position: 60
+sidebar_position: 70
 ---
 
 import Tabs from '@theme/Tabs';
