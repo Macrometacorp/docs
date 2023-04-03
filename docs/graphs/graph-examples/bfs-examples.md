@@ -27,11 +27,12 @@ For example, suppose the bank has identified a single account as potentially fra
 ```sql
 LET startingAccount = 'accounts/fraudulentAccount'
 FOR v, e, p IN 1..5 OUTBOUND startingAccount transactions
+    OPTIONS { bfs: true }
     FILTER p.vertices[*].status ALL != 'closed' AND p.vertices[0]._id != p.vertices[-1]._id
     RETURN p.vertices[*]._key
 ```
 
-This query uses the `FOR` statement to start at the `startingAccount` node and traverse the graph for up to five levels of depth using the `OUTBOUND` keyword. The `FILTER` statement removes any paths that include a closed account or a path that loops back to the starting node.
+This query uses the `FOR` statement to start at the `startingAccount` node and traverse the graph for up to five levels of depth using the `OUTBOUND` keyword. In the `OPTIONS`, `bfs` is set to `true`. The `FILTER` statement removes any paths that include a closed account or a path that loops back to the starting node.
 
 The `RETURN` statement returns the `_key` property of all vertices in the traversed paths, which are the account IDs that are directly or indirectly connected to the starting fraudulent account. These IDs can be used for further analysis to identify patterns of suspicious activity.
 
@@ -53,13 +54,14 @@ The `bfs` traversal option can be used to identify influential players in the ga
 ```sql
 LET startingPlayer = 'players/influentialPlayer'
 FOR v, e, p IN 1..3 OUTBOUND startingPlayer relationships
+    OPTIONS { bfs: true }
     FILTER p.edges[*].type ALL IN ['social', 'gameplay'] AND p.vertices[0]._id != p.vertices[-1]._id
     COLLECT player = p.vertices[-1], score = LENGTH(p) INTO groups
     SORT score DESC
     RETURN { player: player, score: score }
 ```
 
-In this query, the `FOR` statement starts at the `startingPlayer` node and traverses the graph for up to three levels of depth using the `OUTBOUND` keyword. The `FILTER` statement removes any paths that include a self-loop or a non-social or non-gameplay edge.
+In this query, the `FOR` statement starts at the `startingPlayer` node and traverses the graph for up to three levels of depth using the `OUTBOUND` keyword. In the `OPTIONS`, `bfs` is set to `true`. The `FILTER` statement removes any paths that include a self-loop or a non-social or non-gameplay edge.
 
 The `COLLECT` statement groups the results by the last vertex in the path (i.e., the connected player) and the length of the path (i.e., the distance from the starting player). The `SORT` statement sorts the groups in descending order by path length, which indicates the influence score of each connected player. Finally, the `RETURN` statement returns an object containing the player and their influence score.
 
