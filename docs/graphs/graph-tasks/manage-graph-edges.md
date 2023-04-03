@@ -18,7 +18,7 @@ These instructions provide several methods of creating a new edge in an existing
 Follow these instructions to create a graph edge using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Graphs**.
+1. Click **Data > Graphs**.
 1. Click the graph that you want to create a new edge for.
 1. Click the first vertex that you want to create an edge for. This will be the **From** vertex of the edge.
 1. Click **Draw edge** (chain links icon).
