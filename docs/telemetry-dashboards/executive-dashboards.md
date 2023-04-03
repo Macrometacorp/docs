@@ -1,10 +1,10 @@
-# Executive Dashboard
-
-## Overview:
+---
+sidebar_position: 20
+title: Executive Dashboard
+slug: executive-dashboard
+---
 
 The Executive dashboard contains a collection of metrics to display the overall health and operational status of an instance of the Global Data Network. More detailed dashboards for C8DB service and Prometheus Node System Health metrics are available.
-
-<!-- [Grafana link](https://telemetry-paas.mm.macrometa.io/d/exodashboard/executive-dashboard?orgId=1) -->
 
 ### Global Hosts
     

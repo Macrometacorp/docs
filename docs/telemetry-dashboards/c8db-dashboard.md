@@ -4,13 +4,7 @@ title: C8DB Dashboard
 slug: c8db-dashboard
 ---
 
-# C8DB Dashboard
-
-## Overview:
-
 The C8DB Dashboard is a Grafana Telemetry dashboard that displays metrics for Macrometa's C8DB service on a GDN instance. Metrics are based on selected Federation, Cluster, Tenant, GeoFabric, and Time Range. It monitors various parameters, such as region, user, and collection counts, storage sizes, requests per second, and replication rates. This dashboard helps users understand their database performance and identify potential issues by providing real-time insights into various aspects of the Macrometa GDN.
-
-<!-- [Grafana Link](https://telemetry-paas.mm.macrometa.io/d/KTYBfHDWz/c8db?orgId=1&refresh=10s) -->
 
 **Macrometa GDN Hierarchy Structure -** 
 

@@ -1,10 +1,11 @@
-# System Health Dashboard
-
-## Overview:
+---
+sidebar_position: 30
+title: System Health Dashboard
+slug: system-health-dashboard
+---
 
 The System Health Dashboard is a Grafana Telemetry dashboard that monitors key server metrics, including CPU usage, system load, memory, disk space, and uptime. By using data sources and Prometheus tasks, it provides real-time insights into server performance.
 
-<!-- [Grafana Link](https://telemetry-paas.mm.macrometa.io/d/rYdddlPWk/linux-os-prometheus-node-exporter-full?orgId=1&refresh=1m) -->
 
 ### Data Source
     

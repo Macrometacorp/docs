@@ -12,3 +12,5 @@ The C8DB Dashboard provides insights into various aspects of the Macrometa GDN, 
 The Executive Dashboard displays an overall view of the health and operational status of the GDN instance. 
 
 The System Health Dashboard monitors key server metrics such as CPU usage, system load, memory, disk space, and uptime. These dashboards help users understand their database performance and identify potential issues by providing critical insights into various aspects of the Macrometa GDN.
+
+<DocCardList />
