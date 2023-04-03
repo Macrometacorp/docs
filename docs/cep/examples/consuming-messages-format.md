@@ -1,5 +1,6 @@
 ---
 title: Consuming Messages in Different Formats
+sidebar_position: 70
 ---
 
 This page shows you examples of different ways to map stream worker messages to change how messages are consumed.
