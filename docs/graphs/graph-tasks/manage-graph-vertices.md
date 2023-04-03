@@ -18,7 +18,7 @@ These instructions provide several methods of creating a new vertex in an existi
 Follow these instructions to create a graph vertex using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Graphs**.
+1. Click **Data > Graphs**.
 1. Click the graph that you want to create a vertex for.
 1. Click an empty space on the canvas, then click the plus sign that appears.
 1. (Optional) In the **Create node** window, enter the vertex **_key**. If you do not enter a key, then Macrometa automatically generates one for you.
@@ -50,7 +50,7 @@ These instructions provide several methods of viewing a graph vertex.
 Follow these instructions to view a graph vertex using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click the graph that you want to view a vertex for.
 4. Click the vertex that you want to view.
 5. Click **Edit** (the pencil icon).
@@ -80,7 +80,7 @@ These instructions provide several methods of updating a graph vertex. Updating 
 Follow these instructions to update a graph vertex using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click the graph for which you want to update a vertex.
 4. Click the vertex that you want to update.
 5. Click **Edit** (the pencil icon).
@@ -113,7 +113,7 @@ These instructions provide several methods of replacing a graph vertex. This com
 Follow these instructions to replace a graph vertex using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click the graph for which you want to replace a vertex.
 4. Click the vertex that you want to replace.
 5. Click **Edit** (the pencil icon).
@@ -146,7 +146,7 @@ These instructions provide several methods of deleting a vertex from a graph.
 Follow these instructions to delete a graph vertex using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click the graph for which you want to delete a vertex.
 4. Click the vertex that you want to delete.
 5. Click **Delete** (the trash can icon).
@@ -193,7 +193,7 @@ These instructions provide several methods of adding a vertex collection to a gr
 Follow these instructions to add a vertex collection to a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Graphs**.
+1. Click **Data > Graphs**.
 1. Click **Edit** next to the graph that you want to add a vertex collection to.
 1. Click in the **From Collections**, **To Collections**, or **Vertex Collections** field, and then select the vertex collection that you want to add. You can do this more than once.
 1. Click **Update**.
@@ -221,7 +221,7 @@ These instructions provide several methods of removing a vertex collection from 
 Follow these instructions to remove a vertex collection from a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Graphs**.
+1. Click **Data > Graphs**.
 1. Click **Edit** next to the graph that you want to remove a vertex collection from.
 1. In the **From Collections**, **To Collections**, or **Vertex Collections** field, click the **X** next to the vertex collection that you want to remove. You can do this more than once.
 1. Click **Update**.
