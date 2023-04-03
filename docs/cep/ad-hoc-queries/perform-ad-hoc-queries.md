@@ -6,12 +6,12 @@ sidebar_position: 20
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page shows you different methods for performing ad hoc queries.
+This page shows you different methods for performing ad hoc queries. 
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
-To see the full example, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example.md).
+To see the full example, refer to the [Stream Workers SDK Example](../examples/basic-examples/stream-workers-sdk-example).
 
 ```py
 q = "select * from SampleCargoAppDestTable limit 3"
