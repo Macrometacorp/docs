@@ -1,3 +1,9 @@
+---
+sidebar_position: 10
+title: C8DB Dashboard
+slug: c8db-dashboard
+---
+
 # C8DB Dashboard
 
 ## Overview:
