@@ -20,7 +20,7 @@ Follow these instructions to publish or unpublish a new stream worker using the 
 </TabItem>
 <TabItem value="sdk" label="SDK">
 
-To see how to publish and unpublish (also called activate and deactivate) stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example#step-4-activate-and-deactivate-stream-worker).
+To see how to publish and unpublish (also called activate and deactivate) stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/basic-examples/stream-workers-sdk-example#step-4-activate-and-deactivate-stream-worker).
 
 </TabItem>
 <TabItem value="api" label="REST API">

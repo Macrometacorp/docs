@@ -3,7 +3,7 @@ title: Ad Hoc Query Examples
 sidebar_position: 40
 ---
 
-This page shows examples for each type of ad hoc query. You can also see how ad hoc queries are used in the [Stream Workers SDK Example](../examples/stream-workers-sdk-example.md).
+This page shows examples for each type of ad hoc query. You can also see how ad hoc queries are used in the [Stream Workers SDK Example](../examples/basic-examples/stream-workers-sdk-example).
 
 ## (Aggregation) Select
 

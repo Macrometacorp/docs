@@ -3,7 +3,7 @@ sidebar_position: 100
 title: Enrich Data with a Collection
 ---
 
-This example explains how to enrich the data in a specific stream by joining it with a Macrometa [collection](../../collections/index.md).
+This example explains how to enrich the data in a specific stream by joining it with a Macrometa [collection](../../../collections/index.md).
 
 For this purpose, consider a scenario where you receive sales records generated from multiple locations as events from an external system.
 
@@ -65,7 +65,7 @@ This section explains the parts of this stream worker and what they are doing.
 
 ### Metadata
 
-This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid. For more information about stream worker metadata, refer to [Metadata](../metadata).
+This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid. For more information about stream worker metadata, refer to [Metadata](../../metadata).
 
 - **Name** - `@App:name("EnrichingTransactionsApp")`
 - **Query language version (optional)** - @App:qlVersion("2")
@@ -82,7 +82,7 @@ Define the input stream and the Macrometa collection that need to be joined as f
 
 #### Define the Source Stream
 
-This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Stream Source](../source/stream-source.md). For more information about streams in general, refer to [Streams](../../streams/index.md).
+This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Stream Source](../../source/stream-source.md). For more information about streams in general, refer to [Streams](../../../streams/index.md).
 
 ```sql
 CREATE STREAM TransactionStream (userId long, transactionAmount double, location string);
@@ -90,7 +90,7 @@ CREATE STREAM TransactionStream (userId long, transactionAmount double, location
 
 #### Define the Table (Collection)
 
-`CREATE TABLE` defines where the stream worker stores your data. In this case, it will be a [Document Store Collection](../../collections/documents/index.md) For more information about defining a TABLE in a stream worker, refer to [Table (Collection)](../table/index.md). For more information about collections in general, refer to [Collections](../../collections/index.md).
+`CREATE TABLE` defines where the stream worker stores your data. In this case, it will be a [Document Store Collection](../../../collections/documents/index.md) For more information about defining a TABLE in a stream worker, refer to [Table (Collection)](../../table/index.md). For more information about collections in general, refer to [Collections](../../../collections/index.md).
 
 ```sql
 CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);
@@ -151,7 +151,7 @@ Use the following procedure to verify that the stream worker functions as expect
 
 ### 1. Load UserTable Collection with User Data
 
-Run the following query using one of the methods described in [Running Queries](../../queries/running-queries.md) to add the records to the collection. Each line is a separate record.
+Run the following query using one of the methods described in [Running Queries](../../../queries/running-queries.md) to add the records to the collection. Each line is a separate record.
 
 ```sql
 LET data = [
@@ -174,7 +174,7 @@ The Macrometa Streams console does not persist messages, so to see them, you mus
 
 ### 3. Publish Events and Observe Output
 
-There are several ways to [publish messages to streams](../../streams/stream-tasks/publish-messages.md), this page shows you how to do it in the Macrometa console API reference.
+There are several ways to [publish messages to streams](../../../streams/stream-tasks/publish-messages.md), this page shows you how to do it in the Macrometa console API reference.
 
 1. In the original tab or window (not the one with the stream open), click **API Reference**.
 1. In the API Reference pane, click to expand **Streams** and then click the POST command **Publish message**.
