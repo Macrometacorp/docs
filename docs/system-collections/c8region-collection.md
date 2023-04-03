@@ -4,14 +4,6 @@ title: _c8region Collection
 slug: c8region-collection
 ---
 
-### Collection Information
-- **Collection Name:** _c8region
-- **Collection Type:** Document (System)
-- **Stream Enabled:** True
-- **Distribution:** Local
-
-### Overview
-
 The `_c8region` collection is a system-level collection that blocks publishing and subscribing from the replication service during the member join process. The member join process adds a new region to the Global Data Network, GDN. This is typically performed during the deployment of a GDN instance. However, regions can be added to and removed from the network after deployment. 
 
 Data is copied from the source (peer) region when a new region is added. During this process, the C8DB service must stop receiving messages. The fabrics are added to a list in the ExcludeDbForPubSub collection record to block publishing and subscribing. While these messages are blocked, they will be stored in the backlog of the pulsar environment responsible for data replication between regions. This backlog will be consumed after the process is completed.
@@ -20,7 +12,11 @@ If no fabrics are actively being synced in the _reconcile_region system collecti
 
 This is a local collection meaning data is not replicated in other regions in the GDN. All member join processes will use this region as the source to replicate and synchronize data.
 
-<!-- _c8region configuration records: -->
+### Collection Information
+- **Collection Name:** _c8region
+- **Collection Type:** Document (System)
+- **Stream Enabled:** True
+- **Distribution:** Local
 
 #### Related Endpoints
 - [GeoFabrics](/api#/operations/ListOfGeo-fabrics)

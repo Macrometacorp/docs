@@ -4,18 +4,14 @@ title: _c8federation Collection
 slug: c8federation-collection
 ---
 
+The `_c8federation` collection is a system-level collection containing records to configure features, limits, and workflows for the Macrometa GDN. This collection is configured explicitly, differing from other system-level collections that are implicitly configured during deployment. 
+
 ### Collection Information
 
 - **Collection Name:** _c8federation
 - **Collection Type:** Document (System)
 - **Stream Enabled:** True
 - **Distribution:** Global
-
-### Overview
-
-The `_c8federation` collection is a system-level collection containing records to configure features, limits, and workflows for the Macrometa GDN. This collection is configured explicitly, differing from other system-level collections that are implicitly configured during deployment. 
-
-<!-- ### _c8federation configuration records -->
 
 #### Related Endpoints
 [Administration](/api#/operations/ReturnListOfTenants)

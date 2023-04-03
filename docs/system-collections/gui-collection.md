@@ -4,16 +4,13 @@ title: _gui Collection
 slug: gui-collection
 ---
 
+The `_gui` collection is a system-level collection containing records to configure authentication, analytics, and account billing features for the Macrometa GDN. 
+
 ### Collection Information
 - **Collection Name:** _gui
 - **Collection Type:** Document (System)
 - **Stream Enabled:** True
 - **Distribution:** Global
-
-### Overview
-
-The `_gui` collection is a system-level collection containing records to configure authentication, analytics, and account billing features for the Macrometa GDN. 
-<!-- _gui configuration records: -->
 
 #### Description
 The _gui configuration record is a JSON object that contains attributes related to authentication, alternative user signups,  product analytics (via PostHog), and product subscription and payment features (via Stripe).

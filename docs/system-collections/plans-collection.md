@@ -3,18 +3,15 @@ sidebar_position: 40
 title: _plans Collection
 slug: plans-collection
 ---
+The _plans collection is a system-level collection that stores records for each defined plan. Plans have feature gates, limits, metrics, price, and other metadata. Plans can be used to control feature access and limits for child tenants.
+
+A plan is optional for the tenant and, if not specified, will use the configuration in the `_c8federation` system collection. The limits are stored in the `defaultLimits`record, enabled or disabled by the `enableRateLimits` record.
 
 ### Collection Information
 - **Collection Name:** _plans
 - **Collection Type:** Document (System)
 - **Stream Enabled:** True
 - **Distribution:** Global
-
-### Overview:
-The _plans collection is a system-level collection that stores records for each defined plan. Plans have feature gates, limits, metrics, price, and other metadata. Plans can be used to control feature access and limits for child tenants.
-
-A plan is optional for the tenant and, if not specified, will use the configuration in the `_c8federation` system collection. The limits are stored in the `defaultLimits`record, enabled or disabled by the `enableRateLimits` record.
-<!-- _plans configuration records: -->
 
 #### Related Endpoints:
 [Administration](/api#/operations/ReturnListOfTenants)

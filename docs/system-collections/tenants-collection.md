@@ -4,17 +4,15 @@ title: _tenants Collection
 slug: tenants-collection
 ---
 
+The `_tenants` collection is a system-level collection that stores tenant configuration records on the Global Data Network, GDN. A tenant is a child of the _system fabric. There are two sample objects below, the collection definition and the sample record. The collection definition is the object that represents the metadata for the collection when it is created or updated. The sample record shows the attributes of a _tenant collection record.
+_tenants configuration records:
+
 ### Collection Information
 
 - **Collection Name:** _tenants
 - **Collection Type:** Document (System)
 - **Stream Enabled:** True
 - **Distribution:** Global
-
-### Overview
-
-The `_tenants` collection is a system-level collection that stores tenant configuration records on the Global Data Network, GDN. A tenant is a child of the _system fabric. There are two sample objects below, the collection definition and the sample record. The collection definition is the object that represents the metadata for the collection when it is created or updated. The sample record shows the attributes of a _tenant collection record.
-_tenants configuration records:
 
 #### Related Endpoints
 [Administration](/api#/operations/ReturnListOfTenants)

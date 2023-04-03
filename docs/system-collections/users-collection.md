@@ -4,18 +4,14 @@ title: _users Collection
 slug: users-collection
 ---
 
+The `_users` collection is a system-level collection with records containing attributes and metadata for an individual user or API Key at the tenant level. 
+
 ### Collection Information
 
 - **Collection Name:** _users
 - **Collection Type:** Document (System)
 - **Stream Enabled:** True
 - **Distribution:** Global
-
-### Overview
-
-The `_users` collection is a system-level collection with records containing attributes and metadata for an individual user or API Key at the tenant level. 
-
-<!-- _user configuration records: -->
 
 #### Description
 A JSON object with attributes and metadata for a specific user. These attributes are used for permissions configuration for individual collections and streams and default access permissions. A user is a child of a tenant.
