@@ -47,6 +47,14 @@ Macrometa opens a stream window at the bottom of the screen that displays all lo
 
 You can also view the `c8locals.streamworkerslog` stream using one of the methods in [View Streams](../streams/stream-tasks/view-streams). You can also [Subscribe to Streams](../streams/stream-tasks/subscribe-streams) with the Macrometa SDK or API.
 
+Log messages will have a timestamp, application name, region, priority, and event information. For example:
+
+```js
+[2023-04-03T18:55:47.485Z] {"appName":"TvuYzg4miSQuxtWmhzqJf8g:root:_system:log-producer","prefix":"","region":"play-us-west","priority":"WARN","event":{"prev_price":28220.23,"curr_price":28218.31}}
+```
+
+In this example, the log message has a `WARN` priority and contains information about the previous price (`prev_price`) and current price (`curr_price`).
+
 ## Storing Log Data
 
 Because streams are not persistent, if you want to keep the logging data, then you must store it somewhere, such as a Macrometa collection (table) or an external sink. This section presents some options for doing that.
@@ -110,6 +118,8 @@ Here are some example stream workers that demonstrate logging usage. Each exampl
 
 ### Example 1
 
+This example creates a simple stream worker that logs sensor data. The sensor data includes a sensor ID and a temperature.
+
 ```sql
 CREATE STREAM SensorDataStream (sensorId string, temperature double);
 
@@ -120,9 +130,11 @@ SELECT sensorId, temperature
 FROM SensorDataStream;
 ```
 
-This example creates a simple stream worker that logs sensor data. The sensor data includes a sensor ID and a temperature.
+This stream worker processes sensor data and logs temperature readings. It creates a sensor data stream and a log sink called `InfoLog` with an `INFO` priority level. The `INSERT` statement logs `sensorId` and temperature for each incoming data event in the `SensorDataStream`.
 
 ### Example 2
+
+This example creates a medium complexity stream worker that logs stock price changes. The log sink records the symbol, previous price, and current price.
 
 ```sql
 CREATE STREAM StockDataStream (symbol string, price double, volume long);
@@ -134,9 +146,11 @@ SELECT e1.symbol, e1.price as prev_price, e2.price as curr_price
 FROM EVERY (e1=StockDataStream[not(e1.price is null)]) -> e2=StockDataStream[e1.price != e2.price];
 ```
 
-This example creates a medium complexity stream worker that logs stock price changes. The log sink records the symbol, previous price, and current price.
+This stream worker processes stock data and logs price changes. It creates a stock data stream and a log sink called `PriceChangeLog`. The `INSERT` statement logs price changes for each stock symbol, capturing the previous price and the current price when a change occurs.
 
 ### Example 3
+
+This example creates an advanced stream worker that logs IoT data, including temperature and humidity readings. It also logs anomalies, such as when the temperature is above a certain threshold or humidity is below a certain threshold.
 
 ```sql
 CREATE STREAM IoTDataStream (deviceId string, temperature double, humidity double, timestamp string);
@@ -160,4 +174,4 @@ FROM IoTDataStream
 WHERE humidity < 30;
 ```
 
-This example creates an advanced stream worker that logs IoT data, including temperature and humidity readings. It also logs anomalies, such as when the temperature is above a certain threshold or humidity is below a certain threshold.
+This stream worker creates an IoT data stream and two log sinks (`TempHumidityLog` and `AnomalyLog`). The first `INSERT` statement logs the temperature and humidity data, while the other two `INSERT` statements log anomalies when the temperature is above 30 or humidity is below 30.
