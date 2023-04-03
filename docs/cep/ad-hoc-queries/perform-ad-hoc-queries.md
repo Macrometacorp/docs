@@ -22,7 +22,7 @@ print(result)
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-To see the full example, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example.md).
+To see the full example, refer to the [Stream Workers SDK Example](../examples/basic-examples/stream-workers-sdk-example.md).
 
 ```js
 const q = "select * from SampleCargoAppDestTable limit 3";
