@@ -16,7 +16,7 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
 CREATE STREAM ProductionStream (name string, amount long);
 
 -- Define an output stream to publish the maximum production for the last ten runs.
-CREATE SINK DetectedMaximumProductionStream WITH (type='logger', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
+CREATE SINK DetectedMaximumProductionStream WITH (type='log', prefix='Maximum production in last 10 runs') (name string, maximumValue long);
 
 -- Query to process events
 INSERT INTO DetectedMaximumProductionStream
