@@ -1,5 +1,6 @@
 ---
 title: Publishing Data in Different Formats
+sidebar_position: 80
 ---
 
 In this example, the stream worker ingests JSON events, groups them by product, and publishes the data in text format.

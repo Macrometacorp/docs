@@ -5,11 +5,11 @@ title: Stream Workers SDK Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
-import Steps from '../../_partials/_get-started-steps.md';
-import ConnectToGDN from '../../_partials/_connect-to-gdn-code-block.md';
+import Prerequisites from '../../../_partials/_prerequisites-sdk-api-key.md';
+import Steps from '../../../_partials/_get-started-steps.md';
+import ConnectToGDN from '../../../_partials/_connect-to-gdn-code-block.md';
 
-This article is an introduction to using stream workers (sometimes called stream apps) with [Macrometa SDKs](../../sdks/index.md).
+This article is an introduction to using stream workers (sometimes called stream apps) with [Macrometa SDKs](../../../sdks/index.md).
 
 <Prerequisites />
 
@@ -150,7 +150,7 @@ main();
 
 ### Step 3. Create Stream Worker
 
-By default, the stream worker is created in the local region. You can use `dclist` (domain component list) to deploy the stream application in other specified regions, or in all regions.
+By default, the stream worker is created in the local region. You can use `dclist` (domain component list) to deploy the stream worker in other specified regions, or in all regions.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
