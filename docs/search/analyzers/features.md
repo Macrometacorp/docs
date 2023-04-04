@@ -1,6 +1,6 @@
 ---
 sidebar_position: 50
-title: Features
+title: Analyzer Features
 ---
 
 An analyzer's _features_ determine the available term matching capabilities.
