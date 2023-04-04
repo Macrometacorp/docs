@@ -21,11 +21,13 @@ A vertex can be a document in a document collection or an [edge collection](../c
 
 Edge collections are used to store the edges or relationships between vertices in your graph. Each edge represents a connection between two vertices and may include additional attributes describing the nature of the relationship.
 
-Edges are stored as documents in [edge collections](../collections/graph-edge/create-graph-edge.md).
+Edges are stored as documents in [edge collections](graph-tasks/create-graph-edge-collection).
 
 ### 3. Define the Graph Structure
 
 Once you have created the necessary vertex and edge collections, you can define your graph structure in Macrometa GDN. This involves specifying which vertex collections and edge collections should be part of the graph, as well as any additional configuration options.
+
+For more information, refer to [Create a Graph](graph-tasks/create-graph).
 
 ### 4. Query the Graph
 

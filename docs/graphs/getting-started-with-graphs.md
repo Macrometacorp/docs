@@ -35,7 +35,7 @@ Create collections to hold the data that you will use to create graphs.
    1. Click **Document Store**.
    1. In **Collection Name**, enter `cities` and then click **Create**.
 
-1. [Create an edge collection](../collections/graph-edge/create-graph-edge.md) named `flights`.
+1. [Create an edge collection](graph-tasks/create-graph-edge-collection) named `flights`.
    1. In **Data > Collections**, click **New Collection**.
    1. Click **Graph Edge**.
    1. In **Collection Name**, enter `flights` and then click **Create**.
