@@ -1,9 +1,9 @@
 ---
 sidebar_position: 50
-title: Features
+title: Analyzer Features
 ---
 
-An analyzer's _features_ determine the available term matching capabilities. These features are not applicable with custom search views.
+An analyzer's _features_ determine the available term matching capabilities.
 
 We support the following features for search views:
 
