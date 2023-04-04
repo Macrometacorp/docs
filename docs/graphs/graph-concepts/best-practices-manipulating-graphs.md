@@ -11,7 +11,7 @@ The GDN graph commands ensures that all modifications to graph collections are e
 
 ## Maintaining Data Integrity
 
-Using graph-specific commands provided by the GDN graph commands ensures data integrity in the following ways:
+Using graph-specific commands provided by the GDN graph UI ensures data integrity in the following ways:
 
 - **Automatic Edge Deletion**: When you delete a vertex, all edges referring to that vertex can be deleted as well, preventing dangling edges in your data.
 - **Edge Validation**: When inserting an edge, the GDN graph commands checks whether the edge matches the edge definitions, ensuring that only valid edges are added to the graph.
