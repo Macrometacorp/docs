@@ -16,7 +16,7 @@ Imagine a factory manager who wants to be able to check the production for the l
 CREATE STREAM ProductionStream (name string, amount long);
 
 -- Define an output stream to publish the production for the last hour.
-CREATE SINK PastHourProductionStream WITH (type='logger', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
+CREATE SINK PastHourProductionStream WITH (type='log', prefix='Production totals over the past hour:') (name string, pastHourTotal long);
 
 -- Query to process events
 INSERT INTO PastHourProductionStream
