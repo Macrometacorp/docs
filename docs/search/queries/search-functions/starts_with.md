@@ -14,7 +14,7 @@ Match the value of an attribute that starts with a prefix. If the attribute is t
 | prefix | string                  | A string to search for at the start of text.   |
 
 
-The alphabetical order of characters is not taken into account by Search. Range queries in SEARCH operations against views do not follow the language rules as defined by a locale analyzer.
+The alphabetical order of characters is not taken into account by search. Range queries in `SEARCH` operations against views do not follow the language rules as defined by a locale analyzer.
 
 ### Examples
 
