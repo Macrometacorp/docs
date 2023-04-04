@@ -37,7 +37,7 @@ This section explains the parts of this stream worker and what they are doing.
 
 ### Metadata
 
-This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid. For more information about stream worker metadata, refer to [Metadata](../metadata).
+This information defines basic information about the stream worker. Every stream worker must have at least a name and query language version in order to be valid. For more information about stream worker metadata, refer to [Metadata](../../metadata).
 
 - **Name** - `@App:name("BankTransactionsApp")`
 - **Query language version (optional)** - @App:qlVersion("2")
@@ -52,7 +52,7 @@ Define the input stream and  that need to be joined as follows. If the stream or
 
 #### Define the Source Streams
 
-This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Create Stream as Source](../source/stream-source.md). For more information about streams in general, refer to [Streams](../../streams/index.md).
+This stream is where the data is coming from. For more information about defining a stream in a stream worker, refer to [Create Stream as Source](../../source/stream-source.md). For more information about streams in general, refer to [Streams](../../../streams/index.md).
 
 Define the two input streams via which you are receiving information about withdrawals and deposits.
 
@@ -103,7 +103,7 @@ Note the following in the `SELECT` statement:
 
 #### Join Data
 
-The `FROM` clause together with the `JOIN` keyword join the two input streams and create a [SLIDING_TIME window](../windows/window-types/sliding-time.md).
+The `FROM` clause together with the `JOIN` keyword join the two input streams and create a [SLIDING_TIME window](../../windows/window-types/sliding-time.md).
 
 To perform the join, add the `from` clause as follows.
 

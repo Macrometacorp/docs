@@ -5,7 +5,7 @@ title: Source and Sink Example
 
 Sources and sinks are used to consume and publish events to external systems.
 
-There are multiple source and sink types, but this example only explains Macrometa source with a stream sink. For more info refer to [Sources](../source/) and [Sinks](../sink/).
+There are multiple source and sink types, but this example only explains Macrometa source with a stream sink. For more info refer to [Sources](../../source/) and [Sinks](../../sink/).
 
 ## Example
 
@@ -38,7 +38,7 @@ When a JSON message is written to the collection `TemperatureStream`, it automat
 }
 ```
 
-To process custom input messages, refer to [Sink Mapping](../sink/sink-mapping/index.md).
+To process custom input messages, refer to [Sink Mapping](../../sink/sink-mapping/index.md).
 
 ## Output
 
@@ -50,4 +50,4 @@ The message is published to `TemperatureOnlyStream` as
 {"temperature":"35.4"}
 ```
 
-To output messages using other message formats, refer to [Source Mapping](../source/source-mapping/index.md).
+To output messages using other message formats, refer to [Source Mapping](../../source/source-mapping/index.md).

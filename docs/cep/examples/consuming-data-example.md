@@ -1,5 +1,6 @@
 ---
 title: Consuming Data Example
+sidebar_position: 60
 ---
 
 This stream worker consumes all data from `ConsumerSalesTotalsStream` and then sends it to `PublishSalesTotalsStream`. The stream worker includes an optional sink and query, currently commented out, for testing.
