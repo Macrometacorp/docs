@@ -10,7 +10,7 @@ This page shows you several ways to use a stream as a message queue.
 
 To use a stream as a message queue:
 
-1. Establish a [shared subscription](../subscriptions#shared) and use the same subscription name as the other consumers. 
+1. Establish a [shared subscription](../stream-basics/subscriptions#shared) and use the same subscription name as the other consumers.
 1. Set the **receiver queue** for the consumers.
 
 When you subscribe to a stream, use the following configuration settings depending on your SDK:
@@ -39,4 +39,3 @@ subscriber = client.subscribe(
 
 </TabItem>
 </Tabs>
-
