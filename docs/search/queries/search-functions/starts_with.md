@@ -26,7 +26,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-If a view indexes the `text` attribute and processes it with an English text analyzer, this query returns `"lorem ipsum"`and `"lorem", "ipsum"`:
+If a view indexes the `text` attribute and processes it with an English text analyzer, then this query returns `"lorem ipsum"`and `"lorem", "ipsum"`:
 
 ```js
 FOR doc IN viewName
