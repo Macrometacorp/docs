@@ -1,6 +1,6 @@
 ---
 title: Example Graphs
-sidebar_position: 5
+sidebar_position: 10
 ---
 
 Macrometa has several example graphs that you can create and use to explore the GDN graph functionality. When you create an example graph, Macrometa creates the named graph as well as collections loaded with vertex and edge data.

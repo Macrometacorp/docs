@@ -2,19 +2,23 @@
 title: STARTS_WITH()
 ---
 
-Match the value of the attribute that starts with `prefix`. If the attribute is processed by a tokenizing analyzer (type `"text"` or `"delimiter"`) or if it is an array, then a single token/element starting with the prefix is sufficient to match the document.
+Match the value of an attribute that starts with a prefix. If the attribute is tokenized or is an array, then a document only needs a single token or element to return in the query.
+
+### Syntax
 
 `STARTS_WITH(path, prefix)`
 
-:::warning
-The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against views will not follow the language rules as per the defined analyzer locale.
-:::
+| Key   | Type                    | Description                                     |
+|-------|-------------------------|-------------------------------------------------|
+| path  | attribute path expression | The path to the attribute in the document.    |
+| prefix | string                  | A string to search for at the start of text.   |
 
-- `path` (attribute path expression): the path of the attribute to compare against in the document
-- `prefix` (string): a string to search at the start of the text
-- returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
 
-To match a document `{ "text": "lorem ipsum..." }` using a prefix and the `"identity"` analyzer you can use it like this:
+The alphabetical order of characters is not taken into account by search. Range queries in `SEARCH` operations against views do not follow the language rules as defined by a locale analyzer.
+
+### Examples
+
+This example returns a `"lorem ipsum"` document using a prefix and an identity analyzer:
 
 ```js
 FOR doc IN viewName
@@ -22,7 +26,7 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-This query will match `{ "text": "lorem ipsum" }` as well as `{ "text": [ "lorem", "ipsum" ] }` given a view which indexes the `text` attribute and processes it with the `"text_en"` analyzer:
+If a view indexes the `text` attribute and processes it with an English text analyzer, then this query returns `"lorem ipsum"`and `"lorem", "ipsum"`:
 
 ```js
 FOR doc IN viewName
@@ -30,11 +34,9 @@ FOR doc IN viewName
   RETURN doc.text
 ```
 
-Note that it will not match `{ "text": "IPS (in-plane switching)" }` because the analyzer has stemming enabled, but the prefix was passed in as-is:
+The query does not return `"IPS (in-plane switching)"` because the analyzer has stemming enabled.
 
-```js
-RETURN TOKENS("IPS (in-plane switching)", "text_en")
-```
+Assume you have an array of stemmed tokens which apply to `"IPS (in-plane switching)"`:
 
 ```json
 [
@@ -47,10 +49,11 @@ RETURN TOKENS("IPS (in-plane switching)", "text_en")
 ]
 ```
 
-The _s_ is removed from _ips_, which leads to the prefix _ips_ not matching the indexed token _ip_. You may either create a custom text analyzer with stemming disabled to avoid this issue, or apply stemming to the prefix:
+In this example, the `s` is removed from `ips`, which causes the prefix `ips` not to match the indexed token `ip`. You can apply the stemming rules to the document attribute in addition to the prefix, increasing the likelihood of a match:
 
 ```js
 FOR doc IN viewName
   SEARCH ANALYZER(STARTS_WITH(doc.text, TOKENS("ips", "text_en")[0]), "text_en")
   RETURN doc.text
 ```
+

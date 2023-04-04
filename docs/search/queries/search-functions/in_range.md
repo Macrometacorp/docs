@@ -4,24 +4,25 @@ title: IN_RANGE()
 
 Match documents where the attribute at `path` is greater than (or equal to) `low` and less than (or equal to) `high`.
 
+### Syntax
+
 `IN_RANGE(path, low, high, includeLow, includeHigh)`
 
-_low_ and _high_ can be numbers or strings (technically also `null`, `true` and `false`), but the data type must be the same for both.
+The values `low` and `high` can be numbers or strings, but each value must have the same data type.
 
-:::warning
-The alphabetical order of characters is not taken into account by Search, i.e. range queries in SEARCH operations against views will not follow the language rules as per the defined analyzer locale.
-:::
+| Key        | Type                    | Description                                                  |
+|------------|-------------------------|--------------------------------------------------------------|
+| path       | attribute path expression | The path to the attribute in the document.                  |
+| low        | number or string        | Minimum range value.                                         |
+| high       | number or string        | Maximum range value.                                         |
+| includeLow | bool                    | If `true`, the value specified in `low` is included in the range.  |
+| includeHigh | bool                   | If `false`, the value specified in `high` is included in the range. |
 
-- `path` (attribute path expression): the path of the attribute to test in the document
-- `low` (number\|string): minimum value of the desired range
-- `high` (number\|string): maximum value of the desired range
-- `includeLow` (bool): whether the minimum value shall be included in the range (left-closed interval) or not (left-open interval)
-- `includeHigh` (bool): whether the maximum value shall be included in the range (right-closed interval) or not (right-open interval)
-- returns nothing: the function can only be called in a [search query](../../queries/index.md) and throws an error otherwise
+The alphabetical order of characters is not taken into account by search. Range queries in `SEARCH` operations against views do not follow the language rules as defined by a locale analyzer.
 
-If _low_ and _high_ are the same, but _includeLow_ and/or _includeHigh_ is set to `false`, then nothing will match. If _low_ is greater than _high_ nothing will match either.
+### Examples
 
-To match documents with the attribute `value >= 3` and `value <= 5` using the default `"identity"` analyzer you would write the following query:
+For example, this query returns documents with the attribute `value` between and including 3 to 5:
 
 ```js
 FOR doc IN viewName
@@ -29,9 +30,9 @@ FOR doc IN viewName
   RETURN doc.value
 ```
 
-This will also match documents which have an array of numbers as `value` attribute where at least one of the numbers is in the specified boundaries.
+This also matches documents which have an array of numbers as `value` attribute where at least one number is within the specified boundaries.
 
-Using string boundaries and a text analyzer allows to match documents which have at least one token within the specified character range:
+You can also use string boundaries and a text analyzer to match documents which have at least one token within the specified character range:
 
 ```js
 FOR doc IN valView
@@ -39,4 +40,14 @@ FOR doc IN valView
   RETURN doc
 ```
 
-This will match `{ "value": "bar" }` and `{ "value": "foo bar" }` because the _b_ of _bar_ is in the range (`"a" <= "b" < "f"`), but not `{ "value": "foo" }` because the _f_ of _foo_ is excluded (_high_ is "f" but _includeHigh_ is false).
+Assume a collection contains the following values:
+
+```json
+{ "text": "foo bar" }
+{ "text": "foo" }
+{ "text": "bar" }
+{ "text": "foo baz" }
+{ "text": "baz" }
+```
+
+The previous example returns `bar` and `foo bar` because _b_ is within the specified range. However, `foo` is excluded because _f_ is excluded by `includehigh`.
