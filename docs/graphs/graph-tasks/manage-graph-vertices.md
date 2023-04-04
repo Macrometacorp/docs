@@ -200,7 +200,7 @@ REMOVE 'eve' IN persons
 
 **Remove a Vertex from Multiple Collections**
 
-In the [City Graph](../example-graphs#the-city-graph) example graph, there are several vertex collections - `germanCity` and `frenchCity`, and several edge collections - `frenchHighway`, `germanHighway`, and `internationalHighway`.
+In the [City Graph](../graph-examples/example-graphs#the-city-graph) example graph, there are several vertex collections - `germanCity` and `frenchCity`, and several edge collections - `frenchHighway`, `germanHighway`, and `internationalHighway`.
 
 ![City Example Graph2](/img/graphs/cities_graph.png)
 
