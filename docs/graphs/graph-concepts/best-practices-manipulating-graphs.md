@@ -13,7 +13,7 @@ The GDN graph commands ensures that all modifications to graph collections are e
 
 Using graph-specific commands provided by the GDN graph commands ensures data integrity in the following ways:
 
-- **Automatic Edge Deletion**: When you delete a vertex, all edges referring to that vertex are deleted as well, preventing dangling edges in your data.
+- **Automatic Edge Deletion**: When you delete a vertex, all edges referring to that vertex can be deleted as well, preventing dangling edges in your data.
 - **Edge Validation**: When inserting an edge, the GDN graph commands checks whether the edge matches the edge definitions, ensuring that only valid edges are added to the graph.
 - **Valid Edge Collection**: Edge collections will only contain valid edges, preventing loose ends in your data.
 
