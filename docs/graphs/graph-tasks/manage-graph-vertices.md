@@ -168,9 +168,9 @@ Use the [gdnsl graph vertex delete](../../cli/graph-vertex-cli#gdnsl-graph-verte
 
 C8QL does not provide a direct method to remove vertices with associated edges. However, you can achieve this using a combination of queries. The examples below demonstrate how to remove a vertex and its associated edges from different graphs.
 
-**Removing a Vertex from One Collection**
+**Remove a Vertex from One Collection**
 
-This example, demonstrates how to remove a vertex and its associated edges from a graph. The query removes the vertex **eve** from the `knows_graph`, as well as the edges `eve -> alice` and `eve -> bob`.
+This example, demonstrates how to remove a vertex and its associated edges from a graph. The query removes the vertex **eve** from the [knows example graph](../graph-examples/example-graphs#the-knows-graph), as well as the edges `eve -> alice` and `eve -> bob`.
 
 ![Knows Example Graph](/img/graphs/knows_graph.png)
 
@@ -198,9 +198,9 @@ LET edgeKeys = (FOR v, e IN 1..1 ANY 'persons/eve' GRAPH 'knows_graph'
 REMOVE 'eve' IN persons
 ```
 
-**Removing a Vertex from Multiple Collections**
+**Remove a Vertex from Multiple Collections**
 
-In the [City Graph](example-graphs#the-city-graph) example graph, there are several vertex collections - `germanCity` and `frenchCity`, and several edge collections - `frenchHighway`, `germanHighway`, and `internationalHighway`.
+In the [City Graph](../example-graphs#the-city-graph) example graph, there are several vertex collections - `germanCity` and `frenchCity`, and several edge collections - `frenchHighway`, `germanHighway`, and `internationalHighway`.
 
 ![City Example Graph2](/img/graphs/cities_graph.png)
 
