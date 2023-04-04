@@ -1,6 +1,6 @@
 ---
 sidebar_position: 40
-title: Traversals with Geo Queries
+title: Geo Queries Traversal Examples
 ---
 
 This example demonstrates how to perform a graph traversal based on a geo query. It starts by finding cities within a specified radius from a given set of coordinates (in this case, Bonn). Then, it performs a graph traversal using those cities as starting points and returns the connected cities within one edge away.
