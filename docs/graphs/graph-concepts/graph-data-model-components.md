@@ -9,7 +9,7 @@ This page discusses the basic components of a graph data model, including edges 
 
 A graph data model always consists of at least two collections:
 
-- A [Graph Edge](../../collections/graph-edge/create-graph-edge) collection: Stores the relations between the nodes in the graphs.
+- A [Graph Edge](../graph-tasks/create-graph-edge-collection) collection: Stores the relations between the nodes in the graphs.
 - A [Document Store](../../collections/documents/create-document-store) collection: Stores the nodes in the graph in documents.
 
 Edges are special documents with additional attributes. Besides the system attributes `_key`, `_id`, and `_rev`, edges also have the attributes `_from` and `_to`, which contain document handles representing the start-point and end-point of the edge.
