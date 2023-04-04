@@ -119,7 +119,7 @@ Only one `PRUNE` condition is possible, but it can include any number of `AND` o
 
 - **uniqueVertices** (string): Optionally ensure vertex uniqueness
   - "path" – Guarantees that no path with a duplicate vertex is returned.
-  - "global" –  Ensures that each vertex is visited at most once during the traversal, regardless of the number of paths leading from the start vertex to it. If the `min` depth is greater than 1, then a vertex found before the `min` depth might not be returned, even if it is part of a path. This setting makes the result non-deterministic. If multiple paths exist from the `startVertex` to `vertex`, then one of them is chosen.
+  - "global" –  Ensures that each vertex is visited at most once during the traversal, regardless of the number of paths leading from the start vertex to it. If the `min` depth is greater than 1, then a vertex found before the `min` depth might not be returned, even if it is part of a path. This setting makes the result non-deterministic. If multiple paths exist from the `startVertex` to `vertex`, then one of them is chosen. If you use this option, then you should also set the `bfs` option to `true`, otherwise the results might be unpredictable.
   - "none" (default) – No uniqueness check is applied on vertices.
 
 - **uniqueEdges** (string): Optionally ensure edge uniqueness
