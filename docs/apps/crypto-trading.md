@@ -66,10 +66,10 @@ CREATE SINK STREAM GLOBAL CryptoTraderQuotesAvgEURNew(exchange string, quote_reg
 
 CREATE SINK STREAM GLOBAL CryptoTraderQuotesAvgJPYNew(exchange string, quote_region string, symbol string, ma double, close double, timestamp long);
 
-CREATE SINK TradesBuy WITH (type="logger", prefix='BUY') (exchange string, quote_region string, symbol string, timestamp long, trade_location string,
+CREATE SINK TradesBuy WITH (type="log", prefix='BUY') (exchange string, quote_region string, symbol string, timestamp long, trade_location string,
                           trade_price double, trade_strategy string, trade_type string);
 
-CREATE SINK TradesSell WITH (type="logger", prefix='SELL') (exchange string, quote_region string, symbol string, timestamp long, trade_location string,
+CREATE SINK TradesSell WITH (type="log", prefix='SELL') (exchange string, quote_region string, symbol string, timestamp long, trade_location string,
                           trade_price double, trade_strategy string, trade_type string);                      
 
 -- Common trades store
