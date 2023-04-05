@@ -29,12 +29,7 @@ If batching is enabled, then the producer accumulates and sends a batch of messa
 
 Message chunking enables Macrometa to process large payload messages by splitting the message into chunks at the producer side and aggregating chunked messages at the consumer side.
 
-With message chunking enabled, when the size of a message exceeds the allowed maximum payload size (the `maxMessageSize` parameter of the broker), the workflow of messaging is as follows:
-
-1. The producer splits the original message into chunked messages and publishes them with chunked metadata to the broker separately and in order.
-2. The broker stores the chunked messages in one managed ledger in the same way as that of ordinary messages, and it uses the chunkedMessageRate parameter to record chunked message rate on the topic.
-3. The consumer buffers the chunked messages and aggregates them into the receiver queue when it receives all the chunks of a message.
-4. The client consumes the aggregated message from the receiver queue.
+With message chunking enabled, when the size of a message exceeds the allowed maximum payload size (5MB), the producer splits the original message into chunked messages and publishes them. The consumers automatically consume the aggregated message.
 
 :::note
 
