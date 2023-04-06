@@ -13,10 +13,11 @@ A _producer_ is an application or process that publishes messages to the stream.
 
 Producers can send messages to GDN either synchronously (sync) or asynchronously (async).
 
-| Mode       | Description  |
-|-----------|---------------------|
+| Mode       | Description                                                                                                                                         |
+|:-----------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
 | Sync send  | The producer waits for acknowledgement from the broker after sending each message. If acknowledgment isn't received, then the producer considers the send operation a failure. |
 | Async send | The producer puts the message in a blocking queue and return immediately. The client library then sends the message to the broker in the background. If the queue is full, then the producer could be blocked or fail immediately when calling the API, depending on arguments passed to the producer. |
+
 
 ## Compression
 
@@ -38,13 +39,14 @@ By default, a batch can accommodate up to 1,000 messages. The default maximum pu
 This example shows how to create a producer with specific options using the JavaScript SDK.
 When we create a producer, we can specify the following options:
 
-|         Option          |                         Description                         | Default |
-| :---------------------: | :---------------------------------------------------------: | :-----: |
-|    sendTimeoutMillis    |                        Send timeout                         | 30 secs |
-|     batchingEnabled     |                 Enable batching of messages                 |  false  |
-|   batchingMaxMessages   |       Maximum number of messages permitted in a batch       |  1000   |
-|   maxPendingMessages    | Set the max size of the internal-queue holding the messages |  1000   |
-| batchingMaxPublishDelay |    Time period within which the messages will be batched    |  10ms   |
+| Option                | Description                                      | Default |
+|:----------------------|:-------------------------------------------------|:-------|
+| sendTimeoutMillis     | Send timeout                                     | 30 secs |
+| batchingEnabled       | Enable batching of messages                      |  false  |
+| batchingMaxMessages   | Maximum number of messages permitted in a batch  |  1000   |
+| maxPendingMessages    | Set the max size of the internal-queue holding the messages |  1000   |
+| batchingMaxPublishDelay | Time period within which the messages will be batched |  10ms   |
+
 
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript SDK">
@@ -60,7 +62,7 @@ client = new jsc8({
     fabricName: "_system",
 });
 
-const streamName = "streamQuickstart";
+let streamName = "streamQuickstart";
 
 async function createStream() {
   if (await client.hasStream(streamName, false)) {
@@ -90,11 +92,11 @@ async function producer() {
     // Create producer
     const producer = await stream.producer(BASE_URL, {
       otp: producerOTP,
-      sendTimeoutMillis: 30000, // default is 30000 ms
-      batchingEnabled: true,  // default is false
+      sendTimeoutMillis: 30000, // Default is 30000 ms
+      batchingEnabled: true,  // Default is false
       compressionType: 'LZ4', // Options: NONE, LZ4, ZLIB, ZSTD, SNAPPY -> default is NONE
-      batchingMaxMessages: 100, // default is 1000
-      batchingMaxPublishDelayMs: 10 // default is 10 ms
+      batchingMaxMessages: 100, // Default is 1000
+      batchingMaxPublishDelayMs: 10 // Default is 10 ms
     });
 
     // Run producer - Open connection to server
