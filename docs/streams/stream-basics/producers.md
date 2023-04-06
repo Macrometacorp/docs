@@ -33,7 +33,7 @@ Macrometa Streams use batching to enhance efficiency in message processing. When
 
 By default, a batch can accommodate up to 1,000 messages. The default maximum publish latency is set at 10 milliseconds, ensuring a timely transmission of message batches.
 
-## How to create a producer with specific options in SDK
+## Create a Producer with Specific Options
 
 This example shows how to create a producer with specific options in JavaScript SDK.
 When we create a producer, we can specify the following options:
