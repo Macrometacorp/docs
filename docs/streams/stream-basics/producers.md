@@ -49,7 +49,6 @@ When we create a producer, we can specify the following options:
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label="JavaScript SDK">
 
-
 ```js
 const jsc8 = require("jsc8");
 
