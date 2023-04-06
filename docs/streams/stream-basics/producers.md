@@ -105,7 +105,7 @@ async function producer() {
     setInterval(() => {
       // If your message is an object, convert the object to a string.
       // e.g. const message = JSON.stringify({message:'Hello World'});
-      const message = `Hello Macrometa Stream! Here is your random message number ${Math.floor(
+      const message = `Hello Macrometa stream! Here is your random message number ${Math.floor(
         Math.random() * 101
       )}`;
       let payloadObj = { payload: Buffer.from(message).toString("base64") };
