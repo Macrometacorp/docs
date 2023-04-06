@@ -35,7 +35,7 @@ By default, a batch can accommodate up to 1,000 messages. The default maximum pu
 
 ## Create a Producer with Specific Options
 
-This example shows how to create a producer with specific options in JavaScript SDK.
+This example shows how to create a producer with specific options using the JavaScript SDK.
 When we create a producer, we can specify the following options:
 
 
