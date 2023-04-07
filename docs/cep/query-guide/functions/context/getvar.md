@@ -6,7 +6,9 @@ This functions returns the value of the `var` if present. If the `var` is unknow
 
 ## Syntax
 
+```sql
     <STRING> context:getVar(<STRING> var, <STRING> default.value)
+```
 
 ## Query Parameters
 
@@ -23,12 +25,16 @@ This functions returns the value of the `var` if present. If the `var` is unknow
 
 ## Example 1
 
-    insert into OutputStream
-    select customerName, context:getVar('region') as region
-    from InputStream;
+```sql
+INSERT INTO OutputStream
+SELECT customerName, context:getVar('region') AS region
+FROM InputStream;
+```
 
 ## Example 2
 
-    insert into OutputStream
-    select customerName
-    from InputStream[region == context:getVar('region')];
+```sql
+INSERT INTO OutputStream
+SELECT customerName
+FROM InputStream[region == context:getVar('region')];
+```
