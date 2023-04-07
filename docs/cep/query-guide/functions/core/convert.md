@@ -6,8 +6,8 @@ Converts the first input parameter according to the `convertedTo` parameter.
 
 ## Syntax
 
-```js
-    <INT|LONG|DOUBLE|FLOAT|STRING|BOOL> convert(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> to.be.converted, <STRING> converted.to)
+```sql
+<INT|LONG|DOUBLE|FLOAT|STRING|BOOL> convert(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> to.be.converted, <STRING> converted.to)
 ```
 
 ## Query Parameters
@@ -19,20 +19,24 @@ Converts the first input parameter according to the `convertedTo` parameter.
 
 ## Example 1
 
-```js
-    insert into barStream
-    select convert(temp, 'double') as temp
-    from fooStream;
+```sql
+INSERT INTO barStream
+SELECT CONVERT(temp, 'double') AS temp
+FROM fooStream;
 ```
 
-This converts `fooStream` temp value into `double`.
+This query selects records from the `fooStream` collection and uses the `CONVERT` function to convert the `temp` field to a `double` data type. The result is aliased as `temp` and inserted into the `barStream`.
+
+Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `temp` field converted to a `double` data type.
 
 ## Example 2
 
-```js
-    insert into barStream
-    select convert(temp, 'int') as temp
-    from fooStream;
+```sql
+INSERT INTO barStream
+SELECT CONVERT(temp, 'int') AS temp
+FROM fooStream;
 ```
 
-This converts `fooStream` temp value into `int` (value = "convert(45.9, `int`) and returns 46.
+This query selects records from the `fooStream` collection and uses the `CONVERT` function to convert the `temp` field to an `int` data type. The result is aliased as `temp` and inserted into the `barStream`.
+
+Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `temp` field converted to an `int` data type.
