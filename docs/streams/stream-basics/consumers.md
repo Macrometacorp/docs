@@ -3,7 +3,7 @@ sidebar_position: 35
 title: Consumers
 ---
 
-A _consumer_ is an application that subscribes to a stream and then receives messages published by [producers](producers.md).
+A _consumer_ is an application that subscribes to a stream and then receives messages published by [producers](/docs/streams/stream-basics/producers/).
 
 ## Receive Modes
 
