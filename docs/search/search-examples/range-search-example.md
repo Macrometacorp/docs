@@ -135,5 +135,5 @@ FOR product IN inventory_view
 
 
 ## Execute query worker as an API
-You now have a full functional search api!
+You now have a full functional search API!
 ![Create Document Collection](/img/search/range-example/search-api.png)
