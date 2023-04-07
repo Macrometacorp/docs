@@ -7,15 +7,21 @@ Returns the current timestamp of stream processor application in milliseconds.
 ## Syntax
 
 ```sql
-    <LONG> currentTimeMillis()
+<LONG> currentTimeMillis()
 ```
 
-## Example
+## Query Parameters
+
+None
+
+## Example 1
 
 ```sql
-    insert into barStream
-    select symbol as name, currentTimeMillis() as eventTimestamp
-    from fooStream;
+INSERT INTO barStream
+SELECT symbol AS name, CURRENTTIMEMILLIS() AS eventTimestamp
+FROM fooStream;
 ```
 
-This extracts current stream processor application timestamp.
+This query selects records from the `fooStream` collection and transforms the data by renaming the `symbol` field to `name` and adding a new field called `eventTimestamp` with the value of the current time in milliseconds using the `CURRENTTIMEMILLIS()` function. The resulting transformed data is then inserted into the `barStream`.
+
+Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `name` and `eventTimestamp` fields, where `eventTimestamp` represents the current time in milliseconds.
