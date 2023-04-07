@@ -6,7 +6,7 @@ Checks if the `attribute` parameter is null and if so returns the value of the `
 
 ## Syntax
 
-```js
+```sql
     <INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> default(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> attribute, <INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> default)
 ```
 
@@ -19,7 +19,7 @@ Checks if the `attribute` parameter is null and if so returns the value of the `
 
 ## Example 1
 
-```js
+```sql
     insert into StandardTempStream
     select default(temp, 0.0) as temp, roomNum
     from TempStream;

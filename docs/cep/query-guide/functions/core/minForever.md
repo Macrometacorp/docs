@@ -6,7 +6,7 @@ This is the attribute aggregator to store the minimum value for a given attribut
 
 ## Syntax
 
-```js
+```sql
 <INT|LONG|DOUBLE|FLOAT> minForever(<INT|LONG|DOUBLE|FLOAT> arg)
 ```
 
@@ -18,7 +18,7 @@ This is the attribute aggregator to store the minimum value for a given attribut
 
 ## Example
 
-```js
+```sql
 insert into outputStream
 select minForever(temp) as max
 from inputStream;

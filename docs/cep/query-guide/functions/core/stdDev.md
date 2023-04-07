@@ -6,7 +6,7 @@ Returns the calculated standard deviation for all the events.
 
 ## Syntax
 
-```js
+```sql
 <DOUBLE> stdDev(<INT|LONG|DOUBLE|FLOAT> arg)
 ```
 
@@ -18,7 +18,7 @@ Returns the calculated standard deviation for all the events.
 
 ## Example
 
-```js
+```sql
 insert into outputStream
 select stddev(temp) as stdTemp
 from inputStream;

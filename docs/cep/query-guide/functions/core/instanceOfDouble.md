@@ -16,7 +16,7 @@ Checks whether the parameter is an instance of double or not.
 
 ## Example 1
 
-```js
+```sql
 insert into barStream
 select instanceOfDouble(value) as state
 from fooStream;
@@ -26,7 +26,7 @@ This returns `true` if the value field format is double ex: 56.45.
 
 ## Example 2
 
-```js
+```sql
 insert into barStream
 select instanceOfDouble(switchState) as state
 from fooStream;

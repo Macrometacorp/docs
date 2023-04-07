@@ -6,13 +6,13 @@ Returns the timestamp of the processed event.
 
 ## Syntax
 
-```js
+```sql
 <LONG> eventTimestamp()
 ```
 
 ## Example
 
-```js
+```sql
     insert into barStream
     select symbol as name, eventTimestamp() as eventTimestamp
     from fooStream;

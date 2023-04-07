@@ -6,7 +6,7 @@ Returns the count of all the events.
 
 ## Syntax
 
-```js
+```sql
     <LONG> count()
     <LONG> count(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> arg)
 ```
@@ -19,7 +19,7 @@ Returns the count of all the events.
 
 ## Example
 
-```js
+```sql
     insert into barStream
     select count() as count
     from fooStream WINDOW TUMBLING_TIME(10 sec);

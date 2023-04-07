@@ -6,13 +6,13 @@ Returns the current timestamp of stream processor application in milliseconds.
 
 ## Syntax
 
-```js
+```sql
     <LONG> currentTimeMillis()
 ```
 
 ## Example
 
-```js
+```sql
     insert into barStream
     select symbol as name, currentTimeMillis() as eventTimestamp
     from fooStream;

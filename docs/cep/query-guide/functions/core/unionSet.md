@@ -6,7 +6,7 @@ Union multiple sets. This attribute aggregator maintains a union of sets. The gi
 
 ## Syntax
 
-```js
+```sql
     <OBJECT> unionSet(<OBJECT> set)
 ```
 
@@ -18,7 +18,7 @@ Union multiple sets. This attribute aggregator maintains a union of sets. The gi
 
 ## Example
 
-```js
+```sql
 insert into initStream
 select createSet(symbol) as initialSet
 from stockStream

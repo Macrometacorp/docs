@@ -6,7 +6,7 @@ This returns the count of distinct occurrences for a given arg.
 
 ## Syntax
 
-```js
+```sql
     <LONG> distinctCount(<INT|LONG|DOUBLE|FLOAT|STRING> arg)
 ```
 
@@ -18,7 +18,7 @@ This returns the count of distinct occurrences for a given arg.
 
 ## Example
 
-```js
+```sql
 insert into barStream
 select distinctcount(pageID) as count
 from fooStream;

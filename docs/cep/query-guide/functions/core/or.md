@@ -6,7 +6,7 @@ Returns the results of OR operation for all the events.
 
 ## Syntax
 
-```js
+```sql
 <BOOL> or(<BOOL> arg)
 ```
 
@@ -18,7 +18,7 @@ Returns the results of OR operation for all the events.
 
 ## Example
 
-```js
+```sql
 insert into alertStream
 select or(isFraud) as isFraudTransaction
 from cscStream WINDOW TUMBLING_LENGTH(10);

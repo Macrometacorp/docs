@@ -16,7 +16,7 @@ Returns the sum for all the events.
 
 ## Example
 
-```js
+```sql
 insert into outputStream
 select sum(volume) as sumOfVolume
 from inputStream;

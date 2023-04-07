@@ -16,7 +16,7 @@ Checks whether the parameter is an instance of Long or not.
 
 ## Example 1
 
-```js
+```sql
 insert into barStream
 select instanceOfLong(value) as state
 from fooStream;
@@ -26,7 +26,7 @@ This returns `true` if the value field format is long ex: 56456l.
 
 ## Example 2
 
-```js
+```sql
 insert into barStream
 select instanceOfLong(switchState) as state
 from fooStream;

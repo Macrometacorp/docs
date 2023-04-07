@@ -16,7 +16,7 @@ Checks whether the parameter is an instance of Boolean or not.
 
 ## Example 1
 
-```js
+```sql
 insert into barStream
 select instanceOfBoolean(switchState) as state
 from fooStream;
@@ -26,7 +26,7 @@ This returns true if the value of switchState is true.
 
 ## Example 2
 
-```js
+```sql
 insert into barStream
 select instanceOfBoolean(value) as state
 from fooStream;

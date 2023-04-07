@@ -16,7 +16,7 @@ Checks if the parameter is an instance of float or not.
 
 ## Example 1
 
-```js
+```sql
 insert into barStream
 select instanceOfFloat(value) as state
 from fooStream;
@@ -26,7 +26,7 @@ This returns `true` if the value field format is float ex: 56.45f.
 
 ## Example 2
 
-```js
+```sql
 insert into barStream
 select instanceOfFloat(switchState) as state
 from fooStream;

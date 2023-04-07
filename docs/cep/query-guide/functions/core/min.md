@@ -6,7 +6,7 @@ Returns the minimum value for all the events.
 
 ## Syntax
 
-```js
+```sql
     <INT|LONG|DOUBLE|FLOAT> min(<INT|LONG|DOUBLE|FLOAT> arg)
 ```
 
@@ -18,7 +18,7 @@ Returns the minimum value for all the events.
 
 ## Example
 
-```js
+```sql
 insert into outputStream
 select min(temp) as minTemp
 from inputStream;

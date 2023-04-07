@@ -6,7 +6,7 @@ Evaluates the `condition` parameter and returns value of the `if.expression` par
 
 ## Syntax
 
-```js
+```sql
     <INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> ifThenElse(<BOOL> condition, <INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> if.expression, <INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> else.expression)
 ```
 
@@ -20,7 +20,7 @@ Evaluates the `condition` parameter and returns value of the `if.expression` par
 
 ## Example 1
 
-```js
+```sql
     @info(name = 'query1')
     insert into outputStream
     select sensorValue, ifThenElse(sensorValue>35,'High','Low') as status
@@ -31,7 +31,7 @@ This returns High if sensorValue = 50.
 
 ## Example 2
 
-```js
+```sql
     @info(name = 'query1')
     insert into outputStream
     select sensorValue, ifThenElse(voltage < 5, 0, 1) as status
@@ -42,7 +42,7 @@ This returns 1 if voltage= 12.
 
 ## Example 3
 
-```js
+```sql
     @info(name = 'query1')
     insert into outputStream
     select userName, ifThenElse(password == 'admin', true, false) as passwordState

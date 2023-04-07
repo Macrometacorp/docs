@@ -16,7 +16,7 @@ Checks whether the parameter is an instance of integer or not.
 
 ## Example 1
 
-```js
+```sql
 insert into barStream
 select instanceOfInteger(value) as state
 from fooStream;
@@ -26,7 +26,7 @@ This returns `true` if the value field format is integer.
 
 ## Example 2
 
-```js
+```sql
 insert into barStream
 select instanceOfInteger(switchState) as state
 from fooStream;

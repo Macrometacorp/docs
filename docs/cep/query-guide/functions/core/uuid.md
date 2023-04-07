@@ -6,13 +6,13 @@ Generates a UUID (Universally Unique Identifier).
 
 ## Syntax
 
-```js
+```sql
 <STRING> UUID()
 ```
 
 ## Example
 
-```js
+```sql
 insert into RoomTempStream
 select convert(roomNo, 'string') as roomNo, temp, UUID() as messageID
 from TempStream;

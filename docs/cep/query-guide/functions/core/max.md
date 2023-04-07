@@ -6,7 +6,7 @@ Returns the maximum value for all the events.
 
 ## Syntax
 
-```js
+```sql
     <INT|LONG|DOUBLE|FLOAT> max(<INT|LONG|DOUBLE|FLOAT> arg)
 ```
 
@@ -18,7 +18,7 @@ Returns the maximum value for all the events.
 
 ## Example
 
-```js
+```sql
     insert into barStream
     select max(temp) as maxTemp
     from fooStream WINDOW TUMBLING_TIME(10 sec);

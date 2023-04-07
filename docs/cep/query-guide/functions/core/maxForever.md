@@ -6,7 +6,7 @@ This is the attribute aggregator to store the maximum value for a given attribut
 
 ## Syntax
 
-```js
+```sql
     <INT|LONG|DOUBLE|FLOAT> maxForever(<INT|LONG|DOUBLE|FLOAT> arg)
 ```
 
@@ -18,7 +18,7 @@ This is the attribute aggregator to store the maximum value for a given attribut
 
 ## Example
 
-```js
+```sql
     insert into outputStream
     select maxForever(temp) as max
     from inputStream;

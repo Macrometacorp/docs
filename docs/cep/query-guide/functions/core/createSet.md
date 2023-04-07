@@ -6,7 +6,7 @@ Includes the given input parameter in a `java.util.HashSet` and returns the set.
 
 ## Syntax
 
-```js
+```sql
     <OBJECT> createSet(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL> input)
 ```
 
@@ -18,7 +18,7 @@ Includes the given input parameter in a `java.util.HashSet` and returns the set.
 
 ## Example 1
 
-```js
+```sql
     insert into initStream
     select createSet(symbol) as initialSet
     from stockStream;
