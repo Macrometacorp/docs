@@ -20,6 +20,7 @@ Returns the count of all the events.
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 INSERT INTO barStream
 SELECT COUNT() AS count
 FROM fooStream WINDOW TUMBLING_TIME(10 sec);

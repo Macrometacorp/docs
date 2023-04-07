@@ -20,6 +20,7 @@ Converts the first parameter according to the cast.to parameter. Incompatible ar
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 INSERT INTO barStream
 SELECT symbol AS name, CAST(temp, 'double') AS temp
 FROM fooStream;

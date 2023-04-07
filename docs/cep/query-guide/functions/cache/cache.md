@@ -35,10 +35,12 @@ CREATE TABLE GLOBAL put_in_cache(value_is_put string);
 
 CREATE TABLE GLOBAL get_from_cache(value string);
 
+@info(name = 'put-query')
 INSERT INTO put_in_cache 
 SELECT cache:put("my_key", "my_value") as value_is_put 
 FROM EventsPutTrigger;
 
+@info(name = 'get-query')
 INSERT INTO get_from_cache
 SELECT cache:get("my_key") as value
 FROM EventsGetTrigger;

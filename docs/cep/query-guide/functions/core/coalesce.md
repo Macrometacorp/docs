@@ -43,6 +43,7 @@ Essentially, this query processes records in the `fooStream` and creates new rec
 ## Example 3
 
 ```sql
+@info(name = 'query1')
 INSERT INTO barStream
 SELECT COALESCE(NULL, NULL, NULL) AS value
 FROM fooStream;

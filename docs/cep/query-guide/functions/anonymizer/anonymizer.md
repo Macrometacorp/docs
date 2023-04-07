@@ -139,6 +139,7 @@ CREATE SOURCE patient_local WITH (type='database', collection='patient_local', r
 
 CREATE TABLE GLOBAL patient_public(full_name string, ssn string, email string, phone string);
 
+@info(name = 'anonymize')
 INSERT INTO patient_public
 SELECT pii:fake(full_name, "NAME_FULLNAME", true)        as full_name,
        pii:fake(ssn, "ID_SSN", false)                    as ssn,

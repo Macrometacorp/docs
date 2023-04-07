@@ -32,6 +32,7 @@ Essentially, this query processes records in the `fooStream` and creates new rec
 ## Example 2
 
 ```sql
+@info(name = 'query1')
 INSERT INTO barStream
 SELECT CONVERT(temp, 'int') AS temp
 FROM fooStream;

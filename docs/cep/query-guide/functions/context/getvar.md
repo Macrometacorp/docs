@@ -26,6 +26,7 @@ This functions returns the value of the `var` if present. If the `var` is unknow
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 INSERT INTO OutputStream
 SELECT customerName, context:getVar('region') AS region
 FROM InputStream;
@@ -36,6 +37,7 @@ This query selects the `customerName` and the `region` value from the context fo
 ## Example 2
 
 ```sql
+@info(name = 'query1')
 INSERT INTO OutputStream
 SELECT customerName
 FROM InputStream[region == context:getVar('region')];

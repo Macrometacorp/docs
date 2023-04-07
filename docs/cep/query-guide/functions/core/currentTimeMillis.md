@@ -17,6 +17,7 @@ None
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 INSERT INTO barStream
 SELECT symbol AS name, CURRENTTIMEMILLIS() AS eventTimestamp
 FROM fooStream;

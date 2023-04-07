@@ -12,13 +12,14 @@ Calculates the average for all the events.
 
 ## Query Parameters
 
-| Name | Description                         | Default Value | Possible Data Types   | Optional | Dynamic |
-|------|-------------------------------------|---------------|-----------------------|----------|---------|
-| arg  | The value that need to be averaged. |               | INT LONG DOUBLE FLOAT | No       | Yes     |
+| Name | Description       | Default Value | Possible Data Types   | Optional | Dynamic |
+|------|-------------------|---------------|-----------------------|----------|---------|
+| arg  | The value that need to be averaged. |             | INT LONG DOUBLE FLOAT | No       | Yes     |
 
 ## Example
 
 ```sql
+@info(name = 'query1')
 INSERT INTO barStream
 SELECT AVG(temp) AS avgTemp
 FROM fooStream WINDOW TUMBLING_TIME;

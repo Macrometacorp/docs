@@ -19,6 +19,7 @@ Includes the given input parameter in a `java.util.HashSet` and returns the set.
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 INSERT INTO initStream
 SELECT CREATESET(symbol) AS initialSet
 FROM stockStream;

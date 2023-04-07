@@ -20,6 +20,7 @@ Checks if the `attribute` parameter is null and if so returns the value of the `
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 INSERT INTO StandardTempStream
 SELECT DEFAULT(temp, 0.0) AS temp, roomNum
 FROM TempStream;
