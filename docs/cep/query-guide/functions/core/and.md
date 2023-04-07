@@ -2,26 +2,26 @@
 title: and (Aggregate Function)
 ---
 
-Returns the results of AND operation for all the events.
+Returns the results of `AND` operation for all the events.
 
 ## Syntax
 
-```js
-    <BOOL> and(<BOOL> arg)
+```sql
+<BOOL> and(<BOOL> arg)
 ```
 
 ## Query Parameters
 
-| Name | Description                               | Default Value | Possible Data Types | Optional | Dynamic |
-|------|-------------------------------------------|---------------|---------------------|----------|---------|
-| arg  | The value that needs to be AND operation. |               | BOOL                | No       | Yes     |
+| Name | Description            | Default Value | Possible Data Types | Optional | Dynamic |
+|------|------------------------|---------------|---------------------|----------|---------|
+| arg  | The value that needs to be `AND` operation. |         | BOOL        | No      | Yes     |
 
 ## Example 1
 
-```js
-    insert into alertStream
-    select and(isFraud) as isFraudTransaction
-    from cscStream WINDOW TUMBLING_LENGTH(10);
+```sql
+INSERT INTO alertStream
+SELECT AND(isFraud) AS isFraudTransaction
+FROM cscStream WINDOW TUMBLING_LENGTH(10);
 ```
 
-This returns the result for AND operation of `isFraud` values as a boolean value for event chunk expiration by window length batch.
+This query processes records from the `cscStream` collection using a tumbling window of length 10. For each window, it aggregates the `isFraud` values using the `AND` function, which returns true if all `isFraud` values are true within the window. The result is aliased as `isFraudTransaction` and inserted into the `alertStream`. Essentially, this query detects windows of 10 consecutive records where all transactions are marked as fraudulent and inserts the aggregated result into the `alertStream`.
