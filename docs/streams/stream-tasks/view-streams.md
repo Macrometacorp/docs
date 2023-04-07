@@ -53,7 +53,6 @@ for stream in streams:
 Get stats for a specific stream.
 
 ```python
-import json
 from c8 import C8Client
 
 # Define variables
