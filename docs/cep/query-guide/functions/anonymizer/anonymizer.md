@@ -126,16 +126,15 @@ Anonymizer uses the following syntax:
 
 ## Query Parameters
 
-
-| Name             | Description                                 | Default Value | Possible Data Types | Optional | Dynamic |
-|------------------|---------------------------------------------|---------------|---------------------|----------|---------|
+| Name             | Description         | Default Value | Possible Data Types | Optional | Dynamic |
+|------------------|---------------------|---------------|---------------------|----------|---------|
 | input.string     | The input name to create a fake one         |               | STRING              | No       | Yes     |
-| fake.function    | The key to be added                         |               | STRING              | No       | Yes     |
+| fake.function    | The key to be added        |               | STRING              | No       | Yes     |
 | invalidate.cache | An optional clean-up cache flag.<br /><br />true - a different fake data will be generated at each call. <br /><br />false - once generated, the fake data is cached to be used for the next calls           | false         | BOOL                | Yes      | Yes     |
 
 ## Example
 
-```js
+```sql
 CREATE SOURCE patient_local WITH (type='database', collection='patient_local', replication.type="global", map.type='json') (full_name string, ssn string, email string, phone string);
 
 CREATE TABLE GLOBAL patient_public(full_name string, ssn string, email string, phone string);
