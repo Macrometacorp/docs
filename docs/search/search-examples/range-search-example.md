@@ -129,12 +129,11 @@ FOR product IN inventory_view
   )
 ```
 
-
-Save as a Query Worker named inventory-search:
+## Save as a Query Worker named `inventory-search`:
 
 ![Create Document Collection](/img/search/range-example/search-query-worker.png)
 
 
-Execute query worker as an API
-
+## Execute query worker as an API
+You now have a full functional search api!
 ![Create Document Collection](/img/search/range-example/search-api.png)
