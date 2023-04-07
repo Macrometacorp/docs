@@ -28,9 +28,6 @@ When you view a stream in the console, you will not see a backlog of messages. T
 View a list of existing streams.
 
 ```python
-import base64
-import json
-import os
 from c8 import C8Client
 
 """ For Python SDK, you can omit https:// part of the URL """
