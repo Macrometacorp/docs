@@ -25,6 +25,6 @@ SELECT CREATESET(symbol) AS initialSet
 FROM stockStream;
 ```
 
-This query selects records from the `stockStream` collection and uses the `CREATESET` function to create a set containing unique `symbol` values. The result is aliased as `initialSet` and inserted into the `initStream`.
+This query selects records from the `stockStream` and uses the `CREATESET` function to create a set containing unique `symbol` values. The result is aliased as `initialSet` and inserted into the `initStream`.
 
 Essentially, this query processes records in the `stockStream` and creates new records in the `initStream` with a unique set of `symbol` values.

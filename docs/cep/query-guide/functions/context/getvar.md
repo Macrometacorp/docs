@@ -43,4 +43,4 @@ SELECT customerName
 FROM InputStream[region == context:getVar('region')];
 ```
 
-The query selects the `customerName` from the `InputStream` collection for each record where the `region` value matches the value obtained from the `context:getVar('region')` function. The resulting data is then inserted into the `OutputStream`. Essentially, this query filters records based on the matching region and inserts only the `customerName` into the `OutputStream`.
+The query selects the `customerName` from the `InputStream` for each record where the `region` value matches the value obtained from the `context:getVar('region')` function. The resulting data is then inserted into the `OutputStream`. Essentially, this query filters records based on the matching region and inserts only the `customerName` into the `OutputStream`.

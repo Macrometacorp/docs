@@ -26,6 +26,6 @@ SELECT symbol AS name, CAST(temp, 'double') AS temp
 FROM fooStream;
 ```
 
-This query selects records from the `fooStream` collection and transforms the data by renaming the `symbol` field to `name` and casting the `temp` field to a `double` data type. The resulting transformed data is then inserted into the `barStream`.
+This query selects records from the `fooStream` and transforms the data by renaming the `symbol` field to `name` and casting the `temp` field to a `double` data type. The resulting transformed data is then inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `name` and `temp` fields, where `temp` is converted to a `double` data type.

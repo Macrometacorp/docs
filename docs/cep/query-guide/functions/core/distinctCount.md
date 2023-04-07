@@ -25,7 +25,7 @@ SELECT DISTINCTCOUNT(pageID) AS count
 FROM fooStream;
 ```
 
-This query, named 'query1', selects records from the `fooStream` collection and uses the `DISTINCTCOUNT` function to calculate the count of distinct `pageID` values. The resulting distinct count is aliased as `count` and inserted into the `barStream`.
+This query, named 'query1', selects records from the `fooStream` and uses the `DISTINCTCOUNT` function to calculate the count of distinct `pageID` values. The resulting distinct count is aliased as `count` and inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the distinct count of `pageID` values.
 

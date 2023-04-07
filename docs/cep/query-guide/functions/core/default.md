@@ -26,6 +26,6 @@ SELECT DEFAULT(temp, 0.0) AS temp, roomNum
 FROM TempStream;
 ```
 
-This query selects records from the `TempStream` collection and uses the `DEFAULT` function to ensure that the `temp` field has a `value`, substituting it with `0.0` if the original value is NULL. The transformed `temp` field and the `roomNum` field are then inserted into the `StandardTempStream`.
+This query selects records from the `TempStream` and uses the `DEFAULT` function to ensure that the `temp` field has a `value`, substituting it with `0.0` if the original value is NULL. The transformed `temp` field and the `roomNum` field are then inserted into the `StandardTempStream`.
 
 Essentially, this query processes records in the `TempStream` and creates new records in the `StandardTempStream` with the `temp` and `roomNum` fields, where the `temp` field has a default value of `0.0` if it was originally NULL.

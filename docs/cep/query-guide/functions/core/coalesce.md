@@ -49,6 +49,6 @@ SELECT COALESCE(NULL, NULL, NULL) AS value
 FROM fooStream;
 ```
 
-This query selects records from the `fooStream` collection and uses the `COALESCE` function to return the first non-null value among the provided values (NULL, NULL, NULL). In this case, all values are null, so the `COALESCE` function returns NULL. The result is aliased as `value` and inserted into the `barStream`.
+This query selects records from the `fooStream` and uses the `COALESCE` function to return the first non-null value among the provided values (NULL, NULL, NULL). In this case, all values are null, so the `COALESCE` function returns NULL. The result is aliased as `value` and inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with a constant `value` field set to NULL.
