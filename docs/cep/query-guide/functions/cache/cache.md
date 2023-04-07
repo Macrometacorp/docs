@@ -18,7 +18,7 @@ The following functions are allowed:
 
 Cache uses the following syntax:
 
-```js
+```sql
 cache:put("my_key", "my_value");
 
 cache:get("my_key")
@@ -26,7 +26,7 @@ cache:get("my_key")
 
 ## Example
 
-```js
+```sql
 CREATE TRIGGER EventsPutTrigger WITH (interval=1 sec);
 
 CREATE TRIGGER EventsGetTrigger WITH (interval=5 sec);
@@ -46,9 +46,12 @@ FROM EventsGetTrigger;
 
 Following document is saved every second in `put_in_cache`.
 
+```sql
         {"value_is_put": "true"}
-        
+```  
 		
 Following document is saved every five seconds in `get_from_cache`.
-    
+
+```sql
         {"value": "my_value"}
+```
