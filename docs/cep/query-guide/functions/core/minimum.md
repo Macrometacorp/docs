@@ -17,9 +17,9 @@ Returns the minimum value of the input parameters.
 ## Example
 
 ```sql
-@info(name = 'query1') from inputStream
-insert into outputStream
-select maximum(price1, price2, price3) as max;
+@info(name = 'query1') FROM inputStream
+INSERT INTO outputStream
+SELECT maximum(price1, price2, price3) AS max;
 ```
 
 This returns the minimum value of the input parameters price1, price2, price3.

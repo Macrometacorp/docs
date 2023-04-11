@@ -19,9 +19,9 @@ This is the attribute aggregator to store the minimum value for a given attribut
 ## Example
 
 ```sql
-insert into outputStream
-select minForever(temp) as max
-from inputStream;
+INSERT INTO outputStream
+SELECT minForever(temp) AS max
+FROM inputStream;
 ```
 
 `minForever(temp)` returns the minimum temp value recorded for all the events throughout the lifetime of the query.

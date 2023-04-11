@@ -19,9 +19,9 @@ Returns the minimum value for all the events.
 ## Example
 
 ```sql
-insert into outputStream
-select min(temp) as minTemp
-from inputStream;
+INSERT INTO outputStream
+SELECT min(temp) AS minTemp
+FROM inputStream;
 ```
 
 `min(temp)` returns the minimum temp value recorded for all the events based on their arrival and expiry.

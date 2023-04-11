@@ -19,9 +19,9 @@ Returns the maximum value for all the events.
 ## Example
 
 ```sql
-    insert into barStream
-    select max(temp) as maxTemp
-    from fooStream WINDOW TUMBLING_TIME(10 sec);
+    INSERT INTO barStream
+    SELECT max(temp) AS maxTemp
+    FROM fooStream WINDOW TUMBLING_TIME(10 sec);
 ```
 
 `max(temp)` returns the maximum temp value recorded for all the events based on their arrival and expiration.
