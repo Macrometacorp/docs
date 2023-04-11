@@ -53,9 +53,9 @@ Essentially, this query processes records in the `FooStream`, logs the events wi
 
 ```sql
 @info(name = 'query1')
-insert into BarStream
-select *
-from FooStream#log("DEBUG", "Sample Event :", true);
+INSERT INTO BarStream
+SELECT *
+FROM FooStream#log("DEBUG", "Sample Event :", true);
 ```
 
 Logs events with the message prefix "Sample Event :" on log level DEBUG.
@@ -64,9 +64,9 @@ Logs events with the message prefix "Sample Event :" on log level DEBUG.
 
 ```sql
 @info(name = 'query1')
-insert into BarStream
-select *
-from FooStream#log("Event Arrived", false);
+INSERT INTO BarStream
+SELECT *
+FROM FooStream#log("Event Arrived", false);
 ```
 
 For each event logs a message "Event Arrived" on default log level INFO.
@@ -75,9 +75,9 @@ For each event logs a message "Event Arrived" on default log level INFO.
 
 ```sql
 @info(name = 'query1')
-insert into BarStream
-select *
-from FooStream#log("Sample Event :", true);
+INSERT INTO BarStream
+SELECT *
+FROM FooStream#log("Sample Event :", true);
 ```
 
 Logs events with the message prefix "Sample Event :" on default log level INFO.
@@ -86,9 +86,9 @@ Logs events with the message prefix "Sample Event :" on default log level INFO.
 
 ```sql
 @info(name = 'query1')
-insert into BarStream
-select *
-from FooStream#log(true);
+INSERT INTO BarStream
+SELECT *
+FROM FooStream#log(true);
 ```
 
 Logs events with on default log level INFO.
