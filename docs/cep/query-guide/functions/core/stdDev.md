@@ -19,9 +19,9 @@ Returns the calculated standard deviation for all the events.
 ## Example
 
 ```sql
-insert into outputStream
-select stddev(temp) as stdTemp
-from inputStream;
+INSERT INTO outputStream
+SELECT stddev(temp) AS stdTemp
+FROM inputStream;
 ```
 
 `stddev(temp)` returns the calculated standard deviation of temp for all the events based on their arrival and expiration.
