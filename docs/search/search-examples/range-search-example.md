@@ -3,11 +3,17 @@ sidebar_position: 60
 title: Range Search
 ---
 
-# Creating CRUD and Search APIs on Shoe Store Catalog data
+# Creating CRUD and Search APIs on Shoe Store Catalog Data
 
-Dataset:
-Link shoe-inventory.json
-Description: List of Shoes in catalog with information about category, price etc.
+## Dataset
+
+Here is the link to the `shoe-inventory.json` dataset: [shoe-inventory.json](link-to-dataset).
+
+## Description
+
+The `shoe-inventory.json` dataset contains a list of shoes in a catalog with information about their brand, category, color, name, price, product ID, quantity, and size. 
+
+Here is an example shoe record from the dataset in JSON format:
 
 ```json
 {
@@ -22,17 +28,21 @@ Description: List of Shoes in catalog with information about category, price etc
 }
 ```
 
-Goals:
+## Goals
 
-1. Create a document collection called `inventory`
-2. Import the [shoe-inventory.json](/datasets/shoe-inventory.json) file to our new collection. When the JSON file opens in a new browser tab, right click and choose save as to download the file..
-3. Create Search View on our inventory collection
-4. Query the view
-5. Save the query as Query Worker
-6. Execute the Query Worker as API
+The following goals need to be accomplished to create the required APIs:
+
+1. Create a document collection called `inventory`.
+2. Import the `shoe-inventory.json` file to the new collection. You can download the JSON file by right-clicking on this [link](/datasets/shoe-inventory.json) and choosing "Save As".
+3. Create a search view on the `inventory` collection.
+4. Query the view to fetch data from the collection.
+5. Save the query as a Query Worker.
+6. Execute the Query Worker as an API.
+
+By completing these goals, you will have a functional CRUD API and a search API that can be used to interact with the shoe inventory dataset.
 
 
-## Create a document collection
+## Create a Document Collection
 First step is to create collection from Macrometa console:
 
 ![Create Document Collection](/img/search/range-example/create-collection.png)
@@ -41,26 +51,31 @@ Name of the document store collection is `inventory`:
 
 ![Create Document Collection](/img/search/range-example/inventory.png)
 
-## Import shoe inventory data to inventory collection
+## Import Shoe Inventory Data to Inventory Collection
 In the step before, we created a document store collection now we will add test data to that collection.
 From the list of collections select `inventory` collection.
 
 ![Create Document Collection](/img/search/range-example/import-data.png)
 
 After importing the file we should have 50 documents in the collection.
-One document contains various shoe information. (Shown below)
+One document contains various shoe information. (Shown at the beginning of this tutorial)
 
-## Create a CRUD API 
+# Create a CRUD API
 
-Write your first query
+To create a CRUD (Create, Read, Update, Delete) API, you need to start with a simple query to fetch all documents in the collection. Here is the query you can use:
+
 ```sql
 FOR docs IN inventory
 RETURN docs
 ```
 
-## Create your first Query Worker (API endpoint)
+You can consider this query as a "Read" operation. To create a CRUD API, you need to create a Query Worker.
 
-Name your Query Worker `saveProduct`
+## Creating a Query Worker for API Endpoint
+
+To create a new document in the collection, we will now create a Query Worker named `saveProduct`. That Query Worker will be used as an API endpoint. 
+
+Here's the query you can use to create the new document:
 
 ```sql
 INSERT {
@@ -75,35 +90,41 @@ INSERT {
 }
 INTO inventory
 ```
+This query has bind parameters that will be used to insert data into the document. 
+Bind parameters are denoted by the `@` symbol. For example, `@brand` is a bind parameter.
+You can consider this query as a "Create" operation.
 
 ![Create Document Collection](/img/search/range-example/query-workers.png)
 
-## Create a search view for inventory
+## Create a Search View for Inventory
 
-Now that we have data in the inventory, we can enable high performance search on various collections and fields in the document store.
+Now that we have data in the `inventory` collection, we can enable high-performance search on various collections and fields in the document store. To do this, we will create a search view named `inventory_view`.
 
-We will name the search view `inventory_view`.
+To create the `inventory_view` search view, you need to map the following fields:
 
-![Create Document Collection](/img/search/range-example/create-view.png)
-
-Fields to map from above (all fields must be added as they are all referenced in the query worker): 
-
-- size 
+- size
 - quantity
 - price
 - name
 - brand
 
-## Query the newly created view
+Make sure to add all the fields as they are all referenced in the Query Worker. 
 
-Now that we have created a view we can write queries and search specific data in inventory.
+Here's an example screenshot of creating the search view in the UI:
 
-![Create Document Collection](/img/search/range-example/query-data.png)
+![Create Document Collection](/img/search/range-example/create-view.png)
 
-**Goal:**
-Write a query that can search `inventory_view` by shoe name.
+By creating this search view, you will be able to perform high-performance search operations on the `inventory` collection.
 
-Solution:
+
+## Querying the Created View
+
+Now that we have created the `inventory_view` search view, we can write queries and search specific data in the `inventory` collection.
+
+The goal is to write a query that can search the `inventory_view` search view by shoe name, brand, minimum and maximum size, and minimum and maximum price. This query will allow you to find specific shoes in the inventory collection that match the specified criteria. By using the `inventory_view` search view, the query will execute faster and more efficiently, resulting in faster search results.
+
+You can use the following query to search the `inventory_view`:
+
 ```sql
 let keyword = LOWER(to_string(@keyword))
 let minSize = @Min_Size
@@ -129,11 +150,17 @@ FOR product IN inventory_view
   )
 ```
 
-## Save as a Query Worker named `inventory-search`:
+Here's an example screenshot of how to write a query and where to place bind parameters:
+
+![Create Document Collection](/img/search/range-example/query-data.png)
+
+## Save as a Query Worker
+The query you just wrote can be saved as a Query Worker. You can name the Query Worker `inventory-search`. 
 
 ![Create Document Collection](/img/search/range-example/search-query-worker.png)
 
 
-## Execute query worker as an API
+## Execute Query Worker as an API
 You now have a full functional search API!
+
 ![Create Document Collection](/img/search/range-example/search-api.png)
