@@ -6,14 +6,16 @@ This functions returns the value of the `var` if present. If the `var` is unknow
 
 ## Syntax
 
+```sql
     <STRING> context:getVar(<STRING> var, <STRING> default.value)
+```
 
 ## Query Parameters
 
-| Name | Description                                                                                                                  | Default Value | Possible Data Types   | Optional | Dynamic |
-|------|------------------------------------------------------------------------------------------------------------------------------|---------------|-----------------------|----------|---------|
-| var  | The variable name whose value should be returned.                                                                 |               | STRING | No       | Yes     |
-| default.value    | If the `var` is unknown `default.value` will be returned. | null | STRING                | Yes       | Yes     |
+| Name | Description       | Default Value | Possible Data Types   | Optional | Dynamic |
+|------|-------------------|---------------|-----------------------|----------|---------|
+| var  | The variable name whose value should be returned.   |               | STRING | No       | Yes     |
+| default.value    | If the `var` is unknown `default.value` will be returned. | null | STRING      | Yes       | Yes     |
 
 ## Supported Context Variables
 
@@ -23,12 +25,22 @@ This functions returns the value of the `var` if present. If the `var` is unknow
 
 ## Example 1
 
-    insert into OutputStream
-    select customerName, context:getVar('region') as region
-    from InputStream;
+```sql
+@info(name = 'query1')
+INSERT INTO OutputStream
+SELECT customerName, context:getVar('region') AS region
+FROM InputStream;
+```
+
+This query selects the `customerName` and the `region` value from the context for each record in the `InputStream` collection and inserts the resulting data into the `OutputStream`.
 
 ## Example 2
 
-    insert into OutputStream
-    select customerName
-    from InputStream[region == context:getVar('region')];
+```sql
+@info(name = 'query1')
+INSERT INTO OutputStream
+SELECT customerName
+FROM InputStream[region == context:getVar('region')];
+```
+
+The query selects the `customerName` from the `InputStream` for each record where the `region` value matches the value obtained from the `context:getVar('region')` function. The resulting data is then inserted into the `OutputStream`. Essentially, this query filters records based on the matching region and inserts only the `customerName` into the `OutputStream`.

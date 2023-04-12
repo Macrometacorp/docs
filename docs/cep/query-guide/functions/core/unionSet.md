@@ -6,7 +6,7 @@ Union multiple sets. This attribute aggregator maintains a union of sets. The gi
 
 ## Syntax
 
-```js
+```sql
     <OBJECT> unionSet(<OBJECT> set)
 ```
 
@@ -18,14 +18,14 @@ Union multiple sets. This attribute aggregator maintains a union of sets. The gi
 
 ## Example
 
-```js
-insert into initStream
-select createSet(symbol) as initialSet
-from stockStream
+```sql
+INSERT INTO initStream
+SELECT createSet(symbol) AS initialSet
+FROM stockStream
 
-insert into distinctStockStream
-select unionSet(initialSet) as distinctSymbols
-from initStream WINDOW TUMBLING_TIME(10 sec);
+INSERT INTO distinctStockStream
+SELECT unionSet(initialSet) AS distinctSymbols
+FROM initStream WINDOW TUMBLING_TIME(10 sec);
 ```
 
 `distinctStockStream` returns the set object which contains the distinct set of stock symbols received during a sliding window of 10 seconds.
