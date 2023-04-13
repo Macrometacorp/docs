@@ -54,7 +54,7 @@ properties = {
 }
 
 # Create the search view
-response = gdn.create_search_view(search_view_name, properties)
+response = gdn.create_view(search_view_name, properties)
 ```
 
 </TabItem>
