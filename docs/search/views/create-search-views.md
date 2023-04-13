@@ -3,9 +3,15 @@ sidebar_position: 20
 title: Create a Search View
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 This page explains how to create a new search view.
 
 ## Create Search View
+
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
 
 Follow these instructions to create a new search view using the GDN console web UI.
 
@@ -24,3 +30,32 @@ Follow these instructions to create a new search view using the GDN console web 
     - **Direction -** Set the sorting order to ascending (default) or descending.
 
 After creating a view, you can **Rename** or **Delete** it from the **Search** screen.
+
+</TabItem>
+<TabItem value="py" label="Python SDK">
+
+```py
+from macrometa import GDN
+
+gdn = GDN("<API_KEY>")
+
+search_view_name = "example_search_view"
+collection_name = "your_collection_name"
+properties = {
+    "links": {
+        collection_name: {
+            "analyzers": ["text_en"],
+            "fields": {
+                "title": {"analyzers": ["text_en"]},
+                "content": {"analyzers": ["text_en"]}
+            }
+        }
+    }
+}
+
+# Create the search view
+response = gdn.create_view(search_view_name, properties)
+```
+
+</TabItem>
+</Tabs>
