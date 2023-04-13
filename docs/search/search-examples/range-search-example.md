@@ -7,7 +7,7 @@ title: Range Search
 
 ## Dataset
 
-Here is the link to the `shoe-inventory.json` dataset: [shoe-inventory.json](link-to-dataset).
+Here is the link to the `shoe-inventory.json` dataset: [shoe-inventory.json](/datasets/shoe-inventory.json).
 
 ## Description
 
