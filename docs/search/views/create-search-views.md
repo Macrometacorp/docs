@@ -48,14 +48,26 @@ Use our interactive API Reference with code generation in 18 programming languag
 <TabItem value="py" label="Python SDK">
 
 ```py
-from macrometa import GDN
+# Import libraries
+from c8 import C8Client
 
-gdn = GDN("<API_KEY>")
+# Define constants
+URL = "play.paas.macrometa.io"
+GEO_FABRIC = "_system"
+API_KEY = "<API KEY>" # Change this to your API key.
+
+print("--- Connecting to GDN")
+
+# Choose one of the following methods to access the GDN. API key is recommended.
+
+# Authenticate with API key.
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+
 
 search_view_name = "example_search_view"
 collection_name = "your_collection_name"
 properties = {
-    "links": {
+    "<COLLECTION NAME>": { # Change this to the name of the collection to use with the search view.
         collection_name: {
             "analyzers": ["text_en"],
             "fields": {
@@ -67,44 +79,47 @@ properties = {
 }
 
 # Create the search view
-response = gdn.create_view(search_view_name, properties)
+response = client.create_view(search_view_name, properties)
+
 ```
 
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
 ```js
-const { C8Client } = require('@macrometa/c8');
-const fetch = require('node-fetch');
+// Connect to GDN.
+const jsc8 = require("jsc8");
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API KEY>", fabricName: "_system"});
+console.log("Authentication done!!...");
 
-const apiKey = '<API_KEY>';
-const searchViewName = 'example_search_view';
-const collectionName = 'your_collection_name';
+const collectionName = "links";
+const searchViewName = "example_search_view";
 
 const properties = {
-    links: {
-        [collectionName]: {
-            analyzers: ['text_en'],
-            fields: {
-                title: { analyzers: ['text_en'] },
-                content: { analyzers: ['text_en'] },
-            },
-        },
-    },
+  "links": {
+    [collectionName]: {
+      "analyzers": ["text_en"],
+      "fields": {
+        "title": {"analyzers": ["text_en"]},
+        "content": {"analyzers": ["text_en"]}
+      }
+    }
+  }
 };
 
-(async () => {
-    const client = new C8Client({ apiKey });
+async function createMySearchView () {
+  let searchView = { "name": "" };
+  if (await client.hasView(searchViewName)) {
+    console.log("Search View already exists");
+    searchView.name = searchViewName;
+    console.log(`OLD Search View = ${searchView.name}`);
+  } else {
+    searchView = await client.createView(searchViewName, properties);
+    console.log(`NEW Search View = ${searchView.result.name}`);
+  }
+}
 
-    // Create the search view
-    try {
-        const response = await client.createView(searchViewName, properties);
-        console.log(response);
-    } catch (error) {
-        console.error(`Error creating search view: ${error.message}`);
-    }
-})();
-
+createMySearchView();
 ```
 
 </TabItem>
