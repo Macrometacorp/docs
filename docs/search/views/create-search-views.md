@@ -35,7 +35,7 @@ After creating a view, you can **Rename** or **Delete** it from the **Search** s
 </TabItem>
 <TabItem value="api" label="REST API">
 
-
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Search View](https://www.macrometa.com/docs/api#/operations/createView).
 
 
 </TabItem>
@@ -72,6 +72,40 @@ response = gdn.create_view(search_view_name, properties)
 
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
+
+```js
+const { C8Client } = require('@macrometa/c8');
+const fetch = require('node-fetch');
+
+const apiKey = '<API_KEY>';
+const searchViewName = 'example_search_view';
+const collectionName = 'your_collection_name';
+
+const properties = {
+    links: {
+        [collectionName]: {
+            analyzers: ['text_en'],
+            fields: {
+                title: { analyzers: ['text_en'] },
+                content: { analyzers: ['text_en'] },
+            },
+        },
+    },
+};
+
+(async () => {
+    const client = new C8Client({ apiKey });
+
+    // Create the search view
+    try {
+        const response = await client.createView(searchViewName, properties);
+        console.log(response);
+    } catch (error) {
+        console.error(`Error creating search view: ${error.message}`);
+    }
+})();
+
+```
 
 </TabItem>
 </Tabs>
