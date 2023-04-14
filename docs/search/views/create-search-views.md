@@ -31,6 +31,19 @@ Follow these instructions to create a new search view using the GDN console web 
 
 After creating a view, you can **Rename** or **Delete** it from the **Search** screen.
 
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+
+
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+
+
+
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
@@ -56,6 +69,9 @@ properties = {
 # Create the search view
 response = gdn.create_view(search_view_name, properties)
 ```
+
+</TabItem>
+<TabItem value="js" label="JavaScript SDK">
 
 </TabItem>
 </Tabs>
