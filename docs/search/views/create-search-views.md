@@ -140,7 +140,7 @@ const jsc8 = require("jsc8");
 const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API KEY>", fabricName: "_system"});
 console.log("Authentication done!!...");
 
-const collectionName = "links";
+const collectionName = "example_collection";
 const searchViewName = "example_search_view";
 
 const properties = {
