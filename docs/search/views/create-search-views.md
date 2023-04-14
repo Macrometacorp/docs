@@ -41,7 +41,55 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
+Create a view.
 
+```bash
+gdnsl view create <view-name> [flags]
+```
+
+### Examples
+
+```bash
+  # Create test view on demo collection
+  gdnsl view create test --collection demo
+
+  # Create test view on demo collection with analyzer
+  gdnsl view create test --collection demo --analyzer identity
+
+  # Create test view on demo collection with fields
+  gdnsl view update test --collection demo --field "name:text_en,text_fr" --field "age:text_en"
+  
+  # Create test view on demo collection with store-values
+  gdnsl view create test --collection demo --store-values none
+
+  # Create test view on demo collection with track-list-positions
+  gdnsl view create test --collection demo --track-list-positions
+
+  # Create test view on demo collection with include-all-fields
+  gdnsl view create test --collection demo --include-all-fields
+
+```
+
+### Options
+
+```bash
+  -h, --help                   Help to create a view.
+      --analyzer string        Analyzers to be used for indexing of string values. Can be given multiple times. (default: identity).
+      --field string           Field and analyzers mapping in the format <fieldName:analyzer1,analyzer2> 
+                               Example: "age:text_en,text_fr". Can be given multiple times.
+      --store-values string    How should the view track the attribute values, this setting allows for additional value retrieval optimizations, one of:
+                               none: Do not store values by the view.
+                               id: Store only information about value presence, to allow use of the EXISTS() function (default "none").
+      --track-list-positions boolean  The flag determines whether or not values in a lists should be treated separate (default: false).
+      --include-all-fields boolean    The flag determines whether or not to index all fields on a particular level of depth (default: false).
+      --fabric                 Name of the fabric to use.
+```
+
+**Options inherited:**
+
+```bash
+  --config string              gdnsl config file (default is ./gdnsl.yaml)
+```
 
 
 </TabItem>
