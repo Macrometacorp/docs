@@ -26,7 +26,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph traversal](../../cli/collections-cli.md) CLI command to traverse a graph.
+Use the [gdnsl graph traversal](../../cli/collections-cli) CLI command to traverse a graph.
 
 </TabItem>
 </Tabs>
