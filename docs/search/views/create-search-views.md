@@ -48,38 +48,32 @@ Use our command line interface to [Create a Search View](../../CLI/search-views-
 <TabItem value="py" label="Python SDK">
 
 ```py
-# Import libraries
+# Import libraries.
 from c8 import C8Client
 
-# Define constants
+# Define constants.
 URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "<API KEY>" # Change this to your API key.
-
+API_KEY = "<API Key" # Change this to your API key.
 print("--- Connecting to GDN")
 
 # Choose one of the following methods to access the GDN. API key is recommended.
-
 # Authenticate with API key.
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
-
-
 search_view_name = "example_search_view"
-collection_name = "your_collection_name"
+collection_name = "example_collection" # Change this to a valid collection name.
 properties = {
-    "<COLLECTION NAME>": { # Change this to the name of the collection to use with the search view.
-        collection_name: {
-            "analyzers": ["text_en"],
-            "fields": {
+    collection_name: {
+        "fields": {
                 "title": {"analyzers": ["text_en"]},
                 "content": {"analyzers": ["text_en"]}
-            }
         }
     }
 }
+primary_sort = [{"field": "title", "direction": "asc"}]
 
-# Create the search view
-response = client.create_view(search_view_name, properties)
+# Create the search view.
+response = client.create_view(search_view_name, properties, primary_sort)
 
 ```
 
@@ -89,36 +83,31 @@ response = client.create_view(search_view_name, properties)
 ```js
 // Connect to GDN.
 const jsc8 = require("jsc8");
-const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API KEY>", fabricName: "_system"});
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API Key>", fabricName: "_system"});
 console.log("Authentication done!!...");
-
-const collectionName = "example_collection";
+const collectionName = "addresses";
 const searchViewName = "example_search_view";
-
 const properties = {
-  "links": {
     [collectionName]: {
-      "analyzers": ["text_en"],
       "fields": {
         "title": {"analyzers": ["text_en"]},
         "content": {"analyzers": ["text_en"]}
       }
     }
-  }
 };
-
+const primarySort = [{"field": "title", "direction": "asc"}]
 async function createMySearchView () {
   let searchView = { "name": "" };
-  if (await client.hasView(searchViewName)) {
+  const listOfViews = await client.getListOfViews();
+  if (listOfViews.result.some(e => e.name === searchViewName)) {
     console.log("Search View already exists");
     searchView.name = searchViewName;
     console.log(`OLD Search View = ${searchView.name}`);
   } else {
-    searchView = await client.createView(searchViewName, properties);
-    console.log(`NEW Search View = ${searchView.result.name}`);
+    searchView = await client.createView(searchViewName, properties, primarySort);
+    console.log(`NEW Search View = ${searchView.name}`);
   }
 }
-
 createMySearchView();
 ```
 
