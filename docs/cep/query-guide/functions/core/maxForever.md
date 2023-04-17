@@ -19,6 +19,7 @@ This is the attribute aggregator to store the maximum value for a given attribut
 ## Example
 
 ```sql
+@info(name = 'query1')
 INSERT INTO outputStream
 SELECT maxForever(temp) AS max
 FROM inputStream;
