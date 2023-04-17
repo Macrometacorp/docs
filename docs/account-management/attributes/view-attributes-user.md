@@ -14,9 +14,9 @@ This page shows you different methods to view attributes assigned to users on yo
 Follow these instructions to view user attributes from users using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Accounts**.
-3. On the Users tab, click the user for which you want to view attributes.
-4. Click **Attributes**.
+2. Click **Access > Users**.
+3. Click the stacked dots next to the user for which you want to view attributes.
+4. Click the **Attributes** tab.
 
 </TabItem>
 <TabItem value="api" label="REST API">

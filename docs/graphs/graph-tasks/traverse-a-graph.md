@@ -14,7 +14,7 @@ This page explains several options for traversing Macrometa graphs.
 Follow these instructions to create a new collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Query Workers**.
+2. Click **Compute > Query Workers**.
 3. Enter a graph traversal query in the query editor. For more information about traversal queries, refer to [Graph Traversal Queries](../graph-queries/traversal-queries/).
 4. Click **Run Query**.
 
