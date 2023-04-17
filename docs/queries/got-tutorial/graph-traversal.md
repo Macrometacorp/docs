@@ -38,10 +38,10 @@ To create the required edge documents to store these relations in the database, 
 
 Create a new [Graph Edge collection](../../graphs/graph-tasks/create-graph-edge-collection) called **ChildOf**.
 
-1. Click **Collections**.
-2. Click **New Collection**.
-3. Click **Graph Edge**.
-4. Name the collection **ChildOf** and then click **Create**.
+1. Click **Data > Collections**.
+1. Click **New Collection**.
+1. Click **Graph Edge**.
+1. Name the collection **ChildOf** and then click **Create**.
 
 ### Run Query
 

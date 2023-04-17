@@ -14,7 +14,7 @@ This index assumes coordinates with the latitude between -90 and 90 degrees and 
 ## Create Geo Index in GDN Console
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Collections**.
+1. Click **Data > Collections**.
 1. Click the collection that you want to create an index for.
 1. Click **Indexes**.
 1. In **Type**, select **Geo Index**.
