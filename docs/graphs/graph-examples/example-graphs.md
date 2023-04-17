@@ -13,7 +13,7 @@ With the default "Search Depth" of 2 of the graph viewer, you might not see all 
 
 To create an example graph:
 
-1. In the Macrometa web console, navigate to **Graphs**.
+1. In the Macrometa web console, navigate to **Data > Graphs**.
 2. Click **New Graph**, and then click **Examples**.
 3. Click **Create** next to the graph that you want to create. The graphs are described below.
 

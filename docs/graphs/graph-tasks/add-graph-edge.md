@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to add edges to a graph or [Graph Edge collection](../../collections/graph-edge/).
 
-You can add edges and edge definitions using either the graph commands or the collection commands. Best practice is to use the graph commands in most cases. For more information, refer to [Manipulating Graph Collections](../graph-concepts/manipulating-graph-collections).
+You can add edges and edge definitions using either the graph commands or the collection commands. Best practice is to use the graph commands in most cases.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console1" label="Web Console - Graph">

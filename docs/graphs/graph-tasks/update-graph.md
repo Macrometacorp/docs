@@ -14,7 +14,7 @@ This page describes various methods of updating Macrometa graphs. While you cann
 Follow these instructions to update a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Graphs**.
+1. Click **Data > Graphs**.
 1. Click **Edit** next to the graph that you want to edit.
 1. Make any changes to the edge definitions and vertex collections, and then click **Update**.
 

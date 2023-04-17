@@ -14,7 +14,7 @@ This page explains how to view Macrometa graphs.
 Follow these instructions to view graphs using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Graphs**.
+1. Click **Data > Graphs**.
 
    Macrometa displays a list of graphs.
 

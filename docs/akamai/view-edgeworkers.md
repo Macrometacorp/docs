@@ -3,7 +3,7 @@ sidebar_position: 40
 title: View EdgeWorkers
 ---
 
-To view EdgeWorkers, click **Functions**.
+To view EdgeWorkers, click **Compute > Functions**.
 
 ![Functions](/img/functions/functions_view.png)
 

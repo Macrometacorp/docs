@@ -16,7 +16,7 @@ This page shows you different methods to view users on a Macrometa GDN account. 
 You can view all users of any GeoFabric for which you have read permissions.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Account**.
+1. Click **Access > Users**.
 1. (Optional) Type a query in the **Filter users** field to narrow the search and find a user by their ID, email address, tenant, or username.
 1. (Optional) Click a user ID to view more details about the user. The following columns show information about each user.
 
