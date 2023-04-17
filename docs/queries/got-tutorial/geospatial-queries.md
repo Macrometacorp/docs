@@ -42,13 +42,13 @@ To query based on coordinates, you must create a [geo index](../../collections/d
 
 To create a geo index:
 
-1. Click **Collections**.
-2. Click **Locations**.
-3. Click the **Indexes** tab.
-4. Click the plus icon to add a new index.
-5. In **Type** select **Geo Index**.
-6. In **Fields**, enter **coordinate**.
-7. Click **Create**
+1. Click **Data > Collections**.
+1. Click **Locations**.
+1. Click the **Indexes** tab.
+1. Click the plus icon to add a new index.
+1. In **Type** select **Geo Index**.
+1. In **Fields**, enter **coordinate**.
+1. Click **Create**
 
 Macrometa returns a success message and your new index appears in the Indexes list. For more information, refer to [Document Store Indexes](../../collections/documents/document-store-indexes).
 
