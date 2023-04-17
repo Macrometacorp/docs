@@ -234,7 +234,7 @@ async function getDCList() {
 It's time to see streams in action!
 
 1. Replace the contents of your .js or .py file from above with the code block below.
-1. In your browser, open the GDN console and then click **Streams**.
+1. In your browser, open the GDN console and then click **Data > Streams**.
 
    - Select your recently created stream (c8globals.streamQuickstart) to view the output of the message within the console.
 

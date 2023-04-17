@@ -37,7 +37,8 @@ Introduce back pressure on the threads who bring events via `TempStream` when th
 The configuration of `TempStream` stream and `sink.type` Kafka annotation with `on.error` property is as follows.
 
 ```sql
-CREATE SINK TempStream WITH (sink.type='kafka', on.error.action='WAIT', topic='{{roomNo}}', bootstrap.servers='localhost:9092', map.type='json') (deviceID long, roomNo int, temp double);
+@OnError(action='on error action')
+CREATE SINK TempStream WITH (sink.type='kafka', on.error='WAIT', topic='{{roomNo}}', bootstrap.servers='localhost:9092', map.type='json') (deviceID long, roomNo int, temp double);
 ```
 
 ## Example 2
@@ -47,13 +48,14 @@ Send events to the fault stream of `TempStream` when the system cannot connect t
 The configuration of `TempStream` stream with associated fault stream, `sink.type` Kafka annotation with `on.error` property and a queries to handle the error is as follows.
 
 ```sql
-CREATE SINK TempStream WITH (sink.type='kafka', on.error.action='STREAM', topic='{{roomNo}}', bootstrap.servers='localhost:9092', map.type='text') (deviceID long, roomNo int, temp double);
+@OnError(action='STREAM')
+CREATE SINK TempStream WITH (sink.type='kafka', on.error='STREAM', topic='{{roomNo}}', bootstrap.servers='localhost:9092', map.type='text') (deviceID long, roomNo int, temp double);
 
 -- Handling error by simply logging the event and error.
 @name('handle-error')
-insert into IgnoreStream;
-select deviceID, roomNo, temp, _error
-from !TempStream#log("Error Occurred!")
+INSERT INTO IgnoreStream;
+SELECT deviceID, roomNo, temp, _error
+FROM !TempStream#log("Error Occurred!")
 ```
 
 ## Example 3

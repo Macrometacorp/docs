@@ -17,6 +17,7 @@ Macrometa core functions are described in the table below.
 | default	     | Checks if the `attribute` parameter is null and if so returns the value of the `default` parameter.|
 | distinctCount	     | This returns the count of distinct occurrences for a given arg.|
 | eventTimestamp	     | Returns the timestamp of the processed event.|
+| frequency	     | Counts the number of occurrences of different values of a given attribute.|
 | ifThenElse	     | Evaluates the `condition` parameter and returns value of the `if.expression`.|
 | instanceOfBoolean	     | Checks whether the parameter is an instance of Boolean or not.|
 | instanceOfDouble	     | Checks whether the parameter is an instance of Double or not.|

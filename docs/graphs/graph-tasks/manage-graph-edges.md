@@ -18,7 +18,7 @@ These instructions provide several methods of creating a new edge in an existing
 Follow these instructions to create a graph edge using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Graphs**.
+1. Click **Data > Graphs**.
 1. Click the graph that you want to create a new edge for.
 1. Click the first vertex that you want to create an edge for. This will be the **From** vertex of the edge.
 1. Click **Draw edge** (chain links icon).
@@ -52,7 +52,7 @@ These instructions provide several methods of viewing a graph edge.
 Follow these instructions to view a graph edge using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click the graph that you want to view an edge for.
 4. Click the edge that you want to view.
 5. Click **Edit** (the pencil icon).
@@ -82,7 +82,7 @@ These instructions provide several methods of updating a graph edge. Updating me
 Follow these instructions to update a graph edge using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click the graph for which you want to update an edge.
 4. Click the edge that you want to update.
 5. Click **Edit** (the pencil icon).
@@ -115,7 +115,7 @@ These instructions provide several methods of replacing a graph edge. This comma
 Follow these instructions to replace a graph edge using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click the graph for which you want to replace an edge.
 4. Click the edge that you want to replace.
 5. Click **Edit** (the pencil icon).
@@ -148,7 +148,7 @@ These instructions provide several methods of deleting an edge from a graph.
 Follow these instructions to delete a graph edge using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click the graph for which you want to delete a edge.
 4. Click the edge that you want to delete.
 5. Click **Delete** (the trash can icon).
@@ -195,7 +195,7 @@ These instructions provide several methods of adding an edge collection to a gra
 Follow these instructions to add an edge collection to a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click **Edit** next to the graph that you want to add a edge collection to.
 4. Click the plus icon.
 
@@ -228,7 +228,7 @@ These instructions provide several methods of removing an edge collection from a
 Follow these instructions to remove an edge collection from a graph using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-1. Click **Graphs**.
+1. Click **Data > Graphs**.
 1. Click **Edit** next to the graph that you want to remove an edge collection from.
 1. In the **Edge Collections** field, click the **X** next to the edge collection that you want to remove.
 1. Click **Update**.

@@ -14,11 +14,13 @@ import TabItem from '@theme/TabItem';
 View existing streams.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Streams**.
+1. Click **Data > Streams**.
 
    Macrometa displays a list of streams and their attributes.
 
 1. To see more details and stream statistics, click a stream name.
+
+When you view a stream in the console, you will not see a backlog of messages. This screen does not persist, which means that when it is open, you will see new messages as they are sent. If you close the screen, any messages displayed will not be visible the next time that you open it.
 
 </TabItem>
 <TabItem value="api" label="REST API">
