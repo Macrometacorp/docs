@@ -19,11 +19,9 @@ The [x](../account-management/plans/) section was created as a result of this ch
 
 The following features updates are included in this release.
 
-### Macrometa Stores API Keys
+### Retrieve API Keys
 
-In previous versions, when a user created an API key using the `POST /_api/key` API, Macromata returned the newly-created API key in the response on successful execution. Internally, the API key was not stored, and there was no way to get the API key again.
-
-As of this release, Macrometa now stores new API keys created using the `POST /_api/key API`. Due to this change, Macrometa now returns the API key in response to `GET /_api/key/{keyid}`.
+As of this release, an API key created using `POST /_api/key` can now be retrieved using `GET /_api/key/{keyid}`.
 
 The call and response now look similar to the following:
 
