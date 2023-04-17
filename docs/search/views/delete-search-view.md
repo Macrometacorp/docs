@@ -36,8 +36,30 @@ Use our command line interface to [Delete a Search View](../../CLI/search-views-
 <TabItem value="py" label="Python SDK">
 
 ```py
+# Import libraries
+from c8 import C8Client
 
+# Define constants
+URL = "play.paas.macrometa.io"
+GEO_FABRIC = "_system"
+API_KEY = "<API Key>" # Change this to your API key.
+SEARCH_VIEW_NAME = "example_search_view"
 
+# Authenticate with API key.
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+print("Connected to GDN.")
+
+# Check if search view exists
+list_views = client.list_all_views()
+if any(view.get('name') == SEARCH_VIEW_NAME for view in list_views):
+    # Delete the search view if it exists
+    response = client.delete_view(SEARCH_VIEW_NAME)
+    if response is True:
+        print(f"Successfully deleted search view: {SEARCH_VIEW_NAME}.")
+    else:
+        print("Error deleting search view.")
+else:
+    print(f"Search view {SEARCH_VIEW_NAME} does not exist.")
 ```
 
 </TabItem>
