@@ -21,10 +21,10 @@ This is the attribute aggregator to store the minimum value for a given attribut
 ```sql
 @info(name = 'query1')
 INSERT INTO outputStream
-SELECT minForever(temp) AS max
+SELECT minForever(temp) AS min
 FROM inputStream;
 ```
 
-This query, named 'query1', calculates the minimum temperature (`max`) encountered in the `inputStream` since the start of the stream processing using the `minForever(temp)` function. The resulting minimum temperature is then inserted into the `outputStream`.
+This query, named 'query1', calculates the minimum temperature (`min`) encountered in the `inputStream` since the start of the stream processing using the `minForever(temp)` function. The resulting minimum temperature is then inserted into the `outputStream`.
 
-Essentially, this query processes records in the `inputStream`, calculates the minimum temperature seen so far, and then creates new records in the `outputStream` with the calculated `max` value.
+Essentially, this query processes records in the `inputStream`, calculates the minimum temperature seen so far, and then creates new records in the `outputStream` with the calculated `min` value.
