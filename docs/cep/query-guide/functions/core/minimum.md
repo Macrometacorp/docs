@@ -1,5 +1,5 @@
 ---
-title: mininum (Aggregate Function)
+title: minimum (Aggregate Function)
 ---
 
 Returns the minimum value of the input parameters.
