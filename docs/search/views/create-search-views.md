@@ -48,20 +48,19 @@ Use our command line interface to [Create a Search View](../../CLI/search-views-
 <TabItem value="py" label="Python SDK">
 
 ```py
-# Import libraries.
+# Import libraries
 from c8 import C8Client
-
-# Define constants.
+# Define constants
 URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
-API_KEY = "<API Key" # Change this to your API key.
-print("--- Connecting to GDN")
+API_KEY = "<API Key>" # Change this to your API key.
 
 # Choose one of the following methods to access the GDN. API key is recommended.
 # Authenticate with API key.
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+print("Connected to GDN.")
 search_view_name = "example_search_view"
-collection_name = "example_collection" # Change this to a valid collection name.
+collection_name = "your_collection_name"
 properties = {
     collection_name: {
         "fields": {
@@ -71,10 +70,17 @@ properties = {
     }
 }
 primary_sort = [{"field": "title", "direction": "asc"}]
-
-# Create the search view.
-response = client.create_view(search_view_name, properties, primary_sort)
-
+# Check if collection exists
+if not client.has_collection(collection_name):
+    print(f"Collection '{collection_name}' does not exist.")
+else:
+    list_views = client.list_all_views()
+    if all(view.get('name') != search_view_name for view in list_views):
+        # Create the search view if view does not exists
+        response = client.create_view(search_view_name, properties, primary_sort)
+        print(f"Successfully created search view: {response['name']}.")
+    else:
+        print(f"Search view {search_view_name} already exists.")
 ```
 
 </TabItem>
@@ -84,28 +90,31 @@ response = client.create_view(search_view_name, properties, primary_sort)
 // Connect to GDN.
 const jsc8 = require("jsc8");
 const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API Key>", fabricName: "_system"});
-console.log("Authentication done!!...");
-const collectionName = "addresses";
+console.log("Connected to GDN.");
+const collectionName = "example_collection"; // Replace this with your collection name.
 const searchViewName = "example_search_view";
 const properties = {
-    [collectionName]: {
-      "fields": {
-        "title": {"analyzers": ["text_en"]},
-        "content": {"analyzers": ["text_en"]}
-      }
+  [collectionName]: {
+    "fields": {
+      "title": {"analyzers": ["text_en"]},
+      "content": {"analyzers": ["text_en"]}
     }
+  }
 };
 const primarySort = [{"field": "title", "direction": "asc"}]
 async function createMySearchView () {
+  if (!await client.hasCollection(collectionName)) {
+    console.log(`Collection "${collectionName}" does not exist`);
+    return;
+  }
   let searchView = { "name": "" };
   const listOfViews = await client.getListOfViews();
   if (listOfViews.result.some(e => e.name === searchViewName)) {
-    console.log("Search View already exists");
     searchView.name = searchViewName;
-    console.log(`OLD Search View = ${searchView.name}`);
+    console.log(`Search view "${searchView.name}" already exists`);
   } else {
     searchView = await client.createView(searchViewName, properties, primarySort);
-    console.log(`NEW Search View = ${searchView.name}`);
+    console.log(`Successfully created search view "${searchView.name}"`);
   }
 }
 createMySearchView();
