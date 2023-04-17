@@ -6,8 +6,8 @@ Returns the results of OR operation for all the events.
 
 ## Syntax
 
-```js
-<BOOL> or(<BOOL> arg)
+```sql
+<BOOL> OR(<BOOL> arg)
 ```
 
 ## Query Parameters
@@ -18,10 +18,10 @@ Returns the results of OR operation for all the events.
 
 ## Example
 
-```js
-insert into alertStream
-select or(isFraud) as isFraudTransaction
-from cscStream WINDOW TUMBLING_LENGTH(10);
+```sql
+INSERT INTO alertStream
+SELECT OR(isFraud) AS isFraudTransaction
+FROM cscStream WINDOW TUMBLING_LENGTH(10);
 ```
 
 This returns the result for OR operation of `isFraud` values as a boolean value for event chunk expiration by window length batch.

@@ -6,22 +6,25 @@ Calculates the average for all the events.
 
 ## Syntax
 
-```js
-    <DOUBLE> avg(<INT|LONG|DOUBLE|FLOAT> arg)
+```sql
+<DOUBLE> avg(<INT|LONG|DOUBLE|FLOAT> arg)
 ```
 
 ## Query Parameters
 
-| Name | Description                         | Default Value | Possible Data Types   | Optional | Dynamic |
-|------|-------------------------------------|---------------|-----------------------|----------|---------|
-| arg  | The value that need to be averaged. |               | INT LONG DOUBLE FLOAT | No       | Yes     |
+| Name | Description       | Default Value | Possible Data Types   | Optional | Dynamic |
+|------|-------------------|---------------|-----------------------|----------|---------|
+| arg  | The value that need to be averaged. |             | INT LONG DOUBLE FLOAT | No       | Yes     |
 
 ## Example
 
-```js
-    insert into barStream
-    select avg(temp) as avgTemp
-    from fooStream WINDOW TUMBLING_TIME;
+```sql
+@info(name = 'query1')
+INSERT INTO barStream
+SELECT AVG(temp) AS avgTemp
+FROM fooStream WINDOW TUMBLING_TIME;
 ```
 
-`avg(temp)` returns the average temp value for all the events based on their arrival and expiration.
+This query processes records from the `fooStream` using a tumbling time-based window. For each window, it calculates the average of the `temp` values using the `AVG` function. The result is aliased as `avgTemp` and inserted into the `barStream`.
+
+Essentially, this query computes the average temperature for each time-based window of records in the `fooStream` and inserts the resulting average value into the `barStream`.

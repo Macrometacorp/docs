@@ -16,10 +16,10 @@ Returns the maximum value of the input parameters.
 
 ## Example
 
-```js
-@info(name = 'query1') from inputStream
-insert into outputStream
-select maximum(price1, price2, price3) as max;
+```sql
+@info(name = 'query1') FROM inputStream
+INSERT INTO outputStream
+SELECT maximum(price1, price2, price3) AS max;
 ```
 
 This returns the maximum value of the input parameters price1, price2, price3.

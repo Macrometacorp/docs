@@ -6,30 +6,42 @@ Checks whether the parameter is an instance of Long or not.
 
 ## Syntax
 
-    <BOOL> instanceOfLong(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> arg)
+```sql
+<BOOL> instanceOfLong(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> arg)
+```
 
 ## Query Parameters
 
-| Name | Description                  | Default Value | Possible Data Types                      | Optional | Dynamic |
-|------|------------------------------|---------------|------------------------------------------|----------|---------|
-| arg  | The parameter to be checked. |               | INT LONG DOUBLE FLOAT STRING BOOL OBJECT | No       | Yes     |
+| Name | Description      | Default Value | Possible Data Types     | Optional | Dynamic |
+|------|------------------|---------------|-------------------------|----------|---------|
+| arg  | The parameter to be checked. |        | INT LONG DOUBLE FLOAT STRING BOOL OBJECT | No       | Yes     |
 
 ## Example 1
 
-```js
-insert into barStream
-select instanceOfLong(value) as state
-from fooStream;
+```sql
+@info(name = 'query1')
+INSERT INTO barStream
+SELECT INSTANCEOFLONG(value) AS state
+FROM fooStream;
 ```
 
-This returns `true` if the value field format is long ex: 56456l.
+This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `INSTANCEOFLONG` function is used to determine if the `value` is of long data type. If `value` is a long, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
+
+Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `state` field, where `state` is determined based on the data type of the `value`.
+
+For example, `value` 56456l would return TRUE.
 
 ## Example 2
 
-```js
-insert into barStream
-select instanceOfLong(switchState) as state
-from fooStream;
+```sql
+@info(name = 'query1')
+INSERT INTO barStream
+SELECT INSTANCEOFLONG(switchState) AS state
+FROM fooStream;
 ```
 
-If the `switchState` is `true`, this returns `false` because the value is a Boolean and not a long.
+This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `INSTANCEOFLONG` function is used to determine if the `switchState` is of long data type. If `switchState` is a long, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
+
+Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `state` field, where `state` is determined based on the data type of the `switchState`.
+
+For example, if the `switchState` is TRUE, then this query returns FALSE, because the value is a Boolean and not a long.
