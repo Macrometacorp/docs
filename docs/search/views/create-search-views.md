@@ -41,7 +41,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use our command line interface to [Create a Search View](../../CLI/search-views-cli.md#gdnsl-view-create).
+Use our command line interface to [Create a Search View](../../CLI/search-views-cli#gdnsl-view-create).
 
 
 </TabItem>
