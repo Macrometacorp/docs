@@ -3,9 +3,15 @@ sidebar_position: 20
 title: Create a Search View
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 This page explains how to create a new search view.
 
 ## Create Search View
+
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
 
 Follow these instructions to create a new search view using the GDN console web UI.
 
@@ -24,3 +30,86 @@ Follow these instructions to create a new search view using the GDN console web 
     - **Direction -** Set the sorting order to ascending (default) or descending.
 
 After creating a view, you can **Rename** or **Delete** it from the **Search** screen.
+
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Search View](https://www.macrometa.com/docs/api#/operations/createView).
+
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+Use our command line interface to [Create a Search View](../../CLI/search-views-cli.md#gdnsl-view-create).
+
+
+</TabItem>
+<TabItem value="py" label="Python SDK">
+
+```py
+# Import libraries.
+from c8 import C8Client
+
+# Define constants.
+URL = "play.paas.macrometa.io"
+GEO_FABRIC = "_system"
+API_KEY = "<API Key" # Change this to your API key.
+print("--- Connecting to GDN")
+
+# Choose one of the following methods to access the GDN. API key is recommended.
+# Authenticate with API key.
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+search_view_name = "example_search_view"
+collection_name = "example_collection" # Change this to a valid collection name.
+properties = {
+    collection_name: {
+        "fields": {
+                "title": {"analyzers": ["text_en"]},
+                "content": {"analyzers": ["text_en"]}
+        }
+    }
+}
+primary_sort = [{"field": "title", "direction": "asc"}]
+
+# Create the search view.
+response = client.create_view(search_view_name, properties, primary_sort)
+
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript SDK">
+
+```js
+// Connect to GDN.
+const jsc8 = require("jsc8");
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API Key>", fabricName: "_system"});
+console.log("Authentication done!!...");
+const collectionName = "addresses";
+const searchViewName = "example_search_view";
+const properties = {
+    [collectionName]: {
+      "fields": {
+        "title": {"analyzers": ["text_en"]},
+        "content": {"analyzers": ["text_en"]}
+      }
+    }
+};
+const primarySort = [{"field": "title", "direction": "asc"}]
+async function createMySearchView () {
+  let searchView = { "name": "" };
+  const listOfViews = await client.getListOfViews();
+  if (listOfViews.result.some(e => e.name === searchViewName)) {
+    console.log("Search View already exists");
+    searchView.name = searchViewName;
+    console.log(`OLD Search View = ${searchView.name}`);
+  } else {
+    searchView = await client.createView(searchViewName, properties, primarySort);
+    console.log(`NEW Search View = ${searchView.name}`);
+  }
+}
+createMySearchView();
+```
+
+</TabItem>
+</Tabs>
