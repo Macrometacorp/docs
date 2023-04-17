@@ -43,6 +43,19 @@ The description format is:
 @App:qlVersion("2")
 ```
 
+## Running Multiple Instances
+
+Use `@App:instances('N')` to run multiple instances of the same stream worker. This is useful for scaling up or down when you have a lot of data coming in.
+
+- All changes and actions such as update, publish, and unpublish are applied to all runtime instances.
+- The `N` value can be set in the range from `1` up to `1000`. Default is one (1) instance.
+
+For example, this annotation would run three instances of the stream worker:
+
+```js
+@App:instances('3')
+```
+
 ## Docstrings and Other Information
 
 You can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/*` and `*/`. This is similar to a `docstring` in functions.

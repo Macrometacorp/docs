@@ -29,7 +29,8 @@ Handle errors in `TempStream` by redirecting the errors to a fault stream.
 The configuration of `TempStream` stream and `OnError` property is as follows:
 
 ```sql
-CREATE STREAM TempStream WITH(OnError.action="STREAM") (deviceID long, roomNo int, temp double;
+@OnError.action="STREAM"
+CREATE STREAM TempStream (deviceID long, roomNo int, temp double;
 ```
 
 The stream infers and automatically defines the fault stream of `TempStream` as given below.
