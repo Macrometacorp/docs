@@ -19,6 +19,7 @@ Returns the maximum value for all the events.
 ## Example
 
 ```sql
+@info(name = 'query1')
 INSERT INTO barStream
 SELECT max(temp) AS maxTemp
 FROM fooStream WINDOW TUMBLING_TIME(10 sec);
