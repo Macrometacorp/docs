@@ -28,20 +28,18 @@ View a list of existing streams.
 ```python
 from c8 import C8Client
 
-""" For Python SDK, you can omit https:// part of the URL """
-BASE_URL = "play.paas.macrometa.io/"
+# Define variables
+URL = "play.paas.macrometa.io"
+GEO_FABRIC = "_system" # Change this to your fabric
+API_KEY = "your-api-key" # Change this to your API key
 
-""" Connect to GDN """
-client = C8Client(
-    protocol='https',
-    host=BASE_URL,
-    port=443,
-    apikey='<your API key>', # Enter your API key
-    geofabric="<your-fabric>" # Enter your fabric name
-)
+# Create client instance with API KEY
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
+# Fetch the list of streams
 streams = client.get_streams()
 
+# Print the formatted list of streams
 print("List of streams:")
 for stream in streams:
     print(f"- Name: {stream['name']}")
