@@ -16,10 +16,10 @@ Returns the sum for all the events.
 
 ## Example
 
-```js
-insert into outputStream
-select sum(volume) as sumOfVolume
-from inputStream;
+```sql
+INSERT INTO outputStream
+SELECT sum(volume) AS sumOfVolume
+FROM inputStream;
 ```
 
 This returns the sum of volume values as a long value for each event arrival and expiration.
