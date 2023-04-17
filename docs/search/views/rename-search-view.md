@@ -45,7 +45,7 @@ URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "<API Key>" # Change this to your API key.
 SEARCH_VIEW_NAME = "SearchView" # Change this to the search view you want to rename.
-NEW_SEARCH_VIEW_NAME = "SearchView2" # Change this to the new name for the search view.
+NEW_SEARCH_VIEW_NAME = "NewSearchView" # Change this to the new name for the search view.
 
 # Authenticate with API key.
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
@@ -66,6 +66,26 @@ else:
 <TabItem value="js" label="JavaScript SDK">
 
 ```js
+// Connect to GDN.
+const jsc8 = require("jsc8");
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "TD0IqyKNnQaq5F88bRg0GAg.james_test2.CnC1oHcyDucQRJdoK0EoalovMDGAV1LqWjxI0dPO7PlLfyXza3dq9PfT3CIXEFz4d60ced", fabricName: "_system"});
+console.log("Connected to GDN.");
+
+const searchViewName = "SearchView"; // Replace with the name of the search view you want to rename.
+const newSearchViewName = "NewSearchView"; // Replace with the new name for the search view.
+
+async function renameMySearchView () {
+  const listOfViews = await client.getListOfViews();
+  const view = listOfViews.result.find(v => v.name === searchViewName);
+  if (!view) {
+    console.log(`Search view "${searchViewName}" does not exist`);
+    return;
+  }
+  const renamedView = await client.renameView(view.id, newSearchViewName);
+  console.log(`Successfully renamed search view: ${renamedView.name}`);
+}
+
+renameMySearchView();
 
 
 ```
