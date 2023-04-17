@@ -10,7 +10,7 @@ The Samples tab contains a number of sample stream workers that you can load and
 To access the Samples tab:
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Stream Workers**.
+2. Click **Data > Stream Workers**.
 3. Click **Samples**.
 
    Macrometa displays the Samples tab, which contain the samples in alphabetical order. Each sample stream worker has a brief description to help you understand its purpose. Many samples also have description text visible in the code to help you run and test the sample.
