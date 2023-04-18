@@ -19,13 +19,35 @@ The [x](../account-management/plans/) section was created as a result of this ch
 
 The following features updates are included in this release.
 
-### SQL Support Updates - Beta
+### Retrieve API Keys
+
+As of this release, an API key created using `POST /_api/key` can now be retrieved using `GET /_api/key/{keyid}`.
+
+The call and response now look similar to the following:
+
+```bash
+curl -X 'GET'   'https://api-your-macrometa.eng.macrometa.io/_api/key/root_api_keyid777777'   -H 'accept: application/json'   -H 'Authorization: bearer <JWT>' | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   234  100   234    0     0   1073      0 --:--:-- --:--:-- --:--:--  1073
+{
+  "user": "root_api_keyid777777",
+  "active": true,
+  "displayName": "root_api_keyid777777",
+  "apikey": {
+    "parent": "root",
+    "key": "root_api_keyid777777.api_key_goes_here_314567890"
+  },
+  "error": false,
+  "code": 200
+}
+```
+
+### xx
 
 xxxx
 
 Topics in [xx](../queries/redis/) were updated as a result of this change.
-
- `false`.
 
 ### Miscellaneous Changes
 
