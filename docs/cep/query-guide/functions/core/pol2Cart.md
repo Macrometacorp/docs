@@ -1,5 +1,5 @@
 ---
-title: sizeOfSet (Stream Function)
+title: pol2Cart (Stream Function)
 ---
 
 The pol2Cart function calculating the cartesian coordinates x and y for the given theta, rho coordinates and adding them as new attributes to the existing events.
