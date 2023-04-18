@@ -80,7 +80,7 @@ async function deleteMySearchView() {
     console.log(`Search view "${searchViewName}" does not exist`);
     return;
   }
-  await client.deleteView(view.id);
+  await client.deleteView(view.name);
   console.log(`Successfully deleted search view: ${searchViewName}`);
 }
 
