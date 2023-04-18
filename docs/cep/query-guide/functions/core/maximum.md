@@ -20,9 +20,9 @@ Returns the maximum value of the input parameters.
 
 ```sql
 @info(name = 'query1')
-FROM inputStream
 INSERT INTO outputStream
-SELECT maximum(price1, price2, price3) AS max;
+SELECT maximum(price1, price2, price3) AS max
+FROM inputStream;
 ```
 
 This query, named 'query1', calculates the maximum value among `price1`, `price2`, and `price3` fields in each record from the `inputStream` using the `maximum(price1, price2, price3)` function. The resulting maximum value is then inserted into the `outputStream` as the `max` field.
