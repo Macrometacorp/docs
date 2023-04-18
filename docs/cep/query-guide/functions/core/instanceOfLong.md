@@ -21,11 +21,11 @@ Checks whether the parameter is an instance of Long or not.
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT INSTANCEOFLONG(value) AS state
+SELECT instanceOfLong(value) AS state
 FROM fooStream;
 ```
 
-This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `INSTANCEOFLONG` function is used to determine if the `value` is of long data type. If `value` is a long, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
+This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `instanceOfLong` function is used to determine if the `value` is of long data type. If `value` is a long, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `state` field, where `state` is determined based on the data type of the `value`.
 
@@ -36,11 +36,11 @@ For example, `value` 56456l would return TRUE.
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT INSTANCEOFLONG(switchState) AS state
+SELECT instanceOfLong(switchState) AS state
 FROM fooStream;
 ```
 
-This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `INSTANCEOFLONG` function is used to determine if the `switchState` is of long data type. If `switchState` is a long, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
+This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `instanceOfLong` function is used to determine if the `switchState` is of long data type. If `switchState` is a long, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `state` field, where `state` is determined based on the data type of the `switchState`.
 
