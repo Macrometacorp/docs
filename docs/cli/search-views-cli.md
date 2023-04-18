@@ -51,7 +51,7 @@ gdnsl view create <view-name> [flags]
   # Create test view with include-all-fields:
   gdnsl view create test --collection demo --include-all-fields
 
-  # Create test view primary sort field:
+  # Create test view with primary sort field:
   gdnsl view create test --collection demo --field "name:text_en,text_fr" --field "age:text_en" --primary-sort-field "name:asc"
 
 ```
