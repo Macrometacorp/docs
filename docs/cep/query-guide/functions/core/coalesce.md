@@ -20,11 +20,11 @@ Returns the value of the first input parameter that is not null, and all input p
 
 ```sql
 INSERT INTO barStream
-SELECT COALESCE('123', NULL, '789') AS value
+SELECT coalesce('123', NULL, '789') AS value
 FROM fooStream;
 ```
 
-This query selects records from the `fooStream` collection and uses the `COALESCE` function to return the first non-null value among the provided values ('123', NULL, '789'). In this case, the first non-null value is '123'. The result is aliased as `value` and inserted into the `barStream`.
+This query selects records from the `fooStream` collection and uses the `coalesce` function to return the first non-null value among the provided values ('123', NULL, '789'). In this case, the first non-null value is '123'. The result is aliased as `value` and inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with a constant `value` field set to '123'.
 
@@ -32,11 +32,11 @@ Essentially, this query processes records in the `fooStream` and creates new rec
 
 ```sql
 INSERT INTO barStream
-SELECT COALESCE(NULL, 76, 567) AS value
+SELECT coalesce(NULL, 76, 567) AS value
 FROM fooStream;
 ```
 
-This query selects records from the `fooStream` collection and uses the `COALESCE` function to return the first non-null value among the provided values (NULL, 76, 567). In this case, the first non-null value is 76. The result is aliased as `value` and inserted into the `barStream`.
+This query selects records from the `fooStream` collection and uses the `coalesce` function to return the first non-null value among the provided values (NULL, 76, 567). In this case, the first non-null value is 76. The result is aliased as `value` and inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with a constant `value` field set to 76.
 
@@ -45,10 +45,10 @@ Essentially, this query processes records in the `fooStream` and creates new rec
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT COALESCE(NULL, NULL, NULL) AS value
+SELECT coalesce(NULL, NULL, NULL) AS value
 FROM fooStream;
 ```
 
-This query selects records from the `fooStream` and uses the `COALESCE` function to return the first non-null value among the provided values (NULL, NULL, NULL). In this case, all values are null, so the `COALESCE` function returns NULL. The result is aliased as `value` and inserted into the `barStream`.
+This query selects records from the `fooStream` and uses the `coalesce` function to return the first non-null value among the provided values (NULL, NULL, NULL). In this case, all values are null, so the `coalesce` function returns NULL. The result is aliased as `value` and inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with a constant `value` field set to NULL.
