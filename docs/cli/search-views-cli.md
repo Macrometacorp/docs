@@ -70,7 +70,7 @@ gdnsl view create <view-name> [flags]
       --include-all-fields boolean    if true, index all fields on a particular level of depth (default: false).
       --fabric                 Name of the fabric to use.
       --primary-sort-field string  Sort by a value in a specific order <fieldName:direction>
-                              Example: "name:asc>"
+                              Example: "name:asc" or "name:desc".
 ```
 
 **Options inherited:**
