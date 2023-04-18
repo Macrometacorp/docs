@@ -20,6 +20,7 @@ Converts the first input parameter according to the `convertedTo` parameter.
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 INSERT INTO barStream
 SELECT CONVERT(temp, 'double') AS temp
 FROM fooStream;
