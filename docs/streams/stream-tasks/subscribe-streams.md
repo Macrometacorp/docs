@@ -9,6 +9,24 @@ import TabItem from '@theme/TabItem';
 This page explains how to subscribe to a stream in Macrometa.
 
 <Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
+
+View existing streams.
+
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
+2. Click **Data > Streams**.
+
+   Macrometa displays a list of streams and their attributes.
+
+3. To see messages sent to the stream, click a stream name.
+
+   Macrometa opens a stream viewing panel. As new messages are sent to the stream, they are displayed in the panel.
+
+When you view a stream in the console, you will not see a backlog of messages. This screen does not persist, which means that when it is open, you will see new messages as they are sent. If you close the screen, any messages displayed will not be visible the next time that you open it.
+
+![Stream messages in console](/img/streams/stream-messages.png)
+
+</TabItem>
 <TabItem value="py" label="Python SDK">
 
 You must [Install the Python SDK](../../sdks/install-sdks.md) before you can run this code.
