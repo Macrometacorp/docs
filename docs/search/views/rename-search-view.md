@@ -68,7 +68,7 @@ else:
 ```js
 // Connect to GDN.
 const jsc8 = require("jsc8");
-const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "TD0IqyKNnQaq5F88bRg0GAg.james_test2.CnC1oHcyDucQRJdoK0EoalovMDGAV1LqWjxI0dPO7PlLfyXza3dq9PfT3CIXEFz4d60ced", fabricName: "_system"});
+const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API Key>", fabricName: "_system"});
 console.log("Connected to GDN.");
 
 const searchViewName = "SearchView"; // Replace with the name of the search view you want to rename.
