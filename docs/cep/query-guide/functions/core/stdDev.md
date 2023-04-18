@@ -21,10 +21,10 @@ Returns the calculated standard deviation for all the events.
 ```sql
 @info(name = 'query1')
 INSERT INTO outputStream
-SELECT stddev(temp) AS stdTemp
+SELECT stdDev(temp) AS stdTemp
 FROM inputStream;
 ```
 
-This query, named 'query1', processes records from the `inputStream` and calculates the standard deviation of the `temp` values using the `stddev(temp)` function. The resulting value, named `stdTemp`, represents the standard deviation of the temperature and is inserted into the `outputStream`.
+This query, named 'query1', processes records from the `inputStream` and calculates the standard deviation of the `temp` values using the `stdDev(temp)` function. The resulting value, named `stdTemp`, represents the standard deviation of the temperature and is inserted into the `outputStream`.
 
 Essentially, this query processes records in the `inputStream` and creates new records in the `outputStream` containing the standard deviation of the temperature values.
