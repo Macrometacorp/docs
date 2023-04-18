@@ -76,7 +76,7 @@ try:
         print("{}: {}".format(key, value))
         
 except Exception as e:
-    print("Stream '{}' not found".format(stream_name))
+    print("Error getting stream stats: {}".format(e))
     
 ```
 
