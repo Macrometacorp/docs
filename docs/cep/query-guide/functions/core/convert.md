@@ -22,11 +22,11 @@ Converts the first input parameter according to the `convertedTo` parameter.
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT CONVERT(temp, 'double') AS temp
+SELECT convert(temp, 'double') AS temp
 FROM fooStream;
 ```
 
-This query selects records from the `fooStream` collection and uses the `CONVERT` function to convert the `temp` field to a `double` data type. The result is aliased as `temp` and inserted into the `barStream`.
+This query selects records from the `fooStream` collection and uses the `convert` function to convert the `temp` field to a `double` data type. The result is aliased as `temp` and inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `temp` field converted to a `double` data type.
 
@@ -35,10 +35,10 @@ Essentially, this query processes records in the `fooStream` and creates new rec
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT CONVERT(temp, 'int') AS temp
+SELECT convert(temp, 'int') AS temp
 FROM fooStream;
 ```
 
-This query selects records from the `fooStream` and uses the `CONVERT` function to convert the `temp` field to an `int` data type. The result is aliased as `temp` and inserted into the `barStream`.
+This query selects records from the `fooStream` and uses the `convert` function to convert the `temp` field to an `int` data type. The result is aliased as `temp` and inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `temp` field converted to an `int` data type.
