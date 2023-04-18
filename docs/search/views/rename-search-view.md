@@ -81,7 +81,7 @@ async function renameMySearchView () {
     console.log(`Search view "${searchViewName}" does not exist`);
     return;
   }
-  const renamedView = await client.renameView(view.id, newSearchViewName);
+  const renamedView = await client.renameView(view.name, newSearchViewName);
   console.log(`Successfully renamed search view: ${renamedView.result.name}`);
 }
 
