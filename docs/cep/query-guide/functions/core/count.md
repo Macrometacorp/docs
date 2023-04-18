@@ -22,10 +22,10 @@ Returns the count of all the events.
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT COUNT() AS count
+SELECT count() AS count
 FROM fooStream WINDOW TUMBLING_TIME(10 sec);
 ```
 
-This query processes records from the `fooStream` using a tumbling time-based window of 10 seconds. For each window, it calculates the total number of records using the `COUNT()` function. The result is aliased as `count` and inserted into the `barStream`.
+This query processes records from the `fooStream` using a tumbling time-based window of 10 seconds. For each window, it calculates the total number of records using the `count()` function. The result is aliased as `count` and inserted into the `barStream`.
 
 Essentially, this query computes the count of records within each 10-second window in the `fooStream` and inserts the resulting `count` value into the `barStream`.
