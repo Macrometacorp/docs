@@ -6,7 +6,9 @@ Returns the sum for all the events.
 
 ## Syntax
 
-    <LONG|DOUBLE> sum(<INT|LONG|DOUBLE|FLOAT> arg)
+```sql
+<LONG|DOUBLE> sum(<INT|LONG|DOUBLE|FLOAT> arg)
+```
 
 ## Query Parameters
 
@@ -17,9 +19,12 @@ Returns the sum for all the events.
 ## Example
 
 ```sql
+@info(name = 'query1')
 INSERT INTO outputStream
 SELECT sum(volume) AS sumOfVolume
 FROM inputStream;
 ```
 
-This returns the sum of volume values as a long value for each event arrival and expiration.
+This query, named 'query1', processes records from the `inputStream` and calculates the sum of the `volume` values using the `sum(volume)` function. The resulting value, named `sumOfVolume`, represents the total volume and is inserted into the `outputStream`.
+
+Essentially, this query processes records in the `inputStream` and creates new records in the `outputStream` containing the sum of the volume values.
