@@ -20,7 +20,7 @@ Two available sets of parameters:
 |-------------------|-------------------------------|---------------------|----------|---------|
 | longitude 	              | Longitude of the geo location.         | DOUBLE       | Yes       | Yes     |
 | latitude | Latitude of the geo location.                  | DOUBLE              | Yes      | Yes     |
-| geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING                | Yes      | Yes     |
+| geo.json.geometry          | String that contains geometry type and coordinates for a GeoJSON geometry. | String                | Yes      | Yes     |
 | geo.json.geometry.fence         | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String                | No      | Yes     |
 
 ## Example 1
