@@ -82,7 +82,7 @@ async function renameMySearchView () {
     return;
   }
   const renamedView = await client.renameView(view.id, newSearchViewName);
-  console.log(`Successfully renamed search view: ${renamedView.name}`);
+  console.log(`Successfully renamed search view: ${renamedView.result.name}`);
 }
 
 renameMySearchView();
