@@ -87,7 +87,6 @@ async function renameMySearchView () {
 
 renameMySearchView();
 
-
 ```
 
 </TabItem>
