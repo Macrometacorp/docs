@@ -75,7 +75,7 @@ try:
     for key, value in stream_stats.items():
         print("{}: {}".format(key, value))
         
-except c8.exceptions.StreamNotFoundError:
+except Exception as e:
     print("Stream '{}' not found".format(stream_name))
     
 ```
