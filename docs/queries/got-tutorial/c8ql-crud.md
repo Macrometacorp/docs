@@ -12,7 +12,7 @@ Before we can insert documents with C8QL, we need a place to put them in: a coll
 For this tutorial, [Create a Document Store collection](../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../collections/index.md).
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Collections**.
+2. Click **Data > Collections**.
 3. Click **New Collection**.
 4. Click **Document Store**.
 5. Name the collection **Characters** and then click **Create**.
@@ -27,7 +27,7 @@ For more information about this task, refer to [Add Documents to a Collection](.
 
 Add one document to the collection with a query.
 
-1. Click **Query Workers**.
+1. Click **Compute > Query Workers**.
 1. Copy and paste the following C8QL query into the query editor on the Editor tab.
 
   ```js
@@ -44,7 +44,7 @@ Add one document to the collection with a query.
 
 Macrometa returns an empty list, because the query did not [RETURN](../c8ql/operations/return.md) anything. We'll do that in a later step.
 
-If you want to see your new record, click **Collections** and then click **Characters**. Your brand new Ned Stark record is right there.
+If you want to see your new record, click **Data > Collections** and then click **Characters**. Your brand new Ned Stark record is right there.
 
 ### Explanation of Adding One Document
 
@@ -63,7 +63,7 @@ Name and surname of the character document we inserted are both string values. T
 
 Let's add the rest of our characters with a single query. If you are familiar with FOR loops iterating through lists, this will be very familiar.
 
-1. Click **Query Workers** (if you are not already in that section).
+1. Click **Compute > Query Workers** (if you are not already in that section).
 1. Click **New Query**.
 1. Copy and paste the following C8QL query into the query editor on the Editor tab.
 

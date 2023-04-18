@@ -13,7 +13,7 @@ Before we can insert documents with SQL, we need a place to put them in: a colle
 For this tutorial, [Create a Document Store collection](../../collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../collections/index.md).
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Collections**.
+2. Click **Data > Collections**.
 3. Click **New Collection**.
 4. Click **Document Store**.
 5. Name the collection **categories** and then click **Create**.
