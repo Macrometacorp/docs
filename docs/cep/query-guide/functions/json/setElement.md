@@ -49,7 +49,9 @@ When the input `json` has the format `{'name' : 'John', 'married' : true}`, the 
 json:setElement(json, '$', 45, 'age')
 ```
 
-If the `json` is the format `{'name' : 'John', 'married' : true, 'age' : 40}`, the function updates the `json` as `{'name' : 'John', 'married' : true, 'age' : 45}` by replacing `age` element and returns the updated JSON.
+This query, named 'query1', uses the `json:setElement` function to modify an existing element in the input JSON. In this case, the function updates the `age` element with the new value `45` at the root of the JSON.
+
+When the input `json` has the format `{'name' : 'John', 'married' : true, 'age' : 40}`, the function updates the JSON to `{'name' : 'John', 'married' : true, 'age' : 45}` and returns the updated JSON.
 
 ## Example 4
 
@@ -58,22 +60,17 @@ If the `json` is the format `{'name' : 'John', 'married' : true, 'age' : 40}`, t
 json:setElement(json, '$.items', 'book')
 ```
 
-If the `json` is the format `{'name' : 'Stationary', 'items' : ['pen', 'pencil']}`, the function updates the `json` as `{'name' : 'John', 'items' : ['pen', 'pencil', 'book']}` by adding `book` in the items array and returns the updated JSON.
+This query, named 'query1', uses the `json:setElement` function to modify an existing element in the input JSON. In this case, the function adds a new value 'book' to the `items` array.
+
+When the input `json` has the format `{'name' : 'Stationary', 'items' : ['pen', 'pencil']}`, the function updates the JSON to `{'name' : 'Stationary', 'items' : ['pen', 'pencil', 'book']}` by adding `book` to the `items` array and returns the updated JSON.
 
 ## Example 5
-
-```sql
-@info(name = 'query1')
-json:setElement(json, '$.item', 'book')
-```
-
-If the `json` is the format `{'name' : 'Stationary', 'item' : 'pen'}`, the function updates the `json` as `{'name' : 'John', 'item' : 'book'}` by replacing `item` element and returns the updated JSON.
-
-## Example 6
 
 ```sql
 @info(name = 'query1')
 json:setElement(json, '$.address', 'city', 'SF')
 ```
 
-If the `json` is the format `{'name' : 'John', 'married' : true}`,the function will not update, but returns the original JSON as there are no valid path for `$.address`.
+This query, named 'query1', uses the `json:setElement` function to modify an existing element in the input JSON. In this case, the function attempts to update the `city` element within the `address` element.
+
+When the input `json` has the format `{'name' : 'John', 'married' : true}`, the function will not update the JSON because there is no valid path for `$.address`. Instead, it returns the original JSON unmodified.
