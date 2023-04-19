@@ -6,23 +6,35 @@ Function checks whether there is a JSON element present in the given path or not
 
 ## Syntax
 
-    <BOOL> json:isExists(<STRING|OBJECT> json, <STRING> path)
+```sql
+<BOOL> json:isExists(<STRING|OBJECT> json, <STRING> path)
+```
 
 ## Query Parameters
 
-| Name | Description                                               | Default Value | Possible Data Types | Optional | Dynamic |
-|------|-----------------------------------------------------------|---------------|---------------------|----------|---------|
-| json | The JSON input that needs to be searched for an elements. |               | STRING OBJECT       | No       | Yes     |
-| path | The JSON path to check for the element.                   |               | STRING              | No       | Yes     |
+| Name | Description  | Default Value | Possible Data Types | Optional | Dynamic |
+|------|--------------|---------------|---------------------|----------|---------|
+| json | The JSON input that needs to be searched for an elements. |     | STRING OBJECT  | No | Yes     |
+| path | The JSON path to check for the element.  |        | STRING     | No      | Yes |
 
 ## Example 1
 
-    json:isExists(json, '$.name')
+```sql
+@info(name = 'query1')
+json:isExists(json, '$.name')
+```
 
-If the `json` is the format `{'name' : 'John', 'age' : 23}`, then the function returns `true` as there is an element in the given path.
+This query, named 'query1', uses the `json:isExists` function to check if an element exists in the given JSON path. In this case, the function checks for the existence of the `$.name` element.
+
+When the input `json` has the format `{'name' : 'John', 'age' : 23}`, the function returns `true`, as there is an element in the given path.
 
 ## Example 2
 
-    json:isExists(json, '$.salary')
+```sql
+@info(name = 'query1')
+json:isExists(json, '$.salary')
+```
 
-If the `json` is the format `{'name' : 'John', 'age' : 23}`, then the function returns `false` as there is no element in the given path.
+This query, named 'query1', uses the `json:isExists` function to check if an element exists in the given JSON path. In this case, the function checks for the existence of the `$.salary` element.
+
+When the input `json` has the format `{'name' : 'John', 'age' : 23}`, the function returns `false`, as there is no element in the given path.
