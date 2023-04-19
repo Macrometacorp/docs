@@ -13,7 +13,9 @@ The following new features are included in this release.
 
 Key-value (KV) store collections now allow you to store blobs (arbitrary binary data, such as images).
 
-When you create a new key-value store, you can select a checkbox that will mark the collection as a blob-based KV collection. These collections can only be used to store blobs. Once created, this setting cannot be changed.
+When you create a new key-value store, you can select the **Blob storage** checkbox. This marks the collection as a blob-based KV collection. These collections can only be used to store blobs. Once created, this setting cannot be changed.
+
+File limit size is 1MB.
 
 The [x](../account-management/plans/) section was created as a result of this change.
 
