@@ -28,25 +28,29 @@ json:tokenize(<STRING|OBJECT> json, <STRING> path, <BOOL> fail.on.missing.attrib
 ## Example 1
 
 ```sql
-CREATE STREAM InputStream (json string, path string);
+CREATE STREAM InputStream (json STRING, path STRING);
 
 @info(name = 'query1')
-insert into OutputStream
-select path, jsonElement
-from InputStream#json:tokenizeAsObject(json, path);
+INSERT INTO OutputStream
+SELECT path, jsonElement
+FROM InputStream#json:tokenizeAsObject(json, path);
 ```
 
-If the input `json` is `{name:'John', enrolledSubjects:['Mathematics', 'Physics']}`, and the `path` is passed as `$.enrolledSubjects` then for both the elements in the selected JSON array, then it generates events as `('$.enrolledSubjects', 'Mathematics')`, and `('$.enrolledSubjects', 'Physics')`. For the same input JSON, if the `path` is passed as `$.name` then it will only produce one event `('$.name', 'John')` as the `path` provided a single JSON element.
+In this example, the query named 'query1' processes records from the `InputStream` and extracts JSON elements based on the provided `path` using the `json:tokenizeAsObject(json, path)` function. The resulting `(path, jsonElement)` pairs are inserted into the `OutputStream`.
+
+For example, if the input `json` is `{name:'John', enrolledSubjects:['Mathematics', 'Physics']}`, and the `path` is passed as `$.enrolledSubjects`, then for both the elements in the selected JSON array, the query generates events as `('$.enrolledSubjects', 'Mathematics')` and `('$.enrolledSubjects', 'Physics')`. For the same input JSON, if the `path` is passed as `$.name`, then it will only produce one event `('$.name', 'John')` as the `path` provided a single JSON element.
 
 ## Example 2
 
 ```sql
-CREATE STREAM InputStream (json string, path string);
+CREATE STREAM InputStream (json STRING, path STRING);
 
 @info(name = 'query1')
-insert into OutputStream
-select path, jsonElement
-from InputStream#json:tokenizeAsObject(json, path, true);
+INSERT INTO OutputStream
+SELECT path, jsonElement
+FROM InputStream#json:tokenizeAsObject(json, path, true);
 ```
 
-If the input `json` is `{name:'John', age:25}`, and the `path` is passed as `$.salary`, then the system will produce `('$.salary', null)`, as the `fail.on.missing.attribute` is `true` and there are no matching element for `$.salary`.
+In this example, the query named 'query1' processes records from the `InputStream` and extracts JSON elements based on the provided `path` using the `json:tokenizeAsObject(json, path, true)` function. The `true` parameter means that the function will fail on missing attributes. The resulting `(path, jsonElement)` pairs are inserted into the `OutputStream`.
+
+For example, if the input `json` is `{name:'John', age:25}`, and the `path` is passed as `$.salary`, then the system will produce `('$.salary', null)`, as the `fail.on.missing.attribute` is `true` and there are no matching elements for `$.salary`.
