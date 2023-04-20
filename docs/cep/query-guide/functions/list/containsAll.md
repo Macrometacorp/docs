@@ -6,17 +6,22 @@ Function checks whether the list contains all the values in the given list.
 
 ## Syntax
 
-    <BOOL> list:containsAll(<OBJECT> list, <OBJECT> given.list)
+```sql
+<BOOL> list:containsAll(<OBJECT> list, <OBJECT> given.list)
+```
 
 ## Query Parameters
 
-| Name       | Description                                                                     | Default Value | Possible Data Types | Optional | Dynamic |
-|------------|---------------------------------------------------------------------------------|---------------|---------------------|----------|---------|
-| list       | The list that needs to be checked on whether it contains all the values or not. |               | OBJECT              | No       | Yes     |
-| given.list | The list which contains all the values to be checked.                           |               | OBJECT              | No       | Yes     |
+| Name       | Description  | Default Value | Possible Data Types | Optional | Dynamic |
+|------------|--------------|---------------|---------------------|----------|---------|
+| list | The list that needs to be checked on whether it contains all the values or not. |          | OBJECT    | No       | Yes     |
+| given.list | The list which contains all the values to be checked. |        | OBJECT | No | Yes |
 
 ## Example 1
 
-    list:containsAll(stockSymbols, latestStockSymbols)
+```sql
+@info(name = 'query1')
+list:containsAll(stockSymbols, latestStockSymbols)
+```
 
-Returns `true` if the stockSymbols list contains values in latestStockSymbols, else it returns `false`.
+The `list:containsAll(stockSymbols, latestStockSymbols)` function checks if the `stockSymbols` list contains all the values present in the `latestStockSymbols` list. It returns `true` if all the values from `latestStockSymbols` are found in the `stockSymbols` list, otherwise, it returns `false`.
