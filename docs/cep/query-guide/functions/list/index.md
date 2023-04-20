@@ -29,14 +29,12 @@ This example shows how to use basic list functions.
 -- Defines `ProductComboStream` having `string` type attributes `product1`, `product2`, and `product3`.
 CREATE STREAM ProductComboStream ( product1 string, product2 string, product3 string);
 
-
 @info(name = 'Create-list')
 -- Create a list with values of `product1`, `product2`, and `product3`.
 insert into NewListStream
 select list:create(product1, product2, product3)
             as productList
 from ProductComboStream;
-
 
 @info(name = 'Check-list')
 -- Check if `productList` is a List.
@@ -52,7 +50,6 @@ select list:isList(productList) as isList,
 -- Get size of `productList`.
        list:size(productList) as size
 from NewListStream;
-
 
 @info(name = 'Clone-and-update')
 -- Clone `productList`, add `Toffee` to the end of the list, and remove `Cake` from the list.
