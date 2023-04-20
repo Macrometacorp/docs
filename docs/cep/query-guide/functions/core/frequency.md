@@ -14,9 +14,10 @@ Counts the number of occurrences of different values of a given attribute withou
 |------|------------------------------------|---------------|-----------------------|----------|---------|
 | arg  | The value that needs frequency calculation. |               | STRING | No       | Yes     |
 
-## Example
+## Example 1
 
-```js
+```sql
+@info(name = 'query1')
 INSERT INTO HeartbeatSecAggPerStream
 SELECT contentId AS identifier, frequency(contentId) AS count
 FROM TumblingWindow;

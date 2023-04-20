@@ -21,10 +21,10 @@ Returns the results of `AND` operation for all the events.
 ```sql
 @info(name = 'query1')
 INSERT INTO alertStream
-SELECT AND(isFraud) AS isFraudTransaction
+SELECT and(isFraud) AS isFraudTransaction
 FROM cscStream WINDOW TUMBLING_LENGTH(10);
 ```
 
-This query processes records from the `cscStream` using a tumbling window of length 10. For each window, it aggregates the `isFraud` values using the `AND` function, which returns true if all `isFraud` values are true within the window. The result is aliased as `isFraudTransaction` and inserted into the `alertStream`.
+This query processes records from the `cscStream` using a tumbling window of length 10. For each window, it aggregates the `isFraud` values using the `and` function, which returns true if all `isFraud` values are true within the window. The result is aliased as `isFraudTransaction` and inserted into the `alertStream`.
 
 Essentially, this query detects windows of 10 consecutive records where all transactions are marked as fraudulent and inserts the aggregated result into the `alertStream`.
