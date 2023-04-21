@@ -23,4 +23,4 @@ Function converts a map into a JSON object and returns the JSON as a string.
 map:toJSON(company)
 ```
 
-If `company` is a map with key-value pairs, (`symbol`:`gdn`),(`volume` : 100), and (`price`, 200), it returns the JSON string `{"symbol" : "gdn", "volume" : 100 , "price" : 200}`.
+The `map:toJSON(company)` function takes the `company` map, which has key-value pairs like (`symbol`:`gdn`), (`volume` : 100), and (`price`, 200), and converts it into a JSON string: `{"symbol" : "gdn", "volume" : 100 , "price" : 200}`.
