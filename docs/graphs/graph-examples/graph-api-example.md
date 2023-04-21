@@ -1,6 +1,6 @@
 ---
 title: REST API Graph Example
-sidebar_position: 30
+sidebar_position: 35
 ---
 
 import Tabs from '@theme/Tabs';
