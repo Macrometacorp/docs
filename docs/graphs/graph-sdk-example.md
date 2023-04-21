@@ -211,7 +211,7 @@ First recommendation according to this query is jelly which is purchased by two 
 
 ## CRUD operations on graph
 
-It is possible to create, read, update and delete vertices and edges in the graph using javascript SDK.
+You can create, read, update, and delete vertices and edges in the graph using JavaScript SDK.
 
 Full example can be found in this [repository](https://github.com/Macrometacorp/macrometa-graph-example).
 
