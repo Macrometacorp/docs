@@ -21,11 +21,11 @@ Checks whether the parameter is an instance of Boolean or not.
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT INSTANCEOFBOOLEAN(switchState) AS state
+SELECT instanceOfBoolean(switchState) AS state
 FROM fooStream;
 ```
 
-This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `INSTANCEOFBOOLEAN` function is used to determine if the `switchState` is of boolean data type. If `switchState` is a boolean, then the value of state will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
+This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `instanceOfBoolean` function is used to determine if the `switchState` is of boolean data type. If `switchState` is a boolean, then the value of state will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `state` field, where `state` is determined based on the data type of the `switchState`.
 
@@ -34,11 +34,11 @@ Essentially, this query processes records in the `fooStream` and creates new rec
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT INSTANCEOFBOOLEAN(value) AS state
+SELECT instanceOfBoolean(value) AS state
 FROM fooStream;
 ```
 
-This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `INSTANCEOFBOOLEAN` function is used to determine if the `value` is of boolean data type. If `value` is a boolean, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
+This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `instanceOfBoolean` function is used to determine if the `value` is of boolean data type. If `value` is a boolean, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `state` field, where `state` is determined based on the data type of the value.
 
