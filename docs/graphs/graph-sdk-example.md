@@ -123,6 +123,7 @@ After we have created the graph, we can start querying it.
 ##  How to query the graph
 
 ### Query explanation
+
 Query for the recommendations for a customer can be done using the following query:
 
 <Tabs groupId="operating-systems">
