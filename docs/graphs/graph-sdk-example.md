@@ -14,7 +14,7 @@ This example shows the ability of graph databases in analyzing and offering reco
 
 In the graph that we created ,customers Dino and Durga bought the same items. The graph is able to recommend items to Dallas based on the items that Dino and Durga bought. This is a simple example of how graph databases can be used to offer recommendations to customers.
 
-## How to define vertices and edges
+## Define Vertices and Edges
 
 For this example we will have two vertices - `groceryCustomers` and `groceryItems` and one edge collection - `groceryOrders`. The `groceryOrders` edge collection will be used to establish a connection between a customer and an item that they bought. Vertex collections are document store collections that store the vertices of a graph. Edge collections are graph edge collections that store the edges of a graph, edge collections have the `_from` and `_to` attributes that are used to establish a connection between two vertices.
 
