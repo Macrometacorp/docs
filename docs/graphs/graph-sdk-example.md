@@ -12,7 +12,7 @@ This example shows the ability of graph databases in analyzing and offering reco
 
 ![Create a collection](/img/graphs/sdk-graph-image.png)
 
-In the graph that we created customers Dino and Durga bought the same items. The graph is able to recommend items to Dallas based on the items that Dino and Durga bought. This is a simple example of how graph databases can be used to offer recommendations to customers.
+In the graph that we created ,customers Dino and Durga bought the same items. The graph is able to recommend items to Dallas based on the items that Dino and Durga bought. This is a simple example of how graph databases can be used to offer recommendations to customers.
 
 ## How to define vertices and edges
 
