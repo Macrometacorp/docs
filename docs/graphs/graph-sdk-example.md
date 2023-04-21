@@ -206,7 +206,7 @@ If customer selected `peanut butter` item, the result will following recommendat
 ]
 ```
 
-First recommendation according to this query is jelly which is purchased by 2 users. Second recommendation is napkins which is purchased by 2 users. Third recommendation is strawberry which is purchased by 2 users.
+First recommendation according to this query is jelly which is purchased by two users. Second recommendation is napkins which is purchased by two users. Third recommendation is strawberry which is purchased by two users.
 
 ## CRUD operations on graph
 
