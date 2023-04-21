@@ -6,16 +6,21 @@ Function to return the values of the map.
 
 ## Syntax
 
-    <OBJECT> map:values(<OBJECT> map)
+```sql
+<OBJECT> map:values(<OBJECT> map)
+```
 
 ## Query Parameters
 
-| Name | Description                                       | Default Value | Possible Data Types | Optional | Dynamic |
-|------|---------------------------------------------------|---------------|---------------------|----------|---------|
-| map  | The map from which list if values to be returned. |               | OBJECT              | No       | Yes     |
+| Name | Description  | Default Value | Possible Data Types | Optional | Dynamic |
+|------|--------------|---------------|---------------------|----------|---------|
+| map  | The map from which list if values to be returned. |      | OBJECT  | No  | Yes |
 
 ## Example 1
 
-    map:values(stockDetails)
+```sql
+@info(name = 'query1')
+map:values(stockDetails)
+```
 
-Returns values of the `stockDetails` map.
+This query returns the values of the `stockDetails` map.
