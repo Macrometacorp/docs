@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 
 
-This example demonstrates the ability of graph databases in analyzing and offering recommendations for items that are commonly purchased together. By establishing connections between customer and item vertices using edge collections, the graph is able to seamlessly and accurately deliver tailored recommendations to customers who have bought a particular item.
+This example shows the ability of graph databases in analyzing and offering recommendations for items that are commonly purchased together. By establishing connections between customer and item vertices using edge collections, the graph is able to accurately deliver tailored recommendations to customers who have bought a particular item.
 
 ![Create a collection](/img/graphs/sdk-graph-image.png)
 
