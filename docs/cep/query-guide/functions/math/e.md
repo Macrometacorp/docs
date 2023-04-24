@@ -6,14 +6,23 @@ This function returns the `java.lang.Math.E` constant, which is the closest doub
 
 ## Syntax
 
-    <DOUBLE> math:e()
+```sql
+<DOUBLE> math:e()
+```
+
+## Query Parameters
+
+None
 
 ## Example 1
 
-    CREATE STREAM InValueStream (inValue double);
+```sql
+CREATE STREAM InValueStream (inValue double);
 
-    insert into OutMediationStream
-    select math:e() as eValue
-    from InValueStream;
+@info(name = 'constantEValue')
+INSERT INTO OutMediationStream
+SELECT math:e() AS eValue
+FROM InValueStream;
+```
 
-This function returns the constant, 2.7182818284590452354, which is then closest double value to e and directs the output to `OutMediationStream` output stream.
+The query calculates the mathematical constant e (approximately 2.7182818284590452354) using the `math:e()` function, regardless of the input value in the `InValueStream`. The result is directed to the output stream `OutMediationStream`.
