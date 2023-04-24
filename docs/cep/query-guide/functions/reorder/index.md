@@ -1,10 +1,12 @@
 ---
 sidebar_position: 1
-title: Sentiment Functions
+title: Reorder Functions
 ---
 
-Sentiment analysis is a crucial aspect of processing and understanding unstructured text data, such as social media posts, customer reviews, or any form of text communication. By determining the underlying sentiment of a piece of text, businesses and organizations can gain valuable insights into the opinions and emotions of their users or customers.
+Processing data in real-time often involves handling out-of-order events, which can lead to inconsistencies and inaccurate results when performing operations such as aggregation and windowing. To effectively manage out-of-order events and maintain the accuracy of your stream processing, Macrometa GDN stream workers offer reorder functions, specifically `akslack` and `kslack`.
 
-With the built-in sentiment functionality, you can quickly evaluate and assign sentiment scores to incoming text messages, allowing for immediate analysis and decision-making based on the sentiment of the data.
+The `akslack` and `kslack` reorder functions are designed to address the challenges associated with out-of-order events in streaming data. They allow you to reorder events based on specified attribute values and apply configurable constraints to ensure that your stream processing pipeline operates efficiently and accurately.
+
+This section, introduces the `akslack `and `kslack` reorder functions and demonstrates how to use them within Macrometa GDN Stream Workers to effectively manage out-of-order events in your streaming data.
 
 <DocCardList />
