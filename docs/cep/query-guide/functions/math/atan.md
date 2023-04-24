@@ -8,24 +8,31 @@ If `p1` is received along with an optional `p1`, then it considers them as x and
 
 ## Syntax
 
-    <DOUBLE> math:atan(<INT|LONG|FLOAT|DOUBLE> p1)
-    <DOUBLE> math:atan(<INT|LONG|FLOAT|DOUBLE> p1, <INT|LONG|FLOAT|DOUBLE> p2)
+```sql
+<DOUBLE> math:atan(<INT|LONG|FLOAT|DOUBLE> p1)
+<DOUBLE> math:atan(<INT|LONG|FLOAT|DOUBLE> p1, <INT|LONG|FLOAT|DOUBLE> p2)
+```
 
 ## Query Parameters
 
-| Name | Description                 | Default Value | Possible Data Types   | Optional | Dynamic |
-|------|---------------------------------------------------|---------------|-----------------------|----------|---------|
+| Name | Description | Default Value | Possible Data Types   | Optional | Dynamic |
+|------|-------------|---------------|-----------------------|----------|---------|
 | p1   | The value of the parameter whose arc-tangent (inverse tangent) is found. If the optional second parameter is given this represents the x coordinate of the (x,y) coordinate pair. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
-| p2   | This optional parameter represents the y coordinate of the (x,y) coordinate pair.       | 0D            | INT LONG FLOAT DOUBLE | Yes      | Yes     |
+| p2   | This optional parameter represents the y coordinate of the (x,y) coordinate pair. | 0D            | INT LONG FLOAT DOUBLE | Yes      | Yes     |
 
 ## Example 1
 
-    CREATE STREAM InValueStream (inValue1 double, inValue2 double);
+```sql
+CREATE STREAM InValueStream (inValue1 double, inValue2 double);
 
-    insert into OutMediationStream
-    select math:atan(inValue1, inValue2) as convertedValue
-    from InValueStream;
+@info(name = 'calculateArcTangent')
+INSERT INTO OutMediationStream
+SELECT math:atan(inValue1, inValue2) AS convertedValue
+FROM InValueStream;
+```
 
-If the `inValue1` in the input stream is given, the function calculates the arc-tangent value of it and returns the arc-tangent value to the output stream, OutMediationStream.
+The query calculates the arc-tangent value of `inValue1` and `inValue2` from the input stream `InValueStream` using the `math:atan()` function.
 
-If both the `inValue1` and `inValue2` are given, then the function considers them to be x and y coordinates respectively and returns the calculated arc-tangent value to the output stream, OutMediationStream. For example, `atan(12d, 5d)` returns 1.1760052070951352.
+If only `inValue1` is given, then the function computes the arc-tangent value of it and returns the result to the output stream `OutMediationStream`.
+
+If both `inValue1` and `inValue2` are given, then the function treats them as x and y coordinates, respectively, and returns the calculated arc-tangent value to the output stream `OutMediationStream`. For example, `atan(12d, 5d)` returns 1.1760052070951352.
