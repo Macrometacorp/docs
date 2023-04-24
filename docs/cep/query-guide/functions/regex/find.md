@@ -28,6 +28,7 @@ regex:find('\d\d(.*)gdn', '21 products are produced by gdn currently')
 The `regex:find()` function is used to search for a pattern within a given input string. In this example, the regular expression pattern is `\d\d(.*)gdn` and the input string is `'21 products are produced by gdn currently'`.
 
 The regular expression pattern `\d\d(.*)gdn` can be broken down as follows:
+
 - `\d\d`: Two consecutive digits.
 - `(.*)`: Any sequence of characters (including none).
 - `gdn`: The string "gdn".
@@ -43,6 +44,7 @@ regex:find('\d\d(.*)gdn', '21 products are produced by gdn.', 4)
 The `regex:find()` function is used to search for a pattern within a given input string, starting from a specified index. In this example, the regular expression pattern is `\d\d(.*)gdn`, the input string is `'21 products are produced by gdn.'`, and the starting index is `4`.
 
 The regular expression pattern `\d\d(.*)gdn` can be broken down as follows:
+
 - `\d\d`: Two consecutive digits.
 - `(.*)`: Any sequence of characters (including none).
 - `gdn`: The string "gdn".
