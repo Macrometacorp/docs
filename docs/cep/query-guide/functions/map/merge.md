@@ -6,7 +6,9 @@ Collect multiple maps to merge as a single map. Only distinct keys are collected
 
 ## Syntax
 
-    <OBJECT> map:merge(<OBJECT> map)
+```sql
+<OBJECT> map:merge(<OBJECT> map)
+```
 
 ## Query Parameters
 
@@ -16,8 +18,11 @@ Collect multiple maps to merge as a single map. Only distinct keys are collected
 
 ## Example 1
 
-    insert into OutputStream
-    select map:merge(map) as stockDetails
-    from StockStream WINDOW TUMBLING_LENGTH(2);
+```sql
+@info(name = 'query1')
+INSERT INTO OutputStream
+SELECT map:merge(map) AS stockDetails
+FROM StockStream WINDOW TUMBLING_LENGTH(2);
+```
 
-For the window expiration of two events, the merge() function will collect attributes of `map` and merge them to a single map, returned as stockDetails.
+For the window expiration of two events, the `map:merge(map)` function collects attributes of the `map` from the `StockStream` and merges them into a single map. The merged map is returned as `stockDetails` in the `OutputStream`.
