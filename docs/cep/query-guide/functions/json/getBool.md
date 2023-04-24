@@ -6,29 +6,40 @@ Function retrieves the `boolean` value specified in the given path of the JSON e
 
 ## Syntax
 
-    <BOOL> json:getBool(<STRING|OBJECT> json, <STRING> path)
+```sql
+<BOOL> json:getBool(<STRING|OBJECT> json, <STRING> path)
+```
 
 ## Query Parameters
 
-| Name | Description                               | Default Value | Possible Data Types | Optional | Dynamic |
-|------|-------------------------------------------|---------------|---------------------|----------|---------|
-| json | The JSON input containing a boolean value.  |               | STRING OBJECT       | No       | Yes     |
-| path | The JSON path to fetch the boolean value. |               | STRING              | No       | Yes     |
+| Name | Description   | Default Value | Possible Data Types | Optional | Dynamic |
+|------|---------------|---------------|---------------------|----------|---------|
+| json | The JSON input containing a boolean value. |        | STRING OBJECT    | No       | Yes   |
+| path | The JSON path to fetch the boolean value. |          | STRING      | No       | Yes    |
 
 ## Example 1
 
-    json:getBool(json,'$.married')
+```sql
+@info(name = 'query1')
+json:getBool(json,'$.married')
+```
 
-If the `json` is the format `{'name' : 'John', 'married' : true}`, the function returns `true` as there is a matching boolean at `$.married`.
+Given a JSON object like `{'name' : 'John', 'married' : true}`, the function `json:getBool(json,'$.married')` searches for the boolean value associated with the key `married` and returns it. In this case, it returns `true`.
 
 ## Example 2
 
-    json:getBool(json,'$.name')
+```sql
+@info(name = 'query1')
+json:getBool(json,'$.name')
+```
 
-If the `json` is the format `{'name' : 'John', 'married' : true}`, the function returns `null` as there is no matching boolean at `$.name`.
+Given a JSON object like `{'name' : 'John', 'married' : true}`, the function `json:getBool(json,'$.name')` searches for a boolean value associated with the key `name`. However, it returns `null` because the value at `$.name` is a string, not a boolean.
 
 ## Example 3
 
-    json:getBool(json,'$.foo')
+```sql
+@info(name = 'query1')
+json:getBool(json,'$.foo')
+```
 
-If the `json` is the format `{'name' : 'John', 'married' : true}`, the function returns `null` as there is no matching element at `$.foo`.
+Given a JSON object like `{'name' : 'John', 'married' : true}`, the function `json:getBool(json,'$.foo')` searches for a boolean value associated with the key `foo`. However, it returns `null` because there is no matching element at `$.foo` in the JSON object.

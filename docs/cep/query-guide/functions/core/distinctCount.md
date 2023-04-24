@@ -7,7 +7,7 @@ This returns the count of distinct occurrences for a given arg.
 ## Syntax
 
 ```sql
-    <LONG> distinctCount(<INT|LONG|DOUBLE|FLOAT|STRING> arg)
+<LONG> distinctCount(<INT|LONG|DOUBLE|FLOAT|STRING> arg)
 ```
 
 ## Query Parameters
@@ -21,15 +21,15 @@ This returns the count of distinct occurrences for a given arg.
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT DISTINCTCOUNT(pageID) AS count
+SELECT distinctCount(pageID) AS count
 FROM fooStream;
 ```
 
-This query, named 'query1', selects records from the `fooStream` and uses the `DISTINCTCOUNT` function to calculate the count of distinct `pageID` values. The resulting distinct count is aliased as `count` and inserted into the `barStream`.
+This query, named 'query1', selects records from the `fooStream` and uses the `distinctCount` function to calculate the count of distinct `pageID` values. The resulting distinct count is aliased as `count` and inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the distinct count of `pageID` values.
 
-`distinctcount(pageID)` for the following output returns `3` when the available values are as follows.  
+`distinctCount(pageID)` for the following output returns `3` when the available values are as follows.  
 
 - WEB_PAGE_1
 - WEB_PAGE_1
