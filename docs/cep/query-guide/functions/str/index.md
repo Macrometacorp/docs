@@ -1,10 +1,12 @@
 ---
 sidebar_position: 1
-title: Sentiment Functions
+title: String Functions
 ---
 
-Sentiment analysis is a crucial aspect of processing and understanding unstructured text data, such as social media posts, customer reviews, or any form of text communication. By determining the underlying sentiment of a piece of text, businesses and organizations can gain valuable insights into the opinions and emotions of their users or customers.
+In the world of streaming data processing, text manipulation is a vital aspect of many applications. To effectively handle various text processing tasks, Macrometa GDN Stream Workers offer an extensive set of string functions designed to perform a wide range of operations on text data in real time.
 
-With the built-in sentiment functionality, you can quickly evaluate and assign sentiment scores to incoming text messages, allowing for immediate analysis and decision-making based on the sentiment of the data.
+The string functions available for stream workers include `concat`, `contains`, `hex`, `length`, `lower`, `trim`, `split`, and many others. These functions enable you to perform operations such as concatenating strings, searching for substrings, converting text to hexadecimal representations, modifying text case, and splitting text based on specific delimiters.
+
+This section explores the string functions offered by Macrometa GDN Stream Workers, showcasing their usage and highlighting their capabilities in text processing within streaming data pipelines.
 
 <DocCardList />
