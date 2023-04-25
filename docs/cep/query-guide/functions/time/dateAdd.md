@@ -22,8 +22,6 @@ Adds the specified time interval to a date.
 | date.format | The format of the date value provided. For example, `yyyy-MM-dd HH:mm:ss.SSS`. | `yyyy-MM-dd HH:mm:ss.SSS` | STRING| Yes      | Yes     |
 | timestamp.in.milliseconds | The date value in milliseconds. For example, `1415712224000L`. | -  | LONG  | Yes      | Yes     |
 
-I apologize for the confusion. Here are the examples for the `dateAdd` function along with improved explanations:
-
 ## Example 1
 
 ```sql
