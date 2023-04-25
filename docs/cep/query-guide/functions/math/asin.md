@@ -6,20 +6,25 @@ If -1 \<= p1 \<= 1, this function returns the arc-sin (inverse sine) value of p1
 
 ## Syntax
 
-    <DOUBLE> math:asin(<FLOAT|DOUBLE> p1)
+```sql
+<DOUBLE> math:asin(<FLOAT|DOUBLE> p1)
+```
 
 ## Query Parameters
 
-| Name | Description                                                             | Default Value | Possible Data Types | Optional | Dynamic |
-|------|-------------------------------------------------------------------------|---------------|---------------------|----------|---------|
+| Name | Description   | Default Value | Possible Data Types | Optional | Dynamic |
+|------|---------------|---------------|---------------------|----------|---------|
 | p1   | The value of the parameter whose arc-sin (inverse sine) value is found. |               | FLOAT DOUBLE        | No       | Yes     |
 
 ## Example
 
-    CREATE STREAM InValueStream (inValue double);
+```sql
+CREATE STREAM InValueStream (inValue double);
 
-    insert into OutMediationStream
-    select math:asin(inValue) as asinValue
-    from InValueStream;
+@info(name = 'calculateArcSine')
+INSERT INTO OutMediationStream
+SELECT math:asin(inValue) AS asinValue
+FROM InValueStream;
+```
 
-If the `inValue` in the input stream is given, the function calculates the arc-sin value of it and returns the arc-sin value to the output stream, OutMediationStream. For example, `asin(0.5)` returns 0.5235987755982989.
+The query calculates the arc-sine value of the `inValue` from the input stream `InValueStream` using the `math:asin()` function. If the `inValue` is given, then the function computes the arc-sine value and returns it to the output stream `OutMediationStream`. For example, `asin(0.5)` returns 0.5235987755982989.

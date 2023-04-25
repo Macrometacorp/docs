@@ -6,20 +6,25 @@ This function returns the unbiased exponent that is used in the representation o
 
 ## Syntax
 
-    <INT> math:getExponent(<INT|LONG|FLOAT|DOUBLE> p1)
+```sql
+<INT> math:getExponent(<INT|LONG|FLOAT|DOUBLE> p1)
+```
 
 ## Query Parameters
 
-| Name | Description                                                          | Default Value | Possible Data Types   | Optional | Dynamic |
-|------|----------------------------------------------------------------------|---------------|-----------------------|----------|---------|
+| Name | Description | Default Value | Possible Data Types   | Optional | Dynamic |
+|------|-------------|---------------|-----------------------|----------|---------|
 | p1   | The value of whose unbiased exponent representation should be found. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
 
 ## Example 1
 
-    CREATE STREAM InValueStream (inValue double);
+```sql
+CREATE STREAM InValueStream (inValue double);
 
-    insert into OutMediationStream
-    select math:getExponent(inValue) as expValue
-    from InValueStream;
+@info(name = 'getExponentValue')
+INSERT INTO OutMediationStream
+SELECT math:getExponent(inValue) AS expValue
+FROM InValueStream;
+```
 
-This function calculates the unbiased exponent of a given input, `inValue` and directs the result to the `OutMediationStream` output stream. For example, `getExponent(60984.1)` returns 15.
+The query calculates the unbiased exponent of a given input, `inValue`, from the `InValueStream` using the `math:getExponent()` function. The result is directed to the output stream `OutMediationStream`. For example, `getExponent(60984.1)` returns 15.
