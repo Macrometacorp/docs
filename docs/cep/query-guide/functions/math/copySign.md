@@ -6,21 +6,26 @@ This function returns a value of an input with the received `magnitude` and `sig
 
 ## Syntax
 
-    <DOUBLE> math:copySign(<INT|LONG|FLOAT|DOUBLE> magnitude, <INT|LONG|FLOAT|DOUBLE> sign)
+```sql
+<DOUBLE> math:copySign(<INT|LONG|FLOAT|DOUBLE> magnitude, <INT|LONG|FLOAT|DOUBLE> sign)
+```
 
 ## Query Parameters
 
-| Name      | Description                                                      | Default Value | Possible Data Types   | Optional | Dynamic |
-|-----------|------------------------------------------------------------------|---------------|-----------------------|----------|---------|
-| magnitude | The magnitude of this parameter is used in the output attribute. |               | INT LONG FLOAT DOUBLE | No       | Yes     |
-| sign      | The sign of this parameter is used in the output attribute.      |               | INT LONG FLOAT DOUBLE | No       | Yes     |
+| Name  | Description  | Default Value | Possible Data Types   | Optional | Dynamic |
+|-------|--------------|---------------|-----------------------|----------|---------|
+| magnitude | The magnitude of this parameter is used in the output attribute. |       | INT LONG FLOAT DOUBLE | No       | Yes     |
+| sign      | The sign of this parameter is used in the output attribute. |     | INT LONG FLOAT DOUBLE | No    | Yes     |
 
 ## Example 1
 
-    CREATE STREAM InValueStream (inValue1 double, inValue2 double);
+```sql
+CREATE STREAM InValueStream (inValue1 double, inValue2 double);
 
-    insert into OutMediationStream
-    select math:copySign(inValue1,inValue2) as copysignValue
-    from InValueStream;
+@info(name = 'copySignValues')
+INSERT INTO OutMediationStream
+SELECT math:copySign(inValue1, inValue2) AS copysignValue
+FROM InValueStream;
+```
 
-If two values are provided as `inValue1` and `inValue2`, the function copies the magnitude and sign of the second argument into the first one and directs the result to the output stream, OutMediatonStream. For example, `copySign(5.6d, -3.0d)` returns -5.6.
+The query takes two input values `inValue1` and `inValue2` from the `InValueStream`. The `math:copySign()` function is used to copy the sign of `inValue2` to `inValue1` while keeping the magnitude of `inValue1`. The result is directed to the output stream `OutMediationStream`. For example, when `inValue1` is 5.6 and `inValue2` is -3.0, the `copysignValue` returned is -5.6.

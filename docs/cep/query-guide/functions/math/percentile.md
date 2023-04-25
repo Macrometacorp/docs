@@ -1,12 +1,14 @@
 ---
-title: tokenize (Aggregate Function)
+title: percentile (Aggregate Function)
 ---
 
 This functions returns the pth percentile value of a given argument.
 
 ## Syntax
 
-    <DOUBLE> math:percentile(<INT|LONG|FLOAT|DOUBLE> arg, <DOUBLE> p)
+```sql
+<DOUBLE> math:percentile(<INT|LONG|FLOAT|DOUBLE> arg, <DOUBLE> p)
+```
 
 ## Query Parameters
 
@@ -17,10 +19,17 @@ This functions returns the pth percentile value of a given argument.
 
 ## Example 1
 
-    CREATE STREAM InValueStream (sensorId int, temperature double);
+```sql
+CREATE STREAM InValueStream (sensorId int, temperature double);
 
-    insert into OutMediationStream
-    select math:percentile(temperature, 97.0) as percentile
-    from InValueStream;
+@info(name = 'calculatePercentile')
+INSERT INTO OutMediationStream
+SELECT math:percentile(temperature, 97.0) AS percentile
+FROM InValueStream#window.timeBatch(60000); -- 1-minute window
+```
 
-This function returns the percentile value based on the argument given. For example, `math:percentile(temperature, 97.0)` returns the 97th percentile value of all the temperature events.
+The `calculatePercentile` query processes the input stream `InValueStream`, which contains the `sensorId` and `temperature` fields. Using a 1-minute time window (60000 milliseconds) with the `#window.timeBatch(60000)` expression, the query calculates the 97th percentile of the temperature values within this time window for the events in `InValueStream`. 
+
+The `math:percentile(temperature, 97.0)` function is used to compute the 97th percentile value of the temperature events. The calculated percentile value is aliased as `percentile` and is directed to the `OutMediationStream`.
+
+In summary, the `calculatePercentile` query monitors the temperature events in the `InValueStream` and computes the 97th percentile of those events within a rolling 1-minute window. The result is then sent to the `OutMediationStream` for further processing or analysis.
