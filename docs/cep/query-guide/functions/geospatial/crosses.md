@@ -24,8 +24,25 @@ Determines if the specified object or location crosses a geographic location spe
 ## Example 1
 
 ```sql
-@info(name = 'query1')
-geo:crosses(km-4354, -0.5, 0.5, {'type':'Polygon','coordinates':[[[0, 0],[2, 0],[2, 1],[0, 1],[0, 0]]]} )
+CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
+CREATE STREAM OutputStream (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction double, confidence double);
+
+@info(name = 'basicBayesianRegressionQuery')
+FROM StreamA#streamingml:bayesianRegression('model1', attribute_0, attribute_1, attribute_2, attribute_3)
+INSERT ALL EVENTS INTO OutputStream;
 ```
 
-In this example, the `geo:crosses()` function is used to determine whether the specified geometry (`km-4354`) crosses the polygon represented by the coordinates `[[0, 0],[2, 0],[2, 1],[0, 1],[0, 0]]`. The function returns `true` because the geometry does indeed cross the `geo.json.geometry.fence`.
+The `basicBayesianRegressionQuery` uses a Bayesian linear regression model named `model1` to predict the label of the feature vector represented by `attribute_0`, `attribute_1`, `attribute_2`, and `attribute_3`. The predicted value and the prediction confidence (inverse of the standard deviation of the predictive distribution) are emitted to the `OutputStream` stream, along with the feature vector. As a result, the `OutputStream` stream is defined as follows: `(attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction double, confidence double)`.
+
+## Example 2
+
+```sql
+CREATE STREAM StreamB (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double);
+CREATE STREAM DetailedOutputStream (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double, prediction double, confidence double);
+
+@info(name = 'advancedBayesianRegressionQuery')
+FROM StreamB#streamingml:bayesianRegression('model2', 500, attribute_0, attribute_1, attribute_2, attribute_3, attribute_4)
+INSERT ALL EVENTS INTO DetailedOutputStream;
+```
+
+The `advancedBayesianRegressionQuery` uses a Bayesian linear regression model named `model2` with 500 prediction samples to predict the label of the feature vector represented by `attribute_0`, `attribute_1`, `attribute_2`, `attribute_3`, and `attribute_4`. The predicted value and the prediction confidence (inverse of the standard deviation of the predictive distribution) are emitted to the `DetailedOutputStream` stream, along with the feature vector. As a result, the `DetailedOutputStream` stream is defined as follows: `(attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double, prediction double, confidence double)`.
