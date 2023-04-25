@@ -15,7 +15,7 @@ Formats the data in string or milliseconds format to the given date format.
 ## Query Parameters
 
 | Name | Description | Default Value | Possible Data Types | Optional | Dynamic |
-|-------------------------|-----------------|---------------------------|---------------------|----------|---------|
+|------|-------------|---------------|---------------------|----------|---------|
 | date.value  | The value of the date. For example, `2014-11-11 13:23:44.657`, `2014-11-11`, `13:23:44.657`.  | -            | STRING| Yes      | Yes     |
 | date.target.format        | The format of the date into which the date value needs to be converted. For example, `yyyy/MM/dd HH:mm:ss`. | | STRING| No       | Yes     |
 | date.source.format        | The format input date.value.For example, `yyyy-MM-dd HH:mm:ss.SSS`.             | `yyyy-MM-dd HH:mm:ss.SSS` | STRING| Yes      | Yes     |
