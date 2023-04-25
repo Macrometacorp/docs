@@ -12,10 +12,10 @@ This function returns `true` if the`input.string` contains the specified sequenc
 
 ## Query Parameters
 
-| Name          | Description                                                | Default Value | Possible Data Types | Optional | Dynamic |
-|---------------|------------------------------------------------------------|---------------|---------------------|----------|---------|
-| input.string  | Input string value.                                        |               | STRING              | No       | Yes     |
-| search.string | The string value to be searched for in the `input.string`. |               | STRING              | No       | Yes     |
+| Name  | Description  | Default Value | Possible Data Types | Optional | Dynamic |
+|-------|--------------|---------------|---------------------|----------|---------|
+| input.string  | Input string value.  |               | STRING   | No       | Yes  |
+| search.string | The string value to be searched for in the `input.string`. |               | STRING  | No       | Yes     |
 
 ## Example 1
 
