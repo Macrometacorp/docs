@@ -26,41 +26,32 @@ After processing, the following events will be arriving at each stream:
 This example shows how to use basic list functions.
 
 ```sql
--- Defines `ProductComboStream` having `string` type attributes `product1`, `product2`, and `product3`.
-CREATE STREAM ProductComboStream ( product1 string, product2 string, product3 string);
-
+CREATE STREAM ProductComboStream (product1 string, product2 string, product3 string);
 
 @info(name = 'Create-list')
--- Create a list with values of `product1`, `product2`, and `product3`.
-insert into NewListStream
-select list:create(product1, product2, product3)
-            as productList
-from ProductComboStream;
-
+INSERT INTO NewListStream
+SELECT list:create(product1, product2, product3) AS productList
+FROM ProductComboStream;
 
 @info(name = 'Check-list')
--- Check if `productList` is a List.
-insert into ListAnalysisStream
-select list:isList(productList) as isList,
--- Check if `productList` contains `'Cake'`.
-       list:contains(productList, 'Cake')
-            as isCakePresent,
--- Check if `productList` is empty.
-       list:isEmpty(productList) as isEmpty,
--- Get the value at index `1` from `productList` .
-       list:get(productList, 1) as valueAt1,
--- Get size of `productList`.
-       list:size(productList) as size
-from NewListStream;
-
+INSERT INTO ListAnalysisStream
+SELECT list:isList(productList) AS isList,
+       list:contains(productList, 'Cake') AS isCakePresent,
+       list:isEmpty(productList) AS isEmpty,
+       list:get(productList, 1) AS valueAt1,
+       list:size(productList) AS size
+FROM NewListStream;
 
 @info(name = 'Clone-and-update')
--- Clone `productList`, add `Toffee` to the end of the list, and remove `Cake` from the list.
-insert into UpdatedListStream
-select list:remove(
+INSERT INTO UpdatedListStream
+SELECT list:remove(
             list:add(list:clone(productList), "Toffee"),
-            "Cake") as productList
-from NewListStream;
+            "Cake") AS productList
+FROM NewListStream;
 ```
 
-<DocCardList />
+This query defines a stream `ProductComboStream` with attributes `product1`, `product2`, and `product3`. It then creates a list using these attributes and sends the list to the `NewListStream`.
+
+The `Check-list` query checks if the created object is a list, verifies if it contains a specific value ('Cake'), and provides information about the list's size, value at index 1, and whether it is empty or not.
+
+Lastly, the `Clone-and-update` query clones the list, adds 'Toffee' to the end of the list, and removes 'Cake' from the list. The resulting list is then sent to the `UpdatedListStream`.

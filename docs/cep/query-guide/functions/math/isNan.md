@@ -6,20 +6,25 @@ This function wraps the `java.lang.Float.isNaN()` and `java.lang.Double.isNaN()`
 
 ## Syntax
 
-    <BOOL> math:isNan(<FLOAT|DOUBLE> p1)
+```sql
+<BOOL> math:isNan(<FLOAT|DOUBLE> p1)
+```
 
 ## Query Parameters
 
-| Name | Description                | Default Value | Possible Data Types | Optional | Dynamic |
-|------|----------------------------|---------------|---------------------|----------|---------|
+| Name | Description | Default Value | Possible Data Types | Optional | Dynamic |
+|------|-------------|---------------|---------------------|----------|---------|
 | p1   | The value of the parameter which the function determines to be either NaN or a number. |               | FLOAT DOUBLE        | No       | Yes     |
 
 ## Example 1
 
-    CREATE STREAM InValueStream (inValue1 double,inValue2 int);
+```sql
+CREATE STREAM InValueStream (inValue1 double, inValue2 int);
 
-    insert into OutMediationStream
-    select math:isNan(inValue1) as isNaN
-    from InValueStream;
+@info(name = 'checkNaN')
+INSERT INTO OutMediationStream
+SELECT math:isNan(inValue1) AS isNaN
+FROM InValueStream;
+```
 
-If the `inValue1` in the input stream has a value that is undefined, then the function considers it as an `NaN` value and directs `True` to the output stream, OutMediationStream. For example, `isNan(java.lang.Math.log(-12d))` returns `true`.
+The query checks if the given `inValue1` from the `InValueStream` is an undefined value (NaN). If it is, the function returns `true`. The result is directed to the output stream `OutMediationStream`. For example, `isNan(java.lang.Math.log(-12d))` returns `true`.

@@ -6,17 +6,22 @@ Function checks whether the list contains the specific value.
 
 ## Syntax
 
-    <BOOL> list:contains(<OBJECT> list, <OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
+```sql
+<BOOL> list:contains(<OBJECT> list, <OBJECT|INT|LONG|FLOAT|DOUBLE|BOOL|STRING> value)
+```
 
 ## Query Parameters
 
-| Name  | Description                                                                | Default Value | Possible Data Types                      | Optional | Dynamic |
-|-------|----------------------------------------------------------------------------|---------------|------------------------------------------|----------|---------|
-| list  | The list that needs to be checked on whether it contains the value or not. |               | OBJECT    | No       | Yes     |
-| value | The value that needs to be checked.           |               | OBJECT INT LONG FLOAT DOUBLE BOOL STRING | No       | Yes     |
+| Name  | Description  | Default Value | Possible Data Types | Optional | Dynamic |
+|-------|--------------|---------------|---------------------|----------|---------|
+| list | The list that needs to be checked on whether it contains the value or not.|      | OBJECT    | No       | Yes     |
+| value | The value that needs to be checked.  |       | OBJECT INT LONG FLOAT DOUBLE BOOL STRING | No    | Yes     |
 
 ## Example 1
 
-    list:contains(stockSymbols, 'IBM')
+```sql
+@info(name = 'query1')
+list:contains(stockSymbols, 'IBM')
+```
 
-Returns `true` if the stockSymbols list contains value `IBM` else it returns `false`.
+The `list:contains(stockSymbols, 'IBM')` function checks if the `stockSymbols` list contains the value `'IBM'`. It returns `true` if the value is found in the list, otherwise, it returns `false`.

@@ -6,12 +6,14 @@ Stream processor performs reordering of out-of-order events using K-Slack algori
 
 ## Syntax
 
-    reorder:kslack(<LONG> timestamp)
-    reorder:kslack(<LONG> timestamp, <LONG> timeout)
-    reorder:kslack(<LONG> timestamp, <BOOL> discard.late.arrival)
-    reorder:kslack(<LONG> timestamp, <LONG> timeout, <LONG> max.k)
-    reorder:kslack(<LONG> timestamp, <LONG> timeout, <BOOL> discard.late.arrival)
-    reorder:kslack(<LONG> timestamp, <LONG> timeout, <LONG> max.k, <BOOL> discard.late.arrival)
+```sql
+reorder:kslack(<LONG> timestamp)
+reorder:kslack(<LONG> timestamp, <LONG> timeout)
+reorder:kslack(<LONG> timestamp, <BOOL> discard.late.arrival)
+reorder:kslack(<LONG> timestamp, <LONG> timeout, <LONG> max.k)
+reorder:kslack(<LONG> timestamp, <LONG> timeout, <BOOL> discard.late.arrival)
+reorder:kslack(<LONG> timestamp, <LONG> timeout, <LONG> max.k, <BOOL> discard.late.arrival)
+```
 
 ## Query Parameters
 
@@ -24,11 +26,17 @@ Stream processor performs reordering of out-of-order events using K-Slack algori
 
 ## Example 1
 
-    CREATE STREAM StockStream (eventTime long, symbol string, volume long);
+```sql
+CREATE STREAM StockStream (eventTime long, symbol string, volume long);
 
-    @info(name = 'query1')
-    insert into OutputStream
-    select eventTime, symbol, volume
-    from StockStream#reorder:kslack(eventTime, 5000);
+@info(name = 'kslackReorderingQuery')
+INSERT INTO OutputStream
+SELECT eventTime, symbol, volume
+FROM StockStream#reorder:kslack(eventTime, 5000);
+```
 
-The query reorders events based on the `eventTime` attribute value, and it forcefully flushes all the events who have arrived older than the given `timeout` value (`5000` milliseconds) every second.
+The `kslackReorderingQuery` processes stock events from the `StockStream` and outputs the reordered events to the `OutputStream`.
+
+The `#reorder:kslack(eventTime, 5000)` part of the query is an event reordering extension. It reorders events based on the `eventTime` attribute value and forcefully flushes all events that have arrived older than the given `timeout` value (in this case, `5000` milliseconds or 5 seconds) every second.
+
+The query's output includes the `eventTime`, `symbol`, and `volume` of the reordered events. The result is then directed to the `OutputStream`.

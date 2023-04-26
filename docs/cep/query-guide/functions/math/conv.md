@@ -6,22 +6,27 @@ This function converts `a` from the `fromBase` base to the `toBase` base.
 
 ## Syntax
 
-    <STRING> math:conv(<STRING> a, <INT> from.base, <INT> to.base)
+```sql
+<STRING> math:conv(<STRING> a, <INT> from.base, <INT> to.base)
+```
 
 ## Query Parameters
 
-| Name      | Description        | Default Value | Possible Data Types | Optional | Dynamic |
-|-----------|-----------------|---------------|---------------------|----------|---------|
-| a         | The value whose base should be changed. Input should be given as a `String`. |               | STRING              | No       | Yes     |
-| from.base | The source base of the input parameter `a`.    |               | INT                 | No       | Yes     |
-| to.base   | The target base that the input parameter `a` should be converted into.       |               | INT                 | No       | Yes     |
+| Name   | Description  | Default Value | Possible Data Types | Optional | Dynamic |
+|--------|--------------|---------------|---------------------|----------|---------|
+| a   | The value whose base should be changed. Input should be given as a `String`. |               | STRING              | No       | Yes     |
+| from.base | The source base of the input parameter `a`.    |               | INT    | No  | Yes |
+| to.base | The target base that the input parameter `a` should be converted into. |      | INT | No  | Yes   |
 
 ## Example 1
 
-    CREATE STREAM InValueStream (inValue string,fromBase int,toBase int);
+```sql
+CREATE STREAM InValueStream (inValue string, fromBase int, toBase int);
 
-    insert into OutMediationStream
-    select math:conv(inValue,fromBase,toBase) as convertedValue
-    from InValueStrea;
+@info(name = 'convertBaseValue')
+INSERT INTO OutMediationStream
+SELECT math:conv(inValue, fromBase, toBase) AS convertedValue
+FROM InValueStream;
+```
 
-If the `inValue` in the input stream is given, and the base in which it currently resides in and the base to which it should be converted to is specified, then the function converts it into a string in the target base and directs it to the output stream, OutMediationStream. For example, `conv("7f", 16, 10)` returns `"127"`.
+The query takes the `inValue`, `fromBase`, and `toBase` from the input stream `InValueStream`. The `math:conv()` function is used to convert the `inValue` from its current base `fromBase` to the target base `toBase`. The result is directed to the output stream `OutMediationStream`. For example, when `inValue` is "7f", `fromBase` is 16, and `toBase` is 10, the `convertedValue` returned is "127".
