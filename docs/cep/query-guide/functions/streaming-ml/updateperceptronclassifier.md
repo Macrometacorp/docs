@@ -6,16 +6,18 @@ This extension builds/updates a linear binary classification Perceptron model.
 
 ## Syntax
 
-    streamingml:updatePerceptronClassifier(<STRING> model.name, <BOOL|STRING> model.label, <DOUBLE|FLOAT|INT|LONG> model.feature, <DOUBLE|FLOAT|INT|LONG> ...)
-    streamingml:updatePerceptronClassifier(<STRING> model.name, <BOOL|STRING> model.label, <DOUBLE> learning.rate, <DOUBLE|FLOAT|INT|LONG> model.feature, <DOUBLE|FLOAT|INT|LONG> ...)
+```sql
+streamingml:updatePerceptronClassifier(<STRING> model.name, <BOOL|STRING> model.label, <DOUBLE|FLOAT|INT|LONG> model.feature, <DOUBLE|FLOAT|INT|LONG> ...)
+streamingml:updatePerceptronClassifier(<STRING> model.name, <BOOL|STRING> model.label, <DOUBLE> learning.rate, <DOUBLE|FLOAT|INT|LONG> model.feature, <DOUBLE|FLOAT|INT|LONG> ...)
+```
 
 ## Query Parameters
 
-| Name          | Description     | Default Value | Possible Data Types   | Optional | Dynamic |
-|---------------|--------------------------------------|---------------|-----------------------|----------|---------|
-| model.name    | The name of the model to be built/updated.      |               | STRING| No       | No      |
-| model.label   | The attribute of the label or the class of the dataset.         |               | BOOL STRING           | No       | Yes     |
-| learning.rate | The learning rate of the Perceptron algorithm.  | 0.1           | DOUBLE| Yes      | No      |
+| Name  | Description     | Default Value | Possible Data Types   | Optional | Dynamic |
+|-------|-----------------|---------------|-----------------------|----------|---------|
+| model.name  | The name of the model to be built/updated.  |        | STRING| No | No |
+| model.label   | The attribute of the label or the class of the dataset. |               | BOOL STRING  | No       | Yes     |
+| learning.rate | The learning rate of the Perceptron algorithm.  | 0.1   | DOUBLE| Yes      | No      |
 | model.feature | Features of the model that need to be attributes of the stream. |               | DOUBLE FLOAT INT LONG | No       | Yes     |
 
 ## Extra Return Attributes
