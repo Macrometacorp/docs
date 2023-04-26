@@ -214,7 +214,7 @@
     { "source": "/docs/queryworkers/redis/data-type-format", "destination": "/" },
     { "source": "/docs/queryworkers/redis/redis-sdks", "destination": "/" },
     { "source": "/docs/queryworkers/running-queries", "destination": "/" },
-    { "source": "/docs/search/getting-started", "destination": "/" }
+    { "source": "/docs/search/getting-started", "destination": "/" },
     { "source": "/docs/search/patterns", "destination": "/" }
   ]
 }
