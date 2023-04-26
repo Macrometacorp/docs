@@ -6,7 +6,9 @@ This converts the input given in kilograms into tonnes.
 
 ## Syntax
 
-    <DOUBLE> unitconversion:kgTot(<INT|LONG|FLOAT|DOUBLE> p1)
+```sql
+<DOUBLE> unitconversion:kgTot(<INT|LONG|FLOAT|DOUBLE> p1)
+```
 
 ## Query Parameters
 
