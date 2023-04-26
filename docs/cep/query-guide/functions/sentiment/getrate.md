@@ -19,7 +19,23 @@ This provides the sentiment value for a given string as per the AFINN word list.
 ## Example 1
 
 ```sql
-sentiment:getRate("George is a good person")
+@info(name = 'sentimentScoreExample')
+SELECT sentiment:getRate('George is a good person') AS sentimentScore;
 ```
 
-The `sentiment:getRate` function calculates the sentiment score for the given input string, "George is a good person," by referring to the AFINN word list. The AFINN word list is a collection of words with assigned sentiment scores ranging from -5 (very negative) to 5 (very positive). In this case, the sentiment score for the input string is 3, which represents a positive sentiment.
+The `sentimentScoreExample` demonstrates the use of the `sentiment:getRate` function to calculate the sentiment score for a given input string, 'George is a good person.' The function refers to the AFINN word list, a collection of words with assigned sentiment scores ranging from -5 (very negative) to 5 (very positive). In this example, the sentiment score for the input string is 3, indicating a positive sentiment.
+
+## Example 2
+
+```sql
+CREATE STREAM InputDataStream (eventTime long, message string);
+
+CREATE STREAM OutputStream (eventTime long, sentimentScore double);
+
+@info(name = 'sentimentAnalysisQuery')
+INSERT INTO OutputStream
+SELECT eventTime, sentiment:getRate(message) AS sentimentScore
+FROM InputDataStream;
+```
+
+The `sentimentAnalysisQuery` processes events from the `InputDataStream` and calculates the sentiment score for the `message` attribute using the `sentiment:getRate()` function. This function refers to the AFINN word list, a collection of words with assigned sentiment scores ranging from -5 (very negative) to 5 (very positive). The query outputs the `eventTime` and the calculated `sentimentScore` of the events to the `OutputStream`.

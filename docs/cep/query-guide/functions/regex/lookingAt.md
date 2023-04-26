@@ -20,30 +20,31 @@ Matches the input.sequence from the beginning against the regex pattern, and unl
 ## Example 1
 
 ```sql
-regex:lookingAt('\d\d(.*)(gdn.*)', '21 products are produced by gdn currently in Sri Lanka')
+@info(name = 'regexLookingAtExample1')
+SELECT regex:lookingAt('\\d\\d(.*)(gdn.*)', '21 products are produced by gdn currently in Sri Lanka') AS lookingAtResult;
 ```
 
-The `regex:lookingAt()` function checks if the input sequence matches the provided regular expression pattern from the beginning of the string. In this example, the regular expression pattern is `\d\d(.*)(gdn.*)`, and the input string is `'21 products are produced by gdn currently in Sri Lanka'`.
-
-The regular expression pattern `\d\d(.*)(gdn.*)` can be broken down as follows:
-- `\d\d`: Two consecutive digits.
-- `(.*?)`: Any sequence of characters (including none) - Group 1.
-- `(gdn.*)`: The string "gdn" followed by any sequence of characters (including none) - Group 2.
-
-Because the input string `'21 products are produced by gdn currently in Sri Lanka'` starts with two digits, followed by a sequence of characters and then the string "gdn" with any sequence of characters, it matches the regular expression pattern `\d\d(.*)(gdn.*)` from the beginning. As a result, the function returns `true`.
+The `regexLookingAtExample1` demonstrates the use of the `regex:lookingAt()` function to check if the input string matches the provided regular expression pattern from the beginning. In this example, the input string is `'21 products are produced by gdn currently in Sri Lanka'`, and the regular expression pattern is `\\d\\d(.*)(gdn.*)`. The function returns `true` because the input string matches the pattern from the beginning.
 
 ## Example 2
 
 ```sql
-regex:lookingAt('gdn(.*)middleware(.*)', 'sample test string and gdn is situated in trace and it's a middleware company')
+@info(name = 'regexLookingAtExample2')
+SELECT regex:lookingAt('gdn(.*)middleware(.*)', 'sample test string and gdn is situated in trace and it''s a middleware company') AS lookingAtResult;
 ```
 
-The `regex:lookingAt()` function checks if the input sequence matches the provided regular expression pattern from the beginning of the string. In this example, the regular expression pattern is `gdn(.*)middleware(.*)`, and the input string is `'sample test string and gdn is situated in trace and it's a middleware company'`.
+The `regexLookingAtExample2` demonstrates the use of the `regex:lookingAt()` function to check if the input string matches the provided regular expression pattern from the beginning. In this example, the input string is `'sample test string and gdn is situated in trace and it's a middleware company'`, and the regular expression pattern is `gdn(.*)middleware(.*)`. The function returns `false` because the input string does not match the pattern from the beginning.
 
-The regular expression pattern `gdn(.*)middleware(.*)` can be broken down as follows:
-- `gdn`: The string "gdn".
-- `(.*)`: Any sequence of characters (including none) - Group 1.
-- `middleware`: The string "middleware".
-- `(.*)`: Any sequence of characters (including none) - Group 2.
+## Example 3
 
-The input string `'sample test string and gdn is situated in trace and it's a middleware company'` does not start with the string "gdn". As a result, it does not match the regular expression pattern `gdn(.*)middleware(.*)` from the beginning. Therefore, the function returns `false`.
+```sql
+CREATE STREAM InputStream (eventTime long, inputText string, regexPattern string);
+CREATE STREAM OutputStream (eventTime long, lookingAtRegex bool);
+
+@info(name = 'regexLookingAtStreamWorker')
+INSERT INTO OutputStream
+SELECT eventTime, regex:lookingAt(regexPattern, inputText) AS lookingAtRegex
+FROM InputStream;
+```
+
+The `regexLookingAtStreamWorker` processes events from the `InputStream` and uses the `regex:lookingAt()` function to check if the `inputText` attribute matches the specified `regexPattern` attribute from the beginning of the string. The query outputs the `eventTime` and a boolean value `lookingAtRegex` for each event to the `OutputStream`. The boolean value is `true` if the input string matches the regular expression pattern from the beginning, and `false` otherwise.
