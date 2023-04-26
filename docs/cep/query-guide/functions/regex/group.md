@@ -21,15 +21,31 @@ Returns the subsequence captured by the given group during the regex match opera
 ## Example 1
 
 ```sql
-regex:group('\d\d(.*)(gdn.*)(gdn.*)', '21 products are produced within 10 years by gdn currently by gdn employees', 3)
+@info(name = 'regexGroupExample1')
+SELECT regex:group('\\d\\d(.*)(gdn.*)(gdn.*)', '21 products are produced within 10 years by gdn currently by gdn employees', 3) AS groupResult;
 ```
 
-The `regex:group()` function is used to extract a specific group from the input string, based on the provided regular expression pattern and the group ID. In this example, the regular expression pattern is `\d\d(.*)(gdn.*)(gdn.*)`, the input string is `'21 products are produced within 10 years by gdn currently by gdn employees'`, and the group ID is `3`.
+The `regexGroupExample1` demonstrates the use of the `regex:group()` function to extract a specific group from the input string, based on the provided regular expression pattern and the group ID. In this example, the regular expression pattern is `\\d\\d(.*)(gdn.*)(gdn.*)`, the input string is `'21 products are produced within 10 years by gdn currently by gdn employees'`, and the group ID is `3`. The function returns `'gdn employees'` because it matches group 3 in the input string.
 
-The regular expression pattern `\d\d(.*)(gdn.*)(gdn.*)` can be broken down as follows:
-- `\d\d`: Two consecutive digits.
-- `(.*?)`: Any sequence of characters (including none) - Group 1.
-- `(gdn.*)`: The string "gdn" followed by any sequence of characters (including none) - Group 2.
-- `(gdn.*)`: The string "gdn" followed by any sequence of characters (including none) - Group 3.
+## Example 2
 
-In this case, the pattern matches the input string, and group 3 captures the subsequence `'gdn employees'`. Therefore, the function returns `'gdn employees'`.
+```sql
+@info(name = 'regexGroupExample2')
+SELECT regex:group('a(\\d+)([a-zA-Z]+)([a-zA-Z]+)', 'a1234xyzabc', 2) AS groupResult;
+```
+
+The `regexGroupExample2` demonstrates the use of the `regex:group()` function to extract a specific group from the input string, based on the provided regular expression pattern and the group ID. In this example, the regular expression pattern is `a(\\d+)([a-zA-Z]+)([a-zA-Z]+)`, the input string is `'a1234xyzabc'`, and the group ID is `2`. The function returns `'xyz'` because it matches group 2 in the input string.
+
+## Example 3
+
+```sql
+CREATE STREAM InputStream (eventTime long, inputText string, regexPattern string, groupNumber int);
+CREATE STREAM OutputStream (eventTime long, extractedGroup string);
+
+@info(name = 'regexGroupStreamWorker')
+INSERT INTO OutputStream
+SELECT eventTime, regex:group(regexPattern, inputText, groupNumber) AS extractedGroup
+FROM InputStream;
+```
+
+The `regexGroupStreamWorker` processes events from the `InputStream` and uses the `regex:group()` function to extract a specific group from the `inputText` attribute, based on the provided `regexPattern` attribute and the `groupNumber` attribute. The query outputs the `eventTime` and the extracted group as the `extractedGroup` attribute for each event to the `OutputStream`.

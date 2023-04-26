@@ -23,16 +23,7 @@ Matches the entire input.sequence against the regex pattern.
 regex:matches('gdn(.*)middleware(.*)', 'gdn is situated in trace and its a middleware company')
 ```
 
-The `regex:matches()` function checks if the entire input sequence matches the provided regular expression pattern. In this example, the regular expression pattern is `gdn(.*)middleware(.*)`, and the input string is `'gdn is situated in trace and its a middleware company'`.
-
-The regular expression pattern `gdn(.*)middleware(.*)` can be broken down as follows:
-
-- `gdn`: The string "gdn".
-- `(.*)`: Any sequence of characters (including none) - Group 1.
-- `middleware`: The string "middleware".
-- `(.*)`: Any sequence of characters (including none) - Group 2.
-
-The input string `'gdn is situated in trace and its a middleware company'` matches the regular expression pattern `gdn(.*)middleware(.*)` entirely. Therefore, the function returns `true`.
+The `regex:matches()` function checks if the entire input sequence matches the provided regular expression pattern. In this example, the regular expression pattern is `gdn(.*)middleware(.*)`, and the input string is `'gdn is situated in trace and its a middleware company'`. The function returns `true` because the input string matches the pattern entirely.
 
 ## Example 2
 
@@ -40,11 +31,18 @@ The input string `'gdn is situated in trace and its a middleware company'` match
 regex:matches('gdn(.*)middleware', 'gdn is situated in trace and its a middleware company')
 ```
 
-The `regex:matches()` function checks if the entire input sequence matches the provided regular expression pattern. In this example, the regular expression pattern is `gdn(.*)middleware`, and the input string is `'gdn is situated in trace and its a middleware company'`.
+The `regex:matches()` function checks if the entire input sequence matches the provided regular expression pattern. In this example, the regular expression pattern is `gdn(.*)middleware`, and the input string is `'gdn is situated in trace and its a middleware company'`. The function returns `false` because the input string does not match the pattern entirely.
 
-The regular expression pattern `gdn(.*)middleware` can be broken down as follows:
-- `gdn`: The string "gdn".
-- `(.*)`: Any sequence of characters (including none).
-- `middleware`: The string "middleware".
+## Example 3
 
-The input string `'gdn is situated in trace and its a middleware company'` does not match the regular expression pattern `gdn(.*)middleware` entirely because the input sequence contains additional characters after "middleware". Therefore, the function returns `false`.
+```sql
+CREATE STREAM InputStream (eventTime long, inputText string, regexPattern string);
+CREATE STREAM OutputStream (eventTime long, matchesRegex bool);
+
+@info(name = 'regexMatchesStreamWorker')
+INSERT INTO OutputStream
+SELECT eventTime, regex:matches(regexPattern, inputText) AS matchesRegex
+FROM InputStream;
+```
+
+The `regexMatchesStreamWorker` processes events from the `InputStream` and uses the `regex:matches()` function to check if the `inputText` attribute matches the specified `regexPattern` attribute entirely. The query outputs the `eventTime` and a boolean value `matchesRegex` for each event to the `OutputStream`. The boolean value is `true` if the input string matches the regular expression pattern entirely, and `false` otherwise.
