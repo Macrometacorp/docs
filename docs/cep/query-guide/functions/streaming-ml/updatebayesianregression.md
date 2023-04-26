@@ -39,6 +39,7 @@ streamingml:updateBayesianRegression(<STRING> model.name, <INT|DOUBLE|LONG|FLOAT
 ```sql
 CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double);
 
+@info(name = 'updateBayesianRegressionQuery')
 INSERT ALL EVENTS INTO OutputStream
 FROM StreamA#streamingml:updateBayesianRegression('model1', attribute_4, attribute_0, attribute_1, attribute_2, attribute_3);
 ```
@@ -50,6 +51,7 @@ This query builds or updates a Bayesian Linear regression model named `model1` u
 ```sql
 CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double);
 
+@info(name = 'updateBayesianRegressionQuery')
 INSERT ALL EVENTS INTO OutputStream
 FROM StreamA#streamingml:updateBayesianRegression('model1', attribute_4, 2, 'NADAM', 0.01, attribute_0, attribute_1, attribute_2, attribute_3);
 ```
@@ -61,6 +63,7 @@ This query builds or updates a Bayesian Linear regression model named `model1` w
 ```sql
 CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double, attribute_5 double);
 
+@info(name = 'updateBayesianRegressionQuery')
 INSERT ALL EVENTS INTO OutputStream
 FROM StreamA#streamingml:updateBayesianRegression('model1', attribute_5, 3, 'RMSPROP', 0.01, attribute_0, attribute_1, attribute_2, attribute_3, attribute_4);
 ```
