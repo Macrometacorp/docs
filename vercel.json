@@ -161,6 +161,8 @@
     { "source": "/docs/collections/dynamo/using-mmdynamo-browser", "destination": "/" },
     { "source": "/docs/collections/dynamo/using-mmdynamo-browser/", "destination": "/" },
     { "source": "/docs/collections/graphs/example-graphs", "destination": "/" },
+    { "source": "/docs/cep/examples/data-summarization", "destination": "/" },
+    { "source": "/docs/graphs/graph-concepts/working-with-graphs", "destination": "/" },
     { "source": "/docs/graphs/example-graphs", "destination": "/" },
     { "source": "/docs/graphs/graph-examples/multiple-path-search", "destination": "/" },
     { "source": "/docs/graphs/graph-queries/graph-functions", "destination": "/" },
@@ -212,6 +214,7 @@
     { "source": "/docs/queryworkers/redis/data-type-format", "destination": "/" },
     { "source": "/docs/queryworkers/redis/redis-sdks", "destination": "/" },
     { "source": "/docs/queryworkers/running-queries", "destination": "/" },
+    { "source": "/docs/search/getting-started", "destination": "/" }
     { "source": "/docs/search/patterns", "destination": "/" }
   ]
 }
