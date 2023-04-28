@@ -17,6 +17,10 @@ When you create a new key-value store, you can select the **Blob storage** check
 
 File limit size is 1 MB. This can be changed, but can never exceed 2 MB.
 
+Add records via API. Adding records via GUI is not supported.
+
+** Available in Play upon request, waiting to hear from Justin if we should document or not.
+
 The [x](../account-management/plans/) section was created as a result of this change.
 
 ## Feature Updates
