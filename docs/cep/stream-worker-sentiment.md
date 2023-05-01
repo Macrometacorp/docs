@@ -7,7 +7,7 @@ title: Real-time Sentiment Analysis
 
 The sentiment function is an extension in Macrometa's Stream Workers that allows you to calculate the sentiment score of a given text. It uses the AFINN word list, a collection of words with assigned sentiment scores ranging from -5 (very negative) to 5 (very positive). By using this function, you can analyze the sentiment of a piece of text, such as a tweet or a news headline, in real-time.
 
-For more technical information, refer to the [sentiment:getRate](query-guide/functions/sentiment/getrate.md) documentation.
+For more technical information, refer to the [sentiment:getRate](query-guide/functions/sentiment/getrate) documentation.
 
 ## Why Use Sentiment Analysis?
 
