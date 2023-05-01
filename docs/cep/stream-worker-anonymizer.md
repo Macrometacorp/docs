@@ -7,6 +7,8 @@ title: Real-time Data Anonymization
 
 The anonymizer function is an extension in Macrometa's Stream Workers that allows you to replace sensitive data with fake data that resembles the original. This function can be used to obfuscate various data types, such as names, addresses, phone numbers, email addresses, and more. By using this function, you can ensure the privacy and protection of sensitive data while still retaining its structure and format.
 
+For more technical information, refer to the [anonymizer](query-guide/functions/anonymizer/anonymizer) documentation.
+
 ## Why Anonymize Data?
 
 Anonymizing sensitive data is essential for complying with data protection regulations and safeguarding user privacy. The anonymizer function is useful in the following situations:
