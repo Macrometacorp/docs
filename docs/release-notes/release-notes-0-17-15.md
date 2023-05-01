@@ -94,6 +94,6 @@ The following defects were fixed in this release.
 
 | Defect # | Description |
 | -------- | ----------- |
-| x        | x           |
+| CEP-522     | Stream workers not working as expected when updating or inserting events in a table.     |
 |          |             |
 |          |             |
