@@ -64,7 +64,7 @@ For example, this statement creates a global collection:
 CREATE STORE SensorTable WITH(type=’database’, collection=’SampleTable’, map.type=’json’) (sensorId string, temperature double);
 ```
 
-## Parameters
+## Common Parameters
 
 The following parameters are configured in a table definition:
 
@@ -74,11 +74,20 @@ The following parameters are configured in a table definition:
 | GLOBAL or LOCAL      | Whether the table is globally or locally replicated. Default is `GLOBAL`. |
 | attribute name   | The schema of the table is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
 | attribute type   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
-| from        | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.      | _from         | STRING              | Yes      |
-| to          | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a destination node of the edge. | _to      | STRING              | Yes      |
+| from        | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.      |
+| to          | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a destination node of the edge. |
 | [WITH (property_name = expression [, ...])] | Optional properties for the new table, such as a time-to-live or a partition key. |
 | SELECT select_expr [, ...] | The selection criteria for the new table. |
 | FROM from_stream … | The name of the existing stream to select data from. |
+
+## Store Parameters
+
+The following parameters apply only to `CREATE STORE` definitions:
+
+| Parameter | Description |
+| --------- | ----------- |
+| batch.size | Macrometa persists documents until the batch size is reached, then processes all accumulated documents. Use this parameter if you have a high data flow. Default value is 1.     |
+| batch.flush.time.ms | Macrometa persists documents until the batch time is reached, then processes all accumulated documents. Use this parameter if you have a high data flow. Default value 0, meaning Macrometa processes documents as soon as they arrive.            |
 
 ## Example 1
 
