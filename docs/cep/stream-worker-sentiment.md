@@ -9,7 +9,7 @@ The sentiment function is an extension in Macrometa's Stream Workers that allows
 
 For more technical information, refer to the [sentiment:getRate](query-guide/functions/sentiment/getrate.md) documentation.
 
-## Why and when to use sentiment analysis?
+## Why Use Sentiment Analysis?
 
 Sentiment analysis can provide valuable insights into how people feel about a particular topic, product, or event. By analyzing the sentiment of text data, you can identify patterns, trends, and potential issues that might require further attention. Sentiment analysis is useful in the following situations:
 
