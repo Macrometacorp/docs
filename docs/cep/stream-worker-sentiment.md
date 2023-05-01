@@ -28,7 +28,7 @@ These examples showcase how the sentiment function can be applied to various ind
 ```sql
 CREATE STREAM NewsHeadlinesStream (headline string);
 
-CREATE STREAM SentimentAnalysisStream (headline string, sentimentScore int);
+CREATE SINK STREAM SentimentAnalysisStream (headline string, sentimentScore int);
 
 @info(name = 'simpleSentimentAnalysis')
 INSERT INTO SentimentAnalysisStream
@@ -43,7 +43,7 @@ The `simpleSentimentAnalysis` processes news headlines from the `NewsHeadlinesSt
 ```sql
 CREATE STREAM SocialMediaPostsStream (timestamp long, username string, post string);
 
-CREATE STREAM SentimentAnalysisStream (timestamp long, username string, post string, sentimentScore int);
+CREATE SINK STREAM SentimentAnalysisStream (timestamp long, username string, post string, sentimentScore int);
 
 @info(name = 'socialMediaSentimentAnalysis')
 INSERT INTO SentimentAnalysisStream
@@ -60,7 +60,7 @@ CREATE STREAM CustomerReviewsStream (productId string, timestamp long, username 
 
 CREATE TABLE AverageSentimentTable (productId string PRIMARY KEY, avgSentiment double);
 
-CREATE STREAM SentimentAnalysisStream (productId string, timestamp long, username string, review string, sentimentScore int);
+CREATE SINK STREAM SentimentAnalysisStream (productId string, timestamp long, username string, review string, sentimentScore int);
 
 @info(name = 'customerReviewsSentimentAnalysis')
 INSERT INTO SentimentAnalysisStream
