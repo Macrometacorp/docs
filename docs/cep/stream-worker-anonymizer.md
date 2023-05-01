@@ -1,17 +1,13 @@
 ---
 sidebar_position: 110
-title: Data Anonymization with Stream Workers
+title: Real-time Data Anonymization
 ---
 
 # Data Anonymization with Stream Workers
 
-Macrometa's Stream Workers offer a powerful way to process and protect sensitive data in real-time. One of the functions available is the anonymizer function, which is useful for various industries, including healthcare, financial services, e-commerce and retail, IoT, and 5G telecom and wireless. This article will provide an overview of the anonymizer function, explain why and when to use it, and demonstrate its value through three Stream Worker examples.
-
-## What is the anonymizer function?
-
 The anonymizer function is an extension in Macrometa's Stream Workers that allows you to replace sensitive data with fake data that resembles the original. This function can be used to obfuscate various data types, such as names, addresses, phone numbers, email addresses, and more. By using this function, you can ensure the privacy and protection of sensitive data while still retaining its structure and format.
 
-## Why and when to use the anonymizer function?
+## Why Use the Anonymizer Function?
 
 Anonymizing sensitive data is essential for complying with data protection regulations and safeguarding user privacy. The anonymizer function is useful in the following situations:
 
