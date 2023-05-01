@@ -51,6 +51,17 @@ curl -X 'GET'   'https://api-your-macrometa.eng.macrometa.io/_api/key/root_api_k
 }
 ```
 
+### Stream Worker Store Batch Support
+
+In previous versions of Macrometa, stream worker stores could only persist one document per call. The 17.15 release supports batches, persisting documents until the value of one of the two new parameters is reached.
+
+The new parameters are:
+
+- `batch.size`
+- `batch.flush.time.ms`
+
+[Stream Worker Tables](../cep/table/) was updated as a result of this change.
+
 ### xx
 
 xxxx
