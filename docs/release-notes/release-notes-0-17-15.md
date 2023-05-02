@@ -95,5 +95,7 @@ The following defects were fixed in this release.
 | Defect # | Description |
 | -------- | ----------- |
 | CEP-522     | Stream workers not working as expected when updating or inserting events in a table.     |
+| CEP-537  | Every time a stream worker is unpublished and published, it reads the topic from earliest position instead of last read position.          |
+| DB-2384         |  Inconsistency in regions for different fabrics created during connectivity tests.           |
 |          |             |
 |          |             |
