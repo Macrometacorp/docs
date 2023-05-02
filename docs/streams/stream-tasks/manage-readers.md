@@ -5,8 +5,9 @@ title: Manage Readers
 
 Global Data Network (GDN) stream readers are similar to stream consumers, but there are two crucial differences between them:
 
-- Readers allow you to specify the starting point for processing messages within a stream. In contrast, consumers always begin with the latest available unacknowledged message.
+- Readers allow you to specify the starting point for processing messages within a stream. In contrast, consumers always begin with the earliest or latest available unacknowledged message.
 - Unlike consumers, readers do not retain data or acknowledge messages. This means that readers can access messages without affecting other consumers or the message state within the stream.
+- Readers read both acknowledged and unacknowledged messages.
 
 ## When to Use Readers
 
