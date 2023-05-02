@@ -9,9 +9,13 @@ This document describes what has changed in Macrometa release 0.17.15. To check 
 
 The following new features are included in this release.
 
-### dddd
+### Blob Storage in KV Store
 
-ddd
+Key-value (KV) store collections now allow you to store blobs (arbitrary binary data, such as images).
+
+When you create a new key-value store, you can select the **Blob storage** checkbox. This marks the collection as a blob-based KV collection. These collections can only be used to store blobs. Once created, this setting cannot be changed.
+
+File limit size is 1 MB. This can be changed, but can never exceed 2 MB.
 
 The [x](../account-management/plans/) section was created as a result of this change.
 
@@ -75,6 +79,6 @@ The following defects were fixed in this release.
 
 | Defect # | Description |
 | -------- | ----------- |
-| x        | x           |
-|          |             |
+| CEP-537  | Every time a stream worker is unpublished and published, it reads the topic from earliest position instead of last read position.          |
+| DB-2384         |  Inconsistency in regions for different fabrics created during connectivity tests.           |
 |          |             |
