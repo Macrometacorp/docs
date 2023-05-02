@@ -67,9 +67,7 @@ JOIN AgeRangeTable as ar ON pr.age BETWEEN ar.minAge AND ar.maxAge;
 
 The `anonymizePatientData` query processes patient records from the `PatientRecordsStream`, anonymizes the full name and SSN using the `pii:fake()` function, and maps age to age ranges using a join with the `AgeRangeTable`. The query outputs the anonymized data to the `AnonymizedRecordsStream`.
 
-### Example 3
-
-PRIMARY KEY not supported
+### Example 3 - REDO
 
 ```sql
 CREATE STREAM IoTDeviceDataStream (fullName string, address string, email string, deviceID string, eventType string, value double);
