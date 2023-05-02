@@ -21,7 +21,7 @@ This returns a boolean value by comparing two strings lexicographically without 
 
 ```sql
 @info(name = 'equalsIgnoreCaseExample')
-SELECT equalsIgnoreCase('gdn', 'GDN') AS isEqual;
+SELECT str:equalsIgnoreCase('gdn', 'GDN') AS isEqual;
 ```
 
 The `equalsIgnoreCaseExample` demonstrates the use of the `equalsIgnoreCase()` function to check if two given strings are equal, ignoring the case of the characters. In this example, the input strings are 'gdn' and 'GDN'. The function returns `true` because the input strings are equal, ignoring the case.
@@ -35,7 +35,7 @@ CREATE SINK STREAM OutputStream (eventTime long, isEqual bool);
 
 @info(name = 'equalsIgnoreCaseStreamWorker')
 INSERT INTO OutputStream
-SELECT eventTime, equalsIgnoreCase(string1, string2) AS isEqual
+SELECT eventTime, str:equalsIgnoreCase(string1, string2) AS isEqual
 FROM InputDataStream;
 ```
 
