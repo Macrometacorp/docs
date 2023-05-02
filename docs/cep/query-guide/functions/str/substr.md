@@ -65,7 +65,7 @@ The `substringExample4` uses the `str:substring()` function to extract a substri
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string, startIndex int, length int);
-CREATE STREAM OutputStream (eventTime long, substringResult string);
+CREATE SINK STREAM OutputStream (eventTime long, substringResult string);
 
 @info(name = 'substringStreamWorker')
 INSERT INTO OutputStream

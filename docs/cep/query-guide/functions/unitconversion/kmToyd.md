@@ -28,7 +28,7 @@ This query uses the `unitconversion:kmToyd()` function to convert the value of `
 
 ```sql
 CREATE STREAM InputStream (distance_km double);
-CREATE STREAM OutputStream (distance_km double, distance_yd double);
+CREATE SINK STREAM OutputStream (distance_km double, distance_yd double);
 
 @info(name = 'distanceConversionQuery')
 INSERT INTO OutputStream

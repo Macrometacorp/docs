@@ -28,7 +28,7 @@ This query uses the `unitconversion:kmTom()` function to convert the value of `1
 
 ```sql
 CREATE STREAM InputStream (distance_km double);
-CREATE STREAM OutputStream (distance_km double, distance_m double);
+CREATE SINK STREAM OutputStream (distance_km double, distance_m double);
 
 @info(name = 'distanceConversionQuery')
 INSERT INTO OutputStream

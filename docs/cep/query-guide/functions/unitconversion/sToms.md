@@ -28,7 +28,7 @@ This query uses the `unitconversion:sToms()` function to convert the value of `1
 
 ```sql
 CREATE STREAM InputStream (time_s double);
-CREATE STREAM OutputStream (time_s double, time_ms double);
+CREATE SINK STREAM OutputStream (time_s double, time_ms double);
 
 @info(name = 'timeConversionQuery')
 INSERT INTO OutputStream

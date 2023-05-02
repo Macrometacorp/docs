@@ -31,7 +31,7 @@ The `regexpExample` demonstrates the use of the `str:regexp()` function to check
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string, pattern string);
-CREATE STREAM OutputStream (eventTime long, matchesRegexp bool);
+CREATE SINK STREAM OutputStream (eventTime long, matchesRegexp bool);
 
 @info(name = 'regexpStreamWorker')
 INSERT INTO OutputStream

@@ -28,7 +28,7 @@ This query uses the `unitconversion:miTokm()` function to convert the value of `
 
 ```sql
 CREATE STREAM InputStream (distance_mi double);
-CREATE STREAM OutputStream (distance_mi double, distance_km double);
+CREATE SINK STREAM OutputStream (distance_mi double, distance_km double);
 
 @info(name = 'distanceConversionQuery')
 INSERT INTO OutputStream

@@ -28,7 +28,7 @@ This query uses the `unitconversion:mTocm()` function to convert the value of `1
 
 ```sql
 CREATE STREAM InputStream (distance_m double);
-CREATE STREAM OutputStream (distance_m double, distance_cm double);
+CREATE SINK STREAM OutputStream (distance_m double, distance_cm double);
 
 @info(name = 'distanceConversionQuery')
 INSERT INTO OutputStream

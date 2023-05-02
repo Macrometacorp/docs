@@ -28,7 +28,7 @@ This query uses the `unitconversion:kmTonm()` function to convert the value of `
 
 ```sql
 CREATE STREAM InputStream (distance_km double);
-CREATE STREAM OutputStream (distance_km double, distance_nm double);
+CREATE SINK STREAM OutputStream (distance_km double, distance_nm double);
 
 @info(name = 'distanceConversionQuery')
 INSERT INTO OutputStream

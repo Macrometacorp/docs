@@ -40,7 +40,7 @@ The `regexGroupExample2` demonstrates the use of the `regex:group()` function to
 
 ```sql
 CREATE STREAM InputStream (eventTime long, inputText string, regexPattern string, groupNumber int);
-CREATE STREAM OutputStream (eventTime long, extractedGroup string);
+CREATE SINK STREAM OutputStream (eventTime long, extractedGroup string);
 
 @info(name = 'regexGroupStreamWorker')
 INSERT INTO OutputStream

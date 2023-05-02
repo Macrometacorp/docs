@@ -28,7 +28,7 @@ This query uses the `unitconversion:tTokg()` function to convert the value of `1
 
 ```sql
 CREATE STREAM InputStream (mass_t double);
-CREATE STREAM OutputStream (mass_t double, mass_kg double);
+CREATE SINK STREAM OutputStream (mass_t double, mass_kg double);
 
 @info(name = 'massConversionQuery')
 INSERT INTO OutputStream

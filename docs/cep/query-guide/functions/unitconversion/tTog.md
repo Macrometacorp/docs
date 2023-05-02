@@ -28,7 +28,7 @@ This query uses the `unitconversion:tTog()` function to convert the value of `1`
 
 ```sql
 CREATE STREAM InputStream (mass_t double);
-CREATE STREAM OutputStream (mass_t double, mass_g double);
+CREATE SINK STREAM OutputStream (mass_t double, mass_g double);
 
 @info(name = 'massConversionQuery')
 INSERT INTO OutputStream

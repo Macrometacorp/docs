@@ -28,7 +28,7 @@ In this example, the `unitconversion:kgToLT()` function converts a value of `100
 
 ```sql
 CREATE STREAM InputStream (mass_kg double);
-CREATE STREAM OutputStream (mass_kg double, mass_LT double);
+CREATE SINK STREAM OutputStream (mass_kg double, mass_LT double);
 
 @info(name = 'massConversionQuery')
 INSERT INTO OutputStream

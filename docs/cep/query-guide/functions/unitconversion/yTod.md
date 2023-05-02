@@ -28,7 +28,7 @@ This query uses the `unitconversion:yTod()` function to convert the value of `1`
 
 ```sql
 CREATE STREAM InputStream (years double);
-CREATE STREAM OutputStream (years double, days double);
+CREATE SINK STREAM OutputStream (years double, days double);
 
 @info(name = 'timeConversionQuery')
 INSERT INTO OutputStream

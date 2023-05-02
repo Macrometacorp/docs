@@ -29,7 +29,7 @@ The `reverseExample` demonstrates the use of the `str:reverse()` function to rev
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string);
-CREATE STREAM OutputStream (eventTime long, reversedString string);
+CREATE SINK STREAM OutputStream (eventTime long, reversedString string);
 
 @info(name = 'reverseStreamWorker')
 INSERT INTO OutputStream

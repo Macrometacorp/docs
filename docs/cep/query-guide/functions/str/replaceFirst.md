@@ -31,7 +31,7 @@ The `replaceFirstExample` demonstrates the use of the `str:replaceFirst()` funct
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string, targetSubstring string, replacement string);
-CREATE STREAM OutputStream (eventTime long, replacedFirstString string);
+CREATE SINK STREAM OutputStream (eventTime long, replacedFirstString string);
 
 @info(name = 'replaceFirstStreamWorker')
 INSERT INTO OutputStream

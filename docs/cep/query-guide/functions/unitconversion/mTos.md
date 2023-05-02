@@ -28,7 +28,7 @@ This query uses the `unitconversion:mTos()` function to convert the value of `1`
 
 ```sql
 CREATE STREAM InputStream (duration_min double);
-CREATE STREAM OutputStream (duration_min double, duration_sec double);
+CREATE SINK STREAM OutputStream (duration_min double, duration_sec double);
 
 @info(name = 'durationConversionQuery')
 INSERT INTO OutputStream

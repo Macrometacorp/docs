@@ -33,7 +33,7 @@ The `splitExample` demonstrates the use of the `str:split()` function to split t
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string, delimiter string, indexToReturn int);
-CREATE STREAM OutputStream (eventTime long, splitAtIndex string);
+CREATE SINK STREAM OutputStream (eventTime long, splitAtIndex string);
 
 @info(name = 'splitStreamWorker')
 INSERT INTO OutputStream

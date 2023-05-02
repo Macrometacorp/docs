@@ -28,7 +28,7 @@ This query uses the `unitconversion:lTom3()` function to convert the value of `1
 
 ```sql
 CREATE STREAM InputStream (volume_l double);
-CREATE STREAM OutputStream (volume_l double, volume_m3 double);
+CREATE SINK STREAM OutputStream (volume_l double, volume_m3 double);
 
 @info(name = 'volumeConversionQuery')
 INSERT INTO OutputStream

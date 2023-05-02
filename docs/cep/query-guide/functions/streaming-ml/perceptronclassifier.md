@@ -33,7 +33,7 @@ streamingml:perceptronClassifier(<STRING> model.name, <DOUBLE> model.bias, <DOUB
 
 ```sql
 CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
-CREATE STREAM OutputStreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction bool, confidenceLevel double);
+CREATE SINK STREAM OutputStreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction bool, confidenceLevel double);
 
 @info(name = 'perceptronClassifierQuery1')
 INSERT ALL EVENTS INTO OutputStreamA
@@ -47,7 +47,7 @@ This query uses a Perceptron model named `model1` with a `0.0` bias and a `0.5` 
 
 ```sql
 CREATE STREAM StreamB (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
-CREATE STREAM OutputStreamB (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction bool, confidenceLevel double);
+CREATE SINK STREAM OutputStreamB (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction bool, confidenceLevel double);
 
 @info(name = 'perceptronClassifierQuery2')
 INSERT ALL EVENTS INTO OutputStreamB
@@ -61,7 +61,7 @@ This query uses a Perceptron model named `model1` with a `0.0` bias and the defa
 
 ```sql
 CREATE STREAM StreamC (attribute_0 double, attribute_1 double, attribute_2 double);
-CREATE STREAM OutputStreamC (attribute_0 double, attribute_1 double, attribute_2 double, prediction bool, confidenceLevel double);
+CREATE SINK STREAM OutputStreamC (attribute_0 double, attribute_1 double, attribute_2 double, prediction bool, confidenceLevel double);
 
 @info(name = 'perceptronClassifierQuery3')
 INSERT ALL EVENTS INTO OutputStreamC
@@ -75,7 +75,7 @@ This query uses a Perceptron model named `model1` with default bias and threshol
 
 ```sql
 CREATE STREAM StreamD (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double);
-CREATE STREAM OutputStreamD (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double, prediction bool, confidenceLevel double);
+CREATE SINK STREAM OutputStreamD (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double, prediction bool, confidenceLevel double);
 
 @info(name = 'perceptronClassifierQuery4')
 INSERT ALL EVENTS INTO OutputStreamD
