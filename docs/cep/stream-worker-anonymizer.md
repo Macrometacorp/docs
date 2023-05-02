@@ -65,6 +65,7 @@ FROM PatientRecordsStream as pr
 JOIN AgeRangeTable as ar ON pr.age BETWEEN ar.minAge AND ar.maxAge;
 ```
 
+OLD
 The `anonymizePatientData` query processes patient records from the `PatientRecordsStream`, anonymizes the full name and SSN using the `pii:fake()` function, and maps age to age ranges using a join with the `AgeRangeTable`. The query outputs the anonymized data to the `AnonymizedRecordsStream`.
 
 ### Example 3 - REDO
@@ -105,6 +106,7 @@ FROM DeviceStatisticsTable
 WHERE minValue < 10 OR maxValue > 100;
 ```
 
+OLD
 The `anonymizeIoTData` query processes IoT device data from the `IoTDeviceDataStream` and anonymizes the full name, address, email, and deviceID using the `pii:fake()` function. The query outputs the anonymized data to the `AnonymizedIoTDataStream`.
 
 The `updateDeviceStatistics` query calculates statistics for each device based on the anonymized IoT data. It groups the data by deviceID and updates the `DeviceStatisticsTable` with the total number of events, minimum value, maximum value, and average value for each device.
