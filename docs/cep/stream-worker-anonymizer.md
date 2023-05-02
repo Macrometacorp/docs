@@ -40,7 +40,7 @@ FROM CustomerDataStream;
 
 The `anonymizeCustomerNames` query processes customer data from the `CustomerDataStream` and replaces the full name with fake, anonymized data using the `pii:fake()` function. The query outputs the anonymized full name, along with age and city, to the `AnonymizedNamesStream`.
 
-### Example 2
+### Example 2 - REDO
 
 ```sql
 CREATE STREAM PatientRecordsStream (fullName string, ssn string, age int, city string);
@@ -69,6 +69,8 @@ The `anonymizePatientData` query processes patient records from the `PatientReco
 
 ### Example 3
 
+PRIMARY KEY not supported
+
 ```sql
 CREATE STREAM IoTDeviceDataStream (fullName string, address string, email string, deviceID string, eventType string, value double);
 
@@ -89,17 +91,12 @@ FROM IoTDeviceDataStream;
 @info(name = 'updateDeviceStatistics')
 INSERT INTO DeviceStatisticsTable
 SELECT deviceID,
-       count(*) as totalEvents,
+       count(value) as totalEvents,
        min(value) as minValue,
        max(value) as maxValue,
        avg(value) as avgValue
-FROM AnonymizedIoTDataStream#window.time(1 min)
+FROM AnonymizedIoTDataStream#window.time(1 min) FIX WINDOW
 GROUP BY deviceID;
-
-@info(name = 'deviceStatisticsAlert')
-SELECT deviceID, eventType, minValue, maxValue, avgValue
-FROM DeviceStatisticsTable
-WHERE minValue < 10 OR maxValue > 100;
 
 CREATE SINK STREAM DeviceStatisticsAlertsStream (deviceID string, eventType string, minValue double, maxValue double, avgValue double);
 
