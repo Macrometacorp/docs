@@ -26,8 +26,8 @@ CREATE SINK STREAM OutputStream (eventTime long, firstChar string, volume long);
 
 @info(name = 'charAtQuery')
 INSERT INTO OutputStream
-SELECT eventTime, charAt(symbol, 0) AS firstChar, volume
+SELECT eventTime, str:charAt(symbol, 0) AS firstChar, volume
 FROM InputDataStream;
 ```
 
-The `charAtQuery` processes events from the `InputDataStream` and extracts the first character of the `symbol` attribute using the `charAt()` function. The query outputs the `eventTime`, the first character of the `symbol`, and the `volume` of the events to the `OutputStream`.
+The `charAtQuery` processes events from the `InputDataStream` and extracts the first character of the `symbol` attribute using the `str:charAt()` function. The query outputs the `eventTime`, the first character of the `symbol`, and the `volume` of the events to the `OutputStream`.
