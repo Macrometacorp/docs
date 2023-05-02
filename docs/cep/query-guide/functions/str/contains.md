@@ -21,7 +21,7 @@ This function returns `true` if the`input.string` contains the specified sequenc
 
 ```sql
 @info(name = 'containsExample')
-SELECT contains('21 products are produced by gdn currently', 'gdn') AS containsGdn;
+SELECT str:contains('21 products are produced by gdn currently', 'gdn') AS containsGdn;
 ```
 
 The `containsExample` demonstrates the use of the `contains()` function to check if a given string contains a specified substring. In this example, the input string is '21 products are produced by gdn currently', and the substring to check for is 'gdn'. The function returns `true` because the input string contains the specified substring.
@@ -35,7 +35,7 @@ CREATE SINK STREAM OutputStream (eventTime long, containsSubstring bool);
 
 @info(name = 'containsStreamWorker')
 INSERT INTO OutputStream
-SELECT eventTime, contains(text, substring) AS containsSubstring
+SELECT eventTime, str:contains(text, substring) AS containsSubstring
 FROM InputDataStream;
 ```
 
