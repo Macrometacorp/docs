@@ -94,7 +94,7 @@ SELECT deviceID,
        min(value) as minValue,
        max(value) as maxValue,
        avg(value) as avgValue
-FROM AnonymizedIoTDataStream#window.time(1 min) FIX WINDOW
+FROM AnonymizedIoTDataStream WINDOW SLIDING_TIME(1 min) FIX WINDOW
 GROUP BY deviceID;
 
 CREATE SINK STREAM DeviceStatisticsAlertsStream (deviceID string, eventType string, minValue double, maxValue double, avgValue double);
