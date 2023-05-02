@@ -28,7 +28,7 @@ In this example, the `unitconversion:cmTonm()` function converts a value of `1` 
 
 ```sql
 CREATE STREAM InputStream (length_cm double);
-CREATE STREAM OutputStream (length_cm double, length_nm double);
+CREATE SINK STREAM OutputStream (length_cm double, length_nm double);
 
 @info(name = 'lengthConversionQuery')
 INSERT INTO OutputStream

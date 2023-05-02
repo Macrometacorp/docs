@@ -30,7 +30,7 @@ The `sentimentScoreExample` demonstrates the use of the `sentiment:getRate` func
 ```sql
 CREATE STREAM InputDataStream (eventTime long, message string);
 
-CREATE STREAM OutputStream (eventTime long, sentimentScore double);
+CREATE SINK STREAM OutputStream (eventTime long, sentimentScore double);
 
 @info(name = 'sentimentAnalysisQuery')
 INSERT INTO OutputStream

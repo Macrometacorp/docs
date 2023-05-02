@@ -50,7 +50,7 @@ This query adds one hour to the given timestamp value '1415712224000L' and retur
 
 ```sql
 CREATE STREAM InputStream (timestampStr string, format string, yearsToAdd int);
-CREATE STREAM OutputStream (updatedDate string);
+CREATE SINK STREAM OutputStream (updatedDate string);
 
 @info(name = 'dateAddStreamWorker')
 INSERT INTO OutputStream

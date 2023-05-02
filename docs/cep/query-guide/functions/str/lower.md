@@ -29,7 +29,7 @@ The `lowerExample` demonstrates the use of the `str:lower()` function to convert
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string);
-CREATE STREAM OutputStream (eventTime long, lowerCaseString string);
+CREATE SINK STREAM OutputStream (eventTime long, lowerCaseString string);
 
 @info(name = 'lowerStreamWorker')
 INSERT INTO OutputStream

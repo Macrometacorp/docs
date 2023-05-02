@@ -35,7 +35,7 @@ The `hexExample` demonstrates the use of the `hex()` function to convert a given
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string);
 
-CREATE STREAM OutputStream (eventTime long, hexadecimalValue string);
+CREATE SINK STREAM OutputStream (eventTime long, hexadecimalValue string);
 
 @info(name = 'hexStreamWorker')
 INSERT INTO OutputStream
@@ -59,7 +59,7 @@ The `fillTemplateExample` demonstrates the use of the `str:fillTemplate()` funct
 ```sql
 CREATE STREAM InputDataStream (eventTime long, value1 int, value2 int);
 
-CREATE STREAM OutputStream (eventTime long, filledTemplate string);
+CREATE SINK STREAM OutputStream (eventTime long, filledTemplate string);
 
 @info(name = 'fillTemplateStreamWorker')
 INSERT INTO OutputStream

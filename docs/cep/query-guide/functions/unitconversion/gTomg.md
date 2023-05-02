@@ -28,7 +28,7 @@ In this example, the `unitconversion:gTomg()` function converts a value of `1` g
 
 ```sql
 CREATE STREAM InputStream (weight_grams double);
-CREATE STREAM OutputStream (weight_grams double, weight_milligrams double);
+CREATE SINK STREAM OutputStream (weight_grams double, weight_milligrams double);
 
 @info(name = 'weightConversionQuery')
 INSERT INTO OutputStream

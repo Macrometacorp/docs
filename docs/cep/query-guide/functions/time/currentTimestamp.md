@@ -33,7 +33,7 @@ The `currentTimestampExample` demonstrates the use of the `time:currentTimestamp
 
 ```sql
 CREATE STREAM InputStream (eventTime long);
-CREATE STREAM OutputStream (eventTime long, currentTimestamp string);
+CREATE SINK STREAM OutputStream (eventTime long, currentTimestamp string);
 
 @info(name = 'currentTimestampStreamWorker')
 INSERT INTO OutputStream
@@ -47,7 +47,7 @@ The `currentTimestampStreamWorker` processes events from the `InputStream` and u
 
 ```sql
 CREATE STREAM InputStream (eventTime long);
-CREATE STREAM OutputStream (eventTime long, currentTimestamp string);
+CREATE SINK STREAM OutputStream (eventTime long, currentTimestamp string);
 
 @info(name = 'currentTimestampCSTStreamWorker')
 INSERT INTO OutputStream

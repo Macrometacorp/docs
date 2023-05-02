@@ -29,7 +29,7 @@ The `charFrequencyExample` demonstrates the use of the `str:charFrequency` funct
 ```sql
 CREATE STREAM InputDataStream (eventTime long, symbolsList string);
 
-CREATE STREAM OutputStream (eventTime long, commaCount int);
+CREATE SINK STREAM OutputStream (eventTime long, commaCount int);
 
 @info(name = 'charFrequencyStreamWorker')
 INSERT INTO OutputStream

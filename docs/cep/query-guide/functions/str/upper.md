@@ -31,7 +31,7 @@ The `upperExample` demonstrates the use of the `upper()` function, which convert
 ```sql
 CREATE STREAM InputStream (eventTime long, originalText string);
 
-CREATE STREAM OutputStream (eventTime long, upperText string);
+CREATE SINK STREAM OutputStream (eventTime long, upperText string);
 
 @info(name = 'upperStreamWorker')
 INSERT INTO OutputStream

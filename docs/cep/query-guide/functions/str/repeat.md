@@ -30,7 +30,7 @@ The `repeatExample` demonstrates the use of the `str:repeat()` function to repea
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string, repetitions int);
-CREATE STREAM OutputStream (eventTime long, repeatedString string);
+CREATE SINK STREAM OutputStream (eventTime long, repeatedString string);
 
 @info(name = 'repeatStreamWorker')
 INSERT INTO OutputStream

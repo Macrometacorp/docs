@@ -30,7 +30,7 @@ The `coalesceExample` demonstrates the use of the `coalesce()` function to retur
 ```sql
 CREATE STREAM InputDataStream (eventTime long, value1 string, value2 string, value3 string);
 
-CREATE STREAM OutputStream (eventTime long, firstNonNullValue string);
+CREATE SINK STREAM OutputStream (eventTime long, firstNonNullValue string);
 
 @info(name = 'coalesceStreamWorker')
 INSERT INTO OutputStream

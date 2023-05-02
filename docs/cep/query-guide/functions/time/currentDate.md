@@ -27,7 +27,7 @@ The `currentDateExample` demonstrates the use of the `time:currentDate()` functi
 
 ```sql
 CREATE STREAM InputStream (eventTime long);
-CREATE STREAM OutputStream (eventTime long, currentDate string);
+CREATE SINK STREAM OutputStream (eventTime long, currentDate string);
 
 @info(name = 'currentDateStreamWorker')
 INSERT INTO OutputStream

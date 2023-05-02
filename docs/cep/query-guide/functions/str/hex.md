@@ -31,7 +31,7 @@ The `hexExample` demonstrates the use of the `hex()` function to convert a given
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string);
 
-CREATE STREAM OutputStream (eventTime long, hexadecimalValue string);
+CREATE SINK STREAM OutputStream (eventTime long, hexadecimalValue string);
 
 @info(name = 'hexStreamWorker')
 INSERT INTO OutputStream

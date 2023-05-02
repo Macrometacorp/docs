@@ -28,7 +28,7 @@ In this example, the `unitconversion:kgTog()` function converts a value of `1` k
 
 ```sql
 CREATE STREAM InputStream (mass_kg double);
-CREATE STREAM OutputStream (mass_kg double, mass_g double);
+CREATE SINK STREAM OutputStream (mass_kg double, mass_g double);
 
 @info(name = 'massConversionQuery')
 INSERT INTO OutputStream

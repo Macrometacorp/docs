@@ -51,7 +51,7 @@ This query calculates the date difference between the given timestamp values '14
 
 ```sql
 CREATE STREAM InputStream (startDate string, endDate string, inputFormat string);
-CREATE STREAM OutputStream (dateDifference int);
+CREATE SINK STREAM OutputStream (dateDifference int);
 
 @info(name = 'dateDiffStreamWorker')
 INSERT INTO OutputStream

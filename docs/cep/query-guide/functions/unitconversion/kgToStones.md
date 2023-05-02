@@ -28,7 +28,7 @@ In this example, the `unitconversion:kgToStones()` function converts a value of 
 
 ```sql
 CREATE STREAM InputStream (mass_kg double);
-CREATE STREAM OutputStream (mass_kg double, mass_stones double);
+CREATE SINK STREAM OutputStream (mass_kg double, mass_stones double);
 
 @info(name = 'massConversionQuery')
 INSERT INTO OutputStream

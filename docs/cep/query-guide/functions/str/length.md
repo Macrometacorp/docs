@@ -29,7 +29,7 @@ The `lengthExample` demonstrates the use of the `str:length()` function to calcu
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string);
-CREATE STREAM OutputStream (eventTime long, stringLength int);
+CREATE SINK STREAM OutputStream (eventTime long, stringLength int);
 
 @info(name = 'lengthStreamWorker')
 INSERT INTO OutputStream

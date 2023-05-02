@@ -50,7 +50,7 @@ This query subtracts one hour from the timestamp value '1415715824000L' (in mill
 
 ```sql
 CREATE STREAM InputStream (inputDate string, unit string, amount int, inputFormat string);
-CREATE STREAM OutputStream (newDate string);
+CREATE SINK STREAM OutputStream (newDate string);
 
 @info(name = 'dateSubStreamWorker')
 INSERT INTO OutputStream

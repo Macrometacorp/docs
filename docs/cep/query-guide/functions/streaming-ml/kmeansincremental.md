@@ -33,7 +33,7 @@ streamingml:kMeansIncremental(<INT> no.of.clusters, <DOUBLE> decay.rate, <DOUBLE
 
 ```sql
 CREATE STREAM InputStream (x double, y double);
-CREATE STREAM OutputStream (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, x double, y double);
+CREATE SINK STREAM OutputStream (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, x double, y double);
 
 @info(name = 'kMeansWithDecayRateQuery')
 INSERT INTO OutputStream
@@ -47,7 +47,7 @@ In this example, the user provides the decay rate of 0.2. The first two events w
 
 ```sql
 CREATE STREAM InputStream2 (x double, y double);
-CREATE STREAM OutputStream2 (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, x double, y double);
+CREATE SINK STREAM OutputStream2 (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, x double, y double);
 
 @info(name = 'kMeansDefaultDecayRateQuery')
 INSERT INTO OutputStream2
@@ -61,7 +61,7 @@ In this example, the user doesn't provide the decay rate, so the default value i
 
 ```sql
 CREATE STREAM InputStream3 (x double, y double, z double);
-CREATE STREAM OutputStream3 (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, closestCentroidCoordinate3 double, x double, y double, z double);
+CREATE SINK STREAM OutputStream3 (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, closestCentroidCoordinate3 double, x double, y double, z double);
 
 @info(name = 'kMeans3DQuery')
 INSERT INTO OutputStream3

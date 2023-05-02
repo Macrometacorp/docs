@@ -46,7 +46,7 @@ This query extracts the date from the given time string `'13:23:44'` in the form
 
 ```sql
 CREATE STREAM InputStream (timestampStr string, format string);
-CREATE STREAM OutputStream (extractedDate string);
+CREATE SINK STREAM OutputStream (extractedDate string);
 
 @info(name = 'dateStreamWorker')
 INSERT INTO OutputStream
