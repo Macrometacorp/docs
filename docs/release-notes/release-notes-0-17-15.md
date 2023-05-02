@@ -17,11 +17,11 @@ When you create a new key-value store, you can select the **Blob storage** check
 
 File limit size is 1 MB. This can be changed, but can never exceed 2 MB.
 
-Add records via API. Adding records via GUI is not supported.
+You can add blob records using the Macrometa API. Adding records in the Macrometa web console is not supported.
 
-** Available in Play upon request, waiting to hear from Justin if we should document or not.
+This feature is available upon request. Contact support@macrometa.com to enable it on your account.
 
-The [x](../account-management/plans/) section was created as a result of this change.
+The [Create a Key-Value Store](../account-management/plans/) has been updated as a result of this change.
 
 ## Feature Updates
 
