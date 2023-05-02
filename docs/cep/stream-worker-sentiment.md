@@ -27,7 +27,6 @@ These examples showcase how the sentiment function can be applied to various ind
 
 ```sql
 CREATE STREAM NewsHeadlinesStream (headline string);
-
 CREATE SINK STREAM SentimentAnalysisStream (headline string, sentimentScore int);
 
 @info(name = 'simpleSentimentAnalysis')
@@ -36,7 +35,9 @@ SELECT headline, sentiment:getRate(headline) AS sentimentScore
 FROM NewsHeadlinesStream;
 ```
 
-The `simpleSentimentAnalysis` processes news headlines from the `NewsHeadlinesStream` and calculates the sentiment score for each headline using the `sentiment:getRate()` function. The query outputs the headline and its calculated sentiment score to the `SentimentAnalysisStream`.
+In this example, a stream worker processes news headlines from the `NewsHeadlinesStream` source, computes their sentiment scores, and outputs the results to the `SentimentAnalysisStream` sink.
+
+The `simpleSentimentAnalysis` stream worker query processes incoming events from the `NewsHeadlinesStream`. It calculates the sentiment score of each headline using the `sentiment:getRate(headline)` function and selects both the `headline` and the computed `sentimentScore` for output. The results are then inserted into the `SentimentAnalysisStream` using the `INSERT INTO` action.
 
 ### Example 2
 
@@ -51,14 +52,16 @@ SELECT timestamp, username, post, sentiment:getRate(post) AS sentimentScore
 FROM SocialMediaPostsStream;
 ```
 
-The `socialMediaSentimentAnalysis` processes social media posts from the `SocialMediaPostsStream`, including timestamp and username. It calculates the sentiment score for each post using the `sentiment:getRate()` function. The query outputs the timestamp, username, post, and the calculated sentiment score to the `SentimentAnalysisStream`.
+In this example, a stream worker processes social media posts from the `SocialMediaPostsStream` source, computes their sentiment scores, and outputs the results to the `SentimentAnalysisStream` sink.
+
+The `socialMediaSentimentAnalysis` stream worker query processes incoming events from the `SocialMediaPostsStream`. It calculates the sentiment score of each post using the `sentiment:getRate(post)` function and selects the `timestamp`, `username`, `post`, and the computed `sentimentScore` for output. The results are then inserted into the `SentimentAnalysisStream` using the `INSERT INTO` action.
 
 ### Example 3
 
 ```sql
 CREATE STREAM CustomerReviewsStream (productId string, timestamp long, username string, review string);
 
-CREATE TABLE AverageSentimentTable (productId string PRIMARY KEY, avgSentiment double);
+CREATE TABLE AverageSentimentTable (_key string , avgSentiment double);
 
 CREATE SINK STREAM SentimentAnalysisStream (productId string, timestamp long, username string, review string, sentimentScore int);
 
@@ -69,11 +72,23 @@ FROM CustomerReviewsStream;
 
 @info(name = 'averageSentimentPerProduct')
 INSERT INTO AverageSentimentTable
-SELECT productId, avg(sentimentScore) AS avgSentiment
+SELECT productId as _key, avg(sentimentScore) AS avgSentiment
+FROM SentimentAnalysisStream WINDOW TUMBLING_LENGTH(5)
+GROUP BY productId;
+
+@info(name = 'averageSentimentPerProductUpdate')
+UPDATE AverageSentimentTable
+SET AverageSentimentTable._key = _key, AverageSentimentTable.avgSentiment = avgSentiment
+ON AverageSentimentTable._key == _key
+SELECT productId as _key, avg(sentimentScore) AS avgSentiment
 FROM SentimentAnalysisStream WINDOW TUMBLING_LENGTH(5)
 GROUP BY productId;
 ```
 
-The `customerReviewsSentimentAnalysis` processes customer reviews from the `CustomerReviewsStream`, including productId, timestamp, and username. It calculates the sentiment score for each review using the `sentiment:getRate()` function. The query outputs the productId, timestamp, username, review, and the calculated sentiment score to the `SentimentAnalysisStream`.
+In this example, a stream worker processes customer reviews from the `CustomerReviewsStream` source, computes their sentiment scores, and outputs the results to the `SentimentAnalysisStream` sink. Additionally, it calculates the average sentiment per product and updates the `AverageSentimentTable`.
 
-The `averageSentimentPerProduct` query calculates the average sentiment score for each product based on the last five reviews. It groups the sentiment scores by productId and inserts the average sentiment score into the `AverageSentimentTable`.
+The `customerReviewsSentimentAnalysis` stream worker query processes incoming events from the `CustomerReviewsStream`. It calculates the sentiment score of each review using the `sentiment:getRate(review)` function and selects the `productId`, `timestamp`, `username`, `review`, and the computed `sentimentScore` for output. The results are then inserted into the `SentimentAnalysisStream` using the `INSERT INTO` action.
+
+The `averageSentimentPerProduct` stream worker query calculates the average sentiment score per product from the `SentimentAnalysisStream` within a tumbling window of length 5. It groups the results by `productId` and inserts the `productId` as `_key` and the `avgSentiment` into the `AverageSentimentTable` using the `INSERT INTO` action.
+
+The `averageSentimentPerProductUpdate` stream worker query calculates the average sentiment score per product from the `SentimentAnalysisStream` within a tumbling window of length 5, similar to the previous query. However, instead of inserting new records, it updates the existing records in the `AverageSentimentTable` using the `UPDATE` action, based on the matching `_key` value (the `productId`).
