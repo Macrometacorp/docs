@@ -20,7 +20,6 @@ This returns a boolean value by comparing two strings lexicographically without 
 ## Example 1
 
 ```sql
-@info(name = 'equalsIgnoreCaseExample')
 SELECT str:equalsIgnoreCase('gdn', 'GDN') AS isEqual;
 ```
 
