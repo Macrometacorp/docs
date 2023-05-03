@@ -31,7 +31,7 @@ The `containsExample` demonstrates the use of the `contains()` function to check
 ```sql
 CREATE STREAM InputDataStream (eventTime long, text string, substring string);
 
-CREATE STREAM OutputStream (eventTime long, containsSubstring bool);
+CREATE SINK STREAM OutputStream (eventTime long, containsSubstring bool);
 
 @info(name = 'containsStreamWorker')
 INSERT INTO OutputStream

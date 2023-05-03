@@ -25,7 +25,7 @@ Determines if the specified object or location crosses a geographic location spe
 
 ```sql
 CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
-CREATE STREAM OutputStream (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction double, confidence double);
+CREATE SINK STREAM OutputStream (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction double, confidence double);
 
 @info(name = 'basicBayesianRegressionQuery')
 FROM StreamA#streamingml:bayesianRegression('model1', attribute_0, attribute_1, attribute_2, attribute_3)

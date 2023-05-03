@@ -22,7 +22,7 @@ This function returns the `char` value that is present at the given index positi
 ```sql
 CREATE STREAM InputDataStream (eventTime long, symbol string, volume long);
 
-CREATE STREAM OutputStream (eventTime long, firstChar string, volume long);
+CREATE SINK STREAM OutputStream (eventTime long, firstChar string, volume long);
 
 @info(name = 'charAtQuery')
 INSERT INTO OutputStream

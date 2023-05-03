@@ -28,7 +28,7 @@ returns the concatenated key string.
 
 ```sql
 CREATE STREAM InputStream (eventTime long, key string);
-CREATE STREAM OutputStream (eventTime long, groupedKeys string);
+CREATE SINK STREAM OutputStream (eventTime long, groupedKeys string);
 
 @info(name = 'groupConcatExample')
 INSERT INTO OutputStream
@@ -42,7 +42,7 @@ The `groupConcatExample` processes events from the `InputStream` using a sliding
 
 ```sql
 CREATE STREAM InputStream (eventTime long, key string);
-CREATE STREAM OutputStream (eventTime long, groupedKeys string);
+CREATE SINK STREAM OutputStream (eventTime long, groupedKeys string);
 
 @info(name = 'groupConcatWithSeparatorExample')
 INSERT INTO OutputStream

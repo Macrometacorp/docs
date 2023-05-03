@@ -28,7 +28,7 @@ This query uses the `unitconversion:kmTocm()` function to convert the value of `
 
 ```sql
 CREATE STREAM InputStream (distance_km double);
-CREATE STREAM OutputStream (distance_km double, distance_cm double);
+CREATE SINK STREAM OutputStream (distance_km double, distance_cm double);
 
 @info(name = 'distanceConversionQuery')
 INSERT INTO OutputStream

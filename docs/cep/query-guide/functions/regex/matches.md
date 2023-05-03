@@ -37,7 +37,7 @@ The `regex:matches()` function checks if the entire input sequence matches the p
 
 ```sql
 CREATE STREAM InputStream (eventTime long, inputText string, regexPattern string);
-CREATE STREAM OutputStream (eventTime long, matchesRegex bool);
+CREATE SINK STREAM OutputStream (eventTime long, matchesRegex bool);
 
 @info(name = 'regexMatchesStreamWorker')
 INSERT INTO OutputStream

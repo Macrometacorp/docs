@@ -32,7 +32,7 @@ The `replaceAllExample` demonstrates the use of the `str:replaceAll()` function 
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, inputString string, targetSubstring string, replacement string);
-CREATE STREAM OutputStream (eventTime long, replacedString string);
+CREATE SINK STREAM OutputStream (eventTime long, replacedString string);
 
 @info(name = 'replaceAllStreamWorker')
 INSERT INTO OutputStream

@@ -49,7 +49,7 @@ This query converts the timestamp value '1415692424000L' (in milliseconds) to a 
 
 ```sql
 CREATE STREAM InputStream (inputDate string, targetFormat string, inputFormat string);
-CREATE STREAM OutputStream (formattedDate string);
+CREATE SINK STREAM OutputStream (formattedDate string);
 
 @info(name = 'dateFormatStreamWorker')
 INSERT INTO OutputStream
