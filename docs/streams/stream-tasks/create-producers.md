@@ -11,6 +11,19 @@ This page describes how to create a [producer](../stream-basics/producers.md).
 
 <Prerequisites />
 
+## Create a Producer with Specific Options
+
+This example shows how to create a producer with specific options using the JavaScript SDK and Python SDK.
+When we create a producer, we can specify the following options:
+
+| Option                | Description                                      | Default |
+|:----------------------|:-------------------------------------------------|:-------|
+| sendTimeoutMillis     | Send timeout                                     | 30 secs |
+| batchingEnabled       | Enable batching of messages                      |  false  |
+| batchingMaxMessages   | Maximum number of messages permitted in a batch  |  1000   |
+| maxPendingMessages    | Set the max size of the internal-queue holding the messages |  1000   |
+| batchingMaxPublishDelay | Time period within which the messages will be batched |  10ms   |
+
 ## Create Producer Code
 
 When this code runs, it creates a new client, requests a stream object, and then creates a producer.
@@ -50,16 +63,23 @@ async function main () {
   async function producer() {
     try {
       // Create stream only if stream does not exist
-      createStream();
+      await createStream();
       await console.log("\nConnecting producer to global stream...");
 
       // Request stream object
       const stream = client.stream(streamName, false);
       // Request one-time password
       const producerOTP = await stream.getOtp();
+
+      // ********** Producer Options **********
       // Create producer
-      const producer = await stream.producer(BASE_URL.replace("https://",""), {
-        otp: producerOTP
+      const producer = await stream.producer(BASE_URL, {
+        otp: producerOTP,
+        sendTimeoutMillis: 30000, // Default is 30000 ms
+        batchingEnabled: true,  // Default is false
+        compressionType: 'LZ4', // Options: NONE, LZ4, ZLIB, ZSTD, SNAPPY -> default is NONE
+        batchingMaxMessages: 100, // Default is 1000
+        batchingMaxPublishDelayMs: 10 // Default is 10 ms
       });
 
       // Run producer - Open connection to server
@@ -131,7 +151,17 @@ def create_stream():
 def create_producer():
     create_stream()
 
-    producer = client.create_stream_producer(stream_name, local=False)
+    """ Be sure to use enum value for compression_type"""
+    producer = client.create_stream_producer(
+        stream_name,
+        local=False, # Default is False (global stream)
+        send_timeout_millis=30000, # Default is 30000
+        batching_enabled=True, # Default is False
+        compression_type=CompressionType.LZ4.value, # Options: NONE, LZ4, ZLIB, ZSTD, SNAPPY -> default is NONE
+        batching_max_messages=100, # Default is 1000
+        batching_max_publish_delay_ms= 10 # Default is 10
+    )
+    
     while True:
         message = f"Hello Macrometa Stream! Here is your random message number {random.randint(1, 100)}"
         producer.send(message)
