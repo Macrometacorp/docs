@@ -22,25 +22,8 @@ Real-time machine learning is crucial for businesses that need to analyze and re
 
 ### Perceptron Classifier Example: Anomaly Detection in Transaction Data
 
-This example demonstrates how to use the `streamingml:perceptronClassifier` function to detect anomalies in transaction data. The goal is to identify unusual purchase patterns that might indicate fraudulent activity or other issues.
-
-```sql
-CREATE STREAM TransactionsStream (timestamp long, customerId string, transactionCount int, purchaseAmount double);
-
-CREATE SINK STREAM AnomalyDetectionStream (timestamp long, customerId string, transactionCount int, purchaseAmount double, isAnomaly bool);
-
-@info(name = 'detectAnomalies')
-INSERT INTO AnomalyDetectionStream
-SELECT timestamp, customerId, transactionCount, purchaseAmount,
-       streamingml:perceptronClassifier('anomalyDetector', transactionCount, purchaseAmount) AS isAnomaly
-FROM TransactionsStream;
-```
-
-Error!
-
-Error: Error on 'TvuYzg4miSQuxtWmhzqJf8g:root:_system:new' @ Line: 11. Position: 92, near 'streamingml:perceptronClassifier('anomalyDetector', transactionCount, purchaseAmount)'. 'perceptronClassifier' is neither a function extension nor an aggregated attribute extension
-
-For more information about this function, refer to the [perceptronClassifier](query-guide/functions/streaming-ml/perceptronclassifier) documentation.
-
 ### Update Perceptron Classifier Example
 
+### K-Means Incremental Example
+
+### K-Means Minibatch Example
