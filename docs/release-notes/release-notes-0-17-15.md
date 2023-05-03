@@ -50,31 +50,14 @@ curl -X 'GET'   'https://api-your-macrometa.eng.macrometa.io/_api/key/root_api_k
 }
 ```
 
-### xx
-
-xxxx
-
-Topics in [xx](../queries/redis/) were updated as a result of this change.
-
-### Miscellaneous Changes
-
-The following minor changes were added in this release.
-
-| Change # | Description |
-| -------- | ----------- |
-| x        | x           |
-|          |             |
-|          |             |
-
 ### API Updates
 
 This release includes the following API changes.
 
 | Issue # | Description |
 | ------- | ----------- |
-| z       | z           |
-|         |             |
-|         |             |
+| DB-1290 | Updated properties in `PUT /fabric/{fabric}/_api/collection/{collection-name}/properties`. Removed properties that could not be updated.    |
+| STRM-547 | Removed Stream IO Connectors from API documentation.  |
 
 ## Defect Fixes
 
@@ -85,5 +68,3 @@ The following defects were fixed in this release.
 | CEP-522  | Stream workers performing UPDATE and INSERT INTO with tumbling windows are not working as expected.         |
 | CEP-537  | Every time a stream worker is unpublished and published, it reads the topic from earliest position instead of last read position.          |
 | DB-2384         |  Inconsistency in regions for different fabrics created during connectivity tests.           |
-|          |             |
-|          |             |
