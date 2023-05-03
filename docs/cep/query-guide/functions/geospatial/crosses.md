@@ -33,7 +33,7 @@ This query uses the `geo:crosses()` function to determine if a line, defined by 
 
 ```sql
 CREATE STREAM InputStream (lineStart double, lineEnd double);
-CREATE STREAM OutputStream (crosses bool);
+CREATE SINK STREAM OutputStream (crosses bool);
 
 @info(name = 'geoCrossesQuery')
 INSERT INTO OutputStream
