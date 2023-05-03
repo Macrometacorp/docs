@@ -66,19 +66,22 @@ CREATE STORE SensorTable WITH(type=’database’, collection=’SampleTable’,
 
 ## Common Parameters
 
-The following parameters are configured in a table definition:
+The following parameters are configured in a table or store definition:
+
+| Parameter     | Description |
+| ------------- |-------------|
+| GLOBAL or LOCAL      | Whether the table or store is globally or locally replicated. Default is `GLOBAL`. |
+| attribute name   | The schema of the table or store is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
+| attribute type   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
+| [WITH (property_name = expression [, ...])] | Optional properties for the new table or store, such as a time-to-live or a partition key. |
+| SELECT select_expr [, ...] | The selection criteria for the new table or store. |
+| FROM from_stream … | The name of the existing stream to select data from. |
+
+## Table Parameters
 
 | Parameter     | Description |
 | ------------- |-------------|
 | table name      | The name of the table defined. (`PascalCase` is used for table name as a convention.) |
-| GLOBAL or LOCAL      | Whether the table is globally or locally replicated. Default is `GLOBAL`. |
-| attribute name   | The schema of the table is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
-| attribute type   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
-| from        | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.      |
-| to          | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a destination node of the edge. |
-| [WITH (property_name = expression [, ...])] | Optional properties for the new table, such as a time-to-live or a partition key. |
-| SELECT select_expr [, ...] | The selection criteria for the new table. |
-| FROM from_stream … | The name of the existing stream to select data from. |
 
 ## Store Parameters
 
@@ -86,6 +89,13 @@ The following parameters apply only to `CREATE STORE` definitions:
 
 | Parameter | Description |
 | --------- | ----------- |
+|  type    | The only supported store type at this time is `database`.        |
+|  collection      | The name of the collection.        |
+| collection.type  |  The type of collection, either `doc` or `edge`. Default is `doc`.       |
+| from        | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a source node of the edge.      |
+| to          | If `collection.type` is specified as `edge`, this field indicates which field to be considered as a destination node of the edge. |
+| replication.type    | Either `local` or `global`. Default is `global`.        |
+| map.type  | The `map.type` parameter specifies the format in which the data is published and allows you to configure the mapping parameters, which change based of the mapping type/format selected. For the complete list of supported mapping types, see [Sink Mapping](../sink/sink-mapping/index.md).        |
 | batch.size | Macrometa persists documents until the batch size is reached, then processes all accumulated documents. Use this parameter if you have a high data flow. Default value is 1.     |
 | batch.flush.time.ms | Macrometa persists documents until the batch time is reached, then processes all accumulated documents. Use this parameter if you have a high data flow. Default value 0, meaning Macrometa processes documents as soon as they arrive.            |
 
