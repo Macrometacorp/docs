@@ -15,13 +15,12 @@ Key-value (KV) store collections now allow you to store blobs (arbitrary binary 
 
 When you create a new key-value store, you can select the **Blob storage** checkbox. This marks the collection as a blob-based KV collection. These collections can only be used to store blobs. Once created, this setting cannot be changed.
 
-File limit size is 1 MB. This can be changed, but can never exceed 2 MB.
+- Maximum blob file size is 1 MB. This can be changed, but can never exceed 2 MB.
+- You can add blob records using the Macrometa API. Adding records in the Macrometa web console is not supported.
 
-Add records via API. Adding records via GUI is not supported.
+This feature is available upon request. Contact support@macrometa.com to enable it on your account.
 
-** Available in Play upon request, waiting to hear from Justin if we should document or not.
-
-The [x](../account-management/plans/) section was created as a result of this change.
+The [Create a Key-Value Store](../account-management/plans/) has been updated as a result of this change.
 
 ## Feature Updates
 
