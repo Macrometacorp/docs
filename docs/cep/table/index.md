@@ -70,7 +70,7 @@ The following parameters are configured in a table or store definition:
 
 | Parameter     | Description |
 | ------------- |-------------|
-| GLOBAL or LOCAL      | Whether the table or store is globally or locally replicated. Default is `GLOBAL`. |
+| GLOBAL or LOCAL      | Whether the table or store is globally or locally replicated. Default is `GLOBAL`. Same as `replication.type`. |
 | attribute name   | The schema of the table or store is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
 | attribute type   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
 | [WITH (property_name = expression [, ...])] | Optional properties for the new table or store, such as a time-to-live or a partition key. |
