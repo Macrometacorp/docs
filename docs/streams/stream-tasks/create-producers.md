@@ -24,6 +24,16 @@ When we create a producer, we can specify the following options:
 | maxPendingMessages    | Set the max size of the internal-queue holding the messages |  1000   |
 | batchingMaxPublishDelay | Time period within which the messages will be batched |  10ms   |
 
+**sendTimeoutMillis:** Specifies the time in milliseconds the producer waits for acknowledgement from the broker after sending a message. If the acknowledgement isn't received within this time, the send operation is considered a failure. Longer timeouts can be more tolerant of network issues but may lead to slower throughput.
+
+**batchingEnabled:** Determines whether messages are batched before being sent to the broker. Batching can help increase throughput and reduce overhead but may introduce a slight delay in message delivery.
+
+**batchingMaxMessages:** Sets the maximum number of messages allowed in a batch. Larger batches can increase throughput but may consume more memory and introduce latency.
+
+**maxPendingMessages:** Controls the maximum size of the internal queue holding the messages before they are sent to the broker. This can be helpful for controlling memory usage and preventing excessive message backlog. If the queue reaches its maximum size, new messages may be blocked or fail immediately, depending on the producer configuration.
+
+**batchingMaxPublishDelay:** Defines the maximum time period in milliseconds within which messages are batched before being sent to the broker. Lower values can help ensure faster delivery at the cost of potentially smaller batches and reduced throughput.
+
 ## Create Producer Code
 
 When this code runs, it creates a new client, requests a stream object, and then creates a producer.
@@ -161,7 +171,7 @@ def create_producer():
         batching_max_messages=100, # Default is 1000
         batching_max_publish_delay_ms= 10 # Default is 10
     )
-    
+
     while True:
         message = f"Hello Macrometa Stream! Here is your random message number {random.randint(1, 100)}"
         producer.send(message)
