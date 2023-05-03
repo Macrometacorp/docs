@@ -6,16 +6,21 @@ Function checks if the list is empty.
 
 ## Syntax
 
-    <BOOL> list:isEmpty(<OBJECT> list)
+```sql
+<BOOL> list:isEmpty(<OBJECT> list)
+```
 
 ## Query Parameters
 
-| Name | Description                                                   | Default Value | Possible Data Types | Optional | Dynamic |
-|------|---------------------------------------------------------------|---------------|---------------------|----------|---------|
-| list | The list that needs to be checked whether it's empty or not. |               | OBJECT              | No       | Yes     |
+| Name | Description | Default Value | Possible Data Types | Optional | Dynamic |
+|------|-------------|---------------|---------------------|----------|---------|
+| list | The list that needs to be checked whether it's empty or not. |    | OBJECT | No  | Yes |
 
 ## Example 1
 
-    list:isEmpty(stockSymbols)
+```sql
+@info(name = 'query1')
+list:isEmpty(stockSymbols)
+```
 
-Returns `true` if the stockSymbols list is empty, else it returns `false`.
+The `list:isEmpty(stockSymbols)` function returns `true` if the `stockSymbols` list is empty; otherwise, it returns `false`.

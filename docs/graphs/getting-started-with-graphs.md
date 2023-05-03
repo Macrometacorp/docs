@@ -31,12 +31,12 @@ Create collections to hold the data that you will use to create graphs.
 
 1. [Create a document collection](../collections/documents/create-document-store) named `cities`.
    1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-   1. Click **Collections** and then click **New Collection**.
+   1. Click **Data > Collections** and then click **New Collection**.
    1. Click **Document Store**.
    1. In **Collection Name**, enter `cities` and then click **Create**.
 
-1. [Create an edge collection](../collections/graph-edge/create-graph-edge.md) named `flights`.
-   1. In **Collections**, click **New Collection**.
+1. [Create an edge collection](graph-tasks/create-graph-edge-collection) named `flights`.
+   1. In **Data > Collections**, click **New Collection**.
    1. Click **Graph Edge**.
    1. In **Collection Name**, enter `flights` and then click **Create**.
 
@@ -46,7 +46,7 @@ You now have two empty collections that are ready to receive data.
 
 Add data to the collections with C8QL queries. For more information about Macrometa queries, refer to [Queries](../queries/).
 
-1. Click **Query Workers**.
+1. Click **Compute > Query Workers**.
 1. To populate the `cities` collection, copy the following query and paste it in the editor.
 
 	```JavaScript
@@ -107,7 +107,7 @@ Congratulations! Your collections now contain all the records necessary to creat
 
 Add a geo index to the `cities` collection. For more information about this type of index, refer to [Geo-Spatial Indexes](../collections/indexing/geo-indexes).
 
-1. Click **Collections**, then click **cities**.
+1. Click **Data > Collections**, then click **cities**.
 1. Click **Indexes**, then click the plus to add an index.
 1. Enter the following information:
    - **Type**: Geo Index
@@ -122,7 +122,7 @@ Add a geo index to the `cities` collection. For more information about this type
 
 And now for the really fun part!
 
-1. Click **Graphs**, and then click **New Graph**.
+1. Click **Data > Graphs**, and then click **New Graph**.
 1. Enter the following information:
    - **Name**: airline
    - **Edge Definitions**: flights

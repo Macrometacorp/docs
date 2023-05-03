@@ -15,7 +15,7 @@ Read our blog post [How To Build A Crypto Arbitrage Trading Bot](https://www.mac
 
 1. Log in to the [Macrometa Console](https://auth-play.macrometa.io/) 
 2. Go to the Collections tab and create a new document collection named `trades` with `collection stream enabled` checked. For more information about creating document collections, refer to [Create a Document Collection](https://macrometa.com/docs/collections/documents/create-document-store).
-3. Click **Stream Workers**.
+3. Click **Compute > Stream Workers**.
 4. Click **New Stream Worker** named `Crypto-Trading-App`.
 5. Copy and past the [code example](#crypto-app-stream-worker-code) into the editor.
 6. Click **Save**. Macrometa validates your code.
@@ -66,10 +66,10 @@ CREATE SINK STREAM GLOBAL CryptoTraderQuotesAvgEURNew(exchange string, quote_reg
 
 CREATE SINK STREAM GLOBAL CryptoTraderQuotesAvgJPYNew(exchange string, quote_region string, symbol string, ma double, close double, timestamp long);
 
-CREATE SINK TradesBuy WITH (type="logger", prefix='BUY') (exchange string, quote_region string, symbol string, timestamp long, trade_location string,
+CREATE SINK TradesBuy WITH (type="log", prefix='BUY') (exchange string, quote_region string, symbol string, timestamp long, trade_location string,
                           trade_price double, trade_strategy string, trade_type string);
 
-CREATE SINK TradesSell WITH (type="logger", prefix='SELL') (exchange string, quote_region string, symbol string, timestamp long, trade_location string,
+CREATE SINK TradesSell WITH (type="log", prefix='SELL') (exchange string, quote_region string, symbol string, timestamp long, trade_location string,
                           trade_price double, trade_strategy string, trade_type string);                      
 
 -- Common trades store

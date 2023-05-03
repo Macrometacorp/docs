@@ -17,7 +17,7 @@ CREATE SINK <NAME> WITH (type="query-worker", map.type="<STRING>", query.worker.
 
 | Name     | Description                   | Default Value            | Possible Data Types | Optional | Dynamic |
 |----------|---------------------------|--------------------------|---------------------|----------|---------|
-| query.worker.name  | TThe name of an existing query worker. | | string | No | Yes |
+| query.worker.name  | The name of an existing query worker. | | string | No | Yes |
 | sink.id | Identifier to correlate the `query-worker` source with its corresponding `query-worker` sink that published the messages. | | string | No | No |
 
 ## Example 1

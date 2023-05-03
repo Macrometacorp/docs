@@ -6,17 +6,37 @@ This function returns `true` if the`input.string` contains the specified sequenc
 
 ## Syntax
 
-    <BOOL> str:contains(<STRING> input.string, <STRING> search.string)
+```sql
+<BOOL> str:contains(<STRING> input.string, <STRING> search.string)
+```
 
 ## Query Parameters
 
-| Name          | Description                                                | Default Value | Possible Data Types | Optional | Dynamic |
-|---------------|------------------------------------------------------------|---------------|---------------------|----------|---------|
-| input.string  | Input string value.                                        |               | STRING              | No       | Yes     |
-| search.string | The string value to be searched for in the `input.string`. |               | STRING              | No       | Yes     |
+| Name  | Description  | Default Value | Possible Data Types | Optional | Dynamic |
+|-------|--------------|---------------|---------------------|----------|---------|
+| input.string  | Input string value.  |               | STRING   | No       | Yes  |
+| search.string | The string value to be searched for in the `input.string`. |               | STRING  | No       | Yes     |
 
 ## Example 1
 
-    contains("21 products are produced by gdn currently", "gdn")
+```sql
+@info(name = 'containsExample')
+SELECT contains('21 products are produced by gdn currently', 'gdn') AS containsGdn;
+```
 
-This returns a boolean value as the output. In this case, it returns`true`.
+The `containsExample` demonstrates the use of the `contains()` function to check if a given string contains a specified substring. In this example, the input string is '21 products are produced by gdn currently', and the substring to check for is 'gdn'. The function returns `true` because the input string contains the specified substring.
+
+## Example 2
+
+```sql
+CREATE STREAM InputDataStream (eventTime long, text string, substring string);
+
+CREATE SINK STREAM OutputStream (eventTime long, containsSubstring bool);
+
+@info(name = 'containsStreamWorker')
+INSERT INTO OutputStream
+SELECT eventTime, contains(text, substring) AS containsSubstring
+FROM InputDataStream;
+```
+
+The `containsStreamWorker` processes events from the `InputDataStream` and uses the `contains()` function to check if the `text` attribute contains the specified `substring` attribute. The query outputs the `eventTime` and a boolean value `containsSubstring` for each event to the `OutputStream`. The boolean value is `true` if the input string contains the specified substring, and `false` otherwise.

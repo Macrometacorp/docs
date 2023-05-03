@@ -6,17 +6,22 @@ Function returns the updated list after removing the element with the specified 
 
 ## Syntax
 
-    <OBJECT> list:removeByIndex(<OBJECT> list, <INT> index)
+```sql
+<OBJECT> list:removeByIndex(<OBJECT> list, <INT> index)
+```
 
 ## Query Parameters
 
-| Name  | Description                                     | Default Value | Possible Data Types | Optional | Dynamic |
-|-------|-------------------------------------------------|---------------|---------------------|----------|---------|
-| list  | The list that needs to be updated.              |               | OBJECT              | No       | Yes     |
-| index | The index of the element that needs to removed. |               | INT                 | No       | Yes     |
+| Name  | Description | Default Value | Possible Data Types | Optional | Dynamic |
+|-------|-------------|---------------|---------------------|----------|---------|
+| list  | The list that needs to be updated. |               | OBJECT | No   | Yes  |
+| index | The index of the element that needs to removed. |            | INT  | No  | Yes |
 
 ## Example 1
 
-    list:removeByIndex(stockSymbols, 0)
+```sql
+@info(name = 'query1')
+list:removeByIndex(stockSymbols, 0)
+```
 
-This returns the updated list, stockSymbols, after removing value at 0 th index.
+The `list:removeByIndex(stockSymbols, 0)` function takes the list named `stockSymbols` and removes the element at the 0th index. The function then returns the updated `stockSymbols` list with the specified element removed.

@@ -135,7 +135,7 @@ const getCountValue = {
 };
 
 // Step 1: Open connection to GDN. You will be routed to the closest region.
-console.log(`\n1. Connecting to federation: ${globalUrl},  user: ${thisApikey}`);
+console.log(`\n1. Connecting to federation: ${globalUrl}`);
 
 async function createCollection () {
   console.log("\n2. Creating collection.");

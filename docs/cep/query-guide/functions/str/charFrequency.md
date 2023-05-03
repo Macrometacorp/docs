@@ -17,6 +17,24 @@ Gives the frequency of a char in `input string`.
 
 ## Example 1
 
-    str:charFrequency("gdn,ABM,NSFT", ",")
+```sql
+@info(name = 'charFrequencyExample')
+SELECT str:charFrequency('gdn,ABM,NSFT', ',') AS commaCount;
+```
 
-This counts the number of occurrences of `,` in the given `input.string`. In this scenario, the output will is `2`.
+The `charFrequencyExample` demonstrates the use of the `str:charFrequency` function to count the number of occurrences of a specific character (in this case, ',') in a given input string ('gdn,ABM,NSFT'). In this example, the output is `2`, as there are two commas in the input string.
+
+## Example 2
+
+```sql
+CREATE STREAM InputDataStream (eventTime long, symbolsList string);
+
+CREATE SINK STREAM OutputStream (eventTime long, commaCount int);
+
+@info(name = 'charFrequencyStreamWorker')
+INSERT INTO OutputStream
+SELECT eventTime, str:charFrequency(symbolsList, ',') AS commaCount
+FROM InputDataStream;
+```
+
+The `charFrequencyStreamWorker` processes events from the `InputDataStream` and uses the `str:charFrequency` function to count the number of occurrences of a specific character (in this case, ',') in the `symbolsList` attribute. The query outputs the `eventTime` and the calculated `commaCount` for each event to the `OutputStream`.

@@ -5,7 +5,7 @@ title: Quickstart
 
 Let's get started with Macrometa by creating a global address book. In this tutorial, you will be creating a document [collection](collections/), inserting and querying some user data, and finally creating a fully operational API via [Query Workers](queryworkers/). This tutorial is Macrometa's version of "Hello, world!", is simplistic by design, and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms.
 
-If you've already completed this tutorial, then you can [add search to your application](search/getting-started).
+If you've already completed this tutorial, then you can [add search to your application](search/getting-started-search.md).
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ If you've already completed this tutorial, then you can [add search to your appl
 
 A _collection_ is a group of documents with a unique name and identifier. For the address book, you will create a document collection that contains names and addresses.
 
-1. On the side menu, click **Collections**.
+1. On the side menu, click **Data > Collections**.
 1. Click **New Collection**.
 1. Click **Document Store**.
 1. In **Collection Name**, enter `addresses`.
@@ -31,7 +31,7 @@ Our collection is now accessible worldwide! However, it's empty. Let's fix that.
 
 There are several ways to add data to a collection, including importing CSV or JSON files. For this quickstart, we'll use a query to insert records.
 
-1. On the side menu, click **Query Workers**.
+1. On the side menu, click **Compute > Query Workers**.
 2. The code block below contains six names and email addresses. Copy and paste it in the code editor on line 1.
 
   ```sql
@@ -55,7 +55,7 @@ There are several ways to add data to a collection, including importing CSV or J
 
 Return to the collection and see what the query did.
 
-1. Click **Collections**.
+1. click **Data > Collections**.
 1. Click **addresses**.
 
 Macrometa displays a list of keys and content for each record in the collection. Now you can:
@@ -72,7 +72,7 @@ When you are done experimenting with records, continue to the next step.
 
 Now, let's query the data you just added to your collection.
 
-1. Click **Query Workers**.
+1. Click **Compute > Query Workers**.
 2. Click **New Query** to clear the code editor.
 3. Copy the code block below and paste it into the code editor.
 

@@ -6,9 +6,9 @@ Returns the count of all the events.
 
 ## Syntax
 
-```js
-    <LONG> count()
-    <LONG> count(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> arg)
+```sql
+<LONG> count()
+<LONG> count(<INT|LONG|DOUBLE|FLOAT|STRING|BOOL|OBJECT> arg)
 ```
 
 ## Query Parameters
@@ -17,12 +17,15 @@ Returns the count of all the events.
 |------|-----------------------|---------------|-----------------------|----------|---------|
 | arg  | This function accepts one parameter. It can belong to any one of the available types. |               | INT LONG DOUBLE FLOAT STRING BOOL OBJECT | Yes      | Yes     |
 
-## Example
+## Example 1
 
-```js
-    insert into barStream
-    select count() as count
-    from fooStream WINDOW TUMBLING_TIME(10 sec);
+```sql
+@info(name = 'query1')
+INSERT INTO barStream
+SELECT count() AS count
+FROM fooStream WINDOW TUMBLING_TIME(10 sec);
 ```
 
-This returns the count of all the events for time batch in 10 seconds.
+This query processes records from the `fooStream` using a tumbling time-based window of 10 seconds. For each window, it calculates the total number of records using the `count()` function. The result is aliased as `count` and inserted into the `barStream`.
+
+Essentially, this query computes the count of records within each 10-second window in the `fooStream` and inserts the resulting `count` value into the `barStream`.
