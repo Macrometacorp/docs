@@ -55,33 +55,13 @@ FROM from_stream … ;
 You can also use general store syntax:
 
 ```sql
-CREATE STORE (GLOBAL|LOCAL)? <table_name> WITH(type="database", propKey=”propVal”, … )(<attribute_name> <attribute_type>, ...);
+CREATE STORE <collection_name> 
+  WITH (type="database", propKey=”propVal”, … )
+       (<attribute_name> <attribute_type>, ...);
 ```
-
-For example, this statement creates a global collection:
-
-```sql
-CREATE STORE SensorTable WITH(type=’database’, collection=’SampleTable’, map.type=’json’) (sensorId string, temperature double);
-```
-
-## Common Parameters
-
-The following parameters are configured in a table or store definition:
-
-| Parameter     | Description |
-| ------------- |-------------|
-| GLOBAL or LOCAL      | Whether the table or store is globally or locally replicated. Default is `GLOBAL`. Same as `replication.type`. |
-| attribute name   | The schema of the table or store is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
-| attribute type   | The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.     |
-| [WITH (property_name = expression [, ...])] | Optional properties for the new table or store, such as a time-to-live or a partition key. |
-| SELECT select_expr [, ...] | The selection criteria for the new table or store. |
-| FROM from_stream … | The name of the existing stream to select data from. |
-
-## Table Parameters
-
-| Parameter     | Description |
-| ------------- |-------------|
-| table name      | The name of the table defined. (`PascalCase` is used for table name as a convention.) |
+- *WITH (propKey = propVal [, ...])* - Optional properties for the new table or store, such as a time-to-live or a partition key. 
+- *attribute name*  - The schema of the table or store is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)
+- *attribute type*   - The type of each attribute defined in the schema.  This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL`, or `OBJECT`.  
 
 ## Store Parameters
 
@@ -121,6 +101,11 @@ CREATE TABLE GLOBAL SweetProductionCollection (name string, amount double);
 CREATE TABLE StockTable (symbol string, price float, volume long)
 AS SELECT symbol, price, volume
 FROM InputStream[price > 500] WINDOW SLIDING_LENGTH(1);
+```
+## Example 4
+
+```sql
+CREATE STORE SensorTable WITH(type=’database’, collection=’SampleTable’, map.type=’json’) (sensorId string, temperature double);
 ```
 
 In this example, `StockTable` is created with three attributes: `symbol`, `price`, and `volume`. The new table is created by selecting data from `InputStream`, where the price is greater than 500, and applying a [SLIDING_LENGTH window](../windows/window-types/sliding-length) with a length of 1. The resulting table will contain only those tuples from `InputStream` where the price is greater than 500, and will have the attributes `symbol`, `price`, and `volume`.
