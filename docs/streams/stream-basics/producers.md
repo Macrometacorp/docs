@@ -30,6 +30,6 @@ Messages published by producers can be compressed during transportation in order
 
 ## Batching
 
-Macrometa Streams use batching to enhance efficiency in message processing. When batching is enabled, the producer aggregates multiple messages and transmits them as a single batched request. The batching size is determined by two factors: the maximum number of messages allowed in a batch and the maximum publish latency.
+Macrometa streams use batching to enhance efficiency in message processing. When batching is enabled, the producer aggregates multiple messages and transmits them as a single batched request. The batching size is determined by two factors: the maximum number of messages allowed in a batch and the maximum publish latency.
 
 By default, a batch can accommodate up to 1,000 messages. The default maximum publish latency is set at 10 milliseconds, ensuring a timely transmission of message batches.
