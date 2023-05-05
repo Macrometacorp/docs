@@ -30,16 +30,47 @@ streamingml:bayesianRegression(<STRING> model.name, <INT> prediction.samples, <D
 
 ## Example 1
 
-    CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
+```sql
+CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
+CREATE STREAM PredictionStream (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
 
-    from StreamA#streamingml:bayesianRegression('model1', attribute_0, attribute_1, attribute_2, attribute_3)
-    insert all events into OutputStream;
+CREATE SINK STREAM OutputStream (prediction double, confidence double, attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
 
-This query uses a Bayesian regression model named `model1` to predict
-the label of the feature vector represented by `attribute_0`,
-`attribute_1`, `attribute_2`, and `attribute_3`. The predicted value is
-emitted to the `OutputStream` streamalong with the prediction confidence
-(std of predictive distribution) and the feature vector. As a result,
-the OutputStream stream is defined as follows: (attribute_0 double,
-attribute_1 double, attribute_2 double, attribute_3 double,
-prediction double, confidence double).
+@info(name = 'predictAttributes')
+INSERT INTO OutputStream
+SELECT prediction, confidence, attribute_0, attribute_1, attribute_2, attribute_3
+FROM PredictionStream#streamingml:bayesianRegression('model1', attribute_0, attribute_1, attribute_2, attribute_3);
+```
+
+This query uses a Bayesian regression model named `model1` to predict the label of the feature vector represented by `attribute_0`, `attribute_1`, `attribute_2`, and `attribute_3`. The `StreamA` contains the input features, and the `PredictionStream` is created with the same features.
+
+A sink stream, `OutputStream`, is defined to store the predicted values, prediction confidence (std of predictive distribution), and the original features from the `PredictionStream`.
+
+The `predictAttributes` query processes events from the `PredictionStream`, using the Bayesian regression model 'model1' to make predictions based on the input features. The predicted values, along with their confidences and original features, are inserted into the `OutputStream` sink stream. As a result, the OutputStream stream is defined as follows: (prediction double, confidence double, attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double).
+
+## Example 2
+
+```sql
+CREATE STREAM HouseDataStream (square_feet double, num_bedrooms double, num_bathrooms double, age double, price double);
+CREATE STREAM HousePredictionStream (square_feet double, num_bedrooms double, num_bathrooms double, age double);
+
+CREATE SINK STREAM HousePricePredictions (prediction double, confidence double, square_feet double, num_bedrooms double, num_bathrooms double, age double);
+
+@info(name = 'trainHousePriceModel')
+INSERT INTO OutputStream2
+SELECT *
+FROM HouseDataStream#streamingml:updateBayesianRegression('housePriceModel', price, square_feet, num_bedrooms, num_bathrooms, age);
+
+@info(name = 'predictHousePrices')
+INSERT INTO HousePricePredictions
+SELECT prediction, confidence, square_feet, num_bedrooms, num_bathrooms, age
+FROM HousePredictionStream#streamingml:bayesianRegression('housePriceModel', square_feet, num_bedrooms, num_bathrooms, age);
+```
+
+In this example, two input streams are created: `HouseDataStream` for model training and `HousePredictionStream` for making predictions. The `HouseDataStream` contains the square footage, number of bedrooms, number of bathrooms, age of the house, and the actual price. The `HousePredictionStream` contains the same features but without the actual price.
+
+A sink stream, `HousePricePredictions`, is defined to store the predicted house prices, prediction confidence, and the original features from the `HousePredictionStream`.
+
+The `trainHousePriceModel` query processes events from the `HouseDataStream`, updating the Bayesian linear regression model 'housePriceModel' using the input features and the actual house prices.
+
+The `predictHousePrices` query processes events from the `HousePredictionStream`, using the trained 'housePriceModel' to predict house prices based on the input features. The predictions, along with their confidences and original features, are inserted into the `HousePricePredictions` sink stream.
