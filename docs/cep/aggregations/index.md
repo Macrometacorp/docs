@@ -12,7 +12,7 @@ You can also create [Distributed Aggregations](distributed-aggregations.md) or [
 ## Purpose
 
 A named aggregation allows you to retrieve the aggregate values for different time durations.
-That is, it allows you to obtain aggregates such as `sum`, `count`, `avg`, `min`, `max`, `count`, and `distinctCount`
+That is, it allows you to obtain aggregates such as `sum`, `count`, `avg`, `min`, `max`, and `distinctCount`
 of stream attributes for durations such as `sec`, `min`, `hour`, and so on.
 
 This is of considerable importance in many analytics scenarios, because aggregate values are often needed for several time periods.

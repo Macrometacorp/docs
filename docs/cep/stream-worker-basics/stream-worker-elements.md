@@ -25,7 +25,7 @@ _Metadata_ includes some required elements, such as the name and the query langu
 
 ## Source (Required)
 
-In the simplest termers, a _source_ is where the events the stream worker processes come from; the source of events. Stream workers can have multiple sources.
+In the simplest terms, a _source_ is where the events the stream worker processes come from; the source of events. Stream workers can have multiple sources.
 
 In more technical terms, a source is a construct that consumes data from external sources (such as `database`, `stream`, `TCP`, `Kafka`, `HTTP`, and so on) with various event formats such as `JSON` or `binary`, converts then to stream events, and then passes into streams for processing.
 
