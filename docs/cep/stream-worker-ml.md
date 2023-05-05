@@ -25,7 +25,7 @@ CREATE STREAM TrainingStream (temperature double, time_of_day double, day_of_wee
 CREATE STREAM PredictionStream (temperature double, time_of_day double, day_of_week double, recent_consumption double);
 
 CREATE SINK STREAM EnergyConsumptionPredictions (prediction double, confidence double, temperature double, time_of_day double, day_of_week double, recent_consumption double);
-CREATE SINK STREAM ModelUpdateStatus (status string);
+CREATE SINK STREAM ModelUpdateStatus (temperature double, time_of_day double, day_of_week double, recent_consumption double, energy_consumption double, loss double);
 
 @info(name = 'trainEnergyModel')
 INSERT INTO ModelUpdateStatus
@@ -53,7 +53,7 @@ CREATE STREAM TrainingStream2 (ad_placement double, ad_format double, time_of_da
 CREATE STREAM PredictionStream2 (ad_placement double, ad_format double, time_of_day double, user_demographics double);
 
 CREATE SINK STREAM AdPerformancePredictions (prediction double, confidence double, ad_placement double, ad_format double, time_of_day double, user_demographics double);
-CREATE SINK STREAM ModelUpdateStatus2 (status string);
+CREATE SINK STREAM ModelUpdateStatus2 (ad_placement double, ad_format double, time_of_day double, user_demographics double, click_through_rate double, loss double);
 
 @info(name = 'trainAdPerformanceModel')
 INSERT INTO ModelUpdateStatus2
@@ -81,7 +81,7 @@ CREATE STREAM TransactionStream (transactionAmount double, transactionTimeOfDay 
 CREATE STREAM PredictionStream (transactionAmount double, transactionTimeOfDay double, distanceToLastTransaction double);
 
 CREATE SINK STREAM FraudPredictions (prediction bool, confidence double, transactionAmount double, transactionTimeOfDay double, distanceToLastTransaction double);
-CREATE SINK STREAM ModelUpdateStatus (status string);
+CREATE SINK STREAM ModelUpdateStatus (transactionAmount double, transactionTimeOfDay double, distanceToLastTransaction double, isFraud bool, transactionAmount.weight double, transactionTimeOfDay.weight double, distanceToLastTransaction.weight double);
 
 @info(name = 'trainFraudDetectionModel')
 INSERT INTO ModelUpdateStatus
@@ -94,13 +94,17 @@ SELECT prediction, confidence, transactionAmount, transactionTimeOfDay, distance
 FROM PredictionStream#streamingml:perceptronClassifier('fraudDetectionModel', transactionAmount, transactionTimeOfDay, distanceToLastTransaction);
 ```
 
+The explanation mostly matches the query, but we need to remove the mention of confidence values since the Perceptron classifier does not provide confidence scores. Here's the updated explanation:
+
 In this example, two input streams are created: `TransactionStream` for model training and `PredictionStream` for making predictions. The `TransactionStream` contains transaction amount, transaction time of day, distance to the last transaction, and a boolean indicating whether the transaction is fraudulent or not. The `PredictionStream` contains the same features but without the fraud information.
 
-Two sink streams are defined: `FraudPredictions` to store the predicted fraud labels, prediction confidence, and the original features from the `PredictionStream`, and `ModelUpdateStatus` to store the status of model updates.
+Two sink streams are defined: `FraudPredictions` to store the predicted fraud labels and the original features from the `PredictionStream`, and `ModelUpdateStatus` to store the status of model updates, including feature weights.
 
-The `trainFraudDetectionModel` query processes events from the `TransactionStream`, updating the Perceptron model 'fraudDetectionModel' using the input features and the actual fraud labels. The status of the model updates is inserted into the `ModelUpdateStatus` sink stream.
+The `trainFraudDetectionModel` query processes events from the `TransactionStream`, updating the Perceptron model 'fraudDetectionModel' using the input features and the actual fraud labels. The status of the model updates, including feature weights, is inserted into the `ModelUpdateStatus` sink stream.
 
-The `predictFraud` query processes events from the `PredictionStream`, using the trained 'fraudDetectionModel' to predict whether a transaction is fraudulent based on the input features. The predictions, along with their confidences and original features, are inserted into the `FraudPredictions` sink stream.
+The `predictFraud` query processes events from the `PredictionStream`, using the trained 'fraudDetectionModel' to predict whether a transaction is fraudulent based on the input features. The predictions, along with the original features, are inserted into the `FraudPredictions` sink stream.
+
+Please note that the Perceptron classifier does not provide a confidence value for its predictions. If you need confidence information, you might consider using another classification algorithm that provides confidence scores.
 
 ## Example 4: Perceptron Classifier for Manufacturing Quality Control
 
@@ -108,27 +112,29 @@ The `predictFraud` query processes events from the `PredictionStream`, using the
 CREATE STREAM SensorDataStream (temperature double, pressure double, vibration double, isDefective bool);
 CREATE STREAM QualityCheckStream (temperature double, pressure double, vibration double);
 
-CREATE SINK STREAM QualityControlPredictions (prediction bool, confidence double, temperature double, pressure double, vibration double);
+CREATE SINK STREAM QualityControlPredictions (prediction bool, temperature double, pressure double, vibration double);
 CREATE SINK STREAM ModelUpdateStatus (status string);
 
 @info(name = 'trainQualityControlModel')
 INSERT INTO ModelUpdateStatus
-SELECT *
+SELECT 'Model updated' as status
 FROM SensorDataStream#streamingml:updatePerceptronClassifier('qualityControlModel', isDefective, temperature, pressure, vibration);
 
 @info(name = 'predictQualityControl')
 INSERT INTO QualityControlPredictions
-SELECT prediction, confidence, temperature, pressure, vibration
+SELECT prediction, temperature, pressure, vibration
 FROM QualityCheckStream#streamingml:perceptronClassifier('qualityControlModel', temperature, pressure, vibration);
 ```
 
 In this example, two input streams are created: `SensorDataStream` for model training and `QualityCheckStream` for making predictions. The `SensorDataStream` contains temperature, pressure, vibration, and a boolean indicating whether a manufactured item is defective or not. The `QualityCheckStream` contains the same features but without the defect information.
 
-Two sink streams are defined: `QualityControlPredictions` to store the predicted defect labels, prediction confidence, and the original features from the `QualityCheckStream`, and `ModelUpdateStatus` to store the status of model updates.
+Two sink streams are defined: `QualityControlPredictions` to store the predicted defect labels and the original features from the `QualityCheckStream`, and `ModelUpdateStatus` to store the status of model updates.
 
 The `trainQualityControlModel` query processes events from the `SensorDataStream`, updating the Perceptron model 'qualityControlModel' using the input features and the actual defect labels. The status of the model updates is inserted into the `ModelUpdateStatus` sink stream.
 
-The `predictQualityControl` query processes events from the `QualityCheckStream`, using the trained 'qualityControlModel' to predict whether a manufactured item is defective based on the input features. The predictions, along with their confidences and original features, are inserted into the `QualityControlPredictions` sink stream.
+The `predictQualityControl` query processes events from the `QualityCheckStream`, using the trained 'qualityControlModel' to predict whether a manufactured item is defective based on the input features. The predictions, along with the original features, are inserted into the `QualityControlPredictions` sink stream.
+
+Please note that the Perceptron classifier does not provide a confidence value for its predictions. If you need confidence information, you might consider using another classification algorithm that provides confidence scores.
 
 ## Example 5: K-Means Incremental Clustering for Real-time Customer Segmentation
 
