@@ -25,12 +25,12 @@ This query returns the system current time in UTC timezone with `yyyy-MM-dd HH:m
 ## Example 2
 
 ```sql
-CREATE STREAM InputStream ();
-CREATE SINK STREAM OutputStream (utcTimestamp string);
+CREATE STREAM InputStream (message string);
+CREATE SINK STREAM OutputStream (message string, utcTimestamp string);
 
 @info(name = 'utcTimestampQuery')
 INSERT INTO OutputStream
-SELECT time:utcTimestamp() AS utcTimestamp
+SELECT message, time:utcTimestamp() AS utcTimestamp
 FROM InputStream;
 ```
 
