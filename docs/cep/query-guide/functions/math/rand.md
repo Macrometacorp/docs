@@ -6,21 +6,28 @@ This returns a stream of pseudo-random numbers when a sequence of calls are sent
 
 ## Syntax
 
-    <DOUBLE> math:rand()
-    <DOUBLE> math:rand(<INT|LONG> seed)
+```sql
+<DOUBLE> math:rand()
+<DOUBLE> math:rand(<INT|LONG> seed)
+```
 
 ## Query Parameters
 
-| Name | Description          | Default Value | Possible Data Types | Optional | Dynamic |
-|------|---------------------------------------------------|---------------|---------------------|----------|---------|
+| Name | Description | Default Value | Possible Data Types | Optional | Dynamic |
+|------|-------------|---------------|---------------------|----------|---------|
 | seed | An optional seed value that will be used to generate the random number sequence. | defaultSeed   | INT LONG            | Yes      | Yes     |
 
 ## Example 1
 
-    CREATE STREAM InValueStream (symbol string, price long, volume long);
+```sql
+CREATE STREAM InValueStream (symbol string, price long, volume long);
 
-    insert into OutMediationStream
-    select math:oct(inValue) as octValue
-    from InValueStream select symbol, math:rand() as randNumber;
+@info(name = 'generateRandomNumber')
+INSERT INTO OutMediationStream
+SELECT symbol, math:rand() AS randNumber
+FROM InValueStream;
+```
 
-In the example given above, a random double value between 0 and 1 will be generated using `math:rand()`.
+The `generateRandomNumber` query processes the input stream `InValueStream`, which contains three fields: `symbol`, `price`, and `volume`. For each event in the input stream, the query generates a random double value between 0 (inclusive) and 1 (exclusive) using the `math:rand()` function.
+
+The random number is aliased as `randNumber`, and the output stream `OutMediationStream` contains the `symbol` and the generated `randNumber`. This query processes the input stream events and forwards the resulting random numbers along with the symbol to the output stream for further processing or analysis.

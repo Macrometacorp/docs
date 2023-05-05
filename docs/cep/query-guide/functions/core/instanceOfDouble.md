@@ -21,12 +21,11 @@ Checks whether the parameter is an instance of double or not.
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT INSTANCEOFDOUBLE(value) AS state
+SELECT instanceOfDouble(value) AS state
 FROM fooStream;
-
 ```
 
-This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `INSTANCEOFDOUBLE` function is used to determine if the `value` is of double data type. If `value` is a double, then the `value` of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
+This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `instanceOfDouble` function is used to determine if the `value` is of double data type. If `value` is a double, then the `value` of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `state` field, where `state` is determined based on the data type of the `value`.
 
@@ -37,11 +36,11 @@ For example, a `value` of 56.45 would return TRUE.
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT INSTANCEOFDOUBLE(switchState) AS state
+SELECT instanceOfDouble(switchState) AS state
 FROM fooStream;
 ```
 
-This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `INSTANCEOFDOUBLE` function is used to determine if the `switchState` is of double data type. If `switchState` is a double, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
+This query, named 'query1', selects records from the `fooStream` and calculates a new field called `state`. The `instanceOfDouble` function is used to determine if the `switchState` is of double data type. If `switchState` is a double, then the value of `state` will be TRUE; otherwise, it will be FALSE. The resulting data, including the calculated `state`, is then inserted into the `barStream`.
 
 Essentially, this query processes records in the `fooStream` and creates new records in the `barStream` with the `state` field, where `state` is determined based on the data type of the `switchState`.
 

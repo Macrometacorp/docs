@@ -21,10 +21,10 @@ Calculates the average for all the events.
 ```sql
 @info(name = 'query1')
 INSERT INTO barStream
-SELECT AVG(temp) AS avgTemp
+SELECT avg(temp) AS avgTemp
 FROM fooStream WINDOW TUMBLING_TIME;
 ```
 
-This query processes records from the `fooStream` using a tumbling time-based window. For each window, it calculates the average of the `temp` values using the `AVG` function. The result is aliased as `avgTemp` and inserted into the `barStream`.
+This query processes records from the `fooStream` using a tumbling time-based window. For each window, it calculates the average of the `temp` values using the `avg` function. The result is aliased as `avgTemp` and inserted into the `barStream`.
 
 Essentially, this query computes the average temperature for each time-based window of records in the `fooStream` and inserts the resulting average value into the `barStream`.

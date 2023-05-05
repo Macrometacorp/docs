@@ -6,7 +6,9 @@ This function returns a string value that is obtained as a result of concatenati
 
 ## Syntax
 
-    <STRING> str:concat(<STRING> arg, <STRING> ...)
+```sql
+<STRING> str:concat(<STRING> arg, <STRING> ...)
+```
 
 ## Query Parameters
 
@@ -16,6 +18,24 @@ This function returns a string value that is obtained as a result of concatenati
 
 ## Example 1
 
-    concat("D533", "8JU^", "XYZ")
+```sql
+@info(name = 'concatExample')
+SELECT str:concat('D533', '8JU^', 'XYZ') AS concatenatedString;
+```
 
-This returns a string value by concatenating two or more given arguments. In the example shown above, it returns `"D5338JU\^XYZ"`.
+The `concatExample` demonstrates the use of the `str:concat()` function to concatenate two or more input arguments into a single string. In this example, the input arguments are 'D533', '8JU^', and 'XYZ'. The function returns 'D5338JU^XYZ', which is the concatenated result.
+
+## Example 2
+
+```sql
+CREATE STREAM InputDataStream (eventTime long, part1 string, part2 string, part3 string);
+
+CREATE SINK STREAM OutputStream (eventTime long, concatenatedString string);
+
+@info(name = 'concatStreamWorker')
+INSERT INTO OutputStream
+SELECT eventTime, str:concat(part1, part2, part3) AS concatenatedString
+FROM InputDataStream;
+```
+
+The `concatStreamWorker` processes events from the `InputDataStream` and uses the `str:concat()` function to concatenate the `part1`, `part2`, and `part3` attributes into a single string. The query outputs the `eventTime` and the concatenated `concatenatedString` for each event to the `OutputStream`.

@@ -17,7 +17,7 @@ This extension evaluates a given string and return the output according to the u
 | expression  | Any single line js expression or function.     |           | STRING          | No       | Yes     |
 | return.type | The return type of the evaluated expression. Supported types are int|long|float|double|bool|string. |          | STRING              | No       | No      |
 
-## Example
+## Example 1
 
 ```sql
 @info(name = 'query1')

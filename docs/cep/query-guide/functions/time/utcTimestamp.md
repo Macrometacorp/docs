@@ -6,10 +6,32 @@ Function returns the system current time in UTC timezone with `yyyy-MM-dd HH:mm:
 
 ## Syntax
 
-    <STRING> time:utcTimestamp()
+```sql
+<STRING> time:utcTimestamp()
+```
+
+## Query Parameters
+
+None
 
 ## Example 1
 
-    time:utcTimestamp()
+```sql
+SELECT time:utcTimestamp() AS utcTimestamp;
+```
 
-Returns the system current time in UTC timezone with `yyyy-MM-dd HH:mm:ss` format, and a sample output will be like `2019-07-03 09:58:34`.
+This query returns the system current time in UTC timezone with `yyyy-MM-dd HH:mm:ss` format. A sample output could be `2019-07-03 09:58:34`.
+
+## Example 2
+
+```sql
+CREATE STREAM InputStream (message string);
+CREATE SINK STREAM OutputStream (message string, utcTimestamp string);
+
+@info(name = 'utcTimestampQuery')
+INSERT INTO OutputStream
+SELECT message, time:utcTimestamp() AS utcTimestamp
+FROM InputStream;
+```
+
+The `utcTimestampQuery` processes events from the `InputStream`. It uses the `time:utcTimestamp()` function to obtain the system current time in UTC timezone with `yyyy-MM-dd HH:mm:ss` format. The query outputs the UTC timestamp as the `utcTimestamp` attribute for each event to the `OutputStream`.

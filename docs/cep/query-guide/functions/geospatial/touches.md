@@ -9,26 +9,34 @@ Two available sets of parameters:
 
 ## Syntax
 
-    <BOOL> geo:touches(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
-    <BOOL> geo:touches(<STRING> geo.json.geometry, <STRING> geo.json.geometry.fence)
+```sql
+<BOOL> geo:touches(<DOUBLE> longitude, <DOUBLE> latitude, <STRING> geo.json.geometry.fence)
+<BOOL> geo:touches(<STRING> geo.json.geometry, <STRING> geo.json.geometry.fence)
+```
 
 ## Query Parameters
 
 | Name              | Description   | Possible Data Types | Optional | Dynamic |
-|-------------------|------------------------------------------------------------|---------------------|----------|---------|
-| longitude           | Longitude of the geo location.         | DOUBLE       | Yes       | Yes     |
-| latitude | Latitude of the geo location.  | DOUBLE              | Yes      | Yes     |
+|-------------------|---------------|---------------------|----------|---------|
+| longitude           | Longitude of the geo location.     | DOUBLE       | Yes       | Yes     |
+| latitude | Latitude of the geo location.  | DOUBLE       | Yes      | Yes     |
 | geo.json.geometry       | String that contains geometry type and coordinates for a GeoJSON geometry. | STRING| Yes      | Yes     |
 | geo.json.geometry.fence    | String that contains geometry type and coordinates for a GeoJSON geometry fence. | String| No      | Yes     |
 
 ## Example 1
 
-    geo:touches( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
+```sql
+@info(name = 'query1')
+geo:touches( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
+```
 
-This example returns `false` because `geo.json.geometry` does not touch `geo.json.geometry.fence`.
+This example returns `false` because `geo.json.geometry` does not touch `geo.json.geometry.fence`. The two polygons do not share any boundary points.
 
 ## Example 2
 
-    geo:touches(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
+```sql
+@info(name = 'query1')
+geo:touches(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
+```
 
-This example returns `true` because the coordinates do not touch `geo.json.geometry.fence`.
+This example returns `false` because the coordinates do not touch `geo.json.geometry.fence`. The given point (10.5, 20.5) is far away from the polygon and does not share any boundary points with it.
