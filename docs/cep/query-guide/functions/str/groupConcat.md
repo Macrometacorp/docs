@@ -33,7 +33,7 @@ CREATE SINK STREAM OutputStream (eventTime long, groupedKeys string);
 @info(name = 'groupConcatExample')
 INSERT INTO OutputStream
 SELECT eventTime, str:groupConcat(key) AS groupedKeys
-FROM InputStream#window.slidingTime(5 min);
+FROM InputStream WINDOW SLIDING_TIME(5 min);
 ```
 
 The `groupConcatExample` processes events from the `InputStream` using a sliding time window of 5 minutes and concatenates the `key` attribute values using the `str:groupConcat()` function. In this example, if the input events within the 5-minute window have values for the `key` attribute as `'A'`, `'B'`, `'S'`, `'C'`, and `'A'`, the function returns `'A,B,S,C,A'` to the `OutputStream`.
@@ -47,7 +47,7 @@ CREATE SINK STREAM OutputStream (eventTime long, groupedKeys string);
 @info(name = 'groupConcatWithSeparatorExample')
 INSERT INTO OutputStream
 SELECT eventTime, str:groupConcat(key, '-', true, 'ASC') AS groupedKeys
-FROM InputStream#window.slidingTime(5 min);
+FROM InputStream WINDOW SLIDING_TIME(5 min);
 ```
 
 The `groupConcatWithSeparatorExample` processes events from the `InputStream` using a sliding time window of 5 minutes and concatenates the `key` attribute values using the `str:groupConcat()` function with a specified separator, distinct values, and sorting order. In this example, if the input events within the 5-minute window have values for the `key` attribute as `'A'`, `'B'`, `'S'`, `'C'`, and `'A'`, the separator is a hyphen, distinct values are set to `true`, and the sorting order is ascending, the function returns `'A-B-C-S'` to the `OutputStream`.
