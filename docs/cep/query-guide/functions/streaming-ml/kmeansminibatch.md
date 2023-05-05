@@ -43,7 +43,7 @@ streamingml:kMeansMiniBatch(<INT> no.of.clusters, <DOUBLE> decay.rate, <INT> max
 
 ```sql
 CREATE STREAM InputStream (x double, y double);
-CREATE STREAM OutputStream (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, x double, y double);
+CREATE SINK STREAM OutputStream (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, x double, y double);
 
 @info(name = 'kMeansMiniBatchWithHyperParametersQuery')
 INSERT INTO OutputStream
@@ -57,7 +57,7 @@ In this example, the user provides all three hyperparameters: the number of clus
 
 ```sql
 CREATE STREAM InputStream2 (x double, y double);
-CREATE STREAM OutputStream2 (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, x double, y double);
+CREATE SINK STREAM OutputStream2 (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, x double, y double);
 
 @info(name = 'kMeansMiniBatchDefaultHyperParametersQuery')
 INSERT INTO OutputStream2
@@ -71,7 +71,7 @@ In this example, the user doesn't provide the learning rate and batch size hyper
 
 ```sql
 CREATE STREAM InputStream3 (x double, y double, z double);
-CREATE STREAM OutputStream3 (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, closestCentroidCoordinate3 double, x double, y double, z double);
+CREATE SINK STREAM OutputStream3 (closestCentroidCoordinate1 double, closestCentroidCoordinate2 double, closestCentroidCoordinate3 double, x double, y double, z double);
 
 @info(name = 'kMeansMiniBatchThreeDimensionalQuery')
 INSERT INTO OutputStream3

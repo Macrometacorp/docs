@@ -30,7 +30,7 @@ The `trimExample` demonstrates the use of the `trim()` function, which removes l
 ```sql
 CREATE STREAM InputStream (eventTime long, text string);
 
-CREATE STREAM OutputStream (eventTime long, trimmedText string);
+CREATE SINK STREAM OutputStream (eventTime long, trimmedText string);
 
 @info(name = 'trimStreamWorker')
 INSERT INTO OutputStream

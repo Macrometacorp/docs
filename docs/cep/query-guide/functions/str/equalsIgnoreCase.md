@@ -31,7 +31,7 @@ The `equalsIgnoreCaseExample` demonstrates the use of the `equalsIgnoreCase()` f
 ```sql
 CREATE STREAM InputDataStream (eventTime long, string1 string, string2 string);
 
-CREATE STREAM OutputStream (eventTime long, isEqual bool);
+CREATE SINK STREAM OutputStream (eventTime long, isEqual bool);
 
 @info(name = 'equalsIgnoreCaseStreamWorker')
 INSERT INTO OutputStream

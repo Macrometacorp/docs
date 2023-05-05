@@ -7,9 +7,9 @@ Returns difference between two dates in days.
 ## Syntax
 
 ```sql
-<INT> time:dateDiff(<STRING> date.value1, <STRING> date.value2, <STRING> date.format1, <STRING> date.format2)
-<INT> time:dateDiff(<STRING> date.value1, <STRING> date.value2)
-<INT> time:dateDiff(<LONG> timestamp.in.milliseconds1, <LONG> timestamp.in.milliseconds2)
+<LONG> time:dateDiff(<STRING> date.value1, <STRING> date.value2, <STRING> date.format1, <STRING> date.format2)
+<LONG> time:dateDiff(<STRING> date.value1, <STRING> date.value2)
+<LONG> time:dateDiff(<LONG> timestamp.in.milliseconds1, <LONG> timestamp.in.milliseconds2)
 ```
 
 ## Query Parameters
@@ -51,7 +51,7 @@ This query calculates the date difference between the given timestamp values '14
 
 ```sql
 CREATE STREAM InputStream (startDate string, endDate string, inputFormat string);
-CREATE STREAM OutputStream (dateDifference int);
+CREATE SINK STREAM OutputStream (dateDifference long);
 
 @info(name = 'dateDiffStreamWorker')
 INSERT INTO OutputStream

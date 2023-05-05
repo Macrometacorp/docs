@@ -52,7 +52,7 @@ This query extracts the hour from the given timestamp in milliseconds `139455680
 
 ```sql
 CREATE STREAM InputStream (timestampStr string, format string);
-CREATE STREAM OutputStream (extractedValue int);
+CREATE SINK STREAM OutputStream (extractedValue int);
 
 @info(name = 'dayExtractorQuery')
 INSERT INTO OutputStream

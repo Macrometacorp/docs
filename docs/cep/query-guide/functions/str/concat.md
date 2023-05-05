@@ -30,7 +30,7 @@ The `concatExample` demonstrates the use of the `concat()` function to concatena
 ```sql
 CREATE STREAM InputDataStream (eventTime long, part1 string, part2 string, part3 string);
 
-CREATE STREAM OutputStream (eventTime long, concatenatedString string);
+CREATE SINK STREAM OutputStream (eventTime long, concatenatedString string);
 
 @info(name = 'concatStreamWorker')
 INSERT INTO OutputStream

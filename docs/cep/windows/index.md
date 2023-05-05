@@ -5,7 +5,7 @@ title: Named Windows
 
 A _named window_ is a window that can be shared across multiple queries. Events can be inserted to a named window from one or more queries, and it can produce output events based on the named window type.
 
-Window provides a way to capture a subset of events from an input stream and retain them for a period of time based on a specified criterion. The criterion defines when and how the events should be evicted from the windows. Such as events getting evicted from the window based on the time duration, or number of events and they events are evicted in a sliding (one by one) or tumbling (batch) manner.
+Windows provide a way to capture a subset of events from an input stream and retain them for a period of time based on a specified criterion. The criterion defines when and how the events should be evicted from the windows. Such as events being evicted from the window based on the time duration, or number of events and the events are evicted in a sliding (one by one) or tumbling (batch) manner.
 
 A window can be an input to a query, similar to streams. For more information, refer to [Window Queries](windows-queries), [INSERT (Window)](insert-window), and [JOIN (Window)](../query-guide/join/join-window).
 

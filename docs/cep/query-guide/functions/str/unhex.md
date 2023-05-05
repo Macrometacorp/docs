@@ -30,7 +30,7 @@ The `unhexExample` demonstrates the use of the `unhex()` function, which convert
 ```sql
 CREATE STREAM InputStream (eventTime long, hexValue string);
 
-CREATE STREAM OutputStream (eventTime long, unhexedText string);
+CREATE SINK STREAM OutputStream (eventTime long, unhexedText string);
 
 @info(name = 'unhexStreamWorker')
 INSERT INTO OutputStream

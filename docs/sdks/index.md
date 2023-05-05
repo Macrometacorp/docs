@@ -10,7 +10,6 @@ This section demonstrates some of the tasks that you can complete with Macrometa
 
 - [Javascript](https://github.com/Macrometacorp/jsC8)
 - [Python](https://github.com/Macrometacorp/pyC8)
-- [Java](https://github.com/Macrometacorp/c84j)
 
 Read through the complete example below to see how to perform tasks with SDKs or with APIs using Python or JavaScript calls.
 
