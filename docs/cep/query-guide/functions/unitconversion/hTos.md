@@ -28,7 +28,7 @@ In this example, the `unitconversion:hTos()` function converts a value of `1` ho
 
 ```sql
 CREATE STREAM InputStream (duration_hours double);
-CREATE STREAM OutputStream (duration_hours double, duration_seconds double);
+CREATE SINK STREAM OutputStream (duration_hours double, duration_seconds double);
 
 @info(name = 'durationConversionQuery')
 INSERT INTO OutputStream

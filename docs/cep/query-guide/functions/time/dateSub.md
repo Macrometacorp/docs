@@ -50,12 +50,12 @@ This query subtracts one hour from the timestamp value '1415715824000L' (in mill
 
 ```sql
 CREATE STREAM InputStream (inputDate string, unit string, amount int, inputFormat string);
-CREATE STREAM OutputStream (newDate string);
+CREATE SINK STREAM OutputStream (newDate string);
 
 @info(name = 'dateSubStreamWorker')
 INSERT INTO OutputStream
-SELECT time:dateSub(inputDate, amount, unit, inputFormat) AS newDate
+SELECT time:dateSub(inputDate, amount, 'HOUR', inputFormat) AS newDate
 FROM InputStream;
 ```
 
-The `dateSubStreamWorker` processes events from the `InputStream`, which contains a date string (`inputDate`), a unit (`unit`), an amount to subtract (`amount`), and an optional input format (`inputFormat`). It uses the `time:dateSub(inputDate, amount, unit, inputFormat)` function to subtract the specified amount in the given unit from the date string in the input format. The query outputs the new date as the `newDate` attribute for each event to the `OutputStream`.
+The `dateSubStreamWorker` processes events from the `InputStream`, which contains a date string (`inputDate`), a unit (`HOUR`), an amount to subtract (`amount`), and an optional input format (`inputFormat`). It uses the `time:dateSub(inputDate, amount, unit, inputFormat)` function to subtract the specified amount in the given unit from the date string in the input format. The query outputs the new date as the `newDate` attribute for each event to the `OutputStream`.

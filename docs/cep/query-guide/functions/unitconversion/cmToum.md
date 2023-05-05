@@ -28,7 +28,7 @@ In this example, the `unitconversion:cmToum()` function converts a value of `100
 
 ```sql
 CREATE STREAM InputStream (length_cm double);
-CREATE STREAM OutputStream (length_cm double, length_um double);
+CREATE SINK STREAM OutputStream (length_cm double, length_um double);
 
 @info(name = 'lengthConversionQuery')
 INSERT INTO OutputStream

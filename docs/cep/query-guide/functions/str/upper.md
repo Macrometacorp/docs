@@ -21,22 +21,22 @@ capital/block letters.
 
 ```sql
 @info(name = 'upperExample')
-SELECT upper('Hello World') AS upperText;
+SELECT str:upper('Hello World') AS upperText;
 ```
 
-The `upperExample` demonstrates the use of the `upper()` function, which converts lowercase letters in a given string to uppercase letters. In this example, the input string is `'Hello World'`. After applying the `upper()` function, the resulting output is `'HELLO WORLD'`.
+The `upperExample` demonstrates the use of the `str:upper()` function, which converts lowercase letters in a given string to uppercase letters. In this example, the input string is `'Hello World'`. After applying the `str:upper()` function, the resulting output is `'HELLO WORLD'`.
 
 ## Example 2
 
 ```sql
 CREATE STREAM InputStream (eventTime long, originalText string);
 
-CREATE STREAM OutputStream (eventTime long, upperText string);
+CREATE SINK STREAM OutputStream (eventTime long, upperText string);
 
 @info(name = 'upperStreamWorker')
 INSERT INTO OutputStream
-SELECT eventTime, upper(originalText) AS upperText
+SELECT eventTime, str:upper(originalText) AS upperText
 FROM InputStream;
 ```
 
-The `upperStreamWorker` processes events from the `InputStream` and applies the `upper()` function to the `originalText` attribute, converting all lowercase letters to uppercase letters. The query outputs the `eventTime` and the converted `originalText` as `upperText` for each event to the `OutputStream`.
+The `upperStreamWorker` processes events from the `InputStream` and applies the `str:upper()` function to the `originalText` attribute, converting all lowercase letters to uppercase letters. The query outputs the `eventTime` and the converted `originalText` as `upperText` for each event to the `OutputStream`.

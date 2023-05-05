@@ -9,7 +9,7 @@ This document describes what has changed in Macrometa release 0.17.15. To check 
 
 The following new features are included in this release.
 
-### Blob Storage in KV Store
+### KV Blob Storage
 
 Key-value (KV) store collections now allow you to store blobs (arbitrary binary data, such as images).
 
@@ -22,9 +22,16 @@ This feature is available upon request. Contact support@macrometa.com to enable 
 
 The [Create a Key-Value Store](../account-management/plans/) has been updated as a result of this change.
 
-## Feature Updates
+### Stream Worker Store Batch Support
 
-The following features updates are included in this release.
+In previous versions of Macrometa, stream worker stores could only persist one document per call. The 17.15 release supports batches, persisting documents until the value of one of the two new parameters is reached.
+
+The new parameters are:
+
+- `batch.size`
+- `batch.flush.time.ms`
+
+[Stream Worker Tables](../cep/table/) was updated as a result of this change.
 
 ### Retrieve API Keys
 
@@ -49,17 +56,6 @@ curl -X 'GET'   'https://api-your-macrometa.eng.macrometa.io/_api/key/root_api_k
   "code": 200
 }
 ```
-
-### Stream Worker Store Batch Support
-
-In previous versions of Macrometa, stream worker stores could only persist one document per call. The 17.15 release supports batches, persisting documents until the value of one of the two new parameters is reached.
-
-The new parameters are:
-
-- `batch.size`
-- `batch.flush.time.ms`
-
-[Stream Worker Tables](../cep/table/) was updated as a result of this change.
 
 ### API Updates
 

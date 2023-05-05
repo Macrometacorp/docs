@@ -39,7 +39,7 @@ The `regexLookingAtExample2` demonstrates the use of the `regex:lookingAt()` fun
 
 ```sql
 CREATE STREAM InputStream (eventTime long, inputText string, regexPattern string);
-CREATE STREAM OutputStream (eventTime long, lookingAtRegex bool);
+CREATE SINK STREAM OutputStream (eventTime long, lookingAtRegex bool);
 
 @info(name = 'regexLookingAtStreamWorker')
 INSERT INTO OutputStream

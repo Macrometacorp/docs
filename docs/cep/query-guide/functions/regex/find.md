@@ -41,7 +41,7 @@ The `regexFindExample2` demonstrates the use of the `regex:find()` function to s
 
 ```sql
 CREATE STREAM InputStream (eventTime long, inputText string, regexPattern string, startIndex int);
-CREATE STREAM OutputStream (eventTime long, findResult bool);
+CREATE SINK STREAM OutputStream (eventTime long, findResult bool);
 
 @info(name = 'regexFindStreamWorker')
 INSERT INTO OutputStream

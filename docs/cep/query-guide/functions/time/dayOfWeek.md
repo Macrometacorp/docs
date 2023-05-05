@@ -46,7 +46,7 @@ This query extracts the day of the week from the given time string `'13:23:44'` 
 
 ```sql
 CREATE STREAM InputStream (timestampStr string, format string);
-CREATE STREAM OutputStream (dayOfWeek string);
+CREATE SINK STREAM OutputStream (dayOfWeek string);
 
 @info(name = 'dayOfWeekQuery')
 INSERT INTO OutputStream

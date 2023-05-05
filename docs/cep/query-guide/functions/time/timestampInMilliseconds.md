@@ -47,7 +47,7 @@ This query converts the timestamp string `'2007-11-30 10:30:19.000'` in the form
 
 ```sql
 CREATE STREAM InputStream (timestampStr string, format string);
-CREATE STREAM OutputStream (millis bigint);
+CREATE SINK STREAM OutputStream (millis long);
 
 @info(name = 'timestampInMillisecondsQuery')
 INSERT INTO OutputStream

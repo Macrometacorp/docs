@@ -34,7 +34,7 @@ The `strcmpExample` demonstrates the use of the `str:strcmp()` function to compa
 
 ```sql
 CREATE STREAM InputDataStream (eventTime long, string1 string, string2 string);
-CREATE STREAM OutputStream (eventTime long, compareResult int);
+CREATE SINK STREAM OutputStream (eventTime long, compareResult int);
 
 @info(name = 'strcmpStreamWorker')
 INSERT INTO OutputStream

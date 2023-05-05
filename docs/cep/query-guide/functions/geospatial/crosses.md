@@ -24,25 +24,36 @@ Determines if the specified object or location crosses a geographic location spe
 ## Example 1
 
 ```sql
-CREATE STREAM StreamA (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double);
-CREATE STREAM OutputStream (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction double, confidence double);
-
-@info(name = 'basicBayesianRegressionQuery')
-FROM StreamA#streamingml:bayesianRegression('model1', attribute_0, attribute_1, attribute_2, attribute_3)
-INSERT ALL EVENTS INTO OutputStream;
+FROM InputStream#geo:crosses('km-4354', -0.5, 0.5, '{"type":"Polygon","coordinates":[[[0, 0],[2, 0],[2, 1],[0, 1],[0, 0]]]}') AS crosses;
 ```
 
-The `basicBayesianRegressionQuery` uses a Bayesian linear regression model named `model1` to predict the label of the feature vector represented by `attribute_0`, `attribute_1`, `attribute_2`, and `attribute_3`. The predicted value and the prediction confidence (inverse of the standard deviation of the predictive distribution) are emitted to the `OutputStream` stream, along with the feature vector. As a result, the `OutputStream` stream is defined as follows: `(attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, prediction double, confidence double)`.
+This query uses the `geo:crosses()` function to determine if a line, defined by the coordinates `(-0.5, 0.5)` and `(km-4354)`, crosses the specified polygon. The polygon is represented as a GeoJSON string with coordinates `[[0, 0], [2, 0], [2, 1], [0, 1], [0, 0]]`.
 
 ## Example 2
 
 ```sql
-CREATE STREAM StreamB (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double);
-CREATE STREAM DetailedOutputStream (attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double, prediction double, confidence double);
+CREATE STREAM dataInForGeoCrossesStream (id string, longitude double, latitude double, timestamp long);
+CREATE SINK STREAM dataOutForGeoCrossesStream (id string, crosses  bool);
+CREATE TRIGGER GeoCrossesTrigger WITH(interval = 5 sec);
 
-@info(name = 'advancedBayesianRegressionQuery')
-FROM StreamB#streamingml:bayesianRegression('model2', 500, attribute_0, attribute_1, attribute_2, attribute_3, attribute_4)
-INSERT ALL EVENTS INTO DetailedOutputStream;
+@info(name = 'generateGeoCrossesData')
+INSERT INTO dataInForGeoCrossesStream
+SELECT  "12" AS id, 6.876657 AS longitude, 79.897648 AS latitude,  eventTimestamp() AS timestamp
+from GeoCrossesTrigger;
+
+@info(name = 'geoCrossesQuery')
+INSERT INTO dataOutForGeoCrossesStream
+SELECT "id" AS id, crosses AS crosses
+FROM dataInForGeoCrossesStream#geo:crosses("12", 0.5, 0.5,"{'type':'Polygon','coordinates':[[[0,0],[0,2],[1,2],[1,0],[0,0]]]}");
+
 ```
 
-The `advancedBayesianRegressionQuery` uses a Bayesian linear regression model named `model2` with 500 prediction samples to predict the label of the feature vector represented by `attribute_0`, `attribute_1`, `attribute_2`, `attribute_3`, and `attribute_4`. The predicted value and the prediction confidence (inverse of the standard deviation of the predictive distribution) are emitted to the `DetailedOutputStream` stream, along with the feature vector. As a result, the `DetailedOutputStream` stream is defined as follows: `(attribute_0 double, attribute_1 double, attribute_2 double, attribute_3 double, attribute_4 double, prediction double, confidence double)`.
+In this example, a stream `dataInForGeoCrossesStream` is created with the following attributes: id, longitude, latitude, and timestamp. A sink stream, `dataOutForGeoCrossesStream`, is created to store the output data, which includes id and a boolean value `crosses` to indicate whether the given point crosses the defined polygon.
+
+A trigger named `GeoCrossesTrigger` is created with a 5-second interval to periodically generate events.
+
+The `generateGeoCrossesData` query generates a new event every 5 seconds with predefined id, longitude, and latitude values, as well as a timestamp based on the current time.
+
+The `geoCrossesQuery` processes events from `dataInForGeoCrossesStream` and uses the `geo:crosses` function to check if the given point (longitude, latitude) crosses the specified polygon. The result is a boolean value indicating whether the point crosses the polygon. The query then inserts the id and `crosses` result into the `dataOutForGeoCrossesStream` sink stream.
+
+Note that the given polygon coordinates in the example form a simple polygon with four vertices, and the point (0.5, 0.5) lies within this polygon.

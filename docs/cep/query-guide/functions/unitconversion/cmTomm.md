@@ -28,7 +28,7 @@ In this example, the `unitconversion:cmTomm()` function converts a value of `1` 
 
 ```sql
 CREATE STREAM InputStream (length_cm double);
-CREATE STREAM OutputStream (length_cm double, length_mm double);
+CREATE SINK STREAM OutputStream (length_cm double, length_mm double);
 
 @info(name = 'lengthConversionQuery')
 INSERT INTO OutputStream

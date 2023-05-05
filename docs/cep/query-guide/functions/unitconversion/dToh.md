@@ -28,7 +28,7 @@ In this example, the `unitconversion:dToh()` function converts a value of `1` da
 
 ```sql
 CREATE STREAM InputStream (duration_days double);
-CREATE STREAM OutputStream (duration_days double, duration_hours double);
+CREATE SINK STREAM OutputStream (duration_days double, duration_hours double);
 
 @info(name = 'durationConversionQuery')
 INSERT INTO OutputStream
