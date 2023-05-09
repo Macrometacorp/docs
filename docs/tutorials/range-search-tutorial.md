@@ -62,22 +62,30 @@ The following images show key steps in the process. For detailed instructions, r
 
 After importing the file, the collection should contain 50 documents with shoe records.
 
-# Create a CRUD API
+## 3. Set Up a CRUD API with Query Workers
 
-To create a CRUD (Create, Read, Update, Delete) API, you need to start with a simple query to fetch all documents in the collection. Here is the query you can use:
+To create a CRUD (Create, Read, Update, Delete) API, you'll create a query worker for each operation.
+
+The following sections provide queries that you will use to create query workers. Follow the instructions in [Create a New Query Worker](../queryworkers/query-workers#create-a-new-query-worker) to create the query workers that you will use for the CRUD API.
+
+Any query worker can be used as an API endpoint. For more information, refer to [API Endpoints](../queryworkers/api-endpoints).
+
+### 3.1 Create a Query Worker for the "Read" API Endpoint
+
+First, let's create a query worker to handle the "Read" operation. This query worker, named `fetchProducts`, will be used as an API endpoint.
+
+Use this simple query to fetch all documents in the `inventory` collection:
 
 ```sql
 FOR docs IN inventory
 RETURN docs
 ```
 
-You can consider this query as a "Read" operation. To create a CRUD API, you need to create a Query Worker.
+### 3.2 Create a Query Worker for the "Create" API Endpoint
 
-## Creating a Query Worker for API Endpoint
+Now, create a query worker for the "Create" operation. This query worker, named `saveProduct`, will be used as an API endpoint.
 
-To create a new document in the collection, we will now create a Query Worker named `saveProduct`. That Query Worker will be used as an API endpoint. 
-
-Here's the query you can use to create the new document:
+Use the following query to create a new document in the `inventory` collection:
 
 ```sql
 INSERT {
@@ -93,11 +101,56 @@ INSERT {
 INTO inventory
 ```
 
-This query has bind parameters that will be used to insert data into the document. 
-Bind parameters are denoted by the `@` symbol. For example, `@brand` is a bind parameter.
-You can consider this query as a "Create" operation.
+This query contains bind parameters for inserting data into the document. Bind parameters are denoted by the `@` symbol, such as `@brand`. For more information about bind parameters, refer to [Bind Parameters](../queries/bind-parameters).
 
 ![Create Document Collection](/img/search/range-example/query-workers.png)
+
+With the `saveProduct` query worker in place, you've successfully set up the "Create" operation as part of your CRUD API.
+
+### 3.3 Create a Query Worker for the "Update" API Endpoint
+
+Next, create a query worker to handle the "Update" operation. This query worker, named `updateProduct`, will be used as an API endpoint.
+
+Use the following C8QL query to update a document in the `inventory` collection:
+
+```sql
+UPDATE @_key WITH {
+    brand: @brand,
+    category: @category,
+    color: @color,
+    name: @name,
+    price: @price,
+    product_id: @product_id,
+    quantity: @quantity, 
+    size: @size 
+}
+IN inventory
+```
+
+This query contains bind parameters for updating the document. Bind parameters are denoted by the `@` symbol, such as `@brand`.
+
+With the `updateProduct` query worker in place, you've successfully set up the "Update" operation as part of your CRUD API.
+
+### 3.4 Create a Query Worker for the "Delete" API Endpoint
+
+Lastly, create a query worker to handle the "Delete" operation. This query worker, named `removeProduct`, will be used as an API endpoint.
+
+Use the following C8QL query to delete a document in the `inventory` collection:
+
+```sql
+REMOVE @_key
+IN inventory
+```
+
+This query contains a bind parameter, `@product_id`, which specifies the document to be deleted.
+
+With the `removeProduct` query worker in place, you've successfully set up the "Delete" operation as part of your CRUD API.
+
+Now that you've created query workers for all CRUD operations, you have successfully built your CRUD API. The next step is to create a search view to enable advanced search capabilities on your shoe store catalog dataset.
+
+
+
+
 
 ## Create a Search View for Inventory
 
