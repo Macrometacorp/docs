@@ -1,19 +1,33 @@
 ---
 sidebar_position: 60
-title: Range Search
+title: Range Search Tutorial
 ---
 
-# Creating CRUD and Search APIs on Shoe Store Catalog Data
+# Shoe Store Catalog: Building CRUD and Range Search APIs
 
-## Dataset
+In this tutorial, we'll guide you through creating CRUD (Create, Read, Update, Delete) and search APIs for a sample shoe store catalog dataset. By following these steps, you'll learn how to import data, create a document collection, establish a search view, and construct query workers for efficient, high-performance search operations on your dataset.
 
-Here is the link to the `shoe-inventory.json` dataset: [shoe-inventory.json](/datasets/shoe-inventory.json).
+This tutorial covers the following:
 
-## Description
+- Importing the shoe store catalog dataset (`shoe-inventory.json`) and creating a document collection named `inventory`.
+- Implementing a CRUD API to interact with the inventory collection using query workers for each operation.
+- Setting up a search view on the inventory collection to enable high-performance search capabilities.
+- Crafting a query to fetch data from the collection using the search view.
+- Saving the query as a query worker to be used as an API endpoint.
 
-The `shoe-inventory.json` dataset contains a list of shoes in a catalog with information about their brand, category, color, name, price, product ID, quantity, and size. 
+Let's begin building your CRUD and search APIs for the shoe store catalog dataset!
 
-Here is an example shoe record from the dataset in JSON format:
+## Prerequisites
+
+- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
+- If you want to run cURL commands, then [Create an API Key](../account-management/api-keys/create-api-keys).
+- Download the `shoe-inventory.json` dataset: [shoe-inventory.json](/datasets/shoe-inventory.json)
+
+## Dataset Overview
+
+For this tutorial, you'll work with the `shoe-inventory.json` dataset, which contains a list of shoes in a catalog, along with their brand, category, color, name, price, product ID, quantity, and size information.
+
+Here's an example shoe record from the dataset in JSON format:
 
 ```json
 {
@@ -28,37 +42,25 @@ Here is an example shoe record from the dataset in JSON format:
 }
 ```
 
-## Goals
+## 1. Create the Inventory Collection
 
-The following goals need to be accomplished to create the required APIs:
+Create a Document Store collection called `inventory`. Be sure to enable the collection stream when you create the collection.
 
-1. Create a document collection called `inventory`.
-2. Import the `shoe-inventory.json` file to the new collection. You can download the JSON file by right-clicking on this [link](/datasets/shoe-inventory.json) and choosing "Save As".
-3. Create a search view on the `inventory` collection.
-4. Query the view to fetch data from the collection.
-5. Save the query as a Query Worker.
-6. Execute the Query Worker as an API.
-
-By completing these goals, you will have a functional CRUD API and a search API that can be used to interact with the shoe inventory dataset.
-
-
-## Create a Document Collection
-First step is to create collection from Macrometa console:
+The following images show key steps in the process. For detailed instructions, refer to [Create a Document Store](../collections/documents/create-document-store).
 
 ![Create Document Collection](/img/search/range-example/create-collection.png)
 
-Name of the document store collection is `inventory`:
-
 ![Create Document Collection](/img/search/range-example/inventory.png)
 
-## Import Shoe Inventory Data to Inventory Collection
-In the step before, we created a document store collection now we will add test data to that collection.
-From the list of collections select `inventory` collection.
+## 2. Import Shoe Inventory Data into the Inventory Collection
+
+Add the records from `shoe-inventory.json` to the `inventory` collection.
+
+The following images show key steps in the process. For detailed instructions, refer to [Add Documents from a File](../collections/documents/add-document).
 
 ![Create Document Collection](/img/search/range-example/import-data.png)
 
-After importing the file we should have 50 documents in the collection.
-One document contains various shoe information. (Shown at the beginning of this tutorial)
+After importing the file, the collection should contain 50 documents with shoe records.
 
 # Create a CRUD API
 
@@ -90,6 +92,7 @@ INSERT {
 }
 INTO inventory
 ```
+
 This query has bind parameters that will be used to insert data into the document. 
 Bind parameters are denoted by the `@` symbol. For example, `@brand` is a bind parameter.
 You can consider this query as a "Create" operation.
@@ -155,12 +158,13 @@ Here's an example screenshot of how to write a query and where to place bind par
 ![Create Document Collection](/img/search/range-example/query-data.png)
 
 ## Save as a Query Worker
-The query you just wrote can be saved as a Query Worker. You can name the Query Worker `inventory-search`. 
+
+The query you just wrote can be saved as a Query Worker. You can name the Query Worker `inventory-search`.
 
 ![Create Document Collection](/img/search/range-example/search-query-worker.png)
 
-
 ## Execute Query Worker as an API
+
 You now have a full functional search API!
 
 ![Create Document Collection](/img/search/range-example/search-api.png)
