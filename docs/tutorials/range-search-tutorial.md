@@ -48,9 +48,9 @@ Create a Document Store collection called `inventory`. Be sure to enable the col
 
 The following images show key steps in the process. For detailed instructions, refer to [Create a Document Store](../collections/documents/create-document-store).
 
-![Create Document Collection](/img/search/range-example/create-collection.png)
+![Create a Document Collection](/img/search/range-example/create-collection.png)
 
-![Create Document Collection](/img/search/range-example/inventory.png)
+![New Document Collection Settings](/img/search/range-example/inventory.png)
 
 ## 2. Import Shoe Inventory Data into the Inventory Collection
 
@@ -58,7 +58,7 @@ Add the records from `shoe-inventory.json` to the `inventory` collection.
 
 The following images show key steps in the process. For detailed instructions, refer to [Add Documents from a File](../collections/documents/add-document).
 
-![Create Document Collection](/img/search/range-example/import-data.png)
+![Import Documents](/img/search/range-example/import-data.png)
 
 After importing the file, the collection should contain 50 documents with shoe records.
 
@@ -103,7 +103,7 @@ INTO inventory
 
 This query contains bind parameters for inserting data into the document. Bind parameters are denoted by the `@` symbol, such as `@brand`. For more information about bind parameters, refer to [Bind Parameters](../queries/bind-parameters).
 
-![Create Document Collection](/img/search/range-example/query-workers.png)
+![Create a Query Worker](/img/search/range-example/query-workers.png)
 
 With the `saveProduct` query worker in place, you've successfully set up the "Create" operation as part of your CRUD API.
 
@@ -146,17 +146,15 @@ This query contains a bind parameter, `@_key`, which specifies the document to b
 
 With the `removeProduct` query worker in place, you've successfully set up the "Delete" operation as part of your CRUD API.
 
-Now that you've created query workers for all CRUD operations, you have successfully built your CRUD API. The next step is to create a search view to enable advanced search capabilities on your shoe store catalog dataset.
+Now that you've created query workers for all CRUD operations, you have successfully built your CRUD API. The next step is to create a search view to enable advanced search capabilities on your shoe store inventory.
 
+## 4. Create a Search View for the Inventory Collection
 
+Now that you have data in the `inventory` collection, it's time to enable high-performance search on various fields in the document store.
 
+Create a search view named `inventory_view`. Follow the instructions in [Create a Search View](../search/views/create-search-views.md) to create the `inventory_view` search view.
 
-
-## Create a Search View for Inventory
-
-Now that we have data in the `inventory` collection, we can enable high-performance search on various collections and fields in the document store. To do this, we will create a search view named `inventory_view`.
-
-To create the `inventory_view` search view, you need to map the following fields:
+When you create the `inventory_view` search view, map the following fields:
 
 - size
 - quantity
@@ -164,29 +162,28 @@ To create the `inventory_view` search view, you need to map the following fields
 - name
 - brand
 
-Make sure to add all the fields as they are all referenced in the Query Worker. 
+Make sure that you add all the fields, as they are all referenced in the query workers.
 
 Here's an example screenshot of creating the search view in the UI:
 
-![Create Document Collection](/img/search/range-example/create-view.png)
+![Create a Search View](/img/search/range-example/create-view.png)
 
-By creating this search view, you will be able to perform high-performance search operations on the `inventory` collection.
+Creating this search view allows you to perform high-performance search operations on the `inventory` collection.
 
+## 5. Query the Created Search View
 
-## Querying the Created View
+Now that you have created the `inventory_view` search view, you can write queries to search for specific data in the `inventory` collection.
 
-Now that we have created the `inventory_view` search view, we can write queries and search specific data in the `inventory` collection.
+The objective is to write a query that searches the `inventory_view` by shoe name, brand, minimum and maximum size, and minimum and maximum price. This query will help you find specific shoes in the inventory collection that match the given criteria. By using the `inventory_view` search view, the query will execute more quickly and efficiently, resulting in faster search results.
 
-The goal is to write a query that can search the `inventory_view` search view by shoe name, brand, minimum and maximum size, and minimum and maximum price. This query will allow you to find specific shoes in the inventory collection that match the specified criteria. By using the `inventory_view` search view, the query will execute faster and more efficiently, resulting in faster search results.
+Use the following query to search the `inventory_view`:
 
-You can use the following query to search the `inventory_view`:
-
-```sql
-let keyword = LOWER(to_string(@keyword))
-let minSize = @Min_Size
-let maxSize = @Max_Size
-let minPrice = @Min_Price
-let maxPrice = @Max_Price
+```c8ql
+LET keyword = LOWER(to_string(@keyword))
+LET minSize = @Min_Size
+LET maxSize = @Max_Size
+LET minPrice = @Min_Price
+LET maxPrice = @Max_Price
 
 FOR product IN inventory_view
   SEARCH ANALYZER(
@@ -194,8 +191,8 @@ FOR product IN inventory_view
     STARTS_WITH(product.brand, keyword) OR
     PHRASE(product.name, keyword) OR
     PHRASE(product.brand, keyword)) AND
-    (IN_RANGE(product.size, minSize, maxSize,true,true) AND 
-    IN_RANGE(product.price, minPrice, maxPrice,true,true)),  "text_en"
+    (IN_RANGE(product.size, minSize, maxSize, true, true) AND 
+    IN_RANGE(product.price, minPrice, maxPrice, true, true)), "text_en"
   )
   RETURN KEEP(product,
     "name",
@@ -208,16 +205,28 @@ FOR product IN inventory_view
 
 Here's an example screenshot of how to write a query and where to place bind parameters:
 
-![Create Document Collection](/img/search/range-example/query-data.png)
+![Query with Bind Parameters](/img/search/range-example/query-data.png)
 
-## Save as a Query Worker
+## 6. Save the Query as a Query Worker
 
-The query you just wrote can be saved as a Query Worker. You can name the Query Worker `inventory-search`.
+Save the query you just wrote as a query worker named `inventorySearch`. This creates an API endpoint for it. For more information, refer to [API Endpoints](../queryworkers/api-endpoints).
 
-![Create Document Collection](/img/search/range-example/search-query-worker.png)
+![Save Query Worker](/img/search/range-example/search-query-worker.png)
 
-## Execute Query Worker as an API
+## 7. Test the Query Worker API Endpoints
 
-You now have a full functional search API!
+You now have five query workers, each with an API endpoint. To view the API endpoint, [edit the query worker](../queryworkers/query-workers#edit-a-query-worker) and then click **API Endpoint**. Macrometa displays a cURL command that you can use to test the API endpoint.
 
-![Create Document Collection](/img/search/range-example/search-api.png)
+![API Endpoint](/img/search/range-example/search-api.png)
+
+## Conclusion
+
+Congratulations! You have successfully set up a CRUD API with query workers and a search view for your inventory collection. This setup allows you to efficiently perform Create, Read, Update, Delete, and Search operations using API endpoints.
+
+Now that you have completed this tutorial, consider exploring the following topics to enhance your understanding and further develop your skills:
+
+- [Getting Started with Search](../search/getting-started-search)
+- [Getting Started with Graphs](../graphs/getting-started-with-graphs)
+- [C8QL Query Tutorial](../queries/got-tutorial/)
+
+By diving into these topics, you will be well-equipped to optimize and expand your Macrometa-powered projects. Good luck, and happy coding!
