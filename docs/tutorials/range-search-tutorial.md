@@ -142,7 +142,7 @@ REMOVE @_key
 IN inventory
 ```
 
-This query contains a bind parameter, `@product_id`, which specifies the document to be deleted.
+This query contains a bind parameter, `@_key`, which specifies the document to be deleted.
 
 With the `removeProduct` query worker in place, you've successfully set up the "Delete" operation as part of your CRUD API.
 
