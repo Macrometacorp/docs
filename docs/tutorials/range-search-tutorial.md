@@ -114,7 +114,7 @@ Next, create a query worker to handle the "Update" operation. This query worker,
 Use the following C8QL query to update a document in the `inventory` collection:
 
 ```sql
-UPDATE @_key WITH {
+UPDATE TO_STRING(@_key) WITH {
     brand: @brand,
     category: @category,
     color: @color,
@@ -138,11 +138,11 @@ Lastly, create a query worker to handle the "Delete" operation. This query worke
 Use the following C8QL query to delete a document in the `inventory` collection:
 
 ```sql
-REMOVE @_key
+REMOVE TO_STRING(@_key)
 IN inventory
 ```
 
-This query contains a bind parameter, `@_key`, which specifies the document to be deleted.
+This query contains a bind parameter, `@_key`, the string that specifies the document to be deleted. When you enter the numeric _key, it must be converted to a string to successfully perform the REMOVE operation.
 
 With the `removeProduct` query worker in place, you've successfully set up the "Delete" operation as part of your CRUD API.
 
