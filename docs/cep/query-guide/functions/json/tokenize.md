@@ -41,7 +41,8 @@ FROM InputStream#json:tokenize(json, path);
 
 In this example, the query named 'query1' processes records from the `InputStream` and extracts JSON elements based on the provided `path` using the `json:tokenize(json, path)` function. The resulting `(path, jsonElement)` pairs are inserted into the `OutputStream`.
 
-For example, if the input `json` is `{name:'John', address:{country:'CA', city: 'Toronto'}}`, and the `path` is passed as `$.address`, then the query generates an event with the escaped JSON as a string ('$.address', '{\'country\':\'CA\',\'city\':\'Toronto\'}'). For the same input JSON, if the `path` is passed as `$.name`, then it will produce an event without escaping ('$.name', 'John').
+For example, if the input `json` is `{name:'John', address:{country:'CA', city: 'Toronto'}, phoneNo: [9876756567, 8778787768]}`, and the `path` is passed as `$.address`, then the query generates an event with the escaped JSON as a string ('$.address', '{\'country\':\'CA\',\'city\':\'Toronto\'}'). For the same input JSON, if the `path` is passed as `$.name`, then it will produce an event without escaping ('$.name', 'John').
+For the same input JSON, if the `path` is passed as `$.phoneNo`, then the query generates an event each for both the elements in the selected JSON array as a string ('$.phoneNo', '9876756567') and ('$.phoneNo', '8778787768').
 
 ## Example 2
 
