@@ -86,7 +86,7 @@ FROM VideoMetadataStream#json:tokenize(metadataJson, '$.description');
 @info(name = 'combineTokenizedMetadata')
 INSERT INTO TokenizedMetadataStream
 SELECT t.videoId, t.title, d.description
-FROM IntermediateTitleStream AS t JOIN IntermediateDescriptionStream AS d ON t.videoId = d.videoId;
+FROM IntermediateTitleStream AS t JOIN IntermediateDescriptionStream AS d ON t.videoId == d.videoId;
 ```
 
 The `tokenizeVideoTitle` and `tokenizeVideoDescription` stream worker queries process incoming events from the `VideoMetadataStream` source, which contains video metadata in JSON format. They tokenize the metadata by extracting the `title` and `description` fields using the `json:tokenize` function with the appropriate JSON path expressions (`'$.title'` and `'$.description'`). These tokenized data are then inserted into the intermediate streams `IntermediateTitleStream` and `IntermediateDescriptionStream`.
