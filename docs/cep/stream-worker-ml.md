@@ -18,95 +18,29 @@ Real-time machine learning is crucial for businesses that need to analyze and re
 - **Improved operational efficiency**: Real-time machine learning can help you identify inefficiencies, optimize resource allocation, and reduce costs.
 - **Proactive anomaly detection**: Detecting anomalies in real-time enables you to address potential issues before they escalate, minimizing the impact on your business.
 
-## Example 1: Bayesian Regression for Real-time Energy Consumption Prediction
-
-```sql
-CREATE STREAM TrainingStream (temperature double, time_of_day double, day_of_week double, recent_consumption double, energy_consumption double);
-CREATE STREAM PredictionStream (temperature double, time_of_day double, day_of_week double, recent_consumption double);
-
-CREATE SINK STREAM EnergyConsumptionPredictions (prediction double, confidence double, temperature double, time_of_day double, day_of_week double, recent_consumption double);
-CREATE SINK STREAM ModelUpdateStatus (temperature double, time_of_day double, day_of_week double, recent_consumption double, energy_consumption double, loss double);
-
-@info(name = 'trainEnergyModel')
-INSERT INTO ModelUpdateStatus
-SELECT *
-FROM TrainingStream#streamingml:updateBayesianRegression('energyModel', energy_consumption, temperature, time_of_day, day_of_week, recent_consumption);
-
-@info(name = 'predictEnergyConsumption')
-INSERT INTO EnergyConsumptionPredictions
-SELECT prediction, confidence, temperature, time_of_day, day_of_week, recent_consumption
-FROM PredictionStream#streamingml:bayesianRegression('energyModel', temperature, time_of_day, day_of_week, recent_consumption);
-```
-
-In this example, two input streams are created: `TrainingStream` for model training and `PredictionStream` for making predictions. The `TrainingStream` contains temperature, time of day, day of the week, recent consumption patterns, and actual energy consumption, while the `PredictionStream` contains the same features but without actual energy consumption.
-
-Two sink streams are defined: `EnergyConsumptionPredictions` to store the predicted energy consumption, prediction confidence, and the original features from the `PredictionStream`, and `ModelUpdateStatus` to store the status of model updates.
-
-The `trainEnergyModel` query processes events from the `TrainingStream`, updating the Bayesian linear regression model 'energyModel' using the input features and the actual energy consumption. The status of the model updates is inserted into the `ModelUpdateStatus` sink stream.
-
-The `predictEnergyConsumption` query processes events from the `PredictionStream`, using the trained 'energyModel' to predict energy consumption based on the input features. The predictions, along with their confidences and original features, are inserted into the `EnergyConsumptionPredictions` sink stream.
-
-## Example 2: Bayesian Regression for Real-time Ad Performance Prediction
-
-```sql
-CREATE STREAM TrainingStream2 (ad_placement double, ad_format double, time_of_day double, user_demographics double, click_through_rate double);
-CREATE STREAM PredictionStream2 (ad_placement double, ad_format double, time_of_day double, user_demographics double);
-
-CREATE SINK STREAM AdPerformancePredictions (prediction double, confidence double, ad_placement double, ad_format double, time_of_day double, user_demographics double);
-CREATE SINK STREAM ModelUpdateStatus2 (ad_placement double, ad_format double, time_of_day double, user_demographics double, click_through_rate double, loss double);
-
-@info(name = 'trainAdPerformanceModel')
-INSERT INTO ModelUpdateStatus2
-SELECT *
-FROM TrainingStream2#streamingml:updateBayesianRegression('adPerformanceModel', click_through_rate, ad_placement, ad_format, time_of_day, user_demographics);
-
-@info(name = 'predictAdPerformance')
-INSERT INTO AdPerformancePredictions
-SELECT prediction, confidence, ad_placement, ad_format, time_of_day, user_demographics
-FROM PredictionStream2#streamingml:bayesianRegression('adPerformanceModel', ad_placement, ad_format, time_of_day, user_demographics);
-```
-
-In this example, two input streams are created: `TrainingStream2` for model training and `PredictionStream2` for making predictions. The `TrainingStream2` contains ad placement, ad format, time of day, user demographics, and actual click-through rate, while the `PredictionStream2` contains the same features but without actual click-through rate.
-
-Two sink streams are defined: `AdPerformancePredictions` to store the predicted click-through rates, prediction confidence, and the original features from the `PredictionStream2`, and `ModelUpdateStatus2` to store the status of model updates.
-
-The `trainAdPerformanceModel` query processes events from the `TrainingStream2`, updating the Bayesian linear regression model 'adPerformanceModel' using the input features and the actual click-through rate. The status of the model updates is inserted into the `ModelUpdateStatus2` sink stream.
-
-The `predictAdPerformance` query processes events from the `PredictionStream2`, using the trained 'adPerformanceModel' to predict click-through rates based on the input features. The predictions, along with their confidences and original features, are inserted into the `AdPerformancePredictions` sink stream.
-
-## Example 3: Perceptron Classifier for Real-time Credit Card Fraud Detection
+## Example 1: Perceptron Classifier for Real-time Credit Card Fraud Detection
 
 ```sql
 CREATE STREAM TransactionStream (transactionAmount double, transactionTimeOfDay double, distanceToLastTransaction double, isFraud bool);
 CREATE STREAM PredictionStream (transactionAmount double, transactionTimeOfDay double, distanceToLastTransaction double);
 
-CREATE SINK STREAM FraudPredictions (prediction bool, confidence double, transactionAmount double, transactionTimeOfDay double, distanceToLastTransaction double);
-CREATE SINK STREAM ModelUpdateStatus (transactionAmount double, transactionTimeOfDay double, distanceToLastTransaction double, isFraud bool, transactionAmount.weight double, transactionTimeOfDay.weight double, distanceToLastTransaction.weight double);
+CREATE SINK STREAM FraudPredictions (prediction bool, confidenceLevel double, transactionAmount double, transactionTimeOfDay double, distanceToLastTransaction double);
+CREATE SINK STREAM ModelUpdateStatus (transactionAmount double, transactionTimeOfDay double, distanceToLastTransaction double, isFraud bool);
 
 @info(name = 'trainFraudDetectionModel')
 INSERT INTO ModelUpdateStatus
-SELECT *
+SELECT transactionAmount, transactionTimeOfDay, distanceToLastTransaction, isFraud
 FROM TransactionStream#streamingml:updatePerceptronClassifier('fraudDetectionModel', isFraud, transactionAmount, transactionTimeOfDay, distanceToLastTransaction);
 
 @info(name = 'predictFraud')
 INSERT INTO FraudPredictions
-SELECT prediction, confidence, transactionAmount, transactionTimeOfDay, distanceToLastTransaction
+SELECT prediction, confidenceLevel, transactionAmount, transactionTimeOfDay, distanceToLastTransaction
 FROM PredictionStream#streamingml:perceptronClassifier('fraudDetectionModel', transactionAmount, transactionTimeOfDay, distanceToLastTransaction);
 ```
 
-The explanation mostly matches the query, but we need to remove the mention of confidence values since the Perceptron classifier does not provide confidence scores. Here's the updated explanation:
 
-In this example, two input streams are created: `TransactionStream` for model training and `PredictionStream` for making predictions. The `TransactionStream` contains transaction amount, transaction time of day, distance to the last transaction, and a boolean indicating whether the transaction is fraudulent or not. The `PredictionStream` contains the same features but without the fraud information.
 
-Two sink streams are defined: `FraudPredictions` to store the predicted fraud labels and the original features from the `PredictionStream`, and `ModelUpdateStatus` to store the status of model updates, including feature weights.
-
-The `trainFraudDetectionModel` query processes events from the `TransactionStream`, updating the Perceptron model 'fraudDetectionModel' using the input features and the actual fraud labels. The status of the model updates, including feature weights, is inserted into the `ModelUpdateStatus` sink stream.
-
-The `predictFraud` query processes events from the `PredictionStream`, using the trained 'fraudDetectionModel' to predict whether a transaction is fraudulent based on the input features. The predictions, along with the original features, are inserted into the `FraudPredictions` sink stream.
-
-Please note that the Perceptron classifier does not provide a confidence value for its predictions. If you need confidence information, you might consider using another classification algorithm that provides confidence scores.
-
-## Example 4: Perceptron Classifier for Manufacturing Quality Control
+## Example 2: Perceptron Classifier for Manufacturing Quality Control
 
 ```sql
 CREATE STREAM SensorDataStream (temperature double, pressure double, vibration double, isDefective bool);
@@ -134,9 +68,7 @@ The `trainQualityControlModel` query processes events from the `SensorDataStream
 
 The `predictQualityControl` query processes events from the `QualityCheckStream`, using the trained 'qualityControlModel' to predict whether a manufactured item is defective based on the input features. The predictions, along with the original features, are inserted into the `QualityControlPredictions` sink stream.
 
-Please note that the Perceptron classifier does not provide a confidence value for its predictions. If you need confidence information, you might consider using another classification algorithm that provides confidence scores.
-
-## Example 5: K-Means Incremental Clustering for Real-time Customer Segmentation
+## Example 3: K-Means Incremental Clustering for Real-time Customer Segmentation
 
 ```sql
 CREATE STREAM CustomerDataStream (age double, annualIncome double, spendingScore double);
@@ -150,7 +82,7 @@ FROM CustomerDataStream#streamingml:kMeansIncremental(4, 0.05, age, annualIncome
 
 In this example, the input stream `CustomerDataStream` contains customer data, including age, annual income, and spending score. The K-Means Incremental clustering algorithm is used to segment customers into four clusters based on their age, annual income, and spending score. The decay rate is set to 0.05. The output stream `CustomerSegmentation` contains the coordinates of the closest centroid, as well as the original data points.
 
-## Example 6: K-Means MiniBatch Clustering for Real-time Credit Risk Analysis
+## Example 4: K-Means MiniBatch Clustering for Real-time Credit Risk Analysis
 
 ```sql
 CREATE STREAM CreditDataStream (creditScore double, income double, loanAmount double);
