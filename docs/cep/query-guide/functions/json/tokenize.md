@@ -25,6 +25,9 @@ json:tokenize(<STRING|OBJECT> json, <STRING> path, <BOOL> fail.on.missing.attrib
 |-------------|------------------------|----------------|
 | jsonElement | The JSON element retrieved based on the given path will be returned as a JSON string. If the `path` selects a JSON array then the system returns each element in the array as a JSON string via a separate events. | STRING         |
 
+Sure, I can assist with that. I've made the requested modifications below:
+
+---
 ## Example 1
 
 ```sql
@@ -33,24 +36,24 @@ CREATE STREAM InputStream (json STRING, path STRING);
 @info(name = 'query1')
 INSERT INTO OutputStream
 SELECT path, jsonElement
-FROM InputStream#json:tokenizeAsObject(json, path);
+FROM InputStream#json:tokenize(json, path);
 ```
 
-In this example, the query named 'query1' processes records from the `InputStream` and extracts JSON elements based on the provided `path` using the `json:tokenizeAsObject(json, path)` function. The resulting `(path, jsonElement)` pairs are inserted into the `OutputStream`.
+In this example, the query named 'query1' processes records from the `InputStream` and extracts JSON elements based on the provided `path` using the `json:tokenize(json, path)` function. The resulting `(path, jsonElement)` pairs are inserted into the `OutputStream`.
 
-For example, if the input `json` is `{name:'John', enrolledSubjects:['Mathematics', 'Physics']}`, and the `path` is passed as `$.enrolledSubjects`, then for both the elements in the selected JSON array, the query generates events as `('$.enrolledSubjects', 'Mathematics')` and `('$.enrolledSubjects', 'Physics')`. For the same input JSON, if the `path` is passed as `$.name`, then it will only produce one event `('$.name', 'John')` as the `path` provided a single JSON element.
+For example, if the input `json` is `{name:'John', address:{country:'CA', city: 'Toronto'}}`, and the `path` is passed as `$.address`, then the query generates an event with the escaped JSON as a string ('$.address', '{\'country\':\'CA\',\'city\':\'Toronto\'}'). For the same input JSON, if the `path` is passed as `$.name`, then it will produce an event without escaping ('$.name', 'John').
 
 ## Example 2
 
 ```sql
 CREATE STREAM InputStream (json STRING, path STRING);
 
-@info(name = 'query1')
+@info(name = 'query2')
 INSERT INTO OutputStream
 SELECT path, jsonElement
-FROM InputStream#json:tokenizeAsObject(json, path, true);
+FROM InputStream#json:tokenize(json, path, true);
 ```
 
-In this example, the query named 'query1' processes records from the `InputStream` and extracts JSON elements based on the provided `path` using the `json:tokenizeAsObject(json, path, true)` function. The `true` parameter means that the function will fail on missing attributes. The resulting `(path, jsonElement)` pairs are inserted into the `OutputStream`.
+In this example, the query named 'query2' processes records from the `InputStream` and extracts JSON elements based on the provided `path` using the `json:tokenize(json, path, true)` function. The `true` parameter means that the function will fail on missing attributes. The resulting `(path, jsonElement)` pairs are inserted into the `OutputStream`.
 
 For example, if the input `json` is `{name:'John', age:25}`, and the `path` is passed as `$.salary`, then the system will produce `('$.salary', null)`, as the `fail.on.missing.attribute` is `true` and there are no matching elements for `$.salary`.
