@@ -25,9 +25,6 @@ json:tokenize(<STRING|OBJECT> json, <STRING> path, <BOOL> fail.on.missing.attrib
 |-------------|------------------------|----------------|
 | jsonElement | The JSON element retrieved based on the given path will be returned as a JSON string. If the `path` selects a JSON array then the system returns each element in the array as a JSON string via a separate events. | STRING         |
 
-Sure, I can assist with that. I've made the requested modifications below:
-
----
 ## Example 1
 
 ```sql
