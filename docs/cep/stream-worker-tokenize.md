@@ -45,19 +45,19 @@ Tokenization plays a crucial role in the searching and indexing of text data. By
 
 ## Example: Tokenizing Video Metadata in OTT Streaming
 
-In this example, a stream worker processes video metadata from an OTT video streaming service to tokenize and extract video titles and descriptions.
+In this example, a stream worker processes video metadata from an OTT video streaming service to tokenize and extract video descriptions.
 
 ```sql
 CREATE STREAM VideoMetadataStream (videoId string, metadataJson string);
-CREATE SINK STREAM TokenizedMetadataStream (videoId string, title string, description string);
+CREATE SINK STREAM TokenizedMetadataStream (videoId string, description string);
 
 @info(name = 'tokenizeVideoMetadata')
 INSERT INTO TokenizedMetadataStream
-SELECT videoId, json:tokenize(metadataJson, '$.title') AS title, json:tokenize(metadataJson, '$.description') AS description
-FROM VideoMetadataStream;
+SELECT videoId, jsonElement AS description
+FROM VideoMetadataStream#json:tokenize(metadataJson, '$.description');
 ```
 
-The `tokenizeVideoMetadata` stream worker query processes incoming events from the `VideoMetadataStream` source, which contains video metadata in JSON format. It tokenizes the metadata by extracting the `title` and `description` fields using the `json:tokenize` function with the appropriate JSON path expressions (`'$.title'` and `'$.description'`). The query then selects the `videoId`, `title`, and `description` fields for output. The results are inserted into the `TokenizedMetadataStream` sink using the `INSERT INTO` action.
+
 
 ## Example: Tokenizing Player Chat Messages in Gaming and Esports
 
@@ -65,12 +65,11 @@ In this example, a stream worker processes player chat messages from a gaming pl
 
 ```sql
 CREATE STREAM PlayerChatStream (timestamp long, rawChatMessage string);
-CREATE SINK STREAM TokenizedPlayerChatStream (timestamp long, username string, message string);
+CREATE SINK STREAM TokenizedPlayerChatStream (timestamp long, message string);
 
 @info(name = 'tokenizePlayerChat')
 INSERT INTO TokenizedPlayerChatStream
-SELECT timestamp, str:tokenize(rawChatMessage, ': ')[0] AS username, str:tokenize(rawChatMessage, ': ')[1] AS message
-FROM PlayerChatStream;
+SELECT timestamp, token AS message
+FROM PlayerChatStream#str:tokenize(rawChatMessage, ':');
 ```
 
-The `tokenizePlayerChat` stream worker query processes incoming events from the `PlayerChatStream` source, which contains player chat messages as raw text. The chat messages have a consistent format: `username: message`. The `str:tokenize` function is used to split the raw chat messages using the ': ' delimiter. The query then selects the `timestamp`, `username`, and `message` fields for output. The results are inserted into the `TokenizedPlayerChatStream` sink using the `INSERT INTO` action.
