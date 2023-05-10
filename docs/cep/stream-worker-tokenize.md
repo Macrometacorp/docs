@@ -43,34 +43,52 @@ Tokenization enables the efficient processing of large volumes of textual data b
 
 Tokenization plays a crucial role in the searching and indexing of text data. By breaking down text into tokens, tokenization allows for more efficient searching and indexing processes, leading to faster and more accurate search results.
 
+## Example: Tokenizing Player Chat Messages in Gaming
+
+In gaming and esports, player chat messages can contain valuable data for understanding user behavior, sentiment, and engagement. Tokenizing these messages allows for easier data analysis and processing.
+
+In this example, a stream worker processes player chat messages from a gaming platform to tokenize each chat message into individual words.
+
+```sql
+CREATE STREAM PlayerChatStream (timestamp long, rawChatMessage string);
+CREATE SINK STREAM TokenizedPlayerChatStream (timestamp long, word string);
+
+@info(name = 'tokenizePlayerChat')
+INSERT INTO TokenizedPlayerChatStream
+SELECT timestamp, token AS word
+FROM PlayerChatStream#str:tokenize(rawChatMessage, ' ');
+```
+
+The `tokenizePlayerChat` stream worker query processes incoming events from the `PlayerChatStream` source, which contains raw chat messages. It tokenizes each chat message into individual words using the `str:tokenize` function with a space (' ') as the delimiter. The query then selects the `timestamp` and `word` fields for output. The results are inserted into the `TokenizedPlayerChatStream` sink using the `INSERT INTO` action.
+
 ## Example: Tokenizing Video Metadata in OTT Streaming
+
+In video streaming, video metadata, including titles and descriptions, are rich sources of data that can be used to understand user preferences, enhance content recommendations, and improve the overall user experience. Tokenizing this metadata allows for easier data analysis and processing.
 
 In this example, a stream worker processes video metadata from an OTT video streaming service to tokenize and extract video titles and descriptions.
 
 ```sql
 CREATE STREAM VideoMetadataStream (videoId string, metadataJson string);
+CREATE STREAM IntermediateTitleStream (videoId string, title string);
+CREATE STREAM IntermediateDescriptionStream (videoId string, description string);
 CREATE SINK STREAM TokenizedMetadataStream (videoId string, title string, description string);
 
-@info(name = 'tokenizeVideoMetadata')
+@info(name = 'tokenizeVideoTitle')
+INSERT INTO IntermediateTitleStream
+SELECT videoId, jsonElement AS title
+FROM VideoMetadataStream#json:tokenize(metadataJson, '$.title');
+
+@info(name = 'tokenizeVideoDescription')
+INSERT INTO IntermediateDescriptionStream
+SELECT videoId, jsonElement AS description
+FROM VideoMetadataStream#json:tokenize(metadataJson, '$.description');
+
+@info(name = 'combineTokenizedMetadata')
 INSERT INTO TokenizedMetadataStream
-SELECT videoId, json:tokenize(metadataJson, '$.title') AS title, json:tokenize(metadataJson, '$.description') AS description
-FROM VideoMetadataStream;
+SELECT t.videoId, t.title, d.description
+FROM IntermediateTitleStream AS t JOIN IntermediateDescriptionStream AS d ON t.videoId == d.videoId;
 ```
 
-The `tokenizeVideoMetadata` stream worker query processes incoming events from the `VideoMetadataStream` source, which contains video metadata in JSON format. It tokenizes the metadata by extracting the `title` and `description` fields using the `json:tokenize` function with the appropriate JSON path expressions (`'$.title'` and `'$.description'`). The query then selects the `videoId`, `title`, and `description` fields for output. The results are inserted into the `TokenizedMetadataStream` sink using the `INSERT INTO` action.
+The `tokenizeVideoTitle` and `tokenizeVideoDescription` stream worker queries process incoming events from the `VideoMetadataStream` source, which contains video metadata in JSON format. They tokenize the metadata by extracting the `title` and `description` fields using the `json:tokenize` function with the appropriate JSON path expressions (`'$.title'` and `'$.description'`). These tokenized data are then inserted into the intermediate streams `IntermediateTitleStream` and `IntermediateDescriptionStream`.
 
-## Example: Tokenizing Player Chat Messages in Gaming and Esports
-
-In this example, a stream worker processes player chat messages from a gaming platform to tokenize and extract usernames and chat content.
-
-```sql
-CREATE STREAM PlayerChatStream (timestamp long, rawChatMessage string);
-CREATE SINK STREAM TokenizedPlayerChatStream (timestamp long, username string, message string);
-
-@info(name = 'tokenizePlayerChat')
-INSERT INTO TokenizedPlayerChatStream
-SELECT timestamp, str:tokenize(rawChatMessage, ': ')[0] AS username, str:tokenize(rawChatMessage, ': ')[1] AS message
-FROM PlayerChatStream;
-```
-
-The `tokenizePlayerChat` stream worker query processes incoming events from the `PlayerChatStream` source, which contains player chat messages as raw text. The chat messages have a consistent format: `username: message`. The `str:tokenize` function is used to split the raw chat messages using the ': ' delimiter. The query then selects the `timestamp`, `username`, and `message` fields for output. The results are inserted into the `TokenizedPlayerChatStream` sink using the `INSERT INTO` action.
+The `combineTokenizedMetadata` query then joins these two intermediate streams on the `videoId` and inserts the `videoId`, `title`, and `description` into the `TokenizedMetadataStream` sink
