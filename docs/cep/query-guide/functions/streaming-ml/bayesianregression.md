@@ -71,6 +71,6 @@ In this example, two input streams are created: `HouseDataStream` for model trai
 
 A sink stream, `HousePricePredictions`, is defined to store the predicted house prices, prediction confidence, and the original features from the `HousePredictionStream`.
 
-The `trainHousePriceModel` query processes events from the `HouseDataStream`, updating the Bayesian linear regression model 'housePriceModel' using the input features and the actual house prices.
+The `trainHousePriceModel` query processes events from the `HouseDataStream`, and builds or updates the Bayesian linear regression model 'housePriceModel' using the input features and the actual house prices.
 
 The `predictHousePrices` query processes events from the `HousePredictionStream`, using the trained 'housePriceModel' to predict house prices based on the input features. The predictions, along with their confidences and original features, are inserted into the `HousePricePredictions` sink stream.
