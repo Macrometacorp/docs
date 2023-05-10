@@ -38,7 +38,13 @@ SELECT prediction, confidenceLevel, transactionAmount, transactionTimeOfDay, dis
 FROM PredictionStream#streamingml:perceptronClassifier('fraudDetectionModel', transactionAmount, transactionTimeOfDay, distanceToLastTransaction);
 ```
 
+In this example, two input streams are created: `TransactionStream` for model training and `PredictionStream` for making predictions. The `TransactionStream` contains transaction amount, transaction time of day, distance to the last transaction, and a boolean indicating whether the transaction is fraudulent or not. The `PredictionStream` contains the same features but without the fraud information.
 
+Two sink streams are defined: `FraudPredictions` to store the predicted fraud labels, the prediction confidence level, and the original features from the `PredictionStream`, and `ModelUpdateStatus` to store the details of the transactions.
+
+The `trainFraudDetectionModel` query processes events from the `TransactionStream`, updating the Perceptron model 'fraudDetectionModel' using the input features and the actual fraud labels. The transaction details along with the fraud status are inserted into the `ModelUpdateStatus` sink stream.
+
+The `predictFraud` query processes events from the `PredictionStream`, using the trained 'fraudDetectionModel' to predict whether a transaction is fraudulent based on the input features. The predictions, along with the confidence levels and original features, are inserted into the `FraudPredictions` sink stream.
 
 ## Example 2: Perceptron Classifier for Manufacturing Quality Control
 
