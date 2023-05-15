@@ -59,8 +59,8 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
+| CEP-551  | Stream workers are not handling the error returned by the database when the publish queue is full, causing data loss.  |
 | CEP-562 | The [bayesianRegression](../cep/query-guide/functions/streaming-ml/bayesianregression) and [updateBayesianRegression](../cep/query-guide/functions/streaming-ml/updatebayesianregression) stream processors were not working properly. |
-|   |   |
 |   |   |
 |   |   |
 |   |   |
