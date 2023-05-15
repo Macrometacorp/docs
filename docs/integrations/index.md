@@ -15,3 +15,15 @@ _Target integrations_ allow you to send data from a Macrometa collection to an e
 
 ## Transformations and Roll-ups
 
+
+
+## Limitations
+
+Here are some limitations that you should keep in mind as you work with collections and integrations:
+
+- You cannot change a source integration assigned to a collection after the collection is created.
+- You cannot change an integration name.
+- An empty collection cannot be a target for an integration.
+- - Cannot query collection immediately when it is performing bulk ingest (ask SME)
+- - Update tier limits with integration limits (confirm what they are with SME)
+- - Cannot edit transformations (test)
