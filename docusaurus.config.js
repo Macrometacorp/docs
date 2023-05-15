@@ -130,7 +130,7 @@ const config = {
           },
           {
             className: 'navbar__item--external',
-            href: 'https://join.slack.com/t/macrometa/shared_invite/zt-1j4f06xwm-5Y~yGQz8CVImOowdc80s1A',
+            href: 'https://macrometa.slack.com/join/shared_invite/zt-1v7jkj1tf-C6usbL12TBUUGlikJD9png#/shared-invite/email',
             label: 'Slack',
             position: 'right',
           },
