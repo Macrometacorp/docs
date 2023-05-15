@@ -41,7 +41,7 @@ This release includes the following API changes.
 
 | Issue # | Description |
 | ------- | ----------- |
-| z       | z           |
+| CEP-559 | Change extension name for unitconversion of `kgToStones` function. New name is kgToStone  |
 |         |             |
 |         |             |
 
