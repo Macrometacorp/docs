@@ -31,8 +31,7 @@ The following minor changes were added in this release.
 
 | Change # | Description |
 | -------- | ----------- |
-| CEP-559 | Change extension name for [unitconversion](../cep/query-guide/functions/unitconversion/) of `kgToStones` function. New name is [kgToStone](../cep/query-guide/functions/unitconversion/kgToStone).  |
-| CEP-562 | The [bayesianRegression](../cep/query-guide/functions/streaming-ml/bayesianregression) and [updateBayesianRegression](../cep/query-guide/functions/streaming-ml/updatebayesianregression) stream processors were not working properly. |
+| CEP-559 | Change extension name for [unitconversion](../cep/query-guide/functions/unitconversion/) of `kgToStones` function. New name is [kgToStone](../cep/query-guide/functions/unitconversion/kgToStone). |
 |          |             |
 |          |             |
 
@@ -60,8 +59,8 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
-|   |   |
-|   |   |
+| CEP-551  | Stream workers are not handling the error returned by the database when the publish queue is full, causing data loss.  |
+| CEP-562 | The [bayesianRegression](../cep/query-guide/functions/streaming-ml/bayesianregression) and [updateBayesianRegression](../cep/query-guide/functions/streaming-ml/updatebayesianregression) stream processors were not working properly. |
 |   |   |
 |   |   |
 |   |   |
