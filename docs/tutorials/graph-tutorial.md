@@ -1,12 +1,10 @@
 ---
-title: Graph Example
+title: Graph Tutorial
 sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-
 
 This example shows the ability of graph databases in analyzing and offering recommendations for items that are commonly purchased together. By establishing connections between customer and item vertices using edge collections, the graph is able to accurately deliver tailored recommendations to customers who have bought a particular item.
 
@@ -64,6 +62,7 @@ Data can be found in the `sample-data` folder of this [repository](https://githu
 - Import test data from sample-data folder to created collections using console. Name of the files are the same as the collection names.
 
 ## How to Create the Graph on Macrometa GDN
+
 Now that we have the data imported, we can create the graph on Macrometa GDN using javascript SDK.
 
 ### Prerequisites
@@ -84,7 +83,6 @@ node -v
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
-
 
 ```js
 const jsc8 = require("jsc8");
@@ -120,7 +118,7 @@ createGraph();
 
 After we have created the graph, we can start querying it.
 
-##  How to Query the Graph
+## How to Query the Graph
 
 ### Query Explanation
 
@@ -156,12 +154,10 @@ It is possible to create a Query Worker on Macrometa GDN using console, javascri
 You can create [Query Worker](../queryworkers/index.md) by yourself or you can use the one that is already created for this example.
 Exported Query Worker can be found in the `sample-data` folder of this [repository](https://github.com/Macrometacorp/macrometa-graph-example). It is possible to import the query worker using console. (`import-query.json`)
 
-
 After we have created the Query Worker, we can start using it using the following code:
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
-
 
 ```js
 const jsc8 = require("jsc8");
@@ -219,6 +215,7 @@ A comprehensive example illustrating CRUD operations on graphs can be found in t
 ## Example Data Set
 
 Grocery Customers collection sample. (`groceryCustomers`)
+
 ```
 {
     "_key": "C01",
@@ -240,6 +237,7 @@ Grocery Customers collection sample. (`groceryCustomers`)
 ```
 
 Grocery Items collection sample. (`groceryItems`)
+
 ```
 {
     "_key": "P01",
@@ -266,7 +264,7 @@ Grocery Orders collection sample. (`groceryOrders` -> this is an edge collection
 `_from` and `_to` are specific fields of edge collection.
 :::
 
-```
+```json
 {
     "_from": "groceryCustomers/C01",
     "_key": "4117657795",
@@ -289,5 +287,3 @@ Grocery Orders collection sample. (`groceryOrders` -> this is an edge collection
 }
 ...
 ```
-
-
