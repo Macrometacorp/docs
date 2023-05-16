@@ -19,11 +19,21 @@ The [Integrations](../integrations) section was added as a result of this featur
 
 The following features updates are included in this release.
 
-### Update 1
+### Improved Collection Settings Tab
 
-Description of update.
+The Settings tab in collections has been expanded and improved with updated look and new functionality, including:
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+- Information about connections.
+- Expanded information about collection streams.
+
+The following pages were updated as a result of this change:
+
+- [Delete Collections](../collections/delete-collection)
+- [Truncate Collections](../collections/truncate-collection)
+- Document Store Settings
+- Graph Edge Settings
+- Key-Value Store Settings
+- Redis Mode Settings
 
 ### Miscellaneous Changes
 
