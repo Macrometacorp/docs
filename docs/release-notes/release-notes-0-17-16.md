@@ -61,8 +61,8 @@ The following defects were fixed in this release.
 |---|---|
 | CEP-551  | Stream workers are not handling the error returned by the database when the publish queue is full, causing data loss.  |
 | CEP-562 | The [bayesianRegression](../cep/query-guide/functions/streaming-ml/bayesianregression) and [updateBayesianRegression](../cep/query-guide/functions/streaming-ml/updatebayesianregression) stream processors were not working properly. |
-|   |   |
-|   |   |
+| DB-2463  | Allow `/api/version` endpoint to return the system version for all users.  |
+| STRM-588  | The streams created by Pulsar clients are only registered into the current region but are not populated to the other regions.  |
 |   |   |
 |   |   |
 |   |   |
