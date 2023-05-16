@@ -9,4 +9,4 @@ When you truncate a collection, you remove all the documents from the collection
 1. Click **Data > Collections**.
 1. Click the collection that you want to truncate.
 1. Click **Settings**.
-1. In the Settings tab, click **Truncate**.
+1. In the Settings tab, click **Truncate Collection**.
