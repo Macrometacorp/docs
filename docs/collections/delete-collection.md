@@ -10,3 +10,5 @@ You can delete any type of collection. When you delete a collection, all content
 1. Click the collection that you want to delete.
 1. Click **Settings**.
 1. In the Settings tab, click **Delete Collection**.
+
+![Delete Collection Section](/img/collections/delete-collection.png)
