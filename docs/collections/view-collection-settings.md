@@ -28,7 +28,7 @@ The Settings tab contains the following fields:
 - **Synchronous Writes** - Click to turn synchronous writes on or off for the collection.
 - **Resource URL** - API URL and endpoint to access the collection. You might use this when creating a cURL command or HTTP request to interact with the collection.
 
-![Collection Settings Tab](/img/collections/key-value-store-settings.png)
+![Collection Details Section](/img/collections/collection-details.png)
 
 **Collection Stream**
 
@@ -39,13 +39,13 @@ This section is not in [Redis Mode collection](./redis-mode/) settings.
 - **Replication** - Whether the stream is replicated globally or locally.
 - **WebSocket URL** - The WebSocket connection to the collection stream allows you to interact with the stream in real-time. This connection allows you to receive live updates as documents are added, updated, or removed from the collection.
 
-![Collection Settings Tab](/img/collections/key-value-store-settings.png)
+![Collection Stream Section](/img/collections/collection-stream.png)
 
 **Connections and Reload Collections**
 
 The Connections and Reload Collections sections only apply to [Document Store collections](./documents/). For more information about integrations and connections, refer to [Integrations](../integrations/).
 
-![Collection Settings Tab](/img/collections/key-value-store-settings.png)
+![Connections and Reload Collection Sections](/img/collections/connections-and-reload-collection.png)
 
 **Truncate Collection**
 
