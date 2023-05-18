@@ -40,6 +40,7 @@ When viewing your collections, you can click **New Collection** to create a new 
 
 - [Create a Document Store](documents/create-document-store.md)
 - [Create a Key-Value Store](keyvalue/create-key-value-store.md)
+- [Create a Redis Mode](redis-mode/create-redis-mode)
 - [Create a Dynamo Table](dynamo/create-dynamo-table.md)
 - [Create a Graph Edge](../graphs/graph-tasks/create-graph-edge-collection.md)
 
@@ -70,6 +71,7 @@ MacBook-Pro ~ % gdnsl collection list
 │ docs   │
 │ dynamo │
 │ kv     │
+│ redis  │
 └────────┘
 
 MacBook-Pro ~ % gdnsl collection describe kv
