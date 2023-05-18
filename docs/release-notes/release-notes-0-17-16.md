@@ -26,14 +26,7 @@ The Settings tab in collections has been expanded and improved with updated look
 - Information about connections.
 - Expanded information about collection streams.
 
-The following pages were updated as a result of this change:
-
-- [Delete Collections](../collections/delete-collection)
-- [Truncate Collections](../collections/truncate-collection)
-- Document Store Settings
-- Graph Edge Settings
-- Key-Value Store Settings
-- Redis Mode Settings
+[View Collection Settings](../collections/view-collection-settings) was added as a result of this changed. Several pages had minor updates as a result of this change. Individual collection settings pages were removed for Document Store, Key-Value Store, Graph Edge, and Redis Mode collections.
 
 ### Miscellaneous Changes
 
