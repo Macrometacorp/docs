@@ -3,7 +3,7 @@ title: Integrations
 sidebar_position: 1
 ---
 
-Integrations allow you to import data into Macrometa Global Data Network (GDN) from external data sources or other Macrometa collections. You can also export data from Macrometa GDN into external data sources or other Macrometa collections.
+Integrations allow you to import data into Macrometa Global Data Network (GDN) from external data sources or other Macrometa document collections. You can also export data from Macrometa GDN into external data sources or other Macrometa document collections.
 
 Once created, you can reuse integrations as many times as necessary.
 
@@ -25,7 +25,7 @@ A _target integrations_ allows you to send data from a Macrometa collection to a
 
 ## Transformations and Roll-ups
 
-
+## Common Schema
 
 ## Limitations
 
