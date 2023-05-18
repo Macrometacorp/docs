@@ -10,3 +10,5 @@ When you truncate a collection, you remove all the documents from the collection
 1. Click the collection that you want to truncate.
 1. Click **Settings**.
 1. In the Settings tab, click **Truncate Collection**.
+
+![Truncate Collection Section](/img/collections/truncate-collection.png)
