@@ -33,9 +33,9 @@ The Settings tab contains the following fields:
 **Collection Stream**
 
 - **Stream Enabled** - Click to turn streams on or off for this collection. When streams are enabled, you can access the Stream tab.
-- Stream Name
-- Replication
-- WebSocket URL
+- **Stream Name** - The name of the collection stream.
+- **Replication** - Whether the stream is replicated globally or locally.
+- **WebSocket URL** - The WebSocket connection to the collection stream allows you to interact with the stream in real-time. This connection allows you to receive live updates as documents are added, updated, or removed from the collection.
 
 ![Collection Settings Tab](/img/collections/key-value-store-settings.png)
 
