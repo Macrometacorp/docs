@@ -7,11 +7,21 @@ Integrations allow you to import data into Macrometa Global Data Network (GDN) f
 
 Once created, you can reuse integrations as many times as necessary.
 
+## Data Source, Integration, Connection
+
+These terms are used frequently when discussing integrations.
+
+A _data source_ refers to an external database or entity that contains data, such as MongoDB, PostgresSQL, a different Macrometa collection, and so on.
+
+An _integration_ is a connection between Macrometa and a data source. You can create an integration with Macrometa.
+
+A _connection_ connects a Macrometa collection to a specific table in a data source, either as a source or target.
+
 ## Source and Target Integrations
 
-_Source integrations_ allow you to use an external data source or a Macrometa collection as the originating source for data. Any records entered in the source are sent to a Macrometa collection that you choose. A collection can only have one source, and it must be set at collection creation.
+A _source integrations_ allows you to use an external data source or a Macrometa collection as the originating source for data. Any records entered in the source are sent to a Macrometa collection that you choose. A collection can only have one source, and it must be set at collection creation.
 
-_Target integrations_ allow you to send data from a Macrometa collection to an external data source or a Macrometa collection. Any records entered in the collection are sent to the target that you choose. A Macrometa collection can have multiple targets.
+A _target integrations_ allows you to send data from a Macrometa collection to an external data source or a Macrometa collection. Any records entered in the collection are sent to the target that you choose. A Macrometa collection can have multiple targets.
 
 ## Transformations and Roll-ups
 
