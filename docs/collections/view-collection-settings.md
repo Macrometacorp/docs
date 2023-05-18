@@ -32,6 +32,8 @@ The Settings tab contains the following fields:
 
 **Collection Stream**
 
+This section is not in [Redis Mode collection](./redis-mode/) settings.
+
 - **Stream Enabled** - Click to turn streams on or off for this collection. When streams are enabled, you can access the Stream tab.
 - **Stream Name** - The name of the collection stream.
 - **Replication** - Whether the stream is replicated globally or locally.
