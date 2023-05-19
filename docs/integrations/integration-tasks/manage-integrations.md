@@ -21,7 +21,6 @@ DFP NOTE - Need tabs for UI, API, SDKs
    - [OracleDB](../integration-types/oracledb)
    - [PostgresSQL](../integration-types/postgressql)
    - [Snowflake](../integration-types/snowflake)
-   - [BigQuery](../integration-types/bigquery)
 
 ## View Integration
 
