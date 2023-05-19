@@ -1,4 +1,7 @@
-
+---
+title: Manage Integrations
+sidebar_position: 10
+---
 
 
 Create source
