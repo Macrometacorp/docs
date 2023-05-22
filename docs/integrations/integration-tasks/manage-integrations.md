@@ -13,14 +13,14 @@ DFP NOTE - Need tabs for UI, API, SDKs
 2. Click **Access > Integrations**.
 3. Click **New Integration**.
 4. Select the integration type.
-5. Enter specific information in the fields for the integration and then click **Create**. Refer to the documentation for the specific integration type for more information about the fields:
+5. Enter specific information in the fields for the integration and then click **Create**. Refer to the documentation for the specific connector type for more information about the fields:
 
-   - [BigQuery](../integration-types/bigquery)
-   - [Macrometa Collection](../integration-types/mm-collection)
-   - [MongoDB](../integration-types/mongodb)
-   - [OracleDB](../integration-types/oracledb)
-   - [PostgresSQL](../integration-types/postgressql)
-   - [Snowflake](../integration-types/snowflake)
+   - [BigQuery](../connector-types/bigquery)
+   - [Macrometa Collection](../connector-types/mm-collection)
+   - [MongoDB](../connector-types/mongodb)
+   - [OracleDB](../connector-types/oracledb)
+   - [PostgresSQL](../connector-types/postgressql)
+   - [Snowflake](../connector-types/snowflake)
 
 ## View Integration
 
