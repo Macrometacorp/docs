@@ -5,7 +5,7 @@ title: GraphQL Caching
 
 ## Macrometa GDN
 
-| **Platform**                       | **Tenat**                      |
+| **Platform**                       | **Tenant**                      |
 | ---------------------------------- | ------------------------------ |
 | [URL](https://cache.eng.macrometa.io/) | `demo@macrometa.com` |
 
