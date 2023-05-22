@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: GraphQl Caching
+title: GraphQL Caching
 ---
 
 ## Macrometa GDN
