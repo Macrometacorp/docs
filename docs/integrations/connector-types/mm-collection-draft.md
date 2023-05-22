@@ -40,10 +40,22 @@ From Repo:
 
 ## Macrometa Collection Target
 
-If the Primary Key of the source data doesn't comply with the constraints of macrometa document key then:
+The Macrometa _key must always be a string. If the primary key of the source data doesn't comply with the constraints of Macrometa document key then:
 
-1. Primary key is not of string data type - The primary key of source will be first converted to a string and then it will be checked for compliance with the constraints mentioned above. 
-1. Primary key is string and but isn't compliant - The primary key for target will be generated using a hash algorithm with primary key of source acting as the key for hash function. The resultant hash will be stored in hex format as the primary key for target, making it compliant with macrometa document key constraints.
+1. If the primary key is not of string data type, then the primary key of source will be first converted to a string and then it will be checked for compliance with the constraints mentioned above.
+2. If the primary key is string but isn't compliant, then the primary key for target will be generated using a hash algorithm with the primary key of source acting as the key for hash function. The resultant hash will be stored in hex format as the primary key for target, making it compliant with macrometa document key constraints.
+
+UI:
+
+- Integration Name
+- Region URL
+- API Key
+- Fabric
+- Batch Size
+- Batch Flush Interval (Seconds)
+- Batch Flush Minimum Time Gap (Seconds)
+
+Repo:
 
 | Config keys   | Type    | Required?  | Description   |  Default     |  Example     |
 |---------------|---------|------------|---------------|--------------|--------------|
