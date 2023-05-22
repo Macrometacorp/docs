@@ -30,7 +30,7 @@ This demo includes the following components:
 
 ## Visitor Personalization
 
-Macrometa GDN Streams and Query Workers enable real-time visitor personalization, including recommendations and real-time stock updates.
+Macrometa streams and query workers enable real-time visitor personalization, including recommendations and real-time stock updates.
 
 - **Tailored Product Recommendations**
 - **Social Proof (Top Rated Items)**
