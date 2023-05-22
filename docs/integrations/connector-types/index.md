@@ -1,5 +1,5 @@
 ---
-title: Integration Types
+title: Connector Types
 sidebar_position: 1
 ---
 
