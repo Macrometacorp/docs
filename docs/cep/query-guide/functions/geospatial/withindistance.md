@@ -26,17 +26,29 @@ Two available sets of parameters:
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 geo:withinDistance( 0.5 , 0.5, {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]}, 110574.61087757687)
 ```
 
-This example returns `true` because the coordinates (0.5, 0.5) are within the specified radius of 110574.61087757687 meters from the `geo.json.geometry.fence`. The point lies inside the polygon, and therefore, is definitely within the given distance.
+In this example, the `geo:withinDistance()` function checks if the given point (0.5, 0.5) is within a certain distance from the specified polygon defined by the coordinates `[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]`. The distance specified is 110574.61087757687 meters. As the point lies within the polygon, it is indeed within the given distance, so the function returns `true`.
 
 ## Example 2
 
 ```sql
-@info(name = 'query1')
 geo:withinDistance( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]}, 110574.61087757687)
 ```
 
-This example returns `true` because the `geo.json.geometry` represented by the first polygon is within the specified radius of 110574.61087757687 meters from the `geo.json.geometry.fence` represented by the second polygon. The two polygons overlap, which means they are within the given distance.
+In this example, the `geo:withinDistance()` function checks if the first polygon, defined by the coordinates `[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]`, is within a certain distance from the second polygon defined by the coordinates `[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]`. The distance specified is 110574.61087757687 meters. Given that the two polygons overlap, they are indeed within the specified distance of each other, so the function returns `true`.
+
+## Example 3
+
+```sql
+CREATE STREAM InputGeoStream (longitude float, latitude float, geoJsonFence string, radius double);
+CREATE SINK STREAM OutputGeoStream (withinDistanceStatus bool);
+
+@info(name = 'WithinDistanceStatusCheck')
+INSERT INTO OutputGeoStream
+SELECT geo:withinDistance(longitude, latitude, geoJsonFence, radius)
+FROM InputGeoStream;
+```
+
+In this stream worker example, the `WithinDistanceStatusCheck` query processes events from the `InputGeoStream`, which includes geographical coordinates (`longitude`, `latitude`), a GeoJSON fence (`geoJsonFence`), and a radius. The query uses the `geo:withinDistance(longitude, latitude, geoJsonFence, radius)` function to check if the given point is within the specified distance from the GeoJSON fence. The distance status is then sent to the `OutputGeoStream` for each processed event.
