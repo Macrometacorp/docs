@@ -29,7 +29,7 @@ Two available sets of parameters:
 geo:withinDistance( 0.5 , 0.5, {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]}, 110574.61087757687)
 ```
 
-In this example, the `geo:withinDistance()` function checks if the given point (0.5, 0.5) is within a certain distance from the specified polygon defined by the coordinates `[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]`. The distance specified is 110574.61087757687 meters. As the point lies within the polygon, it is indeed within the given distance, so the function returns `true`.
+In this example, the `geo:withinDistance()` function checks if the given point (0.5, 0.5) is within a certain distance from the specified polygon defined by the coordinates `[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]`. The distance specified is 110574.61087757687 meters. As the point lies within the polygon, it is indeed within the given distance, therefore the function returns `true`.
 
 ## Example 2
 
