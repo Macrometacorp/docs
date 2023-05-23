@@ -39,7 +39,7 @@ CREATE TRIGGER GeoCrossesTrigger WITH(interval = 5 sec);
 @info(name = 'generateGeoCrossesData')
 INSERT INTO dataInForGeoCrossesStream
 SELECT  "12" AS id, 6.876657 AS longitude, 79.897648 AS latitude,  eventTimestamp() AS timestamp
-from GeoCrossesTrigger;
+FROM GeoCrossesTrigger;
 
 @info(name = 'geoCrossesQuery')
 INSERT INTO dataOutForGeoCrossesStream
