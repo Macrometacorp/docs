@@ -13,10 +13,10 @@ Creating an integration is the first step of connecting a Macrometa document col
 
 Once you have defined an integration, you can create a connection between a document collection and a specific table in an external data source.
 
-To create a source connection, which means that the collection would import records from the external data source, you must define it when you create a new document collection.
+- To create a source connection, which means that the collection would import records from the external data source, you must define it when you create a new document collection.
 
-To create a target connection, which means that the collection would export records to the external data source, you must create a collection and add at least one record to it. After that, you can add targets in the Collection Settings screen.
+- To create a target connection, which means that the collection would export records to the external data source, you must create a collection and add at least one record to it. After that, you can add targets in the Collection Settings screen.
 
 ## 3. Transform the Data
 
-While creating a connection, you can add a transformation that will act on every record as it moves in or out of the collection.
+While creating a connection, after the integration is validated, you can add a transformation that will act on every record as it moves in or out of the collection.
