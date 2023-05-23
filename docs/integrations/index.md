@@ -15,7 +15,7 @@ A _data source_ refers to an external database or entity that contains data, suc
 
 A _connector_ is a connection that can be set up between Macrometa and a data source. For example, the list of connectors includes MongoDB, Snowflake, and will be expanded to include others.
 
-An _integration_ is a connection that you have defined between Macrometa and a specific data source or target. You can create an integration with Macrometa.
+An _integration_ is a connection that you have created using the connector between Macrometa and a specific data source or target.
 
 A _connection_ connects a Macrometa collection to a specific table in a data source, either as a source or target. This is the workflow doing the transfer.
 
@@ -38,4 +38,4 @@ Here are some limitations that you should keep in mind as you work with collecti
 - An empty collection cannot be a target for an integration.
 - You cannot edit transformations.
 - If a field has more than one data type, then the data type that applies to the most records will be selected.
-- - Update tier limits with integration limits (confirm what they are with SME)
+- Update tier limits with integration limits (confirm what they are with SME)
