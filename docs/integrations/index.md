@@ -17,7 +17,7 @@ A _connector_ is a connection that can be set up between Macrometa and a data so
 
 An _integration_ is a connection that you have defined between Macrometa and a specific data source or target. You can create an integration with Macrometa.
 
-A _connection_ connects a Macrometa collection to a specific table in a data source, either as a source or target.
+A _connection_ connects a Macrometa collection to a specific table in a data source, either as a source or target. This is the workflow doing the transfer.
 
 ## Source and Target Integrations
 
