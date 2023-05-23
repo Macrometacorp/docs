@@ -19,13 +19,13 @@ You can define multiple inputs and outputs for stream workers, but you must set 
 
 ### Queries
 
-Transformations allow you to write one query, while stream workers allow you to write several queries.
+Transformations allow you to write one query, while stream workers allow you to write several queries. For more information about stream worker queries, refer to [Stream Worker Queries](../../cep/query-guide/).
 
 ### Workflow
 
 Transformations only process, or transform, content going into or out of Macrometa collections via a connection.
 
-Stream workers process data streams, which can include Macrometa collections, but also support a variety of different sinks and streams.
+Stream workers process data streams, which can include Macrometa collections, but also support a variety of different [sources](../../cep/source/) and [sinks](../../cep/sink/).
 
 ## Supported Transformations
 
