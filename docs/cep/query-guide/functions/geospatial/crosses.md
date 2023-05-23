@@ -45,7 +45,6 @@ FROM GeoCrossesTrigger;
 INSERT INTO dataOutForGeoCrossesStream
 SELECT "id" AS id, crosses AS crosses
 FROM dataInForGeoCrossesStream#geo:crosses("12", 0.5, 0.5,"{'type':'Polygon','coordinates':[[[0,0],[0,2],[1,2],[1,0],[0,0]]]}");
-
 ```
 
 In this example, a stream `dataInForGeoCrossesStream` is created with the following attributes: id, longitude, latitude, and timestamp. A sink stream, `dataOutForGeoCrossesStream`, is created to store the output data, which includes id and a boolean value `crosses` to indicate whether the given point crosses the defined polygon.
