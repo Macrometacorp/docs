@@ -23,8 +23,29 @@ Determines if the specified object or location is within the radius of another o
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 geo:proximity(1, 0, 0, 110574.61087757687)
 ```
 
-This example returns `true` because the coordinates `(1, 0)` are within the given radius of `110574.61087757687` from the reference point `(0, 0)`.
+The `geo:proximity()` function is used to determine if the point (1, 0) lies within the radius of 110574.61087757687 units from the reference point (0, 0). It returns `true`, indicating that the point is indeed within the given radius from the reference location.
+
+## Example 2
+
+```sql
+geo:proximity(2, 0, 0, 110574.61087757687)
+```
+
+In this case, the `geo:proximity()` function checks if the point (2, 0) lies within the radius of 110574.61087757687 units from the reference point (0, 0). The function returns `false` as the point is not within the given radius from the reference point.
+
+## Example 3
+
+```sql
+CREATE STREAM InputGeoStream (longitude1 double, latitude1 double, longitude2 double, latitude2 double, radius double);
+CREATE SINK STREAM OutputGeoStream (proximityResult bool);
+
+@info(name = 'proximityCheckQuery')
+INSERT INTO OutputGeoStream
+SELECT "id" AS id, proximity 
+FROM InputGeoStream#geo:proximity(longitude1, latitude1, longitude2, latitude2, radius);
+```
+
+The `proximityCheckQuery` processes events from the `InputGeoStream`. The stream includes pairs of geographical coordinates (`longitude1`, `latitude1`), a reference pair of geographical coordinates (`longitude2`, `latitude2`), and a radius. The `geo:proximity(longitude1, latitude1, longitude2, latitude2, radius)` function is used to determine if the first point lies within the given radius from the second point. The result is then forwarded as an event to the `OutputGeoStream`.
