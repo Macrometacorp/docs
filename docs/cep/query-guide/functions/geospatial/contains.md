@@ -26,17 +26,29 @@ Two available sets of parameters:
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 geo:contains(0.5, 0.5, {'type':'Polygon','coordinates':[[[0,0],[0,2],[1,2],[1,0],[0,0]]]} )
 ```
 
-In this example, the `geo:contains()` function is used to determine whether the given point (0.5, 0.5) is within the specified polygon. The polygon is represented by the coordinates `[[0,0],[0,2],[1,2],[1,0],[0,0]]`. The function returns `true` because the point is indeed within the polygon, which is represented as a `geo.json.geometry.fence`.
+The `geo:contains()` function checks whether the provided point (0.5, 0.5) lies within the defined polygon. The polygon's vertices are `[[0,0],[0,2],[1,2],[1,0],[0,0]]`. As the point is inside the polygon, the function returns `true`.
 
 ## Example 2
 
 ```sql
-@info(name = 'query1')
 geo:contains( {'type': 'Circle', 'radius': 110575, 'coordinates':[1.5, 1.5]} , {'type':'Polygon','coordinates':[[[0,0],[0,4],[3,4],[3,0],[0,0]]]} )
 ```
 
-In this example, the `geo:contains()` function is used to determine whether the specified circle, with a center at coordinates (1.5, 1.5) and radius of 110575, is entirely within the specified polygon represented by the coordinates `[[0,0],[0,4],[3,4],[3,0],[0,0]]`. The function returns `true` because the circle is indeed contained within the polygon, which is represented as a `geo.json.geometry.fence`.
+In this case, `geo:contains()` function evaluates whether the specified circle, centered at coordinates (1.5, 1.5) with a radius of 110575, is completely enclosed by the polygon delineated by the vertices `[[0,0],[0,4],[3,4],[3,0],[0,0]]`. Given that the circle fits entirely within the polygon, the function returns `true`.
+
+## Example 3
+
+```sql
+CREATE STREAM InputGeoStream (pointLongitude float, pointLatitude float, geoJsonFence string);
+CREATE SINK STREAM OutputGeoStream (isContained boolean);
+
+@info(name = 'geoContainmentCheck')
+INSERT INTO OutputGeoStream
+SELECT geo:contains(pointLongitude, pointLatitude, geoJsonFence) 
+FROM InputGeoStream;
+```
+
+In this example, the `geoContainmentCheck` processes events from the `InputGeoStream`, consisting of geographical coordinates (`pointLongitude`, `pointLatitude`) and a GeoJSON fence (`geoJsonFence`). The `geo:contains(pointLongitude, pointLatitude, geoJsonFence)` function is used to verify if the specified point is within the GeoJSON fence. The query then outputs this boolean result for each event to the `OutputGeoStream`.
