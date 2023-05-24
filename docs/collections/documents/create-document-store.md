@@ -20,7 +20,7 @@ Follow these instructions to create a new collection using the GDN console web U
 5. Enter information about the collection:
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
-   - **Add date source -** Connect the collection to an external data source. For more information about connections, refer to **Integrations**.
+   - **Add data source -** Connect the collection to an external data source. For more information about connections, refer to **Integrations**.
    - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
    - **Distribution -** Required. Select whether to store data globally or locally. Default is **Global**.
 
