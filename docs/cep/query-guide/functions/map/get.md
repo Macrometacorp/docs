@@ -22,26 +22,37 @@ Function returns the value corresponding to the given key from the map.
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 map:get(companyMap, 1)
 ```
 
-The `map:get(companyMap, 1)` function checks if the `companyMap` has a key `1`. If the key `1` exists in `companyMap` and its value is `ABC`, then the function returns `ABC`.
+The `map:get(companyMap, 1)` function retrieves the value associated with the key `1` from `companyMap`. If `companyMap` includes the key `1` and its value is `ABC`, the function returns `ABC`. If the key is not present in `companyMap`, the function returns `null`.
 
 ## Example 2
 
 ```sql
-@info(name = 'query1')
 map:get(companyMap, 2)
 ```
 
-The `map:get(companyMap, 2)` function checks if the `companyMap` has a key `2`. If the key `2` does not exist in `companyMap` or has no associated value, then the function returns `null`.
+The `map:get(companyMap, 2)` function retrieves the value associated with the key `2` from `companyMap`. If `companyMap` includes the key `2`, it returns the corresponding value. If the key `2` does not exist in `companyMap` or doesn't have an associated value, the function returns `null`.
 
 ## Example 3
 
 ```sql
-@info(name = 'query1')
 map:get(companyMap, 2, 'two')
 ```
 
-The `map:get(companyMap, 2, 'two')` function checks if the `companyMap` has a key `2`. If the key `2` does not exist in `companyMap` or has no associated value, then the function returns the default value `'two'`.
+The `map:get(companyMap, 2, 'two')` function retrieves the value associated with the key `2` from `companyMap`. If `companyMap` includes the key `2`, it returns the corresponding value. If the key `2` does not exist in `companyMap` or doesn't have an associated value, the function returns the provided default value `'two'`.
+
+## Example 4
+
+```sql
+CREATE STREAM InputStream (companyMap map<string, string>, searchKey string);
+CREATE SINK STREAM OutputStream (companyValue string);
+
+@info(name = 'CompanyMapLookup')
+INSERT INTO OutputStream
+SELECT map:get(companyMap, searchKey) AS companyValue
+FROM InputStream;
+```
+
+In this stream worker, the `CompanyMapLookup` query processes events from the `InputStream`, each event comprising a `companyMap` and a `searchKey`. The query applies the `map:get(companyMap, searchKey)` function to each event in `InputStream` to retrieve the value associated with `searchKey` from `companyMap`. The resultant value is then inserted into the `OutputStream` for each processed event.
