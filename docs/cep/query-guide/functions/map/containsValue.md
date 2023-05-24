@@ -20,8 +20,23 @@ Function checks if the map contains the value.
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 map:containsValue(stockDetails, 'IBM')
 ```
 
-The `map:containsValue(stockDetails, 'IBM')` function returns `true` if the `stockDetails` map contains the value `IBM`, otherwise, it returns `false`.
+This function checks if the `stockDetails` map contains the value 'IBM'. If 'IBM' is found as a value in any of the key-value pairs within the map, the function returns `true`, otherwise, it returns `false`.
+
+## Example 2
+
+```sql
+CREATE STREAM InputMapStream (id string, stockDetails map<string, string>);
+CREATE SINK STREAM OutputValuePresenceStream (id string, valuePresence bool);
+
+@info(name = 'ValuePresenceCheck')
+INSERT INTO OutputValuePresenceStream
+SELECT id, map:containsValue(stockDetails, 'IBM')
+FROM InputMapStream;
+```
+
+In this example, a stream worker named `ValuePresenceCheck` is created. The stream `InputMapStream` is defined to provide input to the query, which includes an identifier (`id`) and a map (`stockDetails`). A sink stream, `OutputValuePresenceStream`, is defined to collect the output, which includes the identifier and a boolean value indicating the presence of a specific value in the map.
+
+The query processes each event from `InputMapStream`, using the `map:containsValue(stockDetails, 'IBM')` function to check if the `stockDetails` map in the event contains the value 'IBM'. The resulting boolean value, along with the identifier, is then inserted into `OutputValuePresenceStream`. This setup allows for real-time checking of value presence in maps within a data stream.
