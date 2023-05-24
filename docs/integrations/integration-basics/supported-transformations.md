@@ -64,7 +64,7 @@ The following Stream QL and stream worker elements are not supported. If you nee
 SELECT
     < expressions >
 FROM
-    _input
+    Input
 WHERE
     < condition > -- optional
 GROUP BY
