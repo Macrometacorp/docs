@@ -113,7 +113,7 @@ SELECT exchange,
 FROM Input
 WHERE
 	symbol == "MBDX" AND
-  trade_location = "CA";
+  trade_location == "CA";
 ```
 
 This transformation query performs the following operations:
