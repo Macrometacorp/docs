@@ -32,7 +32,7 @@ Repo:
 | Warehouse| String  | Yes       | Snowflake virtual warehouse name.             | None       | my_warehouse|
 | Table Name             | String  | Yes       | Name of the table that you want to sync. The table name should be fully qualified including the db and schema name. | None       | my_db.my_schema.my_table  |
 | Replication Method     | String  | Yes       | Choose from INCREMENTAL, FULL_TABLE, CDC      | FULL_TABLE | FULL_TABLE  |
-| Primary Key            | String  | No        | Unique Primary Key (to be used as \_key for the collection) | None       | my_primary_key            |
+| Primary Key            | String  | No        | Unique Primary Key (to be used as _key for the collection) | None       | my_primary_key            |
 | Role     | String  | No        | Snowflake role to use.          | None       | my_role     |
 | Private Key       | String  | No        | Private Key (used for Key Pair authentication, only PEM format supported) | None       | my_private_key            |
 | Private Key Passphrase | String  | No        | Private Key Passphrase (used for Key Pair authentication)   | None       | my_private_key_passphrase |
