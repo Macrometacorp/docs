@@ -21,8 +21,27 @@ Function returns the updated map after adding the given key-value pair. If the k
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 map:put(stockDetails , 'IBM' , '200')
 ```
 
-The `map:put(stockDetails, 'IBM', '200')` function takes the map named `stockDetails` and adds a new key-value pair to it. The key is `'IBM'`, and the corresponding value is `'200'`. The function returns the updated map with the new key-value pair added.
+In this example, the `map:put(stockDetails, 'IBM', '200')` function updates the map named `stockDetails` by adding a new key-value pair to it. The key is `'IBM'` and the corresponding value is `'200'`. The function will return the updated map which includes the new key-value pair.
+
+## Example 2
+
+```sql
+CREATE STREAM StockInput (symbol string, price float);
+CREATE SINK STREAM UpdatedStockDetails (stockDetails object);
+
+@info(name = 'AddNewStock')
+INSERT INTO UpdatedStockDetails
+SELECT map:put(stockDetails, symbol, price) AS stockDetails
+FROM StockInput;
+```
+
+In this example, two streams are created, `StockInput` and `UpdatedStockDetails`. The `StockInput` stream is an input stream that contains stock details such as `symbol` and `price`. 
+
+The `AddNewStock` query inserts into `UpdatedStockDetails` by selecting the output of the `map:put(stockDetails, symbol, price)` function from the `StockInput` stream. 
+
+This function updates the map `stockDetails` with each incoming event from `StockInput` by adding a new key-value pair to it. The key is the `symbol` of the stock, and the corresponding value is its `price`. 
+
+The updated map is then inserted into the `UpdatedStockDetails` stream. This way, the `stockDetails` map keeps updating with every incoming stock detail from the `StockInput` stream.
