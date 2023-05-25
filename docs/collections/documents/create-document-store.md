@@ -17,12 +17,14 @@ Follow these instructions to create a new collection using the GDN console web U
 2. Click **Data > Collections**.
 3. Click **New Collection**.
 4. Click **Document Store**.
-5. Enter information about the collection and then click **Create**.
+5. Enter information about the collection:
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
-   - **Geo Distribution -** Select whether to store data globally or locally.
+   - **Add data source -** Connect the collection to an external data source. For more information about connections, refer to **Integrations**.
    - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
-   - **Wait for sync -** Synchronize to disk before completing document creation or update.
+   - **Distribution -** Required. Select whether to store data globally or locally. Default is **Global**.
+
+6. Click **Create**. If you are missing required information or have an incomplete connection, then you cannot complete this step.
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
