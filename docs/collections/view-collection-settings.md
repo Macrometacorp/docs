@@ -43,7 +43,9 @@ This section is not in [Redis Mode collection](./redis-mode/) settings.
 
 **Connections and Reload Collections**
 
-The Connections and Reload Collections sections only apply to [Document Store collections](./documents/). For more information about integrations and connections, refer to [Integrations](../integrations/).
+The Connections and Reload Collections sections only apply to [Document Store collections](./documents/).
+
+For more information about integrations and connections, refer to [Integrations](../integrations/).
 
 ![Connections and Reload Collection Sections](/img/collections/connections-and-reload-collection.png)
 

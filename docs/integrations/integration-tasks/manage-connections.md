@@ -8,4 +8,4 @@
 - Delete source or target from collection
 - View Integrations list, details
 - Add target to collection
-- Reload Collection
+- Reload Collection - It initially truncates the current collection and then only re-starts the Source connection.
