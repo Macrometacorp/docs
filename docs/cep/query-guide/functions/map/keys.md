@@ -19,8 +19,21 @@ Function to return the keys of the map as a list.
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 map:keys(stockDetails)
 ```
 
-The `map:keys(stockDetails)` function returns a list of the keys present in the `stockDetails` map.
+The `map:keys(stockDetails)` function evaluates the `stockDetails` map and returns a list containing all the keys present in this map.
+
+## Example 2
+
+```sql
+CREATE STREAM InputStream (stockDetails object);
+CREATE SINK STREAM OutputStream (stockKeys object);
+
+@info(name = 'FetchKeys')
+INSERT INTO OutputStream
+SELECT map:keys(stockDetails) AS stockKeys
+FROM InputStream;
+```
+
+In this stream worker, the `FetchKeys` query processes events from the `InputStream`. Each event carries a `stockDetails` object. The query applies the `map:keys(stockDetails)` function to retrieve a list of keys present in the `stockDetails` map. This list is then inserted into the `OutputStream` as part of each resulting event.
