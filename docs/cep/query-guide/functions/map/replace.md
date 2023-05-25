@@ -21,8 +21,25 @@ Function returns the updated map after replacing the given key-value pair only i
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 map:replace(stockDetails , 1234 , 'IBM')
 ```
 
-The `map:replace(stockDetails , 1234 , 'IBM')` function takes a map named `stockDetails`, a key `1234`, and a value `IBM`. It replaces the value associated with the key `1234` in the `stockDetails` map with the value `IBM` if the key is present. The function returns the updated `stockDetails` map.
+The `map:replace(stockDetails, 1234, 'IBM')` function is designed to operate on the `stockDetails` map, targeting the key `1234`. If this key is present within the map, the function will replace the corresponding value with 'IBM'. The resultant updated `stockDetails` map is then returned.
+
+## Example 2
+
+```sql
+CREATE STREAM StockInput (symbol string, price float, volume int);
+CREATE SINK STREAM UpdatedStockDetails (stockDetails object);
+
+@info(name = 'UpdateStockDetails')
+INSERT INTO UpdatedStockDetails
+SELECT map:replace(stockDetails, symbol, price) AS stockDetails
+FROM StockInput;
+```
+
+In this stream processing example, the `StockInput` stream provides input data to the query, and the `UpdatedStockDetails` stream collects the output.
+
+The query named `UpdateStockDetails` receives events from the `StockInput` stream, each of which contains stock details such as `symbol`, `price`, and `volume`. It uses the `map:replace(stockDetails, symbol, price)` function to replace the price associated with the symbol in the `stockDetails` map if the symbol is present.
+
+The updated `stockDetails` map, now containing the replaced price for the specified stock symbol, is then inserted into the `UpdatedStockDetails` stream. Through this process, the `stockDetails` map is continually updated with current stock prices from the `StockInput` stream.
