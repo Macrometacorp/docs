@@ -60,7 +60,10 @@ The following Stream QL and stream worker elements are not supported. If you nee
 
 ## Syntax
 
+For more information about query syntax, refer to [Query Syntax](../../cep/query-guide/query#syntax).
+
 ```sql
+OUTPUT ACTION (INSERT INTO, UPDATE, DELETE, etc.)
 SELECT
     < expressions >
 FROM
