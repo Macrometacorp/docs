@@ -38,4 +38,4 @@ Here are some limitations that you should keep in mind as you work with collecti
 - An empty collection cannot be a target for an integration.
 - You cannot edit transformations.
 - If a field has more than one data type, then the data type that applies to the most records will be selected.
-- Update tier limits with integration limits (confirm what they are with SME)
+- Play tier users, refer to [Tenant Quotas and Limits](../references/quotas) to view limits on number of integrations. Keep in mind that each connection also adds one collection, and each transformation adds one stream worker.
