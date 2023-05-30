@@ -12,9 +12,26 @@ A Macrometa connector that extracts data from or sends data to an existing Postg
 
 ## PostgresSQL Source
 
-UI matches table except for:
+UI
+
+Required
 - Integration Name
-- Break at No Data Received (Seconds) is not present
+- Host
+- Username
+- Password
+- Auth Database
+
+Advanced
+- Port
+- Replication Method
+- Enable SRV
+- Replica Set
+- Use SSL
+- Verify Mode
+- Direct Connection
+- SSL/TLS CA Certificate
+- SSL/TLS Client Certificate
+- SSL/TLS Client Key Password
 
 
 | Config keys   | Type    | Required?  | Description       |  Default             |  Example         |
@@ -96,9 +113,34 @@ UI matches table except for:
 
 ## PostgresSQL Target
 
-UI matches table except for:
+UI:
+
+Required
 - Integration Name
-- Hard Delete in different spot than in table
+- Host
+- Port
+- Username
+- Password
+- Database Name
+- Target Schema
+- Target Table
+
+Advanced
+- Hard Delete
+- Use SSL
+- SSL CA Certificate
+- SSL Client Certificate
+- SSL Client Key
+- SSL Client Password
+- Connection Timeout (Seconds)
+- Batch Size
+- Batch Flush Interval (Seconds)
+- Batch Flush Minimum Time Gap (Seconds)
+- Target Schema Privileges
+- Add Metadata Columns
+- Data Flattening Maximum Level
+- Primary Key Required
+- Validate Records
 
 | Config keys   | Type    | Required?  | Description        |  Default             | Example       |
 |---------------|---------|------------|--------------------|----------------------|---------------|
