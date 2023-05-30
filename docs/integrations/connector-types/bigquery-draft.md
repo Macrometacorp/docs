@@ -12,16 +12,14 @@ Macrometa collection connectors allow you to extract data from or send data to a
 
 ## BigQuery Source
 
-UI: 
+UI:
+Required
 - Integration Name
 - Project ID
 - Credentials JSON file
-- Unique PrimaryKey
-- Datetime Key
-- Start Datetime
-- End Datetime
+Advanced
 - Add Extracted Timestamp
-- Start Always Inclusive
+- Limit
 
 Repo:
 
