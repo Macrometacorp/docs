@@ -23,7 +23,7 @@ The following features updates are included in this release.
 
 Description of update.
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+
 
 ### Miscellaneous Changes
 
