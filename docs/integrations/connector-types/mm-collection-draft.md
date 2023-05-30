@@ -21,23 +21,22 @@ If the records don't have a common schema and you add a data target to the sourc
 
 DFP Note: Check API against UI!
 
-From UI: 
+From UI:
 
 - Integration Name
-- Region URL
-- Fabric
+- GDN Host
 - API Key
-- Source Collection is only needed when adding a source at collection creation.
+- Fabric
 
 From Repo:
 
 | Config keys    | Type    | Required?  | Description      |  Default   |  Example |
 |----------------|---------|------------|------------------|------------|----------|
-| Connection Name      | String  | Yes        | Name of the connection          | None  | FromMM  |
-| Region URL   | String  | Yes   | Fully-qualified region URL    | None  | chimaera-x9xx9x99-ap-southeast.paas.macrometa.io  |
-| Fabric name          | String  | Yes        | Fabric name      | None  | _system |
-| API Key              | String  | Yes        | API Key          | None  | my_apikey              |
-| Source collection    | String  | Yes        | Source collection name          | None  | my_collection          |
+| Integration Name   | String  | Yes        | Name of the integration    | None   | FromMM          |
+| GDN Host           | String  | Yes        | Fully qualified GDN Host URL (Use Global URL for Global collections) | None   | sample-dxb.paas.macrometa.io  |
+| API Key            | String  | Yes        | API Key      | None   | my_apikey       |
+| Fabric Name        | String  | Yes        | Fabric name  | None   | _system         |
+| Source Collection  | String  | Yes        | Source collection name     | None   | my_collection   |
 
 ## Macrometa Collection Target
 
@@ -49,9 +48,11 @@ The Macrometa _key must always be a string. If the primary key of the source dat
 UI:
 
 - Integration Name
-- Region URL
+- GDN Host
 - API Key
 - Fabric
+
+Advanced
 - Batch Size
 - Batch Flush Interval (Seconds)
 - Batch Flush Minimum Time Gap (Seconds)
@@ -60,11 +61,11 @@ Repo:
 
 | Config keys   | Type    | Required?  | Description   |  Default     |  Example     |
 |---------------|---------|------------|---------------|--------------|--------------|
-| Connection Name  | String  | Yes        | Name of the connection | None  | ToMM  |
-| Region URL    | String  | Yes  | Fully qualified region URL    | None  | api-sample-ap-west.paas.macrometa.io    |
-| Fabric name   | String  | Yes        | Fabric name   | None  | _system         |
-| API Key       | String  | Yes        | API Key       | None  | my_apikey       |
-| Target Collection| String  | Yes        | Target collection name | None  | my_collection   |
-| Batch Size    | Integer | No         | Maximum number of rows inserted per batch| 50    | 100    |
-| Batch Flush Interval (Seconds)   | Integer | No    | Time between batch flush executions   | 60    | 100 |
-| Batch Flush Minimum Time Gap (Seconds)| Integer | No   | Minimum time gap between two batch flush tasks | 60  | 100 |
+| Integration Name         | String  | Yes        | Name of the integration    | None   | ToMM|
+| GDN Host   | String  | Yes        | Fully qualified GDN Host URL (Use Global URL for Global collections) | None   | sample-dxb.paas.macrometa.io    |
+| API Key    | String  | Yes        | API Key      | None   | my_apikey         |
+| Fabric Name| String  | Yes        | Fabric name  | None   | _system           |
+| Target Collection        | String  | Yes        | Target collection name     | None   | my_collection     |
+| Batch Size | Integer | No         | Maximum number of rows inserted per batch| 50     | 100 |
+| Batch Flush Interval (Seconds)         | Integer | No         | Time between batch flush executions      | 60     | 100 |
+| Batch Flush Minimum Time Gap (Seconds) | Integer | No         | Minimum time gap between two batch flush tasks         | 60     | 100 |
