@@ -15,30 +15,6 @@ Macrometa collection connectors allow you to extract data from or send data to a
 
 Note: If Multi-Tenant is set as True and a Pluggable Database Name is not provided, then CDB$ROOT container is used to access the database.
 
-UI:
-- Integration Name
-- Source Table in UI, not repo
-
-Repo:
-
-| Config keys   | Type    | Required?  | Description         |  Default             |  Example   |
-|---------------|---------|------------|---------------------|----------------------|------------|
-| Connection Name       | String  | Yes        | Name of the connection            | None   | FromOracle|
-| Host    | String  | Yes        | Oracle DB host      | None   | oracle_host             |
-| Port    | Integer | Yes        | Oracle DB port      | None   | 1521      |
-| Username | String  | Yes        | Oracle DB username  | None   | system    |
-| Password | String  | Yes        | Oracle DB user password           | None   | password  |
-| Replication Method     | String  | Yes        | Choose from LOG_BASED, FULL_TABLE  | FULL_TABLE   | FULL_TABLE|
-| Source Schema  | String  | Yes    | Source Schema to scan   | None   | C##CUSTOMERS   |
-| Source Table          | String  | Yes        | Source Table to scan (Case-sensitive).| None   | my_table  |
-| Service Name          | String  | Yes        | Oracle DB service name            | None   | ORCLCDB   |
-| Multi-Tenant          | Boolean | No         | Is Oracle DB is multi tenant or not   | False   |   False      |
-| Pluggable Database Name     | String  | No         | Oracle portable db name           | None   | ORCLPDB1  |
-| SCN Window Size       | Integer | No         | Oracle SCN window size to mine in a single iteration for logminer replication (LOG_BASED)    | 100   |    50         |
-| Polling Interval      | Integer | No         | The number of seconds the connector should wait after a fetch data attempt returned empty results. This is only applicable for LOG_BASED replication method   | 60   |    30         |
-| Client ewallet.pem file (Enables SSL/TLS connection)           | String  | No         | Specify the content of ewallet.pem file here. This enables SSL/TLS connection using the oracle wallet of the client. If ewallet.pem file is not present then convert ewallet.p12 to ewallet.pem using any third party tool or from the script mentioned here (https://python-oracledb.readthedocs.io/en/latest/user_guide/connection_handling.html#creating-a-pem-file-for-python-oracledb-thin-mode)  | None   | my_ewallet_pem  |
-| Wallet Password      | String  | No         | Specifies the password for the PEM file (ewallet.pem). If Oracle Cloud was used to download the wallet, then the parameter should be set to the password created in the cloud console when downloading the wallet      | None   | my_wallet_password     |
-
 ### Log Based replication requirements
 
 Follow these instructions to configure Log Based replication with LogMiner:
