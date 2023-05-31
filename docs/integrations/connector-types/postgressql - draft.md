@@ -32,6 +32,14 @@ Advanced
 - SSL/TLS CA Certificate
 - SSL/TLS Client Certificate
 - SSL/TLS Client Key Password
+- Replication Slot (LOG_BASED)
+- Break at End LSN
+- WAL Sender Timeout (milliseconds)
+- Debug LSN
+- Iterator Size
+- Use Secondary
+- Secondary Host
+- Secondary Port
 
 
 | Config keys   | Type    | Required?  | Description       |  Default             |  Example         |
