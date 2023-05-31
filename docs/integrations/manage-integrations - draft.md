@@ -5,7 +5,7 @@ sidebar_position: 20
 
 This page shows you how to manage your integrations in Macrometa.
 
-## Create Integration
+## Create an Integration
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Access > Integrations**.
@@ -20,7 +20,7 @@ This page shows you how to manage your integrations in Macrometa.
    - [PostgresSQL](connector-types/postgressql)
    - [Snowflake](connector-types/snowflake)
 
-## View Integration
+## View an Integration
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Access > Integrations**.
@@ -29,14 +29,14 @@ This page shows you how to manage your integrations in Macrometa.
 
 3. To view the settings of a specific integration, click the integration name.
 
-## Edit Integration
+## Edit an Integration
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Access > Integrations**.
 3. Click the name of the integration that you want to edit.
 4. In the **Edit Integration** screen, make any changes you want to and then click **Update**.
 
-## Duplicate Integration
+## Duplicate an Integration
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Access > Integrations**.
@@ -46,7 +46,7 @@ This page shows you how to manage your integrations in Macrometa.
 
 4. Enter a name and make any other changes you want, then click **Create**.
 
-## Delete Integration
+## Delete an Integration
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Access > Integrations**.
