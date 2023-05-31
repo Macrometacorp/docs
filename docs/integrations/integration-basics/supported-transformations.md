@@ -126,3 +126,22 @@ This transformation query performs the following operations:
 2. `WHERE symbol == "MBDX" AND trade_location = "CA"`: This condition filters the data from the `Input` collection to only include documents where the `symbol` field is equal to "MBDX" and the `trade_location` field is equal to "CA".
 
 As a result, the `Output` collection will contain only the documents from the `Input` collection that satisfy the specified condition, and each document in the `Output` collection will include only the fields specified in the `SELECT` clause.
+
+## Example 3 - Rollup
+
+```sql
+INSERT INTO Output
+SELECT productId, 
+       region, 
+       sum(convert(amount, 'double')) as totalAmount
+FROM Input
+GROUP BY productId, region;
+```
+
+This transformation query, known as a "rollup," executes the following actions:
+
+1. `SELECT productId, region, sum(convert(amount, 'double')) as totalAmount`: This part of the query instructs the transformation to include `productId` and `region` fields in the `Output` collection. Furthermore, it computes the sum of the `amount` field, after converting it to a `double` data type, and labels the result as `totalAmount`.
+
+2. `GROUP BY productId, region`: This section groups the data from the `Input` collection based on the `productId` and `region` fields. For each unique combination of `productId` and `region`, it calculates the total sales `amount`.
+
+In summary, this transformation collects documents from the `Input` collection, groups them by `productId` and `region`, and calculates the total `amount` for each group. The transformed data, which includes `productId`, `region`, and `totalAmount` for each group, is then inserted into the `Output` collection. This allows for an efficient rollup of sales data by product and region.
