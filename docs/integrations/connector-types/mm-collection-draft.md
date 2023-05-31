@@ -19,24 +19,7 @@ If the records don't have a common schema and you add a data target to the sourc
 
 ## Macrometa Collection Source
 
-DFP Note: Check API against UI!
-
-From UI:
-
-- Integration Name
-- GDN Host
-- API Key
-- Fabric
-
-From Repo:
-
-| Config keys    | Type    | Required?  | Description      |  Default   |  Example |
-|----------------|---------|------------|------------------|------------|----------|
-| Integration Name   | String  | Yes        | Name of the integration    | None   | FromMM          |
-| GDN Host           | String  | Yes        | Fully qualified GDN Host URL (Use Global URL for Global collections) | None   | sample-dxb.paas.macrometa.io  |
-| API Key            | String  | Yes        | API Key      | None   | my_apikey       |
-| Fabric Name        | String  | Yes        | Fabric name  | None   | _system         |
-| Source Collection  | String  | Yes        | Source collection name     | None   | my_collection   |
+No additional notes.
 
 ## Macrometa Collection Target
 
@@ -44,28 +27,3 @@ The Macrometa _key must always be a string. If the primary key of the source dat
 
 1. If the primary key is not of string data type, then the primary key of source will be first converted to a string and then it will be checked for compliance with the constraints mentioned above.
 2. If the primary key is string but isn't compliant, then the primary key for target will be generated using a hash algorithm with the primary key of source acting as the key for hash function. The resultant hash will be stored in hex format as the primary key for target, making it compliant with macrometa document key constraints.
-
-UI:
-
-- Integration Name
-- GDN Host
-- API Key
-- Fabric
-
-Advanced
-- Batch Size
-- Batch Flush Interval (Seconds)
-- Batch Flush Minimum Time Gap (Seconds)
-
-Repo:
-
-| Config keys   | Type    | Required?  | Description   |  Default     |  Example     |
-|---------------|---------|------------|---------------|--------------|--------------|
-| Integration Name         | String  | Yes        | Name of the integration    | None   | ToMM|
-| GDN Host   | String  | Yes        | Fully qualified GDN Host URL (Use Global URL for Global collections) | None   | sample-dxb.paas.macrometa.io    |
-| API Key    | String  | Yes        | API Key      | None   | my_apikey         |
-| Fabric Name| String  | Yes        | Fabric name  | None   | _system           |
-| Target Collection        | String  | Yes        | Target collection name     | None   | my_collection     |
-| Batch Size | Integer | No         | Maximum number of rows inserted per batch| 50     | 100 |
-| Batch Flush Interval (Seconds)         | Integer | No         | Time between batch flush executions      | 60     | 100 |
-| Batch Flush Minimum Time Gap (Seconds) | Integer | No         | Minimum time gap between two batch flush tasks         | 60     | 100 |
