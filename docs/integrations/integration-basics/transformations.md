@@ -1,4 +1,0 @@
-    - Transformations
-        - Anything which can be part of a single query, without having to predefine, will be supported
-        - Filters, inline windows, stream functions, and so on.
-        - Explain when to use stream workers vs. transformations

@@ -5,15 +5,13 @@ sidebar_position: 10
 
 This page shows you how to manage your integrations in Macrometa.
 
-DFP NOTE - Need tabs for UI, API, SDKs
-
 ## Create Integration
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Access > Integrations**.
 3. Click **New Integration**.
 4. Select the integration type.
-5. Enter specific information in the fields for the integration and then click **Create**. Refer to the documentation for the specific connector type for more information about the fields:
+5. Enter specific information in the fields for the integration and then click **Create**. For prerequisites and additional notes, refer to the documentation for the specific connector type:
 
    - [BigQuery](../connector-types/bigquery)
    - [Macrometa Collection](../connector-types/mm-collection)
