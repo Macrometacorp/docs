@@ -1,6 +1,6 @@
 ---
 title: Manage Integrations - DRAFT
-sidebar_position: 10
+sidebar_position: 20
 ---
 
 This page shows you how to manage your integrations in Macrometa.

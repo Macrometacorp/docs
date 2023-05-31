@@ -1,6 +1,6 @@
 ---
 title: Ingestion Modes
-sidebar_position: 20
+sidebar_position: 50
 ---
 
 Macrometa integrations support two modes of data ingestion: LOG_BASED and FULL_TABLE. This page explains each mode, as well as why you might choose one or the other.

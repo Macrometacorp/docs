@@ -1,6 +1,6 @@
 ---
 title: Manage Connections - DRAFT
-sidebar_position: 20
+sidebar_position: 30
 ---
 
 - Create collection with integration (source)

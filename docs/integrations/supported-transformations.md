@@ -1,6 +1,6 @@
 ---
 title: Supported Transformations
-sidebar_position: 30
+sidebar_position: 60
 ---
 
 When you create a connection to a Macrometa collection, you can add a _transformation_. These transformations are similar to Macrometa [stream workers](../../cep/), which help you change your data using Stream QL in stream worker queries.

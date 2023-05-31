@@ -1,4 +1,4 @@
 ---
 title: Troubleshoot Integrations - DRAFT
-sidebar_position: 60
+sidebar_position: 90
 ---

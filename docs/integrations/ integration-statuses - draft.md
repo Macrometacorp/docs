@@ -1,9 +1,9 @@
 ---
 title: Integration Statuses - DRAFT
-sidebar_position: 10
+sidebar_position: 40
 ---
 
-Here is a list of possible statuses for Macrometa connections. You can [view them in Collection Settings](../../collections/view-collection-settings).
+Here is a list of possible statuses for Macrometa connections. You can [view them in Collection Settings](../collections/view-collection-settings).
 
 - **Succeeded**: The connection completes successfully, it transitions to the Succeeded state. This status means that all the steps and tasks within the connection have been executed without any errors or failures.
 - **Running**: The connection is currently being executed and progressing towards completion.
