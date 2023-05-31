@@ -1,5 +1,5 @@
 ---
-title: PostgresSQL - DRAFT
+title: PostgreSQL - DRAFT
 ---
 
 A Macrometa connector that extracts data from or sends data to an existing Postgres database.
@@ -10,8 +10,9 @@ A Macrometa connector that extracts data from or sends data to an existing Postg
 - A remotely accessible, running Postgres instance
 - The source from where the data is extracted for the target connector to consume, cannot be empty. It must have some data.
 
-## PostgresSQL Source
+## PostgreSQL Source
 
+Read this section carefully before you set up your PostgresSQL source connector.
 
 ### Log Based replication requirements
 
