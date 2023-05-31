@@ -1,5 +1,5 @@
 ---
-title: Integration Statuses - DRAFT
+title: Integration Statuses
 sidebar_position: 40
 ---
 
