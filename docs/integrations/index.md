@@ -25,7 +25,9 @@ A _source integrations_ allows you to use an external data source or a Macrometa
 
 A _target integrations_ allows you to send data from a Macrometa collection to an external data source or a Macrometa collection. Any records entered in the collection are sent to the target that you choose. A Macrometa collection can have multiple targets.
 
-## Transformations and Roll-ups
+## Transformations
+
+
 
 ## Common Schema
 
