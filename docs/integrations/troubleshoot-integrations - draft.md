@@ -3,7 +3,7 @@ title: Troubleshoot Integrations - DRAFT
 sidebar_position: 90
 ---
 
-This page contains suggestions to help you figure out why your integration is not working. If your integration is still not functioning properly after you have eliminated these issues as possibilities, then contact [Macrometa Support](support@macrometa.com).
+This page contains suggestions to help you figure out why your integration is not working. If your integration is still not functioning properly after you have eliminated these issues as possibilities, then contact [Macrometa Support](https://support.macrometa.com/hc/en-us/requests/new?) or email support@macrometa.com.
 
 ## Whitelist Macrometa
 
