@@ -13,12 +13,12 @@ This page shows you how to manage your integrations in Macrometa.
 4. Select the integration type.
 5. Enter specific information in the fields for the integration and then click **Create**. For prerequisites and additional notes, refer to the documentation for the specific connector type:
 
-   - [BigQuery](../connector-types/bigquery)
-   - [Macrometa Collection](../connector-types/mm-collection)
-   - [MongoDB](../connector-types/mongodb)
-   - [OracleDB](../connector-types/oracledb)
-   - [PostgresSQL](../connector-types/postgressql)
-   - [Snowflake](../connector-types/snowflake)
+   - [BigQuery](connector-types/bigquery)
+   - [Macrometa Collection](connector-types/mm-collection)
+   - [MongoDB](connector-types/mongodb)
+   - [OracleDB](connector-types/oracledb)
+   - [PostgresSQL](connector-types/postgressql)
+   - [Snowflake](connector-types/snowflake)
 
 ## View Integration
 
