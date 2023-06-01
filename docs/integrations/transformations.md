@@ -1,5 +1,5 @@
 ---
-title: Supported Transformations
+title: Transformations
 sidebar_position: 60
 ---
 

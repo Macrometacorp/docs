@@ -7,6 +7,10 @@ Integrations allow you to import data into Macrometa Global Data Network (GDN) f
 
 Once created, you can reuse integrations as many times as necessary.
 
+:::note
+This feature is currently in beta. Contact support@macrometa.com if you want to try it out.
+:::
+
 ## Data Source, Integration, Connection
 
 These terms are used frequently when discussing integrations.
