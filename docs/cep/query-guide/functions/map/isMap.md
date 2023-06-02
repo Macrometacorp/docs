@@ -27,7 +27,7 @@ The `map:isMap(stockDetails)` function evaluates whether the `stockDetails` obje
 ## Example 2
 
 ```sql
-CREATE STREAM InputStream (stockDetails map<string, int>);
+CREATE STREAM InputStream (stockDetails object);
 CREATE SINK STREAM OutputStream (isMap bool);
 
 @info(name = 'CheckIsMap')
