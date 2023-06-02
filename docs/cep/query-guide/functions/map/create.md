@@ -38,17 +38,15 @@ In this example, the `map:create()` function is used without any arguments. This
 ## Example 3
 
 ```sql
-CREATE STREAM InputDataStream (id string, keyValuePairs string);
-CREATE SINK STREAM OutputMapStream (id string, mappedData map<string, string>);
+CREATE STREAM InputDataStream (id string, key1 string, value1 string, key2 string, value2 string);
+CREATE SINK STREAM OutputMapStream (id string, mappedData object);
 
 @info(name = 'MapCreation')
 INSERT INTO OutputMapStream
-SELECT id, str:tokenize(keyValuePairs, ',') AS tokenizedPairs 
-FROM InputDataStream#window.length(1)#map:create(tokenizedPairs);
+SELECT id, map:create(key1, value1, key2, value2) AS mappedData
+FROM InputDataStream WINDOW SLIDING_LENGTH(1);
 ```
 
-In this example, a stream worker named `MapCreation` is created. The stream `InputDataStream` is defined to provide input to the query, which includes an identifier (`id`) and a string of key-value pairs (`keyValuePairs`). A sink stream, `OutputMapStream`, is defined to collect the output, which includes the identifier and a newly created map (`mappedData`).
+In this example, the `InputDataStream` stream is modified to include individual keys and values instead of a single `keyValuePairs` string. A stream worker named `MapCreation` uses the input from `InputDataStream`, which includes an identifier (`id`) and individual keys and values (`key1`, `value1`, `key2`, `value2`).
 
-The query processes each event from `InputDataStream`. First, it tokenizes the `keyValuePairs` string using the `str:tokenize(keyValuePairs, ',')` function, splitting the string into individual tokens (key-value pairs) based on the comma separator. Then, it uses the `map:create(tokenizedPairs)` function to create a new map from the tokenized key-value pairs.
-
-The resulting map, along with the identifier, is then inserted into `OutputMapStream`. This setup allows for real-time creation of maps from key-value pair strings within a data stream.
+The query uses the `map:create(key1, value1, key2, value2)` function to create a new map from the provided key-value pairs. This new map, along with the identifier, is inserted into `OutputMapStream`.
