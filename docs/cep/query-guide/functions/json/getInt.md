@@ -53,7 +53,7 @@ CREATE SINK STREAM AgeStream (name string, age int);
 @info(name = 'ExtractAge')
 INSERT INTO AgeStream
 SELECT json:getString(json, '$.name') AS name, json:getInt(json, '$.age') AS age
-FROM InputStream#window.lengthBatch(100);
+FROM InputStream WINDOW TUMBLING_LENGTH(100);
 ```
 
 This stream worker reads JSON strings from the `InputStream` and for each batch of 100 events, it extracts the name and age from the JSON string. The extracted data is then inserted into the `AgeStream`. 
