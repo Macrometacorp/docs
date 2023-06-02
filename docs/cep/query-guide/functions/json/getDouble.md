@@ -53,7 +53,7 @@ CREATE SINK STREAM SalaryStream (name string, salary double);
 @info(name = 'ExtractSalary')
 INSERT INTO SalaryStream
 SELECT json:getString(json, '$.name') AS name, json:getDouble(json, '$.salary') AS salary
-FROM EmployeeStream#window.lengthBatch(1);
+FROM EmployeeStream WINDOW TUMBLING_LENGTH(1);
 ```
 
 In this example, an `EmployeeStream` is created to receive JSON strings, each representing an employee's details. The `SalaryStream` is created to output the extracted name and salary data.
