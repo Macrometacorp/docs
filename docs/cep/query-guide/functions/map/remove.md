@@ -28,17 +28,19 @@ The `map:remove(stockDetails, 1234)` function operates on the `stockDetails` map
 ## Example 2
 
 ```sql
-CREATE STREAM StockInput (symbol string, price float, volume int);
+CREATE STREAM StockInput (symbol string, price float, volume int, stockDetails object);
 CREATE SINK STREAM UpdatedStockDetails (stockDetails object);
 
-@info(name = 'UpdateStockDetails')
+@info(name = 'RemoveStock')
 INSERT INTO UpdatedStockDetails
 SELECT map:remove(stockDetails, symbol) AS stockDetails
 FROM StockInput;
 ```
 
-In this stream processing scenario, the `StockInput` stream is created to provide input to the query and the `UpdatedStockDetails` stream is created to collect the output.
+In this stream worker example, two streams are created: `StockInput` and `UpdatedStockDetails`. The `StockInput` stream serves as the input, comprising of stock details such as `symbol`, `price`, `volume`, and the `stockDetails` map. 
 
-The `UpdateStockDetails` query takes events from the `StockInput` stream, which include stock details (`symbol`, `price`, and `volume`). It uses the `map:remove(stockDetails, symbol)` function to remove a stock's details from the `stockDetails` map if the stock symbol is present.
+The `RemoveStock` query processes events from the `StockInput` stream, invoking the `map:remove(stockDetails, symbol)` function. This function attempts to locate the stock symbol within the `stockDetails` map. If the symbol is present, the corresponding key-value pair is removed.
 
-The updated `stockDetails` map, which now does not contain the details of the stock specified in the `StockInput` stream, is then inserted into the `UpdatedStockDetails` stream. This way, the `stockDetails` map is updated by removing specific stock details from the `StockInput` stream.
+The outcome is an updated `stockDetails` map, which no longer includes the stock details corresponding to the symbol from the `StockInput` stream event. This updated map is then inserted into the `UpdatedStockDetails` stream. 
+
+Through this mechanism, `stockDetails` in the `UpdatedStockDetails` stream evolves by removing specific stock details from `StockInput`, maintaining a dynamic map based on the incoming stream events.

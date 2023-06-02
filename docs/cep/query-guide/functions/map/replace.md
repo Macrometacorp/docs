@@ -29,7 +29,7 @@ The `map:replace(stockDetails, 1234, 'IBM')` function is designed to operate on 
 ## Example 2
 
 ```sql
-CREATE STREAM StockInput (symbol string, price float, volume int);
+CREATE STREAM StockInput (symbol string, price float, volume int, stockDetails object);
 CREATE SINK STREAM UpdatedStockDetails (stockDetails object);
 
 @info(name = 'UpdateStockDetails')
@@ -38,8 +38,8 @@ SELECT map:replace(stockDetails, symbol, price) AS stockDetails
 FROM StockInput;
 ```
 
-In this stream processing example, the `StockInput` stream provides input data to the query, and the `UpdatedStockDetails` stream collects the output.
+In this stream worker example, the `StockInput` stream carries `symbol`, `price`, `volume`, and a `stockDetails` map. This map represents the current state of various stock symbols and their associated prices.
 
-The query named `UpdateStockDetails` receives events from the `StockInput` stream, each of which contains stock details such as `symbol`, `price`, and `volume`. It uses the `map:replace(stockDetails, symbol, price)` function to replace the price associated with the symbol in the `stockDetails` map if the symbol is present.
+The `UpdateStockDetails` query takes events from the `StockInput` stream and applies the `map:replace(stockDetails, symbol, price)` function on each event to update the `stockDetails` map. If the `symbol` from the current event exists as a key in the `stockDetails` map, then its associated value (i.e., price) gets replaced with the `price` from the current event.
 
-The updated `stockDetails` map, now containing the replaced price for the specified stock symbol, is then inserted into the `UpdatedStockDetails` stream. Through this process, the `stockDetails` map is continually updated with current stock prices from the `StockInput` stream.
+The resulting `stockDetails` map, reflecting the replaced price for the symbol in question, is sent to the `UpdatedStockDetails` stream. This ensures that the `stockDetails` map is consistently updated with the latest stock prices from the `StockInput` stream.
