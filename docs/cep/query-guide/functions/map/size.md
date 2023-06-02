@@ -27,17 +27,17 @@ The `map:size(stockDetails)` function is employed to determine the number of key
 ## Example 2
 
 ```sql
-CREATE STREAM StockInput (symbol string, price float, volume int);
+CREATE STREAM StockInput (symbol string, price float, volume int, stockDetails object);
 CREATE SINK STREAM StockCount (stockDetailsSize int);
 
 @info(name = 'CountStockDetails')
 INSERT INTO StockCount
 SELECT map:size(stockDetails) AS stockDetailsSize
-FROM StockInput#window.lengthBatch(10);
+FROM StockInput WINDOW TUMBLING_LENGTH(10);
 ```
 
-In this stream processing example, two streams are defined: the `StockInput` stream, which feeds data into the system, and the `StockCount` stream, which receives the output.
+In this stream processing example, the `StockInput` stream is created to provide input data to the query and includes stock details (`symbol`, `price`, `volume`) and a `stockDetails` map. The `StockCount` stream is created to collect the output.
 
-The `CountStockDetails` query listens for events in batches of 10 from the `StockInput` stream. Each event consists of stock details such as `symbol`, `price`, and `volume`. The query uses the `map:size(stockDetails)` function to count the number of key-value pairs in the `stockDetails` map for each batch of events.
+The `CountStockDetails` query processes events from the `StockInput` stream in batches of 10, each event including a `stockDetails` map. It employs the `map:size(stockDetails)` function to calculate the number of key-value pairs present in the `stockDetails` map for each batch.
 
-The count, named `stockDetailsSize`, is then inserted into the `StockCount` stream. This query continuously calculates the number of key-value pairs in the `stockDetails` map after each batch of events and sends this information to the `StockCount` stream.
+The resulting count, referred to as `stockDetailsSize`, is then inserted into the `StockCount` stream. Thus, this query continuously counts the number of key-value pairs in the `stockDetails` map after each batch of events and sends this information to the `StockCount` stream.
