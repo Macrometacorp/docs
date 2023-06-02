@@ -33,7 +33,7 @@ In this example, the `geo:stationary()` function checks if the given geofence wi
 ## Example 2
 
 ```sql
-CREATE STREAM InputGeoStream (geofenceId string, longitude float, latitude float, radius float);
+CREATE STREAM InputGeoStream (geofenceId string, longitude double, latitude double, radius double);
 CREATE STREAM OutputGeoStream (stationaryStatus bool);
 
 @info(name = 'StationaryStatusCheck')

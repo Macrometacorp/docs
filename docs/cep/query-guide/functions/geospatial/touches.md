@@ -45,12 +45,12 @@ This example returns `false` because the point with coordinates (10.5, 20.5) doe
 ## Example 3
 
 ```sql
-CREATE STREAM InputGeoStream (longitude float, latitude float, geoJsonFence string);
+CREATE STREAM InputGeoStream (longitude double, latitude double, geoJsonFence string);
 CREATE SINK STREAM OutputGeoStream (touchesStatus bool);
 
 @info(name = 'TouchesStatusCheck')
 INSERT INTO OutputGeoStream
-SELECT geo:touches(longitude, latitude, geoJsonFence)
+SELECT geo:touches(longitude, latitude, geoJsonFence) AS touchesStatus
 FROM InputGeoStream;
 ```
 
