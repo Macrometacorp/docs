@@ -30,18 +30,18 @@ The `map:putIfAbsent(stockDetails, 1234, 'IBM')` function checks the `stockDetai
 
 ```sql
 CREATE STREAM StockInput (symbol string, price float, volume int);
-CREATE SINK STREAM UpdatedStockDetails (stockDetails object);
+CREATE SINK STREAM UpdatedStockData (stockSymbol string, stockValues object);
 
 @info(name = 'UpdateStockDetails')
-INSERT INTO UpdatedStockDetails
-SELECT map:putIfAbsent(stockDetails, symbol, map:create('price', price, 'volume', volume)) AS stockDetails
+INSERT INTO UpdatedStockData
+SELECT symbol, map:putIfAbsent(map:create('price', price, 'volume', volume), 'price', price) AS stockValues
 FROM StockInput;
 ```
 
-In this stream processing scenario, the `StockInput` stream is created to provide input to the query and the `UpdatedStockDetails` stream is created to collect the output.
+In this example, the `StockInput` stream is created to provide input to the query, and the `UpdatedStockData` stream is created to collect the output.
 
-The `UpdateStockDetails` query takes events from the `StockInput` stream, which includes stock details (`symbol`, `price`, and `volume`). It uses the `map:putIfAbsent(stockDetails, symbol, map:create('price', price, 'volume', volume))` function to add a new stock's details into the `stockDetails` map only if the stock symbol is not already present.
+The `UpdateStockDetails` query processes events from the `StockInput` stream, which contains stock details (`symbol`, `price`, and `volume`). It uses the `map:putIfAbsent(map:create('price', price, 'volume', volume), 'price', price)` function to create a map with 'price' and 'volume' keys and corresponding `price` and `volume` from the stream as values only if the 'price' key does not already exist.
 
-If a stock symbol is not in `stockDetails`, a new map is created with 'price' and 'volume' as keys and the corresponding `price` and `volume` from the stream as values. This new map is then associated with the symbol in the `stockDetails` map. However, if the symbol is already present in `stockDetails`, the map remains unchanged.
+The resulting map is then associated with the corresponding stock symbol and inserted into the `UpdatedStockData` stream. This way, the `UpdatedStockData` stream retains a unique set of stock details with each symbol mapped to a map of its 'price' and 'volume' from the `StockInput` stream.
 
-The updated `stockDetails` map is then inserted into the `UpdatedStockDetails` stream. This way, the `stockDetails` map retains a unique set of stock details from the `StockInput` stream.
+In this stream worker, each event in `StockInput` generates a new map with 'price' and 'volume'. This is different from previous examples where the map was assumed to be an attribute of the stream or existed in a previous state. If you need to maintain the map across events, some form of state management or a different stream processing pattern may be necessary.
