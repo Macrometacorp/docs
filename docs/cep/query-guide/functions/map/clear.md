@@ -27,8 +27,8 @@ The `map:clear(stockDetails)` function is used to remove all key-value pairs fro
 ## Example 2
 
 ```sql
-CREATE STREAM InputDataStream (stockDetails map<string, int>);
-CREATE SINK STREAM OutputDataStream (clearedMap map<string, int>);
+CREATE STREAM InputDataStream (stockDetails object);
+CREATE SINK STREAM OutputDataStream (clearedMap object);
 
 @info(name = 'ClearMapQuery')
 INSERT INTO OutputDataStream
