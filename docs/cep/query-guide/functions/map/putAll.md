@@ -30,17 +30,17 @@ For instance, if `toMap` contains key-value pairs (`symbol`: `gdn`) and (`volume
 ## Example 2
 
 ```sql
-CREATE STREAM StockInput (symbol string, price float, volume int);
-CREATE SINK STREAM MergedStockDetails (stockDetails object);
+CREATE STREAM StockInput (symbol string, price float, volume int, currentDetails object);
+CREATE SINK STREAM MergedStockDetails (mergedDetails object);
 
 @info(name = 'MergeStockDetails')
 INSERT INTO MergedStockDetails
-SELECT map:putAll(stockDetails, map:create(symbol, price, 'volume', volume)) AS stockDetails
+SELECT map:putAll(currentDetails, map:create(symbol, price, 'volume', volume)) AS mergedDetails
 FROM StockInput;
 ```
 
-In this example, the `StockInput` stream is created to provide input to the query and the `MergedStockDetails` stream is created to collect the output.
+The `MergeStockDetails` query uses the `map:putAll(currentDetails, map:create(symbol, price, 'volume', volume))` function to merge the incoming stock details with the existing `currentDetails` map. If a stock symbol already exists in `currentDetails`, its price and volume are updated.
 
-The `MergeStockDetails` query processes events from the `StockInput` stream, which contains stock details (`symbol`, `price`, and `volume`). It uses the `map:putAll(stockDetails, map:create(symbol, price, 'volume', volume))` function to merge the incoming stock details with the existing `stockDetails` map. If a stock symbol already exists in `stockDetails`, its price and volume are updated.
+The resulting map is then inserted into the `MergedStockDetails` stream. This way, the `currentDetails` map keeps updating with every incoming stock detail from the `StockInput` stream.
 
-The resulting map, along with the stock symbol, is inserted into the `MergedStockDetails` stream. This way, the `stockDetails` map keeps updating with every incoming stock detail from the `StockInput` stream.
+This stream worker assumes that you provide an initial map as an input in the `StockInput` stream. If you want to start with an empty map, then you'll need to use a function that allows creating an empty map or check for null and create an empty map before using `map:putAll()`.
