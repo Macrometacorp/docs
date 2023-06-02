@@ -74,7 +74,7 @@ However, if the input `json` is `{'name' : 'John', 'married' : true}`, the funct
 
 ```sql
 CREATE STREAM PersonStream (json string);
-CREATE SINK STREAM UpdatedPersonStream (json string);
+CREATE SINK STREAM UpdatedPersonStream (json object);
 
 @info(name = 'AddAddressDetails')
 INSERT INTO UpdatedPersonStream
