@@ -27,7 +27,7 @@ The `map:isEmpty(stockDetails)` function evaluates whether the `stockDetails` ma
 ## Example 2
 
 ```sql
-CREATE STREAM InputStream (stockDetails map<string, int>);
+CREATE STREAM InputStream (stockDetails object);
 CREATE SINK STREAM OutputStream (isEmpty bool);
 
 @info(name = 'CheckEmptyMap')
