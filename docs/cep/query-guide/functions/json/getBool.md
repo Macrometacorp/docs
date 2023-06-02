@@ -53,7 +53,7 @@ CREATE SINK STREAM MarriedPersonStream (name string, married bool);
 @info(name = 'ExtractMaritalStatus')
 INSERT INTO MarriedPersonStream
 SELECT json:getString(json, '$.name') AS name, json:getBool(json, '$.married') AS married
-FROM PersonStream#window.lengthBatch(1);
+FROM PersonStream WINDOW TUMBLING_LENGTH(1);
 ```
 
 In this example, two streams are defined: `PersonStream` for input data and `MarriedPersonStream` for the output.
