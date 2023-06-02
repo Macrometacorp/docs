@@ -42,12 +42,12 @@ In this example, the `geo:withinDistance()` function checks if the first polygon
 ## Example 3
 
 ```sql
-CREATE STREAM InputGeoStream (longitude float, latitude float, geoJsonFence string, radius double);
+CREATE STREAM InputGeoStream (longitude double, latitude double, geoJsonFence string, radius double);
 CREATE SINK STREAM OutputGeoStream (withinDistanceStatus bool);
 
 @info(name = 'WithinDistanceStatusCheck')
 INSERT INTO OutputGeoStream
-SELECT geo:withinDistance(longitude, latitude, geoJsonFence, radius)
+SELECT geo:withinDistance(longitude, latitude, geoJsonFence, radius) AS withinDistanceStatus
 FROM InputGeoStream;
 ```
 
