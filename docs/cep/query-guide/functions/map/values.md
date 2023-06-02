@@ -27,19 +27,19 @@ The `map:values(stockDetails)` function is used to retrieve a collection of all 
 ## Example 2
 
 ```sql
-CREATE STREAM StockStream (symbol string, volume int, price float);
+CREATE STREAM StockStream (symbol string, volume int, price float, stockDetails object);
 CREATE SINK STREAM Output (stockValues string);
 
 @info(name = 'ExtractStockValues')
 INSERT INTO Output
 SELECT str:join(",", map:values(stockDetails)) AS stockValues
-FROM StockStream#window.lengthBatch(5);
+FROM StockStream WINDOW TUMBLING_LENGTH(5);
 ```
 
-In this streaming data example, two streams are defined: `StockStream` for input data and `Output` for the output.
+In this stream processing example, the `StockStream` stream is created to provide input to the query and the `Output` stream is created to collect the output.
 
-The `ExtractStockValues` query listens for batches of 5 events from the `StockStream`. Each event is a set of stock details such as `symbol`, `volume`, and `price`, which are collectively treated as a map named `stockDetails`.
+The `StockStream` stream includes stock details (`symbol`, `volume`, `price`) and a `stockDetails` map. The `ExtractStockValues` query listens for batches of 5 events from the `StockStream`.
 
-The `map:values(stockDetails)` function retrieves the values of each `stockDetails` map. The `str:join(",", ...)` function then joins these values into a string, separated by commas. This string, named `stockValues`, is then inserted into the `Output` stream.
+The `map:values(stockDetails)` function is used to retrieve the values from each `stockDetails` map. These values are then joined into a string with commas using the `str:join(",", ...)` function. This string, referred to as `stockValues`, is then inserted into the `Output` stream.
 
-The query continuously processes batches of 5 stock detail sets, converts the values of these details into a comma-separated string, and feeds this string into the `Output` stream.
+This way, the `ExtractStockValues` query continuously processes batches of 5 stock details, transforms the values of these details into a comma-separated string, and sends this string to the `Output` stream.
