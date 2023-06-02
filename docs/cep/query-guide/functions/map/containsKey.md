@@ -28,12 +28,12 @@ The `map:containsKey(stockDetails, '1234')` function checks whether the `stockDe
 ## Example 2
 
 ```sql
-CREATE STREAM InputMapStream (id string, stockDetails map<string, double>);
+CREATE STREAM InputMapStream (id string, stockDetails object);
 CREATE SINK STREAM OutputKeyPresenceStream (id string, keyPresence bool);
 
 @info(name = 'KeyPresenceCheck')
 INSERT INTO OutputKeyPresenceStream
-SELECT id, map:containsKey(stockDetails, '1234')
+SELECT id, map:containsKey(stockDetails, '1234') AS keyPresence
 FROM InputMapStream;
 ```
 
