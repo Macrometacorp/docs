@@ -27,8 +27,8 @@ In this example, the `map:clone(stockDetails)` function is used to create a deep
 ## Example 2
 
 ```sql
-CREATE STREAM InputDataStream (stockDetails map<string, int>);
-CREATE SINK STREAM OutputDataStream (clonedMap map<string, int>);
+CREATE STREAM InputDataStream (stockDetails object);
+CREATE SINK STREAM OutputDataStream (clonedMap object);
 
 @info(name = 'CloneMap')
 INSERT INTO OutputDataStream
