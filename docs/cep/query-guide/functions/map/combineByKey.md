@@ -34,12 +34,12 @@ For instance, if `map1` has key-value pairs (`symbol`: `gdn`, `volume`: 100), an
 ## Example 2
 
 ```sql
-CREATE STREAM InputMapStream (id string, map1 map<string, double>, map2 map<string, double>);
-CREATE SINK STREAM OutputCombinedMapStream (id string, combinedMap map<string, ArrayList<double>>);
+CREATE STREAM InputMapStream (id string, map1 object, map2 object);
+CREATE SINK STREAM OutputCombinedMapStream (id string, combinedMap object);
 
 @info(name = 'CombineMapsByKey')
 INSERT INTO OutputCombinedMapStream
-SELECT id, map:combineByKey(map1, map2)
+SELECT id, map:combineByKey(map1, map2) AS combinedMap
 FROM InputMapStream;
 ```
 
