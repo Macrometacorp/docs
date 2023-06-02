@@ -53,7 +53,7 @@ CREATE SINK STREAM AverageIncomeStream (country string, averageIncome float);
 @info(name = 'AverageIncome')
 INSERT INTO AverageIncomeStream
 SELECT json:getString(json, '$.country') AS country, json:getFloat(json, '$.averageIncome') AS averageIncome
-FROM InputStream#window.lengthBatch(100);
+FROM InputStream WINDOW TUMBLING_LENGTH(100);
 ```
 
 In this example, an `InputStream` is created to receive JSON strings, each representing country income details. The `AverageIncomeStream` is created to output the extracted country name and average income data.
