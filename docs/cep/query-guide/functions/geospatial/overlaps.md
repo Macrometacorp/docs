@@ -47,7 +47,7 @@ CREATE SINK STREAM OutputGeoStream (overlapResult bool);
 
 @info(name = 'overlappingGeometries')
 INSERT INTO OutputGeoStream
-SELECT geo:overlaps(geometry1, geometry2) as overlapResult
+SELECT geo:overlaps(geometry1, geometry2) AS overlapResult
 FROM InputGeoStream;
 ```
 

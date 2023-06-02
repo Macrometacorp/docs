@@ -28,7 +28,7 @@ geo:locationApproximate(<STRING> location.recorder, <DOUBLE> latitude, <DOUBLE> 
 geo:geoLocationApproximate("person1", 6.876657, 79.897648, "ENTER", "uuid1", 20.0d, 1452583935L)
 ```
 
-The `geo:geoLocationApproximate()` function calculates an approximate location given the parameters. Here, the function takes "person1" as the identifier, 6.876657 and 79.897648 as the latitude and longitude respectively, "ENTER" as the action, "uuid1" as the UUID, 20.0d as the accuracy, and 1452583935L as the timestamp. The function outputs an approximation of the location, returning `6.876657000000001` for latitude and `79.89764800000001` for longitude. 
+The `geo:geoLocationApproximate()` function calculates an approximate location given the parameters. Here, the function takes "person1" as the identifier, 6.876657 and 79.897648 as the latitude and longitude respectively, "ENTER" as the action, "uuid1" as the UUID, 20.0d as the accuracy, and 1452583935L as the timestamp. The function outputs an approximation of the location, returning `6.876657000000001` for latitude and `79.89764800000001` for longitude.
 
 ## Example 2
 
