@@ -36,10 +36,6 @@ SELECT map:toJSON(company) AS companyJson
 FROM CompanyInput WINDOW TUMBLING_LENGTH(10);
 ```
 
-In this stream processing example, the `CompanyInput` stream is created to provide input to the query, and the `CompanyJson` stream is created to collect the output.
+In this Macrometa stream worker example, two streams are created - `CompanyInput` and `CompanyJson`. The former stream provides input to the query and includes details about the company such as `symbol`, `volume`, and `price`, as well as a `company` map. The latter stream is responsible for collecting the output.
 
-The `CompanyInput` stream includes details about the company (`symbol`, `volume`, `price`) and a `company` map. The `TransformCompanyToJson` query listens for batches of 10 events from the `CompanyInput` stream.
-
-The `map:toJSON(company)` function is used to transform the `company` map of each batch into a JSON formatted string. This string, referred to as `companyJson`, is then inserted into the `CompanyJson` stream.
-
-This way, the query continuously transforms batches of `company` map details into JSON strings and sends these strings to the `CompanyJson` stream.
+The query, `TransformCompanyToJson`, is designed to listen for batches of 10 events from the `CompanyInput` stream. To transform each batch of `company` maps into a JSON formatted string, the query uses the `map:toJSON(company)` function. The resulting string, `companyJson`, is then inserted into the `CompanyJson` stream.
