@@ -28,12 +28,12 @@ This function checks if the `stockDetails` map contains the value 'IBM'. If 'IBM
 ## Example 2
 
 ```sql
-CREATE STREAM InputMapStream (id string, stockDetails map<string, string>);
+CREATE STREAM InputMapStream (id string, stockDetails object);
 CREATE SINK STREAM OutputValuePresenceStream (id string, valuePresence bool);
 
 @info(name = 'ValuePresenceCheck')
 INSERT INTO OutputValuePresenceStream
-SELECT id, map:containsValue(stockDetails, 'IBM')
+SELECT id, map:containsValue(stockDetails, 'IBM') AS valuePresence
 FROM InputMapStream;
 ```
 
