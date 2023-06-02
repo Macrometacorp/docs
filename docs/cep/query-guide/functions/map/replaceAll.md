@@ -28,19 +28,17 @@ The `map:replaceAll(toMap, fromMap)` function operates on two input maps: `toMap
 ## Example 2
 
 ```sql
-CREATE STREAM StockInput (symbol string, price float, volume int);
+CREATE STREAM StockInput (symbol string, price float, volume int, stockDetails object, newDetails object);
 CREATE SINK STREAM UpdatedStockDetails (stockDetails object);
 
 @info(name = 'ReplaceStockDetails')
 INSERT INTO UpdatedStockDetails
 SELECT map:replaceAll(stockDetails, newDetails) AS stockDetails
-FROM StockInput#window.length(1)
-JOIN StockDetailsTable
-ON StockInput.symbol == StockDetailsTable.symbol;
+FROM StockInput;
 ```
 
-In this stream processing example, we have two streams: the `StockInput` stream, which provides input data to the query, and the `UpdatedStockDetails` stream, which collects the output.
+In this stream worker example, the `StockInput` stream carries `symbol`, `price`, `volume`, along with two maps - `stockDetails` and `newDetails`. The `stockDetails` map represents the current state of various stock symbols and their associated details, while the `newDetails` map holds the new details that should replace the existing ones in `stockDetails`.
 
-The query named `ReplaceStockDetails` listens for events from the `StockInput` stream, each event containing stock details like `symbol`, `price`, and `volume`. For each event, it creates a new map `newDetails` using these details, then uses the `map:replaceAll(stockDetails, newDetails)` function to replace all matching values in the `stockDetails` map with those from `newDetails`.
+The `ReplaceStockDetails` query operates on events from the `StockInput` stream. It uses the `map:replaceAll(stockDetails, newDetails)` function to replace all the existing key-value pairs in the `stockDetails` map with the key-value pairs from the `newDetails` map.
 
-The updated `stockDetails` map, now with the most recent stock prices, is then inserted into the `UpdatedStockDetails` stream. This process continuously updates the `stockDetails` map with the latest stock prices from the `StockInput` stream.
+The resultant `stockDetails` map, which reflects the updated stock details, is then inserted into the `UpdatedStockDetails` stream. This ensures that the `stockDetails` map is continually refreshed with the latest stock details from the `StockInput` stream.
