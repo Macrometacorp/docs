@@ -39,13 +39,13 @@ In this case, the `geo:proximity()` function checks if the point (2, 0) lies wit
 ## Example 3
 
 ```sql
-CREATE STREAM InputGeoStream (longitude1 double, latitude1 double, longitude2 double, latitude2 double, radius double);
+CREATE STREAM InputGeoStream (id string, longitude double, latitude double, geoJsonFence string, radius double);
 CREATE SINK STREAM OutputGeoStream (proximityResult bool);
 
 @info(name = 'proximityCheck')
 INSERT INTO OutputGeoStream
-SELECT "id" AS id, proximity 
-FROM InputGeoStream#geo:proximity(longitude1, latitude1, longitude2, latitude2, radius);
+SELECT id, proximity 
+FROM InputGeoStream#geo:proximity(id, longitude, latitude, geoJsonFence, radius);
 ```
 
 The `proximityCheck` processes events from the `InputGeoStream`. The stream includes pairs of geographical coordinates (`longitude1`, `latitude1`), a reference pair of geographical coordinates (`longitude2`, `latitude2`), and a radius. The `geo:proximity(longitude1, latitude1, longitude2, latitude2, radius)` function is used to determine if the first point lies within the given radius from the second point. The result is then forwarded as an event to the `OutputGeoStream`.
