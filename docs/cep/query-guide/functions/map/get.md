@@ -46,8 +46,8 @@ The `map:get(companyMap, 2, 'two')` function retrieves the value associated with
 ## Example 4
 
 ```sql
-CREATE STREAM InputStream (companyMap map<string, string>, searchKey string);
-CREATE SINK STREAM OutputStream (companyValue string);
+CREATE STREAM InputStream (companyMap object, searchKey int);
+CREATE SINK STREAM OutputStream (companyValue object);
 
 @info(name = 'CompanyMapLookup')
 INSERT INTO OutputStream
