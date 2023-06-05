@@ -1,5 +1,5 @@
 ---
-title: Manage Integrations - DRAFT
+title: Manage Integrations
 sidebar_position: 20
 ---
 
