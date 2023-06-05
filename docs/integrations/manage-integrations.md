@@ -17,7 +17,7 @@ This page shows you how to manage your integrations in Macrometa.
    - [Macrometa Collection](connector-types/mm-collection-draft)
    - [MongoDB](connector-types/mongodb-draft)
    - [OracleDB](connector-types/oracledb-draft)
-   - [PostgresSQL](connector-types/postgressql-draft)
+   - [PostgreSQL](connector-types/postgresql-draft)
    - [Snowflake](connector-types/snowflake-draft)
 
 ## View an Integration
