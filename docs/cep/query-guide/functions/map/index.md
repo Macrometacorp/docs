@@ -3,7 +3,19 @@ sidebar_position: 1
 title: Map Functions
 ---
 
-Map functions allow you to create and interact with maps.
+Map functions allow you to create and interact with maps. A map, also known as a dictionary or hash. is a data structure that implements an associative array abstract data type, a structure that can map keys to values.
+
+A map contains entries that are key-value pairs. Each unique key corresponds to a value. Keys are used to locate and retrieve the values they are associated with. This is particularly useful when the volume of data is large, such that retrieving data based on an index (like an array) is not efficient.
+
+A map might look something like this:
+
+```json
+{
+  "symbol": "IBM",
+  "price": 200,
+  "volume": 100
+}
+```
 
 For information on performing scatter and gather using [map:tokenize()](tokenize.md), and [map:collect()](collect.md), refer to the examples in [Data Pipeline Examples](../../../examples/data-pipelines.md).
 
@@ -21,7 +33,7 @@ After processing, the following events arrive at each stream:
 - MapAnalysisStream: [`true`, `false`, `true`, `false`, `[Ice Cream, Chocolate]`, `2`]
 - ItemInsertedMapStream: [`{Ice Cream=24.0, Gift=1.0, Chocolate =18.0}`]
 
-## Example
+## Example 1
 
 This example provides examples of basic map functions.
 
