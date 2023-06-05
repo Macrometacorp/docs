@@ -19,6 +19,8 @@ Transformations have input and output defined automatically, and you cannot chan
 
 You can define multiple inputs and outputs for stream workers, but you must set them up yourself.
 
+Stream workers support multiple output actions, including INSERT INTO, UPDATE, and DELETE. Transformations only support INSERT INTO, which allows you to insert transformed data into the output target.
+
 ### Queries
 
 Transformations allow you to write one query, while stream workers allow you to write several queries. For more information about stream worker queries, refer to [Stream Worker Queries](../cep/query-guide/).
@@ -63,7 +65,8 @@ The following Stream QL and stream worker elements are not supported. If you nee
 For more information about query syntax, refer to [Query Syntax](../cep/query-guide/query#syntax).
 
 ```sql
-OUTPUT ACTION (INSERT INTO, UPDATE, DELETE, etc.)
+INSERT INTO
+    Output
 SELECT
     < expressions >
 FROM
