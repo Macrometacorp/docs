@@ -11,7 +11,7 @@ Once created, you can reuse integrations as many times as necessary.
 This feature is currently in beta. Contact support@macrometa.com if you want to try it out.
 :::
 
-## Data Source, Integration, Connection
+## Data Source, Connector, Connection
 
 These terms are used frequently when discussing integrations.
 
@@ -19,19 +19,17 @@ A _data source_ refers to an external database or entity that contains data, suc
 
 A _connector_ is a connection that can be set up between Macrometa and a data source. For example, the list of connectors includes MongoDB, Snowflake, and will be expanded to include others.
 
-An _integration_ is a connection that you have created using the connector between Macrometa and a specific data source or target.
+An _connection_ is a connection that you have created using the connector between Macrometa and a specific data source or target.
 
-A _connection_ connects a Macrometa collection to a specific table in a data source, either as a source or target. This is the workflow doing the transfer.
+## Sources and Targets
 
-## Source and Target Integrations
+A _source connection_ allows you to use an external data source or a Macrometa collection as the originating source for data. Any records entered in the source are sent to a Macrometa collection that you choose. A collection can only have one source, and it must be set at collection creation.
 
-A _source integrations_ allows you to use an external data source or a Macrometa collection as the originating source for data. Any records entered in the source are sent to a Macrometa collection that you choose. A collection can only have one source, and it must be set at collection creation.
-
-A _target integrations_ allows you to send data from a Macrometa collection to an external data source or a Macrometa collection. Any records entered in the collection are sent to the target that you choose. A Macrometa collection can have multiple targets.
+A _target connection_ allows you to send data from a Macrometa collection to an external data source or a Macrometa collection. Any records entered in the collection are sent to the target that you choose. A Macrometa collection can have multiple targets.
 
 ## Transformations
 
-
+You can transform data moving in or out of Macrometa, including creating roll-ups. For more information, refer to [Transformations](./transformations).
 
 ## Common Schema
 
