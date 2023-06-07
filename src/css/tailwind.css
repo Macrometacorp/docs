@@ -57,7 +57,7 @@
 
     --font-code: var(--font-family-monospace) !important;
     --font-mono: var(--font-family-monospace) !important;
-    --font-prose: var(--font-family-base);
+    --font-prose: var(--font-family-base) !important;
 
     --ifm-alert-border-left-width: 0.25rem;
     --ifm-alert-border-radius: 0.25rem;
@@ -653,7 +653,13 @@ html[data-theme='dark'] .sl-text-warning {
 .markdown h3,
 .markdown h4,
 .markdown h5,
-.markdown h6 {
+.markdown h6,
+.sl-elements h1,
+.sl-elements h2,
+.sl-elements h3,
+.sl-elements h4,
+.sl-elements h5,
+.sl-elements h6 {
   letter-spacing: -0.02rem;
 }
 
