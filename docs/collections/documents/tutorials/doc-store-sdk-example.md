@@ -31,16 +31,18 @@ if __name__ == '__main__':
   GEO_FABRIC = "_system"
   GLOBAL_URL = "play.paas.macrometa.io"
   REGION_URLS = [
-      "gdn-us-west.paas.macrometa.io",
-      "gdn-us-east.paas.macrometa.io",
-      "gdn-us-central.paas.macrometa.io",
-      "gdn-eu-west.paas.macrometa.io",
-      "gdn-eu-central.paas.macrometa.io",
-      "gdn-ap-west.paas.macrometa.io",
-      "gdn-ap-south.paas.macrometa.io",
-      "gdn-ap-northeast.paas.macrometa.io",
-      "gdn-ap-southeast.paas.macrometa.io",
-    ]
+    "play2-ap-southeast.paas.macrometa.io",
+    "play2-ap-northeast.paas.macrometa.io",
+    "play2-ap-south.paas.macrometa.io",
+    "play2-ap-west.paas.macrometa.io",
+    "play2-eu-central.paas.macrometa.io",
+    "play2-eu-west.paas.macrometa.io",
+    "play2-us-east.paas.macrometa.io",
+    "play2-ca-central.paas.macrometa.io",
+    "play2-us-southeast.paas.macrometa.io",
+    "play2-us-central.paas.macrometa.io",
+    "play2-us-west.paas.macrometa.io"
+  ]
   IP_ADDRESS = "20.1.1.9"
 
   # Variables - Queries
@@ -120,28 +122,37 @@ if __name__ == '__main__':
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript SDK">
+<TabItem value="js" label="JavaScript SDK">
 
 ```js
 const jsc8 = require("jsc8");
+const apiKey = "XXXXX";
+
+// Choose one of the following methods to access the GDN. API key is recommended.
+// API key
+const client = new jsc8({globalUrl: "https://play.paas.macrometa.io", apiKey: apiKey, fabricName: '_system'});
+// JSON Web Token
+// const client = new jsc8({url: "https://play.paas.macrometa.io", token: "XXXX", fabricName: '_system'});
+// Or use email and password to authenticate client instance
+// const client = new jsc8("https://play.paas.macrometa.io");
+// Replace values with your email and password (use it inside an async function).
+// await client.login("nemo@nautilus.com", "xxxxxx");
 
 // Variables - DB
 globalUrl = "https://play.paas.macrometa.io";
 regionUrls = [
-  "https://gdn-us-west.paas.macrometa.io",
-  "https://gdn-eu-central.paas.macrometa.io",
-  "https://gdn-ap-south.paas.macrometa.io"
+  "https://play2-ap-southeast.paas.macrometa.io",
+  "https://play2-ap-northeast.paas.macrometa.io",
+  "https://play2-ap-south.paas.macrometa.io",
+  "https://play2-ap-west.paas.macrometa.io",
+  "https://play2-eu-central.paas.macrometa.io",
+  "https://play2-eu-west.paas.macrometa.io",
+  "https://play2-us-east.paas.macrometa.io",
+  "https://play2-ca-central.paas.macrometa.io",
+  "https://play2-us-southeast.paas.macrometa.io",
+  "https://play2-us-central.paas.macrometa.io",
+  "https://play2-us-west.paas.macrometa.io"
 ];
-
-// Create an authenticated instance with a token or API key
-// const client = new jsc8({url: globalUrl, token: "XXXX", fabricName: '_system'});
-const thisApikey = "XXXXX";
-const client = new jsc8({ url: globalUrl, apiKey: thisApikey, fabricName: "_system" });
-// console.log("Authentication done!!...");
-
-// Or use email and password to authenticate client instance
-// const client = new jsc8(globalUrl);
-// await client.login("nemo@nautilus.com", "xxxx");
 
 // Variables
 const collectionName = "ddoslist";
@@ -149,15 +160,15 @@ const ipAddress = "20.1.1.9";
 
 // Variables - Queries
 const readQueryValue = `FOR device in ddoslist FILTER device.ip == "${ipAddress}" RETURN { IP:device.ip, IsAllowed:device.action}`;
-const insertQueryValue = `INSERT { "ip": "${ipAddress}", "action": "block", "rule": "blacklistA"} INTO ddoslist`;
+const insertQueryValue = `INSERT { "ip": "${ipAddress}", "action": "block", "rule": "blocklistA"} INTO ddoslist`;
 
 // Variables - Data
 const data = [
-  { ip: "10.1.1.1", action: "block", rule: "blacklistA" },
-  { ip: "20.1.1.2", action: "block", rule: "blacklistA" },
-  { ip: "30.1.1.3", action: "block", rule: "blacklistB" },
-  { ip: "40.1.1.4", action: "block", rule: "blacklistA" },
-  { ip: "50.1.1.5", action: "block", rule: "blacklistB" },
+  { ip: "10.1.1.1", action: "block", rule: "blocklistA" },
+  { ip: "20.1.1.2", action: "block", rule: "blocklistA" },
+  { ip: "30.1.1.3", action: "block", rule: "blocklistB" },
+  { ip: "40.1.1.4", action: "block", rule: "blocklistA" },
+  { ip: "50.1.1.5", action: "block", rule: "blocklistB" },
   { ip: "20.1.1.3", action: "allow", rule: "whitelistA" },
   { ip: "20.1.1.4", action: "allow", rule: "whitelistA" },
   { ip: "30.1.1.4", action: "allow", rule: "whitelistB" },
@@ -165,10 +176,10 @@ const data = [
 ];
 
 // Step 1: Open connection to GDN. You will be routed to closest region.
-console.log(`1. Connecting: federation: ${globalUrl},  user: ${thisApikey}`);
+console.log(`1. Connecting: server: ${globalUrl},  user: ${apiKey}`);
 
 async function createCollection () {
-  console.log("\n2. Create collections:");
+  console.log("\n2. Create collection.");
 
   try {
     console.log(`Creating the collection ${collectionName}...`);
@@ -177,7 +188,7 @@ async function createCollection () {
       await client.createCollection(collectionName);
       console.log(`Collection ${collectionName} was created successfully.`);
     } else {
-      console.log(`Collection ${collectionName} alreasy exists.`);
+      console.log(`Collection ${collectionName} already exists.`);
     }
   } catch (e) {
     console.log("Collection creation did not succeed due to " + e);
@@ -188,7 +199,7 @@ async function insertData () {
   console.log(`\n3. Inserting data in region ${globalUrl}`);
   try {
     await client.insertDocumentMany(collectionName, data);
-    console.log("Data has been successfully added to the collection");
+    console.log("Data has been successfully added to the collection.");
   } catch (e) {
     console.log("Data could not be inserted due to " + e);
   }
@@ -201,27 +212,27 @@ async function readData () {
   console.log(result);
 }
 
-async function blacklistIP () {
+async function blocklistIP () {
   console.log(`\n5. Blocklisting the IP...from region: ${globalUrl}, ip: ${ipAddress}`);
   await client.executeQuery(insertQueryValue);
-  console.log("Document added successfully");
+  console.log("Document added successfully.");
 }
 
 async function readDataFromAllRegions () {
-  console.log("\n6. Checking if the IP is allowed globally");
+  console.log("\n6. Checking if the IP is allowed globally...);
   try {
     for (let i = 0; i < regionUrls.length; i++) {
       // Create an authenticated instance with a token or API key
       // const regionClient = new jsc8({url: regionUrls[i], token: "XXXX", fabricName: '_system'});
       // const regionClient = new jsc8({url: regionUrls[i], apiKey: "XXXX", fabricName: '_system'});
       // console.log("Authentication done!!...");
-      // Or use Email & Password to Authenticate client instance
+      // Or use Email and Password to Authenticate client instance
       // const regionClient = new jsc8(regionUrls[i]);
       // await regionClient.login("nemo@nautilus.com", "xxxxxx");
 
-      const regionClient = new jsc8({ url: regionUrls[i], apiKey: thisApikey, fabricName: "_system" });
+      const regionClient = new jsc8({ url: regionUrls[i], apiKey: apiKey, fabricName: "_system" });
 
-      console.log(`\n IP is blocked in region : ${regionUrls[i]}`);
+      console.log(`\n IP is blocked in region: ${regionUrls[i]}`);
       const result = await regionClient.executeQuery(readQueryValue);
       console.log(result);
     }
@@ -231,10 +242,10 @@ async function readDataFromAllRegions () {
 }
 
 async function deleteData () {
-  console.log("\n7. Deleting the data");
+  console.log("\n7. Deleting the data.");
   try {
     await client.deleteCollection(collectionName);
-    console.log("The collection has been deleted successfully");
+    console.log("The collection has been deleted successfully.");
   } catch (e) {
     console.log("Collection could not be deleted due to " + e);
   }
@@ -244,7 +255,7 @@ async function deleteData () {
   await createCollection();
   await insertData();
   await readData();
-  await blacklistIP();
+  await blocklistIP();
   await readDataFromAllRegions();
   await deleteData();
 })();
