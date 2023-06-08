@@ -1,71 +1,23 @@
 ---
 sidebar_position: 2
-title: Quickstart
+title: Doc Store SDK Example
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
+import Steps from '../../_partials/_get-started-steps.md';
+import ConnectToGDN from '../../_partials/_connect-to-gdn-code-block.md';
 
-# Quickstart - Document Collections
+This tutorial demonstrates how to use Macrometa SDKs to work with document store collections.
 
-This page guides you through quickly getting started with document collections.
-
-## Pre-requisite
-
-Let's assume your
-
-* Tenant name is `nemo@nautilus.com` and
-* User password is `xxxxxx`.
-
-## SDK download
-
-<Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
-
-```py
-  pyC8 requires Python 3.5+. Python 3.6 or higher is recommended
-
-  To install pyC8, simply run
-
-      $ pip3 install pyC8
-
-  or, if you prefer to use conda:
-
-      conda install -c conda-forge pyC8
-
-  or pipenv:
-
-      pipenv install --pre pyC8
-
-  Once the installation process is finished, you can begin developing applications in Python.
-```
-</TabItem>
-<TabItem value="js" label="Javascript">
-
-```js
-  With Yarn or NPM
-
-      yarn add jsc8
-      (or)
-      npm install jsc8
-
-  If you want to use the SDK outside of the current directory, you can also install it globally using the `--global` flag:
-
-      npm install --global jsc8
-
-  From source,
-
-      git clone https://github.com/macrometacorp/jsc8.git
-      cd jsC8
-      npm install
-      npm run dist
-```
-</TabItem>
-</Tabs>  
+<Prerequisites /> 
 
 ## Code Sample
 
+Copy the code below, and your API key, and then run it in your favorite IDE.
+
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
   from c8 import C8Client
@@ -162,7 +114,7 @@ Let's assume your
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="Javascript SDK">
 
 ```js
 const jsc8 = require("jsc8");
