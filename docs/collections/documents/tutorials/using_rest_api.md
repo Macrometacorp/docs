@@ -14,31 +14,6 @@ A Macrometa GDN tenant account and credentials.
 
 ## Working with Documents
 
-A *document* is a JSON-serializable dictionary object with the following properties:
-
-* `_key` identifies a document within a collection.
-* `_id` identifies a document across all collections in a fabric with the following format: `{collection name}/{document key}`. This is also known as a *handle*.
-* `_rev` indicates the latest revision of a document. GDN supports MVCC (Multiple Version Concurrency Control) and stores each document in multiple revisions. This field is automatically populated, but you can use it to validate a document against its current revision.
-
-For example:
-
-```json
-{
-"_id": "students/bruce",
-"_key": "bruce",
-"_rev": "_Wm3dzEi--_",
-"first_name": "Bruce",
-"last_name": "Wayne",
-"address": {
-  "street": "1007 Mountain Dr.",
-  "city": "Gotham",
-  "state": "NJ"
-},
-"is_rich": True,
-"friends": ["robin", "gordon"]
-}
-```
-
 ### Tutorial
 
 <Tabs groupId="operating-systems">
