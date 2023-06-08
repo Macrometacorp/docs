@@ -4,9 +4,7 @@ title: Doc Store SDK Example
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
-import Steps from '../../_partials/_get-started-steps.md';
-import ConnectToGDN from '../../_partials/_connect-to-gdn-code-block.md';
+import Prerequisites from '../../../_partials/_prerequisites-sdk-api-key.md';
 
 This tutorial demonstrates how to use Macrometa SDKs to work with document store collections.
 
@@ -20,97 +18,101 @@ Copy the code below, and your API key, and then run it in your favorite IDE.
 <TabItem value="py" label="Python SDK">
 
 ```py
-  from c8 import C8Client
-  import pprint
-  import time
+from c8 import C8Client
+import pprint
+import time
 
-  if __name__ == '__main__':
+if __name__ == '__main__':
 
-    # Variables - URLs
-    GLOBAL_URL = "play.paas.macrometa.io"
-    REGION_URLS = [
-        "gdn-us-west.paas.macrometa.io",
-        "gdn-us-east.paas.macrometa.io",
-        "gdn-us-central.paas.macrometa.io"
-        "gdn-eu-west.paas.macrometa.io",
-        "gdn-eu-central.paas.macrometa.io",
-        "gdn-ap-west.paas.macrometa.io",
-        "gdn-ap-south.paas.macrometa.io",
-        "gdn-ap-northeast.paas.macrometa.io",
-        "gdn-ap-sydney.paas.macrometa.io",
+  # Define constants
+  URL = "play.paas.macrometa.io"
+  GEO_FABRIC = "_system"
+  API_KEY = "my API key" # Change this to your API key
+  REGION_URLS = [
+      "gdn-us-west.paas.macrometa.io",
+      "gdn-us-east.paas.macrometa.io",
+      "gdn-us-central.paas.macrometa.io"
+      "gdn-eu-west.paas.macrometa.io",
+      "gdn-eu-central.paas.macrometa.io",
+      "gdn-ap-west.paas.macrometa.io",
+      "gdn-ap-south.paas.macrometa.io",
+      "gdn-ap-northeast.paas.macrometa.io",
+      "gdn-ap-sydney.paas.macrometa.io",
     ]
+  # Variables - Queries
+  READ_QUERY = f"FOR device in ddoslist FILTER device.ip == {IP_ADDRESS} RETURN" + "{IP:device.ip, IsAllowed:device.action}"
+  INSERT_QUERY = "INSERT { \"ip\" : \"" + IP_ADDRESS + "\", \"action\": \"block\", \"rule\":\"blocklistA\"} INTO ddoslist"
 
-    # Variables - DB
-    EMAIL = "nemo@nautilus.com"
-    PASSWORD = "xxxxx"
-    GEO_FABRIC = "_system"
-    COLLECTION_NAME = "ddoslist"
-    IP_ADDRESS = "20.1.1.9"
+  # Variables - Data
+  COLLECTION_NAME = "ddoslist"
+  DATA = [
+    {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
+    {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
+    {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
+    {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
+    {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
+    {"ip": "20.1.1.3", "action": "allow", "rule": "allowlistA"},
+    {"ip": "20.1.1.4", "action": "allow", "rule": "allowlistA"},
+    {"ip": "30.1.1.4", "action": "allow", "rule": "allowlistB"},
+    {"ip": "30.1.1.5", "action": "allow", "rule": "allowlistB"}
+  ]
 
-    # Variables - Queries
-    READ_QUERY = f"FOR device in ddoslist FILTER device.ip == {IP_ADDRESS} RETURN" + "{IP:device.ip, IsAllowed:device.action}"
+  pp = pprint.PrettyPrinter(indent=4)
 
-    INSERT_QUERY = "INSERT { \"ip\" : \"" + IP_ADDRESS + "\", \"action\": \"block\", \"rule\":\"blocklistA\"} INTO ddoslist"
+  # Step 1: Open connection to GDN. You will be routed to closest region.
+  print(f"1. CONNECT: federation: {GLOBAL_URL}")
+  print("--- Connecting to GDN")
+  # Choose one of the following methods to access the GDN. API key is recommended.
 
-    # Variables - Data
-    DATA = [
-      {"ip": "10.1.1.1", "action": "block", "rule": "blocklistA"},
-      {"ip": "20.1.1.2", "action": "block", "rule": "blocklistA"},
-      {"ip": "30.1.1.3", "action": "block", "rule": "blocklistB"},
-      {"ip": "40.1.1.4", "action": "block", "rule": "blocklistA"},
-      {"ip": "50.1.1.5", "action": "block", "rule": "blocklistB"},
-      {"ip": "20.1.1.3", "action": "allow", "rule": "allowlistA"},
-      {"ip": "20.1.1.4", "action": "allow", "rule": "allowlistA"},
-      {"ip": "30.1.1.4", "action": "allow", "rule": "allowlistB"},
-      {"ip": "30.1.1.5", "action": "allow", "rule": "allowlistB"}
-    ]
-    pp = pprint.PrettyPrinter(indent=4)
+  # Authenticate with API key
+  client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
-    # Step 1: Open connection to GDN. You will be routed to closest region.
-    print(f"1. CONNECT: federation: {GLOBAL_URL},  user: {EMAIL}")
-    client = C8Client(protocol = 'https', host = GLOBAL_URL, port = 443,
-                      email = EMAIL, password = PASSWORD,
-                      geofabric = GEO_FABRIC)
+  # Authenticate with JWT
+  # client = C8Client(protocol='https', host=URL, port=443, token=<your token>, geofabric=GEO_FABRIC)
 
-    # Step 2: Create a collection if not exists
-    print(f"2. CREATE_COLLECTION: region: {GLOBAL_URL},  collection: {COLLECTION_NAME}")
-    if client.has_collection(COLLECTION_NAME):
-        collection = client.collection(COLLECTION_NAME)
-    else:
-        collection = client.create_collection(COLLECTION_NAME)
+  # Authenticate with email and password
+  # client = C8Client(protocol='https', host=URL, port=443, email=<your email id>, password=<your password>, geofabric=GEO_FABRIC)
 
-    # Step 3: Insert data into collection.
-    print(f"3. INSERT_DDOS_DATA: in region: {GLOBAL_URL}")
-    client.insert_document(COLLECTION_NAME, document = DATA)
+  # Step 2: Create the collection if it does not exist.
+  print(f"2. CREATE_COLLECTION: region: {GLOBAL_URL},  collection: {COLLECTION_NAME}")
+  if client.has_collection(COLLECTION_NAME):
+      collection = client.collection(COLLECTION_NAME)
+  else:
+      collection = client.create_collection(COLLECTION_NAME)
 
-    # Step 4: Read Data
-    print(f"4. IS_IP_ALLOWED...from region: {GLOBAL_URL}")
-    cursor = client.execute_query(READ_QUERY)
-    docs = [document for document in cursor]
-    if docs == []:
-      print(f"IP: {IP_ADDRESS}" + "IsAllowed: {"'allow'"}\n")
-    else:
-      pp.pprint(docs)
+  # Step 3: Insert data into collection.
+  print(f"3. INSERT_DDOS_DATA: in region: {GLOBAL_URL}")
+  client.insert_document(COLLECTION_NAME, document = DATA)
 
-    # Step 5: Blocklist IP Address
-    print(f"5. BLOCKLIST the IP...from region: {GLOBAL_URL}, ip: {IP_ADDRESS}")
-    cursor = client.execute_query(INSERT_QUERY)
-    time.sleep(0.3)
+  # Step 4: Read data.
+  print(f"4. IS_IP_ALLOWED...from region: {GLOBAL_URL}")
+  cursor = client.execute_query(READ_QUERY)
+  docs = [document for document in cursor]
+  if docs == []:
+    print(f"IP: {IP_ADDRESS}" + "IsAllowed: {"'allow'"}\n")
+  else:
+    pp.pprint(docs)
 
-    # Step 6: Read Data from other regions.
-    print("6. Check again if IP is allowed globally")
-    for region_url in REGION_URLS:
-      print(f"\n IS_IP_ALLOWED...cheking from region: {region_url}")
-      clientx = C8Client(protocol = 'https', host = region_url, port = 443, email = EMAIL, password = PASSWORD,
-                          geofabric = GEO_FABRIC)
-      cursorx = clientx.execute_query(READ_QUERY)
-      docs = [document for document in cursorx]
-      pp.pprint(docs[0])
+  # Step 5: Blocklist IP address.
+  print(f"5. BLOCKLIST the IP...from region: {GLOBAL_URL}, ip: {IP_ADDRESS}")
+  cursor = client.execute_query(INSERT_QUERY)
+  time.sleep(0.3)
 
-    # Step 7: Delete Data
-    print(f"\n7. DELETE_DATA: region: {GLOBAL_URL}, collection: {COLLECTION_NAME}")
-    collection.truncate()
-    #client.delete_collection(COLLECTION_NAME)
+  # Step 6: Read data from other regions.
+  print("6. Check again if IP is allowed globally")
+  for region_url in REGION_URLS:
+    print(f"\n IS_IP_ALLOWED...checking from region: {region_url}")
+    # Reuse API key for authentication
+    clientx = C8Client(protocol = 'https', host = region_url, port = 443, apikey = API_KEY, geofabric = GEO_FABRIC)
+    cursorx = clientx.execute_query(READ_QUERY)
+    docs = [document for document in cursorx]
+    pp.pprint(docs[0])
+
+
+  # Step 7: Delete data.
+  print(f"\n7. DELETE_DATA: region: {GLOBAL_URL}, collection: {COLLECTION_NAME}")
+  collection.truncate()
+  #client.delete_collection(COLLECTION_NAME)
 ```
 
 </TabItem>
