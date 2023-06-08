@@ -1,7 +1,7 @@
 import React from 'react';
-import Layout from '@theme/Layout';
-import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import Head from '@docusaurus/Head';
+import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function APIPage() {
@@ -11,8 +11,8 @@ export default function APIPage() {
     <Layout>
       <Head>
         <title>API Reference | Macrometa Docs</title>
-        <meta name="description" content="Macrometa REST API" />
-        <meta name="og:description" content="Macrometa REST API" />
+        <meta name="description" content="Macrometa API" />
+        <meta name="og:description" content="Macrometa API" />
         {/* Loading styles for elements this way so it doesn't interfere with other styles */}
         <link
           rel="stylesheet"
@@ -36,7 +36,7 @@ export default function APIPage() {
             <>
               {/* https://api-play.paas.macrometa.io/_admin/api/swagger.json */}
               <API
-                apiDescriptionUrl={`${siteConfig.baseUrl}swagger/spec.json`}
+                apiDescriptionUrl={`${siteConfig.baseUrl}openapi/spec.json`}
                 router="hash"
                 basePath="/"
                 layout="sidebar"
