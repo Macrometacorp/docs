@@ -11,6 +11,8 @@ import ConnectToGDN from '../_partials/_connect-to-gdn-code-block.md';
 
 This article is an introduction to using streams with [Macrometa SDKs](../sdks/index.md).
 
+## Prerequisites
+
 <Prerequisites />
 
 ## Get Started with Streams
