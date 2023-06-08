@@ -1,6 +1,6 @@
 # build-openapi.sh
 
-The API Reference at `/docs/api` is rendered from our platform swagger file, with additional attributes included to improve the final presentation of the reference. This script is intended to streamline the process of publishing new versions of this file.
+The API Reference at `/docs/api` is rendered from our platform OpenAPI file, with additional attributes included to improve the final presentation of the reference. This script is intended to streamline the process of publishing new versions of this file.
 
 ## Setup
 
@@ -21,10 +21,12 @@ Copy the latest official openapi file to `./lib/openapi/revisions` as `spec-VERS
 
 ## Produce Target File
 
-Run the following script to produce a target OpenAPI file that contains the additional fields required for our API Reference.
+Run the following script to produce a target OpenAPI file that contains the additional fields required for publishing our API Reference to this site.
 
 ```ssh
 # build-openapi.sh source.json target.json
+
+# Example:
 ./lib/openapi/build-openapi.sh ./lib/openapi/revisions/spec-0.17.15-20230607.json ./static/openapi/spec.json
 ```
 
