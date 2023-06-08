@@ -9,6 +9,8 @@ import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
 
 This page describes how to create a [producer](../stream-basics/producers.md).
 
+## Prerequisites
+
 <Prerequisites />
 
 ## Create a Producer with Specific Options

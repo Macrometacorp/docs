@@ -11,6 +11,8 @@ import ConnectToGDN from '../../../_partials/_connect-to-gdn-code-block.md';
 
 This article is an introduction to using stream workers (sometimes called stream apps) with [Macrometa SDKs](../../../sdks/index.md).
 
+## Prerequisites
+
 <Prerequisites />
 
 ## Get Started with Stream Workers
