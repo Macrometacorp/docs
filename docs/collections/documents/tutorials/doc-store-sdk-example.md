@@ -8,6 +8,8 @@ import Prerequisites from '../../../_partials/_prerequisites-sdk-api-key.md';
 
 This tutorial demonstrates how to use Macrometa SDKs to work with document store collections.
 
+## Prerequisites
+
 <Prerequisites /> 
 
 ## Code Sample
@@ -25,22 +27,24 @@ import time
 if __name__ == '__main__':
 
   # Define constants
-  URL = "play.paas.macrometa.io"
-  GEO_FABRIC = "_system"
   API_KEY = "my API key" # Change this to your API key
+  GEO_FABRIC = "_system"
+  GLOBAL_URL = "play.paas.macrometa.io"
   REGION_URLS = [
       "gdn-us-west.paas.macrometa.io",
       "gdn-us-east.paas.macrometa.io",
-      "gdn-us-central.paas.macrometa.io"
+      "gdn-us-central.paas.macrometa.io",
       "gdn-eu-west.paas.macrometa.io",
       "gdn-eu-central.paas.macrometa.io",
       "gdn-ap-west.paas.macrometa.io",
       "gdn-ap-south.paas.macrometa.io",
       "gdn-ap-northeast.paas.macrometa.io",
-      "gdn-ap-sydney.paas.macrometa.io",
+      "gdn-ap-southeast.paas.macrometa.io",
     ]
+  IP_ADDRESS = "20.1.1.9"
+
   # Variables - Queries
-  READ_QUERY = f"FOR device in ddoslist FILTER device.ip == {IP_ADDRESS} RETURN" + "{IP:device.ip, IsAllowed:device.action}"
+  READ_QUERY = f"FOR device in ddoslist FILTER device.ip == '{IP_ADDRESS}' RETURN" + "{IP:device.ip, IsAllowed:device.action}"
   INSERT_QUERY = "INSERT { \"ip\" : \"" + IP_ADDRESS + "\", \"action\": \"block\", \"rule\":\"blocklistA\"} INTO ddoslist"
 
   # Variables - Data
@@ -60,18 +64,18 @@ if __name__ == '__main__':
   pp = pprint.PrettyPrinter(indent=4)
 
   # Step 1: Open connection to GDN. You will be routed to closest region.
-  print(f"1. CONNECT: federation: {GLOBAL_URL}")
+  print(f"1. CONNECT: server: {GLOBAL_URL}")
   print("--- Connecting to GDN")
   # Choose one of the following methods to access the GDN. API key is recommended.
 
   # Authenticate with API key
-  client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+  client = C8Client(protocol='https', host=GLOBAL_URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
   # Authenticate with JWT
-  # client = C8Client(protocol='https', host=URL, port=443, token=<your token>, geofabric=GEO_FABRIC)
+  # client = C8Client(protocol='https', host=GLOBAL_URL, port=443, token=<your token>, geofabric=GEO_FABRIC)
 
   # Authenticate with email and password
-  # client = C8Client(protocol='https', host=URL, port=443, email=<your email id>, password=<your password>, geofabric=GEO_FABRIC)
+  # client = C8Client(protocol='https', host=GLOBAL_URL, port=443, email=<your email id>, password=<your password>, geofabric=GEO_FABRIC)
 
   # Step 2: Create the collection if it does not exist.
   print(f"2. CREATE_COLLECTION: region: {GLOBAL_URL},  collection: {COLLECTION_NAME}")
@@ -191,14 +195,14 @@ async function insertData () {
 }
 
 async function readData () {
-  console.log(`\n4. reading data in region ${globalUrl}`);
+  console.log(`\n4. Reading data in region ${globalUrl}`);
   console.log(`IP is allowed from region: ${globalUrl}`);
   const result = await client.executeQuery(readQueryValue);
   console.log(result);
 }
 
 async function blacklistIP () {
-  console.log(`\n5. Blacklisting the IP...from region: ${globalUrl}, ip: ${ipAddress}`);
+  console.log(`\n5. Blocklisting the IP...from region: ${globalUrl}, ip: ${ipAddress}`);
   await client.executeQuery(insertQueryValue);
   console.log("Document added successfully");
 }
