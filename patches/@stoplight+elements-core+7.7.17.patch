@@ -1,5 +1,5 @@
 diff --git a/node_modules/@stoplight/elements-core/index.js b/node_modules/@stoplight/elements-core/index.js
-index d19850e..69dd90c 100644
+index d19850e..20e4c09 100644
 --- a/node_modules/@stoplight/elements-core/index.js
 +++ b/node_modules/@stoplight/elements-core/index.js
 @@ -901,7 +901,7 @@ const AuthTokenInput = ({ type, name, value, onChange }) => {
@@ -7,7 +7,7 @@ index d19850e..69dd90c 100644
  const APIKeyAuth = ({ scheme, onChange, value }) => {
      return (React__namespace.createElement(mosaic.Panel.Content, { className: "ParameterGrid" },
 -        React__namespace.createElement(AuthTokenInput, { type: "apiKey", name: scheme.name, value: value, onChange: onChange })));
-+        React__namespace.createElement(AuthTokenInput, { type: "apiKey", name: "API Key", value: value, onChange: onChange })));
++        React__namespace.createElement(AuthTokenInput, { type: "apiKey", name: "Authorization", value: value, onChange: onChange })));
  };
  
  const BasicAuth = ({ onChange, value }) => {
@@ -16,25 +16,16 @@ index d19850e..69dd90c 100644
  const BearerAuth = ({ value, onChange }) => {
      return (React__namespace.createElement(mosaic.Panel.Content, { className: "ParameterGrid" },
 -        React__namespace.createElement(AuthTokenInput, { type: "http", name: "Token", value: value, onChange: onChange })));
-+        React__namespace.createElement(AuthTokenInput, { type: "http", name: "JWT", value: value, onChange: onChange })));
++        React__namespace.createElement(AuthTokenInput, { type: "http", name: "Authorization", value: value, onChange: onChange })));
  };
  
  const digestPlaceholder = `Digest username="User Name",
-@@ -1581,7 +1581,7 @@ const runAuthRequestEhancements = (auth, queryParams, headers) => {
-         if (auth.scheme.in === 'header') {
-             newHeaders.push({
-                 name: auth.scheme.name,
--                value: (_b = auth.authValue) !== null && _b !== void 0 ? _b : '',
-+                value: `apikey ${(_b = auth.authValue) !== null && _b !== void 0 ? _b : ''}`,
-             });
-         }
-     }
 @@ -1594,7 +1594,7 @@ const runAuthRequestEhancements = (auth, queryParams, headers) => {
      if (isBearerSecurityScheme(auth.scheme)) {
          newHeaders.push({
              name: 'Authorization',
 -            value: `Bearer ${auth.authValue}`,
-+            value: `bearer ${auth.authValue}`,
++            value: auth.authValue,
          });
      }
      if (isDigestSecurityScheme(auth.scheme)) {

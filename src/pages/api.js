@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
@@ -6,6 +6,15 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function APIPage() {
   const { siteConfig } = useDocusaurusContext();
+
+  useEffect(() => {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.TryIt_securitySchemeValues = JSON.stringify({
+        'ApiKeyAuth': 'apikey API_KEY_HERE',
+        'BearerAuth': 'bearer JWT_HERE'
+      })
+    }
+  }, [])
 
   return (
     <Layout>
