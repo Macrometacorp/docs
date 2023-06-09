@@ -22,42 +22,26 @@ This page demonstrates how you can work with Macrometa GDN document store collec
 <TabItem value="py" label="Python">
 
 ```py
- import json
+import json
 import requests
 
 # Set constants
 URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
+API_KEY = "XXXXX" # Use your API key here
 COLLECTION_NAME = 'testcollection'
-EMAIL = "nemo@nautilus.com"
-PASSWORD = "xxxxx"
-AUTH_TOKEN = "bearer "
+AUTH_TOKEN = f"apikey {API_KEY}"
 FABRIC = "_system"
 URL = f"{HTTP_URL}/_open/auth"
-payload = {
-    'email': EMAIL,
-    'password': PASSWORD,
 
-}
-headers = {
-    'content-type': 'application/json'
-}
-
-response = requests.post(URL, data=json.dumps(payload), headers=headers)
-
-if response.status_code == 200:
-    resp_body = json.loads(response.text)
-    AUTH_TOKEN += resp_body["jwt"]
-    TENANT = resp_body["tenant"]
-else:
-    raise Exception(f"Error while getting auth token. "
-                    f"Code:{response.status_code}, Reason:{response.reason}")
+# Create a HTTPS session
 
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
 # Get list of all regions
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/datacenter/all"
 dcl_resp = session.get(URL)
 dcl_list = json.loads(dcl_resp.text)
@@ -69,6 +53,7 @@ print("\nList of regions: ", regions)
 
 # Create a document collection
 # Note: Create a test collection. Set "type" to 2 for documents or 3 for edges
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/collection"
 payload = {
     "name": COLLECTION_NAME,
@@ -82,6 +67,7 @@ else:
     print("\nCollection created: ", resp['name'])
 
 # Insert a document into a collection
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
 payload = {'GPA': 3.5, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'}
 resp = session.post(URL, data=json.dumps(payload))
@@ -89,6 +75,7 @@ print("\nDocument inserted: ", resp.text)
 
 # Data can either be a single document or a list of documents
 # Insert multiple documents
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
 data = [
     {'GPA': 3.2, 'first': 'Abby', 'last': 'Page', '_key': 'Abby'},
@@ -99,11 +86,13 @@ resp = session.post(URL, data=json.dumps(data))
 print("\nMultiple documents inserted: ", resp.text)
 
 # Read a document with its ID
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}" + "/Lola"
 resp = session.get(URL)
 print("\nDocument with ID Lola is: ", resp.text)
 
 # Read multiple documents
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/simple/lookup-by-keys"
 payload = {"collection": COLLECTION_NAME,
            "keys": ["Abby", "John", "Emma"]}
@@ -112,12 +101,14 @@ resp = json.loads(resp.text)
 print("\nDocuments: ", resp["documents"])
 
 # Update a single document with its ID
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}/John"
 payload = {'GPA': 3.6, 'first': 'John', 'last': 'Andrews', '_key': 'John'}
 resp = session.patch(URL, data=json.dumps(payload))
 print("\nUpdated document with ID John: ", resp.text)
 
 # Update  documents
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
 payload = [
     {'GPA': 4.6, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'},
@@ -127,11 +118,13 @@ resp = session.patch(URL, data=json.dumps(payload))
 print("\nUpdated documents: ", resp.text)
 
 # Remove single document with its ID
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}/John"
 resp = session.delete(URL)
 print("\nDeleted document with ID John: ", resp.text)
 
 # Remove a multiple document
+
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/document/{COLLECTION_NAME}"
 payload = [
     {'GPA': 4.6, 'first': 'Lola', 'last': 'Martin', '_key': 'Lola'},
@@ -139,11 +132,11 @@ payload = [
     {'GPA': 4.0, 'first': 'Emma', 'last': 'Park', '_key': 'Emma'}
 ]
 resp = session.delete(URL, data=json.dumps(payload))
-print("\nDeleted Documents: ", resp.text)
+print("\nDeleted documents: ", resp.text)
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript">
 
 ```js
 class APIRequest {
