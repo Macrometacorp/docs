@@ -140,148 +140,129 @@ print("\nDeleted documents: ", resp.text)
 
 ```js
 class APIRequest {
-  _headers = {
-    Accept: "application/json",
-    "Content-Type": "application/json"
-  };
-
-  constructor (url) {
-    this._url = url;
-  }
-
-  login (email, password) {
-    const endpoint = "/_open/auth";
-
-    const self = this;
-
-    return new Promise(function (resolve, reject) {
-      self
-        .req(endpoint, {
-          body: { email, password },
-          method: "POST"
-        })
-        .then(({ jwt, ...data }) => {
-          self._headers.authorization = `bearer ${jwt}`;
-          resolve(data);
-        })
-        .catch(reject);
-    });
-  }
-
-  _handleResponse (response, resolve, reject) {
-    if (response.ok) {
-      resolve(response.json());
-    } else {
-      reject(response);
+    _headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    };
+  
+  constructor (httpUrl, apiKey) {
+      this._url = httpUrl;
+      this._headers.authorization = `apikey ${apiKey}`; // apikey keyword is needed here
+    }
+  
+    _handleResponse (response, resolve, reject) {
+      if (response.ok) {
+        resolve(response.json());
+      } else {
+        reject(response);
+      }
+    }
+  
+    req (endpoint, { body, ...options } = {}) {
+      const self = this;
+      return new Promise(function (resolve, reject) {
+        fetch(self._url + endpoint, {
+          headers: self._headers,
+          body: body ? JSON.stringify(body) : undefined,
+          ...options
+        }).then((response) => self._handleResponse(response, resolve, reject));
+      });
     }
   }
-
-  req (endpoint, { body, ...options } = {}) {
-    const self = this;
-    return new Promise(function (resolve, reject) {
-      fetch(self._url + endpoint, {
-        headers: self._headers,
-        body: body ? JSON.stringify(body) : undefined,
-        ...options
-      }).then((response) => self._handleResponse(response, resolve, reject));
-    });
+  
+  const apiKey = "XXXX" // Use your API key here
+  const globalUrl = "api-play.paas.macrometa.io";
+  const httpUrl = `https://${globalUrl}`;
+  
+  const collectionName = "api_tutorial_documents";
+  
+  const run = async function () {
+    try {
+      const connection = new APIRequest(httpUrl, apiKey);
+  
+    /* -------------------------- Create document collection ------------------------- */
+  
+    await connection
+      .req("/_fabric/_system/_api/collection", {
+        body: { name: collectionName },
+        method: "POST"
+      })
+      .then((collection) =>
+        console.log("2. Collection created successfully", collection)
+      )
+      .catch((error) => console.log(error));
+  
+    /* ---------------------------- Insert documents ---------------------------- */
+  
+    const document = await connection
+      .req(`/_fabric/_system/_api/document/${collectionName}`, {
+        body: { new: true },
+        method: "POST"
+      })
+      .then((document) => {
+        console.log("3. Document created successfully", document);
+        return document;
+      })
+      .catch((error) => error);
+  
+    /* ----------------------------- Read documents ----------------------------- */
+  
+    await connection
+      .req(`/_fabric/_system/_api/document/${document._id}`)
+      .then((readDocument) =>
+        console.log("4. Document read successfully", readDocument)
+      )
+      .catch((error) => console.log(error));
+  
+    /* ---------------------------- Update documents ---------------------------- */
+  
+    await connection
+      .req(`/_fabric/_system/_api/document/${document._id}`, {
+        method: "PATCH",
+        body: { new: false }
+      })
+      .then((updateDocument) =>
+        console.log("5. Document was updated successfully", updateDocument)
+      )
+      .catch((error) => console.log(error));
+  
+    /* ----------------------------- Read documents ----------------------------- */
+  
+    await connection
+      .req(`/_fabric/_system/_api/document/${document._id}`)
+      .then((updatedReadDocument) =>
+        console.log("6. Document read successfully", updatedReadDocument)
+      )
+      .catch((error) => console.log(error));
+  
+    /* ------------------------------- Delete documents ------------------------------ */
+    await connection
+      .req(`/_fabric/_system/_api/document/${document._id}`, {
+        method: "DELETE"
+      })
+      .then((deletedDocument) =>
+        console.log("7. Document with Id " + document._id + " deleted successfully", deletedDocument)
+      )
+      .catch((error) => console.log(error));
+  
+    /* --------------------------- Delete collection --------------------------- */
+    await connection
+      .req(`/_fabric/_system/_api/collection/${collectionName}`, {
+        method: "DELETE"
+      })
+      .then((deletedCollection) =>
+        console.log("8. Collection deleted successfully", deletedCollection)
+      )
+      .catch((error) => console.log(error));
+  } catch (error) {
+    console.log(error);
   }
-}
-const email = "nemo@nautilus.com";
-const password = "xxxxxx";
-const federationUrl = "https://api-play.paas.macrometa.io";
-
-const collectionName = "api_tutorial_documents";
-
-const run = async function () {
-  const connection = new APIRequest(federationUrl);
-
-  /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
-
-  await connection
-    .login(email, password)
-    .then(() => console.log("\n1. User authentication done!"))
-    .catch((error) => error);
-
-  /* -------------------------- Create document collection ------------------------- */
-
-  await connection
-    .req("/_fabric/_system/_api/collection", {
-      body: { name: collectionName },
-      method: "POST"
-    })
-    .then((collection) =>
-      console.log("2. Collection created successfully", collection)
-    )
+  };
+  
+  run()
+    .then()
     .catch((error) => console.log(error));
 
-  /* ---------------------------- Insert documents ---------------------------- */
-
-  const document = await connection
-    .req(`/_fabric/_system/_api/document/${collectionName}`, {
-      body: { new: true },
-      method: "POST"
-    })
-    .then((document) => {
-      console.log("3. Document created successfully", document);
-      return document;
-    })
-    .catch((error) => error);
-
-  /* ----------------------------- Read documents ----------------------------- */
-
-  await connection
-    .req(`/_fabric/_system/_api/document/${document._id}`)
-    .then((readDocument) =>
-      console.log("4. Document read successfully", readDocument)
-    )
-    .catch((error) => console.log(error));
-
-  /* ---------------------------- Update documents ---------------------------- */
-
-  await connection
-    .req(`/_fabric/_system/_api/document/${document._id}`, {
-      method: "PATCH",
-      body: { new: false }
-    })
-    .then((updateDocument) =>
-      console.log("5. Document was updated successfully", updateDocument)
-    )
-    .catch((error) => console.log(error));
-
-  /* ----------------------------- Read documents ----------------------------- */
-
-  await connection
-    .req(`/_fabric/_system/_api/document/${document._id}`)
-    .then((updatedReadDocument) =>
-      console.log("6. Document read successfully", updatedReadDocument)
-    )
-    .catch((error) => console.log(error));
-
-  /* ------------------------------- Delete documents ------------------------------ */
-  await connection
-    .req(`/_fabric/_system/_api/document/${document._id}`, {
-      method: "DELETE"
-    })
-    .then((deletedDocument) =>
-      console.log("7. Document with Id " + document._id + " deleted successfully", deletedDocument)
-    )
-    .catch((error) => console.log(error));
-
-  /* --------------------------- Delete collection --------------------------- */
-  await connection
-    .req(`/_fabric/_system/_api/collection/${collectionName}`, {
-      method: "DELETE"
-    })
-    .then((deletedCollection) =>
-      console.log("8. Collection deleted successfully", deletedCollection)
-    )
-    .catch((error) => console.log(error));
-};
-
-run()
-  .then()
-  .catch((error) => console.log(error));
 ```
 
 </TabItem>
