@@ -1,6 +1,6 @@
 ---
 sidebar_position: 70
-title: REST APIs Document Store Example
+title: REST APIs Doc Store Example
 ---
 
 import Tabs from '@theme/Tabs';
@@ -14,7 +14,7 @@ This page demonstrates how you can work with Macrometa GDN document store collec
 
 <Prerequisites />
 
-## REST API Document Store Collection Example
+## Code Sample
 
 <Steps />
 
