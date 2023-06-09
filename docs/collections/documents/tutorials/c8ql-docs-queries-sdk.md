@@ -24,71 +24,71 @@ This page demonstrates how you can use C8QL and the Macrometa SDK to run CRUD op
 ```py
 import json
 import requests
+from c8 import C8Client
 
 # Define constants
 URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
 GEO_FABRIC = "_system"
-API_KEY = "my API key" # Change this to your API key
+API_KEY = "XXXX" # Change this to your API key
 AUTH_TOKEN = f"apikey {API_KEY}"
 
+# Authenticate and log in
 print("--- Connecting to GDN")
-# Choose one of the following methods to access the GDN. API key is recommended.
 
 # Authenticate with API key
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
-# Authenticate with JWT
-# client = C8Client(protocol='https', host=URL, port=443, token=<your token>, geofabric=GEO_FABRIC)
-
-# Authenticate with email and password
-# client = C8Client(protocol='https', host=URL, port=443, email=<your email id>, password=<your password>, geofabric=GEO_FABRIC)
-
-
 # Create HTTPS session
-
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 url = f"{HTTP_URL}/_fabric/_system/_api/cursor"
 
-
 # Insert documents to the collection
-
 resp = session.post(url, json={
     "query": "INSERT{'name' : 'Julie', 'company' : 'ABC', '_key' : 'Julie'}" \
              "INTO testcollection"
 })
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Document inserted successfully.")
 
 # Read from the collection
-
 resp = session.post(url, json={
     "query": "FOR doc IN testcollection RETURN doc"
 })
-print(resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Documents retrieved successfully. Data: ")
+    for doc in resp_json.get("result", []):
+        print(json.dumps(doc, indent=4))
 
 # Update documents in the collection
-
 resp = session.post(url, json={
     "query": "FOR c IN testcollection UPDATE c WITH{'company':'XYZ'} IN testcollection"
 })
-print(resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Document updated successfully.")
 
 # Upsert documents in the collection
-
 resp = session.post(url, json={
     "query": "UPSERT {name: 'John'} INSERT "
              "{_key:'John', name: 'John', logins:1, updatedAt: DATE_NOW()}"
              " UPDATE {'logins': OLD.logins + 1, updatedAt: DATE_NOW()} IN testcollection"
 })
-print(resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Document upserted successfully.")
 
 # Delete documents in the collection
-
 resp = session.post(url, json={
     "query": "FOR c IN testcollection REMOVE c IN testcollection"
 })
-print(resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Documents deleted successfully.")
 
 ```
 
