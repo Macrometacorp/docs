@@ -241,7 +241,7 @@ class APIRequest {
         method: "DELETE"
       })
       .then((deletedDocument) =>
-        console.log("7. Document with Id " + document._id + " deleted successfully", deletedDocument)
+        console.log("7. Document with ID " + document._id + " deleted successfully", deletedDocument)
       )
       .catch((error) => console.log(error));
   
