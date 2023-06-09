@@ -1,57 +1,51 @@
 ---
-sidebar_position: 70
-title: Query Docs Using C8QL API Example
+sidebar_position: 80
+title: C8QL Docs Queries SDK Example
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Prerequisites from '../../../_partials/_prerequisites-sdk-api-key.md';
+import GetStarted from '../../../_partials/_get-started-steps.md';
 
-Modern applications need to be highly responsive, always online, and able to access data instantly across the globe. At the same time, they need to be deployed on datacenters close to their users. Macrometa global data network (GDN) is a real-time materialized view engine that provides instant data to applications and APIs in a simple interface.
+This page demonstrates how you can use C8QL and the Macrometa SDK to run CRUD operations on document store collection records.
 
 ## Prerequisites
 
-A Macrometa GDN tenant account and credentials.
+<Prerequisites />
 
-## Query using C8QL
+## Code Sample
 
-You can use C8QL to run CRUD Operations.
-
-### Tutorial
+<GetStarted />
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="Python SDK">
 
 ```py
-#Using C8QL
 import json
 import requests
 
-# Constants
+# Define constants
 URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
-EMAIL = "nemo@nautilus.com"
-PASSWORD = "xxxxx"
-AUTH_TOKEN = "bearer "
+GEO_FABRIC = "_system"
+API_KEY = "my API key" # Change this to your API key
+AUTH_TOKEN = f"apikey {API_KEY}"
+
+print("--- Connecting to GDN")
+# Choose one of the following methods to access the GDN. API key is recommended.
+
+# Authenticate with API key
+client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
+
+# Authenticate with JWT
+# client = C8Client(protocol='https', host=URL, port=443, token=<your token>, geofabric=GEO_FABRIC)
+
+# Authenticate with email and password
+# client = C8Client(protocol='https', host=URL, port=443, email=<your email id>, password=<your password>, geofabric=GEO_FABRIC)
 
 
 # Create HTTPS session
-url = f"{HTTP_URL}/_open/auth"
-payload = {
-    'email': EMAIL,
-    'password': PASSWORD
-}
-headers = {
-    'content-type': 'application/json'
-}
-
-response = requests.post(url, data=json.dumps(payload), headers=headers)
-if response.status_code == 200:
-    resp_body = json.loads(response.text)
-    AUTH_TOKEN += resp_body["jwt"]
-    TENANT = resp_body["tenant"]
-else:
-    raise Exception(f"Error while getting auth token. "
-                    f"Code:{response.status_code}, Reason:{response.reason}")
 
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
@@ -60,36 +54,44 @@ url = f"{HTTP_URL}/_fabric/_system/_api/cursor"
 
 
 # Insert documents to the collection
+
 resp = session.post(url, json={
     "query": "INSERT{'name' : 'Julie', 'company' : 'ABC', '_key' : 'Julie'}" \
              "INTO testcollection"
 })
 
 # Read from the collection
+
 resp = session.post(url, json={
     "query": "FOR doc IN testcollection RETURN doc"
 })
 print(resp.text)
 
 # Update documents in the collection
+
 resp = session.post(url, json={
     "query": "FOR c IN testcollection UPDATE c WITH{'company':'XYZ'} IN testcollection"
 })
 print(resp.text)
+
 # Upsert documents in the collection
+
 resp = session.post(url, json={
     "query": "UPSERT {name: 'John'} INSERT "
              "{_key:'John', name: 'John', logins:1, updatedAt: DATE_NOW()}"
              " UPDATE {'logins': OLD.logins + 1, updatedAt: DATE_NOW()} IN testcollection"
 })
 print(resp.text)
+
 # Delete documents in the collection
+
 resp = session.post(url, json={
     "query": "FOR c IN testcollection REMOVE c IN testcollection"
 })
 print(resp.text)
 
-```  
+```
+
 </TabItem>
 <TabItem value="js" label="Javascript">
 
