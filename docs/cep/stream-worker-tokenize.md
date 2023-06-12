@@ -15,8 +15,6 @@ Tokenization is crucial in various NLP tasks, such as sentiment analysis, text c
 
 Macrometa's stream workers offer several tokenization functions that can be used to tokenize text data in real-time. These functions cater to different tokenization needs and can be integrated into your data processing pipelines. Tokenization functions available in Macrometa's stream workers include:
 
-I apologize for the confusion. Here are the correct definitions for the provided list:
-
 - [json:tokenizeAsObject](../cep/query-guide/functions/json/tokenizeAsObject): Tokenizes a JSON string and returns the result as an object.
 - [json:tokenize](../cep/query-guide/functions/json/tokenize): Tokenizes a JSON string and returns the result as a string.
 - [list:tokenize](../cep/query-guide/functions/list/tokenize): Tokenizes a list by splitting it into smaller lists of a specified size.
