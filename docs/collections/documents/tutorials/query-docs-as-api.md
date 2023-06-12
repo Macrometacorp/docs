@@ -5,10 +5,10 @@ title: Query Docs as API
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../_partials/_prerequisites-api-key.md';
-import Steps from '../../_partials/_api-example-steps.md';
+import Prerequisites from '../../../_partials/_prerequisites-api-key.md';
+import Steps from '../../../_partials/_api-example-steps.md';
 
-This page shows you how to query documents stored in a document store collection using the Macrometa API. For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
+This page shows you how to query documents stored in a document store collection using the Macrometa API. For more information about using Macrometa APIs, refer to [APIs](../../../api-docs/index.md).
 
 ## Prerequisites
 
@@ -22,17 +22,15 @@ This page shows you how to query documents stored in a document store collection
 <TabItem value="py" label="Python">
 
 ```py
-# Using RESTQL
 import json
 import time
-
 import requests
 
 # Set constants
 URL = "api-play.paas.macrometa.io"
 HTTP_URL = f"https://{URL}"
-EMAIL = "nemo@nautilus.com"
-PASSWORD = "xxxxx"
+API_KEY = "XXXXX" # Use your API key here
+AUTH_TOKEN = f"apikey {API_KEY}"
 FABRIC = "_system"
 AUTH_TOKEN = "bearer "
 READ_QUERY = "FOR doc IN @@collection RETURN doc"
@@ -45,26 +43,7 @@ UPDATE_QUERY = "FOR doc IN @@collection FILTER doc.result >= 35 " \
 DELETE_QUERY = "FOR c IN @@collection REMOVE c IN @@collection"
 UPDATE_READ_QUERY = "FOR doc IN @@collection FILTER doc.result < 10 RETURN doc"
 
-# Create HTTPS session
-
-URL = f"{HTTP_URL}/_open/auth"
-payload = {
-    'email': EMAIL,
-    'password': PASSWORD
-}
-headers = {
-    'content-type': 'application/json'
-}
-
-response = requests.post(URL, data=json.dumps(payload), headers=headers)
-
-if response.status_code == 200:
-    resp_body = json.loads(response.text)
-    AUTH_TOKEN += resp_body["jwt"]
-    TENANT = resp_body["tenant"]
-else:
-    raise Exception(f"Error while getting auth token. Code:"
-                    f"{response.status_code}, Reason:{response.reason}")
+# Create a HTTPS session
 
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
@@ -99,6 +78,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 print("\nRead query saved: ", resp.text)
 time.sleep(1)
+
 # Save insert query
 payload = {
     "query": {
@@ -112,6 +92,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 print("\nInsert query saved: ", resp.text)
 time.sleep(1)
+
 # Save update query
 payload = {
     "query": {
@@ -137,6 +118,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 print("\nDelete query saved: ", resp.text)
 time.sleep(1)
+
 # Execute insert query
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/insert"
 payload = {
@@ -145,6 +127,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 print("\nInsert query executed: ", resp.text)
 time.sleep(1)
+
 # Execute read query
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/" + QUERY_NAME
 payload = {
@@ -153,6 +136,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 print("\nRead query executed: ", resp.text)
 time.sleep(1)
+
 # Execute update query
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/update"
 payload = {
@@ -172,6 +156,7 @@ payload = {
 resp = session.put(URL, data=json.dumps(payload))
 print("Query updated: ", resp.text)
 time.sleep(1)
+
 # Execute delete query
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/delete"
 payload = {
@@ -180,6 +165,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 print("\nDelete query executed: ", resp.text)
 time.sleep(1)
+
 # Delete saved queries
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/{QUERY_NAME}"
 resp = session.delete(URL)
