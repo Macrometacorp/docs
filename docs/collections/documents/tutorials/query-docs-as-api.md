@@ -5,20 +5,18 @@ title: Query Docs as API
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Prerequisites from '../../_partials/_prerequisites-api-key.md';
+import Steps from '../../_partials/_api-example-steps.md';
 
-Modern applications need to be highly responsive, always online, and able to access data instantly across the globe. At the same time, they need to be deployed on datacenters close to their users. Macrometa global data network (GDN) is a real-time materialized view engine that provides instant data to applications and APIs in a simple interface.
+This page shows you how to query documents stored in a document store collection using the Macrometa API. For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
 
-## Prerequisites:
+## Prerequisites
 
-A Macrometa GDN tenant account and credentials.
+<Prerequisites />
 
-## Query as API (RestQL)
+## REST API Doc Query Example
 
-Globally distributed applications need a fast data platform that can transparently replicate data anywhere in the world, enabling users to access applications on the closest copy of their data. Additionally, these applications need both geo-replicated and local streams to handle pub-sub, ETL, and real-time updates. 
-
-Macrometa GDN provides turnkey global distribution and transparent multi-master replication. You can run globally distributed, low-latency workloads with GDN.
-
-### Tutorial
+<Steps />
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python">
