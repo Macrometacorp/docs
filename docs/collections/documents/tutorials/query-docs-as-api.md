@@ -194,27 +194,9 @@ class APIRequest {
     "Content-Type": "application/json"
   };
 
-  constructor(url) {
-    this._url = url;
-  }
-
-  login (email, password) {
-    const endpoint = "/_open/auth";
-
-    const self = this;
-
-    return new Promise(function (resolve, reject) {
-      self
-        .req(endpoint, {
-          body: { email, password },
-          method: "POST"
-        })
-        .then(({ jwt, ...data }) => {
-          self._headers.authorization = `bearer ${jwt}`;
-          resolve(data);
-        })
-        .catch(reject);
-    });
+  constructor (httpUrl, apiKey) {
+    this._url = httpUrl;
+    this._headers.authorization = `apikey ${apiKey}`; // apikey keyword is needed here
   }
 
   _handleResponse (response, resolve, reject) {
@@ -237,9 +219,8 @@ class APIRequest {
   }
 }
 
-const email = "nemo@nautilus.com";
-const password = "xxxxxx";
-const federationUrl = "https://api-play.paas.macrometa.io";
+const apiKey = "XXXXX" // Use your API key here
+const globalURL = "https://api-play.paas.macrometa.io";
 const collectionName = "api_query_tutorial";
 
 const readQueryName = "read";
@@ -259,7 +240,7 @@ const deleteQuery = "FOR c IN @@collection REMOVE c IN @@collection";
 const readQueryUpdated =
   "FOR doc IN @@collection FILTER doc.result < 1 RETURN doc";
 
-const connection = new APIRequest(federationUrl);
+const connection = new APIRequest(globalURL);
 
 async function saveQueryWorker (queryName, queryValue, queryParams) {
   await connection
@@ -344,6 +325,7 @@ async function deleteCollection (collection) {
 
 const run = async function () {
   try {
+    
     /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
 
     await connection
