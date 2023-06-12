@@ -1,6 +1,6 @@
 ---
 sidebar_position: 70
-title: Query Docs as API
+title: REST API Query Doc Store Example
 ---
 
 import Tabs from '@theme/Tabs';
