@@ -323,15 +323,9 @@ async function deleteCollection (collection) {
     .catch((error) => console.log(error));
 }
 
-const run = async function () {
-  try {
-    
-    /* -------------------- Log in (nemo@nautilus.com/xxxxxx) -------------------- */
-
-    await connection
-      .login(email, password)
-      .then(() => console.log("\n1. User authentication done!"))
-      .catch((error) => console.log(error));
+  const run = async function () {
+    try {
+      const connection = new APIRequest(httpUrl, apiKey);
 
     /* ------------------------ Create collection ----------------------- */
     await createCollection(collectionName);
