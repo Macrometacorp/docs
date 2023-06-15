@@ -37,7 +37,7 @@ Follow these instructions to create a new stream worker using the GDN console we
 </TabItem>
 <TabItem value="sdk" label="SDK">
 
-To see how to create stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/stream-workers-sdk-example).
+To see how to create stream workers with the Macrometa Python SDK or JavaScript SDK, refer to the [Stream Workers SDK Example](../examples/basic-examples/stream-workers-sdk-example).
 
 </TabItem>
 <TabItem value="api" label="REST API">
