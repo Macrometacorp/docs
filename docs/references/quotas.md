@@ -8,7 +8,7 @@ This page describes the rate limits for all Playground GDN customers. Each quota
 The following table shows rate limits for Playground accounts. API calls will be denied once you reach the limit. Quotas are reset every 24 hours.
 
 :::note
-Playground accounts can not be used in production. Review our [Terms of Service](https://www.macrometa.com/terms-of-service) for more details.
+Playground accounts cannot be used in production. Review our [Terms of Service](https://www.macrometa.com/terms-of-service) for more details.
 :::
 
 | Name 							| Play Tier Quota 	|
