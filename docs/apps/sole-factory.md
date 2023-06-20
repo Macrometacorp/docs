@@ -45,3 +45,5 @@ Macrometa streams and query workers enable real-time visitor personalization, in
 - Real-time stock information
 - Best sellers
 - Complementary items
+
+![Sole Factory](/img/demos/sole-factory.png)
