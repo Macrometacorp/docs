@@ -15,4 +15,4 @@ title: Side Cache Demo
 
 1. Navigate to [Macrometa Side Cache](https://macrometacorp.github.io/demo-mm-sidecache/).
 
-![Side Cache](/img/demos/search-comparison.png)
+![Side Cache](/img/demos/side-cache.png)
