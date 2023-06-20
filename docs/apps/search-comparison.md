@@ -5,7 +5,7 @@ title: Search Comparison
 
 ## Macrometa GDN
 
-| **Platform**                       | **Tenat**                      | **Geo Fabric** |
+| **Platform**                       | **Tenant**                      | **GeoFabric** |
 | ---------------------------------- | ------------------------------ | -------------- |
 | [Play](https://play.macrometa.io/) | `demo@macrometa.com` | `search_comparison` |
 
