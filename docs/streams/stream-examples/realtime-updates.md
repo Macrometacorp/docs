@@ -11,6 +11,8 @@ import ConnectToGDN from '../../_partials/_connect-to-gdn-code-block.md';
 
 This tutorial demonstrates how to use Macrometa GDN as a real-time database with local latencies across the globe.
 
+## Prerequisites
+
 <Prerequisites />
 
 ## Step-by-Step Instructions

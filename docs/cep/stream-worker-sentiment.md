@@ -23,7 +23,7 @@ Sentiment analysis can provide valuable insights into how people feel about a pa
 
 These examples showcase how the sentiment function can be applied to various industries to analyze and process data in real-time. By understanding and implementing sentiment analysis in your stream workers, you can gain valuable insights and make better data-driven decisions.
 
-### Example 1
+### Example 1: News Headlines Sentiment Analysis
 
 ```sql
 CREATE STREAM NewsHeadlinesStream (headline string);
@@ -39,7 +39,7 @@ In this example, a stream worker processes news headlines from the `NewsHeadline
 
 The `simpleSentimentAnalysis` stream worker query processes incoming events from the `NewsHeadlinesStream`. It calculates the sentiment score of each headline using the `sentiment:getRate(headline)` function and selects both the `headline` and the computed `sentimentScore` for output. The results are then inserted into the `SentimentAnalysisStream` using the `INSERT INTO` action.
 
-### Example 2
+### Example 2: Social Media Posts Sentiment Analysis
 
 ```sql
 CREATE STREAM SocialMediaPostsStream (timestamp long, username string, post string);
@@ -56,7 +56,7 @@ In this example, a stream worker processes social media posts from the `SocialMe
 
 The `socialMediaSentimentAnalysis` stream worker query processes incoming events from the `SocialMediaPostsStream`. It calculates the sentiment score of each post using the `sentiment:getRate(post)` function and selects the `timestamp`, `username`, `post`, and the computed `sentimentScore` for output. The results are then inserted into the `SentimentAnalysisStream` using the `INSERT INTO` action.
 
-### Example 3
+### Example 3: Customer Reviews Sentiment Analysis and Aggregation
 
 ```sql
 CREATE STREAM CustomerReviewsStream (productId string, timestamp long, username string, review string);

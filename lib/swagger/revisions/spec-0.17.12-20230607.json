@@ -38506,33 +38506,5 @@
         ]
       }
     }
-  },
-  "host": "api-play.paas.macrometa.io",
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "schemes": [
-    "https"
-  ],
-  "servers": [
-    {
-      "url": "api-play.paas.macrometa.io",
-      "description": "Production server"
-    }
-  ],
-  "security": [
-    {
-      "ApiKeyAuth": []
-    }
-  ],
-  "securityDefinitions": {
-    "ApiKeyAuth": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header"
-    }
   }
 }

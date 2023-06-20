@@ -1,6 +1,6 @@
-# build-swagger.sh
+# build-swagger.sh (deprecated)
 
-The API Reference at `/docs/api` is rendered from our platform swagger file, with additional attributes included to improve the final presentation of the reference. This script is intended to streamline the process of publishing new versions of this file.
+The Macrometa API Reference was formatted for Swagger 2.0 up until v0.17.12. Beginning with v0.17.15, a new version of this file formatted for OpenAPI 3 is available as `openapi.json`.
 
 ## Setup
 
