@@ -17,4 +17,4 @@ Navigate to [Macrometa Search vs. Elasticsearch](https://macrometacorp.github.io
 
 The site runs a search on the dataset using both Macrometa Search and Elasticsearch and then displays the results and the elapsed time.
 
-![Fashion Store](/img/demos/search-comparison.png)
+![Search Comparison](/img/demos/search-comparison.png)
