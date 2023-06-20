@@ -9,6 +9,8 @@ import Prerequisites from '../../_partials/_prerequisites-sdk-api-key.md';
 
 This page describes how to create a [consumer](../stream-basics/consumers.md).
 
+## Prerequisites
+
 <Prerequisites />
 
 ## Create Consumer Code

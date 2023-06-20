@@ -1,3 +1,5 @@
+DFP NOTE: This feature is currently disabled, might be turned on in future. This content has not been tested or updated.
+
 ---
 sidebar_position: 6
 title: Spot Collections

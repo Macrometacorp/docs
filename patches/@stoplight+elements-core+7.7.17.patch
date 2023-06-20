@@ -1,0 +1,53 @@
+diff --git a/node_modules/@stoplight/elements-core/index.js b/node_modules/@stoplight/elements-core/index.js
+index d19850e..20e4c09 100644
+--- a/node_modules/@stoplight/elements-core/index.js
++++ b/node_modules/@stoplight/elements-core/index.js
+@@ -901,7 +901,7 @@ const AuthTokenInput = ({ type, name, value, onChange }) => {
+ 
+ const APIKeyAuth = ({ scheme, onChange, value }) => {
+     return (React__namespace.createElement(mosaic.Panel.Content, { className: "ParameterGrid" },
+-        React__namespace.createElement(AuthTokenInput, { type: "apiKey", name: scheme.name, value: value, onChange: onChange })));
++        React__namespace.createElement(AuthTokenInput, { type: "apiKey", name: "Authorization", value: value, onChange: onChange })));
+ };
+ 
+ const BasicAuth = ({ onChange, value }) => {
+@@ -933,7 +933,7 @@ function decode(encoded) {
+ 
+ const BearerAuth = ({ value, onChange }) => {
+     return (React__namespace.createElement(mosaic.Panel.Content, { className: "ParameterGrid" },
+-        React__namespace.createElement(AuthTokenInput, { type: "http", name: "Token", value: value, onChange: onChange })));
++        React__namespace.createElement(AuthTokenInput, { type: "http", name: "Authorization", value: value, onChange: onChange })));
+ };
+ 
+ const digestPlaceholder = `Digest username="User Name",
+@@ -1594,7 +1594,7 @@ const runAuthRequestEhancements = (auth, queryParams, headers) => {
+     if (isBearerSecurityScheme(auth.scheme)) {
+         newHeaders.push({
+             name: 'Authorization',
+-            value: `Bearer ${auth.authValue}`,
++            value: auth.authValue,
+         });
+     }
+     if (isDigestSecurityScheme(auth.scheme)) {
+@@ -2198,9 +2198,7 @@ function getDefaultDescription(scheme) {
+     return '';
+ }
+ function getApiKeyDescription(inProperty, name) {
+-    return `An API key is a token that you provide when making API calls. Include the token in a ${inProperty} parameter called \`${name}\`.
+-
+-  Example: ${inProperty === 'query' ? `\`?${name}=123\`` : `\`${name}: 123\``}`;
++    return ``;
+ }
+ function getBasicAuthDescription() {
+     return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
+@@ -2210,9 +2208,7 @@ function getBasicAuthDescription() {
+   Example: \`Authorization: Basic ZGVtbzpwQDU1dzByZA==\``;
+ }
+ function getBearerAuthDescription() {
+-    return `Provide your bearer token in the Authorization header when making requests to protected resources.
+-
+-  Example: \`Authorization: Bearer 123\``;
++    return ``;
+ }
+ function getDigestAuthDescription() {
+     return `Provide your encrypted digest scheme data in the Authorization header when making requests to protected resources.
