@@ -13,7 +13,7 @@ title: Search Comparison
 
 | **Source Code**                       | **Deployment**                      | 
 | ---------------------------------- | ------------------------------ | 
-| [Github](https://github.com/Macrometacorp/demo-search-comparison) | [Deployment](https://macrometacorp.github.io/demo-search-comparison/) | 
+| [GitHub](https://github.com/Macrometacorp/demo-search-comparison) | [Deployment](https://macrometacorp.github.io/demo-search-comparison/) | 
 
 ## Solution
 
