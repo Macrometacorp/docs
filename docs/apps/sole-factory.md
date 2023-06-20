@@ -13,7 +13,7 @@ title: Macrometa Sole Factory
 
 | **Source Code**                       | **Deployment**                      | 
 | ---------------------------------- | ------------------------------ | 
-| [Github](https://github.com/Macrometacorp/e-commerce) | [Deployment](https://macrometacorp.github.io/e-commerce/) | 
+| [GitHub](https://github.com/Macrometacorp/e-commerce) | [Deployment](https://macrometacorp.github.io/e-commerce/) | 
 
 ## Solution
 
