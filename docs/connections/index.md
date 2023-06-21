@@ -47,7 +47,7 @@ For more information about how Macrometa ingests data from sources, refer to [In
 
 ## Limitations
 
-Here are some limitations that you should keep in mind as you work with collections and connections:
+Here are some limitations that you should consider as you work with collections and connections:
 
 - You cannot change a source connection assigned to a collection after the collection is created.
 - You cannot change a connection name.
