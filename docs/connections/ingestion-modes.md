@@ -13,10 +13,10 @@ LOG_BASED replication works by continuously checking these log files for new ent
 
 ## FULL_TABLE Ingestion
 
-This method works by scanning the entire table from the source database and copying all rows into the destination system. This happens when the replication is the first time.
+This method works by scanning the entire table from the source database and copying all rows into the destination system. This happens when the replication is the first time and any time you click **Reload Collection** in Collection Settings.
 
 FULL_TABLE is the most comprehensive way of replicating data, as it ensures that the destination system contains a complete copy of the source table at the point the replication was run. However, it can be resource-intensive, particularly for large tables, and it doesn't reflect changes in real-time. Instead, the changes are only visible if you reload the collection.
 
 ## Which to Choose
 
-Each of these methods has their pros and cons, and the choice between them often depends on the specific use case. For example, if real-time data is a requirement and the database supports it, LOG_BASED replication might be the better choice. However, if you need to do a simple import of your full data, or manually update it infrequently, then FULL_TABLE replication could be simpler and just as effective.
+Each of these methods has their pros and cons, and the choice between them often depends on the specific use case. For example, if real-time data is a requirement and the database supports it, then LOG_BASED replication might be the better choice. However, if you need to do a simple import of your full data, or manually update it infrequently, then FULL_TABLE replication could be simpler and just as effective.
