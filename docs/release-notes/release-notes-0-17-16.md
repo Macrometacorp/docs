@@ -23,7 +23,7 @@ The following features updates are included in this release.
 
 The Settings tab in collections has been expanded and improved with updated look and new functionality, including:
 
-- Information about connections.
+- Information about connections and ETL workflows.
 - Expanded information about collection streams.
 
 [View Collection Settings](../collections/view-collection-settings) was added as a result of this changed. Several pages had minor updates as a result of this change. Individual collection settings pages were removed for Document Store, Key-Value Store, Graph Edge, and Redis Mode collections.
