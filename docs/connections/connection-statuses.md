@@ -1,5 +1,5 @@
 ---
-title: Connection Statuses
+title: Workflow Statuses
 sidebar_position: 40
 ---
 
