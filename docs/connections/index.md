@@ -1,11 +1,11 @@
 ---
-title: Integrations - DRAFT
+title: Connections - DRAFT
 sidebar_position: 1
 ---
 
-Integrations allow you to import data into Macrometa Global Data Network (GDN) from external data sources or other Macrometa document collections. You can also export data from Macrometa GDN into external data sources or other Macrometa document collections.
+_Connections_ allow you to import data into Macrometa Global Data Network (GDN) from external data sources or other Macrometa document collections. You can also export data from Macrometa GDN into external data sources or other Macrometa document collections.
 
-Once created, you can reuse integrations as many times as necessary.
+Once created, you can reuse a connection as many times as necessary.
 
 :::note
 This feature is currently in beta. Contact support@macrometa.com if you want to try it out.
@@ -17,7 +17,7 @@ These terms are used frequently when discussing connections.
 
 A _data source_ refers to an external database or entity that contains data, such as MongoDB, PostgresSQL, a different Macrometa collection, and so on.
 
-A _connector_ is a connection that can be set up between Macrometa and a data source. For example, the list of connectors includes MongoDB, Snowflake, and will be expanded to include others.
+A _connector_ is a connection that can be set up between Macrometa and a data source. For example, the list of connectors includes MongoDB, Snowflake, Macrometa collections, and more.
 
 An _connection_ is a connection that you have created using the connector between Macrometa and a specific data source or target.
 
@@ -43,13 +43,15 @@ Once a log-based source connection is created, then Macrometa listens to inserts
 
 If you alter a source table, such as removing or renaming a column, after it has been mapped to a Macrometa collection, then records will not be updated. You must reload the collection in order to update the schema.
 
+For more information about how Macrometa ingests data from sources, refer to [Ingestion Modes](ingestion-modes.md).
+
 ## Limitations
 
-Here are some limitations that you should keep in mind as you work with collections and integrations:
+Here are some limitations that you should keep in mind as you work with collections and connections:
 
-- You cannot change a source integration assigned to a collection after the collection is created.
-- You cannot change an integration name.
-- An empty collection cannot be a target for an integration.
+- You cannot change a source connection assigned to a collection after the collection is created.
+- You cannot change a connection name.
+- An empty collection cannot be a target for an connection.
 - You cannot edit transformations.
-- Play tier users, refer to [Tenant Quotas and Limits](../references/quotas) to view limits on number of integrations. Keep in mind that each connection also adds one collection, and each transformation adds one stream worker.
+- Play tier users, refer to [Tenant Quotas and Limits](../references/quotas) to view limits on number of connections. Keep in mind that each connection workflow also adds one collection, and each transformation adds one stream worker.
 - When you add a target, you only capture subsequent inserts, updates, and deletes made on the data after the connection is made. Truncating the collection does not count as deleting records in this case.
