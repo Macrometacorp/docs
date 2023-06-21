@@ -11,15 +11,17 @@ Once created, you can reuse integrations as many times as necessary.
 This feature is currently in beta. Contact support@macrometa.com if you want to try it out.
 :::
 
-## Data Source, Connector, Connection
+## Data Source, Connector, Workflow
 
-These terms are used frequently when discussing integrations.
+These terms are used frequently when discussing connections.
 
 A _data source_ refers to an external database or entity that contains data, such as MongoDB, PostgresSQL, a different Macrometa collection, and so on.
 
 A _connector_ is a connection that can be set up between Macrometa and a data source. For example, the list of connectors includes MongoDB, Snowflake, and will be expanded to include others.
 
 An _connection_ is a connection that you have created using the connector between Macrometa and a specific data source or target.
+
+An _ETL workflow_ is a connection between a specific collection and a specific table in a data source.
 
 ## Sources and Targets
 
