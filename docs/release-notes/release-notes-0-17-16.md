@@ -9,11 +9,11 @@ This document describes what has changed in Macrometa release 0.17.16. To check 
 
 The following new features are included in this release.
 
-### Integrations
+### Connections
 
 You can now connect Macrometa document collections to external data sources or other Macrometa collections, either as a source or target.
 
-The [Integrations](../integrations) section was added as a result of this feature.
+The [Connections](../connections) section was added as a result of this feature.
 
 ## Feature Updates
 
