@@ -1,5 +1,5 @@
 ---
-title: Integration Workflows - DRAFT
+title: Connection Workflows - DRAFT
 sidebar_position: 10
 ---
 
