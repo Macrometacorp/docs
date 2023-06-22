@@ -43,7 +43,7 @@ This section is not in [Redis Mode collection](./redis-mode/) settings.
 
 **ETL Workflows and Reload Collections**
 
-The ETL Workflows and Reload Collections sections only apply to [Document Store collections](./documents/).
+The ETL Workflows and Reload Collections sections only apply to [Document Store collections](./documents/) and only appear if you have Connections enabled.
 
 For more information about integrations and connections, refer to [Connections](../connections/).
 
