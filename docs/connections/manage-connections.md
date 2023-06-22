@@ -1,17 +1,17 @@
 ---
-title: Manage Integrations
+title: Manage Connections
 sidebar_position: 20
 ---
 
-This page shows you how to manage your integrations in Macrometa.
+This page shows you how to manage your connections in Macrometa.
 
-## Create an Integration
+## Create a Connection
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Access > Integrations**.
-3. Click **New Integration**.
-4. Select the integration type.
-5. Enter specific information in the fields for the integration and then click **Create**. For prerequisites and additional notes, refer to the documentation for the specific connector type:
+2. Click **Access > Connections**.
+3. Click **New Connection**.
+4. Select the connection type. Every connector in the list has a data source type and is either a source or a target.
+5. Enter specific information in the fields for the connection and then click **Create**. For prerequisites and additional notes, refer to the documentation for the specific connector type:
 
    - [BigQuery](connector-types/bigquery-draft)
    - [Macrometa Collection](connector-types/mm-collection-draft)
@@ -20,35 +20,35 @@ This page shows you how to manage your integrations in Macrometa.
    - [PostgreSQL](connector-types/postgresql-draft)
    - [Snowflake](connector-types/snowflake-draft)
 
-## View an Integration
+## View a Connection
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Access > Integrations**.
+2. Click **Access > Connections**.
 
-   Macrometa displays a list of existing integrations.
+   Macrometa displays a list of existing connections.
 
-3. To view the settings of a specific integration, click the integration name.
+3. To view the settings of a specific connection, click the connection name.
 
-## Edit an Integration
-
-1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Access > Integrations**.
-3. Click the name of the integration that you want to edit.
-4. In the **Edit Integration** screen, make any changes you want to and then click **Update**.
-
-## Duplicate an Integration
+## Edit a Connection
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Access > Integrations**.
-3. Click the stacked dots next to the integration that you want to duplicate, then click **Duplicate**.
+2. Click **Access > Connections**.
+3. Click the name of the connection that you want to edit.
+4. In the **Edit Connection** screen, make any changes you want to and then click **Update**.
 
-   Macrometa opens a **New Integration** screen with all the settings entered from the original integration except the name.
+## Duplicate a Connection
+
+1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
+2. Click **Access > Connections**.
+3. Click the stacked dots next to the connection that you want to duplicate, then click **Duplicate**.
+
+   Macrometa opens a **New Connection** screen with all the settings entered from the original connection except the name.
 
 4. Enter a name and make any other changes you want, then click **Create**.
 
-## Delete an Integration
+## Delete a Connection
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Access > Integrations**.
-3. Click the stacked dots next to the integration that you want to delete, then click **Delete**.
-4. Click **Delete** to confirm your decision and permanently delete the integration.
+2. Click **Access > Connections**.
+3. Click the stacked dots next to the connection that you want to delete, then click **Delete**.
+4. Click **Delete** to confirm your decision and permanently delete the connection.
