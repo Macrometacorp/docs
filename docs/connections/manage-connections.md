@@ -3,7 +3,7 @@ title: Manage Connections
 sidebar_position: 20
 ---
 
-This page shows you how to manage your connections in Macrometa.
+This page shows you how to manage your connections in the Macrometa Connections section.
 
 ## Create a Connection
 
