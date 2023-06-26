@@ -20,7 +20,7 @@ Follow these instructions to create a new collection using the GDN console web U
 
    - **Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
    - **Expiration -** Enable expiration. This allows key-value documents to be removed at a certain date and time.
-   - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
+   - **Enable Collection stream -** Enable streams for all locations for collection.
    - **Wait for sync -** Synchronize to disk before completing record creation or update.
 
 ## KV Blob Storage
