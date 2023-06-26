@@ -41,14 +41,6 @@ This section is not in [Redis Mode collection](./redis-mode/) settings.
 
 ![Collection Stream Section](/img/collections/collection-stream.png)
 
-**ETL Workflows and Reload Collections**
-
-The ETL Workflows and Reload Collections sections only apply to [Document Store collections](./documents/) and only appear if you have Connections enabled.
-
-For more information about integrations and connections, refer to [Connections](../connections/).
-
-![Connections and Reload Collection Sections](/img/collections/etl-workflows-and-reload-collection.png)
-
 **Truncate Collection**
 
 For more information, refer to [Truncate Collection](./truncate-collection).
