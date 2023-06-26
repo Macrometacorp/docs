@@ -29,15 +29,15 @@ You can only create a source workflow when you create a collection. You cannot a
 6. Select an existing source connection or click **Add connection**, select the connection that you want to create, and then follow the guidance on the screen.
 7. Enter a source collection or source table. You might also have optional fields, depending on your connector type.
 8. Click **Validate**.
-   
+
    Macrometa validates the connection and displays a preview of information in the data source.
 
 9. (Optional) If you want to transform the data, then click **Add Transformation**. For more information about supported Stream QL, refer to [Transformations](./transformations).
-10.  Enter information about the collection:
+10. Enter information about the collection:
 
-   - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
-   - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
-   - **Distribution -** Required. Select whether to store data globally or locally. Default is **Global**.
+    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
+    - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
+    - **Distribution -** Required. Select whether to store data globally or locally. Default is **Global**.
 
 11. Click **Create**. If you are missing required information or have an incomplete connection, then you cannot complete this step.
 
