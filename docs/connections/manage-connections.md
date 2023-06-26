@@ -15,7 +15,7 @@ This page shows you how to manage your connections in the Macrometa Connections 
 
    - [BigQuery](connector-types/bigquery-draft)
    - [Macrometa Collection](connector-types/mm-collection-draft)
-   - [MongoDB](connector-types/mongodb-draft)
+   - [MongoDB](connector-types/mongodb-connector)
    - [OracleDB](connector-types/oracledb-draft)
    - [PostgreSQL](connector-types/postgresql-draft)
    - [Snowflake](connector-types/snowflake-draft)

@@ -1,5 +1,5 @@
 ---
-title: MongoDB - DRAFT
+title: MongoDB Connector
 ---
 
 Macrometa collection connectors allow you to extract data from or send data to an existing MongoDB collection.
