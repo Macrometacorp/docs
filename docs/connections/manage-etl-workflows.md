@@ -3,16 +3,6 @@ title: Manage ETL Workflows
 sidebar_position: 30
 ---
 
-Create data source workflow
-Add data target workflow
-
-- When you attach targets to a collection, only the data that is available in the current region is used for the target workflow. However, if the current region becomes unreachable, the workflow will stop copying data. To ensure uninterrupted data copying, you should enable streams for the source collection in other regions as a backup. This way, data copying will automatically switch to one of those regions when the current region becomes unavailable.
-- DFP Note - Ask Koshy how to do this. From Grainier: They have to switch the region (from top left region selector in GUI), and from each region they have to open the collection settings and enable stream using the toggle.
-
-View ETL workflows
-Delete workflow
-Reload collection - It initially truncates the current collection and then only re-starts the Source connection.
-
 This page shows you how to manage your ETL connections.
 
 ## Create a Data Source Workflow
@@ -52,6 +42,10 @@ You can only add a target workflow to a Macrometa document collection that conta
 7. Enter a target collection or target table. You might also have optional advanced fields, depending on your connector type.
 8. (Optional) If you want to transform the data, then click **Add Transformation**. For more information about supported Stream QL, refer to [Transformations](./transformations).
 9. Click **Create**.
+
+:::note
+When you add a target workflow to a collection, only the data that is available in the current region is used for the target workflow. However, if the current region becomes unreachable, then the workflow will stop copying data. To ensure uninterrupted data copying, you should enable streams for the source collection in other regions as a backup. This way, data copying will automatically switch to one of those regions when the current region becomes unavailable.
+:::
 
 ## View Collection Workflows
 
