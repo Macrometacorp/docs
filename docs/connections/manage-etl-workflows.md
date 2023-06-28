@@ -62,6 +62,10 @@ You can view workflows attached to a collection in the Collection Settings tab.
 
 Reloading the collection truncates the collection and then only restarts the source connection. This can only be done on collections that have a source workflow.
 
+:::caution
+Reloading a collection that has targets attached can lead to duplicate data at targets, because the targets will not truncate as part of the reload process.
+:::
+
 1. Log in to your [Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Data > Collections**.
 1. Click the collection for which you want to view the settings.
