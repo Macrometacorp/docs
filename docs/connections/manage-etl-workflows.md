@@ -31,7 +31,7 @@ You can only create a source workflow when you create a Macrometa document colle
 
 ## Add a Target Workflow
 
-You can only add a target workflow to a Macrometa document collection that contains records.
+You can only add target workflows to a Macrometa document collection that contains records. Any collection with records can have multiple targets.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Data > Collections**.
