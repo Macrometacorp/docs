@@ -28,7 +28,7 @@ This function creates a map from a JSON string. The provided JSON string `{"symb
 
 ```sql
 CREATE STREAM InputStream (jsonString string);
-CREATE SINK STREAM OutputStream (mapOutput object>);
+CREATE SINK STREAM OutputStream (mapOutput object);
 
 @info(name = 'CreateMapFromJSON')
 INSERT INTO OutputStream
