@@ -38,13 +38,19 @@ The `geo:closestPoints()` function identifies the closest points on the specifie
 ## Example 2
 
 ```sql
-CREATE STREAM InputGeoStream (longitude float, latitude float, geoJsonFence string);
-CREATE SINK STREAM OutputGeoStream (closestPointOf1From2Latitude float, closestPointOf1From2Longitude float, closestPointOf2From1Latitude float, closestPointOf2From1Longitude float);
+CREATE STREAM InputGeoStream (longitude double, latitude double, geoJsonFence string);
+CREATE SINK STREAM OutputGeoStream (closestPointOf1From2Latitude double, closestPointOf1From2Longitude double, closestPointOf2From1Latitude double, closestPointOf2From1Longitude double);
 
 @info(name = 'closestPoints')
 INSERT INTO OutputGeoStream
-SELECT geo:closestPoints(longitude, latitude, geoJsonFence) 
-FROM InputGeoStream;
+SELECT closestPointOf1From2Latitude, closestPointOf1From2Longitude, closestPointOf2From1Latitude, closestPointOf2From1Longitude
+FROM InputGeoStream#geo:closestPoints(longitude, latitude, geoJsonFence);
 ```
 
-In this example, the `closestPoints` processes events from the `InputGeoStream`, which consists of the geographical coordinates (`longitude`, `latitude`) and a GeoJSON fence (`geoJsonFence`). It uses the `geo:closestPoints(longitude, latitude, geoJsonFence)` function to determine the closest points on the fence from the provided location. The query then sends these points as attributes for each event to the `OutputGeoStream`.
+In this stream worker example, `InputGeoStream` is created to feed input data and `OutputGeoStream` is set up to receive the output.
+
+The query `closestPoints` listens for events from `InputGeoStream`, each of which contains geographical coordinates (`longitude`, `latitude`), and a GeoJSON fence (`geoJsonFence`).
+
+The `geo:closestPoints(longitude, latitude, geoJsonFence)` function is then applied to these events. This function computes the closest points between the provided geographic location and the GeoJSON fence. It returns the latitude and longitude of the closest point on the fence from the location (`closestPointOf1From2Latitude`, `closestPointOf1From2Longitude`) and the closest point on the location from the fence (`closestPointOf2From1Latitude`, `closestPointOf2From1Longitude`).
+
+The resulting four attributes are then forwarded to the `OutputGeoStream`. The process continually updates `OutputGeoStream` with the closest points for each incoming event from `InputGeoStream`.
