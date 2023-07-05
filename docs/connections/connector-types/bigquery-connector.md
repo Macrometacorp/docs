@@ -12,7 +12,7 @@ Macrometa collection connectors allow you to extract data from or send data to a
 
 ## BigQuery Source
 
-No additional notes.
+BigQuery source only supports FULL_TABLE replication method. You cannot use LOG_BASED with this connector. For more information about replication types, refer to [Ingestion Modes](../ingestion-modes.md).
 
 ## BigQuery Target
 
