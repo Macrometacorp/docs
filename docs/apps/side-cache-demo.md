@@ -7,9 +7,9 @@ This demo demonstrates that a Macrometa [key-value store](../collections/keyvalu
 
 ## Macrometa GDN
 
-| **Platform**                       | **Tenant**                      | **GeoFabric** |
-| ---------------------------------- | ------------------------------ | -------------- |
-| [Play](https://play.macrometa.io/) | `demo@macrometa.com` | `side_cache` |
+| **Platform**                       | **Tenant**                      | **GeoFabric** |**GUI**|
+| ---------------------------------- | ------------------------------ | -------------- |------------|
+| [Play](https://play.macrometa.io/) | `demo@macrometa.com` | `side_cache` | [Macrometa Side Cache](https://macrometacorp.github.io/demo-mm-sidecache/) |
 
 ## Demo Site
 
