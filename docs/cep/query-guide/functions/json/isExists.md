@@ -53,7 +53,7 @@ For a JSON object like `{'name' : 'John', 'address' : {'city' : 'NY', 'country' 
 
 ```sql
 CREATE STREAM PersonStream (json string);
-CREATE SINK STREAM AddressExistsStream (name string, addressExists boolean);
+CREATE SINK STREAM AddressExistsStream (name string, addressExists bool);
 
 @info(name = 'ExtractAddressData')
 INSERT INTO AddressExistsStream
