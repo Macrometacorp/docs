@@ -9,9 +9,9 @@ This demo includes a customized Quell Library (https://github.com/open-source-la
 
 ## Macrometa GDN
 
-| **Platform**                       | **Tenant**                      |
-| ---------------------------------- | ------------------------------ |
-| [URL](https://cache.eng.macrometa.io/) | `demo@macrometa.com` |
+| **Platform**                       | **Tenant**                     | **GUI**|
+| ---------------------------------- | ------------------------------ |--------------|
+| [URL](https://cache.eng.macrometa.io/) | `demo@macrometa.com` |[GraphQL Cache](https://macrometacorp.github.io/parsec-graphql-cache/) |
 
 ## Demo Site
 
