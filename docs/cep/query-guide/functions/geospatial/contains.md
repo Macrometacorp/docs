@@ -42,13 +42,17 @@ In this case, `geo:contains()` function evaluates whether the specified circle, 
 ## Example 3
 
 ```sql
-CREATE STREAM InputGeoStream (pointLongitude float, pointLatitude float, geoJsonFence string);
-CREATE SINK STREAM OutputGeoStream (isContained boolean);
+CREATE STREAM InputGeoStream (pointLongitude double, pointLatitude double, geoJsonFence string);
+CREATE SINK STREAM OutputGeoStream (isContained bool);
 
 @info(name = 'geoContainmentCheck')
 INSERT INTO OutputGeoStream
-SELECT geo:contains(pointLongitude, pointLatitude, geoJsonFence) 
+SELECT geo:contains(pointLongitude, pointLatitude, geoJsonFence) AS isContained
 FROM InputGeoStream;
 ```
 
-In this example, the `geoContainmentCheck` processes events from the `InputGeoStream`, consisting of geographical coordinates (`pointLongitude`, `pointLatitude`) and a GeoJSON fence (`geoJsonFence`). The `geo:contains(pointLongitude, pointLatitude, geoJsonFence)` function is used to verify if the specified point is within the GeoJSON fence. The query then outputs this boolean result for each event to the `OutputGeoStream`.
+In this stream worker example, `InputGeoStream` is created to feed input data, which includes the geographical coordinates (`pointLongitude`, `pointLatitude`), and a GeoJSON fence (`geoJsonFence`). The `OutputGeoStream` is then set up to receive the output.
+
+The query named `geoContainmentCheck` listens for events from the `InputGeoStream` and applies the function `geo:contains(pointLongitude, pointLatitude, geoJsonFence)` to each event. This function checks whether the specified coordinates (`pointLongitude`, `pointLatitude`) lie within the boundaries defined by the `geoJsonFence`. The function returns `true` if the coordinates are contained within the fence and `false` otherwise. 
+
+The output, a boolean value named `isContained`, is then forwarded to `OutputGeoStream`. In essence, this query is continually assessing the containment of the provided geographical points within the GeoJSON fence for each incoming event from `InputGeoStream` and updating `OutputGeoStream` accordingly.
