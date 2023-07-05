@@ -48,7 +48,7 @@ For a JSON object like `{'name' : 'John', 'age' : 23}`, the function `json:getLo
 
 ```sql
 CREATE STREAM PersonStream (json string);
-CREATE SINK STREAM MarriedPersonStream (name string, married boolean);
+CREATE SINK STREAM MarriedPersonStream (name string, married bool);
 
 @info(name = 'ExtractMaritalStatus')
 INSERT INTO MarriedPersonStream
