@@ -46,7 +46,7 @@ This query uses the `geo:equals()` function to compare a point specified by its 
 
 ```sql
 CREATE STREAM GeoStream (geometry1 string, geometry2 string);
-CREATE SINK STREAM EqualsStream (isEqual boolean);
+CREATE SINK STREAM EqualsStream (isEqual bool);
 
 @info(name = 'CheckGeometryEquality')
 INSERT INTO EqualsStream

@@ -47,10 +47,14 @@ SELECT closestPointOf1From2Latitude, closestPointOf1From2Longitude, closestPoint
 FROM InputGeoStream#geo:closestPoints(longitude, latitude, geoJsonFence);
 ```
 
-In this stream worker example, `InputGeoStream` is created to feed input data and `OutputGeoStream` is set up to receive the output.
+In this stream worker example, two streams are created: `InputGeoStream` for input data and `OutputGeoStream` for the output.
 
-The query `closestPoints` listens for events from `InputGeoStream`, each of which contains geographical coordinates (`longitude`, `latitude`), and a GeoJSON fence (`geoJsonFence`).
+The `InputGeoStream` consists of `longitude` and `latitude` representing the geographical coordinates of a location, and `geoJsonFence`, which is a GeoJSON string that contains the geometry type and coordinates of a geographical fence.
 
-The `geo:closestPoints(longitude, latitude, geoJsonFence)` function is then applied to these events. This function computes the closest points between the provided geographic location and the GeoJSON fence. It returns the latitude and longitude of the closest point on the fence from the location (`closestPointOf1From2Latitude`, `closestPointOf1From2Longitude`) and the closest point on the location from the fence (`closestPointOf2From1Latitude`, `closestPointOf2From1Longitude`).
+The `OutputGeoStream` is set to receive the attributes `closestPointOf1From2Latitude`, `closestPointOf1From2Longitude`, `closestPointOf2From1Latitude`, and `closestPointOf2From1Longitude`, which respectively represent the closest point's latitude and longitude to the fence from the location and the closest point's latitude and longitude to the location from the fence.
 
-The resulting four attributes are then forwarded to the `OutputGeoStream`. The process continually updates `OutputGeoStream` with the closest points for each incoming event from `InputGeoStream`.
+The `closestPoints` query is defined to select and process events from the `InputGeoStream` using the function `geo:closestPoints(longitude, latitude, geoJsonFence)`. This function calculates the closest points between the provided location and the defined GeoJSON fence. 
+
+The result of this function, which consists of the coordinates of the closest points between the location and the GeoJSON fence, is then inserted into the `OutputGeoStream`. This stream now holds the resulting closest point data for each processed event from the `InputGeoStream`. 
+
+In summary, this streaming data setup provides a mechanism to continually evaluate geographical data (longitude, latitude) against a GeoJSON-defined fence and output the closest points between the location and the fence.
