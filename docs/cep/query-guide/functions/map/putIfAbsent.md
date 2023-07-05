@@ -30,7 +30,7 @@ The `map:putIfAbsent(stockDetails, 1234, 'IBM')` function checks the `stockDetai
 
 ```sql
 CREATE STREAM StockInput (symbol string, price float, volume int);
-CREATE SINK STREAM UpdatedStockData (stockSymbol string, stockValues object);
+CREATE SINK STREAM UpdatedStockData (symbol string, stockValues object);
 
 @info(name = 'UpdateStockDetails')
 INSERT INTO UpdatedStockData
