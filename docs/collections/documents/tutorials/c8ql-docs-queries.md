@@ -1,6 +1,6 @@
 ---
 sidebar_position: 80
-title: C8QL Docs Queries SDK Example
+title: C8QL Docs Queries Example
 ---
 
 import Tabs from '@theme/Tabs';
