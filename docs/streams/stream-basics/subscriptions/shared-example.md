@@ -11,6 +11,8 @@ This page describes how to configure a shared subscription for one or more strea
 
 To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
 
+## Prerequisites
+
 <Prerequisites />
 
 ## Create Producer
