@@ -23,6 +23,17 @@ Follow these instructions to create a new collection using the GDN console web U
    - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
    - **Wait for sync -** Synchronize to disk before completing record creation or update.
 
+## KV Blob Storage
+
+:::note
+This feature is available upon request. Contact support@macrometa.com to enable it on your account.
+:::
+
+If this feature is enabled on your account, then when you create a new key-value store, you can select the **Blob storage** checkbox. This marks the collection as a blob-based KV collection. These collections can only be used to store blob files, such as images. Once created, this setting cannot be changed.
+
+- Maximum blob file size is 1 MB. This can be changed, but can never exceed 2 MB.
+- You can add blob records using the Macrometa API. Adding records in the Macrometa web console is not supported.
+
 ## Create Key-Value Store Collection with Code
 
 This code example shows how to create a collection for saving the key-value pairs.
