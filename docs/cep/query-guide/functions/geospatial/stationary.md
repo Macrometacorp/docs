@@ -34,7 +34,7 @@ In this example, the `geo:stationary()` function checks if the given geofence wi
 
 ```sql
 CREATE STREAM InputGeoStream (geofenceId string, longitude double, latitude double, radius double);
-CREATE STREAM OutputGeoStream (stationaryStatus bool);
+CREATE SINK STREAM OutputGeoStream (stationaryStatus bool);
 
 @info(name = 'StationaryStatusCheck')
 INSERT INTO OutputGeoStream
