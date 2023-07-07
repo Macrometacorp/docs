@@ -9,9 +9,11 @@ This document describes what has changed in Macrometa release 0.17.16. To check 
 
 The following new features are included in this release.
 
-### Connections
+### Connections - Beta
 
-You can now connect Macrometa document collections to external data sources or other Macrometa collections, either as a source or target.
+With connections, you can now connect Macrometa document collections to external data sources or other Macrometa collections, either as a source or target.
+
+This beta feature is available for instances larger than 16GB (SX-10 and DX-10). Contact support@macrometa.com if you want to try it out.
 
 The [Connections](../connections) section was added as a result of this feature.
 
