@@ -25,8 +25,29 @@ geo:locationApproximate(<STRING> location.recorder, <DOUBLE> latitude, <DOUBLE> 
 ## Example 1
 
 ```sql
-@info(name = 'query1')
-geo:geoLocationApproximate("person1", 6.876657, 79.897648, "ENTER", "uuid1", 20.0d, 1452583935L)
+geo:locationApproximate("person1", 6.876657, 79.897648, "ENTER", "uuid1", 20.0d, 1452583935L)
 ```
 
-This example demonstrates the usage of `geo:geoLocationApproximate()` function. It returns an approximation of the specified location with the given parameters. In this case, the function takes "person1" as the ID, 6.876657 as latitude, 79.897648 as longitude, "ENTER" as the action, "uuid1" as the UUID, 20.0 as the accuracy, and 1452583935L as the timestamp. The function approximates the location and returns the value `6.876657000000001` for the latitude. Note that the longitude approximation is not shown in the example, but it would also be calculated.
+The `geo:locationApproximate()` function calculates an approximate location given the parameters. Here, the function takes "person1" as the identifier, 6.876657 and 79.897648 as the latitude and longitude respectively, "ENTER" as the action, "uuid1" as the UUID, 20.0d as the accuracy, and 1452583935L as the timestamp. The function outputs an approximation of the location, returning `6.876657000000001` for latitude and `79.89764800000001` for longitude.
+
+## Example 2
+
+```sql
+CREATE STREAM InputStream (id string, latitude double, longitude double, action string, uuid string, accuracy double, timestamp long);
+CREATE SINK STREAM OutputStream (id string, averagedLatitude double, averagedLongitude double, averageExist bool);
+
+@info(name = 'approximateLocation')
+INSERT INTO OutputStream
+SELECT id, averagedLatitude, averagedLongitude, averageExist
+FROM InputStream#geo:locationApproximate(id, latitude, longitude, action, uuid, accuracy, timestamp);
+```
+
+In this streaming data example, two streams are created: `InputStream` for input data and `OutputStream` for the output.
+
+The `InputStream` includes fields for `id` (representing the unique ID of the specific object or item being tracked), `latitude` and `longitude` (representing the coordinates of the iBeacon device), `action` (representing the proximity provided by the iBeacon), `uuid` (representing the unique ID of the iBeacon), `accuracy` (representing the approximation weight of the iBeacon), and `timestamp` (representing the timestamp of the log).
+
+The `OutputStream` is set to receive the `id`, `averagedLatitude`, `averagedLongitude`, and a boolean field `averageExist` that will be `true` if the calculation was successful, and `false` otherwise.
+
+The query named `approximateLocation` listens for events from the `InputStream` and applies the function `geo:locationApproximate(id, latitude, longitude, action, uuid, accuracy, timestamp)` to each event. This function calculates the average location of the `location.recorder` using the collection of iBeacons where the location recorder resides.
+
+The output from this function - the `id`, `averagedLatitude`, `averagedLongitude`, and `averageExist` - is then inserted into the `OutputStream`. In essence, this query is continually calculating an average position based on the inputs from the `InputStream` and updating `OutputStream` with the calculated averages.
