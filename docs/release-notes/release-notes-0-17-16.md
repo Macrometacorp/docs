@@ -38,7 +38,6 @@ The following minor changes were added in this release.
 | -------- | ----------- |
 | CEP-559 | Change extension name for [unitconversion](../cep/query-guide/functions/unitconversion/) of `kgToStones` function. New name is [kgToStone](../cep/query-guide/functions/unitconversion/kgToStone). |
 | STRM-588 | Supports geo-replicated topics created by Pulsar clients.  |
-|          |             |
 
 ## Defect Fixes
 
