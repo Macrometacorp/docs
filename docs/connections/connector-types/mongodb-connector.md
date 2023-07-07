@@ -1,5 +1,5 @@
 ---
-title: MongoDB - DRAFT
+title: MongoDB Connector
 ---
 
 Macrometa collection connectors allow you to extract data from or send data to an existing MongoDB collection.
@@ -9,7 +9,7 @@ Macrometa collection connectors allow you to extract data from or send data to a
 - Macrometa account with admin permissions.
 - Remotely accessible, running MongoDB instance.
 - Source collections must not be empty.
-- If you are using `LOG_BASED` replication, then make sure to set `--replSet` argument for your MongoDB.
+- If you are using `LOG_BASED` replication, then you must set the `--replSet` argument for your MongoDB.
 
 ## MongoDB Source
 

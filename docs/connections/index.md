@@ -1,5 +1,5 @@
 ---
-title: Connections - DRAFT
+title: Connections - Beta
 sidebar_position: 1
 ---
 

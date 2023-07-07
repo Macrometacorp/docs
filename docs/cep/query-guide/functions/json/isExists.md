@@ -20,21 +20,54 @@ Function checks whether there is a JSON element present in the given path or not
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 json:isExists(json, '$.name')
 ```
 
-This query, named 'query1', uses the `json:isExists` function to check if an element exists in the given JSON path. In this case, the function checks for the existence of the `$.name` element.
-
-When the input `json` has the format `{'name' : 'John', 'age' : 23}`, the function returns `true`, as there is an element in the given path.
+Given a JSON object like `{'name' : 'John', 'age' : 23}`, the function `json:isExists(json,'$.name')` checks if an element exists at the key `name`. In this instance, it returns `true` because there is a matching element at `$.name`.
 
 ## Example 2
 
 ```sql
-@info(name = 'query1')
 json:isExists(json, '$.salary')
 ```
 
-This query, named 'query1', uses the `json:isExists` function to check if an element exists in the given JSON path. In this case, the function checks for the existence of the `$.salary` element.
+With a JSON object like `{'name' : 'John', 'age' : 23}`, the function `json:isExists(json,'$.salary')` checks if an element exists at the key `salary`. In this instance, it returns `false` because there is no matching element at `$.salary`.
 
-When the input `json` has the format `{'name' : 'John', 'age' : 23}`, the function returns `false`, as there is no element in the given path.
+## Example 3
+
+```sql
+json:isExists(json, '$.age')
+```
+
+Given a JSON object like `{'name' : 'John', 'age' : 23}`, the function `json:isExists(json,'$.age')` checks if an element exists at the key `age`. In this instance, it returns `true` because there is a matching element at `$.age`.
+
+## Example 4
+
+```sql
+json:isExists(json, '$.address.city')
+```
+
+For a JSON object like `{'name' : 'John', 'address' : {'city' : 'NY', 'country' : 'USA'}}`, the function `json:isExists(json,'$.address.city')` checks if an element exists at the key `address.city`. In this instance, it returns `true` because there is a matching element at `$.address.city`.
+
+## Example 5
+
+```sql
+CREATE STREAM PersonStream (json string);
+CREATE SINK STREAM AddressExistsStream (name string, addressExists bool);
+
+@info(name = 'ExtractAddressData')
+INSERT INTO AddressExistsStream
+SELECT json:getString(json, '$.name') AS name, 
+       json:isExists(json, '$.address') AS addressExists
+FROM PersonStream;
+```
+
+In this example, `PersonStream` is defined for the input data and `AddressExistsStream` for the output.
+
+The `ExtractAddressData` stream worker listens for events from the `PersonStream`. Each event is a JSON string representing a person's details.
+
+The function `json:getString(json, '$.name')` is used to extract the name (a string) from each JSON string. The function `json:isExists(json, '$.address')` is used to check if the `address` key exists in each JSON string.
+
+The extracted name and the result of the existence check are then inserted into the `AddressExistsStream`.
+
+The stream worker continuously processes each person's details from `PersonStream`, extracts the name, checks the existence of the address, and feeds these values into the `AddressExistsStream`. This allows real-time analysis of whether the address details of the persons in the incoming data stream exist or not.
