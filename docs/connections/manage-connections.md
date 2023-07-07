@@ -17,7 +17,7 @@ This page shows you how to manage your connections in the Macrometa Connections 
    - [MongoDB](connector-types/mongodb-connector)
    - [Macrometa Collection](connector-types/mm-collection-connector)
    - [OracleDB](connector-types/oracledb-connector)
-   - [PostgreSQL](connector-types/postgresql-draft)
+   - [PostgreSQL](connector-types/postgresql-connector)
    - [Snowflake](connector-types/snowflake-draft)
 
 ## View a Connection

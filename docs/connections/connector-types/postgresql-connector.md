@@ -1,5 +1,5 @@
 ---
-title: PostgreSQL - DRAFT
+title: PostgreSQL Connector
 ---
 
 A Macrometa connector that extracts data from or sends data to an existing Postgres database.
