@@ -43,11 +43,11 @@ Here, the `geo:intersects()` function determines whether the point (0.5, 0.5) in
 
 ```sql
 CREATE STREAM InputGeoStream (geoJsonFence1 string, geoJsonFence2 string);
-CREATE SINK STREAM OutputGeoStream (intersects boolean);
+CREATE SINK STREAM OutputGeoStream (intersects bool);
 
 @info(name = 'IntersectionCheckQuery')
 INSERT INTO OutputGeoStream
-SELECT geo:intersects(geoJsonFence1, geoJsonFence2) 
+SELECT geo:intersects(geoJsonFence1, geoJsonFence2) AS intersects
 FROM InputGeoStream;
 ```
 
