@@ -1,5 +1,5 @@
 ---
-title: Snowflake - DRAFT
+title: Snowflake Connector
 ---
 
 Macrometa collection connectors allow you to extract data from or send data to an existing Snowflake collection.
