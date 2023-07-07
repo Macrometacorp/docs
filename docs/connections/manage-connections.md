@@ -14,8 +14,8 @@ This page shows you how to manage your connections in the Macrometa Connections 
 5. Enter specific information in the fields for the connection and then click **Create**. For prerequisites and additional notes, refer to the documentation for the specific connector type:
 
    - [BigQuery](connector-types/bigquery-connector)
+   - [MongoDB](connector-types/mongodb-connector)
    - [Macrometa Collection](connector-types/mm-collection-connector)
-   - [MongoDB](connector-types/mongodb-draft)
    - [OracleDB](connector-types/oracledb-connector)
    - [PostgreSQL](connector-types/postgresql-draft)
    - [Snowflake](connector-types/snowflake-draft)
