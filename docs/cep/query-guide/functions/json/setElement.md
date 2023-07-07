@@ -23,54 +23,71 @@ Function sets JSON element into a given JSON at the specific path.
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 json:setElement(json, '$', "{'country' : 'USA'}", 'address')
 ```
 
-This query, named 'query1', uses the `json:setElement` function to add a new element to the input JSON. In this case, the function adds the `address` element with the value `{'country' : 'USA'}` to the root of the JSON.
+The `json:setElement` function in this example is used to add a new element to the input JSON. Here, it adds the `address` element with the value `{'country' : 'USA'}` at the root of the JSON (`$`). 
 
-When the input `json` has the format `{'name' : 'John', 'married' : true}`, the function updates the JSON to `{'name' : 'John', 'married' : true, 'address' : {'country' : 'USA'}}` and returns the updated JSON.
+For instance, if the input `json` is `{'name' : 'John', 'married' : true}`, the function modifies the JSON to include the new `address` element, resulting in `{'name' : 'John', 'married' : true, 'address' : {'country' : 'USA'}}`.
 
 ## Example 2
 
 ```sql
-@info(name = 'query1')
 json:setElement(json, '$', 40, 'age')
 ```
 
-This query, named 'query1', uses the `json:setElement` function to add a new element to the input JSON. In this case, the function adds the `age` element with the value `40` to the root of the JSON.
+The `json:setElement` function in this example is used to add a new `age` element with the value `40` to the root of the input JSON (`$`). 
 
-When the input `json` has the format `{'name' : 'John', 'married' : true}`, the function updates the JSON to `{'name' : 'John', 'married' : true, 'age' : 40}` and returns the updated JSON.
+If the input `json` is `{'name' : 'John', 'married' : true}`, the function updates the JSON to `{'name' : 'John', 'married' : true, 'age' : 40}`.
 
 ## Example 3
 
 ```sql
-@info(name = 'query1')
 json:setElement(json, '$', 45, 'age')
 ```
 
-This query, named 'query1', uses the `json:setElement` function to modify an existing element in the input JSON. In this case, the function updates the `age` element with the new value `45` at the root of the JSON.
+The `json:setElement` function here modifies an existing `age` element in the input JSON, updating its value to `45` at the root level (`$`). 
 
-When the input `json` has the format `{'name' : 'John', 'married' : true, 'age' : 40}`, the function updates the JSON to `{'name' : 'John', 'married' : true, 'age' : 45}` and returns the updated JSON.
+If the input `json` is `{'name' : 'John', 'married' : true, 'age' : 40}`, the function updates the JSON to `{'name' : 'John', 'married' : true, 'age' : 45}`.
 
 ## Example 4
 
 ```sql
-@info(name = 'query1')
 json:setElement(json, '$.items', 'book')
 ```
 
-This query, named 'query1', uses the `json:setElement` function to modify an existing element in the input JSON. In this case, the function adds a new value 'book' to the `items` array.
+In this example, `json:setElement` is used to modify an existing `items` array in the input JSON, adding a new value 'book' to it. 
 
-When the input `json` has the format `{'name' : 'Stationary', 'items' : ['pen', 'pencil']}`, the function updates the JSON to `{'name' : 'Stationary', 'items' : ['pen', 'pencil', 'book']}` by adding `book` to the `items` array and returns the updated JSON.
+For example, if the input `json` is `{'name' : 'Stationary', 'items' : ['pen', 'pencil']}`, the function adds `book` to the `items` array, updating the JSON to `{'name' : 'Stationary', 'items' : ['pen', 'pencil', 'book']}`.
 
 ## Example 5
 
 ```sql
-@info(name = 'query1')
 json:setElement(json, '$.address', 'city', 'SF')
 ```
 
-This query, named 'query1', uses the `json:setElement` function to modify an existing element in the input JSON. In this case, the function attempts to update the `city` element within the `address` element.
+The `json:setElement` function in this example is used to modify an existing element in the input JSON. Here, it attempts to update the `city` element within the `address` object. 
 
-When the input `json` has the format `{'name' : 'John', 'married' : true}`, the function will not update the JSON because there is no valid path for `$.address`. Instead, it returns the original JSON unmodified.
+However, if the input `json` is `{'name' : 'John', 'married' : true}`, the function will not modify the JSON, because there is no valid path for `$.address`. Therefore, it returns the original JSON unmodified.
+
+## Example 6
+
+```sql
+CREATE STREAM PersonStream (json string);
+CREATE SINK STREAM UpdatedPersonStream (json object);
+
+@info(name = 'AddAddressDetails')
+INSERT INTO UpdatedPersonStream
+SELECT json:setElement(json, '$', "{'city' : 'SF', 'country' : 'USA'}", 'address') AS json
+FROM PersonStream;
+```
+
+In this stream worker, two streams are defined: `PersonStream` for the incoming data, and `UpdatedPersonStream` for the outgoing data.
+
+The `AddAddressDetails` query is designed to process events from the `PersonStream`. Each event is a JSON string that contains information about a person.
+
+The function `json:setElement(json, '$', "{'city' : 'SF', 'country' : 'USA'}", 'address')` is used within the query to add or modify an `address` object at the root of each JSON string. This address object includes a `city` and `country`.
+
+The resulting updated JSON string, which now includes an address, is inserted into the `UpdatedPersonStream`.
+
+In operation, this query continuously processes each person's details from `PersonStream`, adds or updates the address, and outputs the updated JSON strings into `UpdatedPersonStream`. This enables the real-time enhancement of person details within the incoming data stream.

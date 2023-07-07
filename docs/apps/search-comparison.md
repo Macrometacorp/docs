@@ -7,9 +7,9 @@ This demo provides a comprehensive analysis of latency variations between Macrom
 
 ## Macrometa GDN
 
-| **Platform**                       | **Tenant**                      | **GeoFabric** |
-| ---------------------------------- | ------------------------------ | -------------- |
-| [Play](https://play.macrometa.io/) | `demo@macrometa.com` | `search_comparison` |
+| **Platform**                       | **Tenant**                      | **GeoFabric** |**GUI**|
+| ---------------------------------- | ------------------------------ | -------------- |------------|
+| [Play](https://play.macrometa.io/) | `demo@macrometa.com` | `search_comparison` | [Macrometa Search vs. Elasticsearch](https://macrometacorp.github.io/demo-search-comparison/) |
 
 ## Demo Site
 

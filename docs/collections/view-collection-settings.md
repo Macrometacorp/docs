@@ -34,20 +34,16 @@ The Settings tab contains the following fields:
 
 This section is not in [Redis Mode collection](./redis-mode/) settings.
 
+:::note
+Streams are enabled and disabled on a per-region basis, not a per-fabric basis. This means that when you toggle streams on or off, that selection only applies to the location displayed at the top of the side menu. You must change location and repeat the selection to apply the change to other locations.
+:::
+
 - **Stream Enabled** - Click to turn streams on or off for this collection. When streams are enabled, you can access the Stream tab.
 - **Stream Name** - The name of the collection stream.
 - **Replication** - Whether the stream is replicated globally or locally.
 - **WebSocket URL** - The WebSocket connection to the collection stream allows you to interact with the stream in real-time. This connection allows you to receive live updates as documents are added, updated, or removed from the collection.
 
 ![Collection Stream Section](/img/collections/collection-stream.png)
-
-**ETL Workflows and Reload Collections**
-
-The ETL Workflows and Reload Collections sections only apply to [Document Store collections](./documents/) and only appear if you have Connections enabled.
-
-For more information about integrations and connections, refer to [Connections](../connections/).
-
-![Connections and Reload Collection Sections](/img/collections/etl-workflows-and-reload-collection.png)
 
 **Truncate Collection**
 
