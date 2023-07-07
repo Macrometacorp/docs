@@ -9,9 +9,9 @@ Using the Macrometa platform, it tracks and analyzes visitor actions to provide 
 
 ## Macrometa GDN
 
-| **Platform**                       | **Tenant**                      | **Geo Fabric** |
-| ---------------------------------- | ------------------------------ | -------------- |
-| [Play](https://play.macrometa.io/) | `demo@macrometa.com` | `e-commerce-search-flow` |
+| **Platform**                       | **Tenant**                      | **Geo Fabric** | **GUI** |
+| ---------------------------------- | ------------------------------ | -------------- |----------|
+| [Play](https://play.macrometa.io/) | `demo@macrometa.com` | `e-commerce-search-flow` | [Macrometa Sole Factory](https://macrometacorp.github.io/e-commerce/)|
 
 ## Demo Site
 
