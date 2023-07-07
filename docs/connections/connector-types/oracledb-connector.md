@@ -1,5 +1,5 @@
 ---
-title: OracleDB - DRAFT
+title: OracleDB Connector
 ---
 
 Macrometa collection connectors allow you to extract data from or send data to an existing OracleDB collection.
