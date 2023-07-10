@@ -119,6 +119,10 @@ Deploy compute runtimes and complex event-driven workloads alongside your data, 
     heading="Users"
     href="/account-management/users"
   />
+    <card
+    heading="Connections - Beta"
+    href="/connections"
+  />
 </grid>
 
 ## Network
