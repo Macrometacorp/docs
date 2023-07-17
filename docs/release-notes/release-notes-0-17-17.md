@@ -110,8 +110,8 @@ The following defects were fixed in this release.
 | Defect #  | Description  |
 |---|---|
 | CEP-586  | The `geo:stationary` stream processor in fails in some cases.  |
-|   |   |
-|   |   |
+| CEP-572  | Stream workerw with fields that start with an integer or with special chars other than `_` throw exceptions.  |
+| CEP-551  | Stream workers are not handling the error returned by DB when publish queue is full, causing data loss.  |
 |   |   |
 |   |   |
 |   |   |
