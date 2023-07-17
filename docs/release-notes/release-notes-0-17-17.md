@@ -109,7 +109,7 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
-|   |   |
+| CEP-586  | The `geo:stationary` stream processor in fails in some cases.  |
 |   |   |
 |   |   |
 |   |   |
