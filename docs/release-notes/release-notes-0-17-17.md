@@ -31,7 +31,7 @@ Description of feature.
 
 The following features updates are included in this release.
 
-### Unique Windows Renamed - NEED TO UPDATE CONENT
+### Unique Windows Renamed - NEED TO UPDATE CONTENT, How do I differentiate duplicate names?
 
 The window functions in the `unique` namespace have been renamed as follows:
 
@@ -49,6 +49,19 @@ The window functions in the `unique` namespace have been renamed as follows:
 | WINDOW UNIQUE:timeLengthBatch() | WINDOW TUMBLING_TIME_LENGTH()    |
 
 Topics in [Window Types](../cep/windows/window-types/) were updated as a result of this change.
+
+### Streams Stats API Update
+
+The stream stats API endpoint `/_fabric/{fabric}/_api/streams/{stream}/stats` now includes two new optional parameters:
+
+- `getPreciseBacklog`: When true, returns precise backlog.
+- `subscriptionBacklogSize`: When true, returns backlog size for each subscription.
+
+### Update 1
+
+Description of update.
+
+[Topic name](link) and [topic name](link) were updated as a result of this change.
 
 ### Update 1
 
