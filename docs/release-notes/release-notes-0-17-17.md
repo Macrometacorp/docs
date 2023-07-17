@@ -31,11 +31,24 @@ Description of feature.
 
 The following features updates are included in this release.
 
-### Update 1
+### Unique Windows Renamed - NEED TO UPDATE CONENT
 
-Description of update.
+The window functions in the `unique` namespace have been renamed as follows:
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+| Old Name                       | New Name                          |
+|------------------------------- |----------------------------------|
+| WINDOW UNIQUE:ever()           | WINDOW EVER()                     |
+| WINDOW UNIQUE:externalTimeBatch() | WINDOW TUMBLING_EXTERNAL_TIME() |
+| WINDOW UNIQUE:first()          | WINDOW FIRST()                    |
+| WINDOW UNIQUE:firstLengthBatch() | WINDOW TUMBLING_FIRST()          |
+| WINDOW UNIQUE:firstTimeBatch() | WINDOW TUMBLING_FIRST_TIME()      |
+| WINDOW UNIQUE:length()         | WINDOW SLIDING_LENGTH()           |
+| WINDOW UNIQUE:lengthBatch()    | WINDOW TUMBLING_LENGTH()          |
+| WINDOW UNIQUE:time()           | WINDOW SLIDING_TIME()             |
+| WINDOW UNIQUE:timeBatch()      | WINDOW TUMBLING_TIME()            |
+| WINDOW UNIQUE:timeLengthBatch() | WINDOW TUMBLING_TIME_LENGTH()    |
+
+Topics in [Window Types](../cep/windows/window-types/) were updated as a result of this change.
 
 ### Update 1
 
