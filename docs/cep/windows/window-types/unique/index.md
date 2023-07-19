@@ -2,7 +2,9 @@
 title: WINDOW UNIQUE
 ---
 
-This window is used with a namespace such as `WINDOW UNIQUE:windowName`. The window retains and processes unique events based on the given parameters.
+This window is used with a namespace such as `WINDOW UNIQUE:WINDOW_NAME`. The window retains and processes unique events based on the given parameters.
+
+## Unique Windows
 
 | Function         | Description                 |
 |-----------------------|------------------------------------------------------------|
@@ -17,7 +19,7 @@ This window is used with a namespace such as `WINDOW UNIQUE:windowName`. The win
 | [TUMBLING_TIME](tumbling-time.md)     | This is a batch (tumbling) time window that is updated with the latest events based on `unique.key` tumbling time period `window.time` and time offset `start.time`.         |
 | [TUMBLING_TIME_LENGTH](tumbling-time-length.md) | The window tumbles upon the elapse of the time window `window.time`, or when a number of unique events have arrived i.e. `window.length`.     |
 
-## Example
+## Example 1
 
 ```sql
 CREATE STREAM DriverChangeStream (trainID STRING, driver STRING);
