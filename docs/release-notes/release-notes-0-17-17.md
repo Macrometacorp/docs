@@ -81,7 +81,9 @@ The following minor changes were added in this release.
 
 | Change # | Description |
 | -------- | ----------- |
-| x        | x           |
+| DB-1883  | If an internal network issue causes replication to fail for a server, then server users will have only read-only access to its global collections once the replication backlog is filled to prevent new messages overwriting older ones. This change helps prevent data loss and inconsistency.       |
+|          |             |
+|          |             |
 |          |             |
 |          |             |
 
@@ -109,10 +111,18 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
-| CEP-586  | The `geo:stationary` stream processor in fails in some cases.  |
-| CEP-572  | Stream workerw with fields that start with an integer or with special chars other than `_` throw exceptions.  |
-| CEP-551  | Stream workers are not handling the error returned by DB when publish queue is full, causing data loss.  |
-|   |   |
+| CEP-551 | Stream workers are not handling the error returned by DB when publish queue is full, causing data loss. |
+| CEP-565 | Latin extended letters are changed into garbage characters by streams and then stream workers. |
+| CEP-566 | Data loss is observed if the database restarts while the stream worker is consuming data from an external Pulsar stream and writing it to a Macrometa collection. |  
+| CEP-572 | Stream workers with fields that start with an integer or with special chars other than `_` throw exceptions. |
+| CEP-576 | Transformation workflow sometimes does not work. |
+| CEP-578 | Intermittently observed stream worker not consuming messages when the stream worker count was high. |
+| CEP-579 | Stream workers cannot handle stream workers an in infinite loop. |
+| CEP-581 | Errors while executing ad hoc queries. |  
+| CEP-586 | The `geo:stationary` stream processor in fails in some cases. |
+| DB-1465 | Can get a collection out of sync by repeatedly deleting and re-creating documents. |
+| DB-2513 | Cannot delete a fabric using an API key. |
+| DB-2579 | 404 database not found error when trying to change permissions for an API key. |
 |   |   |
 |   |   |
 |   |   |
