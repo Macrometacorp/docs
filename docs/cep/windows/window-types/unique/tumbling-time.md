@@ -1,5 +1,5 @@
 ---
-title: timeBatch
+title: TUMBLING_TIME
 ---
 
 This is a batch (tumbling) time window that is updated with the latest events based on a unique key parameter. If a new event that arrives within the time period of a window has a value for the key parameter which matches that of an existing event, then the existing event expires and it is replaced by the latest event.
@@ -7,8 +7,8 @@ This is a batch (tumbling) time window that is updated with the latest events ba
 ## Syntax
 
 ```sql
-    WINDOW UNIQUE:timeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
-    WINDOW UNIQUE:timeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT|LONG> start.time)
+    WINDOW UNIQUE:TUMBLING_TIME(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
+    WINDOW UNIQUE:TUMBLING_TIME(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT|LONG> start.time)
 ```
 
 ## Query Parameters
@@ -26,7 +26,7 @@ This is a batch (tumbling) time window that is updated with the latest events ba
 
     INSERT all events INTO OutputStream
     SELECT symbol, price, volume
-    FROM CseEventStream WINDOW UNIQUE:timeBatch(symbol, 1 sec);
+    FROM CseEventStream WINDOW UNIQUE:TUMBLING_TIME(symbol, 1 sec);
 ```
 
 This window holds the latest unique events that arrive from the `CseEventStream` at a given time, and returns all the events to the `OutputStream`. It is updated every second based on the latest values for the `symbol` attribute.
