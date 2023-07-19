@@ -1,5 +1,5 @@
 ---
-title: firstTimeBatch
+title: TUMBLING_FIRST_TIME
 ---
 
 A batch-time or tumbling window that holds the unique events according to the unique key parameters that have arrived within the time period of that window and gets updated for each such time window. When a new event arrives with a key which is already in the window, that event is not processed by the window.
@@ -7,8 +7,8 @@ A batch-time or tumbling window that holds the unique events according to the un
 ## Syntax
 
 ```sql
-    WINDOW UNIQUE:firstTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
-    WINDOW UNIQUE:firstTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT|LONG> start.time)
+    WINDOW UNIQUE:TUMBLING_FIRST_TIME(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time)
+    WINDOW UNIQUE:TUMBLING_FIRST_TIME(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> window.time, <INT|LONG> start.time)
 ```
 
 ## Query Parameters
@@ -26,7 +26,7 @@ A batch-time or tumbling window that holds the unique events according to the un
 
     INSERT all events INTO OutputStream
     SELECT symbol, price, volume
-    FROM CseEventStream WINDOW UNIQUE:firstTimeBatch(symbol,1 sec);
+    FROM CseEventStream WINDOW UNIQUE:TUMBLING_FIRST_TIME(symbol,1 sec);
 ```
 
 This holds the first unique events that arrive from the `cseEventStream` input stream during each second, based on the symbol,as a batch, and returns all the events to the `OutputStream`.

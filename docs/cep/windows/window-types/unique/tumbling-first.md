@@ -1,5 +1,5 @@
 ---
-title: firstLengthBatch
+title: TUMBLING_FIRST
 ---
 
 This is a batch (tumbling) window that holds a specific number of unique events (depending on which events arrive first). The unique events are selected based on a specific parameter that is considered as the unique key. When a new event arrives with a value for the unique key parameter that matches the same of an existing event in the window, that event is not processed by the window.
@@ -7,7 +7,7 @@ This is a batch (tumbling) window that holds a specific number of unique events 
 ## Syntax
 
 ```sql
-    WINDOW UNIQUE:firstLengthBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT> window.length)
+    WINDOW UNIQUE:TUMBLING_FIRST(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT> window.length)
 ```
 
 ## Query Parameters
@@ -24,7 +24,7 @@ This is a batch (tumbling) window that holds a specific number of unique events 
 
     INSERT all events INTO OutputStream
     SELECT symbol, price, volume
-    FROM CseEventStream WINDOW UNIQUE:firstLengthBatch(symbol, 10);
+    FROM CseEventStream WINDOW UNIQUE:TUMBLING_FIRST(symbol, 10);
 ```
 
 The window in this configuration holds the first unique events from the `CseEventStream` stream every second, and outputs them all into the the `OutputStream` stream. All the events in a window during a given second should have a unique value for the `symbol` attribute.
