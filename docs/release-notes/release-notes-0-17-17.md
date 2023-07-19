@@ -48,6 +48,10 @@ The window functions in the `unique` namespace have been renamed as follows:
 | WINDOW UNIQUE:timeBatch()      | WINDOW UNIQUE:TUMBLING_TIME()            |
 | WINDOW UNIQUE:timeLengthBatch() | WINDOW UNIQUE:TUMBLING_TIME_LENGTH()    |
 
+:::note
+To maintain compatibility, the old window names will remain valid.
+:::
+
 Pages in [Window Types](../cep/windows/window-types/) were updated as a result of this change.
 
 ### Streams Stats API Update
