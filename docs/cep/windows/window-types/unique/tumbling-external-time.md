@@ -1,5 +1,5 @@
 ---
-title: externalTimeBatch
+title: TUMBLING_EXTERNAL_TIME
 ---
 
 This is a batch (tumbling) time window that is determined based on an
@@ -15,16 +15,16 @@ expires and it is replaced by the new event.
 ## Syntax
 
 ```sql
-    WINDOW UNIQUE:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time)
-    WINDOW UNIQUE:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time)
-    WINDOW UNIQUE:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out)
-    WINDOW UNIQUE:externalTimeBatch(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out, <BOOL> replace.time.stamp.with.batch.end.time)
+    WINDOW UNIQUE:TUMBLING_EXTERNAL_TIME(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time)
+    WINDOW UNIQUE:TUMBLING_EXTERNAL_TIME(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time)
+    WINDOW UNIQUE:TUMBLING_EXTERNAL_TIME(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out)
+    WINDOW UNIQUE:TUMBLING_EXTERNAL_TIME(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <LONG> time.stamp, <INT|LONG> window.time, <INT> start.time, <INT|LONG> time.out, <BOOL> replace.time.stamp.with.batch.end.time)
 ```
 
 ## Query Parameters
 
-| Name       | Description             | Default Value   | Possible Data Types | Optional | Dynamic |
-|----------------------|--------------------|--------------------------------|-------------------------|----------|---------|
+| Name       | Description        | Default Value   | Possible Data Types | Optional | Dynamic |
+|------------|--------------------|-----------------|---------------------|----------|---------|
 | unique.key | The attribute that should be checked for uniqueness.|   | INT LONG FLOAT BOOL DOUBLE STRING | No       | Yes     |
 | time.stamp | The time which the window determines as the current time and acts upon. The value of this parameter should be monotonically increasing. |   | LONG  | No       | Yes     |
 | window.time| The sliding time period for which the window should hold events.  |   | INT LONG            | No       | No      |
@@ -39,7 +39,7 @@ expires and it is replaced by the new event.
 
     INSERT INTO UniqueIps 
     SELECT timestamp, ip, count() AS total
-    FROM LoginEvents WINDOW UNIQUE:externalTimeBatch(ip, timestamp, 1 sec, 0, 2 sec);
+    FROM LoginEvents WINDOW UNIQUE:TUMBLING_EXTERNAL_TIME(ip, timestamp, 1 sec, 0, 2 sec);
 ```
 
 In this query, the window holds the latest unique events that arrive

@@ -19,10 +19,7 @@ This window is used with a namespace such as `WINDOW UNIQUE:windowName`. The win
 
 ## Example
 
-```js
-@App:name("unique")
-@App:qlVersion("2")
-
+```sql
 CREATE STREAM DriverChangeStream (trainID STRING, driver STRING);
 
 INSERT expired events INTO PreviousDriverChangeStream
