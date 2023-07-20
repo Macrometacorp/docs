@@ -31,24 +31,28 @@ Description of feature.
 
 The following features updates are included in this release.
 
-### Unique Windows Renamed - NEED TO UPDATE CONTENT, How do I differentiate duplicate names?
+### Unique Windows Renamed
 
 The window functions in the `unique` namespace have been renamed as follows:
 
 | Old Name                       | New Name                          |
 |------------------------------- |----------------------------------|
-| WINDOW UNIQUE:ever()           | WINDOW EVER()                     |
-| WINDOW UNIQUE:externalTimeBatch() | WINDOW TUMBLING_EXTERNAL_TIME() |
-| WINDOW UNIQUE:first()          | WINDOW FIRST()                    |
-| WINDOW UNIQUE:firstLengthBatch() | WINDOW TUMBLING_FIRST()          |
-| WINDOW UNIQUE:firstTimeBatch() | WINDOW TUMBLING_FIRST_TIME()      |
-| WINDOW UNIQUE:length()         | WINDOW SLIDING_LENGTH()           |
-| WINDOW UNIQUE:lengthBatch()    | WINDOW TUMBLING_LENGTH()          |
-| WINDOW UNIQUE:time()           | WINDOW SLIDING_TIME()             |
-| WINDOW UNIQUE:timeBatch()      | WINDOW TUMBLING_TIME()            |
-| WINDOW UNIQUE:timeLengthBatch() | WINDOW TUMBLING_TIME_LENGTH()    |
+| WINDOW UNIQUE:ever()           | WINDOW UNIQUE:EVER()                     |
+| WINDOW UNIQUE:externalTimeBatch() | WINDOW UNIQUE:TUMBLING_EXTERNAL_TIME() |
+| WINDOW UNIQUE:first()          | WINDOW UNIQUE:FIRST()                    |
+| WINDOW UNIQUE:firstLengthBatch() | WINDOW UNIQUE:TUMBLING_FIRST()          |
+| WINDOW UNIQUE:firstTimeBatch() | WINDOW UNIQUE:TUMBLING_FIRST_TIME()      |
+| WINDOW UNIQUE:length()         | WINDOW UNIQUE:SLIDING_LENGTH()           |
+| WINDOW UNIQUE:lengthBatch()    | WINDOW UNIQUE:TUMBLING_LENGTH()          |
+| WINDOW UNIQUE:time()           | WINDOW UNIQUE:SLIDING_TIME()             |
+| WINDOW UNIQUE:timeBatch()      | WINDOW UNIQUE:TUMBLING_TIME()            |
+| WINDOW UNIQUE:timeLengthBatch() | WINDOW UNIQUE:TUMBLING_TIME_LENGTH()    |
 
-Topics in [Window Types](../cep/windows/window-types/) were updated as a result of this change.
+:::note
+To maintain compatibility, the old window names will remain valid.
+:::
+
+Pages in [Window Types](../cep/windows/window-types/) were updated as a result of this change.
 
 ### Streams Stats API Update
 
