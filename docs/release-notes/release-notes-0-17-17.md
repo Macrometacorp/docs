@@ -97,7 +97,7 @@ This release includes the following API changes.
 
 | Issue # | Description |
 | ------- | ----------- |
-| z       | z           |
+| CEP-591 | The `regions` parameter in the [Create and Deploy Stream Workers](https://www.macrometa.com/docs/api#/operations/create) API endpoint now accepts `*` as a value. You no longer need to list all regions individually.        |
 |         |             |
 |         |             |
 
