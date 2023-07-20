@@ -66,7 +66,11 @@ The user and API permissions in the web console have been updated to allow you t
 
 New API endpoints were added in the API Keys and Users sections as well.
 
+#### New API Key Endpoints
+
 ![New API Key API Endpoints](/img/release-notes/17-17-api-key-api.png)
+
+#### New Users Endpoints
 
 ![New Users API Endpoints](/img/release-notes/17-17-users-api.png)
 
