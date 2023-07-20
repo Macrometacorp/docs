@@ -9,7 +9,7 @@ This window is used with a namespace such as `WINDOW UNIQUE:WINDOW_NAME`. The wi
 | Function         | Description                 |
 |-----------------------|------------------------------------------------------------|
 | [EVER](ever.md)      | Retains latest events based on the `unique keys`.     |
-| [TUMBLING_EXTERNAL_TIME](tumbling-external-time.md)      | Tumbling time window holds the latest events based on `unique.key` and various parameters for time.   | 
+| [TUMBLING_EXTERNAL_TIME](tumbling-external-time.md)      | Tumbling time window holds the latest events based on `unique.key` and various parameters for time.   |
 | [FIRST](first.md)    | Retain first set of unique events based on `unique.key`.  |
 | [TUMBLING_FIRST](tumbling-first.md)             | Tumbling window holds `window.length` unique events based on `unique.key`.    |
 | [TUMBLING_FIRST_TIME](tumbling-first-time.md)  | A batch-time or tumbling window that holds the unique events based on `unique.key` and sliding time period `window.time` with time offset defined by parameter `start.time`.	 |
