@@ -9,21 +9,12 @@ This document describes what has changed in Macrometa release 0.17.17. To check 
 
 The following new features are included in this release.
 
-### Feature 1
+### Semantic Search - Beta
 
-Description of feature.
+You can now create semantic search views.
 
-[Topic name](link) was added as a result of this feature.
-
-### Feature 1
-
-Description of feature.
-
-[Topic name](link) was added as a result of this feature.
-
-### Feature 1
-
-Description of feature.
+- In Search Views, you now have the option to create a Semantic Search View or a Fulltext Search View.
+- Improved Fulltext Search user interface.
 
 [Topic name](link) was added as a result of this feature.
 
@@ -61,19 +52,7 @@ The stream stats API endpoint `/_fabric/{fabric}/_api/streams/{stream}/stats` no
 - `getPreciseBacklog`: When true, returns precise backlog.
 - `subscriptionBacklogSize`: When true, returns backlog size for each subscription.
 
-### Update 1
-
-Description of update.
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
-
-### Update 1
-
-Description of update.
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
-
-### Update 1
+### KV Group
 
 Description of update.
 
