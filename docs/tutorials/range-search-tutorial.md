@@ -225,7 +225,7 @@ Congratulations! You have successfully set up a CRUD API with query workers and 
 
 Now that you have completed this tutorial, consider exploring the following topics to enhance your understanding and further develop your skills:
 
-- [Getting Started with Search](../search/getting-started-search)
+- [Getting Started with Search](../search-views/fulltext-search/getting-started-search)
 - [Getting Started with Graphs](../graphs/getting-started-with-graphs)
 - [C8QL Query Tutorial](../queries/got-tutorial/)
 
