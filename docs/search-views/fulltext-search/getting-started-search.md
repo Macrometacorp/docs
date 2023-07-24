@@ -15,17 +15,17 @@ This page guides you through creating your first search view.
 
 ## Create a Search View
 
-Refer to the [Search Views](/search/views/index.md) section for an explanation of how search views function.
+Refer to the [Search Views](views/index.md) section for an explanation of how search views function.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Search Views**.
-1. Click **New View**.
-1. In the **Name** field, enter `addresses_view`.
-1. Click the **plus** under Mapping Definition.
-1. Select the `addresses` collection from the COLLECTION list. 
-1. Enter `lastName` in `field` and select **text_en** in the ANALYZER list. 
-1. Perform the previous three steps again for `firstName` and `email`.
-1. Click **Create**.
+2. Click **Search Views**.
+3. Click **New View**.
+4. In the **Name** field, enter `addresses_view`.
+5. Click the **plus** under Mapping Definition.
+6. Select the `addresses` collection from the COLLECTION list. 
+7. Enter `lastName` in `field` and select **text_en** in the ANALYZER list. 
+8. Perform the previous three steps again for `firstName` and `email`.
+9. Click **Create**.
 
 Your three address collection key values are indexed and ready to query. Macrometa distributes this view index to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
 
