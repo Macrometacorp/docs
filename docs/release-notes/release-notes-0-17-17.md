@@ -124,10 +124,10 @@ The following defects were fixed in this release.
 | CEP-579 | Stream workers cannot handle stream workers an in infinite loop. |
 | CEP-581 | Errors while executing ad hoc queries. |  
 | CEP-586 | The `geo:stationary` stream processor in fails in some cases. |
+| CEP-592 | Getting cast exception in geospatial functions.  |
 | DB-1465, DB-2364 | Data inconsistency observed when in crud scenarios for regions that lose connectivity for some time. |
 | DB-2513 | Cannot delete a fabric using an API key. |
 | DB-2579 | 404 database not found error when trying to change permissions for an API key. |
-|   |   |
 |   |   |
 |   |   |
 |   |   |
