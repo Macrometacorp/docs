@@ -9,21 +9,12 @@ This document describes what has changed in Macrometa release 0.17.17. To check 
 
 The following new features are included in this release.
 
-### Feature 1
+### Semantic Search - Beta
 
-Description of feature.
+You can now create semantic search views.
 
-[Topic name](link) was added as a result of this feature.
-
-### Feature 1
-
-Description of feature.
-
-[Topic name](link) was added as a result of this feature.
-
-### Feature 1
-
-Description of feature.
+- In Search Views, you now have the option to create a Semantic Search View or a Fulltext Search View.
+- Improved Fulltext Search user interface.
 
 [Topic name](link) was added as a result of this feature.
 
@@ -81,13 +72,7 @@ The stream stats API endpoint `/_fabric/{fabric}/_api/streams/{stream}/stats` no
 - `getPreciseBacklog`: When true, returns precise backlog.
 - `subscriptionBacklogSize`: When true, returns backlog size for each subscription.
 
-### Update 1
-
-Description of update.
-
-[Topic name](link) and [topic name](link) were updated as a result of this change.
-
-### Update 1
+### KV Group
 
 Description of update.
 
@@ -111,7 +96,7 @@ This release includes the following API changes.
 
 | Issue # | Description |
 | ------- | ----------- |
-| z       | z           |
+| CEP-591 | The `regions` parameter in the [Create and Deploy Stream Workers](https://www.macrometa.com/docs/api#/operations/create) API endpoint now accepts `*` as a value. You no longer need to list all regions individually.        |
 |         |             |
 |         |             |
 
@@ -138,10 +123,10 @@ The following defects were fixed in this release.
 | CEP-579 | Stream workers cannot handle stream workers an in infinite loop. |
 | CEP-581 | Errors while executing ad hoc queries. |  
 | CEP-586 | The `geo:stationary` stream processor in fails in some cases. |
-| DB-1465 | Can get a collection out of sync by repeatedly deleting and re-creating documents. |
+| CEP-592 | Getting cast exception in geospatial functions.  |
+| DB-1465, DB-2364 | Data inconsistency observed when in crud scenarios for regions that lose connectivity for some time. |
 | DB-2513 | Cannot delete a fabric using an API key. |
 | DB-2579 | 404 database not found error when trying to change permissions for an API key. |
-|   |   |
 |   |   |
 |   |   |
 |   |   |
