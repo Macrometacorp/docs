@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Search Views
+title: Fulltext Search Tasks
 ---
 
 Macrometa GDN _search views_ provide fast and robust full-text queries on data across linked collections. You can filter by attributes, sort by relevance, and rank using well-known scoring algorithms. Each search view is comprised of an inverted index with search configurations and document attributes, divided into distinct segments treated as separate indexes.

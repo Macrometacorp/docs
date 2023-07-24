@@ -1,12 +1,12 @@
 ---
 sidebar_position: 10
-title: Getting Started with Search
+title: Getting Started with Fulltext Search
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page guides you through creating your first search view.
+This page guides you through creating your first fulltext search view.
 
 ## Prerequisites
 
@@ -15,15 +15,15 @@ This page guides you through creating your first search view.
 
 ## Create a Search View
 
-Refer to the [Search Views](views/index.md) section for an explanation of how search views function.
+Refer to the [Fulltext Search Tasks](tasks/index.md) section for an explanation of how search views function.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Search Views**.
 3. Click **New View**.
 4. In the **Name** field, enter `addresses_view`.
 5. Click the **plus** under Mapping Definition.
-6. Select the `addresses` collection from the COLLECTION list. 
-7. Enter `lastName` in `field` and select **text_en** in the ANALYZER list. 
+6. Select the `addresses` collection from the COLLECTION list.
+7. Enter `lastName` in `field` and select **text_en** in the ANALYZER list.
 8. Perform the previous three steps again for `firstName` and `email`.
 9. Click **Create**.
 
@@ -31,7 +31,7 @@ Your three address collection key values are indexed and ready to query. Macrome
 
 ## Query the View
 
-To query the search view, we can create a query in Macrometa to run it on the fly or save it as a [query worker](../queryworkers/index.md).
+To query the search view, we can create a query in Macrometa to run it on the fly or save it as a [query worker](../../queryworkers/index.md).
 
 1. On the side menu, click **Query Workers**.
 1. The code block below is a search query that will allow you to pass in a query parameter to search you index. Copy and paste it in the code editor on line 1.
