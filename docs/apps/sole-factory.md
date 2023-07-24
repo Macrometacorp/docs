@@ -27,7 +27,7 @@ This demo includes the following components:
 
 - Personalized recommendations - Macrometa [stream workers](../cep/) read visitor actions from a collection stream, creating a list of recommended products for each visitor.
 - Real-time stock updates - Macrometa stream workers read product updates from a collection stream, updating the product stock in real-time.
-- Search - The Macrometa GDN [search views](../search/) enable full-text search for our storefront, allowing users to find products based on a variety of terms including product name, brand, and category.
+- Search - The Macrometa GDN [search views](../search-views/) enable full-text search for our storefront, allowing users to find products based on a variety of terms including product name, brand, and category.
 - Serverless backend – Macrometa [query workers](../queryworkers/) provide an interface between the web app and the backend, providing ultra-low latency data and compute.
 
 ## Visitor Personalization
