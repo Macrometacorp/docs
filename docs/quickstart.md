@@ -148,7 +148,6 @@ IN addresses
 
 You have a fully-functional API for your application. [We made a front-end for you to take your new back-end for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
 
-
 ## Next Steps
 
 - [Getting Started with C8QL](queries/got-tutorial/index.md)
