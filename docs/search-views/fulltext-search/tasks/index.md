@@ -55,4 +55,4 @@ This table compares search views and full-text indexes:
 | Indexed attributes per collection| Unlimited| 1             |
 | Indexed collections              | Unlimited| 1             |
 
-Search views ensure optimal execution plans (merge join) for multi-attribute queries. For more on full-text indexes, see [Indexing](../../collections/indexing/fulltext-indexes.md).
+Search views ensure optimal execution plans (merge join) for multi-attribute queries. For more on full-text indexes, see [Indexing](../../../collections/indexing/fulltext-indexes.md).

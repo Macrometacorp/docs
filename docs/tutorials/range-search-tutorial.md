@@ -152,7 +152,7 @@ Now that you've created query workers for all CRUD operations, you have successf
 
 Now that you have data in the `inventory` collection, it's time to enable high-performance search on various fields in the document store.
 
-Create a search view named `inventory_view`. Follow the instructions in [Create a Search View](../search/views/create-search-views.md) to create the `inventory_view` search view.
+Create a search view named `inventory_view`. Follow the instructions in [Create a Fulltext Search View](../search-views/fulltext-search/tasks/create-search-views.md) to create the `inventory_view` search view.
 
 When you create the `inventory_view` search view, map the following fields:
 
