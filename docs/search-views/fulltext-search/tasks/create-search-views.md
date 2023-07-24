@@ -24,7 +24,7 @@ Follow these instructions to create a new search view using the GDN console web 
     - **Field -** Enter a field name for the selected collection.
     - **Analyzer -** Select a text analyzer or identity analyzer to break up search inputs for improved searching and sorting.
    - **Primary Sort -** Optional. The sorting order for each attribute. Cannot be changed after view is created.
-    - **Field -** Specify the sorting accodring to collections and fields in the mapping definition.
+    - **Field -** Specify the sorting according to collections and fields in the mapping definition.
     - **Direction -** Set the sorting order to ascending (default) or descending.
 
 After creating a view, you can **Rename** or **Delete** it from the **Search** screen.
@@ -39,7 +39,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use our command line interface to [Create a Search View](../../CLI/search-views-cli#gdnsl-view-create).
+Use our command line interface to [Create a Search View](../../../CLI/search-views-cli#gdnsl-view-create).
 
 
 </TabItem>
