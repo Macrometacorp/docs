@@ -11,9 +11,9 @@ Search views in Macrometa are structured ways to query your global data network.
 
 Fulltext search is a method that searches for exact matches of terms or phrases in your query. It uses an index, which lists each word in the document and its location. Fulltext search is effective when the requirement is to find documents containing specific words or phrases.
 
-## Semantic Search
+## Semantic Search - Beta
 
-Semantic search is a different approach that understands the intent behind a search query and the meanings of words. It uses natural language processing and machine learning techniques to interpret synonyms and the context of natural language queries. Semantic search returns results that are relevant to the query's intent rather than just literal matches.
+Semantic search is a different approach that understands the intent behind a search query and the meanings of words. Macrometa semantic search currently provides similarity search, with more functionality planned in future releases.
 
 ## Fulltext vs. Semantic Search Views
 
