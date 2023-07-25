@@ -30,13 +30,13 @@ Different directives apply during creation and modification:
 - Creating a search view:
   - **name** (string, immutable): Search view name.
   - **type** (string, immutable): Value `"search"`.
-  - Directives from [search view properties](optional-properties.md#search-view-properties).
+  - Directives from other optional properties.
 
 - Modifying a search view:
   - **links** (object, optional): Map of `collection-name` / `collection-identifier` to one of the following:
-    - Link creation: [Link properties](optional-properties.md#link-properties) definition.
+    - Link creation: Link properties definition.
     - Link removal: JSON keyword `null`.
-  - Directives from [search view properties](optional-properties.md#search-view-properties).
+  - Directives from other optional properties.
 
 ## Search View vs. Full-Text Index
 
