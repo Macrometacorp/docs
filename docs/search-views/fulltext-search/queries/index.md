@@ -83,11 +83,11 @@ FOR doc IN myView
   RETURN doc
 ```
 
-You can use the `includeAllFields` [View property](../tasks/optional-properties.md) to index all fields and subfields of the source documents.
+You can use the `includeAllFields` property to index all fields and subfields of the source documents.
 
 ## Search for Array Elements
 
-You can search for individual array elements if your search view has [trackListPositions](../tasks/optional-properties.md) set to `true`.
+You can search for individual array elements if your search view has `trackListPositions` set to `true`.
 
 In the following document, the values `1`, `2,` and `3` are indexed and individually searchable.
 
