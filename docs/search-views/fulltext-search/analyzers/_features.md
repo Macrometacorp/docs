@@ -1,3 +1,5 @@
+DFP Note - All hidden material is for custom analyzers. Can unhide and edit when the feature becomes available.
+
 ---
 sidebar_position: 50
 title: Analyzer Features
