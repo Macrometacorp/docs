@@ -34,10 +34,12 @@ We provide _search views_ and _analyzers_ that boost the efficiency of your sear
   - Case conversion.
   - Removal of diacritical (accent) marks.
 
-## Queries
+## Fulltext Search Queries
 
-GDN Search features are integrated into C8QL as a SEARCH operation and a set of C8QL functions. Some use cases include:
+Fulltext search view features are integrated into C8QL as a `SEARCH` operation and a set of C8QL functions. Some use cases include:
 
 - Perform federated full-text searches over product descriptions in a web shop with product documents stored in collections.
 - Retrieve information in a research database and rank it by relevance based on term frequency (TF-IDF) using case and accent insensitive stemmed phrases with irrelevant terms filtered out.
 - Query a data set of movies for titles with words in a particular order and optional wild cards. Sort the results by best matching (BM25) but favor movies with longer duration.
+
+For more information, refer to [Fulltext Search Queries](./queries/).

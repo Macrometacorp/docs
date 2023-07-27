@@ -1,6 +1,6 @@
 ---
 sidebar_position: 40
-title: Search Queries
+title: Fulltext Search Queries
 ---
 
 You can use the `SEARCH` keyword to filter a query using a search view, allowing you to:
