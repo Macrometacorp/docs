@@ -5,6 +5,8 @@ title: Fulltext Search Concepts
 
 Macrometa GDN _search views_ provide fast and robust full-text queries on data across linked collections. You can filter by attributes, sort by relevance, and rank using well-known scoring algorithms. Each search view is comprised of an inverted index with search configurations and document attributes, divided into distinct segments treated as separate indexes.
 
+## How Fulltext Search Works
+
 Search uses Boolean and ranking retrieval to search for relevant documents by single words, keywords, and phrases. [Analyzers](../analyzers/index.md) can enhance value analysis with tokenization.
 
 Search views use the Vector Space Model (VSM) to represent documents and queries as vectors based on query _terms_. Document relevance is determined by comparing the proximity of the document and query vectors. This is measured by the cosine similarity, which calculates the cosine of the angle between the two vectors. The expression for calculating relevance of document `d` to query `q` is:
@@ -37,22 +39,3 @@ Different directives apply during creation and modification:
     - Link creation: Link properties definition.
     - Link removal: JSON keyword `null`.
   - Directives from other optional properties.
-
-## Search View vs. Full-Text Index
-
-This table compares search views and full-text indexes:
-
-| Feature                          | Search | Full-text Index |
-|:---------------------------------|:-------|:----------------|
-| Term search                      | Yes    | Yes            |
-| Prefix search                    | Yes    | Yes            |
-| Boolean expressions              | Yes    | Restricted     |
-| Range search                     | Yes    | No             |
-| Phrase search                    | Yes    | No             |
-| Relevance ranking                | Yes    | No             |
-| Configurable Analyzers           | Yes    | No             |
-| C8QL composable language         | Yes    | No             |
-| Indexed attributes per collection| Unlimited| 1             |
-| Indexed collections              | Unlimited| 1             |
-
-Search views ensure optimal execution plans (merge join) for multi-attribute queries. For more on full-text indexes, see [Indexing](../../../collections/indexing/fulltext-indexes.md).
