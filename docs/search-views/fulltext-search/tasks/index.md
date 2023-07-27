@@ -3,4 +3,6 @@ sidebar_position: 1
 title: Fulltext Search Tasks
 ---
 
-Content TBD
+This section provides instructions for completing common tasks relating to fulltext search views.
+
+<DocCardList />
