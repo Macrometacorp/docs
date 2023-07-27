@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Distance Type
 ---
 
-This page provides basic information about distance type, which is used in defining semantic search views in Macrometa Global Data Network (GDN).
+This page provides basic information about values in the **Distance Type** field, which is used in defining semantic search views in Macrometa Global Data Network (GDN).
 
 You have several distance type options. The different distance or similarity measures can have different impacts on search results, and the best one to use can depend on the specific characteristics of the data and the problem you're trying to solve.
 
