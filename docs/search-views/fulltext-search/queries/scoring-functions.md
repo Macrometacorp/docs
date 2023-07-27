@@ -3,24 +3,26 @@ sidebar_position: 30
 title: Scoring Functions
 ---
 
-Scoring functions return a ranking value for the documents found by a [search query](../queries/index.md). A higher number indicates a better match.
+Scoring functions play a vital role in Macrometa's Fulltext Search Views by returning a ranking value for the documents discovered by a C8QL search query. A higher score signifies a better match.
 
-The first argument to any scoring function is always the document specified by a `FOR` operation.
+## Implementing Scoring Functions
 
-To sort documents with the most relevant ones shown first, use descending order `DESC`.
+Scoring functions predominantly take the document specified by a `FOR` operation as their first argument. To bring the most relevant documents to the forefront of your search results, use descending order `DESC`.
 
-You can calculate custom scores based on a scoring function using document attributes and numeric functions (e.g. `TFIDF(doc) * LOG(doc.value)`):
+## Calculating Custom Scores
 
-```sql
+Macrometa allows you to compute custom scores. You can apply a scoring function in conjunction with document attributes and numeric functions. In the example below, a custom score is calculated as `TFIDF(doc) * LOG(doc.value)`:
+
+```c8ql
 FOR movie IN imdbView
   SEARCH PHRASE(movie.title, "Star Wars", "text_en")
   SORT BM25(movie) * LOG(movie.runtime + 1) DESC
   RETURN movie
 ```
 
-You can sort by a mix of scores and attributes from multiple search views and collections:
+You can also sort a combination of scores and attributes across multiple search views and collections to hone your searches:
 
-```sql
+```c8ql
 FOR a IN viewA
   FOR c IN coll
     FOR b IN viewB
@@ -28,58 +30,54 @@ FOR a IN viewA
       ...
 ```
 
-## BM25()
+## Understanding BM25 Scoring Function
 
-Sorts documents using the [Best Matching 25 (BM25) algorithm](https://en.wikipedia.org/wiki/Okapi_BM25).
+The BM25 scoring function utilizes the [Best Matching 25 (BM25) algorithm](https://en.wikipedia.org/wiki/Okapi_BM25) to sort documents based on their relevance.
 
 ### Syntax
 
 `BM25(doc, k, b) → score`
 
-- `doc` (document): Must be specified by `FOR ... IN viewName`
-- `k` (number, _optional_): Calibrates the text term frequency scaling. The default is `1.2`. A _k_ value of `0` corresponds to a binary model (no term frequency), and a large value corresponds to using raw term frequency
-- `b` (number, _optional_): Determines the scaling by the total text length. The default is `0.75`. At the extreme values of the coefficient _b_, BM25 turns into the ranking functions known as:
-  - BM11 for _b_ = `1` (fully scaling the term weight by the total text length).
-  - BM15 for _b_ = `0` (no length normalization).
+`doc` (document): Specified by `FOR ... IN viewName`
+`k` (number, _optional_): Adjusts the text term frequency scaling. Defaults to `1.2`. 
+`b` (number, _optional_): Determines the scaling by the total text length. Defaults to `0.75`.
 
-### Example
+### Examples
 
-This query returns a numeric score that represents the computed ranking value.
+The following example returns documents sorted by relevance using the BM25 scoring function with default settings:
 
-Sorting by relevance with BM25 at default settings:
-
-```sql
+```c8ql
 FOR doc IN viewName
   SEARCH ...
   SORT BM25(doc) DESC
   RETURN doc
 ```
 
-Sorting by relevance, with double-weighted term frequency and with full text length normalization:
+This example demonstrates sorting by relevance with a double-weighted term frequency and full text length normalization:
 
-```sql
+```c8ql
 FOR doc IN viewName
   SEARCH ...
   SORT BM25(doc, 2.4, 1) DESC
   RETURN doc
 ```
 
-## BOOST()
+## Using BOOST Scoring Function
 
-Boost modifies the importance of a specific search expression within a query. Default boost value is `1.0`.
+The BOOST function tailors the importance of a specific search expression within a query, offering a boost to its relevance. It defaults to a value of `1.0`.
 
 ### Syntax
 
 `BOOST(expr, boost)`
 
-- `expr` (expression): A valid search expression.
-- `boost` (number): Numberic boost value.
+`expr` (expression): A valid search expression.
+`boost` (number): Numeric boost value.
 
 ### Example
 
-This example searches for documents that contain keywords `foo` or `bar`, and sorts the results based on their relevance using the BM25 scoring function.
+The following example searches for documents that contain either "foo" or "bar" and sorts the results based on their relevance using the BM25 scoring function:
 
-```sql
+```c8ql
 FOR doc IN viewName
   SEARCH ANALYZER(BOOST(doc.text == "foo", 2.5) OR doc.text == "bar", "text_en")
   LET score = BM25(doc)
@@ -87,75 +85,40 @@ FOR doc IN viewName
   RETURN { text: doc.text, score }
 ```
 
-Assuming a view with the following documents indexed and processed by the
-`text_en` analyzer:
+## Implementing TF-IDF Scoring Function
 
-```sql
-{ "text": "foo bar" }
-{ "text": "foo" }
-{ "text": "bar" }
-{ "text": "foo baz" }
-{ "text": "baz" }
-```
-
-The returned result:
-
-```sqlon
-[
-  {
-    "text": "foo bar",
-    "score": 2.787301540374756
-  },
-  {
-    "text": "foo baz",
-    "score": 1.6895781755447388
-  },
-  {
-    "text": "foo",
-    "score": 1.525835633277893
-  },
-  {
-    "text": "bar",
-    "score": 0.9913395643234253
-  }
-]
-```
-
-## TFIDF()
-
-Sorts documents using the [term frequency–inverse document frequency algorithm](https://en.wikipedia.org/wiki/TF-IDF) (TF-IDF).
+The TF-IDF scoring function employs the [term frequency–inverse document frequency algorithm](https://en.wikipedia.org/wiki/TF-IDF) to sort documents according to their relevance.
 
 ### Syntax
 
 `TFIDF(doc, normalize) → score`
 
-- `doc` (document): Must be specified by `FOR ... IN viewName`.
-- `normalize` (bool): Specifies whether scores should be normalized. The default is `false`. Optional.
-- returns `score` (number): Computed ranking value.
+`doc` (document): Specified by `FOR ... IN viewName`.
+`normalize` (bool): Specifies whether scores should be normalized. Default is `false`.
 
-### Example
+### Examples
 
-This example searches for documents and sorts by relevance using the TF-IDF score:
+This example shows how to search for documents and sort by relevance using the TF-IDF score:
 
-```sql
+```c8ql
 FOR doc IN viewName
   SEARCH ...
   SORT TFIDF(doc) DESC
   RETURN doc
 ```
 
-This example searches for documents and sorts by relevance using a normalized TF-IDF score:
+The following example demonstrates how to search for documents and sort by relevance using a normalized TF-IDF score:
 
-```sql
+```c8ql
 FOR doc IN viewName
   SEARCH ...
   SORT TFIDF(doc, true) DESC
   RETURN doc
 ```
 
-This example searches for documents and sorts by the `text` attribute in ascending order, then sorts by the TFIDF score in descending order where the attribute values are equivalent:
+This example illustrates how to search for documents, sort by the `text` attribute in ascending order, and then sort by the TFIDF score in descending order where the attribute values are equivalent:
 
-```sql
+```c8ql
 FOR doc IN viewName
   SEARCH ...
   SORT doc.text, TFIDF(doc) DESC
