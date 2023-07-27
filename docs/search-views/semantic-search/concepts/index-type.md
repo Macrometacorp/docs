@@ -1,6 +1,11 @@
+---
+sidebar_position: 30
+title: Index Type
+---
 
+This page provides basic information about values in the **Index Type** field, which is used in defining semantic search views in Macrometa Global Data Network (GDN).
 
-These options, HNSW, IVF, and FLAT, relate to the kind of index that is being used to facilitate fast and efficient vector search. Here's a brief overview of each:
+You have several distance type options. These options, HNSW, IVF, and FLAT, relate to the kind of index that is being used to facilitate fast and efficient vector search. Here's a brief overview of each:
 
 1. **HNSW (Hierarchical Navigable Small World):** This is a method designed to accelerate nearest neighbor search, particularly in high dimensional spaces. HNSW constructs a graph-based index that allows for faster search operations by navigating through the graph to find the closest vectors. It is an efficient and popular method for large scale similarity search.
 
