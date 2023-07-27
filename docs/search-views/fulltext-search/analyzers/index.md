@@ -7,8 +7,6 @@ _Analyzers_ enable you to break search inputs into sets of sub-values that searc
 
 You can use the [`TOKENS()` function](../queries/search-functions/tokens.md) to tokenize phrases and turn them into strings for C8QL search queries.
 
-An analyzer processes values based on its [features](features.md).
-
 ## Built-in Analyzers
 
 Macrometa provides a set of built-in analyzers.
