@@ -16,7 +16,7 @@ You can now create semantic search views.
 - In Search Views, you now have the option to create a Semantic Search View or a Fulltext Search View.
 - Improved Fulltext Search user interface.
 
-[Topic name](link) was added as a result of this feature.
+[Semantic Search](../search-views/semantic-search/) was added as a result of this feature and the [Search Views](../search-views/) section was edited and reorganized.
 
 ## Feature Updates
 
