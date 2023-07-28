@@ -28,4 +28,4 @@ You can configure permissions at a more granular level by assigning permissions 
 
 Each level of permissions has its own default. You can change default permissions for all levels except fabric, which permanently defaults to **No Access**. You must individually assign **Access** or **Administrate** fabric permissions to users or API keys.
 
-When you set permissions to the fabric or collection level, the lower levels (stream and query worker) inherit the highest level of access. For example, if you set database permissions to **Access** and collection permissions to **Administrate**, then stream permissions automatically inherit the **Administrate** access level because the collection-level permission is higher than the database-level permission.
+When you set permissions to the fabric, the lower levels (collections, streams, and query workers) inherit the highest level of access. For example, if you set fabric permissions to **Access** and collection permissions to **Administrate**, then stream permissions automatically inherit the **Access** access level from the fabric permissions.
