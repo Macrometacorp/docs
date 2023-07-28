@@ -51,7 +51,7 @@ In previous versions of Macrometa, only the user that created the query worker c
 
 The 17.17 release allows all users with the appropriate access level to see and interact with query workers.
 
-The user and API permissions in the web console have been updated to allow you to assign query worker access levels.
+The user and API key permissions in the web console have been updated to allow you to assign query worker access levels.
 
 ![New Query Worker Permissions](/img/release-notes/17-17-edit-user.png)
 
