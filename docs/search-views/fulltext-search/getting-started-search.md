@@ -36,8 +36,9 @@ Your three address collection key values are indexed in the search view and read
 
 To query the search view, you can create a query in Macrometa to run it as needed or save it as a [query worker](../../queryworkers/index.md).
 
-1. On the side menu, click **Query Workers**.
-1. The code block below is a search query that will allow you to pass in a query parameter to search you index. Copy and paste it in the code editor on line 1.
+1. On the side menu, click **Compute > Query Workers**.
+2. If the code editor is not empty, then click **New Query**.
+3. The code block below is a search query that will allow you to pass in a query parameter to search the search view. Copy and paste it in the code editor on line 1.
 
   ```sql
     FOR contact IN addresses_view
@@ -51,18 +52,18 @@ To query the search view, you can create a query in Macrometa to run it as neede
         RETURN UNSET(contact, ["_id", "_rev"])
   ```
 
-1. Add the word `nemo` to the searchTerm value to the right of the query editor window.
-1. Click **Run Query**. You will see your results show up below the Run Query button.
-1. (Optional) Click **Query Info** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
+4. Add the word `nemo` to the searchTerm value to the right of the query editor window.
+5. Click **Run Query**. You will see your results show up below the Run Query button.
+6. (Optional) Click **Query Info** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
 
-## 3. Save the Query as an API Endpoint
+## 3. (Optional) Save the Query as an API Endpoint
 
 When you save a query worker, you can access it via REST API from anywhere in the world in under 50ms.
 
 1. Click **Save Query**.
-1. Name the query **getContactBySearchTerm** and then click **Save**. This saves the query so you can use it again.
-1. Click **Run Query**.
-1. Click **API Endpoint**.
+2. Name the query **getContactBySearchTerm** and then click **Save**. This saves the query so you can use it again.
+3. Click **Run Query**.
+4. Click **API Endpoint**.
 
 This query requires a value to be passed with each request, so you must enter one in the bind parameters or else the query will fail with an error.
 
