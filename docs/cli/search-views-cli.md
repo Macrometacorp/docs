@@ -142,7 +142,7 @@ gdnsl view describe <view-name> [flags]
 
 ## gdnsl view rename
 
-Rename a view.
+Rename a fulltext search view.
 
 ```bash
 gdnsl view rename <old-name> <new-name> [flags]
