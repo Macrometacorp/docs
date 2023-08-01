@@ -6,14 +6,16 @@ title: Getting Started with Fulltext Search
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page guides you through creating your first fulltext search view.
+This page guides you through creating and querying your first fulltext search view.
 
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
-- An address collection created during the [Quickstart](https://www.macrometa.com/docs/quickstart).
+- The address collection created during the first two steps of the [Quickstart](https://www.macrometa.com/docs/quickstart).
 
-## Create a Search View
+## 1. Create a Search View
+
+You are going to create a search view on the document collection that you created in the Quickstart. [Quickstart](https://www.macrometa.com/docs/quickstart)
 
 Refer to the [Fulltext Search Tasks](tasks/index.md) section for an explanation of how search views function.
 
@@ -29,9 +31,9 @@ Refer to the [Fulltext Search Tasks](tasks/index.md) section for an explanation 
 
 Your three address collection key values are indexed and ready to query. Macrometa distributes this view index to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
 
-## Query the View
+## 2. Query the View
 
-To query the search view, we can create a query in Macrometa to run it on the fly or save it as a [query worker](../../queryworkers/index.md).
+To query the search view, you can create a query in Macrometa to run it as needed or save it as a [query worker](../../queryworkers/index.md).
 
 1. On the side menu, click **Query Workers**.
 1. The code block below is a search query that will allow you to pass in a query parameter to search you index. Copy and paste it in the code editor on line 1.
@@ -52,7 +54,7 @@ To query the search view, we can create a query in Macrometa to run it on the fl
 1. Click **Run Query**. You will see your results show up below the Run Query button.
 1. (Optional) Click **Query Info** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
 
-## Save the Query as an API Endpoint
+## 3. Save the Query as an API Endpoint
 
 When you save a query worker, you can access it via REST API from anywhere in the world in under 50ms.
 
