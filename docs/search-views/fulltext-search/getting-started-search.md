@@ -15,21 +15,22 @@ This page guides you through creating and querying your first fulltext search vi
 
 ## 1. Create a Search View
 
-You are going to create a search view on the document collection that you created in the Quickstart. [Quickstart](https://www.macrometa.com/docs/quickstart)
-
-Refer to the [Fulltext Search Tasks](tasks/index.md) section for an explanation of how search views function.
+You are going to create a search view on the document collection that you created in the [Quickstart](https://www.macrometa.com/docs/quickstart). For an explanation of how search views function, refer to the [Fulltext Search Tasks](tasks/index.md) section.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Search Views**.
+2. Click **Data > Search Views**.
 3. Click **New View**.
-4. In the **Name** field, enter `addresses_view`.
-5. Click the **plus** under Mapping Definition.
-6. Select the `addresses` collection from the COLLECTION list.
+4. In the **Search View Name** field, enter `addresses_view`.
+5. In **View Type**, select **Fulltext Search**.
+6. In the **Collection** list, select **addresses**.
 7. Enter `lastName` in `field` and select **text_en** in the ANALYZER list.
-8. Perform the previous three steps again for `firstName` and `email`.
-9. Click **Create**.
+8. Click **Add Collection** twice.
+9. Perform steps 6 and 7 again for the `firstName` and `email` fields in the `addresses` collection.
+10. Click **Create**.
 
-Your three address collection key values are indexed and ready to query. Macrometa distributes this view index to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
+Your three address collection key values are indexed in the search view and ready to query. Macrometa distributes this search view to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
+
+![New Search View](/img/search/getting-started-new-fulltext.png)
 
 ## 2. Query the View
 
