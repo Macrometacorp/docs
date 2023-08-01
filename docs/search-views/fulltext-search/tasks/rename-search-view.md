@@ -22,7 +22,7 @@ Follow these instructions to rename a fulltext search view using the GDN console
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Rename a Search View](https://www.macrometa.com/docs/api#/operations/modifyView:rename).
+Use our interactive API Reference with code generation in 18 programming languages to [Rename a Fulltext Search View](https://www.macrometa.com/docs/api#/operations/modifyView:rename).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
