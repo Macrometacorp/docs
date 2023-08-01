@@ -32,7 +32,7 @@ Your three address collection key values are indexed in the search view and read
 
 ![New Search View](/img/search/getting-started-new-fulltext.png)
 
-## 2. Query the View
+## 2. Query the Search View
 
 To query the search view, you can create a query in Macrometa to run it as needed or save it as a [query worker](../../queryworkers/index.md).
 
