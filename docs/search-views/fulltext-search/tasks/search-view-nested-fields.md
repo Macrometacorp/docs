@@ -1,5 +1,5 @@
 ---
-sidebar_position: 25
+sidebar_position: 50
 title: Search View with Nested Fields
 ---
 
@@ -15,7 +15,7 @@ Create a search view by making a call to this GDN API endpoint:
 
 `https://api-play.paas.macrometa.io/_fabric/{your-fabric-name}/_api/search/view`
 
-## Create JSON Object
+## Create a JSON Object
 
 Create a JSON object with these fields:
 
