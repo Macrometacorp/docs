@@ -67,4 +67,4 @@ When you save a query worker, you can access it via REST API from anywhere in th
 
 This query requires a value to be passed with each request, so you must enter one in the bind parameters or else the query will fail with an error.
 
-![Create a Query Worker](/img/quickstart/create-query-worker.png)
+![Save as API Endpoint](/img/search/save-query-as-endpoint.png)
