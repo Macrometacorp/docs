@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 110
 title: Book Store (using CloudFlare Workers)
 ---
 

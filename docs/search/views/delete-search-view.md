@@ -8,17 +8,15 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to delete a search view.
 
-## Delete Search View
-
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
 Follow these instructions to delete a search view using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Data > Search Views**.
-1. Click **Delete** next to the search view that you want to delete.
-1. Click **Yes** to confirm.
+2. Click **Data > Search Views**.
+3. Click **Delete** next to the search view that you want to delete.
+4. Click **Yes** to confirm.
 
 </TabItem>
 <TabItem value="api" label="REST API">

@@ -13,12 +13,10 @@ Search views use the Vector Space Model (VSM) to represent documents and queries
 
 Here, `d * q` represents the dot product of the document and query vectors, while `|d|` and `|q|` are the norms of these vectors, respectively.
 
-Vector components are precomputed using _term weights_ as coordinates. C8Search implements probability and statistical weighting models, such as [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) and [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), based on two components:
+Vector components are precomputed using _term weights_ as coordinates. Search views implement probability and statistical weighting models, such as [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) and [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), based on two components:
 
 - _Term frequency_ (TF): The count of term `t` occurrences in document `d`.
 - _Inverse document frequency_ (IDF): The rarity or commonness of term `t` across all documents.
-
-The [IResearch library](https://github.com/iresearch-toolkit/iresearch) provides searching and ranking capabilities.
 
 ## Search View Definition
 
