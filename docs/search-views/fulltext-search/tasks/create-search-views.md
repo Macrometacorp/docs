@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-title: Create a Search View
+title: Create a Fulltext Search View
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,7 +16,7 @@ This page explains how to create a new search view.
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to create a new search view using the GDN console web UI.
+Follow these instructions to create a new fulltext search view using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Data > Search Views**.
@@ -36,12 +36,12 @@ Follow these instructions to create a new search view using the GDN console web 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create a Search View](https://www.macrometa.com/docs/api#/operations/createView).
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Fulltext Search View](https://www.macrometa.com/docs/api#/operations/createView).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use our command line interface to [Create a Search View](../../../CLI/search-views-cli#gdnsl-view-create).
+Use our command line interface to [Create a Fulltext Search View](../../../CLI/search-views-cli#gdnsl-view-create).
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
