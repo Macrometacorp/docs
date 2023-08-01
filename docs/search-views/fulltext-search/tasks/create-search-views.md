@@ -58,6 +58,9 @@ API_KEY = "<API Key>" # Change this to your API key.
 # Authenticate with API key.
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 print("Connected to GDN.")
+
+# Update the search view name, collection name, field names, and sorting with the values you want in your search view.
+
 search_view_name = "example_search_view"
 collection_name = "your_collection_name"
 properties = {
@@ -69,6 +72,7 @@ properties = {
     }
 }
 primary_sort = [{"field": "title", "direction": "asc"}]
+
 # Check if collection exists
 if not client.has_collection(collection_name):
     print(f"Collection '{collection_name}' does not exist.")
@@ -90,9 +94,13 @@ else:
 const jsc8 = require("jsc8");
 const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API Key>", fabricName: "_system"});
 console.log("Connected to GDN.");
+
+// Define constants.
+
 const collectionName = "example_collection"; // Replace this with your collection name.
-const searchViewName = "example_search_view";
-const properties = {
+const searchViewName = "example_search_view"; // Replace this with your search view name.
+// Change the fields, analyzers, and sorting to match what you want in your search view.
+const properties = { 
   [collectionName]: {
     "fields": {
       "title": {"analyzers": ["text_en"]},
@@ -101,6 +109,8 @@ const properties = {
   }
 };
 const primarySort = [{"field": "title", "direction": "asc"}]
+
+// Function to create the search view.
 async function createMySearchView () {
   if (!await client.hasCollection(collectionName)) {
     console.log(`Collection "${collectionName}" does not exist`);
