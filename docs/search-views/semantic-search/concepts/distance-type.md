@@ -9,13 +9,13 @@ In the context of semantic search, the "distance" between two entities is the ex
 
 You have several distance type options. The different distance or similarity measures can have different impacts on search results, and the best one to use can depend on the specific characteristics of the data and the problem you're trying to solve.
 
+## L2 (Euclidean Distance)
+
+The L2 norm or Euclidean distance is probably the most commonly known metric. It represents the shortest straight line distance between two points in a space and is calculated as the square root of the sum of the squared differences between the corresponding elements of the two vectors.
+
 ## IP (Inner Product)
 
 The inner product (also known as the dot product) between two vectors is the sum of the products of their corresponding components. In the context of semantic search, inner product similarity is a measure of similarity that computes the dot product of the query vector and each document vector. High inner product values indicate high similarity. It's especially useful when dealing with vectors that represent things like user and item embeddings in recommendation systems.
-
-## L2 (Euclidean Distance)
-
-The L2 norm or Euclidean distance is probably the most commonly known metric. It represents the shortest straight line distance between two points in a space and is calculated as the square root of the sum of the squared differences between the corresponding elements of the two vectors. In high-dimensional spaces, this distance can become less intuitive due to the "curse of dimensionality", but it's often still a useful measure.
 
 ## COSINE (Cosine Similarity)
 
