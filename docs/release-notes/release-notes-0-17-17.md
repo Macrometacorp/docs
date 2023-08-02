@@ -56,7 +56,6 @@ The stream stats API endpoint `/_fabric/{fabric}/_api/streams/{stream}/stats` no
 
 Description of update.
 
-[Topic name] and [topic name] were updated as a result of this change.
 
 ### Miscellaneous Changes
 
