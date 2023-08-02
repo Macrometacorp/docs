@@ -11,7 +11,7 @@ This page guides you through creating and querying your first fulltext search vi
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
-- The address collection created during the first two steps of the [Quickstart](https://www.macrometa.com/docs/quickstart).
+- The `addresses` collection created during the first two steps of the [Quickstart](https://www.macrometa.com/docs/quickstart).
 
 ## 1. Create a Search View
 
