@@ -6,7 +6,7 @@ title: Create a Fulltext Search View
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create a new search view.
+This page explains how to create a new fulltext search view.
 
 ## Prerequisites
 
