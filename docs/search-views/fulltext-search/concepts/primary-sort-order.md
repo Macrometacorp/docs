@@ -7,7 +7,9 @@ Search views are a powerful tool for querying your data. However, the way you co
 
 ## Why Primary Sort Order Matters
 
-Primary sort order allows you to predefine the sort order for one or more attributes in your search view. This optimization can significantly enhance the performance of C8QL queries that sort by these attributes, as the search view can read data directly from the index without requiring an additional sort operation.
+Primary sort order allows you to predefine the sort order for one or more attributes in your search view. You can choose a primary sort order for each uniquely named attribute, and different attributes can have different orders.
+
+This optimization can significantly enhance the performance of C8QL queries that sort by these attributes, as the search view can read data directly from the index without requiring an additional sort operation.
 
 ## Defining the Primary Sort Order
 
