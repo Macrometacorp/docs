@@ -45,6 +45,26 @@ To maintain compatibility, the old window names will remain valid.
 
 Pages in [Window Types](../cep/windows/window-types/) were updated as a result of this change.
 
+### Query Worker Permissions
+
+In previous versions of Macrometa, only the user that created the query worker could directly view and edit that query worker.
+
+The 17.17 release allows all users with the appropriate access level to see and interact with query workers.
+
+The user and API key permissions in the web console have been updated to allow you to assign query worker access levels.
+
+![New Query Worker Permissions](/img/release-notes/17-17-edit-user.png)
+
+New API endpoints were added in the API Keys and Users sections as well.
+
+#### New API Key Endpoints
+
+![New API Key API Endpoints](/img/release-notes/17-17-api-key-api.png)
+
+#### New Users Endpoints
+
+![New Users API Endpoints](/img/release-notes/17-17-users-api.png)
+
 ### Streams Stats API Update
 
 The stream stats API endpoint `/_fabric/{fabric}/_api/streams/{stream}/stats` now includes two new optional parameters:
