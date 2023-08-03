@@ -17,6 +17,10 @@ You can link key-value stores, document stores, and graph edge collections to se
 
 For example, in a social network scenario, a flat structure might be useful for searching users based on profile details, like name or location. In contrast, an interconnected structure would allow searches based on relationships, like friends or followers.
 
+:::note
+Fulltext search cannot handle data structures without text, such as key-value blobs.
+:::
+
 ## Object Definition and Analyzers
 
 Modifying the object definition gives you control over how your data is indexed, enabling you to determine what attributes of your data are searchable, and to what depth. Analyzers process the values for each field during a search. To get the results you want, any analyzer used in a query must be pre-defined in the search view.
