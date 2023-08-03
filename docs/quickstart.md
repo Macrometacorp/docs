@@ -56,7 +56,7 @@ There are several ways to add data to a collection, including importing CSV or J
 Return to the collection and see what the query did.
 
 1. click **Data > Collections**.
-1. Click **addresses**.
+2. Click **addresses**.
 
 Macrometa displays a list of keys and content for each record in the collection. Now you can:
 
