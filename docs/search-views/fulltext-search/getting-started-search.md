@@ -23,7 +23,7 @@ You are going to create a search view on the document collection that you create
 4. In the **Search View Name** field, enter `addresses_view`.
 5. In **View Type**, select **Fulltext Search**.
 6. In the **Collection** list, select **addresses**.
-7. Enter `lastName` in `field` and select **text_en** in the ANALYZER list.
+7. Enter `lastName` in **Field** and then select **text_en** in the ANALYZER list.
 8. Click **Add Collection** twice.
 9. Perform steps 6 and 7 again for the `firstName` and `email` fields in the `addresses` collection.
 10. Click **Create**.
@@ -41,19 +41,19 @@ To query the search view, you can create a query in Macrometa to run it as neede
 3. The code block below is a search query that will allow you to pass in a query parameter to search the search view. Copy and paste it in the code editor on line 1.
 
   ```sql
-    FOR contact IN addresses_view
-        SEARCH ANALYZER(
-                BOOST(STARTS_WITH(contact.firstName, @searchTerm), 3) OR
-                BOOST(STARTS_WITH(contact.lastName, @searchTerm), 2) OR 
-                BOOST(STARTS_WITH(contact.email, @searchTerm), 1),
-                "text_en"
-            )
-        SORT BM25(contact) DESC
-        RETURN UNSET(contact, ["_id", "_rev"])
+  FOR contact IN addresses_view
+      SEARCH ANALYZER(
+              BOOST(STARTS_WITH(contact.firstName, @searchTerm), 3) OR
+              BOOST(STARTS_WITH(contact.lastName, @searchTerm), 2) OR 
+              BOOST(STARTS_WITH(contact.email, @searchTerm), 1),
+              "text_en"
+          )
+      SORT BM25(contact) DESC
+      RETURN UNSET(contact, ["_id", "_rev"])
   ```
 
-4. Add the word `nemo` to the searchTerm value to the right of the query editor window.
-5. Click **Run Query**. You will see your results show up below the Run Query button.
+4. Enter the word `nemo` to the searchTerm value to the right of the editor window.
+5. Click **Run Query**. Macrometa displays query results below the row of buttons.
 6. (Optional) Click **Query Info** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
 
 ## 3. (Optional) Save the Query as an API Endpoint
