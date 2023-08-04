@@ -5,6 +5,10 @@ title: Semantic Search Views
 
 Semantic search is a technique that allows searches based on the intent and contextual meaning of search phrases, rather than just keyword matching. It understands the relationships between words and concepts to provide more relevant results.
 
+:::note
+In 17.17, the Semantic Search Views work by finding similarities between search entities. Upcoming releases will add more nuanced and expanded functionality.
+:::
+
 For example, a keyword search for "flights to Paris" would simply match documents containing those words. A semantic search would understand the intent is to find available flights to Paris and return pages for booking flights, rather than any page mentioning Paris and flights.
 
 ## Benefits of Semantic Search
