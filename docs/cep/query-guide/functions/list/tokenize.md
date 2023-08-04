@@ -36,7 +36,7 @@ The `list:tokenize(customList)` function takes a list named `customList`, and fo
 
 ```sql
 CREATE STREAM ListStream (customList OBJECT);
-CREATE SINK STREAM OutputStream (index INT, value STRING);
+CREATE SINK STREAM OutputStream (index INT, value OBJECT);
 
 @info(name = 'TokenizeList')
 INSERT INTO OutputStream
