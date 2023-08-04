@@ -8,17 +8,15 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to create a new search view.
 
-## Create Search View
-
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
 Follow these instructions to create a new search view using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Data > Search Views**.
-1. Click **New View**.
-1. Enter information about the view and then click **Create**.
+2. Click **Data > Search Views**.
+3. Click **New View**.
+4. Enter information about the view and then click **Create**.
 
    - **Name -** The user-defined name for the search view.
    - **Mapping Definition -** Optional. Choose existing data from which to create an index.

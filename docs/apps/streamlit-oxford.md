@@ -1,5 +1,5 @@
 ---
-sidebar_position: 13
+sidebar_position: 160
 title: Global Cities Explorer
 ---
 
