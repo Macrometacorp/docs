@@ -24,7 +24,7 @@ gdnsl view [flags]
 
 ## gdnsl view create
 
-Create a view.
+Create a fulltext search view.
 
 ```bash
 gdnsl view create <view-name> [flags]
@@ -110,7 +110,7 @@ gdnsl view list [flags]
 
 ## gdnsl view describe
 
-Describe a view.
+Describe a search view.
 
 ```bash
 gdnsl view describe <view-name> [flags]
@@ -170,7 +170,7 @@ gdnsl view rename <old-name> <new-name> [flags]
 
 ## gdnsl view update
 
-Update a view. Enable or disable view capability of a collection.
+Update a fulltext search view. Enable or disable view capability of a collection.
 
 ```bash
 gdnsl view update <view-name> [flags]
@@ -219,7 +219,7 @@ gdnsl view update <view-name> [flags]
 
 ## gdnsl view delete
 
-Delete a view.
+Delete a search view.
 
 ```bash
 gdnsl view delete <view-name> [flags]
