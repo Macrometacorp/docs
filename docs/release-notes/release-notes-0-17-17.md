@@ -9,7 +9,7 @@ This document describes what has changed in Macrometa release 0.17.17. To check 
 
 The following new features are included in this release.
 
-### Semantic Search - Beta
+### Semantic Search
 
 You can now create semantic search views.
 
