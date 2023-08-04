@@ -1,15 +1,21 @@
 ---
-sidebar_position: 90
-title: Primary Sort Order
+sidebar_position: 20
+title: Understanding Primary Sort Order
 ---
 
-When you create a search view, you can choose a primary sort order for each uniquely named attribute, enabling better optimization for iterated C8QL queries that sort by one or more attributes. If the fields match the sorting directions, the search view can read data from the index without a sorting operation. 
+Search views are a powerful tool for querying your data. However, the way you configure them can greatly impact their performance and efficiency. One significant way to enhance your search view is by defining a primary sort order.
 
-To customize the primary sort order, you must create the search view with HTTP or JavaScript API. You cannot change the `primarySort` option after creating a search view. 
+## Why Primary Sort Order Matters
 
-The following example shows a search view definition paired with a C8QL query.
+Primary sort order allows you to predefine the sort order for one or more attributes in your search view. You can choose a primary sort order for each uniquely named attribute, and different attributes can have different orders.
 
-- Search view definition:
+This optimization can significantly enhance the performance of C8QL queries that sort by these attributes, as the search view can read data directly from the index without requiring an additional sort operation.
+
+## Defining the Primary Sort Order
+
+To customize the primary sort order, you'll need to [create a search view](../tasks/create-search-views). Note that the `primarySort` option cannot be changed after creating a search view.
+
+When you view the search view using the API, CLI, or SDK, it is presented in a JSON format. Here's an example of a search view definition with a primary sort order:
 
 ```json
 {
@@ -35,15 +41,17 @@ The following example shows a search view definition paired with a C8QL query.
 }
 ```
 
-- C8QL query:
+This configuration will optimize a C8QL query that sorts by the 'text' attribute:
 
-```js
+```sql
 FOR doc IN viewName
   SORT doc.text
   RETURN doc
 ```
 
-The following examples show two alternative execution plans.
+## Impact on Query Execution Plans
+
+To illustrate the difference a primary sort order can make, consider the following two execution plans for the C8QL query provided above:
 
 - Without a sorted index:
 
@@ -67,7 +75,11 @@ Execution plan:
   5   ReturnNode             1       - RETURN doc
 ```
 
-To define multiple sort attributes, add sub-objects to the `primarySort` array. For example:
+By using a primary sort order index, the sort operation is eliminated, streamlining the query execution.
+
+## Defining Multiple Sort Attributes
+
+You can also optimize for multiple sort attributes by adding sub-objects to the `primarySort` array. Here's an example:
 
 ```json
   "primarySort": [
@@ -82,4 +94,6 @@ To define multiple sort attributes, add sub-objects to the `primarySort` array. 
   ]
 ```
 
-In this example, we optimize a search view query to sort by text and by descending date (`SORT doc.date DESC, doc.text`). Priority is given to the first field, so queries that sort by text only are ineligible (`SORT doc.text`). This is conceptually similar to a skiplist index, except the search view index does not provide inverted sorting directions (`SORT doc.date, doc.text DESC`).
+In this example, a search view query is optimized to sort by both 'text' and by 'date' in descending order (`SORT doc.date DESC, doc.text`). Priority is given to the first field, so queries that sort by 'text' only will not benefit from the optimization (`SORT doc.text`). This mechanism is similar to a skiplist index, but note that the search view index does not support inverted sorting directions (`SORT doc.date, doc.text DESC`).
+
+By defining a thoughtful primary sort order, you can optimize your search views and improve your applications' performance and efficiency.
