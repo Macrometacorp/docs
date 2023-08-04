@@ -67,17 +67,17 @@ const jsc8 = require("jsc8");
 const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API Key>", fabricName: "_system"});
 console.log("Connected to GDN.");
 
-const searchViewName = "Search"; // Replace with the name of the fulltext search view you want to delete.
+const searchViewName = "example_search_view"; // Replace with the name of the fulltext search view you want to delete.
 
 async function deleteMySearchView() {
   const listOfViews = await client.getListOfViews();
   const view = listOfViews.result.find(v => v.name === searchViewName);
   if (!view) {
-    console.log(`Search view "${searchViewName}" does not exist`);
+    console.log(`Search view "${searchViewName}" does not exist.`);
     return;
   }
   await client.deleteView(view.name);
-  console.log(`Successfully deleted search view: ${searchViewName}`);
+  console.log(`Successfully deleted search view: ${searchViewName}.`);
 }
 
 deleteMySearchView();
