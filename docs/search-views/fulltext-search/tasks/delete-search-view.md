@@ -45,7 +45,7 @@ SEARCH_VIEW_NAME = "example_search_view"
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 print("Connected to GDN.")
 
-# Check if search view exists
+# Check if fulltext search view exists
 list_views = client.list_all_views()
 if any(view.get('name') == SEARCH_VIEW_NAME for view in list_views):
     # Delete the search view if it exists
@@ -67,7 +67,7 @@ const jsc8 = require("jsc8");
 const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API Key>", fabricName: "_system"});
 console.log("Connected to GDN.");
 
-const searchViewName = "Search"; // Replace with the name of the search view you want to delete.
+const searchViewName = "Search"; // Replace with the name of the fulltext search view you want to delete.
 
 async function deleteMySearchView() {
   const listOfViews = await client.getListOfViews();
@@ -81,8 +81,6 @@ async function deleteMySearchView() {
 }
 
 deleteMySearchView();
-
-
 ```
 
 </TabItem>
