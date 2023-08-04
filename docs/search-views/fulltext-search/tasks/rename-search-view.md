@@ -1,35 +1,33 @@
 ---
 sidebar_position: 30
-title: Rename a Search View
+title: Rename a Fulltext Search View
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to rename a search view.
+This page explains how to rename a fulltext search view.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to rename a search view using the GDN console web UI.
+Follow these instructions to rename a fulltext search view using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Data > Search Views**.
 3. Click **Rename** next to the search view for which you want to change the name.
-4. Enter a new name in the field and click **Rename**.
+4. Enter a new name in the field and then click **Rename**.
 5. Click **Yes** to confirm.
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Rename a Search View](https://www.macrometa.com/docs/api#/operations/modifyView:rename).
-
+Use our interactive API Reference with code generation in 18 programming languages to [Rename a Fulltext Search View](https://www.macrometa.com/docs/api#/operations/modifyView:rename).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use our command line interface to [Rename a Search View](../../../CLI/search-views-cli#gdnsl-view-rename).
-
+Use our command line interface to [Rename a Fulltext Search View](../../../CLI/search-views-cli#gdnsl-view-rename).
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
@@ -48,15 +46,14 @@ NEW_SEARCH_VIEW_NAME = "NewSearchView" # Change this to the new name for the sea
 # Authenticate with API key.
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 
-# Check if search view exists
+# Check if fulltext search view exists
 list_views = client.list_all_views()
 if any(view.get('name') == SEARCH_VIEW_NAME for view in list_views):
-    # Rename the search view if it exists
+    # Rename the fulltext search view if it exists
     response = client.rename_view(SEARCH_VIEW_NAME, NEW_SEARCH_VIEW_NAME)
     print(f"Successfully renamed search view from '{SEARCH_VIEW_NAME}' to '{NEW_SEARCH_VIEW_NAME}'.")
 else:
     print(f"Search view '{SEARCH_VIEW_NAME}' does not exist.")
-
 
 ```
 
@@ -69,8 +66,8 @@ const jsc8 = require("jsc8");
 const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API Key>", fabricName: "_system"});
 console.log("Connected to GDN.");
 
-const searchViewName = "SearchView"; // Replace with the name of the search view you want to rename.
-const newSearchViewName = "NewSearchView"; // Replace with the new name for the search view.
+const searchViewName = "SearchView"; // Replace with the name of the fulltext search view you want to rename.
+const newSearchViewName = "NewSearchView"; // Replace with the new name for the fulltext search view.
 
 async function renameMySearchView () {
   const listOfViews = await client.getListOfViews();

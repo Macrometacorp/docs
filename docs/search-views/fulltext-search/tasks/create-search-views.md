@@ -1,46 +1,47 @@
 ---
 sidebar_position: 20
-title: Create a Search View
+title: Create a Fulltext Search View
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create a new search view.
+This page explains how to create a new fulltext search view.
+
+## Prerequisites
+
+- A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
+- At least one collection created.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to create a new search view using the GDN console web UI.
+Follow these instructions to create a new fulltext search view using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Data > Search Views**.
 3. Click **New View**.
-4. Enter information about the view and then click **Create**.
-
-   - **Name -** The user-defined name for the search view.
-   - **Mapping Definition -** Optional. Choose existing data from which to create an index.
-    - **Collection -** Select an existing collection.
-    - **Field -** Enter a field name for the selected collection.
-    - **Analyzer -** Select a text analyzer or identity analyzer to break up search inputs for improved searching and sorting.
-   - **Primary Sort -** Optional. The sorting order for each attribute. Cannot be changed after view is created.
-    - **Field -** Specify the sorting according to collections and fields in the mapping definition.
-    - **Direction -** Set the sorting order to ascending (default) or descending.
-
-After creating a view, you can **Rename** or **Delete** it from the **Search** screen.
-
+4. Enter a **Search View Name**.
+5. In **View Type**, select **Fulltext Search**.
+6. Enter data sources for the search view. You can add multiple collections and fields for the search view
+   1. In the **Collection** field, select the collection you want to index in the search view.
+   2. (Optional) Enter a field to be indexed in the search view. If you do not enter a field, then all fields are indexed.
+   3. (Optional) Select a text analyzer or identity analyzer to break up search inputs for improved searching and sorting. If you do not make a selection, then no analyzer is used.
+7. (Optional) In the Primary Sort section, you can apply sorting to indexed fields. This is the sorting order for each attribute. It cannot be changed after view is created.
+   - **Field -** Specify the sorting according to collections and fields in the mapping definition.
+   - **Sort Direction -** Set the sorting order to ascending (default) or descending.
+   - **Add Field -** Click to add sorting on another field.
+8. Click **Create**.
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create a Search View](https://www.macrometa.com/docs/api#/operations/createView).
-
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Fulltext Search View](https://www.macrometa.com/docs/api#/operations/createView).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use our command line interface to [Create a Search View](../../../CLI/search-views-cli#gdnsl-view-create).
-
+Use our command line interface to [Create a Fulltext Search View](../../../CLI/search-views-cli#gdnsl-view-create).
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
@@ -57,6 +58,9 @@ API_KEY = "<API Key>" # Change this to your API key.
 # Authenticate with API key.
 client = C8Client(protocol='https', host=URL, port=443, apikey=API_KEY, geofabric=GEO_FABRIC)
 print("Connected to GDN.")
+
+# Update the search view name, collection name, field names, and sorting with the values you want in your search view.
+
 search_view_name = "example_search_view"
 collection_name = "your_collection_name"
 properties = {
@@ -68,6 +72,7 @@ properties = {
     }
 }
 primary_sort = [{"field": "title", "direction": "asc"}]
+
 # Check if collection exists
 if not client.has_collection(collection_name):
     print(f"Collection '{collection_name}' does not exist.")
@@ -89,9 +94,13 @@ else:
 const jsc8 = require("jsc8");
 const client = new jsc8({url: "https://play.paas.macrometa.io", apiKey: "<API Key>", fabricName: "_system"});
 console.log("Connected to GDN.");
+
+// Define constants.
+
 const collectionName = "example_collection"; // Replace this with your collection name.
-const searchViewName = "example_search_view";
-const properties = {
+const searchViewName = "example_search_view"; // Replace this with your search view name.
+// Change the fields, analyzers, and sorting to match what you want in your search view.
+const properties = { 
   [collectionName]: {
     "fields": {
       "title": {"analyzers": ["text_en"]},
@@ -100,6 +109,8 @@ const properties = {
   }
 };
 const primarySort = [{"field": "title", "direction": "asc"}]
+
+// Function to create the search view.
 async function createMySearchView () {
   if (!await client.hasCollection(collectionName)) {
     console.log(`Collection "${collectionName}" does not exist`);

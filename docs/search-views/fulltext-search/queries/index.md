@@ -3,15 +3,15 @@ sidebar_position: 40
 title: Fulltext Search Queries
 ---
 
-You can use the `SEARCH` keyword to filter a query using a search view, allowing you to:
+With Macrometa, the `SEARCH` keyword is used to filter your queries using a search view. By employing this keyword, you can:
 
-- Filter documents based on [C8QL](../../../queries/c8ql/index.md) and [SQL](../../../queries/sql/index.md) Boolean expressions and functions.
-- Match documents located in different collections.
-- Sort the result set based on how closely each document matches the search conditions.
+- Filter documents based on Boolean expressions and functions in [C8QL](../../../queries/c8ql/).
+- Match documents that reside in different collections.
+- Sort the resulting set based on how closely each document matches the search conditions.
 
 ## Syntax
 
-You must use the `SEARCH` statement in a `FOR...IN` operation. The `SEARCH` statement must be placed after the `FOR` and before any additional operations.
+The `SEARCH` statement must be used within a `FOR...IN` operation. For the correct sequence, the `SEARCH` statement should be placed after `FOR` and before any additional operations.
 
 ```sql
 FOR doc IN <SEARCH_VIEW_NAME>
@@ -19,7 +19,7 @@ FOR doc IN <SEARCH_VIEW_NAME>
   ...
 ```
 
-Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` with one of the following [functions](search-functions/index.md):
+Replace `<SEARCH_VIEW_NAME>` with the name of your search view, and `<EXPRESSION>` with a function like:
 
 - `AND`
 - `OR`
@@ -32,7 +32,7 @@ Replace `SEARCH_VIEW_NAME` with the name of your search view, and `EXPRESSION` w
 - `!=`
 - `IN` (array or range), also `NOT IN`
 
-For example:
+Here's an example:
 
 ```sql
 FOR doc IN MySearchView
@@ -40,128 +40,89 @@ FOR doc IN MySearchView
 RETURN doc
 ```
 
+In this context, the `OPTIONS {...}` clause provides additional parameters to the `SEARCH` function, such as limiting the search to specific collections.
+
 ## Limitations
 
-`SEARCH` does not support:
+The `SEARCH` keyword doesn't support:
 
 - Alphabetical order
 - Array comparison operators
 - Inline expressions
 
-Refer to [Search Options](#search-options) for information about the `OPTIONS` keyword.
+## Search Options
+
+The `SEARCH` keyword can also accept the following optional attribute:
+
+- `collections` (array): An array of strings with the collection names. This restricts the search to certain source collections.
+
+If a search view is linked to three collections (`coll1`, `coll2`, and `coll3`), you can use the `collections` option to only return documents from `coll1` and `coll2`:
+
+```sql
+FOR doc IN viewName
+  SEARCH true OPTIONS { collections: ["coll1", "coll2"] }
+RETURN doc
+```
+
+In contrast, you can use `false` instead of `true` to exclude the specified collections from your search.
 
 ## Search by Document Attribute
 
-You can search for documents by querying document attributes that have been indexed by both the search view and the document store. Refer to [Document Store Indexes](../../../collections/documents/document-store-indexes.md) for more information about adding attributes to document store indexes.
+By querying document attributes indexed in both the search view and the document store, you can search for documents. The search result will include all attributes of the documents. However, if you query a non-indexed attribute, it will yield no results.
 
-When you search for a document by its attribute, all attributes (including non-indexed ones) return in the results. However, querying a non-indexed attribute yields no results.
-
-For example, if you have documents in a collection with these attributes:
-
-```sql
-{ "someAttr": "One", "anotherAttr": "One" }
-{ "someAttr": "Two", "anotherAttr": "Two" }
-```
-
-Only the `someAttr` attribute is indexed in the search view and the document store index.
-
-You can run this query to return all attributes for the first document in the collection:
+For example:
 
 ```sql
 FOR doc IN MySearchView
   SEARCH doc.someAttr == "One"
-  RETURN doc
+RETURN doc
 ```
 
-The result displays all attributes for the first document, including the non-indexed `anotherAttr`.
-
-Alternatively, if you query by the non-indexed `anotherAttr` attribute, the search yields no results:
+In this example, although `anotherAttr` is not indexed, it is returned as it's part of the document. Querying for `anotherAttr` directly, however, would yield no results:
 
 ```sql
 FOR doc IN myView
   SEARCH doc.anotherAttr == "One"
-  RETURN doc
+RETURN doc
 ```
 
-You can use the `includeAllFields` property to index all fields and subfields of the source documents.
+By using the `includeAllFields` property, you can index all fields and subfields of the source documents. However, please note that indexing all fields might increase the size of your index and potentially impact performance.
 
 ## Search for Array Elements
 
-You can search for individual array elements if your search view has `trackListPositions` set to `true`.
-
-In the following document, the values `1`, `2,` and `3` are indexed and individually searchable.
-
-```json
-{
-  "value": {
-    "nested": {
-      "deep": [ 1, 2, 3 ]
-    }
-  }
-}
-```
-
-If your search view indexes the `value` field, you can use a query such as `doc.value.nested.deep`:
+You can search for individual elements of an array if your search view has `trackListPositions` set to `true`. Here is an example:
 
 ```sql
 FOR doc IN viewName
   SEARCH doc.value.nested.deep == 2
-  RETURN doc
+RETURN doc
 ```
 
-Alternatively, you can use an [array comparison operator](../../../queries/c8ql/operators.md#array-comparison-operators) with a `FILTER` operation:
-
-```sql
-FOR doc IN collection
-  FILTER doc.value.nested.deep ANY == 2
-  RETURN doc
-```
-
-If `trackListPositions` is disabled on the search view, then you must specify the position within the array of the data you want to find. For example:
+However, if `trackListPositions` is disabled on your search view, you must specify the position within the array of the data you want to find. For instance:
 
 ```sql
 FOR doc IN viewName
   SEARCH doc.value.nested.deep[1] == 2
-  RETURN doc
+RETURN doc
 ```
 
-In this example, `[1]` indicates that the desired result (`2`) is the second value in the array. If you wanted to find the first value, you would instead use:
-
-```sql
-SEARCH doc.value.nested.deep[0] == 1
-```
+In this example, `[1]` indicates that the desired result (`2`) is the second value in the array.
 
 ## Search with SORT()
 
-You can retrieve documents that aren't indexed by the search view with the [SORT() operation](../../../queries/c8ql/operations/sort.md). For example:
+The `SORT()` operation allows you to retrieve documents that are not indexed by the search view. Here's an example:
 
 ```sql
 FOR doc IN viewName
   SORT doc.text, doc.value DESC
-  RETURN doc
+RETURN doc
 ```
 
-You can also use [Search Scoring Functions](search-functions/index.md#scoring-functions) to sort the retrieved documents by relevance. This only works for documents excluded from the search view's index. For example:
+Additionally, the `SORT()` operation can also work with scoring functions to sort documents by their relevance. This, however, only works for documents that are not part of the search view's index. For example:
 
 ```sql
 FOR doc IN viewName
   SEARCH ...
   SORT BM25(doc) DESC
-  RETURN doc
+RETURN doc
 ```
-
-## Search Options
-
-`SEARCH` also accepts the following optional attribute:
-
-- `collections` (array): Array of strings with collection names to restrict the search to certain source collections.
-
-If a search view has three linked collections (`coll1`, `coll2`, and `coll3`), you can return documents from specific collections with the `collections` option:
-
-```sql
-FOR doc IN viewName
-  SEARCH true OPTIONS { collections: ["coll1", "coll2"] }
-  RETURN doc
-```
-
-Alternatively, you can replace `true` with `false` to exclude the specified collections.
