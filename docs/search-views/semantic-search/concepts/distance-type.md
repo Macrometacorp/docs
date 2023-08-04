@@ -5,7 +5,7 @@ title: Distance Type
 
 This page provides basic information about values in the **Distance Type** field, which is used in defining semantic search views in Macrometa Global Data Network (GDN).
 
-In the context of semantic search, the "distance" between two entities is the extent of similarity between them. The greater the distance, the less similar the entities are.
+In the context of semantic search, the "distance" between two entities is the extent of similarity between them. The greater the distance, the less similar the entities are. A similarity search returns the entities which have the least distance from the queried entity.
 
 You have several distance type options. The different distance or similarity measures can have different impacts on search results, and the best one to use can depend on the specific characteristics of the data and the problem you're trying to solve.
 
