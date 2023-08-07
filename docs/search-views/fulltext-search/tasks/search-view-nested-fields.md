@@ -1,12 +1,12 @@
 ---
 sidebar_position: 50
-title: Create Search Views with Nested Fields
+title: Create Fulltext Search Views with Nested Fields
 ---
 
-This page explains how you can create search views for lower-level fields, also called nested fields. You can achieve this in two steps:
+This page explains how you can create fulltext search views for lower-level fields, also called nested fields. You can achieve this in two steps:
 
 1. Construct a JSON object, as outlined below.
-2. Use this JSON object to create a search view using the [Create Search View](https://www.macrometa.com/docs/api#/operations/createView) API endpoint.
+2. Use this JSON object to create a fulltext search view using the [Create Search View](https://www.macrometa.com/docs/api#/operations/createView) API endpoint.
 
 ## Step 1: Construct the JSON Object
 
@@ -77,7 +77,7 @@ This approach is more efficient, as it only indexes the specified fields. It's r
 
 If you anticipate adding more sub-fields later, then the first option provides more flexibility.
 
-## Step 2: Creating the Search View
+## Step 2: Create the Fulltext Search View
 
 Access the endpoint using your preferred method.
 
