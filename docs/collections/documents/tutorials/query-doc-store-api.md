@@ -19,7 +19,7 @@ This page shows you how to query documents stored in a document store collection
 <Steps />
 
 <Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+<TabItem value="py" label="API - Python">
 
 ```py
 import json
@@ -32,57 +32,62 @@ HTTP_URL = f"https://{URL}"
 API_KEY = "XXXXX" # Use your API key here
 AUTH_TOKEN = f"apikey {API_KEY}"
 FABRIC = "_system"
-AUTH_TOKEN = "bearer "
-READ_QUERY = "FOR doc IN @@collection RETURN doc"
-QUERY_NAME = "read"
+READ_QUERY = "FOR doc IN @@collection FILTER doc.result > 90 RETURN doc"
 COLLECTION_NAME = "api_query_tutorial"
 QUERY_PARAMS = {"@collection": f"{COLLECTION_NAME}"}
 INSERT_QUERY = "FOR i IN 1..100 INSERT { result: i } INTO @@collection"
-UPDATE_QUERY = "FOR doc IN @@collection FILTER doc.result >= 35 " \
+UPDATE_QUERY = "FOR doc IN @@collection FILTER doc.result <= 35 " \
                "UPDATE doc._key WITH { qualified :true } IN @@collection"
 DELETE_QUERY = "FOR c IN @@collection REMOVE c IN @@collection"
 UPDATE_READ_QUERY = "FOR doc IN @@collection FILTER doc.result < 10 RETURN doc"
 
 # Create a HTTPS session
-
+print("1. Connecting to GDN")
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
 session.headers.update({"authorization": AUTH_TOKEN})
 
 # Create a document collection
-# Note: Create a test collection. Set "type" to 2 for documents or 3 for edges
+print(f"\n2. Creating collection {COLLECTION_NAME}")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/collection"
 payload = {
-    "name": COLLECTION_NAME,
-    "type": 2
+    "name": COLLECTION_NAME
 }
 resp = session.post(URL, data=json.dumps(payload))
 resp = json.loads(resp.text)
 if 'error' in resp and resp['error']:
-    print("ERROR: " + resp["errorMessage"])
+    if resp['errorNum'] == 1207:
+        print("Collection already exists.")
+    else:
+        print("ERROR: " + resp["errorMessage"])
 else:
-    print("\nCollection created: ", resp['name'])
+    print("Collection created successfully: ", resp['name'])
 
 # Create RESTQL
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql"
 
+print("\n3. Creating queryworkers")
 # Save read query
 payload = {
     "query": {
-        "name": QUERY_NAME,
+        "name": "Read",
         "parameter": QUERY_PARAMS,
         "value": READ_QUERY
     }
 }
 
 resp = session.post(URL, data=json.dumps(payload))
-print("\nRead query saved: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Read queryworker saved successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
 
 # Save insert query
 payload = {
     "query": {
-        "name": "insert",
+        "name": "Insert",
         "value": INSERT_QUERY,
         "parameter": QUERY_PARAMS,
 
@@ -90,13 +95,17 @@ payload = {
 }
 
 resp = session.post(URL, data=json.dumps(payload))
-print("\nInsert query saved: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Insert queryworker saved successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
 
 # Save update query
 payload = {
     "query": {
-        "name": "update",
+        "name": "Update",
         "value": UPDATE_QUERY,
         "parameter": QUERY_PARAMS,
 
@@ -104,49 +113,77 @@ payload = {
 }
 
 resp = session.post(URL, data=json.dumps(payload))
-print("\nUpdate query saved: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Update queryworker saved successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
+
 # Save delete query
 payload = {
     "query": {
-        "name": "delete",
+        "name": "Delete",
         "value": DELETE_QUERY,
         "parameter": QUERY_PARAMS,
 
     }
 }
 resp = session.post(URL, data=json.dumps(payload))
-print("\nDelete query saved: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Delete queryworker saved successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
 
 # Execute insert query
-URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/insert"
+print("\n4. Executing queryworker: Insert")
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Insert"
 payload = {
     "bindVars": QUERY_PARAMS,
 }
 resp = session.post(URL, data=json.dumps(payload))
-print("\nInsert query executed: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False or resp_json.get("result") == []:
+    print("Insert queryworker executed successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
 
 # Execute read query
-URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/" + QUERY_NAME
+print("\n5. Executing queryworker: Read")
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Read"
 payload = {
     "bindVars": QUERY_PARAMS,
 }
 resp = session.post(URL, data=json.dumps(payload))
-print("\nRead query executed: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Read queryworker executed successfully. Data: ")
+    for doc in resp_json.get("result", []):
+        print(json.dumps(doc, indent=4))
+else:
+    print(resp_json)
 time.sleep(1)
 
 # Execute update query
-URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/update"
+print("\n6. Executing queryworker: Update")
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Update"
 payload = {
     "bindVars": QUERY_PARAMS,
 }
 resp = session.post(URL, data=json.dumps(payload))
-print("\nUpdate query executed: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False or resp_json.get("result") == []:
+    print("Update queryworker executed successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
+
 # Update saved query
-URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/" + QUERY_NAME
+print("\n7. Updating queryworker: Read")
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Read"
 payload = {
     "query": {
         "parameter": QUERY_PARAMS,
@@ -154,38 +191,68 @@ payload = {
     }
 }
 resp = session.put(URL, data=json.dumps(payload))
-print("Query updated: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Read queryworker updated successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
 
 # Execute delete query
-URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/delete"
+print("\n8. Executing queryworker: Delete")
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Delete"
 payload = {
     "bindVars": QUERY_PARAMS,
 }
 resp = session.post(URL, data=json.dumps(payload))
-print("\nDelete query executed: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False or resp_json.get("result") == []:
+    print("Delete queryworker executed successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
 
 # Delete saved queries
-URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/{QUERY_NAME}"
+print("\n9. Deleting queryworkers")
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Read"
 resp = session.delete(URL)
-print("Read query deleted: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Read queryworker deleted successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
-URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/insert"
+
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Insert"
 resp = session.delete(URL)
-print("Insert query deleted: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Insert queryworker deleted successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
-URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/update"
+
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Update"
 resp = session.delete(URL)
-print("Update query deleted: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Update queryworker deleted successfully.")
+else:
+    print(resp_json)
 time.sleep(1)
-URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/delete"
+
+URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Delete"
 resp = session.delete(URL)
-print("Delete query deleted: ", resp.text)
+resp_json = resp.json()
+if resp_json.get("error") == False:
+    print("Delete queryworker deleted successfully.")
+else:
+    print(resp_json)
+
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="API - JS">
 
 ```js
 class APIRequest {
@@ -220,31 +287,32 @@ class APIRequest {
 }
 
 const apiKey = "XXXXX" // Use your API key here
-const globalURL = "https://api-play.paas.macrometa.io";
+const globalUrl = "api-play.paas.macrometa.io";
+const httpUrl = `https://${globalUrl}`;
 const collectionName = "api_query_tutorial";
+const fabric = "_system";
 
-const readQueryName = "read";
+const readQueryName = "Read";
 const queryParams = { "@collection": collectionName };
-const readQuery = "FOR doc IN @@collection RETURN doc";
+const readQuery = "FOR doc IN @@collection FILTER doc.result > 90 RETURN doc";
 
-const insertQueryName = "insert";
-const insertQuery = "FOR i IN 1..10 INSERT { result: i } INTO @@collection";
+const insertQueryName = "Insert";
+const insertQuery = "FOR i IN 1..100 INSERT { result: i } INTO @@collection";
 
-const updateQueryName = "update";
+const updateQueryName = "Update";
 const updateQuery =
-  "FOR doc IN @@collection FILTER doc.result >= 3 UPDATE doc._key WITH { qualified :true } IN @@collection";
+  "FOR doc IN @@collection FILTER doc.result <= 35 UPDATE doc._key WITH { qualified :true } IN @@collection";
 
-const deleteQueryName = "delete";
+const deleteQueryName = "Delete";
 const deleteQuery = "FOR c IN @@collection REMOVE c IN @@collection";
 
 const readQueryUpdated =
-  "FOR doc IN @@collection FILTER doc.result < 1 RETURN doc";
+  "FOR doc IN @@collection FILTER doc.result < 10 RETURN doc";
 
-const connection = new APIRequest(globalURL);
-
+let connection;
 async function saveQueryWorker (queryName, queryValue, queryParams) {
   await connection
-    .req("/_fabric/_system/_api/restql", {
+    .req(`/_fabric/${fabric}/_api/restql`, {
       body: {
         query: {
           name: queryName,
@@ -254,29 +322,33 @@ async function saveQueryWorker (queryName, queryValue, queryParams) {
       },
       method: "POST"
     })
-    .then((query) =>
-      console.log(`${queryName} query saved successfully `, query)
+    .then(() =>
+      console.log(`${queryName} queryworker saved successfully.`)
     )
     .catch((error) => console.log(error));
 }
 
 async function runQueryWorker (queryWorkerName, params) {
   await connection
-    .req(`/_fabric/_system/_api/restql/execute/${queryWorkerName}`, {
+    .req(`/_fabric/${fabric}/_api/restql/execute/${queryWorkerName}`, {
       body: {
         bindVars: params
       },
       method: "POST"
     })
-    .then((query) =>
-      console.log(`${queryWorkerName} query worker results: `, query)
-    )
+    .then((query) => {
+      if (query.result.length === 0) {
+        console.log(`${queryWorkerName} queryworker executed successfully.`)
+      } else {
+        console.log(`${queryWorkerName} queryworker executed successfully. Data: `, query.result)
+      }
+    })
     .catch((error) => console.log(error));
 }
 
 async function updateSavedQueryWorker (queryName, newQuery, queryParams) {
   await connection
-    .req(`/_fabric/_system/_api/restql/${queryName}`, {
+    .req(`/_fabric/${fabric}/_api/restql/${queryName}`, {
       body: {
         query: {
           value: newQuery,
@@ -285,53 +357,49 @@ async function updateSavedQueryWorker (queryName, newQuery, queryParams) {
       },
       method: "PUT"
     })
-    .then((updatedQuery) =>
-      console.log(`${queryName} was modified successfully`, updatedQuery)
+    .then(() =>
+      console.log(`${queryName} queryworker updated successfully.`)
     )
     .catch((error) => console.log(error));
 }
 
 async function deleteQueryWorker (queryName) {
   await connection
-    .req(`/_fabric/_system/_api/restql/${queryName}`, {
+    .req(`/_fabric/${fabric}/_api/restql/${queryName}`, {
       method: "DELETE"
     })
-    .then((query) => console.log("Query deleted successfully", query))
+    .then(() => console.log(`${queryName} queryworker deleted successfully.`))
     .catch((error) => console.log(error));
 }
 
 async function createCollection (collection) {
   await connection
-    .req("/_fabric/_system/_api/collection", {
+    .req(`/_fabric/${fabric}/_api/collection`, {
       body: { name: collection },
       method: "POST"
     })
     .then((collection) =>
-      console.log("2. Collection saved successfully", collection)
+      console.log("Collection created successfully: ", collection.name)
     )
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      if (error.status === 409) {
+        console.log("Collection already exists.")
+      } else {
+        console.log(error)
+      }
+    });
 }
 
-async function deleteCollection (collection) {
-  await connection
-    .req(`/_fabric/_system/_api/collection/${collection}`, {
-      method: "DELETE"
-    })
-    .then((collection) =>
-      console.log("Collection deleted successfully", collection)
-    )
-    .catch((error) => console.log(error));
-}
-
-  const run = async function () {
-    try {
-      const connection = new APIRequest(httpUrl, apiKey);
+const run = async function () {
+  try {
+    console.log("1. Connecting to GDN")
+    connection = new APIRequest(httpUrl, apiKey);
 
     /* ------------------------ Create collection ----------------------- */
+    console.log("\n2. Creating collection " + collectionName);
     await createCollection(collectionName);
 
-    console.log("3. Saving query workers");
-
+    console.log("\n3. Creating queryworkers");
     /* ------------------------ Save query worker  ----------------------- */
     await saveQueryWorker(readQueryName, readQuery, queryParams);
 
@@ -345,42 +413,40 @@ async function deleteCollection (collection) {
     await saveQueryWorker(deleteQueryName, deleteQuery, queryParams);
 
     await new Promise(r => setTimeout(r, 2000));
-    console.log("4. Running query workers");
 
     /* ----------------------- Run insert query worker ---------------------- */
+    console.log("\n4. Executing queryworker: " + insertQueryName);
     await runQueryWorker(insertQueryName, queryParams);
 
     /* ----------------------- Run read query worker ---------------------- */
+    console.log("\n5. Executing queryworker: " + readQueryName);
     await runQueryWorker(readQueryName, queryParams);
 
     /* ----------------------- Run update query worker ---------------------- */
+    console.log("\n6. Executing queryworker: " + updateQueryName);
     await runQueryWorker(updateQueryName, queryParams);
 
-    /* ----------------------- Run read query worker ---------------------- */
-    await runQueryWorker(readQueryName, queryParams);
-
-    /* ----------------------- Run delete query worker ---------------------- */
-    await runQueryWorker(deleteQueryName, queryParams);
-
     /* ----------------------- Update saved query worker ---------------------- */
+    console.log("\n7. Updating queryworker: " + readQueryName);
     await updateSavedQueryWorker(readQueryName, readQueryUpdated, queryParams);
 
+    /* ----------------------- Run delete query worker ---------------------- */
+    console.log("\n8. Executing queryworker: " + deleteQueryName);
+    await runQueryWorker(deleteQueryName, queryParams);
 
     /* ----------------------------- Delete query workers ----------------------------- */
-    console.log("5. Deleting query workers");
+    console.log("\n9. Deleting queryworkers");
     await deleteQueryWorker(readQueryName);
     await deleteQueryWorker(updateQueryName);
     await deleteQueryWorker(insertQueryName);
     await deleteQueryWorker(deleteQueryName);
-
-    console.log(`6. Deleting ${collectionName} collection`);
-    await deleteCollection(collectionName);
   } catch (e) {
     console.error(e);
   }
 };
 
 run();
+
 ```
 
 </TabItem>
