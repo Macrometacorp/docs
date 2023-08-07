@@ -25,7 +25,7 @@ Follow these instructions to create a new fulltext search view using the GDN con
 5. In **View Type**, select **Fulltext Search**.
 6. Enter data sources for the search view. You can add multiple collections and fields for the search view
    1. In the **Collection** field, select the collection you want to index in the search view.
-   2. (Optional) Enter a field to be indexed in the search view. If you do not enter a field, then all fields are indexed.
+   2. Enter a field to be indexed in the search view.
    3. (Optional) Select a text analyzer or identity analyzer to break up search inputs for improved searching and sorting. If you do not make a selection, then no analyzer is used.
 7. (Optional) In the Primary Sort section, you can apply sorting to indexed fields. This is the sorting order for each attribute. It cannot be changed after view is created.
    - **Field -** Specify the sorting according to collections and fields in the mapping definition.
