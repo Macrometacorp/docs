@@ -24,7 +24,7 @@ Your JSON object should have the following structure:
 - **`primarySort` (array of strings)**: Default sorting order for the view.
 - **`type`**: Always set this to `search`.
 
-**JSON Example:**
+### JSON Example
 
 ```json
 {
@@ -64,7 +64,7 @@ Index all sub-fields of the primary field.
 #### Specify Nested Field Paths
 
 This approach is more efficient, as it only indexes the specified fields. It's recommended if you know exactly which nested fields you want to index.
-    
+
 ```json
 "fields": { 
   "topLevelField": {
