@@ -19,8 +19,27 @@ Function converts a map into a JSON object and returns the JSON as a string.
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 map:toJSON(company)
 ```
 
-The `map:toJSON(company)` function takes the `company` map, which has key-value pairs like (`symbol`:`gdn`), (`volume` : 100), and (`price`, 200), and converts it into a JSON string: `{"symbol" : "gdn", "volume" : 100 , "price" : 200}`.
+The `map:toJSON(company)` function is used to transform the `company` map, which consists of key-value pairs such as (`symbol`:`gdn`), (`volume` : 100), and (`price`, 200), into a JSON formatted string: `{"symbol" : "gdn", "volume" : 100 , "price" : 200}`.
+
+## Example 2
+
+```sql
+CREATE STREAM CompanyInput (symbol string, volume int, price float, company object);
+CREATE SINK STREAM CompanyJson (companyJson string);
+
+@info(name = 'TransformCompanyToJson')
+INSERT INTO CompanyJson
+SELECT map:toJSON(company) AS companyJson
+FROM CompanyInput WINDOW TUMBLING_LENGTH(10);
+```
+
+In this stream processing example, the `CompanyInput` stream is created to provide input to the query, and the `CompanyJson` stream is created to collect the output.
+
+The `CompanyInput` stream includes details about the company (`symbol`, `volume`, `price`) and a `company` map. The `TransformCompanyToJson` query listens for batches of 10 events from the `CompanyInput` stream.
+
+The `map:toJSON(company)` function is used to transform the `company` map of each batch into a JSON formatted string. This string, referred to as `companyJson`, is then inserted into the `CompanyJson` stream.
+
+This way, the query continuously transforms batches of `company` map details into JSON strings and sends these strings to the `CompanyJson` stream.

@@ -50,6 +50,13 @@ Order of queries based on their output can drastically affect how your stream wo
 
 In general, have queries that insert data into windows or aggregations before queries that insert data into tables.
 
+Stream workers support the following output actions:
+
+- INSERT
+- UPDATE
+- UPDATE OR INSERT
+- DELETE
+
 ## Query Projections
 
 Query projection allow you to filter and transform streaming data by choosing which fields or attributes of a data stream you want to include or exclude in query results. By selecting only the necessary fields and performing any necessary calculations or aggregations, query projection can help to reduce the amount of data that needs to be processed and improve the overall performance of streaming applications.
