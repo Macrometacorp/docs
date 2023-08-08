@@ -66,7 +66,7 @@ else:
 # Create RESTQL
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql"
 
-print("\n3. Creating queryworkers")
+print("\n3. Creating query workers")
 # Save read query
 payload = {
     "query": {
@@ -79,7 +79,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Read queryworker saved successfully.")
+    print("Read query worker saved successfully.")
 else:
     print(resp_json)
 time.sleep(1)
@@ -97,7 +97,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Insert queryworker saved successfully.")
+    print("Insert query worker saved successfully.")
 else:
     print(resp_json)
 time.sleep(1)
@@ -115,7 +115,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Update queryworker saved successfully.")
+    print("Update query worker saved successfully.")
 else:
     print(resp_json)
 time.sleep(1)
@@ -132,13 +132,13 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Delete queryworker saved successfully.")
+    print("Delete query worker saved successfully.")
 else:
     print(resp_json)
 time.sleep(1)
 
 # Execute insert query
-print("\n4. Executing queryworker: Insert")
+print("\n4. Executing query worker: Insert")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Insert"
 payload = {
     "bindVars": QUERY_PARAMS,
@@ -146,13 +146,13 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 resp_json = resp.json()
 if resp_json.get("error") == False or resp_json.get("result") == []:
-    print("Insert queryworker executed successfully.")
+    print("Insert query worker executed successfully.")
 else:
     print(resp_json)
 time.sleep(1)
 
 # Execute read query
-print("\n5. Executing queryworker: Read")
+print("\n5. Executing query worker: Read")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Read"
 payload = {
     "bindVars": QUERY_PARAMS,
@@ -160,7 +160,7 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Read queryworker executed successfully. Data: ")
+    print("Read query worker executed successfully. Data: ")
     for doc in resp_json.get("result", []):
         print(json.dumps(doc, indent=4))
 else:
@@ -168,7 +168,7 @@ else:
 time.sleep(1)
 
 # Execute update query
-print("\n6. Executing queryworker: Update")
+print("\n6. Executing query worker: Update")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Update"
 payload = {
     "bindVars": QUERY_PARAMS,
@@ -176,13 +176,13 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 resp_json = resp.json()
 if resp_json.get("error") == False or resp_json.get("result") == []:
-    print("Update queryworker executed successfully.")
+    print("Update query worker executed successfully.")
 else:
     print(resp_json)
 time.sleep(1)
 
 # Update saved query
-print("\n7. Updating queryworker: Read")
+print("\n7. Updating query worker: Read")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Read"
 payload = {
     "query": {
@@ -193,13 +193,13 @@ payload = {
 resp = session.put(URL, data=json.dumps(payload))
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Read queryworker updated successfully.")
+    print("Read query worker updated successfully.")
 else:
     print(resp_json)
 time.sleep(1)
 
 # Execute delete query
-print("\n8. Executing queryworker: Delete")
+print("\n8. Executing query worker: Delete")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Delete"
 payload = {
     "bindVars": QUERY_PARAMS,
@@ -207,18 +207,18 @@ payload = {
 resp = session.post(URL, data=json.dumps(payload))
 resp_json = resp.json()
 if resp_json.get("error") == False or resp_json.get("result") == []:
-    print("Delete queryworker executed successfully.")
+    print("Delete query worker executed successfully.")
 else:
     print(resp_json)
 time.sleep(1)
 
 # Delete saved queries
-print("\n9. Deleting queryworkers")
+print("\n9. Deleting query workers")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Read"
 resp = session.delete(URL)
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Read queryworker deleted successfully.")
+    print("Read query worker deleted successfully.")
 else:
     print(resp_json)
 time.sleep(1)
@@ -227,7 +227,7 @@ URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Insert"
 resp = session.delete(URL)
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Insert queryworker deleted successfully.")
+    print("Insert query worker deleted successfully.")
 else:
     print(resp_json)
 time.sleep(1)
@@ -236,7 +236,7 @@ URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Update"
 resp = session.delete(URL)
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Update queryworker deleted successfully.")
+    print("Update query worker deleted successfully.")
 else:
     print(resp_json)
 time.sleep(1)
@@ -245,7 +245,7 @@ URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Delete"
 resp = session.delete(URL)
 resp_json = resp.json()
 if resp_json.get("error") == False:
-    print("Delete queryworker deleted successfully.")
+    print("Delete query worker deleted successfully.")
 else:
     print(resp_json)
 
@@ -323,7 +323,7 @@ async function saveQueryWorker (queryName, queryValue, queryParams) {
       method: "POST"
     })
     .then(() =>
-      console.log(`${queryName} queryworker saved successfully.`)
+      console.log(`${queryName} query worker saved successfully.`)
     )
     .catch((error) => console.log(error));
 }
@@ -338,9 +338,9 @@ async function runQueryWorker (queryWorkerName, params) {
     })
     .then((query) => {
       if (query.result.length === 0) {
-        console.log(`${queryWorkerName} queryworker executed successfully.`)
+        console.log(`${queryWorkerName} query worker executed successfully.`)
       } else {
-        console.log(`${queryWorkerName} queryworker executed successfully. Data: `, query.result)
+        console.log(`${queryWorkerName} query worker executed successfully. Data: `, query.result)
       }
     })
     .catch((error) => console.log(error));
@@ -358,7 +358,7 @@ async function updateSavedQueryWorker (queryName, newQuery, queryParams) {
       method: "PUT"
     })
     .then(() =>
-      console.log(`${queryName} queryworker updated successfully.`)
+      console.log(`${queryName} query worker updated successfully.`)
     )
     .catch((error) => console.log(error));
 }
@@ -368,7 +368,7 @@ async function deleteQueryWorker (queryName) {
     .req(`/_fabric/${fabric}/_api/restql/${queryName}`, {
       method: "DELETE"
     })
-    .then(() => console.log(`${queryName} queryworker deleted successfully.`))
+    .then(() => console.log(`${queryName} query worker deleted successfully.`))
     .catch((error) => console.log(error));
 }
 
@@ -399,7 +399,7 @@ const run = async function () {
     console.log("\n2. Creating collection " + collectionName);
     await createCollection(collectionName);
 
-    console.log("\n3. Creating queryworkers");
+    console.log("\n3. Creating query workers");
     /* ------------------------ Save query worker  ----------------------- */
     await saveQueryWorker(readQueryName, readQuery, queryParams);
 
@@ -415,27 +415,27 @@ const run = async function () {
     await new Promise(r => setTimeout(r, 2000));
 
     /* ----------------------- Run insert query worker ---------------------- */
-    console.log("\n4. Executing queryworker: " + insertQueryName);
+    console.log("\n4. Executing query worker: " + insertQueryName);
     await runQueryWorker(insertQueryName, queryParams);
 
     /* ----------------------- Run read query worker ---------------------- */
-    console.log("\n5. Executing queryworker: " + readQueryName);
+    console.log("\n5. Executing query worker: " + readQueryName);
     await runQueryWorker(readQueryName, queryParams);
 
     /* ----------------------- Run update query worker ---------------------- */
-    console.log("\n6. Executing queryworker: " + updateQueryName);
+    console.log("\n6. Executing query worker: " + updateQueryName);
     await runQueryWorker(updateQueryName, queryParams);
 
     /* ----------------------- Update saved query worker ---------------------- */
-    console.log("\n7. Updating queryworker: " + readQueryName);
+    console.log("\n7. Updating query worker: " + readQueryName);
     await updateSavedQueryWorker(readQueryName, readQueryUpdated, queryParams);
 
     /* ----------------------- Run delete query worker ---------------------- */
-    console.log("\n8. Executing queryworker: " + deleteQueryName);
+    console.log("\n8. Executing query worker: " + deleteQueryName);
     await runQueryWorker(deleteQueryName, queryParams);
 
     /* ----------------------------- Delete query workers ----------------------------- */
-    console.log("\n9. Deleting queryworkers");
+    console.log("\n9. Deleting query workers");
     await deleteQueryWorker(readQueryName);
     await deleteQueryWorker(updateQueryName);
     await deleteQueryWorker(insertQueryName);
