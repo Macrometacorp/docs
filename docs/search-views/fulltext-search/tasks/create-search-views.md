@@ -8,6 +8,10 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to create a new fulltext search view.
 
+:::note
+Some attributes cannot be set in the Macrometa web console. Only the API allows you to access all fulltext search options.
+:::
+
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.

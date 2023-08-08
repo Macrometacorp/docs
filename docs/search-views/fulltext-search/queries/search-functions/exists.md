@@ -2,9 +2,9 @@
 title: EXISTS()
 ---
 
-Match documents where an attribute at `path` is present. To use this function, the view definition must have `storeValues` set to `"id"`.
+Match documents where an attribute at `path` is present. To use this function, the fulltext search view definition must have `storeValues` set to `"id"`.
 
-### Syntax
+## Syntax
 
 `EXISTS(path)`
 
@@ -12,8 +12,7 @@ Match documents where an attribute at `path` is present. To use this function, t
 |------|-------------------------|---------------------------------------------|
 | path | attribute path expression | The path to the attribute in the document. |
 
-
-### Example
+## Example 1
 
 ```js
 FOR doc IN viewName
