@@ -19,8 +19,21 @@ Function checks if the object is type of a map.
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 map:isMap(stockDetails)
 ```
 
-The `map:isMap(stockDetails)` function checks if the `stockDetails` object is an instance of `java.util.Map`. If the object is a map, it returns `true`, otherwise, it returns `false`.
+The `map:isMap(stockDetails)` function evaluates whether the `stockDetails` object is a map. If the object is a map (i.e., it's an instance of `java.util.Map`), the function returns `true`. If the object is not a map, it returns `false`.
+
+## Example 2
+
+```sql
+CREATE STREAM InputStream (stockDetails object);
+CREATE SINK STREAM OutputStream (isMap bool);
+
+@info(name = 'CheckIsMap')
+INSERT INTO OutputStream
+SELECT map:isMap(stockDetails) AS isMap
+FROM InputStream;
+```
+
+In this stream worker, the `CheckIsMap` query processes events from the `InputStream`, with each event comprising a `stockDetails` object. The query applies the `map:isMap(stockDetails)` function to each event in `InputStream` to determine if `stockDetails` is a map. The resultant boolean value (`true` if it is a map, `false` otherwise) is then inserted into the `OutputStream` for each processed event.

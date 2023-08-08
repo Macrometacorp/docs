@@ -15,8 +15,8 @@ On the Users tab, you can select a user to access their details and delete the a
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Access > Users**.
-1. Select the user that you want to delete.
-1. Click **Delete** and then click **Yes**.
+1. Click the stacked dots next to the user that you want to delete.
+1. Click **Remove User** and then click **Delete** to confirm.
 
 </TabItem>
 <TabItem value="api" label="REST API">

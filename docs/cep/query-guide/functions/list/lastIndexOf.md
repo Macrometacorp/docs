@@ -20,8 +20,21 @@ Function returns the index of the given value.
 ## Example 1
 
 ```sql
-@info(name = 'query1')
-list:lastIndexOf(stockSymbols. `IBM`)
+list:lastIndexOf(stockSymbols, 'IBM')
 ```
 
-The `list:lastIndexOf(stockSymbols, 'IBM')` function returns the last index of the element `IBM` in the `stockSymbols` list if present; otherwise, it returns -1.
+The `list:lastIndexOf(stockSymbols, 'IBM')` function checks the `stockSymbols` list for the last occurrence of the value 'IBM'. It returns the index of the last occurrence if found; otherwise, it returns -1.
+
+## Example 2
+
+```sql
+CREATE STREAM InputStream (stockList OBJECT, symbol STRING);
+CREATE SINK STREAM OutputStream (symbolIndex INT);
+
+@info(name = 'SymbolSearch')
+INSERT INTO OutputStream
+SELECT list:lastIndexOf(stockList, symbol) AS symbolIndex
+FROM InputStream;
+```
+
+In this stream worker example, a query named `SymbolSearch` processes events from the `InputStream`, which contains a list of stock symbols (`stockList`) and a target stock symbol (`symbol`). The `list:lastIndexOf(stockList, symbol)` function checks the `stockList` for the last occurrence of the target `symbol`. If the target `symbol` is found, the function outputs the index of its last occurrence to `symbolIndex` for each event to the `OutputStream`. If the target `symbol` is not found, the function outputs `-1` to `symbolIndex`.

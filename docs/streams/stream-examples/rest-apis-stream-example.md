@@ -1,6 +1,6 @@
 ---
 sidebar_position: 120
-title: REST API Streams Example
+title: REST APIs Streams Example
 ---
 
 import Tabs from '@theme/Tabs';

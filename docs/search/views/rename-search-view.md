@@ -8,18 +8,16 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to rename a search view.
 
-## Rename Search View
-
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
 Follow these instructions to rename a search view using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Data > Search Views**.
-1. Click **Rename** next to the search view for which you want to change the name.
-1. Enter a new name in the field and click **Rename**.
-1. Click **Yes** to confirm.
+2. Click **Data > Search Views**.
+3. Click **Rename** next to the search view for which you want to change the name.
+4. Enter a new name in the field and click **Rename**.
+5. Click **Yes** to confirm.
 
 </TabItem>
 <TabItem value="api" label="REST API">
