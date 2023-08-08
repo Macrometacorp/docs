@@ -47,9 +47,9 @@ Pages in [Window Types](../cep/windows/window-types/) were updated as a result o
 
 ### Query Worker Permissions
 
-In previous versions of Macrometa, only the user that created the query worker could directly view and edit that query worker.
+In previous versions of Macrometa, only the user that created the query worker could directly view and edit that query worker. When a user was deleted, all query workers they created were deleted as well.
 
-The 17.17 release allows all users with the appropriate access level to see and interact with query workers.
+The 17.17 release allows all users with the appropriate access level to see and interact with query workers. Query workers are no longer deleted when the user account that created them are deleted.
 
 The user and API key permissions in the web console have been updated to allow you to assign query worker access levels.
 
