@@ -4,7 +4,7 @@ title: STARTS_WITH()
 
 Match the value of an attribute that starts with a prefix. If the attribute is tokenized or is an array, then a document only needs a single token or element to return in the query.
 
-### Syntax
+## Syntax
 
 `STARTS_WITH(path, prefix)`
 
@@ -13,10 +13,9 @@ Match the value of an attribute that starts with a prefix. If the attribute is t
 | path  | attribute path expression | The path to the attribute in the document.    |
 | prefix | string                  | A string to search for at the start of text.   |
 
-
 The alphabetical order of characters is not taken into account by search. Range queries in `SEARCH` operations against views do not follow the language rules as defined by a locale analyzer.
 
-### Examples
+## Example 1
 
 This example returns a `"lorem ipsum"` document using a prefix and an identity analyzer:
 
@@ -25,6 +24,8 @@ FOR doc IN viewName
   SEARCH STARTS_WITH(doc.text, "lorem ip")
   RETURN doc
 ```
+
+## Example 2
 
 If a view indexes the `text` attribute and processes it with an English text analyzer, then this query returns `"lorem ipsum"`and `"lorem", "ipsum"`:
 
@@ -35,6 +36,8 @@ FOR doc IN viewName
 ```
 
 The query does not return `"IPS (in-plane switching)"` because the analyzer has stemming enabled.
+
+## Example 3
 
 Assume you have an array of stemmed tokens which apply to `"IPS (in-plane switching)"`:
 
@@ -56,4 +59,3 @@ FOR doc IN viewName
   SEARCH ANALYZER(STARTS_WITH(doc.text, TOKENS("ips", "text_en")[0]), "text_en")
   RETURN doc.text
 ```
-

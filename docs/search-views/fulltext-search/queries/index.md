@@ -3,11 +3,15 @@ sidebar_position: 40
 title: Fulltext Search Queries
 ---
 
-With Macrometa, the `SEARCH` keyword is used to filter your queries using a search view. By employing this keyword, you can:
+With Macrometa, the `SEARCH` keyword is used to filter your queries using a fulltext search view. By employing this keyword, you can:
 
 - Filter documents based on Boolean expressions and functions in [C8QL](../../../queries/c8ql/).
 - Match documents that reside in different collections.
 - Sort the resulting set based on how closely each document matches the search conditions.
+
+:::note
+Some attributes listed in this page cannot be set in the Macrometa web console.
+:::
 
 ## Syntax
 
@@ -19,7 +23,7 @@ FOR doc IN <SEARCH_VIEW_NAME>
   ...
 ```
 
-Replace `<SEARCH_VIEW_NAME>` with the name of your search view, and `<EXPRESSION>` with a function like:
+Replace `<SEARCH_VIEW_NAME>` with the name of your fulltext search view, and `<EXPRESSION>` with a function like:
 
 - `AND`
 - `OR`
@@ -90,7 +94,7 @@ By using the `includeAllFields` property, you can index all fields and subfields
 
 ## Search for Array Elements
 
-You can search for individual elements of an array if your search view has `trackListPositions` set to `true`. Here is an example:
+You can search for individual elements of an array if your fulltext search view has `trackListPositions` set to `true`. Here is an example:
 
 ```sql
 FOR doc IN viewName

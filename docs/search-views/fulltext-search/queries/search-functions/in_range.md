@@ -4,7 +4,7 @@ title: IN_RANGE()
 
 Match documents where the attribute at `path` is greater than (or equal to) `low` and less than (or equal to) `high`.
 
-### Syntax
+## Syntax
 
 `IN_RANGE(path, low, high, includeLow, includeHigh)`
 
@@ -20,9 +20,9 @@ The values `low` and `high` can be numbers or strings, but each value must have 
 
 The alphabetical order of characters is not taken into account by search. Range queries in `SEARCH` operations against views do not follow the language rules as defined by a locale analyzer.
 
-### Examples
+## Example 1
 
-For example, this query returns documents with the attribute `value` between and including 3 to 5:
+This query returns documents with the attribute `value` between and including 3 to 5:
 
 ```js
 FOR doc IN viewName
@@ -31,6 +31,8 @@ FOR doc IN viewName
 ```
 
 This also matches documents which have an array of numbers as `value` attribute where at least one number is within the specified boundaries.
+
+## Example 2
 
 You can also use string boundaries and a text analyzer to match documents which have at least one token within the specified character range:
 
