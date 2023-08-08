@@ -1,5 +1,5 @@
 ---
-sidebar_position: 40
+sidebar_position: 50
 title: Delete a Search View
 ---
 
@@ -23,12 +23,10 @@ Follow these instructions to delete a search view using the GDN console web UI.
 
 Use our interactive API Reference with code generation in 18 programming languages to [Delete a Search View](https://www.macrometa.com/docs/api#/operations/deleteView).
 
-
 </TabItem>
 <TabItem value="cli" label="CLI">
 
 Use our command line interface to [Delete a Search View](../../../CLI/search-views-cli#gdnsl-view-delete).
-
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
