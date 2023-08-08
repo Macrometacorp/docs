@@ -13,16 +13,16 @@ Macrometa collection connectors allow you to extract data from or send data to a
 
 ## MSSQL Source
 
+Read this section carefully before you set up your MSSQL source connector.
 
+### Log-Based Replication Requirements
 
-### Log Based replication requirements
-
-To use `LOG_BASED` replication method, you must use Microsoft SQL Server Standard or Enterprise edition. 
-Also, You must have CDC enabled for the Database and the table which you intend to replicate.
+To use the `LOG_BASED` replication method, you must use Microsoft SQL Server Standard or Enterprise edition. Also, You must have CDC enabled for the database and the table which you intend to replicate.
 
 You can follow these steps to enable CDC on your Microsoft SQL Server instance.
 
-#### On-Premise databases
+#### On-Premise Databases
+
 ```sql
 -- ====
 -- Enable Database for CDC template
