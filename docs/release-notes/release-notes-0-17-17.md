@@ -22,7 +22,12 @@ You can now create semantic search views.
 
 The following connectors are included in this release:
 
-- Oracle Target
+- Oracle Target - DFP NOTE: Update file and link after 17.16 merges
+- MSSQL Source and Target
+- Databricks
+- Starburst
+
+The Drivers section was added as a result of this change.
 
 ## Feature Updates
 
