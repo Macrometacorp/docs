@@ -13,15 +13,14 @@ Macrometa collection connectors allow you to extract data from or send data to a
 
 ## MSSQL Source
 
-Read this section carefully before you set up your MSSQL source connector.
+To use the `LOG_BASED` replication method, both of the following must be true:
 
-### Log-Based Replication Requirements
+- You use Microsoft SQL Server Standard or Enterprise edition.
+- You have CDC enabled for the database and the table which you intend to replicate.
 
-To use the `LOG_BASED` replication method, you must use Microsoft SQL Server Standard or Enterprise edition. Also, You must have CDC enabled for the database and the table which you intend to replicate.
+Follow the steps below to enable CDC on your Microsoft SQL Server instance.
 
-You can follow these steps to enable CDC on your Microsoft SQL Server instance.
-
-#### On-Premise Databases
+### On-Premise Databases
 
 ```sql
 -- ====
@@ -44,7 +43,7 @@ ALTER DATABASE [<database_name>] ADD FILE ( NAME = cdc_files, FILENAME = 'C:\MyS
 -- Enable Snapshot Isolation - Highly recommended for read consistency and to avoid dirty commits.
 -- ====
 -- https://www.sqlservercentral.com/articles/what-when-and-who-auditing-101-part-2
--- Consider running one of these options to ensure read consistency. Do consider the impact however of enabling these features.
+-- Consider running one of these options to ensure read consistency. Before you start, consider the impact of enabling these features.
 ALTER DATABASE [<database_name>] SET READ_COMMITTED_SNAPSHOT ON;
 ALTER DATABASE [<database_name>] SET ALLOW_SNAPSHOT_ISOLATION ON;
 
@@ -123,7 +122,8 @@ FROM sys.tables t JOIN sys.schemas s ON (s.schema_id = t.schema_id)
 WHERE t.is_tracked_by_cdc = 1;
 ```
 
-#### Azure or AWS RDS databases
+### Azure or AWS RDS Databases
+
 ```sql
 /*
 Note:
@@ -339,7 +339,7 @@ FROM sys.tables t
          JOIN sys.schemas s ON (s.schema_id = t.schema_id)
 WHERE t.is_tracked_by_cdc = 1;
 
---Get cdc details:
+--Get CDC details:
 USE <database_name>;
 EXEC sys.sp_cdc_help_change_data_capture;
 
@@ -347,7 +347,7 @@ EXEC sys.sp_cdc_help_change_data_capture;
 
 --BACKOUT PLAN
 --============================================
---To disable cdc on indvidual tables:
+--To disable CDC on individual tables:
 --The Change Data Capture can easily be disabled on a given table with the help of the sys.sp_cdc_disable_table system stored procedure, as stated below:
 EXEC sys.sp_cdc_disable_table
 @source_schema = N'dbo',
@@ -366,15 +366,15 @@ EXEC sys.sp_cdc_disable_table
 @source_name   = N'TABLE2',
 @capture_instance =N'dbo_TABLE2';
 
---To disable cdc on DB:
+--To disable CDC on DB:
 --You can disable SQL Server CDC completely at the database level, without the need to disable it on CDC-enabled tables one at a time.
 exec msdb.dbo.rds_cdc_disable_db [<database_name>];
 
 --Remove Logins, db_users, roles created above.
 
---Romove FILEGROUP 'CDC_FILEGROUP'
+--Remove FILEGROUP 'CDC_FILEGROUP'
 ```
 
 ## MSSQL Target
 
-No additional notes.
+Fields with Boolean, JSON, or array data types in the source collection are stored as columns of VARCHAR datatype in the MSSQL target table.
