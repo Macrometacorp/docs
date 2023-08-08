@@ -4,7 +4,7 @@ title: MIN_MATCH()
 
 Return documents that satisfy multiple search expressions.
 
-### Syntax
+## Syntax
 
 `MIN_MATCH(expr1, expr2, minMatchCount)`
 
@@ -13,8 +13,7 @@ Return documents that satisfy multiple search expressions.
 | expr          | expression | Each `expr` is a valid search expression. You can include as many as you want. |
 | minMatchCount | number     | Minimum number of search expressions that must be satisfied.    |
 
-
-### Example
+## Example 1
 
 In this example, at least two of the specified search expressions must be satisfied to return results:
 

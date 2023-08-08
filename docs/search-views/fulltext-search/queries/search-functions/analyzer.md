@@ -2,11 +2,11 @@
 title: ANALYZER()
 ---
 
-Sets an analyzer for the search query. The analyzer applies to all nested functions which do not have an analyzer argument. If a nested function has its own analyzer, then that analyzer takes precedence over what you choose here.
+Sets an analyzer for the fulltext search query. The analyzer applies to all nested functions which do not have an analyzer argument. If a nested function has its own analyzer, then that analyzer takes precedence over what you choose here.
 
 The default analyzer is `identity`.
 
-### Syntax
+## Syntax
 
 `ANALYZER(expr, analyzer)`
 
@@ -15,8 +15,7 @@ The default analyzer is `identity`.
 | expr      | expression | A valid search expression. |
 | analyzer  | string  | Name of the analyzer.    |
 
-
-### Examples
+## Example 1
 
 Using the `ANALYZER()` function, you can specify an analyzer type. For example:
 
@@ -26,7 +25,9 @@ FOR doc IN viewName
   RETURN doc
 ```
 
-The second argument in the `ANALYZER()` function specifies a `text_en` analyzer. The expression `doc.text == "bar"` must be wrapped by the `ANALYZER()` function. Otherwise, the expression would be evaluated with the default `identity` analyzer. 
+The second argument in the `ANALYZER()` function specifies a `text_en` analyzer. The expression `doc.text == "bar"` must be wrapped by the `ANALYZER()` function. Otherwise, the expression would be evaluated with the default `identity` analyzer.
+
+## Example 2
 
 In the following query, the search expression is swapped by `ANALYZER()` to set the `text_en` analyzer for both `PHRASE()` functions:
 
@@ -43,6 +44,8 @@ FOR doc IN viewName
   SEARCH PHRASE(doc.text, "foo", "text_en") OR PHRASE(doc.text, "bar", "text_en")
   RETURN doc
 ```
+
+## Example 3
 
 In this example, `ANALYZER()` sets a default `text_en` analyzer. In the nested function that searches for `bar`, the `identity` analyzer overrides the higher-level choice.
 

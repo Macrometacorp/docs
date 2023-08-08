@@ -4,7 +4,7 @@ title: TOKENS()
 
 The `TOKENS()` function is the only function that you can use freely in the query without a `SEARCH` statement. A wrapping `ANALYZER()` call in a search expression does not affect the `analyzer` argument nor allow you to omit it.
 
-### Syntax
+## Syntax
 
 `TOKENS(input, analyzer) → tokenArray`
 
@@ -15,7 +15,7 @@ Split the `input` string with the help of the specified `analyzer` into an array
 | input    | string  | Text to tokenize.                            |
 | analyzer | string  | Name of an [analyzer](../../analyzers/index.md). |
 
-### Examples
+## Example 1
 
 Example query showcasing the `"text_de"` analyzer, which features tokenization with stemming, case conversion, and accent removal for German text:
 
@@ -35,6 +35,8 @@ RETURN TOKENS("Lörem ipsüm, DOLOR SIT Ämet.", "text_de")
 ]
 ```
 
+## Example 2
+
 This example searches for documents where the `text` attribute contains certain tokens in any order:
 
 ```js
@@ -44,6 +46,8 @@ FOR doc IN viewName
 ```
 
 Alternatively, if you want to search for tokens in a particular order, use [PHRASE()](phrase.md) instead.
+
+## Example 3
 
 When calling a `TOKENS()` function, you must always specify the analyzer name:
 
