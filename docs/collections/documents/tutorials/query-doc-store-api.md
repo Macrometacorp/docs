@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import Prerequisites from '../../../_partials/_prerequisites-api-key.md';
 import Steps from '../../../_partials/_api-example-steps.md';
 
-This page shows you how to use the Macrometa API and C8QL queries to perform basic CRUD operations on documents stored in a document store collection.
+This page shows you how to use the Macrometa API and query workers to perform basic CRUD operations on documents stored in a document store collection.
 
 For more information about using Macrometa APIs, refer to [APIs](../../../api-docs/index.md).
 
@@ -43,7 +43,7 @@ UPDATE_QUERY = "FOR doc IN @@collection FILTER doc.result <= 35 " \
 DELETE_QUERY = "FOR c IN @@collection REMOVE c IN @@collection"
 UPDATE_READ_QUERY = "FOR doc IN @@collection FILTER doc.result < 10 RETURN doc"
 
-# Create a HTTPS session
+# Create an HTTPS session
 print("1. Connecting to GDN")
 session = requests.session()
 session.headers.update({"content-type": 'application/json'})
@@ -65,11 +65,11 @@ if 'error' in resp and resp['error']:
 else:
     print("Collection created successfully: ", resp['name'])
 
-# Create RESTQL
+# Create a query worker
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql"
 
 print("\n3. Creating query workers")
-# Save read query
+# Save Read query worker
 payload = {
     "query": {
         "name": "Read",
@@ -86,7 +86,7 @@ else:
     print(resp_json)
 time.sleep(1)
 
-# Save insert query
+# Save Insert query worker
 payload = {
     "query": {
         "name": "Insert",
@@ -104,7 +104,7 @@ else:
     print(resp_json)
 time.sleep(1)
 
-# Save update query
+# Save Update query worker
 payload = {
     "query": {
         "name": "Update",
@@ -122,7 +122,7 @@ else:
     print(resp_json)
 time.sleep(1)
 
-# Save delete query
+# Save Delete query worker
 payload = {
     "query": {
         "name": "Delete",
@@ -139,7 +139,7 @@ else:
     print(resp_json)
 time.sleep(1)
 
-# Execute insert query
+# Execute Insert query worker
 print("\n4. Executing query worker: Insert")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Insert"
 payload = {
@@ -153,7 +153,7 @@ else:
     print(resp_json)
 time.sleep(1)
 
-# Execute read query
+# Execute Read query worker
 print("\n5. Executing query worker: Read")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Read"
 payload = {
@@ -169,7 +169,7 @@ else:
     print(resp_json)
 time.sleep(1)
 
-# Execute update query
+# Execute Update query worker
 print("\n6. Executing query worker: Update")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Update"
 payload = {
@@ -183,7 +183,7 @@ else:
     print(resp_json)
 time.sleep(1)
 
-# Update saved query
+# Update Read query worker
 print("\n7. Updating query worker: Read")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Read"
 payload = {
@@ -200,7 +200,7 @@ else:
     print(resp_json)
 time.sleep(1)
 
-# Execute delete query
+# Execute Delete query worker
 print("\n8. Executing query worker: Delete")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/execute/Delete"
 payload = {
@@ -214,7 +214,7 @@ else:
     print(resp_json)
 time.sleep(1)
 
-# Delete saved queries
+# Delete query workers
 print("\n9. Deleting query workers")
 URL = f"{HTTP_URL}/_fabric/{FABRIC}/_api/restql/Read"
 resp = session.delete(URL)
@@ -416,15 +416,15 @@ const run = async function () {
 
     await new Promise(r => setTimeout(r, 2000));
 
-    /* ----------------------- Run insert query worker ---------------------- */
+    /* ----------------------- Run Insert query worker ---------------------- */
     console.log("\n4. Executing query worker: " + insertQueryName);
     await runQueryWorker(insertQueryName, queryParams);
 
-    /* ----------------------- Run read query worker ---------------------- */
+    /* ----------------------- Run Read query worker ---------------------- */
     console.log("\n5. Executing query worker: " + readQueryName);
     await runQueryWorker(readQueryName, queryParams);
 
-    /* ----------------------- Run update query worker ---------------------- */
+    /* ----------------------- Run Update query worker ---------------------- */
     console.log("\n6. Executing query worker: " + updateQueryName);
     await runQueryWorker(updateQueryName, queryParams);
 
@@ -432,7 +432,7 @@ const run = async function () {
     console.log("\n7. Updating query worker: " + readQueryName);
     await updateSavedQueryWorker(readQueryName, readQueryUpdated, queryParams);
 
-    /* ----------------------- Run delete query worker ---------------------- */
+    /* ----------------------- Run Delete query worker ---------------------- */
     console.log("\n8. Executing query worker: " + deleteQueryName);
     await runQueryWorker(deleteQueryName, queryParams);
 
