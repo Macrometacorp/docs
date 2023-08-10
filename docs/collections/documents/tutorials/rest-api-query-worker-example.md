@@ -1,6 +1,6 @@
 ---
 sidebar_position: 70
-title: REST API Query Doc Store Example
+title: REST API Query Worker Example
 ---
 
 import Tabs from '@theme/Tabs';
