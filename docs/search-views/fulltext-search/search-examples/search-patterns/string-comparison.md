@@ -23,4 +23,3 @@ The result displays:
 | City View Hotel |
 | City View Hotel |
 | ... |
-
