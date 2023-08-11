@@ -18,6 +18,17 @@ You can now create semantic search views.
 
 [Semantic Search](../search-views/semantic-search/) was added as a result of this feature and the [Search Views](../search-views/) section was edited and reorganized.
 
+### New Connectors
+
+The following connectors are included in this release:
+
+- Oracle Target - DFP NOTE: Update file and link after 17.16 merges
+- MSSQL Source and Target
+- Databricks
+- Starburst
+
+The Drivers section was added as a result of this change.
+
 ## Feature Updates
 
 The following features updates are included in this release.
