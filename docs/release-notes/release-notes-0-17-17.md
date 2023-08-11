@@ -18,6 +18,12 @@ You can now create semantic search views.
 
 [Semantic Search](../search-views/semantic-search/) was added as a result of this feature and the [Search Views](../search-views/) section was edited and reorganized.
 
+### Client Connectors - Beta
+
+Macrometa now offers connectors that are installed on the client side. Like the connectors integrated with Macrometa GDN, these connectors allow you to connect Macrometa to external data sources as either a source or a target.
+
+
+
 ## Feature Updates
 
 The following features updates are included in this release.
