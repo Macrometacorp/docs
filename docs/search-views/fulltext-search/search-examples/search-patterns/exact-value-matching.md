@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Exact Value Matching
 ---
 
-The simplest way to search is finding an exact value. The exact value can be strings, numbers, number ranges, or Booleans. 
+The simplest way to search is finding an exact value. The exact value can be strings, numbers, number ranges, or Booleans.
 
 This example searches for strings using an identity analyzer:
 
