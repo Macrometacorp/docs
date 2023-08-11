@@ -22,7 +22,14 @@ You can now create semantic search views.
 
 Macrometa now offers connectors that are installed on the client side. Like the connectors integrated with Macrometa GDN, these connectors allow you to connect Macrometa to external data sources as either a source or a target.
 
+### New Connectors - DFP NOTE - Need to update links!
 
+The following connectors are included in this release:
+
+- Oracle Target
+- MSSQL Source and Target
+
+MSSQL Connector was added and OracleDB Connector was updated as a result of this change.
 
 ## Feature Updates
 
