@@ -1,9 +1,9 @@
 ---
 sidebar_position: 40
-title: Faceted Search
+title: Faceted Fulltext Search Example
 ---
 
-Faceted search enables you to retrieve how frequently values occur. 
+Faceted search enables you to retrieve how frequently values occur.
 
 Use the following cURL example to add an identity analyzer to an existing search view. In this example, we use the search view `sample_view`.
 
@@ -60,7 +60,7 @@ COLLECT WITH COUNT INTO count
 
 The result is `3` records.
 
-Alternatively, we can expand the script to include alternative strings:
+Alternatively, you can expand the script to include alternative strings:
 
 ```sql
 Let alternatives = ["Very good", "Very Good", "very good"]
