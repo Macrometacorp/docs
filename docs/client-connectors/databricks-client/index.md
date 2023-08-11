@@ -13,19 +13,11 @@ The Stream Data Connector handles reading from and writing to real-time data str
 
 Source and target operations for streams can be executed using the format `com.macrometa.spark.stream.MacrometaTableProvider`.
 
-For detailed instructions, refer to:
-
-- List of tasks with links
-
 ## Collection Data Connector
 
 The Collection Data Connector focuses on batch data processing to and from Macrometa collections.
 
 Source and target operations for collections can be executed using the format `com.macrometa.spark.collection.MacrometaTableProvider`.
-
-For detailed instructions, refer to:
-
-- List of tasks with links
 
 ## Considerations
 
