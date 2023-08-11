@@ -20,8 +20,21 @@ Function checks whether the list contains the specific value.
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 list:contains(stockSymbols, 'IBM')
 ```
 
-The `list:contains(stockSymbols, 'IBM')` function checks if the `stockSymbols` list contains the value `'IBM'`. It returns `true` if the value is found in the list, otherwise, it returns `false`.
+This example demonstrates the usage of the `list:contains()` function. It checks if the `stockSymbols` list contains the value `'IBM'`. The function returns `true` if the string 'IBM' is found in the list, and `false` otherwise.
+
+## Example 2
+
+```sql
+CREATE STREAM InputStream (stockSymbols OBJECT, symbol STRING);
+CREATE SINK STREAM OutputStream (containsSymbol BOOL);
+
+@info(name = 'CheckSymbolPresence')
+INSERT INTO OutputStream
+SELECT list:contains(stockSymbols, symbol) AS containsSymbol
+FROM InputStream;
+```
+
+In this stream worker example, a query named `CheckSymbolPresence` processes events from the `InputStream`, which contains a list of stock symbols (`stockSymbols`) and a single symbol (`symbol`). The `list:contains(stockSymbols, symbol)` function checks if each `stockSymbols` list contains the given `symbol`. The query outputs the result as `containsSymbol` for each event to the `OutputStream`.

@@ -15,8 +15,9 @@ On the Users tab, you can select a user to access their details and change their
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Access > Users**.
-1. Select the user whose password you want to change.
-1. Click **Edit** in the **Password** field.
+1. Click the stacked dots next to the user whose password you want to change.
+1. Click **Edit User**.
+1. Click **Password** to access the Password tab.
 1. Enter and confirm the new password, then click **Save**.
 
 </TabItem>
