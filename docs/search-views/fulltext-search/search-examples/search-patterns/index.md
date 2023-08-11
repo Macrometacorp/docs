@@ -1,11 +1,11 @@
 ---
 sidebar_position: 1
-title: Common Search Patterns
+title: Common Fulltext Search Patterns
 ---
 
-This section lists different search patterns that are frequently found in GDN.
+This section lists different search patterns that are frequently found in Macrometa GDN.
 
-Use the following cURL example to add an identity analyzer to an existing search view. In this example, we use the search view `sample_view`.
+Use the following cURL example to add an identity analyzer to an existing search view. In this example, the search view is named `sample_view`.
 
 ```bash
 curl --location --request PUT 'https://<HOST>/_fabric/Hotels/_api/search/view/sample_view/properties' \
