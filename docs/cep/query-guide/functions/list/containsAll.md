@@ -20,8 +20,21 @@ Function checks whether the list contains all the values in the given list.
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 list:containsAll(stockSymbols, latestStockSymbols)
 ```
 
-The `list:containsAll(stockSymbols, latestStockSymbols)` function checks if the `stockSymbols` list contains all the values present in the `latestStockSymbols` list. It returns `true` if all the values from `latestStockSymbols` are found in the `stockSymbols` list, otherwise, it returns `false`.
+In this example, the `list:containsAll(stockSymbols, latestStockSymbols)` function checks if the `stockSymbols` list contains all the values present in the `latestStockSymbols` list. It returns `true` if all the values from `latestStockSymbols` are found in the `stockSymbols` list, otherwise, it returns `false`.
+
+## Example 2
+
+```sql
+CREATE STREAM InputStream (stockSymbols OBJECT, latestStockSymbols OBJECT);
+CREATE SINK STREAM OutputStream (containsAllSymbols BOOL);
+
+@info(name = 'CheckAllSymbolsPresence')
+INSERT INTO OutputStream
+SELECT list:containsAll(stockSymbols, latestStockSymbols) AS containsAllSymbols
+FROM InputStream;
+```
+
+In this stream worker example, a query named `CheckAllSymbolsPresence` processes events from the `InputStream`, which contains a list of stock symbols (`stockSymbols`) and a list of latest stock symbols (`latestStockSymbols`). The `list:containsAll(stockSymbols, latestStockSymbols)` function checks if each `stockSymbols` list contains all the symbols from the corresponding `latestStockSymbols` list. The result of this check, a boolean value, is output as `containsAllSymbols` for each event to the `OutputStream`.

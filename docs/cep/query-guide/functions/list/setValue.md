@@ -21,8 +21,21 @@ Function returns the updated list after replacing the element in the given index
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 list:set(stockSymbols, 0, 'IBM')
 ```
 
-The `list:set(stockSymbols, 0, 'IBM')` function takes the list named `stockSymbols` and replaces the value at the 0th index with the value `IBM`. The function returns the updated `stockSymbols` list with the new value at the specified index.
+The `list:set(stockSymbols, 0, 'IBM')` function updates the `stockSymbols` list by replacing the value at the 0th index with `IBM`. The updated `stockSymbols` list is then returned, containing the new value at the specified index.
+
+## Example 2
+
+```sql
+CREATE STREAM StockStream (symbols OBJECT, index INT, newSymbol STRING);
+CREATE SINK STREAM OutputStream (updatedSymbols OBJECT);
+
+@info(name = 'SetSymbol')
+INSERT INTO OutputStream
+SELECT list:setValue(symbols, index, newSymbol) AS updatedSymbols
+FROM StockStream;
+```
+
+This stream worker defines the `StockStream` input stream, which includes a list of stock symbols (`symbols`), an index (`index`), and a new symbol (`newSymbol`). The function `list:setValue(symbols, index, newSymbol)` operates on each event in the `StockStream`. It processes the `symbols` attribute from each event, replaces the value at the specified `index` with `newSymbol`, and returns the updated list. The updated list is then aliased as `updatedSymbols` and inserted into the `OutputStream`. Consequently, `OutputStream` contains updated lists from each event in the `StockStream`, with the value at the specified index replaced.
