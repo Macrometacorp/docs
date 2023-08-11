@@ -1,11 +1,11 @@
 ---
 sidebar_position: 20
-title: Full-Text Token Search
+title: Fulltext Token Search Example
 ---
 
-You can search for tokens in full-text occurring in any order. The searched words must be contained in the source string. 
+You can search for tokens in text occurring in any order. The searched words must be contained in the source string.
 
-Use the following cURL example to add an identity analyzer to an existing search view. In this example, we use the search view `sample_view`.
+Use the following cURL example to add an identity analyzer to an existing search view. In this example, the search view is named `sample_view`.
 
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' \
