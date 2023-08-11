@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Read from a Stream
 ---
 
-This page explains how to use the Macrometa Stream Databricks Client Connector to integrate [Apache Spark](https://spark.apache.org/) with [Macrometa streams](https://www.macrometa.com/docs/streams/), allowing you to process and analyze real-time data using Spark's powerful capabilities in a Databricks environment.
+This page explains how to use the Macrometa Stream Databricks Client Connector to integrate [Apache Spark](https://spark.apache.org/) with [Macrometa streams](https://www.macrometa.com/docs/streams/), allowing you read data from Macrometa streams and process and analyze real-time data using Spark's powerful capabilities in a Databricks environment.
 
 1. Set up source options:
 
@@ -20,7 +20,7 @@ This page explains how to use the Macrometa Stream Databricks Client Connector t
     )
     ```
 
-2. Create a spark session:
+2. Create a Spark session:
 
     ```scala
     val spark = SparkSession.builder()
