@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Databricks Client Connector
 ---
 
-The Macrometa client connector for [Databricks](https://www.databricks.com/) enables you to seamlessly connect Macrometa [streams](../../streams/) and [collections](../../collections/) with Apache Spark within the Databricks environment. This comprehensive connector facilitates the ingestion, processing, and analysis of both streaming and batch data by leveraging Spark's advanced capabilities, allowing users to derive valuable insights and make data-driven decisions.
+The Macrometa client connector for [Databricks](https://www.databricks.com/) enables you to seamlessly connect Macrometa [streams](../../streams/) and [collections](../../collections/) with Apache Spark within the Databricks environment. This connector allows you to leverage Spark's advanced processing capabilities, enabling you to derive valuable insights and make data-driven decisions.
 
 The Macrometa Spark Connector offers two main components: Stream Data Connector and Collection Data Connector.
 
