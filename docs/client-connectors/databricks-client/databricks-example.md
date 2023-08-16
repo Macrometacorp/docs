@@ -3,6 +3,8 @@ sidebar_position: 80
 title: Databricks Example
 ---
 
+Because Databricks functions as an external system, you can develop their own business logic using Spark within it. In this context, Macrometa serves as both a source (for taking inputs) and a target (for persisting outputs) from the perspective of Databricks.
+
 This example shows you how to read data from a Macrometa stream and write data to a Macrometa collection using the Macrometa Databricks Client Connector.
 
 ## Read from a Macrometa Stream
