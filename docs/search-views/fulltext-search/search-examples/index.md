@@ -1,15 +1,15 @@
 ---
 sidebar_position: 1
-title: Search Examples
+title: Fulltext Search Examples
 ---
 
-This page provides detailed examples of possible search query patterns. All examples use the GDN Web console and HTTP REST API.
+This page provides detailed examples of possible fulltext search query patterns. All examples use the GDN web console and HTTP REST API.
 
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
 - A fabric named `Hotels` with a document collection named `hotel_reviews`. Refer to [Create a GeoFabric](../../../geofabrics/create-geofabric.md) and [Create a Document Store](../../../collections/documents/create-document-store.md).
-- A search view named `sample_view`. Refer to [Create a Search View](../tasks/create-search-views.md).
+- A search view named `sample_view`. Refer to [Create a Fulltext Search View](../tasks/create-search-views.md).
 
 ## Sample Data
 
@@ -32,9 +32,9 @@ curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/import/hotel_
 
 Each review has the following attributes used for indexing:
 
-- Property name.
-- Review rating.
-- Review title.
-- Review text.
-- Location of the reviewer.
-- Date of review.
+- Property name
+- Review rating
+- Review title
+- Review text
+- Location of the reviewer
+- Date of review

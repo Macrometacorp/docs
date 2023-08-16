@@ -5,7 +5,7 @@ title: Phrase and Proximity Search
 
 Phrase search enables you to search for phrases and nearby words in full text.
 
-Use the following cURL example to add an identity analyzer to an existing search view. In this example, we use the search view `sample_view`.
+Use the following cURL example to add an identity analyzer to an existing search view. In this example, the search view is `sample_view`.
 
 ```bash
 curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' \
@@ -31,7 +31,7 @@ curl --location --request POST 'https://<HOST>/_fabric/Hotels/_api/search/view' 
 '
 ```
 
-This example queries all reviews which mention `rooms are small` and displays the hotel name and rating:
+This example queries all reviews that mention `rooms are small` and displays the hotel name and rating:
 
 ```sql
 FOR review IN sample_view
