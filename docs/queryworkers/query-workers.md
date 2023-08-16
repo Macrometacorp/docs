@@ -1,6 +1,6 @@
 ---
 sidebar_position: 30
-title: Manage Query Workers
+title: Query Workers
 ---
 
 After you build a query, you can save it as a _query worker_, similar to a SQL stored procedures. Query workers are cached across all GeoFabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.

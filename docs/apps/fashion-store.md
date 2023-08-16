@@ -1,5 +1,5 @@
 ---
-sidebar_position: 130
+sidebar_position: 10
 title: Fashion Store
 ---
 

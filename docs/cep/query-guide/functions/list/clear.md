@@ -19,21 +19,8 @@ Function returns the cleared list.
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 list:clear(stockDetails)
 ```
 
-This function call takes `stockDetails`, a list, as input and removes all elements from it. The `clear` function results in an empty list.
-
-## Example 2
-
-```sql
-CREATE STREAM InputListStream (stockDetails OBJECT);
-CREATE SINK STREAM OutputListStream (clearedList OBJECT);
-
-@info(name = 'ClearListStreamWorker')
-INSERT INTO OutputListStream
-SELECT list:clear(stockDetails) AS clearedList
-FROM InputListStream;
-```
-
-The `ClearListStreamWorker` processes events from the `InputListStream`, which includes a list attribute named `stockDetails`. It uses the `list:clear(stockDetails)` function to remove all elements from `stockDetails`. The cleared list, now empty, is output as the `clearedList` attribute for each event to the `OutputListStream`.
+The `list:clear(stockDetails)` function takes a list named `stockDetails` as input and clears all elements from the list. The function returns an empty list as a result.

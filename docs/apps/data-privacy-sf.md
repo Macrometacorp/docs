@@ -1,5 +1,5 @@
 ---
-sidebar_position: 190
+sidebar_position: 16
 title: Salesforce - Edge Caching and Data Privacy
 ---
 

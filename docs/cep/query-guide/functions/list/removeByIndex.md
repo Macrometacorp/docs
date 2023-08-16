@@ -20,21 +20,8 @@ Function returns the updated list after removing the element with the specified 
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 list:removeByIndex(stockSymbols, 0)
 ```
 
-The `list:removeByIndex(stockSymbols, 0)` function removes the element at the 0th index from the `stockSymbols` list and then returns the updated list.
-
-## Example 2
-
-```sql
-CREATE STREAM StockStream (symbols OBJECT, indexToRemove INT);
-CREATE SINK STREAM OutputStream (updatedSymbols OBJECT);
-
-@info(name = 'RemoveSymbolAtIndex')
-INSERT INTO OutputStream
-SELECT list:removeByIndex(symbols, indexToRemove) AS updatedSymbols
-FROM StockStream;
-```
-
-In this stream worker, an input stream `StockStream` is defined, which includes a list of stock symbols (`symbols`) and an index (`indexToRemove`). The function `list:removeByIndex(symbols, indexToRemove)` operates on each event in the `StockStream`. It processes the `symbols` attribute from each event and removes the symbol at the `indexToRemove` index. The updated list is then aliased as `updatedSymbols` and inserted into the `OutputStream`. As a result, `OutputStream` contains the updated lists from each event in the `StockStream`, with the specified index removed.
+The `list:removeByIndex(stockSymbols, 0)` function takes the list named `stockSymbols` and removes the element at the 0th index. The function then returns the updated `stockSymbols` list with the specified element removed.

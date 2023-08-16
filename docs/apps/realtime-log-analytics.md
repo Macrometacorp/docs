@@ -1,5 +1,5 @@
 ---
-sidebar_position: 80
+sidebar_position: 9
 title: Realtime Log Analytics
 ---
 

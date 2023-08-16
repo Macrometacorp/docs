@@ -22,29 +22,17 @@ Function returns the updated list after adding all the values from the given lis
 ## Example 1
 
 ```sql
-list:addAll(toList, fromList)
+@info(name = 'query1')
+list:putAll(toList, fromList)
 ```
 
-This function call takes two lists as inputs: `toList` and `fromList`. It appends all elements from `fromList` to `toList`. For example, if `toList` initially contains ('IBM', 'GDN') and `fromList` contains ('IBM', 'XYZ'), the resulting `toList` includes all these values: ('IBM', 'GDN', 'IBM', 'XYZ').
+The `list:putAll(toList, fromList)` function takes two lists as input: `toList` and `fromList`. In this example, `toList` contains values ('IBM', 'gdn'), and `fromList` contains values ('IBM', 'XYZ'). The function appends all elements from `fromList` to the `toList` and returns the updated `toList` with values ('IBM', 'gdn', 'IBM', 'XYZ').
 
 ## Example 2
 
 ```sql
-list:addAll(toList, fromList, true)
+@info(name = 'query1')
+list:putAll(toList, fromList, true)
 ```
 
-In this function call, the third input is a Boolean flag set to `true`. This setting means that only unique elements from `fromList` are appended to `toList`. Using the same initial list values as in the previous example, this function call appends only the unique element 'XYZ' from `fromList` to `toList`. The updated `toList` includes these values: ('IBM', 'GDN', 'XYZ').
-
-## Example 3
-
-```sql
-CREATE STREAM InputListsStream (toList OBJECT, fromList OBJECT);
-CREATE SINK STREAM OutputListStream (updatedList OBJECT);
-
-@info(name = 'AddAllToListStreamWorker')
-INSERT INTO OutputListStream
-SELECT list:addAll(toList, fromList) AS updatedList
-FROM InputListsStream;
-```
-
-The `AddAllToListStreamWorker` handles events from the `InputListsStream`, which includes two list attributes: `toList` and `fromList`. It uses the `list:addAll(toList, fromList)` function to append all elements from `fromList` to `toList`. The updated `toList`, now containing all elements from both lists, is output as the `updatedList` attribute for each event to the `OutputListStream`.
+The `list:putAll(toList, fromList, true)` function takes three inputs: `toList`, `fromList`, and a Boolean flag. In this example, the flag is set to `true`, which means only unique elements from `fromList` will be appended to `toList`. The `toList` contains values ('IBM', 'gdn'), and `fromList` contains values ('IBM', 'XYZ'). The function appends only the unique element 'XYZ' from `fromList` to `toList`, and returns the updated `toList` with values ('IBM', 'gdn', 'XYZ').

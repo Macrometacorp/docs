@@ -21,33 +21,10 @@ Collects multiple values to construct a list.
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 INSERT INTO OutputStream
 SELECT list:collect(symbol) AS stockSymbols
 FROM StockStream WINDOW TUMBLING_LENGTH(10);
 ```
 
-This example collects `symbol` attributes from the `StockStream` into a list. The collection happens within a tumbling window of 10 events. Once 10 events have occurred, the list of collected `symbol` attributes is output as `stockSymbols` in the `OutputStream`.
-
-## Example 2
-
-```sql
-INSERT INTO OutputStream
-SELECT list:collect(symbol, true) AS distinctStockSymbols
-FROM StockStream WINDOW TUMBLING_LENGTH(10);
-```
-
-This example operates within a tumbling window of 10 events from the `StockStream`. The `list:collect(symbol, true)` function collects only unique `symbol` attributes into a list. The resulting list of unique `symbol` attributes is output as `distinctStockSymbols` in the `OutputStream`.
-
-## Example 3
-
-```sql
-CREATE STREAM InputStockStream (symbol string, price double);
-CREATE SINK STREAM OutputStockStream (collectedSymbols object);
-
-@info(name = 'CollectSymbolsWorker')
-INSERT INTO OutputStockStream
-SELECT list:collect(symbol) AS collectedSymbols
-FROM InputStockStream WINDOW TUMBLING_LENGTH(50);
-```
-
-Two streams are created in this stream worker example: `InputStockStream` for input data and `OutputStockStream` for output. The stream worker uses the `list:collect(symbol)` function within a tumbling window of 50 events from the `InputStockStream`. The function collects `symbol` attributes from these events into a list. When 50 events have occurred, the list of collected `symbol` attributes is output as `collectedSymbols` in the `OutputStockStream`.
+In this query, the `list:collect(symbol)` function is used within a tumbling window of 10 events. As events enter the `StockStream`, the function collects the `symbol` attributes from each event into a single list. When the window reaches its expiration (10 events), the list of collected `symbol` attributes is output as `stockSymbols` in the `OutputStream`.

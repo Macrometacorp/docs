@@ -19,21 +19,8 @@ Function checks if the object is type of a list.
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 list:isList(stockSymbols)
 ```
 
-The `list:isList(stockSymbols)` function checks if `stockSymbols` is a list. It returns `true` if `stockSymbols` is an instance of `java.util.List`; otherwise, it returns `false`.
-
-## Example 2
-
-```sql
-CREATE STREAM InputStream (potentialList OBJECT);
-CREATE SINK STREAM OutputStream (isList BOOL);
-
-@info(name = 'ListChecker')
-INSERT INTO OutputStream
-SELECT list:isList(potentialList) AS isList
-FROM InputStream;
-```
-
-In this stream worker example, a query named `ListChecker` processes events from the `InputStream`, which contains an object `potentialList`. The `list:isList(potentialList)` function checks if the object is a list. If `potentialList` is a list, the function outputs `true` to `isList` for each event to the `OutputStream`. If `potentialList` is not a list, the function outputs `false` to `isList`.
+The `list:isList(stockSymbols)` function returns `true` if the `stockSymbols` is an instance of `java.util.List`; otherwise, it returns `false`.

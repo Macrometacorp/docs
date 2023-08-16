@@ -22,29 +22,17 @@ Function returns the updated list after adding the given value.
 ## Example 1
 
 ```sql
+@info(name = 'query1')
 list:add(stockSymbols, 'IBM')
 ```
 
-This function call adds the string 'IBM' to the list `stockSymbols`. The `add` function appends 'IBM' to the end of the list, because no index is specified. The resulting list, which includes the new element, is then returned.
+The `list:add(stockSymbols, 'IBM')` function takes the list named `stockSymbols` as input and adds the value 'IBM' to the last index of the list. The updated list is then returned with the new element included.
 
 ## Example 2
 
 ```sql
+@info(name = 'query1')
 list:add(stockSymbols, 'IBM', 0)
 ```
 
-This function call adds the string 'IBM' to the list `stockSymbols` at index 0. Because an index is specified, the `add` function inserts 'IBM' at the beginning of the list. The updated list is then returned with 'IBM' as the first element.
-
-## Example 3
-
-```sql
-CREATE STREAM InputListStream (stockSymbols OBJECT);
-CREATE SINK STREAM OutputListStream (updatedList OBJECT);
-
-@info(name = 'AddToListStreamWorker')
-INSERT INTO OutputListStream
-SELECT list:add(stockSymbols, 'GOOG') AS updatedList
-FROM InputListStream;
-```
-
-The `AddToListStreamWorker` processes events from the `InputListStream`, which includes a list attribute `stockSymbols`. The function `list:add(stockSymbols, 'GOOG')` appends 'GOOG' to the end of the `stockSymbols` list. The updated list, now including 'GOOG', is output as the `updatedList` attribute for each event to the `OutputListStream`.
+The `list:add(stockSymbols, 'IBM', 0)` function takes the list named `stockSymbols` as input and adds the value 'IBM' to the 0th index of the list. The updated list is then returned with the new element included at the specified position.
