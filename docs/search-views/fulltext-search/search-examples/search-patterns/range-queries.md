@@ -72,8 +72,6 @@ FOR review IN sample_view
     }
 ```
 
-
-
 ## Compare to a Numeric Range
 
 You can use the _range operator_ to search for values within a range.
