@@ -21,7 +21,7 @@ Source and target operations for collections can be executed using the format `c
 
 ## Mapping Considerations
 
-When mapping from a Macrometa array to a Spark array, Macrometa uses ArrayType. ArrayType which is a collection data type that extends the DataType class, which is a superclass of all types in PySpark. All elements of ArrayType should have the same type of elements.
+When mapping from a Macrometa array to a Spark array, Macrometa uses ArrayType. ArrayType which is a collection data type that extends the DataType class, which is a superclass of all types in Spark. All elements of ArrayType should have the same type of elements.
 
 ## Data Types and Common Schema
 
