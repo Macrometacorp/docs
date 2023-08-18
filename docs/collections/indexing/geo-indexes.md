@@ -358,7 +358,7 @@ To create a geo-spatial index on all documents using _latitude_ and _longitude_ 
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName'  \
  -H 'Authorization: bearer <token>'                                                                        \
- -d '{ "type" : "geo", ."fields": ["latitude", "longitude" ] }'
+ -d '{ "type" : "geo", "fields": ["latitude", "longitude" ] }'
 ```
 
 In case that the index was successfully created, an object with the index details, including the index-identifier, is returned.
