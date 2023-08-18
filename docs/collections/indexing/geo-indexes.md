@@ -34,7 +34,7 @@ To create an index in GeoJSON mode execute:
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName'  \
  -H 'Authorization: bearer <token>'                                                                        \
- -d '{ "type" : "geo", ."fields": ["geometry"],  "geoJson": true }'
+ -d '{ "type" : "geo", "fields": ["geometry"],  "geoJson": true }'
 ```
 
 This creates the index on all documents and uses _geometry_ as the attributed field where the value is either a [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1){:target="_blank"} **or** a_coordinate array_.
