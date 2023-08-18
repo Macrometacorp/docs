@@ -22,7 +22,7 @@ Let's assume the index attribute is set to "creationDate", and the `expireAfter`
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
- -d '{ "type" : "ttl", ."fields": ["creationDate"],  "expireAfter": 600}'
+ -d '{ "type" : "ttl", "fields": ["creationDate"],  "expireAfter": 600}'
 ```
 
 Let's further assume the following document now gets inserted into the collection:
