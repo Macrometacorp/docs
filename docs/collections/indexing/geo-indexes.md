@@ -350,7 +350,7 @@ To create a geo index on an array attribute that contains longitude first, set t
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
- -d '{ "type" : "geo", ."fields": ["location"],  "geoJson": true }'
+ -d '{ "type" : "geo", "fields": ["location"],  "geoJson": true }'
 ```
 
 To create a geo-spatial index on all documents using _latitude_ and _longitude_ as separate attribute paths, two paths need to be specified in the _fields_ array:
