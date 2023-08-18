@@ -54,7 +54,7 @@ To create a geo-spatial index on all documents using _latitude_ and _longitude_ 
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \  
- -d '{ "type" : "geo", ."fields": ["latitude", "longitude"] }'
+ -d '{ "type" : "geo", "fields": ["latitude", "longitude"] }'
 ```
 
 The first field is always defined to be the _latitude_ and the second is the _longitude_. The `geoJson` flag is implicitly _false_ in this mode.
