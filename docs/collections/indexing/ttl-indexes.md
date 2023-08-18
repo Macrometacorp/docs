@@ -22,7 +22,7 @@ Let's assume the index attribute is set to "creationDate", and the `expireAfter`
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
- -d '{ "fields": [ "type" : "ttl", ."fields": ["creationDate"],  "expireAfter": 600}'
+ -d '{ "type" : "ttl", "fields": ["creationDate"],  "expireAfter": 600}'
 ```
 
 Let's further assume the following document now gets inserted into the collection:
@@ -56,7 +56,7 @@ Let's assume the index attribute is set to "expireDate", and the `expireAfter` a
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectionName' \ 
  -H 'Authorization: bearer <token>'                                                                       \
- -d '{ "fields": [ "type" : "ttl", ."fields": ["expireDate"],  "expireAfter": 0}'
+ -d '{ "type" : "ttl", "fields": ["expireDate"],  "expireAfter": 0}'
 ```
 
 When storing the following document in the collection, it will expire at the point in time specified in the document itself:
@@ -123,7 +123,7 @@ Ensures that a TTL index exists:
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
- -d '{ "fields": [ "type" : "ttl", ."fields": ["field"],  "expireAfter": 600}'
+ -d '{ "type" : "ttl", "fields": ["field"],  "expireAfter": 600}'
 ```
 
 Creates a TTL index on all documents using *field* as attribute path. Exactly one attribute path has to be given. The index will be sparse in all cases.
