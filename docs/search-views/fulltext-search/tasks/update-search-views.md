@@ -1,6 +1,6 @@
 ---
 sidebar_position: 40
-title: Update a Search View
+title: Update Fulltext Search Views
 ---
 
 import Tabs from '@theme/Tabs';
