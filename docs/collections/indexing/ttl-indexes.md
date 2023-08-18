@@ -123,7 +123,7 @@ Ensures that a TTL index exists:
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
- -d '{ "type" : "ttl", ."fields": ["field"],  "expireAfter": 600}'
+ -d '{ "type" : "ttl", "fields": ["field"],  "expireAfter": 600}'
 ```
 
 Creates a TTL index on all documents using *field* as attribute path. Exactly one attribute path has to be given. The index will be sparse in all cases.
