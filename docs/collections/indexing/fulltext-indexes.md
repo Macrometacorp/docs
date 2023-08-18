@@ -34,7 +34,7 @@ Ensures that a fulltext index exists:
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
- -d '{ "type" : "fulltext", ."fields": ["field"],  "minLength": <minLength> }'
+ -d '{ "type" : "fulltext", "fields": ["field"],  "minLength": <minLength> }'
 ```
 
 Creates a fulltext index on all documents on attribute _field_.
