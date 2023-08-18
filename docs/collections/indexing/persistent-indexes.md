@@ -39,7 +39,7 @@ Ensures that a unique persistent index exists
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                              \    
- -d '{ "fields": [ "type" : "persistent", "fields::["field1", ..., "fieldn" ], "unique": true}'
+ -d '{ "fields": [ "type" : "persistent", "fields:["field1", ..., "fieldn" ], "unique": true}'
 ```
 
 Creates a unique persistent index on all documents using *field1*, ... *fieldn* as attribute paths. At least one attribute path has to be given. The index will be non-sparse by default.
@@ -64,7 +64,7 @@ To ensure that a non-unique persistent index exists
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                              \
- -d '{ "fields": [ "type" : "persistent", "fields::["field1", ..., "fieldn" ]}'
+ -d '{ "fields": [ "type" : "persistent", "fields:["field1", ..., "fieldn" ]}'
 ```
 
 Creates a non-unique persistent index on all documents using *field1*, ... *fieldn* as attribute paths. At least one attribute path has to be given. The index will be non-sparse by default.
