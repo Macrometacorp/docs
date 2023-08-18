@@ -1,4 +1,4 @@
-
+Similarity search C8QL functions
 
 Similar(view_name, search_vector, [limit=100]), .e.g
 return similar("hnsw_cosine", [30, 60, 60, 20])
