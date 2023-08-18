@@ -136,10 +136,10 @@ The following defects were fixed in this release.
 | CEP-581 | Errors while executing ad hoc queries. |  
 | CEP-586 | The `geo:stationary` stream processor in fails in some cases. |
 | CEP-592 | Getting cast exception in geospatial functions.  |
+| CON-1327  | Source Preview and Transformation Preview are not maintaining the case of attribute names, they are all returned as lowercase.  |
 | DB-1465, DB-2364 | Data inconsistency observed when in crud scenarios for regions that lose connectivity for some time. |
 | DB-2513 | Cannot delete a fabric using an API key. |
 | DB-2579 | 404 database not found error when trying to change permissions for an API key. |
-|   |   |
 |   |   |
 |   |   |
 |   |   |
