@@ -64,7 +64,7 @@ Alternatively you can specify only one field:
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
- -d '{ "type" : "geo", ."fields": ["location"],  "geoJson": false }'
+ -d '{ "type" : "geo", "fields": ["location"],  "geoJson": false }'
 ```
 
 It creates a geospatial index on all documents using _location_ as the path to the coordinates. The value of the attribute has to be an array with at least two numeric values. The array must contain the latitude (first value) and the longitude (second value).
