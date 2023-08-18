@@ -1,6 +1,6 @@
 ---
 sidebar_position: 35
-title: View a Search Views
+title: View Fulltext Search Views
 ---
 
 import Tabs from '@theme/Tabs';
