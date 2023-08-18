@@ -368,7 +368,7 @@ ensures that a geo index exists
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/geo?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                       \
- -d '{ "type" : "geo", ."fields": [ "location" ] }'
+ -d '{ "type" : "geo", "fields": [ "location" ] }'
 ```
 
 This method is an alias for _ensureGeoIndex_ since geo indexes are always sparse, meaning that documents that do not contain the index attributes or has non-numeric values in the index attributes will not be indexed. _ensureGeoConstraint_ is deprecated and *ensureGeoIndex* should be used instead.
