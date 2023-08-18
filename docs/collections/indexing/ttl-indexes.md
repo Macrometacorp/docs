@@ -56,7 +56,7 @@ Let's assume the index attribute is set to "expireDate", and the `expireAfter` a
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/ttl?collection=collectionName' \ 
  -H 'Authorization: bearer <token>'                                                                       \
- -d '{ "type" : "ttl", ."fields": ["expireDate"],  "expireAfter": 0}'
+ -d '{ "type" : "ttl", "fields": ["expireDate"],  "expireAfter": 0}'
 ```
 
 When storing the following document in the collection, it will expire at the point in time specified in the document itself:
