@@ -39,7 +39,7 @@ Ensures that a unique persistent index exists
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                              \    
- -d '{ "fields": [ "type" : "persistent", "fields:["field1", ..., "fieldn" ], "unique": true}'
+ -d '{ "type" : "persistent", "fields:["field1", ..., "fieldn" ], "unique": true}'
 ```
 
 Creates a unique persistent index on all documents using *field1*, ... *fieldn* as attribute paths. At least one attribute path has to be given. The index will be non-sparse by default.
@@ -50,7 +50,7 @@ To create a sparse unique index, set the *sparse* attribute to `true`:
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName'  \
  -H 'Authorization: bearer <token>'                                                                               \
- -d '{ "fields": [ "type" : "persistent", "fields: ["field1", ..., "fieldn" ], "unique": true, "sparse" : true}'
+ -d '{ "type" : "persistent", "fields: ["field1", ..., "fieldn" ], "unique": true, "sparse" : true}'
 ```
 
 In a sparse index all documents will be excluded from the index that do not contain at least one of the specified index attributes or that have a value of `null` in any of the specified index attributes. Such documents will not be indexed, and not be taken into account for uniqueness checks.
@@ -59,12 +59,11 @@ In a non-sparse index, these documents will be indexed (for non-present indexed 
 
 In case that the index was successfully created, an object with the index details, including the index-identifier, is returned.
 
-
 To ensure that a non-unique persistent index exists
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/persistent?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                              \
- -d '{ "fields": [ "type" : "persistent", "fields:["field1", ..., "fieldn" ]}'
+ -d '{ "type" : "persistent", "fields:["field1", ..., "fieldn" ]}'
 ```
 
 Creates a non-unique persistent index on all documents using *field1*, ... *fieldn* as attribute paths. At least one attribute path has to be given. The index will be non-sparse by default.
