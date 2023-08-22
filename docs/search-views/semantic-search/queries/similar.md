@@ -8,13 +8,10 @@ These functions are valuable in finding the similarity between vectors, and they
 
 Search for documents most similar to the input vector.
 
-### Syntax
+### SIMILAR Syntax
 
 - **For a specific view:**
   `SIMILAR(view_name, search_vector, [limit=100])`
-
-- **For a specific array of vectors:**
-  `SIMILAR(search_vector, Array[dataVectors], distance_type, [limit=100])`
 
 ### Parameters
 
@@ -23,14 +20,10 @@ Search for documents most similar to the input vector.
 | view_name      | string       | Name of the view used for similarity search.                                |
 | search_vector  | array        | The input vector to search for.                                             |
 | limit          | number       | (Optional) The maximum number of results to return. Default is `100`.       |
-| dataVectors    | array        | Array of data vectors. Used when computing similarity with an array.        |
-| distance_type  | string       | Type of distance to compute similarity. Can be `"l2"`, `"ip"`, `"cosine"`. |
 
 ### SIMILAR Examples
 
 The examples below illustrate different use cases of the `SIMILAR()` function, demonstrating how it can be applied to find similarities against a specified view or a set of vectors using different distance types and limits.
-
-Using a view:
 
 #### Example 1
 
@@ -48,31 +41,15 @@ RETURN SIMILAR("hnsw_cosine", [30, 60, 60, 20], 5)
 
 This query is similar to the first but includes a limit of 5, meaning it will return up to 5 documents most similar to the input vector.
 
-Using an array of vectors:
-
-#### Example 3
-
-```c8ql
-RETURN SIMILAR([100, 200, 150, 100], [[30,50,60,70],[10,20,15,10],[4,5,6,7]], "cosine")
-```
-
-This query computes the cosine similarity between the input vector `[100, 200, 150, 100]` and an array of data vectors `[[30,50,60,70],[10,20,15,10],[4,5,6,7]]`. It returns a list of IDs and scores sorted by the highest score, where the ID is the index in the data array.
-
-#### Example 4
-
-```c8ql
-RETURN SIMILAR([100, 200, 150, 100], [[30,50,60,70],[10,20,15,10],[4,5,6,7]], "l2", 3)
-```
-
-This query is similar to the third example but uses the L2 distance to compute similarity and includes a limit of `3`, meaning it will return up to three most similar matches.
-
 ## SIMILAR_TO_ARRAY()
 
 Compute the similarity between an input vector and an array of data vectors.
 
-### Syntax
+### SIMILAR_TO_ARRAY Syntax
 
 `SIMILAR_TO_ARRAY(search_vector, input_vectors, distance_type, [limit=100])`
+
+`SIMILAR_TO_ARRAY(search_vector, Array[dataVectors], distance_type, [limit=100])`
 
 ### Parameters
 
@@ -82,6 +59,7 @@ Compute the similarity between an input vector and an array of data vectors.
 | input_vectors   | array        | The array of vectors to compute similarity with.     |
 | distance_type   | string       | Type of distance to compute similarity. Can be `"l2"`, `"ip"`, `"cosine"`.    |
 | limit      | number       | (Optional) The maximum number of results to return. Default is `100`.       |
+| dataVectors    | array        | Array of data vectors. Used when computing similarity with an array.        |
 
 ### SIMILAR_TO_ARRAY Examples
 
