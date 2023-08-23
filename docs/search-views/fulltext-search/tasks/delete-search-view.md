@@ -1,6 +1,6 @@
 ---
 sidebar_position: 50
-title: Delete a Fulltext Search View
+title: Delete Fulltext Search Views
 ---
 
 import Tabs from '@theme/Tabs';
