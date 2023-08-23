@@ -23,7 +23,7 @@ Search for documents most similar to the input vector.
 
 ### SIMILAR Examples
 
-The examples below illustrate different use cases of the `SIMILAR()` function, demonstrating how it can be applied to find similarities against a specified view or a set of vectors using different distance types and limits.
+The examples below illustrate different use cases of the `SIMILAR()` function, demonstrating how it can be applied to find similarities against a specified view using different distance types and limits.
 
 #### Example 1
 
@@ -49,7 +49,6 @@ Compute the similarity between an input vector and an array of data vectors.
 
 `SIMILAR_TO_ARRAY(search_vector, input_vectors, distance_type, [limit=100])`
 
-`SIMILAR_TO_ARRAY(search_vector, Array[dataVectors], distance_type, [limit=100])`
 
 ### Parameters
 
@@ -59,7 +58,6 @@ Compute the similarity between an input vector and an array of data vectors.
 | input_vectors   | array        | The array of vectors to compute similarity with.     |
 | distance_type   | string       | Type of distance to compute similarity. Can be `"l2"`, `"ip"`, `"cosine"`.    |
 | limit      | number       | (Optional) The maximum number of results to return. Default is `100`.       |
-| dataVectors    | array        | Array of data vectors. Used when computing similarity with an array.        |
 
 ### SIMILAR_TO_ARRAY Examples
 
@@ -76,7 +74,7 @@ This query computes the cosine similarity between the input vector `[100, 200, 1
 #### Example 2
 
 ```c8ql
-RETURN SIMILAR_TO_ARRAY([100, 200, 150, 100], [[30,50,60,70],[10,20,15,10],[4,5,6,7]], "l2", 3)
+RETURN SIMILAR_TO_ARRAY([100, 200, 150, 100], [[30,50,60,70],[10,20,15,10],[4,5,6,7]], "l2", 2)
 ```
 
-This query is similar to the first example but uses the L2 distance to compute the similarity between the input vector `[100, 200, 150, 100]` and the same array of data vectors. It includes a limit of `3`, meaning it will return up to three most similar matches, sorted by the highest score.
+This query is similar to the first example but uses the L2 distance to compute the similarity between the input vector `[100, 200, 150, 100]` and the same array of data vectors. It includes a limit of `2`, meaning it will return up to two most similar matches, sorted by the highest score.
