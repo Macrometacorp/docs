@@ -32,9 +32,20 @@ This page explains how to use the Macrometa Stream Databricks Client Connector t
 
 3. Read from the Macrometa stream:
 
+   1. Auto infer schema:
     ```scala
     val inputStream = spark.readStream
-    .format("com.macrometa.spark.stream.MacrometaTableProvider")
-    .options(sourceOptions)
-    .load()
+        .format("com.macrometa.spark.stream.MacrometaTableProvider")
+        .options(sourceOptions)
+        .load()
+    ```
+
+    2. User defined schema:
+    ```scala
+    val userSchema = new StructType().add("name", "string").add("age", "integer")
+    val inputStream = spark.readStream
+        .format("com.macrometa.spark.stream.MacrometaTableProvider")
+        .options(sourceOptions)
+        .schema(userSchema)
+        .load()
     ```
