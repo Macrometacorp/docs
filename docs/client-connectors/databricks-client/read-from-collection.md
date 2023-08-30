@@ -22,19 +22,30 @@ The Macrometa Collections Databricks Connector allows you to integrate [Apache S
 
     ```scala
     val spark = SparkSession.builder()
-    .appName("MacrometaStreamingApp")
+    .appName("MacrometaCollectionApp")
     .master("local[*]")
     .getOrCreate()
     ```
 
-3. Read from the Macrometa stream:
+3. Read from the Macrometa collection:
 
-    ```scala
+   1. Auto infer schema:
+   ```scala
     val inputDF = spark
-    .read
-    .format("com.macrometa.spark.collection.MacrometaTableProvider")
-    .options(sourceOptions)
-    .load()
+        .read
+        .format("com.macrometa.spark.collection.MacrometaTableProvider")
+        .options(sourceOptions)
+        .load()
+    ```
+   2. User defined schema:
+    ```scala
+    val userSchema = new StructType().add("value", "string")
+    val inputDF = spark
+        .read
+        .format("com.macrometa.spark.collection.MacrometaTableProvider")
+        .options(sourceOptions)
+        .schema(userSchema)
+        .load()
     ```
 
 4. Show the read results (only 20 rows):
