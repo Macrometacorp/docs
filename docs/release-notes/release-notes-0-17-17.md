@@ -26,10 +26,10 @@ Macrometa now offers connectors that are installed on the client side. Like the 
 
 The following connectors are included in this release:
 
-- Oracle Target
+- [Oracle Target](../connections/connector-types/oracledb-connector)
 - MSSQL Source and Target
 
-MSSQL Connector was added and OracleDB Connector was updated as a result of this change.
+MSSQL Connector was added and [OracleDB Connector](../connections/connector-types/oracledb-connector) was updated as a result of this change.
 
 ## Feature Updates
 
@@ -85,7 +85,7 @@ The stream stats API endpoint `/_fabric/{fabric}/_api/streams/{stream}/stats` no
 - `getPreciseBacklog`: When true, returns precise backlog.
 - `subscriptionBacklogSize`: When true, returns backlog size for each subscription.
 
-### KV Group
+### KV Group ID Field Added
 
 Description of update.
 
