@@ -29,3 +29,4 @@ yarn-error.log*
 _ignore
 .idea
 Brewfile
+*.lock
