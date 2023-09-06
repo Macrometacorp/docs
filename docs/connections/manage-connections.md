@@ -25,9 +25,10 @@ Follow these instructions to create a new connection using the GDN console web U
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- [Get Available Connectors](https://www.macrometa.com/docs/api#/operations/getConnectors)
-- [Create a Connection](https://www.macrometa.com/docs/api#/operations/createConnection).
-- [Validate a Connection](https://www.macrometa.com/docs/api#/operations/validateConnection).
+1. [Get Available Connectors](https://www.macrometa.com/docs/api#/operations/getConnectors)
+2. [Get Connector Details](https://www.macrometa.com/docs/api#/operations/getConnector)
+3. [Create a Connection](https://www.macrometa.com/docs/api#/operations/createConnection).
+4. [Validate a Connection](https://www.macrometa.com/docs/api#/operations/validateConnection).
 
 </TabItem>
 </Tabs>
