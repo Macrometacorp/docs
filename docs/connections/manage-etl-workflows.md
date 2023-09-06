@@ -41,6 +41,14 @@ Follow these instructions to create a new data source workflow using the GDN con
 
 Use our interactive API Reference with code generation in 18 programming languages to [Create a Source or Target Workflow](https://www.macrometa.com/docs/api#/operations/createWorkflow).
 
+To add a transformation:
+
+1. [Retrieve Sample Data from the Data Source](https://www.macrometa.com/docs/api#/operations/retrieveSample)
+2. [Retrieve the Schema from the Data Source](https://www.macrometa.com/docs/api#/operations/retrieveSchema)
+3. [Generate a Transformation Query Sample](https://www.macrometa.com/docs/api#/operations/getSampleTransformation)
+4. [Validate the Transformation](https://www.macrometa.com/docs/api#/operations/validateTransformation)
+5. [Generate Transformation Preview](https://www.macrometa.com/docs/api#/operations/previewTransformation)
+
 </TabItem>
 </Tabs>
 
@@ -67,6 +75,14 @@ Follow these instructions to create a new target workflow using the GDN console 
 <TabItem value="api" label="REST API">
 
 Use our interactive API Reference with code generation in 18 programming languages to [Create a Source or Target Workflow](https://www.macrometa.com/docs/api#/operations/createWorkflow).
+
+To add a transformation:
+
+1. [Retrieve Sample Data from the Data Source](https://www.macrometa.com/docs/api#/operations/retrieveSample)
+2. [Retrieve the Schema from the Data Source](https://www.macrometa.com/docs/api#/operations/retrieveSchema)
+3. [Generate a Transformation Query Sample](https://www.macrometa.com/docs/api#/operations/getSampleTransformation)
+4. [Validate the Transformation](https://www.macrometa.com/docs/api#/operations/validateTransformation)
+5. [Generate Transformation Preview](https://www.macrometa.com/docs/api#/operations/previewTransformation)
 
 </TabItem>
 </Tabs>
