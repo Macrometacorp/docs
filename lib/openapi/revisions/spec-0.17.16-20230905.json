@@ -47059,12 +47059,5 @@
         }
       }
     }
-  },
-  "host": "api-play.paas.macrometa.io",
-  "servers": [
-    {
-      "url": "https://api-play.paas.macrometa.io",
-      "description": "GDN API"
-    }
-  ]
+  }
 }
