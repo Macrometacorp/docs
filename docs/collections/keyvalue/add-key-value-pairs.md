@@ -8,9 +8,10 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to add a key-value pair to a Key-Value Store collection.
 
-## Add a Key-Value Pair with the Console
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
 
-Follow these instructions to add documents to an existing document collection using the GDN console web UI.
+Follow these instructions to add key-value pairs to an existing key-value store collection using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Data > Collections**.
@@ -26,12 +27,10 @@ Follow these instructions to add documents to an existing document collection us
 
    Macrometa creates the new key-value record.
 
-## Insert Key-Value Pairs with Code
+</TabItem>
+<TabItem value="py" label="Python SDK">
 
-The code examples below show how to insert key-value pairs into the collection.
-
-<Tabs groupId="operating-systems">
-<TabItem value="py" label="Python">
+The code example below shows how to insert key-value pairs into the collection.
 
 ```py
   from c8 import C8Client
@@ -72,7 +71,9 @@ The code examples below show how to insert key-value pairs into the collection.
 ```
 
   </TabItem>
-  <TabItem value="js" label="Javascript">
+  <TabItem value="js" label="JavaScript SDK">
+
+The code example below shows how to insert key-value pairs into the collection.
 
 ```js
   // Insert key-value pairs
