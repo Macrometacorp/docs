@@ -19,7 +19,7 @@ Key-value collections are always global. You can specify time_to_live (TTL) duri
 When you create a key-value store collection, you can select the **Group** option to enable the **GROUP ID** field. This allows you to organize key-value pairs in groups. This option has several effects:
 
 - The Group ID field is automatically indexed, which makes querying based on the ID faster.
-- The `_key` becomes the **Group ID** appended to the **Key**. Example: `group_A_foo1`
+- The `_key` becomes the **Group ID** prepended to the **Key**. Example: `group_A_foo1`
 - You can perform queries and truncate based on the group ID value.
 
 Here are some example queries:
