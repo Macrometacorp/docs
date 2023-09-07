@@ -29,6 +29,10 @@ The key that corresponds to the document. Every key has a unique value.
 
 Displays the value corresponding to the key.
 
+## Group ID
+
+Displays the value corresponding to the group ID, if any. This column only appears if you selected the **Group** option at collection creation.
+
 ## Expire At
 
 The exact time when the time-to-live (TTL) index expires (date and time). Expiration is not required, so the value might be N/A.
