@@ -44,10 +44,9 @@ Use our interactive API Reference with code generation in 18 programming languag
 To add a transformation:
 
 1. [Retrieve Sample Data from the Data Source](https://www.macrometa.com/docs/api#/operations/retrieveSample)
-2. [Retrieve the Schema from the Data Source](https://www.macrometa.com/docs/api#/operations/retrieveSchema)
-3. [Generate a Transformation Query Sample](https://www.macrometa.com/docs/api#/operations/getSampleTransformation)
-4. [Validate the Transformation](https://www.macrometa.com/docs/api#/operations/validateTransformation)
-5. [Generate Transformation Preview](https://www.macrometa.com/docs/api#/operations/previewTransformation)
+2. [Generate a Transformation Query Sample](https://www.macrometa.com/docs/api#/operations/getSampleTransformation)
+3. [Validate the Transformation](https://www.macrometa.com/docs/api#/operations/validateTransformation)
+4. [Generate Transformation Preview](https://www.macrometa.com/docs/api#/operations/previewTransformation)
 
 </TabItem>
 </Tabs>
@@ -79,10 +78,9 @@ Use our interactive API Reference with code generation in 18 programming languag
 To add a transformation:
 
 1. [Retrieve Sample Data from the Data Source](https://www.macrometa.com/docs/api#/operations/retrieveSample)
-2. [Retrieve the Schema from the Data Source](https://www.macrometa.com/docs/api#/operations/retrieveSchema)
-3. [Generate a Transformation Query Sample](https://www.macrometa.com/docs/api#/operations/getSampleTransformation)
-4. [Validate the Transformation](https://www.macrometa.com/docs/api#/operations/validateTransformation)
-5. [Generate Transformation Preview](https://www.macrometa.com/docs/api#/operations/previewTransformation)
+2. [Generate a Transformation Query Sample](https://www.macrometa.com/docs/api#/operations/getSampleTransformation)
+3. [Validate the Transformation](https://www.macrometa.com/docs/api#/operations/validateTransformation)
+4. [Generate Transformation Preview](https://www.macrometa.com/docs/api#/operations/previewTransformation)
 
 </TabItem>
 </Tabs>
