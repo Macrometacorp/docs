@@ -22,6 +22,13 @@ When you create a key-value store collection, you can select the **Group** optio
 - The `_key` becomes the **Group ID** appended to the **Key**. Example: `group_A_foo1`
 - You can perform queries and truncate based on the group ID value.
 
+Here are some example queries:
+
+```sql
+FOR d IN <groupID> RETURN d;
+FOR d IN <collection> FILTER d.groupID == “<groupID>” RETURN d;
+```
+
 ## KV Blob Storage
 
 :::note

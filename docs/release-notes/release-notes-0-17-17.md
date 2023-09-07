@@ -87,8 +87,9 @@ The stream stats API endpoint `/_fabric/{fabric}/_api/streams/{stream}/stats` no
 
 ### KV Group ID Field Added
 
-Description of update.
+You can now select the **Group** checkbox during collection creation to add the **Group ID** field to your Key-Value Store collection. This allows you to query by group ID more efficiently and to truncate by group ID.
 
+Several topics in [Key-Value Store](../collections/keyvalue/) were updated as a result of this change.
 
 ### Miscellaneous Changes
 
