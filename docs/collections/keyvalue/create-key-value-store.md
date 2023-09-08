@@ -21,9 +21,9 @@ Follow these instructions to create a new collection using the GDN console web U
 
    - **Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
    - **Expiration -** Enable expiration. This allows key-value documents to be removed at a certain date and time.
-   - Group
+   - **Group -** Enable the **Group ID** field in key-value documents.
    - **Enable Collection stream -** Enable streams for all locations for this collection.
-   - Blob storage
+   - **Blob storage -** (If enabled on your account.) Allows you to store blob files in the collection.
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
