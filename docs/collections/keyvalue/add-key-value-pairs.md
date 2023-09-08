@@ -21,7 +21,8 @@ Follow these instructions to add key-value pairs to an existing key-value store 
 
    - **_key -** Optional. If left blank, then Macrometa automatically generates a key.
    - **Value -** Enter an individual value.
-   - **Expiration -** Required if expiration was enabled when the collection was created.
+   - **Expiration -** Required if expiration was enabled when the collection was created, not visible otherwise.
+   - **Group ID -** Enter a group ID. Only available if **Group** was selected when the collection was created.
 
 1. Click **Create**.
 
