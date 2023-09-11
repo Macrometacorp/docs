@@ -47,6 +47,7 @@ To add a transformation:
 2. [Generate a Transformation Query Sample](https://www.macrometa.com/docs/api#/operations/getSampleTransformation)
 3. [Validate the Transformation](https://www.macrometa.com/docs/api#/operations/validateTransformation)
 4. [Generate Transformation Preview](https://www.macrometa.com/docs/api#/operations/previewTransformation)
+5. Add the transformation query in the [Create a Source or Target Workflow](https://www.macrometa.com/docs/api#/operations/createWorkflow) request.
 
 </TabItem>
 </Tabs>
@@ -81,6 +82,7 @@ To add a transformation:
 2. [Generate a Transformation Query Sample](https://www.macrometa.com/docs/api#/operations/getSampleTransformation)
 3. [Validate the Transformation](https://www.macrometa.com/docs/api#/operations/validateTransformation)
 4. [Generate Transformation Preview](https://www.macrometa.com/docs/api#/operations/previewTransformation)
+5. Add the transformation query in the [Create a Source or Target Workflow](https://www.macrometa.com/docs/api#/operations/createWorkflow) request.
 
 </TabItem>
 </Tabs>
