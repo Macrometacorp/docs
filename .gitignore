@@ -30,3 +30,4 @@ _ignore
 .idea
 Brewfile
 *.lock
+yarn.lock
