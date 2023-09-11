@@ -89,6 +89,9 @@ The stream stats API endpoint `/_fabric/{fabric}/_api/streams/{stream}/stats` no
 
 Description of update.
 
+### Connection Metrics API Endpoint
+
+You can now access the `GET /_api/connections/metrics` endpoint to retrieve metrics for your connections.
 
 ### Miscellaneous Changes
 
