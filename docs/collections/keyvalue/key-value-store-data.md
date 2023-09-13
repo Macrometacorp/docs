@@ -23,7 +23,7 @@ Click the red minus next to a key-value pair to remove it from the collection.
 
 ## Key
 
-The key that corresponds to the document. Every key has a unique value. If you selected the **Group** option at collection creation, then the group ID is prepended to the key.
+The key that corresponds to the document. Every key has a unique value.
 
 ## Value
 
