@@ -91,7 +91,18 @@ Description of update.
 
 ### Connection Metrics API Endpoint
 
-You can now access the `GET /_api/connections/metrics` endpoint to retrieve metrics for your connections.
+You can now access the `GET /_api/connections/metrics` endpoint to retrieve metrics for your connections. The response includes metrics for:
+
+- Ingested documents
+- Exported documents
+- Ingested bytes
+- Exported bytes
+- Ingest lag
+- Export lag
+- Ingest errors
+- Export errors
+- Successful workflows
+- Failed workflows
 
 ### Miscellaneous Changes
 
