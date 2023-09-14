@@ -31,7 +31,7 @@ Displays the value corresponding to the key.
 
 ## Group ID
 
-Displays the value corresponding to the group ID, if any. This column only appears if you selected the **Group** option at collection creation.
+Displays the value corresponding to the group ID, if any. This column only appears if you selected the **Group** option at collection creation. If no group ID is assigned, then the field displays `N/A`.
 
 ## Expire At
 
