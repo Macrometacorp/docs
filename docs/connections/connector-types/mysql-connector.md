@@ -13,13 +13,18 @@ Macrometa collection connectors allow you to extract data from or send data to a
 
 ## MySQL/MariaDB Source
 
-Log Based replication requirements
+Read this section carefully before you set up your MySQL or MariaDB source connector.
 
-LOG_BASED replication makes use of the server's binary logs (binlogs), this method can only work with primary servers, the source acts as a replica and requests the primary to stream log events,the source connector then consumes events pertaining to row changes (inserts, updates, deletes), binlog file rotate and GTID events.
+### Log-Based Replication Requirements
 
-Macrometa source MySQL connector support two ways of consuming log events: using binlog coordinates or GTID, the default behavior is using binlog coordinates, when turning the use_gtid flag, you have to specify the engine flavor (mariadb/mysql) due to how different are the GTID implementations in these two engines.
+LOG_BASED replication makes use of the server's binary logs (binlogs). This method can only work with primary servers.
 
-When enabling the `use_gtid` flag and the engine is MariaDB, the Macrometa source MySQL connector will dynamically infer the GTID pos from existing binlog coordinate in the state, if the engine is mysql, it will fail.
+1. The source acts as a replica and requests the primary to stream log events
+2. The source connector then consumes events such as row changes (inserts, updates, deletes), binlog file rotation, and GTID events.
+
+The Macrometa source MySQL connector support two ways of consuming log events: using binlog coordinates or GTID. The default behavior is using binlog coordinates, when turning the `use_gtid` flag, you must specify the engine type (MySQL or MariaDB) due to how different the GTID implementations are in these two engines.
+
+When enabling the `use_gtid` flag with the MariaDB engine, the Macrometa source MySQL connector will dynamically infer the GTID position from existing binlog coordinate in the state. If the engine is mysMySQLql, it will fail.
 
 ## MySQL/MariaDB Target
 
