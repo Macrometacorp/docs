@@ -24,8 +24,8 @@ When you create a key-value store collection, you can select the **Group** optio
 Here are some example C8QL queries:
 
 ```sql
-FOR d IN <groupID> RETURN d;
-FOR d IN <collection> FILTER d.groupID == “<groupID>” RETURN d;
+FOR d IN <collection> FILTER d.groupID == "<groupID>" RETURN d
+FOR d IN <collection> FILTER d.groupID == "<groupID>" RETURN {_key: d._key, value: d.value}
 ```
 
 ## KV Blob Storage
