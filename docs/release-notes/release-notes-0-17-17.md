@@ -30,9 +30,9 @@ The following connectors are included in this release:
 
 - [Oracle Target](../connections/connector-types/oracledb-connector)
 - [MSSQL Source and Target](../connections/connector-types/mssql-connector)
-- MySQL Source and Target
+- [MySQL/MariaDB Source and Target](../connections/connector-types/mysql-connector)
 
-[MSSQL Connector](../connections/connector-types/mssql-connector) was added and [OracleDB Connector](../connections/connector-types/oracledb-connector) was updated as a result of this change.
+[MySQL/MariaDB Connector](../connections/connector-types/mysql-connector) and [MSSQL Connector](../connections/connector-types/mssql-connector) were added and [OracleDB Connector](../connections/connector-types/oracledb-connector) was updated as a result of this change.
 
 ## Feature Updates
 
