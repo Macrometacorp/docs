@@ -91,6 +91,21 @@ You can now select the **Group** checkbox during collection creation to add the 
 
 Several topics in [Key-Value Store](../collections/keyvalue/) were updated as a result of this change.
 
+### Connection Metrics API Endpoint
+
+You can now access the `GET /_api/connections/metrics` endpoint to retrieve metrics for your connections. The response includes metrics for:
+
+- Ingested documents
+- Exported documents
+- Ingested bytes
+- Exported bytes
+- Ingest lag
+- Export lag
+- Ingest errors
+- Export errors
+- Successful workflows
+- Failed workflows
+
 ### Miscellaneous Changes
 
 The following minor changes were added in this release.
@@ -98,10 +113,6 @@ The following minor changes were added in this release.
 | Change # | Description |
 | -------- | ----------- |
 | DB-1883  | If an internal network issue causes replication to fail for a server, then server users will have only read-only access to its global collections once the replication backlog is filled to prevent new messages overwriting older ones. This change helps prevent data loss and inconsistency.       |
-|          |             |
-|          |             |
-|          |             |
-|          |             |
 
 ### API Updates
 
@@ -110,16 +121,6 @@ This release includes the following API changes.
 | Issue # | Description |
 | ------- | ----------- |
 | CEP-591 | The `regions` parameter in the [Create and Deploy Stream Workers](https://www.macrometa.com/docs/api#/operations/create) API endpoint now accepts `*` as a value. You no longer need to list all regions individually.        |
-|         |             |
-|         |             |
-
-## Known Issues
-
-The following known issues were introduced in this release.
-
-### Problem
-
-Explain the problem and the workaround.
 
 ## Defect Fixes
 
@@ -141,9 +142,3 @@ The following defects were fixed in this release.
 | DB-1465, DB-2364 | Data inconsistency observed when in crud scenarios for regions that lose connectivity for some time. |
 | DB-2513 | Cannot delete a fabric using an API key. |
 | DB-2579 | 404 database not found error when trying to change permissions for an API key. |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
