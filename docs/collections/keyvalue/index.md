@@ -21,7 +21,7 @@ When you create a key-value store collection, you can select the **Group** optio
 - The Group ID field is automatically indexed, which makes querying based on the ID faster.
 - You can perform queries and truncate based on the group ID value.
 
-Here are some example queries:
+Here are some example C8QL queries:
 
 ```sql
 FOR d IN <groupID> RETURN d;
