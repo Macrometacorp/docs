@@ -20,16 +20,19 @@ You can now create semantic search views.
 
 ### Client Connectors - Beta
 
-Macrometa now offers connectors that are installed on the client side. Like the connectors integrated with Macrometa GDN, these connectors allow you to connect Macrometa to external data sources as either a source or a target.
+Macrometa now offers connectors that are installed on the client side. Like the connectors integrated with Macrometa GDN, these connectors allow you to connect Macrometa to external data sources as either a source or a target. The first client connector is [Databricks](../client-connectors/databricks-client/).
 
-### New Connectors - DFP NOTE - Need to update links!
+The [Client Connectors](../client-connectors/) was added as a result of this feature.
+
+### New Connectors
 
 The following connectors are included in this release:
 
 - [Oracle Target](../connections/connector-types/oracledb-connector)
-- MSSQL Source and Target
+- [MSSQL Source and Target](../connections/connector-types/mssql-connector)
+- MySQL Source and Target
 
-MSSQL Connector was added and [OracleDB Connector](../connections/connector-types/oracledb-connector) was updated as a result of this change.
+[MSSQL Connector](../connections/connector-types/mssql-connector) was added and [OracleDB Connector](../connections/connector-types/oracledb-connector) was updated as a result of this change.
 
 ## Feature Updates
 
