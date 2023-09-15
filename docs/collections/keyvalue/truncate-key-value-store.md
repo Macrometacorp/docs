@@ -14,8 +14,6 @@ When you truncate a collection, you remove all the documents from the collection
 1. In the Settings tab, click **Truncate Collection**.
 1. Click **Truncate**.
 
-![Truncate Collection Section](/img/collections/truncate-collection.png)
-
 ## Truncate a Specific Group
 
 If you selected **Group** at collection creation, then you can truncate only documents in a particular group. This deletes all documents in the group and leaves everything else, including other documents and indexes, intact.
@@ -28,5 +26,3 @@ If you selected **Group** at collection creation, then you can truncate only doc
 1. Click **Add Group ID**.
 1. In the **Group ID** field, enter the group that you want to truncate.
 1. Click **Truncate**.
-
-![Truncate Group ID](/img/collections/truncate-group-id.png)
