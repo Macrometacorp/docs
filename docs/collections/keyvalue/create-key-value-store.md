@@ -8,8 +8,6 @@ import TabItem from '@theme/TabItem';
 
 This page explains how to create a new Key-Value Store collection.
 
-## Create a Key-Value Store Collection
-
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
@@ -23,8 +21,9 @@ Follow these instructions to create a new collection using the GDN console web U
 
    - **Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
    - **Expiration -** Enable expiration. This allows key-value documents to be removed at a certain date and time.
+   - **Group -** Enable the **Group ID** field in key-value documents.
    - **Enable Collection stream -** Enable streams for all locations for this collection.
-   - **Wait for sync -** Synchronize to disk before completing record creation or update.
+   - **Blob storage -** (If enabled on your account.) Allows you to store blob files in the collection.
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
@@ -68,14 +67,3 @@ This code example shows how to create a collection for saving key-value pairs.
 
 </TabItem>
 </Tabs>
-
-## KV Blob Storage
-
-:::note
-This feature is available upon request. Contact support@macrometa.com to enable it on your account.
-:::
-
-If this feature is enabled on your account, then when you create a new key-value store, you can select the **Blob storage** checkbox. This marks the collection as a blob-based KV collection. These collections can only be used to store blob files, such as images. Once created, this setting cannot be changed.
-
-- Maximum blob file size is 1 MB. This can be changed, but can never exceed 2 MB.
-- You can add blob records using the Macrometa API. Adding records in the Macrometa web console is not supported.
