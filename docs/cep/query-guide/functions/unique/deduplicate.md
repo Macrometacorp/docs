@@ -22,7 +22,7 @@ unique:deduplicate(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG> ti
 
 ```sql
 CREATE STREAM TemperatureStream (sensorId string, temperature double);
-CREATE STREAM UniqueTemperatureStream (sensorId string, temperature double);
+CREATE SINK STREAM UniqueTemperatureStream (sensorId string, temperature double);
 
 @info(name = 'deduplicateTemperatureQuery')
 INSERT INTO UniqueTemperatureStream

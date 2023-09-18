@@ -20,7 +20,7 @@ Deeper nested objects are ignored. For example, a fulltext index on _translation
 :::
 
 ```js
-{ translations: { en: { US: "fox" }, de: "Fuchs" }
+{ translations: { en: { US: "fox" }, de: "Fuchs" }}
 ```
 
 If you need to search across multiple fields and/or nested objects, you may write all the strings into a special attribute, which you then create the index on (it might be necessary to clean the strings first, e.g. remove line breaks and strip certain words).
@@ -34,7 +34,7 @@ Ensures that a fulltext index exists:
 ```cURL
 curl -X 'POST' 'https://api-play.paas.macrometa.io/_fabric/_system/_api/index/fulltext?collection=collectionName' \
  -H 'Authorization: bearer <token>'                                                                            \
- -d '{ "fields": [ "type" : "fulltext", ."fields": ["field"],  "minLength": <minLength> }'
+ -d '{ "type" : "fulltext", "fields": ["field"],  "minLength": <minLength> }'
 ```
 
 Creates a fulltext index on all documents on attribute _field_.

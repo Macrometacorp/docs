@@ -26,17 +26,35 @@ Two available sets of parameters:
 ## Example 1
 
 ```sql
-@info(name = 'query1')
 geo:disjoint( {'type':'Polygon','coordinates':[[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]]} , {'type':'Polygon','coordinates':[[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]]} )
 ```
 
-In this example, the `geo:disjoint()` function is used to determine whether the two specified polygons are disjoint, meaning they don't intersect or touch each other. The first polygon is defined by the coordinates `[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]`, while the second polygon is defined by the coordinates `[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]`. The function returns `true` because the two polygons are indeed disjoint and do not intersect or touch each other.
+The `geo:disjoint()` function takes in two GeoJSON geometries and returns `true` if they do not intersect or touch each other. Here, two polygons are specified as inputs. The first polygon is defined by the coordinates `[[0.5, 0.5],[0.5, 1.5],[1.5, 1.5],[1.5, 0.5],[0.5, 0.5]]` and the second polygon is defined by the coordinates `[[10, 10],[10, 11],[11, 11],[11, 10],[10, 10]]`. As the two polygons do not intersect or touch, the function returns `true`.
 
 ## Example 2
 
 ```sql
-@info(name = 'query1')
-geo:disjoint(10.5. 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
+geo:disjoint(10.5, 20.5 , {'type':'Polygon','coordinates':[[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]]})
 ```
 
-In this example, the `geo:disjoint()` function is used to determine whether the specified point (10.5, 20.5) is disjoint from the specified polygon defined by the coordinates `[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]`. The function returns `true` because the point is indeed disjoint, meaning it does not lie within or on the boundary of the polygon.
+Here, `geo:disjoint()` is used to determine if a point, given by the coordinates (10.5, 20.5), is disjoint from a specified polygon. The polygon is defined by the coordinates `[[0, 0],[0, 1],[1, 1],[1, 0],[0, 0]]`. Since the point does not fall within or on the boundary of the polygon, the function returns `true`, indicating they are disjoint.
+
+## Example 3
+
+```sql
+CREATE STREAM GeoStream (longitude double, latitude double, geoFence string);
+CREATE SINK STREAM DisjointStream (isDisjoint bool);
+
+@info(name = 'CheckDisjoint')
+INSERT INTO DisjointStream
+SELECT geo:disjoint(longitude, latitude, geoFence) AS isDisjoint
+FROM GeoStream;
+```
+
+In this stream worker example, two streams are defined: `GeoStream` for input and `DisjointStream` for output.
+
+The `CheckDisjoint` query operates on the `GeoStream`. Each event in this stream consists of a pair of coordinates (longitude, latitude) and a GeoJSON geometry fence represented as a string.
+
+The function `geo:disjoint(longitude, latitude, geoFence)` is used in the query to determine if the specified coordinates are disjoint from the geometry fence. The resulting boolean value is then inserted into the `DisjointStream`.
+
+The query continuously processes each set of coordinates and GeoJSON geometry fence from `GeoStream`, checks if they are disjoint, and feeds the boolean results into `DisjointStream`. This facilitates real-time disjoint analysis for the input stream data.

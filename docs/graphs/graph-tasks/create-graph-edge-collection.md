@@ -23,7 +23,7 @@ Follow these instructions to create a new collection Graph Edge collection using
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
    - **Geo Distribution -** Select whether to store data globally or locally.
-   - **Enable Collection stream -** Create a stream for this collection. You can do this now or after the collection is created.
+   - **Enable Collection stream -** Enable streams for all locations for this collection.
    - **Wait for sync -** Synchronize to disk before completing document creation or update.
 
 </TabItem>

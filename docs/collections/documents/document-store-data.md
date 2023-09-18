@@ -39,10 +39,6 @@ This feature can be used to perform a lookup within the document collection. You
 1. Select logical expressions/operators from the drop-down menu.
 1. Enter the value to filter against.
 
-## Enable/Disable Streams
-
-Click to turn streams on or off for this collection. When streams are enabled, you can access the Stream tab.
-
 ## Create Document
 
 Create a new document inside the selected collection and add data in the form of attributes and values. For more information, refer to [Add Documents to Collection](add-document.md).
