@@ -24,7 +24,7 @@ LOG_BASED replication makes use of the server's binary logs (binlogs). This meth
 
 The Macrometa source MySQL connector support two ways of consuming log events: using binlog coordinates or GTID. The default behavior is using binlog coordinates, when turning the `use_gtid` flag, you must specify the engine type (MySQL or MariaDB) due to how different the GTID implementations are in these two engines.
 
-When enabling the `use_gtid` flag with the MariaDB engine, the Macrometa source MySQL connector will dynamically infer the GTID position from existing binlog coordinate in the state. If the engine is mysMySQLql, it will fail.
+When enabling the `use_gtid` flag with the MariaDB engine, the Macrometa source MySQL connector will dynamically infer the GTID position from existing binlog coordinate in the state. If the engine is MySQL, it will fail.
 
 ## MySQL/MariaDB Target
 
