@@ -2,7 +2,7 @@
 title: MySQL/MariaDB Connector
 ---
 
-Macrometa collection connectors allow you to extract data from or send data to an existing MySQL or MariaDB collection.
+Macrometa collection connectors allow you to extract data from or send data to an existing MySQL or MariaDB table.
 
 ## Prerequisites
 
