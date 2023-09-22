@@ -102,6 +102,11 @@ const config = {
           // },
           {
             position: 'left',
+            label: 'PhotonIQ',
+            href: '/photoniq'
+          },
+          {
+            position: 'left',
             label: 'API Reference',
             href: '/api'
           },
