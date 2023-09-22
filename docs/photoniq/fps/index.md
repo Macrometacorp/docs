@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Fingerprinting
+title: Digital Fingerprinting
 ---
 
 PhotonIQ Fingerprinting Service (FPS) is a managed service that generates persistent browser fingerprints and visitor IDs for your website users.
