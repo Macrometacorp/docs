@@ -13,7 +13,7 @@ This process is transparent to the end user. When a user or a search engine craw
 
 ## Features
 
-Key capabilities include:
+Key capabilities of Dynamic Prerendering include:
 
 ### Performance
 
