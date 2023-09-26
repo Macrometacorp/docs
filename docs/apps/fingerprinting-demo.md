@@ -7,7 +7,7 @@ This demo app implements PhotonIQ Digital Fingerprinting to track site users. It
 
 ## Demo Site
 
-To start exploring this demo, navigate to the [PhotonIQ Fingerprint](https://fps-dxb.eng.macrometa.io/api/ds/ui/) page. You can view your digital signature, see your visits, and view attributes for each of your visits
+To start exploring this demo, navigate to the [PhotonIQ Fingerprint](https://demo.photoniq.macrometa.io/api/ds/ui/) page. You can view your digital signature, see your visits, and view attributes for each of your visits
 
 You can open another tab, or another browser, and repeat the process. Notice how the system is able to track your visits even if you use incognito mode or switch browsers.
 
