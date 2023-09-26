@@ -3,7 +3,7 @@ sidebar_position: 41
 title: Coupon Fraud Prevention
 ---
 
-This demo app implements the PhotonIQ Fingerprint service to prevent coupon misuse. It identifies unauthenticated or anonymous site visitors, even when they switch tabs, use incognito mode, or clear browsing data, ensuring coupons can only be claimed once per visitor. With this service, businesses can protect their special offers, maintaining profitability and earning customer trust.
+This demo app implements PhotonIQ Digital Fingerprinting to prevent coupon misuse. It identifies unauthenticated or anonymous site visitors, even when they switch tabs, use incognito mode, or clear browsing data, ensuring coupons can only be claimed once per visitor. With this service, businesses can protect their special offers, maintaining profitability and earning customer trust.
 
 ## Demo Site
 

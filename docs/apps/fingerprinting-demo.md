@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Fingerprinting Demo
 ---
 
-This demo app implements the PhotonIQ Fingerprint Service (FPS) to track site users. It identifies anonymous site visits, even if the use incognito or clear browsing data.
+This demo app implements the PPhotonIQ Digital Fingerprinting to track site users. It identifies anonymous site visits, even if the use incognito or clear browsing data.
 
 ## Demo Site
 
