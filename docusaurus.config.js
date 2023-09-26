@@ -100,11 +100,11 @@ const config = {
           //   position: 'left',
           //   label: 'Docs',
           // },
-          //{
-          //  position: 'left',
-          //  label: 'PhotonIQ',
-          //  href: '/photoniq'
-          //},
+          {
+            position: 'left',
+            label: 'PhotonIQ',
+            href: '/photoniq'
+          },
           {
             position: 'left',
             label: 'API Reference',
