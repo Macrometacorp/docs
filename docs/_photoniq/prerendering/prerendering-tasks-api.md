@@ -87,11 +87,17 @@ This page shows you the API endpoints you can use to interact with Dynamic Prere
     ```json
     jsonCopy code
     {
-      "_key": "string",
-      "origin": "string",
-      "siteMaps": ["string"],
-      "ttl": "string",
-      "caching": boolean
+    "_key": "string",
+    "origin": "string",
+    "siteMaps": ["string"],
+    "ttl": "string",
+    "caching": boolean,
+    "allowOriginHeaderValue": "string",
+    "identifyNotFound":"string",
+    "passThroughHeaders":Array,
+    "addResponseHeaders":Object,
+    "created": Date,
+    "lastUpdate": Object
     }
     ```
 
@@ -112,11 +118,17 @@ This page shows you the API endpoints you can use to interact with Dynamic Prere
     ```json
     jsonCopy code
     {
-      "_key": "string",
-      "origin": "string",
-      "siteMaps": ["string"],
-      "ttl": "string",
-      "caching": boolean
+    "_key": "string",
+    "origin": "string",
+    "siteMaps": ["string"],
+    "ttl": "string",
+    "caching": boolean,
+    "allowOriginHeaderValue": "string",
+    "identifyNotFound":"string",
+    "passThroughHeaders":Array,
+    "addResponseHeaders":Object,
+    "created": Date,
+    "lastUpdate": Object
     }
     ```
 
