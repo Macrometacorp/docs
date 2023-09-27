@@ -5,9 +5,9 @@ title: Fingerprinting Demo
 
 This demo app implements PhotonIQ Digital Fingerprinting to track site users. It identifies anonymous site visits, even if the use incognito or clear browsing data.
 
-| **Demo URL** |
-|----------- |
-| [PhotonIQ Fingerprint](https://demo.photoniq.macrometa.io/api/ds/ui/) | 
+| **Federation**     | **Tenant**         | **Fabric** | **Demo URL**     |
+| --- | ------------------ | ---------- | --------------------------------------------------------------------- |
+| [Global Data Network](https://play.paas.macrometa.io/)    | demo@macrometa.com | `_system`  | [PhotonIQ Fingerprint](https://demo.photoniq.macrometa.io/api/ds/ui/) |
 
 ## Demo Site
 
