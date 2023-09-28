@@ -9,8 +9,6 @@ The PhotonIQ Dynamic Prerendering service is an innovative solution that generat
 
 Dynamic Prerendering works by running a full version of a web browser, such as Chrome, in a server environment. This browser loads the entire web application, including executing all JavaScript, just like a user's browser would. Once the JavaScript has finished executing, the prerendering service takes a snapshot of the resulting HTML and serves this static version to the client.
 
-This process is transparent to the end user. When a user or a search engine crawler makes a request to a website, the server determines whether to serve the dynamic or prerendered version of the site. This decision can be based on various factors, such as the type of user agent making the request.
-
 ## Features
 
 Key capabilities of Dynamic Prerendering include:
