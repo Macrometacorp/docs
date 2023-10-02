@@ -29,30 +29,6 @@ This page shows you the API endpoints you can use to interact with Dynamic Prere
   - **`400`**: Invalid origin provided
   - **`500`**: Internal server error
 
-## Purge CDN Cache
-
-**Endpoint:** `/api/prerender/v1/purge/cdn`
-
-- **Method:** POST
-- **Request Body (JSON):**
-
-    ```json
-    jsonCopy code
-    {
-      "network": "string",
-      "cp": [number],
-      "edgerc": {
-        "clientSecret": "string",
-        "host": "string",
-        "accessToken": "string",
-        "clientToken": "string"
-      }
-    }
-    ```
-
-- **Responses:**
-  - **`200`**: Default response
-
 ## Service Health Status
 
 **Endpoint:** `/api/prerender/v1/health`
