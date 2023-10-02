@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Fingerprinting Metrics
 ---
 
-Digital Fingerprinting provides visibility into fingerprinting performance by providing the tracking metrics listed below. These metrics quantify the scale of fingerprinting activity and can help identify usage trends.
+The tracking metrics below quantify the scale of the Digital Fingerprinting service and can help identify usage trends.
 
 ## Stability Rate
 
