@@ -7,7 +7,7 @@ The tracking metrics below quantify the scale of the Digital Fingerprinting serv
 
 ## Stability Rate
 
-Percentage of visits where an existing visitor was recognized using fingerprints. This indicates how often FPS can recognize visitors persistently.
+Percentage of visits where a previous visitor was recognized by the fingerprinting service (FPS). This indicates how often FPS can recognize visitors persistently.
 
 ## Unique Visitor Count
 
