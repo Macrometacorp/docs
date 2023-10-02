@@ -11,7 +11,7 @@ Percentage of visits where a previous visitor was recognized by the fingerprinti
 
 ## Unique Visitor Count
 
-The total number of unique visitors identified by FPS fingerprints over a period.
+The total number of unique visitors identified by FPS over a period.
 
 ## Request Count
 
