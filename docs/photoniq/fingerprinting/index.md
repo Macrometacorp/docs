@@ -21,7 +21,7 @@ When a new user visits your site, Digital Fingerprinting will:
 - Generate a **Visitor ID (VID)** to identify that user uniquely.
 - Create a **Signature** to fingerprint the user's device.
 
-The same Visitor ID is recognized using the fingerprint and persists on subsequent visits, and the signature is updated to capture any new browser/device attributes. Digital Fingerprinting uses proprietary fuzzy logic and ML models to match fingerprints with high confidence, even if some attributes change. A match score indicates this confidence level.
+The same Visitor ID is recognized using the fingerprint and persists on subsequent visits, and the signature is updated to capture any new browser/device attributes. Digital Fingerprinting uses proprietary algorithms and ML models to match fingerprints with high confidence, even if some attributes change. A match score indicates this confidence level.
 
 ## Key Features
 
