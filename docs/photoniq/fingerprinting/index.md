@@ -7,13 +7,13 @@ Digital Fingerprinting tracks anonymous visitors and real-time behaviors across 
 
 ## How It Works
 
-Digital Fingerprinting uses advanced fingerprinting techniques to create a unique signature of a user's device. This allows recognizing users across sessions and devices without relying only on cookies.
+Digital Fingerprinting uses advanced fingerprinting techniques to create a unique signature of a user's device. This allows recognizing users across sessions and devices without relying on cookies.
 
 Some key techniques used:
 
 - Collecting browser signals such as user agent, resolution, fonts, and so on.
 - Leveraging Canvas and AudioContext APIs.
-- Fingerprinting using CPU and Memory.
+- Fingerprinting using CPU and memory.
 - Applying proprietary algorithms and machine learning (ML) models.
 
 When a new user visits your site, Digital Fingerprinting will:
