@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Digital Fingerprinting
 ---
 
-PhotonIQ Digital Fingerprinting is a managed service that generates persistent digital signatures and visitor IDs for your website users.
+Digital Fingerprinting tracks anonymous visitors and real-time behaviors across sessions, browsers, and devices without using cookies or PII.
 
 ## How It Works
 
