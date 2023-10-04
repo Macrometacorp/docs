@@ -7,7 +7,7 @@ To incorporate the Digital Fingerprinting client into your website, add one of t
 
 ## Fingerprint on Button Click
 
-In this example, the JavaScript is initially loaded at page load time, and a function is created that is tied to a button. Once the button is clicked, a call is made to the fingerprint server, which returns the visitorId. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId). Remember to change  DS_URL to the provided values.
+In this example, the JavaScript is initially loaded at page load time, and a function is created that is tied to a button. Once the button is clicked, a call is made to the fingerprint server, which returns the visitorId. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId). Remember to change `DS_URL` to the correct data service URL.
 
 ```jsx
 <html>
