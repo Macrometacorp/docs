@@ -3,11 +3,11 @@ sidebar_position: 1
 title: Digital Fingerprinting
 ---
 
-Digital Fingerprinting tracks anonymous visitors and real-time behaviors across sessions, browsers, and devices without using cookies or PII.
+Digital Fingerprinting tracks anonymous visitors and real-time behaviors across sessions, browsers, and devices without using PII.
 
 ## How It Works
 
-Digital Fingerprinting uses advanced fingerprinting techniques to create a unique signature of a user's device. This allows recognizing users across sessions and devices without relying on cookies.
+Digital Fingerprinting uses advanced fingerprinting techniques to create a unique signature of a user's device. This allows recognizing users across sessions and devices without relying only on cookies.
 
 Some key techniques used:
 
