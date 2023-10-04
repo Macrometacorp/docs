@@ -13,10 +13,6 @@ Percentage of visitors correctly identified.
 
 The total number of unique visitors identified by Digital Fingerprinting over a period.
 
-## Request Count
-
-Total number of fingerprinting requests received per minute.
-
 ## Requests per Second
 
 The average number of fingerprinting requests served per second in a given minute.
