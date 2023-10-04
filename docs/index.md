@@ -34,13 +34,8 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
 
 <grid cols={3}>
   <card
-    heading="Graphs"
-    description="Dynamic, high-throughput graphs with ultra low-latency queries."
-    href="/graphs"
-  />
-  <card
-    heading="Search"
-    description="Flexible full-text search, similarity ranking, and more."
+    heading="Search Views"
+    description="Flexible full-text search, semantic search, similarity ranking, and more."
     href="/search-views"
   />
   <card
@@ -48,16 +43,16 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
     description="Distributed, real-time stream engine with pub/sub and message queues."
     href="/streams"
   />
+  <card
+    heading="Graphs"
+    description="Dynamic, high-throughput graphs with ultra low-latency queries."
+    href="/graphs"
+  />
 </grid>
 
 #### Collections
 
 <grid cols={3}>
-  <card
-    heading="Intro to Collections"
-    description="Flexible, poly-model data layer supporting multiple data types."
-    href="/collections"
-  />
   <card
     heading="Document Collections"
     description="NoSQL document collections with flexible indexing and modeling."
@@ -71,7 +66,7 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
   <card
     heading="Graph Edge Collection"
     description="Document type used by Graphs to model relationships between nodes."
-    href="/collections/keyvalue"
+    href="/collections/graph-edge"
   />
   <card
     heading="Dynamo-mode Collections"
