@@ -145,7 +145,7 @@ In this example, the JavaScript is loaded at page load time, and the function to
 
 ### Fingerprint on Text Input
 
-Perform a fetch call when a user starts entering some text in an input field. Here's an example:
+In this example, the visitiorId is fetched when a user enters text in the input field.
 
 ```jsx
 <html>
