@@ -5,9 +5,9 @@ title: Fingerprinting Metrics
 
 The tracking metrics below quantify the scale of Digital Fingerprinting and can help identify usage trends.
 
-## Stability Rate
+## Accuracy Rate
 
-Percentage of visits where a previous visitor was recognized by Digital Fingerprinting. This indicates how often Digital Fingerprinting can recognize visitors persistently.
+Percentage of visitors correctly identified.
 
 ## Unique Visitor Count
 
