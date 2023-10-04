@@ -14,7 +14,7 @@ Some key techniques used:
 - Collecting browser signals such as user agent, resolution, fonts, and so on.
 - Leveraging Canvas and AudioContext APIs.
 - Fingerprinting using CPU and memory.
-- Applying proprietary algorithms and machine learning (ML) models.
+- Proprietary algorithms and machine learning (ML) models.
 
 When a new user visits your site, Digital Fingerprinting will:
 
