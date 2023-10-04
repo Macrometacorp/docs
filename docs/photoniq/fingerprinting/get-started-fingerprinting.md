@@ -74,7 +74,7 @@ In this example, the JavaScript is initially loaded at page load time, and a fun
 
 ## Fingerprint on Page Load
 
-Perform a fetch at page load time.
+In this example, the JavaScript is loaded at page load time, and the function to get the visitorId is run right away.
 
 ```jsx
 <html>
