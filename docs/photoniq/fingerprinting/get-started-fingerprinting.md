@@ -9,7 +9,7 @@ To incorporate the Digital Fingerprinting client into your website, add one of t
 
 In this example, the JavaScript is initially loaded at page load time, and a function is created that is tied to a button. Once the button is clicked, a call is made to the fingerprint server, which returns the visitorId. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
 
-```jsx
+```html
 <body>
     <!-- Get the script in your application -->
     <script src="https://xxxxfps.ps.macrometa.io/api/ds/v1"></script>
@@ -46,7 +46,7 @@ In this example, the JavaScript is initially loaded at page load time, and a fun
 
 In this example, the JavaScript is loaded at page load time, and the function to get the visitorId is run right away.
 
-```jsx
+```html
 <html>
 <head>
     <script>
@@ -117,7 +117,7 @@ In this example, the JavaScript is loaded at page load time, and the function to
 
 In this example, the visitorId is fetched when a user enters text in the input field.
 
-```jsx
+```html
 <html>
 <head>
     <script>
@@ -196,7 +196,7 @@ In this example, the visitorId is fetched when a user enters text in the input f
 
 Here is an example of the JavaScript being loaded by Google’s Tag Manager. The vistorId is sent to the JavaScript console.
 
-```jsx
+```html
 <body>
     <!-- Get the script in your application -->
     <script src="<URL-TO-DS-SERVICE>"></script>
