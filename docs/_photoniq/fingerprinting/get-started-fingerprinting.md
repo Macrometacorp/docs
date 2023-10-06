@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Get Started with Fingerprinting
 ---
 
-To incorporate the Digital Fingerprinting client into your website, add one of the following example scripts to your web page. In each example, replace the `DS_URL` placeholder with the data service URL that Macrometa provided you.
+To incorporate the Digital Fingerprinting client into your website, add one of the following example scripts to your web page. In each example, replace the `DS_URL` placeholder with the data service URL that Macrometa provides you.
 
 ## Fingerprint on Button Click
 
