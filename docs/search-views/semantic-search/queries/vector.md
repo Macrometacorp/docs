@@ -100,7 +100,7 @@ This query divides respective elements of the two vectors.
 
 `VECTOR_NORMALIZE` processes a vector so that its magnitude (or length) becomes one. It's a crucial function for preparing vectors for comparison, especially when magnitude differences might obscure the data's direction or meaning.
 
-### Syntax
+### VECTOR_NORMALIZE Syntax
 
 `vector_normalize(vector1)`
 
