@@ -7,7 +7,7 @@ The tracking metrics below quantify the scale of Digital Fingerprinting and can 
 
 ## Accuracy Rate
 
-Percentage of visitors correctly identified.
+The confidence of that a unique Visitor ID corresponds to a particular returning user.
 
 ## Unique Visitor Count
 
