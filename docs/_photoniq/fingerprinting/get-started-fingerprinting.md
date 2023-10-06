@@ -185,7 +185,7 @@ In this example, the visitorId is fetched when a user enters text in the input f
                     window.alert('Visitor ID from response: ' + data.visitorId);
                 })
                 .catch(e => {
-                    console.log("API call failed");
+                    console.log("API call failed.");
                     console.error(e);
                 });
             } else {
