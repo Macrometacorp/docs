@@ -48,14 +48,12 @@ In this example, the JavaScript is loaded at page load time, and the function to
 
 ```html
 <html>
-<head>
+<header>
     <script>
-        // Constants
+        // Replace all DS_URL with your provided values
         const DS_URL = "<URL-TO-DS-SERVICE>";
        
         const VISIT_API_ENDPOINT = `${DS_URL}/visits`;
-
-        let fetchPromise;
 
         // Dynamically load the script when the page loads
         window.onload = function () {
@@ -65,51 +63,49 @@ In this example, the JavaScript is loaded at page load time, and the function to
                 // Initialize the agent at startup.
                 var dsPromise = DS_Client.load();
                 window.dsPromise = dsPromise;  // Make it globally accessible
-
-                // Start the fetch request as soon as the DS_Client is loaded.
-                window.dsPromise.then((ds) => ds.get()).then((ds_data) => {
-                    fetchPromise = fetch(VISIT_API_ENDPOINT, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
- 
-                        },
-                        body: JSON.stringify(ds_data)
-                    });
-                });
             };
             document.body.appendChild(script);
         };
 
-        // Function to handle visitor details when button is clicked
+        // Function to get visitor details when button is clicked
         function getVisitorDetails() {
-            if (fetchPromise) {
-                fetchPromise
-                .then(res => {
-                    console.log("API call done!");
-                    console.log("Visitor ID from header:", res.headers.get('x-photoniq-vid'));
-                    return res.json();
+            // Use the globally accessible dsPromise
+            window.dsPromise.then((ds) => ds.get()).then((ds_data) => {
+                // Record a visit in the server
+                fetch(VISIT_API_ENDPOINT, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                      
+                    },
+                    body: JSON.stringify(ds_data)
                 })
-                .then(data => {
-                    console.log("Visitor ID from response:", data.visitorId);
-                    window.alert('Visitor ID from response: ' + data.visitorId);
-                })
-                .catch(e => {
-                    console.log("API call failed");
-                    console.error(e);
-                });
-            } else {
-                console.log("Data not fetched yet or there was an issue initializing the fetch.");
-            }
+                    .then(res => {
+                        console.log("API call done!");
+                        // The visitor ID is returned in the response header and in the response body
+                        // We are logging it from the header to the console
+                        console.log("Visitor ID from header:", res.headers.get('x-photoniq-vid'));
+                        return res.json();
+                    })
+                    .then(data => {
+                        console.log("visitor ID from response:", data.visitorId);
+												console.log("Confidnece Score:", data.visit.confidence.matchScore);
+                        // Displaying a popup after getting visitorId from the response
+                        window.alert('Visitor ID from response: ' + data.visitorId);
+                    })
+                    .catch(e => {
+                        console.log("API call failed");
+                        console.error(e);
+                    });
+            });
         }
     </script>
-</head>
+</header>
 
 <body>
     <!-- Button to trigger the getVisitorDetails function -->
     Button: <button onclick="getVisitorDetails()">Get DS Data</button>
 </body>
-
 </html>
 ```
 
