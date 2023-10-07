@@ -10,66 +10,36 @@ To incorporate the Digital Fingerprinting client into your website, add one of t
 In this example, the JavaScript is initially loaded at page load time, and a function is created that is tied to a button. Once the button is clicked, a call is made to the fingerprint server, which returns the visitorId. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
 
 ```html
-<html>
-<header>
-    <script>
-        // Replace all DS_URL with your provided values
-        const DS_URL = "<URL-TO-DS-SERVICE>";
-       
-        const VISIT_API_ENDPOINT = `${DS_URL}/visits`;
-
-        // Dynamically load the script when the page loads
-        window.onload = function () {
-            var script = document.createElement('script');
-            script.src = DS_URL;
-            script.onload = function () {
-                // Initialize the agent at startup.
-                var dsPromise = DS_Client.load();
-                window.dsPromise = dsPromise;  // Make it globally accessible
-            };
-            document.body.appendChild(script);
-        };
-
-        // Function to get visitor details when button is clicked
-        function getVisitorDetails() {
-            // Use the globally accessible dsPromise
-            window.dsPromise.then((ds) => ds.get()).then((ds_data) => {
-                // Record a visit in the server
-                fetch(VISIT_API_ENDPOINT, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                      
-                    },
-                    body: JSON.stringify(ds_data)
-                })
-                    .then(res => {
-                        console.log("API call done!");
-                        // The visitor ID is returned in the response header and in the response body
-                        // We are logging it from the header to the console
-                        console.log("Visitor ID from header:", res.headers.get('x-photoniq-vid'));
-                        return res.json();
-                    })
-                    .then(data => {
-                        console.log("visitor ID from response:", data.visitorId);
-												console.log("Confidnece Score:", data.visit.confidence.matchScore);
-                        // Displaying a popup after getting visitorId from the response
-                        window.alert('Visitor ID from response: ' + data.visitorId);
-                    })
-                    .catch(e => {
-                        console.log("API call failed");
-                        console.error(e);
-                    });
-            });
-        }
-    </script>
-</header>
-
 <body>
-    <!-- Button to trigger the getVisitorDetails function -->
-    Button: <button onclick="getVisitorDetails()">Get DS Data</button>
+    <!-- Get the script in your application -->
+    <script src="https://xxxxfps.ps.macrometa.io/api/ds/v1"></script>
+    <script>
+        // Initialize the agent at application startup.
+        var dsPromise = DS_Client.load();
+        
+        // Get the visitor details
+        dsPromise.then((ds) => ds.get()).then((ds_data) => {
+            // Record a visit in the server
+            fetch("https://xxxxfps.ps.macrometa.io/api/ds/v1/visits", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "apikey <some-apikey>"
+                },
+                body: JSON.stringify(ds_data)
+            })
+            .then(res => {
+                console.log("API call done!");
+                console.log(res);
+                res.json().then(b => console.log(b));
+            })
+            .catch(e => {
+                console.log("API call failed");
+                console.error(e);
+            });
+        });
+    </script>
 </body>
-</html>
 ```
 
 ## Fingerprint on Page Load
