@@ -5,106 +5,112 @@ title: Get Started with Fingerprinting
 
 To incorporate the Digital Fingerprinting client into your website, add one of the following example scripts to your web page. In each example, replace the `DS_URL` placeholder with the data service URL that Macrometa provides you.
 
+## Fingerprint on Page Load
+
+In this example, the JavaScript is loaded at page load time, and the function to get the visitorId is run right away. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
+
+```html
+<body>
+    <!-- Content of your body here... -->
+
+    <!-- Get the script in your application -->
+    <script src="https://<HOST-TO-DS-SERVICE>/api/ds/v1"></script>
+    <script>
+        async function recordVisit() {
+            try {
+                // Initialize the agent at application startup.
+                const dsClient = await DS_Client.load();
+
+                // Get the visitor details
+                const dsData = await dsClient.get();
+
+                // Record a visit in the server
+                const response = await fetch("https://<HOST-TO-DS-SERVICE>/api/ds/v1/visits", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "apikey <DS-APIKEY>"
+                    },
+                    body: JSON.stringify(dsData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const responseBody = await response.json();
+                console.log(responseBody);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        recordVisit();
+    </script>
+</body>
+```
+
 ## Fingerprint on Button Click
 
 In this example, the JavaScript is initially loaded at page load time, and a function is created that is tied to a button. Once the button is clicked, a call is made to the fingerprint server, which returns the visitorId. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
 
 ```html
-<body>
-    <!-- Get the script in your application -->
-    <script src="https://xxxxfps.ps.macrometa.io/api/ds/v1"></script>
-    <script>
-        // Initialize the agent at application startup.
-        var dsPromise = DS_Client.load();
-        
-        // Get the visitor details
-        dsPromise.then((ds) => ds.get()).then((ds_data) => {
-            // Record a visit in the server
-            fetch("https://xxxxfps.ps.macrometa.io/api/ds/v1/visits", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "apikey <some-apikey>"
-                },
-                body: JSON.stringify(ds_data)
-            })
-            .then(res => {
-                console.log("API call done!");
-                console.log(res);
-                res.json().then(b => console.log(b));
-            })
-            .catch(e => {
-                console.log("API call failed");
-                console.error(e);
-            });
-        });
-    </script>
-</body>
-```
-
-## Fingerprint on Page Load
-
-In this example, the JavaScript is loaded at page load time, and the function to get the visitorId is run right away.
-
-```html
 <html>
-<header>
-    <script>
-        // Replace all DS_URL with your provided values
-        const DS_URL = "<URL-TO-DS-SERVICE>";
-       
-        const VISIT_API_ENDPOINT = `${DS_URL}/visits`;
-
-        // Dynamically load the script when the page loads
-        window.onload = function () {
-            var script = document.createElement('script');
-            script.src = DS_URL;
-            script.onload = function () {
-                // Initialize the agent at startup.
-                var dsPromise = DS_Client.load();
-                window.dsPromise = dsPromise;  // Make it globally accessible
-            };
-            document.body.appendChild(script);
-        };
-
-        // Function to get visitor details when button is clicked
-        function getVisitorDetails() {
-            // Use the globally accessible dsPromise
-            window.dsPromise.then((ds) => ds.get()).then((ds_data) => {
-                // Record a visit in the server
-                fetch(VISIT_API_ENDPOINT, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                      
-                    },
-                    body: JSON.stringify(ds_data)
-                })
-                    .then(res => {
-                        console.log("API call done!");
-                        // The visitor ID is returned in the response header and in the response body
-                        // We are logging it from the header to the console
-                        console.log("Visitor ID from header:", res.headers.get('x-photoniq-vid'));
-                        return res.json();
-                    })
-                    .then(data => {
-                        console.log("visitor ID from response:", data.visitorId);
-												console.log("Confidnece Score:", data.visit.confidence.matchScore);
-                        // Displaying a popup after getting visitorId from the response
-                        window.alert('Visitor ID from response: ' + data.visitorId);
-                    })
-                    .catch(e => {
-                        console.log("API call failed");
-                        console.error(e);
-                    });
-            });
-        }
-    </script>
-</header>
+<head>
+    <script src="https://<HOST-TO-DS-SERVICE>/api/ds/v1"></script>
+</head>
 
 <body>
     <!-- Button to trigger the getVisitorDetails function -->
     Button: <button onclick="getVisitorDetails()">Get DS Data</button>
+
+    <script>
+        window.dsPromise = DS_Client.load();
+
+        async function getDSData() {
+            try {
+                const ds = await window.dsPromise;
+                return ds.get();
+            } catch (error) {
+                console.error("Error fetching DS data:", error);
+            }
+        }
+
+        async function recordVisit(ds_data) {
+            try {
+                const response = await fetch("https://<HOST-TO-DS-SERVICE>/api/ds/v1/visits", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "apikey <DS-APIKEY>"
+                    },
+                    body: JSON.stringify(ds_data)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                console.log("Visitor ID from header:", response.headers.get('X-Photoniq-Vid'));
+                return response.json();
+            } catch (error) {
+                console.error("Error recording visit:", error);
+            }
+        }
+
+        async function getVisitorDetails() {
+            try {
+                const ds_data = await getDSData();
+                const data = await recordVisit(ds_data);
+
+                console.log("Visitor ID from response:", data.visitorId);
+                console.log("Confidence Score:", data.visit.confidence.matchScore);
+                window.alert('Visitor ID from response: ' + data.visitorId);
+            } catch (error) {
+                console.error("Error in getVisitorDetails:", error);
+            }
+        }
+    </script>
 </body>
 </html>
 ```
@@ -116,73 +122,64 @@ In this example, the visitorId is fetched when a user enters text in the input f
 ```html
 <html>
 <head>
+    <script src="https://<HOST-TO-DS-SERVICE>/api/ds/v1"></script>
+
     <script>
-        // Constants
-        const DS_URL = "<URL-TO-DS-SERVICE>";
-      
-        const VISIT_API_ENDPOINT = `${DS_URL}/visits`;
+        window.addEventListener('DOMContentLoaded', (event) => {
+            window.dsPromise = DS_Client.load();
+            let fetchPromise;
 
-        let fetchPromise;
-
-        // Function to trigger fetch when someone types in the input field
-        function initiateFetch() {
-            // Check if fetchPromise is undefined to ensure fetch is called only once
-            if (!fetchPromise) {
-                window.dsPromise.then((ds) => ds.get()).then((ds_data) => {
-                    fetchPromise = fetch(VISIT_API_ENDPOINT, {
+            async function initiateDSFetch() {
+                try {
+                    const ds = await window.dsPromise;
+                    const ds_data = await ds.get();
+                    return fetch("https://<HOST-TO-DS-SERVICE>/api/ds/v1/visits", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
-                          
+                            "Authorization": "apikey <DS-APIKEY>"
                         },
                         body: JSON.stringify(ds_data)
                     });
-                });
+                } catch (e) {
+                    console.error("Error initiating DS fetch:", e);
+                }
             }
-        }
 
-        // Function to handle visitor details when button is clicked
-        function getVisitorDetails() {
-            if (fetchPromise) {
-                fetchPromise
-                .then(res => {
-                    console.log("API call done!");
-                    console.log("Visitor ID from header:", res.headers.get('x-photoniq-vid'));
-                    return res.json();
-                })
-                .then(data => {
-                    console.log("Visitor ID from response:", data.visitorId);
-                    window.alert('Visitor ID from response: ' + data.visitorId);
-                })
-                .catch(e => {
-                    console.log("API call failed.");
+            async function initiateFetch() {
+                if (!fetchPromise) {
+                    fetchPromise = initiateDSFetch();
+                }
+            }
+
+            async function getVisitorDetails() {
+                try {
+                    if (fetchPromise) {
+                        const res = await fetchPromise;
+                        console.log("Visitor ID from header:", res.headers.get('x-photoniq-vid'));
+                        const data = await res.json();
+                        console.log("Visitor ID from response:", data.visitorId);
+                        window.alert('Visitor ID from response: ' + data.visitorId);
+                    } else {
+                        console.log("Data not fetched yet or there was an issue initializing the fetch.");
+                    }
+                } catch (e) {
                     console.error(e);
-                });
-            } else {
-                console.log("Data not fetched yet or there was an issue initializing the fetch.");
+                }
             }
-        }
 
-        // Dynamically load the DS client script
-        window.onload = function () {
-            var script = document.createElement('script');
-            script.src = DS_URL;
-            script.onload = function () {
-                var dsPromise = DS_Client.load();
-                window.dsPromise = dsPromise;  // Make it globally accessible
-            };
-            document.body.appendChild(script);
-        };
-
+            document.querySelector('input').addEventListener('input', initiateFetch);
+            document.querySelector('button').addEventListener('click', getVisitorDetails);
+        });
     </script>
 </head>
 
 <body>
     <!-- Input field to trigger fetch when typing starts -->
-    <input type="text" oninput="initiateFetch()" placeholder="Start typing...">
+    <input type="text" placeholder="Start typing...">
 
     <!-- Button to trigger the getVisitorDetails function -->
-    <button onclick="getVisitorDetails()">Get DS Data</button>
+    <button>Get DS Data</button>
 </body>
 
 </html>
@@ -195,33 +192,53 @@ Here is an example of the JavaScript being loaded by Google’s Tag Manager. The
 ```html
 <body>
     <!-- Get the script in your application -->
-    <script src="<URL-TO-DS-SERVICE>"></script>
+    <script src="https://<HOST-TO-DS-SERVICE>/api/ds/v1"></script>
     <script>
-        // Initialize the agent at application startup.
-        var dsPromise = DS_Client.load();
+        async function initializeDSClient() {
+            try {
+                return await DS_Client.load();
+            } catch (error) {
+                console.error("Error initializing DS Client:", error);
+            }
+        }
 
-        // Get the visitor details
-        dsPromise.then(function(ds) {
-            return ds.get();
-        }).then(function(ds_data) {
-            // Record a visit in the server
-            fetch("<URL-TO-DS-SERVICE>/visits", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                  
-                },
-                body: JSON.stringify(ds_data)
-            })
-            .then(function(res) {
-                return res.json().then(function(b) {
-                    console.log(b);
+        async function getDSData(dsClient) {
+            try {
+                return await dsClient.get();
+            } catch (error) {
+                console.error("Error fetching DS data:", error);
+            }
+        }
+
+        async function sendVisitRecord(dsData) {
+            try {
+                const response = await fetch("https://<HOST-TO-DS-SERVICE>/api/ds/v1", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "apikey <DS-APIKEY>"
+                    },
+                    body: JSON.stringify(dsData)
                 });
-            })
-            .catch(function(e) {
-                console.error(e);
-            });
-        });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const responseBody = await response.json();
+                console.log(responseBody);
+            } catch (error) {
+                console.error("Error recording visit:", error);
+            }
+        }
+
+        async function initializeAndSendData() {
+            const dsClient = await initializeDSClient();
+            const dsData = await getDSData(dsClient);
+            await sendVisitRecord(dsData);
+        }
+
+        initializeAndSendData();
     </script>
 </body>
 ```
