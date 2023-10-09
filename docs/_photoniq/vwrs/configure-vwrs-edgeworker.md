@@ -20,9 +20,9 @@ The following configuration options must be set:
 The following configuration options are optional:
 
 - **isFailOpen**: When set to `true` (fail open) and an error occurs, the request is forwarded to the origin. When set to `false` (fail close) and an error occurs, an error message is displayed. (default: `true`).
-originAccessMode: This option determines how long access is granted to the origin server (default: MOVING):
-FIXED: The access time, defined for each domain (access_duration), remains fixed. Once a user is granted access to the origin, they can only access it for the duration specified in the access_duration field.
-MOVING: The access time, defined for each domain, increases by the number of seconds specified in the access_duration field. Each time this domain is accessed, the access time is extended accordingly. This behaves similarly to an abandonment timeout, where the session is abandoned if the request has been idle for the access_duration time. 
+- **originAccessMode**: This option determines how long access is granted to the origin server (default: `MOVING`):
+  - **FIXED**: The access time, defined for each domain (access_duration), remains fixed. Once a user is granted access to the origin, they can only access it for the duration specified in the access_duration field.
+  - **MOVING**: The access time, defined for each domain, increases by the number of seconds specified in the access_duration field. Each time this domain is accessed, the access time is extended accordingly. This behaves similarly to an abandonment timeout, where the session is abandoned if the request has been idle for the access_duration time. 
 statusConfigLimits: This defines the waiting room information that is returned by the status call. Use the following three values to define what the status page returns:
 avgWaitingTime: If set to true, the average waiting time is returned by the status call (default: true).
 qDepth: If set to true, the waiting room queue size is returned (default: true).
