@@ -9,7 +9,7 @@ Import the `VirtualWaitingRoom` class from the virtualWaitingRoom.js file to con
 
 The following configuration options must be set:
 
-- **apiKey**: This API Key is generated using the VWRs authorization key API. Please refer to the documentation for `POST /api_vwr/v1/apikey` on how to create this key.
+- **apiKey**: This API Key is generated using the VWRs authorization key API. Please refer to the documentation for `POST /api/vwr/v1/apikey` on how to create this key.
 - **vwrsMetricHost**: The host for the VWRs metric service.
 - **vwrsHost:**The host for the VWRs service.
 - **digestKey**: The digest key is used to verify the integrity of the data stored in the cookie. Please use a 128-bit or 256-bit key. For example, you can generate a key using the command `openssl rand -hex 16`.
