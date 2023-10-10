@@ -56,7 +56,7 @@ curl -X 'PATCH' \
 }'
 ```
 
-You have now successfully configured the waiting room to acknowledge priorities. To prioritize the traffic, you must pass the priority to the `handleVwrsRequest()` and `handleVwrsResponse()` functions. Here's a template demonstrating how to include a priority with the request in the `handleVwrsRequest()` call:
+You have now successfully configured the waiting room to support priorities. To prioritize the traffic, you must pass the priority to the `handleVwrsRequest()` and `handleVwrsResponse()` functions. Here's a template demonstrating how to include a priority with the request in the `handleVwrsRequest()` call:
 
 ```js
 export async function onClientRequest(request: EW.IngressClientRequest) {
