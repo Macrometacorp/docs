@@ -13,7 +13,7 @@ Fulltext search is a method that searches for exact matches of terms or phrases 
 
 For example, in a customer support system, you can use fulltext search views to index a collection of common issues and their resolutions. This allows the support staff to quickly find resolutions by searching for exact terms or phrases that appear in the customer's problem description.
 
-## Semantic Search Views
+## Semantic (Vector) Search Views
 
 Semantic search is a different approach that understands the intent behind a search query and the meanings of words. Macrometa semantic search currently provides similarity search, with more functionality planned in future releases.
 

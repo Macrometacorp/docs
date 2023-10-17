@@ -35,7 +35,7 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
 <grid cols={3}>
   <card
     heading="Search Views"
-    description="Flexible full-text search, semantic search, similarity ranking, and more."
+    description="Flexible vector search, semantic search, similarity ranking, full-text search, and more."
     href="/search-views"
   />
   <card
