@@ -31,6 +31,18 @@ Description of feature.
 
 The following features updates are included in this release.
 
+### New API Endpoint - List Groups
+
+A new API endpoint is available that lists all the groups in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groups`
+
+DFP NOTE - Update KV docs?
+
+### Update 1
+
+Description of update.
+
+[Topic name](link) and [topic name](link) were updated as a result of this change.
+
 ### Update 1
 
 Description of update.
