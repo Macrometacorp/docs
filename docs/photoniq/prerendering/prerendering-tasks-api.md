@@ -17,7 +17,6 @@ This page shows you the API endpoints you can use to interact with Dynamic Prere
 - **Request Body (JSON):**
 
     ```json
-    jsonCopy code
     {
       "origin": "string",
       "urls": ["string"]
@@ -61,7 +60,6 @@ This page shows you the API endpoints you can use to interact with Dynamic Prere
 - **Request Body (JSON):**
 
     ```json
-    jsonCopy code
     {
     "_key": "string",
     "origin": "string",
@@ -92,7 +90,6 @@ This page shows you the API endpoints you can use to interact with Dynamic Prere
 - **Request Body (JSON):**
 
     ```json
-    jsonCopy code
     {
     "_key": "string",
     "origin": "string",
