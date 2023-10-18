@@ -1,9 +1,9 @@
 ---
 sidebar_position: 60
-title: See What the Bot Sees
+title: Validate Prerendering
 ---
 
-Understanding what a web crawler sees when it visits your site can help you fine-tune your prerendering settings. Here are ways to view the prerendered pages:
+In order to confirm Dynamic Prerendering is running, you can view a prerendered page as if you were a bot and see what the bot sees. Understanding what a web crawler sees when it visits your site can help you fine-tune your prerendering settings. Here are ways to view the prerendered pages:
 
 1. **Use Developer Tools**: Many modern browsers have developer tools that allow you to emulate different user agents, including web crawlers. Switch to a crawler user agent and reload the page to see the prerendered version.
 
