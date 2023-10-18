@@ -215,6 +215,8 @@
     { "source": "/docs/queryworkers/redis/redis-sdks", "destination": "/" },
     { "source": "/docs/queryworkers/running-queries", "destination": "/" },
     { "source": "/docs/search/getting-started", "destination": "/" },
-    { "source": "/docs/search/patterns", "destination": "/" }
+    { "source": "/docs/search/patterns", "destination": "/" },
+    { "source": "/docs/search/:path*", "destination": "https://www.macrometa.com/docs/search-views", "permanent": true }
+
   ]
 }

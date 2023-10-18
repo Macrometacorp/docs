@@ -11,7 +11,7 @@ The following new features are included in this release.
 
 ### Search and Stream Workers are in GA
 
-[Search](../search/index.md) and [Stream Workers](../cep/index.md), previously only available in closed beta, are now generally available for everyone to use.
+[Search](../search-views/index.md) and [Stream Workers](../cep/index.md), previously only available in closed beta, are now generally available for everyone to use.
 
 ### Invite User
 
