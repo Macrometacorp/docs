@@ -1,5 +1,5 @@
 ---
-title: ever
+title: EVER
 ---
 
 Window that retains the latest events based on a given unique keys. When a new event arrives with the same key it replaces the one that exist in the window.
@@ -12,8 +12,8 @@ system going out to memory.
 ## Syntax
 
 ```sql
-    WINDOW UNIQUE:ever(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key)
-    WINDOW UNIQUE:ever(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG|FLOAT|BOOL|DOUBLE|STRING> ...)
+    WINDOW UNIQUE:EVER(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key)
+    WINDOW UNIQUE:EVER(<INT|LONG|FLOAT|BOOL|DOUBLE|STRING> unique.key, <INT|LONG|FLOAT|BOOL|DOUBLE|STRING> ...)
 ```
 
 ## Query Parameters
@@ -29,7 +29,7 @@ system going out to memory.
 
     INSERT events INTO UniqueIps
     SELECT count(ip) AS ipCount
-    FROM LoginEvents WINDOW UNIQUE:ever(ip)    
+    FROM LoginEvents WINDOW UNIQUE:EVER(ip)    
     
 ```
 
@@ -45,7 +45,7 @@ the query counts the unique `ip`s arrived so far and outputs the
 
     INSERT expired events INTO PreviousDriverChangeStream;
     SELECT trainID, driver
-    FROM DriverChangeStream WINDOW UNIQUE:ever(trainID)
+    FROM DriverChangeStream WINDOW UNIQUE:EVER(trainID)
 ```
 
 Query collects all unique events based on the `trainID` attribute by
@@ -57,11 +57,11 @@ expired events are emitted via `PreviousDriverChangeStream`.
 
 ```sql
     CREATE STREAM StockStream (symbol string, price float);
-    CREATE STREAM PriceRequestStream(symbol string);
+    CREATE SINK STREAM PriceRequestStream(symbol string);
 
     INSERT events INTO PriceResponseStream;
     SELECT s.symbol AS symbol, s.price AS price
-    FROM StockStream WINDOW UNIQUE:ever(symbol) AS s JOIN PriceRequestStream AS p
+    FROM StockStream WINDOW UNIQUE:EVER(symbol) AS s JOIN PriceRequestStream AS p
     ON s.symbol == p.symbol
 ```
 

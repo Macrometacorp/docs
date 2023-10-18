@@ -31,4 +31,3 @@ _ignore
 Brewfile
 *.lock
 yarn.lock
-yarn.lock

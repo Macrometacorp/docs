@@ -94,3 +94,7 @@ Follow these instructions to configure log-based replication with LogMiner:
     ```sql
     GRANT LOGMINING TO USER
     ```
+
+## OracleDB Target
+
+Fields with Boolean, JSON, and array data types in the source collection are stored as columns of VARCHAR datatype in the OracleDB target table.
