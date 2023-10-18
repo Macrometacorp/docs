@@ -5,7 +5,7 @@ title: Quickstart
 
 Let's get started with Macrometa by creating a global address book. In this tutorial, you will be creating a document [collection](collections/), inserting and querying some user data, and finally creating a fully operational API via [Query Workers](queryworkers/). This tutorial is Macrometa's version of "Hello, world!", is simplistic by design, and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms.
 
-If you've already completed this tutorial, then you can [add search to your application](search/getting-started-search.md).
+If you've already completed this tutorial, then you can [add search to your application](search-views/fulltext-search/getting-started-search).
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ There are several ways to add data to a collection, including importing CSV or J
 Return to the collection and see what the query did.
 
 1. click **Data > Collections**.
-1. Click **addresses**.
+2. Click **addresses**.
 
 Macrometa displays a list of keys and content for each record in the collection. Now you can:
 
@@ -148,5 +148,9 @@ IN addresses
 
 You have a fully-functional API for your application. [We made a front-end for you to take your new back-end for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
 
+## Next Steps
 
-## Next Up: [Add Search to your app](https://www.macrometa.com/docs/search/getting-started-search)
+- [Getting Started with C8QL](queries/got-tutorial/index.md)
+- [Getting Started with Fulltext Search](search-views/fulltext-search/getting-started-search)
+- [Getting Started with Streams](streams/getting-started-streams)
+- [Getting Started with Stream Workers](cep/getting-started-stream-workers)

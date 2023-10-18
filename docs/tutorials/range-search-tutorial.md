@@ -152,7 +152,7 @@ Now that you've created query workers for all CRUD operations, you have successf
 
 Now that you have data in the `inventory` collection, it's time to enable high-performance search on various fields in the document store.
 
-Create a search view named `inventory_view`. Follow the instructions in [Create a Search View](../search/views/create-search-views.md) to create the `inventory_view` search view.
+Create a search view named `inventory_view`. Follow the instructions in [Create a Fulltext Search View](../search-views/fulltext-search/tasks/create-search-views.md) to create the `inventory_view` search view.
 
 When you create the `inventory_view` search view, map the following fields:
 
@@ -225,7 +225,7 @@ Congratulations! You have successfully set up a CRUD API with query workers and 
 
 Now that you have completed this tutorial, consider exploring the following topics to enhance your understanding and further develop your skills:
 
-- [Getting Started with Search](../search/getting-started-search)
+- [Getting Started with Search](../search-views/fulltext-search/getting-started-search)
 - [Getting Started with Graphs](../graphs/getting-started-with-graphs)
 - [C8QL Query Tutorial](../queries/got-tutorial/)
 
