@@ -9,7 +9,7 @@ PhotonIQ Dynamic Prerendering generates static HTML pages from dynamic websites 
 
 Companies invest considerable resources in optimizing pages for human users, focusing on both speed and design. Techniques such as JavaScript, lazy loading, and other strategies are employed to make sites quick and visually appealing. Dynamic Prerendering does not disrupt this user experience.
 
-DIRECT ACCESS IMAGE PLACEHOLDER
+![Human Visits Site](/img/photoniq/prerendering/human-visits-site.png)
 
 ## Prerendering Pages for Bots
 
@@ -27,7 +27,7 @@ With the prefetching strategy, Dynamic Prerendering uses your sitemap to crawl a
 
 You can schedule content to be refreshed or prerendered again at intervals ranging from daily to weekly. This strategy is most useful for content that doesn't change frequently and is expected to be thoroughly crawled by bots.
 
-REPEATED CRAWLER REQUEST IMAGE PLACEHOLDER
+![Bot Visits Site](/img/photoniq/prerendering/bot-visits-site.png)
 
 ### On-demand Prerendering
 
@@ -35,4 +35,4 @@ In on-demand prerendering, a page is not prerendered until a bot requests it for
 
 You have the flexibility to set caching parameters, including cache duration. Additionally, you can manually clear the cache if needed. This strategy is ideal for frequently changing content or for those who prefer more hands-on management of the prerendering process.
 
-FIRST TIME CRAWLER REQUEST IMAGE PLACEHOLDER
+![Cache Refresh](/img/photoniq/prerendering/refresh-cache.png)
