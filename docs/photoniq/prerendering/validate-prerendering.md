@@ -3,7 +3,7 @@ sidebar_position: 60
 title: Validate Prerendering
 ---
 
-In order to confirm Dynamic Prerendering is running, you can check the the health endpoint orview a prerendered page as if you were a bot and see what the bot sees. Understanding what a web crawler sees when it visits your site can help you fine-tune your prerendering settings.
+In order to confirm Dynamic Prerendering is running, you can check the the health endpoint or view a prerendered page as if you were a bot and see what the bot sees. Understanding what a web crawler sees when it visits your site can help you fine-tune your prerendering settings.
 
 ## Check Dynamic Prerendering Health
 
