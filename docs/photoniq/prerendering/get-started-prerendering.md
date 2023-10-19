@@ -3,7 +3,9 @@ sidebar_position: 10
 title: Get Started with Prerendering
 ---
 
-After you work with Macrometa engineers to set up your Dynamic Prerendering instance, follow these steps to get started prerendering.
+Dynamic Prerendering is a completely managed, white-glove service. Macrometa engineers will implement for you, making sure the service is optimized and working correctly according to the prerendering strategy that you choose.
+
+However, some people like to be more hands-on with their management. After you work with Macrometa engineers to set up your Dynamic Prerendering instance, follow these steps to get started prerendering a new origin.
 
 ## 1. Set Up Origin for Caching
 
