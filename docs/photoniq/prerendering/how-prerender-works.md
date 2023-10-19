@@ -33,7 +33,7 @@ You can schedule content to be refreshed or prerendered again at intervals rangi
 
 In on-demand prerendering, a page is not prerendered until a bot requests it for the first time. If a bot requests a page not already in the cache, Dynamic Prerendering fetches and renders the page before serving it to the bot. The rendered page may then be cached for a specific period, to fulfill future requests before the cache expires.
 
-![Bot Visits On-Demand Prerendered Site](/img/photoniq/prerendering/x.png)
+![Bot Visits On-Demand Prerendered Site](/img/photoniq/prerendering/on-demand-prerender.png)
 
 You have the flexibility to set caching parameters, including cache duration. Additionally, you can manually clear the cache if needed. This strategy is ideal for frequently changing content or for those who prefer more hands-on management of the prerendering process.
 
