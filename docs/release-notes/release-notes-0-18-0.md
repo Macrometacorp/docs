@@ -13,6 +13,8 @@ The following new features are included in this release.
 
 Description of feature.
 
+API updates include: https://github.com/Macrometacorp/c8db/pull/2070
+
 [Topic name](link) was added as a result of this feature.
 
 ### Strong Consistency
@@ -36,6 +38,12 @@ The following features updates are included in this release.
 A new API endpoint is available that lists all the groups in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groups`
 
 **DFP NOTE - Update KV docs?**
+
+### Transactions API
+
+https://github.com/Macrometacorp/c8apidocs/pull/174
+
+DFP Note - What do we need for Transactions documentation?
 
 ### Update 1
 
