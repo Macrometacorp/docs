@@ -7,7 +7,7 @@ This page provides troubleshooting information for Macrometa PhotonIQ Virtual Wa
 
 ## No Waiting Room Configured
 
-If a waiting room has not been configured, then the waiting room library returns the header _No-Waiting-Room_, which indicates no waiting room was configured. This means that the domain URL is not configured correctly.
+If a waiting room has not been configured, then the waiting room library returns the header _No-Waiting-Room_. This means that the domain URL is not configured correctly.
 
 ## Troubleshoot Waiting Room HTML
 
