@@ -107,7 +107,7 @@ const config = {
           },
           {
             position: 'left',
-            label: 'API Reference',
+            label: 'GDN API',
             href: '/api'
           },
           {
