@@ -7,19 +7,17 @@ This page explains how to get started with Macrometa PhotonIQ Virtual Waiting Ro
 
 ## Before You Begin
 
-set up with MM
-plan waiting room (which page, queue type)
-collect info you will need
+- Work with Macrometa personnel to get credentials and access.
+- Plan waiting room (which page, queue type)
+- Collect info you will need
 
 ## Set Up the Waiting Room
 
-1. Create an Origin
-2. Create a Domain
-3. Configure VWRs EdgeWorker
-4. Activate?
+1. Get API key
+2. Configure VWRs EdgeWorker
+3. Create a Domain
 
 ## Next Steps
 
-- Set up logs
 - Get metrics
 - Review usage
