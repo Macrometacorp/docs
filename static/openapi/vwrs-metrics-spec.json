@@ -1,0 +1,257 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PhotonIQ Virtual Waiting Room Origin Metrics API",
+    "description": "API documentation for the PhotonIQ Virtual Waiting Room Origin Metrics Service",
+    "version": "1.20.0"
+  },
+  "servers": [
+    {
+      "url": "https://api-demo-vwrs-metrics.paas.macrometa.io",
+      "description": "PhotonIQ Virtual Waiting Room Origin Metrics API"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    },
+    "schemas": {
+      "OriginMetricsUpdateResponse": {
+        "type": "object"
+      },
+      "OriginMetricsUpdate": {
+        "type": "object",
+        "required": [
+          "domain_key",
+          "user_id"
+        ],
+        "properties": {
+          "domain_key": {
+            "type": "string",
+            "description": "Domain id for which origin metrics are updating."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "ID of the user who was forwarded to the origin site."
+          }
+        }
+      },
+      "MetricObject": {
+        "type": "object",
+        "properties": {
+          "domain_key": {
+            "type": "string",
+            "example": "example_domain1",
+            "description": "The domain for metrics are retrieved."
+          },
+          "requests": {
+            "type": "integer",
+            "format": "int32",
+            "example": 10,
+            "description": "Number of requests that were forwarded to the origin site for this domain in this time period."
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1684409540,
+            "description": "Timestamp at the start of the period for this metric object (in seconds)."
+          },
+          "users": {
+            "type": "integer",
+            "format": "int32",
+            "example": 5,
+            "description": "Number of users that were forwarded to the origin site for this domain in this time period."
+          }
+        }
+      },
+      "MetricGetResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricObject"
+            }
+          }
+        }
+      },
+      "GetVersionResponse": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "The version of the service."
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/vwr/v1/metrics/{domain_id}": {
+      "get": {
+        "summary": "Get Origin metrics for a domain",
+        "tags": [
+          "OrginMetrics"
+        ],
+        "description": "Get origin metrics for a domain.",
+        "operationId": "getOriginMetrics",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "domain_id",
+            "in": "path",
+            "description": "The ID of the domain to retrieve origin metrics.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "The _limit_ parameter determines the number of metrics objects to be returned.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 3,
+              "default": 3
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "description": "The interval parameter determines the time limit for one metrics object. This parameter is in seconds. If interval is set as 60, then one metric will contain a metric for 60 seconds.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 180,
+              "default": 60
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Origin metrics information retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricGetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization failure due to invalid credentials."
+          },
+          "403": {
+            "description": "Either API key doesn't have permissions or it's deactivated."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/vwr/v1/metrics/origin": {
+      "post": {
+        "summary": "Add origin metrics for a domain",
+        "tags": [
+          "OrginMetrics"
+        ],
+        "description": "Update origin metrics of the give domain.",
+        "operationId": "AddOriginMetrics",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OriginMetricsUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Origin metrics updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OriginMetricsUpdateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization failure due to invalid credentials."
+          },
+          "403": {
+            "description": "Either API key doesn't have permissions or it's deactivated."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/vwr/v1/version": {
+      "get": {
+        "summary": "Get the current version of service.",
+        "tags": [
+          "Version"
+        ],
+        "description": "Get the current version of service.",
+        "operationId": "getVersion",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the current version of service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVersionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either API key doesn't have permissions or it's deactivated."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    }
+  },
+  "host": "api-play.paas.macrometa.io"
+}
