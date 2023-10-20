@@ -22,14 +22,14 @@ You can retrieve metrics using the following endpoints:
 
 The metrics response body includes the following properties:
 
-- **avg_waiting_time**: (integer) The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds).
-- **domain_key**: (string) The domain key.
-- **duplicate_request_rate**: (integer) The percentage of duplicate requests detected and managed by the virtual waiting room service.
-- **origin_key**: (string) The origin key.
-- **peak_queue_length**: (integer) The highest number of users in the queue during a specific period.
-- **queue_abandonment_rate**: (integer) The percentage of users who leave the virtual waiting room without accessing the origin service.
-- **request_success_rate**: (integer) The percentage of requests to the origin service that are successfully processed after users leave the virtual waiting room.
-- **timestamp**: (number) The epoch time of the start interval when the metric was generated (in seconds).
+- **avg_waiting_time**: The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds).
+- **domain_key**: The domain key.
+- **duplicate_request_rate**: The percentage of duplicate requests detected and managed by the virtual waiting room service.
+- **origin_key**: The origin key.
+- **peak_queue_length**: The highest number of users in the queue during a specific period.
+- **queue_abandonment_rate**: The percentage of users who leave the virtual waiting room without accessing the origin service.
+- **request_success_rate**: The percentage of requests to the origin service that are successfully processed after users leave the virtual waiting room.
+- **timestamp**: The epoch time of the start interval when the metric was generated (in seconds).
 
 ## Example Response
 
@@ -44,7 +44,7 @@ The metrics response body includes the following properties:
     "queue_abandonment_rate": 0,
     "request_success_rate": 100,
      "usage_requests": 6000,
-    "timestamp": 1692604200000
+    "timestamp": 1692604200
   },
   {
     "_key": "www.example2.com:2023-08-21_07:50:00",
@@ -55,7 +55,7 @@ The metrics response body includes the following properties:
     "queue_abandonment_rate": 0,
     "request_success_rate": 100,
      "usage_requests": 18000,
-    "timestamp": 1692604200000
+    "timestamp": 1692604200
   },
   {
     "_key": "www.example3.com:2023-08-21_07:50:00",
@@ -67,7 +67,7 @@ The metrics response body includes the following properties:
     "queue_abandonment_rate": 0,
     "request_success_rate": 100,
      "usage_requests": 30000,
-    "timestamp": 1692604200000
+    "timestamp": 1692604200
   }
 ]
 ```
