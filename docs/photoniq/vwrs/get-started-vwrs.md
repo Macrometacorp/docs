@@ -8,16 +8,21 @@ This page explains how to get started with Macrometa PhotonIQ Virtual Waiting Ro
 ## Before You Begin
 
 - Work with Macrometa personnel to get credentials and access.
-- Plan waiting room (which page, queue type)
+- Plan your waiting room. Figure out which [queue type](queue-types.md) you want, which URL(s) to apply the waiting room to, and whether you want to use priorities.
 - Collect info you will need
 
 ## Set Up the Waiting Room
 
-1. Get API key
-2. Configure VWRs EdgeWorker
-3. Create a Domain
+Use the following endpoints to set up a waiting room.
+
+1. [Create an API key](https://www.macrometa.com/docs/apiVwrsService#/operations/createApiKey) to access the VWRs system.
+2. [Configure a VWRs EdgeWorker](configure-vwrs-edgeworker.md), which sets up the waiting room on the Akamai side.
+3. [Create a Domain](https://www.macrometa.com/docs/apiVwrsService#/operations/createDomain), which sets up the waiting room and allows you to configure its options. For more information, refer to [Configure a Domain](configure-domain.md).
 
 ## Next Steps
 
-- Get metrics
+- [Get metrics](LINK TO METRICS PAGE)
 - Review usage
+  - [Get hourly usage](https://www.macrometa.com/docs/apiVwrsService#/operations/getHourlyUsage)
+  - [Get daily usage](https://www.macrometa.com/docs/apiVwrsService#/operations/getDailyUsage)
+  - [Get monthly usage](https://www.macrometa.com/docs/apiVwrsService#/operations/getMonthlyUsage)

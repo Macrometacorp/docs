@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Configure a VWRs EdgeWorker
 ---
 
-Import the `VirtualWaitingRoom` class from the virtualWaitingRoom.js file to configure a waiting room.
+Import the `VirtualWaitingRoom` class from the [virtualWaitingRoom.js file](NEED FILE) to configure a waiting room.
 
 ## Mandatory Configuration Options
 
