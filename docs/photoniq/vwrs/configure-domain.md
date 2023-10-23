@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Configure a Domain
 ---
 
-You can configure a domain with the `POST /api/vwr/v1/domains` REST API. Use this API to define and configure the behavior of the waiting room.
+You can configure a domain with the [Create a Domain REST API](https://www.macrometa.com/docs/apiVwrs#/operations/createDomain). Use this API to define and configure the behavior of the waiting room.
 
 ## Domain Definition Fields
 
