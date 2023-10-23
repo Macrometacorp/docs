@@ -1300,10 +1300,10 @@
       "post": {
         "summary": "Create a new API Key",
         "tags": [
-          "API key"
+          "API Key"
         ],
         "description": "Create a new API key. Keep the API key safe, because it cannot be retrieved. Provide the TTL in days and specify the role of the API key.\n\n__The following roles are supported.__\n* admin - Can run all API endpoints.\n* editor - Can run all API endpoints, except API keys endpoints.\n* viewer - Can only run read API endpoints.\n\nThis API requires _admin_ permissions to run.\n",
-        "operationId": "createAPI Key",
+        "operationId": "createAPIKey",
         "security": [
           {
             "APIKeyAuth": []
@@ -1350,7 +1350,7 @@
       "get": {
         "summary": "Get API keys details",
         "tags": [
-          "API key"
+          "API Key"
         ],
         "description": "Gets all API key details.",
         "operationId": "getAPIKeysDetails",
@@ -1459,10 +1459,10 @@
       "get": {
         "summary": "Get API key by unique key_id",
         "tags": [
-          "API key"
+          "API Key"
         ],
         "description": "Gets API key by unique key_id.",
-        "operationId": "getAPI Key",
+        "operationId": "getAPIKey",
         "security": [
           {
             "APIKeyAuth": []
@@ -1510,10 +1510,10 @@
       "patch": {
         "summary": "Update API key",
         "tags": [
-          "API key"
+          "API Key"
         ],
         "description": "Update the activation status of the API key.\n\nThis API requires _admin_ permissions to run.\n",
-        "operationId": "updateAPI Key",
+        "operationId": "updateAPIKey",
         "security": [
           {
             "APIKeyAuth": []
@@ -1571,7 +1571,7 @@
       "delete": {
         "summary": "Delete key",
         "tags": [
-          "API key"
+          "API Key"
         ],
         "description": "Delete API key with a unique _key_id_.\n\nThis API requires _admin_ permissions to run.\n",
         "operationId": "deleteKey",
@@ -2673,7 +2673,7 @@
         "summary": "Get the type name and instance of the service",
         "description": "Gets the type and instance name of the service.\n\nValid values for type are 'leader', 'follower', and 'vwrs'.\n\nThis API requires _admin_ permissions to run.\n",
         "tags": [
-          "Service information"
+          "Service Information"
         ],
         "security": [
           {
