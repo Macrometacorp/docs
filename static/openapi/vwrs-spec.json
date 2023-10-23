@@ -287,6 +287,10 @@
           "domain_url"
         ],
         "properties": {
+          "domain_key": {
+            "type": "string",
+            "description": "The unique identifier of the domain."
+          },
           "origin_key": {
             "type": "string",
             "description": "The key of the associated origin."
