@@ -11,14 +11,13 @@ If a waiting room has not been configured, then the waiting room library returns
 
 ## Troubleshoot Waiting Room HTML
 
-You have the option to set the URL for the waiting room HTML template either via the library or the domain record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: https://<hostname>/waiting-room-path>/status/preview.
-(for example, `http://show.store.com/checkout/preview`).  
+You have the option to set the URL for the waiting room HTML template either via the library or the domain record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: `https://<hostname>/waiting-room-path>/status/preview`. For example, `http://show.store.com/checkout/preview`.  
 
 ## Troubleshoot Waiting Room Cookie
 
 The _vwrs-cookie_ cookie holds valuable information regarding each user's access to the waiting room. This information is securely encrypted using the library encryption key.
 
-If you need to debug and access the content of the cookie, then you can enable debugging mode when calling the `handleVwrsRequest()` function. Enabling debugging mode stores the unencrypted cookie in the _x-vwrs-debug_ header, granting you access to its content for debugging purposes.
+If you need to debug and access the content of the cookie, then you can enable debugging mode when calling the `handleVwrsRequest()` function. Enabling debugging mode stores the unencrypted cookie in the `x-vwrs-debug` header, granting you access to its content for debugging purposes.
 
 ```js
 export async function onClientRequest(request) {
