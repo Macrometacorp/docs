@@ -5,6 +5,20 @@ title: Virtual Waiting Rooms
 
 Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) are an advanced prioritization service that manages visitors entering a site. VWRs are fully programmable and can be generated based on origin loads, suspicious behavior, visitor thresholds, regions, or traffic-based alerts, to name a few. Advanced routing can recognize previous customers, send suspected bots to honeypots or looping queues, or deliver cached versions of a site to SEO crawlers without hitting the origin.
 
+## Benefits of Virtual Waiting Rooms
+
+Virtual Waiting Rooms serve as a protective layer for your origin server, effectively managing high traffic volumes to prevent server overload. They offer an optimized waiting experience for visitors while ensuring the robustness and responsiveness of your application.
+
+- **Server Protection**: Safeguards your origin server from being overwhelmed by sudden spikes in legitimate traffic.
+  
+- **Enhanced User Experience**: Ensures your application remains online, reducing the likelihood that visitors will encounter error pages.
+
+- **Real-Time Wait Estimates**: Provides dynamically updated estimates for waiting times, enhancing user transparency and patience.
+
+- **Dynamic Slot Management**: Speeds up the queue movement by actively monitoring inflow and outflow of visitors.
+
+- **Persistent Visitor Status**: Remembers each visitor's place in line, so they don't lose their position or need to re-queue if they navigate away from your site.
+
 ## Solution Overview
 
 The waiting room solution includes essential aspects:
