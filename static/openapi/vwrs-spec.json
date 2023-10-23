@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://api-demo-vwrs-service.paas.macrometa.io",
+      "url": "https://api-demo-vwr.paas.macrometa.io",
       "description": "PhotonIQ Virtual Waiting Rooms API"
     }
   ],
