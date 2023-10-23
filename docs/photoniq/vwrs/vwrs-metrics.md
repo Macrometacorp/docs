@@ -15,8 +15,8 @@ Using VWRs metrics, you can:
 
 You can retrieve metrics using the following endpoints:
 
-- Get Metrics for a Domain - Retrieve the metrics for a specific domain. Set start and end times to get metrics for a specific time period.
-- Get All Metrics - Retrieve metrics for all domains. Set start and end times to get metrics for a specific time period.
+- [Get Metrics for a Domain](https://www.macrometa.com/docs/apiVwrs#/operations/getMetrics) - Retrieve the metrics for a specific domain. Set start and end times to get metrics for a specific time period.
+- [Get All Metrics](https://www.macrometa.com/docs/apiVwrs#/operations/filterMetricsByDate) - Retrieve metrics for all domains. Set start and end times to get metrics for a specific time period.
 
 ## Available Metrics
 
