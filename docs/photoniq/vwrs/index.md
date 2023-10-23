@@ -9,8 +9,6 @@ Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) are an advanced prioritization s
 
 Virtual Waiting Rooms serve as a protective layer for your origin server, effectively managing high traffic volumes to prevent server overload. They offer an optimized waiting experience for visitors while ensuring the robustness and responsiveness of your application.
 
-### Benefits
-
 - **Server Protection**: Safeguards your origin server from being overwhelmed by sudden spikes in legitimate traffic.
   
 - **Enhanced User Experience**: Ensures your application remains online, reducing the likelihood that visitors will encounter error pages.
