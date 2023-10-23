@@ -1,21 +1,19 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "PhotonIQ Virtual Waiting Room Service API",
-    "description": "API documentation for the PhotonIQ Virtual Waiting Room Service",
-    "version": "1.21.0"
+    "title": "PhotonIQ Virtual Waiting Rooms API",
+    "description": "API documentation for the PhotonIQ Virtual Waiting Rooms",
+    "version": "1.22.0"
   },
   "servers": [
     {
-      "url": "https://vwrs-ap-west.eng.macrometa.io/"
-    },
-    {
-      "url": "https://vwrs.eng.macrometa.io/"
+      "url": "https://api-demo-vwr.paas.macrometa.io",
+      "description": "PhotonIQ Virtual Waiting Rooms API"
     }
   ],
   "components": {
     "securitySchemes": {
-      "ApiKeyAuth": {
+      "APIKeyAuth": {
         "type": "apiKey",
         "in": "header",
         "name": "Authorization"
@@ -37,16 +35,20 @@
             }
           },
           {
-            "$ref": "#/components/schemas/OriginUpdate"
+            "$ref": "#/components/schemas/OriginObject"
           }
         ]
       },
-      "OriginUpdate": {
+      "OriginObject": {
         "type": "object",
         "required": [
           "origin_url"
         ],
         "properties": {
+          "origin_key": {
+            "type": "string",
+            "description": "The unique identifier of the origin."
+          },
           "origin_url": {
             "type": "string",
             "description": "The URL of the origin."
@@ -57,17 +59,35 @@
           }
         }
       },
-      "OriginGetResponse": {
+      "GetOriginObject": {
         "type": "object",
+        "required": [
+          "origin_url"
+        ],
         "properties": {
+          "origin_key": {
+            "type": "string",
+            "description": "The unique identifier of the origin."
+          },
           "origin_url": {
             "type": "string",
             "description": "The URL of the origin."
+          },
+          "created_at": {
+            "type": "number",
+            "description": "Timestamp when origin is created.",
+            "example": 1694757000
           },
           "custom_attributes": {
             "type": "object",
             "description": "A JSON object containing custom attributes."
           }
+        }
+      },
+      "GetOriginsResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/GetOriginObject"
         }
       },
       "OriginPostResponse": {
@@ -78,8 +98,9 @@
             "description": "A unique identifier for the origin response."
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time"
+            "type": "number",
+            "format": "number",
+            "example": 1694757000
           }
         }
       },
@@ -91,8 +112,9 @@
             "description": "A unique identifier for the origin response."
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time"
+            "type": "number",
+            "format": "number",
+            "example": 1694757010
           }
         }
       },
@@ -104,12 +126,13 @@
             "description": "A unique identifier for the origin response."
           },
           "deleted_at": {
-            "type": "string",
-            "format": "date-time"
+            "type": "number",
+            "format": "number",
+            "example": 1694757100000
           }
         }
       },
-      "ApiKey": {
+      "APIKey": {
         "type": "object",
         "required": [
           "key_id"
@@ -119,24 +142,26 @@
             "type": "string",
             "description": "A unique identifier for the API key."
           },
+          "role": {
+            "type": "string",
+            "description": "The role of the API key. Supported Roles:[admin, editor, and viewer].",
+            "default": "editor"
+          },
           "ttl": {
-            "type": "integer",
+            "type": "number",
             "description": "Time for which the API key will remain valid (in days).",
+            "minimum": 1,
+            "maximum": 180,
             "default": 180
           },
           "activated": {
             "type": "boolean",
             "description": "The activation status of the API key.",
             "default": true
-          },
-          "role": {
-            "type": "string",
-            "description": "The role of the API key. Supported Roles:[ admin, editor, and viewer].",
-            "default": "editor"
           }
         }
       },
-      "PatchApiKey": {
+      "PatchAPIKey": {
         "type": "object",
         "required": [
           "key_id"
@@ -149,7 +174,7 @@
           }
         }
       },
-      "PostApiKeyResponse": {
+      "PostAPIKeyResponse": {
         "type": "object",
         "properties": {
           "key_id": {
@@ -166,14 +191,18 @@
             "example": "editor"
           },
           "created_at": {
-            "type": "integer"
+            "type": "number",
+            "format": "number",
+            "example": 1694757000
           },
           "expire_at": {
-            "type": "integer"
+            "type": "number",
+            "format": "number",
+            "example": 1694767000
           }
         }
       },
-      "PatchApiKeyResponse": {
+      "PatchAPIKeyResponse": {
         "type": "object",
         "properties": {
           "key_id": {
@@ -181,35 +210,43 @@
             "description": "A unique identifier for the API key."
           },
           "updated_at": {
-            "type": "integer"
+            "type": "number",
+            "format": "number",
+            "example": 1694757010
           }
         }
       },
-      "GetApiKeyResponse": {
+      "GetAPIKeyResponse": {
         "type": "object",
         "properties": {
           "key_id": {
             "type": "string",
-            "description": "A unique identifier for the API key."
+            "description": "A unique identifier for the API key.",
+            "example": "test_key"
           },
           "expire_at": {
-            "type": "integer",
-            "description": "The Unix timestamp when the API key expires."
+            "type": "number",
+            "description": "The Unix timestamp when the API key expires.",
+            "example": 1694767000
           },
           "created_at": {
-            "type": "integer",
-            "description": "The Unix timestamp when the API key is created."
+            "type": "number",
+            "description": "The Unix timestamp when the API key is created.",
+            "format": "number",
+            "example": 1694757000
           },
           "ttl": {
-            "type": "integer",
-            "description": "Duration in days from creation that the API key stays valid."
+            "type": "number",
+            "description": "Duration in days from creation that the API key stays valid.",
+            "format": "number",
+            "example": 180
           }
         }
       },
-      "GetApiKeysResponse": {
+      "GetAPIKeysResponse": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/GetApiKeyResponse"
+          "$ref": "#/components/schemas/GetAPIKeyResponse"
         }
       },
       "AuthDeleteResponse": {
@@ -219,7 +256,9 @@
             "type": "string"
           },
           "deleted_at": {
-            "type": "integer"
+            "type": "number",
+            "format": "number",
+            "example": 1694757000
           }
         }
       },
@@ -238,11 +277,11 @@
             }
           },
           {
-            "$ref": "#/components/schemas/DomainUpdate"
+            "$ref": "#/components/schemas/DomainObject"
           }
         ]
       },
-      "DomainUpdate": {
+      "DomainObject": {
         "type": "object",
         "required": [
           "domain_url"
@@ -261,42 +300,61 @@
             "description": "The access type for the domain (users, rps, or users_per_period).",
             "default": "users"
           },
-          "metric_interval": {
-            "type": "integer",
-            "description": "The time to enable and disable the waiting room (in seconds). This time represents how long the traffic is at or above the rate limit before traffic is directed to the waiting room.",
-            "default": 60
-          },
-          "rate_limit": {
-            "type": "integer",
-            "description": "The rate limit for the domain.  The maximum 'rps' or 'users' limit before traffic is directed to the waiting room.",
-            "default": 100
-          },
-          "period": {
-            "type": "integer",
-            "description": "The period for the 'users_per_period' rate (in seconds).",
-            "default": 0
+          "queue_type": {
+            "type": "string",
+            "description": "The type of queue (fifo, random, lottery).",
+            "default": "fifo"
           },
           "queue_enablement": {
-            "type": "boolean",
+            "type": "string",
             "description": "If set to auto, then the decision to enable the waiting room is determined by the traffic rate exceeding the rate limit set by rate_limit. If set to manual, then the decision to direct traffic to the waiting room is performed all the time.",
             "default": "auto"
+          },
+          "waiting_room_path": {
+            "type": "string",
+            "description": "Netstorage path for the waiting room HTML file. It should have the full path with \"/{upload-directory-id}/path\"."
           },
           "is_queue_enabled": {
             "type": "boolean",
             "description": "Indicates whether the queue is enabled.",
             "default": false
           },
-          "queue_type": {
-            "type": "string",
-            "description": "The type of queue (fifo, random, lottery).",
-            "default": "fifo"
+          "metric_interval": {
+            "type": "number",
+            "description": "The time to enable and disable the waiting room (in seconds). This time represents how long the traffic is at or above the rate limit before traffic is directed to the waiting room.",
+            "minimum": 1,
+            "default": 60
+          },
+          "rate_limit": {
+            "type": "number",
+            "description": "The rate limit for the domain.  The maximum users per second allowed to reach the origin.",
+            "minimum": 1,
+            "default": 100
+          },
+          "period": {
+            "type": "number",
+            "description": "The period for the _users_per_period_ rate (in seconds).",
+            "minimum": 1,
+            "default": 1
+          },
+          "access_duration": {
+            "type": "number",
+            "description": "The amount of time that users can access the origin (in seconds). Once a user has been granted access, the access_duration determines how long that user can access the origin before they are forwarded to the waiting room after coming to the EdgeWorker again.",
+            "default": 60,
+            "minimum": 1
+          },
+          "status_interval": {
+            "type": "number",
+            "description": "The time interval when the UI reloads itself to get the waiting room status.",
+            "default": 10,
+            "minimum": 1
           },
           "priority": {
             "type": "array",
             "maxItems": 10,
             "description": "The domain has a range of priorities, where the highest priority corresponds to the lowest number.",
             "items": {
-              "type": "integer",
+              "type": "number",
               "minimum": 1,
               "maximum": 255,
               "default": []
@@ -307,102 +365,16 @@
               255
             ]
           },
-          "access_duration": {
-            "type": "integer",
-            "description": "The amount of time that users can access the origin (in seconds). Once a user has been granted access, the access_duration determines how long that user can access the origin before they are forwarded to the waiting room after coming to the EdgeWorker again.",
-            "default": 60
-          },
-          "status_interval": {
-            "type": "integer",
-            "description": "The value at which the UI will reload itself to get the waiting room status.",
-            "default": 10
-          },
           "custom_attributes": {
             "type": "object",
             "description": "A JSON object containing custom attributes Any valid JSON can be stored here. It is not used by the waiting room at this time."
-          },
-          "waiting_room_path": {
-            "type": "string",
-            "description": "Netstorage path for the waiting room HTML file. It should have the full path with \"/{upload-directory-id}/path\"."
           }
         }
       },
-      "DomainGetResponse": {
-        "type": "object",
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "The key of the associated origin."
-          },
-          "domain_key": {
-            "type": "string",
-            "description": "The key of the domain."
-          },
-          "domain_url": {
-            "type": "string",
-            "description": "The URL of the domain."
-          },
-          "access_type": {
-            "type": "string",
-            "description": "The access type for the domain (users, rps, or users_per_period).",
-            "default": "users"
-          },
-          "period": {
-            "type": "integer",
-            "description": "The period for the users_per_period rate (in seconds)."
-          },
-          "queue_enablement": {
-            "type": "boolean",
-            "description": "If set to auto, then the decision to enable the waiting room is determined by the traffic rate exceeding the rate limit set by rate_limit.  If set to manual, then the decision to direct traffic to the waiting room is performed all the time.",
-            "default": "auto"
-          },
-          "is_queue_enabled": {
-            "type": "boolean",
-            "description": "Indicates whether the queue is enabled.",
-            "default": false
-          },
-          "queue_type": {
-            "type": "string",
-            "description": "The type of queue (fifo, random, or lottery).",
-            "default": "fifo"
-          },
-          "metric_interval": {
-            "type": "integer",
-            "description": "The time to enable and disable the waiting room (in seconds). This time represents how long the traffic is at or above the rate limit before traffic is directed to the waiting room.",
-            "default": 60
-          },
-          "rate_limit": {
-            "type": "integer",
-            "description": "The rate limit for the domain. The maximum 'rps' or 'users' limit before traffic is directed to the waiting room.",
-            "default": 100
-          },
-          "priority": {
-            "type": "integer",
-            "description": "The priority for the domain.",
-            "default": 0
-          },
-          "access_duration": {
-            "type": "integer",
-            "description": "The amount of time that users can access the origin (in seconds). Once a user has been granted access, the access_duration determines how long that user can access the origin before they are forwarded to the waiting room after coming to the EdgeWorker again.",
-            "default": 60
-          },
-          "status_interval": {
-            "type": "integer",
-            "description": "Value at which the UI will reload itself to get the waiting room status.",
-            "default": 10
-          },
-          "custom_attributes": {
-            "type": "object",
-            "description": "A JSON object containing custom attributes Any valid JSON can be stored here. It is not used by the waiting room at this time."
-          },
-          "created_at": {
-            "type": "integer",
-            "default": 1672531200000
-          },
-          "waiting_room_path": {
-            "type": "string",
-            "description": "Netstorage path for the waiting room HTML file. It should have the full path with \"/{upload-directory-id}/path\"."
-          }
+      "GetDomainsResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/DomainObject"
         }
       },
       "DomainPostResponse": {
@@ -412,8 +384,9 @@
             "type": "string"
           },
           "created_at": {
-            "type": "string",
-            "format": "date-time"
+            "type": "number",
+            "format": "number",
+            "example": 1694757000
           }
         }
       },
@@ -424,8 +397,9 @@
             "type": "string"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time"
+            "type": "number",
+            "format": "number",
+            "example": 1694757010
           }
         }
       },
@@ -436,8 +410,9 @@
             "type": "string"
           },
           "deleted_at": {
-            "type": "string",
-            "format": "date-time"
+            "type": "number",
+            "format": "number",
+            "example": 1694757100
           }
         }
       },
@@ -445,8 +420,8 @@
         "type": "object",
         "properties": {
           "avg_waiting_time": {
-            "type": "integer",
-            "format": "int32",
+            "type": "number",
+            "format": "number",
             "description": "The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds)."
           },
           "domain_key": {
@@ -458,34 +433,24 @@
             "description": "The origin key."
           },
           "duplicate_request_rate": {
-            "type": "integer",
-            "format": "int32",
-            "description": "The percentage of duplicate requests detected and managed by the virtual waiting room service."
+            "type": "number",
+            "format": "number",
+            "description": "The percentage of duplicate requests detected and managed by the Virtual Waiting Rooms."
           },
           "peak_queue_length": {
-            "type": "integer",
-            "format": "int32",
+            "type": "number",
+            "format": "number",
             "description": "The highest number of users in the queue during a specific period."
           },
           "queue_abandonment_rate": {
-            "type": "integer",
-            "format": "int32",
+            "type": "number",
+            "format": "number",
             "description": "The percentage of users who leave the virtual waiting room without accessing the origin service."
           },
           "request_success_rate": {
-            "type": "integer",
-            "format": "int32",
+            "type": "number",
+            "format": "number",
             "description": "The percentage of requests to the origin service that are successfully processed after users leave the virtual waiting room."
-          },
-          "session_duration": {
-            "type": "integer",
-            "format": "int32",
-            "description": "The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds)."
-          },
-          "session_expiration_rate": {
-            "type": "integer",
-            "format": "int32",
-            "description": "The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds)."
           },
           "timestamp": {
             "type": "number",
@@ -493,8 +458,8 @@
             "description": "The epoch time of the start interval when the metric was generated (in seconds)."
           },
           "users_in_queue": {
-            "type": "integer",
-            "format": "int32",
+            "type": "number",
+            "format": "number",
             "description": "The total number of users currently waiting in the virtual waiting room."
           }
         }
@@ -503,14 +468,13 @@
         "type": "object",
         "properties": {
           "domain_key": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": "A unique identifier for the domain."
           },
           "requests": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total requests for the specified time period."
+            "type": "number",
+            "format": "number",
+            "description": "Total REST API requests for the specified time period."
           },
           "max_rps": {
             "type": "string",
@@ -526,18 +490,19 @@
             "description": "A unique identifier for the domain."
           },
           "requests": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total requests for the received time period slot."
+            "type": "number",
+            "format": "number",
+            "description": "Total REST API requests for the received time period slot."
           },
           "max_rps": {
-            "type": "integer",
-            "format": "int32",
+            "type": "number",
+            "format": "number",
             "description": "Maximum request per second for the received time period slot."
           },
           "timestamp": {
-            "type": "string",
-            "description": "Date-time slot of the usage bucket."
+            "type": "number",
+            "description": "Timestamp of the usage bucket.",
+            "example": 1694757100000
           }
         }
       },
@@ -582,398 +547,71 @@
     }
   },
   "paths": {
-    "/api/vwr/v1/origins": {
-      "post": {
-        "summary": "Create a new origin",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Create a new origin with the specified properties.",
-        "operationId": "createOrigin",
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Origin"
-              }
-            }
-          }
-        },
-        "responses": {
-          "202": {
-            "description": "Origin created.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginPostResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      },
-      "get": {
-        "summary": "Get information of origins",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Get list of origins that match the pattern.",
-        "operationId": "getAllMatchingOrigins",
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "pattern",
-            "in": "query",
-            "description": "Fetch origin information that matches the pattern. For example, a pattern could be 'aa' or 'test'. To obtain all origins, set the pattern to '*'.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "description": "The maximum number of domains returned.",
-            "schema": {
-              "type": "integer",
-              "default": 1000
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "description": "Specify the offset to determine the starting point for data retrieval from the total records.",
-            "schema": {
-              "type": "integer",
-              "default": 0
-            }
-          },
-          {
-            "name": "sortby",
-            "in": "query",
-            "required": false,
-            "description": "The field used for sorting.",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "origin_url",
-                "origin_key"
-              ],
-              "default": "origin_key"
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "required": false,
-            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "default": "asc"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Origin information retrieved.",
-            "headers": {
-              "X-count": {
-                "description": "The total number of records that match the pattern.",
-                "schema": {
-                  "type": "integer",
-                  "default": 1000
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginPostResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either API key doesn't have permissions or it's deactivated."
-          },
-          "404": {
-            "description": "Domain not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      }
-    },
-    "/api/vwr/v1/origins/{origin_id}": {
-      "get": {
-        "summary": "Get information for a specific origin",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Retrieve information about a specific origin.",
-        "operationId": "getOrigin",
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "origin_id",
-            "in": "path",
-            "description": "The ID of the origin to retrieve information for.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Origin information retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginPostResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Origin ID Not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      },
-      "put": {
-        "summary": "Update an origin",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Update an origin with the specified properties.",
-        "operationId": "updateOrigin.",
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "origin_id",
-            "in": "path",
-            "description": "The ID of the origin to be updated.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OriginUpdate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "202": {
-            "description": "Origin updated.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginPutResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Origin ID Not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      },
-      "patch": {
-        "summary": "Modify specific properties of an origin",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Modify an origin by specifying the properties that need to be updated.",
-        "operationId": "patchOrigin",
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "origin_id",
-            "in": "path",
-            "description": "The ID of the origin to be modified.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OriginUpdate"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Origin modified.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginGetResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Origin ID Not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete origin information",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Delete  origin information about a specific origin.",
-        "operationId": "deleteOrigin",
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "origin_id",
-            "in": "path",
-            "description": "The ID of the origin to delete information for.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Origin ID deleted successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginDeleteResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Origin ID Not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      }
-    },
     "/api/vwr/v1/domains": {
+      "post": {
+        "summary": "Create a domain",
+        "tags": [
+          "Domains"
+        ],
+        "description": "Creates a new domain with the specified properties.",
+        "operationId": "createDomain",
+        "security": [
+          {
+            "APIKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Domain"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Domain created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainPostResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
       "get": {
         "summary": "Get information of domains",
         "tags": [
           "Domains"
         ],
-        "description": "Get list of domains that match the pattern.",
+        "description": "Retrieves a list of domains that matches a specified pattern.",
         "operationId": "getDomainUsingQueryParams",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
           {
             "name": "pattern",
             "in": "query",
-            "description": "Fetch domain information that matches the pattern. For example, a pattern could be 'aa' or 'test'. To obtain all domains, set the pattern to '*'.",
+            "description": "Fetch domain information that matches the pattern. For example, a pattern could be 'aa' or 'test'. To get all domains, set the pattern to '*'.",
             "required": true,
             "schema": {
               "type": "string"
@@ -983,9 +621,9 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "description": "The maximum number of domains returned.",
+            "description": "The _limit_ parameter determines the number of domains returned.",
             "schema": {
-              "type": "integer",
+              "type": "number",
               "default": 1000
             }
           },
@@ -993,9 +631,9 @@
             "name": "offset",
             "in": "query",
             "required": false,
-            "description": "Specify the offset to determine the starting point for data retrieval from the total records.",
+            "description": "Represents the starting point from where to begin fetching the domain records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of domain records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 domains records and set the _limit_ to 100, then the first API call without an offset will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
             "schema": {
-              "type": "integer",
+              "type": "number",
               "default": 0
             }
           },
@@ -1036,7 +674,7 @@
               "X-count": {
                 "description": "The total number of records that match the pattern.",
                 "schema": {
-                  "type": "integer",
+                  "type": "number",
                   "default": 1000
                 }
               }
@@ -1044,7 +682,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DomainGetResponse"
+                  "$ref": "#/components/schemas/GetDomainsResponse"
                 }
               }
             }
@@ -1065,73 +703,26 @@
             "description": "Internal server error."
           }
         }
-      },
-      "post": {
-        "summary": "Create a domain",
-        "tags": [
-          "Domains"
-        ],
-        "description": "Create a new domain with the specified properties.",
-        "operationId": "createDomain",
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Domain"
-              }
-            }
-          }
-        },
-        "responses": {
-          "202": {
-            "description": "Domain created successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DomainPostResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
       }
     },
-    "/api/vwr/v1/domains/{domain_id}": {
+    "/api/vwr/v1/domains/{domain_key}": {
       "get": {
-        "summary": "Get domain information for a specific domain",
+        "summary": "Get information for a specific domain",
         "tags": [
           "Domains"
         ],
-        "description": "Get information about a domain.",
+        "description": "Retrieves information about a specific domain.",
         "operationId": "getDomain",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
           {
-            "name": "domain_id",
+            "name": "domain_key",
             "in": "path",
-            "description": "The ID of the domain to retrieve information for.",
+            "description": "The key corresponding to the domain for which information is to be retrieved.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1144,7 +735,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DomainGetResponse"
+                  "$ref": "#/components/schemas/DomainObject"
                 }
               }
             }
@@ -1156,7 +747,7 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "404": {
-            "description": "Domain ID Not found."
+            "description": "Domain key not found."
           },
           "500": {
             "description": "Internal server error."
@@ -1168,16 +759,16 @@
         "tags": [
           "Domains"
         ],
-        "description": "Update a domain with the specified properties.",
+        "description": "Updates an existing domain with the specified properties.",
         "operationId": "updateDomain",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
           {
-            "name": "domain_id",
+            "name": "domain_key",
             "in": "path",
             "description": "The ID of the domain to be updated.",
             "required": true,
@@ -1191,7 +782,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DomainUpdate"
+                "$ref": "#/components/schemas/DomainObject"
               }
             }
           }
@@ -1217,7 +808,7 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "404": {
-            "description": "Domain ID not found."
+            "description": "Domain key not found."
           },
           "500": {
             "description": "Internal server error."
@@ -1229,16 +820,16 @@
         "tags": [
           "Domains"
         ],
-        "description": "Modify a domain by specifying the properties that need to be updated.",
+        "description": "Modifies an existing domain with one or more specified properties.",
         "operationId": "patchDomain",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
           {
-            "name": "domain_id",
+            "name": "domain_key",
             "in": "path",
             "description": "The ID of the domain to be updated.",
             "required": true,
@@ -1252,7 +843,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DomainUpdate"
+                "$ref": "#/components/schemas/DomainObject"
               }
             }
           }
@@ -1263,7 +854,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DomainGetResponse"
+                  "$ref": "#/components/schemas/DomainObject"
                 }
               }
             }
@@ -1278,7 +869,7 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "404": {
-            "description": "Domain ID not found."
+            "description": "Domain key not found."
           },
           "500": {
             "description": "Internal server error."
@@ -1290,18 +881,18 @@
         "tags": [
           "Domains"
         ],
-        "description": "Delete domain information about a specific domain.",
+        "description": "Deletes waiting room configuration of a specific domain.",
         "operationId": "deleteDomain",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
           {
-            "name": "domain_id",
+            "name": "domain_key",
             "in": "path",
-            "description": "The ID of the domain to delete information for.",
+            "description": "The key of the domain to delete information for.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1323,7 +914,381 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "404": {
-            "description": "Domain ID not found."
+            "description": "Domain key not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/vwr/v1/origins": {
+      "post": {
+        "summary": "Create a new origin",
+        "tags": [
+          "Origins"
+        ],
+        "description": "Creates a new origin with the specified properties.",
+        "operationId": "createOrigin",
+        "security": [
+          {
+            "APIKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Origin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Origin created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OriginPostResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "get": {
+        "summary": "Get information of origins",
+        "tags": [
+          "Origins"
+        ],
+        "description": "Gets list of origins that match the pattern.",
+        "operationId": "getAllMatchingOrigins",
+        "security": [
+          {
+            "APIKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "pattern",
+            "in": "query",
+            "description": "Fetch origin information that matches the pattern. For example, a pattern could be _aa_ or _test_. To get all origins, set the pattern to '*'.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "The _limit_ parameter determines the number of origins returned.",
+            "schema": {
+              "type": "number",
+              "default": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Represents the starting point from where to begin fetching the origin records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of origins records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 metrics records and set the _limit_ to 100, then the first API call without an offset will origins records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
+            "schema": {
+              "type": "number",
+              "default": 0
+            }
+          },
+          {
+            "name": "sortby",
+            "in": "query",
+            "required": false,
+            "description": "The field used for sorting.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "origin_url",
+                "origin_key"
+              ],
+              "default": "origin_key"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Origin information retrieved.",
+            "headers": {
+              "X-count": {
+                "description": "The total number of records that match the pattern.",
+                "schema": {
+                  "type": "number",
+                  "default": 1000
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOriginsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either API key doesn't have permissions or it's deactivated."
+          },
+          "404": {
+            "description": "Domain not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/vwr/v1/origins/{origin_key}": {
+      "get": {
+        "summary": "Get information for a specific origin",
+        "tags": [
+          "Origins"
+        ],
+        "description": "Retrieves information about a specific origin.",
+        "operationId": "getOrigin",
+        "security": [
+          {
+            "APIKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "origin_key",
+            "in": "path",
+            "description": "The key of the origin to retrieve information for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Origin information retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OriginPostResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Origin key not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an origin",
+        "tags": [
+          "Origins"
+        ],
+        "description": "Updates an origin with the specified properties.",
+        "operationId": "updateOrigin.",
+        "security": [
+          {
+            "APIKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "origin_key",
+            "in": "path",
+            "description": "The key of the origin to be updated.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OriginObject"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Origin updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OriginPutResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Origin key not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "patch": {
+        "summary": "Modify specific properties of an origin",
+        "tags": [
+          "Origins"
+        ],
+        "description": "Modifies an existing origin with one or more specified properties.",
+        "operationId": "patchOrigin",
+        "security": [
+          {
+            "APIKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "origin_key",
+            "in": "path",
+            "description": "The ID of the origin to be modified.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OriginObject"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Origin modified.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OriginObject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Origin key not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete origin information",
+        "tags": [
+          "Origins"
+        ],
+        "description": "Deletes information about a specific origin.",
+        "operationId": "deleteOrigin",
+        "security": [
+          {
+            "APIKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "origin_key",
+            "in": "path",
+            "description": "The ID of the origin to delete information for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Origin deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OriginDeleteResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Origin key not found."
           },
           "500": {
             "description": "Internal server error."
@@ -1335,13 +1300,13 @@
       "post": {
         "summary": "Create a new API Key",
         "tags": [
-          "Api key"
+          "API key"
         ],
-        "description": "Create a new API key. Keep the API key safe, because it cannot be retrieved. Provide the TTL in days and specify the role of the API key.\n\n__The following roles are supported.__\n* **admin** - Can run all API endpoints.\n* **editor** - Can run all API endpoints, except API keys endpoints.\n* **viewer** - Can only run read API endpoints.\n\nThis API requires **'admin'** permissions to run.\n",
-        "operationId": "createApiKey",
+        "description": "Create a new API key. Keep the API key safe, because it cannot be retrieved. Provide the TTL in days and specify the role of the API key.\n\n__The following roles are supported.__\n* admin - Can run all API endpoints.\n* editor - Can run all API endpoints, except API keys endpoints.\n* viewer - Can only run read API endpoints.\n\nThis API requires _admin_ permissions to run.\n",
+        "operationId": "createAPI Key",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "requestBody": {
@@ -1349,18 +1314,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ApiKey"
+                "$ref": "#/components/schemas/APIKey"
               }
             }
           }
         },
         "responses": {
           "202": {
-            "description": "ApiKey created successfully.",
+            "description": "API Key created successfully.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostApiKeyResponse"
+                  "$ref": "#/components/schemas/PostAPIKeyResponse"
                 }
               }
             }
@@ -1375,7 +1340,7 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "409": {
-            "description": "Conflict 'key_id' already present."
+            "description": "Conflict _key_id_ already present."
           },
           "500": {
             "description": "Internal server error."
@@ -1385,13 +1350,13 @@
       "get": {
         "summary": "Get API keys details",
         "tags": [
-          "Api key"
+          "API key"
         ],
-        "description": "Get all API key details.",
-        "operationId": "getApiKeysDetails",
+        "description": "Gets all API key details.",
+        "operationId": "getAPIKeysDetails",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
@@ -1399,9 +1364,11 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "description": "The maximum number of API keys returned.",
+            "description": "The _limit_ parameter determines the number of API keys returned.",
             "schema": {
-              "type": "integer",
+              "type": "number",
+              "minimum": 1,
+              "maximum": 1000,
               "default": 1000
             }
           },
@@ -1409,9 +1376,9 @@
             "name": "offset",
             "in": "query",
             "required": false,
-            "description": "Specify the offset to determine the starting point for data retrieval from the total records.",
+            "description": "Represents the starting point from where to begin fetching the API key records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of API key records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 API key records and set the _limit_ to 100, then the first API call without an offset will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
             "schema": {
-              "type": "integer",
+              "type": "number",
               "default": 0
             }
           },
@@ -1463,7 +1430,7 @@
               "X-count": {
                 "description": "The total number of records that match the pattern.",
                 "schema": {
-                  "type": "integer",
+                  "type": "number",
                   "default": 1000
                 }
               }
@@ -1471,7 +1438,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetApiKeysResponse"
+                  "$ref": "#/components/schemas/GetAPIKeysResponse"
                 }
               }
             }
@@ -1492,13 +1459,13 @@
       "get": {
         "summary": "Get API key by unique key_id",
         "tags": [
-          "Api key"
+          "API key"
         ],
-        "description": "Get API key by unique key_id.",
-        "operationId": "getApiKey",
+        "description": "Gets API key by unique key_id.",
+        "operationId": "getAPI Key",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
@@ -1518,7 +1485,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetApiKeyResponse"
+                  "$ref": "#/components/schemas/GetAPIKeyResponse"
                 }
               }
             }
@@ -1543,13 +1510,13 @@
       "patch": {
         "summary": "Update API key",
         "tags": [
-          "Api key"
+          "API key"
         ],
-        "description": "Update API key by unique key_id.\n\nThis API requires **'admin'** permissions to run.\n",
-        "operationId": "updateApiKey",
+        "description": "Update the activation status of the API key.\n\nThis API requires _admin_ permissions to run.\n",
+        "operationId": "updateAPI Key",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
@@ -1568,7 +1535,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchApiKey"
+                "$ref": "#/components/schemas/PatchAPIKey"
               }
             }
           }
@@ -1579,7 +1546,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PatchApiKeyResponse"
+                  "$ref": "#/components/schemas/PatchAPIKeyResponse"
                 }
               }
             }
@@ -1604,13 +1571,13 @@
       "delete": {
         "summary": "Delete key",
         "tags": [
-          "Api key"
+          "API key"
         ],
-        "description": "Delete API key with a unique 'key_id'.\n\nThis API requires **'admin'** permissions to run.\n",
+        "description": "Delete API key with a unique _key_id_.\n\nThis API requires _admin_ permissions to run.\n",
         "operationId": "deleteKey",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
@@ -1647,22 +1614,22 @@
         }
       }
     },
-    "/api/vwr/v1/metrics/{domain_id}": {
+    "/api/vwr/v1/metrics/{domain_key}": {
       "get": {
-        "summary": "Filter metrics by domain ID",
+        "summary": "Get metrics by domain key",
         "tags": [
           "Metrics"
         ],
-        "description": "Filter metrics for a specific domain. Optionally provide _from_ and _end_ filter for a specific period.",
+        "description": "Allows you to retrieve waiting room telemetry per waiting room, per minute. Gets metrics for a specific domain. Optionally provide _start_ and _end_ filter for a specific period. Ninety days of metrics are kept.",
         "operationId": "getMetrics",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
           {
-            "name": "domain_id",
+            "name": "domain_key",
             "in": "path",
             "required": true,
             "description": "The key of the domain.",
@@ -1674,7 +1641,7 @@
             "name": "start",
             "in": "query",
             "required": false,
-            "description": "The **start date** used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The start date and time used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -1684,7 +1651,7 @@
             "name": "end",
             "in": "query",
             "required": false,
-            "description": "The **end date** used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The end date and time used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -1694,9 +1661,9 @@
             "name": "offset",
             "in": "query",
             "required": false,
-            "description": "Specify the offset to determine the starting point for data retrieval from the total records.",
+            "description": "Represents the starting point from where to begin fetching the metrics records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of metrics records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 metrics records and set the _limit_ to 100, then the first API call without an offset will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
             "schema": {
-              "type": "integer",
+              "type": "number",
               "default": 0
             }
           },
@@ -1704,10 +1671,10 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "description": "The _limit_ parameter determines the number of metrics to be returned, up to 90 days worth of data.",
+            "description": "The _limit_ parameter determines the number of metrics returned.",
             "schema": {
-              "type": "integer",
-              "format": "int32",
+              "type": "number",
+              "format": "number",
               "minimum": 1,
               "maximum": 1000,
               "default": 1000
@@ -1755,7 +1722,7 @@
               "X-count": {
                 "description": "The total number of records.",
                 "schema": {
-                  "type": "integer",
+                  "type": "number",
                   "default": 1000
                 }
               }
@@ -1772,43 +1739,37 @@
                   "example1": {
                     "value": [
                       {
-                        "avg_waiting_time": 0,
+                        "avg_waiting_time": 800,
                         "domain_key": "test",
                         "duplicate_request_rate": 0,
                         "origin_key": "test",
-                        "peak_queue_length": 29,
+                        "peak_queue_length": 2000,
                         "queue_abandonment_rate": 0,
-                        "request_success_rate": 0,
-                        "session_duration": 0,
-                        "session_expiration_rate": 0,
+                        "request_success_rate": 100,
                         "timestamp": 1680643801,
-                        "users_in_queue": 0
+                        "users_in_queue": 400000
                       },
                       {
-                        "avg_waiting_time": 0,
+                        "avg_waiting_time": 1000,
                         "domain_key": "virtual-room.example.io",
                         "duplicate_request_rate": 0,
                         "origin_key": "example-origin",
-                        "peak_queue_length": 0,
+                        "peak_queue_length": 3000,
                         "queue_abandonment_rate": 0,
-                        "request_success_rate": 0,
-                        "session_duration": 0,
-                        "session_expiration_rate": 0,
+                        "request_success_rate": 100,
                         "timestamp": 1680643801,
-                        "users_in_queue": 18446744073709552000
+                        "users_in_queue": 500000
                       },
                       {
-                        "avg_waiting_time": 0,
+                        "avg_waiting_time": 500,
                         "domain_key": "virtual-room.example.io",
                         "duplicate_request_rate": 0,
                         "origin_key": "example-origin",
-                        "peak_queue_length": 0,
+                        "peak_queue_length": 1000,
                         "queue_abandonment_rate": 0,
-                        "request_success_rate": 0,
-                        "session_duration": 0,
-                        "session_expiration_rate": 0,
+                        "request_success_rate": 100,
                         "timestamp": 1680643741,
-                        "users_in_queue": 18446744073709552000
+                        "users_in_queue": 60000
                       }
                     ]
                   }
@@ -1833,15 +1794,15 @@
     },
     "/api/vwr/v1/metrics": {
       "get": {
-        "summary": "Filter metrics",
+        "summary": "Get metrics",
         "tags": [
           "Metrics"
         ],
-        "description": "Filter metrics for all the domains. Optionally provide _from_ and _to_ filter for a specific period.",
+        "description": "Allows you to retrieve waiting room telemetry per minute. Gets metrics for all the domains. Optionally provide _start_ and _to_ filter for a specific period. Ninety days of metrics are kept.",
         "operationId": "filterMetricsByDate",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
@@ -1849,7 +1810,7 @@
             "name": "start",
             "in": "query",
             "required": false,
-            "description": "The **start date** used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The start date and time used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -1859,7 +1820,7 @@
             "name": "end",
             "in": "query",
             "required": false,
-            "description": "The **end date** used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The end date and time used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -1869,9 +1830,9 @@
             "name": "offset",
             "in": "query",
             "required": false,
-            "description": "Specify the offset to determine the starting point for data retrieval from the total records.",
+            "description": "Represents the starting point from where to begin fetching the metrics records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of metrics records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 metrics records and set the _limit_ to 100, then the first API call without an offset will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
             "schema": {
-              "type": "integer",
+              "type": "number",
               "default": 0
             }
           },
@@ -1879,10 +1840,10 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "description": "The _limit_ parameter determines the number of metrics to be returned, up to 90 days worth of data.",
+            "description": "The _limit_ parameter determines the number of metrics returned.",
             "schema": {
-              "type": "integer",
-              "format": "int32",
+              "type": "number",
+              "format": "number",
               "minimum": 1,
               "maximum": 1000,
               "default": 1000
@@ -1930,7 +1891,7 @@
               "X-count": {
                 "description": "The total number of records.",
                 "schema": {
-                  "type": "integer",
+                  "type": "number",
                   "default": 1000
                 }
               }
@@ -1947,43 +1908,37 @@
                   "example": {
                     "value": [
                       {
-                        "avg_waiting_time": 0,
+                        "avg_waiting_time": 800,
                         "domain_key": "test",
                         "duplicate_request_rate": 0,
                         "origin_key": "test",
-                        "peak_queue_length": 29,
+                        "peak_queue_length": 2000,
                         "queue_abandonment_rate": 0,
-                        "request_success_rate": 0,
-                        "session_duration": 0,
-                        "session_expiration_rate": 0,
+                        "request_success_rate": 100,
                         "timestamp": 1680643801,
-                        "users_in_queue": 0
+                        "users_in_queue": 400000
                       },
                       {
-                        "avg_waiting_time": 0,
+                        "avg_waiting_time": 1000,
                         "domain_key": "virtual-room.example.io",
                         "duplicate_request_rate": 0,
                         "origin_key": "example-origin",
-                        "peak_queue_length": 0,
+                        "peak_queue_length": 3000,
                         "queue_abandonment_rate": 0,
-                        "request_success_rate": 0,
-                        "session_duration": 0,
-                        "session_expiration_rate": 0,
+                        "request_success_rate": 100,
                         "timestamp": 1680643801,
-                        "users_in_queue": 18446744073709552000
+                        "users_in_queue": 500000
                       },
                       {
-                        "avg_waiting_time": 0,
+                        "avg_waiting_time": 500,
                         "domain_key": "virtual-room.example.io",
                         "duplicate_request_rate": 0,
                         "origin_key": "example-origin",
-                        "peak_queue_length": 0,
+                        "peak_queue_length": 1000,
                         "queue_abandonment_rate": 0,
-                        "request_success_rate": 0,
-                        "session_duration": 0,
-                        "session_expiration_rate": 0,
+                        "request_success_rate": 100,
                         "timestamp": 1680643741,
-                        "users_in_queue": 18446744073709552000
+                        "users_in_queue": 60000
                       }
                     ]
                   }
@@ -2008,15 +1963,15 @@
     },
     "/api/vwr/v1/usage/hourly": {
       "get": {
-        "summary": "Get hourly generated usage data",
+        "summary": "Gets hourly usage statistics",
         "tags": [
           "Usage"
         ],
-        "description": "Get hourly generated usage data of a domain for a specified time period.",
+        "description": "Get hourly usage statistics of a specific domain for a specified time period.",
         "operationId": "getHourlyUsage",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
@@ -2033,7 +1988,7 @@
             "name": "start",
             "in": "query",
             "required": true,
-            "description": "The **start date** used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The start date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -2043,7 +1998,7 @@
             "name": "end",
             "in": "query",
             "required": true,
-            "description": "The **end date** used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The end date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -2053,7 +2008,7 @@
             "name": "aggregate",
             "in": "query",
             "required": false,
-            "description": "If the _aggregate_ flag is _true_, then the results are consolidated and returned as an aggregate summary for the specified _from_ and _end_ period. If the _aggregate_ flag is _false_ or not provided, then the data is returned as separate, distributed records for the same period. If _aggregate_ flag is _true_, then [offset, limit, sort, order] are not considered.",
+            "description": "If the _aggregate_ flag is _true_, then the results are consolidated and returned as an aggregate summary for the specified _start_ and _end_ period. If the _aggregate_ flag is _false_ or not provided, then the data is returned as separate, distributed records for the same period on an hourly basis without aggregation. If _aggregate_ flag is _true_, then [offset, limit, sort, order] are not considered.",
             "schema": {
               "type": "boolean",
               "default": false
@@ -2063,19 +2018,21 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "description": "The maximum number of domains returned.",
+            "description": "The _limit_ parameter determines the number of usage records returned.",
             "schema": {
-              "type": "integer",
-              "default": 1000
+              "type": "number",
+              "default": 1000,
+              "minimum": 1,
+              "maximum": 1000
             }
           },
           {
             "name": "offset",
             "in": "query",
             "required": false,
-            "description": "Specify the offset to determine the starting point for data retrieval from the total records.",
+            "description": "Represents the starting point from where to begin fetching the usage records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of usage records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 usage records and set the _limit_ to 100, then the first API call without an _offset_ will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
             "schema": {
-              "type": "integer",
+              "type": "number",
               "default": 0
             }
           },
@@ -2117,7 +2074,7 @@
               "X-count": {
                 "description": "The total number of records for the specified time period if _aggregate_ is set to _false_.",
                 "schema": {
-                  "type": "integer",
+                  "type": "number",
                   "default": 1000
                 }
               }
@@ -2148,13 +2105,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-07-12T07:00:00.000Z"
+                        "timestamp": "2023-07-12T07:00:00Z"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-12T08:00:00.000Z"
+                        "timestamp": "2023-07-12T08:00:00Z"
                       }
                     ]
                   },
@@ -2164,7 +2121,7 @@
                       {
                         "domain_key": "test.domain",
                         "requests": 2505,
-                        "average_max_rps": 112.5
+                        "max_rps": 112.5
                       }
                     ]
                   }
@@ -2189,15 +2146,15 @@
     },
     "/api/vwr/v1/usage/daily": {
       "get": {
-        "summary": "Get daily generated usage data",
+        "summary": "Gets daily usage statistics",
         "tags": [
           "Usage"
         ],
-        "description": "Get daily usage data of a domain for a specified time period.",
+        "description": "Gets daily usage statistics of a specific domain for a specified time period.",
         "operationId": "getDailyUsage",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
@@ -2214,7 +2171,7 @@
             "name": "start",
             "in": "query",
             "required": true,
-            "description": "The **start date** used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The start date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -2224,7 +2181,7 @@
             "name": "end",
             "in": "query",
             "required": true,
-            "description": "The **end date** used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The end date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -2234,7 +2191,7 @@
             "name": "aggregate",
             "in": "query",
             "required": false,
-            "description": "If the _aggregate_ flag is _true_, then the results are consolidated and returned as an aggregate summary for the specified _from_ and _end_ period. If the _aggregate_ flag is _false_ or not provided, then the data is returned as separate, distributed records for the same period. If _aggregate_ flag is _true_, then [offset, limit, sort, order] are not considered.",
+            "description": "If the _aggregate_ flag is is included and set to _true_, then the results are consolidated and returned as an aggregate summary for the specified _start_ and _end_ period. If the _aggregate_ flag is _false_ or not provided, then the data is returned as separate, distributed records for the same period on a per-day basis without aggregation. If _aggregate_ flag is _true_, then [offset, limit, sort, order] are not considered.",
             "schema": {
               "type": "boolean",
               "default": false
@@ -2244,9 +2201,11 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "description": "The maximum number of domains returned.",
+            "description": "The _limit_ parameter determines the number of usage records returned.",
             "schema": {
-              "type": "integer",
+              "type": "number",
+              "minimum": 1,
+              "maximum": 1000,
               "default": 1000
             }
           },
@@ -2254,9 +2213,9 @@
             "name": "offset",
             "in": "query",
             "required": false,
-            "description": "Specify the offset to determine the starting point for data retrieval from the total records.",
+            "description": "Represents the starting point from where to begin fetching the usage records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of usage records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 usage records and set the _limit_ to 100, then the first API call without an _offset_ will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
             "schema": {
-              "type": "integer",
+              "type": "number",
               "default": 0
             }
           },
@@ -2298,7 +2257,7 @@
               "X-count": {
                 "description": "The total number of records for the specified time period if _aggregate_ is set to _false_.",
                 "schema": {
-                  "type": "integer",
+                  "type": "number",
                   "default": 1000
                 }
               }
@@ -2329,13 +2288,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-07-12T07:00:00.000Z"
+                        "timestamp": "2023-07-12T07:00:00Z"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-13T08:00:00.000Z"
+                        "timestamp": "2023-07-13T08:00:00Z"
                       }
                     ]
                   },
@@ -2345,7 +2304,7 @@
                       {
                         "domain_key": "test.domain",
                         "requests": 2505,
-                        "average_max_rps": 112.5
+                        "max_rps": 112.5
                       }
                     ]
                   }
@@ -2370,15 +2329,15 @@
     },
     "/api/vwr/v1/usage/monthly": {
       "get": {
-        "summary": "Get monthly generated usage data",
+        "summary": "Get monthly usage statistics",
         "tags": [
           "Usage"
         ],
-        "description": "Get monthly usage data of a domain for a specified time period.",
+        "description": "Gets monthly usage statistics of a specific domain for a specified time period.",
         "operationId": "getMonthlyUsage",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "parameters": [
@@ -2386,7 +2345,7 @@
             "name": "domain",
             "in": "query",
             "required": false,
-            "description": "Domain for which the usage information is to be retrieved.",
+            "description": "Domain for which the usage information is to be retrieved. If a domain is not provided, then monthly usage information for all the domains is fetched.",
             "schema": {
               "type": "string"
             }
@@ -2395,7 +2354,7 @@
             "name": "start",
             "in": "query",
             "required": true,
-            "description": "The **start date** used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The start date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -2405,7 +2364,7 @@
             "name": "end",
             "in": "query",
             "required": true,
-            "description": "The **end date** used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+            "description": "The end date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
             "schema": {
               "type": "string",
               "example": "YYYY-MM-DDTHH:MM:SSZ"
@@ -2415,7 +2374,7 @@
             "name": "aggregate",
             "in": "query",
             "required": false,
-            "description": "If the _aggregate_ flag is _true_, then the results are consolidated and returned as an aggregate summary for the specified _from_ and _end_ period. If the _aggregate_ flag is _false_ or not provided, then the data is returned as separate, distributed records for the same period.",
+            "description": "If the _aggregate_ flag is included and set to _true_, then the results are consolidated and returned as an aggregate summary for the specified _start_ and _end_ period. If the _aggregate_ flag is _false_ or not provided, then the data is returned as separate, distributed records for the same period. By default, the value is false.",
             "schema": {
               "type": "boolean",
               "default": false
@@ -2425,9 +2384,11 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "description": "The maximum number of domains returned.",
+            "description": "The _limit_ parameter determines the number of usage records returned.",
             "schema": {
-              "type": "integer",
+              "type": "number",
+              "minimum": 1,
+              "maximum": 1000,
               "default": 1000
             }
           },
@@ -2435,9 +2396,9 @@
             "name": "offset",
             "in": "query",
             "required": false,
-            "description": "Specify the offset to determine the starting point for data retrieval from the total records.",
+            "description": "Represents the starting point from where to begin fetching the usage records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of usage records. By default, it is set to 0, meaning the data retrieval will start from the very first record. For example, if you have 10,000 usage records and set the _limit_ to 100, then the first API call without an _offset_ will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records from 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
             "schema": {
-              "type": "integer",
+              "type": "number",
               "default": 0
             }
           },
@@ -2479,7 +2440,7 @@
               "X-count": {
                 "description": "The total number of records for the specified time period.",
                 "schema": {
-                  "type": "integer",
+                  "type": "number",
                   "default": 1000
                 }
               }
@@ -2510,13 +2471,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-06-12T00:00:00.000Z"
+                        "timestamp": "2023-06-12"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-12T00:00:00.000Z"
+                        "timestamp": "2023-07-12"
                       }
                     ]
                   },
@@ -2526,7 +2487,7 @@
                       {
                         "domain_key": "test.domain",
                         "requests": 2505,
-                        "average_max_rps": 112.5
+                        "max_rps": 112.5
                       }
                     ]
                   }
@@ -2555,16 +2516,16 @@
         "tags": [
           "Version"
         ],
-        "description": "Get the current version of the service.",
+        "description": "Gets the current version of the service.",
         "operationId": "getVersion",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "responses": {
           "200": {
-            "description": "Return the current version of the service.",
+            "description": "Returns the current version of the service.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2591,11 +2552,11 @@
         "tags": [
           "Telemetry"
         ],
-        "description": "Provide telemetry data in Prometheus format. Useful for monitoring services to monitor the health of the Virtual Waiting Room Service.",
+        "description": "Provides telemetry data in Prometheus format. Useful for monitoring services to monitor the health of the Virtual Waiting Rooms.",
         "operationId": "getTelemetry",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "responses": {
@@ -2603,7 +2564,7 @@
             "description": "Return the telemetry data for service.",
             "content": {
               "application/text": {
-                "example": "# TYPE usage_requests_count counter\nusage_requests_count{domain=\"virtual-room.example.io\"} 1 1694758004532\n# TYPE waiting_time_count counter\nwaiting_time_count{domain=\"virtual-room.example.io\"} 0 1694758004532\n# TYPE waiting_time counter\nwaiting_time{domain=\"virtual-room.example.io\"} 0 1694758004532\n# TYPE max_queue_size counter\nmax_queue_size{domain=\"virtual-room.example.io\"} 0 1694758004532\n# TYPE queue_size counter\nqueue_size{domain=\"virtual-room.example.io\"} 0 1694758004532\n"
+                "example": "# TYPE usage_requests_count counter\nusage_requests_count{domain=\"virtual-room.example.io\"} 123456 1694758004532\n# TYPE waiting_time_count counter\nwaiting_time_count{domain=\"virtual-room.example.io\"} 123456 1694758004532\n# TYPE waiting_time counter\nwaiting_time{domain=\"virtual-room.example.io\"} 100 1694758004532\n# TYPE max_queue_size counter\nmax_queue_size{domain=\"virtual-room.example.io\"} 2000 1694758004532\n# TYPE queue_size counter\nqueue_size{domain=\"virtual-room.example.io\"} 1500 1694758004532\n"
               }
             }
           },
@@ -2625,16 +2586,16 @@
         "tags": [
           "Logs"
         ],
-        "description": "Get the current log level of the service.\n\nThis API requires **'admin'** permissions to run.\n",
+        "description": "Gets the current log level of the service.\n\nThis API requires _admin_ permissions to run.\n",
         "operationId": "getLogLevel",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "responses": {
           "200": {
-            "description": "Return the current log level of the service.",
+            "description": "Returns the current log level of the service.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2659,16 +2620,16 @@
         "tags": [
           "Logs"
         ],
-        "description": "Set the current log level of the service.\n\nValid values are **'DEBUG'**, **'INFO'**, **'WARNING'** and **'ERROR'**.\n\nThis API requires **'admin'** permissions to run.\n",
+        "description": "Sets the current log level of the service.\n\nValid values are 'DEBUG', 'INFO', 'WARNING', and 'ERROR'.\n\nThis API requires _admin_ permissions to run.\n",
         "operationId": "setLogLevel",
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "responses": {
           "200": {
-            "description": "Return the current log level of the service.",
+            "description": "Returns the current log level of the service.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2695,11 +2656,11 @@
         "tags": [
           "Health"
         ],
-        "description": "Check the health of the service.",
+        "description": "Gets the health of the virtual Rooms service. This API returns HTTP status 200 OK if the service is running, otherwise it returns a 500 Internal Server Error.",
         "operationId": "getHealth",
         "responses": {
           "200": {
-            "description": "Return when service is healthy."
+            "description": "Return when service is healthy and running."
           },
           "500": {
             "description": "Internal server error."
@@ -2709,19 +2670,19 @@
     },
     "/api/vwr/v1/info": {
       "get": {
-        "summary": "Get the information of the service",
-        "description": "Get the type and instance name of the service.\n\nValid values for type are **'leader'**, **'follower'**, and **'vwrs'**.\n\nThis API requires **'admin'** permissions to run.\n",
+        "summary": "Get the type name and instance of the service",
+        "description": "Gets the type and instance name of the service.\n\nValid values for type are 'leader', 'follower', and 'vwrs'.\n\nThis API requires _admin_ permissions to run.\n",
         "tags": [
           "Service information"
         ],
         "security": [
           {
-            "ApiKeyAuth": []
+            "APIKeyAuth": []
           }
         ],
         "responses": {
           "200": {
-            "description": "This API returns the service type e.g.['leader', 'follower' and 'vwrs'] and service instance name.",
+            "description": "This API returns the service type e.g.['leader', 'follower', and 'vwrs'] and service instance name.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2742,5 +2703,6 @@
         }
       }
     }
-  }
+  },
+  "host": "api-play.paas.macrometa.io"
 }
