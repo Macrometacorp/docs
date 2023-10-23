@@ -12,7 +12,7 @@ You can run API calls from our docs API reference, or alternatively through your
 In this section, pages describe how to:
 
 - [Run API commands from the Macrometa app API reference](run-api-commands-app.md).
-- [Run API commands from the Macrometa documentation API reference](run-api-commands-docs.md).
+- [Run API commands from the Macrometa documentation GDN API reference](run-api-commands-docs.md).
 
 ## API Authorization
 
