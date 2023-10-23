@@ -11,6 +11,8 @@ Dynamic Prerendering is a white glove, fully-managed service. Macrometa engineer
 
 Dynamic Prerendering works by running a full version of a web browser, such as Chrome, in a server environment. This browser loads the entire web application, including executing all JavaScript, just like a user's browser would. Once the JavaScript has finished executing, the prerendering service takes a snapshot of the resulting HTML and serves this static version to the client.
 
+For a more detailed explanation, refer to [How Dynamic Prerendering Works](how-prerender-works.md).
+
 ## Features
 
 Key capabilities of Dynamic Prerendering include:
