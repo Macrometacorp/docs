@@ -194,48 +194,52 @@ Here is an example of the JavaScript being loaded by Google’s Tag Manager. The
     <!-- Get the script in your application -->
     <script src="https://<HOST-TO-DS-SERVICE>/api/ds/v1"></script>
     <script>
-        async function initializeDSClient() {
-            try {
-                return await DS_Client.load();
-            } catch (error) {
+        function initializeDSClient() {
+            return DS_Client.load().catch(function(error) {
                 console.error("Error initializing DS Client:", error);
-            }
+            });
         }
 
-        async function getDSData(dsClient) {
-            try {
-                return await dsClient.get();
-            } catch (error) {
+        function getDSData(dsClient) {
+            return dsClient.get().catch(function(error) {
                 console.error("Error fetching DS data:", error);
-            }
+            });
         }
 
-        async function sendVisitRecord(dsData) {
-            try {
-                const response = await fetch("https://<HOST-TO-DS-SERVICE>/api/ds/v1", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "apikey <DS-APIKEY>"
-                    },
-                    body: JSON.stringify(dsData)
-                });
-
+        function sendVisitRecord(dsData) {
+            return fetch("https://<HOST-TO-DS-SERVICE>/api/ds/v1", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "apikey <DS-APIKEY>"
+                },
+                body: JSON.stringify(dsData)
+            })
+            .then(function(response) {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-
-                const responseBody = await response.json();
+                return response.json();
+            })
+            .then(function(responseBody) {
                 console.log(responseBody);
-            } catch (error) {
+            })
+            .catch(function(error) {
                 console.error("Error recording visit:", error);
-            }
+            });
         }
 
-        async function initializeAndSendData() {
-            const dsClient = await initializeDSClient();
-            const dsData = await getDSData(dsClient);
-            await sendVisitRecord(dsData);
+        function initializeAndSendData() {
+            initializeDSClient()
+            .then(function(dsClient) {
+                return getDSData(dsClient);
+            })
+            .then(function(dsData) {
+                return sendVisitRecord(dsData);
+            })
+            .catch(function(error) {
+                console.error("Error in initializeAndSendData:", error);
+            });
         }
 
         initializeAndSendData();
