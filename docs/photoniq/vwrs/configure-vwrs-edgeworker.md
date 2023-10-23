@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Configure a VWRs EdgeWorker
 ---
 
-Import the `VirtualWaitingRoom` class from the [virtualWaitingRoom.js file](NEED FILE) to configure a waiting room.
+In the EdgeWorker, import the `VirtualWaitingRoom` class from the `xxx` Node Package Manager (NPM). This integrates the VWRs with the EdgeWorker.
 
 ## Mandatory Configuration Options
 
