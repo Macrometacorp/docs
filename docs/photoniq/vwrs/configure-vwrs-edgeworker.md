@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Configure a VWRs EdgeWorker
 ---
 
-In the EdgeWorker, import the `VirtualWaitingRoom` class from the `xxx` Node Package Manager (NPM). This integrates the VWRs with the EdgeWorker.
+In the EdgeWorker, import the `VirtualWaitingRoom` class from the [vwroom-client](https://www.npmjs.com/package/vwroomclient) Node Package Manager (NPM). This integrates the VWRs with the EdgeWorker.
 
 ## Mandatory Configuration Options
 
