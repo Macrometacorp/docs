@@ -15,7 +15,7 @@ You have the option to set the URL for the waiting room HTML template either via
 
 ## Troubleshoot Waiting Room Cookie
 
-The _vwrs-cookie_ cookie holds valuable information regarding each user's access to the waiting room. This information is securely encrypted using the library encryption key.
+The `vwrs-cookie` cookie holds valuable information regarding each user's access to the waiting room. This information is securely encrypted using the library encryption key.
 
 If you need to debug and access the content of the cookie, then you can enable debugging mode when calling the `handleVwrsRequest()` function. Enabling debugging mode stores the unencrypted cookie in the `x-vwrs-debug` header, granting you access to its content for debugging purposes.
 
