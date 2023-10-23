@@ -23,6 +23,6 @@ Use the following endpoints to set up a waiting room.
 
 - [Get metrics](LINK TO METRICS PAGE)
 - Review usage
-  - [Get hourly usage](https://www.macrometa.com/docs/apiVwrsService#/operations/getHourlyUsage)
-  - [Get daily usage](https://www.macrometa.com/docs/apiVwrsService#/operations/getDailyUsage)
-  - [Get monthly usage](https://www.macrometa.com/docs/apiVwrsService#/operations/getMonthlyUsage)
+  - [Get hourly usage](https://www.macrometa.com/docs/apiVwrs#/operations/getHourlyUsage)
+  - [Get daily usage](https://www.macrometa.com/docs/apiVwrs#/operations/getDailyUsage)
+  - [Get monthly usage](https://www.macrometa.com/docs/apiVwrs#/operations/getMonthlyUsage)
