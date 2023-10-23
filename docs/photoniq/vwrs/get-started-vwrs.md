@@ -15,7 +15,7 @@ This page explains how to get started with Macrometa PhotonIQ Virtual Waiting Ro
 
 Use the following endpoints to set up a waiting room.
 
-1. [Create an API key](https://www.macrometa.com/docs/apiVwrsService#/operations/createApiKey) to access the VWRs system.
+1. [Create an API key](https://www.macrometa.com/docs/apiVwrs#/operations/createAPIKey) to access the VWRs system.
 2. [Configure a VWRs EdgeWorker](configure-vwrs-edgeworker.md), which sets up the waiting room on the Akamai side.
 3. [Create a Domain](https://www.macrometa.com/docs/apiVwrs#/operations/createDomain), which sets up the waiting room and allows you to configure its options. For more information, refer to [Configure a Domain](configure-domain.md).
 
