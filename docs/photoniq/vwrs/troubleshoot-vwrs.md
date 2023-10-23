@@ -11,7 +11,7 @@ If a waiting room has not been configured, then the waiting room library returns
 
 ## Troubleshoot Waiting Room HTML
 
-You can configure the cloud origin (e.g. NetStorage) path to the waiting room HTML through the library or the domain record. To preview this HTML, open your preferred browser and navigate to the following URL: `https://<hostname>/<waiting-room-path>/preview`
+You have the option to set the URL for the waiting room HTML template either via the library or the domain record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: https://<hostname>/waiting-room-path>/status/preview.
 (for example, `http://show.store.com/checkout/preview`).  
 
 ## Troubleshoot Waiting Room Cookie
