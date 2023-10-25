@@ -600,7 +600,7 @@
         }
       },
       "get": {
-        "summary": "Get information of domains",
+        "summary": "Get information on all domains",
         "tags": [
           "Domains"
         ],
@@ -972,7 +972,7 @@
         }
       },
       "get": {
-        "summary": "Get information of origins",
+        "summary": "Get information on all origins",
         "tags": [
           "Origins"
         ],
