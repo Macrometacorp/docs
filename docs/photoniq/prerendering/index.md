@@ -25,7 +25,7 @@ Key capabilities of Dynamic Prerendering include:
 
 - **Custom Headers**: Gain control over prerendering behavior with custom HTTP headers. Specify which pages should be prerendered based on unique attributes. For example, target only English-language pages for prerendering, allowing you to focus on a specific user base.
 
-- **Synthetic Events**: Address content visibility issues arising from user interactions like scroll, click, or hover. Synthetic events can trigger this hidden content, ensuring it is included in the prerendered page. This ensures that all essential content is accessible to search engine bots, even if it normally requires user interaction to appear.
+- **Synthetic Interactions**: Address content visibility issues arising from user interactions like scroll, click, or hover. Synthetic interactions can trigger this hidden content, ensuring it is included in the prerendered page. This ensures that all essential content is accessible to search engine bots, even if it normally requires user interaction to appear. For more information, refer to [Synthetic Interactions in Dynamic Prerendering](synthetic-interactions).
 
 - **Public Access Not Required**: Extend prerendering capabilities to non-publicly accessible sites. Whether you're working on a staging environment or a restricted development site, Macrometa engineers can assist in setting up prerendering without requiring public access.
 
