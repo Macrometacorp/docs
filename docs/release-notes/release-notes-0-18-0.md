@@ -79,7 +79,7 @@ This release includes the following API changes.
 
 | Issue # | Description |
 | ------- | ----------- |
-| z       | z           |
+| MET-330       | Response for `/_fabric/{fabric}/_api/metrics/query` now includes labels of fetched metrics.          |
 |         |             |
 |         |             |
 
