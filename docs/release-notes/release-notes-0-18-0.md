@@ -37,7 +37,13 @@ The following features updates are included in this release.
 
 A new API endpoint is available that lists all the groups in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groups`
 
-**DFP NOTE - Update KV docs?**
+**DFP NOTE - Update KV docs? DB-2755**
+
+### New API Endpoint - Update Group ID
+
+A new API endpoint is available that updates the group ID for all the documents belonging to a particular group ID in a collection with the Group ID feature enabled.
+
+**DFP NOTE - Update KV docs? DB-2811**
 
 ### Transactions API
 
@@ -91,7 +97,7 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
-|   |   |
+| DB-2410  | Create API key should give error when 256 characters are given for a value as an API key ID.  |
 |   |   |
 |   |   |
 |   |   |
