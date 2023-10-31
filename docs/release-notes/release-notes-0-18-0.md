@@ -23,7 +23,14 @@ Multiple pages and screenshots were updated as a result of these changes.
 
 Description of feature.
 
+TO DO - 
+
+Explain strong consistency
+Update and link to View collection settings, update screenshot
+
 [Topic name](index.md) was added as a result of this feature.
+
+[View Collection Settings](../collections/view-collection-settings.md) was updated as a result of this feature.
 
 ### In-app Support Chat
 
