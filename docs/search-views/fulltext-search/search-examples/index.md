@@ -8,7 +8,7 @@ This page provides detailed examples of possible fulltext search query patterns.
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
-- A fabric named `Hotels` with a document collection named `hotel_reviews`. Refer to [Create a GeoFabric](../../../geofabrics/create-geofabric.md) and [Create a Document Store](../../../collections/documents/create-document-store.md).
+- A fabric named `Hotels` with a document collection named `hotel_reviews`. Refer to [Create a Fabric](../../../geofabrics/create-geofabric.md) and [Create a Document Store](../../../collections/documents/create-document-store.md).
 - A search view named `sample_view`. Refer to [Create a Fulltext Search View](../tasks/create-search-views.md).
 
 ## Sample Data
