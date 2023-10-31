@@ -23,7 +23,7 @@ A _collection_ is a group of documents with a unique name and identifier. For th
 
 ![Create a collection](/img/quickstart/create-doc-view.png)
 
-Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
+Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [fabric](geofabrics/index.md) locations.
 
 Our collection is now accessible worldwide! However, it's empty. Let's fix that.
 
