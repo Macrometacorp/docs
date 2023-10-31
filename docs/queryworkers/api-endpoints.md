@@ -23,7 +23,7 @@ Macrometa displays the cURL (Client URL) command that you can use in the termina
 You can use any unsaved query as an API endpoint, but best practice is to use saved queries (query workers) for the following reasons:
 
 - Query workers have hard-coded URLs, while queries use a generic `/feature/option/data` path.
-- Query workers are cached across all GeoFabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.
+- Query workers are cached across all fabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.
 
 Using query workers instead of unsaved query endpoints does not impact your billing.
 

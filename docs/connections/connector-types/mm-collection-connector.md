@@ -2,7 +2,7 @@
 title: Macrometa Collection Connector
 ---
 
-Macrometa collection connectors allow you to extract data from or send data to an existing Macrometa collection. The collection can be on a different GeoFabric or even on a different tenant.
+Macrometa collection connectors allow you to extract data from or send data to an existing Macrometa collection. The collection can be on a different fabric or even on a different tenant.
 
 ## Prerequisites
 

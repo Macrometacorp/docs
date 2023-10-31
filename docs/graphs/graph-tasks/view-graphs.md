@@ -42,7 +42,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph list](../../cli/graph-cli#gdnsl-graph-list) CLI command to view a list of graphs that exist in your current geofabric.
+Use the [gdnsl graph list](../../cli/graph-cli#gdnsl-graph-list) CLI command to view a list of graphs that exist in your current fabric.
 
 Use the [gdnsl graph describe](../../cli/graph-cli#gdnsl-graph-describe) CLI command to view the details of a specific graph.
 

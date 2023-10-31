@@ -6,7 +6,7 @@ title: Delete Fabrics
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page lists several methods for deleting GeoFabrics. Which GeoFabrics you can access depends on your assigned [Permissions](../account-management/permissions/index.md).
+This page lists several methods for deleting fabrics. Which fabrics you can access depends on your assigned [Permissions](../account-management/permissions/index.md).
 
 :::caution
 Deleting a fabric removes all entities, including collections and stream workers, associated with it. Be sure you want to do this, because it cannot be undone!
