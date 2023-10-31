@@ -1,12 +1,12 @@
 ---
-title: Create a Document Store
+title: Create a Document Collection
 sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create a new Document Store collection.
+This page explains how to create a new Document collection.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -16,7 +16,7 @@ Follow these instructions to create a new collection using the GDN console web U
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Data > Collections**.
 3. Click **New Collection**.
-4. Click **Document Store**.
+4. Click **Document**.
 5. Enter information about the collection:
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
@@ -99,12 +99,12 @@ createCollection()
 </TabItem>
 <TabItem value="apo" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://www.macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
+Use our interactive API Reference with code generation in 18 programming languages to [create a Document Collection](https://www.macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection](../../cli/collections-cli) CLI command to create a Document Store collection.
+Use the [gdnsl collection](../../cli/collections-cli) CLI command to create a Document collection.
 
 </TabItem>
 </Tabs>  
