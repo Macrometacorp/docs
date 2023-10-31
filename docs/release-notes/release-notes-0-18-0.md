@@ -9,13 +9,15 @@ This document describes what has changed in Macrometa release 0.18.0. To check w
 
 The following new features are included in this release.
 
-### Multi-node
+### Web Console Updates
 
 Description of feature.
 
-API updates include: https://github.com/Macrometacorp/c8db/pull/2070
+Changes include:
 
-[Topic name](index.md) was added as a result of this feature.
+
+
+Multiple pages and screenshots were updated as a result of these changes.
 
 ### Strong Consistency
 
