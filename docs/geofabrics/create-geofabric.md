@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Create a GeoFabric
+title: Create a Fabric
 ---
 
 import Tabs from '@theme/Tabs';
