@@ -3,7 +3,7 @@ sidebar_position: 5
 title: Maps, Sets, SortedSets
 ---
 
-The other day I came across a question about how to model popuplar Redis datatypes using Macrometa GDN. Macrometa GDN is a geo-replicated multi-model realtime database. So modelling Redis basic datatypes in Macrometa can be done easily.
+The other day I came across a question about how to model popular Redis data types using Macrometa GDN. Macrometa GDN is a geo-replicated multi-model realtime database. So modelling Redis basic data types in Macrometa can be done easily.
 
 By modelling these data types in GDN, developers can use ( i.e., `read-write`) these data types globally from regions closest to their Apps & APIs with very low latency. The GDN will take care of doing the necessary geo-replication and convergence.
 
@@ -19,9 +19,9 @@ All of the above can be represented in Macrometa GDN.
 
 ## Hashes (Maps)
 
-In GDN, data is stored in collections (tables) as json documents. Each json document is essentially a Map of `key:value` pairs.
+In GDN, data is stored in collections (tables) as JSON documents. Each JSON document is essentially a Map of `key:value` pairs.
 
-For example, following is a simple C8QL statement that **inserts** data for a user in `users` collection. The user document is basically a `map` with following fields `_key`, `name`, `surname`, `alive`, `age` and `traits`.
+For example, following is a simple C8QL statement that inserts data for a user in `users` collection. The user document is basically a `map` with following fields `_key`, `name`, `surname`, `alive`, `age` and `traits`.
 
 ```js
     INSERT {
