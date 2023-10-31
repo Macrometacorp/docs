@@ -20,7 +20,7 @@ Follow these instructions to create a new collection using the GDN console web U
 5. Enter information about the collection:
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
-   - **Enable Collection stream -** Enable streams for all locations for this collection.
+   - **Collection stream -** Enable streams for all locations for this collection.
    - **Distribution -** Required. Select whether to store data globally or locally. Default is **Global**.
 
 6. Click **Create**. If you are missing required information, then you cannot complete this step.
@@ -31,7 +31,7 @@ Follow these instructions to create a new collection using the GDN console web U
 The below example shows the steps for connecting a fabric and then creating a collection called `employees`.
 
 ```py
-  # Simple Approach
+  # Simple approach
   client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                           email='nemo@nautilus.com', password='xxxxx',
                           geofabric='_system')
