@@ -5,14 +5,14 @@ title: Permissions
 
 This section explains permissions for users and API keys, and how to change them.
 
-Each GeoFabric has the following global permission levels for users and API keys:
+Each fabric has the following global permission levels for users and API keys:
 
-- **Administrate -** Full read and write access to all files in the GeoFabric.
-- **Access -** Read access to all files in the GeoFabric. No write access.
-- **No Access -** No access to any files in the GeoFabric.
+- **Administrate -** Full read and write access to all files in the fabric.
+- **Access -** Read access to all files in the fabric. No write access.
+- **No Access -** No access to any files in the fabric.
 - **Use Default -** Uses default settings as specified on the bottom row.
 
-Click the name of the GeoFabric to expand it and view permissions for specific features. Each GDN feature has the following permission levels:
+Click the name of the fabric to expand it and view permissions for specific features. Each GDN feature has the following permission levels:
 
 - **Read/Write -** Full access to the feature and related files.
 - **Read Only -** Read access to the feature and related files. No write access.
