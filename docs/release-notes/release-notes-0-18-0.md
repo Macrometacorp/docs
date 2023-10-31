@@ -23,11 +23,11 @@ Description of feature.
 
 [Topic name](index.md) was added as a result of this feature.
 
-### Feature 1
+### In-app Support Chat
 
-Description of feature.
+You can now chat directly with Macrometa Support in the web console. Just click the icon in the lower right of all pages to begin.
 
-[Topic name](index.md) was added as a result of this feature.
+![Chat with Support](/img/release-notes/18-00-support-chat.png)
 
 ## Feature Updates
 
