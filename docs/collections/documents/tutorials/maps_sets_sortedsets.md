@@ -34,7 +34,7 @@ For example, following is a simple C8QL statement that inserts data for a user i
     } INTO users
 ```
 
-You can **retrieve** a `map` (i.e., data for a given user), using following C8QL statement:
+You can retrieve a `map` (i.e., data for a given user), using following C8QL statement:
 
 ```js
     RETURN DOCUMENT("users", "Ned Stark")
@@ -54,7 +54,7 @@ You can **get all** maps based on a `condition` using following C8QL statements:
         RETURN user
 ```
 
-You can **get** specific keys of a map following C8QL statement:
+You can get specific keys of a map following C8QL statement:
 
 ```js
     FOR user IN users
@@ -62,7 +62,7 @@ You can **get** specific keys of a map following C8QL statement:
         RETURN { name: user.name, age: user.age }
 ```
 
-You can **update** a specific `key` in the `map` (i.e., attribute of a given user) using following C8QL statement:
+You can update a specific `key` in the `map` (i.e., attribute of a given user) using following C8QL statement:
 
 ```js
     UPDATE "Ned Stark" WITH { alive: false } IN users
@@ -94,7 +94,7 @@ For example, following C8QL statement creates a `set` of user names.
 In above example, we used `_key` attribute for saving the user name. Using the `_key` attribute is normally beneficial because it is the collection’s primary key. It is always present and automatically unique, so exactly what we need for maintaining a set. Note that there are some restrictions for what can be stored inside the `_key` attribute, but as long as values are only ASCII letters or digits, there is nothing to worry about. Inserting into the collection will also automatically populate the indexes.
 :::
 
-You can **remove** a entry in the set using following C8QL statement:
+You can remove a entry in the set using following C8QL statement:
 
 ```js
     REMOVE "Ned Stark" IN users
@@ -107,7 +107,7 @@ You can **get** contents of a set using following C8QL statement:
         RETURN user
 ```
 
-You can get **count** (i.e., size) of a set using following C8QL statement:
+You can get count (i.e., size) of a set using following C8QL statement:
 
 ```js
     RETURN LENGTH(users)
