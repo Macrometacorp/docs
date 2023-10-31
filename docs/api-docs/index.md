@@ -31,13 +31,13 @@ However, for production apps, or any account that is not on the Play tier, you m
 
 To find your unique API URL:
 
-1. In your Macrometa account, switch to the GeoFabric that you want to run API calls against. This is the fabric that contains the collections, streams, or other entities that are the target of your API calls.
+1. In your Macrometa account, switch to the fabric that you want to run API calls against. This is the fabric that contains the collections, streams, or other entities that are the target of your API calls.
 2. Click **API Reference**.
 
    The base URL is shown at the top of the screen.
 
 ![API URL](/img/api-url.png)
 
-This is the same as the Global URL shown at the top of every GeoFabric page in the Macrometa web console with `api-` prepended.
+This is the same as the Global URL shown at the top of every fabric page in the Macrometa web console with `api-` prepended.
 
-You can also use the CLI command [gdnsl fabric describe](../cli/fabrics-cli#gdnsl-fabric-describe) or the API command to get [Information about a GeoFabric](https://www.macrometa.com/docs/api#/operations/InformationOfTheGeo-fabric) to find your global or regional fabric URLs (endpoints).
+You can also use the CLI command [gdnsl fabric describe](../cli/fabrics-cli#gdnsl-fabric-describe) or the API command to get [Information about a Fabric](https://www.macrometa.com/docs/api#/operations/InformationOfTheGeo-fabric) to find your global or regional fabric URLs (endpoints).
