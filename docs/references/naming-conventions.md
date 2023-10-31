@@ -3,11 +3,11 @@ sidebar_position: 3
 title: Naming Conventions
 ---
 
-The following naming conventions should be followed by users when creating geo-fabrics, collections and documents in C8.
+The following naming conventions should be followed by users when creating geo-fabrics, collections and documents in Macrometa.
 
-## GeoFabric Names
+## Fabric Names
 
-Macrometa will always start up with a default GeoFabrics, named `_system`. Users can create additional GeoFabrics in C8, provided the fabric names conform to the following constraints:
+Macrometa will always start up with a default fabrics, named `_system`. Users can create additional fabrics in Macrometa, provided the fabric names conform to the following constraints:
 
 - Fabric names must only consist of the letters `a` to `z` (both lower and upper case allowed), the numbers `0` to `9`. This also means that any non-ASCII database names are not allowed.
 - Fabric names must always start with a letter. Fabric names starting with an underscore are considered to be system fabrics, and users should not create or delete those.
@@ -19,7 +19,7 @@ Macrometa will always start up with a default GeoFabrics, named `_system`. Users
 Users can pick names for their collections as desired, provided the following naming constraints are not violated:
 
 - Collection names must only consist of the letters `a` to `z` (both in lower and upper case) and the numbers `0` to `9`. This also means that any non-ASCII collection names are not allowed
-- User-defined collection names must always start with a letter. System collection names must start with an underscore. All collection names starting with an underscore are considered to be system collections that are for C8's internal use only. System collection names should not be used by end users for their own collections
+- User-defined collection names must always start with a letter. System collection names must start with an underscore. All collection names starting with an underscore are considered to be system collections that are for Macrometa's's internal use only. System collection names should not be used by end users for their own collections
 - The maximum allowed length of a collection name is 64 bytes
 - Collection names are case-sensitive
 
