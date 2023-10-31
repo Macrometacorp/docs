@@ -1,11 +1,11 @@
 ---
-title: Document Store Data
+title: Document Collection Data
 sidebar_position: 40
 ---
 
-The Document Store Data tab is the primary section for viewing individual collection information.
+The Document collection Data tab is the primary section for viewing individual collection information.
 
-![Document Store Data Tab](/img/collections/doc-store-data.png)
+![Document Data Tab](/img/collections/doc-store-data.png)
 
 This is a complex tab, which contains the following items. Hover your cursor over an icon to see what it does.
 
@@ -38,6 +38,14 @@ This feature can be used to perform a lookup within the document collection. You
 1. Enter the attribute on which to filter.
 1. Select logical expressions/operators from the drop-down menu.
 1. Enter the value to filter against.
+
+## Documents
+
+Shows the number of documents in the collection.
+
+## Data Storage
+
+Displays the amount of memory the data in the collection consumes.
 
 ## Create Document
 
