@@ -15,19 +15,19 @@ Description of feature.
 
 API updates include: https://github.com/Macrometacorp/c8db/pull/2070
 
-[Topic name](link) was added as a result of this feature.
+[Topic name](www.google.com) was added as a result of this feature.
 
 ### Strong Consistency
 
 Description of feature.
 
-[Topic name](link) was added as a result of this feature.
+[Topic name](www.google.com) was added as a result of this feature.
 
 ### Feature 1
 
 Description of feature.
 
-[Topic name](link) was added as a result of this feature.
+[Topic name](www.google.com) was added as a result of this feature.
 
 ## Feature Updates
 
@@ -55,13 +55,13 @@ DFP Note - What do we need for Transactions documentation?
 
 Description of update.
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+[Topic name](www.google.com) and [topic name](www.google.com) were updated as a result of this change.
 
 ### Update 1
 
 Description of update.
 
-[Topic name](link) and [topic name](link) were updated as a result of this change.
+[Topic name](www.google.com) and [topic name](www.google.com) were updated as a result of this change.
 
 ### Miscellaneous Changes
 
