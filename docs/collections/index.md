@@ -10,7 +10,7 @@ A collection can be empty or contain documents. Macrometa GDN is _schemaless_, s
 Document collections can be created as _local_ or _global_ collections.
 
 - A _local collection_ stores its data in one region and does not replicate to other regions. You can create a local collection in any specified region. Best practice is to use a region-specific API endpoint when interacting with local collections. If a user sends a request to a local collection without being routed to the appropriate region, the request will fail.
-- A _global collection_ replicates its data and maintains state and consistency across all regions in the GeoFabric.
+- A _global collection_ replicates its data and maintains state and consistency across all regions in the fabric.
 
 ## Collection Types
 

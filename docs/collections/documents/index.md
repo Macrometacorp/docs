@@ -14,7 +14,7 @@ A document is based on the concept of a “Key-Value” store. Every key has a c
 
 A document can contain attributes that each store a value. A value can either be atomic (number, string, Boolean, or null), or compound (array or embedded document or object). Arrays and sub-objects can contain all of these types, so a single document can contain nested data structures.
 
-Each document has two identifying attributes: The `_key` identifies it within a single collection, and the `document handle` identifies it across the entire GeoFabric. Additionally, the `document revision` attribute distinguishes individual revisions of a document. Transaction only ever see a single document revision.
+Each document has two identifying attributes: The `_key` identifies it within a single collection, and the `document handle` identifies it across the entire fabric. Additionally, the `document revision` attribute distinguishes individual revisions of a document. Transaction only ever see a single document revision.
 
 For example:
 
@@ -47,13 +47,13 @@ You can specify a `_key` value when you create a document. `_id` and `_key` valu
 
 ### Document Handle
 
-A _document handle_ is a string (`_id`) that identifies a document in the GeoFabric database. The string value consists of the collection's name and the document's `_key` separated by a slash `/`.
+A _document handle_ is a string (`_id`) that identifies a document in the fabric database. The string value consists of the collection's name and the document's `_key` separated by a slash `/`.
 
 ### Document Key
 
 A _document key_ is an attribute (`_key`) that identifies a document in its collection and is primarily used for querying. Each document's `_key` is unchangeable.
 
-If you do not specify a key, one is automatically created. An automatic key is only unique within its collection or sharded collections in a cluster. Automatic keys might not be unique across different GeoFabrics. Each collection has a `keyOptions` that can disallow user-specified keys completely or use a specific template for automatically creating keys.
+If you do not specify a key, one is automatically created. An automatic key is only unique within its collection or sharded collections in a cluster. Automatic keys might not be unique across different fabrics. Each collection has a `keyOptions` that can disallow user-specified keys completely or use a specific template for automatically creating keys.
 
 ### Document Revision
 
