@@ -15,7 +15,8 @@ Description of feature.
 
 Changes include:
 
-
+- Document Store collections are now called Document collections.
+- Key-Value Store collections are now called Key-Value collections.
 
 Multiple pages and screenshots were updated as a result of these changes.
 
