@@ -17,8 +17,10 @@ Changes include:
 
 - Document Store collections are now called Document collections.
 - Key-Value Store collections are now called Key-Value collections.
-- New data fields in collection screens that show number of documents and data storage.
-  ![New Collection Fields](/img/release-notes/18-00-collection-fields.png)
+- New data fields in collection Data tab screens.
+  ![New Collection Data Fields](/img/release-notes/18-00-collection-data-fields.png)
+- New data fields in collection Indexes tab screens.
+  ![New Collection Indexes Fields](/img/release-notes/18-00-collection-indexes-fields.png)
 - streams
 
 Multiple pages and screenshots were updated as a result of these changes.
