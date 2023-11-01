@@ -16,8 +16,8 @@ Document collections can be created as _local_ or _global_ collections.
 
 Macrometa offers several types of collections.
 
-- A [Document Store](documents/index.md) is a NoSQL database that stores data in JSON format (JavaScript Object Notation). For more information, refer to [What is a document database?](https://www.macrometa.com/articles/what-is-document-database)
-- A [Key-Value Store](keyvalue/index.md) contains documents in which each document stored in a collection contains a `_key`, and the rest of the document is its value. For more information, refer to [Key-Value Databases](https://www.macrometa.com/articles/key-value-databases).
+- A [Document collection](documents/index.md) is a NoSQL database that stores data in JSON format (JavaScript Object Notation). For more information, refer to [What is a document database?](https://www.macrometa.com/articles/what-is-document-database)
+- A [Key-Value collection](keyvalue/index.md) contains documents in which each document stored in a collection contains a `_key`, and the rest of the document is its value. For more information, refer to [Key-Value Databases](https://www.macrometa.com/articles/key-value-databases).
 - A [Redis Mode](redis-mode/index.md) collections allow you to use Macrometa with the Redis API. For more information, refer to [Redis in Macrometa](../queries/redis/).
 - A [Dynamo Table](dynamo/create-dynamo-table.md) collection allows you to use AWS Dynamo Database with Macrometa as a datastore.
 - A [Graph Edge collection](graph-edge/index.md) stores _edge documents_ (or _edges_) that define a relationship between other documents with the `_from` and `_to` values. A _vertex_ is a document collection that contains graphs. For more information, refer to [What is a graph database?](https://www.macrometa.com/articles/what-is-graph-database)
