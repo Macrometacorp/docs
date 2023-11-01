@@ -1,5 +1,5 @@
 ---
-title: Document Store Stream
+title: Document Collection Stream
 sidebar_position: 60
 ---
 

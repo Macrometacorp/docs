@@ -5,7 +5,7 @@ sidebar_position: 50
 
 Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../indexing/index.md).
 
-## Document Store Indexes
+## Document Collection Indexes
 
 You can create the following types of index for a document collection:
 
