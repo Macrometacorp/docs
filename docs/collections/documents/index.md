@@ -10,7 +10,7 @@ A document collection is a NoSQL database that stores data in JSON format (JavaS
 
 A document is based on the concept of a “Key-Value” store. Every key has a corresponding value, different documents have unique keys which help with CRUD operations - Create, Read, Update, and Delete. No two documents can have common primary keys. Multiple documents gathered in one structure is known as a _document collection_.
 
-## Document Attibutes
+## Document Attributes
 
 A document can contain attributes that each store a value. A value can either be atomic (number, string, Boolean, or null), or compound (array or embedded document or object). Arrays and sub-objects can contain all of these types, so a single document can contain nested data structures.
 
@@ -65,10 +65,8 @@ If there is causality between events on different servers, timestamps increase f
 
 GDN uses 64-bit unsigned integer values to maintain document revisions internally. We do not document the exact format of the revision values. When returning document revisions to clients, we put them into a string to verify that the revision is not clipped by clients that do not support large integers.
 
-:::note example
-
-You can use the `_rev` attribute as a precondition for queries to avoid losing updates. If a client modifies a document locally without adjusting the revision value, then commits the changes _after_ another user modifies the same document, the first user's operation is cancelled by the server. Otherwise, the first user would inadvertently overwrite the second user's changes
-
+:::note
+You can use the `_rev` attribute as a precondition for queries to avoid losing updates. If a client modifies a document locally without adjusting the revision value, then commits the changes _after_ another user modifies the same document, the first user's operation is cancelled by the server. Otherwise, the first user would inadvertently overwrite the second user's changes.
 :::
 
 ## Multiple Documents in Single Call
