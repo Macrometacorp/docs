@@ -9,22 +9,6 @@ This document describes what has changed in Macrometa release 0.18.0. To check w
 
 The following new features are included in this release.
 
-### Web Console Updates
-
-Description of feature.
-
-Changes include:
-
-- Document Store collections are now called Document collections.
-- Key-Value Store collections are now called Key-Value collections.
-- New data fields in collection Data tab screens.
-  ![New Collection Data Fields](/img/release-notes/18-00-collection-data-fields.png)
-- New data fields in collection Indexes tab screens.
-  ![New Collection Indexes Fields](/img/release-notes/18-00-collection-indexes-fields.png)
-- streams
-
-Multiple pages and screenshots were updated as a result of these changes.
-
 ### Strong Consistency
 
 Description of feature.
@@ -41,9 +25,28 @@ How to make a query strongly consistent.
 
 [View Collection Settings](../collections/view-collection-settings.md) was updated as a result of this feature.
 
-### In-app Support Chat
+### Web Console Updates
 
-You can now chat directly with Macrometa Support in the web console. Just click the icon in the lower right of all pages to begin.
+Description of feature.
+
+Changes include:
+
+- Document Store collections are now called Document collections.
+- Key-Value Store collections are now called Key-Value collections.
+- New data fields in collection Data tab screens.
+  ![New Collection Data Fields](/img/release-notes/18-00-collection-data-fields.png)
+- New data fields in collection Indexes tab screens.
+  ![New Collection Indexes Fields](/img/release-notes/18-00-collection-indexes-fields.png)
+- New data fields in collection Streams tab screens
+- New data fields in Streams
+- In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
+  - DFP note - There are now four, not six. Update those docs.
+
+Multiple pages and screenshots were updated as a result of these changes.
+
+### In-app Support Chat Widget
+
+You can now chat directly with Macrometa Support in the web console. Click the icon in the lower right of all pages to begin.
 
 ![Chat with Support](/img/release-notes/18-00-support-chat.png)
 
