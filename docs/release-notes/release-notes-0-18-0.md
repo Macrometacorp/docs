@@ -30,9 +30,12 @@ Multiple pages and screenshots were updated as a result of these changes.
 Description of feature.
 
 TO DO - 
-
-Explain strong consistency
+Explain strong consistency, new topic
+- strong consistency option on collections
+- strong consistency option on queries (?)
 Update and link to View collection settings, update screenshot
+How to make a collection strongly consistent
+How to make a query strongly consistent.
 
 [Topic name](index.md) was added as a result of this feature.
 
