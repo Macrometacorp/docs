@@ -44,9 +44,9 @@ Here's an example shoe record from the dataset in JSON format:
 
 ## 1. Create the Inventory Collection
 
-Create a Document Store collection called `inventory`. Be sure to enable the collection stream when you create the collection.
+Create a document collection called `inventory`. Be sure to enable the collection stream when you create the collection.
 
-The following images show key steps in the process. For detailed instructions, refer to [Create a Document Store](../collections/documents/create-document-store).
+The following images show key steps in the process. For detailed instructions, refer to [Create a Document Collection](../collections/documents/create-document-store).
 
 ![Create a Document Collection](/img/search/range-example/create-collection.png)
 
@@ -150,7 +150,7 @@ Now that you've created query workers for all CRUD operations, you have successf
 
 ## 4. Create a Search View for the Inventory Collection
 
-Now that you have data in the `inventory` collection, it's time to enable high-performance search on various fields in the document store.
+Now that you have data in the `inventory` collection, it's time to enable high-performance search on various fields in the document collection.
 
 Create a search view named `inventory_view`. Follow the instructions in [Create a Fulltext Search View](../search-views/fulltext-search/tasks/create-search-views.md) to create the `inventory_view` search view.
 
