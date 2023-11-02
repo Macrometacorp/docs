@@ -19,7 +19,7 @@ Follow these instructions to create a new data source workflow using the GDN con
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Data > Collections**.
 3. Click **New Collection**.
-4. Click **Document Store**.
+4. Click **Document**.
 5. Click **Add data source**.
 6. Select an existing source connection or click **Add connection**, select the connection that you want to create, and then follow the guidance on the screen.
 7. Enter a source collection or source table. You might also have optional advanced fields, depending on your connector type.
