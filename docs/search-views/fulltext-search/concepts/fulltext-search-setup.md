@@ -13,7 +13,7 @@ You can also link more than one search view to a particular collection. Linking 
 
 ## Handling Data Structures
 
-You can link key-value stores, document stores, and graph edge collections to search views. This setup allows your data to be treated as both flat and interconnected structures, supporting both straightforward attribute-based searches and more complex searches involving relationships between data entities.
+You can link key-value collections, document collections, and graph edge collections to search views. This setup allows your data to be treated as both flat and interconnected structures, supporting both straightforward attribute-based searches and more complex searches involving relationships between data entities.
 
 For example, in a social network scenario, a flat structure might be useful for searching users based on profile details, like name or location. In contrast, an interconnected structure would allow searches based on relationships, like friends or followers.
 
