@@ -17,7 +17,7 @@ A _collection_ is a group of documents with a unique name and identifier. For th
 
 1. On the side menu, click **Data > Collections**.
 1. Click **New Collection**.
-1. Click **Document Store**.
+1. Click **Document**.
 1. In **Collection Name**, enter `addresses`.
 1. Click **Create**.
 
