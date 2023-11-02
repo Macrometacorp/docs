@@ -7,7 +7,7 @@ Macrometa collection connectors allow you to extract data from or send data to a
 ## Prerequisites
 
 - Macrometa account with admin permissions.
-- The collection that you want to connect to must already exist. For more information about creating collections, refer to [Create a Document Store](../../collections/documents/create-document-store).
+- The collection that you want to connect to must already exist. For more information about creating collections, refer to [Create a Document Collection](../../collections/documents/create-document-store).
 - Create an API key with at least read and write access to the source or target collection. For more information about API keys, refer to [Manage API Keys](../../account-management/api-keys/).
 - Source collections must not be empty.
 
