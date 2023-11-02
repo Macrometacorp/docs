@@ -1,10 +1,10 @@
 ---
-title: Document Store Commands
+title: Document Collection Commands
 ---
 
-# Document Store (gdnsl document)
+# Document Collection (gdnsl document)
 
-Document Store collection CLI commands.
+Document collection CLI commands.
 
 ## gdnsl document create
 
