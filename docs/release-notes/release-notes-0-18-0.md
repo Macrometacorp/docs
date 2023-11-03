@@ -31,7 +31,7 @@ Description of feature.
 
 Changes include:
 
-- Document Store collections are now called Document collections.
+- Document Store collections are now called Document collections. - DONE
 - Key-Value Store collections are now called Key-Value collections.
 - New data fields in collection Data tab screens.
   ![New Collection Data Fields](/img/release-notes/18-00-collection-data-fields.png)
@@ -118,6 +118,9 @@ The following defects were fixed in this release.
 
 | Defect #  | Description  |
 |---|---|
+| AUTH-236  | Corrected field order and capitalization on the Invite User signup page.  |
+|   |   |
+|   |   |
 | DB-2410  | Create API key should give error when 256 characters are given for a value as an API key ID.  |
 |   |   |
 |   |   |
