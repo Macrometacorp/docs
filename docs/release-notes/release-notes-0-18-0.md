@@ -121,6 +121,27 @@ The following defects were fixed in this release.
 | AUTH-236  | Corrected field order and capitalization on the Invite User signup page.  |
 |   |   |
 |   |   |
+| CEP-437  | Regex for http.status.code in http-call-response function is not working.  |
+| CEP-439  | Delete subscriptions only at stream worker deletion, not unpublish.  |
+| CEP-614  | Republishing stream workers is not working.  |
+| CEP-615  | Sometimes after unpublishing a stream worker, it gets re-published automatically.  |
+| CEP-620  | The sample stream worker HTTP-IO will not validate.  |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
+|   |   |
 | DB-2410  | Create API key should give error when 256 characters are given for a value as an API key ID.  |
 |   |   |
 |   |   |
