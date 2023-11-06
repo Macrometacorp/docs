@@ -132,6 +132,11 @@ The following defects were fixed in this release.
 |   |   |
 |   |   |
 |   |   |
+| GUI-1331  | CSV option is not available for import and export button for Document or Graph Edge collections.  |
+|   |   |
+| GUI-1874  | For Scale tier accounts, instance size details are not displayed in the Account tab. |
+| GUI-1886  | "Forbidden error" notification when non-root user changes their Display Name.  |
+|   |   |
 |   |   |
 |   |   |
 |   |   |
