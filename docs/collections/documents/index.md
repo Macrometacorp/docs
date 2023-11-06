@@ -65,10 +65,8 @@ If there is causality between events on different servers, timestamps increase f
 
 GDN uses 64-bit unsigned integer values to maintain document revisions internally. We do not document the exact format of the revision values. When returning document revisions to clients, we put them into a string to verify that the revision is not clipped by clients that do not support large integers.
 
-:::note example
-
-You can use the `_rev` attribute as a precondition for queries to avoid losing updates. If a client modifies a document locally without adjusting the revision value, then commits the changes _after_ another user modifies the same document, the first user's operation is cancelled by the server. Otherwise, the first user would inadvertently overwrite the second user's changes
-
+:::note
+You can use the `_rev` attribute as a precondition for queries to avoid losing updates. If a client modifies a document locally without adjusting the revision value, then commits the changes _after_ another user modifies the same document, the first user's operation is cancelled by the server. Otherwise, the first user would inadvertently overwrite the second user's changes.
 :::
 
 ## Multiple Documents in Single Call

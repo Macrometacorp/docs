@@ -23,7 +23,7 @@ Key capabilities of Dynamic Prerendering include:
 
 - **Device Type Management**: Ensure an optimized user experience with device-specific prerendering. Dynamic Prerendering delivers static mobile pages to mobile browser bots and static desktop pages to desktop browser bots. This enables a seamless experience across multiple devices.
 
-- **Custom Headers**: Gain control over prerendering behavior with custom HTTP headers. Specify which pages should be prerendered based on unique attributes. For example, target only English-language pages for prerendering, allowing you to focus on a specific user base.
+- **Customizable Headers**: Gain control over prerendering behavior with customizable passthrough, allowlist, and cache-control headers. Specify which pages should be prerendered based on unique attributes. For example, target only English-language pages for prerendering, allowing you to focus on a specific user base. For more information, refer to [Headers in Dynamic Prerendering](prerendering-headers/index.md).
 
 - **Synthetic Interactions**: Address content visibility issues arising from user interactions like scroll, click, or hover. Synthetic interactions can trigger this hidden content, ensuring it is included in the prerendered page. This ensures that all essential content is accessible to search engine bots, even if it normally requires user interaction to appear. For more information, refer to [Synthetic Interactions in Dynamic Prerendering](synthetic-interactions).
 
