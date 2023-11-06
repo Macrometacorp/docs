@@ -72,11 +72,13 @@ https://github.com/Macrometacorp/c8apidocs/pull/174
 
 DFP Note - What do we need for Transactions documentation?
 
-### Update 1
+### Added Global API Endpoint to Fabrics Tab
 
-Description of update.
+The Global API Endpoint for each fabric is now displayed in the Fabrics tab.
 
-[Topic name](index.md) and [topic name](index.md) were updated as a result of this change.
+![Global API Endpoint](/img/release-notes/18-00-global-api-endpoint.png)
+
+[APIs](../api-docs/) was updated as a result of this change.
 
 ### Update 1
 
