@@ -92,7 +92,7 @@ The following minor changes were added in this release.
 
 | Change # | Description |
 | -------- | ----------- |
-| x        | x           |
+
 |          |             |
 |          |             |
 
@@ -102,6 +102,7 @@ This release includes the following API changes.
 
 | Issue # | Description |
 | ------- | ----------- |
+| CON-1299 | In the API Reference, "integrations" were changed to "connections."          |
 | MET-330       | Response for `/_fabric/{fabric}/_api/metrics/query` now includes labels of fetched metrics.          |
 |         |             |
 |         |             |
