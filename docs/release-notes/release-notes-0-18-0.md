@@ -80,6 +80,20 @@ The Global API Endpoint for each fabric is now displayed in the Fabrics tab.
 
 [APIs](../api-docs/) was updated as a result of this change.
 
+### New Stream Worker Metadata Instances Parameter
+
+In some cases, you might need to distribute instances of the same stream worker across multiple nodes to have more scalability.
+
+This release extends `@App:instances()` metadata with a second optional parameter `distributed  = true/false`. If `true`, then the instances are run on multiple nodes. If `false`, then they all run on the same node.
+
+[Metadata](../cep/metadata) was updated as a result of this change.
+
+### Update 1
+
+Description of update.
+
+[Topic name](index.md) and [topic name](index.md) were updated as a result of this change.
+
 ### Update 1
 
 Description of update.

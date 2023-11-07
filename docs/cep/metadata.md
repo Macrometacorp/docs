@@ -56,6 +56,16 @@ For example, this annotation would run three instances of the stream worker:
 @App:instances('3')
 ```
 
+In some cases, you might need to distribute instances of the same stream worker across multiple nodes to have more scalability.
+
+`@App:instances()` metadata has a second optional parameter: `distributed  = true/false`. If `true`, then the instances are run on multiple nodes. If `false`, then they all run on the same node. Default is `true`.
+
+For example, this annotation would run three instances of the stream worker on the same node:
+
+```js
+@App:instances('3', distributed = false)
+```
+
 ## Docstrings and Other Information
 
 You can enter a comment with testing information, update logs, or other useful information at the beginning of the stream worker definition between `/*` and `*/`. This is similar to a `docstring` in functions.
