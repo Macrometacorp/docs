@@ -41,6 +41,8 @@ Changes include:
 - New data fields in Streams
 - In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
   - DFP note - There are now four, not six. Update those docs.
+- New API Endpoint button in stream workers 
+- New Account section in the sidebar - Scale tier - this might need a new feature thing
 
 Multiple pages and screenshots were updated as a result of these changes.
 
@@ -159,6 +161,6 @@ The following defects were fixed in this release.
 |   |   |
 |   |   |
 | STRM-254  | Deleting a global stream returns a 500 internal server error.  |
-|   |   |
+| STRM-371  | Users can successfully call APIs for disabled features.  |
 |   |   |
 |   |   |
