@@ -153,7 +153,7 @@ The following defects were fixed in this release.
 |   |   |
 |   |   |
 |   |   |
-|   |   |
+| STRM-254  | Deleting a global stream returns a 500 internal server error.  |
 |   |   |
 |   |   |
 |   |   |
