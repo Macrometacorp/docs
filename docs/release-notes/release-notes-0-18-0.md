@@ -88,9 +88,9 @@ Description of update.
 
 [Topic name](index.md) and [topic name](index.md) were updated as a result of this change.
 
-### Stream Workers Support Key-Value, Redis, and Dynamo Collections
+### Stream Workers Support All Collection Types
 
-Description of update.
+Stream workers now support for Key-Value, Redis, and Dynamo collections.
 
 [Topic name](index.md) and [topic name](index.md) were updated as a result of this change.
 
@@ -156,7 +156,7 @@ The following defects were fixed in this release.
 |   |   |
 |   |   |
 |   |   |
-|   |   |
+| DB-1484  | Objects are not created with field name as: _key,_id, and _rev.  |
 |   |   |
 | DB-2410  | Create API key should give error when 256 characters are given for a value as an API key ID.  |
 |   |   |
