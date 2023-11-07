@@ -86,14 +86,19 @@ Description of update.
 
 [Topic name](index.md) and [topic name](index.md) were updated as a result of this change.
 
+### Update 1
+
+Description of update.
+
+[Topic name](index.md) and [topic name](index.md) were updated as a result of this change.
+
 ### Miscellaneous Changes
 
 The following minor changes were added in this release.
 
 | Change # | Description |
 | -------- | ----------- |
-
-|          |             |
+| CE-617   | The internal rebalancing of the stream workers among the nodes was changed. All instances of a given stream worker were run only on one node before, and now are subject of evenly distribution on all available node.            |
 |          |             |
 
 ### API Updates
