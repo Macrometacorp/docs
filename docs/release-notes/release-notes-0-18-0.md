@@ -43,6 +43,7 @@ Changes include:
   - DFP note - There are now four, not six. Update those docs.
 - New API Endpoint button in stream workers 
 - New Account section in the sidebar - Scale tier - this might need a new feature thing
+- Hide Functions in sidebar if no EdgeWorker functions have been created.
 
 Multiple pages and screenshots were updated as a result of these changes.
 
@@ -161,7 +162,7 @@ The following defects were fixed in this release.
 | DB-2410  | Create API key should give error when 256 characters are given for a value as an API key ID.  |
 |   |   |
 |   |   |
-|   |   |
+| GUI-1799  | Complete name and email of logged in tenant not shown  |
 |   |   |
 |   |   |
 |   |   |
