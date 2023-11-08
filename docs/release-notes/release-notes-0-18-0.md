@@ -163,7 +163,7 @@ The following defects were fixed in this release.
 |   |   |
 |   |   |
 | GUI-1799  | Complete name and email of logged in tenant not shown  |
-|   |   |
+| GUI-1823  | Fixed dashboard typo in CPU Usage Global Metrics; graph showed value in seconds instead of ms.  |
 |   |   |
 |   |   |
 |   |   |
