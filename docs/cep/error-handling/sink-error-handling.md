@@ -47,5 +47,3 @@ FROM !HTTPSink;
 ```
 
 This example shows how to apply the `OnError.action='stream'` property to a sink, directing any errors encountered during event publication to a fault stream.
-
-Refer to [Wait and Retry Example](wait-and-retry-example.md) for a scenario where this property is implemented to handle connection interruptions.

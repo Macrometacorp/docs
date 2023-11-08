@@ -19,7 +19,7 @@ A fault stream inherits all attributes from the base stream, with the addition o
 
 The fault stream automatically captures errors from the associated base stream. The system generates this stream without explicit user definition.
 
-### Example
+## Example: Source with Fault Stream
 
 ```sql
 -- Stream definition with OnError.action='stream' to capture errors
@@ -40,5 +40,3 @@ FROM !CountStream;
 ```
 
 The provided example illustrates the application of `OnError.action='stream'` to a stream source, which directs error handling to a fault stream.
-
-Refer to [Stream Processing Error Handling](stream-processing-error-handling.md) for more advanced scenarios and examples.
