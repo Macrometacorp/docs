@@ -5,11 +5,11 @@ title: Wait and Retry Example
 
 # Error Handling: Wait and Retry Example
 
-This section demonstrates the implementation of the `OnError.action='stream'` property in a wait and retry error handling strategy at the sink level.
+This section demonstrates the implementation of the `OnError.action='wait'` property in a wait and retry error handling strategy at the sink level.
 
 ## Wait and Retry Strategy
 
-In a scenario where connections to external systems are intermittent, the `OnError.action='stream'` property enables a sink to temporarily hold event publication until the connection is re-established. This behavior introduces back pressure, preventing new events from being consumed until the issue is resolved.
+In a scenario where connections to external systems are intermittent, the `OnError.action='wait'` property enables a sink to temporarily hold event publication until the connection is re-established. This behavior introduces back pressure, preventing new events from being consumed until the issue is resolved.
 
 Here is an example demonstrating how to configure a sink to handle connection errors by using a wait and retry strategy:
 
