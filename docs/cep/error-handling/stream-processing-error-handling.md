@@ -3,17 +3,20 @@ sidebar_position: 40
 title: Stream Processing Error Handling
 ---
 
-By implementing the `OnError.action='stream'` property in a stream definition, any errors that occur during the processing of events can be captured and redirected to a fault stream automatically.
+By implementing the `OnError.action` property in a stream definition, any errors that occur during the processing of events can be captured and redirected to a fault stream automatically.
+
+The following actions are supported for error handling at stream:
+
+- `log` - Logs the error, and drops the message.
+- `stream` - Forward the error and the event to fault stream. This stream, indicated as `!<StreamName>`, is created implicitly and captures both the event that led to the error and the error details. A fault stream will be composed of the base stream’s attributes, plus an `_error` attribute containing error details.
 
 ## Fault Stream Concept
 
 A fault stream is an implicit stream created when the `OnError.action='stream'` property is applied. This fault stream captures both the event and the error details, allowing for further processing or logging.
 
 ```sql
-CREATE STREAM <stream name> WITH (type='<source type>', OnError.action='stream', <other properties>) (<attribute name> <attribute type>, ...);
+CREATE STREAM <stream name> WITH (type='<source type>', OnError.action='<action>', <other properties>) (<attribute name> <attribute type>, ...);
 ```
-
-The fault stream is named `!<StreamName>` and includes all attributes from the original stream, plus an `_error` attribute that contains the serialized error information.
 
 ## Example: Stream Function Error Handling
 
