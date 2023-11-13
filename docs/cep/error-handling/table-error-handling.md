@@ -3,17 +3,20 @@ sidebar_position: 50
 title: Error Handling with Tables
 ---
 
-When performing insert, delete, or update operations on tables, any errors that occur can be directed to a fault stream specific to that table. This is achieved by setting `OnError.action='STREAM'` and `on.error='STREAM'` within the table definition.
+When performing insert, delete, or update operations on tables, any errors that occur can be directed to a fault stream specific to that table. This is achieved by setting `OnError.action='<action'` and `on.error='STREAM'` within the table definition.
+
+The following actions are supported for error handling at tables:
+
+- `stream` - Forward the error and the event to fault stream. The fault stream, indicated as `!<TableName>`, automatically includes the table's attributes and an `_error` object containing the error details.
+- `wait` - Wait for some time (i.e. 5 seconds) and then retry.
 
 ## Fault Stream for Tables
 
-A fault stream for a table captures errors that arise from table operations, allowing for error events to be processed or logged separately from the main data flow.
+Apply the `OnError.action` and o`n.error='STREAM'` properties to a table to handle errors.
 
 ```sql
-CREATE STORE <table name> WITH (type='database', replication.type="global", collection.type="doc", OnError.action='STREAM', on.error='STREAM') (<attribute name> <attribute type>, ...);
+CREATE STORE <table name> WITH (type='database', replication.type="global", collection.type="doc", OnError.action='<action>', on.error='STREAM') (<attribute name> <attribute type>, ...);
 ```
-
-The fault stream, indicated as `!<TableName>`, automatically includes the table's attributes and an `_error` object containing the error details.
 
 ## Sample: Error Handling in Table Operations
 
