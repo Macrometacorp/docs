@@ -13,7 +13,7 @@ For more information, refer to [Error Handling at Source](source-error-handling.
 
 ## Errors at Sink
 
-For sinks, the same `OnError.action='stream'` property can be used to capture and handle errors. This ensures that any issues during the event publication process are properly logged and managed.
+For sinks, the same `OnError.action='stream'` property can be used to capture and handle errors. This ensures that any issues during the event publication process are properly managed.
 
 For more information, refer to [Error Handling at Sink](sink-error-handling.md).
 
