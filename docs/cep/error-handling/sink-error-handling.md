@@ -8,18 +8,16 @@ Handling errors in sinks is crucial when external systems become unavailable or 
 The following actions are supported for error handling at sink:
 
 - `log` - Logs the error, and drops the message.
-- `stream` - Forward the error and the event to fault stream.
+- `stream` - Forward the error and the event to fault stream. This stream, indicated as `!<StreamName>`, is created implicitly and captures both the event that led to the error and the error details. A fault stream will be composed of the base stream’s attributes, plus an `_error` attribute containing error details.
 - `wait` - Wait for some time (i.e. 5 seconds) and then retry.
 
 ## OnError.action Property
 
-Apply the `OnError.action` property to a sink to redirect errors to a fault stream. This stream, indicated as `!<StreamName>`, is created implicitly and captures both the event that led to the error and the error details.
+Apply the `OnError.action` property to a sink handle errors. The syntax below shows how to redirect errors to a fault stream.
 
 ```sql
-CREATE SINK <stream name> WITH (type='<sink type>', OnError.action='stream', <other properties>) (<attribute name> <attribute type>, ...);
+CREATE SINK <stream name> WITH (type='<sink type>', OnError.action='<action>', <other properties>) (<attribute name> <attribute type>, ...);
 ```
-
-A fault stream will be composed of the base stream’s attributes, plus an `_error` attribute containing error details.
 
 ## Supported Sink Types
 
