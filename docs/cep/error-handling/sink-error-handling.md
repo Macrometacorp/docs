@@ -13,7 +13,7 @@ The following actions are supported for error handling at sink:
 
 ## OnError.action Property
 
-Apply the `OnError.action` property to a sink handle errors. The syntax below shows how to redirect errors to a fault stream.
+Apply the `OnError.action` property to a sink to handle errors.
 
 ```sql
 CREATE SINK <stream name> WITH (type='<sink type>', OnError.action='<action>', <other properties>) (<attribute name> <attribute type>, ...);
