@@ -3,11 +3,17 @@ sidebar_position: 30
 title: Error Handling at Sink
 ---
 
-Handling errors in sinks is crucial when external systems become unavailable or errors occur during event publication. The `OnError.action='stream'` property provides a standardized approach to manage these errors.
+Handling errors in sinks is crucial when external systems become unavailable or errors occur during event publication. The `OnError.action` property provides a standardized approach to manage these errors.
+
+The following actions are supported for error handling at sink:
+
+- `log` - Logs the error, and drops the message.
+- `stream` - Forward the error and the event to fault stream.
+- `wait` - Wait for some time (i.e. 5 seconds) and then retry.
 
 ## OnError.action Property
 
-Apply the `OnError.action='stream'` property to a sink to redirect errors to a fault stream. This stream, indicated as `!<StreamName>`, is created implicitly and captures both the event that led to the error and the error details.
+Apply the `OnError.action` property to a sink to redirect errors to a fault stream. This stream, indicated as `!<StreamName>`, is created implicitly and captures both the event that led to the error and the error details.
 
 ```sql
 CREATE SINK <stream name> WITH (type='<sink type>', OnError.action='stream', <other properties>) (<attribute name> <attribute type>, ...);
