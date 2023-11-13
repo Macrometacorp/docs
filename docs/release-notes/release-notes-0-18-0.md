@@ -93,7 +93,7 @@ Description of update.
 
 Stream workers now support Key-Value, Redis, and Dynamo collections.
 
-[Tables (Collections)](../cep/table/index) was updated as a result of this change.
+[Tables (Collections)](../cep/table/) was updated as a result of this change.
 
 ### Update 1
 
