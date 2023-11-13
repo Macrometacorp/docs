@@ -5,7 +5,7 @@ title: Error Handling at Source
 
 Errors from stream elements that subscribe to a source are propagated to the source that emitted the event. This behavior can now be modified by implementing the `OnError.action` property within the stream definition.
 
-The following actions are supported for error handling at sink:
+The following actions are supported for error handling at source:
 
 - `log` - Logs the error, and drops the message.
 - `stream` - Forward the error and the event to fault stream. This stream, indicated as `!<StreamName>`, is created implicitly and captures both the event that led to the error and the error details. A fault stream will be composed of the base stream’s attributes, plus an `_error` attribute containing error details.
