@@ -10,6 +10,6 @@ Macrometa collection connectors allow you to send data to an existing AWS S3 col
 - Remotely accessible, running AWS S3 instance.
 - Source collections must not be empty.
 
-## MongoDB Target
+## S3 Target
 
 No additional notes.
