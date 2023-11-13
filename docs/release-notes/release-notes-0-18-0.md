@@ -91,9 +91,9 @@ Description of update.
 
 ### Stream Workers Support All Collection Types
 
-Stream workers now support for Key-Value, Redis, and Dynamo collections.
+Stream workers now support Key-Value, Redis, and Dynamo collections.
 
-[Topic name](index.md) and [topic name](index.md) were updated as a result of this change.
+[Tables (Collections)](../cep/table/) was updated as a result of this change.
 
 ### Update 1
 
