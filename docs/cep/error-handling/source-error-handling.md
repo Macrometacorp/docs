@@ -5,20 +5,17 @@ title: Error Handling at Source
 
 Errors from stream elements that subscribe to a source are propagated to the source that emitted the event. This behavior can now be modified by implementing the `OnError.action` property within the stream definition.
 
-## Applying OnError.action Property
-
-The `OnError.action` property redirects errors and their associated events to a fault stream. This stream is identified by the prefix `!` followed by the name of the original stream.
-
-```sql
-CREATE SOURCE <stream name> WITH (type='<source type>', OnError.action='stream', <other properties>) (<attribute name> <attribute type>, ...);
-```
-
-A fault stream inherits all attributes from the base stream, with the addition of an `_error` attribute, which is an object containing the error details.
-
-The following actions are supported for error handling at source:
+The following actions are supported for error handling at sink:
 
 - `log` - Logs the error, and drops the message.
-- `stream` - Forward the error and the event to fault stream.
+- `stream` - Forward the error and the event to fault stream. This stream, indicated as `!<StreamName>`, is created implicitly and captures both the event that led to the error and the error details. A fault stream will be composed of the base stream’s attributes, plus an `_error` attribute containing error details.
+
+## OnError.action Property
+
+Apply the `OnError.action` property to a source to handle errors.
+```sql
+CREATE SOURCE <stream name> WITH (type='<source type>', OnError.action='<action>', <other properties>) (<attribute name> <attribute type>, ...);
+```
 
 ## Fault Stream Details
 
