@@ -18,7 +18,6 @@ Here is an example demonstrating how to configure a sink to handle connection er
 CREATE STREAM GlucoseReadingStream (locationRoom string, locationBed string, timeStamp string, sensorID long, patientFirstName string, patientLastName string, sensorValue double);
 
 -- Sink configuration with the OnError.action='wait' property for wait and retry strategy
-@OnError(action='wait')
 CREATE SINK AbnormalGlucoseReadingStream WITH (type = 'http', OnError.action='wait', publisher.url = "http://localhost:8080/logger", method = "POST", map.type = 'json') (timeStampInLong long, locationRoom string, locationBed string, sensorID long, patientFullName string, sensorReadingValue double);
 
 @info(name='abnormal-reading-identifier')
