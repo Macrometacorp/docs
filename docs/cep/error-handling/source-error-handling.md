@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Error Handling at Source
 ---
 
-Errors from stream elements that subscribe to a source are propagated to the source that emitted the event. This behavior can now be modified by implementing the `OnError.action='stream'` property within the stream definition.
+Errors from stream elements that subscribe to a source are propagated to the source that emitted the event. This behavior can now be modified by implementing the `OnError.action` property within the stream definition.
 
 ## Applying OnError.action Property
 
@@ -14,6 +14,11 @@ CREATE SOURCE <stream name> WITH (type='<source type>', OnError.action='stream',
 ```
 
 A fault stream inherits all attributes from the base stream, with the addition of an `_error` attribute, which is an object containing the error details.
+
+The following actions are supported for error handling at source:
+
+- `log` - Logs the error, and drops the message.
+- `stream` - Forward the error and the event to fault stream.
 
 ## Fault Stream Details
 
