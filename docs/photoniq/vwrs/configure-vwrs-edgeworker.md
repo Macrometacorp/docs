@@ -130,8 +130,8 @@ const virtualWaitingRoomConfiguration = new VirtualWaitingRoom({
    apiKey: "YourAPIKey",
    digestKey: "YourVwrsDigestKey",
    encryptionKey: "YourVwrsEncryptionKey",
-   vwrsMetricHost: "api-sfmetrics-stg.gdn-akamai.com",
-   vwrsHost: "api-sf-stg.gdn-akamai.com",
+   vwrsMetricHost: "api-demo-vwr-metrics.paas.macrometa.io",
+   vwrsHost: "api-demo-vwr.paas.macrometa.io",
    isFailOpen: "true",
    originAccessMode: "FIXED",
    statusConfigLimits: {

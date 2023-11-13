@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://api-vwrs-sf-stg.gdn-akamai.com"
+      "url": "https://api-demo-vwr.paas.macrometa.io"
     }
   ],
   "components": {
