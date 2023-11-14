@@ -48,7 +48,7 @@ This code example shows how to create a collection for saving key-value pairs.
 ```
 
 </TabItem>
-<TabItem value="js" label="Javascript">
+<TabItem value="js" label="JavaScript SDK">
 
 This code example shows how to create a collection for saving key-value pairs.
 
