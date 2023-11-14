@@ -113,8 +113,8 @@ The following minor changes were added in this release.
 
 | Change # | Description |
 | -------- | ----------- |
-| CE-617   | The internal rebalancing of the stream workers among the nodes was changed. All instances of a given stream worker were run only on one node before, and now are subject of evenly distribution on all available node.            |
-|          |             |
+| CEP-617   | The internal rebalancing of the stream workers among the nodes was changed. All instances of a given stream worker were run only on one node before, and now are subject of evenly distribution on all available node.            |
+| GUI-1819  | The link to the Functions page no longer appears in the side menu unless the user has created an EdgeWorker.            |
 
 ### API Updates
 
@@ -162,13 +162,13 @@ The following defects were fixed in this release.
 |   |   |
 |   |   |
 |   |   |
-|   |   |
 | DB-1484  | Objects are not created with field name as: _key,_id, and _rev.  |
 |   |   |
 | DB-2410  | Create API key should give error when 256 characters are given for a value as an API key ID.  |
 |   |   |
 |   |   |
 | GUI-1799  | Complete name and email of logged in tenant not shown  |
+| GUI-1804  | The Generate EdgeWorker window closes if you double-click any text field.  |
 | GUI-1823  | Fixed dashboard typo in CPU Usage Global Metrics; graph showed value in seconds instead of ms.  |
 |   |   |
 |   |   |
