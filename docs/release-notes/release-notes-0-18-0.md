@@ -63,17 +63,14 @@ A new target connector for AWS S3 is now available to use with Macrometa.
 
 The following features updates are included in this release.
 
-### New API Endpoint - List Groups
+### New Group ID API Endpoints
 
-A new API endpoint is available that lists all the groups in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groups`
+Two new API endpoints have been added to allow you to more efficiently manage key-value group IDs:
 
-**DFP NOTE - Update KV docs? DB-2755**
+- List all the groups in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groups`
+- Update the group ID for all the documents belonging to a particular group ID in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groupID`
 
-### New API Endpoint - Update Group ID
-
-A new API endpoint is available that updates the group ID for all the documents belonging to a particular group ID in a collection with the Group ID feature enabled.
-
-**DFP NOTE - Update KV docs? DB-2811**
+was added as a result of this change.
 
 ### Transactions API
 
