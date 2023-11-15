@@ -27,7 +27,7 @@ Import documents from a file. For more information, refer to [Add Documents from
 
 ## Export Documents
 
-Export allows you to download the documents in the collection as a JSON or CSV file, which can be used for data pre-processing, cleaning, analytics, and so on. You can export all documents or apply a filter to export a subset.
+Export allows you to download the documents in the collection as a JSON file, which can be used for data pre-processing, cleaning, analytics, and so on. You can export all documents or apply a filter to export a subset.
 
 ## Filter Documents
 

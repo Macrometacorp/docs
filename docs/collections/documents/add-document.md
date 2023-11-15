@@ -27,16 +27,16 @@ Follow these instructions to add documents to an existing document collection us
 
 ## Add Documents from a File
 
-Follow these instructions to add documents to an existing document collection from a JSON or CSV file.
+Follow these instructions to add documents to an existing document collection from a JSON file.
 
 ![Import a Document](/img/collections/import-docs.png)
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Data > Collections**.
-1. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
-1. Click the import icon, which is a down arrow pointing to a file box.
-1. Click **Choose File**, then browse to the file containing the documents you want to import.
-1. Fill out any desired options and then click **Import Documents**.
+2. Click **Data > Collections**.
+3. In the collection list, click the name of the document collection to which you want to add a document. If you aren't sure which collections are document collections, then you can click **Document** at the top of the page to see just document collections.
+4. Click the import icon, which is a down arrow pointing to a file box.
+5. Click **Choose File**, then browse to the file containing the documents you want to import.
+6. Fill out any desired options and then click **Import Documents**.
 
    - **Select Primary Key -** Macrometa can autogenerate your primary key, or you can select one from the file.
    - **Replace docs -** Select this option to overwrite any existing documents with the same `_key`.

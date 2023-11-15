@@ -41,16 +41,16 @@ To add edge documents to a collection:
 
 #### Add Edges from a File
 
-To add edge documents to a collection from a JSON or CSV file:
+To add edge documents to a collection from a JSON file:
 
 ![Import a Document](/img/collections/import-docs.png)
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Collections**.
-1. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
-1. Click the import icon, which is a down arrow pointing to a file box.
-1. Click **Choose File**, then browse to the file containing the documents you want to import.
-1. Fill out any desired options and then click **Import Documents**.
+2. Click **Collections**.
+3. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
+4. Click the import icon, which is a down arrow pointing to a file box.
+5. Click **Choose File**, then browse to the file containing the documents you want to import.
+6. Fill out any desired options and then click **Import Documents**.
 
    - **Select Primary Key -** Macrometa can autogenerate your primary key, or you can select one from the file.
    - **Replace docs -** Select this option to overwrite any existing documents with the same `_key`.
