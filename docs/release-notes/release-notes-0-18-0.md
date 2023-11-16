@@ -70,7 +70,7 @@ Two new API endpoints have been added to allow you to more efficiently manage ke
 - List all the groups in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groups`
 - Update the group ID for all the documents belonging to a particular group ID in a collection with the Group ID feature enabled: `PUT /_fabric/{fabric}/_api/kv/{collection}/groupID`
 
-was added as a result of this change.
+[Manage Group IDs](../collections/keyvalue/manage-group-ids.md) was added as a result of this change.
 
 ### Transactions API
 
