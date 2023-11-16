@@ -88,11 +88,14 @@ The Global API Endpoint for each fabric is now displayed in the Fabrics tab.
 
 [APIs](../api-docs/) was updated as a result of this change.
 
-### Updated Stream Worker Error Handling
+### Enhanced Error Handling for Stream Workers
 
-Description of update.
+- Introduced `OnError.action='stream'` Configuration: Stream worker definitions now support an improved error handling configuration. By setting `OnError.action='stream'` for streams, sources, sinks, and stores, you can automatically redirect errors to a fault stream, denoted as `!<StreamName>`.
+- When `OnError.action='stream'` is applied, the system automatically creates a fault stream that includes all attributes of the original stream, along with an additional `_error` attribute to store error details.
+- The new fault stream mechanism captures and handles errors from various stream elements including processes, functions, and executors.
+- Error handling now applies to tables as well.
 
-[Topic name](index.md) and [topic name](index.md) were updated as a result of this change.
+Topics in [Stream Worker Error Handling](../cep/error-handling/) were updated as a result of this change.
 
 ### Stream Workers Support All Collection Types
 
