@@ -45,6 +45,7 @@ Changes include:
 - New API Endpoint button in stream workers
 - New Account section in the sidebar - Scale tier - this might need a new feature thing
 - Hide Functions in sidebar if no EdgeWorker functions have been created.
+- Minor changes to field names in various screens.
 
 Multiple pages and screenshots were updated as a result of these changes.
 
