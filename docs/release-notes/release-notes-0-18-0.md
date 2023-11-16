@@ -42,6 +42,7 @@ Changes include:
 - In Document, Graph Edge, and Redis Mode collections, a button was added that allows you to refresh documents in the page.
   ![New Refresh Documents Button](/img/release-notes/18-00-refresh-button.png)
 - New data fields in Streams
+- New fields in the New Graph Edge window.
 - In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
   - DFP note - There are now four, not six. Update those docs.
 - New API Endpoint button in stream workers
