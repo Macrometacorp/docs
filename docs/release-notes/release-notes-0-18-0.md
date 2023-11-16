@@ -31,14 +31,16 @@ Description of feature.
 
 Changes include:
 
-- Document Store collections are now called Document collections. - DONE
+- Document Store collections are now called Document collections.
 - Key-Value Store collections are now called Key-Value collections.
 - New data fields in collection Data tab screens.
   ![New Collection Data Fields](/img/release-notes/18-00-collection-data-fields.png)
 - New data fields in collection Indexes tab screens.
   ![New Collection Indexes Fields](/img/release-notes/18-00-collection-indexes-fields.png)
 - New data fields in collection Streams tab screens
+  ![New Collection Streams Fields](/img/release-notes/18-00-collection-stream-fields.png)
 - In Document, Graph Edge, and Redis Mode collections, a button was added that allows you to refresh documents in the page.
+  ![New Refresh Documents Button](/img/release-notes/18-00-refresh-button.png)
 - New data fields in Streams
 - In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
   - DFP note - There are now four, not six. Update those docs.
