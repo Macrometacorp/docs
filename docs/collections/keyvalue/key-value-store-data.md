@@ -13,6 +13,14 @@ This is a complex tab which contains the following items.
 
 The name of the collection that you are viewing is displayed above the tab, in the upper left corner of the screen.
 
+## Documents
+
+Shows the number of documents in the collection.
+
+## Data Storage
+
+Displays the amount of memory the data in the collection consumes.
+
 ## Create New Pair
 
 Create a new key-value pair inside the selected collection and add data. For more information, refer to [Add Key-Value Pairs](add-key-value-pairs.md).
