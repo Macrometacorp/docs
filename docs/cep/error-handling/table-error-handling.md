@@ -21,7 +21,7 @@ CREATE STORE <table name> WITH (type='database', replication.type="global", coll
 ## Sample: Error Handling in Table Operations
 
 ```sql
-@App:name("grainier-test-db")
+@App:name("test-db")
 @App:qlVersion('2')
 CREATE TRIGGER MyTrigger WITH ( interval = 5 sec );
 
