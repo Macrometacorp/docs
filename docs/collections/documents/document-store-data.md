@@ -29,6 +29,10 @@ Import documents from a file. For more information, refer to [Add Documents from
 
 Export allows you to download the documents in the collection as a JSON file, which can be used for data pre-processing, cleaning, analytics, and so on. You can export all documents or apply a filter to export a subset.
 
+## Refresh Documents
+
+Refreshing documents updates the document list with any changes that might have occurred without triggering a page refresh.
+
 ## Filter Documents
 
 Click the **Filter Collection** (funnel) icon to apply a filter to your document view.

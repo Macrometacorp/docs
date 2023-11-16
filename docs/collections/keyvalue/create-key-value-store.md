@@ -19,10 +19,10 @@ Follow these instructions to create a new collection using the GDN console web U
 4. Click **Key-Value Store**.
 5. Enter information about the collection and then click **Create**.
 
-   - **Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
+   - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
+   - **Collection stream -** Enable streams for all locations for this collection.
+   - **Group ID -** Enable the **Group ID** field in key-value documents.
    - **Expiration -** Enable expiration. This allows key-value documents to be removed at a certain date and time.
-   - **Group -** Enable the **Group ID** field in key-value documents.
-   - **Enable Collection stream -** Enable streams for all locations for this collection.
    - **Blob storage -** (If enabled on your account.) Allows you to store blob files in the collection.
 
 </TabItem>
