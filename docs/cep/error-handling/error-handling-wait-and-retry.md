@@ -28,7 +28,7 @@ from GlucoseReadingStream[sensorValue > 220];
 
 ## Prerequisites
 
-Ensure that the mock logger service is available for download as previously specified.
+[Download the mock logger service](https://github.com/mohanvive/siddhi-mock-services/releases/download/v2.0.0/logservice-1.0.0.jar).
 
 ## Input and Output
 
