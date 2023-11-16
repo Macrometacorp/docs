@@ -68,7 +68,7 @@ The following features updates are included in this release.
 Two new API endpoints have been added to allow you to more efficiently manage key-value group IDs:
 
 - List all the groups in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groups`
-- Update the group ID for all the documents belonging to a particular group ID in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groupID`
+- Update the group ID for all the documents belonging to a particular group ID in a collection with the Group ID feature enabled: `PUT /_fabric/{fabric}/_api/kv/{collection}/groupID`
 
 was added as a result of this change.
 
