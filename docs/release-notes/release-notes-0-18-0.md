@@ -38,10 +38,11 @@ Changes include:
 - New data fields in collection Indexes tab screens.
   ![New Collection Indexes Fields](/img/release-notes/18-00-collection-indexes-fields.png)
 - New data fields in collection Streams tab screens
+- In Document, Graph Edge, and Redis Mode collections, a button was added that allows you to refresh documents in the page.
 - New data fields in Streams
 - In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
   - DFP note - There are now four, not six. Update those docs.
-- New API Endpoint button in stream workers 
+- New API Endpoint button in stream workers
 - New Account section in the sidebar - Scale tier - this might need a new feature thing
 - Hide Functions in sidebar if no EdgeWorker functions have been created.
 
