@@ -32,10 +32,22 @@ from GlucoseReadingStream[sensorValue > 220];
 
 ## Input and Output
 
-- The event sent to `GlucoseReadingStream` should be formatted as follows:
+The example below demostrates `wait and retry`.
+- In the case of a service unavailability, the sink will retry sending the event as per the configured wait and retry logic.
+- Upon service restoration, events that were held will be published to the HTTP endpoint and logged accordingly.
+
+Example:
+1. The event sent to `GlucoseReadingStream` should be formatted as follows:
 
     [`'Get-1024'`, `'Level2'`, `'1576829362'`, `10348`, `'Alex'`, `'John'`, `250`]
+    
 
-- In the case of a service unavailability, the sink will retry sending the event as per the configured wait and retry logic.
+2. execute the command to start the mock logger service.
 
-- Upon service restoration, events that were held will be published to the HTTP endpoint and logged accordingly.
+    `java -jar logservice-1.0.0.jar`
+
+3. Now, you could see the event sent in step #1 is get logged in the logger service console as given below.
+
+    ```bash
+    LoggerService:42 - {event={timeStampInLong=1.576829362E9, locationRoom=Get-1024, locationBed=Level2, sensorID=10348.0, patientFullName=Alex John, sensorReadingValue=250.0}}
+    ```
