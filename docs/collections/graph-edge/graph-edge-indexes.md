@@ -1,6 +1,6 @@
 ---
 title: Graph Edge Collection Indexes
-sidebar_position: 50
+sidebar_position: 20
 ---
 
 Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../indexing/index.md).
@@ -20,7 +20,7 @@ Refer to each index type for more information about the index and for instructio
 
 View active indexes for a collection on the Indexes tab. The section explains what each element of the tab means.
 
-![Document Collection Indexes Tab](/img/collections/doc-store-indexes.png)
+![Document Collection Indexes Tab](/img/collections/graph-edge-indexes.png)
 
 - **Indexes -** Number of non-search indexes.
 - **Index Storage -** Amount of disk space used by non-search indexes.
