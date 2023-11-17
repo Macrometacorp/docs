@@ -9,9 +9,9 @@ Macrometa has several graphs based on sample datasets that you can create and us
 With the default "Search Depth" of 2 of the graph viewer, you might not see all edges of some graphs unless you load the full graph.
 :::
 
-## Create Example Graph
+## Create a Sample Dataset Graph
 
-To create an example graph:
+To create a sample dataset graph:
 
 1. In the Macrometa web console, navigate to **Data > Graphs**.
 2. Click **New Graph**, and then click **Sample Datasets**.
