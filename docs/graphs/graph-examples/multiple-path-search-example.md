@@ -5,11 +5,87 @@ title: Multiple Path Search (MPS) Example
 
 The shortest path algorithm is designed to find a single shortest path between two vertices. However, in some cases, there might be multiple shortest paths with the same length, and you might want to retrieve all of them.
 
-Consider the following graph based on the [MPS Graph](sample-dataset-graphs#the-mps-graph) example:
+Consider the following graph:
 
 ![MPS Example Graph](/img/graphs/mps_graph.png)
 
 A [shortest path query](../graph-queries/shortest-path-queries/) from **A** to **C** might return either `A -> B -> C` or `A -> D -> C`, but it's not guaranteed which one will be returned (ignoring edge weights in this example).
+
+## MPS Example Data
+
+MPS vertices, import into Document collection called mps_verts:
+
+```json
+[
+  {
+    "_key": "A"
+  },
+  {
+    "_key": "B"
+  },
+  {
+    "_key": "C"
+  },
+  {
+    "_key": "D"
+  },
+  {
+    "_key": "E"
+  },
+  {
+    "_key": "F"
+  }
+]
+```
+
+MPS edges, import into Graph Edge collection called mps_edges:
+
+```json
+[
+  {
+    "_from": "mps_verts/A",
+    "_key": "-7Xtc1p2KF29QoN8LxJzNx-",
+    "_to": "mps_verts/B",
+    "vertex": "A"
+  },
+  {
+    "_from": "mps_verts/A",
+    "_key": "-Zc3OSyobGuukQ5S6HTLoGV",
+    "_to": "mps_verts/E",
+    "vertex": "A"
+  },
+  {
+    "_from": "mps_verts/A",
+    "_key": "-uAAL2GIhG5eAvGZruTF_2-",
+    "_to": "mps_verts/D",
+    "vertex": "A"
+  },
+  {
+    "_from": "mps_verts/B",
+    "_key": "-iRi0o8SmHJHaQ26axgFe3F",
+    "_to": "mps_verts/C",
+    "vertex": "B"
+  },
+  {
+    "_from": "mps_verts/D",
+    "_key": "-xaQUYPtzIuTbMm2Fynv3qV",
+    "_to": "mps_verts/C",
+    "vertex": "D"
+  },
+  {
+    "_from": "mps_verts/E",
+    "_key": "-fkKrokGqFP56aKHZbeMHJk",
+    "_to": "mps_verts/F",
+    "vertex": "E"
+  },
+  {
+    "_from": "mps_verts/F",
+    "_key": "-JOT3Np0FGd5zcs02dDNTmV",
+    "_to": "mps_verts/C",
+    "vertex": "F"
+  }
+]
+```
 
 ## Finding the Shortest Path Length
 
