@@ -20,7 +20,7 @@ Follow these instructions to delete a graph using the GDN console web UI.
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
 2. Click **Data > Graphs**.
 3. Next the graph that you want to delete, click **Edit**.
-4. Click **Delete**.
+4. Click **Delete graph**.
 5. When the system asks you to confirm your choice, it also displays a checkbox with the option to also drop collections.
 
    If you select this checkbox, then Macrometa also deletes any edge or vertex collections associated with the graph that are not associated with other graphs.
