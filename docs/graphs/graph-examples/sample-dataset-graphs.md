@@ -21,7 +21,7 @@ To create an example graph:
 
 This graph shows a set of european cities, and their fictional traveling distances as connections. The cities as vertices in two vertex collections - `germanCity` and `frenchCity`. The edges are their interconnections in several edge collections: `frenchHighway`, `germanHighway`, and `internationalHighway`.
 
-![Cities Example Graph](/img/graphs/cities_graph.png)
+![Route Planning Example Graph](/img/graphs/cities_graph.png)
 
 ## The Social Graph
 
