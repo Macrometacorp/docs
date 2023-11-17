@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Shortest Path Examples
 ---
 
-These examples are based on the [Traversal Graph](../../graph-examples/example-graphs.md#the-traversal-graph). Create a graph based on the example graph to follow along.
+These examples are based on the [Traversal Graph](../../graph-examples/sample-dataset-graphs.md#the-traversal-graph). Create a graph based on the example graph to follow along.
 
 ![traversal graph](/img/graphs/traversal_graph.png)
 

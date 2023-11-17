@@ -10,7 +10,7 @@ Once you have created at least one vertex collection and at least one edge colle
 
 For more information about creating collections for graphs, refer to [Create a Vertex Collection](create-vertex-collection) and [Create a Graph Edge Collection](create-graph-edge-collection).
 
-You can also create an example graph based on Macrometa's pre-loaded examples, which include all required datasets. You do not need to create any collections for those. For more information about example graphs, refer to [Example Graphs](../graph-examples/example-graphs).
+You can also create an example graph based on Macrometa's pre-loaded examples, which include all required datasets. You do not need to create any collections for those. For more information about example graphs, refer to [Example Graphs](../graph-examples/sample-dataset-graphs).
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -28,7 +28,7 @@ Follow these instructions to create a new graph using the GDN console web UI.
 1. Click **Sample Datasets**.
 2. Next to the example graph you want to make, click **Create**.
 
-   Macrometa creates the named graph and the collections with vertex and edge data that the graph is based on. For more information about example graphs, refer to [Example Graphs](../graph-examples/example-graphs).
+   Macrometa creates the named graph and the collections with vertex and edge data that the graph is based on. For more information about example graphs, refer to [Example Graphs](../graph-examples/sample-dataset-graphs).
 
 #### Create a Graph Based on Your Collections
 

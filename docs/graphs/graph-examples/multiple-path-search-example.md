@@ -5,7 +5,7 @@ title: Multiple Path Search (MPS) Example
 
 The shortest path algorithm is designed to find a single shortest path between two vertices. However, in some cases, there might be multiple shortest paths with the same length, and you might want to retrieve all of them.
 
-Consider the following graph based on the [MPS Graph](example-graphs#the-mps-graph) example:
+Consider the following graph based on the [MPS Graph](sample-dataset-graphs#the-mps-graph) example:
 
 ![MPS Example Graph](/img/graphs/mps_graph.png)
 

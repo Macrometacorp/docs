@@ -1,9 +1,9 @@
 ---
-title: Example Graphs
+title: Sample Dataset Graphs
 sidebar_position: 10
 ---
 
-Macrometa has several example graphs that you can create and use to explore the GDN graph functionality. When you create an example graph, Macrometa creates the named graph as well as collections loaded with vertex and edge data.
+Macrometa has several graphs based on sample datasets that you can create and use to explore the GDN graph functionality. When you create a graph based on sample datasets, Macrometa creates the named graph as well as collections loaded with vertex and edge data.
 
 :::note
 With the default "Search Depth" of 2 of the graph viewer, you might not see all edges of some graphs unless you load the full graph.

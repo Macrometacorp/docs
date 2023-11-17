@@ -5,7 +5,7 @@ title: Traversal Examples
 
 This page presents several examples of graph traversals, starting with a very simple, no-code explanation and ending with examples of how to filter graph results.
 
-The graph in the following examples is based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). To follow along, create this example graph and run any of the queries provided in this page.
+The graph in the following examples is based on the [traversal graph](../../graph-examples/sample-dataset-graphs#the-traversal-graph). To follow along, create this example graph and run any of the queries provided in this page.
 
 ![traversal_graph](/img/graphs/traversal_graph.png)
 
