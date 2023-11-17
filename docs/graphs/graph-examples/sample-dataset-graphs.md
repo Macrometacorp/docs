@@ -14,24 +14,21 @@ With the default "Search Depth" of 2 of the graph viewer, you might not see all 
 To create an example graph:
 
 1. In the Macrometa web console, navigate to **Data > Graphs**.
-2. Click **New Graph**, and then click **Examples**.
+2. Click **New Graph**, and then click **Sample Datasets**.
 3. Click **Create** next to the graph that you want to create. The graphs are described below.
 
-## The Knows Graph
+## The Social Graph
 
-The Knows Graph shows a group of people that know each other.
-
-![Persons relation Example Graph](/img/graphs/knows_graph.png)
+The Social Graph shows a group of people that know each other.
 
 The Knows Graph consists of one vertex collection, `persons`, connected via one edge collection, `knows`.
-It contains five persons: _Alice_, _Bob_, _Charlie_, _Dave_ and _Eve_.
+It contains five persons: _Alice_, _Bob_, _Charley_, _Dave_ and _Diana_.
 The person records have the following directed relations:
 
-- _Alice_ knows _Bob_
-- _Bob_ knows _Charlie_
-- _Bob_ knows _Dave_
-- _Eve_ knows _Alice_
-- _Eve_ knows _Bob_
+- _Alice_ is married to _Bob_
+- _Alice_ knows _Charly_
+- _Bob_ knows _Diana_
+- _Charly_ knows _Diana_
 
 ## The Traversal Graph
 
