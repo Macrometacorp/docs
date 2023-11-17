@@ -170,7 +170,7 @@ C8QL does not provide a direct method to remove vertices with associated edges. 
 
 **Remove a Vertex from One Collection**
 
-This example, demonstrates how to remove a vertex and its associated edges from a graph. The query removes the vertex **eve** from the [knows example graph](../graph-examples/sample-dataset-graphs#the-knows-graph), as well as the edges `eve -> alice` and `eve -> bob`.
+This example, demonstrates how to remove a vertex and its associated edges from a graph. The query removes the vertex **eve** from this example graph, as well as the edges `eve -> alice` and `eve -> bob`.
 
 ![Knows Example Graph](/img/graphs/knows_graph.png)
 
