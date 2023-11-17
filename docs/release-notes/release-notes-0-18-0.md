@@ -43,6 +43,7 @@ Changes include:
   ![New Refresh Documents Button](/img/release-notes/18-00-refresh-button.png)
 - New data fields in Streams
 - New fields in the New Graph Edge window.
+- Example Graphs are now Sample Datasets and have been updated.
 - In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
   - DFP note - There are now four, not six. Update those docs.
 - New API Endpoint button in stream workers
@@ -71,6 +72,12 @@ You can now chat directly with Macrometa Support in the web console. Click the i
 A new target connector for AWS S3 is now available to use with Macrometa.
 
 [S3 Connector](../connections/connector-types/s3-connector) was added as a result of this feature.
+
+### New memcache Function for Stream Workers
+
+Description of update.
+
+
 
 ## Feature Updates
 
@@ -106,12 +113,6 @@ Topics in [Stream Worker Error Handling](../cep/error-handling/) were updated as
 Stream workers now support Key-Value, Redis, and Dynamo collections.
 
 [Tables (Collections)](../cep/table/) was updated as a result of this change.
-
-### Update 1
-
-Description of update.
-
-[Topic name](index.md) and [topic name](index.md) were updated as a result of this change.
 
 ### Miscellaneous Changes
 
