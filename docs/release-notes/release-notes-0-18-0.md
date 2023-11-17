@@ -52,6 +52,14 @@ Changes include:
 
 Multiple pages and screenshots were updated as a result of these changes.
 
+### Added Global API Endpoint to Fabrics Tab
+
+The Global API Endpoint for each fabric is now displayed in the Fabrics tab.
+
+![Global API Endpoint](/img/release-notes/18-00-global-api-endpoint.png)
+
+[APIs](../api-docs/) was updated as a result of this change.
+
 ### In-app Support Chat Widget
 
 You can now chat directly with Macrometa Support in the web console. Click the icon in the lower right of all pages to begin.
@@ -83,13 +91,6 @@ https://github.com/Macrometacorp/c8apidocs/pull/174
 
 DFP Note - What do we need for Transactions documentation?
 
-### Added Global API Endpoint to Fabrics Tab
-
-The Global API Endpoint for each fabric is now displayed in the Fabrics tab.
-
-![Global API Endpoint](/img/release-notes/18-00-global-api-endpoint.png)
-
-[APIs](../api-docs/) was updated as a result of this change.
 
 ### Enhanced Error Handling for Stream Workers
 
