@@ -45,13 +45,19 @@ Changes include:
   ![New Streams Fields](/img/release-notes/18-00-streams-fields.png)
 - New fields in the New Graph Edge screen in Graph Edge collections.
 - Example Graphs are now Sample Datasets.
-- New API Endpoint button in Stream Workers screen.
-  ![API Endpoint Button](/img/release-notes/18-00-api-endpoint-button.png)
 - New Account section in the sidebar - Scale tier - this might need a new feature thing
 - Hide Functions in sidebar if no EdgeWorker functions have been created.
 - Minor changes to field names in various screens.
 
 Multiple pages and screenshots were updated as a result of these changes.
+
+### Added API Endpoint to Stream Workers
+
+A new **API Endpoint** button in Stream Workers screen generates cURL commands to allow you to interact with stream workers.
+
+![API Endpoint Button](/img/release-notes/18-00-api-endpoint-button.png)
+
+[Create an API Endpoint](../cep/stream-worker-tasks/create-api-endpoint.md) was created as a result of this change.
 
 ### Added Global API Endpoint to Fabrics Tab
 
