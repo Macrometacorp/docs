@@ -46,10 +46,7 @@ Changes include:
 - New fields in the New Graph Edge window.
 - Example Graphs are now Sample Datasets and have been updated.
 - In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
-  - DFP note - There are now four, not six. Update those docs.
-- New API Endpoint button in stream workers
-- New Account section in the sidebar - Scale tier - this might need a new feature thing
-- Hide Functions in sidebar if no EdgeWorker functions have been created.
+- The Functions tab is no longer displayed in the sidebar if no EdgeWorker functions have been created.
 - Minor changes to field names in various screens.
 
 Multiple pages and screenshots were updated as a result of these changes.
@@ -131,17 +128,7 @@ This release includes the following API changes.
 | Issue # | Description |
 | ------- | ----------- |
 | CON-1299 | In the API Reference, "integrations" were changed to "connections."          |
-| MET-330       | Response for `/_fabric/{fabric}/_api/metrics/query` now includes labels of fetched metrics.          |
-|         |             |
-|         |             |
-
-## Known Issues
-
-The following known issues were introduced in this release.
-
-### Problem
-
-Explain the problem and the workaround.
+| MET-330  | Response for `/_fabric/{fabric}/_api/metrics/query` now includes labels of fetched metrics.          |
 
 ## Defect Fixes
 
