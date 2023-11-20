@@ -41,7 +41,8 @@ Changes include:
   ![New Collection Streams Fields](/img/release-notes/18-00-collection-stream-fields.png)
 - In Document, Graph Edge, and Redis Mode collections, a button was added that allows you to refresh documents in the page.
   ![New Refresh Documents Button](/img/release-notes/18-00-refresh-button.png)
-- New data fields in Streams
+- New data fields in Streams screens.
+  ![New Streams Fields](/img/release-notes/18-00-streams-fields.png)
 - New fields in the New Graph Edge window.
 - Example Graphs are now Sample Datasets and have been updated.
 - In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
