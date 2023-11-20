@@ -44,21 +44,23 @@ Here's an example shoe record from the dataset in JSON format:
 
 ## 1. Create the Inventory Collection
 
-Create a document collection called `inventory`. Be sure to enable the collection stream when you create the collection.
+Create a document collection called `inventory`. Be sure to enable the collection stream when you create the collection. This process is fully explained in [Create a Document Collection](../collections/documents/create-document-store.md).
 
-The following images show key steps in the process. For detailed instructions, refer to [Create a Document Collection](../collections/documents/create-document-store).
-
-![Create a Document Collection](/img/search/range-example/create-collection.png)
-
-![New Document Collection Settings](/img/search/range-example/inventory.png)
+1. On the side menu, click **Data > Collections**.
+1. Click **New Collection**.
+1. Click **Document**.
+1. In **Collection Name**, enter `inventory`.
+1. Select the **Collection stream** checkbox.
+1. Click **Create**.
 
 ## 2. Import Shoe Inventory Data into the Inventory Collection
 
-Add the records from `shoe-inventory.json` to the `inventory` collection.
+Add the records from `shoe-inventory.json` to the `inventory` collection. This process is fully explained in [Add Documents to a Collection](../collections/documents/add-document.md).
 
-The following images show key steps in the process. For detailed instructions, refer to [Add Documents from a File](../collections/documents/add-document).
-
-![Import Documents](/img/search/range-example/import-data.png)
+1. In the collection list, click the name of the `inventory` document collection.
+2. Click the import icon, which is a down arrow pointing to a file box.
+3. Click **Choose File**, then browse to the file containing the `shoe-inventory.json` dataset.
+4. Click **Import Documents**.
 
 After importing the file, the collection should contain 50 documents with shoe records.
 

@@ -1,5 +1,5 @@
 ---
-title: Add Documents to Collection
+title: Add Documents to a Collection
 sidebar_position: 30
 ---
 

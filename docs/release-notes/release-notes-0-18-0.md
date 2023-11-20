@@ -136,17 +136,7 @@ This release includes the following API changes.
 | Issue # | Description |
 | ------- | ----------- |
 | CON-1299 | In the API Reference, "integrations" were changed to "connections."          |
-| MET-330       | Response for `/_fabric/{fabric}/_api/metrics/query` now includes labels of fetched metrics.          |
-|         |             |
-|         |             |
-
-## Known Issues
-
-The following known issues were introduced in this release.
-
-### Problem
-
-Explain the problem and the workaround.
+| MET-330  | Response for `/_fabric/{fabric}/_api/metrics/query` now includes labels of fetched metrics.          |
 
 ## Defect Fixes
 
