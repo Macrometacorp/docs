@@ -43,11 +43,10 @@ Changes include:
   ![New Refresh Documents Button](/img/release-notes/18-00-refresh-button.png)
 - New data fields in Streams screens.
   ![New Streams Fields](/img/release-notes/18-00-streams-fields.png)
-- New fields in the New Graph Edge window.
-- Example Graphs are now Sample Datasets and have been updated.
-- In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
-  - DFP note - There are now four, not six. Update those docs.
-- New API Endpoint button in stream workers
+- New fields in the New Graph Edge screen in Graph Edge collections.
+- Example Graphs are now Sample Datasets.
+- New API Endpoint button in Stream Workers screen.
+  ![API Endpoint Button](/img/release-notes/18-00-api-endpoint-button.png)
 - New Account section in the sidebar - Scale tier - this might need a new feature thing
 - Hide Functions in sidebar if no EdgeWorker functions have been created.
 - Minor changes to field names in various screens.
