@@ -11,19 +11,16 @@ The following new features are included in this release.
 
 ### Strong Consistency
 
-Description of feature.
+You can now create collections with strong consistency guarantees and send requests with strong consistency guarantees to those collections.
 
-TO DO - 
-Explain strong consistency, new topic
-- strong consistency option on collections
-- strong consistency option on queries (?)
-Update and link to View collection settings, update screenshot
-How to make a collection strongly consistent
-How to make a query strongly consistent.
+[Strong Consistency](../collections/strong-consistency.md) was added as a result of this feature.
 
-[Topic name](index.md) was added as a result of this feature.
+The following topics were updated as a result of this feature:
 
-[View Collection Settings](../collections/view-collection-settings.md) was updated as a result of this feature.
+- [View Collection Settings](../collections/view-collection-settings.md)
+- [Create a Document Collection](../collections/documents/create-document-store.md)
+- [Create a Key-Value Collection](../collections/keyvalue/create-key-value-store.md)
+- [Create a Graph Edge Collection](../graphs/graph-tasks/create-graph-edge-collection.md)
 
 ### Web Console Updates
 
