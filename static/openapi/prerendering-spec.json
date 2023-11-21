@@ -5,6 +5,14 @@
     "description": "API documentation for the PhotonIQ Prerender service",
     "version": "1.2.0"
   },
+  "servers": [{ "url": "https://demo-prerender.photoniq.macrometa.io" }],
+  "tags": [
+    { "name": "Origin", "description": "Customer Origin" },
+    { "name": "Prerender", "description": "Prerender Pages" },
+    { "name": "Cache", "description": "Cache Pages" },
+    { "name": "Health", "description": "Service Health" },
+    { "name": "Version", "description": "API Version" }
+  ],
   "components": { "schemas": {} },
   "paths": {
     "/api/prerender/v1/purge": {
@@ -3150,13 +3158,5 @@
         }
       }
     }
-  },
-  "servers": [{ "url": "https://demo-prerender.photoniq.macrometa.io" }],
-  "tags": [
-    { "name": "Origin", "description": "Customer Origin" },
-    { "name": "Prerender", "description": "Prerender Pages" },
-    { "name": "Cache", "description": "Cache Pages" },
-    { "name": "Health", "description": "Service Health" },
-    { "name": "Version", "description": "API Version" }
-  ]
+  }
 }
