@@ -3151,7 +3151,7 @@
       }
     }
   },
-  "servers": [{ "url": "http://0.0.0.0:3000" }],
+  "servers": [{ "url": "https://demo-prerender.photoniq.macrometa.io" }],
   "tags": [
     { "name": "Origin", "description": "Customer Origin" },
     { "name": "Prerender", "description": "Prerender Pages" },
