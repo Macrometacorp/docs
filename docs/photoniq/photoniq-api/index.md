@@ -10,7 +10,7 @@ title: PhotonIQ API Reference
     href="../../../docs/apiPrerendering#"
   />
   <card
-    heading="VWRs API"
+    heading="Virtual Waiting Rooms API"
     description=""
     href="../../../docs/apiVwrs#"
   />
