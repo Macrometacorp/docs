@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 This page describes how to view and update collection settings.
 
 <Tabs groupId="operating-systems">
-<TabItem value="ui" label="UI">
+<TabItem value="ui" label="Web Console">
 
 In the Macrometa web console, you can view and update collection settings in the Settings tab. You can also [Delete](delete-collection.md) or [Truncate](truncate-collection.md) the collection.
 
@@ -25,6 +25,7 @@ The Settings tab contains the following fields:
 - **Collection ID** - System-generated ID of the selected collection.
 - **Distribution** - Global or local, defined at collection creation. For more information, refer to [Global or Local Collections](./index.md#global-or-local-collections).
 - **Data Model** - Type of data that the collection accepts, either **document** or **edge**.
+- **Strong Consistency** - Indicates whether this collection has strong consistency guarantees.
 - **Synchronous Writes** - Click to turn synchronous writes on or off for the collection.
 - **Resource URL** - API URL and endpoint to access the collection. You might use this when creating a cURL command or HTTP request to interact with the collection.
 
