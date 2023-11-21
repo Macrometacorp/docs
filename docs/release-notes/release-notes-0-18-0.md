@@ -144,7 +144,7 @@ The following defects were fixed in this release.
 | CEP-614  | Republishing stream workers is not working.  |
 | CEP-615  | Sometimes after unpublishing a stream worker, it gets re-published automatically.  |
 | CEP-620  | The sample stream worker HTTP-IO will not validate.  |
-|   |   |
+| DB-1643  | User can create an API key with a numeric value as the key ID.  |
 |   |   |
 |   |   |
 |   |   |
