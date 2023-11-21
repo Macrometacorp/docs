@@ -25,7 +25,7 @@ The Settings tab contains the following fields:
 - **Collection ID** - System-generated ID of the selected collection.
 - **Distribution** - Global or local, defined at collection creation. For more information, refer to [Global or Local Collections](./index.md#global-or-local-collections).
 - **Data Model** - Type of data that the collection accepts, either **document** or **edge**.
-- **Strong Consistency** - Indicates whether this collection has strong consistency guarantees.
+- **Strong Consistency** - Indicates whether this collection has strong consistency guarantees. For more information, refer to [Strong Consistency](strong-consistency.md).
 - **Synchronous Writes** - Click to turn synchronous writes on or off for the collection.
 - **Resource URL** - API URL and endpoint to access the collection. You might use this when creating a cURL command or HTTP request to interact with the collection.
 
