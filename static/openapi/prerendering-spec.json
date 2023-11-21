@@ -1,0 +1,3162 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PhotonIQ Prerender Service",
+    "description": "API documentation for the PhotonIQ Prerender service",
+    "version": "1.2.0"
+  },
+  "servers": [{ "url": "https://demo-prerender.photoniq.macrometa.io" }],
+  "tags": [
+    { "name": "Origin", "description": "Customer Origin" },
+    { "name": "Prerender", "description": "Prerender Pages" },
+    { "name": "Cache", "description": "Cache Pages" },
+    { "name": "Health", "description": "Service Health" },
+    { "name": "Version", "description": "API Version" }
+  ],
+  "components": { "schemas": {} },
+  "paths": {
+    "/api/prerender/v1/purge": {
+      "post": {
+        "summary": "Purges the cache",
+        "tags": ["Cache"],
+        "description": "This endpoint clears rendered pages from the origin cache. It is possible to clear all records related to the origin or specific records according to the \"urls\" list.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "Origin base URL"
+                  },
+                  "urls": {
+                    "type": "array",
+                    "items": { "type": "string", "description": "Origin path" },
+                    "description": "List of origin paths to be deleted from cache"
+                  }
+                },
+                "required": ["origin"]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    }
+                  },
+                  "required": ["status"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/health": {
+      "get": {
+        "summary": "Gets service health status",
+        "tags": ["Health"],
+        "description": "This endpoint returns the service health status.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "version": {
+                          "type": "string",
+                          "description": "Service version"
+                        }
+                      },
+                      "required": ["version"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/history": {
+      "get": {
+        "summary": "Fetch the history",
+        "tags": ["Metrics"],
+        "description": "Fetch the history",
+        "parameters": [
+          {
+            "schema": { "type": "string", "format": "uri" },
+            "in": "query",
+            "name": "origin",
+            "required": false,
+            "description": "URL for the origin"
+          },
+          {
+            "schema": { "type": "number" },
+            "in": "query",
+            "name": "responseCode",
+            "required": false,
+            "description": "Response from prerender"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "default": 1000,
+              "maximum": 1000
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "description": "Limit for results"
+          },
+          {
+            "schema": { "type": "number", "default": 0 },
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "description": "Offset for results"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "The unique identifier for the customer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Successful response",
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "HistoryDataSchema": {
+                          "type": "object",
+                          "properties": {
+                            "timestamp": { "type": "number" },
+                            "customerId": { "type": "string" },
+                            "origin": { "type": "string", "format": "uri" },
+                            "bytesSent": { "type": "number" },
+                            "responseTime": { "type": "number" },
+                            "numberOfReq": {
+                              "type": "number",
+                              "nullable": true
+                            },
+                            "isCacheHit": { "type": "boolean" },
+                            "isMobile": { "type": "boolean" },
+                            "isPrefetch": { "type": "boolean" },
+                            "userAgent": { "type": "string" },
+                            "responseCode": { "type": "number" },
+                            "path": { "type": "string", "nullable": true }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "data"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Internal server error",
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/origins/{origin}/interactions": {
+      "get": {
+        "summary": "Gets all origin interactions",
+        "tags": ["Interaction"],
+        "description": "This endpoint returns all origin interactions.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "scroll": {
+                          "type": "object",
+                          "properties": {
+                            "_key": {
+                              "type": "string",
+                              "description": "Interaction unique identifier"
+                            },
+                            "origin": {
+                              "type": "string",
+                              "format": "uri",
+                              "description": "Origin base URL"
+                            },
+                            "created": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was created"
+                            },
+                            "lastUpdated": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was updated"
+                            },
+                            "config": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the interaction is active or not"
+                                },
+                                "valueInPx": {
+                                  "type": "integer",
+                                  "description": "How many pixels to scroll in each step"
+                                },
+                                "steps": {
+                                  "type": "integer",
+                                  "description": "How many steps to finalize scrolling"
+                                },
+                                "delayBetween": {
+                                  "type": "integer",
+                                  "description": "The delay between each scroll step"
+                                },
+                                "specific": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isActive": {
+                                        "type": "boolean",
+                                        "description": "Whether the specific interaction is active or not"
+                                      },
+                                      "urlPaths": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "description": "Origin path"
+                                        },
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                      },
+                                      "operation": {
+                                        "type": "string",
+                                        "enum": ["==", "!="],
+                                        "description": "The operator applied against the \"urlPaths\" list"
+                                      }
+                                    },
+                                    "required": [
+                                      "isActive",
+                                      "urlPaths",
+                                      "operation"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": [
+                                "isActive",
+                                "valueInPx",
+                                "steps",
+                                "delayBetween",
+                                "specific"
+                              ]
+                            }
+                          },
+                          "required": ["_key", "origin", "config"]
+                        },
+                        "click": {
+                          "type": "object",
+                          "properties": {
+                            "_key": {
+                              "type": "string",
+                              "description": "Interaction unique identifier"
+                            },
+                            "origin": {
+                              "type": "string",
+                              "format": "uri",
+                              "description": "Origin base URL"
+                            },
+                            "created": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was created"
+                            },
+                            "lastUpdated": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was updated"
+                            },
+                            "config": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the interaction is active or not"
+                                },
+                                "global": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isActive": {
+                                        "type": "boolean",
+                                        "description": "Whether the global interaction is active or not"
+                                      },
+                                      "htmlSelector": { "type": "string" },
+                                      "waitAfterInteraction": {
+                                        "type": "integer"
+                                      },
+                                      "executionSequence": { "type": "integer" }
+                                    },
+                                    "required": [
+                                      "isActive",
+                                      "htmlSelector",
+                                      "executionSequence"
+                                    ]
+                                  }
+                                },
+                                "specific": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isActive": {
+                                        "type": "boolean",
+                                        "description": "Whether the specific interaction is active or not"
+                                      },
+                                      "htmlSelector": {
+                                        "type": "string",
+                                        "description": "HTML selector where the interaction is executed"
+                                      },
+                                      "waitAfterInteraction": {
+                                        "type": "integer",
+                                        "description": "Time to wait (in seconds) after the interaction execution"
+                                      },
+                                      "executionSequence": {
+                                        "type": "integer",
+                                        "description": "Specific interaction execution order"
+                                      },
+                                      "urlPaths": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "description": "Origin path"
+                                        },
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                      },
+                                      "operation": {
+                                        "type": "string",
+                                        "enum": ["==", "!="],
+                                        "description": "The operator applied against the \"urlPaths\" list"
+                                      }
+                                    },
+                                    "required": [
+                                      "isActive",
+                                      "htmlSelector",
+                                      "executionSequence",
+                                      "urlPaths",
+                                      "operation"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": ["isActive", "global", "specific"]
+                            }
+                          },
+                          "required": ["_key", "origin", "config"]
+                        },
+                        "hover": {
+                          "type": "object",
+                          "properties": {
+                            "_key": {
+                              "type": "string",
+                              "description": "Interaction unique identifier"
+                            },
+                            "origin": {
+                              "type": "string",
+                              "format": "uri",
+                              "description": "Origin base URL"
+                            },
+                            "created": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was created"
+                            },
+                            "lastUpdated": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was updated"
+                            },
+                            "config": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the interaction is active or not"
+                                },
+                                "global": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isActive": {
+                                        "type": "boolean",
+                                        "description": "Whether the global interaction is active or not"
+                                      },
+                                      "htmlSelector": { "type": "string" },
+                                      "waitAfterInteraction": {
+                                        "type": "integer"
+                                      },
+                                      "executionSequence": { "type": "integer" }
+                                    },
+                                    "required": [
+                                      "isActive",
+                                      "htmlSelector",
+                                      "executionSequence"
+                                    ]
+                                  }
+                                },
+                                "specific": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isActive": {
+                                        "type": "boolean",
+                                        "description": "Whether the specific interaction is active or not"
+                                      },
+                                      "htmlSelector": {
+                                        "type": "string",
+                                        "description": "HTML selector where the interaction is executed"
+                                      },
+                                      "waitAfterInteraction": {
+                                        "type": "integer",
+                                        "description": "Time to wait (in seconds) after the interaction execution"
+                                      },
+                                      "executionSequence": {
+                                        "type": "integer",
+                                        "description": "Specific interaction execution order"
+                                      },
+                                      "urlPaths": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "description": "Origin path"
+                                        },
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                      },
+                                      "operation": {
+                                        "type": "string",
+                                        "enum": ["==", "!="],
+                                        "description": "The operator applied against the \"urlPaths\" list"
+                                      }
+                                    },
+                                    "required": [
+                                      "isActive",
+                                      "htmlSelector",
+                                      "executionSequence",
+                                      "urlPaths",
+                                      "operation"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": ["isActive", "global", "specific"]
+                            }
+                          },
+                          "required": ["_key", "origin", "config"]
+                        }
+                      }
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/origins/{origin}/interactions/{type}": {
+      "get": {
+        "summary": "Gets an origin interaction",
+        "tags": ["Interaction"],
+        "description": "This endpoint returns an origin interaction.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["hover", "click", "scroll"]
+            },
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "description": "Interaction type (scroll, click, hover, etc...)"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Successful response",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "description": "Success status"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Success message"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "_key": {
+                              "type": "string",
+                              "description": "Interaction unique identifier"
+                            },
+                            "origin": {
+                              "type": "string",
+                              "format": "uri",
+                              "description": "Origin base URL"
+                            },
+                            "created": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was created"
+                            },
+                            "lastUpdated": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was updated"
+                            },
+                            "config": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the interaction is active or not"
+                                },
+                                "valueInPx": {
+                                  "type": "integer",
+                                  "description": "How many pixels to scroll in each step"
+                                },
+                                "steps": {
+                                  "type": "integer",
+                                  "description": "How many steps to finalize scrolling"
+                                },
+                                "delayBetween": {
+                                  "type": "integer",
+                                  "description": "The delay between each scroll step"
+                                },
+                                "specific": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isActive": {
+                                        "type": "boolean",
+                                        "description": "Whether the specific interaction is active or not"
+                                      },
+                                      "urlPaths": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "description": "Origin path"
+                                        },
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                      },
+                                      "operation": {
+                                        "type": "string",
+                                        "enum": ["==", "!="],
+                                        "description": "The operator applied against the \"urlPaths\" list"
+                                      }
+                                    },
+                                    "required": [
+                                      "isActive",
+                                      "urlPaths",
+                                      "operation"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": [
+                                "isActive",
+                                "valueInPx",
+                                "steps",
+                                "delayBetween",
+                                "specific"
+                              ]
+                            }
+                          },
+                          "required": ["_key", "origin", "config"]
+                        }
+                      },
+                      "required": ["status", "data"]
+                    },
+                    {
+                      "type": "object",
+                      "description": "Successful response",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "description": "Success status"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Success message"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "_key": {
+                              "type": "string",
+                              "description": "Interaction unique identifier"
+                            },
+                            "origin": {
+                              "type": "string",
+                              "format": "uri",
+                              "description": "Origin base URL"
+                            },
+                            "created": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was created"
+                            },
+                            "lastUpdated": {
+                              "type": "string",
+                              "format": "date-time",
+                              "description": "Date when the interaction was updated"
+                            },
+                            "config": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the interaction is active or not"
+                                },
+                                "global": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isActive": {
+                                        "type": "boolean",
+                                        "description": "Whether the global interaction is active or not"
+                                      },
+                                      "htmlSelector": { "type": "string" },
+                                      "waitAfterInteraction": {
+                                        "type": "integer"
+                                      },
+                                      "executionSequence": { "type": "integer" }
+                                    },
+                                    "required": [
+                                      "isActive",
+                                      "htmlSelector",
+                                      "executionSequence"
+                                    ]
+                                  }
+                                },
+                                "specific": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "isActive": {
+                                        "type": "boolean",
+                                        "description": "Whether the specific interaction is active or not"
+                                      },
+                                      "htmlSelector": {
+                                        "type": "string",
+                                        "description": "HTML selector where the interaction is executed"
+                                      },
+                                      "waitAfterInteraction": {
+                                        "type": "integer",
+                                        "description": "Time to wait (in seconds) after the interaction execution"
+                                      },
+                                      "executionSequence": {
+                                        "type": "integer",
+                                        "description": "Specific interaction execution order"
+                                      },
+                                      "urlPaths": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "description": "Origin path"
+                                        },
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                      },
+                                      "operation": {
+                                        "type": "string",
+                                        "enum": ["==", "!="],
+                                        "description": "The operator applied against the \"urlPaths\" list"
+                                      }
+                                    },
+                                    "required": [
+                                      "isActive",
+                                      "htmlSelector",
+                                      "executionSequence",
+                                      "urlPaths",
+                                      "operation"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": ["isActive", "global", "specific"]
+                            }
+                          },
+                          "required": ["_key", "origin", "config"]
+                        }
+                      },
+                      "required": ["status", "data"]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates an origin interaction",
+        "tags": ["Interaction"],
+        "description": "This endpoint creates an origin interaction.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "config": {
+                        "type": "object",
+                        "properties": {
+                          "isActive": {
+                            "type": "boolean",
+                            "description": "Whether the interaction is active or not"
+                          },
+                          "valueInPx": {
+                            "type": "integer",
+                            "description": "How many pixels to scroll in each step"
+                          },
+                          "steps": {
+                            "type": "integer",
+                            "description": "How many steps to finalize scrolling"
+                          },
+                          "delayBetween": {
+                            "type": "integer",
+                            "description": "The delay between each scroll step"
+                          },
+                          "specific": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the specific interaction is active or not"
+                                },
+                                "urlPaths": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Origin path"
+                                  },
+                                  "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                },
+                                "operation": {
+                                  "type": "string",
+                                  "enum": ["==", "!="],
+                                  "description": "The operator applied against the \"urlPaths\" list"
+                                }
+                              },
+                              "required": ["isActive", "urlPaths", "operation"]
+                            }
+                          }
+                        },
+                        "required": [
+                          "isActive",
+                          "valueInPx",
+                          "steps",
+                          "delayBetween",
+                          "specific"
+                        ]
+                      }
+                    },
+                    "required": ["config"]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "config": {
+                        "type": "object",
+                        "properties": {
+                          "isActive": {
+                            "type": "boolean",
+                            "description": "Whether the interaction is active or not"
+                          },
+                          "global": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the global interaction is active or not"
+                                },
+                                "htmlSelector": { "type": "string" },
+                                "waitAfterInteraction": { "type": "integer" },
+                                "executionSequence": { "type": "integer" }
+                              },
+                              "required": [
+                                "isActive",
+                                "htmlSelector",
+                                "executionSequence"
+                              ]
+                            }
+                          },
+                          "specific": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the specific interaction is active or not"
+                                },
+                                "htmlSelector": {
+                                  "type": "string",
+                                  "description": "HTML selector where the interaction is executed"
+                                },
+                                "waitAfterInteraction": {
+                                  "type": "integer",
+                                  "description": "Time to wait (in seconds) after the interaction execution"
+                                },
+                                "executionSequence": {
+                                  "type": "integer",
+                                  "description": "Specific interaction execution order"
+                                },
+                                "urlPaths": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Origin path"
+                                  },
+                                  "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                },
+                                "operation": {
+                                  "type": "string",
+                                  "enum": ["==", "!="],
+                                  "description": "The operator applied against the \"urlPaths\" list"
+                                }
+                              },
+                              "required": [
+                                "isActive",
+                                "htmlSelector",
+                                "executionSequence",
+                                "urlPaths",
+                                "operation"
+                              ]
+                            }
+                          }
+                        },
+                        "required": ["isActive", "global", "specific"]
+                      }
+                    },
+                    "required": ["config"]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["hover", "click", "scroll"]
+            },
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "description": "Interaction type (scroll, click, hover, etc...)"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Interaction unique identifier"
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Updates an origin interaction",
+        "tags": ["Interaction"],
+        "description": "This endpoint updates an origin interaction.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "config": {
+                        "type": "object",
+                        "properties": {
+                          "isActive": {
+                            "type": "boolean",
+                            "description": "Whether the interaction is active or not"
+                          },
+                          "valueInPx": {
+                            "type": "integer",
+                            "description": "How many pixels to scroll in each step"
+                          },
+                          "steps": {
+                            "type": "integer",
+                            "description": "How many steps to finalize scrolling"
+                          },
+                          "delayBetween": {
+                            "type": "integer",
+                            "description": "The delay between each scroll step"
+                          },
+                          "specific": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the specific interaction is active or not"
+                                },
+                                "urlPaths": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Origin path"
+                                  },
+                                  "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                },
+                                "operation": {
+                                  "type": "string",
+                                  "enum": ["==", "!="],
+                                  "description": "The operator applied against the \"urlPaths\" list"
+                                }
+                              },
+                              "required": ["isActive", "urlPaths", "operation"]
+                            }
+                          }
+                        },
+                        "required": [
+                          "isActive",
+                          "valueInPx",
+                          "steps",
+                          "delayBetween",
+                          "specific"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "config": {
+                        "type": "object",
+                        "properties": {
+                          "isActive": {
+                            "type": "boolean",
+                            "description": "Whether the interaction is active or not"
+                          },
+                          "global": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the global interaction is active or not"
+                                },
+                                "htmlSelector": { "type": "string" },
+                                "waitAfterInteraction": { "type": "integer" },
+                                "executionSequence": { "type": "integer" }
+                              },
+                              "required": [
+                                "isActive",
+                                "htmlSelector",
+                                "executionSequence"
+                              ]
+                            }
+                          },
+                          "specific": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "isActive": {
+                                  "type": "boolean",
+                                  "description": "Whether the specific interaction is active or not"
+                                },
+                                "htmlSelector": {
+                                  "type": "string",
+                                  "description": "HTML selector where the interaction is executed"
+                                },
+                                "waitAfterInteraction": {
+                                  "type": "integer",
+                                  "description": "Time to wait (in seconds) after the interaction execution"
+                                },
+                                "executionSequence": {
+                                  "type": "integer",
+                                  "description": "Specific interaction execution order"
+                                },
+                                "urlPaths": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Origin path"
+                                  },
+                                  "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                },
+                                "operation": {
+                                  "type": "string",
+                                  "enum": ["==", "!="],
+                                  "description": "The operator applied against the \"urlPaths\" list"
+                                }
+                              },
+                              "required": [
+                                "isActive",
+                                "htmlSelector",
+                                "executionSequence",
+                                "urlPaths",
+                                "operation"
+                              ]
+                            }
+                          }
+                        },
+                        "required": ["isActive", "global", "specific"]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["hover", "click", "scroll"]
+            },
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "description": "Interaction type (scroll, click, hover, etc...)"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Interaction unique identifier"
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes an origin interaction",
+        "tags": ["Interaction"],
+        "description": "This endpoint deletes an origin interaction.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": ["hover", "click", "scroll"]
+            },
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "description": "Interaction type (scroll, click, hover, etc...)"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Interaction unique identifier"
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/metrics": {
+      "get": {
+        "summary": "Get Metrics from the prerender service",
+        "tags": ["Metrics"],
+        "description": "Request prerender service metrics",
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "The unique identifier for the customer"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "Authorization token for API access"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the metrics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Successfully fetched the metrics",
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Internal server error",
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/origins": {
+      "get": {
+        "summary": "Gets all origins",
+        "tags": ["Origin"],
+        "description": "This endpoint returns all origins defined in the origin-related GDN fabric.",
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-prerender-origin",
+            "required": true,
+            "description": "Prerender origin"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_key": {
+                            "type": "string",
+                            "description": "Origin unique identifier",
+                            "minLength": 1
+                          },
+                          "origin": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Origin base URL"
+                          },
+                          "siteMaps": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "description": "Sitemap path"
+                            },
+                            "description": "List of sitemap paths"
+                          },
+                          "identifyNotfound": {
+                            "type": "string",
+                            "description": "Content that identifies not found pages (404) in rendered pages"
+                          },
+                          "allowOriginHeaderValue": {
+                            "type": "string",
+                            "description": "Value of X-PhotonIQ-Prerender-Request header"
+                          },
+                          "passThroughHeaders": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "description": "Header key"
+                            },
+                            "description": "List of header keys that are forwarded from the bot request to the origin website"
+                          },
+                          "addResponseHeaders": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "object",
+                              "properties": {
+                                "basedOnStatusCode": {
+                                  "type": "boolean",
+                                  "description": "Whether the header value should be based on the response status code"
+                                },
+                                "value": {
+                                  "oneOf": [
+                                    {
+                                      "type": "string",
+                                      "description": "Header value"
+                                    },
+                                    {
+                                      "type": "object",
+                                      "description": "Status code. Ranges like 2xx can be also used.",
+                                      "additionalProperties": {
+                                        "type": "string",
+                                        "description": "Header value"
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              "required": ["basedOnStatusCode", "value"],
+                              "description": "Additional response headers configuration"
+                            },
+                            "description": "Map of headers to be added to the response"
+                          },
+                          "caching": {
+                            "type": "boolean",
+                            "description": "Whether or not to cache rendered pages"
+                          },
+                          "ttl": {
+                            "type": "number",
+                            "description": "Cache lifetime of rendered pages (in seconds)"
+                          },
+                          "created": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date when the origin was created"
+                          },
+                          "lastUpdated": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date when the origin was updated"
+                          }
+                        },
+                        "required": [
+                          "_key",
+                          "origin",
+                          "siteMaps",
+                          "caching",
+                          "ttl",
+                          "created"
+                        ]
+                      }
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates an origin",
+        "tags": ["Origin"],
+        "description": "This endpoint creates an origin in the origin-related GDN fabric.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "origin": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "Origin base URL"
+                  },
+                  "siteMaps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Sitemap path"
+                    },
+                    "description": "List of sitemap paths"
+                  },
+                  "identifyNotfound": {
+                    "type": "string",
+                    "description": "Content that identifies not found pages (404) in rendered pages"
+                  },
+                  "allowOriginHeaderValue": {
+                    "type": "string",
+                    "description": "Value of X-PhotonIQ-Prerender-Request header"
+                  },
+                  "passThroughHeaders": {
+                    "type": "array",
+                    "items": { "type": "string", "description": "Header key" },
+                    "description": "List of header keys that are forwarded from the bot request to the origin website"
+                  },
+                  "addResponseHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "basedOnStatusCode": {
+                          "type": "boolean",
+                          "description": "Whether the header value should be based on the response status code"
+                        },
+                        "value": {
+                          "oneOf": [
+                            { "type": "string", "description": "Header value" },
+                            {
+                              "type": "object",
+                              "description": "Status code. Ranges like 2xx can be also used.",
+                              "additionalProperties": {
+                                "type": "string",
+                                "description": "Header value"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "required": ["basedOnStatusCode", "value"],
+                      "description": "Additional response headers configuration"
+                    },
+                    "description": "Map of headers to be added to the response"
+                  },
+                  "caching": {
+                    "type": "boolean",
+                    "description": "Whether or not to cache rendered pages"
+                  },
+                  "ttl": {
+                    "type": "number",
+                    "description": "Cache lifetime of rendered pages (in seconds)"
+                  }
+                },
+                "required": ["origin", "siteMaps", "ttl", "caching"]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Origin unique identifier",
+                          "minLength": 1
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/origins/{_key}": {
+      "patch": {
+        "summary": "Updates an origin",
+        "tags": ["Origin"],
+        "description": "This endpoint updates an existing origin in the origin-related GDN fabric.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "siteMaps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Sitemap path"
+                    },
+                    "description": "List of sitemap paths"
+                  },
+                  "identifyNotfound": {
+                    "type": "string",
+                    "description": "Content that identifies not found pages (404) in rendered pages"
+                  },
+                  "allowOriginHeaderValue": {
+                    "type": "string",
+                    "description": "Value of X-PhotonIQ-Prerender-Request header"
+                  },
+                  "passThroughHeaders": {
+                    "type": "array",
+                    "items": { "type": "string", "description": "Header key" },
+                    "description": "List of header keys that are forwarded from the bot request to the origin website"
+                  },
+                  "addResponseHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "basedOnStatusCode": {
+                          "type": "boolean",
+                          "description": "Whether the header value should be based on the response status code"
+                        },
+                        "value": {
+                          "oneOf": [
+                            { "type": "string", "description": "Header value" },
+                            {
+                              "type": "object",
+                              "description": "Status code. Ranges like 2xx can be also used.",
+                              "additionalProperties": {
+                                "type": "string",
+                                "description": "Header value"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "required": ["basedOnStatusCode", "value"],
+                      "description": "Additional response headers configuration"
+                    },
+                    "description": "Map of headers to be added to the response"
+                  },
+                  "caching": {
+                    "type": "boolean",
+                    "description": "Whether or not to cache rendered pages"
+                  },
+                  "ttl": {
+                    "type": "number",
+                    "description": "Cache lifetime of rendered pages (in seconds)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "_key",
+            "required": true,
+            "description": "Origin unique identifier"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-prerender-origin",
+            "required": true,
+            "description": "Prerender origin"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Origin unique identifier",
+                          "minLength": 1
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes an origin",
+        "tags": ["Origin"],
+        "description": "This endpoint deletes an existing origin in the origin-related GDN fabric.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "_key",
+            "required": true,
+            "description": "Origin unique identifier"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-prerender-origin",
+            "required": true,
+            "description": "Prerender origin"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Origin unique identifier",
+                          "minLength": 1
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/render/{mobile}/{url}": {
+      "get": {
+        "summary": "Fetches the prerendered page content",
+        "tags": ["Prerender"],
+        "description": "This endpoint returns the HTML content of the rendered page.",
+        "parameters": [
+          {
+            "schema": { "type": "boolean" },
+            "in": "path",
+            "name": "mobile",
+            "required": true,
+            "description": "Whether to render as a mobile device or not"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "path",
+            "name": "url",
+            "required": true,
+            "description": "URL to be rendered"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the prerendered page content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Successfully fetched the prerendered page content"
+                }
+              }
+            }
+          },
+          "301": {
+            "description": "Moved permanently",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Moved permanently",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "308": {
+            "description": "Permanent redirect",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Permanent redirect",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Gateway timeout",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/render": {
+      "get": {
+        "summary": "Fetches the prerendered page content",
+        "tags": ["Prerender"],
+        "description": "This endpoint returns the HTML content of the rendered page.",
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "in": "query",
+            "name": "origin",
+            "required": false,
+            "description": "Origin base URL"
+          },
+          {
+            "schema": { "type": "boolean" },
+            "in": "query",
+            "name": "mobile",
+            "required": false,
+            "description": "Whether to render as a mobile device or not"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "query",
+            "name": "path",
+            "required": false,
+            "description": "Path to be rendered"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-prerender-origin",
+            "required": false,
+            "description": "Origin base URL"
+          },
+          {
+            "schema": { "type": "boolean" },
+            "in": "header",
+            "name": "x-photoniq-prerender-mobile",
+            "required": false,
+            "description": "Whether to render as a mobile device or not"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-prerender-path",
+            "required": false,
+            "description": "Path to be rendered"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the prerendered page content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Successfully fetched the prerendered page content"
+                }
+              }
+            }
+          },
+          "301": {
+            "description": "Moved permanently",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Moved permanently",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "308": {
+            "description": "Permanent redirect",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Permanent redirect",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Gateway timeout",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/settings": {
+      "get": {
+        "summary": "Gets all prerender settings",
+        "tags": ["Settings"],
+        "description": "This endpoint returns all prerender settings defined in the origin-related GDN fabric.",
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-prerender-origin",
+            "required": true,
+            "description": "Prerender origin"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_key": {
+                            "type": "string",
+                            "description": "Settings unique identifier",
+                            "minLength": 1
+                          },
+                          "origin": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Origin base URL"
+                          },
+                          "injectInlineCSS": {
+                            "type": "boolean",
+                            "description": "Whether or not to inject CSS into the HTML"
+                          },
+                          "addRequestHeader": {
+                            "type": "boolean",
+                            "description": "Whether or not to add X-PhotonIQ-Prerender-Request header to each request made during page rendering"
+                          },
+                          "blockRequestTypes": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)"
+                          },
+                          "urlBlockList": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)"
+                          },
+                          "created": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date when the settings was created"
+                          },
+                          "lastUpdated": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date when the settings was updated"
+                          }
+                        },
+                        "required": [
+                          "_key",
+                          "origin",
+                          "injectInlineCSS",
+                          "addRequestHeader",
+                          "blockRequestTypes",
+                          "urlBlockList",
+                          "created"
+                        ]
+                      }
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/settings/{_key}": {
+      "patch": {
+        "summary": "Updates a prerender settings",
+        "tags": ["Settings"],
+        "description": "This endpoint updates an existing prerender settings in the origin-related GDN fabric.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "injectInlineCSS": {
+                    "type": "boolean",
+                    "description": "Whether or not to inject CSS into the HTML"
+                  },
+                  "addRequestHeader": {
+                    "type": "boolean",
+                    "description": "Whether or not to add X-PhotonIQ-Prerender-Request header to each request made during page rendering"
+                  },
+                  "blockRequestTypes": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)"
+                  },
+                  "urlBlockList": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "_key",
+            "required": true,
+            "description": "Settings unique identifier"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-prerender-origin",
+            "required": true,
+            "description": "Prerender origin"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Settings unique identifier",
+                          "minLength": 1
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/usage/{aggregationType}?": {
+      "get": {
+        "summary": "Fetch the usage",
+        "tags": ["Metrics"],
+        "description": "Fetch the usage",
+        "parameters": [
+          {
+            "schema": { "type": "number" },
+            "in": "query",
+            "name": "from",
+            "required": true,
+            "description": "Epoch in ms"
+          },
+          {
+            "schema": { "type": "number" },
+            "in": "query",
+            "name": "to",
+            "required": true,
+            "description": "Epoch in ms"
+          },
+          {
+            "schema": { "type": "string", "format": "uri" },
+            "in": "query",
+            "name": "origin",
+            "required": false,
+            "description": "URL for the origin"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "query",
+            "name": "userAgent",
+            "required": false,
+            "description": "UserAgent for the request"
+          },
+          {
+            "schema": { "type": "number" },
+            "in": "query",
+            "name": "responseCode",
+            "required": false,
+            "description": "Response from prerender"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "default": 20,
+              "maximum": 100
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "description": "Limit for results"
+          },
+          {
+            "schema": { "type": "number", "default": 0 },
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "description": "Offset for results"
+          },
+          {
+            "schema": { "type": "string", "default": "ASC" },
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "description": "Order of sort: ASC or DESC"
+          },
+          {
+            "schema": { "type": "string", "default": "timestamp" },
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "description": "Field by which results should be sorted"
+          },
+          {
+            "schema": { "type": "boolean" },
+            "in": "query",
+            "name": "isCacheHit",
+            "required": false
+          },
+          {
+            "schema": { "type": "boolean" },
+            "in": "query",
+            "name": "isMobile",
+            "required": false
+          },
+          {
+            "schema": { "type": "boolean" },
+            "in": "query",
+            "name": "isPrefetch",
+            "required": false
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "The unique identifier for the customer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Successful response",
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "UsageDataSchema": {
+                          "type": "object",
+                          "properties": {
+                            "timestamp": { "type": "number" },
+                            "customerId": { "type": "string" },
+                            "origin": { "type": "string", "format": "uri" },
+                            "bytesSent": { "type": "number" },
+                            "responseTime": { "type": "number" },
+                            "numberOfReq": {
+                              "type": "number",
+                              "nullable": true
+                            },
+                            "isCacheHit": { "type": "boolean" },
+                            "isMobile": { "type": "boolean" },
+                            "isPrefetch": { "type": "boolean" },
+                            "userAgent": { "type": "string" },
+                            "responseCode": { "type": "number" },
+                            "path": { "type": "string", "nullable": true }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": ["status", "message", "data"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Internal server error",
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/version": {
+      "get": {
+        "summary": "Gets the API version",
+        "tags": ["Version"],
+        "description": "This endpoint returns the API version.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "version": {
+                          "type": "string",
+                          "description": "API version"
+                        }
+                      },
+                      "required": ["version"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
