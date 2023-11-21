@@ -9,7 +9,8 @@ The `memcache` function provides a persistent cache per tenant. It is similar to
 The following functions are allowed:
 
 - `memcache:get("key")`       - gets a value per given key
-- `memcache:put("key", "value", ttl)` - puts "key" and "value" with ttl, where ttl set by default 5000L (5 seconds)
+- `memcache:put("key", "value")` - puts "key" and "value", returns a value that saves into a cache
+- `memcache:put("key", "value", ttl)` - puts "key" and "value" with ttl, returns a value that saves into a cache. ttl is set by default 5000L (5 seconds)
 
 ## Syntax
 
@@ -18,7 +19,6 @@ Memcache uses the following syntax:
 ```sql
 memcache:get(<String> key) 
 memcache:put(<String> key, <String> value, <Long> ttl)
-memcache:get(<String> key) <String> memcache:put(<String> key, <String> value)
 ```
 
 ## Example
