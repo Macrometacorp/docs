@@ -2,7 +2,7 @@
 title: Memcache
 ---
 
-The `memcache` function provides a memory cache per tenant. It is similar to [cache](../cache/), but this function has a time-to-live (ttl) parameter.
+The `memcache` function provides a memory cache per stream worker. If it has replicas (`@Instances("N")`), then this cache is per all instances of the stream worker. It is similar to [cache](../cache/), but this function has a time-to-live (ttl) parameter.
 
 ## Features
 
