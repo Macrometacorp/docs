@@ -35,7 +35,7 @@ Each read or write request for key-value, document, or edge collections can opti
 
 This table summarizes how operations are handled based on the collection's consistency setting:
 
-| Collection Consistency 	| Strong I/O Behavior      	| Causal I/O Behavior      	|
+| Collection Consistency 	| Strong Consistency      	| Causal Consistency      	|
 |-------------------------	|------------------------	|-------------------------	|
-| Strong Consistency      	| Spot read, spot write  	| Invalid request      	|
-| Causal Consistency       	| Local read, spot write 	| Local read, local write 	|
+| Strong I/O Behavior      	| Spot read, spot write  	| Invalid request      	|
+| Causal I/O Behavior     	| Local read, spot write 	| Local read, local write 	|
