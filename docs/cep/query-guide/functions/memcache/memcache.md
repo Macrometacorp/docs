@@ -2,7 +2,7 @@
 title: Memcache
 ---
 
-The `memcache` function provides a persistent cache per tenant. It is similar to [cache](../cache/), but this function has a time-to-live (ttl) parameter.
+The `memcache` function provides a memory cache per tenant. It is similar to [cache](../cache/), but this function has a time-to-live (ttl) parameter.
 
 ## Features
 
