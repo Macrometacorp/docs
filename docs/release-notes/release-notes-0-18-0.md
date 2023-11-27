@@ -73,9 +73,9 @@ A new target connector for AWS S3 is now available to use with Macrometa.
 
 ### New memcache Function for Stream Workers
 
-Description of update.
+This release includes the memcache function, which is a memory cache with a time-to-live (ttl) parameter.
 
-
+[Memcache](../cep/query-guide/functions/memcache/) was added a result of this feature.
 
 ## Feature Updates
 
