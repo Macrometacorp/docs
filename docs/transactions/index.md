@@ -24,6 +24,15 @@ Make API calls that include the transaction reference number to include them in 
 - To finalize all transaction API calls, commit the transaction.
 - To roll back the actions, perhaps because one of them failed, abort the transaction.
 
+## Supported Operations
+
+Supported operations include:
+
+- Read and write documents
+- Get the number of documents of collections
+- Truncate collections
+- Run queries or query workers
+
 ## ACID Properties
 
 Transactions in Macrometa within a region are atomic, consistent, isolated, and durable (ACID).
@@ -34,12 +43,3 @@ These ACID properties provide the following guarantees:
 - The _consistency_ property ensures that no constraints or other invariants will be violated during or after any transaction.
 - The _isolation_ property hides the modifications of a transaction from other transactions until the transaction commits.
 - The _durability_ property ensures that operations from transactions that have committed will be made persistent.
-
-## Supported Operations
-
-Supported operations include:
-
-- Read and write documents
-- Get the number of documents of collections
-- Truncate collections
-- Run queries or query workers
