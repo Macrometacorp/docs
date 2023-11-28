@@ -1,4 +1,11 @@
+---
+sidebar_position: 100
+title: Transactions Example
+---
 
+This page shows an example of how one might use transactions in a workflow.
+
+## Create a Transaction
 
 A transaction is created, and collections coll1 and coll2 are expected to be written to within the transaction:
 
@@ -31,6 +38,8 @@ Here is a possible response, in which the ID of the just-created transaction is 
 }
 ```
 
+## Insert Documents
+
 Then two documents are inserted into coll1 within transaction 14464588:
 
 ```bash
@@ -52,6 +61,8 @@ Then two documents are inserted into coll1 within transaction 14464588:
     ]'
 ```
 
+## Delete a Document
+
 Then a document with key abc-def-ghi is removed from collection coll2 within transaction 14464588:
 
 ```bash
@@ -61,6 +72,8 @@ curl -X 'DELETE' \
   -H 'x-gdn-trxid: 14464588' \
   -H 'Authorization: apikey <YOUR API KEY>'
 ```
+
+## Commit or Abort the Transaction
 
 Finally, transaction 14464588 is committed:
 
