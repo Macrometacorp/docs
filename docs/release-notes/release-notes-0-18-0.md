@@ -56,12 +56,6 @@ The Global API Endpoint for each fabric is now displayed in the Fabrics tab.
 
 [APIs](../api-docs/) was updated as a result of this change.
 
-### In-app Support Chat Widget
-
-You can now chat directly with Macrometa Support in the web console. Click the icon in the lower right of all pages to begin.
-
-![Chat with Support](/img/release-notes/18-00-support-chat.png)
-
 ### New Connection - S3 Target
 
 A new target connector for AWS S3 is now available to use with Macrometa.
