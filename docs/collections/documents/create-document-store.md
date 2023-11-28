@@ -21,6 +21,7 @@ Follow these instructions to create a new collection using the GDN console web U
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
    - **Collection stream -** Enable streams for all locations for this collection.
+   - **Strong consistency -** Enable strong consistency on this collection. For more information, refer to [Strong consistency](../strong-consistency.md).
    - **Distribution -** Required. Select whether to store data globally or locally. Default is **Global**.
 
 6. Click **Create**. If you are missing required information, then you cannot complete this step.

@@ -23,6 +23,7 @@ Follow these instructions to create a new collection Graph Edge collection using
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
    - **Collection stream -** Enable streams for all locations for this collection.
+   - **Strong consistency -** Enable strong consistency on this collection. For more information, refer to [Strong consistency](../../collections/strong-consistency.md).
    - **Distribution -** Select whether to store data globally or locally.
 
 </TabItem>
