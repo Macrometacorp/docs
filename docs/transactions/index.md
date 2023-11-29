@@ -28,8 +28,9 @@ Make API calls that include the transaction identifier to include them in the tr
 
 Supported operations include:
 
-- Read and write documents.
+- Read and write documents to collections.
 - Get the number of documents in a collection.
+- Get the number of key-value pairs in a collection.
 - Truncate collections.
 - Run queries or query workers.
 
