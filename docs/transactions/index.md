@@ -44,3 +44,7 @@ These ACID properties provide the following guarantees:
 - The _consistency_ property ensures that no constraints or other invariants will be violated during or after any transaction.
 - The _isolation_ property hides the modifications of a transaction from other transactions until the transaction commits.
 - The _durability_ property ensures that operations from transactions that have committed will be made persistent.
+
+:::note
+ACID is not guaranteed across shards in a multi-node setup.
+:::
