@@ -24,9 +24,7 @@ The following topics were updated as a result of this feature:
 
 ### Web Console Updates
 
-Description of feature.
-
-Changes include:
+The 18.0 release includes many improvements to the Macrometa web console. Changes include:
 
 - Document Store collections are now called Document collections.
 - Key-Value Store collections are now called Key-Value collections.
