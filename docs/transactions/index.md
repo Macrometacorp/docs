@@ -13,11 +13,11 @@ Simply put, transactions are a way to aggregate, or group, multiple API calls. T
 
 When you create the transaction, you specify which collections the transaction will write to.
 
-Once you create a transaction, you will be given a transaction reference number.
+Once you create a transaction, you will be given a transaction identifier.
 
 ### 2. Make API Calls
 
-Make API calls that include the transaction reference number to include them in the transaction. All actions will run, but they are not final until you commit the transaction.
+Make API calls that include the transaction identifier to include them in the transaction. All actions will run, but they are not final until you commit the transaction.
 
 ### 3. Commit or Abort Transaction
 
