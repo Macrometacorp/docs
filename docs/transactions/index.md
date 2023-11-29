@@ -17,21 +17,21 @@ Once you create a transaction, you will be given a transaction identifier.
 
 ### 2. Make API Calls
 
-Make API calls that include the transaction identifier to include them in the transaction. All actions will run, but they are not final until you commit the transaction.
+Make API calls that include the transaction identifier to include them in the transaction. All actions will run, but they are not permanent until you commit the transaction.
 
 ### 3. Commit or Abort Transaction
 
-- To finalize all transaction API calls, commit the transaction.
+- To make all changes made within the transaction permanent, commit the transaction.
 - To roll back the actions, perhaps because one of them failed, abort the transaction.
 
 ## Supported Operations
 
 Supported operations include:
 
-- Read and write documents
-- Get the number of documents of collections
-- Truncate collections
-- Run queries or query workers
+- Read and write documents.
+- Get the number of documents in a collection.
+- Truncate collections.
+- Run queries or query workers.
 
 ## ACID Properties
 
