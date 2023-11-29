@@ -11,7 +11,7 @@ A transaction is created, and collections `coll1` and `coll2` are expected to be
 
 ```bash
 curl -X 'POST' \
-  'https://api-xxyyzz-san.eng.macrometa.io/_fabric/_system/_api/transaction/begin' \
+  'https://api-xxyyzz.macrometa.io/_fabric/_system/_api/transaction/begin' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: apikey <YOUR API KEY>' \
@@ -25,7 +25,7 @@ curl -X 'POST' \
 }'
 ```
 
-Here is a possible response, in which the ID of the just-created transaction is 14464588:
+Here is a possible response, in which the ID of the just-created transaction is `14464588`:
 
 ```json
 {
@@ -40,11 +40,11 @@ Here is a possible response, in which the ID of the just-created transaction is 
 
 ## Insert Documents
 
-Then two documents are inserted into `coll1` within transaction 14464588:
+Then two documents are inserted into `coll1` within transaction `14464588`:
 
 ```bash
     curl -X 'POST' \
-    'https://api-xxyyzz-san.eng.macrometa.io/_fabric/_system/_api/document/coll1' \
+    'https://api-xxyyzz.macrometa.io/_fabric/_system/_api/document/coll1' \
     -H 'accept: application/json' \
     -H 'x-gdn-trxid: 14464588' \
     -H 'Content-Type: application/json' \
@@ -63,11 +63,11 @@ Then two documents are inserted into `coll1` within transaction 14464588:
 
 ## Delete a Document
 
-Then a document with key abc-def-ghi is removed from collection `coll2` within transaction 14464588:
+Then a document with key `abc-def-ghi` is removed from collection `coll2` within transaction `14464588`:
 
 ```bash
 curl -X 'DELETE' \
-  'https://api-xxyyzz-san.eng.macrometa.io/_fabric/_system/_api/document/coll2/abc-def-ghi' \
+  'https://api-xxyyzz.macrometa.io/_fabric/_system/_api/document/coll2/abc-def-ghi' \
   -H 'accept: application/json' \
   -H 'x-gdn-trxid: 14464588' \
   -H 'Authorization: apikey <YOUR API KEY>'
@@ -75,11 +75,11 @@ curl -X 'DELETE' \
 
 ## Commit or Abort the Transaction
 
-Finally, transaction 14464588 is committed:
+Finally, transaction `14464588` is committed:
 
 ```bash
 curl -X 'PUT' \
-  'https://api-xxyyzz-san.eng.macrometa.io/_fabric/_system/_api/transaction/14464588' \
+  'https://api-xxyyzz.macrometa.io/_fabric/_system/_api/transaction/14464588' \
   -H 'accept: application/json' \
   -H 'Authorization: apikey <YOUR API KEY>'
 ```
@@ -88,7 +88,7 @@ or aborted:
 
 ```bash
 curl -X 'DELETE' \
-  'https://api-xxyyzz-san.eng.macrometa.io/_fabric/_system/_api/transaction/14464588' \
+  'https://api-xxyyzz.macrometa.io/_fabric/_system/_api/transaction/14464588' \
   -H 'accept: application/json' \
   -H 'Authorization: apikey <YOUR API KEY>'
 ```
