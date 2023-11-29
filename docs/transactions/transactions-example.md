@@ -7,7 +7,7 @@ This page shows an example of how one might use transactions in a workflow.
 
 ## Create a Transaction
 
-A transaction is created, and collections coll1 and coll2 are expected to be written to within the transaction:
+A transaction is created, and collections `coll1` and `coll2` are expected to be written to within the transaction:
 
 ```bash
 curl -X 'POST' \
@@ -40,7 +40,7 @@ Here is a possible response, in which the ID of the just-created transaction is 
 
 ## Insert Documents
 
-Then two documents are inserted into coll1 within transaction 14464588:
+Then two documents are inserted into `coll1` within transaction 14464588:
 
 ```bash
     curl -X 'POST' \
@@ -63,7 +63,7 @@ Then two documents are inserted into coll1 within transaction 14464588:
 
 ## Delete a Document
 
-Then a document with key abc-def-ghi is removed from collection coll2 within transaction 14464588:
+Then a document with key abc-def-ghi is removed from collection `coll2` within transaction 14464588:
 
 ```bash
 curl -X 'DELETE' \
