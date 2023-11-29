@@ -9,7 +9,8 @@ Any query or query worker can be used as an API endpoint.
 
 You can create a REST API endpoint from a query or query worker.
 
-1. Navigate to **Queries**.
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **Compute > Query Workers**.
 1. Write a query or display a query worker.
 1. Add [bind parameter](../queries/bind-parameters) values if needed.
 1. Click **API Endpoint**.

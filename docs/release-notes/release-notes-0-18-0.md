@@ -38,13 +38,21 @@ The 18.0 release includes many improvements to the Macrometa web console. Change
   ![New Refresh Documents Button](/img/release-notes/18-00-refresh-button.png)
 - New data fields in Streams screens.
   ![New Streams Fields](/img/release-notes/18-00-streams-fields.png)
-- New fields in the New Graph Edge window.
-- Example Graphs are now Sample Datasets and have been updated.
-- In Graphs, some fields changed. Also, Example Graphs are now called Sample Datasets.
-- The Functions tab is no longer displayed in the sidebar if no EdgeWorker functions have been created.
+- New fields in the New Graph Edge screen in Graph Edge collections.
+- Example Graphs are now Sample Datasets.
+- New Account section in the sidebar - Scale tier - this might need a new feature thing
+- Hide Functions in sidebar if no EdgeWorker functions have been created.
 - Minor changes to field names in various screens.
 
 Multiple pages and screenshots were updated as a result of these changes.
+
+### Added API Endpoint to Stream Workers
+
+A new **API Endpoint** button in Stream Workers screen generates cURL commands that provides an easy way to get a JavaScript Web Token (JWT) and the URL to the API endpoint.
+
+![API Endpoint Button](/img/release-notes/18-00-api-endpoint-button.png)
+
+[Create an API Endpoint](../cep/stream-worker-tasks/create-api-endpoint.md) was created as a result of this change.
 
 ### Added Global API Endpoint to Fabrics Tab
 
