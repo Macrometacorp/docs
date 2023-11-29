@@ -53,7 +53,7 @@ Multiple pages and screenshots were updated as a result of these changes.
 
 ### Added API Endpoint to Stream Workers
 
-A new **API Endpoint** button in Stream Workers screen generates cURL commands to allow you to interact with stream workers.
+A new **API Endpoint** button in Stream Workers screen generates cURL commands that provides an easy way to get a JavaScript Web Token (JWT) and the URL to the API endpoint.
 
 ![API Endpoint Button](/img/release-notes/18-00-api-endpoint-button.png)
 

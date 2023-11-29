@@ -20,4 +20,4 @@ Macrometa displays the cURL (Client URL) command that you can use in the termina
 
 ## Stream Worker Endpoints
 
-Why would a user want to do this? Can they send info to a stream worker? Receive it from? What is the point of this cURL commend?
+The generated cURL command provides an easy way to get a JavaScript Web Token (JWT) and the URL to the API endpoint. This can be especially useful to call the API for testing purposes.
