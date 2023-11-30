@@ -32,7 +32,7 @@ Supported operations include:
 - Get the number of documents in a collection.
 - Get the number of key-value pairs in a collection.
 - Truncate collections.
-- Run queries or query workers.
+- Run queries.
 
 ## ACID Properties
 
