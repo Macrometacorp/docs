@@ -168,7 +168,7 @@ The following defects were fixed in this release.
 | GUI-1823  | Fixed dashboard typo in CPU Usage Global Metrics; graph showed value in seconds instead of ms.  |
 |   |   |
 |   |   |
-|   |   |
+| STRM-122  | Streams can be created with invalid stream names, such as "123" or "_#".  |
 | STRM-254  | Deleting a global stream returns a 500 internal server error.  |
 | STRM-371  | Users can successfully call APIs for disabled features.  |
 |   |   |
