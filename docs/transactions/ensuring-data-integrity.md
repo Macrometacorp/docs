@@ -7,7 +7,7 @@ Transactions in Macrometa GDN are executed initially in main memory. The outcome
 
 Macrometa allows users to choose between full durability and delayed synchronization in single collection transactions, balancing throughput and performance against the risk of data loss.
 
-In a server crash scenario, multi-collection transactions that are uncommitted or in the process of being committed are rolled back upon server restart.
+In a server crash scenario, transactions that are uncommitted or in the process of being committed are rolled back upon server restart.
 
 ## Committing Transactions
 
