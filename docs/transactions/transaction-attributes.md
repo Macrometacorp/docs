@@ -13,15 +13,15 @@ The `allowImplicit` attribute determines if a transaction can read from collecti
 
 The `collections` attribute is central to transaction management. It specifies which collections the transaction interacts with and in what manner:
 
-- `read`: Lists collections accessed only for reading. This is optional if `allowImplicit` is set to `true`.
+- `read`: Lists collections accessed only for reading, which is recommended to prevent deadlocks. This is optional if `allowImplicit` is set to `true`.
 - `write`: Includes collections where data might be read or modified.
 - `exclusive`: Specifies collections for exclusive write access, preventing concurrent write operations. It essentially "locks" the collection.
 
-This attribute ensures data integrity and governs access levels to collections within a transaction. However, it can lead to deadlocks.
+This attribute ensures data integrity and governs access levels to collections within a transaction. However, it can lead to deadlocks if a collection that is read from within the transaction is not declared in the read sub-attribute.
 
 ## `lockTimeout` Attribute
 
-`lockTimeout` sets a time limit in seconds for how long a transaction waits to acquire a lock on a collection. It's particularly relevant for transactions requiring exclusive access. A well-set `lockTimeout` can prevent transactions from stalling indefinitely, especially when set to 0, which removes waiting for locks.
+`lockTimeout` sets a time limit in seconds for how long a transaction waits to acquire a lock on a collection. It's particularly relevant for transactions requiring exclusive access. A well-set `lockTimeout` can prevent transactions from stalling indefinitely, especially when set to 0, causes the transaction to wait indefinitely. Default lock timeout is 900 seconds.
 
 ## `maxTransactionSize` Attribute
 
