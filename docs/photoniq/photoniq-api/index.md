@@ -15,7 +15,7 @@ title: PhotonIQ API Reference
     href="../../../docs/apiVwrs#"
   />
   <card
-    heading="Digital Signature API"
+    heading="Digital Fingerprint API"
     description=""
     href="../../../docs/apiFps#"
   />
