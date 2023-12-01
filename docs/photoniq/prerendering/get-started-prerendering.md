@@ -11,7 +11,7 @@ However, some people like to be more hands-on with their management. After you w
 
 Before leveraging the caching capabilities of Dynamic Prerendering service, you must first define your origin, which is the site that you want it to prerender. This step is crucial as it allows the system to understand the source of the pages and how they should be cached for optimal performance.
 
-- Make a request to the [Create an origin](/docs/apiPrerendering#/paths/api-prerender-v1-origins/post) endpoint using the POST method.
+- Make a request to the [Create origin](/docs/apiPrerendering#/paths/api-prerender-v1-origins/post) endpoint using the POST method.
 - Include the necessary headers and provide a body containing your origin details.
 
 ## 2. Fetch Prerendered Page Content
@@ -33,5 +33,5 @@ If you need to refresh your cached content, then use the [Purge cache](/docs/api
 
 Gain more control over your caching strategy by selectively caching specific pages from your origin and determining the cache's time-to-live (TTL).
 
-- Modify origin settings with the PATCH method at the [Update an origin](/docs/apiPrerendering#/paths/api-prerender-v1-origins-_key/patch) endpoint.
-- To remove configurations for specific origins, use the DELETE method on the [Delete an origin](/docs/apiPrerendering#/paths/api-prerender-v1-origins-_key/delete) endpoint.
+- Modify origin settings with the PATCH method at the [Update origin](/docs/apiPrerendering#/paths/api-prerender-v1-origins-_key/patch) endpoint.
+- To remove configurations for specific origins, use the DELETE method on the [Delete origin](/docs/apiPrerendering#/paths/api-prerender-v1-origins-_key/delete) endpoint.
