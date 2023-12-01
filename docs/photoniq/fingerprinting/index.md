@@ -3,17 +3,17 @@ sidebar_position: 1
 title: Digital Fingerprinting
 ---
 
-The PhotonIQ digital fingerprinting solution aims to generate a robust and reliable Visitor Identififyer (VisitorID) for website users, maintaining stability across operating system upgrades, browser updates, and multi-browser usage. This process uses a client-side agent within the user's browser and server-side code to recognize and distinguish between different devices and users.
+The PhotonIQ digital fingerprinting solution aims to generate a robust and reliable Visitor Identifier (VisitorID) for website users, maintaining stability across operating system upgrades, browser updates, and multi-browser usage. This process uses a client-side agent within the user's browser and server-side code to recognize and distinguish between different devices and users.
 
 ## Benefits of Digital Fingerprinting
 
-In the dynamic world of e-commerce, leveraging advanced strategies and technologies is crucial for staying competitive and maximizing business success. The following key areas represent pivotal aspects where innovative approaches can significantly enhance online retail operations. From personalized marketing to sophisticated fraud detection, these strategies focus on optimizing customer experience, ensuring security, and boosting overall business efficiency. Each element plays a vital role in not only attracting and retaining customers but also in driving revenue growth and maintaining a strong market presence.
+In the dynamic world of e-commerce, leveraging advanced strategies and technologies is crucial for staying competitive and maximizing business success. The following areas represent pivotal aspects where innovative approaches can significantly enhance online retail operations. From personalized marketing to sophisticated fraud detection, these strategies focus on optimizing customer experience, ensuring security, and boosting overall business efficiency. Each element is vital in attracting and retaining customers, driving revenue growth, and maintaining a solid market presence.
 
 - **Personalized Marketing & Recommendations:** Enhance the relevance of product suggestions, leading to increased click-through and conversion rates.
-- **Fraud Detection & Prevention:** Implement measures to reduce fraud, resulting in fewer chargebacks and refunds, and enhancing customer trust.
+- **Fraud Detection & Prevention:** Implement measures to reduce fraud, resulting in fewer chargebacks and refunds and enhancing customer trust.
 - **Shopping Cart Abandonment Analysis:** Identify and address issues that lead to cart abandonment to boost the conversion rate and enhance customer retention.
-- **Customer Lifetime Value Prediction:** Concentrate efforts on high-value customers to maximize revenue, leading to more efficient marketing and improved profit margins.
-- **A/B Testing:** Conduct precise A/B testing to inform better site design and pricing strategy decisions, which in turn improve conversion rates and overall revenue.
+- **Customer Lifetime Value Prediction**:\*\* Concentrate on high-value customers to maximize revenue, leading to more efficient marketing and improved profit margins.
+- **A/B Testing:** Conduct precise A/B testing to inform better site design and pricing strategy decisions, improving conversion rates and overall revenue.
 
 ## How It Works
 
@@ -54,9 +54,9 @@ These fingerprints result from combining techniques such as:
 
 ### Browser Side Agent
 
-When visitors access the webpage, a browser-side JavaScript library (referred to as an 'agent') is automatically loaded. This library is responsible for collecting various pieces of information about the visitor's browser. Once gathered, this data is transmitted to the Digital Fingerprinting service. There, the information undergoes processing, allowing visitors to be identified using proprietary algorithms and advanced machine-learning models. The data types collected include but are not limited to, user agents, screen resolutions, and CPU counts.
+A browser-side JavaScript library (an 'agent') is automatically loaded when visitors access the webpage. This library is responsible for collecting various pieces of information about the visitor's browser. Once gathered, this data is transmitted to the Digital Fingerprinting service. The information undergoes processing, allowing visitors to be identified using proprietary algorithms and advanced machine-learning models. The data types collected include but are not limited to, user agents, screen resolutions, and CPU counts.
 
-These signals, along with server signals, bot detection, and spoof detection, are used to identify each visitor uniquely. A history is kept of when the visitors visited the website and when their signals changed. But while the signals change, they are always identified as the same visitor.
+These signals, along with server signals, bot detection, and spoof detection, are used to identify each visitor uniquely. A history is kept of when the visitors visited the website and their signals changed. But while the signals change, they are always identified as the same visitor.
 
 ### Server Side Detection
 
@@ -66,7 +66,7 @@ An additional example is that the server compares the visitor's IP address with 
 
 ### Spoof Detection
 
-Spoof detection is where we attempt to detect unusual activity. We analyze the signals to see if there are any unusual combinations. For example, if a User-Agent indicates it is coming running on a Windows Operating System, but the browser is reporting it is Safari. Another example of unusual activity is if the screen resolution is desktop, but the User-Agent indicates it is a mobile device. These are all indications of someone attempting to change the appearance of the person connecting to your website. Any signs that suggest the possibility of spoofing indicate a bot trying to hide its appearance. Therefore, we label this visitor as an unknown bot.
+Spoof detection is where we attempt to detect unusual activity. We analyze the signals to see if there are any unusual combinations. For example, if a User-Agent indicates it is coming running on a Windows Operating System, but the browser is reporting it is Safari. Another instance of unusual activity is if the screen resolution is desktop, but the User-Agent indicates it is a mobile device. These are all indications of someone attempting to change the appearance of the person connecting to your website. Any signs that suggest the possibility of spoofing indicate a bot trying to hide its appearance. Therefore, we label this visitor as an unknown bot.
 
 ### Bot Detection
 
@@ -78,7 +78,7 @@ The process of identifying automated activity on a website is known as bot detec
 
 ## Fingerprint Metrics
 
-When a visitor accesses your website, the Digital Fingerprint service uniquely identifies them. At the same time, the fingerprint service collects metrics about the individual visitor. These metrics include device types (e.g., desktop, mobile), whether the visitor is a human or a bot, and how often these visitors access your website.
+When visitors access your website, the Digital Fingerprint service uniquely identifies them. At the same time, the fingerprint service collects metrics about the individual visitor. These metrics include device types (e.g., desktop, mobile), whether the visitor is a human or a bot, and how often these visitors access your website.
 
 ### Fingerprint Metrics Reports
 
