@@ -5,16 +5,6 @@ title: Digital Fingerprinting
 
 The PhotonIQ digital fingerprinting solution aims to generate a robust and reliable Visitor Identifier (VisitorID) for website users, maintaining stability across operating system upgrades, browser updates, and multi-browser usage. This process uses a client-side agent within the user's browser and server-side code to recognize and distinguish between different devices and users.
 
-## Benefits of Digital Fingerprinting
-
-In the dynamic world of e-commerce, leveraging advanced strategies and technologies is crucial for staying competitive and maximizing business success. The following areas represent pivotal aspects where innovative approaches can significantly enhance online retail operations. From personalized marketing to sophisticated fraud detection, these strategies focus on optimizing customer experience, ensuring security, and boosting overall business efficiency. Each element is vital in attracting and retaining customers, driving revenue growth, and maintaining a solid market presence.
-
-- **Personalized Marketing & Recommendations:** Enhance the relevance of product suggestions, leading to increased click-through and conversion rates.
-- **Fraud Detection & Prevention:** Implement measures to reduce fraud, resulting in fewer chargebacks and refunds and enhancing customer trust.
-- **Shopping Cart Abandonment Analysis:** Identify and address issues that lead to cart abandonment to boost the conversion rate and enhance customer retention.
-- **Customer Lifetime Value Prediction**:\*\* Concentrate on high-value customers to maximize revenue, leading to more efficient marketing and improved profit margins.
-- **A/B Testing:** Conduct precise A/B testing to inform better site design and pricing strategy decisions, improving conversion rates and overall revenue.
-
 ## How It Works
 
 Digital Fingerprinting uses advanced fingerprinting techniques to create a unique signature of a user's device. This allows recognizing users (visitors) across sessions and devices without relying only on cookies.
@@ -33,6 +23,16 @@ When a new user visits your site, Digital Fingerprinting will:
 
 The same Visitor ID is recognized using the fingerprint and persists on subsequent visits, and the signature is updated to capture any new browser/device attributes. Digital Fingerprinting uses proprietary algorithms and ML models to match fingerprints with high confidence, even if some attributes change. A score indicates this confidence level.
 
+## Benefits of Digital Fingerprinting
+
+In the dynamic world of e-commerce, leveraging advanced strategies and technologies is crucial for staying competitive and maximizing business success. The following areas represent pivotal aspects where innovative approaches can significantly enhance online retail operations. From personalized marketing to sophisticated fraud detection, these strategies focus on optimizing customer experience, ensuring security, and boosting overall business efficiency. Each element is vital in attracting and retaining customers, driving revenue growth, and maintaining a solid market presence.
+
+- **Personalized Marketing and Recommendations:** Enhance the relevance of product suggestions, leading to increased click-through and conversion rates.
+- **Fraud Detection and Prevention:** Implement measures to reduce fraud, resulting in fewer chargebacks and refunds and enhancing customer trust.
+- **Shopping Cart Abandonment Analysis:** Identify and address issues that lead to cart abandonment to boost the conversion rate and enhance customer retention.
+- **Customer Lifetime Value Prediction**: Concentrate on high-value customers to maximize revenue, leading to more efficient marketing and improved profit margins.
+- **A/B Testing:** Conduct precise A/B testing to inform better site design and pricing strategy decisions, improving conversion rates and overall revenue.
+
 ## Key Features​
 
 Key capabilities of Digital Fingerprinting include:
@@ -47,26 +47,30 @@ Digital Fingerprinting generates fingerprints that persist even when visitors ta
 
 These fingerprints result from combining techniques such as:
 
-- Browser Side Agent
-- Server Side Detection
-- Spoof Detection
-- Bot Detection
+- Browser-side agents
+- Server-side detection
+- Spoof detection
+- Bot detection
 
-### Browser Side Agent
+### Browser-Side Agent
 
-A browser-side JavaScript library (an 'agent') is automatically loaded when visitors access the webpage. This library is responsible for collecting various pieces of information about the visitor's browser. Once gathered, this data is transmitted to the Digital Fingerprinting service. The information undergoes processing, allowing visitors to be identified using proprietary algorithms and advanced machine-learning models. The data types collected include but are not limited to, user agents, screen resolutions, and CPU counts.
+A browser-side JavaScript library (an 'agent') is automatically loaded when visitors access the webpage. This library is responsible for collecting various pieces of information about the visitor's browser. Once gathered, this data is transmitted to the Digital Fingerprinting service. The information is processed, allowing visitors to be identified using proprietary algorithms and advanced machine-learning models. The data types collected include but are not limited to, user agents, screen resolutions, and CPU counts.
 
 These signals, along with server signals, bot detection, and spoof detection, are used to identify each visitor uniquely. A history is kept of when the visitors visited the website and their signals changed. But while the signals change, they are always identified as the same visitor.
 
-### Server Side Detection
+### Server-Side Detection
 
-Among the techniques the Digital Fingerprint server uses to identify visitors is determining if a visitor is accessing your website via a VPN. It compares the visitor's browser time zone with the source address's time zone and a list of well-known public VPN servers to identify if the visitor uses a VPN.
+Among the techniques the Digital Fingerprinting server uses to identify visitors is determining if a visitor is accessing your website via a VPN. It compares the visitor's browser time zone with the source address's time zone and a list of well-known public VPN servers to identify if the visitor uses a VPN.
 
-An additional example is that the server compares the visitor's IP address with their ISP's Autonomous System Numbers (ASN) and detects the visitor’s location has changed. With this location, the Digital Fingerprint service offers geolocation services to determine the visitor's location, including city, state, and zip code.
+The server compares the visitor's IP address with their ISP's Autonomous System Numbers (ASN) and detects the visitor’s location has changed. With this location, Digital Fingerprinting offers geolocation services to determine the visitor's location, including city, state, and zip code.
 
 ### Spoof Detection
 
-Spoof detection is where we attempt to detect unusual activity. We analyze the signals to see if there are any unusual combinations. For example, if a User-Agent indicates it is coming running on a Windows Operating System, but the browser is reporting it is Safari. Another instance of unusual activity is if the screen resolution is desktop, but the User-Agent indicates it is a mobile device. These are all indications of someone attempting to change the appearance of the person connecting to your website. Any signs that suggest the possibility of spoofing indicate a bot trying to hide its appearance. Therefore, we label this visitor as an unknown bot.
+Spoof detection is where Dynamic Fingerprinting attempt to detect unusual activity. It analyze sthe signals to see if there are any unusual combinations.
+
+For example, if a user-agent indicates it is coming running on a Windows Operating System, but the browser is reporting it is Safari. Another instance of unusual activity is if the screen resolution is desktop, but the user-agent indicates it is a mobile device.
+
+These are indications of someone attempting to change the appearance of the person connecting to your website. Any signs that suggest the possibility of spoofing indicate a bot trying to hide its appearance. Therefore, Dynamic Fingerprinting labels this visitor as an unknown bot.
 
 ### Bot Detection
 
@@ -98,15 +102,15 @@ The visitor traffic report returns the number of good bots, bad bots, unknown bo
 
 ## Best Practices
 
-### 1st Party vs 3rd Party Cookies
+### First-Party vs. Third-Party Cookies
 
 The Digital Fingerprint service uses [third-party cookies](first-third-party-cookie) by default, which may affect the accuracy of the identification process. To ensure high levels of identification accuracy, it is recommended to use a customer subdomain or a cloud proxy (such as Akamai). By employing this approach, the cookies set by the Digital Fingerprint service will be treated as [first-party cookies](first-third-party-cookie), which will enhance the identification precision.
 
 ### Fingerprint Browser Agent on Page Load
 
-The JavaScript agent is loaded at page load time, and the function to get the visitor ID is run right away. For more information, click [here]().
+The JavaScript agent is loaded at page load time, and the function to get the visitor ID is run right away. For more information, refer to [Fingerprint on Page Load](get-started-fingerprinting.md#fingerprint-on-page-load).
 
-### Visitor Identifier to third-party services
+### Visitor Identifier to Third-Party Services
 
 The Digital Fingerprint Visitor Identification (VisitorID) can be passed to a third-party service, like a web advertisement or coupon service. This service can use the visitor ID to customize its service without the user being strongly identified via a login mechanism.
 
