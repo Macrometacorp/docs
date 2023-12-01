@@ -14,5 +14,10 @@ title: PhotonIQ API Reference
     description=""
     href="../../../docs/apiVwrs#"
   />
+  <card
+    heading="Digital Signature API"
+    description=""
+    href="../../../docs/apiFps#"
+  />
 
 </grid>

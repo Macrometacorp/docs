@@ -4,7 +4,7 @@ import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-export default function APIVwrsServicePage() {
+export default function APIFpsServicePage() {
   const { siteConfig } = useDocusaurusContext();
 
   useEffect(() => {
@@ -18,9 +18,9 @@ export default function APIVwrsServicePage() {
   return (
     <Layout>
       <Head>
-        <title>PhotonIQ Virtual Waiting Room Service API Reference | Macrometa Docs</title>
-        <meta name="description" content="PhotonIQ Virtual Waiting Room Service API" />
-        <meta name="og:description" content="PhotonIQ Virtual Waiting Room Service API" />
+        <title>PhotonIQ Virtual Waiting Rooms API Reference | Macrometa Docs</title>
+        <meta name="description" content="PhotonIQ Virtual Waiting Rooms API" />
+        <meta name="og:description" content="PhotonIQ Virtual Waiting Rooms API" />
         {/* Loading styles for elements this way so it doesn't interfere with other styles */}
         <link
           rel="stylesheet"
@@ -42,9 +42,9 @@ export default function APIVwrsServicePage() {
           const { API } = require('@stoplight/elements');
           return (
             <>
-              {/* https://api-demo-vwrs-service.paas.macrometa.io/docs/vwr */}
+              {}
               <API
-                apiDescriptionUrl={`${siteConfig.baseUrl}openapi/vwrs-service-spec.json`}
+                apiDescriptionUrl={`${siteConfig.baseUrl}openapi/fps-spec.json`}
                 router="hash"
                 basePath="/"
                 layout="sidebar"
