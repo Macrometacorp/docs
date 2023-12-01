@@ -21,7 +21,7 @@ This attribute ensures data integrity and governs access levels to collections w
 
 ## `lockTimeout` Attribute
 
-`lockTimeout` sets a time limit in seconds for how long a transaction waits to acquire a lock on a collection. It's particularly relevant for transactions requiring exclusive access. A well-set `lockTimeout` can prevent transactions from stalling indefinitely, especially when set to 0, causes the transaction to wait indefinitely. Default lock timeout is 900 seconds.
+`lockTimeout` sets a time limit in seconds for how long a transaction waits to acquire a lock on a collection. It's particularly relevant for transactions requiring exclusive access. Setting `lockTimeout` to 0 causes the transaction to wait indefinitely. Default lock timeout is 900 seconds.
 
 ## `maxTransactionSize` Attribute
 
