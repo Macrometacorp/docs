@@ -1,5 +1,5 @@
 ---
-sidebarposition: 50
+sidebar_position: 50
 title: First- and Third-Party Cookies
 ---
 
