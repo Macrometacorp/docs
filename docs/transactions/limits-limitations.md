@@ -29,7 +29,7 @@ Transactional operation limitations within Macrometa are put in place to ensure 
 
 Certain actions are prohibited within transactions to maintain system integrity and performance. These include:
 
-- Creation and deletion of databases
+- Creation and deletion of fabrics
 - Creation and deletion of collections
 - Creation and deletion of indexes
 - Nesting a transaction within another transaction
@@ -41,10 +41,6 @@ Transactions are not optimized for long-running or voluminous tasks. They requir
 ## Atomicity in Multi-Collection Transactions
 
 Macrometa's approach to transaction atomicity is tailored for speed and efficiency but can be affected by server outages. In multi-collection transactions, atomicity across servers cannot be guaranteed if a server outage occurs during the commit phase.
-
-## Handling Large Transactions
-
-Macrometa stores transaction data in RAM. Transactions that become too large are automatically committed and divided into smaller transactions. This approach helps manage memory usage but may affect the ACID properties of the original large transaction.
 
 ## Error Codes and Transactional Integrity
 
