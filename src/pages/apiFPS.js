@@ -18,7 +18,7 @@ export default function APIFpsServicePage() {
   return (
     <Layout>
       <Head>
-        <title>PhotonIQ Virtual Waiting Rooms API Reference | Macrometa Docs</title>
+        <title>PhotonIQ Digital Signature API Reference | Macrometa Docs</title>
         <meta name="description" content="PhotonIQ Virtual Waiting Rooms API" />
         <meta name="og:description" content="PhotonIQ Virtual Waiting Rooms API" />
         {/* Loading styles for elements this way so it doesn't interfere with other styles */}
