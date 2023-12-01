@@ -7,17 +7,24 @@
   },
   "servers": [{ "url": "https://demo-prerender.photoniq.macrometa.io" }],
   "tags": [
-    { "name": "Origin", "description": "Customer Origin" },
-    { "name": "Prerender", "description": "Prerender Pages" },
-    { "name": "Cache", "description": "Cache Pages" },
-    { "name": "Health", "description": "Service Health" },
-    { "name": "Version", "description": "API Version" }
+    { "name": "Origins" },
+    { "name": "Prerender Settings" },
+    { "name": "Synthetic Interactions" },
+    { "name": "Prefetch Configurations" },
+    { "name": "Prefetch Triggers" },
+    { "name": "Prefetch URLs" },
+    { "name": "Prefetch Statistics" },
+    { "name": "Prerender" },
+    { "name": "Cache" },
+    { "name": "Metrics" },
+    { "name": "Health" },
+    { "name": "Version" }
   ],
   "components": { "schemas": {} },
   "paths": {
-    "/api/prerender/v1/purge": {
+    "/api/prerender/v1/origins/{origin}/cache/purge": {
       "post": {
-        "summary": "Purges the cache",
+        "summary": "Purge cache",
         "tags": ["Cache"],
         "description": "This endpoint clears rendered pages from the origin cache. It is possible to clear all records related to the origin or specific records according to the \"urls\" list.",
         "requestBody": {
@@ -26,24 +33,24 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "origin": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "Origin base URL"
-                  },
                   "urls": {
                     "type": "array",
                     "items": { "type": "string", "description": "Origin path" },
-                    "description": "List of origin paths to be deleted from cache"
+                    "description": "List of origin paths to be deleted from the cache"
                   }
-                },
-                "required": ["origin"]
+                }
               }
             }
-          },
-          "required": true
+          }
         },
         "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
           {
             "schema": { "type": "string" },
             "in": "header",
@@ -124,7 +131,7 @@
     },
     "/api/prerender/v1/health": {
       "get": {
-        "summary": "Gets service health status",
+        "summary": "Get service health",
         "tags": ["Health"],
         "description": "This endpoint returns the service health status.",
         "responses": {
@@ -272,9 +279,9 @@
     },
     "/api/prerender/v1/origins/{origin}/interactions": {
       "get": {
-        "summary": "Gets all origin interactions",
-        "tags": ["Interaction"],
-        "description": "This endpoint returns all origin interactions.",
+        "summary": "Get synthetic interactions",
+        "tags": ["Synthetic Interactions"],
+        "description": "This endpoint returns all synthetic interactions associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -653,9 +660,9 @@
     },
     "/api/prerender/v1/origins/{origin}/interactions/{type}": {
       "get": {
-        "summary": "Gets an origin interaction",
-        "tags": ["Interaction"],
-        "description": "This endpoint returns an origin interaction.",
+        "summary": "Get synthetic interaction",
+        "tags": ["Synthetic Interactions"],
+        "description": "This endpoint returns a synthetic interaction associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -955,9 +962,9 @@
         }
       },
       "post": {
-        "summary": "Creates an origin interaction",
-        "tags": ["Interaction"],
-        "description": "This endpoint creates an origin interaction.",
+        "summary": "Create synthetic interaction",
+        "tags": ["Synthetic Interactions"],
+        "description": "This endpoint creates a synthetic interaction associated with the origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1214,9 +1221,9 @@
         }
       },
       "patch": {
-        "summary": "Updates an origin interaction",
-        "tags": ["Interaction"],
-        "description": "This endpoint updates an origin interaction.",
+        "summary": "Update synthetic interaction",
+        "tags": ["Synthetic Interactions"],
+        "description": "This endpoint updates a synthetic interaction associated with the origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1471,9 +1478,9 @@
         }
       },
       "delete": {
-        "summary": "Deletes an origin interaction",
-        "tags": ["Interaction"],
-        "description": "This endpoint deletes an origin interaction.",
+        "summary": "Delete synthetic interaction",
+        "tags": ["Synthetic Interactions"],
+        "description": "This endpoint deletes a synthetic interaction associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -1633,9 +1640,9 @@
     },
     "/api/prerender/v1/origins": {
       "get": {
-        "summary": "Gets all origins",
-        "tags": ["Origin"],
-        "description": "This endpoint returns all origins defined in the origin-related GDN fabric.",
+        "summary": "Get origins",
+        "tags": ["Origins"],
+        "description": "This endpoint returns all origins from the origin-related GDN fabric.",
         "parameters": [
           {
             "schema": { "type": "string" },
@@ -1643,13 +1650,6 @@
             "name": "x-photoniq-customerid",
             "required": true,
             "description": "Customer unique identifier"
-          },
-          {
-            "schema": { "type": "string" },
-            "in": "header",
-            "name": "x-photoniq-prerender-origin",
-            "required": true,
-            "description": "Prerender origin"
           }
         ],
         "responses": {
@@ -1676,8 +1676,7 @@
                         "properties": {
                           "_key": {
                             "type": "string",
-                            "description": "Origin unique identifier",
-                            "minLength": 1
+                            "description": "Origin unique identifier"
                           },
                           "origin": {
                             "type": "string",
@@ -1821,8 +1820,8 @@
         }
       },
       "post": {
-        "summary": "Creates an origin",
-        "tags": ["Origin"],
+        "summary": "Create origin",
+        "tags": ["Origins"],
         "description": "This endpoint creates an origin in the origin-related GDN fabric.",
         "requestBody": {
           "content": {
@@ -1930,8 +1929,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Origin unique identifier",
-                          "minLength": 1
+                          "description": "Origin unique identifier"
                         }
                       },
                       "required": ["_key"]
@@ -1989,11 +1987,195 @@
         }
       }
     },
-    "/api/prerender/v1/origins/{_key}": {
+    "/api/prerender/v1/origins/{origin}": {
+      "get": {
+        "summary": "Get origin",
+        "tags": ["Origins"],
+        "description": "This endpoint returns an origin from the origin-related GDN fabric.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Origin unique identifier"
+                        },
+                        "origin": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "Origin base URL"
+                        },
+                        "siteMaps": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Sitemap path"
+                          },
+                          "description": "List of sitemap paths"
+                        },
+                        "identifyNotfound": {
+                          "type": "string",
+                          "description": "Content that identifies not found pages (404) in rendered pages"
+                        },
+                        "allowOriginHeaderValue": {
+                          "type": "string",
+                          "description": "Value of X-PhotonIQ-Prerender-Request header"
+                        },
+                        "passThroughHeaders": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Header key"
+                          },
+                          "description": "List of header keys that are forwarded from the bot request to the origin website"
+                        },
+                        "addResponseHeaders": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "basedOnStatusCode": {
+                                "type": "boolean",
+                                "description": "Whether the header value should be based on the response status code"
+                              },
+                              "value": {
+                                "oneOf": [
+                                  {
+                                    "type": "string",
+                                    "description": "Header value"
+                                  },
+                                  {
+                                    "type": "object",
+                                    "description": "Status code. Ranges like 2xx can be also used.",
+                                    "additionalProperties": {
+                                      "type": "string",
+                                      "description": "Header value"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "required": ["basedOnStatusCode", "value"],
+                            "description": "Additional response headers configuration"
+                          },
+                          "description": "Map of headers to be added to the response"
+                        },
+                        "caching": {
+                          "type": "boolean",
+                          "description": "Whether or not to cache rendered pages"
+                        },
+                        "ttl": {
+                          "type": "number",
+                          "description": "Cache lifetime of rendered pages (in seconds)"
+                        },
+                        "created": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the origin was created"
+                        },
+                        "lastUpdated": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the origin was updated"
+                        }
+                      },
+                      "required": [
+                        "_key",
+                        "origin",
+                        "siteMaps",
+                        "caching",
+                        "ttl",
+                        "created"
+                      ]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
       "patch": {
-        "summary": "Updates an origin",
-        "tags": ["Origin"],
-        "description": "This endpoint updates an existing origin in the origin-related GDN fabric.",
+        "summary": "Update origin",
+        "tags": ["Origins"],
+        "description": "This endpoint updates an origin in the origin-related GDN fabric.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2066,9 +2248,9 @@
           {
             "schema": { "type": "string", "minLength": 1 },
             "in": "path",
-            "name": "_key",
+            "name": "origin",
             "required": true,
-            "description": "Origin unique identifier"
+            "description": "Origin hostname"
           },
           {
             "schema": { "type": "string" },
@@ -2076,13 +2258,6 @@
             "name": "x-photoniq-customerid",
             "required": true,
             "description": "Customer unique identifier"
-          },
-          {
-            "schema": { "type": "string" },
-            "in": "header",
-            "name": "x-photoniq-prerender-origin",
-            "required": true,
-            "description": "Prerender origin"
           }
         ],
         "responses": {
@@ -2107,8 +2282,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Origin unique identifier",
-                          "minLength": 1
+                          "description": "Origin unique identifier"
                         }
                       },
                       "required": ["_key"]
@@ -2166,16 +2340,16 @@
         }
       },
       "delete": {
-        "summary": "Deletes an origin",
-        "tags": ["Origin"],
-        "description": "This endpoint deletes an existing origin in the origin-related GDN fabric.",
+        "summary": "Delete origin",
+        "tags": ["Origins"],
+        "description": "This endpoint deletes an origin in the origin-related GDN fabric.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
             "in": "path",
-            "name": "_key",
+            "name": "origin",
             "required": true,
-            "description": "Origin unique identifier"
+            "description": "Origin hostname"
           },
           {
             "schema": { "type": "string" },
@@ -2183,13 +2357,6 @@
             "name": "x-photoniq-customerid",
             "required": true,
             "description": "Customer unique identifier"
-          },
-          {
-            "schema": { "type": "string" },
-            "in": "header",
-            "name": "x-photoniq-prerender-origin",
-            "required": true,
-            "description": "Prerender origin"
           }
         ],
         "responses": {
@@ -2214,8 +2381,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Origin unique identifier",
-                          "minLength": 1
+                          "description": "Origin unique identifier"
                         }
                       },
                       "required": ["_key"]
@@ -2273,9 +2439,892 @@
         }
       }
     },
+    "/api/prerender/v1/origins/{origin}/prefetch/configs": {
+      "get": {
+        "summary": "Get prefetch configuration",
+        "tags": ["Prefetch Configurations"],
+        "description": "This endpoint returns the prefetch configuration associated with the origin.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Prefetch configuration unique identifier"
+                        },
+                        "origin": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "Origin base URL"
+                        },
+                        "cronSchedule": {
+                          "type": "string",
+                          "description": "Cron expression for scheduling"
+                        },
+                        "isRenderForMobile": {
+                          "type": "boolean",
+                          "description": "Whether to render for mobile devices or not"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the prefetch configuration was created"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the prefetch configuration was updated"
+                        }
+                      },
+                      "required": [
+                        "_key",
+                        "origin",
+                        "cronSchedule",
+                        "isRenderForMobile",
+                        "createdAt"
+                      ]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create prefetch configuration",
+        "tags": ["Prefetch Configurations"],
+        "description": "This endpoint creates a prefetch configuration associated with the origin.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cronSchedule": {
+                    "type": "string",
+                    "description": "Cron expression for scheduling"
+                  },
+                  "isRenderForMobile": {
+                    "type": "boolean",
+                    "description": "Whether to render for mobile devices or not"
+                  }
+                },
+                "required": ["cronSchedule", "isRenderForMobile"]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Prefetch configuration unique identifier"
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update prefetch configuration",
+        "tags": ["Prefetch Configurations"],
+        "description": "This endpoint updates the prefetch configuration associated with the origin.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cronSchedule": {
+                    "type": "string",
+                    "description": "Cron expression for scheduling"
+                  },
+                  "isRenderForMobile": {
+                    "type": "boolean",
+                    "description": "Whether to render for mobile devices or not"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Prefetch configuration unique identifier"
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete prefetch configuration",
+        "tags": ["Prefetch Configurations"],
+        "description": "This endpoint deletes the prefetch configuration associated with the origin.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Prefetch configuration unique identifier"
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/origins/{origin}/prefetch/stats": {
+      "get": {
+        "summary": "Get prefetch statistics",
+        "tags": ["Prefetch Statistics"],
+        "description": "This endpoint returns the latest prefetch statistics associated with the origin.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "totalUrls": {
+                          "type": "number",
+                          "description": "Total URLs"
+                        },
+                        "queued": {
+                          "type": "number",
+                          "description": "Total queued URLs"
+                        },
+                        "retrying": {
+                          "type": "number",
+                          "description": "Total retrying URLs"
+                        },
+                        "completed": {
+                          "type": "number",
+                          "description": "Total completed URLs"
+                        },
+                        "failed": {
+                          "type": "number",
+                          "description": "Total failed URLs"
+                        }
+                      },
+                      "required": [
+                        "totalUrls",
+                        "queued",
+                        "retrying",
+                        "completed",
+                        "failed"
+                      ]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/origins/{origin}/prefetch/triggers": {
+      "post": {
+        "summary": "Create prefetch trigger",
+        "tags": ["Prefetch Triggers"],
+        "description": "This endpoint creates a prefetch trigger associated with the origin.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Prefetch trigger unique identifier"
+                        }
+                      },
+                      "required": ["_key"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Conflict",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/origins/{origin}/prefetch/urls": {
+      "get": {
+        "summary": "Get prefetch URLs",
+        "tags": ["Prefetch URLs"],
+        "description": "This endpoint returns the latest prefetch URLs associated with the origin.",
+        "parameters": [
+          {
+            "schema": { "type": "number", "default": 0 },
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "description": "Pagination offset"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "default": 1000,
+              "maximum": 1000
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "description": "Pagination limit"
+          },
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Origin URL"
+                          },
+                          "isMobile": {
+                            "type": "boolean",
+                            "description": "Whether the URL is rendered for mobile devices or not"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "queued",
+                              "retrying",
+                              "completed",
+                              "failed"
+                            ],
+                            "description": "URL status"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date when the prefetch URL was created"
+                          },
+                          "updatedAt": {
+                            "type": ["null", "string"],
+                            "format": "date-time",
+                            "description": "Date when the prefetch URL was updated"
+                          }
+                        },
+                        "required": ["url", "isMobile", "status", "createdAt"]
+                      }
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/prerender/v1/render/{mobile}/{url}": {
       "get": {
-        "summary": "Fetches the prerendered page content",
+        "summary": "Get prerendered page",
         "tags": ["Prerender"],
         "description": "This endpoint returns the HTML content of the rendered page.",
         "parameters": [
@@ -2450,7 +3499,7 @@
     },
     "/api/prerender/v1/render": {
       "get": {
-        "summary": "Fetches the prerendered page content",
+        "summary": "Get prerendered page",
         "tags": ["Prerender"],
         "description": "This endpoint returns the HTML content of the rendered page.",
         "parameters": [
@@ -2651,25 +3700,25 @@
         }
       }
     },
-    "/api/prerender/v1/settings": {
+    "/api/prerender/v1/origins/{origin}/settings": {
       "get": {
-        "summary": "Gets all prerender settings",
-        "tags": ["Settings"],
-        "description": "This endpoint returns all prerender settings defined in the origin-related GDN fabric.",
+        "summary": "Get prerender settings",
+        "tags": ["Prerender Settings"],
+        "description": "This endpoint returns the prerender settings associated with the origin.",
         "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
           {
             "schema": { "type": "string" },
             "in": "header",
             "name": "x-photoniq-customerid",
             "required": true,
             "description": "Customer unique identifier"
-          },
-          {
-            "schema": { "type": "string" },
-            "in": "header",
-            "name": "x-photoniq-prerender-origin",
-            "required": true,
-            "description": "Prerender origin"
           }
         ],
         "responses": {
@@ -2690,59 +3739,55 @@
                       "description": "Success message"
                     },
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_key": {
-                            "type": "string",
-                            "description": "Settings unique identifier",
-                            "minLength": 1
-                          },
-                          "origin": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "Origin base URL"
-                          },
-                          "injectInlineCSS": {
-                            "type": "boolean",
-                            "description": "Whether or not to inject CSS into the HTML"
-                          },
-                          "addRequestHeader": {
-                            "type": "boolean",
-                            "description": "Whether or not to add X-PhotonIQ-Prerender-Request header to each request made during page rendering"
-                          },
-                          "blockRequestTypes": {
-                            "type": "array",
-                            "items": { "type": "string" },
-                            "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)"
-                          },
-                          "urlBlockList": {
-                            "type": "array",
-                            "items": { "type": "string" },
-                            "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)"
-                          },
-                          "created": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "Date when the settings was created"
-                          },
-                          "lastUpdated": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "Date when the settings was updated"
-                          }
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Settings unique identifier"
                         },
-                        "required": [
-                          "_key",
-                          "origin",
-                          "injectInlineCSS",
-                          "addRequestHeader",
-                          "blockRequestTypes",
-                          "urlBlockList",
-                          "created"
-                        ]
-                      }
+                        "origin": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "Origin base URL"
+                        },
+                        "injectInlineCSS": {
+                          "type": "boolean",
+                          "description": "Whether or not to inject CSS into the HTML"
+                        },
+                        "addRequestHeader": {
+                          "type": "boolean",
+                          "description": "Whether or not to add X-PhotonIQ-Prerender-Request header to each request made during page rendering"
+                        },
+                        "blockRequestTypes": {
+                          "type": "array",
+                          "items": { "type": "string" },
+                          "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)"
+                        },
+                        "urlBlockList": {
+                          "type": "array",
+                          "items": { "type": "string" },
+                          "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)"
+                        },
+                        "created": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the settings was created"
+                        },
+                        "lastUpdated": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the settings was updated"
+                        }
+                      },
+                      "required": [
+                        "_key",
+                        "origin",
+                        "injectInlineCSS",
+                        "addRequestHeader",
+                        "blockRequestTypes",
+                        "urlBlockList",
+                        "created"
+                      ]
                     }
                   },
                   "required": ["status", "data"]
@@ -2795,13 +3840,11 @@
             }
           }
         }
-      }
-    },
-    "/api/prerender/v1/settings/{_key}": {
+      },
       "patch": {
-        "summary": "Updates a prerender settings",
-        "tags": ["Settings"],
-        "description": "This endpoint updates an existing prerender settings in the origin-related GDN fabric.",
+        "summary": "Update prerender settings",
+        "tags": ["Prerender Settings"],
+        "description": "This endpoint updates the prerender settings associated with the origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2835,9 +3878,9 @@
           {
             "schema": { "type": "string", "minLength": 1 },
             "in": "path",
-            "name": "_key",
+            "name": "origin",
             "required": true,
-            "description": "Settings unique identifier"
+            "description": "Origin hostname"
           },
           {
             "schema": { "type": "string" },
@@ -2845,13 +3888,6 @@
             "name": "x-photoniq-customerid",
             "required": true,
             "description": "Customer unique identifier"
-          },
-          {
-            "schema": { "type": "string" },
-            "in": "header",
-            "name": "x-photoniq-prerender-origin",
-            "required": true,
-            "description": "Prerender origin"
           }
         ],
         "responses": {
@@ -2876,8 +3912,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Settings unique identifier",
-                          "minLength": 1
+                          "description": "Settings unique identifier"
                         }
                       },
                       "required": ["_key"]
@@ -3097,7 +4132,7 @@
     },
     "/api/prerender/v1/version": {
       "get": {
-        "summary": "Gets the API version",
+        "summary": "Get API version",
         "tags": ["Version"],
         "description": "This endpoint returns the API version.",
         "responses": {
