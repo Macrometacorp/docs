@@ -11,13 +11,11 @@ The `allowImplicit` attribute determines if a transaction can read from collecti
 
 ## `collections` Attribute
 
-The `collections` attribute is central to transaction management. It specifies which collections the transaction interacts with and in what manner:
+The `collections` attribute is central to transaction management. It ensures data integrity and governs access levels to collections within a transaction by specifiying which collections the transaction interacts with and in what manner. The options are:
 
-- `read`: Lists collections accessed only for reading, which is recommended to prevent deadlocks. This is optional if `allowImplicit` is set to `true`.
+- `read`: Lists collections accessed only for reading, which is recommended to prevent deadlocks. This is optional if `allowImplicit` is set to `true`. Deadlocks might occur if a collection that is read from within the transaction is not declared in the read sub-attribute.
 - `write`: Includes collections where data might be read or modified.
 - `exclusive`: Specifies collections for exclusive write access, preventing concurrent write operations. It essentially "locks" the collection.
-
-This attribute ensures data integrity and governs access levels to collections within a transaction. However, it can lead to deadlocks if a collection that is read from within the transaction is not declared in the read sub-attribute.
 
 ## `lockTimeout` Attribute
 
