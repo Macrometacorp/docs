@@ -5,28 +5,13 @@
     "description": "API documentation for the PhotonIQ Prerender service",
     "version": "1.2.0"
   },
-  "servers": [{ "url": "https://demo-prerender.photoniq.macrometa.io" }],
-  "tags": [
-    { "name": "Origins" },
-    { "name": "Prerender Settings" },
-    { "name": "Synthetic Interactions" },
-    { "name": "Prefetch Configurations" },
-    { "name": "Prefetch Triggers" },
-    { "name": "Prefetch URLs" },
-    { "name": "Prefetch Statistics" },
-    { "name": "Prerender" },
-    { "name": "Cache" },
-    { "name": "Metrics" },
-    { "name": "Health" },
-    { "name": "Version" }
-  ],
   "components": { "schemas": {} },
   "paths": {
     "/api/prerender/v1/origins/{origin}/cache/purge": {
       "post": {
         "summary": "Purge cache",
         "tags": ["Cache"],
-        "description": "This endpoint clears rendered pages from the origin cache. It is possible to clear all records related to the origin or specific records according to the \"urls\" list.",
+        "description": "Clears rendered pages from the origin cache. It is possible to clear all records related to the origin or specific records according to the \"urls\" list.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -35,8 +20,11 @@
                 "properties": {
                   "urls": {
                     "type": "array",
-                    "items": { "type": "string", "description": "Origin path" },
-                    "description": "List of origin paths to be deleted from the cache"
+                    "items": {
+                      "type": "string",
+                      "description": "Origin path."
+                    },
+                    "description": "List of origin paths to be deleted from the cache."
                   }
                 }
               }
@@ -129,11 +117,271 @@
         }
       }
     },
+    "/api/prerender/v1/origins/{origin}/cache/{cacheKey}/preview": {
+      "get": {
+        "summary": "Preview cached document",
+        "tags": ["Cache"],
+        "description": "This endpoint retrieves cached documents from the cache. Users must specify both the \"origin\" and the \"cacheKey\" of the document they wish to access.",
+        "parameters": [
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "cacheKey",
+            "required": true,
+            "description": "Unique key for the document"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "response": {
+                          "type": "string",
+                          "description": "Cached HTML content of the pre-rendered page"
+                        }
+                      },
+                      "required": ["response"]
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/origins/{origin}/cache": {
+      "get": {
+        "summary": "Get all cached documents info",
+        "tags": ["Cache"],
+        "description": "This endpoint provides a paginated list of cached documents associated with a specified \"origin\". Users can control pagination using the \"limit\" and \"offset\" query parameters. The \"limit\" parameter defines the number of documents to retrieve, while \"offset\" specifies the starting point in the list.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "default": 100,
+              "maximum": 1000
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "description": "Limit for results. Default limit is 100, maximum is 1000."
+          },
+          {
+            "schema": { "type": "number", "default": 0 },
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "description": "Offset for results. Default offset is 0. "
+          },
+          {
+            "schema": { "type": "string", "minLength": 1 },
+            "in": "path",
+            "name": "origin",
+            "required": true,
+            "description": "Origin hostname"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "Customer unique identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Successful response",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Success status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Success message"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_key": {
+                            "type": "string",
+                            "description": "Unique identifier for the cache doc.",
+                            "minLength": 1
+                          },
+                          "requestUrl": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "The URL of the content that has been cached."
+                          },
+                          "created": {
+                            "type": "number",
+                            "description": "The timestamp (in milliseconds) indicating when the document was created."
+                          },
+                          "expiry": {
+                            "type": "number",
+                            "description": "The timestamp (in seconds) indicating when the document will expire."
+                          },
+                          "isPrefetch": {
+                            "type": "boolean",
+                            "description": "Indicates whether the pre-rendering was performed as a prefetch operation (true) or on-demand (false)."
+                          },
+                          "isMobile": {
+                            "type": "boolean",
+                            "description": "Indicates whether the pre-rendering is for a mobile device (true) or a desktop (false)."
+                          }
+                        },
+                        "required": [
+                          "_key",
+                          "requestUrl",
+                          "created",
+                          "expiry",
+                          "isPrefetch",
+                          "isMobile"
+                        ]
+                      }
+                    }
+                  },
+                  "required": ["status", "data"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Bad request",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  },
+                  "required": ["status", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/prerender/v1/health": {
       "get": {
         "summary": "Get service health",
         "tags": ["Health"],
-        "description": "This endpoint returns the service health status.",
+        "description": "Returns the service health status.",
         "responses": {
           "200": {
             "description": "Successful response",
@@ -156,7 +404,7 @@
                       "properties": {
                         "version": {
                           "type": "string",
-                          "description": "Service version"
+                          "description": "Service version."
                         }
                       },
                       "required": ["version"]
@@ -281,7 +529,7 @@
       "get": {
         "summary": "Get synthetic interactions",
         "tags": ["Synthetic Interactions"],
-        "description": "This endpoint returns all synthetic interactions associated with the origin.",
+        "description": "Returns the synthetic interactions associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -323,41 +571,41 @@
                           "properties": {
                             "_key": {
                               "type": "string",
-                              "description": "Interaction unique identifier"
+                              "description": "Interaction unique identifier."
                             },
                             "origin": {
                               "type": "string",
                               "format": "uri",
-                              "description": "Origin base URL"
+                              "description": "Origin base URL."
                             },
                             "created": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was created"
+                              "description": "Date when the interaction was created."
                             },
                             "lastUpdated": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was updated"
+                              "description": "Date when the interaction was updated."
                             },
                             "config": {
                               "type": "object",
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not"
+                                  "description": "Whether the interaction is active or not."
                                 },
                                 "valueInPx": {
                                   "type": "integer",
-                                  "description": "How many pixels to scroll in each step"
+                                  "description": "How many pixels to scroll in each step."
                                 },
                                 "steps": {
                                   "type": "integer",
-                                  "description": "How many steps to finalize scrolling"
+                                  "description": "How many steps to finalize scrolling."
                                 },
                                 "delayBetween": {
                                   "type": "integer",
-                                  "description": "The delay between each scroll step"
+                                  "description": "The delay between each scroll step."
                                 },
                                 "specific": {
                                   "type": "array",
@@ -366,20 +614,20 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not"
+                                        "description": "Whether the specific interaction is active or not."
                                       },
                                       "urlPaths": {
                                         "type": "array",
                                         "items": {
                                           "type": "string",
-                                          "description": "Origin path"
+                                          "description": "Origin path."
                                         },
                                         "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
                                       },
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "The operator applied against the \"urlPaths\" list"
+                                        "description": "The operator applied against the \"urlPaths\" list."
                                       }
                                     },
                                     "required": [
@@ -406,29 +654,29 @@
                           "properties": {
                             "_key": {
                               "type": "string",
-                              "description": "Interaction unique identifier"
+                              "description": "Interaction unique identifier."
                             },
                             "origin": {
                               "type": "string",
                               "format": "uri",
-                              "description": "Origin base URL"
+                              "description": "Origin base URL."
                             },
                             "created": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was created"
+                              "description": "Date when the interaction was created."
                             },
                             "lastUpdated": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was updated"
+                              "description": "Date when the interaction was updated."
                             },
                             "config": {
                               "type": "object",
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not"
+                                  "description": "Whether the interaction is active or not."
                                 },
                                 "global": {
                                   "type": "array",
@@ -437,7 +685,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the global interaction is active or not"
+                                        "description": "Whether the global interaction is active or not."
                                       },
                                       "htmlSelector": { "type": "string" },
                                       "waitAfterInteraction": {
@@ -459,19 +707,19 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not"
+                                        "description": "Whether the specific interaction is active or not."
                                       },
                                       "htmlSelector": {
                                         "type": "string",
-                                        "description": "HTML selector where the interaction is executed"
+                                        "description": "HTML selector where the interaction is executed."
                                       },
                                       "waitAfterInteraction": {
                                         "type": "integer",
-                                        "description": "Time to wait (in seconds) after the interaction execution"
+                                        "description": "Time to wait (in seconds) after the interaction execution."
                                       },
                                       "executionSequence": {
                                         "type": "integer",
-                                        "description": "Specific interaction execution order"
+                                        "description": "Specific interaction execution order."
                                       },
                                       "urlPaths": {
                                         "type": "array",
@@ -484,7 +732,7 @@
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "The operator applied against the \"urlPaths\" list"
+                                        "description": "The operator applied against the \"urlPaths\" list."
                                       }
                                     },
                                     "required": [
@@ -507,29 +755,29 @@
                           "properties": {
                             "_key": {
                               "type": "string",
-                              "description": "Interaction unique identifier"
+                              "description": "Interaction unique identifier."
                             },
                             "origin": {
                               "type": "string",
                               "format": "uri",
-                              "description": "Origin base URL"
+                              "description": "Origin base URL."
                             },
                             "created": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was created"
+                              "description": "Date when the interaction was created."
                             },
                             "lastUpdated": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was updated"
+                              "description": "Date when the interaction was updated."
                             },
                             "config": {
                               "type": "object",
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not"
+                                  "description": "Whether the interaction is active or not."
                                 },
                                 "global": {
                                   "type": "array",
@@ -538,7 +786,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the global interaction is active or not"
+                                        "description": "Whether the global interaction is active or not."
                                       },
                                       "htmlSelector": { "type": "string" },
                                       "waitAfterInteraction": {
@@ -560,19 +808,19 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not"
+                                        "description": "Whether the specific interaction is active or not."
                                       },
                                       "htmlSelector": {
                                         "type": "string",
-                                        "description": "HTML selector where the interaction is executed"
+                                        "description": "HTML selector where the interaction is executed."
                                       },
                                       "waitAfterInteraction": {
                                         "type": "integer",
-                                        "description": "Time to wait (in seconds) after the interaction execution"
+                                        "description": "Time to wait (in seconds) after the interaction execution."
                                       },
                                       "executionSequence": {
                                         "type": "integer",
-                                        "description": "Specific interaction execution order"
+                                        "description": "Specific interaction execution order."
                                       },
                                       "urlPaths": {
                                         "type": "array",
@@ -585,7 +833,7 @@
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "The operator applied against the \"urlPaths\" list"
+                                        "description": "The operator applied against the \"urlPaths\" list."
                                       }
                                     },
                                     "required": [
@@ -662,7 +910,7 @@
       "get": {
         "summary": "Get synthetic interaction",
         "tags": ["Synthetic Interactions"],
-        "description": "This endpoint returns a synthetic interaction associated with the origin.",
+        "description": "Returns a synthetic interaction associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -713,41 +961,41 @@
                           "properties": {
                             "_key": {
                               "type": "string",
-                              "description": "Interaction unique identifier"
+                              "description": "Interaction unique identifier."
                             },
                             "origin": {
                               "type": "string",
                               "format": "uri",
-                              "description": "Origin base URL"
+                              "description": "Origin base URL."
                             },
                             "created": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was created"
+                              "description": "Date when the interaction was created."
                             },
                             "lastUpdated": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was updated"
+                              "description": "Date when the interaction was updated."
                             },
                             "config": {
                               "type": "object",
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not"
+                                  "description": "Whether the interaction is active or not."
                                 },
                                 "valueInPx": {
                                   "type": "integer",
-                                  "description": "How many pixels to scroll in each step"
+                                  "description": "How many pixels to scroll in each step."
                                 },
                                 "steps": {
                                   "type": "integer",
-                                  "description": "How many steps to finalize scrolling"
+                                  "description": "How many steps to finalize scrolling."
                                 },
                                 "delayBetween": {
                                   "type": "integer",
-                                  "description": "The delay between each scroll step"
+                                  "description": "The delay between each scroll step."
                                 },
                                 "specific": {
                                   "type": "array",
@@ -756,20 +1004,20 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not"
+                                        "description": "Whether the specific interaction is active or not."
                                       },
                                       "urlPaths": {
                                         "type": "array",
                                         "items": {
                                           "type": "string",
-                                          "description": "Origin path"
+                                          "description": "Origin path."
                                         },
                                         "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
                                       },
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "The operator applied against the \"urlPaths\" list"
+                                        "description": "The operator applied against the \"urlPaths\" list."
                                       }
                                     },
                                     "required": [
@@ -811,29 +1059,29 @@
                           "properties": {
                             "_key": {
                               "type": "string",
-                              "description": "Interaction unique identifier"
+                              "description": "Interaction unique identifier."
                             },
                             "origin": {
                               "type": "string",
                               "format": "uri",
-                              "description": "Origin base URL"
+                              "description": "Origin base URL."
                             },
                             "created": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was created"
+                              "description": "Date when the interaction was created."
                             },
                             "lastUpdated": {
                               "type": "string",
                               "format": "date-time",
-                              "description": "Date when the interaction was updated"
+                              "description": "Date when the interaction was updated."
                             },
                             "config": {
                               "type": "object",
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not"
+                                  "description": "Whether the interaction is active or not."
                                 },
                                 "global": {
                                   "type": "array",
@@ -842,7 +1090,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the global interaction is active or not"
+                                        "description": "Whether the global interaction is active or not."
                                       },
                                       "htmlSelector": { "type": "string" },
                                       "waitAfterInteraction": {
@@ -864,19 +1112,19 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not"
+                                        "description": "Whether the specific interaction is active or not."
                                       },
                                       "htmlSelector": {
                                         "type": "string",
-                                        "description": "HTML selector where the interaction is executed"
+                                        "description": "HTML selector where the interaction is executed."
                                       },
                                       "waitAfterInteraction": {
                                         "type": "integer",
-                                        "description": "Time to wait (in seconds) after the interaction execution"
+                                        "description": "Time to wait (in seconds) after the interaction execution."
                                       },
                                       "executionSequence": {
                                         "type": "integer",
-                                        "description": "Specific interaction execution order"
+                                        "description": "Specific interaction execution order."
                                       },
                                       "urlPaths": {
                                         "type": "array",
@@ -889,7 +1137,7 @@
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "The operator applied against the \"urlPaths\" list"
+                                        "description": "The operator applied against the \"urlPaths\" list."
                                       }
                                     },
                                     "required": [
@@ -964,7 +1212,7 @@
       "post": {
         "summary": "Create synthetic interaction",
         "tags": ["Synthetic Interactions"],
-        "description": "This endpoint creates a synthetic interaction associated with the origin.",
+        "description": "Creates a synthetic interaction associated with the origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -978,19 +1226,19 @@
                         "properties": {
                           "isActive": {
                             "type": "boolean",
-                            "description": "Whether the interaction is active or not"
+                            "description": "Whether the interaction is active or not."
                           },
                           "valueInPx": {
                             "type": "integer",
-                            "description": "How many pixels to scroll in each step"
+                            "description": "How many pixels to scroll in each step."
                           },
                           "steps": {
                             "type": "integer",
-                            "description": "How many steps to finalize scrolling"
+                            "description": "How many steps to finalize scrolling."
                           },
                           "delayBetween": {
                             "type": "integer",
-                            "description": "The delay between each scroll step"
+                            "description": "The delay between each scroll step."
                           },
                           "specific": {
                             "type": "array",
@@ -999,20 +1247,20 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the specific interaction is active or not"
+                                  "description": "Whether the specific interaction is active or not."
                                 },
                                 "urlPaths": {
                                   "type": "array",
                                   "items": {
                                     "type": "string",
-                                    "description": "Origin path"
+                                    "description": "Origin path."
                                   },
                                   "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
                                 },
                                 "operation": {
                                   "type": "string",
                                   "enum": ["==", "!="],
-                                  "description": "The operator applied against the \"urlPaths\" list"
+                                  "description": "The operator applied against the \"urlPaths\" list."
                                 }
                               },
                               "required": ["isActive", "urlPaths", "operation"]
@@ -1038,7 +1286,7 @@
                         "properties": {
                           "isActive": {
                             "type": "boolean",
-                            "description": "Whether the interaction is active or not"
+                            "description": "Whether the interaction is active or not."
                           },
                           "global": {
                             "type": "array",
@@ -1047,7 +1295,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the global interaction is active or not"
+                                  "description": "Whether the global interaction is active or not."
                                 },
                                 "htmlSelector": { "type": "string" },
                                 "waitAfterInteraction": { "type": "integer" },
@@ -1067,19 +1315,19 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the specific interaction is active or not"
+                                  "description": "Whether the specific interaction is active or not."
                                 },
                                 "htmlSelector": {
                                   "type": "string",
-                                  "description": "HTML selector where the interaction is executed"
+                                  "description": "HTML selector where the interaction is executed."
                                 },
                                 "waitAfterInteraction": {
                                   "type": "integer",
-                                  "description": "Time to wait (in seconds) after the interaction execution"
+                                  "description": "Time to wait (in seconds) after the interaction execution."
                                 },
                                 "executionSequence": {
                                   "type": "integer",
-                                  "description": "Specific interaction execution order"
+                                  "description": "Specific interaction execution order."
                                 },
                                 "urlPaths": {
                                   "type": "array",
@@ -1092,7 +1340,7 @@
                                 "operation": {
                                   "type": "string",
                                   "enum": ["==", "!="],
-                                  "description": "The operator applied against the \"urlPaths\" list"
+                                  "description": "The operator applied against the \"urlPaths\" list."
                                 }
                               },
                               "required": [
@@ -1163,7 +1411,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Interaction unique identifier"
+                          "description": "Interaction unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -1223,7 +1471,7 @@
       "patch": {
         "summary": "Update synthetic interaction",
         "tags": ["Synthetic Interactions"],
-        "description": "This endpoint updates a synthetic interaction associated with the origin.",
+        "description": "Updates a synthetic interaction associated with the origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1237,19 +1485,19 @@
                         "properties": {
                           "isActive": {
                             "type": "boolean",
-                            "description": "Whether the interaction is active or not"
+                            "description": "Whether the interaction is active or not."
                           },
                           "valueInPx": {
                             "type": "integer",
-                            "description": "How many pixels to scroll in each step"
+                            "description": "How many pixels to scroll in each step."
                           },
                           "steps": {
                             "type": "integer",
-                            "description": "How many steps to finalize scrolling"
+                            "description": "How many steps to finalize scrolling."
                           },
                           "delayBetween": {
                             "type": "integer",
-                            "description": "The delay between each scroll step"
+                            "description": "The delay between each scroll step."
                           },
                           "specific": {
                             "type": "array",
@@ -1258,20 +1506,20 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the specific interaction is active or not"
+                                  "description": "Whether the specific interaction is active or not."
                                 },
                                 "urlPaths": {
                                   "type": "array",
                                   "items": {
                                     "type": "string",
-                                    "description": "Origin path"
+                                    "description": "Origin path."
                                   },
                                   "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
                                 },
                                 "operation": {
                                   "type": "string",
                                   "enum": ["==", "!="],
-                                  "description": "The operator applied against the \"urlPaths\" list"
+                                  "description": "The operator applied against the \"urlPaths\" list."
                                 }
                               },
                               "required": ["isActive", "urlPaths", "operation"]
@@ -1296,7 +1544,7 @@
                         "properties": {
                           "isActive": {
                             "type": "boolean",
-                            "description": "Whether the interaction is active or not"
+                            "description": "Whether the interaction is active or not."
                           },
                           "global": {
                             "type": "array",
@@ -1305,7 +1553,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the global interaction is active or not"
+                                  "description": "Whether the global interaction is active or not."
                                 },
                                 "htmlSelector": { "type": "string" },
                                 "waitAfterInteraction": { "type": "integer" },
@@ -1325,19 +1573,19 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the specific interaction is active or not"
+                                  "description": "Whether the specific interaction is active or not."
                                 },
                                 "htmlSelector": {
                                   "type": "string",
-                                  "description": "HTML selector where the interaction is executed"
+                                  "description": "HTML selector where the interaction is executed."
                                 },
                                 "waitAfterInteraction": {
                                   "type": "integer",
-                                  "description": "Time to wait (in seconds) after the interaction execution"
+                                  "description": "Time to wait (in seconds) after the interaction execution."
                                 },
                                 "executionSequence": {
                                   "type": "integer",
-                                  "description": "Specific interaction execution order"
+                                  "description": "Specific interaction execution order."
                                 },
                                 "urlPaths": {
                                   "type": "array",
@@ -1350,7 +1598,7 @@
                                 "operation": {
                                   "type": "string",
                                   "enum": ["==", "!="],
-                                  "description": "The operator applied against the \"urlPaths\" list"
+                                  "description": "The operator applied against the \"urlPaths\" list."
                                 }
                               },
                               "required": [
@@ -1420,7 +1668,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Interaction unique identifier"
+                          "description": "Interaction unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -1480,7 +1728,7 @@
       "delete": {
         "summary": "Delete synthetic interaction",
         "tags": ["Synthetic Interactions"],
-        "description": "This endpoint deletes a synthetic interaction associated with the origin.",
+        "description": "Deletes a synthetic interaction associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -1529,7 +1777,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Interaction unique identifier"
+                          "description": "Interaction unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -1642,7 +1890,7 @@
       "get": {
         "summary": "Get origins",
         "tags": ["Origins"],
-        "description": "This endpoint returns all origins from the origin-related GDN fabric.",
+        "description": "Returns all origins.",
         "parameters": [
           {
             "schema": { "type": "string" },
@@ -1676,36 +1924,36 @@
                         "properties": {
                           "_key": {
                             "type": "string",
-                            "description": "Origin unique identifier"
+                            "description": "Origin unique identifier."
                           },
                           "origin": {
                             "type": "string",
                             "format": "uri",
-                            "description": "Origin base URL"
+                            "description": "Origin base URL."
                           },
                           "siteMaps": {
                             "type": "array",
                             "items": {
                               "type": "string",
-                              "description": "Sitemap path"
+                              "description": "Sitemap path."
                             },
-                            "description": "List of sitemap paths"
+                            "description": "List of sitemap paths."
                           },
                           "identifyNotfound": {
                             "type": "string",
-                            "description": "Content that identifies not found pages (404) in rendered pages"
+                            "description": "Content that identifies not found pages (404) in rendered pages."
                           },
                           "allowOriginHeaderValue": {
                             "type": "string",
-                            "description": "Value of X-PhotonIQ-Prerender-Request header"
+                            "description": "Value of X-PhotonIQ-Prerender-Request header."
                           },
                           "passThroughHeaders": {
                             "type": "array",
                             "items": {
                               "type": "string",
-                              "description": "Header key"
+                              "description": "Header key."
                             },
-                            "description": "List of header keys that are forwarded from the bot request to the origin website"
+                            "description": "List of header keys that are forwarded from the bot request to the origin website."
                           },
                           "addResponseHeaders": {
                             "type": "object",
@@ -1714,47 +1962,47 @@
                               "properties": {
                                 "basedOnStatusCode": {
                                   "type": "boolean",
-                                  "description": "Whether the header value should be based on the response status code"
+                                  "description": "Whether the header value should be based on the response status code."
                                 },
                                 "value": {
                                   "oneOf": [
                                     {
                                       "type": "string",
-                                      "description": "Header value"
+                                      "description": "Header value."
                                     },
                                     {
                                       "type": "object",
                                       "description": "Status code. Ranges like 2xx can be also used.",
                                       "additionalProperties": {
                                         "type": "string",
-                                        "description": "Header value"
+                                        "description": "Header value."
                                       }
                                     }
                                   ]
                                 }
                               },
                               "required": ["basedOnStatusCode", "value"],
-                              "description": "Additional response headers configuration"
+                              "description": "Additional response headers configuration."
                             },
-                            "description": "Map of headers to be added to the response"
+                            "description": "Map of headers to be added to the response."
                           },
                           "caching": {
                             "type": "boolean",
-                            "description": "Whether or not to cache rendered pages"
+                            "description": "Whether or not to cache rendered pages."
                           },
                           "ttl": {
                             "type": "number",
-                            "description": "Cache lifetime of rendered pages (in seconds)"
+                            "description": "Cache lifetime of rendered pages (in seconds)."
                           },
                           "created": {
                             "type": "string",
                             "format": "date-time",
-                            "description": "Date when the origin was created"
+                            "description": "Date when the origin was created."
                           },
                           "lastUpdated": {
                             "type": "string",
                             "format": "date-time",
-                            "description": "Date when the origin was updated"
+                            "description": "Date when the origin was updated."
                           }
                         },
                         "required": [
@@ -1822,7 +2070,7 @@
       "post": {
         "summary": "Create origin",
         "tags": ["Origins"],
-        "description": "This endpoint creates an origin in the origin-related GDN fabric.",
+        "description": "Creates an origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1832,28 +2080,28 @@
                   "origin": {
                     "type": "string",
                     "format": "uri",
-                    "description": "Origin base URL"
+                    "description": "Origin base URL."
                   },
                   "siteMaps": {
                     "type": "array",
                     "items": {
                       "type": "string",
-                      "description": "Sitemap path"
+                      "description": "Sitemap path."
                     },
-                    "description": "List of sitemap paths"
+                    "description": "List of sitemap paths."
                   },
                   "identifyNotfound": {
                     "type": "string",
-                    "description": "Content that identifies not found pages (404) in rendered pages"
+                    "description": "Content that identifies not found pages (404) in rendered pages."
                   },
                   "allowOriginHeaderValue": {
                     "type": "string",
-                    "description": "Value of X-PhotonIQ-Prerender-Request header"
+                    "description": "Value of X-PhotonIQ-Prerender-Request header."
                   },
                   "passThroughHeaders": {
                     "type": "array",
-                    "items": { "type": "string", "description": "Header key" },
-                    "description": "List of header keys that are forwarded from the bot request to the origin website"
+                    "items": { "type": "string", "description": "Header key." },
+                    "description": "List of header keys that are forwarded from the bot request to the origin website."
                   },
                   "addResponseHeaders": {
                     "type": "object",
@@ -1862,34 +2110,37 @@
                       "properties": {
                         "basedOnStatusCode": {
                           "type": "boolean",
-                          "description": "Whether the header value should be based on the response status code"
+                          "description": "Whether the header value should be based on the response status code."
                         },
                         "value": {
                           "oneOf": [
-                            { "type": "string", "description": "Header value" },
+                            {
+                              "type": "string",
+                              "description": "Header value."
+                            },
                             {
                               "type": "object",
                               "description": "Status code. Ranges like 2xx can be also used.",
                               "additionalProperties": {
                                 "type": "string",
-                                "description": "Header value"
+                                "description": "Header value."
                               }
                             }
                           ]
                         }
                       },
                       "required": ["basedOnStatusCode", "value"],
-                      "description": "Additional response headers configuration"
+                      "description": "Additional response headers configuration."
                     },
-                    "description": "Map of headers to be added to the response"
+                    "description": "Map of headers to be added to the response."
                   },
                   "caching": {
                     "type": "boolean",
-                    "description": "Whether or not to cache rendered pages"
+                    "description": "Whether or not to cache rendered pages."
                   },
                   "ttl": {
                     "type": "number",
-                    "description": "Cache lifetime of rendered pages (in seconds)"
+                    "description": "Cache lifetime of rendered pages (in seconds)."
                   }
                 },
                 "required": ["origin", "siteMaps", "ttl", "caching"]
@@ -1929,7 +2180,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Origin unique identifier"
+                          "description": "Origin unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -1991,7 +2242,7 @@
       "get": {
         "summary": "Get origin",
         "tags": ["Origins"],
-        "description": "This endpoint returns an origin from the origin-related GDN fabric.",
+        "description": "Returns an origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -2030,36 +2281,36 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Origin unique identifier"
+                          "description": "Origin unique identifier."
                         },
                         "origin": {
                           "type": "string",
                           "format": "uri",
-                          "description": "Origin base URL"
+                          "description": "Origin base URL."
                         },
                         "siteMaps": {
                           "type": "array",
                           "items": {
                             "type": "string",
-                            "description": "Sitemap path"
+                            "description": "Sitemap path."
                           },
-                          "description": "List of sitemap paths"
+                          "description": "List of sitemap paths."
                         },
                         "identifyNotfound": {
                           "type": "string",
-                          "description": "Content that identifies not found pages (404) in rendered pages"
+                          "description": "Content that identifies not found pages (404) in rendered pages."
                         },
                         "allowOriginHeaderValue": {
                           "type": "string",
-                          "description": "Value of X-PhotonIQ-Prerender-Request header"
+                          "description": "Value of X-PhotonIQ-Prerender-Request header."
                         },
                         "passThroughHeaders": {
                           "type": "array",
                           "items": {
                             "type": "string",
-                            "description": "Header key"
+                            "description": "Header key."
                           },
-                          "description": "List of header keys that are forwarded from the bot request to the origin website"
+                          "description": "List of header keys that are forwarded from the bot request to the origin website."
                         },
                         "addResponseHeaders": {
                           "type": "object",
@@ -2068,47 +2319,47 @@
                             "properties": {
                               "basedOnStatusCode": {
                                 "type": "boolean",
-                                "description": "Whether the header value should be based on the response status code"
+                                "description": "Whether the header value should be based on the response status code."
                               },
                               "value": {
                                 "oneOf": [
                                   {
                                     "type": "string",
-                                    "description": "Header value"
+                                    "description": "Header value."
                                   },
                                   {
                                     "type": "object",
                                     "description": "Status code. Ranges like 2xx can be also used.",
                                     "additionalProperties": {
                                       "type": "string",
-                                      "description": "Header value"
+                                      "description": "Header value."
                                     }
                                   }
                                 ]
                               }
                             },
                             "required": ["basedOnStatusCode", "value"],
-                            "description": "Additional response headers configuration"
+                            "description": "Additional response headers configuration."
                           },
-                          "description": "Map of headers to be added to the response"
+                          "description": "Map of headers to be added to the response."
                         },
                         "caching": {
                           "type": "boolean",
-                          "description": "Whether or not to cache rendered pages"
+                          "description": "Whether or not to cache rendered pages."
                         },
                         "ttl": {
                           "type": "number",
-                          "description": "Cache lifetime of rendered pages (in seconds)"
+                          "description": "Cache lifetime of rendered pages (in seconds)."
                         },
                         "created": {
                           "type": "string",
                           "format": "date-time",
-                          "description": "Date when the origin was created"
+                          "description": "Date when the origin was created."
                         },
                         "lastUpdated": {
                           "type": "string",
                           "format": "date-time",
-                          "description": "Date when the origin was updated"
+                          "description": "Date when the origin was updated."
                         }
                       },
                       "required": [
@@ -2175,7 +2426,7 @@
       "patch": {
         "summary": "Update origin",
         "tags": ["Origins"],
-        "description": "This endpoint updates an origin in the origin-related GDN fabric.",
+        "description": "Updates an origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2186,22 +2437,22 @@
                     "type": "array",
                     "items": {
                       "type": "string",
-                      "description": "Sitemap path"
+                      "description": "Sitemap path."
                     },
-                    "description": "List of sitemap paths"
+                    "description": "List of sitemap paths."
                   },
                   "identifyNotfound": {
                     "type": "string",
-                    "description": "Content that identifies not found pages (404) in rendered pages"
+                    "description": "Content that identifies not found pages (404) in rendered pages."
                   },
                   "allowOriginHeaderValue": {
                     "type": "string",
-                    "description": "Value of X-PhotonIQ-Prerender-Request header"
+                    "description": "Value of X-PhotonIQ-Prerender-Request header."
                   },
                   "passThroughHeaders": {
                     "type": "array",
-                    "items": { "type": "string", "description": "Header key" },
-                    "description": "List of header keys that are forwarded from the bot request to the origin website"
+                    "items": { "type": "string", "description": "Header key." },
+                    "description": "List of header keys that are forwarded from the bot request to the origin website."
                   },
                   "addResponseHeaders": {
                     "type": "object",
@@ -2210,34 +2461,37 @@
                       "properties": {
                         "basedOnStatusCode": {
                           "type": "boolean",
-                          "description": "Whether the header value should be based on the response status code"
+                          "description": "Whether the header value should be based on the response status code."
                         },
                         "value": {
                           "oneOf": [
-                            { "type": "string", "description": "Header value" },
+                            {
+                              "type": "string",
+                              "description": "Header value."
+                            },
                             {
                               "type": "object",
                               "description": "Status code. Ranges like 2xx can be also used.",
                               "additionalProperties": {
                                 "type": "string",
-                                "description": "Header value"
+                                "description": "Header value."
                               }
                             }
                           ]
                         }
                       },
                       "required": ["basedOnStatusCode", "value"],
-                      "description": "Additional response headers configuration"
+                      "description": "Additional response headers configuration."
                     },
-                    "description": "Map of headers to be added to the response"
+                    "description": "Map of headers to be added to the response."
                   },
                   "caching": {
                     "type": "boolean",
-                    "description": "Whether or not to cache rendered pages"
+                    "description": "Whether or not to cache rendered pages."
                   },
                   "ttl": {
                     "type": "number",
-                    "description": "Cache lifetime of rendered pages (in seconds)"
+                    "description": "Cache lifetime of rendered pages (in seconds)."
                   }
                 }
               }
@@ -2282,7 +2536,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Origin unique identifier"
+                          "description": "Origin unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -2342,7 +2596,7 @@
       "delete": {
         "summary": "Delete origin",
         "tags": ["Origins"],
-        "description": "This endpoint deletes an origin in the origin-related GDN fabric.",
+        "description": "Deletes an origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -2381,7 +2635,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Origin unique identifier"
+                          "description": "Origin unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -2443,7 +2697,7 @@
       "get": {
         "summary": "Get prefetch configuration",
         "tags": ["Prefetch Configurations"],
-        "description": "This endpoint returns the prefetch configuration associated with the origin.",
+        "description": "Returns the prefetch configuration associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -2482,30 +2736,30 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Prefetch configuration unique identifier"
+                          "description": "Prefetch configuration unique identifier."
                         },
                         "origin": {
                           "type": "string",
                           "format": "uri",
-                          "description": "Origin base URL"
+                          "description": "Origin base URL."
                         },
                         "cronSchedule": {
                           "type": "string",
-                          "description": "Cron expression for scheduling"
+                          "description": "Cron expression for scheduling."
                         },
                         "isRenderForMobile": {
                           "type": "boolean",
-                          "description": "Whether to render for mobile devices or not"
+                          "description": "Whether to render for mobile devices or not."
                         },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time",
-                          "description": "Date when the prefetch configuration was created"
+                          "description": "Date when the prefetch configuration was created."
                         },
                         "updatedAt": {
                           "type": "string",
                           "format": "date-time",
-                          "description": "Date when the prefetch configuration was updated"
+                          "description": "Date when the prefetch configuration was updated."
                         }
                       },
                       "required": [
@@ -2593,7 +2847,7 @@
       "post": {
         "summary": "Create prefetch configuration",
         "tags": ["Prefetch Configurations"],
-        "description": "This endpoint creates a prefetch configuration associated with the origin.",
+        "description": "Creates a prefetch configuration associated with the origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2602,11 +2856,11 @@
                 "properties": {
                   "cronSchedule": {
                     "type": "string",
-                    "description": "Cron expression for scheduling"
+                    "description": "Cron expression for scheduling."
                   },
                   "isRenderForMobile": {
                     "type": "boolean",
-                    "description": "Whether to render for mobile devices or not"
+                    "description": "Whether to render for mobile devices or not."
                   }
                 },
                 "required": ["cronSchedule", "isRenderForMobile"]
@@ -2653,7 +2907,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Prefetch configuration unique identifier"
+                          "description": "Prefetch configuration unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -2713,7 +2967,7 @@
       "patch": {
         "summary": "Update prefetch configuration",
         "tags": ["Prefetch Configurations"],
-        "description": "This endpoint updates the prefetch configuration associated with the origin.",
+        "description": "Updates the prefetch configuration associated with the origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2722,11 +2976,11 @@
                 "properties": {
                   "cronSchedule": {
                     "type": "string",
-                    "description": "Cron expression for scheduling"
+                    "description": "Cron expression for scheduling."
                   },
                   "isRenderForMobile": {
                     "type": "boolean",
-                    "description": "Whether to render for mobile devices or not"
+                    "description": "Whether to render for mobile devices or not."
                   }
                 }
               }
@@ -2771,7 +3025,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Prefetch configuration unique identifier"
+                          "description": "Prefetch configuration unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -2831,7 +3085,7 @@
       "delete": {
         "summary": "Delete prefetch configuration",
         "tags": ["Prefetch Configurations"],
-        "description": "This endpoint deletes the prefetch configuration associated with the origin.",
+        "description": "Deletes the prefetch configuration associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -2870,7 +3124,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Prefetch configuration unique identifier"
+                          "description": "Prefetch configuration unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -2932,7 +3186,7 @@
       "get": {
         "summary": "Get prefetch statistics",
         "tags": ["Prefetch Statistics"],
-        "description": "This endpoint returns the latest prefetch statistics associated with the origin.",
+        "description": "Returns the latest prefetch statistics associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -2971,23 +3225,23 @@
                       "properties": {
                         "totalUrls": {
                           "type": "number",
-                          "description": "Total URLs"
+                          "description": "Total URLs."
                         },
                         "queued": {
                           "type": "number",
-                          "description": "Total queued URLs"
+                          "description": "Total queued URLs."
                         },
                         "retrying": {
                           "type": "number",
-                          "description": "Total retrying URLs"
+                          "description": "Total retrying URLs."
                         },
                         "completed": {
                           "type": "number",
-                          "description": "Total completed URLs"
+                          "description": "Total completed URLs."
                         },
                         "failed": {
                           "type": "number",
-                          "description": "Total failed URLs"
+                          "description": "Total failed URLs."
                         }
                       },
                       "required": [
@@ -3055,7 +3309,7 @@
       "post": {
         "summary": "Create prefetch trigger",
         "tags": ["Prefetch Triggers"],
-        "description": "This endpoint creates a prefetch trigger associated with the origin.",
+        "description": "Creates a prefetch trigger associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -3094,7 +3348,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Prefetch trigger unique identifier"
+                          "description": "Prefetch trigger unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -3178,14 +3432,14 @@
       "get": {
         "summary": "Get prefetch URLs",
         "tags": ["Prefetch URLs"],
-        "description": "This endpoint returns the latest prefetch URLs associated with the origin.",
+        "description": "Returns the latest prefetch URLs associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "number", "default": 0 },
             "in": "query",
             "name": "offset",
             "required": false,
-            "description": "Pagination offset"
+            "description": "Pagination offset."
           },
           {
             "schema": {
@@ -3197,7 +3451,7 @@
             "in": "query",
             "name": "limit",
             "required": false,
-            "description": "Pagination limit"
+            "description": "Pagination limit."
           },
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -3239,11 +3493,11 @@
                           "url": {
                             "type": "string",
                             "format": "uri",
-                            "description": "Origin URL"
+                            "description": "Origin URL."
                           },
                           "isMobile": {
                             "type": "boolean",
-                            "description": "Whether the URL is rendered for mobile devices or not"
+                            "description": "Whether the URL is rendered for mobile devices or not."
                           },
                           "status": {
                             "type": "string",
@@ -3253,17 +3507,17 @@
                               "completed",
                               "failed"
                             ],
-                            "description": "URL status"
+                            "description": "URL status."
                           },
                           "createdAt": {
                             "type": "string",
                             "format": "date-time",
-                            "description": "Date when the prefetch URL was created"
+                            "description": "Date when the prefetch URL was created."
                           },
                           "updatedAt": {
                             "type": ["null", "string"],
                             "format": "date-time",
-                            "description": "Date when the prefetch URL was updated"
+                            "description": "Date when the prefetch URL was updated."
                           }
                         },
                         "required": ["url", "isMobile", "status", "createdAt"]
@@ -3326,21 +3580,21 @@
       "get": {
         "summary": "Get prerendered page",
         "tags": ["Prerender"],
-        "description": "This endpoint returns the HTML content of the rendered page.",
+        "description": "Returns the HTML content of the rendered page.",
         "parameters": [
           {
             "schema": { "type": "boolean" },
             "in": "path",
             "name": "mobile",
             "required": true,
-            "description": "Whether to render as a mobile device or not"
+            "description": "Whether to render as a mobile device or not."
           },
           {
             "schema": { "type": "string" },
             "in": "path",
             "name": "url",
             "required": true,
-            "description": "URL to be rendered"
+            "description": "URL to be rendered."
           },
           {
             "schema": { "type": "string" },
@@ -3501,56 +3755,56 @@
       "get": {
         "summary": "Get prerendered page",
         "tags": ["Prerender"],
-        "description": "This endpoint returns the HTML content of the rendered page.",
+        "description": "Returns the HTML content of the rendered page.",
         "parameters": [
           {
             "schema": { "type": "string" },
             "in": "query",
             "name": "origin",
             "required": false,
-            "description": "Origin base URL"
+            "description": "Origin base URL."
           },
           {
             "schema": { "type": "boolean" },
             "in": "query",
             "name": "mobile",
             "required": false,
-            "description": "Whether to render as a mobile device or not"
+            "description": "Whether to render as a mobile device or not."
           },
           {
             "schema": { "type": "string" },
             "in": "query",
             "name": "path",
             "required": false,
-            "description": "Path to be rendered"
+            "description": "Path to be rendered."
           },
           {
             "schema": { "type": "string" },
             "in": "header",
             "name": "x-photoniq-customerid",
             "required": true,
-            "description": "Customer unique identifier"
+            "description": "Customer unique identifier."
           },
           {
             "schema": { "type": "string" },
             "in": "header",
             "name": "x-photoniq-prerender-origin",
             "required": false,
-            "description": "Origin base URL"
+            "description": "Origin base URL."
           },
           {
             "schema": { "type": "boolean" },
             "in": "header",
             "name": "x-photoniq-prerender-mobile",
             "required": false,
-            "description": "Whether to render as a mobile device or not"
+            "description": "Whether to render as a mobile device or not."
           },
           {
             "schema": { "type": "string" },
             "in": "header",
             "name": "x-photoniq-prerender-path",
             "required": false,
-            "description": "Path to be rendered"
+            "description": "Path to be rendered."
           }
         ],
         "responses": {
@@ -3704,7 +3958,7 @@
       "get": {
         "summary": "Get prerender settings",
         "tags": ["Prerender Settings"],
-        "description": "This endpoint returns the prerender settings associated with the origin.",
+        "description": "Returns the prerender settings associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -3743,40 +3997,40 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Settings unique identifier"
+                          "description": "Settings unique identifier."
                         },
                         "origin": {
                           "type": "string",
                           "format": "uri",
-                          "description": "Origin base URL"
+                          "description": "Origin base URL."
                         },
                         "injectInlineCSS": {
                           "type": "boolean",
-                          "description": "Whether or not to inject CSS into the HTML"
+                          "description": "Whether or not to inject CSS into the HTML."
                         },
                         "addRequestHeader": {
                           "type": "boolean",
-                          "description": "Whether or not to add X-PhotonIQ-Prerender-Request header to each request made during page rendering"
+                          "description": "Whether or not to add X-PhotonIQ-Prerender-Request header to each request made during page rendering."
                         },
                         "blockRequestTypes": {
                           "type": "array",
                           "items": { "type": "string" },
-                          "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)"
+                          "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)."
                         },
                         "urlBlockList": {
                           "type": "array",
                           "items": { "type": "string" },
-                          "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)"
+                          "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)."
                         },
                         "created": {
                           "type": "string",
                           "format": "date-time",
-                          "description": "Date when the settings was created"
+                          "description": "Date when the prerender settings was created."
                         },
                         "lastUpdated": {
                           "type": "string",
                           "format": "date-time",
-                          "description": "Date when the settings was updated"
+                          "description": "Date when the prerender settings was updated."
                         }
                       },
                       "required": [
@@ -3844,7 +4098,7 @@
       "patch": {
         "summary": "Update prerender settings",
         "tags": ["Prerender Settings"],
-        "description": "This endpoint updates the prerender settings associated with the origin.",
+        "description": "Updates the prerender settings associated with the origin.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3853,21 +4107,21 @@
                 "properties": {
                   "injectInlineCSS": {
                     "type": "boolean",
-                    "description": "Whether or not to inject CSS into the HTML"
+                    "description": "Whether or not to inject CSS into the HTML."
                   },
                   "addRequestHeader": {
                     "type": "boolean",
-                    "description": "Whether or not to add X-PhotonIQ-Prerender-Request header to each request made during page rendering"
+                    "description": "Whether or not to add X-PhotonIQ-Prerender-Request header to each request made during page rendering."
                   },
                   "blockRequestTypes": {
                     "type": "array",
                     "items": { "type": "string" },
-                    "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)"
+                    "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)."
                   },
                   "urlBlockList": {
                     "type": "array",
                     "items": { "type": "string" },
-                    "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)"
+                    "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)."
                   }
                 }
               }
@@ -3912,7 +4166,7 @@
                       "properties": {
                         "_key": {
                           "type": "string",
-                          "description": "Settings unique identifier"
+                          "description": "Settings unique identifier."
                         }
                       },
                       "required": ["_key"]
@@ -4134,7 +4388,7 @@
       "get": {
         "summary": "Get API version",
         "tags": ["Version"],
-        "description": "This endpoint returns the API version.",
+        "description": "Returns the API version.",
         "responses": {
           "200": {
             "description": "Successful response",
@@ -4157,7 +4411,7 @@
                       "properties": {
                         "version": {
                           "type": "string",
-                          "description": "API version"
+                          "description": "API version."
                         }
                       },
                       "required": ["version"]
@@ -4193,5 +4447,20 @@
         }
       }
     }
-  }
+  },
+  "servers": [{ "url": "https://demo-prerender.photoniq.macrometa.io" }],
+  "tags": [
+    { "name": "Origins" },
+    { "name": "Prerender Settings" },
+    { "name": "Synthetic Interactions" },
+    { "name": "Prefetch Configurations" },
+    { "name": "Prefetch Triggers" },
+    { "name": "Prefetch URLs" },
+    { "name": "Prefetch Statistics" },
+    { "name": "Prerender" },
+    { "name": "Cache" },
+    { "name": "Metrics" },
+    { "name": "Health" },
+    { "name": "Version" }
+  ]
 }
