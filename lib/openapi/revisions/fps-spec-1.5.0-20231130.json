@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "PhotonIQ Digital Fingerprint Service API",
+    "title": "PhotonIQ Digital Fingerprinting API",
     "description": "API documentation for the PhotonIQ Digital Fingerprint Service",
     "version": "1.5.0"
   },
@@ -390,7 +390,7 @@
         "operationId": "getVersion",
         "responses": {
           "200": {
-            "description": "Successful returned the version.",
+            "description": "Successfully returned the version.",
             "content": {
               "application/json": {
                 "schema": {
@@ -439,7 +439,7 @@
           {
             "in": "header",
             "name": "Cookie",
-            "description": "If this cookie is present it means that we have seen this visitor before.",
+            "description": "If this cookie is present then this is a returning visitor before.",
             "required": false,
             "schema": {
               "type": "string",
@@ -455,7 +455,7 @@
                 "schema": {
                   "type": "string"
                 },
-                "description": "Digital Signature ID.",
+                "description": "Digital signature ID.",
                 "example": 12416155251620899000
               },
               "x-photoniq-vid": {
@@ -491,7 +491,7 @@
       },
       "get": {
         "summary": "Retrieve data for a particular visit",
-        "description": "Returns data for a particular visit based on the visitId.",
+        "description": "Returns data for a particular visit based on the visit ID.",
         "operationId": "getVisitorDetails",
         "tags": [
           "Visits"
@@ -588,7 +588,7 @@
     "/api/ds/v1/metrics": {
       "get": {
         "summary": "Retrieve metrics data",
-        "description": "Returns metrics data for a given time period. If the data for a particular period has a value of 'null', it denotes that the metrics could not be calculcated for that time period. For example accuracy cannot be calculated if there was no cookied visit for that day.",
+        "description": "Returns metrics data for a given time period. If the data for a particular period is 'null', then metrics cannot be calculated for that time period. For example, accuracy cannot be calculated if there were no visits for that day.",
         "operationId": "getMetricsData",
         "tags": [
           "Metrics"
@@ -679,7 +679,7 @@
           {
             "name": "start",
             "in": "query",
-            "description": "The start date used for querying visits data. Must be provided in RFC3339 date-time format and be in UTC. The default start time is 24 hours from current time.",
+            "description": "The start date used for querying visits data. Must be provided in RFC3339 date-time format and be in UTC. The default start time is 24 hours before the current time.",
             "required": false,
             "example": "YYYY-MM-DDTHH:MM:SSZ",
             "schema": {
@@ -736,7 +736,7 @@
           {
             "name": "start",
             "in": "query",
-            "description": "The start date used for querying visitor traffic data. Must be provided in RFC3339 date-time format and UTC. The default start time is 24 hours from current time.",
+            "description": "The start date used for querying visitor traffic data. Must be provided in RFC3339 date-time format and UTC. The default start time is 24 hours before the current time.",
             "required": false,
             "example": "YYYY-MM-DDTHH:MM:SSZ",
             "schema": {
@@ -839,7 +839,7 @@
         "tags": [
           "Telemetry"
         ],
-        "description": "Provide telemetry data in Prometheus format. Useful for monitoring services to monitor the health of the Digital Fingerprint service.",
+        "description": "Provide telemetry data in Prometheus format. Useful for monitoring services to monitor the health of the Digital Fingerprinting service.",
         "operationId": "getTelemetry",
         "security": [
           {
