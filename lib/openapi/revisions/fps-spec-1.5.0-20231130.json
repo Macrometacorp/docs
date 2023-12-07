@@ -793,7 +793,7 @@
           {
             "name": "start",
             "in": "query",
-            "description": "The start date used for querying the device data. Must be provided in RFC3339 date-time format and UTC. The default start time is 24 hours from current time.",
+            "description": "The start date used for querying the device data. Must be provided in RFC3339 date-time format and UTC. The default start time is 24 hours from the current time.",
             "required": false,
             "example": "YYYY-MM-DDTHH:MM:SSZ",
             "schema": {
