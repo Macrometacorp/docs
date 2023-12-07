@@ -558,7 +558,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful retrieved visitor data.",
+            "description": "Successfully retrieved visitor data.",
             "headers": {
               "x-photoniq-vid": {
                 "schema": {
