@@ -96,7 +96,7 @@
               "timestamp": {
                 "type": "number",
                 "format": "date-time",
-                "description": "Visit timestamp"
+                "description": "Timestamp of the visit."
               },
               "firstSeenAt": {
                 "type": "number",
