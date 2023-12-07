@@ -101,7 +101,7 @@
               "firstSeenAt": {
                 "type": "number",
                 "format": "date-time",
-                "description": "Visitor createdAt"
+                "description": "Timestamp of the first time the visitor was seen."
               }
             }
           }
