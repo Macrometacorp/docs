@@ -439,7 +439,7 @@
           {
             "in": "header",
             "name": "Cookie",
-            "description": "If this cookie is present then this is a returning visitor before.",
+            "description": "If this cookie is present, then this is a returning visitor.",
             "required": false,
             "schema": {
               "type": "string",
