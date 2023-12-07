@@ -659,7 +659,7 @@
           {
             "name": "n",
             "in": "query",
-            "description": "Number of top visits data to return to.",
+            "description": " Number of visitors.",
             "required": true,
             "example": "true",
             "schema": {
