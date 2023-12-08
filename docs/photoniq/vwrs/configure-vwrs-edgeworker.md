@@ -3,7 +3,29 @@ sidebar_position: 30
 title: Configure a VWRs EdgeWorker
 ---
 
-In the EdgeWorker, import the `VirtualWaitingRoom` class from the [vwroom-client](https://www.npmjs.com/package/vwroomclient) Node Package Manager (NPM). This integrates the VWRs with the EdgeWorker. For more information about Akamai EdgeWorkers, refer to [Akamai EdgeWorker Documentation](https://techdocs.akamai.com/edgeworkers/docs).
+In the EdgeWorker, import the `VirtualWaitingRoom` class from the photoniq-vwrs-client using Node Package Manager (NPM). This integrates the VWRs with the EdgeWorker. For more information about Akamai EdgeWorkers, refer to [Akamai EdgeWorker Documentation](https://techdocs.akamai.com/edgeworkers/docs).
+
+## Install the PhotonIQ VWRs Client
+
+Before you can set up an EdgeWorker, you must install `@macrometa/photoniq-vwrs-client`.
+
+1. To set the authentication token, open your terminal and execute the following command. This command configures npm to use the specified authentication token when interacting with the npm registry. Make sure you replace <YOUR_READ_KEY> with your actual read key:
+
+  ```bash
+  npm set //registry.npmjs.org/:_authToken=<YOUR_READ_KEY>
+  ```
+
+2. Now you’re ready to install the private package. Npm uses the previously set authentication token to authenticate and download the package. In your terminal, run the following command:
+
+  ```bash
+  npm install @macrometa/photoniq-vwrs-client
+  ```
+
+3. After the package installation is complete, verify its presence. Check your project’s node_modules directory to ensure that `@macrometa/photoniq-vwrs-client` has been successfully installed.
+
+:::note
+If you encounter a _404 Not Found error_ when trying to install `@macrometa/photoniq-vwrs-client`, then check your .npmrc file to ensure that it has a valid registry set and the valid token is set. This file should contain the correct configuration for accessing npm packages.
+:::
 
 ## Mandatory Configuration Options
 
