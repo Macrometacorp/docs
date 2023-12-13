@@ -2601,7 +2601,7 @@
                           },
                           "identifyNotfound": {
                             "type": "string",
-                            "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, the HTTP status code of the response will be 404. For example, if your not found page contains the text \"Sorry, the page you were looking for could not be found.\", then this text can be used."
+                            "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, then the HTTP status code of the response will be 404. For example, if your not found page contains the text, \"Sorry, the page you were looking for could not be found.\", then this text can be used."
                           },
                           "allowOriginHeaderValue": {
                             "type": "string",
@@ -2752,7 +2752,7 @@
                   },
                   "identifyNotfound": {
                     "type": "string",
-                    "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, the HTTP status code of the response will be 404. For example, if your not found page contains the text \"Sorry, the page you were looking for could not be found.\", then this text can be used."
+                    "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, then the HTTP status code of the response will be 404. For example, if your not found page contains the text, \"Sorry, the page you were looking for could not be found.\", then this text can be used."
                   },
                   "allowOriginHeaderValue": {
                     "type": "string",
@@ -2958,7 +2958,7 @@
                         },
                         "identifyNotfound": {
                           "type": "string",
-                          "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, the HTTP status code of the response will be 404. For example, if your not found page contains the text \"Sorry, the page you were looking for could not be found.\", then this text can be used."
+                          "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, then the HTTP status code of the response will be 404. For example, if your not found page contains the text, \"Sorry, the page you were looking for could not be found.\", then this text can be used."
                         },
                         "allowOriginHeaderValue": {
                           "type": "string",
@@ -3103,7 +3103,7 @@
                   },
                   "identifyNotfound": {
                     "type": "string",
-                    "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, the HTTP status code of the response will be 404. For example, if your not found page contains the text \"Sorry, the page you were looking for could not be found.\", then this text can be used."
+                    "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, then the HTTP status code of the response will be 404. For example, if your not found page contains the text, \"Sorry, the page you were looking for could not be found.\", then this text can be used."
                   },
                   "allowOriginHeaderValue": {
                     "type": "string",
