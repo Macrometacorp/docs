@@ -13,12 +13,6 @@ In a server crash scenario, transactions that are uncommitted or in the process 
 
 When a transaction is committed, all modifications made within it are written to the collection data files. If the modified collections have the `waitForSync` property set to _true_ or if any operation in the transaction was executed with the `waitForSync` attribute, then these writes are synchronized to disk.
 
-## Single-Collection Transactions
-
-Single collection transactions with `waitForSync` set to _false_ are not immediately synchronized to disk, posing a risk of data loss between the transaction's commit and the subsequent delayed disk synchronization.
-
-In cases where `waitForSync` is false, a server crash may lead to complete visibility or invisibility of the transaction's operations, depending on the timing of the synchronization.
-
 ## Performance Considerations
 
 The performance of multi-collection transactions is significantly influenced by the disk sync speed, as these transactions require at least one disk sync operation per modified collection.
