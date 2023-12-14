@@ -3,31 +3,15 @@ sidebar_position: 1
 title: Edge-Side Tagging
 ---
 
-PhotonIQ Edge-Side Tagging (EST) is an innovative solution that moves resource-intensive third-party scripts (used for advertising, analytics, tracking, etc.) from the end-user’s browser to the edge, dramatically enhancing both web performance and data privacy.
+PhotonIQ Edge-Side Tagging (EST) is an innovative solution that moves resource-intensive third-party scripts (used for advertising, analytics, tracking, and so on) from the end-user’s browser to the edge, dramatically enhancing both web performance and data privacy.
 
 ## Benefits of EST
 
-Improved performance doesn't just enhance the user experience; it directly impacts the bottom line. The ripple effects of enhanced site performance, from reduced bounce rates to increased session duration, result in higher conversion rates and greater revenue. Especially for large e-commerce enterprises, even fractional improvements with PhotonIQ Server-Side Tagging can yield substantial revenue gains.
+Improved performance doesn't just enhance the user experience; it directly impacts the bottom line. The ripple effects of enhanced site performance, from reduced bounce rates to increased session duration, result in higher conversion rates and greater revenue. Especially for large e-commerce enterprises, even fractional improvements can yield substantial revenue gains.
 
 ## Features
 
 Key capabilities of EST include:
-
-### High Performance
-
-Offloads client third-party JavaScript such as Google Analytics or Bing to the edge, which improves website performance. The service significantly reduces the load time and overall latency for web pages, enhancing the user experience.
-
-### Scalability
-
-Handles growing numbers of tags, user interactions, and data volume without compromising site performance by distributing work across a scalable infrastructure.
-
-### Easy Integration
-
-Provides a straightforward JavaScript SDK and configuration snippets to seamlessly integrate the service into existing websites and apps with minimal code changes.
-
-### Cookie Proxying
-
-Proxies and manages cookies client-side, offering similar functionality as if the scripts were running natively in the browser. This maintains expected cookie behavior.
 
 ### Comprehensive Event Handling
 
@@ -36,6 +20,22 @@ Comprehensively captures and processes the full spectrum of browser events, from
 ### Third-Party Vendor Support
 
 Supports all major third-party tag vendors out-of-the-box while also allowing custom JavaScript tags, providing immediate and flexible access to critical marketing and analytics tools.
+
+### Cookie Proxying
+
+Proxies and manages cookies client-side, offering similar functionality as if the scripts were running natively in the browser. This maintains expected cookie behavior.
+
+### High Performance
+
+Offloads client third-party JavaScript such as Google Analytics or Bing to the edge, which improves website performance. EST significantly reduces the load time and overall latency for web pages, enhancing the user experience.
+
+### Scalability
+
+Handles growing numbers of tags, user interactions, and data volume without compromising site performance by distributing work across a scalable infrastructure.
+
+### Easy Integration
+
+Provides a straightforward JavaScript SDK and configuration snippets to seamlessly integrate EST into existing websites and apps with minimal code changes.
 
 ### Easy Deployment and Management
 
@@ -47,7 +47,7 @@ Provides an administration interface that allows developers to configure, manage
 
 ### Deployer and Deployment Pipelines
 
-Offers integrated deployer tools and CI/CD pipelines designed specifically for streamlined edge side tagging deployment and management.
+Offers integrated deployer tools and CI/CD pipelines designed specifically for streamlined edge-side tagging deployment and management.
 
 ### Detailed Insights and Monitoring
 
