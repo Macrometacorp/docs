@@ -1,0 +1,1543 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PhotonIQ Edge Side Tagging API",
+    "description": "API documentation for the PhotonIQ Edge Side Tagging Service",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/est/v1/activity/hourly": {
+      "get": {
+        "tags": [
+          "Activity Metrics"
+        ],
+        "description": "Get hourly activity metrics based on start and end date-time parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": true,
+            "description": "The UTC start date and time when activity information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "The UTC end date and time when activity information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity metrics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/est/v1/activity/daily": {
+      "get": {
+        "tags": [
+          "Activity Metrics"
+        ],
+        "description": "Get daily activity metrics based on start and end date-time parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": true,
+            "description": "The UTC start date and time when activity information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "The UTC end date and time when activity information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity metrics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/est/v1/activity/monthly": {
+      "get": {
+        "tags": [
+          "Activity Metrics"
+        ],
+        "description": "Get monthly activity metrics based on start and end date-time parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": true,
+            "description": "The UTC start date and time when activity information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "The UTC end date and time when activity information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity metrics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/est/v1/change-history": {
+      "get": {
+        "tags": [
+          "Change History"
+        ],
+        "description": "Get the change history of PhotoniqEST service",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Optional. Filter results from a specified date and time in UTC (e.g. 2022-01-01T00:00:00Z)."
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Optional. Filter results up to a specified date and time in UTC (e.g. 2022-01-01T00:00:00Z)."
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            "description": "Optional. Limit the number of results (positive integer, default is 20)."
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "description": "Optional. Offset the results by a non-negative integer (default is 0)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the change history for PhotoniqEST based on the provided query parameters."
+          },
+          "400": {
+            "description": "Bad Request. Invalid query parameter."
+          },
+          "500": {
+            "description": "Internal Server Error. Error getting change history."
+          }
+        }
+      }
+    },
+    "/api/est/v1/components": {
+      "get": {
+        "tags": [
+          "Components"
+        ],
+        "description": "Get all components supported by PhotoniqEST service",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter components by category (optional)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns list of components supported by PhotoniqEST"
+          },
+          "500": {
+            "description": "Internal Server Error. Error getting list of components"
+          }
+        }
+      }
+    },
+    "/api/est/v1/components/{component}": {
+      "get": {
+        "tags": [
+          "Components"
+        ],
+        "description": "Get Component metadata by component name",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "component",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Name of the component"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Component metadata"
+          },
+          "404": {
+            "description": "Component not found"
+          },
+          "500": {
+            "description": "Internal Server Error. Failed to retrieve the component"
+          }
+        }
+      }
+    },
+    "/api/est/v1/components/settings": {
+      "post": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Create PhotoniqEST component setting",
+        "responses": {
+          "200": {
+            "description": "Returns created PhotoniqEST component setting"
+          },
+          "500": {
+            "description": "Error creating PhotoniqEST component setting"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Get all PhotoniqEST component settings",
+        "responses": {
+          "200": {
+            "description": "Returns all PhotoniqEST component settings"
+          },
+          "404": {
+            "description": "Error PhotoniqEST component settings not found"
+          },
+          "500": {
+            "description": "Error getting all PhotoniqEST component settings"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Delete all PhotoniqEST component settings",
+        "responses": {
+          "200": {
+            "description": "All PhotoniqEST component settings deleted successfully"
+          },
+          "500": {
+            "description": "Error deleting all PhotoniqEST component settings"
+          }
+        }
+      }
+    },
+    "/api/est/v1/components/settings/{component}": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Get PhotoniqEST component setting",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "component",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Name of the component"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns PhotoniqEST component setting"
+          },
+          "404": {
+            "description": "Error PhotoniqEST component setting not found"
+          },
+          "500": {
+            "description": "Error getting PhotoniqEST component setting"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Update PhotoniqEST component setting",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "component",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Name of the component"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns updated PhotoniqEST component setting"
+          },
+          "500": {
+            "description": "Error updating PhotoniqEST component setting"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Delete PhotoniqEST component setting",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "component",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Name of the component"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PhotoniqEST component setting deleted successfully"
+          },
+          "500": {
+            "description": "Error deleting PhotoniqEST component setting"
+          }
+        }
+      }
+    },
+    "/api/est/v1/error/hourly": {
+      "get": {
+        "tags": [
+          "Error Metrics"
+        ],
+        "description": "Get hourly error metrics based on start and end date-time parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": true,
+            "description": "The UTC start date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "The UTC end date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Error metrics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMetrics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/est/v1/error/daily": {
+      "get": {
+        "tags": [
+          "Error Metrics"
+        ],
+        "description": "Get daily error metrics based on start and end date-time parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": true,
+            "description": "The UTC start date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "The UTC end date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Error metrics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMetrics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/est/v1/error/monthly": {
+      "get": {
+        "tags": [
+          "Error Metrics"
+        ],
+        "description": "Get monthly error metrics based on start and end date-time parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": true,
+            "description": "The UTC start date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "The UTC end date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Error metrics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMetrics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/est/v1/settings": {
+      "post": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Create PhotoniqEST service settings",
+        "responses": {
+          "200": {
+            "description": "Returns created PhotoniqEST service settings"
+          },
+          "500": {
+            "description": "Error creating PhotoniqEST service settings"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Get PhotoniqEST service settings",
+        "responses": {
+          "200": {
+            "description": "Returns PhotoniqEST service settings"
+          },
+          "404": {
+            "description": "Error PhotoniqEST service settings not found"
+          },
+          "500": {
+            "description": "Error getting PhotoniqEST service settings"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Update PhotoniqEST service settings",
+        "responses": {
+          "200": {
+            "description": "Returns updated PhotoniqEST service settings"
+          },
+          "500": {
+            "description": "Error updating PhotoniqEST service settings"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Settings"
+        ],
+        "description": "Delete PhotoniqEST service settings",
+        "responses": {
+          "200": {
+            "description": "PhotoniqEST service settings deleted successfully"
+          },
+          "500": {
+            "description": "Error deleting PhotoniqEST service settings"
+          }
+        }
+      }
+    },
+    "/api/est/v1/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "description": "Get PhotoniqEST status",
+        "responses": {
+          "200": {
+            "description": "Returns a health status."
+          }
+        }
+      }
+    },
+    "/api/est/v1/track": {
+      "post": {
+        "tags": [
+          "Track"
+        ],
+        "description": "Event tracking endpoint",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All the browser events are tracked with this endpoint"
+          }
+        }
+      }
+    },
+    "/api/est/v1/session-settings": {
+      "post": {
+        "tags": [
+          "Track"
+        ],
+        "description": "Get PhotoniqEST settings and initialize client",
+        "responses": {
+          "200": {
+            "description": "Sets cookies in the client browser for the first time"
+          }
+        }
+      }
+    },
+    "/api/est/v1/inject-script": {
+      "get": {
+        "tags": [
+          "Track"
+        ],
+        "description": "Get PhotoniqEST script to inject in the client browser",
+        "responses": {
+          "200": {
+            "description": "Injects PhotoniqEST script in the client browser"
+          }
+        }
+      }
+    },
+    "/api/est/v1/integration-script": {
+      "get": {
+        "tags": [
+          "Track"
+        ],
+        "description": "Retrieve a client-side integration script for PhotoniqEST, enabling PhotoniqEST functionality on user webpages.",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the PhotoniqEST integration script."
+          }
+        }
+      }
+    },
+    "/api/est/v1/trigger": {
+      "post": {
+        "tags": [
+          "Triggers"
+        ],
+        "description": "Create PhotoniqEST trigger",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "ruleType": {
+                    "type": "string"
+                  },
+                  "variableName": {
+                    "type": "string"
+                  },
+                  "matchOperation": {
+                    "type": "string"
+                  },
+                  "matchValue": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns created PhotoniqEST trigger"
+          },
+          "500": {
+            "description": "Error creating PhotoniqEST trigger"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Triggers"
+        ],
+        "description": "Get all PhotoniqEST triggers",
+        "responses": {
+          "200": {
+            "description": "Returns PhotoniqEST trigger"
+          },
+          "500": {
+            "description": "Error getting PhotoniqEST trigger"
+          }
+        }
+      }
+    },
+    "/api/est/v1/trigger/{name}": {
+      "get": {
+        "tags": [
+          "Triggers"
+        ],
+        "description": "Get PhotoniqEST trigger",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Trigger name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns PhotoniqEST trigger"
+          },
+          "500": {
+            "description": "Error getting PhotoniqEST trigger"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Triggers"
+        ],
+        "description": "Update PhotoniqEST trigger",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Trigger name"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "ruleType": {
+                    "type": "string"
+                  },
+                  "variableName": {
+                    "type": "string"
+                  },
+                  "matchOperation": {
+                    "type": "string"
+                  },
+                  "matchValue": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns updated PhotoniqEST trigger"
+          },
+          "404": {
+            "description": "Error Trigger not found"
+          },
+          "500": {
+            "description": "Error updating PhotoniqEST trigger"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Triggers"
+        ],
+        "description": "Delete PhotoniqEST trigger",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Trigger name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PhotoniqEST service trigger deleted successfully"
+          },
+          "500": {
+            "description": "Error deleting PhotoniqEST trigger"
+          }
+        }
+      }
+    },
+    "/api/est/v1/usage/hourly": {
+      "get": {
+        "tags": [
+          "Usage Metrics"
+        ],
+        "description": "Get hourly usage metrics based on start and end date-time parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": true,
+            "description": "The UTC start date and time when usage information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "The UTC end date and time when usage information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Request",
+                "Bytes",
+                "Timestamp"
+              ],
+              "default": "Timestamp"
+            },
+            "description": "Sort by arrtibute",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortOrder",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "default": "ASC"
+            },
+            "description": "Sort order",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "aggregate",
+            "schema": {
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ],
+              "default": false
+            },
+            "description": "If the *aggregate* flag is true, then the result are consolidated and returned as an aggregated summary for the specified from and to period.  If the aggregate flag is false or not provided, then only separate records for the same time period is returned.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "default": 20
+            },
+            "description": "The *limit* paramter determines the number of usage records to be returned'"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "description": "The *offset* from where data to be returned from total quried records"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usage metrics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageMetrics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/est/v1/usage/daily": {
+      "get": {
+        "tags": [
+          "Usage Metrics"
+        ],
+        "description": "Get daily usage metrics based on start and end date-time parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": true,
+            "description": "The UTC start date and time when usage information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "The UTC end date and time when usage information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Request",
+                "Bytes",
+                "Timestamp"
+              ],
+              "default": "Timestamp"
+            },
+            "description": "Sort by arrtibute",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortOrder",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "default": "ASC"
+            },
+            "description": "Sort order",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "aggregate",
+            "schema": {
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ],
+              "default": false
+            },
+            "description": "If the *aggregate* flag is true, then the result are consolidated and returned as an aggregated summary for the specified from and to period.  If the aggregate flag is false or not provided, then only separate records for the same time period is returned.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "default": 20
+            },
+            "description": "The *limit* paramter determines the number of usage records to be returned'"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "description": "The *offset* from where data to be returned from total quried records"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usage metrics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageMetrics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/est/v1/usage/monthly": {
+      "get": {
+        "tags": [
+          "Usage Metrics"
+        ],
+        "description": "Get monthly usage metrics based on start and end date-time parameters",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PhotonIQ-CustomerID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "PhotonIQEST CustomerID"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": true,
+            "description": "The UTC start date and time when usage information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "The UTC end date and time when usage information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Request",
+                "Bytes",
+                "Timestamp"
+              ],
+              "default": "Timestamp"
+            },
+            "description": "Sort by arrtibute",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sortOrder",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "default": "ASC"
+            },
+            "description": "Sort order",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "aggregate",
+            "schema": {
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ],
+              "default": false
+            },
+            "description": "If the *aggregate* flag is true, then the result are consolidated and returned as an aggregated summary for the specified from and to period.  If the aggregate flag is false or not provided, then only separate records for the same time period is returned.",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "default": 20
+            },
+            "description": "The *limit* paramter determines the number of usage records to be returned'"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "description": "The *offset* from where data to be returned from total quried records"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usage metrics retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageMetrics"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/est/v1/variable": {
+      "post": {
+        "tags": [
+          "Variables"
+        ],
+        "description": "Create PhotoniqEST variable",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variableName": {
+                    "type": "string"
+                  },
+                  "variableType": {
+                    "type": "string"
+                  },
+                  "variableValue": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns created PhotoniqEST variable"
+          },
+          "500": {
+            "description": "Error creating PhotoniqEST variable"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Variables"
+        ],
+        "description": "Get PhotoniqEST variable",
+        "responses": {
+          "200": {
+            "description": "Returns PhotoniqEST variable"
+          },
+          "500": {
+            "description": "Error getting PhotoniqEST variable"
+          }
+        }
+      }
+    },
+    "/api/est/v1/variable/{name}": {
+      "get": {
+        "tags": [
+          "Variables"
+        ],
+        "description": "Get PhotoniqEST variable",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Variable name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns PhotoniqEST variable"
+          },
+          "500": {
+            "description": "Error getting PhotoniqEST variable"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Variables"
+        ],
+        "description": "Update PhotoniqEST variable",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Variable name"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variableName": {
+                    "type": "string"
+                  },
+                  "variableType": {
+                    "type": "string"
+                  },
+                  "variableValue": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns updated PhotoniqEST variable"
+          },
+          "500": {
+            "description": "Error updating PhotoniqEST variable"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Variables"
+        ],
+        "description": "Delete PhotoniqEST variable",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Variable name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PhotoniqEST service variable deleted successfully"
+          },
+          "500": {
+            "description": "Error deleting PhotoniqEST variable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MetricsResponse": {
+        "type": "object",
+        "properties": {
+          "activityMetrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityMetrics"
+            }
+          },
+          "type": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TotalMetrics"
+            }
+          }
+        }
+      },
+      "ActivityMetrics": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string",
+            "description": "ID of the customer."
+          },
+          "componentName": {
+            "type": "string",
+            "description": "Name of the component, example google-analytics."
+          },
+          "eventType": {
+            "type": "string",
+            "description": "Type of event, example paveView or client."
+          },
+          "eventName": {
+            "type": "string",
+            "description": "Name of event, example click | scroll | mousedown etc."
+          },
+          "count": {
+            "type": "number",
+            "description": "Number of events."
+          }
+        }
+      },
+      "TotalMetrics": {
+        "type": "object",
+        "properties": {
+          "totalRequests": {
+            "type": "number",
+            "description": "Number of total requests between from and to time."
+          },
+          "totalBytes": {
+            "type": "number",
+            "description": "Number of total bytes used between from and to time"
+          }
+        }
+      },
+      "ErrorMetrics": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string",
+            "description": "ID of the customer."
+          },
+          "errorName": {
+            "type": "string",
+            "description": "Name of the error occured."
+          },
+          "count": {
+            "type": "number",
+            "description": "Number of errors."
+          }
+        }
+      },
+      "UsageMetrics": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string",
+            "description": "ID of the customer."
+          },
+          "usedRequests": {
+            "type": "number",
+            "description": "Number of requests made by the customer."
+          },
+          "usedBytes": {
+            "type": "number",
+            "description": "Number of bytes used."
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Activity Metrics",
+      "description": "All the PhotoniqEST activity metrics endpoints"
+    },
+    {
+      "name": "Change History",
+      "description": "All the PhotoniqEST changeHistory endpoints"
+    },
+    {
+      "name": "Components",
+      "description": "All the PhotoniqEST Components endpoints"
+    },
+    {
+      "name": "Settings",
+      "description": "All the PhotoniqEST component settings endpoints"
+    },
+    {
+      "name": "Error Metrics",
+      "description": "All the PhotoniqEST error metrics endpoints"
+    },
+    {
+      "name": "error Metrics",
+      "description": "All the PhotoniqEST error metrics endpoints"
+    },
+    {
+      "name": "Health",
+      "description": "Health check related routes"
+    },
+    {
+      "name": "Track",
+      "description": "All the tracking endpoints"
+    },
+    {
+      "name": "Triggers",
+      "description": "All the PhotoniqEST trigger endpoints"
+    },
+    {
+      "name": "Usage Metrics",
+      "description": "All the PhotoniqEST usage metrics endpoints"
+    },
+    {
+      "name": "Variables",
+      "description": "All the PhotoniqEST variables endpoints"
+    }
+  ],
+  "host": "api-demo-est.paas.macrometa.io",
+  "servers": [
+    {
+      "url": "https://api-demo-est.paas.macrometa.io",
+      "description": "GDN API"
+    }
+  ]
+}
