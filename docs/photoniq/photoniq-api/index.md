@@ -15,4 +15,10 @@ title: PhotonIQ API Reference
     href="../../../docs/apiVwrs#"
   />
 
+  <card
+    heading="Edge Side Tagging API"
+    description=""
+    href="../../../docs/apiEst#"
+  />
+
 </grid>
