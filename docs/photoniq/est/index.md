@@ -3,33 +3,15 @@ sidebar_position: 1
 title: Edge-Side Tagging
 ---
 
-The PhotonIQ Edge Side Tagging (EST) service moves resource-intensive third-party scripts, such as those used for advertising, analytics, tracking, and so on, from the end-user’s browser to the edge. This dramatically enhances web performance, security, and data privacy.
+PhotonIQ Edge-Side Tagging (EST) is an innovative solution that moves resource-intensive third-party scripts (used for advertising, analytics, tracking, and so on) from the end-user’s browser to the edge, dramatically enhancing both web performance and data privacy.
 
-Improved performance doesn't just enhance the user experience; it directly impacts the bottom line. The ripple effects of enhanced site performance, from reduced bounce rates to increased session duration, result in higher conversion rates and greater revenue.
+## Benefits of EST
 
-# Features
+Improved performance doesn't just enhance the user experience; it directly impacts the bottom line. The ripple effects of enhanced site performance, from reduced bounce rates to increased session duration, result in higher conversion rates and greater revenue. Especially for large e-commerce enterprises, even fractional improvements can yield substantial revenue gains.
 
-Key capabilities include:
+## Features
 
-## Performance
-
-### High Performance
-
-Offloads client third-party JavaScript such as Google Analytics or Bing to the edge, which improves website performance. The service significantly reduces the load time and overall latency for web pages, enhancing the user experience.
-
-### Scalability
-
-Handles growing numbers of tags, user interactions, and data volume without compromising site performance by distributing work across a scalable infrastructure.
-
-## Integration
-
-### Easy Integration
-
-Provides a straightforward JavaScript SDK and configuration snippets to seamlessly integrate the service into existing websites and apps with minimal code changes.
-
-### Cookie Proxying
-
-Proxies and manages cookies client-side, offering similar functionality as if the scripts were running natively in the browser. This maintains expected cookie behavior.
+Key capabilities of EST include:
 
 ### Comprehensive Event Handling
 
@@ -39,7 +21,21 @@ Comprehensively captures and processes the full spectrum of browser events, from
 
 Supports all major third-party tag vendors out-of-the-box while also allowing custom JavaScript tags, providing immediate and flexible access to critical marketing and analytics tools.
 
-## Management
+### Cookie Proxying
+
+Proxies and manages cookies client-side, offering similar functionality as if the scripts were running natively in the browser. This maintains expected cookie behavior.
+
+### High Performance
+
+Offloads client third-party JavaScript such as Google Analytics or Bing to the edge, which improves website performance. EST significantly reduces the load time and overall latency for web pages, enhancing the user experience.
+
+### Scalability
+
+Handles growing numbers of tags, user interactions, and data volume without compromising site performance by distributing work across a scalable infrastructure.
+
+### Easy Integration
+
+Provides a straightforward JavaScript SDK and configuration snippets to seamlessly integrate EST into existing websites and apps with minimal code changes.
 
 ### Easy Deployment and Management
 
@@ -51,9 +47,7 @@ Provides an administration interface that allows developers to configure, manage
 
 ### Deployer and Deployment Pipelines
 
-Offers integrated deployer tools and CI/CD pipelines designed specifically for streamlined edge side tagging deployment and management.
-
-## Monitoring
+Offers integrated deployer tools and CI/CD pipelines designed specifically for streamlined edge-side tagging deployment and management.
 
 ### Detailed Insights and Monitoring
 
@@ -63,8 +57,6 @@ Offers granular insights into tag utilization, behavior, performance, errors, an
 
 Generates detailed audit events for tracking and compliance whenever a tag is accessed, deployed, or modified.
 
-## Security
-
 ### Robust Security
 
 Ensures secure execution of scripts and data transmission. It enforces strict isolation between scripts and provides robust data encryption.
@@ -72,8 +64,6 @@ Ensures secure execution of scripts and data transmission. It enforces strict is
 ### Effective Third-Party Vendor Management
 
 Provides control and visibility into third-party scripts, ensuring only approved and necessary tags are running. This improves security and compliance.
-
-## Compliance
 
 ### Compliance with Regulations
 
@@ -83,40 +73,6 @@ Helps you comply with various data privacy regulations like GDPR and CCPA throug
 
 Supports customization of tags or third-party vendors based on user location, important for geographic data privacy regulations.
 
-## Resiliency
-
 ### Fault Tolerance and Resiliency
 
 Architected with redundancy and failover capabilities to minimize downtime. It is designed to handle issues via features like automated retries.
-
-# Metrics
-
-Metrics provide valuable insight into the performance, usage, and health of the EST service. Monitoring key metrics helps identify issues, analyze trends, measure effectiveness, and guide optimizations.
-
-## **photoniqest_requests_total**
-
-Total requests to service.
-
-## **photoniqest_requests_SPECIFIC_COMPONENT**
-
-Total number of requests from specific component (third-party tool).
-
-## **photoniqest_response_size_bytes**
-
-The size of responses generated by EST. This is very important since some of the third party tools have limits on received payload.
-
-## **photoniqcm_errors_total**
-
-Total number of errors in service.
-
-## **photoniq_errors_SPECIFIC_COMPONENT**
-
-Total number of errors from specific component (third-party tool).
-
-## **photoniq_clients_total**
-
-Total number of clients created for an account
-
-## **photoniq_sessions_total**
-
-Total number of client sessions for an account
