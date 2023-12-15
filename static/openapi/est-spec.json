@@ -227,7 +227,7 @@
             "description": "Returns the change history for Photoniq EST based on the provided query parameters."
           },
           "400": {
-            "description": "Bad Request. Invalid query parameter."
+            "description": "Bad request. Invalid query parameter."
           },
           "500": {
             "description": "Internal Server Error. Error getting change history."
