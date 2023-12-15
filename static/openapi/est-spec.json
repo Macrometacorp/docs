@@ -1608,7 +1608,7 @@
     },
     {
       "name": "Settings",
-      "description": "Settings endpoints allows users to configure a component to integrate various third-party tags into their system. It accepts configuration settings for different types of tags, such as analytics, advertising, social media, etc."
+      "description": "Settings endpoints allows users to configure a component to integrate various third-party tags into their system. It accepts configuration settings for different types of tags, such as analytics, advertising, social media, and so on."
     },
     {
       "name": "Error Metrics",
