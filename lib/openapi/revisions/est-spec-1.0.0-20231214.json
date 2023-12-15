@@ -608,7 +608,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "Get PhotoniqEST service settings",
+        "description": "Get PhotonIQ EST settings.",
         "responses": {
           "200": {
             "description": "Returns PhotoniqEST service settings"
