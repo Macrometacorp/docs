@@ -1426,7 +1426,7 @@
           },
           "eventType": {
             "type": "string",
-            "description": "Type of event, example paveView or client."
+            "description": "Type of event, example pageView or client."
           },
           "eventName": {
             "type": "string",
