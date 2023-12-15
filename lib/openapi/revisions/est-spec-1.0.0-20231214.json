@@ -508,7 +508,7 @@
               "type": "string",
               "format": "date-time"
             },
-            "description": "The UTC end date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "description": "The UTC end date and time from which error information is retrieved (e.g. 2022-01-01T00:00:00Z).",
             "required": true
           }
         ],
