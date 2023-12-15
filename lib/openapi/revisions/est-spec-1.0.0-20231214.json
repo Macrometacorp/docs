@@ -39,7 +39,7 @@
               "type": "string",
               "format": "date-time"
             },
-            "description": "The UTC end date and time when activity information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "description": "The UTC end date and time for which activity information is retrieved (e.g. 2022-01-01T00:00:00Z).",
             "required": true
           }
         ],
