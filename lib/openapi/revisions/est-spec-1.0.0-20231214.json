@@ -556,7 +556,7 @@
               "format": "date-time"
             },
             "required": true,
-            "description": "The UTC start date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+            "description": "The UTC start date and time for which error information is retrieved (e.g. 2022-01-01T00:00:00Z)."
           },
           {
             "in": "query",
