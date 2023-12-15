@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "PhotonIQ Edge Side Tagging API",
-    "description": "API documentation for the PhotonIQ Edge Side Tagging Service",
+    "description": "API reference for PhotonIQ Edge Side Tagging.",
     "version": "0.2.0"
   },
   "paths": {
@@ -39,7 +39,7 @@
               "type": "string",
               "format": "date-time"
             },
-            "description": "The UTC end date and time when activity information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "description": "The UTC end date and time for which activity information is retrieved (e.g. 2022-01-01T00:00:00Z).",
             "required": true
           }
         ],
@@ -508,7 +508,7 @@
               "type": "string",
               "format": "date-time"
             },
-            "description": "The UTC end date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)",
+            "description": "The UTC end date and time from which error information is retrieved (e.g. 2022-01-01T00:00:00Z).",
             "required": true
           }
         ],
@@ -556,7 +556,7 @@
               "format": "date-time"
             },
             "required": true,
-            "description": "The UTC start date and time when error information is retrieved from (e.g. 2022-01-01T00:00:00Z)"
+            "description": "The UTC start date and time for which error information is retrieved (e.g. 2022-01-01T00:00:00Z)."
           },
           {
             "in": "query",
@@ -594,7 +594,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "Create PhotoniqEST service settings",
+        "description": "Create PhotonIQ EST settings.",
         "responses": {
           "200": {
             "description": "Returns created PhotoniqEST service settings"
@@ -608,7 +608,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "Get PhotoniqEST service settings",
+        "description": "Get PhotonIQ EST settings.",
         "responses": {
           "200": {
             "description": "Returns PhotoniqEST service settings"
@@ -655,7 +655,7 @@
         "tags": [
           "Health"
         ],
-        "description": "Get PhotoniqEST status",
+        "description": "Get PhotonIQ EST health status.",
         "responses": {
           "200": {
             "description": "Returns a health status."
@@ -1212,7 +1212,7 @@
               "type": "number",
               "default": 20
             },
-            "description": "The *limit* paramter determines the number of usage records to be returned'"
+            "description": "The *limit* parameter determines the number of usage records to be returned."
           },
           {
             "in": "query",
@@ -1249,7 +1249,7 @@
         "tags": [
           "Variables"
         ],
-        "description": "Create PhotoniqEST variable",
+        "description": "Create a PhotonIQ EST variable.",
         "requestBody": {
           "required": true,
           "content": {
@@ -1426,7 +1426,7 @@
           },
           "eventType": {
             "type": "string",
-            "description": "Type of event, example paveView or client."
+            "description": "Type of event, example pageView or client."
           },
           "eventName": {
             "type": "string",
