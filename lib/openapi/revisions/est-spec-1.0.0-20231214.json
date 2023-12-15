@@ -655,7 +655,7 @@
         "tags": [
           "Health"
         ],
-        "description": "Get PhotoniqEST status",
+        "description": "Get PhotonIQ EST health status.",
         "responses": {
           "200": {
             "description": "Returns a health status."
