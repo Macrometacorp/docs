@@ -74,6 +74,12 @@ This release includes the memcache function, which is a memory cache with a time
 
 [Memcache](../cep/query-guide/functions/memcache/) was added a result of this feature.
 
+### Transactions
+
+You can now aggregate API calls with the Transactions feature.
+
+The [Transactions](../transactions/) section was added as a result of this feature.
+
 ## Feature Updates
 
 The following features updates are included in this release.
@@ -86,13 +92,6 @@ Two new API endpoints have been added to allow you to more efficiently manage ke
 - Update the group ID for all the documents belonging to a particular group ID in a collection with the Group ID feature enabled: `PUT /_fabric/{fabric}/_api/kv/{collection}/groupID`
 
 [Manage Group IDs](../collections/keyvalue/manage-group-ids.md) was added as a result of this change.
-
-### Transactions API
-
-https://github.com/Macrometacorp/c8apidocs/pull/174
-
-DFP Note - What do we need for Transactions documentation?
-
 
 ### Enhanced Error Handling for Stream Workers
 
@@ -134,42 +133,19 @@ The following defects were fixed in this release.
 | Defect #  | Description  |
 |---|---|
 | AUTH-236  | Corrected field order and capitalization on the Invite User signup page.  |
-|   |   |
-|   |   |
 | CEP-437  | Regex for http.status.code in http-call-response function is not working.  |
 | CEP-439  | Delete subscriptions only at stream worker deletion, not unpublish.  |
 | CEP-614  | Republishing stream workers is not working.  |
 | CEP-615  | Sometimes after unpublishing a stream worker, it gets re-published automatically.  |
 | CEP-620  | The sample stream worker HTTP-IO will not validate.  |
 | DB-1643  | User can create an API key with a numeric value as the key ID.  |
-|   |   |
-|   |   |
-|   |   |
 | GUI-1331  | CSV option is not available for import and export button for Document or Graph Edge collections.  |
-|   |   |
 | GUI-1886  | "Forbidden error" notification when non-root user changes their Display Name.  |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
 | DB-1484  | Objects are not created with field name as: _key,_id, and _rev.  |
-|   |   |
 | DB-2410  | Create API key should give error when 256 characters are given for a value as an API key ID.  |
-|   |   |
-|   |   |
 | GUI-1799  | Complete name and email of logged in tenant not shown  |
 | GUI-1804  | The Generate EdgeWorker window closes if you double-click any text field.  |
 | GUI-1823  | Fixed dashboard typo in CPU Usage Global Metrics; graph showed value in seconds instead of ms.  |
-|   |   |
-|   |   |
 | STRM-122  | Streams can be created with invalid stream names, such as "123" or "_#".  |
 | STRM-254  | Deleting a global stream returns a 500 internal server error.  |
 | STRM-371  | Users can successfully call APIs for disabled features.  |
-|   |   |
-|   |   |
