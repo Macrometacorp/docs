@@ -1532,11 +1532,11 @@
           },
           "eventType": {
             "type": "string",
-            "description": "Type of event, example pageView or client."
+            "description": "Type of event. Options: pageView or client."
           },
           "eventName": {
             "type": "string",
-            "description": "Name of event, example click | scroll | mousedown etc."
+            "description": "Name of event. Options: click | scroll | mousedown"
           },
           "count": {
             "type": "number",
@@ -1600,7 +1600,7 @@
     },
     {
       "name": "Change History",
-      "description": "All the PhotonIQ EST changeHistory endpoints."
+      "description": "All the PhotonIQ EST Change History endpoints."
     },
     {
       "name": "Components",
@@ -1608,7 +1608,7 @@
     },
     {
       "name": "Settings",
-      "description": "Settings endpoints allows users to configure a component to integrate various third-party tags into their system. It accepts configuration settings for different types of tags, such as analytics, advertising, social media, etc."
+      "description": "Settings endpoints allows users to configure a component to integrate various third-party tags into their system. It accepts configuration settings for different types of tags, such as analytics, advertising, social media, and so on."
     },
     {
       "name": "Error Metrics",
@@ -1616,7 +1616,7 @@
     },
     {
       "name": "EST Settings",
-      "description": "EST setting API to configure `origin`, `cookies` and `basicAuth`. To access EST telemetrics `basicAuth` configuration is required."
+      "description": "EST setting API to configure `origin`, `cookies`, and `basicAuth`. To access EST telemetrics `basicAuth` configuration is required."
     },
     {
       "name": "Health",
