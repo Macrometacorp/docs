@@ -594,7 +594,7 @@
         "tags": [
           "Settings"
         ],
-        "description": "Create PhotoniqEST service settings",
+        "description": "Create PhotonIQ EST settings.",
         "responses": {
           "200": {
             "description": "Returns created PhotoniqEST service settings"
