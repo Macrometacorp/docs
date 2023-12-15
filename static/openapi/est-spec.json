@@ -1536,7 +1536,7 @@
           },
           "eventName": {
             "type": "string",
-            "description": "Name of event, example click | scroll | mousedown etc."
+            "description": "Name of event. Options: click | scroll | mousedown"
           },
           "count": {
             "type": "number",
