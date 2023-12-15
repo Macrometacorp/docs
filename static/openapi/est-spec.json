@@ -1616,7 +1616,7 @@
     },
     {
       "name": "EST Settings",
-      "description": "EST setting API to configure `origin`, `cookies` and `basicAuth`. To access EST telemetrics `basicAuth` configuration is required."
+      "description": "EST setting API to configure `origin`, `cookies`, and `basicAuth`. To access EST telemetrics `basicAuth` configuration is required."
     },
     {
       "name": "Health",
