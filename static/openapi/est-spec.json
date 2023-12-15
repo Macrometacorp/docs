@@ -1532,7 +1532,7 @@
           },
           "eventType": {
             "type": "string",
-            "description": "Type of event, example pageView or client."
+            "description": "Type of event. Options: pageView or client."
           },
           "eventName": {
             "type": "string",
