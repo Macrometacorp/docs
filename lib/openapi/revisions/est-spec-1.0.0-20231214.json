@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "PhotonIQ Edge Side Tagging API",
-    "description": "API documentation for the PhotonIQ Edge Side Tagging Service",
+    "description": "API reference for PhotonIQ Edge Side Tagging.",
     "version": "0.2.0"
   },
   "paths": {
