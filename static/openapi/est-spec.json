@@ -182,7 +182,7 @@
         "tags": [
           "Change History"
         ],
-        "description": "Get the change history of Photoniq EST service.",
+        "description": "Get the change history of PhotonIQ EST service.",
         "parameters": [
           {
             "in": "query",
