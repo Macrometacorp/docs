@@ -1249,7 +1249,7 @@
         "tags": [
           "Variables"
         ],
-        "description": "Create PhotoniqEST variable",
+        "description": "Create a PhotonIQ EST variable.",
         "requestBody": {
           "required": true,
           "content": {
