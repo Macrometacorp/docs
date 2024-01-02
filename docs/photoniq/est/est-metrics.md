@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Edge-Side Tagging Metrics
+title: Edge Side Tagging Metrics
 ---
 
 Metrics provide valuable insight into the performance, usage, and health of PhotonIQ Edge-Side Tagging (EST). Monitoring key metrics helps identify issues, analyze trends, measure effectiveness, and guide optimizations.
