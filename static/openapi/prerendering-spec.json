@@ -2970,7 +2970,7 @@
     },
     "/api/prerender/v1/metrics/percentiles/responsetime": {
       "get": {
-        "summary": "Get percentile metrics",
+        "summary": "Get percentile metrics ",
         "tags": ["Metrics"],
         "description": "Returns percentile metrics for response times within a specific time range, optionally filtered by URL pattern and response code. Required query parameters include from and to, denoting the epoch time range in seconds. An optional urlRegex parameter allows filtering by URL patterns, while responseCode filters the metrics by HTTP response code. The endpoint returns the 90th, 95th, and 99th percentiles of response times. A customerId header is required for authentication.",
         "parameters": [
@@ -3103,7 +3103,7 @@
     },
     "/api/prerender/v1/metrics/percentiles/responsetime/{origin}": {
       "get": {
-        "summary": "Get percentile metrics",
+        "summary": "Get percentile metrics  by origin",
         "tags": ["Metrics"],
         "description": "Returns percentile metrics for response times within a specific time range, optionally filtered by URL pattern and response code. Required query parameters include from and to, denoting the epoch time range in seconds. An optional urlRegex parameter allows filtering by URL patterns, while responseCode filters the metrics by HTTP response code. The endpoint returns the 90th, 95th, and 99th percentiles of response times. A customerId header is required for authentication.",
         "parameters": [
@@ -4871,7 +4871,7 @@
     },
     "/api/prerender/v1/history/render/{origin}": {
       "get": {
-        "summary": "Get render history data",
+        "summary": "Get render history data by origin",
         "tags": ["Prerender History"],
         "description": "Returns historical data for web metrics, with time-range filtering and optional response code criteria. This endpoint requires the from and to query parameters, indicating the time range as epoch seconds. Optional filters include responseCode for HTTP status, and pagination controls through limit and offset. Data can be optionally scoped to a specific origin if the origin path parameter is included. The response comprises an array of historical records, detailing bytes sent, response time, device type, and response codes. Authentication is handled via the customerId header.",
         "parameters": [
@@ -5187,7 +5187,7 @@
     },
     "/api/prerender/v1/metrics/stats/render/{origin}": {
       "get": {
-        "summary": "Get render-stats metrics",
+        "summary": "Get render-stats metrics by origin",
         "tags": ["Metrics"],
         "description": "Returns render stats metrics within a specified time range. This endpoint expects two required query parameters: from and to, representing the start and end of the time range in epoch seconds. The request must include a customerId header for authentication.",
         "parameters": [
@@ -5820,7 +5820,7 @@
     },
     "/api/prerender/v1/usage/{aggregationType}/{origin}": {
       "get": {
-        "summary": "Get usage metrics",
+        "summary": "Get usage metrics by origin",
         "tags": ["Usage"],
         "description": "Returns usage metrics for a specified time range, with mandatory aggregation by type and an optional origin filter. This endpoint requires from and to query parameters as epoch times, along with an aggregationType in the path to define the data aggregation granularity (e.g., hourly, daily, monthly). It supports pagination (limit, offset) and sorting (sortOrder, sortBy) options in the query. Authentication is managed via the customerId header.",
         "parameters": [
