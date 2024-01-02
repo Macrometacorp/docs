@@ -49,12 +49,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -75,12 +75,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -101,12 +101,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -120,7 +120,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -159,12 +159,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -197,12 +197,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -223,12 +223,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -242,7 +242,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -293,12 +293,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -384,12 +384,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -410,12 +410,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -429,7 +429,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -445,12 +445,12 @@
         "description": "Returns the service health status.",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -503,12 +503,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -560,7 +560,7 @@
                                 },
                                 "delayBetween": {
                                   "type": "integer",
-                                  "description": "Delay between each scroll step."
+                                  "description": "Delay (in milliseconds) between each scroll step."
                                 },
                                 "specific": {
                                   "type": "array",
@@ -577,7 +577,7 @@
                                           "type": "string",
                                           "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
@@ -642,11 +642,18 @@
                                         "type": "boolean",
                                         "description": "Whether the global interaction is active or not."
                                       },
-                                      "htmlSelector": { "type": "string" },
-                                      "waitAfterInteraction": {
-                                        "type": "integer"
+                                      "htmlSelector": {
+                                        "type": "string",
+                                        "description": "HTML selector where the interaction is executed."
                                       },
-                                      "executionSequence": { "type": "integer" }
+                                      "waitAfterInteraction": {
+                                        "type": "integer",
+                                        "description": "Waiting time (in seconds) after the interaction is executed."
+                                      },
+                                      "executionSequence": {
+                                        "type": "integer",
+                                        "description": "Interaction execution order."
+                                      }
                                     },
                                     "required": [
                                       "isActive",
@@ -670,11 +677,11 @@
                                       },
                                       "waitAfterInteraction": {
                                         "type": "integer",
-                                        "description": "Time to wait (in seconds) after the interaction execution."
+                                        "description": "Waiting time (in seconds) after the interaction is executed."
                                       },
                                       "executionSequence": {
                                         "type": "integer",
-                                        "description": "Specific interaction execution order."
+                                        "description": "Interaction execution order."
                                       },
                                       "urlPaths": {
                                         "type": "array",
@@ -743,11 +750,18 @@
                                         "type": "boolean",
                                         "description": "Whether the global interaction is active or not."
                                       },
-                                      "htmlSelector": { "type": "string" },
-                                      "waitAfterInteraction": {
-                                        "type": "integer"
+                                      "htmlSelector": {
+                                        "type": "string",
+                                        "description": "HTML selector where the interaction is executed."
                                       },
-                                      "executionSequence": { "type": "integer" }
+                                      "waitAfterInteraction": {
+                                        "type": "integer",
+                                        "description": "Waiting time (in seconds) after the interaction is executed."
+                                      },
+                                      "executionSequence": {
+                                        "type": "integer",
+                                        "description": "Interaction execution order."
+                                      }
                                     },
                                     "required": [
                                       "isActive",
@@ -771,11 +785,11 @@
                                       },
                                       "waitAfterInteraction": {
                                         "type": "integer",
-                                        "description": "Time to wait (in seconds) after the interaction execution."
+                                        "description": "Waiting time (in seconds) after the interaction is executed."
                                       },
                                       "executionSequence": {
                                         "type": "integer",
-                                        "description": "Specific interaction execution order."
+                                        "description": "Interaction execution order."
                                       },
                                       "urlPaths": {
                                         "type": "array",
@@ -865,12 +879,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -891,12 +905,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -910,7 +924,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -940,7 +954,7 @@
             "in": "path",
             "name": "type",
             "required": true,
-            "description": "Interaction type (scroll, click, hover, etc...)"
+            "description": "Interaction type, e.g., scroll, click, hover."
           },
           {
             "schema": { "type": "string" },
@@ -952,14 +966,15 @@
         ],
         "responses": {
           "200": {
-            "description": "Default Response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
+                  "description": "Successful response.",
                   "oneOf": [
                     {
                       "type": "object",
-                      "description": "Successful response",
+                      "description": "Successful response.",
                       "properties": {
                         "status": {
                           "type": "string",
@@ -1008,7 +1023,7 @@
                                 },
                                 "delayBetween": {
                                   "type": "integer",
-                                  "description": "Delay between each scroll step."
+                                  "description": "Delay (in milliseconds) between each scroll step."
                                 },
                                 "specific": {
                                   "type": "array",
@@ -1025,7 +1040,7 @@
                                           "type": "string",
                                           "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
@@ -1057,7 +1072,7 @@
                     },
                     {
                       "type": "object",
-                      "description": "Successful response",
+                      "description": "Successful response.",
                       "properties": {
                         "status": {
                           "type": "string",
@@ -1105,11 +1120,18 @@
                                         "type": "boolean",
                                         "description": "Whether the global interaction is active or not."
                                       },
-                                      "htmlSelector": { "type": "string" },
-                                      "waitAfterInteraction": {
-                                        "type": "integer"
+                                      "htmlSelector": {
+                                        "type": "string",
+                                        "description": "HTML selector where the interaction is executed."
                                       },
-                                      "executionSequence": { "type": "integer" }
+                                      "waitAfterInteraction": {
+                                        "type": "integer",
+                                        "description": "Waiting time (in seconds) after the interaction is executed."
+                                      },
+                                      "executionSequence": {
+                                        "type": "integer",
+                                        "description": "Interaction execution order."
+                                      }
                                     },
                                     "required": [
                                       "isActive",
@@ -1133,11 +1155,11 @@
                                       },
                                       "waitAfterInteraction": {
                                         "type": "integer",
-                                        "description": "Time to wait (in seconds) after the interaction execution."
+                                        "description": "Waiting time (in seconds) after the interaction is executed."
                                       },
                                       "executionSequence": {
                                         "type": "integer",
-                                        "description": "Specific interaction execution order."
+                                        "description": "Interaction execution order."
                                       },
                                       "urlPaths": {
                                         "type": "array",
@@ -1198,12 +1220,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1224,12 +1246,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1243,7 +1265,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -1280,7 +1302,7 @@
                           },
                           "delayBetween": {
                             "type": "integer",
-                            "description": "Delay between each scroll step."
+                            "description": "Delay (in milliseconds) between each scroll step."
                           },
                           "specific": {
                             "type": "array",
@@ -1297,7 +1319,7 @@
                                     "type": "string",
                                     "description": "Origin path."
                                   },
-                                  "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                  "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
                                 },
                                 "operation": {
                                   "type": "string",
@@ -1339,9 +1361,18 @@
                                   "type": "boolean",
                                   "description": "Whether the global interaction is active or not."
                                 },
-                                "htmlSelector": { "type": "string" },
-                                "waitAfterInteraction": { "type": "integer" },
-                                "executionSequence": { "type": "integer" }
+                                "htmlSelector": {
+                                  "type": "string",
+                                  "description": "HTML selector where the interaction is executed."
+                                },
+                                "waitAfterInteraction": {
+                                  "type": "integer",
+                                  "description": "Waiting time (in seconds) after the interaction is executed."
+                                },
+                                "executionSequence": {
+                                  "type": "integer",
+                                  "description": "Interaction execution order."
+                                }
                               },
                               "required": [
                                 "isActive",
@@ -1365,11 +1396,11 @@
                                 },
                                 "waitAfterInteraction": {
                                   "type": "integer",
-                                  "description": "Time to wait (in seconds) after the interaction execution."
+                                  "description": "Waiting time (in seconds) after the interaction is executed."
                                 },
                                 "executionSequence": {
                                   "type": "integer",
-                                  "description": "Specific interaction execution order."
+                                  "description": "Interaction execution order."
                                 },
                                 "urlPaths": {
                                   "type": "array",
@@ -1421,7 +1452,7 @@
             "in": "path",
             "name": "type",
             "required": true,
-            "description": "Interaction type (scroll, click, hover, etc...)"
+            "description": "Interaction type, e.g., scroll, click, hover."
           },
           {
             "schema": { "type": "string" },
@@ -1433,12 +1464,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1470,12 +1501,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1496,12 +1527,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1515,7 +1546,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -1552,7 +1583,7 @@
                           },
                           "delayBetween": {
                             "type": "integer",
-                            "description": "Delay between each scroll step."
+                            "description": "Delay (in milliseconds) between each scroll step."
                           },
                           "specific": {
                             "type": "array",
@@ -1569,7 +1600,7 @@
                                     "type": "string",
                                     "description": "Origin path."
                                   },
-                                  "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                  "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
                                 },
                                 "operation": {
                                   "type": "string",
@@ -1610,9 +1641,18 @@
                                   "type": "boolean",
                                   "description": "Whether the global interaction is active or not."
                                 },
-                                "htmlSelector": { "type": "string" },
-                                "waitAfterInteraction": { "type": "integer" },
-                                "executionSequence": { "type": "integer" }
+                                "htmlSelector": {
+                                  "type": "string",
+                                  "description": "HTML selector where the interaction is executed."
+                                },
+                                "waitAfterInteraction": {
+                                  "type": "integer",
+                                  "description": "Waiting time (in seconds) after the interaction is executed."
+                                },
+                                "executionSequence": {
+                                  "type": "integer",
+                                  "description": "Interaction execution order."
+                                }
                               },
                               "required": [
                                 "isActive",
@@ -1636,11 +1676,11 @@
                                 },
                                 "waitAfterInteraction": {
                                   "type": "integer",
-                                  "description": "Time to wait (in seconds) after the interaction execution."
+                                  "description": "Waiting time (in seconds) after the interaction is executed."
                                 },
                                 "executionSequence": {
                                   "type": "integer",
-                                  "description": "Specific interaction execution order."
+                                  "description": "Interaction execution order."
                                 },
                                 "urlPaths": {
                                   "type": "array",
@@ -1691,7 +1731,7 @@
             "in": "path",
             "name": "type",
             "required": true,
-            "description": "Interaction type (scroll, click, hover, etc...)"
+            "description": "Interaction type, e.g., scroll, click, hover."
           },
           {
             "schema": { "type": "string" },
@@ -1703,12 +1743,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1740,12 +1780,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1766,12 +1806,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1785,7 +1825,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -1813,7 +1853,7 @@
             "in": "path",
             "name": "type",
             "required": true,
-            "description": "Interaction type (scroll, click, hover, etc...)"
+            "description": "Interaction type, e.g., scroll, click, hover."
           },
           {
             "schema": { "type": "string" },
@@ -1825,12 +1865,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1862,12 +1902,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1888,12 +1928,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1907,7 +1947,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -1939,12 +1979,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1961,12 +2001,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1980,7 +2020,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -2005,12 +2045,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2075,7 +2115,7 @@
                                     },
                                     {
                                       "type": "object",
-                                      "description": "Status code. Ranges like 2xx can be also used.",
+                                      "description": "Status code. Ranges like 2xx can also be used.",
                                       "additionalProperties": {
                                         "type": "string",
                                         "description": "Header value."
@@ -2176,12 +2216,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2202,12 +2242,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2221,7 +2261,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -2282,7 +2322,7 @@
                             },
                             {
                               "type": "object",
-                              "description": "Status code. Ranges like 2xx can be also used.",
+                              "description": "Status code. Ranges like 2xx can also be used.",
                               "additionalProperties": {
                                 "type": "string",
                                 "description": "Header value."
@@ -2322,12 +2362,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2359,12 +2399,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2385,12 +2425,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2404,7 +2444,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -2436,12 +2476,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2504,7 +2544,7 @@
                                   },
                                   {
                                     "type": "object",
-                                    "description": "Status code. Ranges like 2xx can be also used.",
+                                    "description": "Status code. Ranges like 2xx can also be used.",
                                     "additionalProperties": {
                                       "type": "string",
                                       "description": "Header value."
@@ -2579,12 +2619,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2605,12 +2645,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2624,7 +2664,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -2680,7 +2720,7 @@
                             },
                             {
                               "type": "object",
-                              "description": "Status code. Ranges like 2xx can be also used.",
+                              "description": "Status code. Ranges like 2xx can also be used.",
                               "additionalProperties": {
                                 "type": "string",
                                 "description": "Header value."
@@ -2725,12 +2765,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2762,12 +2802,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2788,12 +2828,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2807,7 +2847,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -2837,12 +2877,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2874,12 +2914,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2900,12 +2940,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2919,7 +2959,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -2972,12 +3012,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3007,12 +3047,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3033,12 +3073,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3052,7 +3092,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -3112,12 +3152,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3147,12 +3187,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3173,12 +3213,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3192,7 +3232,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -3224,12 +3264,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3296,12 +3336,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3322,12 +3362,12 @@
             }
           },
           "404": {
-            "description": "Not found",
+            "description": "Not found.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Not found",
+                  "description": "Not found.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3344,12 +3384,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3363,7 +3403,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -3414,12 +3454,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3451,12 +3491,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3477,12 +3517,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3496,7 +3536,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -3545,12 +3585,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3582,12 +3622,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3608,12 +3648,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3627,7 +3667,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -3657,12 +3697,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3694,12 +3734,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3720,12 +3760,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3739,7 +3779,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -3800,12 +3840,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3822,7 +3862,7 @@
                         "properties": {
                           "prefetchType": {
                             "type": "string",
-                            "description": "Method of prefetching (e.g., scheduled, manual)."
+                            "description": "Method of prefetching, e.g., scheduled, manual."
                           },
                           "prefetchStatus": {
                             "type": "string",
@@ -3887,12 +3927,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3913,12 +3953,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3932,7 +3972,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -3964,12 +4004,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4001,12 +4041,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4027,12 +4067,12 @@
             }
           },
           "409": {
-            "description": "Conflict",
+            "description": "Conflict.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Conflict",
+                  "description": "Conflict.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4053,12 +4093,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4072,7 +4112,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -4123,12 +4163,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4200,12 +4240,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4226,12 +4266,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4245,7 +4285,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -4340,12 +4380,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4388,12 +4428,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4407,7 +4447,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -4552,12 +4592,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4600,12 +4640,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4619,7 +4659,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -4675,14 +4715,14 @@
             "in": "query",
             "name": "responseCode",
             "required": false,
-            "description": "Response code for filtering. It can be specific or in range, e.g. 200-310."
+            "description": "Response code for filtering. It can be specific or in range, e.g., 200-310."
           },
           {
             "schema": { "type": "string" },
             "in": "query",
             "name": "responseTime",
             "required": false,
-            "description": "Response time in seconds for filtering. It should be in range format, e.g. 2-10."
+            "description": "Response time in seconds for filtering. It should be in range format, e.g., 2-10."
           },
           {
             "schema": {
@@ -4713,12 +4753,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4774,12 +4814,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4800,12 +4840,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4819,7 +4859,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -4853,14 +4893,14 @@
             "in": "query",
             "name": "responseCode",
             "required": false,
-            "description": "Response code for filtering. It can be specific or in range, e.g. 200-310."
+            "description": "Response code for filtering. It can be specific or in range, e.g., 200-310."
           },
           {
             "schema": { "type": "string" },
             "in": "query",
             "name": "responseTime",
             "required": false,
-            "description": "Response time in seconds for filtering. It should be in range format, e.g. 2-10."
+            "description": "Response time in seconds for filtering. It should be in range format, e.g., 2-10."
           },
           {
             "schema": {
@@ -4898,12 +4938,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4959,12 +4999,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4985,12 +5025,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5004,7 +5044,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -5043,12 +5083,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5090,12 +5130,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5116,12 +5156,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5135,7 +5175,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -5181,12 +5221,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5228,12 +5268,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5254,12 +5294,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5273,7 +5313,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -5305,12 +5345,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5343,12 +5383,12 @@
                         "blockRequestTypes": {
                           "type": "array",
                           "items": { "type": "string" },
-                          "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)."
+                          "description": "List of resource types that should be blocked, e.g., fonts, stylesheets."
                         },
                         "urlBlockList": {
                           "type": "array",
                           "items": { "type": "string" },
-                          "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)."
+                          "description": "List of URLs that should be blocked, e.g., https://googleads.g.doubleclick.net/pagead."
                         },
                         "created": {
                           "type": "string",
@@ -5398,12 +5438,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5424,12 +5464,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5443,7 +5483,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -5472,12 +5512,12 @@
                   "blockRequestTypes": {
                     "type": "array",
                     "items": { "type": "string" },
-                    "description": "List of resource types that should be blocked (e.g., fonts, stylesheets)."
+                    "description": "List of resource types that should be blocked, e.g., fonts, stylesheets."
                   },
                   "urlBlockList": {
                     "type": "array",
                     "items": { "type": "string" },
-                    "description": "List of URLs that should be blocked (e.g., https://googleads.g.doubleclick.net/pagead)."
+                    "description": "List of URLs that should be blocked, e.g., https://googleads.g.doubleclick.net/pagead."
                   }
                 }
               }
@@ -5502,12 +5542,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5539,12 +5579,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5565,12 +5605,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5584,7 +5624,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -5673,12 +5713,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5723,12 +5763,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5749,12 +5789,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5768,7 +5808,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -5864,12 +5904,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5914,12 +5954,12 @@
             }
           },
           "400": {
-            "description": "Bad request",
+            "description": "Bad request.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Bad request",
+                  "description": "Bad request.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5940,12 +5980,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5959,7 +5999,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
@@ -5975,12 +6015,12 @@
         "description": "Returns the API version.",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response",
+                  "description": "Successful response.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -6008,12 +6048,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal server error.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error",
+                  "description": "Internal server error.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -6027,7 +6067,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal Server Error"
+                    "message": "Internal server error"
                   }
                 }
               }
