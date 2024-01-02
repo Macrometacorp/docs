@@ -954,7 +954,7 @@
             "in": "path",
             "name": "type",
             "required": true,
-            "description": "Interaction type, e.g., scroll, click, hover."
+            "description": "Interaction type."
           },
           {
             "schema": { "type": "string" },
@@ -1452,7 +1452,7 @@
             "in": "path",
             "name": "type",
             "required": true,
-            "description": "Interaction type, e.g., scroll, click, hover."
+            "description": "Interaction type."
           },
           {
             "schema": { "type": "string" },
@@ -1731,7 +1731,7 @@
             "in": "path",
             "name": "type",
             "required": true,
-            "description": "Interaction type, e.g., scroll, click, hover."
+            "description": "Interaction type."
           },
           {
             "schema": { "type": "string" },
@@ -1853,7 +1853,7 @@
             "in": "path",
             "name": "type",
             "required": true,
-            "description": "Interaction type, e.g., scroll, click, hover."
+            "description": "Interaction type."
           },
           {
             "schema": { "type": "string" },
@@ -3862,7 +3862,8 @@
                         "properties": {
                           "prefetchType": {
                             "type": "string",
-                            "description": "Method of prefetching, e.g., scheduled, manual."
+                            "enum": ["manual", "scheduled"],
+                            "description": "Method of prefetching."
                           },
                           "prefetchStatus": {
                             "type": "string",
