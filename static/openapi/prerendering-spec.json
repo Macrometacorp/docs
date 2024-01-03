@@ -556,17 +556,17 @@
                                   "type": "boolean",
                                   "description": "Whether the interaction is active or not."
                                 },
-                                "valueInPx": {
-                                  "type": "integer",
-                                  "description": "How many pixels to scroll in each step."
-                                },
                                 "steps": {
                                   "type": "integer",
-                                  "description": "How many steps to finalize scrolling."
+                                  "description": "In how many phases the scroll will be completed."
+                                },
+                                "valueInPx": {
+                                  "type": "integer",
+                                  "description": "Number of pixels to scroll in each step."
                                 },
                                 "delayBetween": {
                                   "type": "integer",
-                                  "description": "Delay (in milliseconds) between each scroll step."
+                                  "description": "Delay (in milliseconds) between steps."
                                 },
                                 "specific": {
                                   "type": "array",
@@ -588,7 +588,7 @@
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "Operator applied against the \"urlPaths\" list."
+                                        "description": "Operator applied against the urlPaths list."
                                       }
                                     },
                                     "required": [
@@ -601,8 +601,8 @@
                               },
                               "required": [
                                 "isActive",
-                                "valueInPx",
                                 "steps",
+                                "valueInPx",
                                 "delayBetween",
                                 "specific"
                               ]
@@ -693,14 +693,14 @@
                                         "type": "array",
                                         "items": {
                                           "type": "string",
-                                          "description": "Origin path"
+                                          "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "Operator applied against the \"urlPaths\" list."
+                                        "description": "Operator applied against the urlPaths list."
                                       }
                                     },
                                     "required": [
@@ -801,14 +801,14 @@
                                         "type": "array",
                                         "items": {
                                           "type": "string",
-                                          "description": "Origin path"
+                                          "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "Operator applied against the \"urlPaths\" list."
+                                        "description": "Operator applied against the urlPaths list."
                                       }
                                     },
                                     "required": [
@@ -839,8 +839,8 @@
                         "origin": "https://www.origin.com",
                         "config": {
                           "isActive": true,
-                          "valueInPx": 5000,
                           "steps": 4,
+                          "valueInPx": 5000,
                           "delayBetween": 300,
                           "specific": []
                         }
@@ -1020,17 +1020,17 @@
                                   "type": "boolean",
                                   "description": "Whether the interaction is active or not."
                                 },
-                                "valueInPx": {
-                                  "type": "integer",
-                                  "description": "How many pixels to scroll in each step."
-                                },
                                 "steps": {
                                   "type": "integer",
-                                  "description": "How many steps to finalize scrolling."
+                                  "description": "In how many phases the scroll will be completed."
+                                },
+                                "valueInPx": {
+                                  "type": "integer",
+                                  "description": "Number of pixels to scroll in each step."
                                 },
                                 "delayBetween": {
                                   "type": "integer",
-                                  "description": "Delay (in milliseconds) between each scroll step."
+                                  "description": "Delay (in milliseconds) between steps."
                                 },
                                 "specific": {
                                   "type": "array",
@@ -1052,7 +1052,7 @@
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "Operator applied against the \"urlPaths\" list."
+                                        "description": "Operator applied against the urlPaths list."
                                       }
                                     },
                                     "required": [
@@ -1065,8 +1065,8 @@
                               },
                               "required": [
                                 "isActive",
-                                "valueInPx",
                                 "steps",
+                                "valueInPx",
                                 "delayBetween",
                                 "specific"
                               ]
@@ -1172,14 +1172,14 @@
                                         "type": "array",
                                         "items": {
                                           "type": "string",
-                                          "description": "Origin path"
+                                          "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
                                         "enum": ["==", "!="],
-                                        "description": "Operator applied against the \"urlPaths\" list."
+                                        "description": "Operator applied against the urlPaths list."
                                       }
                                     },
                                     "required": [
@@ -1300,17 +1300,17 @@
                             "type": "boolean",
                             "description": "Whether the interaction is active or not."
                           },
-                          "valueInPx": {
-                            "type": "integer",
-                            "description": "How many pixels to scroll in each step."
-                          },
                           "steps": {
                             "type": "integer",
-                            "description": "How many steps to finalize scrolling."
+                            "description": "In how many phases the scroll will be completed."
+                          },
+                          "valueInPx": {
+                            "type": "integer",
+                            "description": "Number of pixels to scroll in each step."
                           },
                           "delayBetween": {
                             "type": "integer",
-                            "description": "Delay (in milliseconds) between each scroll step."
+                            "description": "Delay (in milliseconds) between steps."
                           },
                           "specific": {
                             "type": "array",
@@ -1332,7 +1332,7 @@
                                 "operation": {
                                   "type": "string",
                                   "enum": ["==", "!="],
-                                  "description": "Operator applied against the \"urlPaths\" list."
+                                  "description": "Operator applied against the urlPaths list."
                                 }
                               },
                               "required": ["isActive", "urlPaths", "operation"]
@@ -1341,8 +1341,8 @@
                         },
                         "required": [
                           "isActive",
-                          "valueInPx",
                           "steps",
+                          "valueInPx",
                           "delayBetween",
                           "specific"
                         ]
@@ -1414,14 +1414,14 @@
                                   "type": "array",
                                   "items": {
                                     "type": "string",
-                                    "description": "Origin path"
+                                    "description": "Origin path."
                                   },
-                                  "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                  "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
                                 },
                                 "operation": {
                                   "type": "string",
                                   "enum": ["==", "!="],
-                                  "description": "Operator applied against the \"urlPaths\" list."
+                                  "description": "Operator applied against the urlPaths list."
                                 }
                               },
                               "required": [
@@ -1581,17 +1581,17 @@
                             "type": "boolean",
                             "description": "Whether the interaction is active or not."
                           },
-                          "valueInPx": {
-                            "type": "integer",
-                            "description": "How many pixels to scroll in each step."
-                          },
                           "steps": {
                             "type": "integer",
-                            "description": "How many steps to finalize scrolling."
+                            "description": "In how many phases the scroll will be completed."
+                          },
+                          "valueInPx": {
+                            "type": "integer",
+                            "description": "Number of pixels to scroll in each step."
                           },
                           "delayBetween": {
                             "type": "integer",
-                            "description": "Delay (in milliseconds) between each scroll step."
+                            "description": "Delay (in milliseconds) between steps."
                           },
                           "specific": {
                             "type": "array",
@@ -1613,7 +1613,7 @@
                                 "operation": {
                                   "type": "string",
                                   "enum": ["==", "!="],
-                                  "description": "Operator applied against the \"urlPaths\" list."
+                                  "description": "Operator applied against the urlPaths list."
                                 }
                               },
                               "required": ["isActive", "urlPaths", "operation"]
@@ -1622,8 +1622,8 @@
                         },
                         "required": [
                           "isActive",
-                          "valueInPx",
                           "steps",
+                          "valueInPx",
                           "delayBetween",
                           "specific"
                         ]
@@ -1694,14 +1694,14 @@
                                   "type": "array",
                                   "items": {
                                     "type": "string",
-                                    "description": "Origin path"
+                                    "description": "Origin path."
                                   },
-                                  "description": "Origin paths where the specific interaction is executed or not, depending on the \"operation\" attribute."
+                                  "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
                                 },
                                 "operation": {
                                   "type": "string",
                                   "enum": ["==", "!="],
-                                  "description": "Operator applied against the \"urlPaths\" list."
+                                  "description": "Operator applied against the urlPaths list."
                                 }
                               },
                               "required": [
@@ -4327,7 +4327,7 @@
             "in": "path",
             "name": "url",
             "required": true,
-            "description": "URL to be rendered."
+            "description": "URL to render."
           },
           {
             "schema": { "type": "string" },
@@ -4531,7 +4531,7 @@
             "in": "query",
             "name": "path",
             "required": false,
-            "description": "Path to be rendered."
+            "description": "Path to render."
           },
           {
             "schema": { "type": "string" },
@@ -4559,7 +4559,7 @@
             "in": "header",
             "name": "x-photoniq-prerender-path",
             "required": false,
-            "description": "Path to be rendered."
+            "description": "Path to render."
           }
         ],
         "responses": {
@@ -4756,7 +4756,7 @@
             "in": "query",
             "name": "responseCode",
             "required": false,
-            "description": "Response code for filtering. It can be a specific or a range value, e.g., 200-310."
+            "description": "Response code for filtering. It can be a specific response code or a range value, e.g., 200-310."
           },
           {
             "schema": { "type": "string" },
@@ -4934,7 +4934,7 @@
             "in": "query",
             "name": "responseCode",
             "required": false,
-            "description": "Response code for filtering. It can be a specific or a range value, e.g., 200-310."
+            "description": "Response code for filtering. It can be a specific response code or a range value, e.g., 200-310."
           },
           {
             "schema": { "type": "string" },
