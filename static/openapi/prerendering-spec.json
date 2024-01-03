@@ -49,12 +49,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Cache purged successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Cache purged successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -65,10 +65,10 @@
                       "description": "Success message."
                     }
                   },
-                  "required": ["status"],
+                  "required": ["status", "message"],
                   "example": {
                     "status": "OK",
-                    "message": "Cache purged successfully"
+                    "message": "Cache purged successfully."
                   }
                 }
               }
@@ -94,7 +94,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -120,7 +120,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -147,7 +147,7 @@
             "in": "path",
             "name": "cacheKey",
             "required": true,
-            "description": "Unique key for the document"
+            "description": "Unique key for the document."
           },
           {
             "schema": { "type": "string" },
@@ -159,12 +159,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Cached document preview fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Cached document preview fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -185,9 +185,10 @@
                       "required": ["response"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
+                    "message": "Cached document preview fetched successfully.",
                     "data": {
                       "response": "<!DOCTYPE html><html lang=\"en\"><head><base href=\"https://www.origin.com/\"></head><body></body></html>"
                     }
@@ -216,7 +217,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -242,7 +243,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -253,7 +254,7 @@
     },
     "/api/prerender/v1/origins/{origin}/cache": {
       "get": {
-        "summary": "Get all cached documents info",
+        "summary": "Get all cached documents information",
         "tags": ["Cache"],
         "description": "This endpoint provides a paginated list of cached documents associated with a specified \"origin\". Users can control pagination using the \"limit\" and \"offset\" query parameters. The \"limit\" parameter defines the number of documents to retrieve, while \"offset\" specifies the starting point in the list.",
         "parameters": [
@@ -293,12 +294,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Cached documents information fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Cached documents information fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -355,9 +356,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
+                    "message": "Cached documents information fetched successfully.",
                     "data": [
                       {
                         "_key": "10a92b2d8f021820ca55d2d4cb70b35b",
@@ -403,7 +405,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -429,7 +431,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -442,15 +444,15 @@
       "get": {
         "summary": "Get service health",
         "tags": ["Health"],
-        "description": "Returns the service health status.",
+        "description": "Returns the service health.",
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Service health fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Service health fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -471,8 +473,12 @@
                       "required": ["version"]
                     }
                   },
-                  "required": ["status", "data"],
-                  "example": { "status": "OK", "data": { "version": "1.0.0" } }
+                  "required": ["status", "message", "data"],
+                  "example": {
+                    "status": "OK",
+                    "message": "Service health fetched successfully.",
+                    "data": { "version": "1.0.0" }
+                  }
                 }
               }
             }
@@ -503,12 +509,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Interactions fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Interactions fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -823,9 +829,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
+                    "message": "Interactions fetched successfully.",
                     "data": {
                       "scroll": {
                         "_key": "-xessvEdKI9qNn7fpR7czTV",
@@ -898,7 +905,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -924,7 +931,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -966,15 +973,15 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Interaction fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Successful response.",
+                  "description": "Interaction fetched successfully.",
                   "oneOf": [
                     {
                       "type": "object",
-                      "description": "Successful response.",
+                      "description": "Interaction fetched successfully.",
                       "properties": {
                         "status": {
                           "type": "string",
@@ -1068,11 +1075,11 @@
                           "required": ["_key", "origin", "config"]
                         }
                       },
-                      "required": ["status", "data"]
+                      "required": ["status", "message", "data"]
                     },
                     {
                       "type": "object",
-                      "description": "Successful response.",
+                      "description": "Interaction fetched successfully.",
                       "properties": {
                         "status": {
                           "type": "string",
@@ -1191,11 +1198,12 @@
                           "required": ["_key", "origin", "config"]
                         }
                       },
-                      "required": ["status", "data"]
+                      "required": ["status", "message", "data"]
                     }
                   ],
                   "example": {
                     "status": "OK",
+                    "message": "Interaction fetched successfully.",
                     "data": {
                       "_key": "-A5HO1NwgFrTMp5xv8KRWnk",
                       "origin": "https://www.origin.com",
@@ -1239,7 +1247,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -1265,7 +1273,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -1464,12 +1472,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Interaction created successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Interaction created successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1490,10 +1498,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Interaction created successfully",
+                    "message": "Interaction created successfully.",
                     "data": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
                   }
                 }
@@ -1520,7 +1528,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -1546,7 +1554,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -1743,12 +1751,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Interaction updated successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Interaction updated successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1769,10 +1777,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Interaction updated successfully",
+                    "message": "Interaction updated successfully.",
                     "data": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
                   }
                 }
@@ -1799,7 +1807,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -1825,7 +1833,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -1865,12 +1873,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Interaction deleted successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Interaction deleted successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1891,10 +1899,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Interaction deleted successfully",
+                    "message": "Interaction deleted successfully.",
                     "data": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
                   }
                 }
@@ -1921,7 +1929,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -1947,7 +1955,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -1960,7 +1968,7 @@
       "get": {
         "summary": "Get prerender service metrics",
         "tags": ["Metrics"],
-        "description": "Returns prerender service metrics",
+        "description": "Returns prerender service metrics.",
         "parameters": [
           {
             "schema": { "type": "string" },
@@ -1979,12 +1987,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Metrics fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Metrics fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -1995,7 +2003,7 @@
                       "description": "Success message."
                     }
                   },
-                  "required": ["status"]
+                  "required": ["status", "message"]
                 }
               }
             }
@@ -2020,7 +2028,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -2045,12 +2053,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Origins fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Origins fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2159,9 +2167,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
+                    "message": "Origins fetched successfully.",
                     "data": [
                       {
                         "_key": "www_origin_com",
@@ -2235,7 +2244,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -2261,7 +2270,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -2362,12 +2371,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Origin created successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Origin created successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2388,10 +2397,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Origin created successfully",
+                    "message": "Origin created successfully.",
                     "data": { "_key": "www_origin_com" }
                   }
                 }
@@ -2418,7 +2427,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -2444,7 +2453,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -2476,12 +2485,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Origin fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Origin fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2587,9 +2596,10 @@
                       ]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
+                    "message": "Origin fetched successfully.",
                     "data": {
                       "_key": "www_origin_com",
                       "origin": "https://www.origin.com",
@@ -2638,7 +2648,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -2664,7 +2674,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -2765,12 +2775,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Origin updated successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Origin updated successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2791,10 +2801,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Origin updated successfully",
+                    "message": "Origin updated successfully.",
                     "data": { "_key": "www_origin_com" }
                   }
                 }
@@ -2821,7 +2831,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -2847,7 +2857,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -2877,12 +2887,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Origin deleted successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Origin deleted successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2903,10 +2913,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Origin deleted successfully",
+                    "message": "Origin deleted successfully.",
                     "data": { "_key": "www_origin_com" }
                   }
                 }
@@ -2933,7 +2943,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -2959,7 +2969,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -3012,12 +3022,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Response time percentiles fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Response time percentiles fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3036,10 +3046,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Request processed",
+                    "message": "Response time percentiles fetched successfully.",
                     "data": { "p90": 7355, "p95": 8007, "p99": 10517 }
                   }
                 }
@@ -3066,7 +3076,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -3092,7 +3102,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -3152,12 +3162,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Response time percentiles fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Response time percentiles fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3176,10 +3186,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Request processed",
+                    "message": "Response time percentiles fetched successfully.",
                     "data": { "p90": 7355, "p95": 8007, "p99": 10517 }
                   }
                 }
@@ -3206,7 +3216,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -3232,7 +3242,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -3264,12 +3274,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Prefetch configuration fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Prefetch configuration fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3319,9 +3329,10 @@
                       ]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
+                    "message": "Prefetch configuration fetched successfully.",
                     "data": {
                       "_key": "www_origin_com",
                       "origin": "https://www.origin.com",
@@ -3355,7 +3366,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -3378,7 +3389,8 @@
                       "description": "Error message."
                     }
                   },
-                  "required": ["status", "message"]
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -3403,7 +3415,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -3454,12 +3466,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Prefetch configuration created successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Prefetch configuration created successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3480,10 +3492,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Prefetch configuration created successfully",
+                    "message": "Prefetch configuration created successfully.",
                     "data": { "_key": "www_origin_com" }
                   }
                 }
@@ -3510,7 +3522,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -3536,7 +3548,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -3585,12 +3597,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Prefetch configuration updated successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Prefetch configuration updated successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3611,10 +3623,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Prefetch configuration updated successfully",
+                    "message": "Prefetch configuration updated successfully.",
                     "data": { "_key": "www_origin_com" }
                   }
                 }
@@ -3641,7 +3653,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -3667,7 +3679,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -3697,12 +3709,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Prefetch configuration deleted successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Prefetch configuration deleted successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3723,10 +3735,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Prefetch configuration deleted successfully",
+                    "message": "Prefetch configuration deleted successfully.",
                     "data": { "_key": "www_origin_com" }
                   }
                 }
@@ -3753,7 +3765,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -3779,7 +3791,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -3840,12 +3852,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Prefetch statistics fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Prefetch statistics fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -3907,9 +3919,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
+                    "message": "Prefetch statistics fetched successfully.",
                     "data": [
                       {
                         "prefetchType": "scheduled",
@@ -3947,7 +3960,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -3973,7 +3986,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -4005,12 +4018,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Prefetch trigger created successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Prefetch trigger created successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4031,10 +4044,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Prefetch trigger created successfully",
+                    "message": "Prefetch trigger created successfully.",
                     "data": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
                   }
                 }
@@ -4061,7 +4074,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -4087,7 +4100,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "There's already a queued or in-progress trigger"
+                    "message": "There's already a queued or in-progress trigger."
                   }
                 }
               }
@@ -4113,7 +4126,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -4164,12 +4177,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Prefetch URLs fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Prefetch URLs fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4216,9 +4229,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
+                    "message": "Prefetch URLs fetched successfully.",
                     "data": [
                       {
                         "url": "https://www.origin.com/terms",
@@ -4260,7 +4274,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -4286,7 +4300,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -4325,24 +4339,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully fetched the prerendered page content",
+            "description": "HTML content fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "Successfully fetched the prerendered page content",
+                  "description": "HTML content fetched successfully.",
                   "example": "<!DOCTYPE html><html lang=\"en\"><head><base href=\"https://www.origin.com/\"></head><body></body></html>"
                 }
               }
             }
           },
           "301": {
-            "description": "Moved permanently",
+            "description": "Moved permanently.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Moved permanently",
+                  "description": "Moved permanently.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4353,18 +4367,22 @@
                       "description": "Error message."
                     }
                   },
-                  "required": ["status", "message"]
+                  "required": ["status", "message"],
+                  "example": {
+                    "status": "ERROR",
+                    "message": "Moved permanently."
+                  }
                 }
               }
             }
           },
           "308": {
-            "description": "Permanent redirect",
+            "description": "Permanent redirect.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Permanent redirect",
+                  "description": "Permanent redirect.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4375,7 +4393,11 @@
                       "description": "Error message."
                     }
                   },
-                  "required": ["status", "message"]
+                  "required": ["status", "message"],
+                  "example": {
+                    "status": "ERROR",
+                    "message": "Permanent redirect."
+                  }
                 }
               }
             }
@@ -4400,19 +4422,19 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
             }
           },
           "404": {
-            "description": "Not found",
+            "description": "Not found.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Not found",
+                  "description": "Not found.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4423,7 +4445,8 @@
                       "description": "Error message."
                     }
                   },
-                  "required": ["status", "message"]
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -4448,19 +4471,19 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
             }
           },
           "504": {
-            "description": "Gateway timeout",
+            "description": "Gateway timeout.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Gateway timeout",
+                  "description": "Gateway timeout.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4471,7 +4494,11 @@
                       "description": "Error message."
                     }
                   },
-                  "required": ["status", "message"]
+                  "required": ["status", "message"],
+                  "example": {
+                    "status": "ERROR",
+                    "message": "Gateway timeout."
+                  }
                 }
               }
             }
@@ -4537,24 +4564,24 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully fetched the prerendered page content",
+            "description": "HTML content fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "Successfully fetched the prerendered page content",
+                  "description": "HTML content fetched successfully.",
                   "example": "<!DOCTYPE html><html lang=\"en\"><head><base href=\"https://www.origin.com/\"></head><body></body></html>"
                 }
               }
             }
           },
           "301": {
-            "description": "Moved permanently",
+            "description": "Moved permanently.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Moved permanently",
+                  "description": "Moved permanently.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4565,18 +4592,22 @@
                       "description": "Error message."
                     }
                   },
-                  "required": ["status", "message"]
+                  "required": ["status", "message"],
+                  "example": {
+                    "status": "ERROR",
+                    "message": "Moved permanently."
+                  }
                 }
               }
             }
           },
           "308": {
-            "description": "Permanent redirect",
+            "description": "Permanent redirect.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Permanent redirect",
+                  "description": "Permanent redirect.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4587,7 +4618,11 @@
                       "description": "Error message."
                     }
                   },
-                  "required": ["status", "message"]
+                  "required": ["status", "message"],
+                  "example": {
+                    "status": "ERROR",
+                    "message": "Permanent redirect."
+                  }
                 }
               }
             }
@@ -4612,19 +4647,19 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
             }
           },
           "404": {
-            "description": "Not found",
+            "description": "Not found.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Not found",
+                  "description": "Not found.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4635,7 +4670,8 @@
                       "description": "Error message."
                     }
                   },
-                  "required": ["status", "message"]
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -4660,19 +4696,19 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
             }
           },
           "504": {
-            "description": "Gateway timeout",
+            "description": "Gateway timeout.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Gateway timeout",
+                  "description": "Gateway timeout.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4683,7 +4719,11 @@
                       "description": "Error message."
                     }
                   },
-                  "required": ["status", "message"]
+                  "required": ["status", "message"],
+                  "example": {
+                    "status": "ERROR",
+                    "message": "Gateway timeout."
+                  }
                 }
               }
             }
@@ -4754,12 +4794,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Render history fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Render history fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4785,10 +4825,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Request processed",
+                    "message": "Render history fetched successfully.",
                     "data": [
                       {
                         "timestamp": 1672543000,
@@ -4834,7 +4874,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -4860,7 +4900,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -4939,12 +4979,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Render history fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Render history fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -4970,10 +5010,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Request processed",
+                    "message": "Render history fetched successfully.",
                     "data": [
                       {
                         "timestamp": 1672543000,
@@ -5019,7 +5059,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -5045,7 +5085,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -5084,12 +5124,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Render statistics fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Render statistics fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5112,10 +5152,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Request processed",
+                    "message": "Render statistics fetched successfully.",
                     "data": {
                       "totalPrefetch": 75,
                       "totalCacheHits": 6,
@@ -5150,7 +5190,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -5176,7 +5216,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -5222,12 +5262,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Render statistics fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Render statistics fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5250,10 +5290,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Request processed",
+                    "message": "Render statistics fetched successfully.",
                     "data": {
                       "totalPrefetch": 75,
                       "totalCacheHits": 6,
@@ -5288,7 +5328,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -5314,7 +5354,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -5346,12 +5386,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Settings fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Settings fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5413,9 +5453,10 @@
                       ]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
+                    "message": "Settings fetched successfully.",
                     "data": {
                       "_key": "www_origin_com",
                       "origin": "https://www.origin.com",
@@ -5458,7 +5499,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -5484,7 +5525,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -5543,12 +5584,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Settings updated successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Settings updated successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5569,10 +5610,10 @@
                       "required": ["_key"]
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Setting updated successfully",
+                    "message": "Setting updated successfully.",
                     "data": { "_key": "www_origin_com" }
                   }
                 }
@@ -5599,7 +5640,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -5625,7 +5666,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -5714,12 +5755,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Usage metrics fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Usage metrics fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5742,10 +5783,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Request processed",
+                    "message": "Usage metrics fetched successfully.",
                     "data": [
                       {
                         "timestamp": 1672628400000,
@@ -5783,7 +5824,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -5809,7 +5850,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -5905,12 +5946,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "Usage metrics fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "Usage metrics fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -5933,10 +5974,10 @@
                       }
                     }
                   },
-                  "required": ["status", "data"],
+                  "required": ["status", "message", "data"],
                   "example": {
                     "status": "OK",
-                    "message": "Request processed",
+                    "message": "Usage metrics fetched successfully.",
                     "data": [
                       {
                         "timestamp": 1672628400000,
@@ -5974,7 +6015,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Header x-photoniq-customerid is required"
+                    "message": "Header x-photoniq-customerid is required."
                   }
                 }
               }
@@ -6000,7 +6041,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
@@ -6016,12 +6057,12 @@
         "description": "Returns the API version.",
         "responses": {
           "200": {
-            "description": "Successful response.",
+            "description": "API version fetched successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Successful response.",
+                  "description": "API version fetched successfully.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -6042,8 +6083,12 @@
                       "required": ["version"]
                     }
                   },
-                  "required": ["status", "data"],
-                  "example": { "status": "OK", "data": { "version": "1.0.0" } }
+                  "required": ["status", "message", "data"],
+                  "example": {
+                    "status": "OK",
+                    "message": "API version fetched successfully.",
+                    "data": { "version": "1.0.0" }
+                  }
                 }
               }
             }
@@ -6068,7 +6113,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "Internal server error"
+                    "message": "Internal server error."
                   }
                 }
               }
