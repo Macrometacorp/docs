@@ -38,7 +38,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## Activity Metrics
 
-Dynamic Prerendering provides the following metrics. Field names in the web console are different than those in the API responses.
+Dynamic Prerendering provides the following metrics. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - **Renders** - Total number of renders performed during the selected time.
 - **Requests per Second** - Number of renders performed per second during the selected time.
