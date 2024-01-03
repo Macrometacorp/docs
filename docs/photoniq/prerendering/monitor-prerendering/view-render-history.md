@@ -40,12 +40,12 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Dynamic Prerendering provides the following metrics. Field names in the web console are different than those in the API responses.
 
-- Total Requests
-- Total Renders
-- Failed Renders
-- Response Time Percentiles
-- Rendered At
-- HTTP Status
-- Response Time
-- URL
-- Device
+- **Total Requests** - Total page requests received during the selected time frame.
+- **Total Renders** - Total renders successfully performed during the selected time frame.
+- **Failed Renders** - Total renders that failed during the selected time frame.
+- **Response Time Percentiles** - Response time percentiles in seconds.
+- **Rendered At** - When the render was performed.
+- **HTTP Status** - HTTP status code received.
+- **Response Time** - Amount of time it took to send the response.
+- **URL** - Rendered URL. Click the URL to view the page.
+- **Device** - Icon indicating whether the render was for desktop or mobile.
