@@ -38,7 +38,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## Render History Metrics
 
-Dynamic Prerendering provides the following metrics. Field names in the web console are different than those in the API responses.
+Dynamic Prerendering provides the following metrics. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - **Total Requests** - Total page requests received during the selected time frame.
 - **Total Renders** - Total renders successfully performed during the selected time frame.
