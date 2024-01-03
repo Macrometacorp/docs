@@ -268,14 +268,14 @@
             "in": "query",
             "name": "limit",
             "required": false,
-            "description": "Limit for results. Default limit is 100, maximum is 1000."
+            "description": "Limit for results."
           },
           {
             "schema": { "type": "number", "default": 0 },
             "in": "query",
             "name": "offset",
             "required": false,
-            "description": "Offset for results. Default offset is 0. "
+            "description": "Offset for results."
           },
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -4756,14 +4756,14 @@
             "in": "query",
             "name": "responseCode",
             "required": false,
-            "description": "Response code for filtering. It can be specific or in range, e.g., 200-310."
+            "description": "Response code for filtering. It can be a specific or a range value, e.g., 200-310."
           },
           {
             "schema": { "type": "string" },
             "in": "query",
             "name": "responseTime",
             "required": false,
-            "description": "Response time in seconds for filtering. It should be in range format, e.g., 2-10."
+            "description": "Response time range in seconds for filtering, e.g., 2-10."
           },
           {
             "schema": {
@@ -4775,14 +4775,14 @@
             "in": "query",
             "name": "limit",
             "required": false,
-            "description": "Limit for results. Default limit is 100, maximum is 100."
+            "description": "Limit for results."
           },
           {
             "schema": { "type": "number", "default": 0 },
             "in": "query",
             "name": "offset",
             "required": false,
-            "description": "Offset for results. Default offset is 0. "
+            "description": "Offset for results."
           },
           {
             "schema": { "type": "string" },
@@ -4934,14 +4934,14 @@
             "in": "query",
             "name": "responseCode",
             "required": false,
-            "description": "Response code for filtering. It can be specific or in range, e.g., 200-310."
+            "description": "Response code for filtering. It can be a specific or a range value, e.g., 200-310."
           },
           {
             "schema": { "type": "string" },
             "in": "query",
             "name": "responseTime",
             "required": false,
-            "description": "Response time in seconds for filtering. It should be in range format, e.g., 2-10."
+            "description": "Response time range in seconds for filtering, e.g., 2-10."
           },
           {
             "schema": {
@@ -4953,14 +4953,14 @@
             "in": "query",
             "name": "limit",
             "required": false,
-            "description": "Limit for results. Default limit is 100, maximum is 100."
+            "description": "Limit for results."
           },
           {
             "schema": { "type": "number", "default": 0 },
             "in": "query",
             "name": "offset",
             "required": false,
-            "description": "Offset for results. Default offset is 0. "
+            "description": "Offset for results."
           },
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -5699,34 +5699,42 @@
             "schema": {
               "type": "number",
               "minimum": 1,
-              "default": 100,
-              "maximum": 1000
+              "maximum": 1000,
+              "default": 100
             },
             "in": "query",
             "name": "limit",
             "required": false,
-            "description": "Limit for results. Default limit is 100, maximum is 1000."
+            "description": "Limit for results."
           },
           {
             "schema": { "type": "number", "default": 0 },
             "in": "query",
             "name": "offset",
             "required": false,
-            "description": "Offset for results. Default offset is 0. "
+            "description": "Offset for results."
           },
           {
-            "schema": { "type": "string", "default": "ASC" },
+            "schema": {
+              "type": "string",
+              "enum": ["ASC", "DESC"],
+              "default": "ASC"
+            },
             "in": "query",
             "name": "sortOrder",
             "required": false,
-            "description": "Order of sort: ASC or DESC"
+            "description": "Sorting order."
           },
           {
-            "schema": { "type": "string", "default": "timestamp" },
+            "schema": {
+              "type": "string",
+              "enum": ["timestamp", "maxRps", "totalRenders"],
+              "default": "timestamp"
+            },
             "in": "query",
             "name": "sortBy",
             "required": false,
-            "description": "Field by which results should be sorted. Supported fields timestamp, maxRps, totalRenders."
+            "description": "Sorting field."
           },
           {
             "schema": { "type": "boolean", "default": "false" },
@@ -5743,7 +5751,7 @@
             "in": "path",
             "name": "aggregationType",
             "required": true,
-            "description": "Metric aggregation types (hourly, daily, monthly)"
+            "description": "Metric aggregation types."
           },
           {
             "schema": { "type": "string" },
@@ -5883,34 +5891,42 @@
             "schema": {
               "type": "number",
               "minimum": 1,
-              "default": 100,
-              "maximum": 1000
+              "maximum": 1000,
+              "default": 100
             },
             "in": "query",
             "name": "limit",
             "required": false,
-            "description": "Limit for results. Default limit is 100, maximum is 1000."
+            "description": "Limit for results."
           },
           {
             "schema": { "type": "number", "default": 0 },
             "in": "query",
             "name": "offset",
             "required": false,
-            "description": "Offset for results. Default offset is 0. "
+            "description": "Offset for results."
           },
           {
-            "schema": { "type": "string", "default": "ASC" },
+            "schema": {
+              "type": "string",
+              "enum": ["ASC", "DESC"],
+              "default": "ASC"
+            },
             "in": "query",
             "name": "sortOrder",
             "required": false,
-            "description": "Order of sort: ASC or DESC"
+            "description": "Sorting order."
           },
           {
-            "schema": { "type": "string", "default": "timestamp" },
+            "schema": {
+              "type": "string",
+              "enum": ["timestamp", "maxRps", "totalRenders"],
+              "default": "timestamp"
+            },
             "in": "query",
             "name": "sortBy",
             "required": false,
-            "description": "Field by which results should be sorted. Supported fields timestamp, maxRps, toatalRenders."
+            "description": "Sorting field."
           },
           {
             "schema": { "type": "boolean", "default": "false" },
@@ -5927,7 +5943,7 @@
             "in": "path",
             "name": "aggregationType",
             "required": true,
-            "description": "Metric aggregation types (hourly, daily, monthly)"
+            "description": "Metric aggregation types."
           },
           {
             "schema": { "type": "string" },
