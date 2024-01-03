@@ -16,7 +16,7 @@ You have several options for viewing Dynamic Prerendering activity, either aggre
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to create a new collection using the GDN console web UI.
+Follow these instructions to view prerendering activity in the web console.
 
 1. Log in to your Dynamic Prerendering dashboard.
 2. Click **Activity**.
