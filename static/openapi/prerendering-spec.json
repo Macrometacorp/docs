@@ -2989,14 +2989,14 @@
             "in": "query",
             "name": "from",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the initial time for filtering."
           },
           {
             "schema": { "type": "number" },
             "in": "query",
             "name": "to",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the final time for filtering."
           },
           {
             "schema": { "type": "string" },
@@ -3122,14 +3122,14 @@
             "in": "query",
             "name": "from",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the initial time for filtering."
           },
           {
             "schema": { "type": "number" },
             "in": "query",
             "name": "to",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the final time for filtering."
           },
           {
             "schema": { "type": "string" },
@@ -4742,14 +4742,14 @@
             "in": "query",
             "name": "from",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the initial time for filtering."
           },
           {
             "schema": { "type": "number" },
             "in": "query",
             "name": "to",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the final time for filtering."
           },
           {
             "schema": { "type": ["number", "string"] },
@@ -4920,14 +4920,14 @@
             "in": "query",
             "name": "from",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the initial time for filtering."
           },
           {
             "schema": { "type": "number" },
             "in": "query",
             "name": "to",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the final time for filtering."
           },
           {
             "schema": { "type": ["number", "string"] },
@@ -5105,14 +5105,14 @@
             "in": "query",
             "name": "from",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the initial time for filtering."
           },
           {
             "schema": { "type": "number" },
             "in": "query",
             "name": "to",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the final time for filtering."
           },
           {
             "schema": { "type": "string" },
@@ -5236,14 +5236,14 @@
             "in": "query",
             "name": "from",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the initial time for filtering."
           },
           {
             "schema": { "type": "number" },
             "in": "query",
             "name": "to",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the final time for filtering."
           },
           {
             "schema": { "type": "string", "minLength": 1 },
@@ -5686,14 +5686,14 @@
             "in": "query",
             "name": "from",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the initial time for filtering."
           },
           {
             "schema": { "type": "number" },
             "in": "query",
             "name": "to",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the final time for filtering."
           },
           {
             "schema": {
@@ -5878,14 +5878,14 @@
             "in": "query",
             "name": "from",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the initial time for filtering."
           },
           {
             "schema": { "type": "number" },
             "in": "query",
             "name": "to",
             "required": true,
-            "description": "Epoch time in seconds."
+            "description": "Timestamp (in seconds) used as the final time for filtering."
           },
           {
             "schema": {
