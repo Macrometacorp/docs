@@ -12,8 +12,81 @@ You have several options for viewing Dynamic Prerendering prefetching that is in
 
 ## View Prefetching in Progress
 
-![Prerendering Prefetching In Progrss Tab](/img/prerendering/prefetching-in-progress.png)
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to view render history in the web console.
+
+1. Log in to your Dynamic Prerendering dashboard.
+2. Click **Prefetching**.
+3. Select the origin that you want to view.
+4. If necessary, click **In Progress**.
+
+![Prerendering Prefetching In Progress Tab](/img/prerendering/prefetching-in-progress.png)
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to:
+
+- Get prefetch statistics
+- Get prefetch URLs
+
+</TabItem>
+</Tabs>
+
+## In Progress Fields
+
+Dynamic Prerendering provides the following prefetching fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+
+### Stats
+
+- **Total** - Total number of URLs to be prefetched.
+- **Completed** - Number of URLs successfully prefetched.
+- **Queued** - Number of URLs queued for prefetch.
+- **Failed** - Number of URLs where prefetching failed.
+- **Retrying** - Number of URLs retrying prefetch.
+
+### Events
+
+- **Timestamp** - When the prefetch URL was created.
+- **Status** - URL status.
+- **URL** - Origin URL.
+- **Device** - Icon indicating whether the prefetch was rendered for desktop or mobile.
 
 ## View Prefetching History
 
+<Tabs groupId="operating-systems2">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to view prefetch history in the web console.
+
+1. Log in to your Dynamic Prerendering dashboard.
+2. Click **Prefetching**.
+3. Select the origin that you want to view.
+4. If necessary, click **History**.
+
 ![Prerendering Prefetching History Tab](/img/prerendering/prefetching-history.png)
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to:
+
+- Get prefetch statistics
+- Get prefetch URLs
+
+</TabItem>
+</Tabs>
+
+## Prefetching History Fields
+
+Dynamic Prerendering provides the following prefetching history fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+
+- Type - Whether prefetching was scheduled or done manually.
+- **Total** - Total number of URLs to be prefetched.
+- **Completed** - Number of URLs successfully prefetched.
+- **Queued** - Number of URLs queued for prefetch.
+- **Failed** - Number of URLs where prefetching failed.
+- **Status** - Success status (completed, in progress, failed).
+- **Created At** - When the prefetch URL was created.
