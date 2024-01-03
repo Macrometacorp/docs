@@ -5751,7 +5751,7 @@
             "in": "path",
             "name": "aggregationType",
             "required": true,
-            "description": "Metric aggregation types."
+            "description": "Aggregation type."
           },
           {
             "schema": { "type": "string" },
@@ -5943,7 +5943,7 @@
             "in": "path",
             "name": "aggregationType",
             "required": true,
-            "description": "Metric aggregation types."
+            "description": "Aggregation type."
           },
           {
             "schema": { "type": "string" },
