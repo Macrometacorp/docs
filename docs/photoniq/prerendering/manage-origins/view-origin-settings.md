@@ -26,8 +26,8 @@ Follow these instructions to view origin settings in the web console.
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- Get origins
-- Get an origin
+- [Get origins](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins/get)
+- [Get an origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/get)
 
 </TabItem>
 </Tabs>
