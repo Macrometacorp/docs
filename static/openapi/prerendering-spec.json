@@ -2092,7 +2092,7 @@
                           },
                           "identifyNotfound": {
                             "type": "string",
-                            "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, then the HTTP status code of the response will be 404. For example, if your not found page contains the text, \"Sorry, the page you were looking for could not be found.\", then this text can be used."
+                            "description": "Text present on the rendered page HTML that signifies a not found error page (404). If this specific text appears on the rendered page, the HTTP status code of the response will be 404. For instance, if the text \"Sorry, the page you were looking for could not be found.\" is included on your not found error page, this text can serve as the identifier."
                           },
                           "allowOriginHeaderValue": {
                             "type": "string",
@@ -2135,7 +2135,7 @@
                               "required": ["basedOnStatusCode", "value"],
                               "description": "Additional response headers configuration."
                             },
-                            "description": "Map of headers to be added to the response."
+                            "description": "Map of headers to add to the response."
                           },
                           "caching": {
                             "type": "boolean",
@@ -2303,7 +2303,7 @@
                   },
                   "identifyNotfound": {
                     "type": "string",
-                    "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, then the HTTP status code of the response will be 404. For example, if your not found page contains the text, \"Sorry, the page you were looking for could not be found.\", then this text can be used."
+                    "description": "Text present on the rendered page HTML that signifies a not found error page (404). If this specific text appears on the rendered page, the HTTP status code of the response will be 404. For instance, if the text \"Sorry, the page you were looking for could not be found.\" is included on your not found error page, this text can serve as the identifier."
                   },
                   "allowOriginHeaderValue": {
                     "type": "string",
@@ -2343,7 +2343,7 @@
                       "required": ["basedOnStatusCode", "value"],
                       "description": "Additional response headers configuration."
                     },
-                    "description": "Map of headers to be added to the response."
+                    "description": "Map of headers to add to the response."
                   },
                   "caching": {
                     "type": "boolean",
@@ -2522,7 +2522,7 @@
                         },
                         "identifyNotfound": {
                           "type": "string",
-                          "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, then the HTTP status code of the response will be 404. For example, if your not found page contains the text, \"Sorry, the page you were looking for could not be found.\", then this text can be used."
+                          "description": "Text present on the rendered page HTML that signifies a not found error page (404). If this specific text appears on the rendered page, the HTTP status code of the response will be 404. For instance, if the text \"Sorry, the page you were looking for could not be found.\" is included on your not found error page, this text can serve as the identifier."
                         },
                         "allowOriginHeaderValue": {
                           "type": "string",
@@ -2565,7 +2565,7 @@
                             "required": ["basedOnStatusCode", "value"],
                             "description": "Additional response headers configuration."
                           },
-                          "description": "Map of headers to be added to the response."
+                          "description": "Map of headers to add to the response."
                         },
                         "caching": {
                           "type": "boolean",
@@ -2702,7 +2702,7 @@
                   },
                   "identifyNotfound": {
                     "type": "string",
-                    "description": "Text in the rendered page HTML that identifies a not found page (404). If the rendered page includes this text, then the HTTP status code of the response will be 404. For example, if your not found page contains the text, \"Sorry, the page you were looking for could not be found.\", then this text can be used."
+                    "description": "Text present on the rendered page HTML that signifies a not found error page (404). If this specific text appears on the rendered page, the HTTP status code of the response will be 404. For instance, if the text \"Sorry, the page you were looking for could not be found.\" is included on your not found error page, this text can serve as the identifier."
                   },
                   "allowOriginHeaderValue": {
                     "type": "string",
@@ -2742,7 +2742,7 @@
                       "required": ["basedOnStatusCode", "value"],
                       "description": "Additional response headers configuration."
                     },
-                    "description": "Map of headers to be added to the response."
+                    "description": "Map of headers to add to the response."
                   },
                   "caching": {
                     "type": "boolean",
