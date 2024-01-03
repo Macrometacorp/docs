@@ -11,7 +11,7 @@ You have several options for viewing Dynamic Prerendering render history, either
   ![Prerendering Render History Tab](/img/prerendering/render-history.png)
 - **REST API** - Macrometa provides several API calls that allow you to view render history for all origins or for one origin. You can also sort and set any time frame that you need.
 
-## View Prerendering Activity
+## View Render History
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -36,7 +36,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-## Activity Metrics
+## Render History Metrics
 
 Dynamic Prerendering provides the following metrics. Field names in the web console are different than those in the API responses.
 
