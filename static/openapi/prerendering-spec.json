@@ -5726,7 +5726,7 @@
             "in": "query",
             "name": "sortBy",
             "required": false,
-            "description": "Field by which results should be sorted. Supported fields timestamp, maxRps, toatalRenders."
+            "description": "Field by which results should be sorted. Supported fields timestamp, maxRps, totalRenders."
           },
           {
             "schema": { "type": "boolean", "default": "false" },
