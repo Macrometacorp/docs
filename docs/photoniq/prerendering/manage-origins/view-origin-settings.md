@@ -8,10 +8,10 @@ import TabItem from '@theme/TabItem';
 You have several options for viewing Dynamic Prerendering origin settings.
 
 - **Origin Settings tab** - In the Origin Settings tab in the web console, you can view information about each origin. To add a new origin URL, contact Macrometa Support.
-  ![Prerendering Origin Settings Tab](/img/prerendering/render-history.png)
-- **REST API** - Macrometa provides several API calls that allow you to view origin settings for all origins or for one origin.
+  ![Prerendering Origin Settings Tab](/img/prerendering/origin-settings.png)
+- **REST API** - Macrometa provides API calls that allow you to view origin settings for all origins or for one origin.
 
-## View Prerendering Activity
+## View Origin Settings
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -19,19 +19,15 @@ You have several options for viewing Dynamic Prerendering origin settings.
 Follow these instructions to view render history in the web console.
 
 1. Log in to your Dynamic Prerendering dashboard.
-2. Click **Render History**.
-3. (Optional) Select a specific origin. Default is **All origins**.
-4. (Optional) Apply filters to the list of rendered pages if you want to view only a specific status code.
+2. Click **Origin Settings**.
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- Get render history data
-- Get render history data by origin
-- Get percentile metrics
-- Get percentile metrics by origin
+- Get origins
+- Get an origin
 
 </TabItem>
 </Tabs>
@@ -40,8 +36,8 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Dynamic Prerendering provides the following origin settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
-- Origin URL
-- Sitemap
-- Caching - Whether or not caching is enabled for this origin.
-- Cache Expiration
-- Date Added
+- **Origin URL** - Full URL of the origin.
+- **Sitemap** - Sitemap, if one is associated with the origin.
+- **Caching** - Indicates if caching is active for this origin.
+- **Cache Expiration** - Amount of time a page remains in the cache before expiring.
+- **Date Added** - Date the origin was added.
