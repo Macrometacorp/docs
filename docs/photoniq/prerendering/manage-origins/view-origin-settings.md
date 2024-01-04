@@ -34,7 +34,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## Origin Settings
 
-Dynamic Prerendering provides the following origin settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Dynamic Prerendering provides the following origin settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation.
 
 - **Origin URL** - Full URL of the origin.
 - **Sitemap** - Sitemap, if one is associated with the origin.
