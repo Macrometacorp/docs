@@ -4,7 +4,7 @@ import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-export default function APIVwrsServicePage() {
+export default function APIPrerenderingServicePage() {
   const { siteConfig } = useDocusaurusContext();
 
   useEffect(() => {

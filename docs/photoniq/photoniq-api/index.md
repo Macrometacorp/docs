@@ -14,6 +14,11 @@ title: PhotonIQ API Reference
     description=""
     href="../../../docs/apiVwrs#"
   />
+  <card
+    heading="Digital Fingerprint API"
+    description=""
+    href="../../../docs/apiFps#"
+  />
 
   <card
     heading="Edge Side Tagging API"
