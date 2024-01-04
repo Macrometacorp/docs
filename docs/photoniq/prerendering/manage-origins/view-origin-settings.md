@@ -36,7 +36,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Dynamic Prerendering provides the following origin settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation.
 
-- **Origin URL** - Full URL of the origin.
+- **Origin URL** - URL of the origin.
 - **Sitemap** - Sitemap, if one is associated with the origin.
 - **Caching** - Indicates if caching is active for this origin.
 - **Cache Expiration** - Amount of time a page remains in the cache before expiring.
