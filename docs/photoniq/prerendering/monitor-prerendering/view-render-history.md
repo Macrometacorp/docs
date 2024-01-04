@@ -28,10 +28,10 @@ Follow these instructions to view render history in the web console.
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- Get render history data
-- Get render history data by origin
-- Get percentile metrics
-- Get percentile metrics by origin
+- [Get render history data](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-history-render/get)
+- [Get render history data by origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-history-render-origin/get)
+- [Get response time percentiles](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-metrics-percentiles-responsetime/get)
+- [Get response time percentiles by origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-metrics-percentiles-responsetime-origin/get)
 
 </TabItem>
 </Tabs>
