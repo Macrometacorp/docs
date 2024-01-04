@@ -583,7 +583,7 @@
                                           "type": "string",
                                           "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
+                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
@@ -695,7 +695,7 @@
                                           "type": "string",
                                           "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
+                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
@@ -803,7 +803,7 @@
                                           "type": "string",
                                           "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
+                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
@@ -1047,7 +1047,7 @@
                                           "type": "string",
                                           "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
+                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
@@ -1174,7 +1174,7 @@
                                           "type": "string",
                                           "description": "Origin path."
                                         },
-                                        "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
+                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
                                       },
                                       "operation": {
                                         "type": "string",
@@ -1327,7 +1327,7 @@
                                     "type": "string",
                                     "description": "Origin path."
                                   },
-                                  "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
+                                  "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
                                 },
                                 "operation": {
                                   "type": "string",
@@ -1416,7 +1416,7 @@
                                     "type": "string",
                                     "description": "Origin path."
                                   },
-                                  "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
+                                  "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
                                 },
                                 "operation": {
                                   "type": "string",
@@ -1608,7 +1608,7 @@
                                     "type": "string",
                                     "description": "Origin path."
                                   },
-                                  "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
+                                  "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
                                 },
                                 "operation": {
                                   "type": "string",
@@ -1696,7 +1696,7 @@
                                     "type": "string",
                                     "description": "Origin path."
                                   },
-                                  "description": "Origin paths where the specific interaction is executed or not, depending on the operation attribute."
+                                  "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
                                 },
                                 "operation": {
                                   "type": "string",
