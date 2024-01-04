@@ -36,6 +36,6 @@ In the API, 404 identifier information is included in the origin settings API. U
 
 Dynamic Prerendering provides the following fields in the 404 Identifier tab. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
-- **Origin URL** - Full URL of the origin.
+- **Origin URL** - URL of the origin.
 - **Identifier String** - Text that signals the prerendering bot to ignore the page.
 - **Date Added** - Date the origin was added.
