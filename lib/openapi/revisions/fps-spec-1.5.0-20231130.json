@@ -1,0 +1,870 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PhotonIQ Digital Fingerprinting API",
+    "description": "API documentation for the PhotonIQ Digital Fingerprinting",
+    "version": "1.5.0"
+  },
+  "servers": [
+    {
+      "url": "https://demofps.paas.macrometa.io"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    },
+    "schemas": {
+      "GetVersionResponse": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "RecordVisitInformation": {
+        "type": "object",
+        "properties": {
+          "signals": {
+            "type": "object",
+            "description": "Each property (referred to as [signalName]) represents a unique signal.",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "duration": {
+                  "type": "number",
+                  "description": "Duration, expected to be a number."
+                },
+                "error": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Any value in string format"
+                }
+              }
+            }
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "VisitResponse": {
+        "type": "object",
+        "properties": {
+          "visitorId": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "visit": {
+            "type": "object",
+            "properties": {
+              "visitId": {
+                "type": "string"
+              },
+              "platformDetails": {
+                "$ref": "#/components/schemas/PlatformDetails"
+              },
+              "incognito": {
+                "type": "boolean"
+              },
+              "ip": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "visitorFound": {
+                "type": "boolean"
+              },
+              "confidence": {
+                "type": "object",
+                "properties": {
+                  "matchScore": {
+                    "type": "number"
+                  }
+                }
+              },
+              "timestamp": {
+                "type": "number",
+                "format": "date-time",
+                "description": "Timestamp of the visit."
+              },
+              "firstSeenAt": {
+                "type": "number",
+                "format": "date-time",
+                "description": "Timestamp of the first time the visitor was seen."
+              }
+            }
+          }
+        }
+      },
+      "VisitDetail": {
+        "type": "object",
+        "properties": {
+          "signature": {
+            "type": "string"
+          },
+          "visitId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number",
+            "format": "date-time"
+          },
+          "platformDetails": {
+            "$ref": "#/components/schemas/PlatformDetails"
+          },
+          "incognito": {
+            "type": "boolean"
+          },
+          "ip": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/Confidence"
+          }
+        }
+      },
+      "PlatformDetails": {
+        "type": "object",
+        "properties": {
+          "browser": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "major": {
+                "type": "string"
+              }
+            }
+          },
+          "engine": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "os": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            }
+          },
+          "device": {
+            "type": "object",
+            "properties": {
+              "vendor": {
+                "type": "string"
+              },
+              "model": {
+                "type": "string"
+              }
+            }
+          },
+          "ua": {
+            "type": "string"
+          }
+        }
+      },
+      "Confidence": {
+        "type": "object",
+        "properties": {
+          "matchScore": {
+            "type": "number"
+          }
+        }
+      },
+      "AllVisitsResponse": {
+        "type": "object",
+        "properties": {
+          "visitorId": {
+            "type": "string"
+          },
+          "firstSeenAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastSeenAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "visits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VisitDetail"
+            }
+          }
+        }
+      },
+      "MetricDetails": {
+        "type": "object",
+        "properties": {
+          "_key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "start": {
+            "type": "number",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "number",
+            "format": "date-time"
+          }
+        }
+      },
+      "TopNVisitorsDetails": {
+        "type": "object",
+        "properties": {
+          "visitorId": {
+            "type": "string"
+          },
+          "visitorCount": {
+            "type": "number"
+          },
+          "firstVisit": {
+            "type": "number",
+            "format": "date-time"
+          },
+          "lastVisit": {
+            "type": "number",
+            "format": "date-time"
+          },
+          "start": {
+            "type": "number",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "number",
+            "format": "date-time"
+          }
+        }
+      },
+      "TrafficDetails": {
+        "type": "object",
+        "properties": {
+          "human": {
+            "type": "number",
+            "example": 1018
+          },
+          "goodbot": {
+            "type": "number",
+            "example": 4
+          },
+          "badbot": {
+            "type": "number",
+            "example": 10
+          },
+          "unknown": {
+            "type": "number",
+            "example": 1
+          },
+          "start": {
+            "type": "number",
+            "format": "date-time",
+            "example": 1696965000
+          },
+          "end": {
+            "type": "number",
+            "format": "date-time",
+            "example": 1696965300
+          }
+        }
+      },
+      "DeviceTypeDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "Desktop"
+          },
+          "count": {
+            "type": "number",
+            "example": 50
+          },
+          "start": {
+            "type": "number",
+            "format": "date-time",
+            "example": 1696965000
+          },
+          "end": {
+            "type": "number",
+            "format": "date-time",
+            "example": 1696965300
+          }
+        }
+      },
+      "MetricsResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MetricDetails"
+        }
+      },
+      "TopNVisitsResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TopNVisitorsDetails"
+        }
+      },
+      "TrafficResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TrafficDetails"
+        }
+      },
+      "VisitDetails": {
+        "type": "object",
+        "properties": {
+          "_key": {
+            "type": "string"
+          },
+          "visitorId": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "number"
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/Confidence"
+          }
+        }
+      },
+      "DeviceTypeResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/DeviceTypeDetails"
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/ds/v1/version": {
+      "get": {
+        "summary": "Get the version",
+        "tags": [
+          "Version"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Get the version details for the service.",
+        "operationId": "getVersion",
+        "responses": {
+          "200": {
+            "description": "Successfully returned the version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ds/v1/health": {
+      "get": {
+        "summary": "Check the health of the service",
+        "tags": [
+          "Health"
+        ],
+        "description": "Check the health of the service.",
+        "operationId": "checkHealth",
+        "responses": {
+          "200": {
+            "description": "The health of the service is good."
+          }
+        }
+      }
+    },
+    "/api/ds/v1/visits": {
+      "post": {
+        "summary": "Record a visit to the site",
+        "tags": [
+          "Visits"
+        ],
+        "description": "Record a visit with the specified properties.",
+        "operationId": "recordVisit",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecordVisitInformation"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Cookie",
+            "description": "If this cookie is present, then this is a returning visitor.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "x-photoniq-vid=value;http-only=true;secure"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successfully recorded the visit.",
+            "headers": {
+              "x-photoniq-dsid": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Digital signature ID.",
+                "example": 12416155251620899000
+              },
+              "x-photoniq-vid": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The visitor ID.",
+                "example": "062b8104-6a71-4ac3-ac7f-6cd1ba6f2fa1"
+              },
+              "Cookie": {
+                "description": "Security features will be enabled for this cookie to minimize tampering.",
+                "schema": {
+                  "type": "string",
+                  "example": "x-photoniq-vid=value;http-only=true;secure"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve data for a particular visit",
+        "description": "Returns data for a particular visit based on the visit ID.",
+        "operationId": "getVisitorDetails",
+        "tags": [
+          "Visits"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "visitId",
+            "in": "query",
+            "description": "Visit ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the visit data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          }
+        }
+      }
+    },
+    "/api/ds/v1/visitors": {
+      "get": {
+        "summary": "Retrieve visitor data",
+        "description": "Retrieves all visit data for a given visitor using the supplied visitor ID.",
+        "operationId": "getAllVisitorData",
+        "tags": [
+          "Visitors"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "visitorId",
+            "in": "query",
+            "description": "Visitor ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved visitor data.",
+            "headers": {
+              "x-photoniq-vid": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The visitor ID.",
+                "example": "062b8104-6a71-4ac3-ac7f-6cd1ba6f2fa1"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllVisitsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          }
+        }
+      }
+    },
+    "/api/ds/v1/metrics": {
+      "get": {
+        "summary": "Retrieve metrics data",
+        "description": "Returns metrics data for a given time period. If the data for a particular period is 'null', then metrics cannot be calculated for that time period. For example, accuracy cannot be calculated if there were no visits for that day.",
+        "operationId": "getMetricsData",
+        "tags": [
+          "Metrics"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start date used for querying metrics data. Must be provided in RFC3339 date-time format and UTC.",
+            "required": false,
+            "example": "YYYY-MM-DDTHH:MM:SSZ",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end date used for querying metrics data. Must be provided in RFC3339 date-time format and UTC.",
+            "required": false,
+            "example": "YYYY-MM-DDTHH:MM:SSZ",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved metrics data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          }
+        }
+      }
+    },
+    "/api/ds/v1/metrics/topn/visits": {
+      "get": {
+        "summary": "Retrieve top visits count with their visitor IDs.",
+        "description": "Returns top visits count with their visitor IDs for a given time period.",
+        "operationId": "getTopNVisitsData",
+        "tags": [
+          "Metrics"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "n",
+            "in": "query",
+            "description": " Number of visitors.",
+            "required": true,
+            "example": "true",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "isBot",
+            "in": "query",
+            "description": "Flag to include bots in top n visits count.",
+            "required": false,
+            "example": "false",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start date used for querying visits data. Must be provided in RFC3339 date-time format and be in UTC. The default start time is 24 hours before the current time.",
+            "required": false,
+            "example": "YYYY-MM-DDTHH:MM:SSZ",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end date used for querying visits data. Must be provided in RFC3339 date-time format and be in UTC. The default end time is the current time.",
+            "required": false,
+            "example": "YYYY-MM-DDTHH:MM:SSZ",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved metrics data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopNVisitsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          }
+        }
+      }
+    },
+    "/api/ds/v1/metrics/traffic": {
+      "get": {
+        "summary": "Retrieve visitor traffic metrics",
+        "description": "Returns the visitor traffic over a period of time.\n\nThe traffic metrics are reported in five-minute intervals:\n- Total number of human visitors\n- Total number of good bot visitors\n- Total number of bad bot visitors\n- Total number of unknown bot visitors\n\n_Human visitors_ are non-bot visitors. _Good bots_ are a list of well-known bots, including Googlebot, Bingbot, and so on).\n_Bad bots_ are a list of known bad bots, including Grinchbots, AhrefsBot, and so on. _Unknown bots_ are visitors that are likely \nbots but are not in the good or bad bot lists.\n",
+        "operationId": "getTrafficData",
+        "tags": [
+          "Metrics"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start date used for querying visitor traffic data. Must be provided in RFC3339 date-time format and UTC. The default start time is 24 hours before the current time.",
+            "required": false,
+            "example": "YYYY-MM-DDTHH:MM:SSZ",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end date used for querying visitor traffic data. Must be provided in RFC3339 date-time format and UTC. The default end time is the current time.",
+            "required": false,
+            "example": "YYYY-MM-DDTHH:MM:SSZ",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved traffic metrics data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrafficResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          }
+        }
+      }
+    },
+    "/api/ds/v1/metrics/device/types": {
+      "get": {
+        "summary": "Retrieve the different device types for the visits",
+        "description": "Returns the device types over a period of time.\n",
+        "operationId": "getDeviceTypeData",
+        "tags": [
+          "Metrics"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start date used for querying the device data. Must be provided in RFC3339 date-time format and UTC. The default start time is 24 hours from the current time.",
+            "required": false,
+            "example": "YYYY-MM-DDTHH:MM:SSZ",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end date used for querying the device data. Must be provided in RFC3339 date-time format and UTC. The default end time is the current time.",
+            "required": false,
+            "example": "YYYY-MM-DDTHH:MM:SSZ",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved device metrics data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceTypeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          }
+        }
+      }
+    },
+    "/api/ds/v1/telemetry": {
+      "get": {
+        "summary": "Provides telemetry data",
+        "tags": [
+          "Telemetry"
+        ],
+        "description": "Provide telemetry data in Prometheus format. Useful for monitoring services to monitor the health of the Digital Fingerprinting service.",
+        "operationId": "getTelemetry",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful return the telemetry data.",
+            "content": {
+              "application/test": {
+                "schema": {
+                  "example": "# HELP req_metric Metric updated every minute for total request in that minute\n# TYPE req_metric gauge\nreq_metric{endTimestamp=\"1695930720000\",metricName=\"requestCount\",startTimestamp=\"1695930660000\"} 0\n# HELP req_ps_metric Metric updated every minute for request per second\n# TYPE req_ps_metric gauge\nreq_ps_metric{endTimestamp=\"1695930720000\",metricName=\"requestCountPerSecond\",startTimestamp=\"1695930660000\"} 0\n"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API doesn't have permissions or it is deactivated."
+          }
+        }
+      }
+    }
+  }
+}
