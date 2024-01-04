@@ -27,13 +27,15 @@
                     "description": "List of origin paths to be deleted from the cache."
                   }
                 }
-              }
+              },
+              "example": { "urls": ["/terms", "/privacy"] }
             }
           }
         },
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -137,6 +139,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -279,6 +282,7 @@
           },
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -494,6 +498,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -948,6 +953,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -1440,6 +1446,37 @@
                     "required": ["config"]
                   }
                 ]
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "config": {
+                      "isActive": true,
+                      "steps": 4,
+                      "valueInPx": 5000,
+                      "delayBetween": 300,
+                      "specific": []
+                    }
+                  }
+                },
+                "example2": {
+                  "value": {
+                    "config": {
+                      "isActive": true,
+                      "global": [],
+                      "specific": [
+                        {
+                          "isActive": true,
+                          "htmlSelector": "#tab",
+                          "waitAfterInteraction": 150,
+                          "executionSequence": 0,
+                          "urlPaths": ["^/.*$"],
+                          "operation": "=="
+                        }
+                      ]
+                    }
+                  }
+                }
               }
             }
           }
@@ -1447,6 +1484,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -1719,6 +1757,37 @@
                     }
                   }
                 ]
+              },
+              "examples": {
+                "example1": {
+                  "value": {
+                    "config": {
+                      "isActive": true,
+                      "steps": 4,
+                      "valueInPx": 5000,
+                      "delayBetween": 300,
+                      "specific": []
+                    }
+                  }
+                },
+                "example2": {
+                  "value": {
+                    "config": {
+                      "isActive": true,
+                      "global": [],
+                      "specific": [
+                        {
+                          "isActive": true,
+                          "htmlSelector": "#tab",
+                          "waitAfterInteraction": 150,
+                          "executionSequence": 0,
+                          "urlPaths": ["^/.*$"],
+                          "operation": "=="
+                        }
+                      ]
+                    }
+                  }
+                }
               }
             }
           }
@@ -1726,6 +1795,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -1848,6 +1918,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -2188,6 +2259,10 @@
                               "4xx": "no-store",
                               "5xx": "no-store"
                             }
+                          },
+                          "x-prerender-provider": {
+                            "basedOnStatusCode": false,
+                            "value": "PhotonIQ"
                           }
                         },
                         "caching": false,
@@ -2211,6 +2286,10 @@
                               "4xx": "no-store",
                               "5xx": "no-store"
                             }
+                          },
+                          "x-prerender-provider": {
+                            "basedOnStatusCode": false,
+                            "value": "PhotonIQ"
                           }
                         },
                         "caching": false,
@@ -2355,6 +2434,30 @@
                   }
                 },
                 "required": ["origin", "siteMaps", "ttl", "caching"]
+              },
+              "example": {
+                "origin": "https://www.origin.com",
+                "siteMaps": ["/sitemap.xml"],
+                "identifyNotfound": "Page Not Found",
+                "allowOriginHeaderValue": "948ef5f9-f15f-4b61-91b3-305b77db30e9",
+                "passThroughHeaders": ["accept-language", "user-agent"],
+                "addResponseHeaders": {
+                  "cache-control": {
+                    "basedOnStatusCode": true,
+                    "value": {
+                      "2xx": "public, max-age=86400",
+                      "3xx": "public, max-age=7200",
+                      "4xx": "no-store",
+                      "5xx": "no-store"
+                    }
+                  },
+                  "x-prerender-provider": {
+                    "basedOnStatusCode": false,
+                    "value": "PhotonIQ"
+                  }
+                },
+                "caching": false,
+                "ttl": 86400
               }
             }
           },
@@ -2470,6 +2573,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -2616,6 +2720,10 @@
                             "4xx": "no-store",
                             "5xx": "no-store"
                           }
+                        },
+                        "x-prerender-provider": {
+                          "basedOnStatusCode": false,
+                          "value": "PhotonIQ"
                         }
                       },
                       "caching": false,
@@ -2753,6 +2861,29 @@
                     "description": "Cache lifetime of rendered pages (in seconds)."
                   }
                 }
+              },
+              "example": {
+                "siteMaps": ["/sitemap.xml"],
+                "identifyNotfound": "Page Not Found",
+                "allowOriginHeaderValue": "948ef5f9-f15f-4b61-91b3-305b77db30e9",
+                "passThroughHeaders": ["accept-language", "user-agent"],
+                "addResponseHeaders": {
+                  "cache-control": {
+                    "basedOnStatusCode": true,
+                    "value": {
+                      "2xx": "public, max-age=86400",
+                      "3xx": "public, max-age=7200",
+                      "4xx": "no-store",
+                      "5xx": "no-store"
+                    }
+                  },
+                  "x-prerender-provider": {
+                    "basedOnStatusCode": false,
+                    "value": "PhotonIQ"
+                  }
+                },
+                "caching": false,
+                "ttl": 86400
               }
             }
           }
@@ -2760,6 +2891,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -2872,6 +3004,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -3156,6 +3289,7 @@
           },
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -3277,6 +3411,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -3461,6 +3596,10 @@
                   }
                 },
                 "required": ["cronSchedule", "isRenderForMobile"]
+              },
+              "example": {
+                "cronSchedule": "0 0 * * *",
+                "isRenderForMobile": false
               }
             }
           },
@@ -3469,6 +3608,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -3593,6 +3733,10 @@
                     "description": "Whether rendering should be tailored for mobile devices."
                   }
                 }
+              },
+              "example": {
+                "cronSchedule": "0 0 * * *",
+                "isRenderForMobile": false
               }
             }
           }
@@ -3600,6 +3744,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -3712,6 +3857,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -3855,6 +4001,7 @@
           },
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -4021,6 +4168,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -4180,6 +4328,7 @@
           },
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -5004,6 +5153,7 @@
           },
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -5330,6 +5480,7 @@
           },
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -5475,6 +5626,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
@@ -5565,8 +5717,8 @@
                       "_key": "www_origin_com",
                       "origin": "https://www.origin.com",
                       "injectInlineCSS": false,
-                      "addRequestHeader": false,
-                      "blockRequestTypes": ["fonts"],
+                      "addRequestHeader": true,
+                      "blockRequestTypes": ["fonts", "stylesheet"],
                       "urlBlockList": [
                         "https://googleads.g.doubleclick.net/pagead/",
                         "https://www.googletagmanager.com/gtag/",
@@ -5666,6 +5818,19 @@
                     "description": "List of URLs that should be blocked, e.g., https://googleads.g.doubleclick.net/pagead."
                   }
                 }
+              },
+              "example": {
+                "injectInlineCSS": false,
+                "addRequestHeader": true,
+                "blockRequestTypes": ["fonts", "stylesheet"],
+                "urlBlockList": [
+                  "https://googleads.g.doubleclick.net/pagead/",
+                  "https://www.googletagmanager.com/gtag/",
+                  "https://bat.bing.com/p/action/",
+                  "https://bat.bing.com/bat.js",
+                  "https://connect.facebook.net/en_US/fbevents.js",
+                  "https://maps.googleapis.com/maps-api-v3/api/js/"
+                ]
               }
             }
           }
@@ -5673,6 +5838,7 @@
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
+            "example": "www.origin.com",
             "in": "path",
             "name": "origin",
             "required": true,
