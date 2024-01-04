@@ -48,7 +48,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## Dynamic Prerendering Settings
 
-Dynamic Prerendering provides the following settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Dynamic Prerendering provides the following settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation.
 
 ### Optimized Rendering for Different Crawling Bots
 
