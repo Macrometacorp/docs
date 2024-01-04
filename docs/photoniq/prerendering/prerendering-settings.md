@@ -58,28 +58,40 @@ Use these settings to optimize rendering for desktop or mobile. Fields include:
 - User Agent
 - Status
 
-![Prerendering Activity Tab](/img/prerendering/activity-tab.png)
+![Optimized Rendering for Different Crawling Bots](/img/prerendering/optimizing-rendering-for-different-bots.png)
 
 ### Optimizing Rendering Timeouts
 
 Configure the rendering timeout to best suit your needs.
 
+![Optimizing Rendering Timeouts](/img/prerendering/optimizing-rendering-timeouts.png)
+
 ### Fonts Blocking
 
 You can block fonts to speed up rendering.
 
-### Stylesheets Blocking
+![Fonts Blocking](/img/prerendering/fonts-blocking.png)
+
+### Stylesheet Blocking
 
 You can block stylesheets to speed up load times.
+
+![Stylesheet Blocking](/img/prerendering/stylesheet-blocking.png)
 
 ### URL Block List
 
 You can block specific external URLs during rendering.
 
+![URL Block List](/img/prerendering/url-block-list.png)
+
 ### Allow Origin Header Value
 
 In the web console, this displays the origin allowlist value if one is set. For more information about allowlist headers, refer to [Allowlist-Based Header Values](prerendering-headers/allowlist-value-headers.md).
 
+![Allow Origin Header Value](/img/prerendering/allow-origin-header-value.png)
+
 ### Add Response Header
 
 In the web console, this displays current header keys and values. For more information about headers, refer to [Prerendering Headers](prerendering-headers).
+
+![Add Response Header](/img/prerendering/add-response-header.png)
