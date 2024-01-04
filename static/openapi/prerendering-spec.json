@@ -330,11 +330,11 @@
                           },
                           "isPrefetch": {
                             "type": "boolean",
-                            "description": "Indicates whether the pre-rendering was performed as a prefetch operation (true) or on-demand (false)."
+                            "description": "Whether rendering was performed as a prefetch operation (true) or on-demand (false)."
                           },
                           "isMobile": {
                             "type": "boolean",
-                            "description": "Indicates whether the pre-rendering is for a mobile device (true) or a desktop (false)."
+                            "description": "Whether rendering was tailored for mobile devices."
                           },
                           "expiry": {
                             "type": "number",
@@ -554,7 +554,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not."
+                                  "description": "Whether the interaction is active."
                                 },
                                 "steps": {
                                   "type": "integer",
@@ -575,7 +575,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not."
+                                        "description": "Whether the specific interaction is active."
                                       },
                                       "urlPaths": {
                                         "type": "array",
@@ -637,7 +637,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not."
+                                  "description": "Whether the interaction is active."
                                 },
                                 "global": {
                                   "type": "array",
@@ -646,7 +646,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the global interaction is active or not."
+                                        "description": "Whether the global interaction is active."
                                       },
                                       "htmlSelector": {
                                         "type": "string",
@@ -675,7 +675,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not."
+                                        "description": "Whether the specific interaction is active."
                                       },
                                       "htmlSelector": {
                                         "type": "string",
@@ -745,7 +745,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not."
+                                  "description": "Whether the interaction is active."
                                 },
                                 "global": {
                                   "type": "array",
@@ -754,7 +754,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the global interaction is active or not."
+                                        "description": "Whether the global interaction is active."
                                       },
                                       "htmlSelector": {
                                         "type": "string",
@@ -783,7 +783,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not."
+                                        "description": "Whether the specific interaction is active."
                                       },
                                       "htmlSelector": {
                                         "type": "string",
@@ -1018,7 +1018,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not."
+                                  "description": "Whether the interaction is active."
                                 },
                                 "steps": {
                                   "type": "integer",
@@ -1039,7 +1039,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not."
+                                        "description": "Whether the specific interaction is active."
                                       },
                                       "urlPaths": {
                                         "type": "array",
@@ -1116,7 +1116,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the interaction is active or not."
+                                  "description": "Whether the interaction is active."
                                 },
                                 "global": {
                                   "type": "array",
@@ -1125,7 +1125,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the global interaction is active or not."
+                                        "description": "Whether the global interaction is active."
                                       },
                                       "htmlSelector": {
                                         "type": "string",
@@ -1154,7 +1154,7 @@
                                     "properties": {
                                       "isActive": {
                                         "type": "boolean",
-                                        "description": "Whether the specific interaction is active or not."
+                                        "description": "Whether the specific interaction is active."
                                       },
                                       "htmlSelector": {
                                         "type": "string",
@@ -1298,7 +1298,7 @@
                         "properties": {
                           "isActive": {
                             "type": "boolean",
-                            "description": "Whether the interaction is active or not."
+                            "description": "Whether the interaction is active."
                           },
                           "steps": {
                             "type": "integer",
@@ -1319,7 +1319,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the specific interaction is active or not."
+                                  "description": "Whether the specific interaction is active."
                                 },
                                 "urlPaths": {
                                   "type": "array",
@@ -1358,7 +1358,7 @@
                         "properties": {
                           "isActive": {
                             "type": "boolean",
-                            "description": "Whether the interaction is active or not."
+                            "description": "Whether the interaction is active."
                           },
                           "global": {
                             "type": "array",
@@ -1367,7 +1367,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the global interaction is active or not."
+                                  "description": "Whether the global interaction is active."
                                 },
                                 "htmlSelector": {
                                   "type": "string",
@@ -1396,7 +1396,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the specific interaction is active or not."
+                                  "description": "Whether the specific interaction is active."
                                 },
                                 "htmlSelector": {
                                   "type": "string",
@@ -1579,7 +1579,7 @@
                         "properties": {
                           "isActive": {
                             "type": "boolean",
-                            "description": "Whether the interaction is active or not."
+                            "description": "Whether the interaction is active."
                           },
                           "steps": {
                             "type": "integer",
@@ -1600,7 +1600,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the specific interaction is active or not."
+                                  "description": "Whether the specific interaction is active."
                                 },
                                 "urlPaths": {
                                   "type": "array",
@@ -1638,7 +1638,7 @@
                         "properties": {
                           "isActive": {
                             "type": "boolean",
-                            "description": "Whether the interaction is active or not."
+                            "description": "Whether the interaction is active."
                           },
                           "global": {
                             "type": "array",
@@ -1647,7 +1647,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the global interaction is active or not."
+                                  "description": "Whether the global interaction is active."
                                 },
                                 "htmlSelector": {
                                   "type": "string",
@@ -1676,7 +1676,7 @@
                               "properties": {
                                 "isActive": {
                                   "type": "boolean",
-                                  "description": "Whether the specific interaction is active or not."
+                                  "description": "Whether the specific interaction is active."
                                 },
                                 "htmlSelector": {
                                   "type": "string",
@@ -2139,7 +2139,7 @@
                           },
                           "caching": {
                             "type": "boolean",
-                            "description": "Whether or not to cache rendered pages."
+                            "description": "Whether to cache rendered pages."
                           },
                           "ttl": {
                             "type": "number",
@@ -2347,7 +2347,7 @@
                   },
                   "caching": {
                     "type": "boolean",
-                    "description": "Whether or not to cache rendered pages."
+                    "description": "Whether to cache rendered pages."
                   },
                   "ttl": {
                     "type": "number",
@@ -2569,7 +2569,7 @@
                         },
                         "caching": {
                           "type": "boolean",
-                          "description": "Whether or not to cache rendered pages."
+                          "description": "Whether to cache rendered pages."
                         },
                         "ttl": {
                           "type": "number",
@@ -2746,7 +2746,7 @@
                   },
                   "caching": {
                     "type": "boolean",
-                    "description": "Whether or not to cache rendered pages."
+                    "description": "Whether to cache rendered pages."
                   },
                   "ttl": {
                     "type": "number",
@@ -3307,7 +3307,7 @@
                         },
                         "isRenderForMobile": {
                           "type": "boolean",
-                          "description": "Whether to render for mobile devices or not."
+                          "description": "Whether rendering should be tailored for mobile devices."
                         },
                         "createdAt": {
                           "type": "string",
@@ -3439,7 +3439,7 @@
                   },
                   "isRenderForMobile": {
                     "type": "boolean",
-                    "description": "Whether to render for mobile devices or not."
+                    "description": "Whether rendering should be tailored for mobile devices."
                   }
                 },
                 "required": ["cronSchedule", "isRenderForMobile"]
@@ -3572,7 +3572,7 @@
                   },
                   "isRenderForMobile": {
                     "type": "boolean",
-                    "description": "Whether to render for mobile devices or not."
+                    "description": "Whether rendering should be tailored for mobile devices."
                   }
                 }
               }
@@ -4204,7 +4204,7 @@
                           },
                           "isMobile": {
                             "type": "boolean",
-                            "description": "Whether the URL is rendered for mobile devices or not."
+                            "description": "Whether rendering was tailored for mobile devices."
                           },
                           "status": {
                             "type": "string",
@@ -4320,7 +4320,7 @@
             "in": "path",
             "name": "mobile",
             "required": true,
-            "description": "Whether to render as a mobile device or not."
+            "description": "Whether rendering should be tailored for mobile devices."
           },
           {
             "schema": { "type": "string" },
@@ -4524,7 +4524,7 @@
             "in": "query",
             "name": "mobile",
             "required": false,
-            "description": "Whether to render as a mobile device or not."
+            "description": "Whether rendering should be tailored for mobile devices."
           },
           {
             "schema": { "type": "string" },
@@ -4552,7 +4552,7 @@
             "in": "header",
             "name": "x-photoniq-prerender-mobile",
             "required": false,
-            "description": "Whether to render as a mobile device or not."
+            "description": "Whether rendering should be tailored for mobile devices."
           },
           {
             "schema": { "type": "string" },
@@ -5415,11 +5415,11 @@
                         },
                         "injectInlineCSS": {
                           "type": "boolean",
-                          "description": "Whether or not to inject CSS into the HTML."
+                          "description": "Whether to inject CSS into the HTML."
                         },
                         "addRequestHeader": {
                           "type": "boolean",
-                          "description": "Whether or not to add x-photoniq-prerender-request header to each request made during page rendering."
+                          "description": "Whether to add x-photoniq-prerender-request header to each request made during page rendering."
                         },
                         "blockRequestTypes": {
                           "type": "array",
@@ -5545,11 +5545,11 @@
                 "properties": {
                   "injectInlineCSS": {
                     "type": "boolean",
-                    "description": "Whether or not to inject CSS into the HTML."
+                    "description": "Whether to inject CSS into the HTML."
                   },
                   "addRequestHeader": {
                     "type": "boolean",
-                    "description": "Whether or not to add x-photoniq-prerender-request header to each request made during page rendering."
+                    "description": "Whether to add x-photoniq-prerender-request header to each request made during page rendering."
                   },
                   "blockRequestTypes": {
                     "type": "array",
