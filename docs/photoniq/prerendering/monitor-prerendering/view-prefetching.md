@@ -29,8 +29,8 @@ Follow these instructions to view render history in the web console.
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- Get prefetch statistics
-- Get prefetch URLs
+- [Get prefetch statistics](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-metrics-stats-prefetch-origin/get)
+- [Get prefetch URLs](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--prefetch-urls/get)
 
 </TabItem>
 </Tabs>
