@@ -28,10 +28,10 @@ Follow these instructions to view prerendering activity in the web console.
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- Get render-stats metrics
-- Get render-stats metrics by origin
-- Get usage metrics
-- Get usage metrics by origin
+- [Get render-stats metrics](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-metrics-stats-render/get)
+- [Get render-stats metrics by origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-metrics-stats-render-origin/get)
+- [Get usage metrics](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-usage-aggregationType/get)
+- [Get usage metrics by origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-usage-aggregationType---origin/get)
 
 </TabItem>
 </Tabs>
