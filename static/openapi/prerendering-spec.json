@@ -4162,9 +4162,9 @@
     },
     "/api/prerender/v1/origins/{origin}/prefetch/triggers": {
       "post": {
-        "summary": "Create prefetch trigger",
+        "summary": "Trigger prefetching process",
         "tags": ["Prefetch"],
-        "description": "Creates a prefetch trigger associated with the origin.",
+        "description": "Starts prefetching all sitemap URLs associated with the origin.",
         "parameters": [
           {
             "schema": { "type": "string", "minLength": 1 },
