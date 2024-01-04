@@ -40,12 +40,12 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Dynamic Prerendering provides the following metrics. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
-- **Renders** - Total number of renders performed during the selected time.
-- **Requests per Second** - Number of renders performed per second during the selected time.
-- **Requests** - Total number of page requests received during the selected time.
+- **Renders** - Total number of renders performed.
+- **Requests per Second** - Number of renders performed per second.
+- **Requests** - Total number of page requests received.
 - **Cache Hits** - Number of requests served from the cache.
 - **Cache Misses** - Number of requests that were not in the cache and were dynamically rendered instead.
 - **Prefetches** - Number of prefetched pages served.
 - **Failed Requests** - Number of requests that were not served by rendered pages.
-- **Response Size** - Average response size of each rendered page.
+- **Response Size** - Sum of all response sizes.
 - **Origins** - Number of origins with pages rendered.
