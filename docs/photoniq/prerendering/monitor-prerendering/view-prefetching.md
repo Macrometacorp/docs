@@ -89,4 +89,4 @@ Dynamic Prerendering provides the following prefetching history fields. Field na
 - **Queued** - Number of URLs queued for prefetch.
 - **Failed** - Number of URLs where prefetching failed.
 - **Status** - Success status (completed, in progress, failed).
-- **Created At** - When the prefetch URL was created.
+- **Created At** - When the prefetch process was triggered.
