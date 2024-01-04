@@ -558,15 +558,15 @@
                                 },
                                 "steps": {
                                   "type": "integer",
-                                  "description": "In how many phases the scroll will be completed."
+                                  "description": "Number of scrolls down to be performed."
                                 },
                                 "valueInPx": {
                                   "type": "integer",
-                                  "description": "Number of pixels to scroll in each step."
+                                  "description": "Number of pixels to be scrolled."
                                 },
                                 "delayBetween": {
                                   "type": "integer",
-                                  "description": "Delay (in milliseconds) between steps."
+                                  "description": "Waiting time (in milliseconds) between scrolls."
                                 },
                                 "specific": {
                                   "type": "array",
@@ -1022,15 +1022,15 @@
                                 },
                                 "steps": {
                                   "type": "integer",
-                                  "description": "In how many phases the scroll will be completed."
+                                  "description": "Number of scrolls down to be performed."
                                 },
                                 "valueInPx": {
                                   "type": "integer",
-                                  "description": "Number of pixels to scroll in each step."
+                                  "description": "Number of pixels to be scrolled."
                                 },
                                 "delayBetween": {
                                   "type": "integer",
-                                  "description": "Delay (in milliseconds) between steps."
+                                  "description": "Waiting time (in milliseconds) between scrolls."
                                 },
                                 "specific": {
                                   "type": "array",
@@ -1302,15 +1302,15 @@
                           },
                           "steps": {
                             "type": "integer",
-                            "description": "In how many phases the scroll will be completed."
+                            "description": "Number of scrolls down to be performed."
                           },
                           "valueInPx": {
                             "type": "integer",
-                            "description": "Number of pixels to scroll in each step."
+                            "description": "Number of pixels to be scrolled."
                           },
                           "delayBetween": {
                             "type": "integer",
-                            "description": "Delay (in milliseconds) between steps."
+                            "description": "Waiting time (in milliseconds) between scrolls."
                           },
                           "specific": {
                             "type": "array",
@@ -1583,15 +1583,15 @@
                           },
                           "steps": {
                             "type": "integer",
-                            "description": "In how many phases the scroll will be completed."
+                            "description": "Number of scrolls down to be performed."
                           },
                           "valueInPx": {
                             "type": "integer",
-                            "description": "Number of pixels to scroll in each step."
+                            "description": "Number of pixels to be scrolled."
                           },
                           "delayBetween": {
                             "type": "integer",
-                            "description": "Delay (in milliseconds) between steps."
+                            "description": "Waiting time (in milliseconds) between scrolls."
                           },
                           "specific": {
                             "type": "array",
@@ -3040,9 +3040,18 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                        "p90": { "type": "number" },
-                        "p95": { "type": "number" },
-                        "p99": { "type": "number" }
+                        "p90": {
+                          "type": "number",
+                          "description": "The 90th percentile value. This represents the value below which 90% of the data points fall."
+                        },
+                        "p95": {
+                          "type": "number",
+                          "description": "The 95th percentile value. This represents the value below which 95% of the data points fall."
+                        },
+                        "p99": {
+                          "type": "number",
+                          "description": "The 99th percentile value. This represents the value below which 99% of the data points fall."
+                        }
                       }
                     }
                   },
@@ -3180,9 +3189,18 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                        "p90": { "type": "number" },
-                        "p95": { "type": "number" },
-                        "p99": { "type": "number" }
+                        "p90": {
+                          "type": "number",
+                          "description": "The 90th percentile value. This represents the value below which 90% of the data points fall."
+                        },
+                        "p95": {
+                          "type": "number",
+                          "description": "The 95th percentile value. This represents the value below which 95% of the data points fall."
+                        },
+                        "p99": {
+                          "type": "number",
+                          "description": "The 99th percentile value. This represents the value below which 99% of the data points fall."
+                        }
                       }
                     }
                   },
@@ -4814,13 +4832,35 @@
                       "items": {
                         "type": "object",
                         "properties": {
-                          "timestamp": { "type": "number" },
-                          "origin": { "type": "string", "format": "uri" },
-                          "path": { "type": "string" },
-                          "bytesSent": { "type": "number" },
-                          "responseTime": { "type": "number" },
-                          "isMobile": { "type": "boolean" },
-                          "responseCode": { "type": "number" }
+                          "timestamp": {
+                            "type": "number",
+                            "description": "The time at which the event occurred, represented as a Unix timestamp."
+                          },
+                          "origin": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "The URL of the origin server from which the request was sent."
+                          },
+                          "path": {
+                            "type": "string",
+                            "description": "The specific path on the server accessed by the request."
+                          },
+                          "bytesSent": {
+                            "type": "number",
+                            "description": "The total number of bytes sent in the response."
+                          },
+                          "responseTime": {
+                            "type": "number",
+                            "description": "The time taken to receive a response from the server, measured in milliseconds."
+                          },
+                          "isMobile": {
+                            "type": "boolean",
+                            "description": "Indicates whether the request was made from a mobile device."
+                          },
+                          "responseCode": {
+                            "type": "number",
+                            "description": "The HTTP status code returned by the server in response to the request."
+                          }
                         }
                       }
                     }
@@ -4999,13 +5039,35 @@
                       "items": {
                         "type": "object",
                         "properties": {
-                          "timestamp": { "type": "number" },
-                          "origin": { "type": "string", "format": "uri" },
-                          "path": { "type": "string" },
-                          "bytesSent": { "type": "number" },
-                          "responseTime": { "type": "number" },
-                          "isMobile": { "type": "boolean" },
-                          "responseCode": { "type": "number" }
+                          "timestamp": {
+                            "type": "number",
+                            "description": "The time at which the event occurred, represented as a Unix timestamp."
+                          },
+                          "origin": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "The URL of the origin server from which the request was sent."
+                          },
+                          "path": {
+                            "type": "string",
+                            "description": "The specific path on the server accessed by the request."
+                          },
+                          "bytesSent": {
+                            "type": "number",
+                            "description": "The total number of bytes sent in the response."
+                          },
+                          "responseTime": {
+                            "type": "number",
+                            "description": "The time taken to receive a response from the server, measured in milliseconds."
+                          },
+                          "isMobile": {
+                            "type": "boolean",
+                            "description": "Indicates whether the request was made from a mobile device."
+                          },
+                          "responseCode": {
+                            "type": "number",
+                            "description": "The HTTP status code returned by the server in response to the request."
+                          }
                         }
                       }
                     }
@@ -5142,13 +5204,34 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                        "totalPrefetch": { "type": "number" },
-                        "totalCacheHits": { "type": "number" },
-                        "totalCacheMisses": { "type": "number" },
-                        "totalResponseSize": { "type": "number" },
-                        "totalOriginsRenderingFor": { "type": "number" },
-                        "totalRenders": { "type": "number" },
-                        "totalFailed": { "type": "number" }
+                        "totalPrefetch": {
+                          "type": "number",
+                          "description": "The total number of prefetched requests."
+                        },
+                        "totalCacheHits": {
+                          "type": "number",
+                          "description": "The total number of requests that were successfully served from the cache."
+                        },
+                        "totalCacheMisses": {
+                          "type": "number",
+                          "description": "The total number of requests that were not served from the cache."
+                        },
+                        "totalResponseSize": {
+                          "type": "number",
+                          "description": "The total size of all responses sent, measured in bytes."
+                        },
+                        "totalOriginsRenderingFor": {
+                          "type": "number",
+                          "description": "The total number of unique origins for which rendering was performed."
+                        },
+                        "totalRenders": {
+                          "type": "number",
+                          "description": "The total number of render operations performed."
+                        },
+                        "totalFailed": {
+                          "type": "number",
+                          "description": "The total number of render operations that failed."
+                        }
                       }
                     }
                   },
@@ -5280,13 +5363,34 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                        "totalPrefetch": { "type": "number" },
-                        "totalCacheHits": { "type": "number" },
-                        "totalCacheMisses": { "type": "number" },
-                        "totalResponseSize": { "type": "number" },
-                        "totalOriginsRenderingFor": { "type": "number" },
-                        "totalRenders": { "type": "number" },
-                        "totalFailed": { "type": "number" }
+                        "totalPrefetch": {
+                          "type": "number",
+                          "description": "The total number of prefetched requests."
+                        },
+                        "totalCacheHits": {
+                          "type": "number",
+                          "description": "The total number of requests that were successfully served from the cache."
+                        },
+                        "totalCacheMisses": {
+                          "type": "number",
+                          "description": "The total number of requests that were not served from the cache."
+                        },
+                        "totalResponseSize": {
+                          "type": "number",
+                          "description": "The total size of all responses sent, measured in bytes."
+                        },
+                        "totalOriginsRenderingFor": {
+                          "type": "number",
+                          "description": "The total number of unique origins for which rendering was performed."
+                        },
+                        "totalRenders": {
+                          "type": "number",
+                          "description": "The total number of render operations performed."
+                        },
+                        "totalFailed": {
+                          "type": "number",
+                          "description": "The total number of render operations that failed."
+                        }
                       }
                     }
                   },
@@ -5783,10 +5887,23 @@
                       "items": {
                         "type": "object",
                         "properties": {
-                          "timestamp": { "type": "number" },
-                          "totalRenders": { "type": "number" },
-                          "origin": { "type": "string", "format": "uri" },
-                          "maxRps": { "type": "number" }
+                          "timestamp": {
+                            "type": "number",
+                            "description": "The time at which the event occurred, represented as a Unix timestamp."
+                          },
+                          "totalRenders": {
+                            "type": "number",
+                            "description": "The total number of rendering operations performed."
+                          },
+                          "origin": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "The URL of the origin from which the requests are initiated."
+                          },
+                          "maxRps": {
+                            "type": "number",
+                            "description": "The maximum number of requests per second (RPS) processed."
+                          }
                         }
                       }
                     }
@@ -5982,10 +6099,23 @@
                       "items": {
                         "type": "object",
                         "properties": {
-                          "timestamp": { "type": "number" },
-                          "totalRenders": { "type": "number" },
-                          "origin": { "type": "string", "format": "uri" },
-                          "maxRps": { "type": "number" }
+                          "timestamp": {
+                            "type": "number",
+                            "description": "The time at which the event occurred, represented as a Unix timestamp."
+                          },
+                          "totalRenders": {
+                            "type": "number",
+                            "description": "The total number of rendering operations performed."
+                          },
+                          "origin": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "The URL of the origin from which the requests are initiated."
+                          },
+                          "maxRps": {
+                            "type": "number",
+                            "description": "The maximum number of requests per second (RPS) processed."
+                          }
                         }
                       }
                     }
