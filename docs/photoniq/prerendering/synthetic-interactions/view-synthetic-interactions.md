@@ -7,8 +7,8 @@ import TabItem from '@theme/TabItem';
 
 You have several options for viewing Dynamic Prerendering synthetic interactions, either aggregated or per origin.
 
-- **Synthetic Interactions tab** - You can view synthetic interactions for all origins or for one origin on the Synthetic Interactions tab in the web console.
-- **REST API** - Macrometa provides several API calls that allow you to view metrics for all origins or for one origin. You can also sort and set any time frame that you need.
+- **Synthetic Interactions tab** - You can view synthetic interactions for an origin on the Synthetic Interactions tab in the web console.
+- **REST API** - Macrometa provides several API calls that allow you to view metrics for an origin. You can also sort and set any time frame that you need.
 
 ## View Synthetic Interactions
 
