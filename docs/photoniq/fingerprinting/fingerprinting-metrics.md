@@ -3,12 +3,20 @@ sidebar_position: 40
 title: Fingerprinting Metrics
 ---
 
-The tracking metrics below quantify the scale of Digital Fingerprinting and can help identify usage trends.
+When visitors access your website, the Digital Fingerprint service uniquely identifies them. At the same time, the fingerprint service collects metrics about the individual visitor. These metrics include device types (e.g., desktop, mobile), whether the visitor is a human or a bot, and how often these visitors access your website.
 
-## Accuracy Rate
+## Fingerprint Metrics Reports
 
-The confidence of that a unique Visitor ID corresponds to a particular returning user.
+The Digital Fingerprint service has several reports to show how often visitors return to your site, the type of devices that are accessing your site, and what kind of bots are accessing your site.
 
-## Unique Visitor Count
+## Top N Visitors
 
-The total number of unique visitors identified by Digital Fingerprinting over a period.
+The top N visitor reports the top n number of visitors that have returned to your website over a given date/time range.
+
+## Device Types
+
+The device types report returns all the different types of devices and how many of them accessed your website.
+
+## Visitor Traffic
+
+The visitor traffic report returns the number of good bots, bad bots, unknown bots, and humans who accessed your website. The report returns data in five-minute intervals over a date/time range of your choosing.

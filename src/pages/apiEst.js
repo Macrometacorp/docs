@@ -4,7 +4,7 @@ import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-export default function APIVwrsMetricsPage() {
+export default function APIVwrsServicePage() {
   const { siteConfig } = useDocusaurusContext();
 
   useEffect(() => {
@@ -18,9 +18,9 @@ export default function APIVwrsMetricsPage() {
   return (
     <Layout>
       <Head>
-        <title>PhotonIQ Virtual Waiting Room Metrics API Reference | Macrometa Docs</title>
-        <meta name="description" content="PhotonIQ Virtual Waiting Room Metrics API" />
-        <meta name="og:description" content="PhotonIQ Virtual Waiting Room Metrics API" />
+        <title>PhotonIQ Edge Side Tagging API Reference | Macrometa Docs</title>
+        <meta name="description" content="PhotonIQ Edge Side Tagging API Reference API" />
+        <meta name="og:description" content="PhotonIQ Edge Side Tagging API Reference API" />
         {/* Loading styles for elements this way so it doesn't interfere with other styles */}
         <link
           rel="stylesheet"
@@ -42,9 +42,9 @@ export default function APIVwrsMetricsPage() {
           const { API } = require('@stoplight/elements');
           return (
             <>
-              {/* https://api-demo-vwrs-metrics.paas.macrometa.io/docs/vwr */}
+              {/* https://api-demo-est-service.paas.macrometa.io/docs/est */}
               <API
-                apiDescriptionUrl={`${siteConfig.baseUrl}openapi/vwrs-metrics-spec.json`}
+                apiDescriptionUrl={`${siteConfig.baseUrl}openapi/est-spec.json`}
                 router="hash"
                 basePath="/"
                 layout="sidebar"
