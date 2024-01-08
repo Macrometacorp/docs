@@ -5,7 +5,7 @@ title: View 404 Identifiers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for viewing Dynamic Prerendering 404 identifiers currently set on your origins. The 404 identifier is set when an origin is created. It signals to the service that the page should be rendered with a 404 status code.
+You have several options for viewing Dynamic Prerendering 404 identifiers currently set on your origins. The 404 identifier is set when an origin is created. When Dynamic Prerendering encounters a page with this string, it reports a 404 status code.
 
 - **404 Identifier tab** - In the 404 Identifier tab in the web console, you can view information about the 404 identifier assigned to each origin. To add or update 404 identifiers, contact Macrometa Support.
   ![Prerendering 404 Identifier Tab](/img/prerendering/404-identifier.png)
