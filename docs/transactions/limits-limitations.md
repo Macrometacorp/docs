@@ -38,10 +38,6 @@ Certain actions are prohibited within transactions to maintain system integrity 
 
 Transactions are not optimized for long-running or voluminous tasks. They require all transactional information, such as record pointers and rollback data, to fit within the main memory. Additionally, transactions cannot be nested, and all collections that will be modified must be declared at the start of the transaction.
 
-## Atomicity in Multi-Collection Transactions
-
-Macrometa's approach to transaction atomicity is tailored for speed and efficiency but can be affected by server outages. In multi-collection transactions, atomicity across servers cannot be guaranteed if a server outage occurs during the commit phase.
-
 ## Error Codes and Transactional Integrity
 
 Transactions that violate Macrometa's operational rules, such as attempting nested transactions or unauthorized operations within a transaction, trigger specific error codes. These codes help in identifying and rectifying issues promptly.
