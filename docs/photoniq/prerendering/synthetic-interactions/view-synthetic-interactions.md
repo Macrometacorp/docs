@@ -44,13 +44,13 @@ Dynamic Prerendering provides the following information about synthetic interact
 #### Global
 
 - **Status** - Whether the interaction is active.
-- **Steps** - How many steps to finalize scrolling.
-- **Delay** - Delay between each scroll step.
+- **Steps** - Number of scrolls down to be performed.
+- **Delay** - Waiting time (in milliseconds) between scrolls.
 
 #### Specifics
 
 - **Status** - Whether the interaction is active.
-- **URL Paths** - Origin paths where the specific interaction is executed or not.
+- **URL Paths** - Origin paths where the specific interaction is evaluated to be executed.
 
 ### Click
 
@@ -67,7 +67,7 @@ Dynamic Prerendering provides the following information about synthetic interact
 
 - **Status** - Whether the interaction is active.
 - **Sequence** - Interaction execution order.
-- **URL Paths** - Origin paths where the specific interaction is executed or not.
+- **URL Paths** - Origin paths where the specific interaction is evaluated to be executed.
 - **Wait After** - Waiting time (in seconds) after the interaction is executed.
 
 ### Hover
@@ -85,6 +85,6 @@ Dynamic Prerendering provides the following information about synthetic interact
 
 - **Status** - Whether the interaction is active.
 - **Sequence** - Interaction execution order.
-- **URL Paths** - Origin paths where the specific interaction is executed or not.
+- **URL Paths** - Origin paths where the specific interaction is evaluated to be executed.
 - **HTML Selector** - HTML selector where the interaction is executed.
 - **Wait After** - Waiting time (in seconds) after the interaction is executed.
