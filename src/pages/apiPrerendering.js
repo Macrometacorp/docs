@@ -48,6 +48,7 @@ export default function APIPrerenderingServicePage() {
                 router="hash"
                 basePath="/"
                 layout="sidebar"
+                hideSchemas={true}
                 hideMocking
                 hideInternal
               />
