@@ -114,7 +114,7 @@ The following minor changes were added in this release.
 
 | Change # | Description |
 | -------- | ----------- |
-| CEP-617   | The internal rebalancing of the stream workers among the nodes was changed. All instances of a given stream worker were run only on one node before, and now are subject of evenly distribution on all available node.            |
+| CEP-617   | Internal rebalancing of the stream workers among the nodes was changed. All instances of a given stream worker were run only on one node before, and now are subject of evenly distribution on all available node.            |
 | GUI-1819  | The link to the Functions page no longer appears in the side menu unless the user has created an EdgeWorker.            |
 
 ### API Updates
@@ -138,14 +138,14 @@ The following defects were fixed in this release.
 | CEP-614  | Republishing stream workers is not working.  |
 | CEP-615  | Sometimes after unpublishing a stream worker, it gets re-published automatically.  |
 | CEP-620  | The sample stream worker HTTP-IO will not validate.  |
-| DB-1643  | User can create an API key with a numeric value as the key ID.  |
-| GUI-1331  | CSV option is not available for import and export button for Document or Graph Edge collections.  |
-| GUI-1886  | "Forbidden error" notification when non-root user changes their Display Name.  |
 | DB-1484  | Objects are not created with field name as: _key,_id, and _rev.  |
+| DB-1643  | User can create an API key with a numeric value as the key ID.  |
 | DB-2410  | Create API key should give error when 256 characters are given for a value as an API key ID.  |
+| GUI-1331  | CSV option is not available for import and export button for Document or Graph Edge collections.  |
 | GUI-1799  | Complete name and email of logged in tenant not shown  |
 | GUI-1804  | The Generate EdgeWorker window closes if you double-click any text field.  |
 | GUI-1823  | Fixed dashboard typo in CPU Usage Global Metrics; graph showed value in seconds instead of ms.  |
+| GUI-1886  | "Forbidden error" notification when non-root user changes their Display Name.  |
 | STRM-122  | Streams can be created with invalid stream names, such as "123" or "_#".  |
 | STRM-254  | Deleting a global stream returns a 500 internal server error.  |
 | STRM-371  | Users can successfully call APIs for disabled features.  |
