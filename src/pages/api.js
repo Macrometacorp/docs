@@ -49,6 +49,7 @@ export default function APIPage() {
                 router="hash"
                 basePath="/"
                 layout="sidebar"
+                hideSchemas={true}
                 hideMocking
                 hideInternal
               />

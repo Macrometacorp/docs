@@ -48,6 +48,7 @@ export default function APIFpsServicePage() {
                 router="hash"
                 basePath="/"
                 layout="sidebar"
+                hideSchemas={true}
                 hideMocking
                 hideInternal
               />
