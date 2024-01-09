@@ -140,7 +140,7 @@ export async function onClientRequest(request: EW.IngressClientRequest) {
 }
 ```
 
-### EdgeWorker Example
+## EdgeWorker Example
 
 An example of `main.js` in an EdgeWorker bundle:
 
