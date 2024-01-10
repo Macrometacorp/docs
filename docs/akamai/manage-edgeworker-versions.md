@@ -3,7 +3,7 @@ sidebar_position: 70
 title: Manage EdgeWorker Versions
 ---
 
-You can view and change EdgeWorker versions in the Macrometa web console. To create a new version, refer to [Edit EdgeWorker](edit-edgeworker.md).
+You can view and change EdgeWorker versions in the Macrometa web console. To create a new version, refer to [Edit EdgeWorker](edit-edgeworkers.md).
 
 :::note
 This feature is currently in preview.
