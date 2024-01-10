@@ -35,7 +35,7 @@ The following configuration options must be set:
 - **vwrsMetricHost**: The host for the VWRs metric service.
 - **vwrsHost:**The host for the VWRs service.
 - **digestKey**: The digest key is used to verify the integrity of the data stored in the cookie. Please use a 128-bit or 256-bit key. For example, you can generate a key using the command `openssl rand -hex 16`.
-- **encryptionKey**:  This key is used to encrypt the waiting room data stored in the cookie. The key must be either 128 or 256 bits long. For example, you can generate a key using the command "openssl rand -hex 16".
+- **encryptionKey**:  This key is used to encrypt the waiting room data stored in the cookie. The key must be either 128 or 256 bits long. For example, you can generate a key using the command `openssl rand -hex 16`.
 
 The following configuration options are optional:
 

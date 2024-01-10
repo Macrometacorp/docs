@@ -5,6 +5,12 @@ title: Digital Fingerprinting
 
 The PhotonIQ digital fingerprinting solution aims to generate a robust and reliable Visitor Identifier (VisitorID) for website users, maintaining stability across operating system upgrades, browser updates, and multi-browser usage. This process uses a client-side agent within the user's browser and server-side code to recognize and distinguish between different devices and users.
 
+### How It Works
+
+Digital Fingerprinting uses advanced fingerprinting techniques to create a unique signature of a user's device. This allows recognizing users (visitors) across sessions and devices without relying only on cookies.
+
+For a more detailed explanation, refer to [How Digital Fingerprinting Works](how-fingerprinting-works.md).
+
 ## Benefits of Digital Fingerprinting
 
 In the dynamic world of e-commerce, leveraging advanced strategies and technologies is crucial for staying competitive and maximizing business success. The following areas represent pivotal aspects where innovative approaches can significantly enhance online retail operations. From personalized marketing to sophisticated fraud detection, these strategies focus on optimizing customer experience, ensuring security, and boosting overall business efficiency. Each element is vital in attracting and retaining customers, driving revenue growth, and maintaining a solid market presence.
