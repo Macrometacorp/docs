@@ -25,5 +25,6 @@ Macrometa displays a list of custom functions. Edge workers can be sorted by the
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Compute > Functions**.
 3. Click the EdgeWorker for which you want to view details.
+4. (Optional) To view the versions of the EdgeWorker, click **Versions**.
 
 ![Function Details](/img/functions/view-function-details.png)
