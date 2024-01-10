@@ -25,7 +25,7 @@ Key capabilities of Dynamic Prerendering include:
 
 - **Customizable Headers**: Gain control over prerendering behavior with customizable passthrough, allowlist, and cache-control headers. Specify which pages should be prerendered based on unique attributes. For example, target only English-language pages for prerendering, allowing you to focus on a specific user base. For more information, refer to [Headers in Dynamic Prerendering](prerendering-headers/index.md).
 
-- **Synthetic Interactions**: Address content visibility issues arising from user interactions like scroll, click, or hover. Synthetic interactions can trigger this hidden content, ensuring it is included in the prerendered page. This ensures that all essential content is accessible to search engine bots, even if it normally requires user interaction to appear. For more information, refer to [Synthetic Interactions in Dynamic Prerendering](synthetic-interactions).
+- **Synthetic Interactions**: Address content visibility issues arising from user interactions like scroll, click, or hover. Synthetic interactions can trigger this hidden content, ensuring it is included in the prerendered page. This ensures that all essential content is accessible to search engine bots, even if it normally requires user interaction to appear. For more information, refer to [Synthetic Interactions in Dynamic Prerendering](./synthetic-interactions/index.md).
 
 - **Public Access Not Required**: Extend prerendering capabilities to non-publicly accessible sites. Whether you're working on a staging environment or a restricted development site, Macrometa engineers can assist in setting up prerendering without requiring public access.
 
@@ -39,7 +39,7 @@ Key capabilities of Dynamic Prerendering include:
 
 - **Fault Tolerance and Resiliency**: Built to address server or network disruptions. In the event of network issues, the service opts to serve older, reliable data over rejecting the request.
 - **Rate Limiting**: Implement limits on client request frequency to deter misuse and ensure everyone gets a fair share of the resources.
-- **Authorization**: Access and configuration of the prerender service require proper user authorization.
+- **Authorization**: Access and configuration of the prerendering service require proper user authorization.
 
 ### Monitoring and Management
 
