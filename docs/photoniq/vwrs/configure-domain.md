@@ -37,7 +37,7 @@ The following required fields define a domain (waiting room):
 
 The following optional fields define the behavior of the waiting room:
 
-- **queue_type:**: Defines how requests should be removed from the waiting room. The three possible queue types are `fifo`, `random`, and `lottery`. If this is not set, then the default queue is `fifo`.
+- **queue_type**: Defines how requests should be removed from the waiting room. The three possible queue types are `fifo`, `random`, and `lottery`. If this is not set, then the default queue is `fifo`.
 - **queue_enablement**: You can configure the waiting room to be enabled dynamically. When set to `auto`, the waiting room is enabled after reaching the defined `rate_limit` for a specific `metric_interval`. If set to `manual`, then the waiting room is always enabled.
 - **origin_key**: Every domain is associated with an origin that was created with the Create Origin REST API, POST `/api/vwr/v1/origins/{origin_id}`.
 - **metric_interval**: The time (in seconds) to enable and disable the waiting room. It represents how long the traffic must be at or above the rate limit before being directed to the waiting room.
