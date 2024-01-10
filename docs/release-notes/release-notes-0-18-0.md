@@ -110,7 +110,7 @@ Stream workers now support Key-Value, Redis, and Dynamo collections.
 
 ### Akamai EdgeWorkers - Upload and Download Code Bundles
 
-You can now upload or download .tar files containing the code for a particular EdgeWorker. This is useful if you want to change the outputs or make other changes to the JavaScript files.
+You can now upload or download .tar files containing the code for a particular EdgeWorker. This is useful if you want to change the outputs or make other changes to the JavaScript files. You can also test a particular EdgeWorker within the Macrometa web console.
 
 The following topics were added as a result of this change:
 
