@@ -72,7 +72,14 @@ Edge Side Tagging provides the following settings. Field names in the web consol
 
 ### Cookies Settings
 
+Define how EST handles cookies.
+
+- **Same Site** - Options are:
+  - **none** - 
+  - **lax** - 
+  - **strict** - 
+- **Secure** - 
 
 ### Origin Settings
 
-In the **Origin** field, enter the origin 
+In the **Origin** field, enter the origin that the EST service should connect to.
