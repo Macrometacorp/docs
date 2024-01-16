@@ -8,11 +8,11 @@ import TabItem from '@theme/TabItem';
 
 You have several options for viewing and managing Edge Side Tagging settings.
 
-- **Advanced Settings tab** - You can view settings for an origin in Advanced Settings tab in the web console.
-- **REST API** - Macrometa provides several API calls that allow you to view and manage origin settings.
+- **Settings tab** - You can view and manage EST settings in the Settings tab in the web console.
+- **REST API** - Macrometa provides several API calls that allow you to view and manage EST settings.
 
 :::note
-Each setting is explained in detail in the Edge Side Tagging web console. We strongly recommend that you review the setting and consult with Macrometa Support before making any changes.
+We strongly recommend that you review the setting and consult with Macrometa Support before making any changes.
 :::
 
 ## View Settings
@@ -23,29 +23,56 @@ Each setting is explained in detail in the Edge Side Tagging web console. We str
 Follow these instructions to view EST activity in the web console.
 
 1. Log in to your Edge Side Tagging dashboard.
-2. Click **Advanced Setting**.
-3. Select the origin for which you want to view settings.
-4. Scroll down to the setting that you want to view
+2. Click **Setting**.
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to:
-
-- [Get EST settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--settings/get).
-- [Get all origin settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins/get)
-- [Get settings for an origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/get)
+Use our interactive API Reference with code generation in 18 programming languages to: [get EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/get).
 
 </TabItem>
 </Tabs>
 
+## Create Settings
+
+REVIEWERS - What does creating settings do? Is this creating a new EST origin? Why can't we do it in the UI?
+
+Use our interactive API Reference with code generation in 18 programming languages to: [create EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/post).
+
 ## Update Settings
 
-Use our interactive API Reference with code generation in 18 programming languages to:
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
 
-- [Update EST settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--settings/patch).
-- [Update origin settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/patch)
+Follow these instructions to view EST activity in the web console.
+
+1. Log in to your Edge Side Tagging dashboard.
+2. Click **Setting**.
+3. Make changes to the setting you want to update and then click **Update**. If you make a mistake and want to undo it before you click **Update**, then click **Revert**.
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to: [get EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/patch).
+
+</TabItem>
+</Tabs>
+
+## Delete Settings
+
+REVIEWERS - What does deleting settings do? Is this deleting an EST origin? Why can't we do it in the UI?
+
+Use our interactive API Reference with code generation in 18 programming languages to: [delete EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/delete).
 
 ## Edge Side Tagging Settings
 
-Edge Side Tagging provides the following settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation.
+Edge Side Tagging provides the following settings. Field names in the web console are different than those in the API responses.
+
+![EST Settings](/img/photoniq/est/est-settings.png)
+
+### Cookies Settings
+
+
+### Origin Settings
+
+In the **Origin** field, enter the origin 
