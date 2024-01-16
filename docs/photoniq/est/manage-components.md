@@ -40,10 +40,10 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ### Fields
 
-- Name
-- Type
-- Activity Last 24 Hours
-- Status
+- **Name** - Name the component was given when created.
+- **Type** - Type of component, such as Bing or Reddit.
+- **Activity Last 24 Hours** - Displays activity from the last 24 hours.
+- **Status** - Indicates whether the component is active or not. If it is on, then the component is enabled.
 
 ## Enable or Disable Components
 
