@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Edge Side Tagging
+title: Edge Side Tagging (EST)
 ---
 
 PhotonIQ Edge Side Tagging (EST) is an innovative solution that moves resource-intensive third-party scripts (used for advertising, analytics, tracking, and so on) from the end-user’s browser to the edge, dramatically enhancing both web performance and data privacy.
