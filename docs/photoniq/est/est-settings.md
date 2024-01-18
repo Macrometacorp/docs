@@ -56,12 +56,6 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-## Delete Settings
-
-REVIEWERS - What does deleting settings do? Is this deleting an EST origin? Why can't we do it in the UI?
-
-Use our interactive API Reference with code generation in 18 programming languages to: [delete EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/delete).
-
 ## Edge Side Tagging Settings
 
 Edge Side Tagging provides the following settings. Field names in the web console are different than those in the API responses.
