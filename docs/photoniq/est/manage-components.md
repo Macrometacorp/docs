@@ -84,8 +84,7 @@ Follow these instructions to add a new component in the web console.
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-REVIEWERS - Do users need to get the component metadata before they add a new component so they know what to enter?
-
+- [Get component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings-component/get)
 - [Add a new component](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings/get)
 
 </TabItem>
@@ -108,7 +107,7 @@ Follow these instructions to edit component settings in the web console.
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- [View component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings-component/get)
+- [Get component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings-component/get)
 - [Edit component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings/patch)
 
 </TabItem>
