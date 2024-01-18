@@ -59,9 +59,7 @@ Follow these instructions to enable or disable components in the web console.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to:
-
-REVIEWERS - I have no idea which API call I would use for this task based on the API Reference. There is no information.
+Use our interactive API Reference with code generation in 18 programming languages to [Update EST settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings-component/patch).
 
 </TabItem>
 </Tabs>
@@ -110,8 +108,7 @@ Follow these instructions to edit component settings in the web console.
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-REVIEWERS - Do users need to get the component settings before they add a new component so they know what to enter?
-
+- [View component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings-component/get)
 - [Edit component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings/patch)
 
 </TabItem>
@@ -134,11 +131,7 @@ Follow these instructions to delete a component in the web console.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to:
-
-REVIEWERS - Do users need to get the component settings so they know what name to enter for deletion?
-
-- [Delete component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings/delete)
+Use our interactive API Reference with code generation in 18 programming languages to [Delete component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings/delete).
 
 </TabItem>
 </Tabs>
