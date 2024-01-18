@@ -23,23 +23,17 @@ We strongly recommend that you review the setting and consult with Macrometa Sup
 Follow these instructions to view EST activity in the web console.
 
 1. Log in to your Edge Side Tagging dashboard.
-2. Click **Setting**.
+2. Click **Settings**.
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to: [get EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/get).
+Use our interactive API Reference with code generation in 18 programming languages to [get EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/get).
 
 </TabItem>
 </Tabs>
 
-## Create Settings
-
-REVIEWERS - What does creating settings do? Is this creating a new EST origin? Why can't we do it in the UI?
-
-Use our interactive API Reference with code generation in 18 programming languages to: [create EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/post).
-
-## Update Settings
+## Create and Update Settings
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -47,13 +41,17 @@ Use our interactive API Reference with code generation in 18 programming languag
 Follow these instructions to view EST activity in the web console.
 
 1. Log in to your Edge Side Tagging dashboard.
-2. Click **Setting**.
+2. Click **Settings**.
 3. Make changes to the setting you want to update and then click **Update**. If you make a mistake and want to undo it before you click **Update**, then click **Revert**.
+4. (Optional) You can add multiple, comma-separated origins in the **Origin** field.
 
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to: [update EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/patch).
+Use our interactive API Reference with code generation in 18 programming languages to:
+
+- [Create EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/post) - Do this for each origin.
+- [Update EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/patch)
 
 </TabItem>
 </Tabs>
