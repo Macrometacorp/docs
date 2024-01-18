@@ -66,12 +66,9 @@ Edge Side Tagging provides the following settings. Field names in the web consol
 
 Define how EST handles cookies.
 
-- **Same Site** - Options are:
-  - **none** - 
-  - **lax** - 
-  - **strict** - 
-- **Secure** - 
+- **Same Site** - Instructs the browser on when to send the cookie in cross-site requests. EST supports `strict` and `none`.
+- **Secure** - Attribute in cookie settings is a security feature that instructs web browsers to only send the cookie through secure channels.
 
 ### Origin Settings
 
-In the **Origin** field, enter the origin that the EST service should connect to.
+In the **Origin** field, enter the origin that will connect to the EST service.
