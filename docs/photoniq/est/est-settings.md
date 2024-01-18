@@ -1,6 +1,6 @@
 ---
 sidebar_position: 60
-title: EST Settings
+title: Manage EST Settings
 ---
 
 import Tabs from '@theme/Tabs';
