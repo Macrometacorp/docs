@@ -53,7 +53,7 @@ Follow these instructions to view EST activity in the web console.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to: [get EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/patch).
+Use our interactive API Reference with code generation in 18 programming languages to: [update EST settings](http://localhost:3000/docs/apiEst#/paths/api-est-v1-settings/patch).
 
 </TabItem>
 </Tabs>
