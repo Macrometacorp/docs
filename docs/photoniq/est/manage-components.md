@@ -59,7 +59,7 @@ Follow these instructions to enable or disable components in the web console.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Update EST settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings-component/patch).
+Use our interactive API Reference with code generation in 18 programming languages to [update EST settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings-component/patch).
 
 </TabItem>
 </Tabs>
@@ -131,7 +131,7 @@ Follow these instructions to delete a component in the web console.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Delete component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings/delete).
+Use our interactive API Reference with code generation in 18 programming languages to [delete component settings](https://www.macrometa.com/docs/apiEst#/paths/api-est-v1-components-settings/delete).
 
 </TabItem>
 </Tabs>
