@@ -34,7 +34,7 @@ VWRs serves as a dynamic buffer for your origin server, adeptly handling elevate
 
 By implementing these measures, VWRs not only safeguards the technical infrastructure but also elevates the user experience, making them a vital component in managing web applications effectively.
 
-## Key Features
+## Features
 
 Key capabilities of VWRs include:
 
