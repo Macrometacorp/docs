@@ -9,6 +9,15 @@ PhotonIQ Edge Side Tagging (EST) is an innovative solution that moves resource-i
 
 Improved performance doesn't just enhance the user experience; it directly impacts the bottom line. The ripple effects of enhanced site performance, from reduced bounce rates to increased session duration, result in higher conversion rates and greater revenue. Especially for large e-commerce enterprises, even fractional improvements can yield substantial revenue gains.
 
+EST enables website operators to control what information goes to third-party vendors, ensuring data stays in certain regions to maintain compliance with GDPR and other legislation.
+
+EST offers:
+
+- Improved site performance by offloading compute from client-side to server-side.
+- Enhanced data security and privacy by removing third-party tags and preprocessing server side and anonymizing information sent to third parties.
+- Advanced customization and control of where data is sent
+- Increased data accuracy as it reduces data loss caused by ad blockers.
+
 ## Features
 
 Key capabilities of EST include:
