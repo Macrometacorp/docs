@@ -6,13 +6,13 @@ title: Prerendering Settings
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for viewing and managing Dynamic Prerendering settings.
+You have several options for viewing and managing Prerendering settings.
 
 - **Advanced Settings tab** - You can view settings for an origin in Advanced Settings tab in the web console.
 - **REST API** - Macrometa provides several API calls that allow you to view and manage origin settings.
 
 :::note
-Each setting is explained in detail in the Dynamic Prerendering web console. We strongly recommend that you review the setting and consult with Macrometa Support before making any changes.
+Each setting is explained in detail in the Prerendering web console. We strongly recommend that you review the setting and consult with Macrometa Support before making any changes.
 :::
 
 ## View Settings
@@ -22,7 +22,7 @@ Each setting is explained in detail in the Dynamic Prerendering web console. We 
 
 Follow these instructions to view prerendering activity in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **Advanced Setting**.
 3. Select the origin for which you want to view settings.
 4. Scroll down to the setting that you want to view
@@ -46,9 +46,9 @@ Use our interactive API Reference with code generation in 18 programming languag
 - [Update prerender settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--settings/patch).
 - [Update origin settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/patch)
 
-## Dynamic Prerendering Settings
+## Prerendering Settings
 
-Dynamic Prerendering provides the following settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation.
+Prerendering provides the following settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation.
 
 ### Optimized Rendering for Different Crawling Bots
 

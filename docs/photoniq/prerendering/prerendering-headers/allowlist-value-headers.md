@@ -3,11 +3,11 @@ sidebar_position: 30
 title: Allowlist-Based Header Values
 ---
 
-Allowlist-based header values help confirm the legitimacy of requests coming from the Dynamic Prerendering service to your origin server, ensuring both security and integrity.
+Allowlist-based header values help confirm the legitimacy of requests coming from the Prerendering service to your origin server, ensuring both security and integrity.
 
 ### What Are Allowlist-Based Header Values?
 
-Allowlist-based header values are custom headers that act as a security mechanism during the prerendering process. They allow you to validate that incoming requests to your origin server are legitimate and are indeed coming from the Dynamic Prerendering service.
+Allowlist-based header values are custom headers that act as a security mechanism during the prerendering process. They allow you to validate that incoming requests to your origin server are legitimate and are indeed coming from the Prerendering service.
 
 ### Why Use Allowlist-Based Header Values?
 
@@ -17,4 +17,4 @@ Allowlist-based header values are custom headers that act as a security mechanis
 
 ### How Do Allowlist-Based Header Values Work?
 
-When a page is being prerendered—either on-demand or during prefetching—the Dynamic Prerendering service attaches an allowlist-based header value to the request sent to your origin server. Your server, configured to recognize this header, validates the request before proceeding with the rendering process.
+When a page is being prerendered—either on-demand or during prefetching—the Prerendering service attaches an allowlist-based header value to the request sent to your origin server. Your server, configured to recognize this header, validates the request before proceeding with the rendering process.

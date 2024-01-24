@@ -3,11 +3,11 @@ sidebar_position: 20
 title: Caching Control Headers
 ---
 
-Caching control headers offer a layer of control over the caching behavior in Dynamic Prerendering, particularly when different versions of a web page need to be served to bots. These headers determine how and when the rendered pages are stored in the cache, which impacts how bots interact with your site.
+Caching control headers offer a layer of control over the caching behavior in Prerendering, particularly when different versions of a web page need to be served to bots. These headers determine how and when the rendered pages are stored in the cache, which impacts how bots interact with your site.
 
 ### What Are Caching Control Headers?
 
-Caching control headers influence how the Dynamic Prerendering service caches rendered pages. These headers are used to manage page versions based on attributes like language, user-agent, or any other criteria that is significant for your web content.
+Caching control headers influence how the Prerendering service caches rendered pages. These headers are used to manage page versions based on attributes like language, user-agent, or any other criteria that is significant for your web content.
 
 ### Why Use Caching Control Headers?
 
@@ -17,4 +17,4 @@ Caching control headers influence how the Dynamic Prerendering service caches re
 
 ### How Do Caching Control Headers Work?
 
-Caching control headers come into play after a page is rendered by Dynamic Prerendering. These headers are used to create cache keys, which are unique identifiers that help store and retrieve the rendered page from the cache. When a bot sends a request that matches a particular cache key, the corresponding cached page is served, reducing latency and improving the bot's crawling efficiency.
+Caching control headers come into play after a page is rendered by Prerendering. These headers are used to create cache keys, which are unique identifiers that help store and retrieve the rendered page from the cache. When a bot sends a request that matches a particular cache key, the corresponding cached page is served, reducing latency and improving the bot's crawling efficiency.
