@@ -5,6 +5,16 @@ title: Configure a VWRs EdgeWorker
 
 In the EdgeWorker, import the `VirtualWaitingRoom` class from the photoniq-vwrs-client using Node Package Manager (NPM). This integrates the VWRs with the EdgeWorker. For more information about Akamai EdgeWorkers, refer to [Akamai EdgeWorker Documentation](https://techdocs.akamai.com/edgeworkers/docs).
 
+## EdgeWorker requirements
+These are the VWRs EdgeWorker requirements:
+
+1. The VWRs EdgeWorker makes upto two subrequests.  Therefore, an Akamai EdgeWorker resource tier is needed that allow at least two HTTP sub-requests on the onClientRequest event handler.
+Refer to the [Akamai Resource tie limitations](page https://techdocs.akamai.com/edgeworkers/docs/resource-tier-limitations) page for more information.
+
+2. The VWRs EdgeWorker uses Akamai's Property Manager user-defined variables. The maximum limit supported by Akamai EdgeWorkers is 1024 bytes.  VWRs uses about 600 bytes. Refer
+to Akamai's [Request Object API](https://techdocs.akamai.com/edgeworkers/docs/request-object#setvariable) for more information.
+
+
 ## Install the PhotonIQ VWRs Client
 
 Before you can set up an EdgeWorker, you must install `@macrometa/photoniq-vwrs-client`.
