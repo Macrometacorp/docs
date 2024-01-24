@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Get Started with Fingerprinting
 ---
 
-To incorporate the Digital Fingerprinting client into your website, add one of the following example scripts to your web page. In each example, replace the `DS_URL` placeholder with the data service URL that Macrometa provides you.
+To incorporate the Fingerprint client into your website, add one of the following example scripts to your web page. In each example, replace the `DS_URL` placeholder with the data service URL that Macrometa provides you.
 
 ## Fingerprint on Page Load
 
@@ -247,9 +247,9 @@ Here is an example of the JavaScript being loaded by Google’s Tag Manager. The
 </body>
 ```
 
-## Digital Fingerprinting Response Headers
+## Fingerprint Response Headers
 
-Digital Fingerprinting returns the following headers in the response:
+Fingerprint returns the following headers in the response:
 
 - `x-photoniq-dsid` - The device signature
 - `x-photoniq-vid` - The visitor ID

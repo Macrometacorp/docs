@@ -1,17 +1,17 @@
 ---
 sidebar_position: 1
-title: Digital Fingerprinting
+title: Fingerprint
 ---
 
-The PhotonIQ digital fingerprinting solution aims to generate a robust and reliable Visitor Identifier (VisitorID) for website users, maintaining stability across operating system upgrades, browser updates, and multi-browser usage. This process uses a client-side agent within the user's browser and server-side code to recognize and distinguish between different devices and users.
+The PhotonIQ Fingerprint solution aims to generate a robust and reliable Visitor Identifier (VisitorID) for website users, maintaining stability across operating system upgrades, browser updates, and multi-browser usage. This process uses a client-side agent within the user's browser and server-side code to recognize and distinguish between different devices and users.
 
 ### How It Works
 
-Digital Fingerprinting uses advanced fingerprinting techniques to create a unique signature of a user's device. This allows recognizing users (visitors) across sessions and devices without relying only on cookies.
+Fingerprint uses advanced fingerprinting techniques to create a unique signature of a user's device. This allows recognizing users (visitors) across sessions and devices without relying only on cookies.
 
-For a more detailed explanation, refer to [How Digital Fingerprinting Works](how-fingerprinting-works.md).
+For a more detailed explanation, refer to [How Fingerprint Works](how-fingerprinting-works.md).
 
-## Benefits of Digital Fingerprinting
+## Benefits of Fingerprint
 
 In the dynamic world of e-commerce, leveraging advanced strategies and technologies is crucial for staying competitive and maximizing business success. The following areas represent pivotal aspects where innovative approaches can significantly enhance online retail operations. From personalized marketing to sophisticated fraud detection, these strategies focus on optimizing customer experience, ensuring security, and boosting overall business efficiency. Each element is vital in attracting and retaining customers, driving revenue growth, and maintaining a solid market presence.
 
@@ -24,11 +24,11 @@ In the dynamic world of e-commerce, leveraging advanced strategies and technolog
 
 ## Features​
 
-Key capabilities of Digital Fingerprinting include:
+Key capabilities of Fingerprint include:
 
 ### Resilient Fingerprinting​
 
-Digital Fingerprinting generates fingerprints that persist even when visitors take actions to avoid tracking, including:
+Fingerprint generates fingerprints that persist even when visitors take actions to avoid tracking, including:
 
 - Using incognito/private browsing modes
 - Clearing cookies
@@ -36,15 +36,15 @@ Digital Fingerprinting generates fingerprints that persist even when visitors ta
 
 ### Browser-Side Agent
 
-A browser-side JavaScript library (an 'agent') is automatically loaded when visitors access the webpage. This library is responsible for collecting various pieces of information about the visitor's browser. Once gathered, this data is transmitted to the Digital Fingerprinting service. The information is processed, allowing visitors to be identified using proprietary algorithms and advanced machine-learning models. The data types collected include but are not limited to, user agents, screen resolutions, and CPU counts.
+A browser-side JavaScript library (an 'agent') is automatically loaded when visitors access the webpage. This library is responsible for collecting various pieces of information about the visitor's browser. Once gathered, this data is transmitted to the Fingerprint service. The information is processed, allowing visitors to be identified using proprietary algorithms and advanced machine-learning models. The data types collected include but are not limited to, user agents, screen resolutions, and CPU counts.
 
 These signals, along with server signals, bot detection, and spoof detection, are used to identify each visitor uniquely. A history is kept of when the visitors visited the website and their signals changed. But while the signals change, they are always identified as the same visitor.
 
 ### Server-Side Detection
 
-Among the techniques the Digital Fingerprinting server uses to identify visitors is determining if a visitor is accessing your website via a VPN. It compares the visitor's browser time zone with the source address's time zone and a list of well-known public VPN servers to identify if the visitor uses a VPN.
+Among the techniques the Fingerprint server uses to identify visitors is determining if a visitor is accessing your website via a VPN. It compares the visitor's browser time zone with the source address's time zone and a list of well-known public VPN servers to identify if the visitor uses a VPN.
 
-The server compares the visitor's IP address with their ISP's Autonomous System Numbers (ASN) and detects the visitor’s location has changed. With this location, Digital Fingerprinting offers geolocation services to determine the visitor's location, including city, state, and zip code.
+The server compares the visitor's IP address with their ISP's Autonomous System Numbers (ASN) and detects the visitor’s location has changed. With this location, Fingerprint offers geolocation services to determine the visitor's location, including city, state, and zip code.
 
 ### Spoof Detection
 
@@ -64,7 +64,7 @@ The process of identifying automated activity on a website is known as bot detec
 
 ## Support for All Major Browsers
 
-Digital Fingerprinting works consistently across modern browsers, including:
+Fingerprint works consistently across modern browsers, including:
 
 - Google Chrome (Version 57+)
 - Mozilla Firefox (Version 67+)
