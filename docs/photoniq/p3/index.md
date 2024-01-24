@@ -7,7 +7,7 @@ PhotonIQ Performance Proxy (P3) is an AI-driven platform specifically crafted fo
 
 As a fully-managed service, P3 greatly reduces the need for ongoing technical oversight, thereby conserving your time and resources. P3 addresses technical challenges such as improving mobile and desktop performance parity, reducing high bounce rates, and streamlining the continuous site optimization process.
 
-Enhancing core web vitals, P3 heightens user engagement and augments search engine visibility, which is pivotal in driving organic traffic and elevating revenue opportunities. With P3, technical teams can confidently future-proof their websites, achieving enduring performance enhancements with streamlined effort.
+Enhancing core web vitals, P3 improves user engagement and search engine visibility, which is pivotal in driving organic traffic and elevating revenue opportunities. With P3, technical teams can confidently future-proof their websites, achieving enduring performance enhancements with streamlined effort.
 
 ## Benefits
 
