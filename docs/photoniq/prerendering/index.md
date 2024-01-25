@@ -19,7 +19,6 @@ PhotonIQ Prerendering provides a comprehensive suite of features and advantages,
 
 - **Advanced Page Rendering with Synthetic Actions:** Mimics live user interactions for a fully-rendered page, including tabs, scrolls, and content below the fold. This ensures that all aspects of a web page are visible and indexable by search engines.
 - **Geo-Replicated Caching:** Once a page is rendered, it's stored and delivered globally or regionally via a CDN. This leads to faster page load times and a consistent user experience across different geographies.
-- **Real-Time SEO and Analytics:** Offers up-to-the-minute insights, allowing businesses to quickly adapt and optimize their web content for better search engine rankings and user engagement.
 - **Optimized Crawl Budget Utilization:** With a hydration time of P90 or 50 ms, PhotonIQ makes the most of your crawl budget, allowing search engines to index more pages and more relevant content.
 - **Framework Agnostic, No-Code Solution:** This fully managed service easily integrates with various frameworks, requiring no code changes, making it versatile and easy to implement.
 - **Increased Indexing of Pages:** Enhances your site's crawl budget, leading to more pages being indexed. This results in more relevant content being visible to search engines, closely aligning with what real users see.
