@@ -23,7 +23,6 @@ PhotonIQ Prerendering provides a comprehensive suite of features and advantages,
 - **Optimized Crawl Budget Utilization:** With a hydration time of P90 or 50 ms, PhotonIQ makes the most of your crawl budget, allowing search engines to index more pages and more relevant content.
 - **Framework Agnostic, No-Code Solution:** This fully managed service easily integrates with various frameworks, requiring no code changes, making it versatile and easy to implement.
 - **Increased Indexing of Pages:** Enhances your site's crawl budget, leading to more pages being indexed. This results in more relevant content being visible to search engines, closely aligning with what real users see.
-- **Real-Time SEO Analytics:** Provides continuous feedback on SEO performance, enabling rapid adjustments and improvements with every search engine crawl.
 - **Time Efficiency:** Improves SEO scores faster and simplifies the implementation process, saving valuable time.
 - **Fast Page Indexing:** Accelerates the process of getting web pages indexed by search engines.
 - **Turnkey Implementation:** Offers a straightforward and less complicated setup process, facilitating quicker adoption and integration.
