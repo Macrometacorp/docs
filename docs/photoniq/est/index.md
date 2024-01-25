@@ -15,7 +15,7 @@ EST offers:
 
 - Improved site performance by offloading compute from client-side to server-side.
 - Enhanced data security and privacy by removing third-party tags and preprocessing server side and anonymizing information sent to third parties.
-- Advanced customization and control of where data is sent
+- Advanced customization and control of what data is sent
 - Increased data accuracy as it reduces data loss caused by ad blockers.
 
 ## Features
