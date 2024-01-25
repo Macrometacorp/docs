@@ -5,7 +5,7 @@ title: View Prefetching
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for viewing Dynamic Prerendering prefetching that is in progress or already completed.
+You have several options for viewing Prerendering prefetching that is in progress or already completed.
 
 - **Prefetching tab** - In the Prefetching tab in the web console, you can view in-progress prefetching and prefetch history for an origin.
 - **REST API** - Macrometa provides a API calls that allow you to view prefetch information.
@@ -17,7 +17,7 @@ You have several options for viewing Dynamic Prerendering prefetching that is in
 
 Follow these instructions to view render history in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **Prefetching**.
 3. Select the origin that you want to view.
 4. If necessary, click **In Progress**.
@@ -37,7 +37,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## In Progress Fields
 
-Dynamic Prerendering provides the following prefetching fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Prerendering provides the following prefetching fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 ### Stats
 
@@ -61,7 +61,7 @@ Dynamic Prerendering provides the following prefetching fields. Field names in t
 
 Follow these instructions to view prefetch history in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **Prefetching**.
 3. Select the origin that you want to view.
 4. If necessary, click **History**.
@@ -81,7 +81,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## Prefetching History Fields
 
-Dynamic Prerendering provides the following prefetching history fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Prerendering provides the following prefetching history fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - Type - Whether prefetching was scheduled or done manually.
 - **Total** - Total number of URLs to be prefetched.

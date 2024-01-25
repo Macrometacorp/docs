@@ -3,13 +3,13 @@ sidebar_position: 10
 title: Get Started with Prerendering
 ---
 
-Dynamic Prerendering is a completely managed, white-glove service. Macrometa engineers will implement for you, making sure the service is optimized and working correctly according to the prerendering strategy that you choose.
+Prerendering is a completely managed, white-glove service. Macrometa engineers will implement for you, making sure the service is optimized and working correctly according to the prerendering strategy that you choose.
 
-However, some people like to be more hands-on with their management. After you work with Macrometa engineers to set up your Dynamic Prerendering instance, follow these steps to get started prerendering a new origin.
+However, some people like to be more hands-on with their management. After you work with Macrometa engineers to set up your Prerendering instance, follow these steps to get started prerendering a new origin.
 
 ## 1. Set Up Origin for Caching
 
-Before leveraging the caching capabilities of Dynamic Prerendering service, you must first define your origin, which is the site that you want it to prerender. This step is crucial as it allows the system to understand the source of the pages and how they should be cached for optimal performance.
+Before leveraging the caching capabilities of Prerendering service, you must first define your origin, which is the site that you want it to prerender. This step is crucial as it allows the system to understand the source of the pages and how they should be cached for optimal performance.
 
 - Make a request to the [Create origin](/docs/apiPrerendering#/paths/api-prerender-v1-origins/post) endpoint using the POST method.
 - Include the necessary headers and provide a body containing your origin details.
@@ -23,7 +23,7 @@ To retrieve content, use the [Get prerendered page](/docs/apiPrerendering#/paths
 
 ## 3. Monitor the Service
 
-Regularly check the health status of Dynamic Prerendering using the [Get service health](/docs/apiPrerendering#/paths/api-prerender-v1-health/get) endpoint to ensure smooth operation.
+Regularly check the health status of Prerendering using the [Get service health](/docs/apiPrerendering#/paths/api-prerender-v1-health/get) endpoint to ensure smooth operation.
 
 ## 4. Purge the Cache
 

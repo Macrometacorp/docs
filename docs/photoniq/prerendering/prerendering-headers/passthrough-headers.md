@@ -7,7 +7,7 @@ Passthrough headers facilitate greater flexibility and control during the preren
 
 ### What Are Passthrough Headers?
 
-Passthrough headers allow you to forward certain header values from the bot's request directly to the Dynamic Prerendering service. Unlike default browser settings, which usually take precedence in the absence of these headers, passthrough headers enable a more tailored rendering experience.
+Passthrough headers allow you to forward certain header values from the bot's request directly to the Prerendering service. Unlike default browser settings, which usually take precedence in the absence of these headers, passthrough headers enable a more tailored rendering experience.
 
 ### Why Use Passthrough Headers?
 
@@ -17,4 +17,4 @@ Passthrough headers allow you to forward certain header values from the bot's re
 
 ### How Do Passthrough Headers Work?
 
-When a bot sends a request to access a web page, it includes specific headers based on its settings or requirements. The Dynamic Prerendering service reads these incoming headers and selectively passes them through during the rendering process. This ensures that any special instructions or requirements from the bot are taken into account, leading to a more accurate and customized rendering.
+When a bot sends a request to access a web page, it includes specific headers based on its settings or requirements. The Prerendering service reads these incoming headers and selectively passes them through during the rendering process. This ensures that any special instructions or requirements from the bot are taken into account, leading to a more accurate and customized rendering.

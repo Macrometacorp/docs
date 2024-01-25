@@ -3,11 +3,11 @@ sidebar_position: 80
 title: Validate Prerendering
 ---
 
-In order to confirm Dynamic Prerendering is running, you can check the the health endpoint or view a prerendered page as if you were a bot and see what the bot sees. Understanding what a web crawler sees when it visits your site can help you fine-tune your prerendering settings.
+In order to confirm Prerendering is running, you can check the the health endpoint or view a prerendered page as if you were a bot and see what the bot sees. Understanding what a web crawler sees when it visits your site can help you fine-tune your prerendering settings.
 
-## Check Dynamic Prerendering Health
+## Check Prerendering Health
 
-To see if Dynamic Prerendering is currently running, you can use the [Get service health](/docs/apiPrerendering#/paths/api-prerender-v1-health/get) API endpoint.
+To see if Prerendering is currently running, you can use the [Get service health](/docs/apiPrerendering#/paths/api-prerender-v1-health/get) API endpoint.
 
 ## View Prerendered Pages
 

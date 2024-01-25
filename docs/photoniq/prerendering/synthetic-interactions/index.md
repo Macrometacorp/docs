@@ -3,11 +3,11 @@ sidebar_position: 20
 title: Synthetic Interactions
 ---
 
-# Synthetic Interactions in Dynamic Prerendering
+# Synthetic Interactions in Prerendering
 
-Synthetic interactions are automated actions that Dynamic Prerendering performs on your web page to simulate real user behavior. These actions can include scrolling, hovering over elements, and clicking buttons or tabs. The purpose of synthetic interactions is to fully render dynamic content on the page so that it's accessible to search engine bots or other web crawlers.
+Synthetic interactions are automated actions that Prerendering performs on your web page to simulate real user behavior. These actions can include scrolling, hovering over elements, and clicking buttons or tabs. The purpose of synthetic interactions is to fully render dynamic content on the page so that it's accessible to search engine bots or other web crawlers.
 
-With synthetic interactions, Dynamic Prerendering enables you to maximize the visibility of your dynamically generated content, ensuring a more effective indexing by web crawlers.
+With synthetic interactions, Prerendering enables you to maximize the visibility of your dynamically generated content, ensuring a more effective indexing by web crawlers.
 
 :::note
 Although synthetic interactions might make your UI appear odd during the rendering process, it doesn't impact how bots interpret the page.
@@ -19,9 +19,9 @@ Web crawlers, such as search engine bots, only see the content that is rendered 
 
 ## Supported Interactions
 
-Dynamic Prerendering supports a variety of synthetic interactions:
+Prerendering supports a variety of synthetic interactions:
 
-- **Scrolling**: Some web content, particularly footers, might not load until the user scrolls down to it. Dynamic Prerendering automatically scrolls to ensure all such content is rendered.
+- **Scrolling**: Some web content, particularly footers, might not load until the user scrolls down to it. Prerendering automatically scrolls to ensure all such content is rendered.
   
 - **Hovering**: Especially useful for menu bars, hovering can reveal additional pages or content that the bot should find and index.
   

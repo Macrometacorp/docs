@@ -5,7 +5,7 @@ title: View Origin Settings
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for viewing Dynamic Prerendering origin settings.
+You have several options for viewing Prerendering origin settings.
 
 - **Origin Settings tab** - In the Origin Settings tab in the web console, you can view information about each origin. To add a new origin URL, contact Macrometa Support.
   ![Prerendering Origin Settings Tab](/img/prerendering/origin-settings.png)
@@ -18,7 +18,7 @@ You have several options for viewing Dynamic Prerendering origin settings.
 
 Follow these instructions to view origin settings in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **Origin Settings**.
 
 </TabItem>
@@ -34,7 +34,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## Origin Settings
 
-Dynamic Prerendering provides the following origin settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation.
+Prerendering provides the following origin settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation.
 
 - **Origin URL** - URL of the origin.
 - **Sitemap** - Sitemap, if one is associated with the origin.
