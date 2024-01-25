@@ -1,9 +1,9 @@
 ---
 sidebar_position: 90
-title: Dynamic Prerendering Best Practices
+title: Prerendering Best Practices
 ---
 
-Prerendering is an optimization technique that generates static HTML pages from dynamic content to improve website performance. The following best practices help you get the most out of Dynamic Prerendering.
+Prerendering is an optimization technique that generates static HTML pages from dynamic content to improve website performance. The following best practices help you get the most out of Prerendering.
 
 ## Selective Prerendering
 

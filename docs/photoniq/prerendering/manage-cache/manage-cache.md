@@ -5,7 +5,7 @@ title: Manage Cache
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for managing the Dynamic Prerendering cache.
+You have several options for managing the Prerendering cache.
 
 - **Cache Manager tab** - In the Cache Manager tab in the web console, you can view all cached documents for an origin. You can also clear the cache or preview a cached page.
   ![Prerendering Cache Manager Tab](/img/prerendering/cache-manager.png)
@@ -13,7 +13,7 @@ You have several options for managing the Dynamic Prerendering cache.
 
 ## Cache Manager Fields
 
-Dynamic Prerendering provides the cache manager fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Prerendering provides the cache manager fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - **URL** - URL of the content that has been cached.
 - **HTTP Status** - Response HTTP status code.
@@ -28,7 +28,7 @@ Dynamic Prerendering provides the cache manager fields. Field names in the web c
 
 Follow these instructions to view cached documents in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **Cache Manager**.
 3. Select the origin for which you want to view cached documents.
 
@@ -47,7 +47,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Follow these instructions to clear cached documents in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **Cache Manager**.
 3. Select the origin for which you want to purge cached documents.
 4. Select the checkbox next to the URLs for which you want to clear the cache.
@@ -68,7 +68,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Follow these instructions to view cached documents in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **Cache Manager**.
 3. Select the origin for which you want to preview cached documents.
 4. Locate the URL that you want to view.

@@ -5,7 +5,7 @@ title: View Prerendering Activity
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for viewing Dynamic Prerendering activity, either aggregated or per origin.
+You have several options for viewing Prerendering activity, either aggregated or per origin.
 
 - **Activity tab** - You can view activity metrics for all origins or for one origin on the Activity tab in the web console. You can view metrics for the last day, the last week, or the last month.
   ![Prerendering Activity Tab](/img/prerendering/activity-tab.png)
@@ -18,7 +18,7 @@ You have several options for viewing Dynamic Prerendering activity, either aggre
 
 Follow these instructions to view prerendering activity in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **Activity**.
 3. (Optional) Select a specific origin. Default is **All origins**.
 4. (Optional) Select a time frame. Default is **Last Day**.
@@ -38,7 +38,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## Activity Metrics
 
-Dynamic Prerendering provides the following metrics. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Prerendering provides the following metrics. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - **Renders** - Total number of renders performed.
 - **Requests per Second** - Number of renders performed per second.

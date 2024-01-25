@@ -3,7 +3,7 @@ sidebar_position: 40
 title: Manage Origins
 ---
 
-Use the Dynamic Prerendering REST API to manage your origins, or contact Macrometa Support for assistance.
+Use the Prerendering REST API to manage your origins, or contact Macrometa Support for assistance.
 
 ## Create an Origin
 
