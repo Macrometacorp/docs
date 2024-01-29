@@ -11,7 +11,7 @@ If a waiting room has not been configured, then the waiting room library returns
 
 ## Troubleshoot Waiting Room HTML
 
-You have the option to set the URL for the waiting room HTML template either via the library or the domain record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: `https://<hostname>/waiting-room-path>/status/preview`. For example, `http://show.store.com/checkout/preview`.  
+You have the option to set the URL for the waiting room HTML template either via the library or the domain record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: `https://<hostname>/waiting-room-path>/preview`. For example, `http://show.store.com/checkout/preview`.  
 
 ## Troubleshoot Waiting Room Cookie
 
