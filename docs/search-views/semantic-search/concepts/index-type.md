@@ -65,11 +65,9 @@ This straightforward approach makes the FLAT index type a reliable option for ap
 - Scenarios where the utmost accuracy in search results is required.
 - Use cases where the dataset size or dimensionality does not warrant the overhead of more complex indexing methods.
 
-## Which to Use
+## Index Comparison
 
-The selection between these index types depends on your specific use case. For example, if your primary concern is the speed of the query and you have a lot of data, then HNSW or IVF may be more suitable. If you need the highest possible accuracy and the database is not too large, FLAT could be the way to go.
-
-The table below compares the index types to help you decide which to use.
+The table below compares the index types.
 
 | Parameter         | IVF (Faiss)     | HNSW          | FLAT             |
 |-------------------|-----------------|---------------|------------------|
@@ -79,3 +77,19 @@ The table below compares the index types to help you decide which to use.
 | Memory Consumption| Can be higher because of the need to store centroids for each partition | Lower, as it relies on the hierarchical structure of graphs | Varies, generally higher due to the need to store all vectors |
 | Scalability       | Scales well for very large datasets                                | Works best for medium to large datasets    | Ideal for small to medium-sized datasets   |
 | Flexibility       | Supports GPU acceleration, can be integrated with other vector quantization techniques | CPU-based, doesn't support GPU out-of-the-box | Simple and flexible, no additional hardware requirements |
+
+## When to Use Each Index
+
+The selection between these index types depends on your specific use case. For example, if your primary concern is the speed of the query and you have a lot of data, then HNSW or IVF may be more suitable. If you need the highest possible accuracy and the database is not too large, FLAT could be the way to go.
+
+Here are some possible use cases and recommendations:
+
+| Use Case     | Requirement     | Recommended Index | Reasoning      |
+|--------------|-----------------|-------------------|----------------|
+| Large-scale image database                         | Speed & Scalability                | IVF               | Designed to handle billions of vectors and offers GPU acceleration for quick searches.           |
+| E-commerce product recommendation system           | Precision with reasonable speed    | HNSW              | Strikes a balance between precision and speed, essential for user satisfaction.                  |
+| Prototyping and development in controlled environments | Simplicity and exact results     | FLAT              | Easy to implement and provides exact results, suitable for testing and development phases.       |
+| Textual document search in a research database     | High precision & contextual understanding | HNSW          | Suitable for high-dimensional spaces like large text documents and understands nuances.         |
+| Real-time video content recommendation             | Speed with reasonable accuracy     | IVF               | With GPU acceleration, it can handle real-time data streams while ensuring relevant recommendations. |
+| Mobile app with limited hardware resources         | Memory efficiency                  | HNSW              | Operates efficiently in memory-constrained environments, making it apt for mobile devices.       |
+| Small-scale specialized database                   | Maximum accuracy                   | FLAT              | Guarantees finding the exact nearest neighbors, ideal for datasets where precision is paramount. |
