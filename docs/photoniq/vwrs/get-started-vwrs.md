@@ -9,7 +9,7 @@ This page explains how to get started with Macrometa PhotonIQ Virtual Waiting Ro
 
 - Work with Macrometa personnel to get credentials and access.
 - Plan your waiting room. Figure out which [queue type](queue-types.md) you want, which URL(s) to apply the waiting room to, and whether you want to use priorities.
-- Collect info you will need
+- Collect information you will need.
 
 ## Set Up the Waiting Room
 
