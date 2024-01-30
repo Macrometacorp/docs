@@ -19,7 +19,7 @@ PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Netwo
   />
   <card
     heading="PhotonIQ Fingerprint"
-    description="Accurately identify visitors."
+    description="Accurately identify anonymous visitors."
     href="/"
   />
   <card
@@ -36,7 +36,7 @@ PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Netwo
   />
   <card
     heading="PhotonIQ Performance Proxy"
-    description="Enhance website performance."
+    description="Enhance website performance by streamlining your CSS and JS."
     href="/"
   />
   <card
