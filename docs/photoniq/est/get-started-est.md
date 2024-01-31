@@ -47,6 +47,7 @@ After you have credentials and required information, follow these steps to get s
 4. Configure components as described in [Manage EST Components](manage-components.md#add-new-components).
 5. Work with Macrometa support to make sure the migration was successful.
 6. Disable the selected browser side tags as you enable them in EST.
+7. Verify that analytics data keeps flowing, and patterns do not drastically change by monitoring events on third-party service dashboards.
 
 ## Next Steps
 
