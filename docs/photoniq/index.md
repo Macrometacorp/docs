@@ -15,7 +15,7 @@ PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Netwo
   <card
     heading="PhotonIQ Prerendering"
     description="Enhance SEO and website performance."
-    href="/"
+    href="/photoniq/prerendering"
   />
   <card
     heading="PhotonIQ Fingerprint"
