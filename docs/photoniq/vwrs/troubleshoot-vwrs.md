@@ -38,6 +38,11 @@ export async function onClientResponse(request, response) {
 }
 ```
 
+## VWRs EdgeWorker exceeding PM_USER space
+
+The VWRs EdgeWorker uses Akamai's Property Manager user-defined variables. The maximum limit supported by Akamai EdgeWorkers is 1024 bytes. If this limit is exceeded, the
+following error message is displayed by the library code: `Setting metadata variable would exceed total variable size limit`.
+
 ## Report Status Codes
 
 When running library code, the library provides status codes to inform users about limitations and issues in the form of four-letter codes. These status codes are stored in the PMUSER_VWRS_STATUS_CODE variable.
