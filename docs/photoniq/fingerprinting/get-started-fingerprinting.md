@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-title: Get Started with Fingerprinting
+title: Get Started with Fingerprint
 ---
 
 To incorporate the Fingerprint client into your website, add one of the following example scripts to your web page. In each example, replace the `DS_URL` placeholder with the data service URL that Macrometa provides you.
