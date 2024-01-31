@@ -1,6 +1,6 @@
 ---
 sidebar_position: 80
-title: Best Practices
+title: Fingerprint Best Practices
 ---
 
 This page describes best practices to adopt in order to get the most out of Dynamic Fingerprinting.
