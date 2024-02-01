@@ -2,6 +2,8 @@
 title: Waiting Room HTML page
 ---
 
+Below is a sample HTML template for a waiting room page. This page is displayed to users who are redirected to the waiting room. It's fully customizable to suit your needs. Within the template, the class attributes `queue-position`, `queue-depth`, and `avg-wait-time` are used to display the visitor's current position in the queue, the total number of users in the waiting room, and the average waiting time, respectively.
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
