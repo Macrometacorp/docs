@@ -11,7 +11,7 @@ If a waiting room has not been configured, then the waiting room library returns
 
 ## Troubleshoot Waiting Room HTML
 
-You have the option to set the URL for the waiting room HTML template either via the library or the domain record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: `https://<hostname>/waiting-room-path>/preview`. For example, `http://show.store.com/checkout/preview`.  
+You have the option to set the URL for the waiting room HTML template either via the library or the domain record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: `https://<hostname>/waiting-room-path>/preview`. For example, `http://show.store.com/checkout/preview`.
 
 ## Troubleshoot Waiting Room Cookie
 
@@ -20,27 +20,26 @@ The `vwrs-cookie` cookie holds valuable information regarding each user's access
 ```js
 export async function onClientRequest(request) {
   const reqOptions = {
-     waitingRoomPath:'/1473985/doc.html',
-     debugMode: true
-  }
-  await virtualWaitingRoomConfiguration.handleVwrsRequest(
-               request, reqOptions
-         );
+    waitingRoomPath: "/1473985/doc.html",
+    debugMode: true,
+  };
+  await virtualWaitingRoomConfiguration.handleVwrsRequest(request, reqOptions);
 }
 export async function onClientResponse(request, response) {
-
   const reqOptions = {
-     debugMode: true
-  }
+    debugMode: true,
+  };
   await virtualWaitingRoomConfiguration.handleVwrsResponse(
-            request, response,reqOptions
-        );
+    request,
+    response,
+    reqOptions
+  );
 }
 ```
 
 ## VWRs EdgeWorker exceeding PM_USER space
 
-The VWRs EdgeWorker uses Akamai's Property Manager user-defined variables. The maximum limit supported by Akamai EdgeWorkers is 1024 bytes. If this limit is exceeded, the
+The VWRs EdgeWorker uses Akamai's Property Manager user-defined variables. The maximum limit supported by Akamai EdgeWorkers is 1024 characters. If this limit is exceeded, the
 following error message is displayed by the library code: `Setting metadata variable would exceed total variable size limit`.
 
 ## Report Status Codes

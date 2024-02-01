@@ -9,7 +9,7 @@ In the EdgeWorker, import the `VirtualWaitingRoom` class from the photoniq-vwrs-
 
 1. The VWRs EdgeWorker performs up to two sub-requests. Therefore, an Akamai EdgeWorker resource tier that allows at least two HTTP sub-requests on the onClientRequest event handler is needed. Refer to the [Akamai Resource tie limitations](https://techdocs.akamai.com/edgeworkers/docs/resource-tier-limitations) page for more information.
 
-2. The VWRs EdgeWorker uses Akamai's Property Manager user-defined variables. The maximum limit supported by Akamai EdgeWorkers is 1024 bytes. VWRs uses about 350 of those bytes. Refer to Akamai's [Request Object API](https://techdocs.akamai.com/edgeworkers/docs/request-object#setvariable) for more information.
+2. The VWRs EdgeWorker uses Akamai's Property Manager user-defined variables. The maximum limit supported by Akamai EdgeWorkers is 1024 characters. VWRs uses about 350 of those characters. Refer to Akamai's [Request Object API](https://techdocs.akamai.com/edgeworkers/docs/request-object#setvariable) for more information.
 
 ## Install the PhotonIQ VWRs Client
 
@@ -22,7 +22,7 @@ Before you can set up an EdgeWorker, you must install `@macrometa/photoniq-vwrs-
 npm install @macrometa/photoniq-vwrs-client
 ```
 
-3. After the package installation is complete, verify its presence. Check your project’s node_modules directory to ensure that `@macrometa/photoniq-vwrs-client` has been successfully installed.
+2. After the package installation is complete, verify its presence. Check your project’s node_modules directory to ensure that `@macrometa/photoniq-vwrs-client` has been successfully installed.
 
 :::note
 If you encounter a _404 Not Found error_ when trying to install `@macrometa/photoniq-vwrs-client`, then check your .npmrc file to ensure that it has a valid registry set and the valid token is set. This file should contain the correct configuration for accessing npm packages.
