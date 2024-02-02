@@ -41,25 +41,3 @@ Scalar quantization involves treating each dimension of the vector separately an
 ## Which Type to Use
 
 The best quantization type to use depends on your specific use case and the characteristics of your data. For example, if memory usage is a critical concern, then you might opt for a more aggressive quantization method like PQ. If accuracy is more important and memory usage is less of a concern, then you might choose no quantization or a less aggressive method like SQ.
-
-## Examples of Quantization Use Cases
-
-Here are some examples of when to use particular quantization types.
-
-### Large-scale Image Databases
-
-- **Technique**: Product Quantization
-- **Reason**: With millions of high-dimensional image vectors, PQ offers a balance between search accuracy and storage efficiency.
-- **Example**: A platform like Google Photos could employ PQ to efficiently manage and search through billions of images.
-
-### Sensor Data in IoT Networks
-
-- **Technique**: Scalar Quantization
-- **Reason**: Given the large volume of data from IoT sensors, scalar quantization can simplify the data for transmission and processing.
-- **Example**: A smart city's sensor network might use scalar quantization to reduce the data load sent to central servers.
-
-### Text Document Retrieval
-
-- **Technique**: Product Quantization
-- **Reason**: Text documents, when vectorized (e.g., via embeddings), reside in high-dimensional spaces. PQ can compress these vectors efficiently.
-- **Example**: A service like Arxiv might employ PQ to manage and search through large repositories of academic papers.
