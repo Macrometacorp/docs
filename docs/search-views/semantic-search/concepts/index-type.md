@@ -27,8 +27,6 @@ HNSW is a method designed to accelerate nearest neighbor search, particularly in
 
 ## IVF (Inverted File)
 
-IVF is a traditional indexing method used in information retrieval systems, where each item is associated with a list of documents (or in this case, vectors) where it appears.
-
 The IVF index partitions the dataset into multiple clusters, where each cluster is represented by its centroid. When a search is executed, it does not search the whole dataset but only looks into a few clusters that are likely to contain the answer, thus speeding up the search.
 
 When used for vector search, IVF is typically combined with some kind of quantization (like product quantization, or PQ) to create a two-level system where the first level groups vectors into coarse clusters, and the second level uses quantization to compress the residual vectors within each cluster. This provides a balance of efficiency and accuracy in the search.
