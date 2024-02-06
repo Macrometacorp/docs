@@ -271,7 +271,7 @@
                       },
                       "isPrefetch": {
                         "type": "boolean",
-                        "description": "Whether rendering was performed as a prefetch operation (true) or on-demand (false)."
+                        "description": "Whether rendering was performed as a prefetch operation (true) or on demand (false)."
                       },
                       "isMobile": {
                         "type": "boolean",
@@ -5601,14 +5601,14 @@
             "in": "header",
             "name": "x-photoniq-customerid",
             "required": true,
-            "description": "The unique identifier for the customer"
+            "description": "Customer unique identifier."
           },
           {
             "schema": { "type": "string" },
             "in": "header",
             "name": "Authorization",
             "required": true,
-            "description": "Authorization token for API access"
+            "description": "Authorization token for API access."
           }
         ],
         "responses": {
