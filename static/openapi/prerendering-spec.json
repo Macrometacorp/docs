@@ -50,32 +50,7 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Cache purged successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "description": "Cache purged successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    }
-                  },
-                  "required": ["status", "message"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Cache purged successfully."
-                  }
-                }
-              }
-            }
-          },
+          "200": { "description": "Cache purged successfully." },
           "400": {
             "description": "Bad request.",
             "content": {
@@ -166,36 +141,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "string",
                   "description": "Cached document preview fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "response": {
-                          "type": "string",
-                          "description": "Cached HTML content of the pre-rendered page"
-                        }
-                      },
-                      "required": ["response"]
-                    }
-                  },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Cached document preview fetched successfully.",
-                    "data": {
-                      "response": "<!DOCTYPE html><html lang=\"en\"><head><base href=\"https://www.origin.com/\"></head><body></body></html>"
-                    }
-                  }
+                  "example": "<!DOCTYPE html><html lang=\"en\"><head><base href=\"https://www.origin.com/\"></head><body></body></html>"
                 }
               }
             }
@@ -302,89 +250,71 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "description": "Cached documents information fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_key": {
-                            "type": "string",
-                            "description": "Cached document unique identifier.",
-                            "minLength": 1
-                          },
-                          "requestUrl": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "URL of the content that has been cached."
-                          },
-                          "statusCode": {
-                            "type": "number",
-                            "description": "Response HTTP status code."
-                          },
-                          "isPrefetch": {
-                            "type": "boolean",
-                            "description": "Whether rendering was performed as a prefetch operation (true) or on-demand (false)."
-                          },
-                          "isMobile": {
-                            "type": "boolean",
-                            "description": "Whether rendering was tailored for mobile devices."
-                          },
-                          "expiry": {
-                            "type": "number",
-                            "description": "Timestamp (in seconds) indicating when the document will expire."
-                          },
-                          "created": {
-                            "type": "number",
-                            "description": "Timestamp (in milliseconds) indicating when the document was created."
-                          }
-                        },
-                        "required": [
-                          "_key",
-                          "requestUrl",
-                          "isPrefetch",
-                          "isMobile",
-                          "expiry",
-                          "created"
-                        ]
-                      }
-                    }
-                  },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Cached documents information fetched successfully.",
-                    "data": [
-                      {
-                        "_key": "10a92b2d8f021820ca55d2d4cb70b35b",
-                        "requestUrl": "https://www.origin.com/terms",
-                        "statusCode": 200,
-                        "isPrefetch": false,
-                        "isMobile": false,
-                        "expiry": 1703447373,
-                        "created": 1702928973210
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_key": {
+                        "type": "string",
+                        "description": "Cached document unique identifier.",
+                        "minLength": 1
                       },
-                      {
-                        "_key": "69fe05803fd08709f42dc48a551424c4",
-                        "requestUrl": "https://www.origin.com/privacy",
-                        "statusCode": 200,
-                        "isPrefetch": false,
-                        "isMobile": false,
-                        "expiry": 1703447372,
-                        "created": 1702928972960
+                      "requestUrl": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "URL of the content that has been cached."
+                      },
+                      "statusCode": {
+                        "type": "number",
+                        "description": "Response HTTP status code."
+                      },
+                      "isPrefetch": {
+                        "type": "boolean",
+                        "description": "Whether rendering was performed as a prefetch operation (true) or on-demand (false)."
+                      },
+                      "isMobile": {
+                        "type": "boolean",
+                        "description": "Whether rendering was tailored for mobile devices."
+                      },
+                      "expiry": {
+                        "type": "number",
+                        "description": "Timestamp (in seconds) indicating when the document will expire."
+                      },
+                      "created": {
+                        "type": "number",
+                        "description": "Timestamp (in milliseconds) indicating when the document was created."
                       }
+                    },
+                    "required": [
+                      "_key",
+                      "requestUrl",
+                      "isPrefetch",
+                      "isMobile",
+                      "expiry",
+                      "created"
                     ]
-                  }
+                  },
+                  "example": [
+                    {
+                      "_key": "10a92b2d8f021820ca55d2d4cb70b35b",
+                      "requestUrl": "https://www.origin.com/terms",
+                      "statusCode": 200,
+                      "isPrefetch": false,
+                      "isMobile": false,
+                      "expiry": 1703447373,
+                      "created": 1702928973210
+                    },
+                    {
+                      "_key": "69fe05803fd08709f42dc48a551424c4",
+                      "requestUrl": "https://www.origin.com/privacy",
+                      "statusCode": 200,
+                      "isPrefetch": false,
+                      "isMobile": false,
+                      "expiry": 1703447372,
+                      "created": 1702928972960
+                    }
+                  ]
                 }
               }
             }
@@ -456,33 +386,15 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Service health fetched successfully.",
                   "properties": {
-                    "status": {
+                    "version": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "version": {
-                          "type": "string",
-                          "description": "Service version."
-                        }
-                      },
-                      "required": ["version"]
+                      "description": "Service version."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Service health fetched successfully.",
-                    "data": { "version": "1.0.0" }
-                  }
+                  "required": ["version"],
+                  "description": "Service health fetched successfully.",
+                  "example": { "version": "1.0.0" }
                 }
               }
             }
@@ -519,370 +431,352 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Interactions fetched successfully.",
                   "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
+                    "scroll": {
                       "type": "object",
                       "properties": {
-                        "scroll": {
-                          "type": "object",
-                          "properties": {
-                            "_key": {
-                              "type": "string",
-                              "description": "Interaction unique identifier."
-                            },
-                            "origin": {
-                              "type": "string",
-                              "format": "uri",
-                              "description": "Origin base URL."
-                            },
-                            "created": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was created."
-                            },
-                            "lastUpdated": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was updated."
-                            },
-                            "config": {
-                              "type": "object",
-                              "properties": {
-                                "isActive": {
-                                  "type": "boolean",
-                                  "description": "Whether the interaction is active."
-                                },
-                                "steps": {
-                                  "type": "integer",
-                                  "description": "Number of scrolls down to be performed."
-                                },
-                                "valueInPx": {
-                                  "type": "integer",
-                                  "description": "Number of pixels to be scrolled."
-                                },
-                                "delayBetween": {
-                                  "type": "integer",
-                                  "description": "Waiting time (in milliseconds) between scrolls."
-                                },
-                                "specific": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "isActive": {
-                                        "type": "boolean",
-                                        "description": "Whether the specific interaction is active."
-                                      },
-                                      "urlPaths": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string",
-                                          "description": "Origin path."
-                                        },
-                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
-                                      },
-                                      "operation": {
-                                        "type": "string",
-                                        "enum": ["==", "!="],
-                                        "description": "Operator applied against the urlPaths list."
-                                      }
-                                    },
-                                    "required": [
-                                      "isActive",
-                                      "urlPaths",
-                                      "operation"
-                                    ]
-                                  }
-                                }
-                              },
-                              "required": [
-                                "isActive",
-                                "steps",
-                                "valueInPx",
-                                "delayBetween",
-                                "specific"
-                              ]
-                            }
-                          },
-                          "required": ["_key", "origin", "config"]
+                        "_key": {
+                          "type": "string",
+                          "description": "Interaction unique identifier."
                         },
-                        "click": {
-                          "type": "object",
-                          "properties": {
-                            "_key": {
-                              "type": "string",
-                              "description": "Interaction unique identifier."
-                            },
-                            "origin": {
-                              "type": "string",
-                              "format": "uri",
-                              "description": "Origin base URL."
-                            },
-                            "created": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was created."
-                            },
-                            "lastUpdated": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was updated."
-                            },
-                            "config": {
-                              "type": "object",
-                              "properties": {
-                                "isActive": {
-                                  "type": "boolean",
-                                  "description": "Whether the interaction is active."
-                                },
-                                "global": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "isActive": {
-                                        "type": "boolean",
-                                        "description": "Whether the global interaction is active."
-                                      },
-                                      "htmlSelector": {
-                                        "type": "string",
-                                        "description": "HTML selector where the interaction is executed."
-                                      },
-                                      "waitAfterInteraction": {
-                                        "type": "integer",
-                                        "description": "Waiting time (in seconds) after the interaction is executed."
-                                      },
-                                      "executionSequence": {
-                                        "type": "integer",
-                                        "description": "Interaction execution order."
-                                      }
-                                    },
-                                    "required": [
-                                      "isActive",
-                                      "htmlSelector",
-                                      "executionSequence"
-                                    ]
-                                  }
-                                },
-                                "specific": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "isActive": {
-                                        "type": "boolean",
-                                        "description": "Whether the specific interaction is active."
-                                      },
-                                      "htmlSelector": {
-                                        "type": "string",
-                                        "description": "HTML selector where the interaction is executed."
-                                      },
-                                      "waitAfterInteraction": {
-                                        "type": "integer",
-                                        "description": "Waiting time (in seconds) after the interaction is executed."
-                                      },
-                                      "executionSequence": {
-                                        "type": "integer",
-                                        "description": "Interaction execution order."
-                                      },
-                                      "urlPaths": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string",
-                                          "description": "Origin path."
-                                        },
-                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
-                                      },
-                                      "operation": {
-                                        "type": "string",
-                                        "enum": ["==", "!="],
-                                        "description": "Operator applied against the urlPaths list."
-                                      }
-                                    },
-                                    "required": [
-                                      "isActive",
-                                      "htmlSelector",
-                                      "executionSequence",
-                                      "urlPaths",
-                                      "operation"
-                                    ]
-                                  }
-                                }
-                              },
-                              "required": ["isActive", "global", "specific"]
-                            }
-                          },
-                          "required": ["_key", "origin", "config"]
+                        "origin": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "Origin base URL."
                         },
-                        "hover": {
+                        "created": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was created."
+                        },
+                        "lastUpdated": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was updated."
+                        },
+                        "config": {
                           "type": "object",
                           "properties": {
-                            "_key": {
-                              "type": "string",
-                              "description": "Interaction unique identifier."
+                            "isActive": {
+                              "type": "boolean",
+                              "description": "Whether the interaction is active."
                             },
-                            "origin": {
-                              "type": "string",
-                              "format": "uri",
-                              "description": "Origin base URL."
+                            "steps": {
+                              "type": "integer",
+                              "description": "Number of scrolls down to be performed."
                             },
-                            "created": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was created."
+                            "valueInPx": {
+                              "type": "integer",
+                              "description": "Number of pixels to be scrolled."
                             },
-                            "lastUpdated": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was updated."
+                            "delayBetween": {
+                              "type": "integer",
+                              "description": "Waiting time (in milliseconds) between scrolls."
                             },
-                            "config": {
-                              "type": "object",
-                              "properties": {
-                                "isActive": {
-                                  "type": "boolean",
-                                  "description": "Whether the interaction is active."
-                                },
-                                "global": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "isActive": {
-                                        "type": "boolean",
-                                        "description": "Whether the global interaction is active."
-                                      },
-                                      "htmlSelector": {
-                                        "type": "string",
-                                        "description": "HTML selector where the interaction is executed."
-                                      },
-                                      "waitAfterInteraction": {
-                                        "type": "integer",
-                                        "description": "Waiting time (in seconds) after the interaction is executed."
-                                      },
-                                      "executionSequence": {
-                                        "type": "integer",
-                                        "description": "Interaction execution order."
-                                      }
+                            "specific": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "isActive": {
+                                    "type": "boolean",
+                                    "description": "Whether the specific interaction is active."
+                                  },
+                                  "urlPaths": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string",
+                                      "description": "Origin path."
                                     },
-                                    "required": [
-                                      "isActive",
-                                      "htmlSelector",
-                                      "executionSequence"
-                                    ]
+                                    "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
+                                  },
+                                  "operation": {
+                                    "type": "string",
+                                    "enum": ["==", "!="],
+                                    "description": "Operator applied against the urlPaths list."
                                   }
                                 },
-                                "specific": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "isActive": {
-                                        "type": "boolean",
-                                        "description": "Whether the specific interaction is active."
-                                      },
-                                      "htmlSelector": {
-                                        "type": "string",
-                                        "description": "HTML selector where the interaction is executed."
-                                      },
-                                      "waitAfterInteraction": {
-                                        "type": "integer",
-                                        "description": "Waiting time (in seconds) after the interaction is executed."
-                                      },
-                                      "executionSequence": {
-                                        "type": "integer",
-                                        "description": "Interaction execution order."
-                                      },
-                                      "urlPaths": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string",
-                                          "description": "Origin path."
-                                        },
-                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
-                                      },
-                                      "operation": {
-                                        "type": "string",
-                                        "enum": ["==", "!="],
-                                        "description": "Operator applied against the urlPaths list."
-                                      }
-                                    },
-                                    "required": [
-                                      "isActive",
-                                      "htmlSelector",
-                                      "executionSequence",
-                                      "urlPaths",
-                                      "operation"
-                                    ]
-                                  }
-                                }
-                              },
-                              "required": ["isActive", "global", "specific"]
+                                "required": [
+                                  "isActive",
+                                  "urlPaths",
+                                  "operation"
+                                ]
+                              }
                             }
                           },
-                          "required": ["_key", "origin", "config"]
-                        }
-                      }
-                    }
-                  },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Interactions fetched successfully.",
-                    "data": {
-                      "scroll": {
-                        "_key": "-xessvEdKI9qNn7fpR7czTV",
-                        "origin": "https://www.origin.com",
-                        "config": {
-                          "isActive": true,
-                          "steps": 4,
-                          "valueInPx": 5000,
-                          "delayBetween": 300,
-                          "specific": []
-                        }
-                      },
-                      "click": {
-                        "_key": "-A5HO1NwgFrTMp5xv8KRWnk",
-                        "origin": "https://www.origin.com",
-                        "config": {
-                          "isActive": true,
-                          "global": [],
-                          "specific": [
-                            {
-                              "isActive": true,
-                              "htmlSelector": "#tab",
-                              "waitAfterInteraction": 150,
-                              "executionSequence": 0,
-                              "urlPaths": ["^/.*$"],
-                              "operation": "=="
-                            }
+                          "required": [
+                            "isActive",
+                            "steps",
+                            "valueInPx",
+                            "delayBetween",
+                            "specific"
                           ]
                         }
                       },
-                      "hover": {
-                        "_key": "-6txvJI2HHJHwRYqeGr8OHV",
-                        "origin": "https://www.origin.com",
+                      "required": ["_key", "origin", "config"]
+                    },
+                    "click": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Interaction unique identifier."
+                        },
+                        "origin": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "Origin base URL."
+                        },
+                        "created": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was created."
+                        },
+                        "lastUpdated": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was updated."
+                        },
                         "config": {
-                          "isActive": true,
-                          "global": [
-                            {
-                              "isActive": true,
-                              "htmlSelector": ".item",
-                              "waitAfterInteraction": 50,
-                              "executionSequence": 0
+                          "type": "object",
+                          "properties": {
+                            "isActive": {
+                              "type": "boolean",
+                              "description": "Whether the interaction is active."
+                            },
+                            "global": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "isActive": {
+                                    "type": "boolean",
+                                    "description": "Whether the global interaction is active."
+                                  },
+                                  "htmlSelector": {
+                                    "type": "string",
+                                    "description": "HTML selector where the interaction is executed."
+                                  },
+                                  "waitAfterInteraction": {
+                                    "type": "integer",
+                                    "description": "Waiting time (in milliseconds) after the interaction is executed."
+                                  },
+                                  "executionSequence": {
+                                    "type": "integer",
+                                    "description": "Interaction execution order."
+                                  }
+                                },
+                                "required": [
+                                  "isActive",
+                                  "htmlSelector",
+                                  "executionSequence"
+                                ]
+                              }
+                            },
+                            "specific": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "isActive": {
+                                    "type": "boolean",
+                                    "description": "Whether the specific interaction is active."
+                                  },
+                                  "htmlSelector": {
+                                    "type": "string",
+                                    "description": "HTML selector where the interaction is executed."
+                                  },
+                                  "waitAfterInteraction": {
+                                    "type": "integer",
+                                    "description": "Waiting time (in milliseconds) after the interaction is executed."
+                                  },
+                                  "executionSequence": {
+                                    "type": "integer",
+                                    "description": "Interaction execution order."
+                                  },
+                                  "urlPaths": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string",
+                                      "description": "Origin path."
+                                    },
+                                    "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
+                                  },
+                                  "operation": {
+                                    "type": "string",
+                                    "enum": ["==", "!="],
+                                    "description": "Operator applied against the urlPaths list."
+                                  }
+                                },
+                                "required": [
+                                  "isActive",
+                                  "htmlSelector",
+                                  "executionSequence",
+                                  "urlPaths",
+                                  "operation"
+                                ]
+                              }
                             }
-                          ],
-                          "specific": []
+                          },
+                          "required": ["isActive", "global", "specific"]
                         }
+                      },
+                      "required": ["_key", "origin", "config"]
+                    },
+                    "hover": {
+                      "type": "object",
+                      "properties": {
+                        "_key": {
+                          "type": "string",
+                          "description": "Interaction unique identifier."
+                        },
+                        "origin": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "Origin base URL."
+                        },
+                        "created": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was created."
+                        },
+                        "lastUpdated": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was updated."
+                        },
+                        "config": {
+                          "type": "object",
+                          "properties": {
+                            "isActive": {
+                              "type": "boolean",
+                              "description": "Whether the interaction is active."
+                            },
+                            "global": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "isActive": {
+                                    "type": "boolean",
+                                    "description": "Whether the global interaction is active."
+                                  },
+                                  "htmlSelector": {
+                                    "type": "string",
+                                    "description": "HTML selector where the interaction is executed."
+                                  },
+                                  "waitAfterInteraction": {
+                                    "type": "integer",
+                                    "description": "Waiting time (in milliseconds) after the interaction is executed."
+                                  },
+                                  "executionSequence": {
+                                    "type": "integer",
+                                    "description": "Interaction execution order."
+                                  }
+                                },
+                                "required": [
+                                  "isActive",
+                                  "htmlSelector",
+                                  "executionSequence"
+                                ]
+                              }
+                            },
+                            "specific": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "isActive": {
+                                    "type": "boolean",
+                                    "description": "Whether the specific interaction is active."
+                                  },
+                                  "htmlSelector": {
+                                    "type": "string",
+                                    "description": "HTML selector where the interaction is executed."
+                                  },
+                                  "waitAfterInteraction": {
+                                    "type": "integer",
+                                    "description": "Waiting time (in milliseconds) after the interaction is executed."
+                                  },
+                                  "executionSequence": {
+                                    "type": "integer",
+                                    "description": "Interaction execution order."
+                                  },
+                                  "urlPaths": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string",
+                                      "description": "Origin path."
+                                    },
+                                    "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
+                                  },
+                                  "operation": {
+                                    "type": "string",
+                                    "enum": ["==", "!="],
+                                    "description": "Operator applied against the urlPaths list."
+                                  }
+                                },
+                                "required": [
+                                  "isActive",
+                                  "htmlSelector",
+                                  "executionSequence",
+                                  "urlPaths",
+                                  "operation"
+                                ]
+                              }
+                            }
+                          },
+                          "required": ["isActive", "global", "specific"]
+                        }
+                      },
+                      "required": ["_key", "origin", "config"]
+                    }
+                  },
+                  "description": "Interactions fetched successfully.",
+                  "example": {
+                    "scroll": {
+                      "_key": "-xessvEdKI9qNn7fpR7czTV",
+                      "origin": "https://www.origin.com",
+                      "config": {
+                        "isActive": true,
+                        "steps": 4,
+                        "valueInPx": 5000,
+                        "delayBetween": 300,
+                        "specific": []
+                      }
+                    },
+                    "click": {
+                      "_key": "-A5HO1NwgFrTMp5xv8KRWnk",
+                      "origin": "https://www.origin.com",
+                      "config": {
+                        "isActive": true,
+                        "global": [],
+                        "specific": [
+                          {
+                            "isActive": true,
+                            "htmlSelector": "#tab",
+                            "waitAfterInteraction": 150,
+                            "executionSequence": 0,
+                            "urlPaths": ["^/.*$"],
+                            "operation": "=="
+                          }
+                        ]
+                      }
+                    },
+                    "hover": {
+                      "_key": "-6txvJI2HHJHwRYqeGr8OHV",
+                      "origin": "https://www.origin.com",
+                      "config": {
+                        "isActive": true,
+                        "global": [
+                          {
+                            "isActive": true,
+                            "htmlSelector": ".item",
+                            "waitAfterInteraction": 50,
+                            "executionSequence": 0
+                          }
+                        ],
+                        "specific": []
                       }
                     }
                   }
@@ -983,250 +877,216 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Interaction fetched successfully.",
                   "oneOf": [
                     {
                       "type": "object",
-                      "description": "Interaction fetched successfully.",
                       "properties": {
-                        "status": {
+                        "_key": {
                           "type": "string",
-                          "description": "Success status."
+                          "description": "Interaction unique identifier."
                         },
-                        "message": {
+                        "origin": {
                           "type": "string",
-                          "description": "Success message."
+                          "format": "uri",
+                          "description": "Origin base URL."
                         },
-                        "data": {
+                        "created": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was created."
+                        },
+                        "lastUpdated": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was updated."
+                        },
+                        "config": {
                           "type": "object",
                           "properties": {
-                            "_key": {
-                              "type": "string",
-                              "description": "Interaction unique identifier."
+                            "isActive": {
+                              "type": "boolean",
+                              "description": "Whether the interaction is active."
                             },
-                            "origin": {
-                              "type": "string",
-                              "format": "uri",
-                              "description": "Origin base URL."
+                            "steps": {
+                              "type": "integer",
+                              "description": "Number of scrolls down to be performed."
                             },
-                            "created": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was created."
+                            "valueInPx": {
+                              "type": "integer",
+                              "description": "Number of pixels to be scrolled."
                             },
-                            "lastUpdated": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was updated."
+                            "delayBetween": {
+                              "type": "integer",
+                              "description": "Waiting time (in milliseconds) between scrolls."
                             },
-                            "config": {
-                              "type": "object",
-                              "properties": {
-                                "isActive": {
-                                  "type": "boolean",
-                                  "description": "Whether the interaction is active."
-                                },
-                                "steps": {
-                                  "type": "integer",
-                                  "description": "Number of scrolls down to be performed."
-                                },
-                                "valueInPx": {
-                                  "type": "integer",
-                                  "description": "Number of pixels to be scrolled."
-                                },
-                                "delayBetween": {
-                                  "type": "integer",
-                                  "description": "Waiting time (in milliseconds) between scrolls."
-                                },
-                                "specific": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "isActive": {
-                                        "type": "boolean",
-                                        "description": "Whether the specific interaction is active."
-                                      },
-                                      "urlPaths": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string",
-                                          "description": "Origin path."
-                                        },
-                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
-                                      },
-                                      "operation": {
-                                        "type": "string",
-                                        "enum": ["==", "!="],
-                                        "description": "Operator applied against the urlPaths list."
-                                      }
+                            "specific": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "isActive": {
+                                    "type": "boolean",
+                                    "description": "Whether the specific interaction is active."
+                                  },
+                                  "urlPaths": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string",
+                                      "description": "Origin path."
                                     },
-                                    "required": [
-                                      "isActive",
-                                      "urlPaths",
-                                      "operation"
-                                    ]
+                                    "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
+                                  },
+                                  "operation": {
+                                    "type": "string",
+                                    "enum": ["==", "!="],
+                                    "description": "Operator applied against the urlPaths list."
                                   }
-                                }
-                              },
-                              "required": [
-                                "isActive",
-                                "steps",
-                                "valueInPx",
-                                "delayBetween",
-                                "specific"
-                              ]
+                                },
+                                "required": [
+                                  "isActive",
+                                  "urlPaths",
+                                  "operation"
+                                ]
+                              }
                             }
                           },
-                          "required": ["_key", "origin", "config"]
+                          "required": [
+                            "isActive",
+                            "steps",
+                            "valueInPx",
+                            "delayBetween",
+                            "specific"
+                          ]
                         }
                       },
-                      "required": ["status", "message", "data"]
+                      "required": ["_key", "origin", "config"]
                     },
                     {
                       "type": "object",
-                      "description": "Interaction fetched successfully.",
                       "properties": {
-                        "status": {
+                        "_key": {
                           "type": "string",
-                          "description": "Success status."
+                          "description": "Interaction unique identifier."
                         },
-                        "message": {
+                        "origin": {
                           "type": "string",
-                          "description": "Success message."
+                          "format": "uri",
+                          "description": "Origin base URL."
                         },
-                        "data": {
+                        "created": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was created."
+                        },
+                        "lastUpdated": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Date when the interaction was updated."
+                        },
+                        "config": {
                           "type": "object",
                           "properties": {
-                            "_key": {
-                              "type": "string",
-                              "description": "Interaction unique identifier."
+                            "isActive": {
+                              "type": "boolean",
+                              "description": "Whether the interaction is active."
                             },
-                            "origin": {
-                              "type": "string",
-                              "format": "uri",
-                              "description": "Origin base URL."
-                            },
-                            "created": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was created."
-                            },
-                            "lastUpdated": {
-                              "type": "string",
-                              "format": "date-time",
-                              "description": "Date when the interaction was updated."
-                            },
-                            "config": {
-                              "type": "object",
-                              "properties": {
-                                "isActive": {
-                                  "type": "boolean",
-                                  "description": "Whether the interaction is active."
-                                },
-                                "global": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "isActive": {
-                                        "type": "boolean",
-                                        "description": "Whether the global interaction is active."
-                                      },
-                                      "htmlSelector": {
-                                        "type": "string",
-                                        "description": "HTML selector where the interaction is executed."
-                                      },
-                                      "waitAfterInteraction": {
-                                        "type": "integer",
-                                        "description": "Waiting time (in seconds) after the interaction is executed."
-                                      },
-                                      "executionSequence": {
-                                        "type": "integer",
-                                        "description": "Interaction execution order."
-                                      }
-                                    },
-                                    "required": [
-                                      "isActive",
-                                      "htmlSelector",
-                                      "executionSequence"
-                                    ]
+                            "global": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "isActive": {
+                                    "type": "boolean",
+                                    "description": "Whether the global interaction is active."
+                                  },
+                                  "htmlSelector": {
+                                    "type": "string",
+                                    "description": "HTML selector where the interaction is executed."
+                                  },
+                                  "waitAfterInteraction": {
+                                    "type": "integer",
+                                    "description": "Waiting time (in milliseconds) after the interaction is executed."
+                                  },
+                                  "executionSequence": {
+                                    "type": "integer",
+                                    "description": "Interaction execution order."
                                   }
                                 },
-                                "specific": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "isActive": {
-                                        "type": "boolean",
-                                        "description": "Whether the specific interaction is active."
-                                      },
-                                      "htmlSelector": {
-                                        "type": "string",
-                                        "description": "HTML selector where the interaction is executed."
-                                      },
-                                      "waitAfterInteraction": {
-                                        "type": "integer",
-                                        "description": "Waiting time (in seconds) after the interaction is executed."
-                                      },
-                                      "executionSequence": {
-                                        "type": "integer",
-                                        "description": "Interaction execution order."
-                                      },
-                                      "urlPaths": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string",
-                                          "description": "Origin path."
-                                        },
-                                        "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
-                                      },
-                                      "operation": {
-                                        "type": "string",
-                                        "enum": ["==", "!="],
-                                        "description": "Operator applied against the urlPaths list."
-                                      }
+                                "required": [
+                                  "isActive",
+                                  "htmlSelector",
+                                  "executionSequence"
+                                ]
+                              }
+                            },
+                            "specific": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "isActive": {
+                                    "type": "boolean",
+                                    "description": "Whether the specific interaction is active."
+                                  },
+                                  "htmlSelector": {
+                                    "type": "string",
+                                    "description": "HTML selector where the interaction is executed."
+                                  },
+                                  "waitAfterInteraction": {
+                                    "type": "integer",
+                                    "description": "Waiting time (in milliseconds) after the interaction is executed."
+                                  },
+                                  "executionSequence": {
+                                    "type": "integer",
+                                    "description": "Interaction execution order."
+                                  },
+                                  "urlPaths": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string",
+                                      "description": "Origin path."
                                     },
-                                    "required": [
-                                      "isActive",
-                                      "htmlSelector",
-                                      "executionSequence",
-                                      "urlPaths",
-                                      "operation"
-                                    ]
+                                    "description": "Origin paths where the specific interaction is evaluated to be executed based on the operation attribute."
+                                  },
+                                  "operation": {
+                                    "type": "string",
+                                    "enum": ["==", "!="],
+                                    "description": "Operator applied against the urlPaths list."
                                   }
-                                }
-                              },
-                              "required": ["isActive", "global", "specific"]
+                                },
+                                "required": [
+                                  "isActive",
+                                  "htmlSelector",
+                                  "executionSequence",
+                                  "urlPaths",
+                                  "operation"
+                                ]
+                              }
                             }
                           },
-                          "required": ["_key", "origin", "config"]
+                          "required": ["isActive", "global", "specific"]
                         }
                       },
-                      "required": ["status", "message", "data"]
+                      "required": ["_key", "origin", "config"]
                     }
                   ],
+                  "description": "Interaction fetched successfully.",
                   "example": {
-                    "status": "OK",
-                    "message": "Interaction fetched successfully.",
-                    "data": {
-                      "_key": "-A5HO1NwgFrTMp5xv8KRWnk",
-                      "origin": "https://www.origin.com",
-                      "config": {
-                        "isActive": true,
-                        "global": [],
-                        "specific": [
-                          {
-                            "isActive": true,
-                            "htmlSelector": "#tab",
-                            "waitAfterInteraction": 150,
-                            "executionSequence": 0,
-                            "urlPaths": ["^/.*$"],
-                            "operation": "=="
-                          }
-                        ]
-                      }
+                    "_key": "-A5HO1NwgFrTMp5xv8KRWnk",
+                    "origin": "https://www.origin.com",
+                    "config": {
+                      "isActive": true,
+                      "global": [],
+                      "specific": [
+                        {
+                          "isActive": true,
+                          "htmlSelector": "#tab",
+                          "waitAfterInteraction": 150,
+                          "executionSequence": 0,
+                          "urlPaths": ["^/.*$"],
+                          "operation": "=="
+                        }
+                      ]
                     }
                   }
                 }
@@ -1255,6 +1115,29 @@
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -1381,7 +1264,7 @@
                                 },
                                 "waitAfterInteraction": {
                                   "type": "integer",
-                                  "description": "Waiting time (in seconds) after the interaction is executed."
+                                  "description": "Waiting time (in milliseconds) after the interaction is executed."
                                 },
                                 "executionSequence": {
                                   "type": "integer",
@@ -1410,7 +1293,7 @@
                                 },
                                 "waitAfterInteraction": {
                                   "type": "integer",
-                                  "description": "Waiting time (in seconds) after the interaction is executed."
+                                  "description": "Waiting time (in milliseconds) after the interaction is executed."
                                 },
                                 "executionSequence": {
                                   "type": "integer",
@@ -1517,31 +1400,13 @@
                   "type": "object",
                   "description": "Interaction created successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Interaction unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Interaction unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Interaction created successfully.",
-                    "data": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
                 }
               }
             }
@@ -1567,6 +1432,32 @@
                   "example": {
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Conflict.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": {
+                    "status": "ERROR",
+                    "message": "Interaction already exists"
                   }
                 }
               }
@@ -1693,7 +1584,7 @@
                                 },
                                 "waitAfterInteraction": {
                                   "type": "integer",
-                                  "description": "Waiting time (in seconds) after the interaction is executed."
+                                  "description": "Waiting time (in milliseconds) after the interaction is executed."
                                 },
                                 "executionSequence": {
                                   "type": "integer",
@@ -1722,7 +1613,7 @@
                                 },
                                 "waitAfterInteraction": {
                                   "type": "integer",
-                                  "description": "Waiting time (in seconds) after the interaction is executed."
+                                  "description": "Waiting time (in milliseconds) after the interaction is executed."
                                 },
                                 "executionSequence": {
                                   "type": "integer",
@@ -1828,31 +1719,13 @@
                   "type": "object",
                   "description": "Interaction updated successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Interaction unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Interaction unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Interaction updated successfully.",
-                    "data": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
                 }
               }
             }
@@ -1879,6 +1752,29 @@
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -1951,31 +1847,13 @@
                   "type": "object",
                   "description": "Interaction deleted successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Interaction unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Interaction unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Interaction deleted successfully.",
-                    "data": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
                 }
               }
             }
@@ -2006,13 +1884,13 @@
               }
             }
           },
-          "500": {
-            "description": "Internal server error.",
+          "404": {
+            "description": "Not found.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Internal server error.",
+                  "description": "Not found.",
                   "properties": {
                     "status": {
                       "type": "string",
@@ -2024,57 +1902,7 @@
                     }
                   },
                   "required": ["status", "message"],
-                  "example": {
-                    "status": "ERROR",
-                    "message": "Internal server error."
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/prerender/v1/metrics": {
-      "get": {
-        "summary": "Get prerender service metrics",
-        "tags": ["Metrics"],
-        "description": "Returns prerender service metrics.",
-        "parameters": [
-          {
-            "schema": { "type": "string" },
-            "in": "header",
-            "name": "x-photoniq-customerid",
-            "required": true,
-            "description": "The unique identifier for the customer"
-          },
-          {
-            "schema": { "type": "string" },
-            "in": "header",
-            "name": "Authorization",
-            "required": true,
-            "description": "Authorization token for API access"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Metrics fetched successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "description": "Metrics fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    }
-                  },
-                  "required": ["status", "message"]
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -2128,177 +1956,159 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "description": "Origins fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_key": {
-                            "type": "string",
-                            "description": "Origin unique identifier."
-                          },
-                          "origin": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "Origin base URL."
-                          },
-                          "siteMaps": {
-                            "type": "array",
-                            "items": {
-                              "type": "string",
-                              "description": "Sitemap path."
-                            },
-                            "description": "List of sitemap paths."
-                          },
-                          "identifyNotfound": {
-                            "type": "string",
-                            "description": "Text present on the rendered page HTML that signifies a not found error page (404). If this specific text appears on the rendered page, the HTTP status code of the response will be 404. For instance, if the text \"Sorry, the page you were looking for could not be found.\" is included on your not found error page, this text can serve as the identifier."
-                          },
-                          "allowOriginHeaderValue": {
-                            "type": "string",
-                            "description": "Value of x-photoniq-prerender-request header."
-                          },
-                          "passThroughHeaders": {
-                            "type": "array",
-                            "items": {
-                              "type": "string",
-                              "description": "Header key."
-                            },
-                            "description": "List of header keys that are forwarded from the bot request to the origin website."
-                          },
-                          "addResponseHeaders": {
-                            "type": "object",
-                            "additionalProperties": {
-                              "type": "object",
-                              "properties": {
-                                "basedOnStatusCode": {
-                                  "type": "boolean",
-                                  "description": "Whether the header value should be based on the response status code."
-                                },
-                                "value": {
-                                  "oneOf": [
-                                    {
-                                      "type": "string",
-                                      "description": "Header value."
-                                    },
-                                    {
-                                      "type": "object",
-                                      "description": "Status code. Ranges like 2xx can also be used.",
-                                      "additionalProperties": {
-                                        "type": "string",
-                                        "description": "Header value."
-                                      }
-                                    }
-                                  ]
-                                }
-                              },
-                              "required": ["basedOnStatusCode", "value"],
-                              "description": "Additional response headers configuration."
-                            },
-                            "description": "Map of headers to add to the response."
-                          },
-                          "caching": {
-                            "type": "boolean",
-                            "description": "Whether to cache rendered pages."
-                          },
-                          "ttl": {
-                            "type": "number",
-                            "description": "Cache lifetime of rendered pages (in seconds)."
-                          },
-                          "created": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "Date when the origin was created."
-                          },
-                          "lastUpdated": {
-                            "type": "string",
-                            "format": "date-time",
-                            "description": "Date when the origin was updated."
-                          }
-                        },
-                        "required": [
-                          "_key",
-                          "origin",
-                          "siteMaps",
-                          "caching",
-                          "ttl",
-                          "created"
-                        ]
-                      }
-                    }
-                  },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Origins fetched successfully.",
-                    "data": [
-                      {
-                        "_key": "www_origin_com",
-                        "origin": "https://www.origin.com",
-                        "siteMaps": ["/sitemap.xml"],
-                        "identifyNotfound": "Page Not Found",
-                        "allowOriginHeaderValue": "948ef5f9-f15f-4b61-91b3-305b77db30e9",
-                        "passThroughHeaders": ["accept-language", "user-agent"],
-                        "addResponseHeaders": {
-                          "cache-control": {
-                            "basedOnStatusCode": true,
-                            "value": {
-                              "2xx": "public, max-age=86400",
-                              "3xx": "public, max-age=7200",
-                              "4xx": "no-store",
-                              "5xx": "no-store"
-                            }
-                          },
-                          "x-prerender-provider": {
-                            "basedOnStatusCode": false,
-                            "value": "PhotonIQ"
-                          }
-                        },
-                        "caching": false,
-                        "ttl": 86400,
-                        "created": "2023-01-01T00:00:00.000Z",
-                        "lastUpdated": "2023-02-02T00:00:00.000Z"
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_key": {
+                        "type": "string",
+                        "description": "Origin unique identifier."
                       },
-                      {
-                        "_key": "sub_origin_com",
-                        "origin": "https://sub.origin.com",
-                        "siteMaps": ["/sitemap.xml"],
-                        "identifyNotfound": "Page Not Found",
-                        "allowOriginHeaderValue": "0641e52b-aa25-45dc-9e4f-7298b959d87c",
-                        "passThroughHeaders": ["accept-language", "user-agent"],
-                        "addResponseHeaders": {
-                          "cache-control": {
-                            "basedOnStatusCode": true,
+                      "origin": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Origin base URL."
+                      },
+                      "siteMaps": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Sitemap path."
+                        },
+                        "description": "List of sitemap paths."
+                      },
+                      "identifyNotfound": {
+                        "type": "string",
+                        "description": "Text present on the rendered page HTML that signifies a not found error page (404). If this specific text appears on the rendered page, the HTTP status code of the response will be 404. For instance, if the text \"Sorry, the page you were looking for could not be found.\" is included on your not found error page, this text can serve as the identifier."
+                      },
+                      "allowOriginHeaderValue": {
+                        "type": "string",
+                        "description": "Value of x-photoniq-prerender-request header."
+                      },
+                      "passThroughHeaders": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Header key."
+                        },
+                        "description": "List of header keys that are forwarded from the bot request to the origin website."
+                      },
+                      "addResponseHeaders": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "object",
+                          "properties": {
+                            "basedOnStatusCode": {
+                              "type": "boolean",
+                              "description": "Whether the header value should be based on the response status code."
+                            },
                             "value": {
-                              "2xx": "public, max-age=86400",
-                              "3xx": "public, max-age=7200",
-                              "4xx": "no-store",
-                              "5xx": "no-store"
+                              "oneOf": [
+                                {
+                                  "type": "string",
+                                  "description": "Header value."
+                                },
+                                {
+                                  "type": "object",
+                                  "description": "Status code. Ranges like 2xx can also be used.",
+                                  "additionalProperties": {
+                                    "type": "string",
+                                    "description": "Header value."
+                                  }
+                                }
+                              ]
                             }
                           },
-                          "x-prerender-provider": {
-                            "basedOnStatusCode": false,
-                            "value": "PhotonIQ"
+                          "required": ["basedOnStatusCode", "value"],
+                          "description": "Additional response headers configuration."
+                        },
+                        "description": "Map of headers to add to the response."
+                      },
+                      "caching": {
+                        "type": "boolean",
+                        "description": "Whether to cache rendered pages."
+                      },
+                      "ttl": {
+                        "type": "number",
+                        "description": "Cache lifetime of rendered pages (in seconds)."
+                      },
+                      "created": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Date when the origin was created."
+                      },
+                      "lastUpdated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Date when the origin was updated."
+                      }
+                    },
+                    "required": [
+                      "_key",
+                      "origin",
+                      "siteMaps",
+                      "caching",
+                      "ttl",
+                      "created"
+                    ]
+                  },
+                  "example": [
+                    {
+                      "_key": "www_origin_com",
+                      "origin": "https://www.origin.com",
+                      "siteMaps": ["/sitemap.xml"],
+                      "identifyNotfound": "Page Not Found",
+                      "allowOriginHeaderValue": "948ef5f9-f15f-4b61-91b3-305b77db30e9",
+                      "passThroughHeaders": ["accept-language", "user-agent"],
+                      "addResponseHeaders": {
+                        "cache-control": {
+                          "basedOnStatusCode": true,
+                          "value": {
+                            "2xx": "public, max-age=86400",
+                            "3xx": "public, max-age=7200",
+                            "4xx": "no-store",
+                            "5xx": "no-store"
                           }
                         },
-                        "caching": false,
-                        "ttl": 86400,
-                        "created": "2023-01-01T00:00:00.000Z",
-                        "lastUpdated": "2023-02-02T00:00:00.000Z"
-                      }
-                    ]
-                  }
+                        "x-prerender-provider": {
+                          "basedOnStatusCode": false,
+                          "value": "PhotonIQ"
+                        }
+                      },
+                      "caching": false,
+                      "ttl": 86400,
+                      "created": "2023-01-01T00:00:00.000Z",
+                      "lastUpdated": "2023-02-02T00:00:00.000Z"
+                    },
+                    {
+                      "_key": "sub_origin_com",
+                      "origin": "https://sub.origin.com",
+                      "siteMaps": ["/sitemap.xml"],
+                      "identifyNotfound": "Page Not Found",
+                      "allowOriginHeaderValue": "0641e52b-aa25-45dc-9e4f-7298b959d87c",
+                      "passThroughHeaders": ["accept-language", "user-agent"],
+                      "addResponseHeaders": {
+                        "cache-control": {
+                          "basedOnStatusCode": true,
+                          "value": {
+                            "2xx": "public, max-age=86400",
+                            "3xx": "public, max-age=7200",
+                            "4xx": "no-store",
+                            "5xx": "no-store"
+                          }
+                        },
+                        "x-prerender-provider": {
+                          "basedOnStatusCode": false,
+                          "value": "PhotonIQ"
+                        }
+                      },
+                      "caching": false,
+                      "ttl": 86400,
+                      "created": "2023-01-01T00:00:00.000Z",
+                      "lastUpdated": "2023-02-02T00:00:00.000Z"
+                    }
+                  ]
                 }
               }
             }
@@ -2481,31 +2291,13 @@
                   "type": "object",
                   "description": "Origin created successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Origin unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Origin unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Origin created successfully.",
-                    "data": { "_key": "www_origin_com" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "www_origin_com" }
                 }
               }
             }
@@ -2594,143 +2386,125 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Origin fetched successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
+                      "description": "Origin unique identifier."
                     },
-                    "message": {
+                    "origin": {
                       "type": "string",
-                      "description": "Success message."
+                      "format": "uri",
+                      "description": "Origin base URL."
                     },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Origin unique identifier."
-                        },
-                        "origin": {
-                          "type": "string",
-                          "format": "uri",
-                          "description": "Origin base URL."
-                        },
-                        "siteMaps": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "Sitemap path."
-                          },
-                          "description": "List of sitemap paths."
-                        },
-                        "identifyNotfound": {
-                          "type": "string",
-                          "description": "Text present on the rendered page HTML that signifies a not found error page (404). If this specific text appears on the rendered page, the HTTP status code of the response will be 404. For instance, if the text \"Sorry, the page you were looking for could not be found.\" is included on your not found error page, this text can serve as the identifier."
-                        },
-                        "allowOriginHeaderValue": {
-                          "type": "string",
-                          "description": "Value of x-photoniq-prerender-request header."
-                        },
-                        "passThroughHeaders": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "description": "Header key."
-                          },
-                          "description": "List of header keys that are forwarded from the bot request to the origin website."
-                        },
-                        "addResponseHeaders": {
-                          "type": "object",
-                          "additionalProperties": {
-                            "type": "object",
-                            "properties": {
-                              "basedOnStatusCode": {
-                                "type": "boolean",
-                                "description": "Whether the header value should be based on the response status code."
-                              },
-                              "value": {
-                                "oneOf": [
-                                  {
-                                    "type": "string",
-                                    "description": "Header value."
-                                  },
-                                  {
-                                    "type": "object",
-                                    "description": "Status code. Ranges like 2xx can also be used.",
-                                    "additionalProperties": {
-                                      "type": "string",
-                                      "description": "Header value."
-                                    }
-                                  }
-                                ]
-                              }
-                            },
-                            "required": ["basedOnStatusCode", "value"],
-                            "description": "Additional response headers configuration."
-                          },
-                          "description": "Map of headers to add to the response."
-                        },
-                        "caching": {
-                          "type": "boolean",
-                          "description": "Whether to cache rendered pages."
-                        },
-                        "ttl": {
-                          "type": "number",
-                          "description": "Cache lifetime of rendered pages (in seconds)."
-                        },
-                        "created": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "Date when the origin was created."
-                        },
-                        "lastUpdated": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "Date when the origin was updated."
-                        }
+                    "siteMaps": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Sitemap path."
                       },
-                      "required": [
-                        "_key",
-                        "origin",
-                        "siteMaps",
-                        "caching",
-                        "ttl",
-                        "created"
-                      ]
-                    }
-                  },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Origin fetched successfully.",
-                    "data": {
-                      "_key": "www_origin_com",
-                      "origin": "https://www.origin.com",
-                      "siteMaps": ["/sitemap.xml"],
-                      "identifyNotfound": "Page Not Found",
-                      "allowOriginHeaderValue": "948ef5f9-f15f-4b61-91b3-305b77db30e9",
-                      "passThroughHeaders": ["accept-language", "user-agent"],
-                      "addResponseHeaders": {
-                        "cache-control": {
-                          "basedOnStatusCode": true,
+                      "description": "List of sitemap paths."
+                    },
+                    "identifyNotfound": {
+                      "type": "string",
+                      "description": "Text present on the rendered page HTML that signifies a not found error page (404). If this specific text appears on the rendered page, the HTTP status code of the response will be 404. For instance, if the text \"Sorry, the page you were looking for could not be found.\" is included on your not found error page, this text can serve as the identifier."
+                    },
+                    "allowOriginHeaderValue": {
+                      "type": "string",
+                      "description": "Value of x-photoniq-prerender-request header."
+                    },
+                    "passThroughHeaders": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Header key."
+                      },
+                      "description": "List of header keys that are forwarded from the bot request to the origin website."
+                    },
+                    "addResponseHeaders": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "basedOnStatusCode": {
+                            "type": "boolean",
+                            "description": "Whether the header value should be based on the response status code."
+                          },
                           "value": {
-                            "2xx": "public, max-age=86400",
-                            "3xx": "public, max-age=7200",
-                            "4xx": "no-store",
-                            "5xx": "no-store"
+                            "oneOf": [
+                              {
+                                "type": "string",
+                                "description": "Header value."
+                              },
+                              {
+                                "type": "object",
+                                "description": "Status code. Ranges like 2xx can also be used.",
+                                "additionalProperties": {
+                                  "type": "string",
+                                  "description": "Header value."
+                                }
+                              }
+                            ]
                           }
                         },
-                        "x-prerender-provider": {
-                          "basedOnStatusCode": false,
-                          "value": "PhotonIQ"
+                        "required": ["basedOnStatusCode", "value"],
+                        "description": "Additional response headers configuration."
+                      },
+                      "description": "Map of headers to add to the response."
+                    },
+                    "caching": {
+                      "type": "boolean",
+                      "description": "Whether to cache rendered pages."
+                    },
+                    "ttl": {
+                      "type": "number",
+                      "description": "Cache lifetime of rendered pages (in seconds)."
+                    },
+                    "created": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Date when the origin was created."
+                    },
+                    "lastUpdated": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Date when the origin was updated."
+                    }
+                  },
+                  "required": [
+                    "_key",
+                    "origin",
+                    "siteMaps",
+                    "caching",
+                    "ttl",
+                    "created"
+                  ],
+                  "description": "Origin fetched successfully.",
+                  "example": {
+                    "_key": "www_origin_com",
+                    "origin": "https://www.origin.com",
+                    "siteMaps": ["/sitemap.xml"],
+                    "identifyNotfound": "Page Not Found",
+                    "allowOriginHeaderValue": "948ef5f9-f15f-4b61-91b3-305b77db30e9",
+                    "passThroughHeaders": ["accept-language", "user-agent"],
+                    "addResponseHeaders": {
+                      "cache-control": {
+                        "basedOnStatusCode": true,
+                        "value": {
+                          "2xx": "public, max-age=86400",
+                          "3xx": "public, max-age=7200",
+                          "4xx": "no-store",
+                          "5xx": "no-store"
                         }
                       },
-                      "caching": false,
-                      "ttl": 86400,
-                      "created": "2023-01-01T00:00:00.000Z",
-                      "lastUpdated": "2023-02-02T00:00:00.000Z"
-                    }
+                      "x-prerender-provider": {
+                        "basedOnStatusCode": false,
+                        "value": "PhotonIQ"
+                      }
+                    },
+                    "caching": false,
+                    "ttl": 86400,
+                    "created": "2023-01-01T00:00:00.000Z",
+                    "lastUpdated": "2023-02-02T00:00:00.000Z"
                   }
                 }
               }
@@ -2758,6 +2532,29 @@
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -2914,31 +2711,13 @@
                   "type": "object",
                   "description": "Origin updated successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Origin unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Origin unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Origin updated successfully.",
-                    "data": { "_key": "www_origin_com" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "www_origin_com" }
                 }
               }
             }
@@ -2965,6 +2744,29 @@
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -3027,31 +2829,13 @@
                   "type": "object",
                   "description": "Origin deleted successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Origin unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Origin unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Origin deleted successfully.",
-                    "data": { "_key": "www_origin_com" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "www_origin_com" }
                 }
               }
             }
@@ -3078,6 +2862,29 @@
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -3160,40 +2967,22 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Response time percentiles fetched successfully.",
                   "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
+                    "p90": {
+                      "type": "number",
+                      "description": "The 90th percentile value. This represents the value below which 90% of the data points fall."
                     },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
+                    "p95": {
+                      "type": "number",
+                      "description": "The 95th percentile value. This represents the value below which 95% of the data points fall."
                     },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "p90": {
-                          "type": "number",
-                          "description": "The 90th percentile value. This represents the value below which 90% of the data points fall."
-                        },
-                        "p95": {
-                          "type": "number",
-                          "description": "The 95th percentile value. This represents the value below which 95% of the data points fall."
-                        },
-                        "p99": {
-                          "type": "number",
-                          "description": "The 99th percentile value. This represents the value below which 99% of the data points fall."
-                        }
-                      }
+                    "p99": {
+                      "type": "number",
+                      "description": "The 99th percentile value. This represents the value below which 99% of the data points fall."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Response time percentiles fetched successfully.",
-                    "data": { "p90": 7355, "p95": 8007, "p99": 10517 }
-                  }
+                  "description": "Response time percentiles fetched successfully.",
+                  "example": { "p90": 7355, "p95": 8007, "p99": 10517 }
                 }
               }
             }
@@ -3310,40 +3099,22 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Response time percentiles fetched successfully.",
                   "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
+                    "p90": {
+                      "type": "number",
+                      "description": "The 90th percentile value. This represents the value below which 90% of the data points fall."
                     },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
+                    "p95": {
+                      "type": "number",
+                      "description": "The 95th percentile value. This represents the value below which 95% of the data points fall."
                     },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "p90": {
-                          "type": "number",
-                          "description": "The 90th percentile value. This represents the value below which 90% of the data points fall."
-                        },
-                        "p95": {
-                          "type": "number",
-                          "description": "The 95th percentile value. This represents the value below which 95% of the data points fall."
-                        },
-                        "p99": {
-                          "type": "number",
-                          "description": "The 99th percentile value. This represents the value below which 99% of the data points fall."
-                        }
-                      }
+                    "p99": {
+                      "type": "number",
+                      "description": "The 99th percentile value. This represents the value below which 99% of the data points fall."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Response time percentiles fetched successfully.",
-                    "data": { "p90": 7355, "p95": 8007, "p99": 10517 }
-                  }
+                  "description": "Response time percentiles fetched successfully.",
+                  "example": { "p90": 7355, "p95": 8007, "p99": 10517 }
                 }
               }
             }
@@ -3432,68 +3203,50 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Prefetch configuration fetched successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
+                      "description": "Prefetch configuration unique identifier."
                     },
-                    "message": {
+                    "origin": {
                       "type": "string",
-                      "description": "Success message."
+                      "format": "uri",
+                      "description": "Origin base URL."
                     },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Prefetch configuration unique identifier."
-                        },
-                        "origin": {
-                          "type": "string",
-                          "format": "uri",
-                          "description": "Origin base URL."
-                        },
-                        "cronSchedule": {
-                          "type": "string",
-                          "description": "Cron expression for scheduling."
-                        },
-                        "isRenderForMobile": {
-                          "type": "boolean",
-                          "description": "Whether rendering should be tailored for mobile devices."
-                        },
-                        "createdAt": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "Date when the prefetch configuration was created."
-                        },
-                        "updatedAt": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "Date when the prefetch configuration was updated."
-                        }
-                      },
-                      "required": [
-                        "_key",
-                        "origin",
-                        "cronSchedule",
-                        "isRenderForMobile",
-                        "createdAt"
-                      ]
+                    "cronSchedule": {
+                      "type": "string",
+                      "description": "Cron expression for scheduling."
+                    },
+                    "isRenderForMobile": {
+                      "type": "boolean",
+                      "description": "Whether rendering should be tailored for mobile devices."
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Date when the prefetch configuration was created."
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Date when the prefetch configuration was updated."
                     }
                   },
-                  "required": ["status", "message", "data"],
+                  "required": [
+                    "_key",
+                    "origin",
+                    "cronSchedule",
+                    "isRenderForMobile",
+                    "createdAt"
+                  ],
+                  "description": "Prefetch configuration fetched successfully.",
                   "example": {
-                    "status": "OK",
-                    "message": "Prefetch configuration fetched successfully.",
-                    "data": {
-                      "_key": "www_origin_com",
-                      "origin": "https://www.origin.com",
-                      "cronSchedule": "0 0 * * *",
-                      "isRenderForMobile": false,
-                      "createdAt": "2023-01-01T00:00:00.000Z",
-                      "updatedAt": "2023-02-02T00:00:00.000Z"
-                    }
+                    "_key": "www_origin_com",
+                    "origin": "https://www.origin.com",
+                    "cronSchedule": "0 0 * * *",
+                    "isRenderForMobile": false,
+                    "createdAt": "2023-01-01T00:00:00.000Z",
+                    "updatedAt": "2023-02-02T00:00:00.000Z"
                   }
                 }
               }
@@ -3631,31 +3384,13 @@
                   "type": "object",
                   "description": "Prefetch configuration created successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Prefetch configuration unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Prefetch configuration unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Prefetch configuration created successfully.",
-                    "data": { "_key": "www_origin_com" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "www_origin_com" }
                 }
               }
             }
@@ -3682,6 +3417,29 @@
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
                   }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Conflict.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR" }
                 }
               }
             }
@@ -3767,31 +3525,13 @@
                   "type": "object",
                   "description": "Prefetch configuration updated successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Prefetch configuration unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Prefetch configuration unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Prefetch configuration updated successfully.",
-                    "data": { "_key": "www_origin_com" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "www_origin_com" }
                 }
               }
             }
@@ -3818,6 +3558,29 @@
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -3880,31 +3643,13 @@
                   "type": "object",
                   "description": "Prefetch configuration deleted successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Prefetch configuration unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Prefetch configuration unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Prefetch configuration deleted successfully.",
-                    "data": { "_key": "www_origin_com" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "www_origin_com" }
                 }
               }
             }
@@ -3931,6 +3676,29 @@
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -4021,86 +3789,68 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "description": "Prefetch statistics fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "prefetchType": {
-                            "type": "string",
-                            "enum": ["manual", "scheduled"],
-                            "description": "Method of prefetching."
-                          },
-                          "prefetchStatus": {
-                            "type": "string",
-                            "description": "Current status of prefetching."
-                          },
-                          "totalPrefetched": {
-                            "type": "number",
-                            "description": "Count of total URLs prefetched."
-                          },
-                          "totalCompleted": {
-                            "type": "number",
-                            "description": "Count of URLs successfully prefetched."
-                          },
-                          "totalRetrying": {
-                            "type": "number",
-                            "description": "Count of URLs retrying prefetch."
-                          },
-                          "totalQueued": {
-                            "type": "number",
-                            "description": "Count of URLs queued for prefetch."
-                          },
-                          "totalFailed": {
-                            "type": "number",
-                            "description": "Count of URLs where prefetch failed."
-                          },
-                          "createdAt": {
-                            "type": "number",
-                            "description": "Unix timestamp of prefetch trigger creation."
-                          }
-                        },
-                        "required": [
-                          "prefetchType",
-                          "prefetchStatus",
-                          "totalPrefetched",
-                          "totalCompleted",
-                          "totalRetrying",
-                          "totalQueued",
-                          "totalFailed",
-                          "createdAt"
-                        ]
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "prefetchType": {
+                        "type": "string",
+                        "enum": ["manual", "scheduled"],
+                        "description": "Method of prefetching."
+                      },
+                      "prefetchStatus": {
+                        "type": "string",
+                        "description": "Current status of prefetching."
+                      },
+                      "totalPrefetched": {
+                        "type": "number",
+                        "description": "Count of total URLs prefetched."
+                      },
+                      "totalCompleted": {
+                        "type": "number",
+                        "description": "Count of URLs successfully prefetched."
+                      },
+                      "totalRetrying": {
+                        "type": "number",
+                        "description": "Count of URLs retrying prefetch."
+                      },
+                      "totalQueued": {
+                        "type": "number",
+                        "description": "Count of URLs queued for prefetch."
+                      },
+                      "totalFailed": {
+                        "type": "number",
+                        "description": "Count of URLs where prefetch failed."
+                      },
+                      "createdAt": {
+                        "type": "number",
+                        "description": "Unix timestamp of prefetch trigger creation."
                       }
-                    }
-                  },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Prefetch statistics fetched successfully.",
-                    "data": [
-                      {
-                        "prefetchType": "scheduled",
-                        "prefetchStatus": "in_progress",
-                        "totalPrefetched": 500,
-                        "totalCompleted": 400,
-                        "totalRetrying": 3,
-                        "totalQueued": 95,
-                        "totalFailed": 2,
-                        "createdAt": 1672542000
-                      }
+                    },
+                    "required": [
+                      "prefetchType",
+                      "prefetchStatus",
+                      "totalPrefetched",
+                      "totalCompleted",
+                      "totalRetrying",
+                      "totalQueued",
+                      "totalFailed",
+                      "createdAt"
                     ]
-                  }
+                  },
+                  "example": [
+                    {
+                      "prefetchType": "scheduled",
+                      "prefetchStatus": "in_progress",
+                      "totalPrefetched": 500,
+                      "totalCompleted": 400,
+                      "totalRetrying": 3,
+                      "totalQueued": 95,
+                      "totalFailed": 2,
+                      "createdAt": 1672542000
+                    }
+                  ]
                 }
               }
             }
@@ -4191,31 +3941,13 @@
                   "type": "object",
                   "description": "Prefetch trigger created successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Prefetch trigger unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Prefetch trigger unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Prefetch trigger created successfully.",
-                    "data": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "-A5HO1NwgFrTMp5xv8KRWnk" }
                 }
               }
             }
@@ -4266,7 +3998,7 @@
                   "required": ["status", "message"],
                   "example": {
                     "status": "ERROR",
-                    "message": "There's already a queued or in-progress trigger."
+                    "message": "There is already a queued or in-progress trigger"
                   }
                 }
               }
@@ -4348,75 +4080,52 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "description": "Prefetch URLs fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "Origin URL."
-                          },
-                          "isMobile": {
-                            "type": "boolean",
-                            "description": "Whether rendering was tailored for mobile devices."
-                          },
-                          "status": {
-                            "type": "string",
-                            "enum": [
-                              "queued",
-                              "retrying",
-                              "completed",
-                              "failed"
-                            ],
-                            "description": "URL status."
-                          },
-                          "createdAt": {
-                            "type": "number",
-                            "description": "Timestamp of when the prefetch URL was created."
-                          },
-                          "updatedAt": {
-                            "type": ["null", "number"],
-                            "description": "Timestamp of when the prefetch URL was updated."
-                          }
-                        },
-                        "required": ["url", "isMobile", "status", "createdAt"]
-                      }
-                    }
-                  },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Prefetch URLs fetched successfully.",
-                    "data": [
-                      {
-                        "url": "https://www.origin.com/terms",
-                        "isMobile": false,
-                        "status": "queued",
-                        "createdAt": 1672542000,
-                        "updatedAt": 1675306800
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Origin URL."
                       },
-                      {
-                        "url": "https://www.origin.com/privacy",
-                        "isMobile": false,
-                        "status": "completed",
-                        "createdAt": 1672542000,
-                        "updatedAt": 1675306800
+                      "isMobile": {
+                        "type": "boolean",
+                        "description": "Whether rendering was tailored for mobile devices."
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": ["queued", "retrying", "completed", "failed"],
+                        "description": "URL status."
+                      },
+                      "createdAt": {
+                        "type": "number",
+                        "description": "Timestamp of when the prefetch URL was created."
+                      },
+                      "updatedAt": {
+                        "type": ["null", "number"],
+                        "description": "Timestamp of when the prefetch URL was updated."
                       }
-                    ]
-                  }
+                    },
+                    "required": ["url", "isMobile", "status", "createdAt"]
+                  },
+                  "example": [
+                    {
+                      "url": "https://www.origin.com/terms",
+                      "isMobile": false,
+                      "status": "queued",
+                      "createdAt": 1672542000,
+                      "updatedAt": 1675306800
+                    },
+                    {
+                      "url": "https://www.origin.com/privacy",
+                      "isMobile": false,
+                      "status": "completed",
+                      "createdAt": 1672542000,
+                      "updatedAt": 1675306800
+                    }
+                  ]
                 }
               }
             }
@@ -4508,10 +4217,9 @@
           "200": {
             "description": "HTML content fetched successfully.",
             "content": {
-              "application/json": {
+              "text/html": {
                 "schema": {
                   "type": "string",
-                  "description": "HTML content fetched successfully.",
                   "example": "<!DOCTYPE html><html lang=\"en\"><head><base href=\"https://www.origin.com/\"></head><body></body></html>"
                 }
               }
@@ -4733,10 +4441,9 @@
           "200": {
             "description": "HTML content fetched successfully.",
             "content": {
-              "application/json": {
+              "text/html": {
                 "schema": {
                   "type": "string",
-                  "description": "HTML content fetched successfully.",
                   "example": "<!DOCTYPE html><html lang=\"en\"><head><base href=\"https://www.origin.com/\"></head><body></body></html>"
                 }
               }
@@ -4965,80 +4672,62 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "description": "Render history fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "timestamp": {
-                            "type": "number",
-                            "description": "The time at which the event occurred, represented as a Unix timestamp."
-                          },
-                          "origin": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "The URL of the origin server from which the request was sent."
-                          },
-                          "path": {
-                            "type": "string",
-                            "description": "The specific path on the server accessed by the request."
-                          },
-                          "bytesSent": {
-                            "type": "number",
-                            "description": "The total number of bytes sent in the response."
-                          },
-                          "responseTime": {
-                            "type": "number",
-                            "description": "The time taken to receive a response from the server, measured in milliseconds."
-                          },
-                          "isMobile": {
-                            "type": "boolean",
-                            "description": "Indicates whether the request was made from a mobile device."
-                          },
-                          "responseCode": {
-                            "type": "number",
-                            "description": "The HTTP status code returned by the server in response to the request."
-                          }
-                        }
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "number",
+                        "description": "The time at which the event occurred, represented as a Unix timestamp."
+                      },
+                      "origin": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "The URL of the origin server from which the request was sent."
+                      },
+                      "path": {
+                        "type": "string",
+                        "description": "The specific path on the server accessed by the request."
+                      },
+                      "bytesSent": {
+                        "type": "number",
+                        "description": "The total number of bytes sent in the response."
+                      },
+                      "responseTime": {
+                        "type": "number",
+                        "description": "The time taken to receive a response from the server, measured in milliseconds."
+                      },
+                      "isMobile": {
+                        "type": "boolean",
+                        "description": "Indicates whether the request was made from a mobile device."
+                      },
+                      "responseCode": {
+                        "type": "number",
+                        "description": "The HTTP status code returned by the server in response to the request."
                       }
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Render history fetched successfully.",
-                    "data": [
-                      {
-                        "timestamp": 1672543000,
-                        "origin": "https://www.origin.com",
-                        "path": "/terms",
-                        "bytesSent": 362414,
-                        "responseTime": 1000,
-                        "isMobile": false,
-                        "responseCode": 200
-                      },
-                      {
-                        "timestamp": 1672542000,
-                        "origin": "https://www.origin.com",
-                        "path": "/terms",
-                        "bytesSent": 362056,
-                        "responseTime": 1500,
-                        "isMobile": false,
-                        "responseCode": 200
-                      }
-                    ]
-                  }
+                  "example": [
+                    {
+                      "timestamp": 1672543000,
+                      "origin": "https://www.origin.com",
+                      "path": "/terms",
+                      "bytesSent": 362414,
+                      "responseTime": 1000,
+                      "isMobile": false,
+                      "responseCode": 200
+                    },
+                    {
+                      "timestamp": 1672542000,
+                      "origin": "https://www.origin.com",
+                      "path": "/terms",
+                      "bytesSent": 362056,
+                      "responseTime": 1500,
+                      "isMobile": false,
+                      "responseCode": 200
+                    }
+                  ]
                 }
               }
             }
@@ -5173,80 +4862,62 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "description": "Render history fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "timestamp": {
-                            "type": "number",
-                            "description": "The time at which the event occurred, represented as a Unix timestamp."
-                          },
-                          "origin": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "The URL of the origin server from which the request was sent."
-                          },
-                          "path": {
-                            "type": "string",
-                            "description": "The specific path on the server accessed by the request."
-                          },
-                          "bytesSent": {
-                            "type": "number",
-                            "description": "The total number of bytes sent in the response."
-                          },
-                          "responseTime": {
-                            "type": "number",
-                            "description": "The time taken to receive a response from the server, measured in milliseconds."
-                          },
-                          "isMobile": {
-                            "type": "boolean",
-                            "description": "Indicates whether the request was made from a mobile device."
-                          },
-                          "responseCode": {
-                            "type": "number",
-                            "description": "The HTTP status code returned by the server in response to the request."
-                          }
-                        }
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "number",
+                        "description": "The time at which the event occurred, represented as a Unix timestamp."
+                      },
+                      "origin": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "The URL of the origin server from which the request was sent."
+                      },
+                      "path": {
+                        "type": "string",
+                        "description": "The specific path on the server accessed by the request."
+                      },
+                      "bytesSent": {
+                        "type": "number",
+                        "description": "The total number of bytes sent in the response."
+                      },
+                      "responseTime": {
+                        "type": "number",
+                        "description": "The time taken to receive a response from the server, measured in milliseconds."
+                      },
+                      "isMobile": {
+                        "type": "boolean",
+                        "description": "Indicates whether the request was made from a mobile device."
+                      },
+                      "responseCode": {
+                        "type": "number",
+                        "description": "The HTTP status code returned by the server in response to the request."
                       }
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Render history fetched successfully.",
-                    "data": [
-                      {
-                        "timestamp": 1672543000,
-                        "origin": "https://www.origin.com",
-                        "path": "/terms",
-                        "bytesSent": 362414,
-                        "responseTime": 1000,
-                        "isMobile": false,
-                        "responseCode": 200
-                      },
-                      {
-                        "timestamp": 1672542000,
-                        "origin": "https://www.origin.com",
-                        "path": "/terms",
-                        "bytesSent": 362056,
-                        "responseTime": 1500,
-                        "isMobile": false,
-                        "responseCode": 200
-                      }
-                    ]
-                  }
+                  "example": [
+                    {
+                      "timestamp": 1672543000,
+                      "origin": "https://www.origin.com",
+                      "path": "/terms",
+                      "bytesSent": 362414,
+                      "responseTime": 1000,
+                      "isMobile": false,
+                      "responseCode": 200
+                    },
+                    {
+                      "timestamp": 1672542000,
+                      "origin": "https://www.origin.com",
+                      "path": "/terms",
+                      "bytesSent": 362056,
+                      "responseTime": 1500,
+                      "isMobile": false,
+                      "responseCode": 200
+                    }
+                  ]
                 }
               }
             }
@@ -5341,63 +5012,45 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Render statistics fetched successfully.",
                   "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
+                    "totalPrefetch": {
+                      "type": "number",
+                      "description": "The total number of prefetched requests."
                     },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
+                    "totalCacheHits": {
+                      "type": "number",
+                      "description": "The total number of requests that were successfully served from the cache."
                     },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "totalPrefetch": {
-                          "type": "number",
-                          "description": "The total number of prefetched requests."
-                        },
-                        "totalCacheHits": {
-                          "type": "number",
-                          "description": "The total number of requests that were successfully served from the cache."
-                        },
-                        "totalCacheMisses": {
-                          "type": "number",
-                          "description": "The total number of requests that were not served from the cache."
-                        },
-                        "totalResponseSize": {
-                          "type": "number",
-                          "description": "The total size of all responses sent, measured in bytes."
-                        },
-                        "totalOriginsRenderingFor": {
-                          "type": "number",
-                          "description": "The total number of unique origins for which rendering was performed."
-                        },
-                        "totalRenders": {
-                          "type": "number",
-                          "description": "The total number of render operations performed."
-                        },
-                        "totalFailed": {
-                          "type": "number",
-                          "description": "The total number of render operations that failed."
-                        }
-                      }
+                    "totalCacheMisses": {
+                      "type": "number",
+                      "description": "The total number of requests that were not served from the cache."
+                    },
+                    "totalResponseSize": {
+                      "type": "number",
+                      "description": "The total size of all responses sent, measured in bytes."
+                    },
+                    "totalOriginsRenderingFor": {
+                      "type": "number",
+                      "description": "The total number of unique origins for which rendering was performed."
+                    },
+                    "totalRenders": {
+                      "type": "number",
+                      "description": "The total number of render operations performed."
+                    },
+                    "totalFailed": {
+                      "type": "number",
+                      "description": "The total number of render operations that failed."
                     }
                   },
-                  "required": ["status", "message", "data"],
+                  "description": "Render statistics fetched successfully.",
                   "example": {
-                    "status": "OK",
-                    "message": "Render statistics fetched successfully.",
-                    "data": {
-                      "totalPrefetch": 75,
-                      "totalCacheHits": 6,
-                      "totalCacheMisses": 83,
-                      "totalResponseSize": 30340237,
-                      "totalOriginsRenderingFor": 3,
-                      "totalRenders": 87,
-                      "totalFailed": 2
-                    }
+                    "totalPrefetch": 75,
+                    "totalCacheHits": 6,
+                    "totalCacheMisses": 83,
+                    "totalResponseSize": 30340237,
+                    "totalOriginsRenderingFor": 3,
+                    "totalRenders": 87,
+                    "totalFailed": 2
                   }
                 }
               }
@@ -5501,63 +5154,45 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Render statistics fetched successfully.",
                   "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
+                    "totalPrefetch": {
+                      "type": "number",
+                      "description": "The total number of prefetched requests."
                     },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
+                    "totalCacheHits": {
+                      "type": "number",
+                      "description": "The total number of requests that were successfully served from the cache."
                     },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "totalPrefetch": {
-                          "type": "number",
-                          "description": "The total number of prefetched requests."
-                        },
-                        "totalCacheHits": {
-                          "type": "number",
-                          "description": "The total number of requests that were successfully served from the cache."
-                        },
-                        "totalCacheMisses": {
-                          "type": "number",
-                          "description": "The total number of requests that were not served from the cache."
-                        },
-                        "totalResponseSize": {
-                          "type": "number",
-                          "description": "The total size of all responses sent, measured in bytes."
-                        },
-                        "totalOriginsRenderingFor": {
-                          "type": "number",
-                          "description": "The total number of unique origins for which rendering was performed."
-                        },
-                        "totalRenders": {
-                          "type": "number",
-                          "description": "The total number of render operations performed."
-                        },
-                        "totalFailed": {
-                          "type": "number",
-                          "description": "The total number of render operations that failed."
-                        }
-                      }
+                    "totalCacheMisses": {
+                      "type": "number",
+                      "description": "The total number of requests that were not served from the cache."
+                    },
+                    "totalResponseSize": {
+                      "type": "number",
+                      "description": "The total size of all responses sent, measured in bytes."
+                    },
+                    "totalOriginsRenderingFor": {
+                      "type": "number",
+                      "description": "The total number of unique origins for which rendering was performed."
+                    },
+                    "totalRenders": {
+                      "type": "number",
+                      "description": "The total number of render operations performed."
+                    },
+                    "totalFailed": {
+                      "type": "number",
+                      "description": "The total number of render operations that failed."
                     }
                   },
-                  "required": ["status", "message", "data"],
+                  "description": "Render statistics fetched successfully.",
                   "example": {
-                    "status": "OK",
-                    "message": "Render statistics fetched successfully.",
-                    "data": {
-                      "totalPrefetch": 75,
-                      "totalCacheHits": 6,
-                      "totalCacheMisses": 83,
-                      "totalResponseSize": 30340237,
-                      "totalOriginsRenderingFor": 3,
-                      "totalRenders": 87,
-                      "totalFailed": 2
-                    }
+                    "totalPrefetch": 75,
+                    "totalCacheHits": 6,
+                    "totalCacheMisses": 83,
+                    "totalResponseSize": 30340237,
+                    "totalOriginsRenderingFor": 3,
+                    "totalRenders": 87,
+                    "totalFailed": 2
                   }
                 }
               }
@@ -5647,89 +5282,71 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Settings fetched successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
+                      "description": "Settings unique identifier."
                     },
-                    "message": {
+                    "origin": {
                       "type": "string",
-                      "description": "Success message."
+                      "format": "uri",
+                      "description": "Origin base URL."
                     },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Settings unique identifier."
-                        },
-                        "origin": {
-                          "type": "string",
-                          "format": "uri",
-                          "description": "Origin base URL."
-                        },
-                        "injectInlineCSS": {
-                          "type": "boolean",
-                          "description": "Whether to inject CSS into the HTML."
-                        },
-                        "addRequestHeader": {
-                          "type": "boolean",
-                          "description": "Whether to add x-photoniq-prerender-request header to each request made during page rendering."
-                        },
-                        "blockRequestTypes": {
-                          "type": "array",
-                          "items": { "type": "string" },
-                          "description": "List of resource types that should be blocked, e.g., fonts, stylesheets."
-                        },
-                        "urlBlockList": {
-                          "type": "array",
-                          "items": { "type": "string" },
-                          "description": "List of URLs that should be blocked, e.g., https://googleads.g.doubleclick.net/pagead."
-                        },
-                        "created": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "Date when the prerender settings was created."
-                        },
-                        "lastUpdated": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "Date when the prerender settings was updated."
-                        }
-                      },
-                      "required": [
-                        "_key",
-                        "origin",
-                        "injectInlineCSS",
-                        "addRequestHeader",
-                        "blockRequestTypes",
-                        "urlBlockList",
-                        "created"
-                      ]
+                    "injectInlineCSS": {
+                      "type": "boolean",
+                      "description": "Whether to inject CSS into the HTML."
+                    },
+                    "addRequestHeader": {
+                      "type": "boolean",
+                      "description": "Whether to add x-photoniq-prerender-request header to each request made during page rendering."
+                    },
+                    "blockRequestTypes": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "List of resource types that should be blocked, e.g., fonts, stylesheets."
+                    },
+                    "urlBlockList": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "List of URLs that should be blocked, e.g., https://googleads.g.doubleclick.net/pagead."
+                    },
+                    "created": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Date when the prerender settings was created."
+                    },
+                    "lastUpdated": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Date when the prerender settings was updated."
                     }
                   },
-                  "required": ["status", "message", "data"],
+                  "required": [
+                    "_key",
+                    "origin",
+                    "injectInlineCSS",
+                    "addRequestHeader",
+                    "blockRequestTypes",
+                    "urlBlockList",
+                    "created"
+                  ],
+                  "description": "Settings fetched successfully.",
                   "example": {
-                    "status": "OK",
-                    "message": "Settings fetched successfully.",
-                    "data": {
-                      "_key": "www_origin_com",
-                      "origin": "https://www.origin.com",
-                      "injectInlineCSS": false,
-                      "addRequestHeader": true,
-                      "blockRequestTypes": ["fonts", "stylesheet"],
-                      "urlBlockList": [
-                        "https://googleads.g.doubleclick.net/pagead/",
-                        "https://www.googletagmanager.com/gtag/",
-                        "https://bat.bing.com/p/action/",
-                        "https://bat.bing.com/bat.js",
-                        "https://connect.facebook.net/en_US/fbevents.js",
-                        "https://maps.googleapis.com/maps-api-v3/api/js/"
-                      ],
-                      "created": "2023-01-01T00:00:00.000Z",
-                      "lastUpdated": "2023-02-02T00:00:00.000Z"
-                    }
+                    "_key": "www_origin_com",
+                    "origin": "https://www.origin.com",
+                    "injectInlineCSS": false,
+                    "addRequestHeader": true,
+                    "blockRequestTypes": ["fonts", "stylesheet"],
+                    "urlBlockList": [
+                      "https://googleads.g.doubleclick.net/pagead/",
+                      "https://www.googletagmanager.com/gtag/",
+                      "https://bat.bing.com/p/action/",
+                      "https://bat.bing.com/bat.js",
+                      "https://connect.facebook.net/en_US/fbevents.js",
+                      "https://maps.googleapis.com/maps-api-v3/api/js/"
+                    ],
+                    "created": "2023-01-01T00:00:00.000Z",
+                    "lastUpdated": "2023-02-02T00:00:00.000Z"
                   }
                 }
               }
@@ -5757,6 +5374,29 @@
                     "status": "ERROR",
                     "message": "Header x-photoniq-customerid is required."
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
                 }
               }
             }
@@ -5861,31 +5501,13 @@
                   "type": "object",
                   "description": "Settings updated successfully.",
                   "properties": {
-                    "status": {
+                    "_key": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "_key": {
-                          "type": "string",
-                          "description": "Settings unique identifier."
-                        }
-                      },
-                      "required": ["_key"]
+                      "description": "Settings unique identifier."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Setting updated successfully.",
-                    "data": { "_key": "www_origin_com" }
-                  }
+                  "required": ["_key"],
+                  "example": { "_key": "www_origin_com" }
                 }
               }
             }
@@ -5916,6 +5538,81 @@
               }
             }
           },
+          "404": {
+            "description": "Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Not found.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": { "status": "ERROR", "message": "Not found." }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Internal server error.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Error status."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  },
+                  "required": ["status", "message"],
+                  "example": {
+                    "status": "ERROR",
+                    "message": "Internal server error."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prerender/v1/telemetry": {
+      "get": {
+        "summary": "Get prerender service telemetry",
+        "tags": ["Telemetry"],
+        "description": "Returns prerender service telemetry.",
+        "parameters": [
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "x-photoniq-customerid",
+            "required": true,
+            "description": "The unique identifier for the customer"
+          },
+          {
+            "schema": { "type": "string" },
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "description": "Authorization token for API access"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Metrics fetched successfully." },
           "500": {
             "description": "Internal server error.",
             "content": {
@@ -5969,8 +5666,8 @@
             "schema": {
               "type": "number",
               "minimum": 1,
-              "maximum": 1000,
-              "default": 100
+              "default": 1000,
+              "maximum": 1000
             },
             "in": "query",
             "name": "limit",
@@ -6037,60 +5734,42 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "description": "Usage metrics fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "timestamp": {
-                            "type": "number",
-                            "description": "The time at which the event occurred, represented as a Unix timestamp."
-                          },
-                          "totalRenders": {
-                            "type": "number",
-                            "description": "The total number of rendering operations performed."
-                          },
-                          "origin": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "The URL of the origin from which the requests are initiated."
-                          },
-                          "maxRps": {
-                            "type": "number",
-                            "description": "The maximum number of requests per second (RPS) processed."
-                          }
-                        }
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "number",
+                        "description": "The time at which the event occurred, represented as a Unix timestamp."
+                      },
+                      "totalRenders": {
+                        "type": "number",
+                        "description": "The total number of rendering operations performed."
+                      },
+                      "origin": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "The URL of the origin from which the requests are initiated."
+                      },
+                      "maxRps": {
+                        "type": "number",
+                        "description": "The maximum number of requests per second (RPS) processed."
                       }
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Usage metrics fetched successfully.",
-                    "data": [
-                      {
-                        "timestamp": 1672628400000,
-                        "totalRenders": 44,
-                        "maxRps": 3
-                      },
-                      {
-                        "timestamp": 1672542000000,
-                        "totalRenders": 66,
-                        "maxRps": 4
-                      }
-                    ]
-                  }
+                  "example": [
+                    {
+                      "timestamp": 1672628400000,
+                      "totalRenders": 44,
+                      "maxRps": 3
+                    },
+                    {
+                      "timestamp": 1672542000000,
+                      "totalRenders": 66,
+                      "maxRps": 4
+                    }
+                  ]
                 }
               }
             }
@@ -6174,8 +5853,8 @@
             "schema": {
               "type": "number",
               "minimum": 1,
-              "maximum": 1000,
-              "default": 100
+              "default": 1000,
+              "maximum": 1000
             },
             "in": "query",
             "name": "limit",
@@ -6249,60 +5928,42 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type": "array",
                   "description": "Usage metrics fetched successfully.",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "timestamp": {
-                            "type": "number",
-                            "description": "The time at which the event occurred, represented as a Unix timestamp."
-                          },
-                          "totalRenders": {
-                            "type": "number",
-                            "description": "The total number of rendering operations performed."
-                          },
-                          "origin": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "The URL of the origin from which the requests are initiated."
-                          },
-                          "maxRps": {
-                            "type": "number",
-                            "description": "The maximum number of requests per second (RPS) processed."
-                          }
-                        }
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "number",
+                        "description": "The time at which the event occurred, represented as a Unix timestamp."
+                      },
+                      "totalRenders": {
+                        "type": "number",
+                        "description": "The total number of rendering operations performed."
+                      },
+                      "origin": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "The URL of the origin from which the requests are initiated."
+                      },
+                      "maxRps": {
+                        "type": "number",
+                        "description": "The maximum number of requests per second (RPS) processed."
                       }
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "Usage metrics fetched successfully.",
-                    "data": [
-                      {
-                        "timestamp": 1672628400000,
-                        "totalRenders": 44,
-                        "maxRps": 3
-                      },
-                      {
-                        "timestamp": 1672542000000,
-                        "totalRenders": 66,
-                        "maxRps": 4
-                      }
-                    ]
-                  }
+                  "example": [
+                    {
+                      "timestamp": 1672628400000,
+                      "totalRenders": 44,
+                      "maxRps": 3
+                    },
+                    {
+                      "timestamp": 1672542000000,
+                      "totalRenders": 66,
+                      "maxRps": 4
+                    }
+                  ]
                 }
               }
             }
@@ -6374,33 +6035,15 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "API version fetched successfully.",
                   "properties": {
-                    "status": {
+                    "version": {
                       "type": "string",
-                      "description": "Success status."
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Success message."
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "version": {
-                          "type": "string",
-                          "description": "API version."
-                        }
-                      },
-                      "required": ["version"]
+                      "description": "API version."
                     }
                   },
-                  "required": ["status", "message", "data"],
-                  "example": {
-                    "status": "OK",
-                    "message": "API version fetched successfully.",
-                    "data": { "version": "1.0.0" }
-                  }
+                  "required": ["version"],
+                  "description": "API version fetched successfully.",
+                  "example": { "version": "1.0.0" }
                 }
               }
             }
@@ -6443,6 +6086,7 @@
     { "name": "Synthetic Interactions" },
     { "name": "Cache" },
     { "name": "Prefetch" },
+    { "name": "Telemetry" },
     { "name": "Prerender History" },
     { "name": "Metrics" },
     { "name": "Usage" },
