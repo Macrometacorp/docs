@@ -5,7 +5,7 @@ title: PhotonIQ API Reference
 
 <grid cols={3}>
   <card
-    heading="Dynamic Prerendering API"
+    heading="Prerendering API"
     description=""
     href="../../../docs/apiPrerendering#"
   />

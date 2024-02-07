@@ -5,7 +5,7 @@ title: View Rendering History
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for viewing Dynamic Prerendering render history, either aggregated or per origin.
+You have several options for viewing Prerendering render history, either aggregated or per origin.
 
 - **Render History tab** - In the Render History tab in the web console, you can view render history for all origins or for a single origin. You can also filter the history view based on HTTP status.
   ![Prerendering Render History Tab](/img/prerendering/render-history.png)
@@ -18,7 +18,7 @@ You have several options for viewing Dynamic Prerendering render history, either
 
 Follow these instructions to view render history in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **Render History**.
 3. (Optional) Select a specific origin. Default is **All origins**.
 4. (Optional) Apply filters to the list of rendered pages if you want to view only a specific status code.
@@ -38,7 +38,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## Render History Metrics
 
-Dynamic Prerendering provides the following metrics. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Prerendering provides the following metrics. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - **Total Requests** - Total page requests received during the selected time frame.
 - **Total Renders** - Total renders successfully performed during the selected time frame.

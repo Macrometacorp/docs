@@ -10,3 +10,38 @@ title: PhotonIQ
 ---
 
 PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Network (GDN)](../index.md). PhotonIQ represents the latest developments in AI and machine learning to deliver a faster, more efficient, and more secure online experience for your users at enterprise scale without enterprise complexity.
+
+<grid cols={3}>
+  <card
+    heading="Prerendering"
+    description="Enhance SEO and website performance."
+    href="/photoniq/prerendering"
+  />
+    <card
+    heading="Virtual Waiting Rooms"
+    description="Control and manage website traffic."
+    href="/photoniq/vwrs"
+  />
+  <card
+    heading="Fingerprint"
+    description="Accurately identify anonymous visitors."
+    href="/photoniq/fingerprinting"
+  />
+</grid>
+<grid cols={3}>
+  <card
+    heading="Performance Proxy"
+    description="Enhance website performance by streamlining your CSS and JS."
+    href="/photoniq/p3"
+  />
+  <card
+    heading="Edge Side Tagging"
+    description="Move third-party scripts to the edge."
+    href="/photoniq/est"
+  />
+  <card
+    heading="PhotonIQ APIs"
+    description="API references for PhotonIQ services."
+    href="/photoniq/photoniq-api"
+  />
+</grid>

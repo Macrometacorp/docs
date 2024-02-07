@@ -5,7 +5,7 @@ title: View 404 Identifiers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for viewing Dynamic Prerendering 404 identifiers currently set on your origins. The 404 identifier is set when an origin is created. When Dynamic Prerendering encounters a page with this string, it reports a 404 status code.
+You have several options for viewing Prerendering 404 identifiers currently set on your origins. The 404 identifier is set when an origin is created. When Prerendering encounters a page with this string, it reports a 404 status code.
 
 - **404 Identifier tab** - In the 404 Identifier tab in the web console, you can view information about the 404 identifier assigned to each origin. To add or update 404 identifiers, contact Macrometa Support.
   ![Prerendering 404 Identifier Tab](/img/prerendering/404-identifier.png)
@@ -18,7 +18,7 @@ You have several options for viewing Dynamic Prerendering 404 identifiers curren
 
 Follow these instructions to view 404 identifiers in the web console.
 
-1. Log in to your Dynamic Prerendering dashboard.
+1. Log in to your Prerendering dashboard.
 2. Click **404 Identifier**.
 
 </TabItem>
@@ -34,7 +34,7 @@ In the API, 404 identifier information is included in the origin settings API. U
 
 ## 404 Identifier Fields
 
-Dynamic Prerendering provides the following fields in the 404 Identifier tab. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Prerendering provides the following fields in the 404 Identifier tab. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - **Origin URL** - URL of the origin.
 - **Identifier String** - Text that signals the prerendering bot to set the response code to 404.

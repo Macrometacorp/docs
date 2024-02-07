@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "PhotonIQ Digital Fingerprinting API",
-    "description": "API documentation for the PhotonIQ Digital Fingerprinting",
+    "title": "PhotonIQ Fingerprint API",
+    "description": "API documentation for the PhotonIQ Fingerprint",
     "version": "1.5.0"
   },
   "servers": [
@@ -839,7 +839,7 @@
         "tags": [
           "Telemetry"
         ],
-        "description": "Provide telemetry data in Prometheus format. Useful for monitoring services to monitor the health of the Digital Fingerprinting service.",
+        "description": "Provide telemetry data in Prometheus format. Useful for monitoring services to monitor the health of the Fingerprint service.",
         "operationId": "getTelemetry",
         "security": [
           {

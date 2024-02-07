@@ -1,9 +1,11 @@
 ---
 sidebar_position: 1
-title: Virtual Waiting Rooms
+title: Virtual Waiting Rooms (VWRs)
 ---
 
-Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) are an advanced prioritization service that manages visitors entering a site. VWRs are fully programmable and can be generated based on origin loads, suspicious behavior, visitor thresholds, regions, or traffic-based alerts, to name a few. Advanced routing can recognize previous customers, send suspected bots to honeypots or looping queues, or deliver cached versions of a site to SEO crawlers without hitting the origin.
+PhotonIQ Virtual Waiting Rooms (VWRs) are designed to control and manage website traffic, especially during periods of high visitor volume. These VWRs are fully programmable, allowing customization based on various parameters such as origin load, visitor thresholds, regional traffic, and behavior analysis. Key functionalities include advanced routing capabilities, which enable VWRs to identify returning customers, divert suspected bots, and serve cached content to SEO crawlers, thereby ensuring the stability of the origin server.
+
+In operational scenarios, VWRs help maintain website functionality during traffic surges, effectively preventing server overloads and potential site downtime. The service offers features like priority queuing and real-time updates to users, aimed at enhancing the user experience by reducing waiting time. Designed for ease of implementation and maintenance, VWRs provide a solution for automated queue management, making them suitable for high-traffic websites in need of efficient traffic handling and visitor management.
 
 ### How It Works
 
@@ -17,22 +19,21 @@ VWRs serves as a dynamic buffer for your origin server, adeptly handling elevate
 
 ### Server Protection
 
-- **Traffic Management:** VWRs effectively manage sudden spikes in legitimate traffic, shielding your origin server from potential overload. This feature ensures continuous operation and service availability, even during unexpected traffic surges.
-- **Resource Optimization:** By evenly distributing incoming requests, VWRs optimize the use of server resources. This prevents any single component from becoming a bottleneck, thus maintaining overall system performance during high-traffic periods.
+- **Traffic Management:** VWRs effectively manage sudden spikes in legitimate traffic, shielding your origin server from potential overload. This feature ensures continuous operation and service availability, even during unexpected traffic surges. Your origin remains surge-protected, safeguarding against infrastructure overprovisioning and autoscaling errors.
+- **Resource Optimization:** By evenly distributing incoming requests, VWRs optimize the use of server resources. This prevents any single component from becoming a bottleneck, maintaining system performance during high-traffic periods and reducing the need for immediate scaling, such as in the case of EC2.
 
 ### Enhanced User Experience
 
-- **Reliability:** By keeping your application consistently online, VWRs reduce the likelihood of visitors encountering error pages. This reliability translates to a smoother, more satisfying user experience, fostering trust and engagement.
-  
-- **Waiting Room Experience:** The VWR system offers a controlled, informed waiting experience for users. This approach minimizes frustration and keeps users engaged while they wait for access to your application.
+- **Reliability:** VWRs keep your application consistently online, reducing the likelihood of visitors encountering error pages. This reliability ensures a consistent visitor experience, which is crucial for preventing future brand risks and protecting your reputation.
+- **Smooth Waiting Room Experience:** The VWR system offers a controlled, informed waiting experience for users, with real-time queue time updates. This approach minimizes frustration, avoiding redirects and refreshes, and keeps users engaged while they wait for access to your application.
+- **Specialized Waiting Journeys:** Tailor waiting experiences based on user personas, providing instant value and a more personalized approach that resonates with different visitor segments.
 
 ### Service Tiers
 
-- **Behavioral Insights:** Offering various service tiers allows for a deeper understanding of user behavior. These insights can be instrumental in optimizing service delivery and tailoring user experiences.
-  
-- **Customization Options:** Different tiers can provide customized experiences or priorities, enabling you to cater to diverse user needs and preferences, thus enhancing overall satisfaction.
+- **Behavioral Insights:** Offering various service tiers allows for a deeper understanding of user behavior. These insights can be instrumental in optimizing service delivery and tailoring user experiences to specific segments.
+- **Customization Options:** Different tiers can provide customized experiences or priorities, enabling you to cater to diverse user needs and preferences. This enhances overall satisfaction and contributes to revenue and opportunity protection.
 
-By implementing these measures, VWRs not only safeguards the technical infrastructure but also elevates the user experience, making them a vital component in managing web applications effectively.
+By implementing these measures, VWRs not only safeguard the technical infrastructure but also elevate the user experience, making them a vital component in managing web applications effectively.
 
 ## Features
 
