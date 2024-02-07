@@ -3,7 +3,7 @@ sidebar_position: 1
 title: PhotonIQ Performance Proxy (P3)
 ---
 
-PhotonIQ Performance Proxy (P3) is an AI-driven platform specifically crafted for enterprises focused on optimizing their website performance. P3 uses ML page validation and an AI-native foundation to reorganize and optimizes your CSS and JavaScript. This ensures accelerated load times and a seamless user experience, especially critical for technical website teams dealing with complex site structures.
+PhotonIQ Performance Proxy (P3) is an AI-driven platform specifically crafted for enterprises focused on optimizing their website performance. P3 uses ML page validation and an AI-native foundation to reorganize and optimizes your CSS and JavaScript. This ensures accelerated load times, lower bounce rates, and a seamless user experience, which results in a higher conversion rate.
 
 As a fully-managed service, P3 greatly reduces the need for ongoing technical oversight, thereby conserving your time and resources. P3 addresses technical challenges such as improving mobile and desktop performance parity, reducing high bounce rates, and streamlining the continuous site optimization process.
 
