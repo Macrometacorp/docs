@@ -17,11 +17,23 @@ To test an existing function:
 4. Click **Versions**.
 5. Next the the version that you want to edit, click the three stacked dots and then click **Download source bundle**.
    A .tar file containing the following files is downloaded to your computer:
-   - service.js
-   - main.js
-   - config.js
-   - client.js
-   - bundle.json
+
+   - **client.js**
+     - Defines endpoints and logic for executing the query worker to fetch the next batch.
+     - For EdgeWorkers involved in stream querying, it posts queries to the stream worker code.
+     - In cases of stream publishing, it handles posting messages to the configured stream.
+   - **config.js**
+     - Central configuration for all supported EdgeWorkers, defining essential variables.
+     - `C8_URL`: Specifies the GDN URL.
+     - `Fabric`: Identifies the fabric to connect to.
+     - `MACROMETA_ORIGIN_NAME`: Used as a PM user variable for routing requests to the correct Macrometa origin, passed as a header in API calls from the EdgeWorker.
+     - For EdgeWorkers via query worker, includes `QUERY_WORKER_NAME` (the query worker name).
+     - For EdgeWorkers via stream publisher, details `STREAM_APP_NAME` (the stream worker name) and `STREAM_NAME` (the name of the stream).
+     - For EdgeWorkers via stream query, specifies `STREAM_APP_NAME`.
+   - **main.js**
+     - Serves as the main entry point for the code, setting up the EdgeWorkers' event handler to process incoming requests and outgoing responses.
+   - **service.js**
+     - Defines the complete logic for handling API calls, including pre- and post-call actions.
 
 6. Unpack the .tar files with a tool or a command such as `tar -xvf file.tar`.
 7. Edit the files.
