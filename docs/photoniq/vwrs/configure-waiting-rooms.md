@@ -14,7 +14,7 @@ This page explains what can be configured in each waiting room using API endpoin
 ## In the Waiting Room
 
 - **Waiting Room HTML:** UI that is shown to users in the waiting room. (`waiting_room_path` property)
-- **Waiting Room Position and Time (in HTML):** Include any of the position or time in the waiting room UI. (`????` property)
+- **Waiting Room Position and Time (in HTML):** Include any of the position or time in the waiting room UI. (Configured by Macrometa personnel.)
 - **Waiting Room HTMl Refresh Interval:** How often waiting room UI should be refreshed. (`status_interval` property)
 
 ## Exiting the Waiting Room
