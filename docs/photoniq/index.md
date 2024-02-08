@@ -13,29 +13,29 @@ PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Netwo
 
 <grid cols={3}>
   <card
-    heading="PhotonIQ Prerendering"
+    heading="Prerendering"
     description="Enhance SEO and website performance."
     href="/photoniq/prerendering"
   />
     <card
-    heading="PhotonIQ Virtual Waiting Rooms"
+    heading="Virtual Waiting Rooms"
     description="Control and manage website traffic."
     href="/photoniq/vwrs"
   />
   <card
-    heading="PhotonIQ Fingerprint"
+    heading="Fingerprint"
     description="Accurately identify anonymous visitors."
     href="/photoniq/fingerprinting"
   />
 </grid>
 <grid cols={3}>
   <card
-    heading="PhotonIQ Performance Proxy"
+    heading="Performance Proxy"
     description="Enhance website performance by streamlining your CSS and JS."
     href="/photoniq/p3"
   />
   <card
-    heading="PhotonIQ Edge Side Tagging"
+    heading="Edge Side Tagging"
     description="Move third-party scripts to the edge."
     href="/photoniq/est"
   />
