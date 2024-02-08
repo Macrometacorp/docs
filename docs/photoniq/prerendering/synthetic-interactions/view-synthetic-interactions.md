@@ -2,6 +2,7 @@
 sidebar_position: 10
 title: View Synthetic Interactions
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -61,14 +62,14 @@ Prerendering provides the following information about synthetic interactions. Fi
 - **Status** - Whether the interaction is active.
 - **Sequence** - Interaction execution order.
 - **HTML Selector** - HTML selector where the interaction is executed.
-- **Wait After** - Waiting time (in seconds) after the interaction is executed.
+- **Wait After** - Waiting time (in milliseconds) after the interaction is executed.
 
 #### Specifics
 
 - **Status** - Whether the interaction is active.
 - **Sequence** - Interaction execution order.
 - **URL Paths** - Origin paths where the specific interaction is evaluated to be executed.
-- **Wait After** - Waiting time (in seconds) after the interaction is executed.
+- **Wait After** - Waiting time (in milliseconds) after the interaction is executed.
 
 ### Hover
 
@@ -79,7 +80,7 @@ Prerendering provides the following information about synthetic interactions. Fi
 - **Status** - Whether the interaction is active.
 - **Sequence** - Interaction execution order.
 - **HTML Selector** - HTML selector where the interaction is executed.
-- **Wait After** - Waiting time (in seconds) after the interaction is executed.
+- **Wait After** - Waiting time (in milliseconds) after the interaction is executed.
 
 #### Specifics
 
@@ -87,4 +88,4 @@ Prerendering provides the following information about synthetic interactions. Fi
 - **Sequence** - Interaction execution order.
 - **URL Paths** - Origin paths where the specific interaction is evaluated to be executed.
 - **HTML Selector** - HTML selector where the interaction is executed.
-- **Wait After** - Waiting time (in seconds) after the interaction is executed.
+- **Wait After** - Waiting time (in milliseconds) after the interaction is executed.
