@@ -9,7 +9,7 @@ This page explains what can be configured in each waiting room using API endpoin
 
 - **Rate Limit:** Set the rate (maximum users per second) at which traffic should be diverted to the waiting room. (`rate_limit` property)
 - **Waiting Room Path:** The URL that the waiting room needs to sit in front of. (`domain_url` property)
-- **Queue Type:** Defines how requests should be removed from the waiting room, such as priority or FIFO (first in, first out). (`queue_type` property)
+- **Queue Type:** Defines how requests should be removed from the waiting room, such as FIFO (first in, first out). (`queue_type` property)
 
 ## In the Waiting Room
 
