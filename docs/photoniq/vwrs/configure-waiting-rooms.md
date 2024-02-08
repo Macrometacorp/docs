@@ -21,5 +21,5 @@ This page explains what can be configured in each waiting room using API endpoin
 
 - **Access Duration:** The amount of time that users can access the origin after being granted access. (`access_duration` property)
 - **Access Type:** Choose one of the following options. (Configured in the [Akamai EdgeWorker](configure-vwrs-edgeworker.md).)
-  - Following the access duration period, the user is redirected to the waiting room.
-  - The user is redirected to the waiting room if there is no activity for the duration of the access duration period.
+  - Following the access duration period (set in the `access_duration` property), the user is redirected to the waiting room.
+  - The user is redirected to the waiting room if there is no activity for the duration of the access duration period (set in the `access_duration` property).
