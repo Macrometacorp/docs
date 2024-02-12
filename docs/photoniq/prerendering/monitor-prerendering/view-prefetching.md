@@ -83,7 +83,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Prerendering provides the following prefetching history fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
-- Type - Whether prefetching was scheduled or done manually.
+- **Type** - Whether prefetching was scheduled or done manually.
 - **Total** - Total number of URLs to be prefetched.
 - **Completed** - Number of URLs successfully prefetched.
 - **Queued** - Number of URLs queued for prefetch.
