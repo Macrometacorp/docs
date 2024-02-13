@@ -39,13 +39,13 @@ This section displays the total event count for third-party tag requests made du
 - **Clicks** - Number of times a user clicked on a tracked page page.
 - **Other Events** - Count of events such as scrolls.
 
-![Activity Tab - Activity Summary](/img/photoniq/est/activity-event-metrics.png)
+![Activity Tab - Event Metrics](/img/photoniq/est/activity-event-metrics.png)
 
 ### System Update Log
 
 This section displays the timestamp and description of changes to the EST components and settings made during the selected time period.
 
-
+![Activity Tab - System Update Log](/img/photoniq/est/system-update-log.png)
 
 ### Error Metrics
 
