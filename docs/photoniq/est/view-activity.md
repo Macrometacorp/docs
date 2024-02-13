@@ -28,16 +28,18 @@ This section displays metrics and logs for the following time periods, which you
 - **Last 24 Hours** - The previous full 24 hours. For example, if it is currently Thursday, then metrics and logs from Wednesday are displayed.
 - **Last 30 Days** - The previous full 30 days. For example, if it is currently June, then metrics and logs from Wednesday are displayed.
 
+![Activity Tab - Activity Summary](/img/photoniq/est/activity-activity-summary.png)
+
 ### Event Metrics
 
 This section displays the total event count for third-party tag requests made during the selected time period.
 
-Total Events
-Pageviews
-Clicks
-Other Events
+- **Total Events**
+- **Pageviews**
+- **Clicks**
+- **Other Events**
 
-
+![Activity Tab - Activity Summary](/img/photoniq/est/activity-event-metrics.png)
 
 ### System Update Log
 
