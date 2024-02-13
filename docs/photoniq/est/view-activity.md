@@ -34,10 +34,10 @@ This section displays metrics and logs for the following time periods, which you
 
 This section displays the total event count for third-party tag requests made during the selected time period.
 
-- **Total Events**
-- **Pageviews**
-- **Clicks**
-- **Other Events**
+- **Total Events** - Total number of events recorded on the tracked page.
+- **Pageviews** - Number of times a user viewed a tracked page.
+- **Clicks** - Number of times a user clicked on a tracked page page.
+- **Other Events** - Count of events such as scrolls.
 
 ![Activity Tab - Activity Summary](/img/photoniq/est/activity-event-metrics.png)
 
