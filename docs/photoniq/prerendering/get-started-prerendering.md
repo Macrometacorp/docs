@@ -13,21 +13,25 @@ Before leveraging the caching capabilities of Prerendering service, you must fir
 
 - Make a request to the [Create origin](/docs/apiPrerendering#/paths/api-prerender-v1-origins/post) endpoint using the POST method.
 - Include the necessary headers and provide a body containing your origin details.
+- Once created, you can [View Origin Settings](./manage-origins/view-origin-settings.md).
 
 ## 2. Fetch Prerendered Page Content
 
-To retrieve content, use the [Get prerendered page](/docs/apiPrerendering#/paths/api-prerender-v1-render-mobile---url/get) endpoint.
+To view rendered content, [Preview Cached Pages](./manage-cache/manage-cache.md#preview-cached-pages).
 
 - If the requested page is already saved in the cache, then it will be directly served from there.
 - If it is not in the cache, then the service prerenders the page on-the-fly, saves it to the cache for subsequent requests, and then delivers the content. This ensures faster delivery for frequently accessed pages and optimized performance.
 
 ## 3. Monitor the Service
 
-Regularly check the health status of Prerendering using the [Get service health](/docs/apiPrerendering#/paths/api-prerender-v1-health/get) endpoint to ensure smooth operation.
+- [Monitor Prerendering](./monitor-prerendering/) using the dashboard or API endpoints.
+- Regularly check the health status of Prerendering using the [Get service health](/docs/apiPrerendering#/paths/api-prerender-v1-health/get) endpoint to ensure smooth operation.
 
 ## 4. Purge the Cache
 
-If you need to refresh your cached content, then use the [Purge cache](/docs/apiPrerendering#/paths/api-prerender-v1-purge/post) endpoint. This allows for targeted cache removal, specifying only the URLs you wish to clear. If a cleared URL is later accessed using the render endpoint and caching is enabled, then the service will automatically prerender and cache the page again for optimal delivery.
+If you need to refresh your cached content, then use [Clear the Cache](./manage-cache/manage-cache.md#clear-the-cache).
+
+This allows for targeted cache removal, specifying only the URLs you wish to clear. If a cleared URL is later accessed using the render endpoint and caching is enabled, then the service will automatically prerender and cache the page again for optimal delivery.
 
 ## 5. Advanced Cache Management
 
