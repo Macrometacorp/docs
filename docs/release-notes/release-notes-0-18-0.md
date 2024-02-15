@@ -108,6 +108,19 @@ Stream workers now support Key-Value, Redis, and Dynamo collections.
 
 [Tables (Collections)](../cep/table/) was updated as a result of this change.
 
+### Akamai EdgeWorkers - Upload and Download Code Bundles
+
+The following changes have been made to the Akamai EdgeWorker integration:
+
+- You can now test a particular EdgeWorker within the Macrometa web console.
+- You can now upload or download .tar files containing the code for a particular EdgeWorker. This is useful if you want to change the outputs or make other changes to the JavaScript files.
+
+The following topics were added as a result of this change:
+
+- [Test EdgeWorkers](../akamai/test-edgeworkers.md)
+- [Edit EdgeWorkers](../akamai/edit-edgeworkers.md)
+- [Manage EdgeWorker Version](../akamai/manage-edgeworker-versions.md)
+
 ### Miscellaneous Changes
 
 The following minor changes were added in this release.
