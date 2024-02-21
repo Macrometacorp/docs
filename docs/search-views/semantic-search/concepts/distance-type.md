@@ -19,7 +19,7 @@ A limitation of Euclidean distance is its sensitivity to scaling and noise. Vect
 
 **Syntax:**
 
-```
+```js
 l2(vector1, vector2)
 ```
 
@@ -43,7 +43,7 @@ Inner product incorporates both vector orientation through cosine similarity and
 A limitation of inner product is sensitivity to noise and outliers, since large values are squared.
 
 **Syntax:**
-```
+```js
 dot_product(vector1, vector2)
 ```
 
@@ -68,7 +68,7 @@ A drawback is that cosine similarity loses magnitude information which may be us
 
 **Syntax:**
 
-```
+```js
 cosine_sim(vector1, vector2)
 ```
 
