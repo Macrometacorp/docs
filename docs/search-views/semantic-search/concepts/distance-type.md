@@ -40,7 +40,7 @@ The inner product (also known as the dot product) between two vectors is the sum
 
 Inner product incorporates both vector orientation through cosine similarity and vector magnitudes. Inner product is useful when scale matters, such as search based on weighted vectors. It works well for dense vectors. It's especially useful when dealing with vectors that represent things like user and item embeddings in recommendation systems.
 
-A limitation of inner product is sensitivity to noise and outliers, since large values are squared. Inner product also requires vectors of equal length.
+A limitation of inner product is sensitivity to noise and outliers, since large values are squared.
 
 **Syntax:**
 ```
