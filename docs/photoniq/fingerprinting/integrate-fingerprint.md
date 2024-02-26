@@ -44,7 +44,9 @@ Perform the following steps:
 
 #### Akamai Proxy Integration
 
-If your plan supports then add property so that calls to the path `{your-website}/api/ds/*` are forwarded to `fps.photoniq.macrometa.io`. With this setup, the requests to Fingerprint are considered as coming from the same site and are considered first-party applications.
+As an example, here are the steps to set up an Akamai proxy.
+
+If your plan supports then add property so that calls to the path `{your-website}/api/ds/*` are forwarded to `fps.photoniq.macrometa.io`.
 
 1. Log in to https://control.akamai.com/.
 2. In the **Properties** section, search for the property of the required URL. Add one if it doesn't exist already.
