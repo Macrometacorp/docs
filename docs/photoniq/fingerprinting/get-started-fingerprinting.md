@@ -115,7 +115,7 @@ In this example, the JavaScript is initially loaded at page load time, and a fun
 </html>
 ```
 
-### Fingerprint on Text Input
+## Fingerprint on Text Input
 
 In this example, the visitorId is fetched when a user enters text in the input field.
 
@@ -185,7 +185,7 @@ In this example, the visitorId is fetched when a user enters text in the input f
 </html>
 ```
 
-### Fingerprint with Google Tag Manager
+## Fingerprint with Google Tag Manager
 
 Here is an example of the JavaScript being loaded by Google’s Tag Manager. The vistorId is sent to the JavaScript console.
 
