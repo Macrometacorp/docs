@@ -18,35 +18,51 @@ For the most accurate identification, the browser must consider the Fingerprint 
 
 There are two strategies for integrating Fingerprint as a first party:
 
-- (Recommended) Set up a reverse proxy using a tool such as Akamai, Cloudflare, or Nginx.
+- (Recommended) Set up a cloud proxy using a tool such as Akamai, Cloudflare, or Nginx.
 - Set up a subdomain
 
 Either strategy requires coordination with your Macrometa partner, because there needs to be an administrator on both sides in order to map the URLs for first-party integration.
 
+:::note
+With the release of Safari 16.4, cookie lifetime in Safari is reduced to 7 days when using the custom subdomain setup. We recommend using a cloud proxy integration to have cookies last up to one year in Safari.
+:::
 
+### Cloud Proxy Setup
 
+For first-party integration, you must ensure all traffic to the PhotonIQ server comes from your company's domain.  This is accomplished by redirecting all traffic to the server using a cloud proxy such as Akamai.
 
+Make sure you have the following permissions:
 
-In Getting Started, this will work without first-party integration steps, but accuracy will be lower and some browsers will block the functionality.
+- x
+- x
 
+Perform the following steps:
 
-### Reverse Proxy Setup
-### Akamai Proxy Integration
-If your plan supports then add property so that calls to the path “{your-website}/api/ds/*” are forwarded to "fps.photoniq.macrometa.io”. With this simple setup, the requests to FPS will now be considered as coming from the “same-site”.
+1. x
+2. x
+3. x
 
-Below are the steps that could be taken to add a simple request forward path:
-Login to https://control.akamai.com/
-Go to the “Properties” section and search for the property of the required URL. Add one if it doesn't exist already.
-Now for the selected property, go to the “Property Configuration Settings” and add a new rule named “FPS Forward Rule”
-Add a new “Criteria” in the Rules as “IF Path matches one of /api/ds/*”.
-In the “Behaviors” section add the “Origin Server Hostname” as the photoniq url, like "fps.photoniq.macrometa.io”.
-Enable the  True Client IP Header option in the property configuration for the above-configured rule. 
-Name the True Client IP Header option as True-Client-IP.
+#### Akamai Proxy Integration
+
+If your plan supports then add property so that calls to the path `{your-website}/api/ds/*` are forwarded to `fps.photoniq.macrometa.io`. With this setup, the requests to Fingerprint are considered as coming from the same site and are considered first-party applications.
+
+1. Log in to https://control.akamai.com/.
+2. In the **Properties** section, search for the property of the required URL. Add one if it doesn't exist already.
+3. For the selected property, navigate to the **Property Configuration Settings** and add a new rule named `Fingerprint Forward Rule`.
+4. Add a new **Criteria** in the rules as `IF Path matches one of /api/ds/*`.
+5. In the **Behaviors** section, set the **Origin Server Hostname** to be the PhotonIQ server.
+6. Enable the **True Client IP Header** option in the property configuration for the Fingerprint Forward Rule.
+7. Name the **True Client IP Header** option `True-Client-IP`.
 
 ### Subdomain Setup
-Note: With the release of Safari 16.4, cookie lifetime in Safari is reduced to 7 days when using the custom subdomain setup. We recommend using a cloud proxy integration (e.g. Akamai Proxy Integration) to have cookies last up to one year in Safari.
 
-This process requires adding DNS records to your site. Make sure you have the following access:
-Need necessary access permission to the DNS service to be able to create the DNS record under that subdomain
-Need a valid SSL certificate for the domain. If using Let’sEncrypt, need to do the DNS challenge
-STRICTLY INTERNAL: Need access to the PhotonIQ cluster & create the corresponding K8s secret under the K8s namespace “kyv”, and update the FPS ArgoCD application resource to include the new hostname in the ingress TLS hostname field
+This process requires adding DNS records to your site. Make sure you have the following permissions:
+
+- Necessary access permission to the DNS service to be able to create the DNS record under that subdomain
+- A valid SSL certificate for the domain. If using Let’sEncrypt, need to do the DNS challenge
+
+If you are integrating Fingerprint outside of a cloud proxy, then you must create subdomain and alias it to the PhotonIQ server. This process requires adding a DNS records to your domain server:
+
+1. Create a subdomain off of your domain that points to the fps server.
+2. Set up the subdomain as an alias record, pointing it to the fps server.
+3. Get a valid SSL certificate for the domain. If using a product like Let’sEncrypt, then you need to do the DNS challenge.
