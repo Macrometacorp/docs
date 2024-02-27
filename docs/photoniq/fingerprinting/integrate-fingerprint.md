@@ -61,7 +61,7 @@ If your plan supports then add property so that calls to the path `{your-website
 This process requires adding DNS records to your site. Make sure you have the following permissions:
 
 - Necessary access permission to the DNS service to be able to create the DNS record under that subdomain
-- A valid SSL certificate for the domain. If using Let’sEncrypt, need to do the DNS challenge
+- A valid TLS certificate for the subdomain.
 
 If you are integrating Fingerprint outside of a cloud proxy, then you must create subdomain and alias it to the PhotonIQ server. This process requires adding a DNS records to your domain server:
 
