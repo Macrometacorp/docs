@@ -67,4 +67,4 @@ If you are integrating Fingerprint outside of a cloud proxy, then you must creat
 
 1. Create a subdomain off of your domain that points to the fps server.
 2. Set up the subdomain as an alias record, pointing it to the fps server.
-3. Get a valid SSL certificate for the domain. If using a product like Let’sEncrypt, then you need to do the DNS challenge.
+3. Get a valid TLS certificate for the domain.
