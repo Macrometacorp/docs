@@ -1,10 +1,9 @@
-
-
-Continuing from the foundational concepts, let's dive into the practical steps of setting up and utilizing Macrometa as a vector store.
-
+---
+sidebar_position: 30
+title: Set Up Macrometa as a Vector Store
 ---
 
-## Setting Up Macrometa as a Vector Store
+## 
 
 Implementing Macrometa as a vector store involves several key steps, starting from initial configuration to creating data models that effectively leverage the power of vector storage. This section guides you through the process, ensuring a smooth setup experience.
 
