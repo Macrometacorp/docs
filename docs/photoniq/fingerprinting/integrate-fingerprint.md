@@ -49,7 +49,7 @@ As an example, here are the steps to set up an Akamai proxy.
 If your plan supports then add property so that calls to the path `{your-website}/api/ds/*` are forwarded to `fps.photoniq.macrometa.io`.
 
 1. Log in to https://control.akamai.com/.
-2. In the **Properties** section, search for the property of the required URL. Add one if it doesn't exist already.
+2. In the **Properties** section, search for the property of the URL that you are configuring Fingerprint to work on. Add one if it doesn't exist already.
 3. For the selected property, navigate to the **Property Configuration Settings** and add a new rule named `Fingerprint Forward Rule`.
 4. Add a new **Criteria** in the rules as `IF Path matches one of /api/ds/*`.
 5. In the **Behaviors** section, set the **Origin Server Hostname** to be the PhotonIQ server.
