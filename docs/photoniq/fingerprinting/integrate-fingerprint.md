@@ -29,7 +29,7 @@ With the release of Safari 16.4, cookie lifetime in Safari is reduced to 7 days 
 
 ### Cloud Proxy Setup
 
-For first-party integration, you must ensure all traffic to the PhotonIQ server comes from your company's domain.  This is accomplished by redirecting all traffic to the server using a cloud proxy such as Akamai.
+For first-party integration, you must ensure all traffic to the PhotonIQ server comes from your company's domain.  This is accomplished by redirecting forwarding traffic to the server using a cloud proxy such as Akamai.
 
 Make sure you have the following permissions:
 
