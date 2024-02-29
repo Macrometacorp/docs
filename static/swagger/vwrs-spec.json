@@ -304,7 +304,7 @@
             "description": "The type of queue (fifo, random, lottery).",
             "default": "fifo"
           },
-          "queue_enablement": {
+          "queue_mode": {
             "type": "string",
             "description": "If set to auto, then the decision to enable the waiting room is determined by the traffic rate exceeding the rate limit set by rate_limit. If set to manual, then the decision to direct traffic to the waiting room is performed all the time.",
             "default": "auto"
@@ -330,25 +330,25 @@
             "minimum": 1,
             "default": 100
           },
-          "period": {
+          "rate_period": {
             "type": "number",
             "description": "The period for the _users_per_period_ rate (in seconds).",
             "minimum": 1,
             "default": 1
           },
-          "access_duration": {
+          "max_origin_usage_time": {
             "type": "number",
-            "description": "The amount of time that users can access the origin (in seconds). Once a user has been granted access, the access_duration determines how long that user can access the origin before they are forwarded to the waiting room after coming to the EdgeWorker again.",
+            "description": "The amount of time that users can access the origin (in seconds). Once a user has been granted access, the max_origin_usage_time determines how long that user can access the origin before they are forwarded to the waiting room after coming to the EdgeWorker again.",
             "default": 60,
             "minimum": 1
           },
-          "status_interval": {
+          "waiting_room_interval": {
             "type": "number",
             "description": "The time interval when the UI reloads itself to get the waiting room status.",
             "default": 10,
             "minimum": 1
           },
-          "priority": {
+          "request_priority": {
             "type": "array",
             "maxItems": 10,
             "description": "The domain has a range of priorities, where the highest priority corresponds to the lowest number.",
