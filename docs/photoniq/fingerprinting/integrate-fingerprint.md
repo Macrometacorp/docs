@@ -65,6 +65,6 @@ This process requires adding DNS records to your site. Make sure you have the fo
 
 If you are integrating Fingerprint outside of a cloud proxy, then you must create subdomain and alias it to the PhotonIQ server. This process requires adding a DNS records to your domain server:
 
-1. Create a subdomain off of your domain that points to the fps server.
-2. Set up the subdomain as an alias record, pointing it to the fps server.
+1. Create a subdomain off of your domain that points to the Fingerprint server.
+2. Set up the subdomain as an alias record, pointing it to the Fingerprint server.
 3. Get a valid TLS certificate for the domain.
