@@ -4,7 +4,7 @@ Building on the setup process, let's explore how to effectively integrate semant
 
 ## Integrating Semantic Search with Document Collections
 
-Leveraging Macrometa for semantic search involves storing document data as vectors and utilizing Macrometa's querying capabilities to perform similarity searches. This section guides you through the preparation of document collections, indexing, and querying to achieve efficient semantic searches.
+Leveraging Macrometa for semantic search involves storing vectors as document data and utilizing Macrometa's querying capabilities to perform similarity searches. This section guides you through the preparation of document collections, indexing, and querying to achieve efficient semantic searches.
 
 ### Overview of Semantic Search in Vector Stores
 
@@ -18,6 +18,7 @@ Semantic search transcends traditional keyword-based searches by understanding t
 
 **Storing Vectors in Macrometa:**
 - Once your documents are vectorized, store these vectors in a Macrometa collection. Each vector becomes a document in the collection, with the vector dimensions stored as fields within the document.
+  - Amol - This is not correct. We expect one array in the document per vector dimension.
 - Accompanying metadata, such as document titles, authors, or publication dates, can also be stored alongside the vectors to facilitate more complex queries and filtering.
 
 ### Indexing Documents as Vectors
