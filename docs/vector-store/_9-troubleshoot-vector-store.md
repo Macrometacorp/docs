@@ -6,23 +6,6 @@ Navigating through the operational aspects of a Macrometa vector store, it's ess
 
 Even with meticulous setup and management, issues can emerge in any complex data system. Here are some common challenges encountered with vector stores like Macrometa, along with strategies for troubleshooting and resolution.
 
-### Identifying and Resolving Common Problems
-
-**Query Performance Degradation:**
-- **Symptoms:** Queries running slower than expected, timeouts, or partial results.
-- **Troubleshooting:** Check for inefficient queries that may not be using indexes effectively. Review the execution plan for your queries to identify bottlenecks.
-- **Resolution:** Optimize query structures, adjust or create new indexes to improve performance, and ensure data is evenly distributed across shards if sharding is used.
-
-**Data Inconsistency:**
-- **Symptoms:** Mismatched query results, errors in data retrieval, or discrepancies in data replication.
-- **Troubleshooting:** Verify the integrity of your data. Look for replication errors or issues in the synchronization process between replicas.
-- **Resolution:** Re-sync affected data collections, repair corrupted data entries, and review replication configurations to prevent future inconsistencies.
-
-**Indexing Issues:**
-- **Symptoms:** Slow query responses, especially on operations that should leverage indexes.
-- **Troubleshooting:** Confirm that indexes are properly defined and being utilized by your queries. Check for any indexes that have become bloated or are no longer necessary.
-- **Resolution:** Rebuild or fine-tune indexes. Remove unused indexes to reduce overhead and create new ones that align with your query patterns.
-
 ### Performance Tuning and Adjustments
 
 **Optimizing Data Models:**
