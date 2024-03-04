@@ -7,6 +7,8 @@ For the best accuracy and results when using PhotonIQ Fingerprint, ensure both t
 
 Privacy is a crucial concern for many users. However, tools designed to protect user privacy, such as ad blockers and privacy-focused browsers, might interfere with Fingerprinting processes. These tools can block requests to Fingerprint servers, potentially preventing the identification of all visitors to your site.
 
+For more information about privacy and cookies, refer to [First- and Third-Party Cookies](first-third-party-cookie.md).
+
 ## How the Fingerprint Agent Works on Your Website
 
 The Fingerprint agent, once installed on your website, performs several key actions:
