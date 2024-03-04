@@ -1,70 +1,76 @@
 ---
 sidebar_position: 25
-title: Integrate Fingerprint
+title: Integrate Fingerprint as First Party
 ---
 
-For maximum accuracy and best results, the PhotonIQ Fingerprint application and cookies must both be integrated as first parties. This means that their URLs match the website that they are attached to.
+For the best accuracy and results when using PhotonIQ Fingerprint, ensure both the application and cookies are integrated as first-party elements. This integration means their URLs must match the website they're associated with.
 
-## First-party Integration Benefits
+Privacy is a crucial concern for many users. However, tools designed to protect user privacy, such as ad blockers and privacy-focused browsers, might interfere with Fingerprinting processes. These tools can block requests to Fingerprint servers, potentially preventing the identification of all visitors to your site.
 
-For the most accurate identification, the browser must consider the Fingerprint script as “first party”. This accrues several benefits:
+## How the Fingerprint Agent Works on Your Website
 
-- Significant increase in accuracy in browsers with strict privacy features such as Safari or Firefox.
-- First-party cookies can live longer in the browser and extend the lifetime of visitor IDs. For a more detailed explanation of how this affects cookies, refer to [First- and Third-Party Cookies](first-third-party-cookie.md).
-- Ad blockers will not block the Fingerprint agent from loading. Attempts to connect to an external URL will be stopped by most ad blockers while attempts to connect to the same site URL will be allowed.
-- Ad blockers will not block Fingerprint identification requests, because they are sent to the specified path or subdomain that belongs to the same site.
+The Fingerprint agent, once installed on your website, performs several key actions:
+
+- **Downloads the Latest Device Intelligence Algorithm**: This ensures the most up-to-date method is used for identifying devices.
+- **Collects and Sends Browser Attributes**: The agent sends collected data to the Fingerprint server and receives a unique visitor ID in return, facilitating accurate visitor identification.
+- **Makes Additional Requests**: These requests further enhance the accuracy of visitor identification.
+
+## Challenges from Ad Blockers and Privacy Browsers
+
+Ad blockers (such as Adblock, uBlock Origin) and browsers with a focus on privacy (like Brave) actively block requests to Fingerprint servers. They do this by maintaining a list of Fingerprint domains and blocking browser requests that match these domains. Additionally, some VPN providers might block access to our domains at the DNS level, further complicating the identification process.
+
+To ensure the best performance and minimize disruptions, consider advising users on configuring their privacy tools to allow your site's Fingerprinting processes. This approach helps balance user privacy with the need for accurate visitor identification.
+
+## First-Party Integration Benefits
+
+Integrating the PhotonIQ Fingerprint script as first-party on your browser offers significant advantages:
+
+- **Accuracy Improves in Privacy-Focused Browsers**: Integration as first-party greatly increases accuracy in browsers with strict privacy settings like Safari and Firefox, ensuring the Fingerprint script operates effectively within these environments.
+- **Extended Visitor ID Lifespan and Ad Blocker Compatibility**: First-party cookies have a longer lifespan, which helps maintain visitor IDs over time. Additionally, since ad blockers typically allow connections to the same site's URLs, integrating the Fingerprint agent as first-party prevents it from being blocked, ensuring uninterrupted operation.
+- **Increased Security Against Fraudsters**: Making Fingerprint usage harder to detect for fraudsters adds an extra layer of security, safeguarding your data and the integrity of the identification process.
 
 ## Integration Options
 
-There are two strategies for integrating Fingerprint as a first party:
+There are two primary strategies for integrating Fingerprint as a first party, each requiring coordination with your Macrometa partner to ensure proper URL mapping for first-party integration.
 
-- (Recommended) Set up a cloud proxy using a tool such as Akamai, Cloudflare, or Nginx.
-- Set up a subdomain
+### Cloud Proxy Setup (Recommended)
 
-Either strategy requires coordination with your Macrometa partner, because there needs to be an administrator on both sides in order to map the URLs for first-party integration.
+Use a cloud proxy service like Akamai, Cloudflare, or Nginx for first-party integration. This method involves redirecting traffic to the PhotonIQ server through a proxy hosted on your domain or subdomain, such as `metrics.yourwebsite.com`.
 
-:::note
-With the release of Safari 16.4, cookie lifetime in Safari is reduced to 7 days when using the custom subdomain setup. We recommend using a cloud proxy integration to have cookies last up to one year in Safari.
-:::
+Benefits of cloud proxy setup include:
 
-### Cloud Proxy Setup
+- Cookie lifetime of up to one year (even in Safari 16.4+)
+- Enhanced control and insight over identification requests
+- Secure cookie handling, scalability, and compliance management
 
-For first-party integration, you must ensure all traffic to the PhotonIQ server comes from your company's domain.  This is accomplished by redirecting forwarding traffic to the server using a cloud proxy such as Akamai.
-
-Make sure you have the following permissions:
-
-- x
-- x
-
-Perform the following steps:
-
-1. x
-2. x
-3. x
-
-#### Akamai Proxy Integration
+#### Akamai Proxy Integration Steps
 
 As an example, here are the steps to set up an Akamai proxy.
 
 If your plan supports then add property so that calls to the path `{your-website}/api/ds/*` are forwarded to `fps.photoniq.macrometa.io`.
 
-1. Log in to https://control.akamai.com/.
-2. In the **Properties** section, search for the property of the URL that you are configuring Fingerprint to work on. Add one if it doesn't exist already.
-3. For the selected property, navigate to the **Property Configuration Settings** and add a new rule named `Fingerprint Forward Rule`.
-4. Add a new **Criteria** in the rules as `IF Path matches one of /api/ds/*`.
-5. In the **Behaviors** section, set the **Origin Server Hostname** to be the PhotonIQ server.
-6. Enable the **True Client IP Header** option in the property configuration for the Fingerprint Forward Rule.
+To set up an Akamai proxy:
+
+1. Log in to [Akamai Control Center](https://control.akamai.com/).
+2. In **Properties**, find the URL property you're setting up with Fingerprint. Create one if necessary.
+3. Select the property, go to **Property Configuration Settings**, and add a new rule named `Fingerprint Forward Rule`.
+4. Under **Criteria**, add `IF Path matches one of /api/ds/*`.
+5. In **Behaviors**, set **Origin Server Hostname** to the PhotonIQ server.
+6. Enable **True Client IP Header** for the `Fingerprint Forward Rule`.
 7. Name the **True Client IP Header** option `True-Client-IP`.
 
 ### Subdomain Setup
 
-This process requires adding DNS records to your site. Make sure you have the following permissions:
+You can set up a subdomain which requires adding DNS records. This approach, while simpler, may result in a reduced cookie lifetime in Safari 16.4 or higher to just seven days. To proceed, ensure you have the necessary DNS access and a valid TLS certificate for the subdomain.
 
-- Necessary access permission to the DNS service to be able to create the DNS record under that subdomain
-- A valid TLS certificate for the subdomain.
+:::note
+Safari 16.4+ users may experience reduced cookie lifetime to 7 days with the subdomain setup. A cloud proxy integration is recommended for cookies to last up to one year.
+:::
 
-If you are integrating Fingerprint outside of a cloud proxy, then you must create subdomain and alias it to the PhotonIQ server. This process requires adding a DNS records to your domain server:
+Setting up a subdomain requires adding a DNS records to your domain server. The high-level process will be something like this:
 
 1. Create a subdomain off of your domain that points to the Fingerprint server.
 2. Set up the subdomain as an alias record, pointing it to the Fingerprint server.
 3. Get a valid TLS certificate for the domain.
+4. Adjust your DNS records.
+5. Adjust the JavaScript agent configuration on your website.
