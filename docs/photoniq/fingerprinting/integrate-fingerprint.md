@@ -21,7 +21,7 @@ The Fingerprint agent, once installed on your website, performs several key acti
 
 Ad blockers (such as Adblock, uBlock Origin) and browsers with a focus on privacy (like Brave) actively block requests to Fingerprint servers. They do this by maintaining a list of Fingerprint domains and blocking browser requests that match these domains. Additionally, some VPN providers might block access to our domains at the DNS level, further complicating the identification process.
 
-To ensure the best performance and minimize disruptions, consider advising users on configuring their privacy tools to allow your site's Fingerprinting processes. This approach helps balance user privacy with the need for accurate visitor identification.
+To ensure the best performance and minimize disruptions, you should integrate PhotonIQ Fingerprinting as a first-party service in your website.
 
 ## First-Party Integration Benefits
 
