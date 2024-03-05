@@ -15,7 +15,7 @@ The Fingerprint agent, once installed on your website, performs several key acti
 
 - **Downloads the Latest Device Intelligence Script**: This ensures the most up-to-date method is used for identifying devices.
 - **Collects and Sends Browser Attributes**: The agent sends collected data to the Fingerprint server and receives a unique visitor ID in return, facilitating accurate visitor identification.
-- **Makes Additional Requests**: These requests further enhance the accuracy of visitor identification.
+- **Makes Additional Requests**: These requests further enhance the accuracy of visitor identification by using advanced identification algorithm on the server side.
 
 ## Challenges from Ad Blockers and Privacy Browsers
 
