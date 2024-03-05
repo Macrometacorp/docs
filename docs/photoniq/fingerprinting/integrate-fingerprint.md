@@ -37,7 +37,7 @@ There are two primary strategies for integrating Fingerprint as a first party, e
 
 ### Cloud Proxy Setup (Recommended)
 
-Use a cloud proxy service like Akamai, Cloudflare, or Nginx for first-party integration. This method involves redirecting traffic to the PhotonIQ server through a proxy hosted on your domain or subdomain, such as `metrics.yourwebsite.com`.
+Use a cloud proxy service like Akamai, Cloudflare, or Nginx for first-party integration. This method involves forwarding traffic to the PhotonIQ server through a proxy hosted on your domain or subdomain, such as `metrics.yourwebsite.com`.
 
 Benefits of cloud proxy setup include:
 
