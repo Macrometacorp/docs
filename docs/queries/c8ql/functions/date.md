@@ -326,49 +326,6 @@ DATE_TRUNC('2017-02-03 04:05:06', 'hours') // 2017-02-03 04:00:00.000Z
     }
 ```
 
-### DATE_ROUND()
-
-`DATE_ROUND(date, amount, unit) → isoDate`
-
-Bin a date/time into a set of equal-distance buckets, to be used for grouping.
-
-- **date** (string\|number): a date string or timestamp
-- **amount** (number): number of _unit_s. Must be a positive integer value.
-- **unit** (string): either of the following to specify the time unit (case-insensitive):
-  - d, day, days
-  - h, hour, hours
-  - i, minute, minutes
-  - s, second, seconds
-  - f, millisecond, milliseconds
-- returns **isoDate** (string): the rounded ISO 8601 date time string
-
-```js
-DATE_ROUND('2000-04-28T11:11:11.111Z', 1, 'day') // 2000-04-28T00:00:00.000Z
-DATE_ROUND('2000-04-10T11:39:29Z', 15, 'minutes') // 2000-04-10T11:30:00.000Z
-```
-
-```js
-    FOR doc IN @sensorData
-      COLLECT
-        date = DATE_ROUND(doc.timestamp, 5, "minutes")
-      AGGREGATE
-        count = COUNT(1),
-        avg = AVG(doc.temp),
-        min = MIN(doc.temp),
-        max = MAX(doc.temp)
-      RETURN { date, count, avg, min, max }
-    @BV {
-    "sensorData": [
-      { "timestamp": "2019-12-04T21:17:52.583Z", "temp": 20.6 },
-      { "timestamp": "2019-12-04T21:19:53.516Z", "temp": 20.2 },
-      { "timestamp": "2019-12-04T21:21:53.610Z", "temp": 19.9 },
-      { "timestamp": "2019-12-04T21:23:52.522Z", "temp": 19.8 },
-      { "timestamp": "2019-12-04T21:25:52.988Z", "temp": 19.8 },
-      { "timestamp": "2019-12-04T21:27:54.005Z", "temp": 19.7 }
-    ]
-    }
-```
-
 ### DATE_FORMAT()
 
 `DATE_FORMAT(date, format) → str`
