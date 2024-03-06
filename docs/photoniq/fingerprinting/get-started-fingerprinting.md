@@ -5,6 +5,8 @@ title: Get Started with Fingerprint
 
 To incorporate the Fingerprint client into your website, add one of the following example scripts to your web page. In each example, replace the `DS_URL` placeholder with the data service URL that Macrometa provides you.
 
+After you incorporate the Fingerprint client, you should [integrate Fingerprint as a first-party](integrate-fingerprint.md). Fingerprint will work if you do not follow the first-party integration steps, but accuracy will be lower and some browsers will block the functionality.
+
 ## Fingerprint on Page Load
 
 In this example, the JavaScript is loaded at page load time, and the function to get the visitorId is run right away. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
@@ -115,7 +117,7 @@ In this example, the JavaScript is initially loaded at page load time, and a fun
 </html>
 ```
 
-### Fingerprint on Text Input
+## Fingerprint on Text Input
 
 In this example, the visitorId is fetched when a user enters text in the input field.
 
@@ -185,7 +187,7 @@ In this example, the visitorId is fetched when a user enters text in the input f
 </html>
 ```
 
-### Fingerprint with Google Tag Manager
+## Fingerprint with Google Tag Manager
 
 Here is an example of the JavaScript being loaded by Google’s Tag Manager. The vistorId is sent to the JavaScript console.
 
