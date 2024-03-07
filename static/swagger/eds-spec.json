@@ -1,0 +1,370 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PhotonIQ Global Event Delivery Service (EDS)",
+    "description": "The PhotonIQ Global Event Delivery Service (EDS) is a scalable platform for delivering real-time event data to your applications. It has being designed and implemented for scaling to thousands of concurrent connections. EDS enables you to seamlessly integrate event-driven functionality into your systems, ensuring timely updates and improved responsiveness.\n\nFeatures:\n- Real-time event delivery via WebSockets with one level de-duplication of events\n- Subscribe to events\n- Publish to event stream\n- Metrics gathering on connections\n- Health and version api check for service\n\nExplore the API documentation below to discover the available endpoints, request and response formats, and how to integrate EDS into your projects.\n",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Event Publish",
+      "description": "APIs related to event publishing."
+    },
+    {
+      "name": "Event Subscription",
+      "description": "APIs related to event subscriptions and streaming."
+    },
+    {
+      "name": "EDS Metrics",
+      "description": "APIs for retrieving metrics data related to EDS."
+    },
+    {
+      "name": "EDS Status",
+      "description": "APIs for checking the health and version of EDS."
+    }
+  ],
+  "paths": {
+    "/fabric/{fabricName}/api/es/v1/stream/{streamName}/publish": {
+      "post": {
+        "summary": "Asynchronous Publish",
+        "description": "Publish events to a specified stream asynchronously.",
+        "tags": [
+          "Event Publish"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fabricName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the fabric."
+          },
+          {
+            "in": "path",
+            "name": "streamName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the stream."
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The type of the stream (local or global or collection)."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "The request body containing the event data to publish to the stream.",
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "headers": {
+              "x-gdn-service": {
+                "description": "The hostname of the GDN.",
+                "schema": {
+                  "type": "string",
+                  "description": "Custom header value indicating the hostname of the GDN."
+                }
+              },
+              "X-PhotonIQ-ES": {
+                "description": "Epoch time header.",
+                "schema": {
+                  "type": "string",
+                  "description": "Epoch time in seconds."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ws://api/es/v1/subscribe": {
+      "get": {
+        "summary": "Subscribe to Stream via Web Socket",
+        "description": "**This API should not be tried from the Swagger UI**.\nSubscribe to stream via web-socket based on stream, type, or query parameters. Provide either `stream` or `filters` but not both or neither. \nThis API keeps the connection live and continuously receives messages from the server based on the specified `stream` or `filters`.\n\"filters\" is a JSON format string with different fields. E.g :- <br>\nfilters={ <br>\n  \"action\":“add”, <br>\n  \"once\":”TRUE | FALSE”, <br>\n  \"queries\":[ <br>\n  “select * from XXXX where n1==v1”, <br>\n  “select * from MMMM where n2==v1 OR n3>5”, <br>\n  “select \\<path\\> from XXXX” <br>\n  ] <br>\n} <br>\nThe *path* is a dot separated fully qualified string representing a json path for an object. *once* flag (default is false) specifies if the filters needs to be applied just once. <br>\n*filters* can be dynamically added and removed by sending message data on web socket connection in JSON format. E.g :- <br>\n{\"action\": \"remove\", \"queries\": [ \"select * from XXXX where n1=v1\"]}\n",
+        "tags": [
+          "Event Subscription"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "stream",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the stream to subscribe to."
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The type of events to subscribe to."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "An optional query parameter to filter events."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "headers": {
+              "X-PhotonIQ-ES": {
+                "description": "Epoch time header.",
+                "schema": {
+                  "type": "string",
+                  "description": "Epoch time in seconds."
+                }
+              },
+              "X-PhotonIQ-CustomerId": {
+                "description": "Customer Id header.",
+                "schema": {
+                  "type": "string",
+                  "description": "Customer Id that includes the tenant and fabric name.."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/es/v1/metrics": {
+      "get": {
+        "summary": "Metrics",
+        "description": "Retrieve metrics data within a specified time range.",
+        "tags": [
+          "EDS Metrics"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "start",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The start timestamp for the metrics data range."
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The end timestamp for the metrics data range."
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the metrics data to retrieve."
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The maximum number of metrics to retrieve (optional)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "domain_key": {
+                        "type": "string",
+                        "description": "The domain key."
+                      },
+                      "es_cpu_usage_second": {
+                        "type": "number",
+                        "description": "ES CPU usage per second."
+                      },
+                      "es_errors_per_second": {
+                        "type": "number",
+                        "description": "ES errors per second."
+                      },
+                      "es_memory_usage_second": {
+                        "type": "integer",
+                        "description": "ES memory usage per second."
+                      },
+                      "es_subscriber_count": {
+                        "type": "integer",
+                        "description": "ES subscriber count."
+                      },
+                      "es_subscribers_per_second": {
+                        "type": "number",
+                        "description": "ES subscribers per second."
+                      },
+                      "fabric": {
+                        "type": "string",
+                        "description": "The fabric name."
+                      },
+                      "origin_key": {
+                        "type": "string",
+                        "description": "The origin key."
+                      },
+                      "region": {
+                        "type": "string",
+                        "description": "The region."
+                      },
+                      "tenant": {
+                        "type": "string",
+                        "description": "The tenant name."
+                      },
+                      "timestamp": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The timestamp."
+                      },
+                      "type": {
+                        "type": "integer",
+                        "description": "The type."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/es/v1/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Check the health status of EDS.",
+        "tags": [
+          "EDS Status"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The health status (e.g., \"healthy\" or \"unhealthy\")."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/es/v1/version": {
+      "get": {
+        "summary": "Version",
+        "description": "Get the version information of EDS.",
+        "tags": [
+          "EDS Status"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "description": "The version of EDS."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
