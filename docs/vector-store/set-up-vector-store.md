@@ -29,7 +29,7 @@ Also consider completing the following tutorials:
 
 ### Are Your Vectors Stored in an External Database?
 
-If so, then you might be able to use them as  an external source using Macrometa's Connections feature. Make sure they have a common schema and they are stored in a supported data source.
+If so, then you might be able to use them as an external source using Macrometa's Connections feature. Make sure they have a common schema and they are stored in a supported data source.
 
 A connection source _must_ be set up when you create the collection, so make sure everything in the source is prepared for import into Macrometa before you begin the process.
 
