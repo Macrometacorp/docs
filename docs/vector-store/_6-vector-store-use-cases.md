@@ -33,6 +33,7 @@ The versatility of vector stores, especially when powered by Macrometa, opens up
 
 **Implementation:**
 - Stream data into Macrometa, converting each data point into a vector based on its features.
+  - Amol - we don't have direct vector support for streams; user needs to store data in collection first
 - Use similarity searches to compare new data points against normal behavior patterns. Anomalies are identified when data points have significantly different vector representations compared to the norm.
 
 ### Real-Time Personalization and Targeting
