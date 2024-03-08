@@ -1,0 +1,27 @@
+
+
+
+Get Started
+- Customer needs a GDN account
+- Get streaming data into GDN
+- Application needs to subscribe to collection or stream
+- Write filters if desired
+- Publish if desired (won’t store data, putting data in collection will)
+- You can write a function to update the data. Publish message to stream, add documents to collection, update documents
+
+
+**Maybe in How It Works**
+
+How to use:
+
+Example: Stock market trader who has data streaming into a collection. Data is always changing. I want to be notified if stocks go above or below certain thresholds. I don’t want ALL the streaming data for the stock market, only the stocks I subscribe to, and only when there are changes.
+
+Our service is very scalable. Our service counts as one consumer of the stream, can handle many thousands of users. This will only count as one consumer regardless of how many.
+
+EDS cannot be used without GDN, subscribes to GDN streams (local, global, collection).
+
+Assumption is there is an application with a GUI that will be taking the filter from EDS.
+
+1. Get stream set up in GDN.
+2. EDS subscribes to streams.
+3. Publish is for use cases where customer wants to both publish and consume. (Pub/sub application.) Publish doesn’t store data in GDN, just sends it to the stream without retaining it.
