@@ -34,3 +34,7 @@ Outliers can skew similarity results. Implement techniques to detect and handle 
 ## Memory Usage
 
 Memory consumed by the vectors and the underlying infrastructure. Regularly check for redundant vectors or unnecessary high dimensions. Consider using compression techniques. For example, consider using vector quantization to compress vectors and reduce memory usage.
+
+## Query Latency
+
+This measures the time it takes to complete a similarity search or any vector operation. Speed up searches by reducing vector dimensions.
