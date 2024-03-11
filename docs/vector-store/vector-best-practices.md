@@ -23,10 +23,6 @@ Optimizing vector size, dimensions, and normalization is key to ensuring efficie
 
 For more information, refer to [Vector Size](../search-views/semantic-search/concepts/vector-size.md).
 
-## Batch Processing and Regular Updates
-
-Batch processing vector operations can significantly reduce overhead, improve performance, and ensure data relevance over time. Grouping inserts or updates into batches minimizes indexing time and enhances overall system responsiveness. Additionally, regular updates to vector representations are essential to account for data drift, ensuring that similarity searches stay relevant and accurate.
-
 ## Prioritize Important Vector Dimensions
 
 Not all dimensions in a vector contribute equally to similarity. Identify and prioritize dimensions that play a significant role in your application. For example, consider prioritizing color and texture dimensions for an image similarity search in an e-commerce application.
@@ -34,14 +30,6 @@ Not all dimensions in a vector contribute equally to similarity. Identify and pr
 ## Handle Outliers Effectively
 
 Outliers can skew similarity results. Implement techniques to detect and handle outliers in your vector dataset.
-
-## Maintain a Consistent Vector Schema
-
-Changing vector dimensions or schema frequently can introduce errors and inconsistencies. Define and stick to a consistent vector structure. For example, define a fixed 256-dimensional vector for all product images and stick to this structure for consistency.
-
-## Query Latency
-
-This measures the time it takes to complete a similarity search or any vector operation. Speed up searches by reducing vector dimensions, optimizing indexes, or using more efficient distance metrics. For example, reduce query latency by changing from "l2" distance to "cosine" for a text search operation.
 
 ## Memory Usage
 
