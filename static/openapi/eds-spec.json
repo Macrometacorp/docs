@@ -1,0 +1,360 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PhotonIQ Global Event Delivery Service (EDS) API",
+    "description": "API reference for PhotonIQ Global Event Delivery Service\n",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Publish Events",
+      "description": "APIs related to event publishing."
+    },
+    {
+      "name": "Manage Subscriptions",
+      "description": "APIs related to event subscriptions and streaming."
+    },
+    {
+      "name": "Event Delivery Metrics",
+      "description": "APIs for retrieving metrics data related to EDS."
+    },
+    {
+      "name": "Event Delivery Status",
+      "description": "APIs for checking the health of EDS."
+    },
+    {
+      "name": "Event Delivery Version",
+      "description": "APIs for checking the version of EDS."
+    }
+  ],
+  "paths": {
+    "/api/es/v1/fabric/{fabricName}/stream/{streamName}/publish": {
+      "post": {
+        "summary": "Publish events",
+        "description": "Asynchronously send events to a designated stream.",
+        "tags": [
+          "Publish Events"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fabricName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the fabric."
+          },
+          {
+            "in": "path",
+            "name": "streamName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the stream."
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The type of the stream (local, global, or collection)."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "The request body containing the event data in JSON format to publish to the stream.",
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successfully published events.",
+            "headers": {
+              "x-gdn-service": {
+                "description": "The hostname of the GDN.",
+                "schema": {
+                  "type": "string",
+                  "description": "Custom header value indicating the hostname of the GDN."
+                }
+              },
+              "x-photoniq-es": {
+                "description": "Epoch time header. This is the Unix timestamp in seconds since epoch.",
+                "schema": {
+                  "type": "string",
+                  "description": "Epoch time in seconds."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ws://api/es/v1/subscribe": {
+      "get": {
+        "summary": "Subscribe to stream",
+        "description": "Subscribe to stream via WebSocket based on stream, type, or query parameters. Provide either `stream` or `filters` but not both or neither.\nThis API keeps the connection live and continuously receives messages from the server based on the specified `stream` or `filters`.\n\"filters\\\" is a JSON format string with different fields. For example,  <br>\n```json\n{\n  \"action\": \"add\",\n  \"once\": \"TRUE | FALSE\",\n  \"queries\": [\n    \"select * from XXXX where n1==v1\",\n    \"select * from MMMM where n2==v1 OR n3>5\",\n    \"select <path> from XXXX\"\n  ]\n}\n```\nThe *path* is a dot separated fully qualified string representing a json path for an object. *once* flag (default is false) specifies if the filters needs to be applied just once. <br>\n*filters* can be dynamically added and removed by sending message data on web socket connection in JSON format. For example, <br>\n{\\\"action\\\": \\\"remove\\\", \\\"queries\\\": [ \\\"select * from XXXX where n1=v1\\\"]}\n\nOn sucessfull subscription, the websocket connection is created and the following information is returned as part of the first response message. <br>\n- `x-photoniq-es`: Epoch time header. This is the Unix timestamp in seconds since epoch. It provides the epoch time in seconds.\n- `x-photoniq-customerid`: Customer ID header. It includes the tenant and fabric name identifying the customer.\n\n*Note*: The stream name and the type of stream can be fetched using GDN APIs or the GDN UI. <br>\n**This API should not be tried from this UI**.\n",
+        "tags": [
+          "Manage Subscriptions"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "stream",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the stream to subscribe to. This is optional if filters query parameter is used."
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The type of events to subscribe to."
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "An optional query parameter to filter events."
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/es/v1/metrics": {
+      "get": {
+        "summary": "Retrieve metrics",
+        "description": "Retrieve metrics data within a specified time range.",
+        "tags": [
+          "Event Delivery Metrics"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "start",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The start date used for querying metrics data. Must be provided in RFC3339 date-time format.",
+            "example": "YYYY-MM-DDTHH:MM:SSZ"
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The end date used for querying metrics data. Must be provided in RFC3339 date-time format.",
+            "example": "YYYY-MM-DDTHH:MM:SSZ"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The name of the metrics data to retrieve."
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The maximum number of metrics to retrieve."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "customer_id": {
+                        "type": "string",
+                        "description": "The customer identifier."
+                      },
+                      "es_cpu_usage_second": {
+                        "type": "number",
+                        "description": "CPU usage per second."
+                      },
+                      "es_errors_per_second": {
+                        "type": "number",
+                        "description": "Errors per second."
+                      },
+                      "es_memory_usage_second": {
+                        "type": "integer",
+                        "description": "Memory usage per second."
+                      },
+                      "es_subscriber_count": {
+                        "type": "integer",
+                        "description": "Subscriber count."
+                      },
+                      "es_subscribers_per_second": {
+                        "type": "number",
+                        "description": "Subscribers per second."
+                      },
+                      "fabric": {
+                        "type": "string",
+                        "description": "The fabric name."
+                      },
+                      "region": {
+                        "type": "string",
+                        "description": "The region."
+                      },
+                      "tenant": {
+                        "type": "string",
+                        "description": "The tenant name."
+                      },
+                      "timestamp": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The timestamp."
+                      },
+                      "type": {
+                        "type": "integer",
+                        "description": "The type of connection."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/es/v1/health": {
+      "get": {
+        "summary": "Health check",
+        "description": "Check the health status of EDS.",
+        "tags": [
+          "Event Delivery Status"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully checked health.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The health status, either \"healthy\" or \"unhealthy\"."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/es/v1/version": {
+      "get": {
+        "summary": "Version",
+        "description": "Get the EDS version information.",
+        "tags": [
+          "Event Delivery Version"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully returned the version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "description": "The version of EDS."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "host": "api-play.paas.macrometa.io",
+  "servers": [
+    {
+      "url": "https://api-play.paas.macrometa.io",
+      "description": "GDN API"
+    }
+  ]
+}
