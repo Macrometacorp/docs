@@ -25,14 +25,14 @@ Understanding the performance, usage, and health of the PhotonIQ Event Delivery 
 
 **Number of concurrent subscriber requests:** Measures concurrent subscription requests processed per second, highlighting the service's real-time load and concurrency capabilities.
 
-### Metric Dimensions
+## Metric Dimensions
 
 Metrics are categorized by dimensions such as `customer_id`, `fabric`, `region`, `tenant`, and `type` (websocket/sse), allowing for detailed analysis based on these attributes.
 
-### Metric Retention
+## Metric Retention
 
 Metrics are retained for 30 days within the Macrometa Global Data Network (GDN), providing access to historical data for analysis and troubleshooting.
 
-### Metric Storage Interval
+## Metric Storage Interval
 
 Metrics are stored in GDN every one minute, offering a detailed view of performance over time.
