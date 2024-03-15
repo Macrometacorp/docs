@@ -26,4 +26,10 @@ title: PhotonIQ API Reference
     href="../../../docs/apiEst#"
   />
 
+  <card
+    heading="Event Delivery API"
+    description=""
+    href="../../../docs/apiEds#"
+  />
+
 </grid>
