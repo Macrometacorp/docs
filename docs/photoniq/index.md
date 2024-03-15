@@ -40,6 +40,13 @@ PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Netwo
     href="/photoniq/est"
   />
   <card
+    heading="Event Delivery"
+    description="Real-time event data delivery."
+    href="/photoniq/event-delivery"
+  />
+</grid>
+<grid cols={3}>
+  <card
     heading="PhotonIQ APIs"
     description="API references for PhotonIQ services."
     href="/photoniq/photoniq-api"
