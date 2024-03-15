@@ -15,7 +15,7 @@ Filters are defined in a JSON format string, which includes fields to specify th
 
 The SELECT syntax follows standard SQL conventions, allowing for conditions (`WHERE`), logical operators (`AND`, `OR`), and specifying particular fields or using `*` for all fields within a collection or stream.
 
-### Example JSON Filter Structure
+**Example JSON Filter Structure**
 
 ```json
 {
