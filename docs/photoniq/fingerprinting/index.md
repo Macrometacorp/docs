@@ -69,7 +69,7 @@ The process of identifying automated activity on a website is known as bot detec
 - Bad bot - Some bots connect to networks using IP addresses that are widely known and have been marked as banned on the internet. This ban list combines well-known industry-curated IP ban lists and our ban list.
 - Unknown bot - usually an automation tool like Selenium, Puppeteer, Playwright, or anything that pretends to be a good search bot.
 
-## Support for All Major Browsers
+### Support for All Major Browsers
 
 Fingerprint works consistently across modern browsers, including:
 
