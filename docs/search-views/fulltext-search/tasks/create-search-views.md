@@ -17,7 +17,7 @@ Some attributes cannot be set in the Macrometa web console. Only the API allows 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
 - At least one collection created.
 
-## Create a Semantic Search View
+## Create a Fulltext Search View
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
