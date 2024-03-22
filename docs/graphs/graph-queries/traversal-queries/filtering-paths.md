@@ -5,7 +5,7 @@ title: Filtering Paths
 
 Path filtering enables advanced and efficient filtering capabilities, significantly improving query performance. Using the `path` variable, you can apply filters based on specific iteration depths. You can filter for absolute positions in the path by specifying a positive number (thus benefiting from optimization strategies), or for relative positions to the path's end by specifying a negative number.
 
-The following examples are based on the [traversal graph](../../graph-examples/example-graphs#the-traversal-graph). If you create this example graph, then you can run any of the queries listed in this page.
+The following examples are based on the [traversal graph](../../graph-examples/sample-dataset-graphs#the-traversal-graph). If you create this example graph, then you can run any of the queries listed in this page.
 
 ## Filtering Edges on the Path
 

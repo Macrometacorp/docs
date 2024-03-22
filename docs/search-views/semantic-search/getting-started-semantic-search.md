@@ -59,7 +59,7 @@ These values for this search view are specific to this data set, because it is v
 13. In the **Sample** field, enter `0.8`.
 14. Do not enter anything in the **Quantization** field. Click **Create**.
 
-Your vectors are indexed in the search view and ready to query. Macrometa distributes this search view to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
+Your vectors are indexed in the search view and ready to query. Macrometa distributes this search view to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [fabric](geofabrics/index.md) locations.
 
 ![New Search View](/img/search/getting-started-new-semantic.png)
 

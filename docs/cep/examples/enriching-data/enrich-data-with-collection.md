@@ -90,7 +90,7 @@ CREATE STREAM TransactionStream (userId long, transactionAmount double, location
 
 #### Define the Table (Collection)
 
-`CREATE TABLE` defines where the stream worker stores your data. In this case, it will be a [Document Store Collection](../../../collections/documents/index.md) For more information about defining a TABLE in a stream worker, refer to [Table (Collection)](../../table/index.md). For more information about collections in general, refer to [Collections](../../../collections/index.md).
+`CREATE TABLE` defines where the stream worker stores your data. In this case, it will be a [Document Collection](../../../collections/documents/index.md) For more information about defining a TABLE in a stream worker, refer to [Table (Collection)](../../table/index.md). For more information about collections in general, refer to [Collections](../../../collections/index.md).
 
 ```sql
 CREATE TABLE GLOBAL UserTable (userId long, firstName string, lastName string);

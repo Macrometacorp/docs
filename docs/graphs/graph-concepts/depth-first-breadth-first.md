@@ -28,7 +28,7 @@ DFT is particularly useful for tasks like searching for cycles in a graph or det
 
 ### DFT Example
 
-You could run the following query on the [Traversal Graph Example](../graph-examples/example-graphs#the-traversal-graph):
+You could run the following query on the [Traversal Graph Example](../graph-examples/sample-dataset-graphs#the-traversal-graph):
 
 ```sql
 FOR vertex, edge, path IN 1..3 ANY 'circles/A' GRAPH 'traversalGraph' 

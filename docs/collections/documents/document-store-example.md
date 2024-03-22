@@ -1,12 +1,12 @@
 ---
-title: Document Store Example
+title: Document Collection Example
 sidebar_position: 90
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page provides an example of how to create and use a document store using code.
+This page provides an example of how to create and use a document collection using code.
 
 Assume the following credentials for this example:
 
