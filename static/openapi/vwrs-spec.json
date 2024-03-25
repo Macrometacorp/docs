@@ -7,8 +7,8 @@
   },
   "servers": [
     {
-      "url": "https://api-demo-vwr.paas.macrometa.io",
-      "description": "PhotonIQ Virtual Waiting Rooms API"
+      "url": "https://api-play.paas.macrometa.io",
+      "description": "GDN API"
     }
   ],
   "components": {
@@ -20,118 +20,6 @@
       }
     },
     "schemas": {
-      "Origin": {
-        "allOf": [
-          {
-            "type": "object",
-            "required": [
-              "origin_key"
-            ],
-            "properties": {
-              "origin_key": {
-                "type": "string",
-                "description": "The unique origin key."
-              }
-            }
-          },
-          {
-            "$ref": "#/components/schemas/OriginObject"
-          }
-        ]
-      },
-      "OriginObject": {
-        "type": "object",
-        "required": [
-          "origin_url"
-        ],
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "The unique identifier of the origin."
-          },
-          "origin_url": {
-            "type": "string",
-            "description": "The URL of the origin."
-          },
-          "custom_attributes": {
-            "type": "object",
-            "description": "A JSON object containing custom attributes."
-          }
-        }
-      },
-      "GetOriginObject": {
-        "type": "object",
-        "required": [
-          "origin_url"
-        ],
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "The unique identifier of the origin."
-          },
-          "origin_url": {
-            "type": "string",
-            "description": "The URL of the origin."
-          },
-          "created_at": {
-            "type": "number",
-            "description": "Timestamp when origin is created.",
-            "example": 1694757000
-          },
-          "custom_attributes": {
-            "type": "object",
-            "description": "A JSON object containing custom attributes."
-          }
-        }
-      },
-      "GetOriginsResponse": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/GetOriginObject"
-        }
-      },
-      "OriginPostResponse": {
-        "type": "object",
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "A unique identifier for the origin response."
-          },
-          "created_at": {
-            "type": "number",
-            "format": "number",
-            "example": 1694757000
-          }
-        }
-      },
-      "OriginPutResponse": {
-        "type": "object",
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "A unique identifier for the origin response."
-          },
-          "updated_at": {
-            "type": "number",
-            "format": "number",
-            "example": 1694757010
-          }
-        }
-      },
-      "OriginDeleteResponse": {
-        "type": "object",
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "A unique identifier for the origin response."
-          },
-          "deleted_at": {
-            "type": "number",
-            "format": "number",
-            "example": 1694757100000
-          }
-        }
-      },
       "APIKey": {
         "type": "object",
         "required": [
@@ -939,7 +827,7 @@
           "API key"
         ],
         "description": "Create a new API key. Keep the API key safe, because it cannot be retrieved. Provide the TTL in days and specify the role of the API key.\n\n__The following roles are supported.__\n* admin - Can run all API endpoints.\n* editor - Can run all API endpoints, except API keys endpoints.\n* viewer - Can only run read API endpoints.\n\nThis API requires _admin_ permissions to run.\n",
-        "operationId": "createAPI Key",
+        "operationId": "createAPIKey",
         "security": [
           {
             "APIKeyAuth": []
@@ -1108,7 +996,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "Unique key_id to.",
+            "description": "Unique ID of the key to be fetched.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1149,7 +1037,7 @@
           "API key"
         ],
         "description": "Update the activation status of the API key.\n\nThis API requires _admin_ permissions to run.\n",
-        "operationId": "updateAPI Key",
+        "operationId": "updateAPIKey",
         "security": [
           {
             "APIKeyAuth": []
@@ -1159,7 +1047,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "Unique key_id to.",
+            "description": "Unique ID of the key to be patched.",
             "required": true,
             "schema": {
               "type": "string"

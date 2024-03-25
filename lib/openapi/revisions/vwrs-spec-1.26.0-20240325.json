@@ -829,7 +829,7 @@
           "API key"
         ],
         "description": "Create a new API key. Keep the API key safe, because it cannot be retrieved. Provide the TTL in days and specify the role of the API key.\n\n__The following roles are supported.__\n* admin - Can run all API endpoints.\n* editor - Can run all API endpoints, except API keys endpoints.\n* viewer - Can only run read API endpoints.\n\nThis API requires _admin_ permissions to run.\n",
-        "operationId": "createAPI Key",
+        "operationId": "createAPIKey",
         "security": [
           {
             "APIKeyAuth": []
@@ -998,7 +998,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "Unique key_id to.",
+            "description": "Unique ID of the key to be fetched.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1039,7 +1039,7 @@
           "API key"
         ],
         "description": "Update the activation status of the API key.\n\nThis API requires _admin_ permissions to run.\n",
-        "operationId": "updateAPI Key",
+        "operationId": "updateAPIKey",
         "security": [
           {
             "APIKeyAuth": []
@@ -1049,7 +1049,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "Unique key_id to.",
+            "description": "Unique ID of the key to be patched.",
             "required": true,
             "schema": {
               "type": "string"
