@@ -32,13 +32,13 @@ Create collections to hold the data that you will use to create graphs.
 1. [Create a document collection](../collections/documents/create-document-store) named `cities`.
    1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
    1. Click **Data > Collections** and then click **New Collection**.
-   1. Click **Document Store**.
+   1. Click **Document**.
    1. In **Collection Name**, enter `cities` and then click **Create**.
 
-1. [Create an edge collection](graph-tasks/create-graph-edge-collection) named `flights`.
+2. [Create an edge collection](graph-tasks/create-graph-edge-collection) named `flights`.
    1. In **Data > Collections**, click **New Collection**.
-   1. Click **Graph Edge**.
-   1. In **Collection Name**, enter `flights` and then click **Create**.
+   2. Click **Graph Edge**.
+   3. In **Collection Name**, enter `flights` and then click **Create**.
 
 You now have two empty collections that are ready to receive data.
 
@@ -49,7 +49,7 @@ Add data to the collections with C8QL queries. For more information about Macrom
 1. Click **Compute > Query Workers**.
 1. To populate the `cities` collection, copy the following query and paste it in the editor.
 
-	```JavaScript
+	```sql
 	LET c = [
 		{"_key": "sanfrancisco", "location": [-122.416667, 37.783333]},
 		{"_key": "newyork", "location": [-74.0059, 40.7127]},
@@ -70,7 +70,7 @@ Add data to the collections with C8QL queries. For more information about Macrom
 
 1. To populate the `flights` collection, click **New Query**, then copy the following query and paste it in the editor.
 
-	```JavaScript
+	```sql
 	LET e = [
 		{"_from": "cities/sanfrancisco", "_to": "cities/singapore", "distance": 13600},
 		{"_from": "cities/sanfrancisco", "_to": "cities/newyork", "distance": 4000},
@@ -111,6 +111,7 @@ Add a geo index to the `cities` collection. For more information about this type
 1. Click **Indexes**, then click the plus to add an index.
 1. Enter the following information:
    - **Type**: Geo Index
+   - **Name** Leave blank
    - **Fields**: location
    - **Geo JSON**: True (select the checkbox)
 
@@ -124,8 +125,8 @@ And now for the really fun part!
 
 1. Click **Data > Graphs**, and then click **New Graph**.
 1. Enter the following information:
-   - **Name**: airline
-   - **Edge Definitions**: flights
+   - **Graph Name**: airline
+   - **Graph Edge Collection**: flights
    - **From Collections**: cities
    - **To Collections**: cities
 
@@ -147,7 +148,7 @@ Here are some queries that you can run in the query editor to get you started.
 
 Find all cities with a direct flight to New York:
 
-```JavaScript
+```sql
 WITH cities
      FOR city IN INBOUND "cities/newyork" flights
 	 RETURN city
@@ -157,7 +158,7 @@ WITH cities
 
 Determine the shortest path from San Francisco to Paris:
 
-```JavaScript
+```sql
 WITH cities
      LET path = (
 	FOR city IN OUTBOUND SHORTEST_PATH "cities/sanfrancisco" TO "cities/paris"
@@ -172,7 +173,7 @@ WITH cities
 
 Calculate the distance along the shortest path from San Francisco to Paris:
 
-```JavaScript
+```sql
 WITH cities
      LET path = (
 	FOR city, e IN OUTBOUND SHORTEST_PATH "cities/sanfrancisco" TO "cities/paris"
@@ -187,7 +188,7 @@ WITH cities
 
 Find the two nearest cities to a specified latitude and longitude:
 
-```JavaScript
+```sql
 FOR loc IN NEAR(cities, 53.35, -6.26, 2, "distance")
 RETURN {
 	name: loc._key,
@@ -201,7 +202,7 @@ RETURN {
 
 List cities within 2,500 km of Houston:
 
-```JavaScript
+```sql
 LET city = DOCUMENT("cities/houston")
 FOR loc IN WITHIN(cities, city.location[1], city.location[0], 2500 * 1000, "distance")
 RETURN {

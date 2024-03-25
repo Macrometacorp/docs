@@ -3,11 +3,11 @@ sidebar_position: 30
 title: Manage Query Workers
 ---
 
-After you build a query, you can save it as a _query worker_, similar to a SQL stored procedures. Query workers are cached across all GeoFabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.
+After you build a query, you can save it as a _query worker_, similar to a SQL stored procedures. Query workers are cached across all fabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.
 
 You can create and update query workers from the Macrometa web console, command line, or REST API. Each query worker is tied to a specific query text and parameter set. You can set optional or mandatory default values for query parameters.
 
-Each query worker functions as an endpoint. Query workers exist on the GeoFabric level along with other data like collections and documents.
+Each query worker functions as an endpoint. Query workers exist on the fabric level along with other data like collections and documents.
 
 Query workers can be used as sources and sinks for [stream workers](../cep/). For more information, refer to [Query Worker Source](../cep/source/query-worker-source) and [Query Worker Sink](../cep/sink/query-worker-sink).
 

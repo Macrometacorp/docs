@@ -31,7 +31,7 @@ To use streams with Macrometa Global Data Network (GDN), you must first establis
 
 <ConnectToGDN />
 
-### Step 2. Get GeoFabric Details
+### Step 2. Get Fabric Details
 
 Get fabric details, including the name and associated regions.
 

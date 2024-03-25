@@ -70,7 +70,7 @@ The following types of triggers are currently supported:
 
   CREATE TRIGGER InitTrigger WITH (interval = 1 minute);
 
-  -- query.worker.name is the name of a query worker that already exists in the GeoFabric.
+  -- query.worker.name is the name of a query worker that already exists in the fabric.
   CREATE SINK queryWorkerStream WITH (type='query-worker', query.worker.name='queryWorkerSample')(startTime string);
 
   INSERT INTO queryWorkerStream

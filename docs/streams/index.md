@@ -44,22 +44,22 @@ Streams provide:
 As in other pub-sub systems, streams in GDN are named channels for transmitting messages from producers to consumers. Stream names are URLs that have a well-defined structure:
 
 ```http
-persistent://tenant/geofabric/stream-name
+persistent://tenant/fabric/stream-name
 ```
 
 |Stream name component | Description |
 |--------------------|---------------|
 |`persistent` | This identifies the type of stream. GDN currently supports only persistent streams. With persistent streams, all messages are durably persisted on disk (that means on multiple disks).
 |`tenant`             | The stream tenant within the instance. Tenants are essential to multi-tenancy in GDN |
-|`geofabric`          | The administrative unit of the stream, which acts as a grouping and geo-fencing mechanism for related streams. Stream configuration is performed at the geofabric level. Each tenant can have multiple geofabrics. |
+|`geofabric`          | The administrative unit of the stream, which acts as a grouping and geo-fencing mechanism for related streams. Stream configuration is performed at the fabric level. Each tenant can have multiple fabrics. |
 |`stream-name`              | The final part of the name. Stream names are freeform. |
 
-## Streams and GeoFabrics
+## Streams and Fabrics
 
-A GeoFabric is a geo-fenced grouping within a tenant. A tenant can create multiple GeoFabrics. For more information about GeoFabrics, refer to [GeoFabrics](../geofabrics/index.md).
+A fabric is a geo-fenced grouping within a tenant. A tenant can create multiple fabrics. For more information about fabrics, refer to [Fabrics](../geofabrics/index.md).
 
-For example, a tenant with different applications can create a separate geofabric for each application. A geofabric allows the application to create and manage a hierarchy of streams. The stream `my-tenant/app1` is a geofabric for the application `app1` for `my-tenant`. You can create any number of `streams` under the geofabric.
+For example, a tenant with different applications can create a separate fabric for each application. A fabric allows the application to create and manage a hierarchy of streams. The stream `my-tenant/app1` is a fabric for the application `app1` for `my-tenant`. You can create any number of `streams` under the fabric.
 
 :::note
-Every collection within a geofabric is also a stream with the same name.
+Every collection within a fabric is also a stream with the same name.
 :::

@@ -9,7 +9,7 @@ Geospatial coordinates consisting of a latitude and longitude value can be store
 
 Let's insert some filming locations into a new collection _Locations_.
 
-1. [Create a Document Store collection](../../collections/documents/create-document-store) called **Locations**.
+1. [Create a Document collection](../../collections/documents/create-document-store) called **Locations**.
 2. Copy and paste the following query in the Query Editor:
 
     ```js
@@ -50,7 +50,7 @@ To create a geo index:
 1. In **Fields**, enter **coordinate**.
 1. Click **Create**
 
-Macrometa returns a success message and your new index appears in the Indexes list. For more information, refer to [Document Store Indexes](../../collections/documents/document-store-indexes).
+Macrometa returns a success message and your new index appears in the Indexes list. For more information, refer to [Document Collection Indexes](../../collections/documents/document-store-indexes).
 
 ## Find Nearby Locations
 

@@ -14,7 +14,7 @@ In the graph that we created ,customers Dino and Durga bought the same items. Th
 
 ## Define Vertices and Edges
 
-For this example we will have two vertex collections - `groceryCustomers` and `groceryItems` and one edge collection - `groceryOrders`. The `groceryOrders` edge collection will be used to establish a connection between a customer and an item that they bought. Vertex collections are document store collections that store the vertices of a graph. Edge collections are graph edge collections that store the edges of a graph, edge collections have the `_from` and `_to` attributes that are used to establish a connection between two vertices.
+For this example we will have two vertex collections - `groceryCustomers` and `groceryItems` and one edge collection - `groceryOrders`. The `groceryOrders` edge collection will be used to establish a connection between a customer and an item that they bought. Vertex collections are document collections that store the vertices of a graph. Edge collections are graph edge collections that store the edges of a graph, edge collections have the `_from` and `_to` attributes that are used to establish a connection between two vertices.
 
 Vertex example in `groceryCustomers` collection:
 

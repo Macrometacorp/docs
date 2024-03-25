@@ -5,6 +5,8 @@ sidebar_position: 30
 
 The Redis Mode Data tab is one way to view collection information.
 
+![Redis Mode Data Tab](/img/collections/redis-mode-data-tab.png)
+
 This is a complex tab, which contains the following items. Hover your cursor over an icon to see what it does.
 
 ## Collection Name
@@ -23,6 +25,10 @@ Import documents from a file.
 
 Export allows you to download the documents in the collection as a JSON or CSV file, which can be used for data pre-processing, cleaning, analytics, and so on. You can export all documents or apply a filter to export a subset.
 
+## Refresh Documents
+
+Refreshing documents updates the document list with any changes that might have occurred without triggering a page refresh.
+
 ## Filter Documents
 
 Click the **Filter Collection** (funnel) icon to apply a filter to your document view.
@@ -32,6 +38,14 @@ This feature can be used to perform a lookup within the document collection. You
 1. Enter the attribute on which to filter.
 1. Select logical expressions/operators from the drop-down menu.
 1. Enter the value to filter against.
+
+## Documents
+
+Shows the number of documents in the collection.
+
+## Data Storage
+
+Displays the amount of memory the data in the collection consumes.
 
 ## Create Document
 

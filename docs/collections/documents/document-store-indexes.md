@@ -1,11 +1,11 @@
 ---
-title: Document Store Indexes
+title: Document Collection Indexes
 sidebar_position: 50
 ---
 
 Indexes enable you to create searchable attributes to speed up your queries. For more information about indexes, refer to [Indexing](../indexing/index.md).
 
-## Document Store Indexes
+## Document Collection Indexes
 
 You can create the following types of index for a document collection:
 
@@ -20,8 +20,12 @@ Refer to each index type for more information about the index and for instructio
 
 View active indexes for a collection on the Indexes tab. The section explains what each element of the tab means.
 
-![Document Store Indexes Tab](/img/collections/doc-store-indexes.png)
+![Document Collection Indexes Tab](/img/collections/doc-store-indexes.png)
 
+- **Indexes -** Number of non-search indexes.
+- **Index Storage -** Amount of disk space used by non-search indexes.
+- **Search Indexes -** Number of search indexes.
+- **Search Index Storage -** Amount of disk space used by search indexes.
 - **ID -** This is a unique primary key for the indexes.
 - **Type -** The index type.
 - **Unique -** If `true`, then no two documents are allowed to have the same set of attribute values. Default is `true` for primary keys and indexes, and default is `false` is for all other keys and indexes.

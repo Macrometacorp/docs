@@ -28,7 +28,7 @@ You are going to create a search view on the document collection that you create
 9. Perform steps 6 and 7 again for the `firstName` and `email` fields in the `addresses` collection.
 10. Click **Create**.
 
-Your three address collection key values are indexed in the search view and ready to query. Macrometa distributes this search view to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [GeoFabric](geofabrics/index.md) locations.
+Your three address collection key values are indexed in the search view and ready to query. Macrometa distributes this search view to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [Fabric](geofabrics/index.md) locations.
 
 ![New Search View](/img/search/getting-started-new-fulltext.png)
 

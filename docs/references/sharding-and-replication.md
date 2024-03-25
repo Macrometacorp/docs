@@ -51,4 +51,4 @@ Applications can create producers and consumers in any shard. If follower shards
 
 When replicating across datacenters (also known as _geo-replication_), GDN uses asynchronous causal ordered replication. Messages can be be produced and consumed in any region.
 
-Geo-replication is enabled at the GeoFabric level. The GeoFabric is replicated to all datacenters in the specified set any time messages are published to global streams or documents are added to collections.
+Geo-replication is enabled at the fabric level. The fabric is replicated to all datacenters in the specified set any time messages are published to global streams or documents are added to collections.

@@ -17,6 +17,10 @@ View active indexes for a collection on the Indexes tab. The section explains wh
 
 ![Redis Mode Indexes Tab](/img/collections/redis-mode-indexes.png)
 
+- **Indexes -** Number of non-search indexes.
+- **Index Storage -** Amount of disk space used by non-search indexes.
+- **Search Indexes -** Number of search indexes.
+- **Search Index Storage -** Amount of disk space used by search indexes.
 - **ID -** This is a unique primary key for the indexes.
 - **Type -** The index type.
 - **Unique -** If `true`, then no two documents are allowed to have the same set of attribute values. Default is `true` for primary keys and indexes, and default is `false` is for all other keys and indexes.

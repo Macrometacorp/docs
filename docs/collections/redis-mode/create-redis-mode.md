@@ -6,7 +6,7 @@ sidebar_position: 20
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create a new Document Store collection.
+This page explains how to create a new Document collection.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -93,12 +93,12 @@ createCollection()
 </TabItem>
 <TabItem value="apo" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://www.macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Document Collection](https://www.macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection](../../cli/collections-cli) CLI command to create a Document Store collection.
+Use the [gdnsl collection](../../cli/collections-cli) CLI command to create a document collection.
 
 </TabItem>
 </Tabs>  

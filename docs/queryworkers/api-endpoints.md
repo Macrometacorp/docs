@@ -9,7 +9,8 @@ Any query or query worker can be used as an API endpoint.
 
 You can create a REST API endpoint from a query or query worker.
 
-1. Navigate to **Queries**.
+1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
+1. Click **Compute > Query Workers**.
 1. Write a query or display a query worker.
 1. Add [bind parameter](../queries/bind-parameters) values if needed.
 1. Click **API Endpoint**.
@@ -23,7 +24,7 @@ Macrometa displays the cURL (Client URL) command that you can use in the termina
 You can use any unsaved query as an API endpoint, but best practice is to use saved queries (query workers) for the following reasons:
 
 - Query workers have hard-coded URLs, while queries use a generic `/feature/option/data` path.
-- Query workers are cached across all GeoFabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.
+- Query workers are cached across all fabric locations. You can edit query workers while they are running, but an unsaved query must be redeployed if you need to update it.
 
 Using query workers instead of unsaved query endpoints does not impact your billing.
 

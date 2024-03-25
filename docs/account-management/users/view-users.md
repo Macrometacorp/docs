@@ -13,7 +13,7 @@ This page shows you different methods to view users on a Macrometa GDN account. 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-You can view all users of any GeoFabric for which you have read permissions.
+You can view all users of any fabric for which you have read permissions.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 1. Click **Access > Users**.
