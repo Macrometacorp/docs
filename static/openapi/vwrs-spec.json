@@ -1655,13 +1655,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-07-12T07:00:00.000Z"
+                        "timestamp": "2023-07-12T07:00:00Z"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-12T08:00:00.000Z"
+                        "timestamp": "2023-07-12T08:00:00Z"
                       }
                     ]
                   },
@@ -1838,13 +1838,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-07-12T07:00:00.000Z"
+                        "timestamp": "2023-07-12T07:00:00Z"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-13T08:00:00.000Z"
+                        "timestamp": "2023-07-13T08:00:00Z"
                       }
                     ]
                   },
@@ -2021,13 +2021,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-06-12T00:00:00.000Z"
+                        "timestamp": "2023-06-12T00:00:00Z"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-12T00:00:00.000Z"
+                        "timestamp": "2023-07-12T00:00:00Z"
                       }
                     ]
                   },
