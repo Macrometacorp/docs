@@ -138,6 +138,11 @@
           },
           "role": {
             "type": "string",
+            "enum": [
+              "editor",
+              "admin",
+              "viewer"
+            ],
             "description": "The role of the API key.",
             "example": "editor"
           },
