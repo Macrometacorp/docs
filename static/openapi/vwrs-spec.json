@@ -7,8 +7,8 @@
   },
   "servers": [
     {
-      "url": "https://api-play.paas.macrometa.io",
-      "description": "GDN API"
+      "url": "https://api-demo-vwr.paas.macrometa.io",
+      "description": "PhotonIQ Virtual Waiting Rooms API"
     }
   ],
   "components": {
