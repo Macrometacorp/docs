@@ -121,7 +121,7 @@
             "example": "test_key"
           },
           "activated": {
-            "type": "string",
+            "type": "boolean",
             "description": "True if API key is enabled.",
             "example": true
           },

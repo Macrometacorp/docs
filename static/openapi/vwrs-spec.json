@@ -7,8 +7,8 @@
   },
   "servers": [
     {
-      "url": "https://api-demo-vwr.paas.macrometa.io",
-      "description": "PhotonIQ Virtual Waiting Rooms API"
+      "url": "https://api-play.paas.macrometa.io",
+      "description": "GDN API"
     }
   ],
   "components": {
@@ -119,7 +119,7 @@
             "example": "test_key"
           },
           "activated": {
-            "type": "string",
+            "type": "boolean",
             "description": "True if API key is enabled.",
             "example": true
           },
