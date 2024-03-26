@@ -76,8 +76,14 @@
             "description": "API key to authenticate with."
           },
           "role": {
-            "type": "string",
             "description": "The role of the API key.",
+            "type": "string",
+            "enum": [
+              "editor",
+              "admin",
+              "viewer"
+            ],
+            "default": "editor",
             "example": "editor"
           },
           "created_at": {
@@ -116,7 +122,7 @@
           },
           "activated": {
             "type": "string",
-            "description": "If the key is enabled.",
+            "description": "True if API key is enabled.",
             "example": true
           },
           "expire_at": {
@@ -187,32 +193,47 @@
           "domain_url"
         ],
         "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "The key of the associated origin."
-          },
           "domain_url": {
             "type": "string",
             "description": "The URL of the domain."
           },
           "access_type": {
+            "description": "The access type for the domain.",
             "type": "string",
-            "description": "The access type for the domain (users, rps, or users_per_period).",
+            "enum": [
+              "users",
+              "rps",
+              "users_per_period"
+            ],
             "default": "users"
           },
           "queue_type": {
+            "description": "The type of queue.",
             "type": "string",
-            "description": "The type of queue (fifo, random, lottery).",
+            "enum": [
+              "fifo",
+              "random",
+              "lottery"
+            ],
             "default": "fifo"
           },
           "queue_mode": {
+            "description": "If set to _auto_, then the decision to enable the waiting room is determined by the traffic rate exceeding the rate limit set by rate_limit. If set to _on_, all traffic is redirected to the waiting room. If set to _off_, all requests go directly to the origin, even if the rate limit has been exceeded.",
             "type": "string",
-            "description": "If set to auto, then the decision to enable the waiting room is determined by the traffic rate exceeding the rate limit set by rate_limit. If set to on, all traffic is redirected to the waiting room. If set to off, all requests go directly to the origin, even if the rate limit has been exceeded.",
+            "enum": [
+              "auto",
+              "on",
+              "off"
+            ],
             "default": "auto"
           },
           "dequeue_mode": {
+            "description": "While set to _off_, keep users in the waiting room. When the value is _on_, redirect them to the origin at a rate specified by _rate_limit_.",
             "type": "string",
-            "description": "Turn automatic dequeuing on or off.",
+            "enum": [
+              "on",
+              "off"
+            ],
             "default": "on"
           },
           "waiting_room_path": {
@@ -252,7 +273,7 @@
           "request_priority": {
             "type": "array",
             "maxItems": 10,
-            "description": "The domain has a range of request priorities, where the highest priority corresponds to the lowest number.",
+            "description": "Requests may optionally specify a priority level, represented by a numerical value. A lower numerical value signifies a higher priority, ensuring these requests are processed preferentially. The array provides a list of all valid priority values available for use with this domain.",
             "items": {
               "type": "number",
               "minimum": 1,
@@ -428,8 +449,8 @@
         "type": "object",
         "properties": {
           "role": {
-            "type": "string",
             "description": "The type of the service.",
+            "type": "string",
             "enum": [
               "leader",
               "follower",
@@ -622,7 +643,7 @@
           {
             "name": "domain_key",
             "in": "path",
-            "description": "The key corresponding to the domain for which information is to be fetched.",
+            "description": "The unique identifier for the domain of interest.",
             "required": true,
             "schema": {
               "type": "string"
@@ -670,7 +691,7 @@
           {
             "name": "domain_key",
             "in": "path",
-            "description": "The ID of the domain to be updated.",
+            "description": "A unique identifier for the domain.",
             "required": true,
             "schema": {
               "type": "string"
@@ -731,7 +752,7 @@
           {
             "name": "domain_key",
             "in": "path",
-            "description": "The ID of the domain to be updated.",
+            "description": "A unique identifier for the domain.",
             "required": true,
             "schema": {
               "type": "string"
@@ -912,7 +933,7 @@
             "name": "pattern",
             "in": "query",
             "required": false,
-            "description": "Fetch api key information that matches the pattern. For example, a pattern could be 'aa' or 'test'. To get all api keys, set the pattern to '*'.",
+            "description": "Fetch API key information that matches the pattern. For example, a pattern could be 'aa' or 'test'. To get all API keys, set the pattern to '*'.",
             "schema": {
               "type": "string",
               "default": "*"
@@ -988,7 +1009,7 @@
           "API key"
         ],
         "description": "Gets API key by unique key_id.",
-        "operationId": "getAPI Key",
+        "operationId": "getAPIKey",
         "security": [
           {
             "APIKeyAuth": []
@@ -998,7 +1019,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "Unique ID of the key to be fetched.",
+            "description": "A unique identifier for the API key.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1049,7 +1070,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "Unique ID of the key to be patched.",
+            "description": "A unique identifier for the API key.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1110,7 +1131,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "The unique ID of the API key to be deleted.",
+            "description": "A unique identifier for the API key.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1505,7 +1526,7 @@
             "name": "domain",
             "in": "query",
             "required": true,
-            "description": "Domain for which the usage information is to be fetched.",
+            "description": "Unique identifier for a domain.",
             "schema": {
               "type": "string"
             }
@@ -1688,7 +1709,7 @@
             "name": "domain",
             "in": "query",
             "required": true,
-            "description": "Domain for which the usage information is to be fetched.",
+            "description": "Unique identifier for a domain.",
             "schema": {
               "type": "string"
             }
@@ -1871,7 +1892,7 @@
             "name": "domain",
             "in": "query",
             "required": false,
-            "description": "Domain for which the usage information is to be fetched. If a domain is not provided, then monthly usage information for all the domains is fetched.",
+            "description": "Unique domain identifier. If unused, retrieve the monthly usage information for all domains.",
             "schema": {
               "type": "string"
             }
