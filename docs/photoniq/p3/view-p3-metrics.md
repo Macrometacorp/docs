@@ -11,17 +11,30 @@ After you have created one or more policies, you can track P3 metrics on the das
 
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Dashboard**.
-3. Select a time range to view metrics for: 
+3. Select a time range to view metrics for:
    - **Last 24 Hours**
    - **Last 7 Days**
    - **Last 30 Days**
 
+## Available Metrics
+
 The dashboard displays the following metrics.
 
-## Request Counts
+### Request Counts
 
+Hover your cursor over a dot for more information.
 
-## Requests Per Seconds
+![View Request Counts](/img/photoniq/p3/view-request-counts.png)
 
+### Requests Per Second
 
-![View P3 Optimizations](/img/photoniq/p3/p3-view-optimizations.png)
+Hover your cursor over a dot for more information.
+
+- **Max RPS** - 
+- **Max Error RPS** - 
+
+![View Requests Per Second](/img/photoniq/p3/requests-per-second.png)
+
+### Optimization Overview
+
+![View Optimization Overview](/img/photoniq/p3/optimization-overview.png)
