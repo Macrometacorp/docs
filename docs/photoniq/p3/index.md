@@ -32,7 +32,7 @@ Key capabilities of P3 include:
 
 - **Dynamic Content Updating and Caching**: Through offline analysis and real-time optimizations, P3 dynamically updates and caches content to achieve peak performance.
 
-- **Advanced Compression Techniques**: Applies cutting-edge image and content compression strategies to minimize load times and enhance page responsiveness.
+- **Advanced Compression Techniques**: Applies cutting-edge content compression strategies to minimize load times and enhance page responsiveness.
 
 - **Global Deployment Capabilities**: With integration into the Macrometa Global Data Network, P3 can be deployed across different regions, meeting diverse customer needs.
 
