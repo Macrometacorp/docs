@@ -3,6 +3,9 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/", "destination": "/docs", "permanent": false },
+    { "source": "/docs/apiVwrsMetrics", "destination": "/docs/photoniq/vwrs/vwrs-metrics", "permanent": true },
+    { "source": "/docs/apps/coupon-fraud-prevention", "destination": "https://photoniq.macrometa.com/demo/digitalfingerprint/coupon-fraud", "permanent": true },
+    { "source": "/docs/apps/fingerprinting-demo", "destination": "https://photoniq.macrometa.com/demo/digitalfingerprint/fingerprint-id", "permanent": true },
     { "source": "/docs/authentication", "destination": "/docs/account-management/auth", "permanent": true },
     { "source": "/docs/c8ql/got-tutorial", "destination": "/docs/queries/c8ql/got-tutorial", "permanent": true },
     { "source": "/docs/c8ql/graphs/", "destination": "/docs/queries/c8ql/graphs", "permanent": true },
