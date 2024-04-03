@@ -13,7 +13,7 @@ These metrics collectively give you a detailed view of the operational efficienc
 - **Request Errors Count (1hr, 1d, 1m)**: The number of requests that resulted in errors during processing over the past hour, day, and month.
 - **Requests Concurrency (1m, 5m)**: Measures the number of concurrent requests handled by P3 within 1-minute and 5-minute intervals, indicating the load and traffic handling capability.
 - **Requests Optimized Count (1hr, 1d, 1m)**: Counts the requests that were successfully optimized by P3 in the last hour, day, and month, showcasing the efficiency of optimizations.
-- **Requests UnOptimized Count (1hr, 1d, 1m)**: The count of requests that were not optimized over the past hour, day, and month, providing insights into potential areas for improvement.
+- **Requests Unoptimized Count (1hr, 1d, 1m)**: The count of requests that were not optimized over the past hour, day, and month, providing insights into potential areas for improvement.
 
 ## Optimizer Metrics
 
