@@ -5,6 +5,8 @@ title: View P3 Optimizations
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+After you have created one or more policies, you can view which optimizations are applied to each policy.
+
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Optimizations**.
 
