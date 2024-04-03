@@ -31,7 +31,7 @@ Embeds JavaScript directly within HTML, reducing HTTP requests. Especially benef
 
 ## Minify CSS
 
-Removes unnecessary characters from CSS files, reducing size. Leads to faster downloads and browser parsing, boosting page performance. Minification also simplifies CSS, potentially making it easier for developers to manage and update styles while decreasing the bandwidth needed for CSS file transfers.
+Removes unnecessary characters from CSS files, reducing size. Leads to faster downloads and browser parsing, boosting page performance. Minification decreases the bandwidth needed for CSS file transfers.
 
 ## Minify HTML
 
@@ -39,7 +39,7 @@ Strips superfluous characters from HTML files, decreasing size. Results in quick
 
 ## Minify JS
 
-Eliminates unnecessary characters from JavaScript files, reducing size. Enhances network transmission speed and execution times, increasing page speed. Beyond reducing file size, minification can also obscure code, providing a slight layer of obfuscation against casual observation or copying, though this is not a substitute for secure coding practices.
+Eliminates unnecessary characters from JavaScript files, reducing size. Enhances network transmission speed and execution times, increasing page speed.
 
 ## Outline CSS
 
