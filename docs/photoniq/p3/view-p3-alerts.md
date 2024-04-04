@@ -10,6 +10,17 @@ After you have created one or more policies, you can track P3 metrics on the das
 ## View Alerts
 
 1. Log in to your PhotonIQ Performance Proxy dashboard.
-2. Click **Dashboard**.
+2. Click **Alerts & Audits**.
+3. (Optional) In the Alerts table, click **ACK** to acknowledge the alert.
+
+![View P3 Alerts](/img/photoniq/p3/p3-view-alerts.png)
 
 ## Alert Fields
+
+The following fields list information about the alert:
+
+- **URL**
+- **Status**
+- **Timestamp**
+- **Policy Name**
+- **Action**
