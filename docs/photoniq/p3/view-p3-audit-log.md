@@ -5,7 +5,7 @@ title: View P3 Audit Log
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-After you have created one or more policies, you can track P3 metrics on the dashboard.
+After you have created one or more policies, you can view the P3 audit log on the dashboard.
 
 ## View Alerts
 
