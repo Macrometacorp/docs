@@ -22,5 +22,5 @@ These metrics collectively give you a detailed view of the operational efficienc
 - **Pages Failed to Optimize**: The number of pages that could not be optimized, highlighting challenges or limitations faced during the optimization process.
 - **Average Optimization Time (seconds)**: The average time taken to optimize a page, measured in seconds. This metric helps in evaluating the efficiency of the optimization process.
 - **Average Validation Time (seconds)**: Average time spent validating the optimizations applied to ensure the page doesn't visually break and to ensure the optimizations doesnt break the functionality of the page 
-- **Average Analyzer Time (seconds)**: Reflects the average time taken by the Offline Analyzer to assess and formulate optimization strategies for a webpage.
+- **Average Analyzer Time (seconds)**: Reflects the average time taken by the Offline Analyzer to assess and formulate optimization strategies for the incoming URL which matches the configured URL pattern in policy
 - **Average Queue Length**: Measures the average number of optimization tasks waiting to be processed, offering insights into the workload and operational throughput of P3.
