@@ -19,7 +19,7 @@ Consider the following scenario:
 - Pages A, B, and C are optimized.
 - Each page has ten users visit it.
 
-In this case, the three (3) pages have ten (30) requests.
+In this case, the metrics would show three (3) pages and 30 requests.
 
 ## Requests Metrics
 
