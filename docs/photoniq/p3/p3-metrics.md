@@ -3,7 +3,7 @@ sidebar_position: 30
 title: P3 Metrics
 ---
 
-PhotonIQ Performance Proxy (P3) offers a comprehensive suite of metrics designed to provide insights into both the performance improvements and operational status of your web optimization efforts. These metrics help you understand how effectively P3 enhances your website's speed, reliability, and user experience.
+PhotonIQ Performance Proxy (P3) offers a comprehensive suite of metrics designed to provide insights into no of requests coming in, no of optimized pages and no of optimized requests. It also provides an insight into how much time it takes for P3 to analyze and validate the optimizations before applying to it. It also tells us that how requests have failed and how many are successful . 
 
 These metrics collectively give you a detailed view of the operational efficiency, performance impact, and optimization success of P3, enabling technical teams to make informed decisions and continuously refine their web performance strategies. This page provides a detailed list of key metrics provided by P3.
 
