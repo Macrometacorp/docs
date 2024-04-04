@@ -5,7 +5,7 @@ title: View P3 Alerts
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-After you have created one or more policies, you can track P3 metrics on the dashboard.
+After you have created one or more policies, you can track P3 alerts on the dashboard.
 
 ## View Alerts
 
