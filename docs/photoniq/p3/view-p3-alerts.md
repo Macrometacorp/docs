@@ -19,8 +19,8 @@ After you have created one or more policies, you can track P3 metrics on the das
 
 The following fields list information about the alert:
 
-- **URL**
-- **Status**
-- **Timestamp**
-- **Policy Name**
-- **Action**
+- **URL** - The URL that the warning or error applies to.
+- **Status** - Current status. Possible statuses are: Failed, XXX, or XXX.
+- **Timestamp** - The time when the warning or error was logged.
+- **Policy Name** - The name of the policy that the warning or error is associated with.
+- **Action** - Possible actions for you to take. You can click **ACK** to acknowledge the warning or error, or ...
