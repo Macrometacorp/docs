@@ -7,6 +7,18 @@ import TabItem from '@theme/TabItem';
 
 A PhotonIQ Performance Proxy (P3) _policy_ is a set of optimization rules applied to a set of origin URLs. This page explains how to perform tasks pertaining to P3 policies.
 
+## Policy Fields
+
+P3 provides the following policy fields:
+
+- **Policy Name** - The name of the policy.
+- **Device Type** - Icons indicate whether the policy applies to mobile devices, desktop devices, or both.
+- **Optimization Level** - The selected optimization level: **Light**, **Moderate**, or **Aggressive**.
+- **Page Type** - Whether the type of optimization is for page type **Home**, **Category**, or **Product Detail Page**.
+- **Last Updated** - The day and time this policy was last updated.
+
+![P3 Policy Fields](/img/photoniq/p3/p3-view-policies.png)
+
 ## View Policies
 
 Perform the following steps to view existing P3 policies on your account:
@@ -14,16 +26,6 @@ Perform the following steps to view existing P3 policies on your account:
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Policies**.
 3. (Optional) To view details of a policy, click the stacked dots next to the policy that you want to view and then click **Edit**.
-
-![View P3 Policies](/img/photoniq/p3/p3-view-policies.png)
-
-### Policy Fields
-
-- **Policy Name** - The name of the policy.
-- **Device Type** - Icons indicate whether the policy applies to mobile devices, desktop devices, or both.
-- **Optimization Level** - The selected optimization level: **Light**, **Moderate**, or **Aggressive**.
-- **Page Type** - Whether the type of optimization is for page type **Home**, **Category**, or **Product Detail Page**.
-- **Last Updated** - The day and time this policy was last updated.
 
 ## Create a Policy
 
