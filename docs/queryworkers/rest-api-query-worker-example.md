@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 import Prerequisites from '../_partials/_prerequisites-api-key.md';
 import Steps from '../_partials/_api-example-steps.md';
 
-This page shows you how to use the Macrometa API and query workers to perform basic CRUD operations on documents stored in a document store collection.
+This page shows you how to use the Macrometa API and query workers to perform basic CRUD operations on documents stored in a document collection.
 
 For more information about using Macrometa APIs, refer to [APIs](../api-docs/index.md).
 

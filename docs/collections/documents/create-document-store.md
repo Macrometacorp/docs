@@ -1,12 +1,12 @@
 ---
-title: Create a Document Store
+title: Create a Document Collection
 sidebar_position: 20
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create a new Document Store collection.
+This page explains how to create a new Document collection.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -16,11 +16,12 @@ Follow these instructions to create a new collection using the GDN console web U
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Data > Collections**.
 3. Click **New Collection**.
-4. Click **Document Store**.
+4. Click **Document**.
 5. Enter information about the collection:
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.
-   - **Enable Collection stream -** Enable streams for all locations for this collection.
+   - **Collection stream -** Enable streams for all locations for this collection.
+   - **Strong consistency -** Enable strong consistency on this collection. For more information, refer to [Strong consistency](../strong-consistency.md).
    - **Distribution -** Required. Select whether to store data globally or locally. Default is **Global**.
 
 6. Click **Create**. If you are missing required information, then you cannot complete this step.
@@ -31,7 +32,7 @@ Follow these instructions to create a new collection using the GDN console web U
 The below example shows the steps for connecting a fabric and then creating a collection called `employees`.
 
 ```py
-  # Simple Approach
+  # Simple approach
   client = C8Client(protocol='https', host='play.paas.macrometa.io', port=443,
                           email='nemo@nautilus.com', password='xxxxx',
                           geofabric='_system')
@@ -99,12 +100,12 @@ createCollection()
 </TabItem>
 <TabItem value="apo" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to [create a Document Store Collection](https://www.macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
+Use our interactive API Reference with code generation in 18 programming languages to [create a Document Collection](https://www.macrometa.com/docs/api#/operations/handleCommandPost:CreateCollection). 
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection](../../cli/collections-cli) CLI command to create a Document Store collection.
+Use the [gdnsl collection](../../cli/collections-cli) CLI command to create a Document collection.
 
 </TabItem>
 </Tabs>  

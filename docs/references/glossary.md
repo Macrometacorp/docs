@@ -77,21 +77,21 @@ A geo-distributed real time coordination-free materialized views engine supporti
 
 Stands for "global distributed network database."
 
-## GeoFabric
+## Fabric
 
-Macrometa GDN can handle multiple GeoFabrics in the same server instance. GDN GeoFabrics can be used to logically group and separate data. A GeoFabric consists of collections and dedicated worker processes within each region the GeoFabric is present.
+Macrometa GDN can handle multiple fabrics in the same server instance. GDN fabrics can be used to logically group and separate data. A fabric consists of collections and dedicated worker processes within each region the fabric is present.
 
-A GeoFabric contains its own collections which cannot be accessed from other GeoFabrics. Each Macrometa GDN GeoFabric contains its own system collections (e.g. `_users`, `_replication`, ...).
+A fabric contains its own collections which cannot be accessed from other fabrics. Each Macrometa GDN fabric contains its own system collections (e.g. `_users`, `_replication`, ...).
 
-By default, there is always at least one GeoFabric in Macrometa GDN named `_system`. This GeoFabric cannot be dropped, and provides special operations for creating, dropping, and enumerating GeoFabrics. You can create GeoFabrics and give them unique names to access them later. GeoFabric management operations can only be performed in the `_system` GeoFabric.
+By default, there is always at least one fabric in Macrometa GDN named `_system`. This fabric cannot be dropped, and provides special operations for creating, dropping, and enumerating fabrics. You can create fabrics and give them unique names to access them later. fabric management operations can only be performed in the `_system` fabric.
 
-For more information about GeoFabrics, refer to our blog post [Introducing GeoFabrics](https://www.macrometa.com/blog/introducing-geofabrics).
+For more information about fabrics, refer to our blog post [Introducing GeoFabrics](https://www.macrometa.com/blog/introducing-geofabrics).
 
-## GeoFabric name
+## Fabric name
 
-A single Macrometa GDN instance can handle multiple GeoFabrics in parallel. When multiple GeoFabrics are used, each GeoFabric must have a unique name used to identify the database. The default GeoFabric in Macrometa GDN is named `_system`.
+A single Macrometa GDN instance can handle multiple fabrics in parallel. When multiple fabrics are used, each fabric must have a unique name used to identify the database. The default fabric in Macrometa GDN is named `_system`.
 
-The GeoFabric name is a string consisting of letters, digits, and `-` (dash) characters. User-defined GeoFabric names must always start with a letter. GeoFabric names are case-sensitive.
+The fabric name is a string consisting of letters, digits, and `-` (dash) characters. User-defined fabric names must always start with a letter. fabric names are case-sensitive.
 
 ## geo-replication
 
@@ -166,7 +166,7 @@ An asynchronous TCP server used for all data transfers into and out of a Macrome
 
 ## multi-tenancy
 
-The ability to isolate a GeoFabric, specify quotas, and configure authentication and authorization on a per-[tenant](#tenant) basis.
+The ability to isolate a fabric, specify quotas, and configure authentication and authorization on a per-[tenant](#tenant) basis.
 
 ## stream
 

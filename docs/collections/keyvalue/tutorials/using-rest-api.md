@@ -13,9 +13,7 @@ For the following examples, assume these credentials:
 
 ## API Browser
 
-Your main tool when working with REST APIs is the REST API browser available in the [GDN](https://play.paas.macrometa.io) GUI. From there, you can execute various REST APIs and see exactly what the inputs and outputs are.
-
-![GDN API Browser](/img/gdn-api-browser.png)
+Your main tool when working with REST APIs is the REST API browser available in the [GDN](https://play.paas.macrometa.io) web console. From there, you can execute various REST APIs and see exactly what the inputs and outputs are.
 
 ## Connect to GDN
 

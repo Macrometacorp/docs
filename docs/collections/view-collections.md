@@ -38,8 +38,8 @@ You can filter collections by _name_ or by _type_.
 
 When viewing your collections, you can click **New Collection** to create a new collection. For full instructions, refer to the following topics:
 
-- [Create a Document Store](documents/create-document-store.md)
-- [Create a Key-Value Store](keyvalue/create-key-value-store.md)
+- [Create a Document  Collection](documents/create-document-store.md)
+- [Create a Key-Value  Collection](keyvalue/create-key-value-store.md)
 - [Create a Redis Mode](redis-mode/create-redis-mode)
 - [Create a Dynamo Table](dynamo/create-dynamo-table.md)
 - [Create a Graph Edge](../graphs/graph-tasks/create-graph-edge-collection.md)

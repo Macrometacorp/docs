@@ -3,7 +3,7 @@
   "info": {
     "title": "PhotonIQ Virtual Waiting Rooms API",
     "description": "API documentation for the PhotonIQ Virtual Waiting Rooms",
-    "version": "1.22.0"
+    "version": "1.26.0"
   },
   "servers": [
     {
@@ -20,118 +20,6 @@
       }
     },
     "schemas": {
-      "Origin": {
-        "allOf": [
-          {
-            "type": "object",
-            "required": [
-              "origin_key"
-            ],
-            "properties": {
-              "origin_key": {
-                "type": "string",
-                "description": "The unique origin key."
-              }
-            }
-          },
-          {
-            "$ref": "#/components/schemas/OriginObject"
-          }
-        ]
-      },
-      "OriginObject": {
-        "type": "object",
-        "required": [
-          "origin_url"
-        ],
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "The unique identifier of the origin."
-          },
-          "origin_url": {
-            "type": "string",
-            "description": "The URL of the origin."
-          },
-          "custom_attributes": {
-            "type": "object",
-            "description": "A JSON object containing custom attributes."
-          }
-        }
-      },
-      "GetOriginObject": {
-        "type": "object",
-        "required": [
-          "origin_url"
-        ],
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "The unique identifier of the origin."
-          },
-          "origin_url": {
-            "type": "string",
-            "description": "The URL of the origin."
-          },
-          "created_at": {
-            "type": "number",
-            "description": "Timestamp when origin is created.",
-            "example": 1694757000
-          },
-          "custom_attributes": {
-            "type": "object",
-            "description": "A JSON object containing custom attributes."
-          }
-        }
-      },
-      "GetOriginsResponse": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/GetOriginObject"
-        }
-      },
-      "OriginPostResponse": {
-        "type": "object",
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "A unique identifier for the origin response."
-          },
-          "created_at": {
-            "type": "number",
-            "format": "number",
-            "example": 1694757000
-          }
-        }
-      },
-      "OriginPutResponse": {
-        "type": "object",
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "A unique identifier for the origin response."
-          },
-          "updated_at": {
-            "type": "number",
-            "format": "number",
-            "example": 1694757010
-          }
-        }
-      },
-      "OriginDeleteResponse": {
-        "type": "object",
-        "properties": {
-          "origin_key": {
-            "type": "string",
-            "description": "A unique identifier for the origin response."
-          },
-          "deleted_at": {
-            "type": "number",
-            "format": "number",
-            "example": 1694757100000
-          }
-        }
-      },
       "APIKey": {
         "type": "object",
         "required": [
@@ -186,8 +74,14 @@
             "description": "API key to authenticate with."
           },
           "role": {
-            "type": "string",
             "description": "The role of the API key.",
+            "type": "string",
+            "enum": [
+              "editor",
+              "admin",
+              "viewer"
+            ],
+            "default": "editor",
             "example": "editor"
           },
           "created_at": {
@@ -224,6 +118,11 @@
             "description": "A unique identifier for the API key.",
             "example": "test_key"
           },
+          "activated": {
+            "type": "boolean",
+            "description": "True if API key is enabled.",
+            "example": true
+          },
           "expire_at": {
             "type": "number",
             "description": "The Unix timestamp when the API key expires.",
@@ -234,6 +133,16 @@
             "description": "The Unix timestamp when the API key is created.",
             "format": "number",
             "example": 1694757000
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "editor",
+              "admin",
+              "viewer"
+            ],
+            "description": "The role of the API key.",
+            "example": "editor"
           },
           "ttl": {
             "type": "number",
@@ -287,41 +196,52 @@
           "domain_url"
         ],
         "properties": {
-          "domain_key": {
-            "type": "string",
-            "description": "The unique identifier of the domain."
-          },
-          "origin_key": {
-            "type": "string",
-            "description": "The key of the associated origin."
-          },
           "domain_url": {
             "type": "string",
             "description": "The URL of the domain."
           },
           "access_type": {
+            "description": "The access type for the domain.",
             "type": "string",
-            "description": "The access type for the domain (users, rps, or users_per_period).",
+            "enum": [
+              "users",
+              "rps",
+              "users_per_period"
+            ],
             "default": "users"
           },
           "queue_type": {
+            "description": "The type of queue.",
             "type": "string",
-            "description": "The type of queue (fifo, random, lottery).",
+            "enum": [
+              "fifo",
+              "random",
+              "lottery"
+            ],
             "default": "fifo"
           },
           "queue_mode": {
+            "description": "If set to _auto_, then the decision to enable the waiting room is determined by the traffic rate exceeding the rate limit set by rate_limit. If set to _on_, all traffic is redirected to the waiting room. If set to _off_, all requests go directly to the origin, even if the rate limit has been exceeded.",
             "type": "string",
-            "description": "If set to auto, then the decision to enable the waiting room is determined by the traffic rate exceeding the rate limit set by rate_limit. If set to manual, then the decision to direct traffic to the waiting room is performed all the time.",
+            "enum": [
+              "auto",
+              "on",
+              "off"
+            ],
             "default": "auto"
+          },
+          "dequeue_mode": {
+            "description": "While set to _off_, keep users in the waiting room. When the value is _on_, redirect them to the origin at a rate specified by _rate_limit_.",
+            "type": "string",
+            "enum": [
+              "on",
+              "off"
+            ],
+            "default": "on"
           },
           "waiting_room_path": {
             "type": "string",
             "description": "Netstorage path for the waiting room HTML file. It should have the full path with \"/{upload-directory-id}/path\"."
-          },
-          "is_queue_enabled": {
-            "type": "boolean",
-            "description": "Indicates whether the queue is enabled.",
-            "default": false
           },
           "metric_interval": {
             "type": "number",
@@ -356,7 +276,7 @@
           "request_priority": {
             "type": "array",
             "maxItems": 10,
-            "description": "The domain has a range of priorities, where the highest priority corresponds to the lowest number.",
+            "description": "Requests may optionally specify a priority level, represented by a numerical value. A lower numerical value signifies a higher priority, ensuring these requests are processed preferentially. The array provides a list of all valid priority values available for use with this domain.",
             "items": {
               "type": "number",
               "minimum": 1,
@@ -532,8 +452,8 @@
         "type": "object",
         "properties": {
           "role": {
-            "type": "string",
             "description": "The type of the service.",
+            "type": "string",
             "enum": [
               "leader",
               "follower",
@@ -576,7 +496,7 @@
         },
         "responses": {
           "202": {
-            "description": "Domain created successfully.",
+            "description": "Successfully created the domain.",
             "content": {
               "application/json": {
                 "schema": {
@@ -616,9 +536,9 @@
             "name": "pattern",
             "in": "query",
             "description": "Fetch domain information that matches the pattern. For example, a pattern could be 'aa' or 'test'. To get all domains, set the pattern to '*'.",
-            "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "*"
             }
           },
           {
@@ -660,7 +580,7 @@
             "name": "order",
             "in": "query",
             "required": false,
-            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
+            "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n",
             "schema": {
               "type": "string",
               "enum": [
@@ -673,7 +593,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Domain information retrieved.",
+            "description": "Successfully fetched all domain information.",
             "headers": {
               "X-count": {
                 "description": "The total number of records that match the pattern.",
@@ -726,7 +646,7 @@
           {
             "name": "domain_key",
             "in": "path",
-            "description": "The key corresponding to the domain for which information is to be retrieved.",
+            "description": "The unique identifier for the domain of interest.",
             "required": true,
             "schema": {
               "type": "string"
@@ -735,7 +655,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Domain information retrieved.",
+            "description": "Successfully fetched the domain information.",
             "content": {
               "application/json": {
                 "schema": {
@@ -774,7 +694,7 @@
           {
             "name": "domain_key",
             "in": "path",
-            "description": "The ID of the domain to be updated.",
+            "description": "A unique identifier for the domain.",
             "required": true,
             "schema": {
               "type": "string"
@@ -793,7 +713,7 @@
         },
         "responses": {
           "201": {
-            "description": "Domain updated.",
+            "description": "Successfully updated the domain.",
             "content": {
               "application/json": {
                 "schema": {
@@ -835,7 +755,7 @@
           {
             "name": "domain_key",
             "in": "path",
-            "description": "The ID of the domain to be updated.",
+            "description": "A unique identifier for the domain.",
             "required": true,
             "schema": {
               "type": "string"
@@ -853,8 +773,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "Domain updated.",
+          "202": {
+            "description": "Successfully updated the domain.",
             "content": {
               "application/json": {
                 "schema": {
@@ -905,7 +825,7 @@
         ],
         "responses": {
           "202": {
-            "description": "Domain information deleted successfully.",
+            "description": "Successfully delted the domain.",
             "content": {
               "application/json": {
                 "schema": {
@@ -926,385 +846,11 @@
         }
       }
     },
-    "/api/vwr/v1/origins": {
-      "post": {
-        "summary": "Create a new origin",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Creates a new origin with the specified properties.",
-        "operationId": "createOrigin",
-        "security": [
-          {
-            "APIKeyAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Origin"
-              }
-            }
-          }
-        },
-        "responses": {
-          "202": {
-            "description": "Origin created.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginPostResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      },
-      "get": {
-        "summary": "Get information on all origins",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Gets list of origins that match the pattern.",
-        "operationId": "getAllMatchingOrigins",
-        "security": [
-          {
-            "APIKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "pattern",
-            "in": "query",
-            "description": "Fetch origin information that matches the pattern. For example, a pattern could be _aa_ or _test_. To get all origins, set the pattern to '*'.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "description": "The _limit_ parameter determines the number of origins returned.",
-            "schema": {
-              "type": "number",
-              "default": 1000
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "description": "Represents the starting point from where to begin fetching the origin records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of origins records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 metrics records and set the _limit_ to 100, then the first API call without an offset will origins records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
-            "schema": {
-              "type": "number",
-              "default": 0
-            }
-          },
-          {
-            "name": "sortby",
-            "in": "query",
-            "required": false,
-            "description": "The field used for sorting.",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "origin_url",
-                "origin_key"
-              ],
-              "default": "origin_key"
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "required": false,
-            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ],
-              "default": "asc"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Origin information retrieved.",
-            "headers": {
-              "X-count": {
-                "description": "The total number of records that match the pattern.",
-                "schema": {
-                  "type": "number",
-                  "default": 1000
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetOriginsResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either API key doesn't have permissions or it's deactivated."
-          },
-          "404": {
-            "description": "Domain not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      }
-    },
-    "/api/vwr/v1/origins/{origin_key}": {
-      "get": {
-        "summary": "Get information for a specific origin",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Retrieves information about a specific origin.",
-        "operationId": "getOrigin",
-        "security": [
-          {
-            "APIKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "origin_key",
-            "in": "path",
-            "description": "The key of the origin to retrieve information for.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Origin information retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginPostResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Origin key not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      },
-      "put": {
-        "summary": "Update an origin",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Updates an origin with the specified properties.",
-        "operationId": "updateOrigin.",
-        "security": [
-          {
-            "APIKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "origin_key",
-            "in": "path",
-            "description": "The key of the origin to be updated.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OriginObject"
-              }
-            }
-          }
-        },
-        "responses": {
-          "202": {
-            "description": "Origin updated.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginPutResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Origin key not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      },
-      "patch": {
-        "summary": "Modify specific properties of an origin",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Modifies an existing origin with one or more specified properties.",
-        "operationId": "patchOrigin",
-        "security": [
-          {
-            "APIKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "origin_key",
-            "in": "path",
-            "description": "The ID of the origin to be modified.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OriginObject"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Origin modified.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginObject"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Origin key not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete origin information",
-        "tags": [
-          "Origins"
-        ],
-        "description": "Deletes information about a specific origin.",
-        "operationId": "deleteOrigin",
-        "security": [
-          {
-            "APIKeyAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "origin_key",
-            "in": "path",
-            "description": "The ID of the origin to delete information for.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Origin deleted successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OriginDeleteResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Origin key not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      }
-    },
     "/api/vwr/v1/apikey": {
       "post": {
         "summary": "Create a new API Key",
         "tags": [
-          "API Key"
+          "API key"
         ],
         "description": "Create a new API key. Keep the API key safe, because it cannot be retrieved. Provide the TTL in days and specify the role of the API key.\n\n__The following roles are supported.__\n* admin - Can run all API endpoints.\n* editor - Can run all API endpoints, except API keys endpoints.\n* viewer - Can only run read API endpoints.\n\nThis API requires _admin_ permissions to run.\n",
         "operationId": "createAPIKey",
@@ -1325,7 +871,7 @@
         },
         "responses": {
           "202": {
-            "description": "API Key created successfully.",
+            "description": "Successfully create an API Key.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1354,7 +900,7 @@
       "get": {
         "summary": "Get API keys details",
         "tags": [
-          "API Key"
+          "API key"
         ],
         "description": "Gets all API key details.",
         "operationId": "getAPIKeysDetails",
@@ -1390,10 +936,10 @@
             "name": "pattern",
             "in": "query",
             "required": false,
-            "description": "The search pattern of the key_id.",
+            "description": "Fetch API key information that matches the pattern. For example, a pattern could be 'aa' or 'test'. To get all API keys, set the pattern to '*'.",
             "schema": {
               "type": "string",
-              "default": ""
+              "default": "*"
             }
           },
           {
@@ -1416,7 +962,7 @@
             "name": "order",
             "in": "query",
             "required": false,
-            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
+            "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n",
             "schema": {
               "type": "string",
               "enum": [
@@ -1429,7 +975,7 @@
         ],
         "responses": {
           "200": {
-            "description": "All API keys information retrieved.",
+            "description": "Successfully fetched all API keys.",
             "headers": {
               "X-count": {
                 "description": "The total number of records that match the pattern.",
@@ -1463,7 +1009,7 @@
       "get": {
         "summary": "Get API key by unique key_id",
         "tags": [
-          "API Key"
+          "API key"
         ],
         "description": "Gets API key by unique key_id.",
         "operationId": "getAPIKey",
@@ -1476,7 +1022,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "Unique key_id to fetch the API key.",
+            "description": "A unique identifier for the API key.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1485,7 +1031,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Key information retrieved.",
+            "description": "Successfully fetched the API key.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1514,7 +1060,7 @@
       "patch": {
         "summary": "Update API key",
         "tags": [
-          "API Key"
+          "API key"
         ],
         "description": "Update the activation status of the API key.\n\nThis API requires _admin_ permissions to run.\n",
         "operationId": "updateAPIKey",
@@ -1527,7 +1073,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "Unique key_id to fetch the API key.",
+            "description": "A unique identifier for the API key.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1546,7 +1092,7 @@
         },
         "responses": {
           "200": {
-            "description": "Key information retrieved.",
+            "description": "Successfully update the API key.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1575,7 +1121,7 @@
       "delete": {
         "summary": "Delete key",
         "tags": [
-          "API Key"
+          "API key"
         ],
         "description": "Delete API key with a unique _key_id_.\n\nThis API requires _admin_ permissions to run.\n",
         "operationId": "deleteKey",
@@ -1588,7 +1134,7 @@
           {
             "name": "key_id",
             "in": "path",
-            "description": "The unique ID of the API key to be deleted.",
+            "description": "A unique identifier for the API key.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1597,7 +1143,7 @@
         ],
         "responses": {
           "202": {
-            "description": "API key deleted successfully.",
+            "description": "Successfuly deleted the API key.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1708,7 +1254,7 @@
             "name": "order",
             "in": "query",
             "required": false,
-            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
+            "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n",
             "schema": {
               "type": "string",
               "enum": [
@@ -1721,7 +1267,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A list of metrics.",
+            "description": "Successfully fetched the metrics.",
             "headers": {
               "X-count": {
                 "description": "The total number of records.",
@@ -1877,7 +1423,7 @@
             "name": "order",
             "in": "query",
             "required": false,
-            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
+            "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n",
             "schema": {
               "type": "string",
               "enum": [
@@ -1890,7 +1436,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A list of metrics.",
+            "description": "Successfully fetched the metrics.",
             "headers": {
               "X-count": {
                 "description": "The total number of records.",
@@ -1983,7 +1529,7 @@
             "name": "domain",
             "in": "query",
             "required": true,
-            "description": "Domain for which the usage information is to be retrieved.",
+            "description": "Unique identifier for a domain.",
             "schema": {
               "type": "string"
             }
@@ -2060,7 +1606,7 @@
             "name": "order",
             "in": "query",
             "required": false,
-            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
+            "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n",
             "schema": {
               "type": "string",
               "enum": [
@@ -2073,7 +1619,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Usage information retrieved.",
+            "description": "Successfully fetched usage information.",
             "headers": {
               "X-count": {
                 "description": "The total number of records for the specified time period if _aggregate_ is set to _false_.",
@@ -2166,7 +1712,7 @@
             "name": "domain",
             "in": "query",
             "required": true,
-            "description": "Domain for which the usage information is to be retrieved.",
+            "description": "Unique identifier for a domain.",
             "schema": {
               "type": "string"
             }
@@ -2243,7 +1789,7 @@
             "name": "order",
             "in": "query",
             "required": false,
-            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
+            "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n",
             "schema": {
               "type": "string",
               "enum": [
@@ -2256,7 +1802,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Usage information retrieved.",
+            "description": "Successfully fetched usage information.",
             "headers": {
               "X-count": {
                 "description": "The total number of records for the specified time period if _aggregate_ is set to _false_.",
@@ -2349,7 +1895,7 @@
             "name": "domain",
             "in": "query",
             "required": false,
-            "description": "Domain for which the usage information is to be retrieved. If a domain is not provided, then monthly usage information for all the domains is fetched.",
+            "description": "Unique domain identifier. If unused, retrieve the monthly usage information for all domains.",
             "schema": {
               "type": "string"
             }
@@ -2426,7 +1972,7 @@
             "name": "order",
             "in": "query",
             "required": false,
-            "description": "The sort order:\n * `asc` - Ascending, from A to Z\n * `desc` - Descending, from Z to A\n",
+            "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n",
             "schema": {
               "type": "string",
               "enum": [
@@ -2439,7 +1985,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Usage information retrieved.",
+            "description": "Successfully fetched usage information.",
             "headers": {
               "X-count": {
                 "description": "The total number of records for the specified time period.",
@@ -2475,13 +2021,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-06-12"
+                        "timestamp": "2023-06-12T00:00:00Z"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-12"
+                        "timestamp": "2023-07-12T00:00:00Z"
                       }
                     ]
                   },
@@ -2529,7 +2075,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the current version of the service.",
+            "description": "Successfully fetched the version of the service.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2565,7 +2111,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Return the telemetry data for service.",
+            "description": "Successfully fetched the telemetry data for the service.",
             "content": {
               "application/text": {
                 "example": "# TYPE usage_requests_count counter\nusage_requests_count{domain=\"virtual-room.example.io\"} 123456 1694758004532\n# TYPE waiting_time_count counter\nwaiting_time_count{domain=\"virtual-room.example.io\"} 123456 1694758004532\n# TYPE waiting_time counter\nwaiting_time{domain=\"virtual-room.example.io\"} 100 1694758004532\n# TYPE max_queue_size counter\nmax_queue_size{domain=\"virtual-room.example.io\"} 2000 1694758004532\n# TYPE queue_size counter\nqueue_size{domain=\"virtual-room.example.io\"} 1500 1694758004532\n"
@@ -2599,7 +2145,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the current log level of the service.",
+            "description": "Successfully fetched the log level of the service.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2633,7 +2179,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Returns the current log level of the service.",
+            "description": "Successfully set the log level of the service.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2664,7 +2210,7 @@
         "operationId": "getHealth",
         "responses": {
           "200": {
-            "description": "Return when service is healthy and running."
+            "description": "Successfully fetched the healthy of the service."
           },
           "500": {
             "description": "Internal server error."
@@ -2677,7 +2223,7 @@
         "summary": "Get the type name and instance of the service",
         "description": "Gets the type and instance name of the service.\n\nValid values for type are 'leader', 'follower', and 'vwrs'.\n\nThis API requires _admin_ permissions to run.\n",
         "tags": [
-          "Service Information"
+          "Service information"
         ],
         "security": [
           {
@@ -2686,7 +2232,7 @@
         ],
         "responses": {
           "200": {
-            "description": "This API returns the service type e.g.['leader', 'follower', and 'vwrs'] and service instance name.",
+            "description": "Successfully fetched the type name and instance of the service.",
             "content": {
               "application/json": {
                 "schema": {

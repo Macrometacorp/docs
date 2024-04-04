@@ -72,7 +72,7 @@ In contrast, you can use `false` instead of `true` to exclude the specified coll
 
 ## Search by Document Attribute
 
-By querying document attributes indexed in both the search view and the document store, you can search for documents. The search result will include all attributes of the documents. However, if you query a non-indexed attribute, it will yield no results.
+By querying document attributes indexed in both the search view and the document collection, you can search for documents. The search result will include all attributes of the documents. However, if you query a non-indexed attribute, it will yield no results.
 
 For example:
 

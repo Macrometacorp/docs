@@ -16,7 +16,7 @@ You can add edges and edge definitions using either the graph commands or the co
 Follow these instructions to add a graph edge using the GDN console web UI.
 
 1. [Log in to your Macrometa account](https://auth.paas.macrometa.io/).
-2. Click **Graphs**.
+2. Click **Data > Graphs**.
 3. Click the graph to which you want to add edges.
 4. Click the vertex that is the beginning of the edge that you want to add, and then click the link icon (looks like a chain).
 5. Click the vertex that is the end of the edge that you want to add.
@@ -30,27 +30,30 @@ Follow these instructions to add a graph edge using the GDN console web UI.
 To add edge documents to a collection:
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Collections**.
-1. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
-1. Click **New Document**.
-1. Enter information in the fields.
-   - **_from -** Document `_id` from which the relationship originates.
-   - **_to -** Document `_id` to which the relationship is defined.
-   - **_key -** Optional. If left blank, then Macrometa automatically generates a key.
-1. Click **Create**.
+2. Click **Data > Collections**.
+3. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
+4. Click **New Document**.
+5. Enter the From Vertex information:
+   - **From Collection -** The name of the collection containing the origin document.
+   - **Document key -** Document `_id` from which the relationship originates.
+6. Enter the To Vertex information:
+   - **From Collection -**The name of the collection containing the destination document.
+   - **Document key -** Document `_id` to which the relationship is defined.
+7. (Optional) Enter a **Document Key**. If left blank, then Macrometa automatically generates a key.
+8. Click **Create**.
 
 #### Add Edges from a File
 
-To add edge documents to a collection from a JSON or CSV file:
+To add edge documents to a collection from a JSON file:
 
 ![Import a Document](/img/collections/import-docs.png)
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-1. Click **Collections**.
-1. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
-1. Click the import icon, which is a down arrow pointing to a file box.
-1. Click **Choose File**, then browse to the file containing the documents you want to import.
-1. Fill out any desired options and then click **Import Documents**.
+2. Click **Data > Collections**.
+3. In the collection list, click the name of the edge collection to which you want to add an edge. If you aren't sure which collections are Graph Edge collections, then you can click **Edge** at the top of the page to see just Graph Edge collections.
+4. Click the import icon, which is a down arrow pointing to a file box.
+5. Click **Choose File**, then browse to the file containing the documents you want to import.
+6. Fill out any desired options and then click **Import Documents**.
 
    - **Select Primary Key -** Macrometa can autogenerate your primary key, or you can select one from the file.
    - **Replace docs -** Select this option to overwrite any existing documents with the same `_key`.

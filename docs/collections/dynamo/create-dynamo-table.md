@@ -22,7 +22,7 @@ Follow these instructions to create a new collection using the GDN console web U
    - **Partition Key Type -** Select the option that matches the partition key value.
    - **Sorting Key (Optional) -** An optional key for creating a composite key in combination with the partion key.
    - **Sorting Key Type (Optional) -** Required if you enter a sorting key.
-   - **Create Secondary Index -** Add a secondary Partion and/or Sort Key that differ from the base table.
+   - **Create Secondary Index -** Add a secondary Partition and/or Sort Key that differ from the base table.
 
 ## Create a Dynamo Table Collection with Code
 

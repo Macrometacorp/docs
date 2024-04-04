@@ -4,7 +4,7 @@ title: Fabric Commands
 
 # Fabrics (gdnsl fabric)
 
-Get commands related to GeoFabrics.
+Get commands related to fabrics.
 
 ```bash
 gdnsl fabric [flags]
@@ -18,7 +18,7 @@ gdnsl fabric [flags]
 
 ## gdnsl fabric list
 
-Get list of GeoFabrics.
+Get list of fabrics.
 
 ```bash
 gdnsl fabric list [flags]
@@ -50,7 +50,7 @@ gdnsl fabric list [flags]
 
 ## gdnsl fabric create
 
-Create a GeoFabric.
+Create a fabric.
 
 ```bash
 gdnsl fabric create <geo_fabric_name> [flags]
@@ -93,7 +93,7 @@ gdnsl fabric create <geo_fabric_name> [flags]
 
 ## gdnsl fabric delete
 
-Delete a GeoFabric.
+Delete a fabric.
 
 ```bash
 gdnsl fabric delete <geo_fabric_name> [flags]
@@ -121,7 +121,7 @@ gdnsl fabric delete <geo_fabric_name> [flags]
 
 ## gdnsl fabric update
 
-Update GeoFabric metadata.
+Update fabric metadata.
 
 ```bash
 gdnsl fabric update <fabric-name> [flags]
@@ -150,7 +150,7 @@ gdnsl fabric update <fabric-name> [flags]
 
 ## gdnsl fabric describe
 
-Describe a GeoFabric.
+Describe a fabric.
 
 ```bash
 gdnsl fabric describe <geo_fabric_name> [flags]

@@ -19,7 +19,7 @@ You can access the following information on the Stream tab.
 - **Msg Rate Out -** Rate of data packets sent per second.
 - **Msg Throughput In/Out -** Throughput or the amount of data passing through the pipeline per second.
 - **Average Msg Size -** Size of an average data packet in KB.
-- **Storage Size -** Total storage size in KB.
+- **Storage -** Total storage size in KB.
 - **Stream -** Name of the enabled stream for collection (same as collection name).
 - **Replication -** Local or Global. Only local streams are selected for collection streams.
 - **Type -** Stream type for collections-enabled stream.
