@@ -9,6 +9,8 @@ After you have created one or more policies, you can view the P3 audit log on th
 
 ## View Audit Log
 
+Perform these steps to view the P3 audit log:
+
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Alerts & Audits**.
 3. Scroll down to the Audit Log table to view the log.
