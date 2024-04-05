@@ -52,6 +52,15 @@ The Web Vitals Jobs table displays the following fields:
 
 Perform the following steps to create a new PPM job:
 
+1. Log in to your PhotonIQ Performance Proxy dashboard.
+2. Click **PPM**.
+3. Click **Show Jobs**.
+4. Click
+
+
+
+
+
 ## Delete PPM Jobs
 
 Perform the following steps to delete an existing PPM job:
