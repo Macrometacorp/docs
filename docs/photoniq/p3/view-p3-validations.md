@@ -67,7 +67,7 @@ The original and optimized versions are shown side by side. You can scroll down 
 
 ## Functional Validation
 
-Functional validation measures how the optimized page functions compared to the original page. It views the requests sent by the original, takes a random subset of those, and then checks to see if the optimized page is performing the same requests.
+Functional validation measures how the optimized page functions compared to the original page. It views the network requests sent by the original, takes a random subset of those, and then checks to see if the optimized page is performing the same requests. It also, checks other aspects of web functionality, such as new errors and that elements such as links, buttons, and navigation are working as expected.
 
 - **Total Elements** - Number of requests detected.
 - **Selected Elements** - Number of requests selected to measure from the original, unoptimized page.
