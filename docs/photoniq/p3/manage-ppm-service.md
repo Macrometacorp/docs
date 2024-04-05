@@ -31,7 +31,7 @@ The Web Vitals: 75th Percentile Analysis table displays the following fields:
 - **SP (Speed Index)** - Measures how quickly the contents of a page are visibly populated. It's an index showing how quickly the contents of a page are visibly displayed during the page load.
 - **TBT (Total Blocking Time)** - Quantifies the total amount of time that a page is blocked from responding to user input, such as mouse clicks, screen taps, or keyboard presses. It measures the severity of how non-interactive a page is before it becomes reliably interactive.
 
-## View PPM Jobs
+## View Web Vitals Jobs
 
 Perform the following steps to view existing PPM jobs:
 
@@ -46,7 +46,7 @@ The Web Vitals Jobs table displays the following fields:
 - **Device** - Whether the analysis is based on desktop or mobile devices.
 - **Cron** - The formula that defines how often the job runs.
 
-![View Web Vital Metrics](/img/photoniq/p3/p3-web-vital-metrics.png)
+![View PPM Jobs](/img/photoniq/p3/view-ppm-jobs.png)
 
 ## Create a PPM Job
 
