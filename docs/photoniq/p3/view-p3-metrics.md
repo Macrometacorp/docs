@@ -18,7 +18,7 @@ After you have created one or more policies, you can track P3 metrics on the das
 
 ## Available Metrics
 
-The dashboard displays the following metrics.
+The dashboard displays the following metrics. For more information about these metrics, refer to [P3 Metrics](p3-metrics.md).
 
 ### Request Counts
 
