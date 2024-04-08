@@ -55,11 +55,20 @@ Perform the following steps to create a new PPM job:
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **PPM**.
 3. Click **Show Jobs**.
-4. Click
+4. Click **New Job**.
+5. In the **URL** field, enter the URL you want PPM to analyze.
+6. In the **Cron Expression** field, you can accept the default cron expression to set the job to run every 30 minutes, or you can customize the expression.
+7. Select the **Device Type** that you want PPM to analyze the site for: **Desktop** or **Mobile**.
+8. (Optional) Enter values in the Advanced Settings:
+   - **Viewport** - 
+     - **Width** - 
+     - **Height** - 
+   - **Headers** - Click **Add** to add additional headers.
+     - **Key** - 
+     - **Value** - 
+9. Click **Submit**.
 
-
-
-
+    The job appears in the Web Vitals Jobs table, results appear in the Web Vitals table after the job runs for the first time.
 
 ## Delete PPM Jobs
 
