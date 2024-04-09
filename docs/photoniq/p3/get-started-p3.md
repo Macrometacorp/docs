@@ -36,7 +36,7 @@ For more information about PPM, refer to [Manage Performance Proxy Metrics Jobs]
 
 ### Create a Policy
 
-A P3 _policy_ is a set of optimization rules applied to one or more origin URLs that you define when you [create a P3 policy](manage-p3-policies.md#create-a-policy).
+A P3 _policy_ is a set of optimization rules applied to one or more origin URLs that you define when you [create a P3 policy](manage-p3-policies#create-a-policy).
 
 For more information about managing policies, refer to [Manage P3 Policies](manage-p3-policies.md).
 
@@ -116,7 +116,7 @@ If GTM isn't available, then directly configuration within your property's crite
    - Give the value as 50 if you want to divide the traffic 50/50, 100 to send all traffic to P3.
    - We recommend that you do this with the help of your Akamai Technical Partner.
 
-## Test P3 is Optimizing Your Site
+## Validate that P3 is Optimizing Your Site
 
 We recommend that you test P3 on the Akamai Staging network before you activate the configuration on Akamai's Production network. This will allow you to test different levels of optimization and work with your Macrometa partners to fine-tune P3 settings.
 
