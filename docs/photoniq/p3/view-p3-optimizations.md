@@ -7,6 +7,8 @@ import TabItem from '@theme/TabItem';
 
 After you have created one or more policies, you can view which optimizations are applied to each policy.
 
+Perform the following steps to view P3 policy optimizations:
+
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Optimizations**.
 
