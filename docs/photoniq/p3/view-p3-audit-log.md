@@ -5,7 +5,7 @@ title: View P3 Audit Log
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-After you have created one or more policies, you can view the P3 audit log on the dashboard.
+After you have created one or more policies, you can view the P3 audit log on the dashboard. This audit logs the requests and their path and the queries for which P3 has applied optimizations and when they were applied.
 
 ## View Audit Log
 
@@ -22,6 +22,6 @@ Perform these steps to view the P3 audit log:
 The following fields list information about the audit log lines:
 
 - **URL** - The URL the log line applies to.
-- **Status** - The status at the time of logging. Possible statuses are Success, Failed, and XXX.
+- **Status** - The status at the time of logging, either Success or Failed.
 - **Timestamp** - The time the status was logged.
 - **Policy Name** - The name of the policy that the logged status applies to.
