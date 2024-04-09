@@ -36,17 +36,5 @@ Perform the following steps to purge your P3 cache:
 3. Click **Purge Cache**.
 4. Click **Add** and then enter the URL, including `https://`, that you want to purge the cache for. Click **Add** and then repeat this step for each URL you want to include in the purge request.
 5. (Optional) If you want to purge your CDN cache as well, then click the **Yes, I want to purge CDN cache too.** checkbox.
-6. If purging the CDN, then click the arrow to expand the **CDN Purge Params** and then enter information in the following fields:
-
-   - Network
-   - Strategy
-     - cpcode
-     - tag
-     - url
-   - Objects
-   - Access Token
-   - Client Secret
-   - Client Token
-   - Base URI
-
+6. If purging the CDN, then click the arrow to expand the **CDN Purge Params** and then enter information in the fields. For more information about these fields, refer to Akamai's [Welcome to Purge Cache](https://techdocs.akamai.com/purge-cache/docs/welcome-purge).
 7. Click **Submit**.
