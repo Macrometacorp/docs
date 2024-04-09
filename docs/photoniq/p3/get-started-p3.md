@@ -38,7 +38,7 @@ For more information about PPM, refer to [Manage Performance Proxy Metrics Jobs]
 
 A P3 _policy_ is a set of optimization rules applied to one or more origin URLs that you define when you [create a P3 policy](manage-p3-policies.md#create-a-policy).
 
-For more information about managing policies, refer to [Manage P3 Policies](manage-p3-cache.md).
+For more information about managing policies, refer to [Manage P3 Policies](manage-p3-policies.md).
 
 ## Get Started with P3 on Akamai CDN
 
@@ -122,3 +122,10 @@ We recommend that you test P3 on the Akamai Staging network before you activate 
 
 You can use the cURL command or a mod header browser extension to test the paths you have configured for optimizing. If the response is coming from P3, then you will see the `x-photoniq-p3` header present.
 
+The P3 dashboard also provides a number of tools for you to monitor the service. You can:
+
+- [View P3 Metrics](view-p3-metrics.md)
+- [View P3 Validations](view-p3-validations.md)
+- [View P3 Optimizations](view-p3-optimizations.md)
+- [View P3 Alerts](view-p3-alerts.md)
+- [View P3 Audit Log](view-p3-audit-log.md)
