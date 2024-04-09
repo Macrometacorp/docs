@@ -30,8 +30,8 @@ Hover your cursor over a dot for more information.
 
 Hover your cursor over a dot for more information.
 
-- **Max RPS** - 
-- **Max Error RPS** - 
+- **Max RPS** - Maximum requests per second.
+- **Max Error RPS** - Maximum error requests per second.
 
 ![View Requests Per Second](/img/photoniq/p3/requests-per-second.png)
 
