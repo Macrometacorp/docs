@@ -60,12 +60,10 @@ Perform the following steps to create a new PPM job:
 6. In the **Cron Expression** field, you can accept the default cron expression to set the job to run every 30 minutes, or you can customize the expression.
 7. Select the **Device Type** that you want PPM to analyze the site for: **Desktop** or **Mobile**.
 8. (Optional) Enter values in the Advanced Settings:
-   - **Viewport** - 
-     - **Width** - 
-     - **Height** - 
-   - **Headers** - Click **Add** to add additional headers.
-     - **Key** - 
-     - **Value** - 
+   - **Viewport** - Define the height and resolution width for which you want the PPM job to run. The default is 1024*1366.
+     - **Width** - Viewport width.
+     - **Height** - Viewport height.
+   - **Headers** - If you want PPM to pass headers when it accesses the page, add them here. Click **Add** to add additional headers.
 9. Click **Submit**.
 
     The job appears in the Web Vitals Jobs table, results appear in the Web Vitals table after the job runs for the first time.
