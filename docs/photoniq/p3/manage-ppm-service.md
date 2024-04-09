@@ -1,5 +1,5 @@
 ---
-sidebar_position: 40
+sidebar_position: 55
 title: Manage Performance Proxy Metrics Jobs
 ---
 
