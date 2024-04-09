@@ -1,5 +1,5 @@
 ---
-sidebar_position: 40
+sidebar_position: 35
 title: View P3 Validations
 ---
 import Tabs from '@theme/Tabs';
