@@ -122,6 +122,12 @@ We recommend that you test P3 on the Akamai Staging network before you activate 
 
 You can use the cURL command or a mod header browser extension to test the paths you have configured for optimizing. If the response is coming from P3, then you will see the `x-photoniq-p3` header present.
 
+For example, you could use a cURL command such as:
+
+```sh
+curl -I https://yourwebsite.com | grep 'x-photoniq-p3'
+```
+
 The P3 dashboard also provides a number of tools for you to monitor the service. You can:
 
 - [View P3 Metrics](view-p3-metrics.md)
