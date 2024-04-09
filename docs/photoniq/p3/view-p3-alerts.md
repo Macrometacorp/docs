@@ -5,7 +5,7 @@ title: View P3 Alerts
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-After you have created one or more policies, you can track P3 alerts on the dashboard.
+After you have created one or more policies, you can track P3 alerts on the dashboard while Macrometa works to resolve issues.
 
 ## View Alerts
 
@@ -22,7 +22,7 @@ Perform these steps to view P3 alerts:
 The following fields list information about the alert:
 
 - **URL** - The URL that the warning or error applies to.
-- **Status** - Current status. Possible statuses are: Failed, XXX, or XXX.
+- **Status** - Current status. Possible statuses are: Failed
 - **Timestamp** - The time when the warning or error was logged.
 - **Policy Name** - The name of the policy that the warning or error is associated with.
-- **Action** - Possible actions for you to take. You can click **ACK** to acknowledge the warning or error, or ...
+- **Action** - Possible actions for you to take. You can click **ACK** to acknowledge the warning or error.
