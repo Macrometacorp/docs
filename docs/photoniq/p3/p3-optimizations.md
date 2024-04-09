@@ -48,3 +48,7 @@ Moves non-essential CSS to external files. Prioritizes essential style loading, 
 ## Outline JS
 
 Separates non-essential JavaScript, moving it to external files. Reduces initial load parsing and execution, improving page performance. By loading non-critical JavaScript asynchronously, it ensures that these scripts do not affect the initial page load performance. This technique is especially beneficial for interactive elements that are below the fold or not immediately necessary.
+
+## Slow Mobile
+
+Some mobile networks are slow, these optimizations make sure content is served to devices on these networks in the most performant way.
