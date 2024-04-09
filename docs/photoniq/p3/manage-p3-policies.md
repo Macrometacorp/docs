@@ -38,19 +38,27 @@ Perform the following steps to create a new P3 policy:
 
    - **Name** - The name of the policy.
    - **Origin** - The URL the policy should be applied to.
-   - **URL Pattern** - 
+   - **URL Pattern** - Provide an absolute URL or a regex pattern in order to group pages that have the same structure.
+     - For example, you could list each page:
+        - /us/category/boys
+        - /us/category/girls
+        - /us/product/shoes
+        - /us/product/jeans
+      or provide regex:
+        - ^/us/category/.*$
+        - ^/us/product/.*$
    - **Device Type** - Select what type of devices the policy should apply to.
      - **All** (default)
      - **Desktop**
      - **Mobile**
    - **Validation Method** - Select what method P3 uses to validate that the policy is working:
      - **All** (default)
-     - **Functional** - 
-     - **Visual** - 
+     - **Functional** -
+     - **Visual** -
    - **Optimization Level** - Select what level of optimization P3 applies to the URLs in the policy:
-     - **Light** (default) - 
+     - **Light** (default) -
      - **Moderate** -
-     - **Aggressive** - 
+     - **Aggressive** -
    - **Page Type** - Select what type of pages are being optimized. This affects which optimization rules that P3 applies:
      - **Home** -
      - **Category** -
