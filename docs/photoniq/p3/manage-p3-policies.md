@@ -51,18 +51,15 @@ Perform the following steps to create a new P3 policy:
      - **All** (default)
      - **Desktop**
      - **Mobile**
-   - **Validation Method** - Select what method P3 uses to validate that the policy is working:
-     - **All** (default)
-     - **Functional** -
-     - **Visual** -
-   - **Optimization Level** - Select what level of optimization P3 applies to the URLs in the policy:
-     - **Light** (default) -
-     - **Moderate** -
-     - **Aggressive** -
+     - **Tablet**
+   - **Optimization Level** - Select what level of optimization P3 applies to the URLs in the policy. Each selection selects different optimizations:
+     - **Light** (default)
+     - **Moderate**
+     - **Aggressive**
    - **Page Type** - Select what type of pages are being optimized. This affects which optimization rules that P3 applies:
-     - **Home** -
-     - **Category** -
-     - **Product Detail Page** -
+     - **Home**
+     - **Category**
+     - **Product Detail Page**
 
     The remainder of the fields cannot be manually edited. They automatically toggle based on the selected **Optimization Level**. For more information about what each optimization does, refer to [P3 Optimizations](p3-optimizations.md).
 
