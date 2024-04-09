@@ -63,7 +63,7 @@ The following fields are displayed:
 
 ### Highlighted Missing Pixels and Optimized
 
-The original and optimized versions are shown side by side. You can scroll down to see both pages. Any discrepancies, such as missing pixels, are highlighted in bright green.
+The original and optimized versions are shown side by side. You can scroll down to see both pages. Any discrepancies, such as missing pixels, are highlighted in bright green on the original screenshot
 
 ## Functional Validation
 
