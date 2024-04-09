@@ -1,5 +1,5 @@
 ---
-sidebar_position: 50
+sidebar_position: 40
 title: View P3 Optimizations
 ---
 import Tabs from '@theme/Tabs';
