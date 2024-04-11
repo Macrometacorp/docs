@@ -8,9 +8,10 @@ This page explains how to get started with Macrometa PhotonIQ Edge Side Tagging 
 ## Before You Begin
 
 - Work with Macrometa personnel to get credentials and access.
-- Collect info you will need:
+- Collect information you will need:
   - Tags to be migrated
   - Any access tokens for third-party service accounts
+- Make sure you have edit access to target pages and know how to add scripts.
 
 ## Set Up EST
 
