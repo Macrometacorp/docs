@@ -72,3 +72,17 @@ Define how EST handles cookies.
 ### Origin Settings
 
 In the **Origin** field, enter the origin that will connect to the EST service.
+
+### Stream
+
+This option is only available if streams are enabled on your account.
+
+In this section, you can turn the EST streams on or off. For more information about EST streams, refer to [Manage EST Streams](manage-est-streams.md).
+
+### Script
+
+This section displays a script that you should copy and paste into pages that you want to add EST to. Replace `<PhotonIQ-EST-HOST>` with your EST host.
+
+:::note
+This section always displays the most up-to-date script. We recommend that you use this script for each new page you set up with EST.
+:::
