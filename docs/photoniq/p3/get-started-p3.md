@@ -135,3 +135,7 @@ The P3 dashboard also provides a number of tools for you to monitor the service.
 - [View P3 Optimizations](view-p3-optimizations.md)
 - [View P3 Alerts](view-p3-alerts.md)
 - [View P3 Audit Log](view-p3-audit-log.md)
+
+## Check Web Vitals for Your Optimized Site
+
+If you created a PPM job to check web vitals before you optimized the site, then you can [view the web vitals metrics](manage-ppm-service.md#view-web-vital-metrics) and compare the before and after stats now.
