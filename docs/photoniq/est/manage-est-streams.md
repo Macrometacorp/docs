@@ -15,20 +15,26 @@ Keep the Stream feature enabled for debugging purposes only when necessary to mi
 
 Turning on EST Stream feature provides access to stream data in real time and the Debug tab in the EST dashboard.
 
-EST Stream is built on Macrometa GDN Streams. For more information about streams, refer to [Macrometa Streams](../../streams/) documentation.
+EST Stream is built on Macrometa Global Data Network (GDN) Streams. For more information about streams in the GDN, refer to [Macrometa Streams](../../streams/) documentation.
 
 ### Streaming Data
-The Stream feature pushes tracking data from third-party tags, which includes user interactions, conversions, and custom events, into stream. This data is then accessible for real-time monitoring and further analysis.
 
-Debug Tab
-The Debug tab is a dedicated interface in the GUI dashboard that becomes available upon enabling the Stream feature. It displays the data being pushed into the stream in real-time, allowing for immediate visibility into third-party tag behavior. This is especially useful for debugging purposes, as it provides insights into data transmission and potential issues.
+The EST Stream feature publishes tracking data from third-party tags, which includes user interactions, conversions, and custom events, into a stream. This data is then accessible for real-time monitoring and further analysis.
+
+### Debug Tab
+
+The Debug tab becomes available in the EST dashboard after you turn on the EST Stream feature. It displays the data being pushed into the stream in real-time, giving you immediate visibility into third-party tag behavior. This is especially useful for debugging purposes, because it provides insights into data transmission and potential issues.
 
 ## Turn on EST Stream
 
-Log in to your EST account.
-Navigate to the Settings tab of the dashboard.
-On the Stream section, Toggle Enable Stream and click update to enable the Stream feature.
-Once enabled, the Debug tab will automatically appear in your GUI dashboard.
+Follow these steps to turn on the EST Stream feature:
+
+1. Log in to your EST dashboard.
+2. Click **Settings**.
+3. In the Stream section, click **Enable Stream**.
+4. Click **Update**.
+
+   Once enabled, the Debug tab appears in the EST dashboard.
 
 ## Subscribe to the EST Stream
 
