@@ -13,6 +13,10 @@ Bundles multiple CSS files into one, reducing HTTP requests. This accelerates pa
 
 Consolidates multiple JavaScript files into a single file. Reduces HTTP requests, enhancing page load efficiency by streamlining file downloading and parsing. This process not only reduces the overhead associated with each HTTP request but also allows for better compression ratios, as similar code across files can be more efficiently compressed.
 
+## Compression for Mobile Devices
+
+Some mobile networks are slow, these optimizations make sure content is served to devices on these networks in the most performant way.
+
 ## Defer JS
 
 Delays JavaScript execution until the HTML document is fully parsed. Prevents scripts from blocking page rendering, leading to quicker interaction. Deferring non-essential scripts ensures that the browser's rendering path remains unblocked, allowing the visual elements to load without delay, significantly improving the perceived load time.
@@ -41,10 +45,6 @@ Strips superfluous characters from HTML files, decreasing size. Results in quick
 
 Eliminates unnecessary characters from JavaScript files, reducing size. Enhances network transmission speed and execution times, increasing page speed.
 
-## Move Script Tags From Top to Bottom
-
-## Optimizations by User Agent Type
-
 ## Outline CSS
 
 Moves non-essential CSS to external files. Prioritizes essential style loading, making content visually ready faster for the user. This technique ensures that only the styles necessary for the initial viewport are loaded first, deferring the rest. It streamlines the critical rendering path, which can significantly enhance the user's experience on page load.
@@ -55,16 +55,11 @@ Separates non-essential JavaScript, moving it to external files. Reduces initial
 
 ## Preconnect Resources
 
-## Predictive Resources
+
+
+## Predictive Prefetch
+
+
 
 ## Preload DNS Prefetch Hints
 
-## Compression for Mobile Devices
-
-Some mobile networks are slow, these optimizations make sure content is served to devices on these networks in the most performant way.
-
-## Preconnect Resources
-
-## Predictive Resources
-
-## Preload DNS Prefetch Hints
