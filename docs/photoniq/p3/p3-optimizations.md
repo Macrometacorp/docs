@@ -41,6 +41,10 @@ Strips superfluous characters from HTML files, decreasing size. Results in quick
 
 Eliminates unnecessary characters from JavaScript files, reducing size. Enhances network transmission speed and execution times, increasing page speed.
 
+## Move Script Tags From Top to Bottom
+
+## Optimizations by User Agent Type
+
 ## Outline CSS
 
 Moves non-essential CSS to external files. Prioritizes essential style loading, making content visually ready faster for the user. This technique ensures that only the styles necessary for the initial viewport are loaded first, deferring the rest. It streamlines the critical rendering path, which can significantly enhance the user's experience on page load.
@@ -49,6 +53,18 @@ Moves non-essential CSS to external files. Prioritizes essential style loading, 
 
 Separates non-essential JavaScript, moving it to external files. Reduces initial load parsing and execution, improving page performance. By loading non-critical JavaScript asynchronously, it ensures that these scripts do not affect the initial page load performance. This technique is especially beneficial for interactive elements that are below the fold or not immediately necessary.
 
-## Slow Mobile
+## Preconnect Resources
+
+## Predictive Resources
+
+## Preload DNS Prefetch Hints
+
+## Compression for Mobile Devices
 
 Some mobile networks are slow, these optimizations make sure content is served to devices on these networks in the most performant way.
+
+## Preconnect Resources
+
+## Predictive Resources
+
+## Preload DNS Prefetch Hints
