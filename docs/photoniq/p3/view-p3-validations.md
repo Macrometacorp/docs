@@ -19,10 +19,6 @@ Perform the following steps to view P3 validations:
    - **Mobile**
 4. (Optional) From the **Device Resolution** list, select a resolution to view validations for. Options are different for each device type.
 
-:::note
-You can only view validations defined by the policy. If you select a device type or resolution that does not have validations generated, then the validation icon will turn gray to indicate it is unavailable.
-:::
-
 ![P3 Validations](/img/photoniq/p3/view-p3-validations.png)
 
 ## Validations Table Fields
