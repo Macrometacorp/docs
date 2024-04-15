@@ -21,7 +21,7 @@ Perform these steps to view the P3 audit log:
 
 The following fields list information about the audit log lines:
 
+- **Policy Name** - The name of the policy that the logged status applies to.
 - **URL** - The URL the log line applies to.
 - **Status** - The status at the time of logging, either Success or Failed.
 - **Timestamp** - The time the status was logged.
-- **Policy Name** - The name of the policy that the logged status applies to.

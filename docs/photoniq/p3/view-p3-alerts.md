@@ -9,11 +9,11 @@ After you have created one or more policies, you can track P3 alerts on the dash
 
 ## View Alerts
 
-Perform these steps to view P3 alerts:
+Perform these steps to view unacknowledged P3 alerts:
 
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Alerts & Audits**.
-3. (Optional) In the Alerts table, click **ACK** to acknowledge the alert.
+3. (Optional) In the Alerts table, click **ACK** to acknowledge the alert. This removes it from the default alert view.
 
 ![View P3 Alerts](/img/photoniq/p3/p3-view-alerts.png)
 
@@ -21,7 +21,7 @@ Perform these steps to view P3 alerts:
 
 The following fields list information about the alert:
 
-- **Show all alerts** - 
+- **Show all alerts** - To view all alerts, even those already acknowledged, select this checkbox.
 - **Policy Name** - The name of the policy that the warning or error is associated with.
 - **URL** - The URL that the warning or error applies to.
 - **Status** - Current status. Possible statuses are: Failed
