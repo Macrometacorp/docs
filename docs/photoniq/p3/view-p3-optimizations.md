@@ -24,9 +24,9 @@ For more information about each optimization, refer to [P3 Optimizations](p3-opt
 - **URL Pattern** - URL pattern associated with the policy.
 - **URL** - Specific URL being optimized.
 - **Progress** - Shows where in the optimization process the optimization is.
-  - **A** - Analysis. P3 is analyzing the page.
-  - **V** - Validation. P3 is validating the page. For more information about validation, refer to [View P3 Validations](view-p3-validations.md).
-  - **R** - Rewriter status is complete. Optimizations are all applied.
+  - **A** - Analyzer status. P3 is analyzing the page.
+  - **V** - Validator status. P3 is validating the page. For more information about validation, refer to [View P3 Validations](view-p3-validations.md).
+  - **R** - Rewriter status. Optimizations are all applied.
   The color of the letter indicates its status:
   - Green indicates the stage has successfully completed.
   - Gray indicates the stage has not begun.
