@@ -98,7 +98,7 @@ Configure request routing in the Behaviors tab:
 
    - **Port**
      - **HTTP Port** - 80
-     - **HTTPS Port** - 9443
+     - **HTTPS Port** - 443
    - **Caching** - Click on +Behavior to add settings for caching P3 optimized pages - ideally matching cache setting of your origin server.
    - **Content Provider Code** - Click on +Behavior for adding the CP code. Creating a new CP code makes it easier to identify content being routed to P3 and purge content, monitor stats, and for Akatec to collect logs should the need arise.
 3. Save the property and then go back to the Property Details page.
