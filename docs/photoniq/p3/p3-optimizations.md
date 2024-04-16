@@ -13,6 +13,10 @@ Bundles multiple CSS files into one, reducing HTTP requests. This accelerates pa
 
 Consolidates multiple JavaScript files into a single file. Reduces HTTP requests, enhancing page load efficiency by streamlining file downloading and parsing. This process not only reduces the overhead associated with each HTTP request but also allows for better compression ratios, as similar code across files can be more efficiently compressed.
 
+## Optimizations for Slow Networks
+
+Some mobile networks are slow, these optimizations make sure content is served to devices on these networks in the most performant way.
+
 ## Defer JS
 
 Delays JavaScript execution until the HTML document is fully parsed. Prevents scripts from blocking page rendering, leading to quicker interaction. Deferring non-essential scripts ensures that the browser's rendering path remains unblocked, allowing the visual elements to load without delay, significantly improving the perceived load time.
@@ -48,7 +52,3 @@ Moves non-essential CSS to external files. Prioritizes essential style loading, 
 ## Outline JS
 
 Separates non-essential JavaScript, moving it to external files. Reduces initial load parsing and execution, improving page performance. By loading non-critical JavaScript asynchronously, it ensures that these scripts do not affect the initial page load performance. This technique is especially beneficial for interactive elements that are below the fold or not immediately necessary.
-
-## Slow Mobile
-
-Some mobile networks are slow, these optimizations make sure content is served to devices on these networks in the most performant way.

@@ -38,15 +38,9 @@ Perform the following steps to create a new P3 policy:
 
    - **Name** - The name of the policy.
    - **Origin** - The URL the policy should be applied to.
-   - **URL Pattern** - Provide an absolute URL or a regex pattern in order to group pages that have the same structure.
-     - For example, you could list each page:
-        - /us/category/boys
-        - /us/category/girls
-        - /us/product/shoes
-        - /us/product/jeans
-      or provide regex:
-        - ^/us/category/.*$
-        - ^/us/product/.*$
+   - **Target Region** - The region where the origin is hosted and where to serve content from. Options are specific to each user.
+     - **Is Region-Specific Content?** - Select **Yes** or **No**.
+   - **Is Origin Content Compressed?** - Indicate whether the origin content is compressed or not.
    - **Device Type** - Select what type of devices the policy should apply to.
      - **All** (default)
      - **Desktop**
@@ -60,7 +54,21 @@ Perform the following steps to create a new P3 policy:
      - **Home**
      - **Category**
      - **Product Detail Page**
-
+   - **Enable Policy** - Turn the policy on or off. If the policy is enabled, then optimization rules are applied to incoming requests.
+   - **Headers** - If you want to pass headers to the origin, add as many headers as necessary.
+     - **Send headers to origin** - Select the checkbox to send the headers to the origin along with the request.
+     - **Key** - Header key.
+     - **Value** - Header value.
+   - **mPulse Variable** - Variable for tracking the policy in the mPulse dashboard.
+   - **URL Pattern** - Provide an absolute URL or a regex pattern in order to group pages that have the same structure.
+     - For example, you could list each page:
+        - /us/category/boys
+        - /us/category/girls
+        - /us/product/shoes
+        - /us/product/jeans
+      or provide regex:
+        - ^/us/category/.*$
+        - ^/us/product/.*$
     The remainder of the fields cannot be manually edited. They automatically toggle based on the selected **Optimization Level**. For more information about what each optimization does, refer to [P3 Optimizations](p3-optimizations.md).
 
 ## Edit a Policy
