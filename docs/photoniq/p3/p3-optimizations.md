@@ -13,7 +13,7 @@ Bundles multiple CSS files into one, reducing HTTP requests. This accelerates pa
 
 Consolidates multiple JavaScript files into a single file. Reduces HTTP requests, enhancing page load efficiency by streamlining file downloading and parsing. This process not only reduces the overhead associated with each HTTP request but also allows for better compression ratios, as similar code across files can be more efficiently compressed.
 
-## Compression for Mobile Devices
+## Optimizations for Slow Networks
 
 Some mobile networks are slow, these optimizations make sure content is served to devices on these networks in the most performant way.
 
