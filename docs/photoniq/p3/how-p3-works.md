@@ -52,6 +52,6 @@ The control flow diagram illustrates the detailed interactions within the P3 arc
 
 - The process begins when a request reaches the Controller, which determines the necessity for creating a job based on the incoming URL and associated policies.
 - Components subscribe to updates from this job, processing the request as outlined:
-  - **Analyzer**: Takes the job details, including policy ID and URL pattern, and determines safe optimizations.
+  - **Analyzer**: Takes the job and policy details, including policy ID and URL pattern, and determines safe optimizations.
   - **Validator**: Runs validations against the Analyzer’s suggestions on the specified device types and optimization levels.
   - **HTML ReWriter**: Updates its cache with new rules post-validation and applies them to future matching requests.
