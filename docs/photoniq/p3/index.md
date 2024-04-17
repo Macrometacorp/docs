@@ -11,7 +11,7 @@ Enhancing core web vitals, P3 improves user engagement and search engine visibil
 
 ## How It Works
 
-P3 operates based on a comprehensive offline analysis of web pages and their associated resources. This allows for the dynamic updating and caching of content to achieve optimal performance.
+P3 leverages advanced machine learning technologies to dynamically update and cache web content, ensuring optimal performance and seamless user experiences.
 
 For a more detailed explanation and architecture diagrams, refer to [How P3 Works](how-p3-works).
 
