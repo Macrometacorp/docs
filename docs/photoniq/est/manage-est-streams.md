@@ -5,7 +5,7 @@ title: Monitor and Debug P3 with EST Streams
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Stream feature in Edge Side Tagging (EST) is designed to enhance your tracking and debugging capabilities for third-party tags. By enabling this feature, you can push tracking data from third-party tags into a stream, facilitating real-time monitoring and analysis. This guide explains how to use this feature for debugging and analytics.
+The Stream feature in Edge Side Tagging (EST) is designed to enhance your tracking and debugging capabilities for third-party tags. This guide explains how to use this feature for debugging and analytics.
 
 :::note
 Keep the Stream feature enabled for debugging purposes only when necessary to minimize performance impact.
@@ -41,10 +41,3 @@ Follow these steps to turn on the EST Stream feature:
 4. Click **Update**.
 
    Once enabled, the Debug tab appears in the EST dashboard.
-
-## Subscribe to the EST Stream
-
-Other applications or products can subscribe to the data stream for analytics or monitoring purposes. To subscribe:
-Get access to EST stream: Follow this document to know more (https://www.macrometa.com/docs/streams/getting-started-streams).
-Configure and subscribe to `est_stream`. You may filter the data types or events you wish to receive.
-Integrate with Your Application: Utilize the stream data by integrating it into your analytics or monitoring systems. This may involve parsing the data, setting up alerts, or creating custom dashboards.
