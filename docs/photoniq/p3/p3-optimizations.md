@@ -13,15 +13,11 @@ Bundles multiple CSS files into one, reducing HTTP requests. This accelerates pa
 
 Consolidates multiple JavaScript files into a single file. Reduces HTTP requests, enhancing page load efficiency by streamlining file downloading and parsing. This process not only reduces the overhead associated with each HTTP request but also allows for better compression ratios, as similar code across files can be more efficiently compressed.
 
-## Optimizations for Slow Networks
-
-Some mobile networks are slow, these optimizations make sure content is served to devices on these networks in the most performant way.
-
 ## Defer JS
 
 Delays JavaScript execution until the HTML document is fully parsed. Prevents scripts from blocking page rendering, leading to quicker interaction. Deferring non-essential scripts ensures that the browser's rendering path remains unblocked, allowing the visual elements to load without delay, significantly improving the perceived load time.
 
-## Delay JS Load and Execution
+## Delay JS Execution
 
 Delays loading and executing JavaScript until specific conditions are met, improving load times and user experience by focusing on critical tasks. This technique is particularly useful for scripts that are not required for the initial page view, such as analytics or third-party widgets, thus prioritizing essential content and interactions.
 
@@ -44,6 +40,10 @@ Strips superfluous characters from HTML files, decreasing size. Results in quick
 ## Minify JS
 
 Eliminates unnecessary characters from JavaScript files, reducing size. Enhances network transmission speed and execution times, increasing page speed.
+
+## Optimizations for Slow Networks
+
+Some mobile networks are slow, these optimizations make sure content is served to devices on these networks in the most performant way.
 
 ## Outline CSS
 
