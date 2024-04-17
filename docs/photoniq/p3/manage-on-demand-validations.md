@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 45
 title: Manage On-demand Validations
 ---
 import Tabs from '@theme/Tabs';
@@ -26,7 +26,7 @@ The On-demand Validations table provides the following fields:
 - **Last Updated** - Day and time the validation was last updated.
 - **Validation** - Types of validation: **Visual** and **Functional**. Click one to view validation results.
 
-## Create New Validation
+## Create New On-demand Validation
 
 Perform the following steps to create a new on-demand validation:
 
