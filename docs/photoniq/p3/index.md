@@ -9,6 +9,12 @@ As a fully-managed service, P3 greatly reduces the need for ongoing technical ov
 
 Enhancing core web vitals, P3 improves user engagement and search engine visibility, which is pivotal in driving organic traffic and elevating revenue opportunities. With P3, technical teams can confidently future-proof their websites, achieving enduring performance enhancements with streamlined effort.
 
+## How It Works
+
+P3 operates based on a comprehensive offline analysis of web pages and their associated resources. This allows for the dynamic updating and caching of content to achieve optimal performance.
+
+For a more detailed explanation and architecture diagrams, refer to [How P3 Works](how-p3-works).
+
 ## Benefits of P3
 
 - **Improved User Experience**: Faster loading times and lower bounce rates contribute to an overall enhanced user experience, increasing customer retention and conversion rates.
@@ -47,17 +53,3 @@ Key capabilities of P3 include:
 - **Performance Proxy Measurement (PPM) Tool**: Facilitates the creation of performance measurement jobs to analyze and compare core web vitals before and after optimization.
 
 - **Comprehensive Metrics and Telemetry**: Delivers detailed usage statistics, including hourly, daily, and monthly telemetry, to track performance improvements and user engagement over time.
-
-## Architecture
-
-P3 operates based on a comprehensive offline analysis of web pages and their associated resources. This allows for the dynamic updating and caching of content to achieve optimal performance.
-
-![P3 Architecture](/img/photoniq/p3/p3-architecture.png)
-
-The P3 system is built on three primary components:
-
-- **Offline Analyzer**: Scheduled to run at regular intervals, this component scans customer web pages for performance issues. Using algorithms and expert insights from Macrometa Global Data Network (GDN), it generates optimization rules, which are then sent to the P3 proxy.
-
-- **Proxy**: Functioning as an intermediary for customer website origins, the proxy focuses on enhancing page content and resource performance. It utilizes the rules set by the offline analyzer to optimize the loading and rendering sequence of resources, apply advanced image and content compression techniques, and manage caching.
-
-- **Deployer**: Fully integrated into the Macrometa GDN global infrastructure, the deployer facilitates the deployment of P3 across different regions, making it adaptable to various customer requirements.
