@@ -21,7 +21,7 @@ Here’s a high-level breakdown of how the system processes a request:
 
 2. **Request Routing to P3**:
    - Requests are first received by the PhotonIQ API Gateway.
-   - The API Gateway forwards the request to the P3 proxy pod.
+   - The API Gateway forwards the request to P3.
 
 3. **Optimization Process**:
    - The first component to process the request within the P3 system is the HTML ReWriter, which checks for applicable optimization rules stored in its memory cache based on the URL pattern.
@@ -37,7 +37,7 @@ Here’s a high-level breakdown of how the system processes a request:
    - This job is handled by the Analyzer and Validator to ensure the new rules are effective and do not break page functionality or aesthetics.
 
 6. **Optimization Rule Validation**:
-   - The Analyzer assesses the page against the configured optimizers and formulates a set of rules.
+   - The Analyzer uses machine learning to assess the page against the configured optimizers and formulates a set of rules.
    - The Validator then checks these rules using computer vision techniques to ensure they do not visually or functionally disrupt the page. It tests across various device resolutions to ensure broad compatibility.
 
 7. **Finalizing Optimizations**:
