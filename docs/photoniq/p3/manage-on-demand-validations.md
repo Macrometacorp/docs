@@ -5,7 +5,11 @@ title: Manage On-demand Validations
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-After you create a policy and PhotonIQ Performance Proxy (P3) gets a request for an optimized page, P3 validates the page by running visual and functional tests. You can perform additional validations on-demand in the PhotonIQ Performance Proxy dashboard.
+After you create a policy and PhotonIQ Performance Proxy (P3) gets a request for an optimized page, P3 validates the page by running visual and functional tests. You can validate specific URLs included in the policy URL pattern on-demand in the PhotonIQ Performance Proxy dashboard.
+
+:::note
+You can run up to five on-demand validations per hour.
+:::
 
 ## View On-demand Validations
 
