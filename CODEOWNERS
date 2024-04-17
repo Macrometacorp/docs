@@ -12,7 +12,7 @@
 # This should make it easy to add new rules without breaking existing ones.
 
 # This owner is the default owner of everything in this repository.
-*   @dustinlarimer @diana-macrometa @dlozina-macrometa
+*  @diana-macrometa
 
 # These owners will be the default owners for everything in
 # the docs folder. 
