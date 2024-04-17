@@ -5,8 +5,6 @@ title: How P3 Works
 
 PhotonIQ Performance Proxy (P3) revolutionizes web performance optimization by intercepting and enhancing web requests through a sophisticated, server-side processing environment located at the network edge. This innovative approach enables dynamic optimization of web content, from HTML to multimedia, ensuring faster page loads and improved user experience across different devices and networks.
 
-By centralizing the application of optimization rules, P3 offloads much of the resource-intensive tasks from the end user’s browser to a more capable, server-side platform. This shift not only accelerates content delivery but also maintains high fidelity of the original web design by intelligently applying optimizations without altering the fundamental user experience. Additionally, P3’s architecture is designed to seamlessly integrate with existing web infrastructures, making it a versatile solution for websites aiming to enhance performance without extensive overhaul.
-
 This page explains the intricacies of how P3 processes and optimizes web requests using detailed architecture diagrams and descriptions, providing a clear view of its operational workflow and the technologies that make it an effective tool for modern web optimization.
 
 ## P3 Architecture Overview
