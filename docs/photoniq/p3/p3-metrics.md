@@ -30,14 +30,12 @@ In this case, the metrics would show three (3) pages and 30 requests.
 
 ## Optimizer Metrics
 
-- **Pages Optimized**: Total pages that have been successfully optimized, indicating the scope and impact of P3's optimization efforts.
-- **Pages Failed to Optimize**: The number of pages that could not be optimized, highlighting challenges or limitations faced during the optimization process.
+- **Optimized Requests**: Total pages that have been successfully optimized, indicating the scope and impact of P3's optimization efforts.
+- **Passthrough Requests**: The count of requests for pages that are not configured for P3 optimization but still pass through P3.
+- **Unoptimized Requests**: The count of requests for pages that are not optimized or cannot be optimized at the moment by P3.
+- **Average Analysis Time (seconds)**: The average time taken by the Offline Analyzer to assess and formulate optimization strategies for the incoming URL which matches the configured URL pattern in policy
+- **Optimized Pages**: The total number of pages that have been successfully optimized by P3.
+- **Passthrough Pages**: The number of unique pages that pass through P3 without being configured for optimization.
+- **Unoptimized Pages**: The number of pages that are not optimized or cannot be optimized at the time of analysis by P3.
 - **Average Optimization Time (seconds)**: The average time taken to optimize a page, measured in seconds. This metric helps in evaluating the efficiency of the optimization process.
 - **Average Validation Time (seconds)**: The average time spent validating the optimizations applied to ensure the page doesn't visually break and to ensure the optimizations doesn't break the functionality of the page.
-- **Average Analyzer Time (seconds)**: The average time taken by the Offline Analyzer to assess and formulate optimization strategies for the incoming URL which matches the configured URL pattern in policy
-- **Passthrough Pages**: The number of unique pages that pass through P3 without being configured for optimization.
-- **Passthrough Requests**: The count of requests for pages that are not configured for P3 optimization but still pass through P3.
-- **Optimized Pages**: The total number of pages that have been successfully optimized by P3.
-- **Optimized Requests**: Counts the requests for pages that P3 has optimized.
-- **Unoptimized Pages**: The number of pages that are not optimized or cannot be optimized at the time of analysis by P3.
-- **Unoptimized Requests**: The count of requests for pages that are not optimized or cannot be optimized at the moment by P3.
