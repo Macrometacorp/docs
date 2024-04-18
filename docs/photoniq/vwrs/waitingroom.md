@@ -224,7 +224,7 @@ Below is a sample HTML template for a waiting room page. This page is displayed 
 </html>
 ```
 
-In above HTML `queue-status` API returns the following response:
+In the above HTML, the `queue-status` API returns the following response:
 ```
   {
     "avg_waiting_time" : 19871.8,
@@ -237,7 +237,7 @@ In above HTML `queue-status` API returns the following response:
 ```
 
 - avg_waiting_time: The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds).
-- backoff_interval: Indicates the interval in seconds after which the EdgeWorker should call the status API call to the vwrs server. This is used to reduce server load.
+- backoff_interval: The time interval (in seconds) for refreshing the queue position in the waiting room.
 - position: The client's current position in the waiting room.
 - queue_depth: Total number of users present in the waiting room.
 - rate_limit: The rate limit for the domain. The maximum users per second allowed to reach the origin.
