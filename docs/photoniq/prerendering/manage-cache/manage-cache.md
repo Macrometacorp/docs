@@ -13,7 +13,7 @@ You have several options for managing the Prerendering cache.
 
 ## Cache Manager Fields
 
-Prerendering provides the cache manager fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Prerendering provides the following cache manager fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - **URL** - URL of the content that has been cached.
 - **HTTP Status** - Response HTTP status code.
