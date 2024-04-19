@@ -83,7 +83,7 @@ You can block stylesheets to speed up load times.
 
 ### Inject Styled Components CSS
 
-You can inject styled components into the head element to speed up load times.
+You can inject styled components into the head element to improve styles, but it slows down page rendering. This setting can be useful when you are testing.
 
 ![Inject Styled Components CSS](/img/prerendering/inject-styled-components-css.png)
 
@@ -107,6 +107,6 @@ In the web console, this displays current header keys and values. For more infor
 
 ### Pass-through Headers
 
-You can specify header values from a bot's request to be sent directly to the Prerender service. Click **Edit** to update the list.
+You can specify headers from a bot's request to be sent directly to the Prerender service. Click **Edit** to update the list.
 
 ![Pass-through Headers](/img/prerendering/pass-through-headers.png)
