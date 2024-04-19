@@ -32,9 +32,11 @@ Follow these instructions to view prerendering activity in the web console.
 
 Use our interactive API Reference with code generation in 18 programming languages to:
 
-- [Get prerender settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--settings/get).
+- [Get Prerender settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--settings/get).
+- [Update Prerender settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--settings/patch)
 - [Get all origin settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins/get)
 - [Get settings for an origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/get)
+- [Update origin settings](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/patch)
 
 </TabItem>
 </Tabs>
