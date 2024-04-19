@@ -31,6 +31,7 @@ Follow these instructions to view cached documents in the web console.
 1. Log in to your Prerendering dashboard.
 2. Click **Cache Manager**.
 3. Select the origin for which you want to view cached documents.
+4. (Optional) Click the filter icon to refine the cache list.
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -61,7 +62,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-## Preview Cached Pages
+## View Cached Pages
 
 <Tabs groupId="operating-systems2">
 <TabItem value="console" label="Web Console">
