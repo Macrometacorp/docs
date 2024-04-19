@@ -281,6 +281,7 @@
     { "source": "/docs/search/functions", "destination": "/docs/search-views/fulltext-search/queries/search-functions/", "permanent": true },
     { "source": "/docs/streams/stream-basics/create-consumers", "destination": "/docs/streams/stream-tasks/create-consumers", "permanent": true },
     { "source": "/docs/streams/stream-basics/message-queues/set-message-queue", "destination": "/docs/streams/stream-tasks/set-message-queue", "permanent": true },
-    { "source": "/docs/tutorials/graph-example", "destination": "/docs/tutorials/graph-tutorial", "permanent": true }
+    { "source": "/docs/tutorials/graph-example", "destination": "/docs/tutorials/graph-tutorial", "permanent": true },
+    { "source": "/docs/photoniq/photoniq-demos", "destination": "https://photoniq.macrometa.com/demo", "permanent": true }
   ]
 }
