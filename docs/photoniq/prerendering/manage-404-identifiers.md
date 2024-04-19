@@ -1,6 +1,6 @@
 ---
-sidebar_position: 30
-title: View 404 Identifiers
+sidebar_position: 70
+title: Manage 404 Identifiers
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
