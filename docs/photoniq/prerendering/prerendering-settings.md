@@ -78,6 +78,12 @@ You can block stylesheets to speed up load times.
 
 ![Stylesheet Blocking](/img/prerendering/stylesheet-blocking.png)
 
+### Inject Styled Components CSS
+
+You can inject styled components into the head element to speed up load times.
+
+![Inject Styled Components CSS](/img/prerendering/inject-styled-components-css.png)
+
 ### URL Block List
 
 You can block specific external URLs during rendering.
