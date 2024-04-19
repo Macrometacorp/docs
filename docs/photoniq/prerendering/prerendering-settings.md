@@ -15,7 +15,7 @@ You have several options for viewing and managing Prerendering settings.
 Each setting is explained in detail in the Prerendering web console. We strongly recommend that you review the setting and consult with Macrometa Support before making any changes.
 :::
 
-## View Settings
+## View and Manage Settings
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -25,7 +25,8 @@ Follow these instructions to view prerendering activity in the web console.
 1. Log in to your Prerendering dashboard.
 2. Click **Advanced Setting**.
 3. Select the origin for which you want to view settings.
-4. Scroll down to the setting that you want to view
+4. Scroll down to the setting that you want to view.
+5. Update settings by clicking toggles or editing lists, depending on the setting.
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -88,7 +89,7 @@ You can inject styled components into the head element to speed up load times.
 
 ### URL Block List
 
-You can block specific external URLs during rendering.
+You can block specific external URLs during rendering. Click **Edit** to update the list.
 
 ![URL Block List](/img/prerendering/url-block-list.png)
 
@@ -103,3 +104,9 @@ In the web console, this displays the origin allowlist value if one is set. For 
 In the web console, this displays current header keys and values. For more information about headers, refer to [Prerendering Headers](prerendering-headers).
 
 ![Add Response Header](/img/prerendering/add-response-header.png)
+
+### Pass-through Headers
+
+You can specify header values from a bot's request to be sent directly to the Prerender service. Click **Edit** to update the list.
+
+![Pass-through Headers](/img/prerendering/pass-through-headers.png)
