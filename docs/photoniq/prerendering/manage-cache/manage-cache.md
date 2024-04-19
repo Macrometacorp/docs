@@ -62,7 +62,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-## Preview Cached Pages
+## View Cached Pages
 
 <Tabs groupId="operating-systems2">
 <TabItem value="console" label="Web Console">
