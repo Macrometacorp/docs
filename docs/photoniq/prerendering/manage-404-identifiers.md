@@ -39,3 +39,28 @@ Prerendering provides the following fields in the 404 Identifier tab. Field name
 - **Origin URL** - URL of the origin.
 - **Identifier String** - Text that signals the prerendering bot to set the response code to 404.
 - **Date Added** - Date the origin was added.
+
+## Add or Update 404 Identifiers
+
+<Tabs groupId="operating-systems">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to add or update 404 identifiers in the web console.
+
+1. Log in to your Prerendering dashboard.
+2. Click **404 Identifier**.
+3. In the Actions column, click the pencil icon.
+4. In the Update 404 Identifier window, add or edit text and then click **Update**.
+
+![Update 404 Identifier](/img/prerendering/update-404-identifier.png)
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+In the API, 404 identifier information is included in the origin settings API. Use our interactive API Reference with code generation in 18 programming languages to:
+
+- [Get origins](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins/get)
+- [Get an origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/get)
+
+</TabItem>
+</Tabs>
