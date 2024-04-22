@@ -5,7 +5,7 @@ title: Monitor and Debug P3 with EST Streams
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Stream feature in Edge Side Tagging (EST) is designed to enhance your tracking and debugging capabilities for third-party tags. This guide explains how to use this feature for debugging and analytics.
+The Stream feature in Edge Side Tagging (EST) is designed to enhance your tracking and debugging capabilities for third-party tags. This guide explains how to use this feature for debugging EST.
 
 :::note
 Keep the Stream feature enabled for debugging purposes only when necessary to minimize performance impact.
