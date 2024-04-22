@@ -13,15 +13,12 @@ Keep the Stream feature enabled for debugging purposes only when necessary to mi
 
 ## Understanding the EST Stream Feature
 
-Turning on EST Stream feature provides access to stream data in real time and the Debug tab in the EST dashboard.
+Turning on EST Stream feature provides access to the Debug tab in the EST dashboard.
 
 Use EST Stream for:
 
 - **Debugging** - Quickly identify and resolve issues with third-party tags by monitoring the real-time data in the Debug tab.
-- **Analytics Integration** - Feed the stream data into analytics platforms to enhance your understanding of user behavior and tag performance.
 - **Custom Monitoring** - Set up custom alerts or dashboards based on specific events or metrics of interest from the stream data.
-
-EST Stream is built on Macrometa Global Data Network (GDN) Streams. For more information about streams in the GDN, refer to [Macrometa Streams](../../streams/) documentation.
 
 ### Streaming Data
 
