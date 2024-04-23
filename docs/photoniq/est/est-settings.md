@@ -75,8 +75,6 @@ In the **Origin** field, enter the origin that will connect to the EST service.
 
 ### Stream
 
-This option is only available if streams are enabled on your account.
-
 In this section, you can turn the EST streams on or off. For more information about EST streams, refer to [Manage EST Streams](manage-est-streams.md).
 
 ### Script
