@@ -27,10 +27,7 @@ Follow these instructions to view render history in the web console.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to:
-
-- [Get prefetch statistics](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-metrics-stats-prefetch-origin/get)
-- [Get prefetch URLs](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--prefetch-urls/get)
+Use our interactive API Reference with code generation in 18 programming languages to [get prefetch URLs](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--prefetch-urls/get)
 
 </TabItem>
 </Tabs>
@@ -71,10 +68,7 @@ Follow these instructions to view prefetch history in the web console.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to:
-
-- Get prefetch statistics
-- Get prefetch URLs
+Use our interactive API Reference with code generation in 18 programming languages to [get prefetch statistics](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-metrics-stats-prefetch-origin/get)
 
 </TabItem>
 </Tabs>
