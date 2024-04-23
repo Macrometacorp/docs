@@ -15,7 +15,7 @@ You have several options for viewing Prerendering prefetching that is in progres
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to view render history in the web console.
+Follow these instructions to view current prefetching in the web console.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Prefetching**.
