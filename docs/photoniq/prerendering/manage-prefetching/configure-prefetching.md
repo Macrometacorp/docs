@@ -46,16 +46,18 @@ Prerendering provides the following prefetching configuration fields. Field name
 
 Use our interactive API Reference with code generation in 18 programming languages to [create a prefetching configuration](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--prefetch-configs/post).
 
-## Update Prefetching Configurations
+## Edit Prefetching Configurations
 
 <Tabs groupId="operating-systems2">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to view render history in the web console.
+Follow these instructions to edit a prefetching in the web console.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Prefetching**.
 3. Click **Configuration**.
+4. Click the Actions icon.
+5. 
 
 ![Prerendering Update Prefetching Configuration](/img/prerendering/update-prefetching-configuration.png)
 
