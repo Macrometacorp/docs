@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
-title: Monitor Prerendering
+title: Manage Prefetching
 ---
 
-Macrometa provides options so that you can monitor the status and activity of Prerendering either in the web console or using API endpoints.
+Macrometa provides options so that you can monitor the status and activity of prefetching either in the web console or using API endpoints, and you can configure prefetching jobs.
 
 <DocCardList />
