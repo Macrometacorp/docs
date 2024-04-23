@@ -32,4 +32,10 @@ title: PhotonIQ API Reference
     href="../../../docs/apiEds#"
   />
 
+  <card
+    heading="FaaS API"
+    description=""
+    href="../../../docs/apiFaas#"
+  />
+
 </grid>
