@@ -59,7 +59,9 @@ If the element is within a Shadow DOM:
 
 #### Consider Specificity and Efficiency
 
-The automatically generated selector might not always be the most efficient or simplest. It might be overly specific. Simplify the selector if possible, keeping only the parts that are necessary to uniquely identify the element. For example, if the generated selector is `html > body > div:nth-child(3) > div > p > a`, and you know the `a` element is unique within its parent `p`, you might simplify this to `p > a`.
+The automatically generated selector might not always be the most efficient or simplest. It might be overly specific. Simplify the selector if possible, keeping only the parts that are necessary to uniquely identify the element.
+
+For example, if the generated selector is `html > body > div:nth-child(3) > div > p > a`, and you know the `div` element has the id `login-container`, you might simplify this to `#login-container > p > a`.
 
 ## Testing the `htmlSelector`
 
