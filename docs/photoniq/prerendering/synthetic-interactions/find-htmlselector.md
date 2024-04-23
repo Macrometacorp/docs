@@ -21,7 +21,7 @@ The `htmlSelector` is contained within the DOM or the shadow DOM of the web page
 
 ### Special Consideration for Shadow DOM Elements
 
-For elements encapsulated within a Shadow DOM, special selectors may be required to pierce through the shadow boundary. This ensures that Prerender can interact with elements that are otherwise isolated. Elements inside a Shadow DOM are not accessible by the global scope of the application, which means standard methods of accessing elements might not work unless they are specifically designed to penetrate the Shadow DOM.
+For elements encapsulated within a shadow DOM, prepend the selector with `>>>` to ensure Prerendering can accurately target and interact with these elements. The `>>>` notation allows the selector to "pierce" through the shadow boundary, enabling interaction with elements that are otherwise encapsulated.
 
 ## Find the `htmlSelector`
 
@@ -52,7 +52,7 @@ For elements without an `id`, or when a more specific path is needed, use the ri
 
 #### For Shadow DOM Elements
 
-If the element is within a Shadow DOM:
+If the element is within a shadow DOM, use `>>>` followed by the specific selector. For example,  `>>> #__next > div > header > div.chakra-container.css-1ichkct > div > div.chakra-stack.css-jojt9m > a.chakra-link.css-i0nad5`.
 
 - You might need to use JavaScript to access the shadowRoot of the custom element. For example: `document.querySelector('custom-element').shadowRoot.querySelector('element')`.
 - Some browsers' Developer Tools allow you to inspect elements within Shadow DOM directly. Ensure that the option to show user agent shadow DOM is enabled in the settings of the Developer Tools.
