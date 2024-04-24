@@ -1,15 +1,15 @@
 ---
 sidebar_position: 10
-title: View Origin Settings
+title: Manage Origin Settings
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 You have several options for viewing Prerendering origin settings.
 
-- **Origin Settings tab** - In the Origin Settings tab in the web console, you can view information about each origin. To add a new origin URL, contact Macrometa Support.
+- **Origin Settings tab** - In the Origin Settings tab in the web console, you can view and update information about each origin. To add a new origin domain, contact Macrometa Support.
   ![Prerendering Origin Settings Tab](/img/prerendering/origin-settings.png)
-- **REST API** - Macrometa provides API calls that allow you to view origin settings for all origins or for one origin.
+- **REST API** - Macrometa provides API calls that allow you to view and update origin settings.
 
 ## View Origin Settings
 
@@ -32,7 +32,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-## Origin Settings
+## Origin Settings Fields
 
 Prerendering provides the following origin settings. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation.
 
@@ -41,3 +41,16 @@ Prerendering provides the following origin settings. Field names in the web cons
 - **Caching** - Indicates if caching is active for this origin.
 - **Cache Expiration** - Amount of time a page remains in the cache before expiring.
 - **Date Added** - Date the origin was added.
+- **Actions** - Icons allow you to edit or delete origins.
+
+## Create an Origin
+
+- [Create origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins/post)
+
+## Update an Origin
+
+- [Update origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/patch)
+
+## Delete an Origin
+
+- [Delete origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/delete)
