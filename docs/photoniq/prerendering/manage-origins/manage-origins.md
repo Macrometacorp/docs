@@ -48,27 +48,64 @@ Prerendering provides the following origin settings. Field names in the web cons
 <Tabs groupId="operating-systems2">
 <TabItem value="console" label="Web Console">
 
+Follow these instructions to add new origin settings in the web console. To add a new origin domain, contact Macrometa Support.
+
+1. Log in to your Prerendering dashboard.
+2. Click **Origin Settings**.
+3. Click **Add Origin URL**.
+4. Enter values in the following fields:
+   - **Subdomain** - (Optional) Enter the subdomain of the domain that you want to prerender.
+   - **Domain** - Select the domain that you want to prerender.
+   - **Sitemap Paths** - (Optional) Click **Add Sitemap Path** and then add the path to the sitemap. This is needed if you want Prerender to prefetch the URLs in your site.
+   - **Enable Caching** - Click to turn on caching, then select the cache expiration time (also called time to live or ttl) in days.
+5. Click **Add**.
+
+![Prerendering Origin Settings Tab](/img/prerendering/origin-settings.png)
+
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Create origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins/post)
+Use our interactive API Reference with code generation in 18 programming languages to [create an origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins/post).
+
+</TabItem>
+</Tabs>
 
 ## Update an Origin
 
 <Tabs groupId="operating-systems3">
 <TabItem value="console" label="Web Console">
 
+Follow these instructions to update origin settings in the web console.
+
+1. Log in to your Prerendering dashboard.
+2. Click **Origin Settings**.
+3. In the **Actions** column, click the pencil icon to open the **Edit Origin URL** window.
+4. Enter new values in fields and then click **Update**.
+
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Update origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/patch)
+Use our interactive API Reference with code generation in 18 programming languages to [update an origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/patch).
+
+</TabItem>
+</Tabs>
 
 ## Delete an Origin
 
 <Tabs groupId="operating-systems4">
 <TabItem value="console" label="Web Console">
 
+Follow these instructions to delete origin settings in the web console.
+
+1. Log in to your Prerendering dashboard.
+2. Click **Origin Settings**.
+3. In the **Actions** column, click the red X next to the origin that you want to delete.
+4. Click **Confirm**.
+
 </TabItem>
 <TabItem value="api" label="REST API">
 
-- [Delete origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/delete)
+Use our interactive API Reference with code generation in 18 programming languages to [delete an origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/delete).
+
+</TabItem>
+</Tabs>
