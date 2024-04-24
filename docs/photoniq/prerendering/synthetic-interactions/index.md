@@ -31,6 +31,6 @@ Prerendering supports a variety of synthetic interactions:
 
 You can specify the HTML tags where these interactions should occur, providing you with control over what content is exposed to bots. Additionally, you can configure multiple interactions per page to cater to complex dynamic sites.
 
-## Setup
+## HTML Selector
 
-As of now, the setup for synthetic interactions is performed by Macrometa engineers. If you require customized interactions, please contact our support team.
+To set up a synthetic interaction, you must enter the correct `htmlSelector` string so that Prerender knows which page element to interact with. For information about how to find this string, refer to [Find HTML Selector](find-htmlselector.md).
