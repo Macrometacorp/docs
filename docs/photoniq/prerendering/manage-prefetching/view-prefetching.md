@@ -1,5 +1,5 @@
 ---
-sidebar_position: 30
+sidebar_position: 20
 title: View Prefetching
 ---
 import Tabs from '@theme/Tabs';
@@ -15,7 +15,7 @@ You have several options for viewing Prerendering prefetching that is in progres
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to view render history in the web console.
+Follow these instructions to view current prefetching in the web console.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Prefetching**.
@@ -27,10 +27,7 @@ Follow these instructions to view render history in the web console.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to:
-
-- [Get prefetch statistics](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-metrics-stats-prefetch-origin/get)
-- [Get prefetch URLs](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--prefetch-urls/get)
+Use our interactive API Reference with code generation in 18 programming languages to [get prefetch URLs](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--prefetch-urls/get).
 
 </TabItem>
 </Tabs>
@@ -71,10 +68,7 @@ Follow these instructions to view prefetch history in the web console.
 </TabItem>
 <TabItem value="api" label="REST API">
 
-Use our interactive API Reference with code generation in 18 programming languages to:
-
-- Get prefetch statistics
-- Get prefetch URLs
+Use our interactive API Reference with code generation in 18 programming languages to [get prefetch statistics](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-metrics-stats-prefetch-origin/get).
 
 </TabItem>
 </Tabs>
