@@ -60,7 +60,7 @@ Follow these instructions to add new origin settings in the web console. To add 
    - **Enable Caching** - Click to turn on caching, then select the cache expiration time (also called time to live or ttl) in days.
 5. Click **Add**.
 
-![Prerendering Origin Settings Tab](/img/prerendering/origin-settings.png)
+![Prerendering Add Origin URL](/img/prerendering/add-origin-url.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">
