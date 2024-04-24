@@ -37,7 +37,7 @@ Prerendering provides the following prefetching configuration fields. Field name
 
 - **Status** - Whether the configuration is active or inactive.
 - **Origin URL** - The origin URL.
-- **Sitemaps** - The sitemap path, if the origin has one.
+- **Sitemaps** - The sitemap path, if the origin has one. Prerendering will prefetch all URLs on the sitemap when the configuration is active.
 - **Scheduling** - Cron expression entered to trigger the prefetching job.
 - **Devices** - Icon indicating whether the prefetch was rendered for just desktop or desktop and mobile.
 - **Actions** - Icon that allows you to update.
