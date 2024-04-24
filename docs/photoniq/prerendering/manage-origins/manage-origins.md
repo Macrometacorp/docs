@@ -45,12 +45,30 @@ Prerendering provides the following origin settings. Field names in the web cons
 
 ## Create an Origin
 
+<Tabs groupId="operating-systems2">
+<TabItem value="console" label="Web Console">
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
 - [Create origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins/post)
 
 ## Update an Origin
 
+<Tabs groupId="operating-systems3">
+<TabItem value="console" label="Web Console">
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
 - [Update origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/patch)
 
 ## Delete an Origin
+
+<Tabs groupId="operating-systems4">
+<TabItem value="console" label="Web Console">
+
+</TabItem>
+<TabItem value="api" label="REST API">
 
 - [Delete origin](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin/delete)
