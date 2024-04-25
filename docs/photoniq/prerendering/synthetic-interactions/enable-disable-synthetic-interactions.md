@@ -10,16 +10,18 @@ You have several options for enabling and disabling Prerendering synthetic inter
 - **Synthetic Interactions tab** - You can view enable or disable interactions for an origin on the Synthetic Interactions tab in the web console.
 - **REST API** - Macrometa provides an API call that allows you to enable or disable interactions for an origin.
 
-## Enable or Disable All Scroll Interactions
+## Enable or Disable All Synthetic Interactions
 
-Follow these instructions to enable or disable all scroll interactions in the web console.
+Follow these instructions to enable or disable all synthetic interactions of a particular type in the web console.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Synthetic Interactions**.
 3. Select an origin to enable or disable interactions for.
-4. Click the toggle next to Scroll to enable or disable all scroll interactions.
+4. Click the toggle next to the name of the type of synthetic interactions that you want to enable or disable.
 
-## Enable or Disable a Specific Scroll Interaction
+![Enable or Disable All Synthetic Interactions](/img/prerendering/enable-disable-all-synthetic-interactions.png)
+
+## Enable or Disable a Specific Synthetic Interaction
 
 <Tabs groupId="operating-systems2">
 <TabItem value="console" label="Web Console">
