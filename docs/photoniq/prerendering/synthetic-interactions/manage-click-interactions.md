@@ -96,41 +96,17 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-## Update Scroll Global Configuration
+## Update Click Policies
 
 <Tabs groupId="operating-systems4">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to update a scroll global configuration in the web console.
-
-1. Log in to your Prerendering dashboard.
-2. Click **Synthetic Interactions**.
-3. Select the origin for which you want to edit the global configuration.
-4. Click to expand **Scroll**.
-5. In the **Actions** field, click the pencil icon next to the global configuration that you want to edit.
-6. Update any values desired and then click **Update**.
-
-![Edit Scroll Global Configuration](/img/prerendering/update-scroll-global-config.png)
-
-</TabItem>
-<TabItem value="api" label="REST API">
-
-Use our interactive API Reference with code generation in 18 programming languages to [update a synthetic interaction](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--interactions--type/patch).
-
-</TabItem>
-</Tabs>
-
-## Update Specific Scroll Policies
-
-<Tabs groupId="operating-systems4">
-<TabItem value="console" label="Web Console">
-
-Follow these instructions to update a scroll interaction policy in the web console.
+Follow these instructions to update a click interaction policy in the web console.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Synthetic Interactions**.
 3. Select the origin for which you want to edit a policy.
-4. Click to expand **Scroll**.
+4. Click to expand **Click**.
 5. In the **Actions** field, click the pencil icon next to the policy that you want to edit.
 6. Update any values desired and then click **Update**.
 
@@ -141,6 +117,17 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 </TabItem>
 </Tabs>
+
+## Update Click Policy Sequence
+
+Follow these instructions to update a click interaction policy in the web console. There is no API endpoint to perform this task.
+
+1. Log in to your Prerendering dashboard.
+2. Click **Synthetic Interactions**.
+3. Select the origin for which you want to edit a policy.
+4. Click to expand **Click**.
+
+![Update Click Policy Sequence](/img/prerendering/update-click-policy-sequence.png)
 
 ## Delete Scroll Policies
 
