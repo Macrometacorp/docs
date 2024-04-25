@@ -1,14 +1,14 @@
 ---
 sidebar_position: 80
-title: Enable/Disable Synthetic Interactions
+title: Enable/Disable Synthetic Interaction Policies
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 You have several options for enabling and disabling Prerendering synthetic interaction policies.
 
-- **Synthetic Interactions tab** - You can view enable or disable interactions for an origin on the Synthetic Interactions tab in the web console.
-- **REST API** - Macrometa provides an API call that allows you to enable or disable interactions for an origin.
+- **Synthetic Interactions tab** - You can view enable or disable interaction policies for an origin on the Synthetic Interactions tab in the web console.
+- **REST API** - Macrometa provides an API call that allows you to enable or disable interaction policies for an origin.
 
 ## Enable or Disable All Policies
 
