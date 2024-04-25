@@ -1,5 +1,5 @@
 ---
-sidebar_position: 20
+sidebar_position: 80
 title: Enable/Disable Synthetic Interactions
 ---
 import Tabs from '@theme/Tabs';
