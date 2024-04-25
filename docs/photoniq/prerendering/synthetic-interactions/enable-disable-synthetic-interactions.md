@@ -21,17 +21,22 @@ Follow these instructions to enable or disable all synthetic interactions of a p
 
 ![Enable or Disable All Synthetic Interactions](/img/prerendering/enable-disable-all-synthetic-interactions.png)
 
-## Enable or Disable a Specific Synthetic Interaction
+## Enable or Disable Specific Synthetic Interactions
 
 <Tabs groupId="operating-systems2">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to enable or disable specific scroll interactions in the web console.
+Follow these instructions to enable or disable specific synthetic interactions in the web console.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Synthetic Interactions**.
 3. Select an origin to enable or disable interactions for.
-4. Click the toggle next to Scroll to enable or disable all scroll interactions.
+4. Click the toggle next to the type of interaction that you want to enable or disable.
+5. Click the pencil icon next to the synthetic interaction that you want to enable or disable.
+6. Click the **Active** toggle to enable or disable the interaction.
+7. Click **Update**.
+
+   The displayed status changes to reflect the new status, either **Active** or **Inactive**.
 
 </TabItem>
 <TabItem value="api" label="REST API">
