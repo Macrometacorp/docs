@@ -128,6 +128,7 @@ Follow these instructions to update a click interaction policy in the web consol
 4. Click to expand **Click**.
 5. Click the arrows next to the policies to reorder them.
 6. When you are satisfied with the order, click **Update Sequence**.
+7. Click **Confirm**.
 
 ![Update Click Policy Sequence](/img/prerendering/update-click-policy-sequence.png)
 
