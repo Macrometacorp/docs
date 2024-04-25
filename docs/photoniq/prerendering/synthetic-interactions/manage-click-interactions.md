@@ -126,20 +126,22 @@ Follow these instructions to update a click interaction policy in the web consol
 2. Click **Synthetic Interactions**.
 3. Select the origin for which you want to edit a policy.
 4. Click to expand **Click**.
+5. Click the arrows next to the policies to reorder them.
+6. When you are satisfied with the order, click **Update Sequence**.
 
 ![Update Click Policy Sequence](/img/prerendering/update-click-policy-sequence.png)
 
-## Delete Scroll Policies
+## Delete Click Policies
 
 <Tabs groupId="operating-systems5">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to delete a scroll interaction policy in the web console.
+Follow these instructions to delete a click interaction policy in the web console.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Synthetic Interactions**.
 3. Select the origin for which you want to delete a policy.
-4. Click to expand **Scroll**.
+4. Click to expand **Click**.
 5. In the **Actions** field, click the red X icon next to the policy that you want to delete.
 6. Click **Confirm**.
 
