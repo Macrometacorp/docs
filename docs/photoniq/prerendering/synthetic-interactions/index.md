@@ -9,6 +9,8 @@ Synthetic interactions are automated actions that Prerendering performs on your 
 
 With synthetic interactions, Prerendering enables you to maximize the visibility of your dynamically generated content, ensuring a more effective indexing by web crawlers.
 
+A specific interaction is called a _policy_.
+
 :::note
 Although synthetic interactions might make your UI appear odd during the rendering process, it doesn't impact how bots interpret the page.
 :::
@@ -24,6 +26,15 @@ Prerendering supports a variety of synthetic interactions:
 - **Scroll**: Some web content, particularly footers, might not load until the user scrolls down to it. Prerendering automatically scrolls to ensure all such content is rendered.
 - **Click**: Click events, such as tab switching, can be defined by the user to expose specific content to bots.
 - **Hover**: Especially useful for menu bars, hovering can reveal additional pages or content that the bot should find and index.
+
+You can create as many policies for each type of interaction as you need.
+
+## Global and Specific Policies
+
+Synthetic interactions can be _global_ or _specific_.
+
+- A _global_ policy applies to all sites in the origin.
+- A _specific_ policy applies only to selected URL paths.
 
 ## Customization
 
