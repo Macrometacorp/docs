@@ -1,15 +1,15 @@
 ---
 sidebar_position: 30
-title: Manage Click Interactions
+title: Manage Click Interaction Policies
 ---
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for viewing Prerendering synthetic interactions, either aggregated or per origin.
+You have several options for managing Prerendering click synthetic interaction policies.
 
-- **Synthetic Interactions tab** - You can view synthetic interactions for an origin on the Synthetic Interactions tab in the web console.
-- **REST API** - Macrometa provides several API calls that allow you to view metrics for an origin. You can also sort and set any time frame that you need.
+- **Synthetic Interactions tab** - You can manage synthetic click interaction policies for an origin on the Synthetic Interactions tab in the web console.
+  ![Prerendering Synthetic Interactions Tab - Click](/img/prerendering/synthetic-interactions-click.png)
+- **REST API** - Macrometa provides several API calls that allow you to manage synthetic click interaction policies.
 
 ## View Synthetic Interactions
 

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 80
-title: Enable/Disable Synthetic Interaction Policies
+title: Enable/Disable Policies
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
