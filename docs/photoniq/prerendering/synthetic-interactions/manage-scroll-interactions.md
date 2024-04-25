@@ -5,23 +5,23 @@ title: Manage Scroll Interactions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for managing Prerendering scroll synthetic interactions.
+You have several options for managing Prerendering scroll synthetic interaction policies.
 
 - **Synthetic Interactions tab** - You can view synthetic interactions for an origin on the Synthetic Interactions tab in the web console.
   ![Prerendering Synthetic Interactions Tab - Scroll](/img/prerendering/synthetic-interactions-scroll.png)
 - **REST API** - Macrometa provides several API calls that allow you to view metrics for an origin. You can also sort and set any time frame that you need.
 
-## View Scroll Synthetic Interactions
+## View Scroll Policies
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to view scroll interactions in the web console.
+Follow these instructions to view scroll policies in the web console.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Synthetic Interactions**.
-3. Select an origin to view scroll synthetic interactions for.
-4. Click to expand **Scroll** to view interactions.
+3. Select an origin to view scroll policies for.
+4. Click to expand **Scroll** to view existing policies.
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -34,28 +34,46 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-## Scroll Synthetic Interaction Fields
+## Scroll Policy Fields
 
-Prerendering provides the following information about scroll synthetic interactions. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Prerendering provides the following information about scroll synthetic interaction policies. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 ### Global Configuration
 
-- **Status** - Whether the interaction is active.
+- **Status** - Whether the policy is active or inactive.
 - **Steps** - Number of scrolls down to be performed.
 - **Delay** - Waiting time (in milliseconds) between scrolls.
-- **Actions** - Click the icon to edit an interaction.
+- **Actions** - Click the icon to edit a configuration. You cannot deactivate or delete scroll global configurations.
 
 ### Specifics
 
-- **Status** - Whether the interaction is active.
-- **URL Paths** - Origin paths where the specific interaction is evaluated to be executed.
+- **Status** - Whether the policy is active or inactive.
+- **URL Paths** - Origin paths where the specific policy is evaluated to be executed.
 - **Operator** - **Equal** or **Not equal**.
-- **Actions** - Click an icon to edit or delete an interaction.
+- **Actions** - Click an icon to edit or delete an policy.
 
-## Add Scroll Interactions
+## Add Scroll Policies
 
 <Tabs groupId="operating-systems3">
 <TabItem value="console" label="Web Console">
+
+Follow these instructions to add a new scroll policy in the web console.
+
+1. Log in to your Prerendering dashboard.
+2. Click **Synthetic Interactions**.
+3. Select the origin that you want to create the new policy for.
+4. Click **Add Policy**.
+5. In the **Interaction Type** field, select **Scroll**.
+6. If you want the policy to be active immediately, then leave the **Active** toggle on. If you want the policy inactive, then click to turn it off.
+7. Leave the **Interaction Scope** on the default **Specific**. You cannot create global scroll interaction policies.
+8. In **URL Paths**, enter one or more URL paths to which the policy will either apply or be excluded from, depending on which operator you select.
+9. In the **Operator** field, select on of the following:
+    - **Equal** - Applies the policy to all specified URL paths.
+    - **Not equal** - Applies the policy to all origin URLs except the specified URL paths.
+
+10. Click **Add Policy**.
+
+![Add Scroll Policy](/img/prerendering/add-scroll-policy.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -65,7 +83,31 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-## Update Scroll Interactions
+## Update Scroll Global Configuration
+
+<Tabs groupId="operating-systems4">
+<TabItem value="console" label="Web Console">
+
+Follow these instructions to update scroll global configurations in the web console.
+
+1. Log in to your Prerendering dashboard.
+2. Click **Synthetic Interactions**.
+3. Select the origin that you want to edit the global configuration of.
+4. Click to expand **Scroll**.
+5. In the **Actions** field, click the pencil icon next to the global configuration that you want to edit.
+6. Update any values desired and then click **Update**.
+
+![Edit Scroll Global Configuration](/img/prerendering/update-scroll-global-config.png)
+
+</TabItem>
+<TabItem value="api" label="REST API">
+
+Use our interactive API Reference with code generation in 18 programming languages to [update a synthetic interaction](https://www.macrometa.com/docs/apiPrerendering#/paths/api-prerender-v1-origins-origin--interactions--type/patch).
+
+</TabItem>
+</Tabs>
+
+## Update Specific Scroll Policies
 
 <Tabs groupId="operating-systems4">
 <TabItem value="console" label="Web Console">
