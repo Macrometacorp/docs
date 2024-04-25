@@ -7,9 +7,9 @@ import TabItem from '@theme/TabItem';
 
 You have several options for managing Prerendering scroll synthetic interaction policies.
 
-- **Synthetic Interactions tab** - You can view synthetic interactions for an origin on the Synthetic Interactions tab in the web console.
+- **Synthetic Interactions tab** - You can manage synthetic scroll interaction policies for an origin on the Synthetic Interactions tab in the web console.
   ![Prerendering Synthetic Interactions Tab - Scroll](/img/prerendering/synthetic-interactions-scroll.png)
-- **REST API** - Macrometa provides several API calls that allow you to view metrics for an origin. You can also sort and set any time frame that you need.
+- **REST API** - Macrometa provides several API calls that allow you to manage synthetic scroll interaction policies.
 
 ## View Scroll Policies
 
