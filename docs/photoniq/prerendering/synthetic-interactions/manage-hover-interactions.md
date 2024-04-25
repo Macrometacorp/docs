@@ -6,10 +6,11 @@ title: Manage Hover Interactions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You have several options for viewing Prerendering synthetic interactions, either aggregated or per origin.
+You have several options for managing Prerendering hover synthetic interaction policies.
 
-- **Synthetic Interactions tab** - You can view synthetic interactions for an origin on the Synthetic Interactions tab in the web console.
-- **REST API** - Macrometa provides several API calls that allow you to view metrics for an origin. You can also sort and set any time frame that you need.
+- **Synthetic Interactions tab** - You can manage synthetic hover interaction policies for an origin on the Synthetic Interactions tab in the web console.
+  ![Prerendering Synthetic Interactions Tab - Hover](/img/prerendering/synthetic-interactions-hover.png)
+- **REST API** - Macrometa provides several API calls that allow you to manage synthetic hover interaction policies.
 
 ## View Synthetic Interactions
 
