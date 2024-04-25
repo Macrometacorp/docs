@@ -120,7 +120,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 ## Update Click Policy Sequence
 
-Follow these instructions to update a click interaction policy in the web console. There is no API endpoint to perform this task.
+Follow these instructions to update the order in which click interaction policies are performed in the web console. There is no API endpoint to perform this task.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Synthetic Interactions**.
