@@ -50,7 +50,7 @@ Prerendering provides the following information about scroll synthetic interacti
 - **Status** - Whether the policy is active or inactive.
 - **URL Paths** - Origin paths where the specific policy is evaluated to be executed.
 - **Operator** - **Equal** or **Not equal**.
-- **Actions** - Click an icon to edit or delete an policy.
+- **Actions** - Click an icon to edit or delete a policy.
 
 ## Add Scroll Policies
 
