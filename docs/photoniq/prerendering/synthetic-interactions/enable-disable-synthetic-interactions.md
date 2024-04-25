@@ -12,7 +12,7 @@ You have several options for enabling and disabling Prerendering synthetic inter
 
 ## Enable or Disable All Synthetic Interactions
 
-Follow these instructions to enable or disable all synthetic interactions of a particular type in the web console.
+Follow these instructions to enable or disable all synthetic interactions of a particular type in the web console. There is no API endpoint to perform this task.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Synthetic Interactions**.
