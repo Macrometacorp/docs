@@ -40,7 +40,7 @@ Prerendering provides the following information about click synthetic interactio
 
 ### Global
 
-- **Sequence** - Interaction execution order.
+- **Sequence** - Policy execution order.
 - **Status** - Whether the interaction is active or inactive.
 - **HTML Selector** - HTML selector where the interaction is executed. For more information about HTML selectors, refer to [Find HTML Selector](find-htmlselector.md).
 - **Wait After** - Waiting time (in milliseconds) after the interaction is executed.
