@@ -21,13 +21,19 @@ Web crawlers, such as search engine bots, only see the content that is rendered 
 
 ## Supported Interactions
 
-Prerendering supports a variety of synthetic interactions:
+Prerendering supports a variety of synthetic interactions. You can create as many policies for each type of interaction as you need.
 
-- **Scroll**: Some web content, particularly footers, might not load until the user scrolls down to it. Prerendering automatically scrolls to ensure all such content is rendered.
-- **Click**: Click events, such as tab switching, can be defined by the user to expose specific content to bots.
-- **Hover**: Especially useful for menu bars, hovering can reveal additional pages or content that the bot should find and index.
+### Scroll
 
-You can create as many policies for each type of interaction as you need.
+Some web content, particularly footers, might not load until the user scrolls down to it. Prerendering automatically scrolls to ensure all such content is rendered. Many web pages load content dynamically based on what's visible in the viewport. By automatically scrolling during prerendering, more content is loaded and captured, enhancing the completeness of the prerendered page.
+
+### Click
+
+Click events, such as tab switching, can be defined by the user to reveal additional links or content to bots. For example, clicking to switch tabs or expand sections. By simulating these clicks during prerendering, we can ensure that all necessary content is visible and indexed by bots.
+
+### Hover
+
+Especially useful for menu bars, hovering can reveal additional pages or content that the bot should find and index. Hovering over elements such as menus often reveals additional content. By simulating these hover actions during prerendering, hidden content is exposed and accessible for indexing by search engines.
 
 ## Global and Specific Policies
 
