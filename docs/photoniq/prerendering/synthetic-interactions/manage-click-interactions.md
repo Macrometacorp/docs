@@ -41,20 +41,20 @@ Prerendering provides the following information about click synthetic interactio
 ### Global
 
 - **Sequence** - Policy execution order.
-- **Status** - Whether the interaction is active or inactive.
-- **HTML Selector** - HTML selector where the interaction is executed. For more information about HTML selectors, refer to [Find HTML Selector](find-htmlselector.md).
-- **Wait After** - Waiting time (in milliseconds) after the interaction is executed.
+- **Status** - Whether the policy is active or inactive.
+- **HTML Selector** - HTML selector where the policy is executed. For more information about HTML selectors, refer to [Find HTML Selector](find-htmlselector.md).
+- **Wait After** - Waiting time (in milliseconds) after the policy is executed.
 - **Devices** - Icons indicating whether the policy is for desktop devices, mobile devices, or both.
 - **Actions** - Click an icon to edit or delete a policy.
 
 ### Specifics
 
-- **Sequence** - Interaction execution order.
-- **Status** - Whether the interaction is active or inactive.
-- **URL Paths** - Origin paths where the specific interaction is evaluated to be executed.
+- **Sequence** - Policy execution order.
+- **Status** - Whether the policy is active or inactive.
+- **URL Paths** - Origin paths where the specific policy is evaluated to be executed.
 - **Operator** - **Equal** or **Not equal**.
-- **HTML Selector** - HTML selector where the interaction is executed. For more information about HTML selectors, refer to [Find HTML Selector](find-htmlselector.md).
-- **Wait After** - Waiting time (in milliseconds) after the interaction is executed.
+- **HTML Selector** - HTML selector where the policy is executed. For more information about HTML selectors, refer to [Find HTML Selector](find-htmlselector.md).
+- **Wait After** - Waiting time (in milliseconds) after the policy is executed.
 - **Devices** - Icons indicating whether the policy is for desktop devices, mobile devices, or both.
 - **Actions** - Click an icon to edit or delete a policy.
 
