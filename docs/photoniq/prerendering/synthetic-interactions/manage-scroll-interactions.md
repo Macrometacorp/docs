@@ -134,7 +134,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 <Tabs groupId="operating-systems5">
 <TabItem value="console" label="Web Console">
 
-Follow these instructions to delete a scroll interaction policy in the web console.
+Follow these instructions to delete a specific scroll interaction policy in the web console.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Synthetic Interactions**.
