@@ -12,7 +12,7 @@ You have several options for enabling and disabling Prerendering synthetic inter
 
 ## Enable or Disable All Policies
 
-Follow these instructions to enable or disable all policies of a particular type in the web console. There is no API endpoint to perform this task.
+Follow these instructions to enable or disable all synthetic interaction policies of a particular type in the web console. There is no API endpoint to perform this task.
 
 1. Log in to your Prerendering dashboard.
 2. Click **Synthetic Interactions**.
@@ -21,7 +21,7 @@ Follow these instructions to enable or disable all policies of a particular type
 
 ![Enable or Disable All Synthetic Interactions](/img/prerendering/enable-disable-all-synthetic-interactions.png)
 
-## Enable or Disable Specific Synthetic Interactions
+## Enable or Disable Specific Policies
 
 <Tabs groupId="operating-systems2">
 <TabItem value="console" label="Web Console">
