@@ -9,7 +9,7 @@ Synthetic interactions are automated actions that Prerendering performs on your 
 
 With synthetic interactions, Prerendering enables you to maximize the visibility of your dynamically generated content, ensuring a more effective indexing by web crawlers.
 
-A specific interaction is called a _policy_.
+A set of rules that govern a synthetic interaction is called a _policy_. The policy governs which pages the interaction is executed on, the HTML selector acted upon, and so on.
 
 :::note
 Although synthetic interactions might make your UI appear odd during the rendering process, it doesn't impact how bots interpret the page.
