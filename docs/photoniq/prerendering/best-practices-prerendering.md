@@ -15,7 +15,9 @@ Be very careful when configuring the domains for prerendering. Incorrect setting
 
 ## Use the API for Caching and Recaching
 
-Take advantage of the prerendering service's API to manually cache or recache pages. This ensures that crawlers always access up-to-date content, and allows you greater control over your caching strategy.
+Take advantage of the prerendering service's API to programatically cache or recache pages. This ensures that crawlers always access up-to-date content, and allows you greater control over your caching strategy. You can also manually purge the cache in the web console.
+
+For more information about managing the Preredering cache, refer to [Manage Cache](manage-cache).
 
 ## Configure Ignored Parameters
 
