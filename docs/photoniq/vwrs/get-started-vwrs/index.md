@@ -13,10 +13,10 @@ Different types of applications require distinct approaches to integrate with Vi
 
 Non-native applications, typically web-based, use standard web technologies such as HTML, CSS, and JavaScript. These applications run within web browsers and are the most common type of applications integrated with VWRs. The integration process for non-native apps is streamlined through web-based configurations, making it straightforward to implement effective traffic management solutions.
 
-For more information about integrating VWRs with non-native apps, refer to [Get Started with VWRs in Non-Native Apps](get-started-non-native.md).
+For more information about integrating VWRs with non-native apps, refer to [Get Started with VWRs in Non-Native Apps](get-started-vwrs-non-native.md).
 
 ### Native Apps
 
 Native applications are developed for specific platforms using platform-specific programming languages. These include mobile apps on Android and iOS or desktop applications on Windows and macOS. Unlike non-native apps, native applications require direct API interactions to integrate with VWRs. In these scenarios, the application takes on a greater role in managing the user experience during high-traffic periods, including handling the display of waiting times and managing user expectations.
 
-For more information about integrating VWRs with native apps, refer to [Get Started with VWRs in Native Apps](get-started-native.md).
+For more information about integrating VWRs with native apps, refer to [Get Started with VWRs in Native Apps](get-started-vwrs-native.md).
