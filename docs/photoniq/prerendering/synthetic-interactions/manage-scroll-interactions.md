@@ -129,7 +129,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 </Tabs>
 
-## Delete Scroll Policies
+## Delete Specific Scroll Policies
 
 <Tabs groupId="operating-systems5">
 <TabItem value="console" label="Web Console">
