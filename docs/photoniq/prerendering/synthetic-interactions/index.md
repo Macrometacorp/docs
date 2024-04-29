@@ -33,7 +33,7 @@ Click events, such as tab switching, can be defined by the user to reveal additi
 
 ### Hover
 
-Especially useful for menu bars, hovering can reveal additional pages or content that the bot should find and index. Hovering over elements such as menus often reveals additional content. By simulating these hover actions during prerendering, hidden content is exposed and accessible for indexing by search engines.
+Especially useful for menu bars, hovering can reveal additional links or content that the bot should find and index. Hovering over elements such as menus often reveals additional content. By simulating these hover actions during prerendering, hidden content is exposed and accessible for indexing by search engines.
 
 ## Global and Specific Policies
 
