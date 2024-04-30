@@ -468,6 +468,42 @@
           }
         }
       },
+      "GetStatusResponse": {
+        "type": "object",
+        "properties": {
+          "avg_waiting_time": {
+            "type": "number",
+            "format": "float",
+            "description": "The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds).",
+            "example": 19871.8
+          },
+          "backoff_interval": {
+            "type": "integer",
+            "description": "Indicates the interval in seconds after which the EdgeWorker should call the status API call to the vwrs server. This is used to reduce server load.",
+            "example": 1
+          },
+          "position": {
+            "type": "integer",
+            "description": "The client's current position in the waiting room.",
+            "example": 99359
+          },
+          "queue_depth": {
+            "type": "integer",
+            "description": "Total number of users present in the waiting room.",
+            "example": 99359
+          },
+          "rate_limit": {
+            "type": "integer",
+            "description": "The rate limit for the domain. The maximum users per second allowed to reach the origin.",
+            "example": 5
+          },
+          "waiting_room_interval": {
+            "type": "integer",
+            "description": "The time interval in seconds when the UI reloads itself to get the waiting room status.",
+            "example": 1
+          }
+        }
+      },
       "GetAccessResponse": {
         "type": "object",
         "required": [
@@ -1185,6 +1221,88 @@
           },
           "404": {
             "description": "API key Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/vwr/v1/requests/status/{request_id}": {
+      "get": {
+        "summary": "Position in waiting room",
+        "description": "Get the user's current position in waiting room.",
+        "tags": [
+          "Waiting room"
+        ],
+        "security": [
+          {
+            "APIKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "request_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique request ID of a user."
+          },
+          {
+            "in": "query",
+            "name": "domain",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The domain_key of the domain."
+          },
+          {
+            "in": "query",
+            "name": "sid",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The position ID in the waiting room."
+          },
+          {
+            "in": "query",
+            "name": "created_at",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The creation timestamp when user first time entered the waiting room."
+          },
+          {
+            "in": "query",
+            "name": "client_version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The version of the EdgeWorker."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the user's position status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
           },
           "500": {
             "description": "Internal server error."
