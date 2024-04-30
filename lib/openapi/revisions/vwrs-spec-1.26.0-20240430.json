@@ -271,7 +271,7 @@
           },
           "waiting_room_interval": {
             "type": "number",
-            "description": "The time interval when the UI reloads itself to get the waiting room status.",
+            "description": "The time interval, in seconds, when the waiting room status page is reloaded.",
             "default": 10,
             "minimum": 1
           },
@@ -481,12 +481,12 @@
           },
           "backoff_interval": {
             "type": "integer",
-            "description": "Indicates the interval, in seconds, after which the EdgeWorker should call the status API call to the vwrs server. This is used to reduce server load.",
+            "description": "Indicates the interval in seconds after which the EdgeWorker sends the status API call to the VWRs server.",
             "example": 1
           },
           "position": {
             "type": "integer",
-            "description": "The client's current position in the waiting room.",
+            "description": "The user's current position in the waiting room.",
             "example": 99359
           },
           "queue_depth": {
@@ -501,7 +501,7 @@
           },
           "waiting_room_interval": {
             "type": "integer",
-            "description": "The time interval, in seconds, when the UI reloads itself to get the waiting room status.",
+            "description": "The time interval in seconds when the waiting room status page is reloaded.",
             "example": 1
           }
         }
@@ -514,7 +514,7 @@
         "properties": {
           "position": {
             "type": "number",
-            "description": "Position in the waiting room. 0 means the user doesn't need to wait in waiting room any longer and can go to the origin."
+            "description": "The user's current position in the waiting room. 0 means the user doesn't need to wait in the waiting room any longer and can go to the origin."
           },
           "waiting_time": {
             "type": "number",
@@ -522,7 +522,7 @@
           },
           "queue_depth": {
             "type": "number",
-            "description": "Number of users currently in the waiting_room."
+            "description": "Number of users currently in the waiting room."
           },
           "request_id": {
             "type": "number",
@@ -1268,7 +1268,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "The position ID in the waiting room."
+            "description": "The user's position ID in the waiting room."
           },
           {
             "in": "query",
@@ -1277,7 +1277,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "The creation Unix timestamp, in seconds, when user first time entered the waiting room."
+            "description": "The creation Unix timestamp, in seconds, when the user first time entered the waiting room."
           },
           {
             "in": "query",
@@ -1314,8 +1314,8 @@
     },
     "/api/vwr/v1/position/{domain_key}": {
       "get": {
-        "summary": "Provide initial position in the waiting room",
-        "description": "Provide initial position in the waiting room.",
+        "summary": "Get initial position in the waiting room",
+        "description": "Get initial position in the waiting room.",
         "tags": [
           "Position"
         ],
@@ -1337,7 +1337,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully obtained waiting room data.",
+            "description": "Successfully retrieved waiting room data.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1361,10 +1361,10 @@
         }
       }
     },
-    "/api/vwr/v1/position/{domain_key}/{visitor_id}": {
+    "/api/vwr/v1/position/{domain_key}/{request_id}": {
       "get": {
         "summary": "Provide current position in the waiting room",
-        "description": "Provides the visitor's position in the waiting room.\\n\\nA position of 0 indicates that the visitor is no longer in the waiting room and has gained access to the requested resource.",
+        "description": "Provides the user's position in the waiting room.\\n\\nA position of 0 indicates that the user is no longer in the waiting room and has gained access to the requested resource.",
         "tags": [
           "Position"
         ],
@@ -1384,12 +1384,12 @@
           },
           {
             "in": "path",
-            "name": "visitor_id",
+            "name": "request_id",
             "required": true,
             "schema": {
               "type": "number"
             },
-            "description": "The user's session ID."
+            "description": "The user's request ID."
           }
         ],
         "responses": {
