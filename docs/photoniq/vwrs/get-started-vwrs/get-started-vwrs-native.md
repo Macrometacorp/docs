@@ -17,7 +17,7 @@ Ensure you have completed the following prerequisites before starting the integr
 
 Integrate VWRs with your native applications by following these steps:
 
-1. **API Key Creation:** Start by creating an API key to access the VWRs system, as this key will be essential for all API interactions. For instructions on creating an API key, refer to [Create an API Key](https://www.macrometa.com/docs/apiVwrs#/operations/createAPIKey).
+1. **API Key Creation:** Start by creating an API key to access the VWRs system, as this key is essential for all API interactions. For instructions on creating an API key, refer to [Create an API Key](https://www.macrometa.com/docs/apiVwrs#/operations/createAPIKey).
 
 2. **Create and Configure a Domain:** Create a domain that hosts your waiting room. This step allows you to fine-tune how the waiting room operates and integrates with your site. For comprehensive guidance on domain configuration, refer to [Configure a Domain](../configure-domain.md).
 
