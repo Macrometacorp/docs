@@ -1,9 +1,9 @@
 ---
 sidebar_position: 10
-title: Get Started with VWRs and Non-Native Apps
+title: Get Started with VWRs and Web Apps
 ---
 
-This page explains how to get started with Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) with your non-native applications. Non-native apps, typically web-based, use HTML, CSS, and JavaScript and operate within web browsers. This guide explains the steps to connect your web application to VWRs, enhancing your ability to manage high traffic efficiently and maintain a seamless user experience.
+This page explains how to get started with Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) with your web applications. Web apps typically use HTML, CSS, and JavaScript and operate within web browsers. This guide explains the steps to connect your web app to VWRs, enhancing your ability to manage high traffic efficiently and maintain a seamless user experience.
 
 ## Before You Begin
 
