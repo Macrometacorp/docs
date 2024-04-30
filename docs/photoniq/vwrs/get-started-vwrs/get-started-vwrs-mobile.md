@@ -1,9 +1,9 @@
 ---
 sidebar_position: 20
-title: Get Started with VWRs and Native Apps
+title: Get Started with VWRs and Mobile Apps
 ---
 
-This guide details how to integrate Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) with your native applications. Unlike web-based non-native apps, native apps are developed for specific platforms using platform-specific UI frameworks. These include mobile apps on Android and iOS or desktop applications on Windows and macOS. Native apps require direct API interactions to manage user experiences effectively during high traffic periods.
+This guide details how to integrate Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) with your mobile applications. Unlike web-based apps, mobile apps are developed for specific platforms using platform-specific UI frameworks. Mobile apps require direct API interactions to manage user experiences effectively during high traffic periods.
 
 ## Before You Begin
 
@@ -15,7 +15,7 @@ Ensure you have completed the following prerequisites before starting the integr
 
 ## Integration Overview
 
-Integrate VWRs with your native applications by following these steps:
+Integrate VWRs with your mobile applications by following these steps:
 
 1. **API Key Creation:** Start by creating an API key to access the VWRs system, as this key is essential for all API interactions. For instructions on creating an API key, refer to [Create an API Key](https://www.macrometa.com/docs/apiVwrs#/operations/createAPIKey).
 
@@ -58,7 +58,7 @@ When the position is zero, the user has exited the waiting room and may proceed.
 
 ## Pseudo-Code Example
 
-Here is a pseudo-code example illustrating how a native app interacts with the VWR API to manage a user's waiting experience:
+Here is a pseudo-code example illustrating how a mobile app interacts with the VWR API to manage a user's waiting experience:
 
 ```javascript
 // Initial request specifying the waiting room.
