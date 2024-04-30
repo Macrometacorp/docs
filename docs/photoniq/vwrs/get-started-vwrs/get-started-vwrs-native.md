@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Get Started with VWRs and Native Apps
 ---
 
-This guide details how to integrate Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) with your native applications. Unlike web-based non-native apps, native apps are developed for specific platforms using platform-specific programming languages. These include mobile apps on Android and iOS or desktop applications on Windows and macOS. Native apps require direct API interactions to manage user experiences effectively during high traffic periods.
+This guide details how to integrate Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) with your native applications. Unlike web-based non-native apps, native apps are developed for specific platforms using platform-specific UI frameworks. These include mobile apps on Android and iOS or desktop applications on Windows and macOS. Native apps require direct API interactions to manage user experiences effectively during high traffic periods.
 
 ## Before You Begin
 
