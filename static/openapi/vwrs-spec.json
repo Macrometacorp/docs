@@ -125,12 +125,12 @@
           },
           "expire_at": {
             "type": "number",
-            "description": "The Unix timestamp when the API key expires.",
+            "description": "The Unix timestamp, in seconds, when the API key expires.",
             "example": 1694767000
           },
           "created_at": {
             "type": "number",
-            "description": "The Unix timestamp when the API key is created.",
+            "description": "The Unix timestamp, in seconds, when the API key is created.",
             "format": "number",
             "example": 1694757000
           },
@@ -245,7 +245,7 @@
           },
           "metric_interval": {
             "type": "number",
-            "description": "The time to enable and disable the waiting room (in seconds). This time represents how long the traffic is at or above the rate limit before traffic is directed to the waiting room.",
+            "description": "The time, in seconds, to enable and disable the waiting room. This time represents how long the traffic is at or above the rate limit before traffic is directed to the waiting room.",
             "minimum": 1,
             "default": 60
           },
@@ -257,13 +257,13 @@
           },
           "rate_period": {
             "type": "number",
-            "description": "The period for the _users_per_period_ rate (in seconds).",
+            "description": "The period, in seconds, for the _users_per_period_ rate.",
             "minimum": 1,
             "default": 1
           },
           "max_origin_usage_time": {
             "type": "number",
-            "description": "The amount of time that users can access the origin (in seconds). Once a user has been granted access, the max_origin_usage_time determines how long that user can access the origin before they are forwarded to the waiting room after coming to the EdgeWorker again.",
+            "description": "The amount of time, in seconds, that users can access the origin. Once a user has been granted access, the max_origin_usage_time determines how long that user can access the origin before they are forwarded to the waiting room after coming to the EdgeWorker again.",
             "default": 60,
             "minimum": 1
           },
@@ -346,7 +346,7 @@
           "avg_waiting_time": {
             "type": "number",
             "format": "number",
-            "description": "The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds)."
+            "description": "The average time, in milliseconds, that users spend in the virtual waiting room before being granted access to the origin service."
           },
           "domain_key": {
             "type": "string",
@@ -379,7 +379,7 @@
           "timestamp": {
             "type": "number",
             "format": "number",
-            "description": "The epoch time of the start interval when the metric was generated (in seconds)."
+            "description": "Unix timestamp, in seconds, of the start interval when the metric was generated."
           },
           "users_in_queue": {
             "type": "number",
@@ -425,7 +425,7 @@
           },
           "timestamp": {
             "type": "number",
-            "description": "Timestamp of the usage bucket.",
+            "description": "Unix timestamp, in milliseconds, of the usage bucket.",
             "example": 1694757100000
           }
         }
@@ -474,12 +474,12 @@
           "avg_waiting_time": {
             "type": "number",
             "format": "float",
-            "description": "The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds).",
+            "description": "The average time, in milliseconds, that users spend in the virtual waiting room before being granted access to the origin service.",
             "example": 19871.8
           },
           "backoff_interval": {
             "type": "integer",
-            "description": "Indicates the interval in seconds after which the EdgeWorker should call the status API call to the vwrs server. This is used to reduce server load.",
+            "description": "Indicates the interval, in seconds, after which the EdgeWorker should call the status API call to the vwrs server. This is used to reduce server load.",
             "example": 1
           },
           "position": {
@@ -499,12 +499,12 @@
           },
           "waiting_room_interval": {
             "type": "integer",
-            "description": "The time interval in seconds when the UI reloads itself to get the waiting room status.",
+            "description": "The time interval, in seconds, when the UI reloads itself to get the waiting room status.",
             "example": 1
           }
         }
       },
-      "GetAccessResponse": {
+      "GetPositionResponse": {
         "type": "object",
         "required": [
           "position"
@@ -516,13 +516,13 @@
           },
           "waiting_time": {
             "type": "number",
-            "description": "Expected time to spend in waiting room (in seconds)."
+            "description": "Expected time, in seconds, to spend in waiting room."
           },
           "queue_depth": {
             "type": "number",
             "description": "Number of users currently in the waiting_room."
           },
-          "visitor_id": {
+          "request_id": {
             "type": "number",
             "description": "The user's session ID for this access request."
           },
@@ -1275,7 +1275,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "The creation timestamp when user first time entered the waiting room."
+            "description": "The creation Unix timestamp, in seconds, when user first time entered the waiting room."
           },
           {
             "in": "query",
@@ -1339,7 +1339,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetAccessResponse"
+                  "$ref": "#/components/schemas/GetPositionResponse"
                 }
               }
             }
@@ -1396,7 +1396,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetAccessResponse"
+                  "$ref": "#/components/schemas/GetPositionResponse"
                 }
               }
             }
@@ -1907,13 +1907,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-07-12T07:00:00Z"
+                        "timestamp": "2023-07-12T07:00:00.000Z"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-12T08:00:00Z"
+                        "timestamp": "2023-07-12T08:00:00.000Z"
                       }
                     ]
                   },
@@ -2090,13 +2090,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-07-12T07:00:00Z"
+                        "timestamp": "2023-07-12T07:00:00.000Z"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-13T08:00:00Z"
+                        "timestamp": "2023-07-13T08:00:00.000Z"
                       }
                     ]
                   },
@@ -2273,13 +2273,13 @@
                         "domain_key": "test.domain",
                         "requests": 1305,
                         "max_rps": 100,
-                        "timestamp": "2023-06-12T00:00:00Z"
+                        "timestamp": "2023-06-12T00:00:00.000Z"
                       },
                       {
                         "domain_key": "test.domain",
                         "requests": 1200,
                         "max_rps": 125,
-                        "timestamp": "2023-07-12T00:00:00Z"
+                        "timestamp": "2023-07-12T00:00:00.000Z"
                       }
                     ]
                   },
