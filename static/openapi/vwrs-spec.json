@@ -1392,7 +1392,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully obtained waiting room data.",
+            "description": "Successfully retrieved waiting room data.",
             "content": {
               "application/json": {
                 "schema": {
