@@ -40,6 +40,8 @@ Prerendering provides the following information about click synthetic interactio
 
 ### Global
 
+Global policies are applied to all origin URLs.
+
 - **Sequence** - Policy execution order.
 - **Status** - Whether the policy is active or inactive.
 - **HTML Selector** - HTML selector where the policy is executed. For more information about HTML selectors, refer to [Find HTML Selector](find-htmlselector.md).
@@ -48,6 +50,8 @@ Prerendering provides the following information about click synthetic interactio
 - **Actions** - Click an icon to edit or delete a policy.
 
 ### Specifics
+
+Specific policies are applied only to the URLs specified in the policy. If the policies conflict, then the specific policy takes precedence.
 
 - **Sequence** - Policy execution order.
 - **Status** - Whether the policy is active or inactive.
