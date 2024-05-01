@@ -38,7 +38,7 @@ Perform the following steps to create a new P3 policy:
 
    - **Name** - The name of the policy.
    - **Origin** - The URL the policy should be applied to.
-   - **Target Region** - The region where the origin is hosted and where to serve content from.
+   - **Target Region** - The region to which the content from the origin will be served.
      - **Is Region-Specific Content?** - Select **Yes** or **No**.
      - **Is Origin Content Compressed?** - Indicate whether the origin content is compressed or not.
    - **Headers** - If you want to pass headers to the origin, add as many headers as necessary.
