@@ -38,23 +38,9 @@ Perform the following steps to create a new P3 policy:
 
    - **Name** - The name of the policy.
    - **Origin** - The URL the policy should be applied to.
-   - **Target Region** - The region where the origin is hosted and where to serve content from. Options are specific to each user.
+   - **Target Region** - The region where the origin is hosted and where to serve content from.
      - **Is Region-Specific Content?** - Select **Yes** or **No**.
-   - **Is Origin Content Compressed?** - Indicate whether the origin content is compressed or not.
-   - **Device Type** - Select what type of devices the policy should apply to.
-     - **All** (default)
-     - **Desktop**
-     - **Mobile**
-     - **Tablet**
-   - **Optimization Level** - Select what level of optimization P3 applies to the URLs in the policy. Each selection selects different optimizations:
-     - **Light** (default)
-     - **Moderate**
-     - **Aggressive**
-   - **Page Type** - Select what type of pages are being optimized. This affects which optimization rules that P3 applies:
-     - **Home**
-     - **Category**
-     - **Product Detail Page**
-   - **Enable Policy** - Turn the policy on or off. If the policy is enabled, then optimization rules are applied to incoming requests.
+     - **Is Origin Content Compressed?** - Indicate whether the origin content is compressed or not.
    - **Headers** - If you want to pass headers to the origin, add as many headers as necessary.
      - **Send headers to origin** - Select the checkbox to send the headers to the origin along with the request.
      - **Key** - Header key.
@@ -69,7 +55,22 @@ Perform the following steps to create a new P3 policy:
       or provide regex:
         - ^/us/category/.*$
         - ^/us/product/.*$
-    The remainder of the fields cannot be manually edited. They automatically toggle based on the selected **Optimization Level**. For more information about what each optimization does, refer to [P3 Optimizations](p3-optimizations.md).
+   - **Device Type** - Select what type of devices the policy should apply to.
+     - **All** (default)
+     - **Desktop**
+     - **Tablet**
+     - **Mobile**
+   - **Optimization Level** - Select what level of optimization P3 applies to the URLs in the policy. Each selection selects different optimizations:
+     - **Light** (default)
+     - **Moderate**
+     - **Aggressive**
+   - **Page Type** - Select what type of pages are being optimized. This affects which optimization rules that P3 applies:
+     - **Home**
+     - **Category**
+     - **Product Detail Page**
+     - **Other**
+   - **Enable Policy** - Turn the policy on or off. If the policy is enabled, then optimization rules are applied to incoming requests.
+    The remainder of the fields cannot be manually edited. For more information about what each optimization does, refer to [P3 Optimizations](p3-optimizations.md).
 
 ## Edit a Policy
 
