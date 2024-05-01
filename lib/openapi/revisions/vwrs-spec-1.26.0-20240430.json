@@ -7,8 +7,10 @@
   },
   "servers": [
     {
-      "url": "https://api-demo-vwr.paas.macrometa.io",
-      "description": "PhotonIQ Virtual Waiting Rooms API"
+      "url": "https://vwrs-ap-west.eng.macrometa.io/"
+    },
+    {
+      "url": "https://vwrs.eng.macrometa.io/"
     }
   ],
   "components": {
@@ -1275,7 +1277,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Unix timestamp, in seconds, when the user first time entered the waiting room."
+            "description": "The creation Unix timestamp, in seconds, when the user first time entered the waiting room."
           },
           {
             "in": "query",
@@ -1392,7 +1394,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved waiting room data.",
+            "description": "Successfully obtained waiting room data.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2505,6 +2507,5 @@
         }
       }
     }
-  },
-  "host": "api-play.paas.macrometa.io"
+  }
 }

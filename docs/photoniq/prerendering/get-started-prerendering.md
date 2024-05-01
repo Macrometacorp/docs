@@ -13,7 +13,7 @@ Before leveraging the caching capabilities of Prerendering service, you must fir
 
 - Make a request to the [Create origin](/docs/apiPrerendering#/paths/api-prerender-v1-origins/post) endpoint using the POST method.
 - Include the necessary headers and provide a body containing your origin details.
-- Once created, you can [View Origin Settings](./manage-origins/view-origin-settings.md).
+- Once created, you can [View Origin Settings](./manage-origins/).
 
 ## 2. Fetch Prerendered Page Content
 
