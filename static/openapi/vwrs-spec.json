@@ -1275,7 +1275,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "The creation Unix timestamp, in seconds, when the user first time entered the waiting room."
+            "description": "Unix timestamp, in seconds, when the user first time entered the waiting room."
           },
           {
             "in": "query",
