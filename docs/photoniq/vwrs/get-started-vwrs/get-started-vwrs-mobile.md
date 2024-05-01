@@ -23,38 +23,8 @@ Integrate VWRs with your mobile applications by following these steps:
 
 3. **API Usage for Queue Management:** Use the VWRs API to manage the user's position in the waiting room. This involves making periodic API calls to check the queue status and manage the user experience accordingly.
 
-### API Request
-
-Non-web applications use the **GET /api/vwr/v1/position/{queue_name}/{visitor_id}** REST API to check resource access.
-
-Key parameters include:
-
-- **queue_name**: Specifies the waiting room created in the VWR.
-- **visitor_id**: The _visitor_id_ parameter is crucial in tracking the user's position and wait duration. It is not provided initially but returned with each subsequent API call, ensuring accurate tracking.
-
-### API Response
-
-This API returns the following JSON structure:
-
-```json
-{
-  "position": 0,
-  "waiting_time": 0,
-  "queue_depth": 0,
-  "visitor_id": 0,
-  "refresh_interval": 0
-}
-```
-
-The response includes:
-
-- **position**: User's current position in the waiting room.
-- **waiting_time**: Estimated time (seconds) until the user exits the waiting room.
-- **queue_depth**: Total number of users in the waiting room.
-- **visitor_id**: ID for the current request.
-- **refresh_interval**: Time (in seconds) between successive position checks.
-
-When the position is zero, the user has exited the waiting room and may proceed.
+  - [Get initial position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-domain_key/get)
+  - [Get current position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-domain_key---request_id/get)
 
 ## Pseudo-Code Example
 
