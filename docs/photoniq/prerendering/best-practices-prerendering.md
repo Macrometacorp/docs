@@ -29,7 +29,7 @@ Though a default set of tracking parameters to be ignored is provided, you may n
 
 Dead links negatively affect both your SEO rankings and the cost of prerendering. Regularly scan your website for dead links and either remove them or update them to point to active pages. This improves user experience and ensures you're not incurring extra charges for prerendering pages that don't contribute to your site's value.
 
-If you have a system that redirects users to a page that provides a non-404 experience if they stumble on something that isn't covered, then you might want to add a 404 identifier to Prerendering. For more information, refer to [Manage 404 Identifiers](manage-404-identifiers).
+If you have a system that redirects users to a page that provides a 404 experience if they stumble on something that isn't covered, then you might want to add a 404 identifier to Prerendering. For more information, refer to [Manage 404 Identifiers](manage-404-identifiers).
 
 ## Implement User-Agent String Detection on Your Origin Server
 
