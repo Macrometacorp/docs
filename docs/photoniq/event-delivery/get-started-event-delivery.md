@@ -9,35 +9,24 @@ However, some people like to be more hands-on with their management. This page p
 
 ## Prerequisites
 
-- If you want to work with Macrometa streams, then you must have a [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create collections. Your Macrometa partners can help you get set up.
+- To work with Macrometa streams, then you must have a [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create collections. Your Macrometa partners can help you get set up, or you can sign up on your own.
+- Decide what kind of [collection](../../collections/) to send streaming data to. Consult with your Macrometa partners to decide what is the best option for your use case.
+  - [Document Collection](../../collections/documents/) - Accepts any document type.
+  - [Key-Value Collection](../../collections/keyvalue/) - Accepts key-value pairs, can be set up to include blobs.
+
 - An application to receive Event Delivery streams.
 
 ## Set Up Macrometa Streams
 
-Event Delivery lets you filter events from Macrometa streams and publish events to streams, so the first step is to get your data into a stream in the Macrometa Global Data Network (GDN).
-
-You have several options for streams:
-
-- Local stream
-- Global stream
-- Collection stream
-
-Consult with your Macrometa partners to decide what is the best option for your use case. More information on these options is below, and they are fully documented in the [Macrometa GDN documentation](../../index.md).
-
-### Local or Global Stream
+Event Delivery lets you filter events from Macrometa streams and publish events to streams, so the first step is to get your data into a collection stream in the Macrometa Global Data Network (GDN).
 
 A stream is a named channel for sending messages. Each stream is backed by a distributed append-only log and can be local (at one edge location only) or global (across all edge locations in the [fabric](../../geofabrics/)).
 
-For more information, refer to [Streams](../../streams/).
+1. Create a collection that you will send streaming data to. Make sure you enable streams when you create it.
 
-### Collection Stream
+   ![New Collection Stream](/img/photoniq/event-delivery/new-collection-stream.png)
 
-Macrometa GDN has several types of collections, all of which can have the data to a stream as records are added.
-
-For more information, refer to:
-
-- [Collections](../../collections/)
-- [Collection Settings](../../collections/view-collection-settings#view-collection-settings) - View and modify the Collection Stream settings.
+2. 
 
 ## Set Up Event Delivery
 
