@@ -23,6 +23,7 @@ Event Delivery lets you filter events from Macrometa streams and publish events 
 A stream is a named channel for sending messages. Each stream is backed by a distributed append-only log and can be local (at one edge location only) or global (across all edge locations in the [fabric](../../geofabrics/)).
 
 1. Create a collection that you will send streaming data to. Make sure you enable streams when you create it.
+   - []
 
    ![New Collection Stream](/img/photoniq/event-delivery/new-collection-stream.png)
 
