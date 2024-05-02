@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Function as a Service (FaaS)
 ---
 
-PhotonIQ FaaS (Function as a Service) is an edge-computing service that allows you to run code in response to events, without managing the complex infrastructure. Deployed functions are executed from the closest point of presence to customers.
+PhotonIQ FaaS (Function as a Service) is an edge-computing service that allows you to run code  without managing the complex infrastructure. Deployed functions are executed from the closest point of presence to customers.
 
 PhotonIQ FaaS supports a variety of programming languages, including Rust, JavaScript, Go, Ruby, and Python, empowering developers with flexibility and eliminating vendor lock-in. This platform is tailored for applications requiring high performance, rapid scalability, and low latency, making it an ideal solution for modern, cloud-native development.
 
