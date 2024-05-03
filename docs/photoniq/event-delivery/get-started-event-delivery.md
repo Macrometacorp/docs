@@ -23,7 +23,7 @@ Event Delivery lets you filter events from Macrometa streams and publish events 
 
 A stream is a named channel for sending messages. Each stream is backed by a distributed append-only log and can be local (at one edge location only) or global (across all edge locations in the [fabric](../../geofabrics/)).
 
-1. (Optional) [Create a fabric](../../geofabrics/create-geofabric.md) for your collection. This allows you to decide exactly where your data lives. If you skip this step, then the collection will probably be in the system fabric.
+1. (Optional) [Create a fabric](../../geofabrics/create-geofabric.md) for your collection. This allows you to decide exactly where your data lives. If you skip this step, then the collection will be in the system fabric.
 2. Create a collection that you will send streaming data to. Make sure you enable streams when you create it. Instructions for each are below:
    - [Create a Document Collection](../../collections/documents/create-document-store.md)
    - [Create a Key-Value Collection](../../collections/keyvalue/create-key-value-store.md)
