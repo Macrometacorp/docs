@@ -40,12 +40,16 @@ Prerendering provides the following information about scroll synthetic interacti
 
 ### Global Configuration
 
+The global configuration applies to all origin URLs unless it is overriden by a specific scroll policy.
+
 - **Status** - Whether the policy is active or inactive.
 - **Steps** - Number of scrolls down to be performed.
 - **Delay** - Waiting time (in milliseconds) between scrolls.
 - **Actions** - Click the icon to edit a configuration. You cannot deactivate or delete scroll global configurations.
 
 ### Specifics
+
+If a specific scroll policy is applied to a URL, then the global configuration will not be applied. The specific policy is applied instead.
 
 - **Status** - Whether the policy is active or inactive.
 - **URL Paths** - Origin paths where the specific policy is evaluated to be executed.

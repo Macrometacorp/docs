@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Get Started with Event Delivery
 ---
 
-PhotonIQ Event Delivery is a completely managed, white-glove service. Macrometa engineers will implement for you, making sure the service is optimized and working correctly according.
+PhotonIQ Event Delivery is a completely managed, white-glove service. Macrometa engineers will implement it for you, making sure the service is optimized and working correctly according.
 
 However, some people like to be more hands-on with their management. This page provides information to help you take a more active role in managing Event Delivery.
 
