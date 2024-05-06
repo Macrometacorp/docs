@@ -37,15 +37,8 @@ Perform the following steps to create a new P3 policy:
 4. Enter information in the following fields. All fields are required.
 
    - **Name** - The name of the policy.
+   - **Domain Name** - The name of the domain.
    - **Origin** - The URL the policy should be applied to.
-   - **Target Region** - The region to which the content from the origin will be served.
-     - **Is Region-Specific Content?** - Select **Yes** or **No**.
-     - **Is Origin Content Compressed?** - Indicate whether the origin content is compressed or not.
-   - **Headers** - If you want to pass headers to the origin, add as many headers as necessary.
-     - **Send headers to origin** - Select the checkbox to send the headers to the origin along with the request.
-     - **Key** - Header key.
-     - **Value** - Header value.
-   - **mPulse Variable** - Variable for tracking the policy in the mPulse dashboard.
    - **URL Pattern** - Provide an absolute URL or a regex pattern in order to group pages that have the same structure.
      - For example, you could list each page:
         - /us/category/boys
@@ -55,6 +48,15 @@ Perform the following steps to create a new P3 policy:
       or provide regex:
         - ^/us/category/.*$
         - ^/us/product/.*$
+   - **Sample Path** - NEED DEFINITION
+   - **Target Region** - The region to which the content from the origin will be served.
+     - **Is Region-Specific Content?** - Select **Yes** or **No**.
+     - **Is Origin Content Compressed?** - Indicate whether the origin content is compressed or not.
+   - **Headers** - If you want to pass headers to the origin, add as many headers as necessary.
+     - **Send headers to origin** - Select the checkbox to send the headers to the origin along with the request.
+     - **Key** - Header key.
+     - **Value** - Header value.
+   - **mPulse Variable** - Variable for tracking the policy in the mPulse dashboard.
    - **Device Type** - Select what type of devices the policy should apply to.
      - **All** (default)
      - **Desktop**
