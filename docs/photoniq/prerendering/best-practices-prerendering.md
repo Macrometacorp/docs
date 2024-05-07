@@ -5,12 +5,6 @@ title: Prerendering Best Practices
 
 Prerendering is an optimization technique that generates static HTML pages from dynamic content to improve website performance. The following best practices help you get the most out of Prerendering.
 
-## Selective Prerendering
-
-To maximize the benefits of prerendering, target specific areas of your website that will gain the most from this optimization technique. Typically, these are high-traffic pages or sections featuring dynamic content that seldom changes. By focusing on these areas, you ensure efficient use of resources and faster load times for your users.
-
-For more information about setting up origins, refer to [Manage Origin Settings](manage-origins).
-
 ## Domain Configuration
 
 Be very careful when configuring the domains for prerendering. Incorrect settings can result in caching problems and the delivery of outdated content. Make sure the specified domains are accurate and correspond to the sections of your site that you intend to prerender.
