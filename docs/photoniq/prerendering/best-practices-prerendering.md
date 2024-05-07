@@ -21,10 +21,6 @@ Take advantage of the prerendering service's API to programatically cache or rec
 
 For more information about managing the Preredering cache, refer to [Manage Cache](manage-cache).
 
-## Configure Ignored Parameters
-
-Though a default set of tracking parameters to be ignored is provided, you may need to customize this list based on your unique needs. For instance, if your website uses specific URL parameters for user sessions or tracking, add these to the list of parameters that should be ignored during prerendering.
-
 ## Remove or Update Dead Links
 
 Dead links negatively affect both your SEO rankings and the cost of prerendering. Regularly scan your website for dead links and either remove them or update them to point to active pages. This improves user experience and ensures you're not incurring extra charges for prerendering pages that don't contribute to your site's value.
