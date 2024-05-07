@@ -32,4 +32,10 @@ title: PhotonIQ API Reference
     href="../../../docs/apiEds#"
   />
 
+  <card
+    heading="Performance Proxy API"
+    description=""
+    href="../../../docs/apiP3#"
+  />
+
 </grid>

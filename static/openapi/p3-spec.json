@@ -1,0 +1,3479 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "PhotonIQ Performance Proxy API",
+      "description": "API documentation for the PhotonIQ P3 API Service",
+      "version": "2.2.5"
+    },
+    "servers": [
+      {
+        "url": "https://demo-p3.photoniq.macrometa.io"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Version"
+      },
+      {
+        "name": "Health"
+      },
+      {
+        "name": "Policies"
+      },
+      {
+        "name": "Validations"
+      },
+      {
+        "name": "Cache"
+      },
+      {
+        "name": "PPM"
+      },
+      {
+        "name": "Authentication"
+      },
+      {
+        "name": "Metrics"
+      },
+      {
+        "name": "Telemetry",
+        "description": "(example can change)"
+      },
+      {
+        "name": "Usage",
+        "description": "(example can change)"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "ApiKeyAuth": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "Authorization"
+        }
+      },
+      "schemas": {
+        "CreatePolicyRequest": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the policy to be created.",
+              "example": "Test_Policy"
+            },
+            "pageType": {
+              "type": "string",
+              "description": "Type of page to be optimized.",
+              "example": "Home"
+            },
+            "urlPattern": {
+              "type": "string",
+              "description": "Url pattern to group same pages under similar set of optimizations.",
+              "example": "^/us/.*$"
+            },
+            "serverUrl": {
+              "type": "string",
+              "description": "Origin/server URL from where the html content needs to be fetched to run optimizations.",
+              "example": "something.com"
+            },
+            "deviceType": {
+              "type": "string",
+              "description": "Type of device the optimizations are intended to be applied.",
+              "example": "Desktop"
+            },
+            "optimizationLevel": {
+              "type": "string",
+              "description": "Optimization category to decide which optimizations needs to be applied.",
+              "example": "custom"
+            },
+            "optimizers": {
+              "type": "object",
+              "properties": {
+                "preloadDNSPrefetchHints": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "inlineOutlineJS": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "inlineOutlineCSS": {
+                  "type": "boolean"
+                },
+                "minifyCSS": {
+                  "type": "boolean"
+                },
+                "minifyJS": {
+                  "type": "boolean"
+                },
+                "minifyHTML": {
+                  "type": "boolean"
+                },
+                "bundleJSCSS": {
+                  "type": "boolean"
+                },
+                "predictivePrefetch": {
+                  "type": "boolean"
+                },
+                "preconnectResources": {
+                  "type": "boolean"
+                },
+                "collapseWhitespace": {
+                  "type": "boolean"
+                },
+                "optimizationsByUserAgentType": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "compressionForMobileDevices": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "moveScriptTagsFromTopToBottom": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "deferJS": {
+                  "type": "boolean"
+                },
+                "delayJSExecution": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "UpdatePolicyRequest": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the policy to be created.",
+              "example": "Updated Policy Name"
+            },
+            "pageType": {
+              "type": "string",
+              "description": "Type of page to be optimized.",
+              "example": "Category"
+            },
+            "deviceType": {
+              "type": "string",
+              "description": "Type of device the optimizations are intended to be applied.",
+              "example": "Desktop"
+            },
+            "optimizationLevel": {
+              "type": "string",
+              "description": "Optimization category to decide which optimizations needs to be applied.",
+              "example": "Standard"
+            },
+            "optimizers": {
+              "type": "object",
+              "properties": {
+                "preloadDNSPrefetchHints": {
+                  "type": "boolean"
+                },
+                "inlineOutlineJS": {
+                  "type": "boolean"
+                },
+                "inlineOutlineCSS": {
+                  "type": "boolean"
+                },
+                "minifyCSS": {
+                  "type": "boolean"
+                },
+                "minifyJS": {
+                  "type": "boolean"
+                },
+                "minifyHTML": {
+                  "type": "boolean"
+                },
+                "bundleJSCSS": {
+                  "type": "boolean"
+                },
+                "predictivePrefetch": {
+                  "type": "boolean"
+                },
+                "preconnectResources": {
+                  "type": "boolean"
+                },
+                "collapseWhitespace": {
+                  "type": "boolean"
+                },
+                "optimizationsByUserAgentType": {
+                  "type": "boolean"
+                },
+                "compressionForMobileDevices": {
+                  "type": "boolean"
+                },
+                "moveScriptTagsFromTopToBottom": {
+                  "type": "boolean"
+                },
+                "deferJS": {
+                  "type": "boolean"
+                },
+                "delayJSExecution": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "GetVersionResponse": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "example": "1.0.0"
+            }
+          }
+        },
+        "GetHealthStatusResponse": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "example": "ok"
+            }
+          }
+        },
+        "GetPoliciesResponse": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "deviceType": {
+                "type": "string",
+                "example": "all"
+              },
+              "optimizationLevel": {
+                "type": "string",
+                "example": "standard"
+              },
+              "_key": {
+                "type": "string",
+                "example": "3a7fcdb1-ff8c-514b-a575-09e3aea8f35d"
+              },
+              "createdAt": {
+                "type": "number",
+                "example": 1703767869457
+              },
+              "updatedAt": {
+                "type": "number",
+                "example": 1703767869457
+              },
+              "name": {
+                "type": "string",
+                "example": "First Integration Test"
+              },
+              "pageType": {
+                "type": "string",
+                "example": "home"
+              },
+              "urlPattern": {
+                "type": "string",
+                "example": "^.*$"
+              },
+              "serverUrl": {
+                "type": "string",
+                "example": "https://pqdev1-us-west.eng.macrometa.io/"
+              },
+              "optimizers": {
+                "type": "object",
+                "properties": {
+                  "bundleCss": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "bundleJavascript": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "collapseWhitespace": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "compressionForMobileDevices": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "deferJavascript": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "delayJavascriptExecution": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "inlineCss": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "inlineJavascript": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "minifyCss": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "minifyHTML": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "minifyJavascript": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "moveScriptTagsFromTopToBottom": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "optimizationsByUserAgentType": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "outlineCss": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "outlineJavascript": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "preconnectResources": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "predictivePrefetch": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "preloadDNSPrefetchHints": {
+                    "type": "boolean",
+                    "example": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ValidationResultResponse": {
+          "type": "object",
+          "properties": {
+            "createdAt": {
+              "type": "integer",
+              "example": 1703767869457
+            },
+            "jobId": {
+              "type": "string",
+              "example": "03213-3234f-24242-fsfs-3113"
+            },
+            "optimizersApplied": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "example": [
+                "SET_ATTRIBUTE('head', 'data-optimized-using', 'P3')",
+                "MINIFY_HTML()"
+              ]
+            },
+            "sourceUrl": {
+              "type": "string",
+              "example": "something.com"
+            },
+            "updatedAt": {
+              "type": "integer",
+              "example": 1703767869457
+            },
+            "urlPattern": {
+              "type": "string",
+              "example": "^/us/.*$"
+            },
+            "validatorId": {
+              "type": "string",
+              "example": "03213-3234f-24242-fsfs-3113"
+            },
+            "visualComparisonResult": {
+              "$ref": "#/components/schemas/VisualComparisonResult"
+            },
+            "fnComparisonResult": {
+              "$ref": "#/components/schemas/FunctionComparisonResult"
+            }
+          }
+        },
+        "GetPolicyResponse": {
+          "type": "object",
+          "properties": {
+            "deviceType": {
+              "type": "string",
+              "example": "all"
+            },
+            "optimizationLevel": {
+              "type": "string",
+              "example": "standard"
+            },
+            "_key": {
+              "type": "string",
+              "example": "3a7fcdb1-ff8c-514b-a575-09e3aea8f35d"
+            },
+            "createdAt": {
+              "type": "number",
+              "example": 1703767869457
+            },
+            "updatedAt": {
+              "type": "number",
+              "example": 1703767869457
+            },
+            "name": {
+              "type": "string",
+              "example": "First Integration Test"
+            },
+            "pageType": {
+              "type": "string",
+              "example": "home"
+            },
+            "urlPattern": {
+              "type": "string",
+              "example": "^.*$"
+            },
+            "serverUrl": {
+              "type": "string",
+              "example": "https://something.com"
+            },
+            "optimizers": {
+              "type": "object",
+              "properties": {
+                "bundleCss": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "bundleJavascript": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "collapseWhitespace": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "compressionForMobileDevices": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "deferJavascript": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "delayJavascriptExecution": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "inlineCss": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "inlineJavascript": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "minifyCss": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "minifyHTML": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "minifyJavascript": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "moveScriptTagsFromTopToBottom": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "optimizationsByUserAgentType": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "outlineCss": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "outlineJavascript": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "preconnectResources": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "predictivePrefetch": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "preloadDNSPrefetchHints": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        },
+        "AggregateUsageGetResponse": {
+          "type": "object",
+          "properties": {
+            "serverUrl": {
+              "type": "string",
+              "description": "A unique identifier for the server.",
+              "example": "something.com"
+            },
+            "requests": {
+              "type": "number",
+              "format": "number",
+              "description": "Total REST API requests for the specified time period.",
+              "example": 500
+            },
+            "maxRps": {
+              "type": "string",
+              "description": "Maximum request per second for the specified time period.",
+              "example": 1000
+            }
+          }
+        },
+        "UsageGetResponse": {
+          "type": "object",
+          "properties": {
+            "serverUrl": {
+              "type": "string",
+              "description": "A unique identifier for the server.",
+              "example": "something.com"
+            },
+            "requests": {
+              "type": "number",
+              "format": "number",
+              "description": "Total REST API requests for the received time period slot.",
+              "example": 230000
+            },
+            "maxRps": {
+              "type": "number",
+              "format": "number",
+              "description": "Maximum request per second for the received time period slot.",
+              "example": 1000
+            },
+            "timestamp": {
+              "type": "number",
+              "description": "Timestamp of the usage bucket.",
+              "example": 1694757100000
+            }
+          }
+        },
+        "VisualComparisonResult": {
+          "type": "object",
+          "properties": {
+            "pixelsMismatched": {
+              "type": "integer",
+              "example": 5
+            },
+            "pixelsMatched": {
+              "type": "integer",
+              "example": 9940
+            },
+            "totalPixels": {
+              "type": "integer",
+              "example": 9945
+            },
+            "highlightedScreenshot": {
+              "type": "string",
+              "example": "https://something.com/highlightedScreenshot"
+            },
+            "optimizedScreenshot": {
+              "type": "string",
+              "example": "https://something.com/optimizedScreenshot"
+            },
+            "deepAnalysis": {
+              "type": "object",
+              "properties": {
+                "color_histogram_comparison": {
+                  "$ref": "#/components/schemas/ColorHistogramDetail"
+                },
+                "contour_similarity": {
+                  "$ref": "#/components/schemas/ContourSimilarity"
+                },
+                "edge_density_comparison": {
+                  "$ref": "#/components/schemas/EdgeDensityComparison"
+                },
+                "fourier_transform_similarity": {
+                  "$ref": "#/components/schemas/FourierTransformSimilarity"
+                },
+                "gradient_magnitude_similarity": {
+                  "$ref": "#/components/schemas/GradientMagnitudeSimilarity"
+                },
+                "hog_similarity": {
+                  "$ref": "#/components/schemas/HogSimilarity"
+                },
+                "layout_analysis": {
+                  "$ref": "#/components/schemas/LayoutAnalysis"
+                },
+                "pixel_intensity_distribution": {
+                  "$ref": "#/components/schemas/PixelIntensityDistribution"
+                },
+                "structural_similarity_analysis": {
+                  "$ref": "#/components/schemas/StructuralSimilarityAnalysis"
+                },
+                "template_matching": {
+                  "$ref": "#/components/schemas/TemplateMatching"
+                },
+                "text_analysis": {
+                  "$ref": "#/components/schemas/TextAnalysis"
+                }
+              }
+            }
+          }
+        },
+        "ColorHistogramDetail": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Color Histogram: 99% similarity using color histogram comparison."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "ContourSimilarity": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Color Histogram: 99% similarity using color histogram comparison."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "EdgeDensityComparison": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Edge Density: 99% similarity based on edge density comparison."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "FourierTransformSimilarity": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Fourier Transform Similarity: 99% similarity based on Fourier Transform."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "GradientMagnitudeSimilarity": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Gradient Magnitude Similarity: 99% similarity based on gradient magnitude."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "HogSimilarity": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "HOG Similarity: 99% similarity based on Histogram of Oriented Gradients."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "LayoutAnalysis": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Layout Analysis: 99% similarity based on edge detection."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "PixelIntensityDistribution": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Pixel Intensity: 99% similarity based on pixel intensity distribution."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "StructuralSimilarityAnalysis": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Structural Similarity: 99% similarity using SSIM."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "TemplateMatching": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Template Matching: 99% similarity based on template matching."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "TextAnalysis": {
+          "type": "object",
+          "properties": {
+            "explanation": {
+              "type": "string",
+              "example": "Text Analysis: 99% similarity using OCR and SequenceMatcher."
+            },
+            "value": {
+              "type": "number",
+              "example": 99
+            }
+          }
+        },
+        "FunctionComparisonResult": {
+          "type": "object",
+          "properties": {
+            "totalElements": {
+              "type": "integer",
+              "example": 10
+            },
+            "selectedElements": {
+              "type": "integer",
+              "example": 5
+            },
+            "matchedElements": {
+              "type": "integer",
+              "example": 4
+            },
+            "expectedResult": {
+              "type": "integer",
+              "example": 80
+            },
+            "actualResult": {
+              "type": "integer",
+              "example": 80
+            },
+            "result": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ApiKeyCreateRequest": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "enabled": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "keyid": {
+              "type": "string"
+            },
+            "keyRole": {
+              "type": "string",
+              "enum": [
+                "admin",
+                "editor",
+                "viewer"
+              ]
+            },
+            "tenant_key": {
+              "type": "string"
+            },
+            "ttl": {
+              "type": "string",
+              "description": "The duration for which the key should remain valid. Format is \"\\<number>\\<unit>\". Unit is \"d\" for days and \"M\" for months.",
+              "example": "30d"
+            }
+          },
+          "required": [
+            "keyid",
+            "role",
+            "tenant_key",
+            "ttl"
+          ]
+        },
+        "ApiKeyCreateResponse": {
+          "type": "object",
+          "properties": {
+            "keyId": {
+              "type": "string"
+            },
+            "apiKey": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "number"
+            },
+            "expireAt": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "keyId",
+            "apiKey",
+            "createdAt",
+            "expireAt"
+          ]
+        },
+        "ApiKeyDeleteResponse": {
+          "type": "object",
+          "properties": {
+            "keyId": {
+              "type": "string"
+            },
+            "deletedAt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "keyId",
+            "deletedAt"
+          ]
+        },
+        "ApiKeyGetResponse": {
+          "type": "object",
+          "properties": {
+            "keyid": {
+              "type": "string"
+            },
+            "enabled": {
+              "type": "boolean",
+              "nullable": true
+            },
+            "keyRole": {
+              "type": "string",
+              "enum": [
+                "admin",
+                "editor",
+                "viewer"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "tenant_key": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "number"
+            },
+            "expireAt": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "keyid",
+            "role",
+            "tenant_key",
+            "createdAt",
+            "expireAt"
+          ]
+        },
+        "JwtCreateRequest": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "password"
+          ]
+        },
+        "JwtCreateResponse": {
+          "type": "object",
+          "properties": {
+            "jwt": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "jwt",
+            "email"
+          ]
+        },
+        "UserUpdateRequest": {
+          "type": "object",
+          "properties": {
+            "password": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "password"
+          ]
+        },
+        "MetricsBaseResponse": {
+          "type": "object",
+          "properties": {
+            "optimizedReqCount": {
+              "type": "number",
+              "default": 0,
+              "description": "The count of optimized requests."
+            },
+            "passthroughReqCount": {
+              "type": "number",
+              "default": 0,
+              "description": "The count of passthrough requests."
+            },
+            "unoptimizedReqCount": {
+              "type": "number",
+              "default": 0,
+              "description": "The count of unoptimized requests."
+            },
+            "optimizedPageCount": {
+              "type": "number",
+              "default": 0,
+              "description": "The count of unique optimized pages."
+            },
+            "passthroughPageCount": {
+              "type": "number",
+              "default": 0,
+              "description": "The count of unique passthrough pages."
+            },
+            "unoptimizedPageCount": {
+              "type": "number",
+              "default": 0,
+              "description": "The count of unique unoptimized pages."
+            }
+          },
+          "required": [
+            "optimizedReqCount",
+            "passthroughReqCount",
+            "unoptimizedReqCount",
+            "optimizedPageCount",
+            "passthroughPageCount",
+            "unoptimizedPageCount"
+          ]
+        },
+        "MetricsSummaryResponse": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/MetricsBaseResponse"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "analysisTimeSeconds": {
+                  "type": "number",
+                  "description": "The average number of seconds required to run analysis."
+                },
+                "validationTimeSeconds": {
+                  "type": "number",
+                  "description": "The average number of seconds required to run validation."
+                }
+              }
+            }
+          ]
+        },
+        "MetricsDetailsResponse": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MetricsBaseResponse"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "dateGroup": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The timestamp group"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "MetricsResponse": {
+          "type": "object",
+          "properties": {
+            "summary": {
+              "$ref": "#/components/schemas/MetricsSummaryResponse"
+            },
+            "details": {
+              "$ref": "#/components/schemas/MetricsDetailsResponse"
+            }
+          }
+        }
+      }
+    },
+    "paths": {
+      "/api/p3/v1/version": {
+        "get": {
+          "summary": "Version of service",
+          "tags": [
+            "Version"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Get current version of the service.",
+          "operationId": "getVersion",
+          "responses": {
+            "200": {
+              "description": "Successfully fetched version.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetVersionResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/health": {
+        "get": {
+          "summary": "Service health status",
+          "tags": [
+            "Health"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Get current health status of the service.",
+          "responses": {
+            "200": {
+              "description": "Successfully fetched health status.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetHealthStatusResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/policies": {
+        "get": {
+          "summary": "Get policies",
+          "tags": [
+            "Policies"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Get all the existing policies.",
+          "operationId": "getPolicies",
+          "responses": {
+            "200": {
+              "description": "Successfully fetched policies.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetPoliciesResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+        "post": {
+          "summary": "Create policy",
+          "tags": [
+            "Policies"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Create a policy to set optimizations applicable for a URL pattern through P3.",
+          "operationId": "createPolicy",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePolicyRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully created policy.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "87315f9f-0ef5-5499-ac6b-086ff488e3dd"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "409": {
+              "description": "Duplicate policy.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "P3"
+                      },
+                      "errorMessage": {
+                        "type": "string",
+                        "example": "Duplicate policy created.Needs to be a unique combination of server URL and URL pattern."
+                      },
+                      "code": {
+                        "type": "number",
+                        "example": 409
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/policies/{id}": {
+        "get": {
+          "summary": "Get policy",
+          "tags": [
+            "Policies"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Get the details of a specific policy by ID.",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string",
+                "example": "87315f9f-0ef5-5499-ac6b-086ff488e3dd"
+              },
+              "required": true,
+              "description": "ID of the policy to be fetched."
+            }
+          ],
+          "operationId": "getPolicy",
+          "responses": {
+            "200": {
+              "description": "Successfully fetched policy.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GetPolicyResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "Policy ID not found.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "P3"
+                      },
+                      "errorMessage": {
+                        "type": "string",
+                        "example": "Policy ID not found."
+                      },
+                      "code": {
+                        "type": "number",
+                        "example": 404
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/policies/job/{id}": {
+        "get": {
+          "summary": "Find Policy by Job ID",
+          "tags": [
+            "Policies"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Find and return the policy corresponding to the given Job ID based on URL pattern matching.",
+          "operationId": "findPolicyByJobId",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "The unique identifier of the job."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully found and returned the policy.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "example": "b9b54012-6339-5987-a320-3effea2c087d"
+                      },
+                      "serverUrl": {
+                        "type": "string",
+                        "example": "https://www.macrometa.com"
+                      },
+                      "urlPattern": {
+                        "type": "string",
+                        "example": "/home"
+                      },
+                      "manualTest": {
+                        "type": "object",
+                        "example": {}
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "The job with the given ID was not found."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+        "patch": {
+          "summary": "Update policy",
+          "tags": [
+            "Policies"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Update the details of an existing policy.",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string",
+                "example": "87315f9f-0ef5-5499-ac6b-086ff488e3dd"
+              },
+              "required": true,
+              "description": "ID of the policy to update."
+            }
+          ],
+          "operationId": "updatePolicy",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatePolicyRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully updated policy.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "87315f9f-0ef5-5499-ac6b-086ff488e3dd"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "Policy ID not found.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "P3"
+                      },
+                      "errorMessage": {
+                        "type": "string",
+                        "example": "Policy ID not found."
+                      },
+                      "code": {
+                        "type": "number",
+                        "example": 404
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete policy",
+          "tags": [
+            "Policies"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Delete policy by ID.",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string",
+                "example": "87315f9f-0ef5-5499-ac6b-086ff488e3dd"
+              },
+              "required": true,
+              "description": "ID of the policy to be deleted."
+            }
+          ],
+          "operationId": "deletePolicy",
+          "responses": {
+            "204": {
+              "description": "No content."
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "Policy ID not found.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "P3"
+                      },
+                      "errorMessage": {
+                        "type": "string",
+                        "example": "Policy ID not found."
+                      },
+                      "code": {
+                        "type": "number",
+                        "example": 404
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/validations/validateHtml/ondemand": {
+        "post": {
+          "summary": "Validate HTML on-demand",
+          "tags": [
+            "Validations"
+          ],
+          "description": "Validates the HTML of a given URL and returns a detailed visual and functional comparison result.",
+          "operationId": "validateHtmlOnDemand",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "example": "https://www.samsung.com/us/shop/all-deals/tv-and-home-theater/"
+                    },
+                    "width": {
+                      "type": "integer",
+                      "example": 1383
+                    },
+                    "height": {
+                      "type": "integer",
+                      "example": 864
+                    },
+                    "deviceType": {
+                      "type": "string",
+                      "example": "desktop"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully fetched validation results.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "visualComparisonResult": {
+                        "type": "object",
+                        "properties": {
+                          "optimizedScreenshot": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "highlightedScreenshot": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "result": {
+                            "type": "boolean"
+                          },
+                          "pixelsMatched": {
+                            "type": "integer"
+                          },
+                          "totalPixels": {
+                            "type": "integer"
+                          },
+                          "deepAnalysis": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "number",
+                                  "format": "float"
+                                },
+                                "explanation": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "fnComparisonResult": {
+                        "type": "object"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "COMPLETED"
+                        ]
+                      },
+                      "isPassed": {
+                        "type": "boolean"
+                      },
+                      "result": {
+                        "type": "string"
+                      },
+                      "resolution": {
+                        "type": "object",
+                        "properties": {
+                          "width": {
+                            "type": "integer"
+                          },
+                          "height": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "jobId": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "policyId": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "sourceUrl": {
+                        "type": "string",
+                        "format": "hostname"
+                      },
+                      "urlPattern": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input parameters."
+            },
+            "401": {
+              "description": "Unauthorized access - invalid API key."
+            },
+            "500": {
+              "description": "Server error encountered during validation."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/validations": {
+        "get": {
+          "summary": "Get Validations Results",
+          "tags": [
+            "Validations"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Get all the validation result for the jobs.",
+          "operationId": "getValidation",
+          "responses": {
+            "200": {
+              "description": "Successfully fetched validation results.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ValidationResultResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/validations/testSuite/{policyId}": {
+        "post": {
+          "summary": "Save Test Suite Result",
+          "tags": [
+            "Validations"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Save the manual test suite results for a given policy.",
+          "operationId": "saveTestSuite",
+          "parameters": [
+            {
+              "name": "policyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "The unique identifier of the validation to which the test suite result belongs."
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "testCount",
+                    "testsPassed",
+                    "testsFailed"
+                  ],
+                  "properties": {
+                    "testCount": {
+                      "type": "number",
+                      "example": 1
+                    },
+                    "testsPassed": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "testsFailed": {
+                      "type": "number",
+                      "example": 1
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "N/A",
+                      "description": "Error message if the test suite failed, otherwise not required."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully saved test suite result.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": "Test suite result saved successfully."
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, invalid input parameters."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "The validation with the given ID was not found."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/validations/testSuite/policy/{policyId}": {
+        "post": {
+          "summary": "Process Manual Tests by Policy ID",
+          "tags": [
+            "Validations"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Processes manual tests for a given policy ID and returns test suite results.",
+          "operationId": "testSuiteByPolicyId",
+          "parameters": [
+            {
+              "name": "policyId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "The unique identifier of the policy for which to process manual tests. If omitted, tests for all policies may be processed."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully processed manual tests and returned test suite results.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "testCount": {
+                        "type": "number",
+                        "example": 1
+                      },
+                      "testsPassed": {
+                        "type": "number",
+                        "example": 1
+                      },
+                      "testsFailed": {
+                        "type": "number",
+                        "example": 0
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, possibly due to missing or invalid parameters."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "The policy with the given ID was not found."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/metrics": {
+        "get": {
+          "summary": "Get metrics",
+          "tags": [
+            "Metrics"
+          ],
+          "description": "Get metrics for a specific period.",
+          "operationId": "filterMetricsByDate",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "start",
+              "in": "query",
+              "required": true,
+              "description": "The start date and time used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
+              "schema": {
+                "type": "string",
+                "example": "YYYY-MM-DDTHH:MM:SSZ"
+              }
+            },
+            {
+              "name": "end",
+              "in": "query",
+              "required": true,
+              "description": "The end date and time used for querying metrics data. Must be provided in RFC3339 date-time format and be in UTC.",
+              "schema": {
+                "type": "string",
+                "example": "YYYY-MM-DDTHH:MM:SSZ"
+              }
+            },
+            {
+              "name": "group",
+              "in": "query",
+              "required": true,
+              "description": "The duration by which to group and summarize results.",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "hour",
+                  "day",
+                  "month"
+                ]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A list of metrics.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/telemetry": {
+        "get": {
+          "summary": "Provides the telemetry data",
+          "tags": [
+            "Telemetry"
+          ],
+          "description": "Provides telemetry data in Prometheus format. Useful for monitoring services to monitor the health of the service.",
+          "operationId": "getTelemetry",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Return the telemetry data for service.",
+              "content": {
+                "application/text": {
+                  "example": ""
+                }
+              }
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/usage/hourly": {
+        "get": {
+          "summary": "Gets hourly usage statistics",
+          "tags": [
+            "Usage"
+          ],
+          "description": "Get hourly usage statistics of a specific server for a specified time period.",
+          "operationId": "getHourlyUsage",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "serverUrl",
+              "in": "query",
+              "required": true,
+              "description": "Server for which the usage information is to be retrieved.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "start",
+              "in": "query",
+              "required": true,
+              "description": "The start date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+              "schema": {
+                "type": "string",
+                "example": "YYYY-MM-DDTHH:MM:SSZ"
+              }
+            },
+            {
+              "name": "end",
+              "in": "query",
+              "required": true,
+              "description": "The end date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+              "schema": {
+                "type": "string",
+                "example": "YYYY-MM-DDTHH:MM:SSZ"
+              }
+            },
+            {
+              "name": "aggregate",
+              "in": "query",
+              "required": false,
+              "description": "If the _aggregate_ flag is _true_, then the results are consolidated and returned as an aggregate summary for the specified _start_ and _end_ period. If the _aggregate_ flag is _false_ or not provided, then the data is returned as separate, distributed records for the same period on an hourly basis without aggregation. If _aggregate_ flag is _true_, then [offset, limit, sort, order] are not considered.",
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "description": "The _limit_ parameter determines the number of usage records returned.",
+              "schema": {
+                "type": "number",
+                "default": 1000,
+                "minimum": 1,
+                "maximum": 1000
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "description": "Represents the starting point from where to begin fetching the usage records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of usage records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 usage records and set the _limit_ to 100, then the first API call without an _offset_ will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
+              "schema": {
+                "type": "number",
+                "default": 0
+              }
+            },
+            {
+              "name": "sortby",
+              "in": "query",
+              "required": false,
+              "description": "The field used for sorting.",
+              "schema": {
+                "type": "string",
+                "default": "timestamp"
+              }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "required": false,
+              "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n.",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "asc"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usage information retrieved.",
+              "headers": {
+                "X-count": {
+                  "description": "The total number of records for the specified time period if _aggregate_ is set to _false_.",
+                  "schema": {
+                    "type": "number",
+                    "default": 1000
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "oneOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/UsageGetResponse"
+                        }
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/AggregateUsageGetResponse"
+                        }
+                      }
+                    ]
+                  },
+                  "examples": {
+                    "example": {
+                      "summary": "Response when aggregate is false.",
+                      "value": [
+                        {
+                          "serverUrl": "something.com",
+                          "requests": 1305,
+                          "maxRps": 100,
+                          "timestamp": "2023-07-12T07:00:00.000Z"
+                        },
+                        {
+                          "serverUrl": "something.com",
+                          "requests": 1200,
+                          "maxRps": 125,
+                          "timestamp": "2023-07-12T08:00:00.000Z"
+                        }
+                      ]
+                    },
+                    "example_two": {
+                      "summary": "Response when aggregate is true.",
+                      "value": [
+                        {
+                          "serverUrl": "something.com",
+                          "requests": 2505,
+                          "maxRps": 112.5
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "Usage info not available."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/usage/daily": {
+        "get": {
+          "summary": "Gets daily usage statistics",
+          "tags": [
+            "Usage"
+          ],
+          "description": "Gets daily usage statistics of a specific server for a specified time period.",
+          "operationId": "getDailyUsage",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "server",
+              "in": "query",
+              "required": true,
+              "description": "server for which the usage information is to be retrieved.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "start",
+              "in": "query",
+              "required": true,
+              "description": "The start date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+              "schema": {
+                "type": "string",
+                "example": "YYYY-MM-DDTHH:MM:SSZ"
+              }
+            },
+            {
+              "name": "end",
+              "in": "query",
+              "required": true,
+              "description": "The end date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+              "schema": {
+                "type": "string",
+                "example": "YYYY-MM-DDTHH:MM:SSZ"
+              }
+            },
+            {
+              "name": "aggregate",
+              "in": "query",
+              "required": false,
+              "description": "If the _aggregate_ flag is is included and set to _true_, then the results are consolidated and returned as an aggregate summary for the specified _start_ and _end_ period. If the _aggregate_ flag is _false_ or not provided, then the data is returned as separate, distributed records for the same period on a per-day basis without aggregation. If _aggregate_ flag is _true_, then [offset, limit, sort, order] are not considered.",
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "description": "The _limit_ parameter determines the number of usage records returned.",
+              "schema": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 1000,
+                "default": 1000
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "description": "Represents the starting point from where to begin fetching the usage records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of usage records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 usage records and set the _limit_ to 100, then the first API call without an _offset_ will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
+              "schema": {
+                "type": "number",
+                "default": 0
+              }
+            },
+            {
+              "name": "sortby",
+              "in": "query",
+              "required": false,
+              "description": "The field used for sorting.",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "usage_requests",
+                  "maxRps",
+                  "serverUrl",
+                  "timestamp"
+                ],
+                "default": "timestamp"
+              }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "required": false,
+              "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "asc"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usage information retrieved.",
+              "headers": {
+                "X-count": {
+                  "description": "The total number of records for the specified time period if _aggregate_ is set to _false_.",
+                  "schema": {
+                    "type": "number",
+                    "default": 1000
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "oneOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/UsageGetResponse"
+                        }
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/AggregateUsageGetResponse"
+                        }
+                      }
+                    ]
+                  },
+                  "examples": {
+                    "example": {
+                      "summary": "Response when aggregate is set to false.",
+                      "value": [
+                        {
+                          "serverUrl": "something.com",
+                          "requests": 1305,
+                          "maxRps": 100,
+                          "timestamp": "2023-07-12T07:00:00.000Z"
+                        },
+                        {
+                          "serverUrl": "something.com",
+                          "requests": 1200,
+                          "maxRps": 125,
+                          "timestamp": "2023-07-13T08:00:00.000Z"
+                        }
+                      ]
+                    },
+                    "example_two": {
+                      "summary": "Response when aggregate is set to true.",
+                      "value": [
+                        {
+                          "serverUrl": "something.com",
+                          "requests": 2505,
+                          "maxRps": 112.5
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "Usage info not available."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/usage/monthly": {
+        "get": {
+          "summary": "Get monthly usage statistics",
+          "tags": [
+            "Usage"
+          ],
+          "description": "Gets monthly usage statistics of a specific server for a specified time period.",
+          "operationId": "getMonthlyUsage",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "server",
+              "in": "query",
+              "required": false,
+              "description": "server for which the usage information is to be retrieved. If a server is not provided, then monthly usage information for all the servers is fetched.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "start",
+              "in": "query",
+              "required": true,
+              "description": "The start date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+              "schema": {
+                "type": "string",
+                "example": "YYYY-MM-DDTHH:MM:SSZ"
+              }
+            },
+            {
+              "name": "end",
+              "in": "query",
+              "required": true,
+              "description": "The end date and time used for querying usage data. Must be provided in RFC3339 date-time format and be in UTC.",
+              "schema": {
+                "type": "string",
+                "example": "YYYY-MM-DDTHH:MM:SSZ"
+              }
+            },
+            {
+              "name": "aggregate",
+              "in": "query",
+              "required": false,
+              "description": "If the _aggregate_ flag is included and set to _true_, then the results are consolidated and returned as an aggregate summary for the specified _start_ and _end_ period. If the _aggregate_ flag is _false_ or not provided, then the data is returned as separate, distributed records for the same period. By default, the value is false.",
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "required": false,
+              "description": "The _limit_ parameter determines the number of usage records returned.",
+              "schema": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 1000,
+                "default": 1000
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "required": false,
+              "description": "Represents the starting point from where to begin fetching the usage records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of usage records. By default, it is set to 0, meaning the data retrieval will start from the very first record. For example, if you have 10,000 usage records and set the _limit_ to 100, then the first API call without an _offset_ will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records from 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
+              "schema": {
+                "type": "number",
+                "default": 0
+              }
+            },
+            {
+              "name": "sortby",
+              "in": "query",
+              "required": false,
+              "description": "The field used for sorting.",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "usage_requests",
+                  "maxRps",
+                  "serverUrl",
+                  "timestamp"
+                ],
+                "default": "timestamp"
+              }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "required": false,
+              "description": "The sort order:\n * _asc_ - Ascending, from A to Z\n * _desc_ - Descending, from Z to A\n",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "default": "asc"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usage information retrieved.",
+              "headers": {
+                "X-count": {
+                  "description": "The total number of records for the specified time period.",
+                  "schema": {
+                    "type": "number",
+                    "default": 1000
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "oneOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/UsageGetResponse"
+                        }
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/AggregateUsageGetResponse"
+                        }
+                      }
+                    ]
+                  },
+                  "examples": {
+                    "example": {
+                      "summary": "Response when aggregate is false.",
+                      "value": [
+                        {
+                          "serverUrl": "something.com",
+                          "requests": 1305,
+                          "maxRps": 100,
+                          "timestamp": "2023-06-12T00:00:00.000Z"
+                        },
+                        {
+                          "serverUrl": "something.com",
+                          "requests": 1200,
+                          "maxRps": 125,
+                          "timestamp": "2023-07-12T00:00:00.000Z"
+                        }
+                      ]
+                    },
+                    "example_two": {
+                      "summary": "Response when aggregate is true.",
+                      "value": [
+                        {
+                          "serverUrl": "something.com",
+                          "requests": 2505,
+                          "maxRps": 112.5
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "Usage info not available."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/cache/purge": {
+        "post": {
+          "tags": [
+            "Cache"
+          ],
+          "summary": "Purge cache",
+          "description": "Purges URLs from the cache. Can also purge CDN cache if specified.",
+          "operationId": "purgeCache",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "requestBody": {
+            "required": false,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "urls": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of URLs to be purged. If not provided, all URLs in P3 will be purged."
+                    },
+                    "purgeCdnCache": {
+                      "type": "boolean",
+                      "description": "If true, then the CDN cache will also be purged. Requires 'cdnData' object if true."
+                    },
+                    "cdnData": {
+                      "type": "object",
+                      "description": "Required if 'purgeCdnCache' is true. Contains CDN-related data.",
+                      "properties": {
+                        "network": {
+                          "type": "string",
+                          "description": "Environment of the CDN, e.g., production."
+                        },
+                        "objectsType": {
+                          "type": "string",
+                          "description": "Type of object to purge. Can be cpcode, urls, or tags."
+                        },
+                        "objects": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Depending on objectsType, this can be an array of integers (for cpcode) or strings (for urls or tags)."
+                        },
+                        "auth": {
+                          "type": "object",
+                          "properties": {
+                            "accessToken": {
+                              "type": "string"
+                            },
+                            "clientSecret": {
+                              "type": "string"
+                            },
+                            "clientToken": {
+                              "type": "string"
+                            },
+                            "baseUri": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "network",
+                        "objectsType",
+                        "objects",
+                        "auth"
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "purgeExample": {
+                    "summary": "Example purge request",
+                    "value": {
+                      "urls": [
+                        "https://example.com/*"
+                      ],
+                      "purgeCdnCache": true,
+                      "cdnData": {
+                        "network": "production",
+                        "objectsType": "cpcode",
+                        "objects": [
+                          123456,
+                          456789
+                        ],
+                        "auth": {
+                          "accessToken": "ACCESS_TOKEN",
+                          "clientSecret": "CLIENT_SECRET",
+                          "clientToken": "CLIENT_TOKEN",
+                          "baseUri": "HOST"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Cache purge completed successfully.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      },
+                      "proxyCache": {
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "examples": {
+                    "purgeResponse": {
+                      "summary": "Example response for a successful purge",
+                      "value": {
+                        "message": "Proxy cache purge completed.",
+                        "proxyCache": {
+                          "status": {
+                            "https://example.com/*": "PURGED",
+                            "https://example.com/home/*": "PURGED"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/ppm/jobs": {
+        "get": {
+          "tags": [
+            "PPM"
+          ],
+          "summary": "Get list of jobs",
+          "description": "Retrieves a paginated list of PPM jobs.",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "offset",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0
+              },
+              "description": "The number of items to skip before starting to collect the result set."
+            },
+            {
+              "in": "query",
+              "name": "limit",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "default": 10
+              },
+              "description": "The numbers of items to return."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A paginated list of jobs.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "type": "integer",
+                        "description": "The total number of jobs available.",
+                        "example": 5
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "example": "123123-131231-123123-123123"
+                            },
+                            "cronExpression": {
+                              "type": "string",
+                              "nullable": true,
+                              "example": "*/30 * * * *"
+                            },
+                            "isMobile": {
+                              "type": "boolean",
+                              "example": false
+                            },
+                            "url": {
+                              "type": "string",
+                              "example": "https://something.com/something/"
+                            },
+                            "isEnabled": {
+                              "type": "boolean",
+                              "example": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request. Possible issue with the pagination parameters."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "PPM"
+          ],
+          "summary": "Create a PPM job",
+          "description": "Creates a new performance measurement job for analyzing core web vitals of an unoptimized/optimized URL.",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "cronExpression",
+                    "deviceType",
+                    "networkCondition",
+                    "url"
+                  ],
+                  "properties": {
+                    "cronExpression": {
+                      "type": "string",
+                      "description": "Cron expression for scheduling the job.",
+                      "example": "*/30 * * * *"
+                    },
+                    "deviceType": {
+                      "type": "string",
+                      "enum": [
+                        "Desktop",
+                        "Mobile"
+                      ],
+                      "description": "The type of device to simulate.",
+                      "example": "Desktop"
+                    },
+                    "networkCondition": {
+                      "type": "string",
+                      "enum": [
+                        "Slow4G",
+                        "Regular3G"
+                      ],
+                      "description": "The network condition to simulate.",
+                      "example": "Regular3G"
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL to test.",
+                      "example": "https://something.com/something"
+                    },
+                    "viewport": {
+                      "type": "object",
+                      "properties": {
+                        "height": {
+                          "type": "integer",
+                          "description": "The viewport height in pixels.",
+                          "example": 1080
+                        },
+                        "width": {
+                          "type": "integer",
+                          "description": "The viewport width in pixels.",
+                          "example": 1920
+                        }
+                      },
+                      "required": [
+                        "height",
+                        "width"
+                      ]
+                    },
+                    "headers": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Any additional headers to send in the request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "PPM Job successfully created.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "The unique identifier of the created PPM job."
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request. Possible issue with the job data provided."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/ppm/vitals/{percentile}": {
+        "get": {
+          "tags": [
+            "PPM"
+          ],
+          "summary": "Get Web Vitals Metrics Percentile",
+          "description": "Retrieves web vitals metrics percentile data based on the provided datetime range and pagination.",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "percentile",
+              "required": true,
+              "schema": {
+                "type": "number",
+                "example": 75
+              },
+              "description": "The percentile value used to calculate."
+            },
+            {
+              "in": "query",
+              "name": "offset",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0
+              },
+              "description": "The number of items to skip before starting to collect the result set."
+            },
+            {
+              "in": "query",
+              "name": "limit",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "default": 10
+              },
+              "description": "The numbers of items to return."
+            },
+            {
+              "name": "start",
+              "in": "query",
+              "description": "The start date used for querying core web vitals data. Must be provided in RFC3339 date-time format and UTC.",
+              "required": false,
+              "example": "YYYY-MM-DDTHH:MM:SSZ",
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            {
+              "name": "end",
+              "in": "query",
+              "description": "The end date used for querying core web vitals data. Must be provided in RFC3339 date-time format and UTC.",
+              "required": false,
+              "example": "YYYY-MM-DDTHH:MM:SSZ",
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Web vitals metrics percentile data successfully retrieved.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "type": "integer",
+                        "description": "The total number of records available."
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "url": {
+                              "type": "string",
+                              "example": "https://something.com/something/"
+                            },
+                            "deviceType": {
+                              "type": "string",
+                              "enum": [
+                                "Desktop",
+                                "Mobile"
+                              ]
+                            },
+                            "hostname": {
+                              "type": "string",
+                              "example": "something.com"
+                            },
+                            "score": {
+                              "type": "integer",
+                              "example": 99
+                            },
+                            "cumulativeLayoutShift": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "firstContentfulPaint": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "firstMeaningfulPaint": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "timeToInteractive": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "largestContentfulPaint": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "speedIndex": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "totalBlockingTime": {
+                              "type": "string",
+                              "example": "0.1"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request. Possible issue with the request body."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/ppm/vitals/url/{url}": {
+        "get": {
+          "tags": [
+            "PPM"
+          ],
+          "summary": "Get Web Vitals Metrics by URL",
+          "description": "Retrieves web vitals metrics for a specific URL and device type, with pagination.",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "url",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "https://something.com/something/"
+              },
+              "description": "The URL retrieving core web vitals for the provided URL."
+            },
+            {
+              "in": "query",
+              "name": "deviceType",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "Desktop"
+              },
+              "description": "The device type of the URL for retrieving core web vitals."
+            },
+            {
+              "in": "query",
+              "name": "offset",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 0,
+                "default": 0
+              },
+              "description": "The number of items to skip before starting to collect the result set."
+            },
+            {
+              "in": "query",
+              "name": "limit",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "default": 10
+              },
+              "description": "The numbers of items to return."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Web vitals metrics data successfully retrieved by URL.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "type": "integer",
+                        "description": "The total number of records available."
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "example": "13123-13123-31231-ddddd"
+                            },
+                            "deviceType": {
+                              "type": "string",
+                              "example": "Desktop"
+                            },
+                            "hostname": {
+                              "type": "string",
+                              "example": "something.com"
+                            },
+                            "score": {
+                              "type": "integer",
+                              "example": 99
+                            },
+                            "cumulativeLayoutShift": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "firstContentfulPaint": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "firstMeaningfulPaint": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "timeToInteractive": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "largestContentfulPaint": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "speedIndex": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "totalBlockingTime": {
+                              "type": "string",
+                              "example": "0.1"
+                            },
+                            "url": {
+                              "type": "string",
+                              "format": "uri",
+                              "example": "https://something.com/something/"
+                            },
+                            "timestamp": {
+                              "type": "integer",
+                              "example": 1707767456253,
+                              "format": "int64"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request. Possible issue with the request body."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/ppm/jobs/{jobId}": {
+        "delete": {
+          "tags": [
+            "PPM"
+          ],
+          "summary": "Delete a job",
+          "description": "Deletes a specific PPM job based on the job ID provided.",
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "jobId",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "13123-13123-31231-ddddd"
+              },
+              "description": "The unique ID of the job to delete."
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "No Content - Successfully deleted the job."
+            },
+            "400": {
+              "description": "Bad request. Possible issue with the job key provided."
+            },
+            "404": {
+              "description": "The specified job key does not exist."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/auth/apikeys": {
+        "post": {
+          "summary": "Create API key",
+          "tags": [
+            "Authentication"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Create API key",
+          "operationId": "createApiKey",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiKeyCreateRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successfully created API key.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiKeyCreateResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "409": {
+              "description": "Duplicate API key."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/auth/apikeys/{apikey}": {
+        "get": {
+          "summary": "Get details of an API key",
+          "tags": [
+            "Authentication"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Get details of an API key",
+          "operationId": "getApiKey",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "apikey",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully fetched details of the specified API key.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiKeyGetResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "Specified API key does not exist."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete an API key",
+          "tags": [
+            "Authentication"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Delete an API key",
+          "operationId": "deleteApiKey",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "apikey",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully deleted the specified API key.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ApiKeyDeleteResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "Specified API key does not exist."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/auth/bearer": {
+        "post": {
+          "summary": "Create a bearer token",
+          "tags": [
+            "Authentication"
+          ],
+          "description": "Obtain a bearer token based on email and password.",
+          "operationId": "getBearerToken",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JwtCreateRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successfully created new bearer token.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/JwtCreateResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      },
+      "/api/p3/v1/auth/users/{email}": {
+        "patch": {
+          "summary": "Update user",
+          "tags": [
+            "Authentication"
+          ],
+          "security": [
+            {
+              "ApiKeyAuth": []
+            }
+          ],
+          "description": "Update new user",
+          "operationId": "updateUser",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "email",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserUpdateRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "204": {
+              "description": "Successfully created new user."
+            },
+            "400": {
+              "description": "Bad Request."
+            },
+            "401": {
+              "description": "Authorization failure due to invalid authentication credentials."
+            },
+            "403": {
+              "description": "Either the API key doesn't have permissions or it is deactivated."
+            },
+            "404": {
+              "description": "User does not exist."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      }
+    }
+  }
