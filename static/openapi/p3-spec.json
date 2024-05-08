@@ -3431,7 +3431,7 @@
               "ApiKeyAuth": []
             }
           ],
-          "description": "Update new user",
+          "description": "Update new user.",
           "operationId": "updateUser",
           "parameters": [
             {
