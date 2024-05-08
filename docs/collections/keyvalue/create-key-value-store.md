@@ -1,12 +1,12 @@
 ---
-title: Create a Key-Value Store
+title: Create a Key-Value Collection
 sidebar_position: 10
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to create a new Key-Value Store collection.
+This page explains how to create a new Key-Value collection.
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -16,7 +16,7 @@ Follow these instructions to create a new collection using the GDN console web U
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Data > Collections**.
 3. Click **New Collection**.
-4. Click **Key-Value Store**.
+4. Click **Key-Value**.
 5. Enter information about the collection and then click **Create**.
 
    - **Collection Name -** Required. A unique name to distinguish the collection. Spaces are not allowed.

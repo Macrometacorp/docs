@@ -1,6 +1,6 @@
 ---
 sidebar_position: 40
-title: Monitor and Debug P3 with EST Streams
+title: Debug P3 with EST Stream
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -15,10 +15,7 @@ Keep the Stream feature enabled for debugging purposes only when necessary to mi
 
 Turning on EST Stream feature provides access to the Debug tab in the EST dashboard.
 
-Use EST Stream for:
-
-- **Debugging** - Quickly identify and resolve issues with third-party tags by monitoring the real-time data in the Debug tab.
-- **Custom Monitoring** - Set up custom alerts or dashboards based on specific events or metrics of interest from the stream data.
+You can use EST Stream to quickly identify and resolve issues with third-party tags by monitoring the real-time data in the Debug tab.
 
 ### Streaming Data
 
