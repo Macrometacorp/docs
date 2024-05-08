@@ -3406,7 +3406,7 @@
               }
             },
             "400": {
-              "description": "Bad Request."
+              "description": "Bad request."
             },
             "401": {
               "description": "Authorization failure due to invalid authentication credentials."
