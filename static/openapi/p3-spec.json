@@ -73,7 +73,7 @@
             },
             "serverUrl": {
               "type": "string",
-              "description": "Origin/server URL from where the html content needs to be fetched to run optimizations.",
+              "description": "Origin or server URL from which HTML content is retrieved for optimization purposes.",
               "example": "something.com"
             },
             "deviceType": {
