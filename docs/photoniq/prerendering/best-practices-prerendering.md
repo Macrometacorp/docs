@@ -11,9 +11,9 @@ Be very careful when configuring your origins for prerendering. Incorrect settin
 
 ## Use the API for Caching and Recaching
 
-Take advantage of the prerendering service's API to programatically cache or recache pages. This ensures that crawlers always access up-to-date content, and allows you greater control over your caching strategy. You can also manually purge the cache in the web console.
+Take advantage of the caching feature to serve the static version of your website's page faster. By using this feature, the pages are cached and served to the bots without the need of prerendering them again. Configure the cache expiration time according to how frequently your website is modified.
 
-For more information about managing the Prerendering cache, refer to [Manage Cache](manage-cache). 
+For more information about managing the Prerendering cache, refer to [Manage Cache](manage-cache).
 
 ## Remove or Update Dead Links
 
