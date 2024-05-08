@@ -5,9 +5,9 @@ title: Prerendering Best Practices
 
 Prerendering generates static HTML pages from dynamic content to make your site content more available to web crawlers (good bots). The following best practices help you get the most out of Prerendering and make sure no key content is left undiscovered.
 
-## Domain Configuration
+## Origin Configuration
 
-Be very careful when configuring the domains for prerendering. Incorrect settings can result in caching problems and the delivery of outdated content. Make sure the specified domains are accurate and correspond to the sections of your site that you intend to prerender.
+Be very careful when configuring your origins for prerendering. Incorrect settings can result in caching problems and the delivery of outdated content to bots. Make sure the specified origins are accurate and correspond to the sections of your site that you intend to prerender.
 
 ## Use the API for Caching and Recaching
 
