@@ -9,7 +9,7 @@ Prerendering generates static HTML pages from dynamic content to make your site 
 
 Be very careful when configuring your origins for prerendering. Incorrect settings can result in caching problems and the delivery of outdated content to bots. Make sure the specified origins are accurate and correspond to the sections of your site that you intend to prerender.
 
-## Use the API for Caching and Recaching
+## Cache Configuration
 
 Take advantage of the prerendering service's API to programatically cache or recache pages. This ensures that crawlers always access up-to-date content, and allows you greater control over your caching strategy. You can also manually purge the cache in the web console.
 
