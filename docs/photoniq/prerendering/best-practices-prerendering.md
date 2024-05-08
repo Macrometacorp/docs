@@ -13,7 +13,7 @@ Be very careful when configuring your origins for prerendering. Incorrect settin
 
 Take advantage of the prerendering service's API to programatically cache or recache pages. This ensures that crawlers always access up-to-date content, and allows you greater control over your caching strategy. You can also manually purge the cache in the web console.
 
-For more information about managing the Preredering cache, refer to [Manage Cache](manage-cache).
+For more information about managing the Prerendering cache, refer to [Manage Cache](manage-cache). 
 
 ## Remove or Update Dead Links
 
