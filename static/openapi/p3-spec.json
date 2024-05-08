@@ -68,7 +68,7 @@
             },
             "urlPattern": {
               "type": "string",
-              "description": "Url pattern to group same pages under similar set of optimizations.",
+              "description": "URL pattern to group same pages under similar set of optimizations.",
               "example": "^/us/.*$"
             },
             "serverUrl": {
