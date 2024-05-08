@@ -9,7 +9,7 @@ Prerendering generates static HTML pages from dynamic content to make your site 
 
 Be very careful when configuring your origins for prerendering. Incorrect settings can result in caching problems and the delivery of outdated content to bots. Make sure the specified origins are accurate and correspond to the sections of your site that you intend to prerender.
 
-## Use the API for Caching and Recaching
+## Cache Configuration
 
 Take advantage of the caching feature to serve the static version of your website's page faster. By using this feature, the pages are cached and served to the bots without the need of prerendering them again. Configure the cache expiration time according to how frequently your website is modified.
 
