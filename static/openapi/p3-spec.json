@@ -78,7 +78,7 @@
             },
             "deviceType": {
               "type": "string",
-              "description": "Type of device the optimizations are intended to be applied.",
+              "description": "Type of device targeted for optimizations.",
               "example": "Desktop"
             },
             "optimizationLevel": {
