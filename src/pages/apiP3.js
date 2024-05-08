@@ -18,7 +18,7 @@ export default function APIFpsServicePage() {
   return (
     <Layout>
       <Head>
-        <title>PhotonIQ Performance Proxy API Reference | Macrometa Docs</title>
+        <title>PhotonIQ Performance Proxy (P3) API Reference | Macrometa Docs</title>
         <meta name="description" content="PhotonIQ Performance Proxy API" />
         <meta name="og:description" content="PhotonIQ Performance Proxy API" />
         {/* Loading styles for elements this way so it doesn't interfere with other styles */}
