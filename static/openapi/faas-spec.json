@@ -18,7 +18,7 @@
           "Health"
         ],
         "summary": "Check the health of the service",
-        "description": "Check if system is up and running.",
+        "description": "Check the health of the service.",
         "operationId": "handle_mm_health",
         "responses": {
           "200": {
