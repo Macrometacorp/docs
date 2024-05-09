@@ -48,7 +48,7 @@ Perform the following steps to create a new P3 policy:
       or provide regex:
         - ^/us/category/.*$
         - ^/us/product/.*$
-   - **Sample Path** - NEED DEFINITION
+   - **Sample Path** - An example of a path that matches the URL pattern. This will later be used to validate the regex and for automated cache purging.
    - **Target Region** - The region to which the content from the origin will be served.
      - **Is Region-Specific Content?** - Select **Yes** or **No**.
      - **Is Origin Content Compressed?** - Indicate whether the origin content is compressed or not.
