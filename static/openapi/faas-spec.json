@@ -17,7 +17,7 @@
         "tags": [
           "Health"
         ],
-        "summary": "Check system health",
+        "summary": "Check the health of the service",
         "description": "Check if system is up and running.",
         "operationId": "handle_mm_health",
         "responses": {
