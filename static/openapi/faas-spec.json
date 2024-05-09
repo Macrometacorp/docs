@@ -124,7 +124,7 @@
         "tags": [
           "Function"
         ],
-        "summary": "Download the function",
+        "summary": "Download a particular version of the function",
         "description": "Download the function for the specified key function name.",
         "operationId": "handle_mm_download",
         "parameters": [
