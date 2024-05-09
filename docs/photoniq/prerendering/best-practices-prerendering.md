@@ -7,7 +7,7 @@ Prerendering generates static HTML pages from dynamic content to make your site 
 
 ## Origin Configuration
 
-Be very careful when configuring your origins for prerendering. Incorrect settings can result in caching problems and the delivery of outdated content to bots. Make sure the specified origins are accurate and correspond to the sections of your site that you intend to prerender.
+Be very careful when configuring your origins for prerendering. Incorrect settings can result in caching problems and the delivery of outdated content to bots. Make sure the specified origin settings are accurate and correspond to your website's needs.
 
 ## Cache Configuration
 
