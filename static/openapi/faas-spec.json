@@ -509,7 +509,7 @@
         "tags": [
           "Function"
         ],
-        "summary": "Retrieve the alias",
+        "summary": "Retrieve the alias for a function",
         "description": "Retrieve the alias for the specified key function name.",
         "operationId": "handle_mm_alias",
         "parameters": [
