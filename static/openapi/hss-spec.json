@@ -1,8 +1,8 @@
 {
     "openapi": "3.1.0",
     "info": {
-        "title": "PhotonIQ Hyper Search",
-        "description": "API documentation for the PhotonIQ Hyper Search service",
+        "title": "PhotonIQ HyperSearch",
+        "description": "API documentation for the PhotonIQ HyperSearch service",
         "version": "1.2.0"
     },
     "paths": {
@@ -70,11 +70,11 @@
                 "tags": [
                     "Models"
                 ],
-                "summary": "Get Models",
-                "operationId": "get_models_api_hss_v1_models_get",
+                "summary": "Get models",
+                "operationId": "getModels",
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "Successfully returned list of models.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -82,7 +82,7 @@
                                         "$ref": "#/components/schemas/Model"
                                     },
                                     "type": "array",
-                                    "title": "Response Get Models Api Hss V1 Models Get"
+                                    "title": "Response Getmodels"
                                 }
                             }
                         }
@@ -100,7 +100,7 @@
                 "tags": [
                     "Embeddings"
                 ],
-                "summary": "Get Text Embeddings",
+                "summary": "Get text embeddings",
                 "operationId": "get_text_embeddings_api_hss_v1_embeddings_text_post",
                 "requestBody": {
                     "content": {
@@ -125,7 +125,7 @@
                                         "type": "array"
                                     },
                                     "type": "array",
-                                    "title": "Response Get Text Embeddings Api Hss V1 Embeddings Text Post"
+                                    "title": "Response getTextEmbeddings"
                                 },
                                 "example": [
                                     [
@@ -141,7 +141,7 @@
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -184,7 +184,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -206,7 +206,7 @@
                 "tags": [
                     "Embeddings"
                 ],
-                "summary": "Get Image Embeddings",
+                "summary": "Get image embeddings",
                 "operationId": "get_image_embeddings_api_hss_v1_embeddings_image_post",
                 "requestBody": {
                     "content": {
@@ -231,7 +231,7 @@
                                         "type": "array"
                                     },
                                     "type": "array",
-                                    "title": "Response Get Image Embeddings Api Hss V1 Embeddings Image Post"
+                                    "title": "Response getImageEmbeddings"
                                 },
                                 "example": [
                                     [
@@ -247,7 +247,7 @@
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -290,7 +290,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -312,7 +312,7 @@
                 "tags": [
                     "Embeddings"
                 ],
-                "summary": "Get Multimodal Embeddings",
+                "summary": "Get multimodal embeddings",
                 "operationId": "get_multimodal_embeddings_api_hss_v1_embeddings_multimodal_post",
                 "requestBody": {
                     "content": {
@@ -337,7 +337,7 @@
                                         "type": "array"
                                     },
                                     "type": "array",
-                                    "title": "Response Get Multimodal Embeddings Api Hss V1 Embeddings Multimodal Post"
+                                    "title": "Response getMultimodelEmbeddings"
                                 },
                                 "example": [
                                     [
@@ -353,7 +353,7 @@
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -396,7 +396,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -431,7 +431,7 @@
                                         "$ref": "#/components/schemas/ConnectorResponse"
                                     },
                                     "type": "array",
-                                    "title": "Response 200 Get Connectors Api Hss V1 Connectors Get"
+                                    "title": "Response getConnectors"
                                 }
                             }
                         }
@@ -490,7 +490,7 @@
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -543,7 +543,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -572,7 +572,7 @@
                                         "$ref": "#/components/schemas/ConnectionDTO"
                                     },
                                     "type": "array",
-                                    "title": "Response 200 Get Connections Api Hss V1 Connections Get"
+                                    "title": "Response getConnections"
                                 }
                             }
                         }
@@ -622,7 +622,7 @@
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -675,7 +675,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -720,7 +720,7 @@
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -773,7 +773,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -825,7 +825,7 @@
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -855,7 +855,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -941,7 +941,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -992,7 +992,7 @@
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1035,7 +1035,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1070,7 +1070,7 @@
                                         "$ref": "#/components/schemas/SearchIndex"
                                     },
                                     "type": "array",
-                                    "title": "Response 200 Get All Indexes Api Hss V1 Index Get"
+                                    "title": "Response getIndexList"
                                 }
                             }
                         }
@@ -1086,7 +1086,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1148,13 +1148,13 @@
                                             "$ref": "#/components/schemas/LexicalSearchIndex-Input"
                                         }
                                     ],
-                                    "title": "Response 201 Create Index Api Hss V1 Index Post"
+                                    "title": "Response createIndex"
                                 }
                             }
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1184,7 +1184,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1255,7 +1255,7 @@
                                             "$ref": "#/components/schemas/LexicalSearchIndex-Input"
                                         }
                                     ],
-                                    "title": "Response 200 Get Index Api Hss V1 Index  Index Name  Get"
+                                    "title": "Response getIndex"
                                 }
                             }
                         }
@@ -1281,7 +1281,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1364,7 +1364,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1472,7 +1472,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1526,7 +1526,7 @@
                                     "items": {
                                         "type": "string"
                                     },
-                                    "title": "Response 200 Attach Source Api Hss V1 Index  Index Name  Sources  Connection Name  Post"
+                                    "title": "Response attachConnection"
                                 }
                             }
                         }
@@ -1595,7 +1595,7 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "title": "Response 200 Get Attached Sources Api Hss V1 Index  Index Name  Sources Get"
+                                    "title": "Response getAttachedConnections"
                                 },
                                 "example": {
                                     "s3": {
@@ -1708,7 +1708,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1774,13 +1774,13 @@
                                     "items": {
                                         "$ref": "#/components/schemas/SearchQuery"
                                     },
-                                    "title": "Response 200 Search Api Hss V1 Index  Index Name  Search Post"
+                                    "title": "Response createIndex"
                                 }
                             }
                         }
                     },
                     "400": {
-                        "description": "Error: Bad Request.",
+                        "description": "Error: Bad request.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1810,7 +1810,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {
@@ -1837,7 +1837,7 @@
                 "tags": [
                     "Search"
                 ],
-                "summary": "Get Suggestions",
+                "summary": "Get suggestions",
                 "description": "Get search suggestions for the current user.",
                 "operationId": "get_suggestions_api_hss_v1_index__index_name__search_suggestions_get",
                 "security": [
@@ -1868,7 +1868,7 @@
                                     "items": {
                                         "type": "string"
                                     },
-                                    "title": "Response 200 Get Suggestions Api Hss V1 Index  Index Name  Search Suggestions Get"
+                                    "title": "Response getSuggestions"
                                 }
                             }
                         }
@@ -1884,7 +1884,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error: Internal Server Error.",
+                        "description": "Error: Internal server error.",
                         "content": {
                             "application/json": {
                                 "example": {

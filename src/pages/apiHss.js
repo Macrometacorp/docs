@@ -18,9 +18,9 @@ export default function APIVwrsServicePage() {
   return (
     <Layout>
       <Head>
-        <title>PhotonIQ Hyper Search API Reference | Macrometa Docs</title>
-        <meta name="description" content="PhotonIQ Hyper Searcg API" />
-        <meta name="og:description" content="PhotonIQ Hyper Search API" />
+        <title>PhotonIQ HyperSearch API Reference | Macrometa Docs</title>
+        <meta name="description" content="PhotonIQ HyperSearcg API" />
+        <meta name="og:description" content="PhotonIQ HyperSearch API" />
         {/* Loading styles for elements this way so it doesn't interfere with other styles */}
         <link
           rel="stylesheet"
