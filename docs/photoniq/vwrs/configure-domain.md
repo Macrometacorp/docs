@@ -39,6 +39,7 @@ The following optional fields define the behavior of the waiting room:
 
 - **queue_type**: Defines how requests should be removed from the waiting room. The three possible queue types are `fifo`, `random`, and `lottery`. If this is not set, then the default queue is `fifo`.
 - **queue_mode**: You can configure the waiting room to be enabled dynamically. When set to `auto`, the waiting room is enabled after reaching the defined `rate_limit` for a specific `metric_interval`. If set to `manual`, then the waiting room is always enabled.
+- **dequeue_mode**: When the value is `on`, users in the waiting room will be granted access to the origin at a rate given by `rate_limit`. When the value is `off`, users will be kept in the waiting room indefinitely.
 - **origin_key**: Every domain is associated with an origin that was created with the Create Origin REST API, POST `/api/vwr/v1/origins/{origin_id}`.
 - **metric_interval**: The time (in seconds) to enable and disable the waiting room. It represents how long the traffic must be at or above the rate limit before being directed to the waiting room.
 - **max_origin_usage_time**: The time (in seconds) that users can access the origin after being granted access. After this period, users are forwarded to the waiting room again.
