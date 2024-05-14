@@ -59,10 +59,21 @@ You can now run [FaaS CLI Commands](faas-cli-commands.md).
 
     ```bash
     cd photoniq-faas-cli
-    faas.exe -h
+    faas help
     ```
 
 You can now run [FaaS CLI Commands](faas-cli-commands.md).
 
 ## Linux
 
+1) Install the Rust compiler and WebAssembly libraries by executing the following commands. This is required for creating Rust functions:
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup target add wasm32-wasi
+2) Execute the following script to download and set up the tool. This script will automatically install the faas CLI tool within in the current directory:
+
+curl -fsSLk 'https://macrometacorp.github.io/photoniq-faas/photoniq-faas-cli-linux-v1.0.0.sh' | sh
+3) Navigate into the directory created, and then launch the faas CLI tool:
+
+cd photoniq-faas-cli
+./faas help
