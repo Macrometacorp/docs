@@ -1,0 +1,3701 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "PhotonIQ Hyper Search",
+        "description": "API documentation for the PhotonIQ Hyper Search service",
+        "version": "1.2.0"
+    },
+    "paths": {
+        "/api/hss/v1/version": {
+            "get": {
+                "tags": [
+                    "Version"
+                ],
+                "summary": "Get version",
+                "description": "Get the current version.",
+                "operationId": "get_version_api_hss_v1_version_get",
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the version.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "version": "1.0"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/api/hss/v1/health": {
+            "get": {
+                "tags": [
+                    "Health"
+                ],
+                "summary": "Get application health",
+                "description": "Get the current application health status.",
+                "operationId": "get_health_api_hss_v1_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned the health.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hss/v1/models": {
+            "get": {
+                "tags": [
+                    "Models"
+                ],
+                "summary": "Get Models",
+                "operationId": "get_models_api_hss_v1_models_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Model"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Get Models Api Hss V1 Models Get"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/api/hss/v1/embeddings/text": {
+            "post": {
+                "tags": [
+                    "Embeddings"
+                ],
+                "summary": "Get Text Embeddings",
+                "operationId": "get_text_embeddings_api_hss_v1_embeddings_text_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TextEmbeddingRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned embeddings.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "items": {
+                                            "type": "number"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Get Text Embeddings Api Hss V1 Embeddings Text Post"
+                                },
+                                "example": [
+                                    [
+                                        1.1,
+                                        2.2
+                                    ],
+                                    [
+                                        4.99,
+                                        8.14
+                                    ]
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid model name."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "type": "json_invalid",
+                                            "loc": [
+                                                "body",
+                                                72
+                                            ],
+                                            "msg": "JSON decode error",
+                                            "input": {},
+                                            "ctx": {
+                                                "error": "Expecting ',' delimiter"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to load module."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/api/hss/v1/embeddings/image": {
+            "post": {
+                "tags": [
+                    "Embeddings"
+                ],
+                "summary": "Get Image Embeddings",
+                "operationId": "get_image_embeddings_api_hss_v1_embeddings_image_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ImageEmbeddingRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned embeddings.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "items": {
+                                            "type": "number"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Get Image Embeddings Api Hss V1 Embeddings Image Post"
+                                },
+                                "example": [
+                                    [
+                                        1.1,
+                                        2.2
+                                    ],
+                                    [
+                                        4.99,
+                                        8.14
+                                    ]
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid model name."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "type": "json_invalid",
+                                            "loc": [
+                                                "body",
+                                                72
+                                            ],
+                                            "msg": "JSON decode error",
+                                            "input": {},
+                                            "ctx": {
+                                                "error": "Expecting ',' delimiter"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to load module."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/api/hss/v1/embeddings/multimodal": {
+            "post": {
+                "tags": [
+                    "Embeddings"
+                ],
+                "summary": "Get Multimodal Embeddings",
+                "operationId": "get_multimodal_embeddings_api_hss_v1_embeddings_multimodal_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MultiModalEmbeddingRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned embeddings.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "items": {
+                                            "type": "number"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "type": "array",
+                                    "title": "Response Get Multimodal Embeddings Api Hss V1 Embeddings Multimodal Post"
+                                },
+                                "example": [
+                                    [
+                                        1.1,
+                                        2.2
+                                    ],
+                                    [
+                                        4.99,
+                                        8.14
+                                    ]
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid model name."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "type": "json_invalid",
+                                            "loc": [
+                                                "body",
+                                                72
+                                            ],
+                                            "msg": "JSON decode error",
+                                            "input": {},
+                                            "ctx": {
+                                                "error": "Expecting ',' delimiter"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to load module."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/api/hss/v1/connectors": {
+            "get": {
+                "tags": [
+                    "Connectors"
+                ],
+                "summary": "Get the list of available connectors",
+                "description": "Connectors define the _mechanism_ to access the documents.  Get the list of available connectors.\nThis list includes the name of the connector and the configuration properties required to connect to the data source.",
+                "operationId": "get_connectors_api_hss_v1_connectors_get",
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned connectors.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/ConnectorResponse"
+                                    },
+                                    "type": "array",
+                                    "title": "Response 200 Get Connectors Api Hss V1 Connectors Get"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/api/hss/v1/connectors/{connector_id}": {
+            "get": {
+                "tags": [
+                    "Connectors"
+                ],
+                "summary": "Get detailed information about a connector",
+                "description": "Retrieve information about a connector, including its configuration properties.",
+                "operationId": "get_connector_api_hss_v1_connectors__connector_id__get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "connector_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Connector Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned connector.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConnectorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid connector name."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Connector `S3` not found."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "type": "json_invalid",
+                                            "loc": [
+                                                "body",
+                                                72
+                                            ],
+                                            "msg": "JSON decode error",
+                                            "input": {},
+                                            "ctx": {
+                                                "error": "Expecting ',' delimiter"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to find connector."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hss/v1/connections": {
+            "get": {
+                "tags": [
+                    "Connections"
+                ],
+                "summary": "Get the list of available connections.",
+                "operationId": "get_connections_api_hss_v1_connections_get",
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned connections.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/ConnectionDTO"
+                                    },
+                                    "type": "array",
+                                    "title": "Response 200 Get Connections Api Hss V1 Connections Get"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Connections"
+                ],
+                "summary": "Updates a connection",
+                "operationId": "update_connection_api_hss_v1_connections_put",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConnectionDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated connection.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConnectionDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid connector name."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Connection not found."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "type": "json_invalid",
+                                            "loc": [
+                                                "body",
+                                                72
+                                            ],
+                                            "msg": "JSON decode error",
+                                            "input": {},
+                                            "ctx": {
+                                                "error": "Expecting ',' delimiter"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to load connector."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Connections"
+                ],
+                "summary": "Creates a connection",
+                "description": "Connections define the location of documents to be indexed.\nThey use _connectors_ to access documents and maintain the credentials needed to access that location.",
+                "operationId": "create_connection_api_hss_v1_connections_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConnectionDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully created connection.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConnectionDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid connector name."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Error: Conflict.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Connection already exists."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "type": "json_invalid",
+                                            "loc": [
+                                                "body",
+                                                72
+                                            ],
+                                            "msg": "JSON decode error",
+                                            "input": {},
+                                            "ctx": {
+                                                "error": "Expecting ',' delimiter"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to load connector."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/api/hss/v1/connections/{connection_name}": {
+            "get": {
+                "tags": [
+                    "Connections"
+                ],
+                "summary": "Get details of a connection including its configurations",
+                "operationId": "get_connection_api_hss_v1_connections__connection_name__get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "connection_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Connection Name"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned connection.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConnectionDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid connection name."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Connection `S3 Connection` not found."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to find connection."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Connections"
+                ],
+                "summary": "Deletes a connection",
+                "operationId": "delete_connection_api_hss_v1_connections__connection_name__delete",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "connection_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Connection Name"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Successfully deleted connection."
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Error: Forbidden.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Index is actively using connection."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Connection not found."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to load connector."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hss/v1/connections/validate": {
+            "post": {
+                "tags": [
+                    "Connections"
+                ],
+                "summary": "Validates a connection",
+                "operationId": "validate_connection_api_hss_v1_connections_validate_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConnectionDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully validated connection.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConnectionValidateResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid connector name."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "type": "json_invalid",
+                                            "loc": [
+                                                "body",
+                                                72
+                                            ],
+                                            "msg": "JSON decode error",
+                                            "input": {},
+                                            "ctx": {
+                                                "error": "Expecting ',' delimiter"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to load connector."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/api/hss/v1/index": {
+            "get": {
+                "tags": [
+                    "Index"
+                ],
+                "summary": "List all indexes",
+                "description": "Get the list of all indexes.",
+                "operationId": "get_all_indexes_api_hss_v1_index_get",
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned indexes.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchIndex"
+                                    },
+                                    "type": "array",
+                                    "title": "Response 200 Get All Indexes Api Hss V1 Index Get"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to fetch indexes."
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Index"
+                ],
+                "summary": "Create an index",
+                "description": "An index is a bucket where all searchable documents are collected.\nWe support indexing text documents, JSON documents, and PDFs.  An index can be created in one of two ways: a lexical search index or a\nsemantic search index.\n\nA lexical search index is based on the exact match of query terms or phrases within the text.  It operates on\nthe surface level, looking for specific sequences of characters or work forms without considering the deeper meaning of those words.\nUse the *LexicalSearchIndex* schema in the REST API body to create a lexical search index.\n\nA semantic search index goes beyond the exact match, aiming to understand the meaning and context of the query terms and documents.  It\nseeks to interpret the intent behind a query and find conceptually related documents, even if they don’t contain the exact query terms.\nUse the *SemanticSearchIndex* schema in the REST API body to create a semantic search index.",
+                "operationId": "create_index_api_hss_v1_index_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/components/schemas/SemanticSearchIndex-Input"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/LexicalSearchIndex-Input"
+                                    }
+                                ],
+                                "title": "Index",
+                                "discriminator": {
+                                    "propertyName": "type",
+                                    "mapping": {
+                                        "semantic": "#/components/schemas/SemanticSearchIndex-Input",
+                                        "lexical": "#/components/schemas/LexicalSearchIndex-Input"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created index.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "anyOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SemanticSearchIndex-Input"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/LexicalSearchIndex-Input"
+                                        }
+                                    ],
+                                    "title": "Response 201 Create Index Api Hss V1 Index Post"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid index definition."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Error: Conflict.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Index already exists."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to create index."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/api/hss/v1/index/{index_name}": {
+            "get": {
+                "tags": [
+                    "Index"
+                ],
+                "summary": "Get an index",
+                "description": "Get details of an index. This will include the complete index configuration.",
+                "operationId": "get_index_api_hss_v1_index__index_name__get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "index_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Name of the index to fetch"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned index.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "anyOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SemanticSearchIndex-Output"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/LexicalSearchIndex-Output"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/SemanticSearchIndex-Input"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/LexicalSearchIndex-Input"
+                                        }
+                                    ],
+                                    "title": "Response 200 Get Index Api Hss V1 Index  Index Name  Get"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Index `example_search` not found."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to fetch index 'example_search'."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Index"
+                ],
+                "summary": "Delete an index",
+                "description": "Delete an index.",
+                "operationId": "remove_index_api_hss_v1_index__index_name__delete",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "index_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "description": "Name of the index to fetch.",
+                            "title": "Index Name"
+                        },
+                        "description": "Name of the index to fetch."
+                    },
+                    {
+                        "name": "force",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "title": "Force delete",
+                            "description": "This will try to delete all related resources ignoring intermediate errors.",
+                            "default": false
+                        },
+                        "description": "This will try to delete all related resources ignoring intermediate errors."
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successfully deleted index."
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Index not found."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to delete index."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hss/v1/index/{index_name}/reindex": {
+            "post": {
+                "tags": [
+                    "Index"
+                ],
+                "summary": "Trigger re-indexing on the source.",
+                "operationId": "reindex_api_hss_v1_index__index_name__reindex_post",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "index_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Index Name"
+                        }
+                    },
+                    {
+                        "name": "truncate",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": false,
+                            "title": "Truncate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully re-indexed.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Index not found."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "type": "json_invalid",
+                                            "loc": [
+                                                "body",
+                                                72
+                                            ],
+                                            "msg": "JSON decode error",
+                                            "input": {},
+                                            "ctx": {
+                                                "error": "Expecting ',' delimiter"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to reindex."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hss/v1/index/{index_name}/sources/{connection_name}": {
+            "post": {
+                "tags": [
+                    "Index"
+                ],
+                "summary": "Attach connection to index",
+                "operationId": "attach_source_api_hss_v1_index__index_name__sources__connection_name__post",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "index_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Index Name"
+                        }
+                    },
+                    {
+                        "name": "connection_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Connection Name"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully attached connection.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "title": "Response 200 Attach Source Api Hss V1 Index  Index Name  Sources  Connection Name  Post"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Index not found."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hss/v1/index/{index_name}/sources": {
+            "get": {
+                "tags": [
+                    "Index"
+                ],
+                "summary": "Return list of attached connections",
+                "description": "Get the list of connections attached to the index.",
+                "operationId": "get_attached_sources_api_hss_v1_index__index_name__sources_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "index_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Index Name"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned attached connections.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "title": "Response 200 Get Attached Sources Api Hss V1 Index  Index Name  Sources Get"
+                                },
+                                "example": {
+                                    "s3": {
+                                        "is_init": true,
+                                        "total_documents_to_process": 104,
+                                        "processed_documents": 35,
+                                        "pipeline_start_timestamp": 1712135397406,
+                                        "current_process_start_timestamp": 1712135403297
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Index not found."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hss/v1/index/{index_name}/sources/{source_name}": {
+            "delete": {
+                "tags": [
+                    "Index"
+                ],
+                "summary": "Remove connection attached to the index",
+                "description": "Remove a connection from the index.  This removes all the documents from the index that were added by the connection.\nAnd this stops these documents from being indexed in the future.",
+                "operationId": "drop_source_api_hss_v1_index__index_name__sources__source_name__delete",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "index_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Index Name"
+                        }
+                    },
+                    {
+                        "name": "source_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Source Name"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Successfully remove connection."
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Index not found."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to remove connection."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hss/v1/index/{index_name}/search": {
+            "post": {
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Search",
+                "description": "Perform a search on an index.",
+                "operationId": "search_api_hss_v1_index__index_name__search_post",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "index_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Name of the index to search"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchQuery"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully created index.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchQuery"
+                                    },
+                                    "title": "Response 200 Search Api Hss V1 Index  Index Name  Search Post"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad Request.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Invalid query."
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error: Not Found.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Index not found."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to search the index."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hss/v1/index/{index_name}/search/suggestions": {
+            "get": {
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Get Suggestions",
+                "description": "Get search suggestions for the current user.",
+                "operationId": "get_suggestions_api_hss_v1_index__index_name__search_suggestions_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "index_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "description": "The name of the index.",
+                            "title": "Index Name"
+                        },
+                        "description": "The name of the index."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned suggestions.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "title": "Response 200 Get Suggestions Api Hss V1 Index  Index Name  Search Suggestions Get"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "detail": "Unauthorized."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Unable to fetch suggestions."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AnalyzerType": {
+                "type": "string",
+                "enum": [
+                    "identity",
+                    "text_en",
+                    "text_de",
+                    "text_es",
+                    "text_fi",
+                    "text_fr",
+                    "text_it",
+                    "text_nl",
+                    "text_no",
+                    "text_pt",
+                    "text_ru",
+                    "text_sv"
+                ],
+                "title": "AnalyzerType",
+                "description": "Analyzers."
+            },
+            "ChunkConfig": {
+                "properties": {
+                    "enable": {
+                        "type": "boolean",
+                        "title": "Enable",
+                        "description": "Indicates whether to enable chunking. If set to `False`, chunking will be disabled, and other chunk configurations will be ignored.",
+                        "default": false
+                    },
+                    "max_characters": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Max Characters",
+                        "description": "Chunks elements text and text_as_html (if present) into chunks of length n characters (hard max)"
+                    },
+                    "multipage_sections": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Multipage Sections",
+                        "description": "If True, sections can span multiple pages."
+                    },
+                    "combine_text_under_n_chars": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Combine Text Under N Chars",
+                        "description": "Combines elements (for example a series of titles) until a section reaches a length of n characters. Defaults to `max_characters` which combines chunks whenever space allows.Specifying 0 for this argument suppresses combining of small chunks. Note this value is capped at the `new_after_n_chars` value since a value higher than that would not change this parameter's effect."
+                    },
+                    "new_after_n_chars": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "New After N Chars",
+                        "description": "Cuts off new sections once they reach a length of n characters (soft max). Defaults to `max_characters` when not specified, which effectively disables any soft window. Specifying 0 for this argument causes each element to appear in a chunk by itself (although an element with text longer than `max_characters` will be still be split into two or more chunks)."
+                    },
+                    "overlap": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Overlap",
+                        "description": "Specifies the length of a string (`tail`) to be drawn from each chunk and prefixed to the next chunk as a context-preserving mechanism. By default, this only applies to split-chunks where an over sized element is divided into multiple chunks by text-splitting."
+                    },
+                    "overlap_all": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Overlap All",
+                        "description": "When `True`, apply overlap between 'normal' chunks formed from whole elements and not subject to text-splitting. Use this with caution as it entails a certain level of 'pollution' of otherwise clean semantic chunk boundaries."
+                    }
+                },
+                "type": "object",
+                "title": "ChunkConfig"
+            },
+            "CleanConfig": {
+                "properties": {
+                    "enable": {
+                        "type": "boolean",
+                        "title": "Enable",
+                        "description": "Indicates whether to enable cleaning. If set to `False`, cleaning will be disabled, and other clean configurations will be ignored.",
+                        "default": false
+                    },
+                    "replace_unicode_quotes": {
+                        "type": "boolean",
+                        "title": "Replace Unicode Quotes",
+                        "description": "Whether to replace Unicode quotes with ASCII quotes.",
+                        "default": true
+                    },
+                    "bytes_string_to_string": {
+                        "type": "boolean",
+                        "title": "Bytes String To String",
+                        "description": "Whether to convert bytes string to regular string.",
+                        "default": true
+                    },
+                    "clean_bullets": {
+                        "type": "boolean",
+                        "title": "Clean Bullets",
+                        "description": "Whether to remove bullet characters.",
+                        "default": true
+                    },
+                    "clean_extra_whitespace": {
+                        "type": "boolean",
+                        "title": "Clean Extra Whitespace",
+                        "description": "Whether to remove extra whitespace.",
+                        "default": true
+                    },
+                    "clean_dashes": {
+                        "type": "boolean",
+                        "title": "Clean Dashes",
+                        "description": "Whether to clean dash characters.",
+                        "default": true
+                    },
+                    "clean_trailing_punctuation": {
+                        "type": "boolean",
+                        "title": "Clean Trailing Punctuation",
+                        "description": "Whether to remove trailing punctuation.",
+                        "default": false
+                    },
+                    "clean_non_ascii_chars": {
+                        "type": "boolean",
+                        "title": "Clean Non Ascii Chars",
+                        "description": "Whether to remove non-ASCII characters.",
+                        "default": true
+                    },
+                    "clean_ordered_bullets": {
+                        "type": "boolean",
+                        "title": "Clean Ordered Bullets",
+                        "description": "Whether to clean ordered bullet points.",
+                        "default": true
+                    },
+                    "remove_punctuation": {
+                        "type": "boolean",
+                        "title": "Remove Punctuation",
+                        "description": "Whether to remove punctuation.",
+                        "default": false
+                    },
+                    "group_broken_paragraphs": {
+                        "type": "boolean",
+                        "title": "Group Broken Paragraphs",
+                        "description": "Whether to group broken paragraphs.",
+                        "default": true
+                    }
+                },
+                "type": "object",
+                "title": "CleanConfig"
+            },
+            "ConnectionDTO": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "description": "The name of the connection.",
+                        "examples": [
+                            "S3Connection"
+                        ]
+                    },
+                    "connector": {
+                        "type": "string",
+                        "title": "Connector",
+                        "description": "The id of the Connector.",
+                        "examples": [
+                            "s3"
+                        ]
+                    },
+                    "config": {
+                        "type": "object",
+                        "title": "Config",
+                        "description": "Connection configurations for the Connector."
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "connector",
+                    "config"
+                ],
+                "title": "ConnectionDTO"
+            },
+            "ConnectionValidateResponse": {
+                "properties": {
+                    "status": {
+                        "type": "boolean",
+                        "title": "Status",
+                        "description": "Whether connection is valid.",
+                        "default": false
+                    },
+                    "reason": {
+                        "type": "string",
+                        "title": "Reason",
+                        "description": "Reason if invalid.",
+                        "default": ""
+                    }
+                },
+                "type": "object",
+                "title": "ConnectionValidateResponse"
+            },
+            "ConnectorConfigResponse": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "description": "The name of the config.",
+                        "examples": [
+                            "aws_access_key_id"
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Type",
+                        "description": "The value type of the config.",
+                        "examples": [
+                            "???"
+                        ]
+                    },
+                    "display_name": {
+                        "type": "string",
+                        "title": "Display Name",
+                        "description": "The display name of the config.",
+                        "examples": [
+                            "AWS Access Key ID"
+                        ]
+                    },
+                    "is_mandatory": {
+                        "type": "boolean",
+                        "title": "Is Mandatory",
+                        "description": "Whether the config is mandatory.",
+                        "default": true,
+                        "examples": [
+                            true
+                        ]
+                    },
+                    "is_dynamic": {
+                        "type": "boolean",
+                        "title": "Is Dynamic",
+                        "description": "Whether the config is dynamic.",
+                        "default": false,
+                        "examples": [
+                            false
+                        ]
+                    },
+                    "description": {
+                        "type": "string",
+                        "title": "Description",
+                        "description": "A brief description of the config.",
+                        "examples": [
+                            "AWS Access Key ID."
+                        ]
+                    },
+                    "default_value": {
+                        "type": "string",
+                        "title": "Default Value",
+                        "description": "Default value of the config.",
+                        "examples": [
+                            ""
+                        ]
+                    },
+                    "placeholder_value": {
+                        "type": "string",
+                        "title": "Placeholder Value",
+                        "description": "Placeholder value for the config.",
+                        "examples": [
+                            ""
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "type",
+                    "display_name",
+                    "description"
+                ],
+                "title": "ConnectorConfigResponse"
+            },
+            "ConnectorResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id",
+                        "description": "The id of the Connector.",
+                        "examples": [
+                            "s3"
+                        ]
+                    },
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "description": "The name of the Connector.",
+                        "examples": [
+                            "S3 Connector"
+                        ]
+                    },
+                    "description": {
+                        "type": "string",
+                        "title": "Description",
+                        "description": "The description of the Connector.",
+                        "examples": [
+                            "Source connector for Amazon S3"
+                        ]
+                    },
+                    "config": {
+                        "items": {
+                            "$ref": "#/components/schemas/ConnectorConfigResponse"
+                        },
+                        "type": "array",
+                        "title": "Config",
+                        "description": "Connection configurations for the Connector."
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "name",
+                    "description",
+                    "config"
+                ],
+                "title": "ConnectorResponse"
+            },
+            "DistanceType": {
+                "type": "string",
+                "enum": [
+                    "COSINE",
+                    "IP",
+                    "L2"
+                ],
+                "title": "DistanceType"
+            },
+            "ExtractConfig": {
+                "properties": {
+                    "enable": {
+                        "type": "boolean",
+                        "title": "Enable",
+                        "description": "Indicates whether to enable extracting. If set to `False`, extracting will be disabled, and other extract configurations will be ignored.",
+                        "default": false
+                    },
+                    "logic": {
+                        "type": "string",
+                        "title": "Logic",
+                        "description": "JavaScript based data extracting function logic, accepting a `data` argument and returning either a JSON object or a string.Please note: The type of the `data` argument will depend on the ingested data. If the ingested data is structured (JSON or CSV), `data` will be a map/dictionary type. If the ingested data is unstructured (text, PDF, etc.), `data` will be an array of strings.",
+                        "default": "function process(data) { return data; }",
+                        "examples": [
+                            "function process(data) { return data; }"
+                        ]
+                    }
+                },
+                "type": "object",
+                "title": "ExtractConfig"
+            },
+            "FilterCondition": {
+                "type": "string",
+                "enum": [
+                    "AND",
+                    "OR"
+                ],
+                "title": "FilterCondition"
+            },
+            "FilterOperation": {
+                "type": "string",
+                "enum": [
+                    "==",
+                    "!=",
+                    "<",
+                    "<=",
+                    ">",
+                    ">=",
+                    "IN",
+                    "NOT_IN",
+                    "LIKE",
+                    "=~",
+                    "!~"
+                ],
+                "title": "FilterOperation"
+            },
+            "FlatIndexType": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "flat"
+                        ],
+                        "const": "flat",
+                        "title": "Type",
+                        "description": "Type of the vector index.",
+                        "default": "flat"
+                    }
+                },
+                "type": "object",
+                "title": "FlatIndexType",
+                "description": "A Flat index, also known as a brute-force index, involves comparing the query vector directly against\nevery vector in the dataset to find the most similar items. While this method is simple and can be very\naccurate since it checks every possibility, it's also computationally expensive and slow, especially as\nthe dataset size grows. It is best suited for smaller datasets or scenarios where maximum accuracy is\nrequired and computational resources or time are not limiting factors."
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "HnswIndexType": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "hnsw"
+                        ],
+                        "const": "hnsw",
+                        "title": "Type",
+                        "description": "Type of the vector index.",
+                        "default": "hnsw"
+                    },
+                    "n_links": {
+                        "type": "integer",
+                        "title": "N Links",
+                        "description": "The links for an element.",
+                        "examples": [
+                            1
+                        ],
+                        "max": 100
+                    },
+                    "max_size": {
+                        "type": "integer",
+                        "title": "Max Size",
+                        "description": "The maximum number of vectors.",
+                        "examples": [
+                            500
+                        ]
+                    },
+                    "ef_search": {
+                        "type": "integer",
+                        "title": "Ef Search",
+                        "description": "Expansion factor at search time.",
+                        "examples": [
+                            200
+                        ],
+                        "max": 2000,
+                        "min": 1
+                    },
+                    "ef_construction": {
+                        "type": "integer",
+                        "title": "Ef Construction",
+                        "description": "Expansion factor during index construction.",
+                        "examples": [
+                            200
+                        ],
+                        "max": 2000,
+                        "min": 1
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "n_links",
+                    "max_size",
+                    "ef_search",
+                    "ef_construction"
+                ],
+                "title": "HnswIndexType",
+                "description": "Hierarchical Navigable Small World configuration is a graph-based index that constructs a multi-layered\ngraph where each layer represents a different granularity of the dataset. This structure allows for efficient\nnavigation and search within the graph by starting from the upper layers (with fewer, more general nodes) and\nmoving down to the more detailed layers until the closest items are found. Highly efficient for indexing and\nsearching in large datasets, offering a good trade-off between search accuracy and speed."
+            },
+            "ImageEmbeddingRequest": {
+                "properties": {
+                    "urls": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Urls",
+                        "description": "The urls of images for which to generate embeddings.",
+                        "examples": [
+                            [
+                                "http://images.cocodataset.org/val2017/000000039769.jpg"
+                            ]
+                        ]
+                    },
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "The name of the model to use for generating embeddings.",
+                        "examples": [
+                            "laion/CLIP-ViT-B-32-laion2B-s34B-b79K"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "urls",
+                    "model_name"
+                ],
+                "title": "ImageEmbeddingRequest"
+            },
+            "IvfIndexType": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "ivf"
+                        ],
+                        "const": "ivf",
+                        "title": "Type",
+                        "description": "Type of the vector index.",
+                        "default": "ivf"
+                    },
+                    "n_lists": {
+                        "type": "integer",
+                        "title": "N Lists",
+                        "description": "The number of partitions to use.",
+                        "examples": [
+                            2
+                        ]
+                    },
+                    "n_probe": {
+                        "type": "integer",
+                        "title": "N Probe",
+                        "description": "Number of probes during search.",
+                        "examples": [
+                            8
+                        ],
+                        "min": 1
+                    },
+                    "sample": {
+                        "type": "number",
+                        "title": "Sample",
+                        "description": "Sampling percentage between 0 and 1,",
+                        "examples": [
+                            0.8
+                        ],
+                        "max": 1,
+                        "min": 0
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "n_lists",
+                    "n_probe",
+                    "sample"
+                ],
+                "title": "IvfIndexType",
+                "description": "In an Inverted File Index approach, the dataset is first partitioned into smaller clusters or groups using a\nclustering algorithm like k-means. During a search, the query vector is first compared to the cluster centroids\nto identify the clusters most likely to be clusters where similar items might be found, reducing the number\nof comparisons needed. This approach is suitable for larger datasets where there is a need for a balance\nbetween search speed and accuracy. It narrows down the search space to a few relevant items."
+            },
+            "LexicalSearchIndex-Input": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "description": "Name of the Index.",
+                        "examples": [
+                            "wiki_index"
+                        ]
+                    },
+                    "connections": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Connections",
+                        "description": "List of datasource connections to populate the index.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "s3_wiki",
+                                "akamai_wiki"
+                            ]
+                        ]
+                    },
+                    "preprocessor": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PreprocessorConfig"
+                            }
+                        ],
+                        "description": "The preprocessing function and parameters for input data before adding data to the index.",
+                        "default": {
+                            "clean": {
+                                "bytes_string_to_string": true,
+                                "clean_bullets": true,
+                                "clean_dashes": true,
+                                "clean_extra_whitespace": true,
+                                "clean_non_ascii_chars": true,
+                                "clean_ordered_bullets": true,
+                                "clean_trailing_punctuation": false,
+                                "enable": false,
+                                "group_broken_paragraphs": true,
+                                "remove_punctuation": false,
+                                "replace_unicode_quotes": true
+                            },
+                            "extract": {
+                                "enable": false,
+                                "logic": "function process(data) { return data; }"
+                            },
+                            "chunk": {
+                                "enable": false
+                            }
+                        }
+                    },
+                    "facet_fields": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Facet Fields",
+                        "description": "Facet fields are attributes or properties of documents in a dataset that can be used to categorize and filter search results. List of fields in the document applicable for filtering results.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "doc_name",
+                                "content"
+                            ]
+                        ]
+                    },
+                    "sort_fields": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/SortOrderType"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Sort Fields",
+                        "description": "List of fields in the document applicable for sorting results and direction. \n        Should be provided in `{ field_name: asc|desc }` format.  \n        **Note: Setting index level sorting affects\n        ranking and similarity score based ordering of search results.**",
+                        "default": {},
+                        "example": {
+                            "created_date": "desc",
+                            "doc_name": "asc"
+                        }
+                    },
+                    "index_job_interval": {
+                        "type": "integer",
+                        "minimum": 0.0,
+                        "title": "Index Job Interval",
+                        "description": "Set the time interval, in seconds, between each indexing job. Use 0 to index just once.",
+                        "default": 86400,
+                        "examples": [
+                            3600,
+                            86400
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "lexical"
+                        ],
+                        "const": "lexical",
+                        "title": "Type",
+                        "description": "Type of the Index.",
+                        "default": "lexical"
+                    },
+                    "search_config": {
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/AnalyzerType"
+                        },
+                        "type": "object",
+                        "title": "Search Config",
+                        "description": "A dictionary of fields to search on and the analyzers to use.\n    Analyzers enable you to break search inputs into sets of sub-values that search views\n    can use to improve searching.  Should be provided in `{ field_name: analyzer_name }` format.  \n    **NOTE: If this property is not provided for an index with structured documents, indexed\n    documents are treated as unstructured documents. For unstructured documents ex: pdf, html,\n    provide `{\"content\": <analyzer_name>}` in the dictionary.\n    if not `{\"content\": \"text_en\"}` is assumed**",
+                        "default": {
+                            "content": "text_en"
+                        },
+                        "example": {
+                            "content": "text_en",
+                            "doc_name": "identity"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "title": "LexicalSearchIndex"
+            },
+            "LexicalSearchIndex-Output": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "description": "Name of the Index.",
+                        "examples": [
+                            "wiki_index"
+                        ]
+                    },
+                    "connections": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Connections",
+                        "description": "List of datasource connections to populate the index.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "s3_wiki",
+                                "akamai_wiki"
+                            ]
+                        ]
+                    },
+                    "preprocessor": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PreprocessorConfig"
+                            }
+                        ],
+                        "description": "The preprocessing function and parameters for input data before adding data to the index.",
+                        "default": {
+                            "clean": {
+                                "bytes_string_to_string": true,
+                                "clean_bullets": true,
+                                "clean_dashes": true,
+                                "clean_extra_whitespace": true,
+                                "clean_non_ascii_chars": true,
+                                "clean_ordered_bullets": true,
+                                "clean_trailing_punctuation": false,
+                                "enable": false,
+                                "group_broken_paragraphs": true,
+                                "remove_punctuation": false,
+                                "replace_unicode_quotes": true
+                            },
+                            "extract": {
+                                "enable": false,
+                                "logic": "function process(data) { return data; }"
+                            },
+                            "chunk": {
+                                "enable": false
+                            }
+                        }
+                    },
+                    "facet_fields": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Facet Fields",
+                        "description": "Facet fields are attributes or properties of documents in a dataset that can be used to categorize and filter search results. List of fields in the document applicable for filtering results.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "doc_name",
+                                "content"
+                            ]
+                        ]
+                    },
+                    "sort_fields": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/SortOrderType"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Sort Fields",
+                        "description": "List of fields in the document applicable for sorting results and direction. \n        Should be provided in `{ field_name: asc|desc }` format.  \n        **Note: Setting index level sorting affects\n        ranking and similarity score based ordering of search results.**",
+                        "default": {},
+                        "example": {
+                            "created_date": "desc",
+                            "doc_name": "asc"
+                        }
+                    },
+                    "index_job_interval": {
+                        "type": "integer",
+                        "minimum": 0.0,
+                        "title": "Index Job Interval",
+                        "description": "Set the time interval, in seconds, between each indexing job. Use 0 to index just once.",
+                        "default": 86400,
+                        "examples": [
+                            3600,
+                            86400
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "lexical"
+                        ],
+                        "const": "lexical",
+                        "title": "Type",
+                        "description": "Type of the Index.",
+                        "default": "lexical"
+                    },
+                    "search_config": {
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/AnalyzerType"
+                        },
+                        "type": "object",
+                        "title": "Search Config",
+                        "description": "A dictionary of fields to search on and the analyzers to use.\n    Analyzers enable you to break search inputs into sets of sub-values that search views\n    can use to improve searching.  Should be provided in `{ field_name: analyzer_name }` format.  \n    **NOTE: If this property is not provided for an index with structured documents, indexed\n    documents are treated as unstructured documents. For unstructured documents ex: pdf, html,\n    provide `{\"content\": <analyzer_name>}` in the dictionary.\n    if not `{\"content\": \"text_en\"}` is assumed**",
+                        "default": {
+                            "content": "text_en"
+                        },
+                        "example": {
+                            "content": "text_en",
+                            "doc_name": "identity"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "title": "LexicalSearchIndex"
+            },
+            "Model": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "description": "The name of the model.",
+                        "examples": [
+                            "sentence-transformers/all-MiniLM-L6-v2"
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Type",
+                        "description": "The type of the model.",
+                        "examples": [
+                            "sentence-transformers"
+                        ]
+                    },
+                    "dimensions": {
+                        "type": "integer",
+                        "title": "Dimensions",
+                        "description": "The dimensions of the model.",
+                        "examples": [
+                            384
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "type",
+                    "dimensions"
+                ],
+                "title": "Model"
+            },
+            "MultiModalEmbeddingRequest": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/MultiModalRequestData"
+                        },
+                        "type": "array",
+                        "title": "Data",
+                        "description": "Multi model input definition."
+                    },
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "The name of the model to use for generating embeddings.",
+                        "examples": [
+                            "open_clip/ViT-L-14/laion2b_s32b_b82k"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "data",
+                    "model_name"
+                ],
+                "title": "MultiModalEmbeddingRequest"
+            },
+            "MultiModalRequestData": {
+                "properties": {
+                    "text": {
+                        "type": "string",
+                        "title": "Text",
+                        "description": "The text string for which to generate embedding.",
+                        "examples": [
+                            "two sleeping cats"
+                        ]
+                    },
+                    "image_url": {
+                        "type": "string",
+                        "title": "Image Url",
+                        "description": "The url of image for which to generate embedding.",
+                        "examples": [
+                            "http://images.cocodataset.org/val2017/000000039769.jpg"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "text",
+                    "image_url"
+                ],
+                "title": "MultiModalRequestData"
+            },
+            "NoneQuantization": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "none"
+                        ],
+                        "const": "none",
+                        "title": "Type",
+                        "description": "Type of quantization.",
+                        "default": "none"
+                    }
+                },
+                "type": "object",
+                "title": "NoneQuantization"
+            },
+            "PqQuantization": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "pq"
+                        ],
+                        "const": "pq",
+                        "title": "Type",
+                        "description": "Type of quantization.",
+                        "default": "pq"
+                    },
+                    "bits": {
+                        "type": "integer",
+                        "title": "Bits",
+                        "description": "The number of output bits after quantization.",
+                        "examples": [
+                            8
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bits"
+                ],
+                "title": "PqQuantization",
+                "description": "In Product quantization (PQ), the vector is divided into sub-vectors and then quantized independently.\nThis approach balances scalar quantization's simplicity and full vector quantization's effectiveness.\nOne of the most significant advantages of PQ is that it allows for direct fast-distance computation between\na query vector and the compressed vectors without needing to decompress the vectors."
+            },
+            "PreprocessorConfig": {
+                "properties": {
+                    "clean": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/CleanConfig"
+                            }
+                        ],
+                        "description": "Configuration for Clean Preprocessor.",
+                        "default": {
+                            "enable": false,
+                            "replace_unicode_quotes": true,
+                            "bytes_string_to_string": true,
+                            "clean_bullets": true,
+                            "clean_extra_whitespace": true,
+                            "clean_dashes": true,
+                            "clean_trailing_punctuation": false,
+                            "clean_non_ascii_chars": true,
+                            "clean_ordered_bullets": true,
+                            "remove_punctuation": false,
+                            "group_broken_paragraphs": true
+                        }
+                    },
+                    "extract": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ExtractConfig"
+                            }
+                        ],
+                        "description": "Configuration for JavaScript Extract Preprocessor.",
+                        "default": {
+                            "enable": false,
+                            "logic": "function process(data) { return data; }"
+                        }
+                    },
+                    "chunk": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ChunkConfig"
+                            }
+                        ],
+                        "description": "Configuration for Chunk Preprocessor.",
+                        "default": {
+                            "enable": false
+                        }
+                    }
+                },
+                "type": "object",
+                "title": "PreprocessorConfig"
+            },
+            "SearchFilter": {
+                "properties": {
+                    "field": {
+                        "type": "string",
+                        "title": "Field",
+                        "description": "The field to filter on.",
+                        "examples": [
+                            "doc_name"
+                        ]
+                    },
+                    "operator": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/FilterOperation"
+                            }
+                        ],
+                        "description": "The operator to use for filtering. Supported operators:  \n* == equality\n* != inequality\n* < less than\n* <= less or equal\n* \\> greater than\n* \\>= greater or equal\n* IN test if a value is contained in an array\n* NOT IN test if a value is not contained in an array\n* LIKE tests if a string value matches a wild card pattern. Allowed wild card characters are '%' and '_'. This operator is case sensitive.\n* =~ tests if a string value matches a regular expression\n* !~ tests if a string value does not match a regular expression\n    ",
+                        "examples": [
+                            "==",
+                            "!="
+                        ]
+                    },
+                    "value": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "object"
+                            },
+                            {
+                                "items": {},
+                                "type": "array"
+                            }
+                        ],
+                        "title": "Value",
+                        "description": "The value to filter on.",
+                        "examples": [
+                            "s3_bucket_config.json",
+                            5,
+                            true
+                        ]
+                    },
+                    "condition": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/FilterCondition"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "The logical operator to use for combining this filter with another filter."
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "field",
+                    "operator",
+                    "value"
+                ],
+                "title": "SearchFilter"
+            },
+            "SearchIndex": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "connections": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Connections",
+                        "description": "List of datasource connections to populate the index.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "s3_wiki",
+                                "akamai_wiki"
+                            ]
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Type",
+                        "description": "Type of the Index.",
+                        "examples": [
+                            "semantic",
+                            "lexical"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "type"
+                ],
+                "title": "SearchIndex"
+            },
+            "SearchQuery": {
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "title": "Query"
+                    },
+                    "boost": {
+                        "type": "string",
+                        "title": "Boost",
+                        "description": "Query to boost the results by. Results for `query` will be ranked to have more weight towards `boost`.",
+                        "examples": [
+                            "books"
+                        ]
+                    },
+                    "bury": {
+                        "type": "string",
+                        "title": "Bury",
+                        "description": "Query to bury the results by. Results for `query` will be ranked to have less weight towards `bury`.",
+                        "examples": [
+                            "white paper"
+                        ]
+                    },
+                    "language": {
+                        "type": "string",
+                        "maxLength": 2,
+                        "minLength": 2,
+                        "title": "Language",
+                        "description": "The language of the search query. Supported languages: en, es, de, sv, ru, zh, no, nl, it, fr, fi, pt",
+                        "default": "en",
+                        "examples": [
+                            "en",
+                            "fr",
+                            "it"
+                        ]
+                    },
+                    "filters": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "$ref": "#/components/schemas/SearchFilter"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Filters",
+                        "description": "List of filters to apply to the search query."
+                    },
+                    "projection": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Projection",
+                        "description": "List of fields in the document to return as part of search results.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "title",
+                                "content"
+                            ]
+                        ]
+                    },
+                    "distinct_results": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Distinct Results",
+                        "description": "Chunked indexes will return multiple results for a single document. Setting this to `true` returns one result per document.",
+                        "default": true,
+                        "examples": [
+                            true,
+                            false
+                        ]
+                    },
+                    "limit": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Limit",
+                        "description": "Maximum number of documents to be returned.",
+                        "default": 10,
+                        "examples": [
+                            10,
+                            20
+                        ]
+                    },
+                    "offset": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Offset",
+                        "description": "Number of documents to skip (used for pagination).",
+                        "default": 0,
+                        "examples": [
+                            0,
+                            20
+                        ]
+                    }
+                },
+                "type": "object",
+                "title": "SearchQuery"
+            },
+            "SemanticSearchIndex-Input": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "description": "Name of the Index.",
+                        "examples": [
+                            "wiki_index"
+                        ]
+                    },
+                    "connections": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Connections",
+                        "description": "List of datasource connections to populate the index.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "s3_wiki",
+                                "akamai_wiki"
+                            ]
+                        ]
+                    },
+                    "preprocessor": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PreprocessorConfig"
+                            }
+                        ],
+                        "description": "The preprocessing function and parameters for input data before adding data to the index.",
+                        "default": {
+                            "clean": {
+                                "bytes_string_to_string": true,
+                                "clean_bullets": true,
+                                "clean_dashes": true,
+                                "clean_extra_whitespace": true,
+                                "clean_non_ascii_chars": true,
+                                "clean_ordered_bullets": true,
+                                "clean_trailing_punctuation": false,
+                                "enable": false,
+                                "group_broken_paragraphs": true,
+                                "remove_punctuation": false,
+                                "replace_unicode_quotes": true
+                            },
+                            "extract": {
+                                "enable": false,
+                                "logic": "function process(data) { return data; }"
+                            },
+                            "chunk": {
+                                "enable": false
+                            }
+                        }
+                    },
+                    "facet_fields": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Facet Fields",
+                        "description": "Facet fields are attributes or properties of documents in a dataset that can be used to categorize and filter search results. List of fields in the document applicable for filtering results.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "doc_name",
+                                "content"
+                            ]
+                        ]
+                    },
+                    "sort_fields": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/SortOrderType"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Sort Fields",
+                        "description": "List of fields in the document applicable for sorting results and direction. \n        Should be provided in `{ field_name: asc|desc }` format.  \n        **Note: Setting index level sorting affects\n        ranking and similarity score based ordering of search results.**",
+                        "default": {},
+                        "example": {
+                            "created_date": "desc",
+                            "doc_name": "asc"
+                        }
+                    },
+                    "index_job_interval": {
+                        "type": "integer",
+                        "minimum": 0.0,
+                        "title": "Index Job Interval",
+                        "description": "Set the time interval, in seconds, between each indexing job. Use 0 to index just once.",
+                        "default": 86400,
+                        "examples": [
+                            3600,
+                            86400
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "semantic"
+                        ],
+                        "const": "semantic",
+                        "title": "Type",
+                        "description": "Type of the Index.",
+                        "default": "semantic"
+                    },
+                    "distance_type": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/DistanceType"
+                            }
+                        ],
+                        "description": "The distance type defines the distance metrics or similarity metrics functions used to quantify the similarity or dissimilarity (distance) between two vectors. It is used to find approximate nearest neighbors when performing a search on an index.",
+                        "default": "COSINE"
+                    },
+                    "indexed_fields": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Indexed Fields",
+                        "description": "List of fields in the document to be indexed.  \n    **NOTE: Make sure to provide this field when indexing structured docuements.**",
+                        "default": [],
+                        "examples": [
+                            [
+                                "content",
+                                "title"
+                            ]
+                        ]
+                    },
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "The name of the model to use for generating embeddings.",
+                        "examples": [
+                            "sentence-transformers/all-MiniLM-L6-v2"
+                        ]
+                    },
+                    "index_config": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/IvfIndexType"
+                            },
+                            {
+                                "$ref": "#/components/schemas/HnswIndexType"
+                            },
+                            {
+                                "$ref": "#/components/schemas/FlatIndexType"
+                            }
+                        ],
+                        "title": "Index Config",
+                        "description": "Defines the indexing strategies to use to search items.",
+                        "discriminator": {
+                            "propertyName": "type",
+                            "mapping": {
+                                "flat": "#/components/schemas/FlatIndexType",
+                                "hnsw": "#/components/schemas/HnswIndexType",
+                                "ivf": "#/components/schemas/IvfIndexType"
+                            }
+                        }
+                    },
+                    "quantization_config": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/NoneQuantization"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PqQuantization"
+                            },
+                            {
+                                "$ref": "#/components/schemas/SqQuantization"
+                            }
+                        ],
+                        "title": "Quantization Config",
+                        "description": "Configure the precision of the numbers used to represent model parameters or embeddings. This technique maps continuous or high-precision values to smaller discrete values, effectively compressing the embeddings' size and reducing the memory and computational requirements for storing and processing them.",
+                        "discriminator": {
+                            "propertyName": "type",
+                            "mapping": {
+                                "none": "#/components/schemas/NoneQuantization",
+                                "pq": "#/components/schemas/PqQuantization",
+                                "sq": "#/components/schemas/SqQuantization"
+                            }
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "model_name",
+                    "index_config",
+                    "quantization_config"
+                ],
+                "title": "SemanticSearchIndex"
+            },
+            "SemanticSearchIndex-Output": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name",
+                        "description": "Name of the Index.",
+                        "examples": [
+                            "wiki_index"
+                        ]
+                    },
+                    "connections": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Connections",
+                        "description": "List of datasource connections to populate the index.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "s3_wiki",
+                                "akamai_wiki"
+                            ]
+                        ]
+                    },
+                    "preprocessor": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PreprocessorConfig"
+                            }
+                        ],
+                        "description": "The preprocessing function and parameters for input data before adding data to the index.",
+                        "default": {
+                            "clean": {
+                                "bytes_string_to_string": true,
+                                "clean_bullets": true,
+                                "clean_dashes": true,
+                                "clean_extra_whitespace": true,
+                                "clean_non_ascii_chars": true,
+                                "clean_ordered_bullets": true,
+                                "clean_trailing_punctuation": false,
+                                "enable": false,
+                                "group_broken_paragraphs": true,
+                                "remove_punctuation": false,
+                                "replace_unicode_quotes": true
+                            },
+                            "extract": {
+                                "enable": false,
+                                "logic": "function process(data) { return data; }"
+                            },
+                            "chunk": {
+                                "enable": false
+                            }
+                        }
+                    },
+                    "facet_fields": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Facet Fields",
+                        "description": "Facet fields are attributes or properties of documents in a dataset that can be used to categorize and filter search results. List of fields in the document applicable for filtering results.",
+                        "default": [],
+                        "examples": [
+                            [
+                                "doc_name",
+                                "content"
+                            ]
+                        ]
+                    },
+                    "sort_fields": {
+                        "anyOf": [
+                            {
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/SortOrderType"
+                                },
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Sort Fields",
+                        "description": "List of fields in the document applicable for sorting results and direction. \n        Should be provided in `{ field_name: asc|desc }` format.  \n        **Note: Setting index level sorting affects\n        ranking and similarity score based ordering of search results.**",
+                        "default": {},
+                        "example": {
+                            "created_date": "desc",
+                            "doc_name": "asc"
+                        }
+                    },
+                    "index_job_interval": {
+                        "type": "integer",
+                        "minimum": 0.0,
+                        "title": "Index Job Interval",
+                        "description": "Set the time interval, in seconds, between each indexing job. Use 0 to index just once.",
+                        "default": 86400,
+                        "examples": [
+                            3600,
+                            86400
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "semantic"
+                        ],
+                        "const": "semantic",
+                        "title": "Type",
+                        "description": "Type of the Index.",
+                        "default": "semantic"
+                    },
+                    "distance_type": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/DistanceType"
+                            }
+                        ],
+                        "description": "The distance type defines the distance metrics or similarity metrics functions used to quantify the similarity or dissimilarity (distance) between two vectors. It is used to find approximate nearest neighbors when performing a search on an index.",
+                        "default": "COSINE"
+                    },
+                    "indexed_fields": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Indexed Fields",
+                        "description": "List of fields in the document to be indexed.  \n    **NOTE: Make sure to provide this field when indexing structured docuements.**",
+                        "default": [],
+                        "examples": [
+                            [
+                                "content",
+                                "title"
+                            ]
+                        ]
+                    },
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "The name of the model to use for generating embeddings.",
+                        "examples": [
+                            "sentence-transformers/all-MiniLM-L6-v2"
+                        ]
+                    },
+                    "index_config": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/IvfIndexType"
+                            },
+                            {
+                                "$ref": "#/components/schemas/HnswIndexType"
+                            },
+                            {
+                                "$ref": "#/components/schemas/FlatIndexType"
+                            }
+                        ],
+                        "title": "Index Config",
+                        "description": "Defines the indexing strategies to use to search items.",
+                        "discriminator": {
+                            "propertyName": "type",
+                            "mapping": {
+                                "flat": "#/components/schemas/FlatIndexType",
+                                "hnsw": "#/components/schemas/HnswIndexType",
+                                "ivf": "#/components/schemas/IvfIndexType"
+                            }
+                        }
+                    },
+                    "quantization_config": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/NoneQuantization"
+                            },
+                            {
+                                "$ref": "#/components/schemas/PqQuantization"
+                            },
+                            {
+                                "$ref": "#/components/schemas/SqQuantization"
+                            }
+                        ],
+                        "title": "Quantization Config",
+                        "description": "Configure the precision of the numbers used to represent model parameters or embeddings. This technique maps continuous or high-precision values to smaller discrete values, effectively compressing the embeddings' size and reducing the memory and computational requirements for storing and processing them.",
+                        "discriminator": {
+                            "propertyName": "type",
+                            "mapping": {
+                                "none": "#/components/schemas/NoneQuantization",
+                                "pq": "#/components/schemas/PqQuantization",
+                                "sq": "#/components/schemas/SqQuantization"
+                            }
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "model_name",
+                    "index_config",
+                    "quantization_config"
+                ],
+                "title": "SemanticSearchIndex"
+            },
+            "SortOrderType": {
+                "type": "string",
+                "enum": [
+                    "asc",
+                    "desc"
+                ],
+                "title": "SortOrderType",
+                "description": "Sort order."
+            },
+            "SqQuantization": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "sq"
+                        ],
+                        "const": "sq",
+                        "title": "Type",
+                        "description": "Type of quantization.",
+                        "default": "sq"
+                    },
+                    "bits": {
+                        "type": "integer",
+                        "title": "Bits",
+                        "description": "The number of output bits after quantization.",
+                        "examples": [
+                            8
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bits"
+                ],
+                "title": "SqQuantization",
+                "description": "In Scalar quantization (SC), each value is quantized independently, which is straightforward but may\nnot capture the correlations between the embeddings' different dimensions."
+            },
+            "TextEmbeddingRequest": {
+                "properties": {
+                    "strings": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Strings",
+                        "description": "The text strings for which to generate embeddings.",
+                        "examples": [
+                            [
+                                "did you see",
+                                "a man wearing a red hat"
+                            ]
+                        ]
+                    },
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name",
+                        "description": "The name of the model to use for generating embeddings.",
+                        "examples": [
+                            "sentence-transformers/all-MiniLM-L6-v2"
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "strings",
+                    "model_name"
+                ],
+                "title": "TextEmbeddingRequest"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        },
+        "securitySchemes": {
+            "APIKeyHeader": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Authorization"
+            }
+        }
+    }
+}
