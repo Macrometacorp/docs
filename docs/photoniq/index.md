@@ -47,6 +47,11 @@ PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Netwo
 </grid>
 <grid cols={3}>
   <card
+    heading="HyperSearch"
+    description="Lexical and semantic search."
+    href="/photoniq/hypersearch"
+  />
+  <card
     heading="PhotonIQ APIs"
     description="API references for PhotonIQ services."
     href="/photoniq/photoniq-api"
