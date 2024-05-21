@@ -11,7 +11,7 @@ Before you begin the setup process, ensure you have completed the following prer
 
 - **Coordinate with Macrometa Personnel:** Engage with Macrometa personnel to obtain necessary credentials and access rights.
 - **Plan Your Waiting Room:** Determine the appropriate [queue type](../queue-types.md) for your needs, decide which URLs will incorporate the waiting room, and consider whether priority handling is necessary.
-- **Collect Information:** Gather all required information, such as domain details and traffic expectations, to streamline the setup process.
+- **Collect Information:** Gather all required information, such as waiting room details and traffic expectations, to streamline the setup process.
 
 ## Set Up the Waiting Room
 
@@ -21,7 +21,7 @@ Follow these steps to establish your virtual waiting room:
 
 2. **Configure a VWRs EdgeWorker:** Set up a VWRs EdgeWorker to manage the waiting room functionality on the Akamai side. This configuration is crucial for handling incoming traffic and directing it appropriately. For detailed information on this process, refer to [Configure a VWRs EdgeWorker](../configure-vwrs-edgeworker.md).
 
-3. **Create and Configure a Domain:** Create a domain that hosts your waiting room. This step allows you to fine-tune how the waiting room operates and integrates with your site. For comprehensive guidance on domain configuration, refer to [Configure a Domain](../configure-domain.md).
+3. **Create and Configure a Waiting Room:** Create your waiting room. This step allows you to fine-tune how the waiting room operates and integrates with your site. For comprehensive guidance on waiting room configuration, refer to [Configure a Waiting Room](../configure-waitingroom.md).
 
 ## Next Steps
 

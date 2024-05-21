@@ -3,7 +3,7 @@
   "info": {
     "title": "PhotonIQ Virtual Waiting Rooms API",
     "description": "API documentation for the PhotonIQ Virtual Waiting Rooms",
-    "version": "1.26.0"
+    "version": "2.0.0"
   },
   "servers": [
     {
@@ -171,37 +171,37 @@
           }
         }
       },
-      "Domain": {
+      "WaitingRoom": {
         "allOf": [
           {
             "type": "object",
             "required": [
-              "domain_key"
+              "waitingroom_key"
             ],
             "properties": {
-              "domain_key": {
+              "waitingroom_key": {
                 "type": "string",
-                "description": "The unique key of the domain."
+                "description": "The unique key of the waiting room."
               }
             }
           },
           {
-            "$ref": "#/components/schemas/DomainObject"
+            "$ref": "#/components/schemas/WaitingRoomObject"
           }
         ]
       },
-      "DomainObject": {
+      "WaitingRoomObject": {
         "type": "object",
         "required": [
-          "domain_url"
+          "waitingroom_url"
         ],
         "properties": {
-          "domain_url": {
+          "waitingroom_url": {
             "type": "string",
-            "description": "The URL of the domain."
+            "description": "The URL of the waiting room."
           },
           "access_type": {
-            "description": "The access type for the domain.",
+            "description": "The access type for the waiting room.",
             "type": "string",
             "enum": [
               "users",
@@ -251,7 +251,7 @@
           },
           "rate_limit": {
             "type": "number",
-            "description": "The rate limit for the domain.  The maximum users per second allowed to reach the origin.",
+            "description": "The rate limit for the waiting room.  The maximum users per second allowed to reach the origin.",
             "minimum": 1,
             "default": 100
           },
@@ -276,7 +276,7 @@
           "request_priority": {
             "type": "array",
             "maxItems": 10,
-            "description": "Requests may optionally specify a priority level, represented by a numerical value. A lower numerical value signifies a higher priority, ensuring these requests are processed preferentially. The array provides a list of all valid priority values available for use with this domain.",
+            "description": "Requests may optionally specify a priority level, represented by a numerical value. A lower numerical value signifies a higher priority, ensuring these requests are processed preferentially. The array provides a list of all valid priority values available for use with this waiting room.",
             "items": {
               "type": "number",
               "minimum": 1,
@@ -295,16 +295,16 @@
           }
         }
       },
-      "GetDomainsResponse": {
+      "GetWaitingRoomsResponse": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/DomainObject"
+          "$ref": "#/components/schemas/WaitingRoomObject"
         }
       },
-      "DomainPostResponse": {
+      "WaitingRoomPostResponse": {
         "type": "object",
         "properties": {
-          "domain_key": {
+          "waitingroom_key": {
             "type": "string"
           },
           "created_at": {
@@ -314,10 +314,10 @@
           }
         }
       },
-      "DomainPutResponse": {
+      "WaitingRoomPutResponse": {
         "type": "object",
         "properties": {
-          "domain_key": {
+          "waitingroom_key": {
             "type": "string"
           },
           "updated_at": {
@@ -327,10 +327,10 @@
           }
         }
       },
-      "DomainDeleteResponse": {
+      "WaitingRoomDeleteResponse": {
         "type": "object",
         "properties": {
-          "domain_key": {
+          "waitingroom_key": {
             "type": "string"
           },
           "deleted_at": {
@@ -348,9 +348,9 @@
             "format": "number",
             "description": "The average time, in milliseconds, that users spend in the virtual waiting room before being granted access to the origin service."
           },
-          "domain_key": {
+          "waitingroom_key": {
             "type": "string",
-            "description": "The domain key."
+            "description": "The waiting room key."
           },
           "origin_key": {
             "type": "string",
@@ -391,9 +391,9 @@
       "AggregateUsageGetResponse": {
         "type": "object",
         "properties": {
-          "domain_key": {
+          "waitingroom_key": {
             "type": "string",
-            "description": "A unique identifier for the domain."
+            "description": "A unique identifier for the waiting room."
           },
           "requests": {
             "type": "number",
@@ -409,9 +409,9 @@
       "UsageGetResponse": {
         "type": "object",
         "properties": {
-          "domain_key": {
+          "waitingroom_key": {
             "type": "string",
-            "description": "A unique identifier for the domain."
+            "description": "A unique identifier for the waiting room."
           },
           "requests": {
             "type": "number",
@@ -494,7 +494,7 @@
           },
           "rate_limit": {
             "type": "integer",
-            "description": "The rate limit for the domain. The maximum users per second allowed to reach the origin.",
+            "description": "The rate limit for the waiting room. The maximum users per second allowed to reach the origin.",
             "example": 5
           },
           "waiting_room_interval": {
@@ -535,14 +535,14 @@
     }
   },
   "paths": {
-    "/api/vwr/v1/domains": {
+    "/api/vwr/v1/waitingrooms": {
       "post": {
-        "summary": "Create a domain",
+        "summary": "Create a waiting room",
         "tags": [
-          "Domains"
+          "Waiting rooms"
         ],
-        "description": "Creates a new domain with the specified properties.",
-        "operationId": "createDomain",
+        "description": "Creates a new waiting room with the specified properties.",
+        "operationId": "createWaitingRoom",
         "security": [
           {
             "APIKeyAuth": []
@@ -553,18 +553,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Domain"
+                "$ref": "#/components/schemas/WaitingRoom"
               }
             }
           }
         },
         "responses": {
           "202": {
-            "description": "Successfully created the domain.",
+            "description": "Successfully created the waiting room.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DomainPostResponse"
+                  "$ref": "#/components/schemas/WaitingRoomPostResponse"
                 }
               }
             }
@@ -584,12 +584,12 @@
         }
       },
       "get": {
-        "summary": "Get information on all domains",
+        "summary": "Get information on all waiting rooms",
         "tags": [
-          "Domains"
+          "Waiting rooms"
         ],
-        "description": "Retrieves a list of domains that matches a specified pattern.",
-        "operationId": "getDomainUsingQueryParams",
+        "description": "Retrieves a list of waiting rooms that match a specified pattern.",
+        "operationId": "getWaitingRoomUsingQueryParams",
         "security": [
           {
             "APIKeyAuth": []
@@ -599,7 +599,7 @@
           {
             "name": "pattern",
             "in": "query",
-            "description": "Fetch domain information that matches the pattern. For example, a pattern could be 'aa' or 'test'. To get all domains, set the pattern to '*'.",
+            "description": "Fetch waiting room information that matches the pattern. For example, a pattern could be 'aa' or 'test'. To get all waiting room, set the pattern to '*'.",
             "schema": {
               "type": "string",
               "default": "*"
@@ -609,7 +609,7 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "description": "The _limit_ parameter determines the number of domains returned.",
+            "description": "The _limit_ parameter determines the number of waiting rooms returned.",
             "schema": {
               "type": "number",
               "default": 1000
@@ -619,7 +619,7 @@
             "name": "offset",
             "in": "query",
             "required": false,
-            "description": "Represents the starting point from where to begin fetching the domain records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of domain records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 domains records and set the _limit_ to 100, then the first API call without an offset will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
+            "description": "Represents the starting point from where to begin fetching the waiting room records. This parameter is especially useful in conjunction with the _limit_ parameter for pagination of a large number of waiting room records. By default, it is set to 0, meaning that data retrieval will start from the very first record. For example, if you have 10,000 waiting room records and set the _limit_ to 100, then the first API call without an offset will retrieve records 1 to 100. If you set the _offset_ to 100 for the next call, you will retrieve records 101 to 200, and so on. This way, by incrementing the _offset_ by the _limit_ value for successive calls, you can paginate through the entire dataset.",
             "schema": {
               "type": "number",
               "default": 0
@@ -633,11 +633,11 @@
             "schema": {
               "type": "string",
               "enum": [
-                "domain_key",
+                "waitingroom_key",
                 "created_at",
-                "domain_url"
+                "waitingroom_url"
               ],
-              "default": "domain_url"
+              "default": "waitingroom_url"
             }
           },
           {
@@ -657,7 +657,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully fetched all domain information.",
+            "description": "Successfully fetched all waiting rooms information.",
             "headers": {
               "X-count": {
                 "description": "The total number of records that match the pattern.",
@@ -670,7 +670,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetDomainsResponse"
+                  "$ref": "#/components/schemas/GetWaitingRoomsResponse"
                 }
               }
             }
@@ -685,7 +685,7 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "404": {
-            "description": "Domain not found."
+            "description": "Waiting room not found."
           },
           "500": {
             "description": "Internal server error."
@@ -693,14 +693,14 @@
         }
       }
     },
-    "/api/vwr/v1/domains/{domain_key}": {
+    "/api/vwr/v1/waitingrooms/{waitingroom_key}": {
       "get": {
-        "summary": "Get information for a specific domain",
+        "summary": "Get information for a specific waiting room",
         "tags": [
-          "Domains"
+          "Waiting rooms"
         ],
-        "description": "Retrieves information about a specific domain.",
-        "operationId": "getDomain",
+        "description": "Retrieves information about a specific waiting room.",
+        "operationId": "getWaitingRoom",
         "security": [
           {
             "APIKeyAuth": []
@@ -708,9 +708,9 @@
         ],
         "parameters": [
           {
-            "name": "domain_key",
+            "name": "waitingroom_key",
             "in": "path",
-            "description": "The unique identifier for the domain of interest.",
+            "description": "The unique identifier for the waiting room of interest.",
             "required": true,
             "schema": {
               "type": "string"
@@ -719,11 +719,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully fetched the domain information.",
+            "description": "Successfully fetched the waiting room information.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DomainObject"
+                  "$ref": "#/components/schemas/WaitingRoomObject"
                 }
               }
             }
@@ -735,7 +735,7 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "404": {
-            "description": "Domain key not found."
+            "description": "Waiting room key not found."
           },
           "500": {
             "description": "Internal server error."
@@ -743,12 +743,12 @@
         }
       },
       "put": {
-        "summary": "Update a domain",
+        "summary": "Update a waiting room",
         "tags": [
-          "Domains"
+          "Waiting rooms"
         ],
-        "description": "Updates an existing domain with the specified properties.",
-        "operationId": "updateDomain",
+        "description": "Updates an existing waiting room with the specified properties.",
+        "operationId": "updateWaitingRoom",
         "security": [
           {
             "APIKeyAuth": []
@@ -756,9 +756,9 @@
         ],
         "parameters": [
           {
-            "name": "domain_key",
+            "name": "waitingroom_key",
             "in": "path",
-            "description": "A unique identifier for the domain.",
+            "description": "A unique identifier for the waiting room.",
             "required": true,
             "schema": {
               "type": "string"
@@ -770,18 +770,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DomainObject"
+                "$ref": "#/components/schemas/WaitingRoomObject"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Successfully updated the domain.",
+            "description": "Successfully updated the waiting room.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DomainPutResponse"
+                  "$ref": "#/components/schemas/WaitingRoomPutResponse"
                 }
               }
             }
@@ -796,7 +796,7 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "404": {
-            "description": "Domain key not found."
+            "description": "Waiting room key not found."
           },
           "500": {
             "description": "Internal server error."
@@ -804,12 +804,12 @@
         }
       },
       "patch": {
-        "summary": "Modify specific property of a domain",
+        "summary": "Modify specific property of a waiting room",
         "tags": [
-          "Domains"
+          "Waiting rooms"
         ],
-        "description": "Modifies an existing domain with one or more specified properties.",
-        "operationId": "patchDomain",
+        "description": "Modifies an existing waiting room with one or more specified properties.",
+        "operationId": "patchWaitingRoom",
         "security": [
           {
             "APIKeyAuth": []
@@ -817,9 +817,9 @@
         ],
         "parameters": [
           {
-            "name": "domain_key",
+            "name": "waitingroom_key",
             "in": "path",
-            "description": "A unique identifier for the domain.",
+            "description": "A unique identifier for the waiting room.",
             "required": true,
             "schema": {
               "type": "string"
@@ -831,18 +831,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DomainObject"
+                "$ref": "#/components/schemas/WaitingRoomObject"
               }
             }
           }
         },
         "responses": {
           "202": {
-            "description": "Successfully updated the domain.",
+            "description": "Successfully updated the waiting room.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DomainObject"
+                  "$ref": "#/components/schemas/WaitingRoomObject"
                 }
               }
             }
@@ -857,7 +857,7 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "404": {
-            "description": "Domain key not found."
+            "description": "Waiting room key not found."
           },
           "500": {
             "description": "Internal server error."
@@ -865,12 +865,12 @@
         }
       },
       "delete": {
-        "summary": "Delete domain information",
+        "summary": "Delete waiting room information",
         "tags": [
-          "Domains"
+          "Waiting rooms"
         ],
-        "description": "Deletes waiting room configuration of a specific domain.",
-        "operationId": "deleteDomain",
+        "description": "Deletes waiting room configuration of a specific waiting room.",
+        "operationId": "deleteWaitingRoom",
         "security": [
           {
             "APIKeyAuth": []
@@ -878,9 +878,9 @@
         ],
         "parameters": [
           {
-            "name": "domain_key",
+            "name": "waitingroom_key",
             "in": "path",
-            "description": "The key of the domain to delete information for.",
+            "description": "The key of the waiting room to delete information for.",
             "required": true,
             "schema": {
               "type": "string"
@@ -889,11 +889,11 @@
         ],
         "responses": {
           "202": {
-            "description": "Successfully delted the domain.",
+            "description": "Successfully deleted the waiting room.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DomainDeleteResponse"
+                  "$ref": "#/components/schemas/WaitingRoomDeleteResponse"
                 }
               }
             }
@@ -902,7 +902,7 @@
             "description": "Either the API key doesn't have permissions or it is deactivated."
           },
           "404": {
-            "description": "Domain key not found."
+            "description": "Waiting room key not found."
           },
           "500": {
             "description": "Internal server error."
@@ -1233,7 +1233,7 @@
         "summary": "Position in waiting room",
         "description": "Get the user's current position in waiting room.",
         "tags": [
-          "Waiting room"
+          "Waiting room status"
         ],
         "security": [
           {
@@ -1252,12 +1252,12 @@
           },
           {
             "in": "query",
-            "name": "domain",
+            "name": "waitingroom",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "The domain_key of the domain."
+            "description": "The waitingroom_key of the waiting room."
           },
           {
             "in": "query",
@@ -1275,7 +1275,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "Unix timestamp, in seconds, when the user first time entered the waiting room."
+            "description": "The creation Unix timestamp, in seconds, when the user first time entered the waiting room."
           },
           {
             "in": "query",
@@ -1310,7 +1310,7 @@
         }
       }
     },
-    "/api/vwr/v1/position/{domain_key}": {
+    "/api/vwr/v1/position/{waitingroom_key}": {
       "get": {
         "summary": "Get initial position in the waiting room",
         "description": "Get initial position in the waiting room.",
@@ -1325,12 +1325,12 @@
         "parameters": [
           {
             "in": "path",
-            "name": "domain_key",
+            "name": "waitingroom_key",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "The unique key of a domain."
+            "description": "The unique key of a waiting room."
           }
         ],
         "responses": {
@@ -1359,7 +1359,7 @@
         }
       }
     },
-    "/api/vwr/v1/position/{domain_key}/{request_id}": {
+    "/api/vwr/v1/position/{waitingroom_key}/{request_id}": {
       "get": {
         "summary": "Provide current position in the waiting room",
         "description": "Provides the user's position in the waiting room.\\n\\nA position of 0 indicates that the user is no longer in the waiting room and has gained access to the requested resource.",
@@ -1374,7 +1374,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "domain_key",
+            "name": "waitingroom_key",
             "required": true,
             "schema": {
               "type": "string"
@@ -1392,7 +1392,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved waiting room data.",
+            "description": "Successfully obtained waiting room data.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1416,13 +1416,13 @@
         }
       }
     },
-    "/api/vwr/v1/metrics/{domain_key}": {
+    "/api/vwr/v1/metrics/{waitingroom_key}": {
       "get": {
-        "summary": "Get metrics by domain key",
+        "summary": "Get metrics by waiting room key",
         "tags": [
           "Metrics"
         ],
-        "description": "Allows you to retrieve waiting room telemetry per waiting room, per minute. Gets metrics for a specific domain. Optionally provide _start_ and _end_ filter for a specific period. Ninety days of metrics are kept.",
+        "description": "Allows you to retrieve waiting room telemetry per waiting room, per minute. Gets metrics for a specific waiting room. Optionally provide _start_ and _end_ filter for a specific period. Ninety days of metrics are kept.",
         "operationId": "getMetrics",
         "security": [
           {
@@ -1431,10 +1431,10 @@
         ],
         "parameters": [
           {
-            "name": "domain_key",
+            "name": "waitingroom_key",
             "in": "path",
             "required": true,
-            "description": "The key of the domain.",
+            "description": "The key of the waiting room.",
             "schema": {
               "type": "string"
             }
@@ -1491,7 +1491,7 @@
               "type": "string",
               "enum": [
                 "avg_waiting_time",
-                "domain_key",
+                "waitingroom_key",
                 "duplicate_request_rate",
                 "peak_queue_length",
                 "queue_abandonment_rate",
@@ -1542,7 +1542,7 @@
                     "value": [
                       {
                         "avg_waiting_time": 800,
-                        "domain_key": "test",
+                        "waitingroom_key": "test",
                         "duplicate_request_rate": 0,
                         "origin_key": "test",
                         "peak_queue_length": 2000,
@@ -1553,7 +1553,7 @@
                       },
                       {
                         "avg_waiting_time": 1000,
-                        "domain_key": "virtual-room.example.io",
+                        "waitingroom_key": "virtual-room.example.io",
                         "duplicate_request_rate": 0,
                         "origin_key": "example-origin",
                         "peak_queue_length": 3000,
@@ -1564,7 +1564,7 @@
                       },
                       {
                         "avg_waiting_time": 500,
-                        "domain_key": "virtual-room.example.io",
+                        "waitingroom_key": "virtual-room.example.io",
                         "duplicate_request_rate": 0,
                         "origin_key": "example-origin",
                         "peak_queue_length": 1000,
@@ -1600,7 +1600,7 @@
         "tags": [
           "Metrics"
         ],
-        "description": "Allows you to retrieve waiting room telemetry per minute. Gets metrics for all the domains. Optionally provide _start_ and _to_ filter for a specific period. Ninety days of metrics are kept.",
+        "description": "Allows you to retrieve waiting room telemetry per minute. Gets metrics for all the waiting rooms. Optionally provide _start_ and _to_ filter for a specific period. Ninety days of metrics are kept.",
         "operationId": "filterMetricsByDate",
         "security": [
           {
@@ -1660,7 +1660,7 @@
               "type": "string",
               "enum": [
                 "avg_waiting_time",
-                "domain_key",
+                "waitingroom_key",
                 "duplicate_request_rate",
                 "peak_queue_length",
                 "queue_abandonment_rate",
@@ -1711,7 +1711,7 @@
                     "value": [
                       {
                         "avg_waiting_time": 800,
-                        "domain_key": "test",
+                        "waitingroom_key": "test",
                         "duplicate_request_rate": 0,
                         "origin_key": "test",
                         "peak_queue_length": 2000,
@@ -1722,7 +1722,7 @@
                       },
                       {
                         "avg_waiting_time": 1000,
-                        "domain_key": "virtual-room.example.io",
+                        "waitingroom_key": "virtual-room.example.io",
                         "duplicate_request_rate": 0,
                         "origin_key": "example-origin",
                         "peak_queue_length": 3000,
@@ -1733,7 +1733,7 @@
                       },
                       {
                         "avg_waiting_time": 500,
-                        "domain_key": "virtual-room.example.io",
+                        "waitingroom_key": "virtual-room.example.io",
                         "duplicate_request_rate": 0,
                         "origin_key": "example-origin",
                         "peak_queue_length": 1000,
@@ -1769,7 +1769,7 @@
         "tags": [
           "Usage"
         ],
-        "description": "Get hourly usage statistics of a specific domain for a specified time period.",
+        "description": "Get hourly usage statistics of a specific waiting room for a specified time period.",
         "operationId": "getHourlyUsage",
         "security": [
           {
@@ -1778,10 +1778,10 @@
         ],
         "parameters": [
           {
-            "name": "domain",
+            "name": "waitingroom",
             "in": "query",
             "required": true,
-            "description": "Unique identifier for a domain.",
+            "description": "Unique identifier for a waiting room.",
             "schema": {
               "type": "string"
             }
@@ -1848,7 +1848,7 @@
               "enum": [
                 "usage_requests",
                 "max_rps",
-                "domain_key",
+                "waitingroom_key",
                 "timestamp"
               ],
               "default": "timestamp"
@@ -1904,13 +1904,13 @@
                     "summary": "Response when aggregate is false.",
                     "value": [
                       {
-                        "domain_key": "test.domain",
+                        "waitingroom_key": "test.waitingroom",
                         "requests": 1305,
                         "max_rps": 100,
                         "timestamp": "2023-07-12T07:00:00.000Z"
                       },
                       {
-                        "domain_key": "test.domain",
+                        "waitingroom_key": "test.waitingroom",
                         "requests": 1200,
                         "max_rps": 125,
                         "timestamp": "2023-07-12T08:00:00.000Z"
@@ -1921,7 +1921,7 @@
                     "summary": "Response when aggregate is true.",
                     "value": [
                       {
-                        "domain_key": "test.domain",
+                        "waitingroom_key": "test.waitingroom",
                         "requests": 2505,
                         "max_rps": 112.5
                       }
@@ -1952,7 +1952,7 @@
         "tags": [
           "Usage"
         ],
-        "description": "Gets daily usage statistics of a specific domain for a specified time period.",
+        "description": "Gets daily usage statistics of a specific waiting room for a specified time period.",
         "operationId": "getDailyUsage",
         "security": [
           {
@@ -1961,10 +1961,10 @@
         ],
         "parameters": [
           {
-            "name": "domain",
+            "name": "waitingroom",
             "in": "query",
             "required": true,
-            "description": "Unique identifier for a domain.",
+            "description": "Unique identifier for a waiting room.",
             "schema": {
               "type": "string"
             }
@@ -2031,7 +2031,7 @@
               "enum": [
                 "usage_requests",
                 "max_rps",
-                "domain_key",
+                "waitingroom_key",
                 "timestamp"
               ],
               "default": "timestamp"
@@ -2087,13 +2087,13 @@
                     "summary": "Response when aggregate is set to false.",
                     "value": [
                       {
-                        "domain_key": "test.domain",
+                        "waitingroom_key": "test.waitingroom",
                         "requests": 1305,
                         "max_rps": 100,
                         "timestamp": "2023-07-12T07:00:00.000Z"
                       },
                       {
-                        "domain_key": "test.domain",
+                        "waitingroom_key": "test.waitingroom",
                         "requests": 1200,
                         "max_rps": 125,
                         "timestamp": "2023-07-13T08:00:00.000Z"
@@ -2104,7 +2104,7 @@
                     "summary": "Response when aggregate is set to true.",
                     "value": [
                       {
-                        "domain_key": "test.domain",
+                        "waitingroom_key": "test.waitingroom",
                         "requests": 2505,
                         "max_rps": 112.5
                       }
@@ -2135,7 +2135,7 @@
         "tags": [
           "Usage"
         ],
-        "description": "Gets monthly usage statistics of a specific domain for a specified time period.",
+        "description": "Gets monthly usage statistics of a specific waiting room for a specified time period.",
         "operationId": "getMonthlyUsage",
         "security": [
           {
@@ -2144,10 +2144,10 @@
         ],
         "parameters": [
           {
-            "name": "domain",
+            "name": "waitingroom",
             "in": "query",
             "required": false,
-            "description": "Unique domain identifier. If unused, retrieve the monthly usage information for all domains.",
+            "description": "Unique waiting room identifier. If unused, retrieve the monthly usage information for all waiting rooms.",
             "schema": {
               "type": "string"
             }
@@ -2214,7 +2214,7 @@
               "enum": [
                 "usage_requests",
                 "max_rps",
-                "domain_key",
+                "waitingroom_key",
                 "timestamp"
               ],
               "default": "timestamp"
@@ -2270,13 +2270,13 @@
                     "summary": "Response when aggregate is false.",
                     "value": [
                       {
-                        "domain_key": "test.domain",
+                        "waitingroom_key": "test.waitingroom",
                         "requests": 1305,
                         "max_rps": 100,
                         "timestamp": "2023-06-12T00:00:00.000Z"
                       },
                       {
-                        "domain_key": "test.domain",
+                        "waitingroom_key": "test.waitingroom",
                         "requests": 1200,
                         "max_rps": 125,
                         "timestamp": "2023-07-12T00:00:00.000Z"
@@ -2287,7 +2287,7 @@
                     "summary": "Response when aggregate is true.",
                     "value": [
                       {
-                        "domain_key": "test.domain",
+                        "waitingroom_key": "test.waitingroom",
                         "requests": 2505,
                         "max_rps": 112.5
                       }
@@ -2366,7 +2366,7 @@
             "description": "Successfully fetched the telemetry data for the service.",
             "content": {
               "application/text": {
-                "example": "# TYPE usage_requests_count counter\nusage_requests_count{domain=\"virtual-room.example.io\"} 123456 1694758004532\n# TYPE waiting_time_count counter\nwaiting_time_count{domain=\"virtual-room.example.io\"} 123456 1694758004532\n# TYPE waiting_time counter\nwaiting_time{domain=\"virtual-room.example.io\"} 100 1694758004532\n# TYPE max_queue_size counter\nmax_queue_size{domain=\"virtual-room.example.io\"} 2000 1694758004532\n# TYPE queue_size counter\nqueue_size{domain=\"virtual-room.example.io\"} 1500 1694758004532\n"
+                "example": "# TYPE usage_requests_count counter\nusage_requests_count{waitingroom=\"virtual-room.example.io\"} 123456 1694758004532\n# TYPE waiting_time_count counter\nwaiting_time_count{waitingroom=\"virtual-room.example.io\"} 123456 1694758004532\n# TYPE waiting_time counter\nwaiting_time{waitingroom=\"virtual-room.example.io\"} 100 1694758004532\n# TYPE max_queue_size counter\nmax_queue_size{waitingroom=\"virtual-room.example.io\"} 2000 1694758004532\n# TYPE queue_size counter\nqueue_size{waitingroom=\"virtual-room.example.io\"} 1500 1694758004532\n"
               }
             }
           },
