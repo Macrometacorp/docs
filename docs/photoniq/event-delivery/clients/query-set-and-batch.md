@@ -16,7 +16,7 @@ let querySet = connection.querySet();
 
 Only retrieves initial data and immediately removes the query from the Event Delivery Service after the response:
 ```js
-querySet.retrieve("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'", (event) => {
+querySet.retrieve("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event) => {
     console.log(`Message event: `, event);
 })
 ```
@@ -25,7 +25,7 @@ querySet.retrieve("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>
 
 Retrieves initial data and subscribes to changes in the query:
 ```js
-querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'", (event) => {
+querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event) => {
     console.log(`Message event: `, event);
 })
 ```
@@ -34,7 +34,7 @@ querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-
 
 Only subscribes to changes in the query:
 ```js
-querySet.subscribe("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'", (event) => {
+querySet.subscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event) => {
     console.log(`Message event: `, event);
 })
 ```
@@ -43,7 +43,7 @@ querySet.subscribe("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT
 
 Removes a subscription if the query was subscribed in the `QuerySet`. This applies only to the `retrieveAndSubscribe` and `subscribe` methods:
 ```js
-querySet.unsubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'");
+querySet.unsubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>");
 ```
 
 ### batch
@@ -53,16 +53,16 @@ The final method should be`assemble()`,  which builds and sends the message:
 ```js
 let queryBatch = querySet.batch();
 queryBatch
-    .retrieve("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'", (event) => {
+    .retrieve("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event) => {
        console.log(`Message event: `, event);
     })
-    .retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'", (event) => {
+    .retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event) => {
        console.log(`Message event: `, event);
     })
-    .subscribe("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'", (event) => {
+    .subscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event) => {
        console.log(`Message event: `, event);
     })
-    .unsubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'")
+    .unsubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>")
     .assemble();
 ```
 

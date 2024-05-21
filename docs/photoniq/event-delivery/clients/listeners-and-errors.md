@@ -75,7 +75,7 @@ The functions listen to events related to a specific query and are divided into 
 ### Result Listener
 It listens only for events with `event.type === "message"` and is passed as the second parameter to the `retrieve`, `retrieveAndSubscribe`, and `subscribe` methods:
 ```js
-let sql ="SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'";
+let sql = "SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>";
 let resultListener = (event) => {
     console.log(`Message event: `, event);
 };
@@ -86,7 +86,7 @@ querySet.retrieve(sql, resultListener);
 The error listener handles error messages related to a query, which can have the types `event.type === "server-query-error"` or `event.type === "client-query-error"`
 
 ```js
-let sql ="SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'";
+let sql = "SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>";
 let resultListener = (event) => {
     console.log(`Message event: `, event);
 };

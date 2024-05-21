@@ -33,7 +33,7 @@ let connection = PhotoniqEdsWs.connect(config);
 
 let querySet = connection.querySet();
 
-querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE _key='<KEY-OF-DOCUMENT>'", (event) => {
+querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event) => {
     console.log(`Message event: `, event);
 })
 ```

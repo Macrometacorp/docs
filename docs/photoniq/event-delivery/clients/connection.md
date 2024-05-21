@@ -16,7 +16,7 @@ connection.connect();
 
 ### getConfig
 
-Retrieves the configuration of the connection. Returns a `Config` instance:
+Retrieves the configuration of the connection. Returns a [`Config`](/photoniq/event-delivery/clients/#config-schema) instance:
 ```js
 connection.getConfig();
 ```
