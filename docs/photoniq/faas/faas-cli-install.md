@@ -3,7 +3,11 @@ sidebar_position: 20
 title: FaaS CLI Installation
 ---
 
-## Download Instructions for Specific Platform
+This page explains how to install the PhotonIQ FaaS command line interface (CLI).
+
+To update the CLI, follow the same procedure to install the new version over the old.
+
+Refer to the section that matches your operating system.
 
 ### MacOS
 
@@ -26,6 +30,8 @@ curl -fsSLk 'https://macrometacorp.github.io/photoniq-faas/photoniq-faas-cli-mac
 cd photoniq-faas-cli
 ./faas help
 ```
+
+You can now run [FaaS CLI Commands](faas-cli-commands.md).
 
 ### Windows
 
@@ -54,6 +60,8 @@ cd photoniq-faas-cli
 faas help
 ```
 
+You can now run [FaaS CLI Commands](faas-cli-commands.md).
+
 ### Linux
 
 1) Install the Rust compiler and WebAssembly libraries by executing the following commands. This is required for creating Rust functions:
@@ -76,4 +84,4 @@ cd photoniq-faas-cli
 ./faas help
 ```
 
-After this setup Macrometa PhotonIQ FaaS CLI is ready to run on Windows environment.
+You can now run [FaaS CLI Commands](faas-cli-commands.md).
