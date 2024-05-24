@@ -37,7 +37,11 @@ querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-K
     console.log(`Message event: `, event);
 })
 ```
-> Note: The example uses the WebSocket client. To use an SSE connection, replace `PhotoniqEdsWs` with `PhotoniqEdsSse`.
+
+:::note
+The example uses the WebSocket client. To use an SSE connection, replace `PhotoniqEdsWs` with `PhotoniqEdsSse`.
+:::
+
 
 ## Config Schema
 
