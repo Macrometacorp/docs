@@ -18,16 +18,13 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup target add wasm32-wasi
 ```
 
-2) Execute the following script to download and set up the tool. This script will automatically install the `faas` CLI tool within in the current directory:
+2) Download the FaaS CLI package to your machine from link below:
+
+[FaaS MacOS CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-x86_64-apple-darwin.tar.gz)
+
+3) Navigate into the CLI directory, and then launch the `faas` CLI tool:
 
 ```shell
-curl -fsSLk 'https://macrometacorp.github.io/photoniq-faas/photoniq-faas-cli-macos-v1.0.0.sh' | sh
-```
-
-3) Navigate into the directory created, and then launch the `faas` CLI tool:
-
-```shell
-cd photoniq-faas-cli
 ./faas help
 ```
 
@@ -45,19 +42,14 @@ In the installation menu select Desktop development with C++ (This is enough to 
 rustup target add wasm32-wasi
 ```
 
-2) Download the `.zip` file from the link provided below and extract its contents:
+2) Download the FaaS CLI package to your machine from link below:
+
+[FaaS Windows CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-x86_64-pc-windows-gnu.zip)
+
+3) Navigate into the CLI directory, and then launch the `faas` CLI tool
 
 ```shell
-mkdir photoniq-faas-cli
-curl -fsSLk "https://macrometacorp.github.io/photoniq-faas/photoniq-faas-cli-windows-v1.0.0.zip" -o photoniq-faas-cli-windows-v1.0.0.zip
-tar -xf photoniq-faas-cli-windows-v1.0.0.zip -C photoniq-faas-cli --strip-components=1
-```
-
-3) Navigate into the directory created, incorporate the necessary Rust libraries, and then launch the `faas` CLI tool:
-
-```shell
-cd photoniq-faas-cli
-faas help
+./faas help
 ```
 
 You can now run [FaaS CLI Commands](faas-cli-commands.md).
@@ -71,16 +63,15 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup target add wasm32-wasi
 ```
 
-2) Execute the following script to download and set up the tool. This script will automatically install the `faas` CLI tool within in the current directory:
+2) Download the FaaS CLI package to your machine from link below:
+
+[FaaS Linux GNU CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-aarch64-unknown-linux-gnu.tar.gz)
+
+[FaaS Linux MUSL CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-x86_64-unknown-linux-musl.tar.gz)
+
+3) Navigate into the CLI directory, and then launch the `faas` CLI tool
 
 ```shell
-curl -fsSLk 'https://macrometacorp.github.io/photoniq-faas/photoniq-faas-cli-linux-v1.0.0.sh' | sh
-```
-
-3) Navigate into the directory created, and then launch the `faas` CLI tool:
-
-```shell
-cd photoniq-faas-cli
 ./faas help
 ```
 

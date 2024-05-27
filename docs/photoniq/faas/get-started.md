@@ -70,7 +70,7 @@ fn handler(_req: HttpRequest) -> Result<HttpResponse> {
 
 The trigger for this function is an HTTP request to the URL set in the `photoniq.toml` file. Here is an example of the default `photoniq.toml` settings file:
 
-```toml
+```bash
 name = "testFunction"
 version = "0.0.1"
 description = "Description for function testFunction"
