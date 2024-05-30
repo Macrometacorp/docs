@@ -386,7 +386,7 @@ faas remote info <fn-name> [<version>]
 
 ### faas remote download
 
-Download the WebAssembly (Wasm) module for a function, either the latest version or a specific version.
+Download the WebAssembly (WASM) module for a function, either the latest version or a specific version.
 
 **Syntax:**
 
