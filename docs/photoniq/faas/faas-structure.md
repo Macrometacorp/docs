@@ -60,7 +60,7 @@ Env Var MESSAGE = {}",
 ```
 
 ## JavaScript Function
-Functions based on JavaScript work out of the box PhotonIQ function. The service integrates a JavaScript interpreter compiled into a WebAssembly module. Currently, the interpreter we support is `quickjs` and we are working on adding new ones.
+Each function includes a `fetch` event listener where users can write their code. This listener is triggered by an `HTTP` request to the URL specified in the `photoniq.toml` file. The `Response` object allows you to build various types of responses.
 
 This is the basic boilerplate code required for each function. Users can add their custom code in the section marked with `<USER CODE IS WRITTEN HERE>`.
 ```js
