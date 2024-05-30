@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Get Started with FaaS
 ---
 
-In this getting started guide, we will:
+In this getting started guide, we:
 
 - Create a template function locally
 - Build the template function locally
