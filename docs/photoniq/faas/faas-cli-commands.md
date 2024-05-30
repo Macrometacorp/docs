@@ -13,7 +13,7 @@ Use local commands to create and manage functions locally.
 
 ### faas new
 
-Create a new local function with the specified language.
+Create a new local function in the specified language.
 
 **Syntax:**
 
