@@ -137,7 +137,7 @@ faas execute <local-fn-name> --data <data-file>
 
 ### faas delete
 
-Delete a local function forcefully.
+Forcefully delete a local function.
 
 **Syntax:**
 
