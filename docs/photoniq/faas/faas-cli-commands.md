@@ -3,7 +3,7 @@ sidebar_position: 11
 title: FaaS CLI Commands
 ---
 
-The PhotonIQ FaaS Command Line Interface (CLI) is a command line interface that enables you to manage local and remote functions.
+The PhotonIQ FaaS Command Line Interface (CLI) enables you to manage local and remote functions.
 
 Here's the complete CLI documentation formatted as markdown, including all the provided commands and options:
 
