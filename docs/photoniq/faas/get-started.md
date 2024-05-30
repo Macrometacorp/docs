@@ -10,7 +10,7 @@ In this getting started guide, we:
 - Test the template function locally
 - Deploy the locally developed function to a remote environment
 
-These tasks can be performed using `API requests` or the `faas CLI`. In this guide, we will use the `faas CLI`.
+These tasks can be performed using `API requests` or the `faas CLI`. In this guide, we use the `faas CLI`.
 
 ### Step 1 - Create a New Function
 After installing the CLI, the first step is to create a function. You can do this with the following command:
