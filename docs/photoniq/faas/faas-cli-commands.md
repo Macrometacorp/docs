@@ -9,7 +9,7 @@ Use local commands to create and manage functions locally.
 
 ### faas new
 
-Create a new local function with the specified language.
+Create a new local function in the specified language.
 
 **Syntax:**
 
@@ -133,7 +133,7 @@ faas execute <local-fn-name> --data <data-file>
 
 ### faas delete
 
-Delete a local function forcefully.
+Forcefully delete a local function.
 
 **Syntax:**
 
@@ -184,7 +184,7 @@ Use remote commands to deploy and manage commands on the remote server.
 
 ### faas remote deploy
 
-Deploy a built local function to a remote server.
+Deploy a locally built function to a remote server.
 
 **Syntax:**
 
@@ -382,7 +382,7 @@ faas remote info <fn-name> [<version>]
 
 ### faas remote download
 
-Download the WebAssembly (Wasm) module for a function, either the latest version or a specific version.
+Download the WebAssembly (WASM) module for a function, either the latest version or a specific version.
 
 **Syntax:**
 
