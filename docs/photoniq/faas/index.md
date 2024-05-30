@@ -5,13 +5,13 @@ title: Function as a Service (FaaS)
 
 PhotonIQ FaaS (Function as a Service) is an edge-computing service that allows you to run code  without managing the complex infrastructure. Deployed functions are executed from the closest point of presence to customers.
 
-PhotonIQ FaaS supports Rust and Python, empowering developers with flexibility and eliminating vendor lock-in. This platform is tailored for applications requiring high performance, rapid scalability, and low latency, making it an ideal solution for modern, cloud-native development.
+PhotonIQ FaaS supports Rust and JavaScript, empowering developers with flexibility and eliminating vendor lock-in. This platform is tailored for applications requiring high performance, rapid scalability, and low latency, making it an ideal solution for modern, cloud-native development.
 
 PhotonIQ FaaS revolutionizes application development by abstracting the complexities of infrastructure management, allowing you to deploy fast and scalable serverless functions globally. Whether you are processing data, integrating services, or building an entire application, PhotonIQ FaaS provides the tools and performance you need to succeed.
 
 ## How PhotonIQ FaaS Works
 
-PhotonIQ FaaS allows you to deploy lightweight, high-performance functions in the form of [WebAssembly](https://webassembly.org/) modules. When an HTTP request is made to a specific endpoint, the corresponding worker (function) is triggered to process the request. This event-driven model ensures that resources are utilized only when necessary, and the stateless nature of functions ensures they can independently handle multiple requests in parallel. The platform automatically manages the deployment, scaling, and execution of these functions, allowing developers to focus solely on their code.
+PhotonIQ FaaS allows you to deploy lightweight, high-performance functions in the form of [WebAssembly](https://webassembly.org/) modules. When an HTTP request is made to a specific endpoint, the corresponding PhotonIQ function is triggered to process the request. This event-driven model ensures that resources are utilized only when necessary, and the stateless nature of functions ensures they can independently handle multiple requests in parallel. The platform automatically manages the deployment, scaling, and execution of these functions, allowing developers to focus solely on their code.
 
 ## Benefits of PhotonIQ FaaS
 

@@ -3,10 +3,13 @@ sidebar_position: 10
 title: FaaS CLI
 ---
 
-The easiest way to interact with FaaS is through the PhotonIQ FaaS CLI, which is supported on multiple platforms. You can pick and install the CLI for your specific platform from this page [FaaS CLI Installation](faas-cli-install.md).
+PhotonIQ offers its interactive FaaS CLI to enable you to run and manage functions from your local machine. This CLI is available for [installation on Linux, MacOS, and Windows](faas-cli-install.md) and grants you access to remote and local CLI commands. 
 
 ## CLI Commands
-Our CLI provides two sets of commands: `local` and `remote`. The key difference is that local commands are used to work with an instance of a local server running on your machine, allowing you to test and debug functions before deploying them on the PhotonIQ platform. Remote commands, on the other hand, are used to interact with the PhotonIQ platform. 
+
+The FaaS CLI offers two sets of commands:
+- `local`: Local commands work with an instance of a local server running on your machine, allowing you to create, test, and debug functions before deploying to the PhotonIQ platform.
+- `remote`: These commands serve to interact with the PhotonIQ platform.
 
 ### Local CLI Commands
 
