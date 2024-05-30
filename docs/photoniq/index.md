@@ -46,6 +46,11 @@ PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Netwo
   />
 </grid>
 <grid cols={3}>
+<card
+    heading="PhotonIQ FaaS"
+    description="Execute functions on the edge."
+    href="/photoniq/faas"
+  />
   <card
     heading="PhotonIQ APIs"
     description="API references for PhotonIQ services."

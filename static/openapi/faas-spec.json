@@ -1,0 +1,1048 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "PhotonIQ FaaS API",
+    "description": "API documentation for the PhotonIQ FaaS Service",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/faas/v1/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Check the health of the service",
+        "description": "Gets the health of the FaaS service. This API returns HTTP status 200 OK if the service is running, otherwise it returns a 500 Internal Server Error.",
+        "operationId": "handle_mm_health",
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the health probe of the service."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/faas/v1/ready": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Check the readiness of the service",
+        "description": "Gets the readiness of the FaaS service. This API returns HTTP status 200 OK if the service is able to handle requests, otherwise it returns a 503 Service Unavailable.",
+        "operationId": "handle_mm_ready",
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the ready probe of the service."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        }
+      }
+    },
+    "/api/faas/v1/version": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Version of the service",
+        "description": "Gets the current version of the service.",
+        "operationId": "handle_mm_version",
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the version of the service."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/deploy": {
+      "post": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Deploy the function",
+        "description": "This endpoint allows you to deploy a function by specifying its unique function name. Unique Function name is defined in `.toml`.\nThe function code and configuration details are required to complete the deployment.\nThe function code should be provided as a `.js` or `.wasm` file, and the configuration details should be in a `.toml` file format.\nBoth files should be included in the multipart form data.",
+        "operationId": "handle_mm_deploy",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FunctionDataForm"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The function was successfully deployed."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/download/{functionName}": {
+      "get": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Download the latest version of a function",
+        "description": "Download the latest version of a function for the specified function name. The downloaded file will be either a `.js` or `.wasm` file, depending on the function's implementation.",
+        "operationId": "handle_latest_mm_download",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "metaOnly",
+            "in": "query",
+            "description": "If true, only the metadata will be downloaded. If false, only the function file (either `.js` or `.wasm`) will be downloaded.",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully downloaded the function."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/download/{functionName}/{version}": {
+      "get": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Download the function",
+        "description": "Download the function for the specified version and function name. The downloaded file will be either a `.js` or `.wasm` file, depending on the function's implementation.",
+        "operationId": "handle_mm_download",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "The unique name of the function to download",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "metaOnly",
+            "in": "query",
+            "description": "If true, only the metadata will be downloaded. If false, only the function file (either `.js` or `.wasm`) will be downloaded.",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully downloaded the function."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/function/{functionName}": {
+      "delete": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Delete All Versions",
+        "description": "Delete all versions of the specified function name. This operation removes every version of the function, effectively erasing all its deployment history.",
+        "operationId": "handle_all_mm_delete_function",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted all versions of the function."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/function/{functionName}/{version}": {
+      "delete": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Delete a Specific Version of a Function",
+        "description": "Delete the specified version of a function identified by its unique function name and version number. This operation removes only the specified version, leaving other versions intact.",
+        "operationId": "handle_mm_delete_function",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "The unique name of the function to download",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted specific version of the function."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/functions": {
+      "get": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Retrieve Function Names",
+        "description": "Retrieve the names of all functions available in the system. This endpoint returns a list of function names that can be used for further operations such as deploying or deleting functions.",
+        "operationId": "handle_mm_functions",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the function names."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/function/{functionName}/versions": {
+      "get": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Retrieve Function Versions",
+        "description": "Retrieve all versions of the specified function identified by its unique function name. This endpoint returns a list of versions, providing details about each version of the function that is available in the system.",
+        "operationId": "handle_mm_versions",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the function versions."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/execute/{functionName}": {
+      "post": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Execute the Latest Version of a Function",
+        "description": "Execute the latest version of a function identified by its unique function name. The function is executed with the provided JSON body, which contains the necessary input for the function.",
+        "operationId": "handle_latest_mm_execute",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A valid JSON body is accepted",
+          "content": {
+            "application/json": {
+              "schema": {},
+              "example": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully executed the function."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/execute/{functionName}/{versionOrAlias}": {
+      "post": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Execute the Function with Alias or Version Parameter",
+        "description": "Execute the specified version or alias of a function identified by its unique function name. The version or alias is provided as a path parameter, allowing the execution of different versions or named aliases of the function. The function is executed with the provided JSON body, which contains the necessary input for the function.",
+        "operationId": "handle_mm_execute",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "versionOrAlias",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A valid JSON body is accepted",
+          "content": {
+            "application/json": {
+              "schema": {},
+              "example": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully executed the function."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/function/{functionName}/alias/{aliasName}": {
+      "put": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Update the Alias",
+        "description": "Update the alias for the specified function name. This endpoint allows you to change the alias configuration, associating it with different versions of the function and specifying their weights. The alias configuration is provided as an array of objects, each containing a valid version and a corresponding weight.",
+        "operationId": "handle_mm_alias_update",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "aliasName",
+            "in": "path",
+            "description": "The alias name associated with a specific version of a function.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "An array of alias object that includes valid 'version' and 'weight'",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {}
+              },
+              "example": [
+                {
+                  "version": "1.0.0",
+                  "weight": 0
+                }
+              ]
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the alias."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Retrieve the Alias",
+        "description": "Retrieve the alias associated with a specified function name. This endpoint returns the alias configuration for the function, providing details about the versions and weights associated with the alias.",
+        "operationId": "handle_mm_alias",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "aliasName",
+            "in": "path",
+            "description": "The alias name associated with a specific version of a function.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the function alias."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/function/{functionName}/aliases": {
+      "get": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Retrieve All Aliases",
+        "description": "Retrieve all aliases associated with the specified function name. This endpoint returns a list of all alias configurations for the function, providing details about the versions and weights associated with each alias.",
+        "operationId": "handle_mm_aliases",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the function aliases."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/logs": {
+      "get": {
+        "tags": [
+          "Logs"
+        ],
+        "summary": "Retrieve the function logs",
+        "description": "Retrieve the function logs in the specified period. If no period is specified it will return the last hour logs.",
+        "operationId": "handle_mm_logs",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start of the period requested. Example: \"2024-01-01T00:00:00\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end of the period requested. Example: \"2024-01-02T00:00:00\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "lines",
+            "in": "query",
+            "description": "The number of logs. Example: \"100\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "The sort logs by time. Example: \"true\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "The region of logs. Example: \"us-west\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "instance",
+            "in": "query",
+            "description": "The region of logs. Example: \"13638401-f561-4742-9d2e-7aeebf2243ad\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "functionName",
+            "in": "query",
+            "description": "The function name. Example: \"periods\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "functionVersion",
+            "in": "query",
+            "description": "The function version. Example: \"0.0.1\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "description": "The level of logs. Example: \"ERROR\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "executionId",
+            "in": "query",
+            "description": "The execution id. Example: \"664d1ecc-58158f1a\".",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the logs."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CorsSettings": {
+        "type": "object",
+        "description": "CORS settings to enable the function for doing HTTP requests from inside of function files",
+        "required": [
+          "allowedMethods",
+          "allowedHosts"
+        ],
+        "properties": {
+          "allowedMethods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HttpMethod"
+            },
+            "example": [
+              "GET",
+              "POST"
+            ]
+          },
+          "allowedHosts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "macrometa.com"
+            ]
+          },
+          "allowHttp": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "FunctionDataForm": {
+        "type": "object",
+        "required": [
+          "functionFile",
+          "photoniqToml"
+        ],
+        "properties": {
+          "functionFile": {
+            "type": "string",
+            "format": "binary",
+            "description": "The code of the function to be deployed, provided as a `.js` or `.wasm` file."
+          },
+          "photoniqToml": {
+            "type": "string",
+            "format": "binary",
+            "description": "The configuration file for the function, provided in `.toml` format. This file includes settings such as allowed methods, allowed hosts, environment variables, etc."
+          }
+        }
+      },
+      "HttpMethod": {
+        "type": "string",
+        "description": "Specifies the HTTP methods.",
+        "enum": [
+          "GET",
+          "HEAD",
+          "POST",
+          "PUT",
+          "DELETE",
+          "CONNECT",
+          "OPTIONS",
+          "TRACE",
+          "PATCH"
+        ]
+      },
+      "LogData": {
+        "type": "object",
+        "required": [
+          "start",
+          "end",
+          "lines",
+          "size",
+          "region",
+          "instance",
+          "logs"
+        ],
+        "properties": {
+          "start": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "end": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "lines": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "region": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string"
+          },
+          "logs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimestampLog"
+            }
+          }
+        }
+      },
+      "PeriodFilterQuery": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "description": "The start of the period requested. Example: \"2024-01-01T00:00:00\"."
+          },
+          "end": {
+            "type": "string",
+            "description": "The end of the period requested. Example: \"2024-01-02T00:00:00\"."
+          },
+          "lines": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The number of logs. Example: \"100\".",
+            "nullable": true,
+            "minimum": 0
+          },
+          "asc": {
+            "type": "boolean",
+            "description": "The sort logs by time. Example: \"true\".",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "description": "The region of logs. Example: \"us-west\".",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "description": "The region of logs. Example: \"13638401-f561-4742-9d2e-7aeebf2243ad\".",
+            "nullable": true
+          },
+          "functionName": {
+            "type": "string",
+            "description": "The function name. Example: \"periods\".",
+            "nullable": true
+          },
+          "functionVersion": {
+            "type": "string",
+            "description": "The function version. Example: \"0.0.1\".",
+            "nullable": true
+          },
+          "level": {
+            "type": "string",
+            "description": "The level of logs. Example: \"ERROR\"."
+          },
+          "executionId": {
+            "type": "string",
+            "description": "The execution id. Example: \"664d1ecc-58158f1a\".",
+            "nullable": true
+          }
+        }
+      },
+      "TimestampLog": {
+        "type": "object",
+        "required": [
+          "timestamp",
+          "execId",
+          "fnName",
+          "fnVersion",
+          "level",
+          "msg"
+        ],
+        "properties": {
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "execId": {
+            "type": "string"
+          },
+          "fnName": {
+            "type": "string"
+          },
+          "fnVersion": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "msg": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apikey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://demofaas.paas.macrometa.io"
+    }
+  ]
+}
