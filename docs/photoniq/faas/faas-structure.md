@@ -1,11 +1,11 @@
 ---
 sidebar_position: 9
-title: FaaS Functions Structure
+title: Structure of a FaaS Function
 ---
 
 FaaS functions can be written in `Rust` or `JavaScript`. This documentation explains the code templates and settings for these functions.
 
-## Rust Function
+## Structure of a Rust Function
 
 Each function receives an `_req: HttpRequest` struct and returns a `Result<HttpResponse>` struct. These structs are available in the `PhotonIQ FaaS SDK`. The `HttpResponseBuilder` crate allows you to build various types of responses.
 
