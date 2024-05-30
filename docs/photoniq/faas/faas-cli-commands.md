@@ -188,7 +188,7 @@ Use remote commands to deploy and manage commands on the remote server.
 
 ### faas remote deploy
 
-Deploy a built local function to a remote server.
+Deploy a locally built function to a remote server.
 
 **Syntax:**
 
