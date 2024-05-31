@@ -114,7 +114,7 @@ Execute a local function using the specified data file.
 **Syntax:**
 
 ```bash
-faas execute <local-fn-name> --data <data-file>
+faas execute <local-fn-name> --file data.json
 ```
 
 **Examples:**
@@ -127,8 +127,10 @@ faas execute <local-fn-name> --data <data-file>
 **Options:**
 
 ```bash
-  -h, --help           Help for the execute command.
-  --data <data-file>   JSON file containing data to be passed to the function.
+  -h, --help               Help for the execute command.
+  --file <data-file>       JSON file containing data passed to the function.
+  --data '<your-data>'     data to be passed to the function.
+  --header 'key1: value1'  HTTP header to be passed to the function.
 ```
 
 ### `faas delete`
@@ -212,20 +214,20 @@ Execute a function on a remote server, optionally specifying a version or alias.
 **Syntax:**
 
 ```bash
-faas remote execute <fn-name> [<version>|<alias>] --data <data-file>
+faas remote execute <fn-name> [<version>|<alias>] --file data.json
 ```
 
 **Examples:**
 
 ```bash
   # Execute the latest version of a remote function with data
-  faas remote execute "my-function" --data data.json
+  faas remote execute "my-function" --file data.json
 
   # Execute a specific version of a remote function with data
-  faas remote execute "my-function" "1.0.0" --data data.json
+  faas remote execute "my-function" "1.0.0" --file data.json
 
   # Execute a remote function by alias with data
-  faas remote execute "my-function" "dev" --data data.json
+  faas remote execute "my-function" "dev" --file data.json
 ```
 
 **Options:**
