@@ -55,7 +55,7 @@ fn handler(_req: HttpRequest) -> Result<HttpResponse> {
 
 :::info
 
-The initial part of this code with `use` commands is the boilerplate code. Find out more in [structure of Rust Functions](../05-Understanding-FaaS-Functions/01-rust-function.md)
+The initial part of this code with `use` commands is the boilerplate code. Find out more in [structure of Rust Functions](../05-understanding-faas-functions/01-rust-function.md)
 
 :::
 
