@@ -1,13 +1,13 @@
 ---
 sidebar_position: 11
-title: FaaS CLI Commands
+title: Using FaaS CLI Commands
 ---
 
 ## Local Commands
 
 Use local commands to create and manage functions locally.
 
-### faas new
+### `faas new`
 
 Create a new local function in the specified language.
 
@@ -38,7 +38,7 @@ faas new <local-fn-name> [--lang rust|js]
   --lang <rust|js>     Programming language for the function (default: rust).
 ```
 
-### faas build
+### `faas build`
 
 Build a specified local function.
 
@@ -61,7 +61,7 @@ faas build <local-fn-name>
   -h, --help           Help for the build command.
 ```
 
-### faas list
+### `faas list`
 
 List all local functions.
 
@@ -84,7 +84,7 @@ faas list
   -h, --help           Help for the list command.
 ```
 
-### faas info
+### `faas info`
 
 Get information about a local function.
 
@@ -107,7 +107,7 @@ faas info <local-fn-name>
   -h, --help           Help for the info command.
 ```
 
-### faas execute
+### `faas execute`
 
 Execute a local function using the specified data file.
 
@@ -131,7 +131,7 @@ faas execute <local-fn-name> --data <data-file>
   --data <data-file>   JSON file containing data to be passed to the function.
 ```
 
-### faas delete
+### `faas delete`
 
 Forcefully delete a local function.
 
@@ -155,7 +155,7 @@ faas delete <local-fn-name> --force
   -f, --force          Force the deletion of the function.
 ```
 
-### faas run
+### `faas run`
 
 Run a local function in standalone mode.
 
@@ -182,7 +182,7 @@ faas run <local-fn-name>
 
 Use remote commands to deploy and manage commands on the remote server.
 
-### faas remote deploy
+### `faas remote deploy`
 
 Deploy a locally built function to a remote server.
 
@@ -205,7 +205,7 @@ faas remote deploy <local-fn-name>
   -h, --help           Help for the deploy command.
 ```
 
-### faas remote execute
+### `faas remote execute`
 
 Execute a function on a remote server, optionally specifying a version or alias.
 
@@ -235,7 +235,7 @@ faas remote execute <fn-name> [<version>|<alias>] --data <data-file>
   --data <data-file>   JSON file containing data to be passed to the function.
 ```
 
-### faas remote list
+### `faas remote list`
 
 List all functions deployed on the
 
@@ -260,7 +260,7 @@ faas remote list
   -h, --help           Help for the list command.
 ```
 
-### faas remote version list
+### `faas remote version list`
 
 List all versions of a specific remote function.
 
@@ -283,7 +283,7 @@ faas remote version list <fn-name>
   -h, --help           Help for the version list command.
 ```
 
-### faas remote alias list
+### `faas remote alias list`
 
 List all aliases for a specific remote function.
 
@@ -306,7 +306,7 @@ faas remote alias list <fn-name>
   -h, --help           Help for the alias list command.
 ```
 
-### faas remote alias update
+### `faas remote alias update`
 
 Update or set aliases for a function specifying versions and their relative weights.
 
@@ -331,7 +331,7 @@ faas remote alias update <fn-name> <alias-name> --version <version> --weight <we
   --weight <weight>     Specify the weight for the version.
 ```
 
-### faas remote alias info
+### `faas remote alias info`
 
 Get detailed information about a specific alias of a function.
 
@@ -354,7 +354,7 @@ faas remote alias info <fn-name> <alias-name>
   -h, --help           Help for the alias info command.
 ```
 
-### faas remote info
+### `faas remote info`
 
 Get information about a function on the remote server, optionally for a specific version.
 
@@ -380,7 +380,7 @@ faas remote info <fn-name> [<version>]
   -h, --help           Help for the info command.
 ```
 
-### faas remote download
+### `faas remote download`
 
 Download the WebAssembly (WASM) module for a function, either the latest version or a specific version.
 
@@ -406,7 +406,7 @@ faas remote download <fn-name> [<version>]
   -h, --help           Help for the download command.
 ```
 
-### faas remote delete
+### `faas remote delete`
 
 Delete a function or a specific version of a function on the remote server.
 

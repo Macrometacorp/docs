@@ -1,18 +1,23 @@
 ---
-sidebar_position: 20
-title: FaaS CLI Installation
+sidebar_position: 9
+title:  Install the FaaS CLI
 ---
+Using the PhotonIQ FaaS CLI requires installing the CLI on your local machine. This CLI is available for installation on all major operating systems, thereby reducing friction during development and offering developers the flexibility to create and test functions. 
 
-Install the PhotonIQ FaaS Command Line Interface(CLI) to start creating and managing functions. Follow the installation instructions according to your Operating System(OS).
+This guide walks you through the installation steps for MacOS, Windows, and Linux OS. 
 
-> [!NOTE]  
-> To update the CLI with a newer version, follow the same installation procedure.
 
-## MacOS
+:::info
+
+To update the CLI with a newer version, follow the same installation procedure.
+
+:::
+
+## Install on MacOS
 
 ### Prerequisites
 
-1) Install the Rust compiler and WebAssembly libraries by executing the following commands. This is required for creating Rust functions:
+Install the Rust compiler and WebAssembly libraries by executing the following command. This is required for creating Rust functions:
 
 ```shell
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -27,14 +32,17 @@ rustup target add wasm32-wasi
 ```shell
 ./faas help
 ```
-> [!TIP]
-> Get familiar with the FaaS CLI by practicing with some of our [available commands](faas-cli-commands.md).
+:::tip
 
-## Windows
+Get familiar with the FaaS CLI by practicing with some of our [available commands](../03-faas-commands/03-faas-cli-commands.md).
+
+:::
+
+## Install on Windows
 
 ### Prerequisites
 
-1) Install Microsoft Build Tools [Download C++ build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+1) Install Microsoft Build Tools [Download C++ build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/). 
 In the installation menu select Desktop development with C++ (This is enough to compile Rust functions)
 
 2) Install WebAssembly libraries by executing the following command. This is required for creating Rust functions:
@@ -52,10 +60,7 @@ rustup target add wasm32-wasi
 ./faas help
 ```
 
-> [!TIP]
-> Get familiar with the FaaS CLI by practicing with some of our [available commands](faas-cli-commands.md).
-
-## Linux
+## Install on Linux
 
 ### Prerequisites
 
@@ -75,6 +80,3 @@ rustup target add wasm32-wasi
 ```shell
 ./faas help
 ```
-
-> [!TIP]
-> Get familiar with the FaaS CLI by practicing with some of our [available commands](faas-cli-commands.md).
