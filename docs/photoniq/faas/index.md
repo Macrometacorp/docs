@@ -6,7 +6,7 @@ title: Function as a Service (FaaS)
 ## Overview
 
 PhotonIQ FaaS (Function as a Service) is an edge-computing service that allows you to create and run functions without the extra burden of infrastructure management. Thus, IT teams have the time and flexibility to do more tasks, improving operational efficiency and business growth. 
-PhotonIQ FaaS uses the highly distributed [Global Data Mesh](https://www.macrometa.com/platform/global-data-mesh) to deploy and execute functions from the closest point of presence(PoP) to customers, thus reducing latency and improving performance. This makes it an ideal solution for developing and managing high-performing, scalable, and low-latency cloud-native applications. 
+PhotonIQ FaaS uses the highly distributed [Global Data Mesh](https://www.macrometa.com/platform/global-data-mesh) to deploy and execute functions from the closest point of presence (PoP) to customers, thus reducing latency and improving performance. This makes it an ideal solution for developing and managing high-performing, scalable, and low-latency cloud-native applications. 
 Currently, FaaS supports Rust and JavaScript, empowering developers with flexibility and eliminating vendor lock-in during development. 
 From data processing to application development, the PhotonIQ FaaS revolutionizes application development by removing the complexities of managing infrastructure, thus improving business agility for deploying fast and scalable global serverless functions for your various business needs.
 

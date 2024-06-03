@@ -6,7 +6,7 @@ title: Configuring FaaS
 Creating a functions file also creates a settings file called photoniq.toml. This file allows you to configure fields like cors and log settings for your functions, thus allowing function-specific customizations. 
 
 Here is an example of this `photonIQ.toml` file:
-```toml
+```bash
 name = "testFunction"
 version = "0.0.1"
 description = "Description for function testFunction"
