@@ -19,12 +19,12 @@ Integrate VWRs with your mobile applications by following these steps:
 
 1. **API Key Creation:** Start by creating an API key to access the VWRs system, as this key is essential for all API interactions. For instructions on creating an API key, refer to [Create an API Key](https://www.macrometa.com/docs/apiVwrs#/operations/createAPIKey).
 
-2. **Create and Configure a Domain:** Create a domain that hosts your waiting room. This step allows you to fine-tune how the waiting room operates and integrates with your site. For comprehensive guidance on domain configuration, refer to [Configure a Domain](../configure-domain.md).
+2. **Create and Configure a Waiting Room:** Create your waiting room. This step allows you to fine-tune how the waiting room operates and integrates with your site. For comprehensive guidance on waiting room configuration, refer to [Configure a Waiting Room](../configure-waitingroom.md).
 
 3. **API Usage for Queue Management:** Use the VWRs API to manage the user's position in the waiting room. This involves making periodic API calls to check the queue status and manage the user experience accordingly.
 
-  - [Get initial position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-domain_key/get)
-  - [Get current position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-domain_key---request_id/get)
+  - [Get initial position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-waitingroom_key/get)
+  - [Get current position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-waitingroom_key---request_id/get)
 
 ## Pseudo-Code Example
 

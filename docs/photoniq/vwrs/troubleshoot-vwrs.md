@@ -7,11 +7,11 @@ This page provides troubleshooting information for Macrometa PhotonIQ Virtual Wa
 
 ## No Waiting Room Configured
 
-If a waiting room has not been configured, then the waiting room library returns the header _No-Waiting-Room_. This means that the domain URL is not configured correctly.
+If a waiting room has not been configured, then the waiting room library returns the header _No-Waiting-Room_. This means that the waiting room URL is not configured correctly.
 
 ## Troubleshoot Waiting Room HTML
 
-You have the option to set the URL for the waiting room HTML template either via the library or the domain record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: `https://<hostname>/waiting-room-path>/preview`. For example, `http://show.store.com/checkout/preview`.
+You have the option to set the URL for the waiting room HTML template either via the library or the waiting room record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: `https://<hostname>/waiting-room-path>/preview`. For example, `http://show.store.com/checkout/preview`.
 
 ## Troubleshoot Waiting Room Cookie
 

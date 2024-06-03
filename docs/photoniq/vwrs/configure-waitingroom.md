@@ -1,16 +1,16 @@
 ---
 sidebar_position: 30
-title: Configure a Domain
+title: Configure a Waiting Room
 ---
 
-You can configure a domain with the [Create a Domain REST API](https://www.macrometa.com/docs/apiVwrs#/operations/createDomain). Use this API to define and configure the behavior of the waiting room.
+You can configure a waiting room with the [Create a Waiting Room REST API](https://www.macrometa.com/docs/apiVwrs#/operations/createWaitingRoom). Use this API to define and configure the behavior of the waiting room.
 
-## Domain Definition Fields
+## Waiting Room Definition Fields
 
-The following required fields define a domain (waiting room):
+The following required fields define a waiting room:
 
-- **domain_key**: The unique key of the domain.
-- **domain_url**: The URL that the waiting room needs to sit in front of. All subpaths of this URL are sent to this defined waiting room. For example, `/checkout/path1` and `/checkout/path2` are both sent to the `/checkout` waiting room.
+- **waitingroom_key**: The unique key of the waiting room.
+- **waitingroom_url**: The URL that the waiting room needs to sit in front of. All subpaths of this URL are sent to this defined waiting room. For example, `/checkout/path1` and `/checkout/path2` are both sent to the `/checkout` waiting room.
 - **access_type**: The access type defines how the rate limit should be calculated. Different options include:
   - **users**:
     - The metric service counts the number of unique user requests every second. These are identified by a request ID stored in the encrypted cookie (`vwrs-session`).
@@ -33,7 +33,7 @@ The following required fields define a domain (waiting room):
   - Must be a number greater than zero.
   - **Note**: For `access_type` of `users` and `rps`, this is the maximum request rate. For `users_per_period`, the maximum rate is calculated using the active rate divided by the period.
 
-## Domain Behavior Fields
+## Waiting Room Behavior Fields
 
 The following optional fields define the behavior of the waiting room:
 
@@ -43,5 +43,5 @@ The following optional fields define the behavior of the waiting room:
 - **metric_interval**: The time (in seconds) to enable and disable the waiting room. It represents how long the traffic must be at or above the rate limit before being directed to the waiting room.
 - **max_origin_usage_time**: The time (in seconds) that users can access the origin after being granted access. After this period, users are forwarded to the waiting room again.
 - **waiting_room_interval**: Defined in seconds, this interval determines how often the waiting room HTML page is updated with information like the request's position, estimated waiting time, and the maximum number of requests in the waiting room.
-- **waiting_room_path**: The cloud origin (such as NetStorage) path for a domain that stores the HTML for the waiting room. The path should be a fully qualified path like `/{upload-directory-id}/path`.
+- **waiting_room_path**: The cloud origin (such as NetStorage) path that stores the HTML for the waiting room. The path should be a fully qualified path like `/{upload-directory-id}/path`.
 - **request_priority**: An array of priorities, where the highest priority corresponds to the lowest number.

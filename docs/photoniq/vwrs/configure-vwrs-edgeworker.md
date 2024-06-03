@@ -42,8 +42,8 @@ The following configuration options are optional:
 
 - **isFailOpen**: When set to `true` (fail open) and an error occurs, the request is forwarded to the origin. An error message is displayed when set to `false` (fail close) and an error occurs. (default: `true`).
 - **originAccessMode**: This option determines how long access is granted to the origin server (default: `ORIGIN_USAGE_TIME`):
-  - **ORIGIN_USAGE_TIME**: The access time, defined for each domain (`max_origin_usage_time`), remains fixed. Once a user is granted access to the origin, they can only access it for the duration specified in the `max_origin_usage_time` field.
-  - **ORIGIN_IDLE_TIME:** The access time, defined for each domain, increases by the number of seconds specified in the `max_origin_usage_time` field. Each time this domain is accessed, the access time is extended accordingly. This behaves similarly to an abandonment timeout, where the session is abandoned if the request has been idle for the `max_origin_usage_time` time.
+  - **ORIGIN_USAGE_TIME**: The access time, defined for each waiting room (`max_origin_usage_time`), remains fixed. Once a user is granted access to the origin, they can only access it for the duration specified in the `max_origin_usage_time` field.
+  - **ORIGIN_IDLE_TIME:** The access time, defined for each waiting room, increases by the number of seconds specified in the `max_origin_usage_time` field. Each time this waiting room is accessed, the access time is extended accordingly. This behaves similarly to an abandonment timeout, where the session is abandoned if the request has been idle for the `max_origin_usage_time` time.
 - **statusConfigLimits**: This defines the waiting room information that is returned by the status call. Use the following three values to define what the status page returns:
   - **avgWaitingTime**: If set to `true`, then the average waiting time is returned by the status call. (default: `true`)
   - **qDepth**: If set to `true`, then the waiting room queue size is returned. (default: `true`)
@@ -64,9 +64,9 @@ VWRs can use device fingerprinting techniques to help mitigate cookie sharing an
 
 ## Priority
 
-You can customize a waiting room with up to ten priorities, the priorities being positive numbers from 1 through 255. Configure the priorities using the `POST/PUT/PATCH /api/vwr/v1/domains` REST API.
+You can customize a waiting room with up to ten priorities, the priorities being positive numbers from 1 through 255. Configure the priorities using the `POST/PUT/PATCH /api/vwr/v1/waitingrooms` REST API.
 
-For instance, consider configuring three priorities with values of 1, 20, and 255. To accomplish this, you can use the `PATCH /api/vwr/v1/domains` REST API to update the domain:
+For instance, consider configuring three priorities with values of 1, 20, and 255. To accomplish this, you can use the `PATCH /api/vwr/v1/waitingrooms` REST API to update the waiting room:
 
 ```bash
 curl -X 'PATCH' \

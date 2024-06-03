@@ -3,12 +3,12 @@ sidebar_position: 20
 title: Configuring Waiting Rooms
 ---
 
-This page explains what can be configured in each waiting room using API endpoint properties. For more information about how to create a waiting room, refer to [Configure a Domain](configure-domain.md).
+This page explains what can be configured in each waiting room using API endpoint properties. For more information about how to create a waiting room, refer to [Configure a Waiting Room](configure-waitingroom.md).
 
 ## Entering the Waiting Room
 
 - **Rate Limit:** Set the rate (maximum users per second) at which traffic should be diverted to the waiting room. (`rate_limit` property)
-- **Waiting Room Path:** The URL that the waiting room needs to sit in front of. (`domain_url` property)
+- **Waiting Room Path:** The URL that the waiting room needs to sit in front of. (`waitingroom_url` property)
 - **Queue Type:** Defines how requests should be removed from the waiting room, such as FIFO (first in, first out). (`queue_type` property)
 
 ## In the Waiting Room
