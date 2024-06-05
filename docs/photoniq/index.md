@@ -9,7 +9,7 @@ sidebar_position: 0
 title: PhotonIQ
 ---
 
-PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Network (GDN)](../index.md). PhotonIQ represents the latest developments in AI and machine learning to deliver a faster, more efficient, and more secure online experience for your users at enterprise scale without enterprise complexity.
+PhotonIQ is a suite of edge services powered by the [Macrometa Global Data Network (GDN)](../index.md). PhotonIQ implements the latest developments in AI and machine learning to deliver a faster, more efficient, and more secure online experience for your users at enterprise scale without enterprise complexity.
 
 <grid cols={3}>
   <card
