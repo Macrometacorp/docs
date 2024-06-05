@@ -1,5 +1,5 @@
 ---
-title: FaaS CLI Commands
+title: FaaS CLI Commands Test
 ---
 
 PhotonIQ offers its interactive FaaS CLI to enable you to run and manage functions from your local machine. This CLI is available for [installation on Linux, MacOS, and Windows](../02-quickstart/01-faas-cli-install.md) and grants you access to remote and local CLI commands. 
