@@ -1,16 +1,16 @@
 ---
 sidebar_position: 60
-title: Event Delivery Queries
+title: Event Delivery Filters
 ---
 
-PhotonIQ Event Delivery offers powerful filtering capabilities that allow users to specify exactly which events they want to receive. By using PostgreSQL SELECT statement syntax, users can define filters to tailor the event stream to their needs. This page outlines how to construct these queries, providing syntax guidelines, use cases, and examples.
+PhotonIQ Event Delivery offers powerful filtering capabilities that allow users to specify exactly which events they want to receive. By using the PostgreSQL `SELECT` statement syntax, users can define filters to tailor the event stream to their needs. This page outlines how to construct these queries, providing syntax guidelines, use cases, and examples.
 
 ## Syntax
 
 Filters are defined in a JSON format string, which includes fields to specify the desired event criteria. The fundamental structure of a filter includes:
 
 - `action`: Defines the filter action, such as "add" for adding new filters or "remove" for removing existing filters.
-- `once`: A boolean flag (`TRUE` or `FALSE`), indicating whether the filter should be applied just once. The default is `FALSE`.
+- `once`: A boolean flag (`TRUE` or `FALSE`), indicating whether to apply the filter just once. The default is `FALSE`.
 - `queries`: An array of SELECT statements defining the specific events to filter.
 
 The SELECT syntax follows standard SQL conventions, allowing for conditions (`WHERE`), logical operators (`AND`, `OR`), and specifying particular fields or using `*` for all fields within a collection or stream.
@@ -30,9 +30,10 @@ The SELECT syntax follows standard SQL conventions, allowing for conditions (`WH
 
 ## Use Cases and Examples
 
-In practice, leveraging event delivery queries allows for highly customizable data streams, catering to a wide array of application needs. Whether you're monitoring real-time updates from a specific dataset or listening for changes that meet particular criteria, these queries empower you to streamline data reception, ensuring your application only processes the most relevant information. To demonstrate the practical application of these filters, this section explores how to subscribe to and filter events using examples that mimic real-world scenarios.
+In practice, leveraging event delivery queries allows for customizing data streams, catering to a wide array of application needs. Whether you're monitoring real-time updates from a specific dataset or listening for changes that meet particular criteria, these queries empower you to streamline data reception, ensuring your application only processes the most relevant information. 
+To demonstrate the practical application of these filters, this section explores how to subscribe to and filter events using examples that mimic real-world scenarios.
 
-To interact with the PhotonIQ Event Delivery Service, you must use a tool that supports WebSocket connections, as traditional HTTP clients like `curl` do not accommodate the WebSocket protocol. These examples  use `wscat`, a command-line tool for connecting to WebSocket servers.
+To interact with the PhotonIQ Event Delivery Service, use a tool that supports WebSocket connections, as traditional HTTP clients like `curl` do not accommodate the WebSocket protocol. These examples use `wscat`, a command-line tool for connecting to WebSocket servers.
 
 These examples illustrate the versatility of event delivery queries in EDS, enabling precise control over the data stream to suit diverse application needs. Through the use of SQL-like syntax and dynamic filter management, you can efficiently tailor the event delivery to your specific requirements.
 
@@ -62,7 +63,7 @@ This command subscribes to all changes within `CollectionName`. This is particul
 wscat -c 'wss://your-eds-domain/api/es/v1/subscribe?type=collection&filters={"action": "add", "once": "FALSE", "queries": ["select specificField from CollectionName where condition"]}'
 ```
 
-Subscribes to changes in `specificField` when `condition` is met. This method is ideal for situations where events are only relevant under certain conditions, reducing noise and focusing on significant data changes. For example, in a logistics application, this could be used to alert users only when shipments are delayed by more than a day or when inventory levels fall below a critical threshold, enabling timely decision-making and action.
+Subscribes to changes in `specificField` that meets a `condition`. This method is ideal for situations where events are only relevant under certain conditions, reducing noise and focusing on significant data changes. For example, in a logistics application, this could be used to alert users only when shipments are delayed by more than a day or when inventory levels fall below a critical threshold, enabling timely decision-making and action.
 
 ### Dynamic Filter Management
 

@@ -1,22 +1,32 @@
 ---
 sidebar_position: 1
-title: Event Delivery Client SDKs
+title: Getting Started with Event Delivery Client SDKs
 ---
 
-This section demonstrates some of the tasks you can complete with JavaScript SDKs. Macrometa offers the following SDKs:
-
+PhotonIQ offers two client SDKs to enable you connect to and deliver event streams to your applications, services, and several other data-volatile use cases. These SDKs are written in Javascript:
 - [WebSocket](/download/eds-clients/photoniq-eds-ws.min.js)
-- SSE (coming soon)
+- Server Sent Events (SSE) 
+ This section demonstrates some simple tasks to help get you started using these client SDKs. 
+
+## Objectives
+In event delivery, an event refers to every new data generated or function executed. Getting started with this PhotonIQ service will involve you connecting to and subscribing to events from a stream.
+
+This quickstart guide will guide you through:
+- Connecting to an event delivery service
+- Querying that service and receiving query results
+- Disconnecting from the event delivery service
+
 
 ## Pre-requisites
-
-- Download `photoniq-eds-ws.min.js` or `photoniq-eds-sse.min.js` from section above.
-- Attach the module to your html:
+You need the WebSocket or SSE client to successfully complete this guide:
+1. Download the `photoniq-eds-ws.min.js` or `photoniq-eds-sse.min.js` client SDK.
+1. Attach the Javascript module to html code
 ```html
 <script src="path/to/photoniq-eds-ws.min.js"></script>
 <!-- or -->
 <script src="path/to/photoniq-eds-sse.min.js"></script>
 ```
+
 
 ## Basic Example
 
