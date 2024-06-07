@@ -38,4 +38,9 @@ title: PhotonIQ API Reference
     href="../../../docs/apiFaas#"
   />
 
+  <card
+    heading="HyperSearch API"
+    description=""
+    href="../../../docs/apiHss#"
+  />
 </grid>
