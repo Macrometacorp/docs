@@ -1,9 +1,15 @@
 ---
-title: Waiting Room HTML page
+sidebar_position: 30
+title: Explore the VWRs Waiting Room Page
 ---
 
-Below is a sample HTML template for a waiting room page. This page is displayed to users who are redirected to the waiting room. It's fully customizable to suit your needs. Within the template, the class attributes `queue-position`, `queue-depth`, and `avg-wait-time` are used to display the visitor's current position in the queue, the total number of users in the waiting room, and the average waiting time, respectively.
+The VWRs waiting room page is a customizable HTML page that users see when they are directed to the waiting room. The waiting room page is hosted on the Akamai NetStorage and configured using the `waitingRoomPath` option in the VWRs EdgeWorker `handleVwrsRequest()` function.
 
+Here is an example of such a page:
+
+![Waiting Room Page](../../../../static/img/photoniq/vwr/vwr-activity.jpg)
+
+Below is the emplate code for the page:
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -212,3 +218,28 @@ Below is a sample HTML template for a waiting room page. This page is displayed 
   </body>
 </html>
 ```
+
+Within the above template, the class attributes `queue-position`, `queue-depth`, and `avg-wait-time` displays the visitor's current position in the queue, the total number of users in the waiting room, and the average waiting time, respectively.
+
+## Configuring the Waiting Room Page
+
+The waiting room path must be configured as a [Conditional Origin](https://techdocs.akamai.com/property-mgr/docs/conditional-origins) in Akamai's property manager. This allows the waiting room HTML page to be served from the Akamai NetStorage. 
+
+Configure the conditional origin with the following settings:
+
+- Set the Origin ID to `waitingroom`.
+
+In the behaviors section:
+
+  **Origin Server**:
+
+  - Set the Origin type to Netstorage.
+  - Set the NetStorage Account to the appropriate account.
+
+  **Caching**:
+
+  - Caching option: cache
+  - Force revalidation of stale objects: Always revalidate the origin
+  - Maxage: 10 minutes
+
+![Waiting Room Page](../../../../static/img/photoniq/vwr/akamai-cond-origin.png)

@@ -4,7 +4,7 @@ title: Release Notes
 ---
 
 ## May 2024 Release
-### v1.001
+### v1.0.0
 This represents the very first version of the PhotonIQ Function as a Service(FaaS), a solution by PhotonIQ that delivers functions as events to a global CDN.
 
 ### Features

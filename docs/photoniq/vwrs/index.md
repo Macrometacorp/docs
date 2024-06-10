@@ -3,19 +3,17 @@ sidebar_position: 1
 title: Virtual Waiting Rooms (VWRs)
 ---
 
-PhotonIQ Virtual Waiting Rooms (VWRs) are designed to control and manage website traffic, especially during periods of high visitor volume. These VWRs are fully programmable, allowing customization based on various parameters such as origin load, visitor thresholds, regional traffic, and behavior analysis. Key functionalities include advanced routing capabilities, which enable VWRs to identify returning customers, divert suspected bots, and serve cached content to SEO crawlers, thereby ensuring the stability of the origin server.
+PhotonIQ Virtual Waiting Rooms (VWRs) are designed to control and manage website traffic, especially during periods of peak demand with high visitor traffic volume. These VWRs are fully programmable, allowing customization based on parameters like origin load, visitor thresholds, regional traffic, and behavior analysis. 
 
-In operational scenarios, VWRs help maintain website functionality during traffic surges, effectively preventing server overloads and potential site downtime. The service offers features like priority queuing and real-time updates to users, aimed at enhancing the user experience by reducing waiting time. Designed for ease of implementation and maintenance, VWRs provide a solution for automated queue management, making them suitable for high-traffic websites in need of efficient traffic handling and visitor management.
+Some key functionalities present include:
+- **Advanced routing capabilities**: This enables VWRs to identify returning customers, divert suspected bots, and serve cached content to SEO crawlers, thereby ensuring the stability of the origin server.
+- **Priority Queuing**: VWRs reduce user frustrations by providing real time updates to users in the queue, thus improving user experience. Furthermore, offers automated queue management for ease of implementation and maintenance, making them suitable for high-traffic websites in need of efficient traffic handling and visitor management.
 
-### How It Works
-
-When traffic is high, VWRs makes a new page separate from your origin to organize visitors. This keeps your origin from being overwhelmed. What customers see is their place in queue along with how much longer they have to wait. They keep their line even if they accidentally navigate away from the site or close the tab.
-
-For a more detailed explanation, refer to [How VWRs Works](how-vwrs-works.md).
+In operational scenarios, VWRs help maintain website functionality during traffic surges, effectively preventing server overloads and potential site downtime.
 
 ## Benefits of Virtual Waiting Rooms
 
-VWRs serves as a dynamic buffer for your origin server, adeptly handling elevated traffic volumes. This capability not only prevents server overload but also maintains a seamless user experience. Key benefits include:
+VWRs serves as a dynamic buffer for your origin server, efficiently handling elevated traffic volumes. This capability prevents server overload and maintains a seamless user experience. Key benefits include:
 
 ### Server Protection
 
