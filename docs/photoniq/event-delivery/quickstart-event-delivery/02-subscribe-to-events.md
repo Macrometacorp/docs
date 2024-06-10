@@ -41,18 +41,15 @@ The sed regex filter at the end removes any terminal color codes and control cha
 :::
 
 
-2. Sending the following request returns the requested data from the subscribed collection.
-
-![Requested data](/img/photoniq/event-delivery/EDS-ss-showing-connected-with-data.png)
-We've successfully connected and gotten the required data from our stream.
+2. Sending the following request returns the requested data with a `key` value of `-K7loZ_ZzH2iEdzwYfjZ3Ok` from the subscribed collection.
 
 ## Receive Live Updates from Subscribed Streams
 
 Let's see what happens when our subscribed collection gets updated with new data. 
 
-Change the `first_name` from 'Janenna' to 'Jenny'. The terminal immediately returns fresh data with the updated value. 
+Change the `first_name` from 'Janenna' to 'Jenny'. 
 
-![Updated data](/img/photoniq/event-delivery/EDS-ss-showing-new-and-updated-values.png)
+The terminal immediately returns fresh data with the updated value of Jenny as `first_name`.
 
 ## Publish Events to Data Stream
 Unlike subscribing that occurs through a Websocket connection, publishing an event through the EDS occurs via https so we'll make the call using a `curl` command.
