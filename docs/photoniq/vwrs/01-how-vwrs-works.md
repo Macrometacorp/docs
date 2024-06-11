@@ -36,7 +36,7 @@ During moments of peak traffic, VWRs creates a new HTML page separate from your 
 :::note
 
 - The waiting room service periodically checks the sessions to remove requests for expired sessions from the queues.
-- The waiting room service collects the metrics for each domain.
+- The waiting room service collects the metrics for each waiting room.
 - The administrator can turn customer domains on or off through Configuration APIs.
 - VWR uses a queue to serve user requests based on join time. You can configure the queue to be FIFO, random, or lottery based.
 
