@@ -17,9 +17,9 @@ The waiting room solution includes these essential aspects:
 
 ## The VWR Workflow
 
-During moments of peak traffic, VWRs makes a new page separate from your origin to organize visitors. The VWRs workflow ensures that users are directed to the appropriate origin service while ensuring fairness in the queue and providing metrics and alerts to the administrator.
+During moments of peak traffic, VWRs creates a new HTML page separate from your origin to organize visitors. This room employs a workflow that directs users to the appropriate origin service while ensuring fairness when removing users from the queue and providing metrics and alerts to the administrator. The workflow proceeds as follows:
 
-1. The Akamai EdgeWorkers check the virtual room service to confirm if a waiting room is set up for an origin service
+1. The Akamai EdgeWorker checks the virtual waiting room service to confirm if a waiting room is set up for an origin service
 
     - If no waiting room, the EdgeWorker sends the traffic request directly to the origin service.
     - If there is a waiting room, the EdgeWorker sends to the waiting room.
@@ -33,9 +33,8 @@ During moments of peak traffic, VWRs makes a new page separate from your origin 
     - If no, then the waiting room service creates a new session and adds the request to the appropriate queue.
     
 
-:::notes
+:::note
 
-- The waiting room service periodically checks the sessions to remove requests for expired sessions from the queues.
 - The waiting room service periodically checks the sessions to remove requests for expired sessions from the queues.
 - The waiting room service collects the metrics for each domain.
 - The administrator can turn customer domains on or off through Configuration APIs.
