@@ -7,7 +7,7 @@ title: Retrieve Sample Metrics
 VWRs offers different endpoint for retrieving your waiting room metrics:
 
 - [Get Metrics for a Waiting Room](https://www.macrometa.com/docs/apiVwrs#/operations/getMetrics) - Retrieve the metrics for a specific waiting room. Set start and end times to get metrics for a specific time period. To get the waiting room key, use the [Get Information for All Waiting Room](https://www.macrometa.com/docs/apiVwrs#/operations/getDomainUsingQueryParams) endpoint.
-- [Get All Metrics](https://www.macrometa.com/docs/apiVwrs#/operations/filterMetricsByDate) - Retrieve metrics for all domains. Set start and end times to get metrics for a specific time period.
+- [Get All Metrics](https://www.macrometa.com/docs/apiVwrs#/operations/filterMetricsByDate) - Retrieve metrics for all waiting rooms. Set start and end times to get metrics for a specific time period.
 
 
 ## Example Response
