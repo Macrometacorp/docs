@@ -9,7 +9,7 @@ Here is an example of such a page:
 
 ![Waiting Room Page](../../../../static/img/photoniq/vwr/vwr-activity.jpg)
 
-Below is the emplate code for the page:
+Below is the template code for the page:
 ```html
 <!DOCTYPE html>
 <html lang="en">

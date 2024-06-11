@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-title: Configuring Waiting Room Parameters
+title: Configure Waiting Room Parameters
 ---
 
 This page explains some parameters to configure when using the VWR using API endpoint properties. These include configurations when:

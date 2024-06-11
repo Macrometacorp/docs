@@ -1,6 +1,6 @@
 ---
 sidebar_position: 25
-title: Understanding VWRs Queues
+title: VWRs Queues
 ---
 
 This page describes the different types of queues supported by Virtual Waiting Rooms.

@@ -1,5 +1,4 @@
 ---
-sidebar_position: 5
 title: How VWRs Works
 ---
 
@@ -33,7 +32,7 @@ During moments of peak traffic, VWRs makes a new page separate from your origin 
     - If no, then the waiting room service creates a new session and adds the request to the appropriate queue.
     
 
-:::notes
+:::note
 
 - The waiting room service periodically checks the sessions to remove requests for expired sessions from the queues.
 - The waiting room service periodically checks the sessions to remove requests for expired sessions from the queues.

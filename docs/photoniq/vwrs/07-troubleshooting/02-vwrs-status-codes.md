@@ -1,6 +1,6 @@
 ---
 sidebar_position: 130
-title: Understanding VWRs Status Codes
+title: VWRs Status Codes
 ---
 
 The Virtual Waiting Rooms (VWRs) library uses the Property Manager `PMUSER_VWRS_STATUS_CODE` variable to return more detailed status or error codes when using the VWRs library. Add these variable results to the Akamai DataStream custom field to help with debugging/monitoring the VWRs library operations. The status codes use the following format:

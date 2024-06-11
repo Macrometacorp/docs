@@ -3,20 +3,27 @@ sidebar_position: 120
 title: Troubleshoot VWRs
 ---
 
-When configuring and setting your VWR, some errors may occur. Let's explore some of these errors, causes and ways to troubleshoot these errors.
+When configuring and setting your VWR, some errors may occur from misconfigurations in the waiting room html code, domain url, or the EdgeWorker.
+
+Let's explore some of these errors and ways to troubleshoot these errors.
 
 
-## No Waiting Room Configured
+## Waiting Room Misconfigurations
 
-If a waiting room has not been configured, then the waiting room library returns the header _No-Waiting-Room_. This means that the domain URL is not configured correctly.
+This returns the header response `_No-Waiting-Room_`, and points towards a domain URL misconfiguration. Fixing this requires checking your domain URL for any misspellings or errors.
 
 ## Troubleshoot Waiting Room HTML
 
-You have the option to set the URL for the waiting room HTML template either via the library or the domain record. To get a preview of the waiting room HTML template, launch your preferred web browser and go to the following URL: `https://<hostname>/waiting-room-path>/preview`. For example, `http://show.store.com/checkout/preview`.
+Preview your waiting room HTML template by launching your preferred web browser and navigating to your domain URL.
+
+Sample URL format: `https://<hostname>/waiting-room-path>/preview`
+
+For example: `http://show.store.com/checkout/preview`
+ View the waiting room HTML page and make changes when needed. 
 
 ## Troubleshoot Waiting Room Cookie
 
-The `vwrs-cookie` cookie holds valuable information regarding each user's access to the waiting room. If you need to debug and access the content of the cookie, then you can enable debugging mode when calling the `handleVwrsRequest()` function. Enabling debugging mode stores the unencrypted cookie in the `x-vwrs-debug` header, granting you access to its content for debugging purposes.
+The `vwrs-cookie` cookie holds valuable information regarding each user's access to the waiting room. Debugging and accessing the cookie content requires enabling debugging mode when calling the `handleVwrsRequest()` function. Enabling debugging mode stores the unencrypted cookie in the `x-vwrs-debug` header, granting you access to its content for debugging purposes.
 
 ```js
 export async function onClientRequest(request) {
@@ -40,8 +47,7 @@ export async function onClientResponse(request, response) {
 
 ## VWRs EdgeWorker Exceeding PM_USER Space
 
-The VWRs EdgeWorker uses Akamai's Property Manager user-defined variables. The maximum limit supported by Akamai EdgeWorkers is 1024 characters. If this limit is exceeded, the
-following error message is displayed by the library code: `Setting metadata variable would exceed total variable size limit`.
+The VWRs EdgeWorker uses Akamai's Property Manager user-defined variables. The maximum limit supported by Akamai EdgeWorkers is 1024 characters. Exceeding this limits causes the library code to display the following error message: `Setting metadata variable would exceed total variable size limit`.
 
 ## Report Status Codes
 
