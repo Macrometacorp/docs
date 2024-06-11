@@ -26,7 +26,7 @@ During moments of peak traffic, VWRs makes a new page separate from your origin 
 
 3. The waiting room service adds the request to the waiting room associated with the domain.
 4. When a user accesses the waiting room page, the page polls the virtual waiting room service for the latest waiting time and waiting room depth and displays it.
-6. When the waiting time is near zero, or the user is at the front of the queue, the waiting room page forwards the user to the origin service.
+6. As the waiting time nears zero, or the user is at the front of the queue, the waiting room page forwards the user to the origin service.
 7. After releasing the request, the waiting room service removes a request from the queue.
 8. If a duplicate request is detected, then the waiting room service checks to see if the user has an active session.
     - If yes, then the waiting room service returns the user's position in the queue. 
