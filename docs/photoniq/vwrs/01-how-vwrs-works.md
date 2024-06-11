@@ -12,7 +12,7 @@ Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) are an advanced prioritization s
 The waiting room solution includes these essential aspects:
 
 - **Origin Service**: The website for which you want to set up a virtual waiting room.
-- **Origin Metrics Service**: Allows you to retrieve information about a specific domain.
+- **Origin Metrics Service**: Allows you to retrieve information about a specific waiting room.
 - **Waiting Room Page**: The endpoint (URL) with the waiting room attached.
 
 ## The VWR Workflow
