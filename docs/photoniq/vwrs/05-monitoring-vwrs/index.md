@@ -16,10 +16,14 @@ VWRs metrics allow you to:
 
 ## Available Metrics
 
-The metrics response body includes the following properties:
+PhotonIQ allows you to view important metrics to evaluate the performance of your virtual waiting room. You can view this metrics via:
+- The PhotonIQ VWRS GUI
+- [The PhotonIQ VWRS REST API](https://www.macrometa.com/docs/apiVwrs#/operations/filterMetricsByDate)
+
+Some of these metrics include:
 
 - **avg_waiting_time**: The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds).
-- **domain_key**: The domain key.
+- **waitingroom_key**: The waiting room key.
 - **duplicate_request_rate**: The percentage of duplicate requests detected and managed by the virtual waiting room service.
 - **origin_key**: The origin key.
 - **peak_queue_length**: The highest number of users in the queue during a specific period.
