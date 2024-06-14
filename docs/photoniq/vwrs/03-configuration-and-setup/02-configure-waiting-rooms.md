@@ -12,7 +12,7 @@ This page explains some parameters to configure when using the VWR using API end
 ## Entering the Waiting Room
 
 - **Rate Limit:** Set the rate (maximum users per second) at which traffic should be diverted to the waiting room. (`rate_limit` property)
-- **Waiting Room Path:** The URL that sits in front of the waiting room (`domain_url` property)
+- **Waiting Room URL:** The URL that you are protecting with a waiting room (`waitingroom_url` property)
 - **Queue Type:** Defines how requests should be removed from the waiting room, such as FIFO (first in, first out). (`queue_type` property)
 
 ## In the Waiting Room
