@@ -18,7 +18,7 @@ This page explains some parameters to configure when using the VWR using API end
 ## In the Waiting Room
 
 - **Waiting Room HTML:** UI shown to users in the waiting room. (`waiting_room_path` property)
-- **Waiting Room Position and Time (in HTML):** Include any of the position or time in the waiting room UI. This is (Configured in the [Akamai EdgeWorker](01-configuring-edgeworkers.md)
+- **Waiting Room Position and Time (in HTML):** Include any of the position or time in the waiting room UI. This is Configured in the [Akamai EdgeWorker](01-configuring-edgeworkers.md)
 - **Waiting Room HTMl Refresh Interval:** How often waiting room UI should be refreshed in the user's browser. (`waiting_room_interval` property)
 
 ## Exiting the Waiting Room
