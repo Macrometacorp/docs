@@ -13,9 +13,9 @@ VWRS allows you customize a waiting room with up to ten priorities, with these p
 
 ### Configuring Priority
 
-Configure the priorities using the `POST/PUT/PATCH /api/vwr/v1/domains` REST API.
+Configure the priorities using the `POST/PUT/PATCH /api/vwr/v1/waitingrooms` REST API.
 
-For instance, to configure three priorities with values of 1, 20, and 255, use the `PATCH /api/vwr/v1/domains` REST API to update the domain:
+For instance, to configure three priorities with values of 1, 20, and 255, use the `PATCH /api/vwr/v1/waitingrooms` REST API to update the domain:
 
 ```bash
 curl -X 'PATCH' \
