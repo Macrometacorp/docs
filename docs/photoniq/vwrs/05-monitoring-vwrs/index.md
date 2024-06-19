@@ -25,7 +25,6 @@ Some of these metrics include:
 - **avg_waiting_time**: The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds).
 - **waitingroom_key**: The waiting room key.
 - **duplicate_request_rate**: The percentage of duplicate requests detected and managed by the virtual waiting room service.
-- **origin_key**: The origin key.
 - **peak_queue_length**: The highest number of users in the queue during a specific period.
 - **queue_abandonment_rate**: The percentage of users who leave the virtual waiting room without accessing the origin service.
 - **request_success_rate**: The percentage of requests to the origin service that are successfully processed after users leave the virtual waiting room.
