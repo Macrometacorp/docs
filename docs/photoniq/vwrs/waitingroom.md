@@ -112,8 +112,18 @@ Below is a sample HTML template for a waiting room page. This page is displayed 
     </style>
     <script>
       function fetchData() {
-        fetch(`${window.location.href}/status`)
+        fetch(`${window.location.href}/queue-status`)
           .then((res) => {
+            // It returns below response
+            /*
+              {
+                "avg_waiting_time" : 19871.8,
+                "position" : 99359,
+                "queue_depth" : 0,
+                "rate_limit" : 5,
+                "waiting_room_interval" : 1
+              }
+            */
             const status = res.status;
             if (status === 302) {
               // it is ok to go to origin now
@@ -212,3 +222,23 @@ Below is a sample HTML template for a waiting room page. This page is displayed 
   </body>
 </html>
 ```
+
+In the above HTML, the `queue-status` API returns the following response:
+```
+  {
+    "avg_waiting_time" : 19871.8,
+    "position" : 99359,
+    "queue_depth" : 0,
+    "rate_limit" : 5,
+    "waiting_room_interval" : 1
+  } 
+```
+
+- avg_waiting_time: The average time users spend in the virtual waiting room before being granted access to the origin service (in milliseconds).
+- position: The client's current position in the waiting room.
+- queue_depth: Total number of users present in the waiting room.
+- rate_limit: The rate limit for the domain. The maximum users per second allowed to reach the origin.
+- waiting_room_interval: The time interval in seconds when the UI reloads itself to get the waiting room status.
+
+
+
