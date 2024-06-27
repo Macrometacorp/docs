@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 You have several options for viewing Prerendering activity, either aggregated or per origin.
 
 - **Activity tab** - You can view activity metrics for all origins or for one origin on the Activity tab in the web console. You can view metrics for the last day, the last week, or the last month.
-  ![Prerendering Activity Tab](/static/img/prerendering/activity-tab.png)
+  ![Prerendering Activity Tab](/img/prerendering/activity-tab.png)
 - **REST API** - Macrometa provides several API calls that allow you to view metrics for all origins or for one origin. You can also sort and set any time frame that you need.
 
 ## View Prerendering Activity

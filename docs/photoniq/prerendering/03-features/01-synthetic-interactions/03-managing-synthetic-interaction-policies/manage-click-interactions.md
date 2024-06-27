@@ -91,7 +91,7 @@ Follow these instructions to add a new click policy in the web console.
     - **Not equal** - Applies the policy to all origin URLs except the specified URL paths.
 13. Click **Add Policy**.
 
-![Add Click Policy](/static/img/prerendering/add-click-policy.png)
+![Add Click Policy](/img/prerendering/add-click-policy.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -135,7 +135,7 @@ Follow these instructions to update the order in which click interaction policie
 6. When you are satisfied with the order, click **Update Sequence**.
 7. Click **Confirm**.
 
-![Update Click Policy Sequence](/static/img/prerendering/update-click-policy-sequence.png)
+![Update Click Policy Sequence](/img/prerendering/update-click-policy-sequence.png)
 
 ## Delete Click Policies
 

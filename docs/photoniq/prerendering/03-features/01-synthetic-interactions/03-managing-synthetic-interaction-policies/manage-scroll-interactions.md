@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 You have several options for managing Prerendering scroll synthetic interaction policies.
 
 - **Synthetic Interactions tab** - You can manage synthetic scroll interaction policies for an origin on the Synthetic Interactions tab in the web console.
-  ![Prerendering Synthetic Interactions Tab - Scroll](/static/img/prerendering/synthetic-interactions-scroll.png)
+  ![Prerendering Synthetic Interactions Tab - Scroll](/img/prerendering/synthetic-interactions-scroll.png)
 - **REST API** - Macrometa provides several API calls that allow you to manage synthetic scroll interaction policies.
 
 ## View Scroll Policies
@@ -75,7 +75,7 @@ Follow these instructions to add a new scroll policy in the web console.
 
 10. Click **Add Policy**.
 
-![Add Scroll Policy](/static/img/prerendering/add-scroll-policy.png)
+![Add Scroll Policy](/img/prerendering/add-scroll-policy.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -99,7 +99,7 @@ Follow these instructions to update a scroll global configuration in the web con
 5. In the **Actions** field, click the pencil icon next to the global configuration that you want to edit.
 6. Update any values desired and then click **Update**.
 
-![Edit Scroll Global Configuration](/static/img/prerendering/update-scroll-global-config.png)
+![Edit Scroll Global Configuration](/img/prerendering/update-scroll-global-config.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">

@@ -33,7 +33,7 @@ Follow these instructions to enable or disable all synthetic interaction policie
 3. Select an origin to enable or disable policies for.
 4. Click the toggle next to the name of the type of policy to enable or disable.
 
-![Enable or Disable All Synthetic Interactions](/static/img/prerendering/enable-disable-all-synthetic-interactions.png)
+![Enable or Disable All Synthetic Interactions](/img/prerendering/enable-disable-all-synthetic-interactions.png)
 
 ## Enable or Disable Specific Policies
 

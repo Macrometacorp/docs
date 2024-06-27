@@ -1,5 +1,4 @@
 ---
-sidebar_position: 30
 title: Configure Prefetching
 ---
 import Tabs from '@theme/Tabs';
@@ -21,7 +20,7 @@ Follow these instructions to view prefetching jobs in the web console.
 2. Click **Prefetching**.
 3. Click **Configuration**.
 
-![Prerendering Prefetching Configuration Tab](/static/img/prerendering/prefetching-configuration-tab.png)
+![Prerendering Prefetching Configuration Tab](/img/prerendering/prefetching-configuration-tab.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -59,7 +58,7 @@ The new configuration is inactive and unscheduled. Follow these instructions in 
 6. In **Devices**, select the devices that you want to prefetch pages for.
 7. Click **Add**.
 
-![Prerendering Add Prefetching Configuration](/static/img/prerendering/add-prefetch-configuration.png)
+![Prerendering Add Prefetching Configuration](/img/prerendering/add-prefetch-configuration.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -84,7 +83,7 @@ Follow these instructions to edit a prefetching in the web console.
 6. In **Devices**, select the devices that you want to prefetch pages for.
 7. Click **Update**.
 
-![Prerendering Update Prefetching Configuration](/static/img/prerendering/update-prefetching-configuration.png)
+![Prerendering Update Prefetching Configuration](/img/prerendering/update-prefetching-configuration.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">

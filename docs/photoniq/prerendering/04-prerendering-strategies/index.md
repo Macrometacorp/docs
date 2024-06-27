@@ -10,7 +10,7 @@ With a prefetching strategy, Prerendering uses your sitemap to crawl and prerend
 
 This Prerendering strategy allows you to schedule content at intervals for prefetching. These intervals range from daily to weekly and is useful for irregularly updated content that require thorough crawling by bots.
 
-![Bot Visits Prefetched Site](/static/img/photoniq/prerendering/bot-visits-site.png)
+![Bot Visits Prefetched Site](/img/photoniq/prerendering/bot-visits-site.png)
 
 ### On-demand Prerendering
 
@@ -18,8 +18,8 @@ Unlike prefetching, on-demand prerendering only renders a page after a bot reque
 
 Prerendering allows you to define the caching periods when [configuring your origin](../07-prerendering-management/manage-origins/). 
 
-![Bot Visits On-Demand Prerendered Site](/static/img/photoniq/prerendering/on-demand-prerender.png)
+![Bot Visits On-Demand Prerendered Site](/img/photoniq/prerendering/on-demand-prerender.png)
 
 Prerendering offers numerous flexible options when setting caching parameters, including cache duration or to manually clear the cache if needed. Clearing the cache works for frequently changing content or for very hands-on Prerendering users.
 
-![Cache Refresh](/static/img/photoniq/prerendering/refresh-cache.png)
+![Cache Refresh](/img/photoniq/prerendering/refresh-cache.png)

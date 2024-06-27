@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 You have several options for viewing Prerendering render history, either aggregated or per origin.
 
 - **Render History tab** - In the Render History tab in the web console, you can view render history for all origins or for a single origin. You can also filter the history view based on HTTP status.
-  ![Prerendering Render History Tab](/static/img/photoniq/prerendering/view-render-history.png)
+  ![Prerendering Render History Tab](/img/photoniq/prerendering/view-render-history.png)
 - **REST API** - Macrometa provides several API calls that allow you to view render history for all origins or for one origin. You can also sort and set any time frame that you need.
 
 ## View Render History

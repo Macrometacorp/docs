@@ -1,5 +1,4 @@
 ---
-sidebar_position: 20
 title: View Prefetching
 ---
 import Tabs from '@theme/Tabs';
@@ -22,7 +21,7 @@ Follow these instructions to view current prefetching in the web console.
 3. Select the origin that you want to view.
 4. If necessary, click **In Progress**.
 
-![Prerendering Prefetching In Progress Tab](/static/img/prerendering/prefetching-in-progress.png)
+![Prerendering Prefetching In Progress Tab](/img/prerendering/prefetching-in-progress.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">
@@ -63,7 +62,7 @@ Follow these instructions to view prefetch history in the web console.
 3. Select the origin that you want to view.
 4. If necessary, click **History**.
 
-![Prerendering Prefetching History Tab](/static/img/prerendering/prefetching-history.png)
+![Prerendering Prefetching History Tab](/img/prerendering/prefetching-history.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">

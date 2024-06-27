@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 You have several options for viewing Prerendering 404 identifiers currently set on your origins. The 404 identifier is set when an origin is created. When Prerendering encounters a page with this exact string, it reports a 404 status code.
 
 - **404 Identifier tab** - In the 404 Identifier tab in the web console, you can view information about the 404 identifier assigned to each origin. To add or update 404 identifiers, contact Macrometa Support.
-  ![Prerendering 404 Identifier Tab](/static/img/prerendering/404-identifier.png)
+  ![Prerendering 404 Identifier Tab](/img/prerendering/404-identifier.png)
 - **REST API** - Macrometa provides API calls that allow you to view origin settings, including 404 identifiers, for all origins or for one origin.
 
 ## 404 Identifier Fields
@@ -53,7 +53,7 @@ Follow these instructions to add or update 404 identifiers in the web console.
 3. In the Actions column, click the pencil icon.
 4. In the Update 404 Identifier window, add or edit text and then click **Update**.
 
-![Update 404 Identifier](/static/img/prerendering/update-404-identifier.png)
+![Update 404 Identifier](/img/prerendering/update-404-identifier.png)
 
 </TabItem>
 <TabItem value="api" label="REST API">

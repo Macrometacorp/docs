@@ -27,7 +27,7 @@ To find the `htmlSelector`:
 - For **Chrome, Edge, and Firefox**: Press `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Option+I` (Mac).
 - For **Safari**: Enable Developer menu from the `Advanced` tab from Safari's Preferences and press `Cmd+Option+I`.
 2. Use the  `Elements` tab (named `Inspector` in Firefox) to view the HTML structure of the page. You can hover over different parts of the HTML code, and the corresponding parts of the web page will be highlighted.
-3. Identify and copy the selector. [Choosing a selector](../02-managing-interactions/01-choosing-selector.md) depends on factors like the need for specificity, and location of the selector. 
+3. Identify and copy the selector. Refer to these [recommendations when choosing a selector](../02-managing-interactions/index.md)
 
 ### Step 2: Testing the `htmlSelector`
 
@@ -60,6 +60,6 @@ Now we have a selector, we can go ahead to create a hover policy:
     - **Not equal** - Applies the policy to all origin URLs except the specified URL paths.
 - Select the **Operator** applied on the URL paths
 
-![create hover policy](/static/img/photoniq/prerendering/hover-policy.png)
+![create hover policy](/img/photoniq/prerendering/hover-policy.png)
 
 3. Click **Add Policy**

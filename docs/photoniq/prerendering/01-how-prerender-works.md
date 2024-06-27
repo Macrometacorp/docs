@@ -1,5 +1,4 @@
 ---
-sidebar_position: 5
 title: How Prerendering Works
 ---
 
@@ -14,11 +13,9 @@ Let's explore how Prerendering affects these two classes of web visitors:
 
 ### Prerendering Pages for Human Visitors
 
-Businesses invest considerable resources and techniques like Javascript lazy loading, image compression, caching, and other strategies to improve web page speed, performance and experience for human users. 
+Businesses investing a considerable resources and techniques like Javascript lazy loading, image compression, caching, and other strategies to improve web page speed, performance and experience for human users need not worry about the effects of Prerendering on their human visitors as the service does not disrupt their user experience. 
 
-Implementing Prerendering does not disrupt this user experience. 
-
-![Human Visits Site](/static/img/photoniq/prerendering/human-visits-site.png)
+![Human Visits Site](/img/photoniq/prerendering/human-visits-site.png)
 
 ### Prerendering Pages for Bots
 

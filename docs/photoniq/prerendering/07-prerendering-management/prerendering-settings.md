@@ -54,52 +54,52 @@ Use these settings to optimize rendering for desktop or mobile. Fields include:
 - User Agent
 - Status
 
-![Optimized Rendering for Different Crawling Bots](/static/img/prerendering/optimizing-rendering-for-different-bots.png)
+![Optimized Rendering for Different Crawling Bots](/img/prerendering/optimizing-rendering-for-different-bots.png)
 
 ### Optimizing Rendering Timeouts
 
 Configure the rendering timeout to best suit your needs.
 
-![Optimizing Rendering Timeouts](/static/img/prerendering/optimizing-rendering-timeouts.png)
+![Optimizing Rendering Timeouts](/img/prerendering/optimizing-rendering-timeouts.png)
 
 ### Fonts Blocking
 
 You can block fonts to speed up rendering.
 
-![Fonts Blocking](/static/img/prerendering/fonts-blocking.png)
+![Fonts Blocking](/img/prerendering/fonts-blocking.png)
 
 ### Stylesheet Blocking
 
 You can block stylesheets to speed up load times.
 
-![Stylesheet Blocking](/static/img/prerendering/stylesheet-blocking.png)
+![Stylesheet Blocking](/img/prerendering/stylesheet-blocking.png)
 
 ### Inject Styled Components CSS
 
 You can inject styled components into the head element to improve styles, but it slows down page rendering. This setting can be useful when you are testing.
 
-![Inject Styled Components CSS](/static/img/prerendering/inject-styled-components-css.png)
+![Inject Styled Components CSS](/img/prerendering/inject-styled-components-css.png)
 
 ### URL Block List
 
 You can block specific external URLs during rendering. Click **Edit** to update the list.
 
-![URL Block List](/static/img/prerendering/url-block-list.png)
+![URL Block List](/img/prerendering/url-block-list.png)
 
 ### Allow Origin Header Value
 
-In the web console, this displays the origin allowlist value if one is set. For more information about allowlist headers, refer to [Allowlist-Based Header Values](prerendering-headers/allowlist-value-headers.md).
+In the web console, this displays the origin allowlist value if one is set. For more information about allowlist headers, refer to [Allowlist-Based Header Values](../03-features/02-prerendering-headers/allowlist-value-headers.md).
 
-![Allow Origin Header Value](/static/img/prerendering/allow-origin-header-value.png)
+![Allow Origin Header Value](/img/prerendering/allow-origin-header-value.png)
 
 ### Add Response Header
 
 In the web console, this displays current header keys and values. For more information about headers, refer to [Prerendering Headers](prerendering-headers).
 
-![Add Response Header](/static/img/prerendering/add-response-header.png)
+![Add Response Header](/img/prerendering/add-response-header.png)
 
 ### Pass-through Headers
 
 You can specify headers from a bot's request to be sent directly to the Prerender service. Click **Edit** to update the list.
 
-![Pass-through Headers](/static/img/prerendering/pass-through-headers.png)
+![Pass-through Headers](/img/prerendering/pass-through-headers.png)

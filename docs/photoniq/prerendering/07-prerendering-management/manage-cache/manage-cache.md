@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 You have several options for managing the Prerendering cache.
 
 - **Cache Manager tab** - In the Cache Manager tab in the web console, you can view all cached documents for an origin. You can also clear the cache or preview a cached page.
-  ![Prerendering Cache Manager Tab](/static/img/prerendering/cache-manager.png)
+  ![Prerendering Cache Manager Tab](/img/prerendering/cache-manager.png)
 - **REST API** - Macrometa provides several API calls that allows you to manage the cache.
 
 ## Cache Manager Fields

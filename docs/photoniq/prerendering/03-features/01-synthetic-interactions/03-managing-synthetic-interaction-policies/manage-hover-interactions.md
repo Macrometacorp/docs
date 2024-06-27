@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 You have several options for managing Prerendering hover synthetic interaction policies.
 
 - **Synthetic Interactions tab** - You can manage synthetic hover interaction policies for an origin on the Synthetic Interactions tab in the web console.
-  ![Prerendering Synthetic Interactions Tab - Hover](/static/img/prerendering/synthetic-interactions-hover.png)
+  ![Prerendering Synthetic Interactions Tab - Hover](/img/prerendering/synthetic-interactions-hover.png)
 - **REST API** - Macrometa provides several API calls that allow you to manage synthetic hover interaction policies.
 
 ## View Hover Policies
@@ -133,7 +133,7 @@ Follow these instructions to update the order in which hover interaction policie
 6. When you are satisfied with the order, click **Update Sequence**.
 7. Click **Confirm**.
 
-![Update Hover Policy Sequence](/static/img/prerendering/update-hover-policy-sequence.png)
+![Update Hover Policy Sequence](/img/prerendering/update-hover-policy-sequence.png)
 
 ## Delete Hover Policies
 
