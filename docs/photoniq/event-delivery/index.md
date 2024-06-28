@@ -3,44 +3,46 @@ sidebar_position: 1
 title: Event Delivery
 ---
 
-PhotonIQ Event Delivery delivers real-time event data to applications using WebSockets and Server-Sent Events (SSE). It allows developers to integrate event-driven functionality into applications, ensuring they receive timely updates.
+PhotonIQ Event Delivery Service (EDS) provides a robust solution for the timely delivery of real-time event data to your applications. This enables developers to incorporate event-driven functionalities to thier applications, ensuring real-time updates that enhance data-driven decision-making. Event delivery achieves this through two distinct methods:
 
-## Benefits of Event Delivery
+- **WebSockets**: EDS uses WebSockets as a communication protocol that enables full-duplex communication between a client (such as a web browser) and a server over a single, long-lived connection. This allows both the client and server to send and receive messages concurrently, enabling real-time, bidirectional communication.
 
-Event Delivery offers several key advantages that enhance the functionality and responsiveness of applications:
+- **Server-Sent Events**: EDS uses Server-Sent Events (SSE) as a communication protocol that allows a server to send updates to the client over a single, long-lived HTTP connection. Unlike WebSockets, SSE is unidirectional, meaning the server can push data to the client, but the client cannot send data to the server through the same connection.
 
-- **Immediate Data Updates:** Event Delivery provides real-time notifications, keeping applications up-to-date with the latest events.
-- **Data Stream Customization:** With SQL-like filters, users can specify which events they receive, reducing unnecessary data.
-- **Quick Decision Making:** Access to real-time data helps users respond faster to changes, improving operational efficiency.
+<grid cols={3}>
+ <card
+    heading="Getting Started"
+    description="Learn how to quickly set up and begin using the Event Delivery Service"
+    href="getting-started-event-delivery"
+  />
+   <card
+    heading="EDS API"
+    description="Interact with the Event Delivery Service API"
+    href="https://www.macrometa.com/docs/apiEds#"
+  />
+   <card
+    heading="EDS SDK"
+    description="Integrate the Event Delivery Service SDK into your applications"
+    href="./clients"
+  />
+ </grid> 
 
-## Challenges Addressed by Event Delivery
+## Key features of EDS
+
+The PhotonIQ EDS has comprehensive features to support real-time data delivery and customization to fit different organizational use cases.
+
+- **Real-time event delivery**: EDS provides two methods for delivering events in real-time as they occur: WebSockets and SSE. It also includes event de-duplication to minimize noise and irrelevant data in your data stream.
+- **Event subscription and publishing**: Users can subscribe to specific events that are relevant to them and can publish data to the event stream, enabling dynamic data exchange.
+- **Advanced filtering**: EDS features SQL-like filtering, giving users precise control over their event subscriptions to ensure relevance and minimize noise.
+- **Metric and analytics**: EDS offers comprehensive insights into health, performance, and event trends, enabling users to optimize their applications and make data-driven decisions based on analytics.
+- **Scalability and security**: EDS is designed to support large user bases, incorporating robust security measures such as data encryption and user authentication to ensure secure and scalable operations.
+
+## Challenges addressed by EDS
 
 Event Delivery is designed to solve specific problems related to data management and delivery in modern applications:
 
-- **Information Overload:** Event Delivery filters out irrelevant data, delivering only the information users need.
-- **Data Reception Latency:** Real-time event delivery minimizes delays, ensuring decisions are made using the most current information.
-- **Integration Complexity:** Event Delivery uses standard SQL-like querying for easy integration with existing systems.
+- **Information overload:** EDS filters out irrelevant data, delivering only the information users need.
+- **Data Reception latency:** Real-time event delivery minimizes delays, ensuring decisions are made using the most current information.
+- **Integration complexity:** Event Delivery uses standard SQL-like querying for easy integration with existing systems.
 
-## Features
 
-Event Delivery is built with a comprehensive set of features to support real-time data delivery and customization.
-
-### Real-Time Event Delivery
-
-This feature allows for the delivery of events as they happen, utilizing WebSockets and including event de-duplication to streamline data flow.
-
-### Event Subscription and Publishing
-
-Users have the ability to subscribe to specific events that matter to them and can publish data to the event stream, facilitating a dynamic data exchange.
-
-### Advanced Filtering
-
-Event Delivery offers SQL-like filtering capabilities, enabling precise control over the events to which users subscribe, ensuring relevance and reducing noise.
-
-### Scalability and Security
-
-Designed to accommodate large user bases, Event Delivery provides robust security measures including data encryption and user authentication, ensuring safe and scalable operations.
-
-### Metrics and Analytics
-
-Providing detailed insights into data usage and event trends, this feature helps users optimize their applications and make informed decisions based on analytics.
