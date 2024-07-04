@@ -16,11 +16,13 @@ Filters are defined in a JSON format, which includes fields to specify the desir
 - `action`: Specifies the filter action, such as "add" to add new filters or "remove" to remove existing filters. This is only supported for WebSockets since messages cannot be sent from the client to the server in SSE. Refer to [Dynamic filter management](#dynamic-filter-management) for more details.
 
 - `initialData`: When set to `TRUE`, returns the original data after subscribing to a stream. When set to `FALSE`, it only subscribes without returning the original data. The default is `FALSE`.
-- `compress`: Indicates if messages should be sent by the server in gz-compressed form. The default is `FALSE`.
-- `once`: A boolean flag (`TRUE` or `FALSE`), indicating whether the filter should be applied just once. By defualt, it is `FALSE`. 
+- `compress`: Indicates if messages should be sent by the server in gz and base64 encoded format. The default is `FALSE`.
+- `once`: A boolean flag (`TRUE` or `FALSE`), indicating whether the filter should be applied just once. By default, it is `FALSE`. 
 - `queries`: An array of SELECT statements defining the specific events to filter.
 
-The `SELECT` syntax follows standard SQL conventions, allowing for conditions (`WHERE`), logical operators (`AND`, `OR`), and specifying particular fields or using `*` for all fields within a collection or stream.
+
+The `SELECT` syntax follows the SQL format, allowing you to specify conditions (`WHERE`), use logical operators (`AND`, `OR`), and select specific fields or use `*` for all fields within a collection or stream. Nested JSON attributes can also be referenced using dot notation, like `details.phone` while selecting fields within the stream.
+
 
 **Example JSON filter structure**
 
@@ -29,6 +31,7 @@ The `SELECT` syntax follows standard SQL conventions, allowing for conditions (`
   "action": "add",
   "once": "FALSE",
   "initialData":"FALSE",
+  "compress": "FALSE",
   "queries": [
     "select * from CollectionName where condition1",
     "select fieldName from CollectionName where condition2 OR condition3"
@@ -49,12 +52,15 @@ This section demonstrates how to subscribe to and filter events using practical 
 To subscribe to events using EDS, send a request to the [Subscribe to Stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get). It requires the following fields:
 
 - **EDS host**: The host where the EDS service is running.
-- **x-customer-id**: The is used to authenticate the request.
+- **x-customer-id**: This is used to identify the user making the request.
 - **type**: Type of subscription (e.g., `collection`).
 - **filters**:Fields to specify the desired event criteria.
+- **API key**: This is used to authenticate the request.
+
 
 :::important
-Contact your Macrometa patners for your EDS host and `x-customer-id`
+
+Contact Macrometa for your EDS host, API key, and Customer ID.
 
 :::
 
@@ -64,7 +70,7 @@ Contact your Macrometa patners for your EDS host and `x-customer-id`
 Curl currently has no support for WebSockets, you can use [wscat](https://github.com/WebSockets/wscat) to send a request to the [Subscribe to Stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get) via WebSockets as shown below:
 
 ```bash
-  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
+  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
 ```
 
   </TabItem>
@@ -73,7 +79,7 @@ Curl currently has no support for WebSockets, you can use [wscat](https://github
 Here is the syntax to send a request to the [Subscribe to Stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get) via SSE:
 
 ```bash
-  curl -X POST -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "TRUE", "compress": "FALSE", "initialData":"TRUE", "queries": ["select fieldName from CollectionName"]}}' https://<eds-host>/api/es/sse/v1/subscribe
+ curl -X POST -H "Authorization: <api_key>" -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "TRUE", "compress": "FALSE", "initialData":"TRUE", "queries": ["select fieldName from CollectionName"]}}' https://<eds-host>/api/es/sse/v1/subscribe
 ```
   </TabItem>
 </Tabs>
@@ -88,7 +94,7 @@ Subscribing to specific field changes is useful when monitoring a specific attri
   <TabItem value="ws-specific" label="WebSockets">
 
 ```bash
-  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
+  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
 ```
 
   </TabItem>
@@ -96,7 +102,7 @@ Subscribing to specific field changes is useful when monitoring a specific attri
 
 
 ```bash
-  curl -X POST -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "TRUE", "queries": ["select fieldName from CollectionName"]}}' https://<eds-host>/api/es/sse/v1/subscribe
+  curl -X POST -H "Authorization: <api_key>" -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "TRUE", "queries": ["select fieldName from CollectionName"]}}' https://<eds-host>/api/es/sse/v1/subscribe
 ```
   </TabItem>
 </Tabs>
@@ -111,13 +117,13 @@ This is particularly beneficial for applications that need to maintain a real-ti
   <TabItem value="ws-all" label="WebSockets">
 
 ```bash
-  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
+  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select * from CollectionName"]}'
 ```
   </TabItem>
   <TabItem value="sse-all" label="Server-Sent Events">
 
 ```bash
-  curl -X POST -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "TRUE", "queries": ["select fieldName from CollectionName"]}}' https://<eds-host>/api/es/sse/v1/subscribe
+  curl -X POST -H "Authorization: <api_key>" -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "TRUE", "queries": ["select * from CollectionName"]}}' https://<eds-host>/api/es/sse/v1/subscribe
 ```
   </TabItem>
 </Tabs>
@@ -133,13 +139,13 @@ Conditional subscription is ideal for situations where events are only relevant 
   <TabItem value="ws-all" label="WebSockets">
 
 ```bash
-  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select specificField from CollectionName where condition"]}'
+  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select specificField from CollectionName where condition"]}'
 ```
   </TabItem>
   <TabItem value="sse-all" label="Server-Sent Events">
 
 ```bash
-  curl -X POST -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "TRUE", "queries": ["select specificField from CollectionName where condition"]}}' https://<eds-host>/api/es/sse/v1/subscribe
+  curl -X POST -H "Authorization: <api_key>" -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "TRUE", "queries": ["select specificField from CollectionName where condition"]}}' https://<eds-host>/api/es/sse/v1/subscribe
 ```
   </TabItem>
 </Tabs>

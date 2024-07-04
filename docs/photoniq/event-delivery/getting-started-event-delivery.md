@@ -6,7 +6,7 @@ title: Getting Started with Event Delivery
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-PhotonIQ Event Delivery is a fully managed service, implemented and optimized by Macrometa engineers to ensure proper functionality. For those who prefer a more hands-on approach, this guide provides information to help you actively manage Event Delivery.
+PhotonIQ Event Delivery is a fully managed service, implemented and optimized by Macrometa engineers to ensure proper functionality. For those who prefer a more hands-on approach, this guide provides information to help you actively manage event delivery.
 
 In this guide, you'll learn how to:
 - [Set up your first event stream in the PhotonIQ GDN](#setup-event-stream-in-the-photoniq-gdn)
@@ -16,7 +16,7 @@ In this guide, you'll learn how to:
 
 The Event Delivery service enables you to stream and filter events from Macrometa [streams](../../streams/), as well as publish events to these streams. Before you proceed, here are some key concepts:
 
-- **Publisher:** An application or service that continuously generates data for consumption by a subscriber. In the Event Delivery Service (EDS), collections in the Macrometa Global Data Network (GDN) act as publishers.
+- **Publisher:** In the Event Delivery Service (EDS), the [publish API](https://www.macrometa.com/docs/apiEds#/paths/api-es-v1-fabric-fabricName--stream--streamName--publish/post) enables applications to send events to streams (GDN collection streams and GDN streams). 
   
 - **Subscriber:** An entity that subscribes to events from the publisher. Subscribers can use SQL-like queries to filter and subscribe to specific events, reducing noise and focusing on relevant data.
   
@@ -26,8 +26,11 @@ The Event Delivery service enables you to stream and filter events from Macromet
 
 
 ## Setup event stream in the PhotonIQ GDN
+Setting up your event stream in the GDN for EDS involves two phases: [GDN account setup](#gdn-account-setup) and [EDS server configuration](#eds-server-configuration).
 
+### GDN account setup
 **Prerequisites**
+
 - A Macrometa account with sufficient permissions to create [collections](../../collections/). You can contact a Macrometa partner to sign up or [sign up](https://www.macrometa.com/sign-up) on your own. Once your Macrometa account is set up, you can choose the type of collection to stream your data into. The PhotonIQ GDN offers the following options for EDS:
     - [Document Collection](../../collections/documents/index.md): Accepts any document type.
     - [Key-Value Collection](../../collections/keyvalue/index.md): Accepts key-value pairs and can be configured to include blobs.
@@ -46,7 +49,7 @@ Now, proceed to set up your collection stream in the GDN following these steps:
 ![New Collection Stream](/img/photoniq/event-delivery/new-collection-stream.png)
 
 
-:::important
+:::tip
 
 Ensure you enable **Collection streams** and select a **Distribution** when creating the collection.
 
@@ -55,21 +58,24 @@ Ensure you enable **Collection streams** and select a **Distribution** when crea
 
 3. Now that you've succesfully created a collection, add some data to that collection. Adding data to the collection depends on the type of [collection](../../collections/index.md) you created. 
 
-- Navigate to the collection you created and click **New Document**
-- Enter a key or leave empty for an auto-generated key.
-- To add data to this document, toggle the **Tree** option to **Code** and add the following JSON:
+    - Navigate to the collection you created and click **New Document**
+    - Enter a key or leave empty for an auto-generated key.
+    - To add data to this document, toggle the **Tree** option to **Code** and add the following JSON:
 
-```json
-{
-  "first_name": "Jenny",
-  "service": "Executive",
-  "attendance":4
-}
-```
-- Click **Save**
-- You can create multiple documents if you choose. Each of them will have a unique key.
+    ```json
+    {
+      "first_name": "Jenny",
+      "service": "Executive",
+      "attendance":4
+    }
+    ```
+    - Click **Save**
+    - You can create multiple documents if you choose. Each of them will have a unique key. You can also navigate to **Settings** to view more details about the collection.
 
-You can also navigate to **Settings** to view more details about the collection.
+### EDS server configuration
+
+Contact Macrometa with your GDN details to set up your EDS server. Before proceeding to the next step, ensure you receive the required access information for the EDS server, including the EDS host, API key, and customer ID.
+
 
 ## Subscribe to events and recieve real time updates
 
@@ -77,22 +83,24 @@ Once you've [set up your event collection stream](#setup-event-stream-in-the-pho
 
 ### Subscribing to the EDS
 
-[Subscribe to the stream](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get) by sending an API request. To subscribe to the stream, it requires the following fields:
+The [subscribe to  stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get) requires the following fields:
 
 - **EDS host**: The host where the EDS service is running.
-- **x-customer-id**: The is used to authenticate the request.
-- **filters**: Use filters to control the behaviour of your events and define the SQL queries to be executed. For example setting `initialDATA` to `TRUE` returns the original data after subscribing to a stream while a `FALSE` value only subscribes without returning the original data. The queries are SQL statements to get a specific subset of data from your collection. Refer to [Event Delivery Filters](event-delivery-filters.md) to learn more.
+- **Customer ID**: This is used to identify the user making the request.
+- **Filters**: Use filters to control the behaviour of your events and define the SQL queries to be executed. Refer to [Event Delivery Filters](event-delivery-filters.md) to learn more.
+- **API key**: This is used to authenticate the request.
+
 
 :::important
 
-Contact your Macrometa partner for your EDS host and `x-customer-id`.
+Contact Macrometa for your EDS host, API key, and Customer ID.
 
 :::
 
 In this sample guide, you'll be subscribing to the stream and fetching all the document in the collection where `attendance=4`.
 
 <Tabs groupId="operating-systems">
-<TabItem value="ws" label="WebSockets">
+<TabItem value="ws" label="WebSocket">
 
 The endpoint  URL for subscribing to the stream via WebSocket follows this format:
 
@@ -102,20 +110,20 @@ wss://<eds-host>/api/es/v1/subscribe
 
 :::important
 
-Curl currently has no support for WebSockets, so we'll make this request using [wscat](https://github.com/WebSockets/wscat), a command line tool for establishing a connection and exchanging information with WebSockets.
-
+Curl currently has no support for WebSockets, so we'll make this request using [wscat](https://github.com/WebSockets/wscat).
 :::
 
-To send the susbcribe request with wscat, use this command:
+To susbscribe to the stream via WebSocket, use this command:
 
 ```bash
-wscat -c 'wss://<eds-host>/api/es/v1/subscribe?type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "initialData":"TRUE", "queries": ["select * from <collection-name> where attendance=4"]}' | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "initialData":"TRUE", "queries": ["select * from <collection-name> where attendance=4"]}' | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
 ```
 Replace the following:
 
 - `<eds-host>` with your actual EDS host address.
 - `<x-customer-id>` with your customer ID.
 - `<collection-name>` with the name of the collection [you created earlier](#setup-event-stream-in-the-photoniq-gdn).
+- `<auth_key>` with your API authentication key.
 
 On sucessful subscription, the Websocket connection is created and the following information is included in the first response alongside the selected data from the collection:
 
@@ -124,7 +132,7 @@ On sucessful subscription, the Websocket connection is created and the following
 
 :::note
 
-The `sed` regex filter at the end removes any terminal color codes and control characters and can be ignored.
+The `sed` regex filter at the end removes any terminal color codes and control characters, it can be ignored.
 
 :::
 
@@ -140,7 +148,7 @@ https://<eds-host>/api/es/sse/v1/subscribe
 To subscribe to the stream via SSE , use this curl command:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "FALSE", "compress": "FALSE", "initialData":"TRUE", "queries": ["select * from <collection-name> where attendance=4"]}}' https://<eds-host>/api/es/sse/v1/subscribe
+curl -X POST -H "Authorization: <api_key>" -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "FALSE", "compress": "FALSE", "initialData":"TRUE", "queries": ["select * from <collection-name> where attendance=4"]}}' https://<eds-host>/api/es/sse/v1/subscribe
 ```
 
 Replace the following:
@@ -148,6 +156,8 @@ Replace the following:
 - `<eds-host>` with your actual EDS host address.
 - `<x-customer-id>` with your customer ID.
 - `<collection-name>` with the name of the collection [you created earlier](#setup-event-stream-in-the-photoniq-gdn).
+- `<auth_key>` with your API authentication key.
+
 
 On sucessful subscription, the Websocket connection is created and the following information is included in the first response alongside the selected data from the collection:
 
