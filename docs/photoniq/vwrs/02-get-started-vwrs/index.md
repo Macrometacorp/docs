@@ -5,7 +5,7 @@ title: Quickstart
 
 The Macrometa PhotonIQ Virtual Waiting Room service (VWRs) offers extensive features to manage high-traffic volumes on websites and applications during peak periods like discounts and holiday sales. By implementing VWRs for their websites, businesses can ensure server stability, thus preventing server overload and potential downtime, ensuring service availability and user satisfaction. 
 
-PhotonIQ offers two ways to create and use your website's virtual waiting room service.
+PhotonIQ virtual waiting room service offers two ways to create and use virtual waiting rooms for your website.
 
 - The VWRS GUI : A friendly, intuitive graphical user interface that allows you to configure, create, and manage your waiting room(s).
 - [The PhotonIQ Virtual Waiting Room API](https://www.macrometa.com/docs/apiVwrs#/): A list of available APIs that allows you to [create](https://www.macrometa.com/docs/apiVwrs#/operations/createWaitingRoom), [update](https://www.macrometa.com/docs/apiVwrs#/operations/updateWaitingRoom), [modify](https://www.macrometa.com/docs/apiVwrs#/operations/patchWaitingRoom), and [delete](https://www.macrometa.com/docs/apiVwrs#/operations/deleteWaitingRoom) your virtual waiting room, and retrieve vital waiting room metrics.
