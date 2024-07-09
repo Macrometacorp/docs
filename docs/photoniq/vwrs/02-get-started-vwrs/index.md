@@ -28,7 +28,7 @@ To create a waiting room:
 
 1. Login to the VWRS GUI with your Macrometa credentials. Macrometa provides these credentials after you sign up for the service. 
 1. Click **Waiting Rooms** from the top nav bar.
-1. Click **New Waiting Room**. This opens a pop-up section to enter the following details to set up your virtual waiting room.
+1. Click **New Waiting Room**. This opens a pop-up dialog to enter the following details to set up your virtual waiting room.
 
 - **waitingroom_name:** The name of the waiting room. Names should be without spaces. Replace spaces with hyphens or dashes.
 - **waitingroom_url:** The URL that the waiting room needs to sit in front of. All subpaths of this URL are sent to this defined waiting room. For example, /checkout/path1 and /checkout/path2 are both sent to the /checkout waiting room
@@ -86,7 +86,7 @@ Our waiting room is now available.
 
 ## Monitoring your Virtual Waiting Room
 
-PhotonIQ allows you to view and manage your virtual waiting rooms via its GUI dashboard or the [VWRs metrics API](https://www.macrometa.com/docs/apiVwrs#/operations/getMetrics). 
+PhotonIQ VWRs allows you to view and manage your virtual waiting rooms via its GUI dashboard or the [VWRs metrics API](https://www.macrometa.com/docs/apiVwrs#/operations/getMetrics). 
 
 For monitoring the activity of your virtual waiting rooms using the dashboard:
 
