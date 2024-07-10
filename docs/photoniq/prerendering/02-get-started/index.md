@@ -71,7 +71,7 @@ Prerendering has a [cache manager](../07-prerendering-management/manage-cache/ma
 
 To manage your cache, navigate to the **Cache Manager**. If you need to refresh your cached content, then you can [clear the cache](../07-prerendering-management/manage-cache/).
 
-This allows for targeted cache removal, specifying only the URLs you wish to clear. When accessing a URL with a cleared cache using the render endpoint, prerender automatically renders the page and caches it to ensure optimal delivery.
+This allows for targeted cache removal, specifying only the URLs you wish to clear. The next time a bot accesses an uncached URL or the rendering API endpoint is called for that URL, prerender will automatically render the page and cache it to ensure optimal delivery.
 
 ![cache manager](/img/photoniq/prerendering/cache-manager.png)
 
