@@ -94,7 +94,7 @@ In the web console, this displays the origin allowlist value if one is set. For 
 
 ### Add Response Header
 
-In the web console, this displays current header keys and values. For more information about headers, refer to [Prerendering Headers](prerendering-headers).
+In the web console, this displays current header keys and values. For more information about headers, refer to [Prerendering Headers](../03-features/02-prerendering-headers/index.md).
 
 ![Add Response Header](/img/prerendering/add-response-header.png)
 

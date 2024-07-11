@@ -69,7 +69,7 @@ Navigate to **Activity** on your Prerender dashboard to view metrics like:
 
 Prerender has a [cache manager](../07-prerendering-management/manage-cache/manage-cache.md), which allows you to view information about the existing caches. 
 
-To manage your cache, navigate to the **Cache Manager**. If you need to refresh your cached content, then you can [clear the cache](../07-prerendering-management/manage-cache/).
+To manage your cache, navigate to the **Cache Manager**. If you need to refresh your cached content, then you can [clear the cache](../07-prerendering-management/manage-cache/manage-cache.md).
 
 This allows for targeted cache removal, specifying only the URLs you wish to clear. When accessing a URL with a cleared cache using the render endpoint, prerender automatically renders the page and caches it to ensure optimal delivery.
 

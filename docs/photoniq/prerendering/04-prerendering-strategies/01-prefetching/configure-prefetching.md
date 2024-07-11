@@ -46,7 +46,7 @@ Prerender provides the following prefetching configuration fields. Field names i
 <Tabs groupId="operating-systems2">
 <TabItem value="console" label="Web Console">
 
-A new prefetch configuration appears in the web console when you add a new origin in the Origin Settings tab. For more information about viewing and adding origins, refer to [Manage Origins](../../../07-prerendering-management/manage-origins/).
+A new prefetch configuration appears in the web console when you add a new origin in the Origin Settings tab. For more information about viewing and adding origins, refer to [Manage Origins](../../07-prerendering-management/manage-origins/manage-origins.md).
 
 The new configuration is inactive and unscheduled. Follow these instructions in order to activate it:
 

@@ -16,7 +16,7 @@ This Prerender strategy allows you to schedule content at intervals for prefetch
 
 Unlike prefetching, on-demand prerender only renders a page after a bot requests for it. For uncached pages, Prerender fetches and renders the page before serving to the bot, and then caches the page for a specific period. 
 
-Prerender allows you to define the caching periods when [configuring your origin](../07-prerendering-management/manage-origins/). 
+Prerender allows you to define the caching periods when [configuring your origin](../07-prerendering-management/manage-origins/manage-origins.md). 
 
 ![Bot Visits On-Demand Prerendered Site](/img/photoniq/prerendering/on-demand-prerender.png)
 
