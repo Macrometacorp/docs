@@ -143,7 +143,7 @@
           {
             "in": "query",
             "name": "type",
-            "required": false,
+            "required": true,
             "schema": {
               "type": "string",
               "example": "collection"
@@ -235,7 +235,7 @@
                       "compress": "FALSE",
                       "initialData": "TRUE",
                       "queries": [
-                        "select * from <collection-name> where attendance=4"
+                        "select * from collection-name where attendance=4"
                       ]
                     }
                   }
@@ -809,14 +809,20 @@
         "in": "query",
         "description": "The start date used for querying metrics data. Must be provided in RFC3339 date-time format.",
         "required": true,
-        "example": "YYYY-MM-DDTHH:MM:SSZ"
+        "schema": {
+          "type": "string",
+          "example": "YYYY-MM-DDTHH:MM:SSZ"
+        }
       },
       "end": {
         "name": "end",
         "in": "query",
         "description": "The end date used for querying metrics data. Must be provided in RFC3339 date-time format.",
         "required": true,
-        "example": "YYYY-MM-DDTHH:MM:SSZ"
+        "schema": {
+          "type": "string",
+          "example": "YYYY-MM-DDTHH:MM:SSZ"
+        }
       },
       "type": {
         "name": "type",
@@ -825,9 +831,9 @@
         "required": false,
         "schema": {
           "type": "string",
-          "nullable": true
-        },
-        "example": "sec"
+          "nullable": true,
+          "example": "sec"
+        }
       },
       "name": {
         "name": "name",
@@ -846,9 +852,9 @@
         "required": false,
         "schema": {
           "type": "integer",
-          "nullable": true
-        },
-        "example": 100
+          "nullable": true,
+          "example": 100
+        }
       },
       "offset": {
         "name": "offset",
@@ -857,9 +863,9 @@
         "required": false,
         "schema": {
           "type": "integer",
-          "nullable": true
-        },
-        "example": 0
+          "nullable": true,
+          "example": 0
+        }
       },
       "sort": {
         "name": "sort",
@@ -868,9 +874,9 @@
         "required": false,
         "schema": {
           "type": "string",
-          "nullable": true
-        },
-        "example": "ts"
+          "nullable": true,
+          "example": "ts"
+        }
       },
       "order": {
         "name": "order",
@@ -879,9 +885,10 @@
         "required": false,
         "schema": {
           "type": "string",
-          "nullable": true
-        },
-        "example": "DESC"
+          "nullable": true,
+          "example": "DESC"
+
+        }
       },
       "x-customer-id": {
         "name": "x-customer-id",
