@@ -11,7 +11,7 @@ PhotonIQ Event Delivery is a fully managed service, implemented and optimized by
 In this guide, you'll learn how to:
 - [Set up your first event stream in the PhotonIQ GDN](#setup-event-stream-in-the-photoniq-gdn)
 - [Subscribe to events and recieve real time updates](#subscribe-to-events-and-recieve-real-time-updates)
-- [Monitor the Event Delivery metrics and health stautus](#monitor-the-event-delivery-metrics-and-health-stautus)
+- [Monitor the Event Delivery metrics and health stautus](#monitor-the-event-delivery-metrics-and-health-status)
 
 
 The Event Delivery service enables you to stream and filter events from Macrometa [streams](../../streams/), as well as publish events to these streams. Before you proceed, here are some key concepts:
@@ -116,14 +116,14 @@ Curl currently has no support for WebSockets, so we'll make this request using [
 To susbscribe to the stream via WebSocket, use this command:
 
 ```bash
-wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "initialData":"TRUE", "queries": ["select * from <collection-name> where attendance=4"]}' | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<api_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "initialData":"TRUE", "queries": ["select * from <collection-name> where attendance=4"]}' | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
 ```
 Replace the following:
 
 - `<eds-host>` with your actual EDS host address.
 - `<x-customer-id>` with your customer ID.
 - `<collection-name>` with the name of the collection [you created earlier](#setup-event-stream-in-the-photoniq-gdn).
-- `<auth_key>` with your API authentication key.
+- `<api_key>` with your API authentication key.
 
 On sucessful subscription, the Websocket connection is created and the following information is included in the first response alongside the selected data from the collection:
 
@@ -156,7 +156,7 @@ Replace the following:
 - `<eds-host>` with your actual EDS host address.
 - `<x-customer-id>` with your customer ID.
 - `<collection-name>` with the name of the collection [you created earlier](#setup-event-stream-in-the-photoniq-gdn).
-- `<auth_key>` with your API authentication key.
+- `<api_key>` with your API authentication key.
 
 
 On sucessful subscription, the Websocket connection is created and the following information is included in the first response alongside the selected data from the collection:
@@ -196,8 +196,8 @@ curl -X POST 'x/api/es/v1/fabric/<fabricName>/stream/<streamName>/publish?type=c
 ```
 
 
-## Monitor the Event Delivery metrics and health stautus
-EDS offers numerous metrics for monitoring and evaluating the health status of your event service. Kindly refer to [Event Delivery Metrics and Health](event-delivery-metrics-and-health.md) for more details.
+## Monitor the Event Delivery metrics and health status
+To monitor and evaluate the health status of your event service, use the [Event Delivery Metrics and Health API](https://www.macrometa.com/docs/apiEds#).
 
 
 

@@ -1,30 +1,30 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.0.3",
   "info": {
-    "title": "PhotonIQ Global Event Delivery Service (EDS) API",
-    "description": "API reference for PhotonIQ Global Event Delivery Service\n",
+    "title": "PhotonIQ Event Delivery Service (EDS) API Reference",
+    "description": "Deliver real-time data to your application using the EDS API. For in-depth details on EDS, refer to the [**PhotonIQ Event Delivery user guide**](https://www.macrometa.com/docs/photoniq/event-delivery).\n\nEDS supports WebSockets and Server-Sent Events. Before proceeding, [**contact Macrometa**](https://www.macrometa.com/contact/sales) to obtain the `API_KEY` and `URL` required for accessing your PhotonIQ EDS server.",
     "version": "1.0.0"
   },
   "tags": [
     {
       "name": "Publish Events",
-      "description": "APIs related to event publishing."
+      "description": "Event publishing"
     },
     {
       "name": "Manage Subscriptions",
-      "description": "APIs related to event subscriptions and streaming."
+      "description": "Event subscriptions and streaming"
     },
     {
-      "name": "Event Delivery Metrics",
-      "description": "APIs for retrieving metrics data related to EDS."
+      "name": "Metrics",
+      "description": "Retrieve EDS metrics data"
     },
     {
-      "name": "Event Delivery Status",
-      "description": "APIs for checking the health of EDS."
+      "name": "Health Check",
+      "description": "Perform EDS health check"
     },
     {
-      "name": "Event Delivery Version",
-      "description": "APIs for checking the version of EDS."
+      "name": "Version",
+      "description": "Get EDS version"
     }
   ],
   "paths": {
@@ -112,164 +112,292 @@
         }
       }
     },
-    "ws://api/es/v1/subscribe": {
+    "/api/es/v1/subscribe": {
       "get": {
-        "summary": "Subscribe to stream",
-        "description": "Subscribe to stream via WebSocket based on stream, type, or query parameters. Provide either `stream` or `filters` but not both or neither.\nThis API keeps the connection live and continuously receives messages from the server based on the specified `stream` or `filters`.\n\"filters\\\" is a JSON format string with different fields. For example,  <br>\n```json\n{\n  \"action\": \"add\",\n  \"once\": \"TRUE | FALSE\",\n  \"queries\": [\n    \"select * from XXXX where n1==v1\",\n    \"select * from MMMM where n2==v1 OR n3>5\",\n    \"select <path> from XXXX\"\n  ]\n}\n```\nThe *path* is a dot separated fully qualified string representing a json path for an object. *once* flag (default is false) specifies if the filters needs to be applied just once. <br>\n*filters* can be dynamically added and removed by sending message data on web socket connection in JSON format. For example, <br>\n{\\\"action\\\": \\\"remove\\\", \\\"queries\\\": [ \\\"select * from XXXX where n1=v1\\\"]}\n\nOn sucessfull subscription, the websocket connection is created and the following information is returned as part of the first response message. <br>\n- `x-photoniq-es`: Epoch time header. This is the Unix timestamp in seconds since epoch. It provides the epoch time in seconds.\n- `x-photoniq-customerid`: Customer ID header. It includes the tenant and fabric name identifying the customer.\n\n*Note*: The stream name and the type of stream can be fetched using GDN APIs or the GDN UI. <br>\n**This API should not be tried from this UI**.\n",
+        "summary": "Subscribe to stream via WebSocket",
+        "description": "Subscribes to an event stream via WebSocket to recieve live updates. This API keeps the connection live and continuously receives messages from the server based on the specified query filters. \n\nThe endpoint URL for subscribing to a stream via WebSocket follows this format: ```wss://<eds-host>/api/es/v1/subscribe``` \n\nRelated guide: [**Subscribe to events and recieve real time updates**](https://www.macrometa.com/docs/photoniq/event-delivery/getting-started-event-delivery#subscribing-to-the-eds). \n\n**Do not try this API here**.",
+        "operationId": "subscribe-stream-ws", 
         "tags": [
           "Manage Subscriptions"
         ],
         "parameters": [
           {
             "in": "query",
-            "name": "stream",
-            "required": false,
+            "name": "apikey",
+            "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "The name of the stream to subscribe to. This is optional if filters query parameter is used."
+            "description": "The API key for authenticating the request"
+          },
+          {
+            "in": "query",
+            "name": "x-customer-id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "cust-1"
+            },
+            "description": "ID of the customer to identify the user making the request."
           },
           {
             "in": "query",
             "name": "type",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "collection"
             },
-            "description": "The type of events to subscribe to."
+            "description": "The type of events to subscribe to. It can be local, global or collection"
           },
           {
             "in": "query",
             "name": "filters",
-            "required": false,
+            "required": true,
             "schema": {
-              "type": "string"
+              "type": "object",
+              "example": "{\"action\": \"add\", \"once\": \"FALSE\", \"initialData\":\"TRUE\", \"queries\": [\"select * from collection where attendance=4\"]}",
+              "properties": {
+                "compress": {
+                  "type": "string",
+                  "example": "FALSE"
+                },
+                "initialData": {
+                  "type": "boolean",
+                  "example": "FALSE"
+                },
+                "action": {
+                  "type": "string",
+                  "example": "add"
+                },
+                "once": {
+                  "type": "boolean",
+                  "example": "FALSE"
+                },
+                "queries": {
+                  "type": "string",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
             },
-            "description": "An optional query parameter to filter events."
+            "description": "Define the event data to be recieved via the stream based on a specific criteria. Refer to [**Event delivery filters guide**](https://www.macrometa.com/docs/photoniq/event-delivery/event-delivery-filters) for more details."
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad request.",
+          "200": {
+            "description": "Successfully subscribed to the stream via WebSocket",
             "content": {
-              "application/json": {
+              "text/event-stream": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Error message."
-                    }
-                  }
-                }
+                  "type": "string"
+                },
+                "example": "data: event1\ndata: event2"
               }
             }
           }
         }
       }
     },
-    "/api/es/v1/metrics": {
-      "get": {
-        "summary": "Retrieve metrics",
-        "description": "Retrieve metrics data within a specified time range.",
+    "/api/es/sse/v1/subscribe": {
+      "post": {
         "tags": [
-          "Event Delivery Metrics"
+          "Manage Subscriptions"
         ],
+        "summary": "Subscribe to stream via SSE",
+        "description": "Subscribes to an event stream via SSE to recieve live updates.  This API keeps the connection live and continuously receives messages from the server based on the specified query filters. \n\nRelated guide: [**Subscribe to events and recieve real time updates**](https://www.macrometa.com/docs/photoniq/event-delivery/getting-started-event-delivery#subscribing-to-the-eds).",
+        "operationId": "subscribe-stream-sse",
         "parameters": [
           {
-            "in": "query",
-            "name": "start",
+            "name": "x-customer-id",
+            "in": "header",
+            "description": "ID of the customer to identify the user making the request.",
             "required": true,
             "schema": {
               "type": "string"
-            },
-            "description": "The start date used for querying metrics data. Must be provided in RFC3339 date-time format.",
-            "example": "YYYY-MM-DDTHH:MM:SSZ"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeRequest"
+              },
+              "examples": {
+                "Event delivery service metrics": {
+                  "value": {
+                    "type": "collection",
+                    "filters": {
+                      "once": "FALSE",
+                      "compress": "FALSE",
+                      "initialData": "TRUE",
+                      "queries": [
+                        "select * from <collection-name> where attendance=4"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully subscribed to the stream via SSE",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "data: event1\ndata: event2"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/api/es/v1/health": {
+      "get": {
+        "summary": "EDS health check via WebSocket",
+        "description": "Check the health status of the event delivery service.",
+        "operationId": "check-health-ws",
+        "tags": [
+          "Health Check"
+        ],
+        "responses": {
+          "200": {
+            "description": "The service is up and running",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStatusResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/es/sse/v1/health": {
+      "get": {
+        "tags": [
+          "Health Check"
+        ],
+        "summary": "EDS health check via SSE",
+        "description": "Check the health status of the event delivery service.",
+        "operationId": "check-health-sse",
+        "responses": {
+          "200": {
+            "description": "The service is up and running",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStatusResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Temporarily unavailable"
+          }
+        }
+      },
+      "security": [
+        {
+          "api_key": []
+        }
+      ]
+    },
+    "/api/es/v1/metrics": {
+      "get": {
+        "tags": [
+          "Metrics"
+        ],
+        "summary": "Retrieve metrics data via WebSocket",
+        "description": "Understanding the performance and usage of the EDS is vital. Metrics provide insights that help identify issues, analyze trends, optimize operations, and measure effectiveness.",
+        "operationId": "get-metrics-ws",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
           },
           {
-            "in": "query",
-            "name": "end",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The end date used for querying metrics data. Must be provided in RFC3339 date-time format.",
-            "example": "YYYY-MM-DDTHH:MM:SSZ"
+            "$ref": "#/components/parameters/end"
           },
           {
-            "in": "query",
-            "name": "name",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The name of the metrics data to retrieve."
+            "$ref": "#/components/parameters/type"
           },
           {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "The maximum number of metrics to retrieve."
+            "$ref": "#/components/parameters/name"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/sort"
+          },
+          {
+            "$ref": "#/components/parameters/order"
+          },
+          {
+            "$ref": "#/components/parameters/x-customer-id"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved metrics.",
+            "description": "Successfully returned the status of the service.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "customer_id": {
-                        "type": "string",
-                        "description": "The customer identifier."
-                      },
-                      "es_cpu_usage_second": {
-                        "type": "number",
-                        "description": "CPU usage per second."
-                      },
-                      "es_errors_per_second": {
-                        "type": "number",
-                        "description": "Errors per second."
-                      },
-                      "es_memory_usage_second": {
-                        "type": "integer",
-                        "description": "Memory usage per second."
-                      },
-                      "es_subscriber_count": {
-                        "type": "integer",
-                        "description": "Subscriber count."
-                      },
-                      "es_subscribers_per_second": {
-                        "type": "number",
-                        "description": "Subscribers per second."
-                      },
-                      "fabric": {
-                        "type": "string",
-                        "description": "The fabric name."
-                      },
-                      "region": {
-                        "type": "string",
-                        "description": "The region."
-                      },
-                      "tenant": {
-                        "type": "string",
-                        "description": "The tenant name."
-                      },
-                      "timestamp": {
-                        "type": "integer",
-                        "format": "int64",
-                        "description": "The timestamp."
-                      },
-                      "type": {
-                        "type": "integer",
-                        "description": "The type of connection."
-                      }
+                    "$ref": "#/components/schemas/MetricsResponse"
+                  }
+                },
+                "examples": {
+                  "Event delivery service metrics": {
+                    "value": {
+                      "cid": "cust-id",
+                      "evntdlv": 31468092,
+                      "evntdlvrt": 0,
+                      "evnterrrt": 0,
+                      "evntpub": 0,
+                      "evntpubrt": 0,
+                      "evntsz": 39573481965,
+                      "evntszrt": 0,
+                      "fb": "_system",
+                      "mxconn": 0,
+                      "mxqry": 0,
+                      "ssesub": 0,
+                      "str": 3,
+                      "strm": [
+                        {
+                          "stream1": {
+                            "conn": 0,
+                            "evntdlvrt": 0,
+                            "evnterrrt": 0,
+                            "evntszrt": 0,
+                            "qry": 0
+                          }
+                        }
+                      ],
+                      "ts": 1720569636000,
+                      "type": "day",
+                      "wssub": 0
                     }
                   }
                 }
@@ -281,53 +409,128 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Error message."
-                    }
-                  }
+                  "$ref": "#/components/schemas/GetErrorResponse"
                 }
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     },
-    "/api/es/v1/health": {
+    "/api/es/sse/v1/metrics": {
       "get": {
-        "summary": "Health check",
-        "description": "Check the health status of EDS.",
         "tags": [
-          "Event Delivery Status"
+          "Metrics"
+        ],
+        "summary": "Retrieve metrics data via SSE",
+        "description": "Understanding the performance and usage of the EDS is vital. Metrics provide insights that help identify issues, analyze trends, optimize operations, and measure effectiveness.",
+        "operationId": "get-metrics-sse",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start"
+          },
+          {
+            "$ref": "#/components/parameters/end"
+          },
+          {
+            "$ref": "#/components/parameters/type"
+          },
+          {
+            "$ref": "#/components/parameters/name"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/sort"
+          },
+          {
+            "$ref": "#/components/parameters/order"
+          },
+          {
+            "$ref": "#/components/parameters/x-customer-id"
+          }
         ],
         "responses": {
           "200": {
-            "description": "Successfully checked health.",
+            "description": "Successfully returned the status of the service.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "The health status, either \"healthy\" or \"unhealthy\"."
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetricsResponse"
+                  }
+                },
+                "examples": {
+                  "Event delivery service metrics": {
+                    "value": {
+                      "cid": "cust-id",
+                      "evntdlv": 31468092,
+                      "evntdlvrt": 0,
+                      "evnterrrt": 0,
+                      "evntpub": 0,
+                      "evntpubrt": 0,
+                      "evntsz": 39573481965,
+                      "evntszrt": 0,
+                      "fb": "_system",
+                      "mxconn": 0,
+                      "mxqry": 0,
+                      "ssesub": 0,
+                      "str": 3,
+                      "strm": [
+                        {
+                          "stream1": {
+                            "conn": 0,
+                            "evntdlvrt": 0,
+                            "evnterrrt": 0,
+                            "evntszrt": 0,
+                            "qry": 0
+                          }
+                        }
+                      ],
+                      "ts": 1720569636000,
+                      "type": "day",
+                      "wssub": 0
                     }
                   }
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetErrorResponse"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
       }
     },
     "/api/es/v1/version": {
       "get": {
-        "summary": "Version",
+        "summary": "Get EDS version via WebSocket",
         "description": "Get the EDS version information.",
+        "operationId": "get-version-ws",
         "tags": [
-          "Event Delivery Version"
+          "Version"
         ],
         "responses": {
           "200": {
@@ -335,22 +538,362 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "version": {
-                      "type": "string",
-                      "description": "The version of EDS."
-                    }
-                  }
+                  "$ref": "#/components/schemas/GetVersionResponse"
                 }
               }
             }
           }
         }
       }
+    },
+    "/api/es/sse/v1/version": {
+      "get": {
+        "tags": [
+          "Version"
+        ],
+        "summary": "Get EDS version via SSE",
+        "description": "Get the EDS version information.",
+        "operationId": "get-version-sse",
+        "responses": {
+          "200": {
+            "description": "Successfully returned the version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/es/sse/v1/telemetry": {
+      "get": {
+        "tags": [
+          "Telemetry"
+        ],
+        "summary": "Get the telemetry data",
+        "description": "Retrieves telemetry data in Prometheus format. Useful for monitoring services to monitor the statustics.",
+        "operationId": "get-telemetry",
+        "responses": {
+          "200": {
+            "description": "Successfully returned the telemetry.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "Telemetry": {
+                    "value": "sse_subscribe_requests_count 0 sse_subscribe_requests_successes 0 sse_subscribe_requests_failures 0 sse_active_subscription_count 0 sse_subscribe_requests_latency,le=\"10\" 0 sse_subscribe_requests_latency,le=\"25\" 0 sse_subscribe_requests_latency,le=\"50\" 0 sse_subscribe_requests_latency,le=\"100\" 0 sse_subscribe_requests_latency,le=\"200\" 0 sse_subscribe_requests_latency,le=\"400\" 0 sse_subscribe_requests_latency,le=\"800\" 0 sse_subscribe_requests_latency,le=\"1600\" 0 sse_subscribe_requests_latency,le=\"3200\" 0 sse_subscribe_requests_latency,le=\"Inf\" 0"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
     }
   },
   "host": "api-play.paas.macrometa.io",
+  "components": {
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    },
+    "schemas": {
+      "FiltersRequest": {
+        "type": "object",
+        "description": "Define the event data to be recieved via the stream based on a specific criteria. Refer to [**Event delivery filters guide**](https://www.macrometa.com/docs/photoniq/event-delivery/event-delivery-filters) for more details.",
+        "required": [
+          "once",
+          "initialData",
+          "compress",
+          "queries"
+        ],
+        "properties": {
+          "compress": {
+            "type": "string",
+            "example": "FALSE"
+          },
+          "initialData": {
+            "type": "string",
+            "example": "FALSE"
+          },
+          "once": {
+            "type": "string",
+            "example": "FALSE"
+          },
+          "queries": {
+            "type": "string"
+          }
+        }
+      },
+      "GetErrorResponse": {
+        "type": "object",
+        "required": [
+          "error",
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "error": {
+            "type": "string",
+            "example": "message"
+          }
+        }
+      },
+      "GetStatusResponse": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "up"
+          }
+        }
+      },
+      "GetVersionResponse": {
+        "type": "object",
+        "required": [
+          "version"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "example": "v1"
+          }
+        }
+      },
+      "MetricsResponse": {
+        "type": "object",
+        "properties": {
+          "cid": {
+            "type": "string",
+            "description": "customer id"
+          },
+          "evntdlv": {
+            "type": "integer",
+            "description": "total events delivered"
+          },
+          "evntdlvrt": {
+            "type": "number",
+            "description": "rate of event delivery per sec"
+          },
+          "evnterrrt": {
+            "type": "number",
+            "description": "error rate per sec"
+          },
+          "evntpub": {
+            "type": "integer",
+            "format": "int64",
+            "description": "total events published"
+          },
+          "evntpubrt": {
+            "type": "number",
+            "description": "publish rate"
+          },
+          "evntsz": {
+            "type": "integer",
+            "format": "int64",
+            "description": "total size of event data"
+          },
+          "evntszrt": {
+            "type": "number",
+            "description": "rate of data sent"
+          },
+          "fb": {
+            "type": "string",
+            "description": "fabric"
+          },
+          "mxconn": {
+            "type": "integer",
+            "description": "max number of connections"
+          },
+          "mxqry": {
+            "type": "integer",
+            "description": "maximum number of filters"
+          },
+          "ssesub": {
+            "type": "integer",
+            "description": "number of active sse conn"
+          },
+          "str": {
+            "type": "integer",
+            "description": "number of streams"
+          },
+          "strm": {
+            "type": "array",
+            "description": "array of streams with details of each stream",
+            "items": {
+              "$ref": "#/components/schemas/StreamResponse"
+            }
+          },
+          "ts": {
+            "type": "integer",
+            "description": "timestamp"
+          },
+          "type": {
+            "type": "string",
+            "description": "type of metric (sec, min, hr, day)"
+          },
+          "wssub": {
+            "type": "integer",
+            "description": "number of active ws conn"
+          }
+        }
+      },
+      "StreamDetailedResponse": {
+        "type": "object",
+        "properties": {
+          "conn": {
+            "type": "integer"
+          },
+          "evntdlvrt": {
+            "type": "number"
+          },
+          "evnterrrt": {
+            "type": "number"
+          },
+          "evntszrt": {
+            "type": "number"
+          },
+          "qry": {
+            "type": "integer"
+          }
+        }
+      },
+      "StreamResponse": {
+        "type": "object",
+        "properties": {
+          "stream_name": {
+            "$ref": "#/components/schemas/StreamDetailedResponse"
+          }
+        }
+      },
+      "SubscribeRequest": {
+        "type": "object",
+        "required": [
+          "type",
+          "filters"
+        ],
+        "properties": {
+          "filters": {
+            "$ref": "#/components/schemas/FiltersRequest"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of events to subscribe to. It can be local, global or collection"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "start": {
+        "name": "start",
+        "in": "query",
+        "description": "The start date used for querying metrics data. Must be provided in RFC3339 date-time format.",
+        "required": true,
+        "example": "YYYY-MM-DDTHH:MM:SSZ"
+      },
+      "end": {
+        "name": "end",
+        "in": "query",
+        "description": "The end date used for querying metrics data. Must be provided in RFC3339 date-time format.",
+        "required": true,
+        "example": "YYYY-MM-DDTHH:MM:SSZ"
+      },
+      "type": {
+        "name": "type",
+        "in": "query",
+        "description": "The type of the metrics data points. Supported types - sec, min, hr, day, month.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "nullable": true
+        },
+        "example": "sec"
+      },
+      "name": {
+        "name": "name",
+        "in": "query",
+        "description": "The name of the metrics data to retrieve.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "nullable": true
+        }
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "The maximum number of metrics to retrieve.",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "nullable": true
+        },
+        "example": 100
+      },
+      "offset": {
+        "name": "offset",
+        "in": "query",
+        "description": "This denotes the initial number of metrics to skip in the response.",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "nullable": true
+        },
+        "example": 0
+      },
+      "sort": {
+        "name": "sort",
+        "in": "query",
+        "description": "The sort on metrics field.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "nullable": true
+        },
+        "example": "ts"
+      },
+      "order": {
+        "name": "order",
+        "in": "query",
+        "description": "To arrange the metrics in ASC or DESC order.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "nullable": true
+        },
+        "example": "DESC"
+      },
+      "x-customer-id": {
+        "name": "x-customer-id",
+        "in": "header",
+        "description": "ID of the customer to identify the user making the request. ",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  },
   "servers": [
     {
       "url": "https://api-play.paas.macrometa.io",
