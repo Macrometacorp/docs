@@ -70,7 +70,7 @@ Contact Macrometa for your EDS host, API key, and Customer ID.
 Curl currently has no support for WebSockets, you can use [wscat](https://github.com/WebSockets/wscat) to send a request to the [Subscribe to Stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get) via WebSockets as shown below:
 
 ```bash
-  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
+  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<api_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
 ```
 
   </TabItem>
@@ -94,7 +94,7 @@ Subscribing to specific field changes is useful when monitoring a specific attri
   <TabItem value="ws-specific" label="WebSockets">
 
 ```bash
-  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
+  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<api_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
 ```
 
   </TabItem>
@@ -117,7 +117,7 @@ This is particularly beneficial for applications that need to maintain a real-ti
   <TabItem value="ws-all" label="WebSockets">
 
 ```bash
-  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select * from CollectionName"]}'
+  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<api_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select * from CollectionName"]}'
 ```
   </TabItem>
   <TabItem value="sse-all" label="Server-Sent Events">
@@ -139,7 +139,7 @@ Conditional subscription is ideal for situations where events are only relevant 
   <TabItem value="ws-all" label="WebSockets">
 
 ```bash
-  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<auth_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select specificField from CollectionName where condition"]}'
+  wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<api_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select specificField from CollectionName where condition"]}'
 ```
   </TabItem>
   <TabItem value="sse-all" label="Server-Sent Events">
