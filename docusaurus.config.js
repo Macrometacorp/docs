@@ -84,15 +84,15 @@ const config = {
           alt: 'Macrometa Logo',
           src: 'img/macrometa-logo.svg',
           srcDark: 'img/macrometa-logo-dark.svg',
-          href: 'https://www.macrometa.com',
+          href: '/',
           target: '_self'
         },
         items: [
           {
             type: 'doc',
-            docId: 'index',
+            docId: 'gdn',
             position: 'left',
-            label: 'Docs',
+            label: 'GDN',
           },
           // {
           //   href: '/',
