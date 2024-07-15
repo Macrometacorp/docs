@@ -1,1 +1,68 @@
-# Welcome
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+export const products = ({children}) => (
+  <span
+    style={{
+        backgroundColor: '#000000',
+        width: '568px',
+        height: '211px',
+        top: '323px',
+        left: '140px',
+        padding: '32px',
+        gap: '58px',
+        borderRadius: '12px',
+        border: '1px',
+        opacity: '0px',
+    }}>
+    {children}
+  </span>
+);
+
+<h1><center><span style={{color: '#6767E6'}}> Macrometa Documentation</span></center></h1>
+
+Welcome to the Macrometa Documentation. This page aims to get you started using our suite of products and answer your questions. 
+<img src={useBaseUrl('/img/photoniqicon.png')}/>
+
+<grid cols={2}>
+  <card
+    img src={useBaseUrl('/img/photoniqicon.png')}
+    heading="Get Started with PhotonIQ"
+    description="Start improving website SEO, search engine rankings, and many more with our PhotonIQ services"
+    href="/photoniq"
+  />
+  <card
+    img src={useBaseUrl('/img/gdnicon.png')}
+    heading="Build and Deploy with our GDN"
+    description="Start building and deploying globally available applications with our edge network"
+    href="/gdn"
+  />
+</grid>
+
+<grid cols={4}>
+  <card
+    heading="Tutorials"
+    description="Learn from our tutorials and start building"
+    href="/photoniq"
+  />
+  <card
+    heading="Glossary"
+    description="Learn and know our products language to ensure seamless use"
+    href="/gdn"
+  />
+  <card
+    heading="FAQs"
+    description="Get your questions answered"
+    href="/apps"
+  />
+<card
+    heading="Release Notes"
+    description="Get all the information on our latest releases"
+    href="/apps"
+  />
+</grid>
+
+<grid cols={1}><center>
+<card
+    description="Still need help? Submit a request and support will reach out"
+/></center>
+</grid>
