@@ -6,7 +6,7 @@ title: Event Delivery Filters
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-PhotonIQ Event Delivery offers advanced filtering capabilities, allowing users to specify the exact events they want to receive. By leveraging PostgreSQL `SELECT` statement syntax, users can create filters that customize the event stream to their needs. This page outlines how to construct these queries, providing syntax guidelines, use cases, and examples.
+PhotonIQ Event Delivery offers advanced filtering capabilities, allowing users to specify the exact events they want to receive. By leveraging the PostgreSQL `SELECT` statement syntax, users can create filters that customize the event stream to their needs. This page outlines how to construct these queries, providing syntax guidelines, use cases, and examples.
 
 ## Filters syntax
 
@@ -21,7 +21,7 @@ Filters are defined in a JSON format, which includes fields to specify the desir
 - `queries`: An array of SELECT statements defining the specific events to filter.
 
 
-The `SELECT` syntax follows the SQL format, allowing you to specify conditions (`WHERE`), use logical operators (`AND`, `OR`), and select specific fields or use `*` for all fields within a collection or stream. Nested JSON attributes can also be referenced using dot notation, like `details.phone` while selecting fields within the stream.
+The `SELECT` syntax follows the SQL format, allowing you to specify conditions (`WHERE`), use logical operators (`AND`, `OR`), and select specific/all(`*`) fields within a collection or stream. Nested JSON attributes can also be referenced using dot notation, like `details.phone` while selecting fields within the stream.
 
 
 **Example JSON filter structure**
@@ -39,16 +39,13 @@ The `SELECT` syntax follows the SQL format, allowing you to specify conditions (
 }
 ```
 
-
 ## Filter use cases and examples
 
 Using event delivery queries allows for highly customizable data streams tailored to various application needs. Whether monitoring real-time updates from a specific dataset or filtering changes based on specific criteria, these queries ensure your application processes only the most relevant information.
 
-This section demonstrates how to subscribe to and filter events using practical examples. You can interact with the PhotonIQ Event Delivery Service using `wscat` for WebSockets or `curl` for SSE. These examples highlight the flexibility of event delivery queries in EDS, allowing precise control over the data stream with SQL-like syntax and dynamic filter management to meet your specific requirements.
-
+This section demonstrates how to subscribe to and filter events using practical examples. These examples highlight the flexibility of event delivery queries in EDS, allowing precise control over the data stream. You can interact with the PhotonIQ Event Delivery Service using `wscat` for WebSockets or `curl` for SSE. 
 
 ### Queries
-
 To subscribe to events using EDS, send a request to the [Subscribe to Stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get). It requires the following fields:
 
 - **EDS host**: The host where the EDS service is running.
@@ -60,14 +57,14 @@ To subscribe to events using EDS, send a request to the [Subscribe to Stream API
 
 :::important
 
-Contact Macrometa for your EDS host, API key, and Customer ID.
+[Contact Macrometa](https://www.macrometa.com/contact/sales) for your EDS host, API key, and Customer ID.
 
 :::
 
 <Tabs groupId="operating-systems">
   <TabItem value="ws-syntax" label="WebSockets">
 
-Curl currently has no support for WebSockets, you can use [wscat](https://github.com/WebSockets/wscat) to send a request to the [Subscribe to Stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get) via WebSockets as shown below:
+Curl currently has no support for WebSockets, you can use [wscat](https://github.com/WebSockets/wscat) to send a request to the [Subscribe to Stream API](https://www.macrometa.com/docs/apiEds#/operations/subscribe-stream-ws) via WebSockets as shown below:
 
 ```bash
   wscat -c 'wss://<eds-host>/api/es/v1/subscribe?apikey=<api_key>&type=collection&x-customer-id=<x-customer-id>&filters={"action": "add", "once": "FALSE", "queries": ["select fieldName from CollectionName"]}'
@@ -76,7 +73,7 @@ Curl currently has no support for WebSockets, you can use [wscat](https://github
   </TabItem>
   <TabItem value="sse-syntax" label="Server-Sent Events">
 
-Here is the syntax to send a request to the [Subscribe to Stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get) via SSE:
+Here is the syntax to send a request to the [Subscribe to Stream API](https://www.macrometa.com/docs/apiEds#/operations/subscribe-stream-sse) via SSE:
 
 ```bash
  curl -X POST -H "Authorization: <api_key>" -H "Content-Type: application/json" -H "x-customer-id: <x-customer-id>" -d '{"type": "collection", "filters": {"once": "TRUE", "compress": "FALSE", "initialData":"TRUE", "queries": ["select fieldName from CollectionName"]}}' https://<eds-host>/api/es/sse/v1/subscribe
@@ -154,7 +151,7 @@ The command above subscribes to changes in `specificField` when `condition` is m
 
 ### Dynamic filter management
 
-Filters can be dynamically added or removed after the initial subscription is made by sending a message on the WebSocket connection in JSON format. This flexibility allows users to adapt to changing requirements or focus areas without needing to establish a new connection or subscription.
+Filters can be dynamically added or removed after the initial subscription request via the WebSocket. This flexibility allows users to adapt to changing requirements or focus areas without needing to establish a new connection or subscription.
 
 **Removing filters**: Removing filters is useful in scenarios where the relevance of certain data changes over time. For instance, in a financial application, you might remove filters related to stock prices of specific companies after the market closes or when a trading decision has been made. This helps in focusing resources and attention on other relevant data streams without disruption.
 
