@@ -6,7 +6,7 @@ title: Getting Started with Event Delivery
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-PhotonIQ Event Delivery is a fully managed service, implemented and optimized by Macrometa engineers to ensure proper functionality. For those who prefer a more hands-on approach, this guide provides information to help you actively manage event delivery.
+PhotonIQ Event Delivery is a fully managed service, implemented and optimized by Macrometa engineers to ensure proper functionality. For those who prefer a more hands-on approach, this guide provides information to help you actively manage  the EDS.
 
 In this guide, you'll learn how to:
 - [Set up your first event stream in the PhotonIQ GDN](#setup-event-stream-in-the-photoniq-gdn)
@@ -74,7 +74,7 @@ Ensure you enable **Collection streams** and select a **Distribution** when crea
 
 ### EDS server configuration
 
-Contact Macrometa with your GDN details to set up your EDS server. Before proceeding to the next step, ensure you receive the required access information for the EDS server, including the EDS host, API key, and customer ID.
+[Contact Macrometa](https://www.macrometa.com/contact/sales) with your GDN details to set up your EDS server. Before proceeding to the next step, ensure you receive the required access information for the EDS server, including the EDS host, API key, and customer ID.
 
 
 ## Subscribe to events and recieve real time updates
@@ -83,7 +83,7 @@ Once you've [set up your event collection stream](#setup-event-stream-in-the-pho
 
 ### Subscribing to the EDS
 
-The [subscribe to  stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-api-es-v1-subscribe/get) requires the following fields:
+The [subscribe to  stream API](https://www.macrometa.com/docs/apiEds#/operations/subscribe-stream-ws) requires the following fields:
 
 - **EDS host**: The host where the EDS service is running.
 - **Customer ID**: This is used to identify the user making the request.
@@ -93,7 +93,7 @@ The [subscribe to  stream API](https://www.macrometa.com/docs/apiEds#/paths/ws:-
 
 :::important
 
-Contact Macrometa for your EDS host, API key, and Customer ID.
+[Contact Macrometa](https://www.macrometa.com/contact/sales) for your EDS host, API key, and Customer ID.
 
 :::
 
@@ -139,6 +139,7 @@ The `sed` regex filter at the end removes any terminal color codes and control c
 </TabItem>
 
 <TabItem value="sse" label="Server-Sent Event">
+
 The endpoint  URL for subscribing to the stream via SSE follows this format:
 
 ```
@@ -197,7 +198,7 @@ curl -X POST 'x/api/es/v1/fabric/<fabricName>/stream/<streamName>/publish?type=c
 
 
 ## Monitor the Event Delivery metrics and health status
-To monitor and evaluate the health status of your event service, use the [Event Delivery Metrics and Health API](https://www.macrometa.com/docs/apiEds#).
+To monitor and evaluate the health status of the EDS, use the [Event Delivery Metrics and Health API](https://www.macrometa.com/docs/apiEds#).
 
 
 

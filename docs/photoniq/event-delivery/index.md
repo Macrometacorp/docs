@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Event Delivery
 ---
 
-PhotonIQ Event Delivery Service (EDS) provides a robust solution for the timely delivery of real-time event data to your applications. This enables developers to incorporate event-driven functionalities to thier applications, ensuring real-time updates that enhance data-driven decision-making. Event delivery achieves this through two distinct methods:
+PhotonIQ Event Delivery Service (EDS) provides a robust solution for the timely delivery of real-time event data to your applications. This enables developers to incorporate event-driven functionalities to thier applications, ensuring real-time updates that enhance data-driven decision-making. EDS achieves this through two distinct methods:
 
 - **WebSockets**: EDS uses WebSockets as a communication protocol that enables full-duplex communication between a client (such as a web browser) and a server over a single, long-lived connection. This allows both the client and server to send and receive messages concurrently, enabling real-time, bidirectional communication.
 
@@ -12,7 +12,7 @@ PhotonIQ Event Delivery Service (EDS) provides a robust solution for the timely 
 <grid cols={3}>
  <card
     heading="Getting Started"
-    description="Learn how to quickly set up and begin using the Event Delivery Service"
+    description="Learn how to set up and use the Event Delivery Service"
     href="getting-started-event-delivery"
   />
    <card
@@ -29,7 +29,7 @@ PhotonIQ Event Delivery Service (EDS) provides a robust solution for the timely 
 
 ## Key features of EDS
 
-The PhotonIQ EDS has comprehensive features to support real-time data delivery and customization to fit different organizational use cases.
+The PhotonIQ EDS offers comprehensive features to support real-time data delivery and customization to fit different organizational use cases.
 
 - **Real-time event delivery**: EDS provides two methods for delivering events in real-time as they occur: WebSockets and SSE. It also includes event de-duplication to minimize noise and irrelevant data in your data stream.
 - **Event subscription and publishing**: Users can subscribe to specific events that are relevant to them and can publish data to the event stream, enabling dynamic data exchange.
@@ -42,7 +42,7 @@ The PhotonIQ EDS has comprehensive features to support real-time data delivery a
 Event Delivery is designed to solve specific problems related to data management and delivery in modern applications:
 
 - **Information overload:** EDS filters out irrelevant data, delivering only the information users need.
-- **Data Reception latency:** Real-time event delivery minimizes delays, ensuring decisions are made using the most current information.
+- **Data reception latency:** Real-time event delivery minimizes delays, ensuring decisions are made using the most current information.
 - **Integration complexity:** Event Delivery uses standard SQL-like querying for easy integration with existing systems.
 
 
