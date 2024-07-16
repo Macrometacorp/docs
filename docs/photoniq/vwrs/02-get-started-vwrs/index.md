@@ -64,24 +64,21 @@ The Virtual waiting room service allows you to further define and guide the beha
 
 1. Click **Advanced Settings** from the waiting room definition page
 
-![Configure VWR behavior](/img/photoniq/vwr/configure-additional-details.png)
-
 2. Configure these additional details:
 
 ![additional details](/img/photoniq/vwr/advanced-settings.png)
 
 - **queue_type**: Defines how requests should be removed from the waiting room. The three possible queue types are fifo, random, and lottery. If this is not set, then the default queue is fifo.
-- **queue_mode**: You can configure the waiting room to be enabled dynamically. When set to auto, the waiting room is enabled after reaching the defined rate_limit for a specific metric_interval. If set to manual, then the waiting room is always enabled.
-- **dequeue_mode**: When the value is on, users in the waiting room are granted access to the origin at a rate given by rate_limit. When the value is off, users remain in the waiting room indefinitely.
+- **queue_mode**: You can configure the waiting room to be enabled dynamically. When set to auto, the waiting room is enabled after reaching the defined rate_limit for a specific `metric_interval`. If set to manual, then the waiting room is always enabled.
+- **dequeue_mode**: When the value is on, users in the waiting room are granted access to the origin at a rate given by `rate_limit`. When the value is off, users remain in the waiting room indefinitely.
 - **metric_interval**: The time (in seconds) to enable and disable the waiting room. It represents how long the traffic must be at or above the rate limit before being directed to the waiting room.
-- **waiting_room_path**: The cloud origin (such as NetStorage) path that stores the HTML for the waiting room. The path should be a fully qualified path like /{upload-directory-id}/path.
+- **waiting_room_path**: The cloud origin (such as NetStorage) path that stores the HTML for the waiting room. The path should be a fully qualified path like `/{upload-directory-id}/`path.
 - **request_priority**: An array of priorities, where the highest priority corresponds to the lowest number.
 
 3. Click **Add Waiting Room**
 
 Our waiting room is now available. 
 
-![waiting room](/img/photoniq/vwr/kinky-vwr.png)
 
 ## Monitoring your Virtual Waiting Room
 
@@ -92,7 +89,7 @@ For monitoring the activity of your virtual waiting rooms using the dashboard:
 1. Go to **Activity** on your VWRs dashboard.
 1. Select the name of the waiting room and time duration for which you intend to monitor activity. 
 
-![Activity tab](/img/photoniq/vwr/activity-tab.png)
+![Activity tab](/img/photoniq/vwr/vwrs-activity-tab.png)
 
 The activity tab allows you to view metrics like:
 

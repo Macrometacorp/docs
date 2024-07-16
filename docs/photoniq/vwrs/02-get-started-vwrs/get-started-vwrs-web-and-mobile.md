@@ -2,6 +2,8 @@
 sidebar_position: 10
 title: Integrating VWRs on Web and Mobile
 ---
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
 Different types of applications require distinct approaches for integrating with Virtual Waiting Rooms (VWRs) as the applications' platform and user interaction models determine the integration process. 
 
@@ -21,7 +23,7 @@ Before proceeding, ensure to have the following tasks completed:
 ## Integrating on Web and Mobile
 
 <Tabs groupId="waiting-room-integration">
-<TabItem value="web" label="Integrate on Web">
+<TabItem value="web" label="Web">
 
 Web apps, also called non-native or browser-based apps, are typically web-based and use standard web technologies such as HTML, CSS, and JavaScript. These applications run within web browsers and are the most common types integrated with VWRs. Integrating your web applications with VWRs occurs through web-based configurations, making it easier to implement an effective traffic management solution like VWR.
 
@@ -38,7 +40,7 @@ To integrate your virtual waiting room with your web application:
 3. [Create and configure your waiting room](index.md): This step allows you to fine-tune how the waiting room operates and integrates with your site.
 
 </TabItem>
-<TabItem value="mobile" label="Integrate on Mobile">
+<TabItem value="mobile" label="Mobile">
 
 Mobile apps, also called native apps or system-specific apps, are developed for specific platforms using platform-specific programming languages. Unlike web-based apps, mobile apps are developed for specific platforms using platform-specific UI frameworks and the application takes on a greater role in managing the user experience during high-traffic periods, including handling the display of waiting times and managing user expectations. Mobile apps require direct API interactions to manage user experiences effectively during high traffic periods.
 

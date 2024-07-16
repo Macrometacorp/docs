@@ -3,68 +3,19 @@ sidebar_position: 1
 title: Virtual Waiting Rooms (VWRs)
 ---
 
-PhotonIQ Virtual Waiting Rooms (VWRs) are designed to control and manage website traffic, especially during periods of high visitor volume. These VWRs are fully programmable, allowing customization based on various parameters such as origin load, visitor thresholds, regional traffic, and behavior analysis. Key functionalities include advanced routing capabilities, which enable VWRs to identify returning customers, divert suspected bots, and serve cached content to SEO crawlers, thereby ensuring the stability of the origin server.
+PhotonIQ Virtual Waiting Rooms (VWRs) are designed to control and manage website traffic, especially during peak traffic, like those encountered during discount sales and holidays. 
 
-In operational scenarios, VWRs help maintain website functionality during traffic surges, effectively preventing server overloads and potential site downtime. The service offers features like priority queuing and real-time updates to users, aimed at enhancing the user experience by reducing waiting time. Designed for ease of implementation and maintenance, VWRs provide a solution for automated queue management, making them suitable for high-traffic websites in need of efficient traffic handling and visitor management.
+These virtual waiting rooms are fully programable, allowing [customization based on various parameters such as origin load, visitor thresholds, regional traffic, and behavior analysis](./04-explore-waiting-room/customize-waitroom.md). 
+VWRs serve as a dynamic buffer for your origin server and offer key functionalities like:
 
-### How It Works
+- **Advanced routing capabilities:** This feature identifies returning customers, diverts suspected bots, and serves cached content to SEO crawlers, thereby ensuring the stability of the origin server. By evenly distributing incoming requests, VWRs optimize the use of server resources, preventing any single component from becoming a bottleneck, maintaining system performance during high-traffic periods, and reducing the need for immediate scaling, such as in the case of EC2.
+- **Dynamic Wait Time Updates:** VWRs offer users a controlled, informed waiting experience with real-time queue time updates, enhancing user anticipation. Furthermore, the customizable display showcases vital queue data like position and queue size while offering further customization options.
+- **Queue Activation Control:** The service engages a queue system once traffic exceeds a set threshold, allowing for smoother traffic handling and reducing server strain during peak periods. 
 
-When traffic is high, VWRs makes a new page separate from your origin to organize visitors. This keeps your origin from being overwhelmed. What customers see is their place in queue along with how much longer they have to wait. They keep their line even if they accidentally navigate away from the site or close the tab.
+    This queuing system effectively manages sudden spikes in legitimate traffic, shielding your origin server from potential overload and ensuring continuous operation, service availability, and reliability, even during unexpected traffic surges. This reliability ensures a consistent visitor experience, crucial for preventing future brand risks and protecting your reputation.
+- **Lasting Place Reservation:** VWRs reduces user frustration and improves convenience with its position retention. This lasting place reservation ensures visitors retain their place in the queue even while navigating away from the queue page, thus removing the need to stay on it. 
+- **Enhanced Service Tiers:** One of the [queues offered by VWRs](./queue-types.md) is the priority queue, which allows you to dequeue users based on a defined level of priority. This queue type enables you to tailor waiting experiences based on user personas, providing instant value and a more personalized approach that resonates with different visitor segments.
 
-For a more detailed explanation, refer to [How VWRs Works](how-vwrs-works.md).
+Some other features include its Duplicate Visitor Identification, which merges multiple attempts by a user into a single position, ensuring queue integrity and order, and Post-queue Access Management, which manages post-queue access to the site, depending on user engagement and duration of visit.
 
-## Benefits of Virtual Waiting Rooms
-
-VWRs serves as a dynamic buffer for your origin server, adeptly handling elevated traffic volumes. This capability not only prevents server overload but also maintains a seamless user experience. Key benefits include:
-
-### Server Protection
-
-- **Traffic Management:** VWRs effectively manage sudden spikes in legitimate traffic, shielding your origin server from potential overload. This feature ensures continuous operation and service availability, even during unexpected traffic surges. Your origin remains surge-protected, safeguarding against infrastructure overprovisioning and autoscaling errors.
-- **Resource Optimization:** By evenly distributing incoming requests, VWRs optimize the use of server resources. This prevents any single component from becoming a bottleneck, maintaining system performance during high-traffic periods and reducing the need for immediate scaling, such as in the case of EC2.
-
-### Enhanced User Experience
-
-- **Reliability:** VWRs keep your application consistently online, reducing the likelihood of visitors encountering error pages. This reliability ensures a consistent visitor experience, which is crucial for preventing future brand risks and protecting your reputation.
-- **Smooth Waiting Room Experience:** The VWR system offers a controlled, informed waiting experience for users, with real-time queue time updates. This approach minimizes frustration, avoiding redirects and refreshes, and keeps users engaged while they wait for access to your application.
-- **Specialized Waiting Journeys:** Tailor waiting experiences based on user personas, providing instant value and a more personalized approach that resonates with different visitor segments.
-
-### Service Tiers
-
-- **Behavioral Insights:** Offering various service tiers allows for a deeper understanding of user behavior. These insights can be instrumental in optimizing service delivery and tailoring user experiences to specific segments.
-- **Customization Options:** Different tiers can provide customized experiences or priorities, enabling you to cater to diverse user needs and preferences. This enhances overall satisfaction and contributes to revenue and opportunity protection.
-
-By implementing these measures, VWRs not only safeguard the technical infrastructure but also elevate the user experience, making them a vital component in managing web applications effectively.
-
-## Features
-
-Key capabilities of VWRs include:
-
-### Dynamic Wait Time Updates
-
-- **Real-Time Predictions:** Offers continually updated forecasts for wait times, enhancing user anticipation management.
-- **Customizable Display:** Showcases queue data, including position and queue size, on the waiting room page with full customization options.
-
-### Queue Activation Control
-
-- **Automatic Activation:** Engages the queue system only when incoming traffic exceeds a set threshold, optimizing resource utilization.
-- **Traffic Management:** Allows for smoother handling of website traffic, reducing server strain during peak periods.
-
-### Lasting Place Reservation
-
-- **Position Retention:** Ensures visitors retain their specific place in the queue, even when navigating away from the queue page.
-- **User Convenience:** Enhances user experience by removing the need to stay on the queue page, reducing frustration and inconvenience.
-
-### Duplicate Visitor Identification
-
-- **Single Entry Enforcement:** Limits users to one active position in the queue, ensuring fairness in the waiting process.
-- **Entry Merging:** Automatically merges multiple attempts by the same user, maintaining queue integrity and order.
-
-### Enhanced Service Tiers
-
-- **Priority Queueing:** Allows for the establishment of priority queues, offering different levels of service to various user groups.
-- **Service Optimization:** Tailors user experiences based on service tiers, enhancing overall satisfaction and efficiency.
-
-### Access Management Post-Queue
-
-- **Regulated Site Access:** Manages post-queue access to the site, depending on user engagement and duration of visit.
-- **Time-Based Access Control:** Sets limits for uninterrupted access post-queue and re-queueing protocols after a period of inactivity, balancing server load and user access.
+You can get started with the service by [configuring and creating your first virtual waiting room](./02-get-started-vwrs/index.md). 

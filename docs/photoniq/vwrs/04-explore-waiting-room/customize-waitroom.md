@@ -8,11 +8,12 @@ Customizing your waiting room helps improve the waiting experience for users by 
 
 ### Uploading your Waiting Room Page
 
-After [adding a NetStorage group]((https://techdocs.akamai.com/netstorage/docs/create-a-storage-group)) and [creating a new upload account](https://techdocs.akamai.com/netstorage/docs/create-an-upload-account), follow these steps to upload your waiting room HTML page.
+After adding a NetStorage group and [creating a new upload account](https://techdocs.akamai.com/netstorage/docs/create-an-upload-account), follow these steps to upload your waiting room HTML page.
 1. Click on **File Manager** 
 1. Click on the target folder that will serve the HTML page. This opens a new page.
 
 Note: **This folder also acts as the NetStorage account provided when configuring the origin in the property manager.**
+
 3. Click on **Upload** and select the waiting room HTML file.
 
 Below is the template code for the virtual waiting room page:
