@@ -29,7 +29,7 @@ To create a waiting room:
 1. Click **Waiting Rooms** from the top nav bar.
 1. Click **New Waiting Room**. This opens a pop-up section to enter the following details to set up your virtual waiting room.
 
-- **waitingroom_name:** The name of the waiting room. Names should be without spaces. Replace spaces with hyphens or dashes.
+- **waitingroom_name:** The name of the waiting room. Names must not have spaces. 
 - **waitingroom_url:** The URL that the waiting room needs to sit in front of. All subpaths of this URL are sent to this defined waiting room. For example, `/checkout/path1` and `/checkout/path2` are both sent to the `/checkout` waiting room
 - **access_type:** The access type defines how the rate limit should be calculated. Different options include:
     - **users:** 
