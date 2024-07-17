@@ -25,7 +25,7 @@ The VWRs follows this workflow:
 3. The waiting room service adds this new request to the waiting room.
 1. Once the user accesses the waiting room page, the page polls the virtual waiting room service for the latest waiting time and waiting room depth.
 1. After polling the latest virtual waiting room data, the waiting room page displays the waiting time and waiting room depth to the user.
-1. When the waiting time is near zero, or the user is at the front of the queue, the waiting room page forwards the user to the origin service.
+1. When the waiting time is near zero and the user is at the front of the queue, the waiting room page forwards the user to the origin service.
 7. On releasing a request, the waiting room service removes a request from the queue.
 1. On detecting a duplicate request, the waiting room service confirms if the user already has an active session.
     - If yes, the waiting room service returns the user's position in the queue.
