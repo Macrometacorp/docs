@@ -27,7 +27,7 @@ This creates a new EdgeWorker ID which will be shown on the list of EdgeWorker I
 9. Click **Create Version**
 10. Upload the code and library code and click **Activate Version**
 
-Note: Every EdgeWorker contains a code bundle. This code bundle contains the `main.js` file which defines The Akamai Edgeworker functions, and the library code. In this case, our library code is a sample `waitingroom.js` file which contains the main logic of the waiting room.
+Note: Every EdgeWorker contains a code bundle. This code bundle contains the `main.js` file which defines the Akamai Edgeworker functions, and the library code. In this case, our library code is a sample `waitingroom.js` file which contains the main logic of the waiting room.
 
 
 ## Mandatory Configuration Options
