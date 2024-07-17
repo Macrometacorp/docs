@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Configure a VWRs EdgeWorker
 ---
 
-The Virtual Waiting Room Service integrates seamlessly with an Akamai Edgeworker to direct traffic to the waiting room page. Thus before using the service, you must configure an edgeworker. For more information about Akamai EdgeWorkers, refer to [Akamai EdgeWorker Documentation](https://techdocs.akamai.com/edgeworkers/docs).
+The Virtual Waiting Room Service integrates seamlessly with an Akamai Edgeworker to direct traffic to the waiting room page. Thus before using the service, you must configure an EdgeWorker. For more information about Akamai EdgeWorkers, refer to [Akamai EdgeWorker Documentation](https://techdocs.akamai.com/edgeworkers/docs).
 
 ## EdgeWorker Requirements
 
