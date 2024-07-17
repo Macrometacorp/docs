@@ -27,16 +27,14 @@ The VWRs follows this workflow:
 1. After polling the latest virtual waiting room data, the waiting room page displays the waiting time and waiting room depth to the user.
 1. When the waiting time is near zero and the user is at the front of the queue, the waiting room page forwards the user to the origin service.
 7. On releasing a request, the waiting room service removes a request from the queue.
-1. On detecting a duplicate request, the waiting room service confirms if the user already has an active session.
-    - If yes, the waiting room service returns the user's position in the queue.
-    - If no, the waiting room service creates a new session and adds the request to the appropriate queue
+1. To prevent duplicate requests in a waiting room, the service confirms if the user already has an active session
 9. The waiting room service periodically checks the sessions to remove requests for expired sessions from the queues.
 
 **For Monitoring:**
 - The waiting room service calculates the waiting time and queue depth every second and updates the [telemetry for the origins and waiting rooms](https://www.macrometa.com/docs/apiVwrs#/operations/getTelemetry).
 - The waiting room service collects the [metrics](https://www.macrometa.com/docs/apiVwrs#/operations/getMetrics) for each waiting room.
 
-**Note:**  Requests are served from the queue for the users, based on the join time. You can configure the queue to be [FIFO, random, or lottery](./queue-types.md). Also, the administrator can turn customer waiting rooms on or off through Configuration APIs.
+**Note:**  Requests are served from the FIFO queue for the users, based on the join time. Also, the administrator can turn customer waiting rooms on or off through Configuration APIs.
 
-Following this workflow ensures that users are directed to the appropriate origin service while ensuring fairness in the queue and providing metrics and alerts to the administrator.
+Following this workflow ensures that users are directed to the appropriate origin service while ensuring fairness in the waiting room and providing metrics and alerts to the administrator.
 
