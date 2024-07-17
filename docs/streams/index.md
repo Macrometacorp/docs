@@ -3,8 +3,45 @@ sidebar_position: 1
 title: Streams
 ---
 
-Streams are flows of data in GDN to capture data in motion. Messages are sent via streams by publishers to consumers who then do something with the message. Streams can be created with client SDKs, REST APIs, CLI commands, or the web console.
+Streams are flows of data in GDN to capture data in motion. Streams work using the [publish-subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern), aka pub-sub model which uses three key players in their workflow. 
 
+- **Producers:** 
+- **Consumers:**
+- **Messages:**
+
+## Streams Workflow
+
+> producer/publisher --> stream --> subscription --> consumer
+
+In the pub-sub model, producers publish messages to streams and consumers subscribed to these streams consume and process these messages, and send an acknowledgement when processing is complete.
+
+
+## Get Started with Streams
+
+Start creating, publishing, and subscribing to streams.
+
+<grid cols={4}>
+  <card
+    heading="Client SDKs"
+    description="Create, subscribe and publish to streams using our Python and Javascript SDKs."
+    href="/sdks"
+  />
+  <card
+    heading="REST APIs"
+    description="Leverage our extensive list of API endpoints to work with GDN Streams."
+    href="/api-docs"
+  />
+  <card
+    heading="CLI"
+    description="Interact with your streams from the command line."
+    href="/cli"
+  />
+    <card
+    heading="Web Console"
+    description="Use our intuitive user interface to send, receive and subscribe to streams."
+    href="/cli"
+  />
+</grid>
 ## Streams Workflow
 
 Streams in GDN is built on the [publish-subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
