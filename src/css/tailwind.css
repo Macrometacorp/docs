@@ -886,3 +886,20 @@ article img {
 .footer__bottom {
   font-size: 0.8125rem;
 }
+
+/* center the nav bar items */
+.navbar__items {
+  gap: 1rem;
+}
+.navbar__item {
+  margin-inline: auto;
+  &:last-of-type {
+    margin-inline-start: 0;
+  }
+  &:first-of-type {
+    margin-inline: auto 0;
+  }
+  &:not(:last-of-type):not(:first-of-type) {
+    margin-inline: 0;
+  }
+}
