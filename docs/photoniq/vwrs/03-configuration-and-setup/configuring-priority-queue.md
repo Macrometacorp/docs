@@ -2,16 +2,16 @@
 title: Setting and Retrieving Priority.
 ---
 
-One of the queues offered by the virtual waiting room service is the priority queue, which allows you to group your users into different groups and assign these groups priorities, with 1 being the highest priority. This allows you to create various service level tiers for your business, improving user experience and customer loyalty. 
+The virtual waiting room service allows you to group users into different tiers. For example, you can configure the service to group users based on location, returning customers, or urgency and assign them different priority levels while in the waiting room. Setting these priority levels helps group your customer requests, allowing you to attend to the ones with the highest priority, thus improving customer satisfaction and loyalty.
 
-## Sample Use Case for a Priority Queue
+## Sample Use Case for Setting Priorities
 
 Consider a service with users residing at different geographical locations. You can assign priority levels to these locations based on their revenue generated. For example:
 
 - Users in location A: 1
 - Users in location B: 2
 
-In this case, once the queue type is set to `priority`, when two users from location A and location B try to access the webpage and are directed to the waiting room, the location A user will be granted access first since they occupy a higher priority.
+With a priority configuration set, when two users from locations A and B try to access the webpage and are directed to the waiting room, the service admits the location A user first since they occupy a higher priority.
 
 ## Configuring a Priority Queue
 
