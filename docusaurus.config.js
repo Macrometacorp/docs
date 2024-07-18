@@ -84,16 +84,10 @@ const config = {
           alt: 'Macrometa Logo',
           src: 'img/macrometa-logo.svg',
           srcDark: 'img/macrometa-logo-dark.svg',
-          href: 'https://www.macrometa.com',
+          href: '/',
           target: '_self'
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'index',
-            position: 'left',
-            label: 'Docs',
-          },
           // {
           //   href: '/',
           //   activeBasePath: '/',
@@ -101,17 +95,22 @@ const config = {
           //   label: 'Docs',
           // },
           {
-            position: 'left',
-            label: 'PhotonIQ',
-            href: '/photoniq'
+            type: 'dropdown',
+            label: 'Products',
+            className: 'navbar-single',
+            items: [
+              {
+                label: 'PhotonIQ',
+                href: '/photoniq'
+              },
+              {
+                type: 'doc',
+                docId: 'gdn',
+                label: 'GDN',
+              },
+            ],
           },
           {
-            position: 'left',
-            label: 'GDN API',
-            href: '/api'
-          },
-          {
-            position: 'left',
             label: 'Developer Tools',
             href: '/development'
           },
@@ -119,32 +118,7 @@ const config = {
             className: 'navbar__item--external',
             href: 'https://support.macrometa.com/',
             label: 'Support',
-            position: 'left',
-          },
-          {
-            className: 'navbar__item--external',
-            href: 'https://auth-play.macrometa.io/',
-            label: 'Log in',
-            position: 'left',
-          },
-          {
-            className: 'navbar__item--external',
-            href: 'https://github.com/macrometacorp/docs',
-            label: 'GitHub',
-            position: 'right',
-          },
-          {
-            className: 'navbar__item--external',
-            href: 'https://macrometa.slack.com/join/shared_invite/zt-1v7jkj1tf-C6usbL12TBUUGlikJD9png#/shared-invite/email',
-            label: 'Slack',
-            position: 'right',
-          },
-          {
-            className: 'navbar__item--external',
-            href: 'https://twitter.com/macrometa',
-            label: 'Twitter',
-            position: 'right',
-          },
+          }
         ],
       },
       footer: {
