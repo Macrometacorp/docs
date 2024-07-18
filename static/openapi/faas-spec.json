@@ -6,6 +6,74 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/faas/v1/health": {
+      "get": {
+        "tags": [
+          "Health & Metrics"
+        ],
+        "summary": "Check the health of the service",
+        "description": "Gets the health of the functions service. ",
+        "operationId": "handle_mm_health",
+        "responses": {
+          "200": {
+            "description": "The PhotonIQ Functions is running"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/faas/v1/ready": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Check the readiness of the service",
+        "description": "Gets the readiness of the FaaS service. This API returns HTTP status 200 OK if the service is able to handle requests, otherwise it returns a 503 Service Unavailable.",
+        "operationId": "handle_mm_ready",
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the ready probe of the service."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        }
+      }
+    },
+    "/api/faas/v1/version": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Get the current version of the functions service",
+        "description": "Retrieve the current version of the functions service",
+        "operationId": "handle_mm_version",
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the version of the service."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
     "/api/faas/v1/deploy": {
       "post": {
         "tags": [
@@ -44,137 +112,6 @@
           },
           "503": {
             "description": "Service unavailable."
-          }
-        },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
-      }
-    },
-    "/api/faas/v1/functions": {
-      "get": {
-        "tags": [
-          "Function"
-        ],
-        "summary": "List all functions",
-        "description": "List the names of all functions in the server.",
-        "operationId": "handle_mm_functions",
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the function names."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          },
-          "503": {
-            "description": "Service unavailable."
-          }
-        },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
-      }
-    },
-    "/api/faas/v1/function/{functionName}/versions": {
-      "get": {
-        "tags": [
-          "Function"
-        ],
-        "summary": "Retrieve function versions",
-        "description": "Retrieve all versions of a function.",
-        "operationId": "handle_mm_versions",
-        "parameters": [
-          {
-            "name": "functionName",
-            "in": "path",
-            "description": "The unique name of the function",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved the function versions."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "500": {
-            "description": "Internal server error."
-          },
-          "503": {
-            "description": "Service unavailable."
-          }
-        },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
-      }
-    },
-    "/api/faas/v1/execute/{functionName}": {
-      "post": {
-        "tags": [
-          "Function"
-        ],
-        "summary": "Execute the function",
-        "description": "Execute the latest version of a function. The function is executed with the provided JSON body, which contains the necessary input for the function.",
-        "operationId": "handle_latest_mm_execute",
-        "parameters": [
-          {
-            "name": "functionName",
-            "in": "path",
-            "description": "The unique name of the function",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "A valid JSON body is accepted",
-          "content": {
-            "application/json": {
-              "schema": {},
-              "example": {}
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully executed the function."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "404": {
-            "description": "Not found."
-          },
-          "500": {
-            "description": "Internal server error."
           }
         },
         "security": [
@@ -395,6 +332,137 @@
           },
           "503": {
             "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/functions": {
+      "get": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "List all functions",
+        "description": "List the names of all functions in the server.",
+        "operationId": "handle_mm_functions",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the function names."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/function/{functionName}/versions": {
+      "get": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Retrieve function versions",
+        "description": "Retrieve all versions of a function.",
+        "operationId": "handle_mm_versions",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the function versions."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
+    },
+    "/api/faas/v1/execute/{functionName}": {
+      "post": {
+        "tags": [
+          "Function"
+        ],
+        "summary": "Execute the function",
+        "description": "Execute the latest version of a function. The function is executed with the provided JSON body, which contains the necessary input for the function.",
+        "operationId": "handle_latest_mm_execute",
+        "parameters": [
+          {
+            "name": "functionName",
+            "in": "path",
+            "description": "The unique name of the function",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A valid JSON body is accepted",
+          "content": {
+            "application/json": {
+              "schema": {},
+              "example": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully executed the function."
+          },
+          "401": {
+            "description": "Authorization failure due to invalid authentication credentials."
+          },
+          "403": {
+            "description": "Either the API key doesn't have permissions or it is deactivated."
+          },
+          "404": {
+            "description": "Not found."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         },
         "security": [
@@ -756,74 +824,6 @@
           },
           "503": {
             "description": "Service unavailable."
-          }
-        },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
-      }
-    },
-    "/api/faas/v1/health": {
-      "get": {
-        "tags": [
-          "Health & Metrics"
-        ],
-        "summary": "Check the health of the service",
-        "description": "Gets the health of the functions service. ",
-        "operationId": "handle_mm_health",
-        "responses": {
-          "200": {
-            "description": "The PhotonIQ Functions is running"
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      }
-    },
-    "/api/faas/v1/ready": {
-      "get": {
-        "tags": [
-          "System"
-        ],
-        "summary": "Check the readiness of the service",
-        "description": "Gets the readiness of the FaaS service. This API returns HTTP status 200 OK if the service is able to handle requests, otherwise it returns a 503 Service Unavailable.",
-        "operationId": "handle_mm_ready",
-        "responses": {
-          "200": {
-            "description": "Successfully fetched the ready probe of the service."
-          },
-          "500": {
-            "description": "Internal server error."
-          },
-          "503": {
-            "description": "Service unavailable."
-          }
-        }
-      }
-    },
-    "/api/faas/v1/version": {
-      "get": {
-        "tags": [
-          "System"
-        ],
-        "summary": "Get the current version of the functions service",
-        "description": "Retrieve the current version of the functions service",
-        "operationId": "handle_mm_version",
-        "responses": {
-          "200": {
-            "description": "Successfully fetched the version of the service."
-          },
-          "401": {
-            "description": "Authorization failure due to invalid authentication credentials."
-          },
-          "403": {
-            "description": "Either the API key doesn't have permissions or it is deactivated."
-          },
-          "500": {
-            "description": "Internal server error."
           }
         },
         "security": [
