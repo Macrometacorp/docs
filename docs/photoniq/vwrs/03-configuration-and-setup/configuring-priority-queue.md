@@ -13,7 +13,7 @@ Consider a service with users residing at different geographical locations. You 
 
 With a priority configuration set, when two users from locations A and B try to access the webpage and are directed to the waiting room, the service admits the location A user first since they occupy a higher priority.
 
-## Configuring a Priority Queue
+## Configuring Priority
 
 You can customize a waiting room with up to ten priorities, the priorities being positive numbers from 1 through 255. Configure these priorities using the [virtual waiting room API](https://www.macrometa.com/docs/apiVwrs#/operations/createWaitingRoom).
 
