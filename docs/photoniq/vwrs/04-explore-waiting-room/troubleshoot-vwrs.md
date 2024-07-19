@@ -1,5 +1,4 @@
 ---
-sidebar_position: 120
 title: Troubleshoot VWRs
 ---
 
@@ -46,7 +45,7 @@ following error message is displayed by the library code: `Setting metadata vari
 
 When running library code, the library provides status codes to inform users about limitations and issues in the form of four-letter codes. These status codes are stored in the PMUSER_VWRS_STATUS_CODE variable.
 
-For a comprehensive list of the meaning behind each four-letter code, refer to [VWRs Status Codes](vwrs-status-codes.md).
+For a comprehensive list of the meaning behind each four-letter code, refer to [VWRs Status Codes](../05-monitoring-vwrs/vwrs-status-codes.md).
 
 ## Request-Level Debugging
 

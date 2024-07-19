@@ -1,12 +1,25 @@
 ---
-title: Waiting Room HTML page
+title: Customize your Waiting Room Page
 ---
 
-Below is a sample HTML template for a waiting room page. This page is displayed to users who are redirected to the waiting room. It's fully customizable to suit your needs. Within the template, the class attributes `queue-position`, `queue-depth`, and `avg-wait-time` are used to display the visitor's current position in the queue, the total number of users in the waiting room, and the average waiting time, respectively.
+Customizing your waiting room helps improve the waiting experience for users by ensuring:
+- Consistency: Using brand colors and design in your waiting room reinforces your brand identity and improves recognition for your users even while in the queue, ensuring a consistent, cohesive, and seamless user experience.
+- Fostering trust and credibility: Incorporating visual elements like logos, colors, typography, and imagery with brand messaging, tone of voice, and values builds brand trust and credibility, ultimately improving loyalty and customer engagement.
 
-```html
-<!DOCTYPE html>
-<html lang="en">
+### Uploading your Waiting Room Page
+
+After adding a NetStorage group and [creating a new upload account](https://techdocs.akamai.com/netstorage/docs/create-an-upload-account), follow these steps to upload your waiting room HTML page.
+1. Click on **File Manager** 
+1. Click on the target folder that will serve the HTML page. This opens a new page.
+
+Note: **This folder also acts as the NetStorage account provided when configuring the origin in the property manager.**
+
+3. Click on **Upload** and select the waiting room HTML file.
+
+Below is the template code for the virtual waiting room page:
+```HTML
+<!DOCTYPE HTML>
+<HTML lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -210,5 +223,16 @@ Below is a sample HTML template for a waiting room page. This page is displayed 
       </p>
     </div>
   </body>
-</html>
+</HTML>
 ```
+
+Within the above template, the class attributes `queue-position`, `queue-depth`, and `avg-wait-time` displays the visitor's current position in the queue, the total number of users in the waiting room, and the average waiting time, respectively.
+
+Here is the rendered HTML page for the above template code:
+
+![Waiting Room Page](../../../../static/img/photoniq/vwr/vwr-activity.jpg)
+
+
+### Customizing your Waiting Room Page
+
+You can edit this HTML template code by changing visual elements like the font-family, background-color and font-size while infusing brand language and voice to incorporate your brand style and aesthetics. This customization will ensure consistency and improve user waiting experiences. 

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 100
-title: Get VWRs Metrics
+title: Monitoring VWRs
 ---
 
 Macrometa PhotonIQ Virtual Waiting Rooms (VWRs) has built-in metrics that allow you to retrieve waiting room telemetry per waiting room, per minute. Data is stored for the past 90 days.
