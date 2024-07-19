@@ -52,8 +52,8 @@ Mobile apps, also called native apps or system-specific apps, are developed for 
 
 3. Use the [VWRs API](https://www.macrometa.com/docs/apiVwrs#/) to observe and manage the user's position in the waiting room. This involves making periodic API calls to check the queue status and manage the user experience accordingly.
 
-  - [Get initial position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-domain_key/get)
-  - [Get current position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-domain_key---request_id/get)
+  - [Get initial position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-waaitingroom_key/get)
+  - [Get current position in waiting room](https://www.macrometa.com/docs/apiVwrs#/paths/api-vwr-v1-position-waitingroom_key---request_id/get)
 
 ### Pseudo-Code Example
 
