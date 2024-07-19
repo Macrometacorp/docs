@@ -123,14 +123,14 @@ const config = {
       footer: {
         links: [
           {
-            title: 'Docs',
+            title: 'Documentation',
             items: [
               {
-                label: 'Quickstart',
+                label: 'PhotonIQ',
                 to: '/quickstart',
               },
               {
-                label: 'Sample Apps',
+                label: 'GDN',
                 to: '/apps'
               },
               {
@@ -142,51 +142,54 @@ const config = {
           {
             title: 'Developer Tools',
             items: [
+                            
               {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://github.com/Macrometacorp/jsC8',
-                label: 'Javascript',
+                href: '/api',
+                label: 'API',
               },
               {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://github.com/Macrometacorp/pyC8',
-                label: 'Python',
+                href: '/sdks',
+                label: 'SDK',
               },
-              {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://www.npmjs.com/package/gdnsl',
-                label: 'CLI',
-              },
+              
             ],
           },
-          {
-            title: 'Connect',
-            items: [
-              {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://github.com/macrometacorp',
-                label: 'GitHub',
-              },
-              {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://macrometa.slack.com/join/shared_invite/zt-1v7jkj1tf-C6usbL12TBUUGlikJD9png#/shared-invite/email',
-                label: 'Slack',
-              },
-              {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://twitter.com/macrometa',
-                label: 'Twitter',
-              },
-            ],
-          },
+          // {
+          //   title: 'Connect',
+          //   items: [
+          //     {
+          //       className: 'footer__link-item footer__item--external',
+          //       href: 'https://github.com/macrometacorp',
+          //       label: 'GitHub',
+          //     },
+          //     {
+          //       className: 'footer__link-item footer__item--external',
+          //       href: 'https://macrometa.slack.com/join/shared_invite/zt-1v7jkj1tf-C6usbL12TBUUGlikJD9png#/shared-invite/email',
+          //       label: 'Slack',
+          //     },
+          //     {
+          //       className: 'footer__link-item footer__item--external',
+          //       href: 'https://twitter.com/macrometa',
+          //       label: 'Twitter',
+          //     },
+          //   ],
+          // },
           {
             title: 'Resources',
             items: [
+              {
+                href: '/tutorials',
+                label: 'Tutorials'
+              },
               {
                 className: 'footer__link-item footer__item--external',
                 href: 'https://support.macrometa.com',
                 label: 'Support',
               },
+              // {
+              //   href: '/tutorials',
+              //   label: 'FAQ'
+              // },
               {
                 className: 'footer__link-item footer__item--external',
                 href: 'https://status.macrometa.io/',
@@ -194,8 +197,61 @@ const config = {
               },
             ],
           },
+          {
+            title: 'Company',
+            items: [
+              {
+                className: 'footer__link-item footer__item--external',
+                href: 'https://www.macrometa.com/about',
+                label: 'About'
+              },
+              {
+                className: 'footer__link-item footer__item--external',
+                href: 'https://www.macrometa.com/terms-of-service',
+                label: 'Terms of Service',
+              },
+              {
+                className: 'footer__link-item footer__item--external',
+                href: 'https://www.macrometa.com/privacy-policy',
+                label: 'Privacy Policy'
+              },
+              {
+                className: 'footer__link-item footer__item--external',
+                href: 'https://www.macrometa.com/contact',
+                label: 'Contacts Us',
+              },
+            ],
+          },
+          {
+            title: 'Join the newsletter',
+            items: [
+              {
+                html: `
+                <div class="newsletter">
+                <form class="signup">
+                  <input type="email" id="email" name="email" placeholder="Email Address">
+                  <button type="submit">Subscribe</button>
+                </form>
+              </div>
+                `
+              },
+              {
+                html: `
+                  <a href="https://www.facebook.com/" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="https://twitter.com/?lang=en" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                `
+              }
+            ],
+          }
         ],
-        copyright: `© ${new Date().getFullYear()} Macrometa • All rights reserved`,
+        copyright: `<div style="float:left; margin: 0.5rem 1rem;" > © ${new Date().getFullYear()} Macrometa • All rights reserved <div>`,
       },
       prism: {
         theme: lightCodeTheme,
