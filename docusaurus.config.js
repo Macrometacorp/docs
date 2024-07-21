@@ -1,52 +1,54 @@
 // @ts-check
 require("dotenv").config();
 
-const {
-  tailwindPlugin,
-  webpackPlugin,
-} = require('./src/plugins');
+const { tailwindPlugin, webpackPlugin } = require("./src/plugins");
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const host = process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview' ? `https://${process.env.VERCEL_URL}` : 'https://www.macrometa.com';
-const isDev = process.env.NODE_ENV === 'development' || (process.env.VERCEL_ENV && process.env.VERCEL_ENV === 'preview');
+const host =
+  process.env.VERCEL_ENV && process.env.VERCEL_ENV === "preview"
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://www.macrometa.com";
+const isDev =
+  process.env.NODE_ENV === "development" ||
+  (process.env.VERCEL_ENV && process.env.VERCEL_ENV === "preview");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Macrometa',
-  tagline: 'Macrometa GDN Documentation',
+  title: "Macrometa",
+  tagline: "Macrometa GDN Documentation",
   url: host,
-  baseUrl: isDev ? '/docs/' : '/docs/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'throw',
-  favicon: 'img/favicon.ico',
-  organizationName: 'macrometacorp',
-  projectName: 'docs',
+  baseUrl: isDev ? "/docs/" : "/docs/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
+  favicon: "img/favicon.ico",
+  organizationName: "macrometacorp",
+  projectName: "docs",
   clientModules: [
-    require.resolve('./src/css/fonts.css'),
-    require.resolve('./src/css/tailwind.css')
+    require.resolve("./src/css/fonts.css"),
+    require.resolve("./src/css/tailwind.css"),
   ],
   customFields: {
-    'VERCEL_ANALYTICS_ID': process.env.VERCEL_ANALYTICS_ID
+    VERCEL_ANALYTICS_ID: process.env.VERCEL_ANALYTICS_ID,
   },
 
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
-          path: 'docs',
+          path: "docs",
           breadcrumbs: false,
           editUrl: ({ docPath }) =>
             `https://github.com/macrometacorp/docs/edit/main/docs/${docPath}`,
-          routeBasePath: '/',
-          sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: "/",
+          sidebarPath: require.resolve("./sidebars.js"),
           sidebarCollapsible: true,
         },
         blog: false,
         sitemap: {
-          changefreq: 'weekly',
+          changefreq: "weekly",
           priority: 0.5,
         },
         gtag: {
@@ -56,36 +58,33 @@ const config = {
     ],
   ],
 
-  plugins: [
-    tailwindPlugin,
-    webpackPlugin,
-    'posthog-docusaurus'
-  ],
+  plugins: [tailwindPlugin, webpackPlugin, "posthog-docusaurus"],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/macrometa-preview-dark.png',
+      image: "img/macrometa-preview-dark.png",
       metadata: [],
       algolia: {
-        appId: 'GHXKYI4VEC', // public + read only and safe to commit
-        apiKey: '91737ee0cdeab53f4cc7a1c650eee730', // public + read only and safe to commit
-        indexName: 'prod_DOCS',
+        appId: "GHXKYI4VEC", // public + read only and safe to commit
+        apiKey: "91737ee0cdeab53f4cc7a1c650eee730", // public + read only and safe to commit
+        indexName: "prod_DOCS",
         contextualSearch: true,
         searchParameters: {},
       },
       posthog: {
         apiKey: process.env.POSTHOG_API_KEY || "DEV",
-        appUrl: process.env.POSTHOG_API_URL || "https://posthog.prod.macrometa.io",
-        enableInDevelopment: false
+        appUrl:
+          process.env.POSTHOG_API_URL || "https://posthog.prod.macrometa.io",
+        enableInDevelopment: false,
       },
       navbar: {
         logo: {
-          alt: 'Macrometa Logo',
-          src: 'img/macrometa-logo.svg',
-          srcDark: 'img/macrometa-logo-dark.svg',
-          href: '/',
-          target: '_self'
+          alt: "Macrometa Logo",
+          src: "img/macrometa-logo.svg",
+          srcDark: "img/macrometa-logo-dark.svg",
+          href: "/",
+          target: "_self",
         },
         items: [
           // {
@@ -95,63 +94,61 @@ const config = {
           //   label: 'Docs',
           // },
           {
-            type: 'dropdown',
-            label: 'Products',
+            type: "dropdown",
+            label: "Products",
             items: [
               {
-                label: 'PhotonIQ',
-                href: '/photoniq'
+                label: "PhotonIQ",
+                href: "/photoniq",
               },
               {
-                type: 'doc',
-                docId: 'gdn',
-                label: 'GDN',
+                type: "doc",
+                docId: "gdn",
+                label: "GDN",
               },
             ],
           },
           {
-            label: 'Developer Tools',
-            href: '/development'
+            label: "Developer Tools",
+            href: "/development",
           },
           {
-            className: 'navbar__item--external',
-            href: 'https://support.macrometa.com/',
-            label: 'Support',
-          }
+            className: "navbar__item--external",
+            href: "https://support.macrometa.com/",
+            label: "Support",
+          },
         ],
       },
       footer: {
         links: [
           {
-            title: 'Documentation',
+            title: "Documentation",
             items: [
               {
-                label: 'PhotonIQ',
-                to: '/quickstart',
+                label: "PhotonIQ",
+                to: "/quickstart",
               },
               {
-                label: 'GDN',
-                to: '/apps'
+                label: "GDN",
+                to: "/apps",
               },
               {
-                label: 'Release Notes',
-                to: '/release-notes'
-              }
+                label: "Release Notes",
+                to: "/release-notes",
+              },
             ],
           },
           {
-            title: 'Developer Tools',
+            title: "Developer Tools",
             items: [
-                            
               {
-                href: '/api',
-                label: 'API',
+                href: "/api",
+                label: "API",
               },
               {
-                href: '/sdks',
-                label: 'SDK',
+                href: "/sdks",
+                label: "SDK",
               },
-              
             ],
           },
           // {
@@ -175,55 +172,55 @@ const config = {
           //   ],
           // },
           {
-            title: 'Resources',
+            title: "Resources",
             items: [
               {
-                href: '/tutorials',
-                label: 'Tutorials'
+                href: "/tutorials",
+                label: "Tutorials",
               },
               {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://support.macrometa.com',
-                label: 'Support',
+                className: "footer__link-item footer__item--external",
+                href: "https://support.macrometa.com",
+                label: "Support",
               },
               // {
               //   href: '/tutorials',
               //   label: 'FAQ'
               // },
               {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://status.macrometa.io/',
-                label: 'System Status',
+                className: "footer__link-item footer__item--external",
+                href: "https://status.macrometa.io/",
+                label: "System Status",
               },
             ],
           },
           {
-            title: 'Company',
+            title: "Company",
             items: [
               {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://www.macrometa.com/about',
-                label: 'About'
+                className: "footer__link-item footer__item--external",
+                href: "https://www.macrometa.com/about",
+                label: "About",
               },
               {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://www.macrometa.com/terms-of-service',
-                label: 'Terms of Service',
+                className: "footer__link-item footer__item--external",
+                href: "https://www.macrometa.com/terms-of-service",
+                label: "Terms of Service",
               },
               {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://www.macrometa.com/privacy-policy',
-                label: 'Privacy Policy'
+                className: "footer__link-item footer__item--external",
+                href: "https://www.macrometa.com/privacy-policy",
+                label: "Privacy Policy",
               },
               {
-                className: 'footer__link-item footer__item--external',
-                href: 'https://www.macrometa.com/contact',
-                label: 'Contacts Us',
+                className: "footer__link-item footer__item--external",
+                href: "https://www.macrometa.com/contact",
+                label: "Contacts Us",
               },
             ],
           },
           {
-            title: 'Join the newsletter',
+            title: "Join the newsletter",
             items: [
               {
                 html: `
@@ -233,7 +230,7 @@ const config = {
                   <button type="submit">Subscribe</button>
                 </form>
               </div>
-                `
+                `,
               },
               {
                 html: `
@@ -246,17 +243,17 @@ const config = {
                   <a href="https://www.linkedin.com/" target="_blank">
                     <i class="fab fa-linkedin-in"></i>
                   </a>
-                `
-              }
+                `,
+              },
             ],
-          }
+          },
         ],
-        copyright: `<div style="float:left; margin: 0.5rem 1rem;" > © ${new Date().getFullYear()} Macrometa • All rights reserved <div>`,
+        copyright: `<div> © ${new Date().getFullYear()} Macrometa • All rights reserved <div>`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['rust', 'bash', 'powershell','toml']
+        additionalLanguages: ["rust", "bash", "powershell", "toml"],
       },
     }),
 };
