@@ -886,3 +886,44 @@ article img {
 .footer__bottom {
   font-size: 0.8125rem;
 }
+
+/* center the nav bar items */
+.navbar__items {
+  gap: 1rem;
+}
+.navbar__item {
+  margin-inline: auto;
+  &:last-of-type {
+    margin-inline-start: 0;
+  }
+  &:first-of-type {
+    margin-inline: auto 0;
+  }
+  &:not(:last-of-type):not(:first-of-type) {
+    margin-inline: 0;
+  }
+}
+
+.newsletter {
+  text-align: center;
+}
+
+.signup {
+  display: flex;
+  align-items: center;
+  margin: 0 auto; /* Center horizontally */
+}
+
+.signup input[type="email"] {
+  border: 1px solid #ccc;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+.signup button[type="submit"] {
+  background-color:var( --docs-color-primary);
+  border: none;
+  padding: 5px;
+  color: white;
+  text-align: center;
+}
