@@ -304,6 +304,11 @@ div[class^="sidebar_"]
   display: none;
 }
 
+.navbar__item--external::after {
+  content: url(/img/icon-arrow-external.svg);
+  padding-left: 2px;
+}
+
 .navbar__logo {
   height: 34px;
   padding-bottom: 4px;
@@ -311,6 +316,7 @@ div[class^="sidebar_"]
 
 .navbar {
   background-color: var(--docs-color-background);
+  box-shadow: none;
 }
 
 .navbar__link {
