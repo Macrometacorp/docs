@@ -4,7 +4,7 @@ sidebar_position: 0
 title: Overview
 ---
 
-# Documentation
+# Global Data Network (GDN)
 
 Macrometa's Global Data Network (GDN) is a distributed backend for building global applications. 
 
@@ -128,19 +128,3 @@ Deploy compute runtimes and complex event-driven workloads alongside your data, 
     href="/geofabrics"
   />
 </grid>
-
-## Why Macrometa?
-
-If you're still curious as to why you should build on Macrometa rather than on the centralized cloud (AWS, GCP, or Azure), please keep reading.
-
-#### 1. Low-latency Everywhere
-
-Deliver ultra-low latency apps, APIs, and event-driven workloads closer to the pulse of your business. With Macrometa, your data is no longer centralized in a specific region, but rather replicated and available for reads and writes (N-Active) from 175+ locations around the world. This allows you to build stateful real-time applications closer to your end-users than ever before. Check out [Global Data Mesh](https://www.macrometa.com/platform/global-data-mesh) to learn more.
-
-#### 2. Faster Time-To-Production
-
-The Global Data Network is a converged platform consisting of a poly-model database (Key-Value, Document, Search, Graph), a stream engine, complex event processing, and compute capabilities. Utilizing a single platform as opposed to stitching together a variety of services _a la carte_ in the public cloud allows you to build, iterate, and execute faster. Check out [Edge Compute](https://www.macrometa.com/platform/edge-compute) to learn more.
-
-#### 3. Lower Total Cost of Ownership (TCO)
-
-Multiple cloud services are often needed to build global applications. When it's time to scale out to support a global audience, you will end up utilizing several databases, maintaining copies of your data within multiple regions, and the costs will add up very quickly. The Global Data Network allows you to maintain and query a single copy of data with extremely low latency from anywhere in the world. Your development team will be free to spend more time on the business logic and less time focusing on data replication and network orchestration.

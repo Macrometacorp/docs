@@ -150,7 +150,7 @@
     --navbar-link-color-active: var(--color-primary-500);
   }
 
-  html[data-theme="dark"] {
+  html[data-theme="dark"]{
     --ifm-background-color: var(--docs-color-background);
     --ifm-color-primary: var(--color-primary-400);
     --ifm-color-secondary-contrast-background: var(--color-neutral-700);

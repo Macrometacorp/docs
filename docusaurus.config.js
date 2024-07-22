@@ -255,6 +255,7 @@ const config = {
         ],
         copyright: `<div> © ${new Date().getFullYear()} Macrometa • All rights reserved <div>`,
       },
+    
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
