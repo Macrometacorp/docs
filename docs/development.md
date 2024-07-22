@@ -26,16 +26,4 @@ slug: /development
     heading="Postman Collection"
     href="https://www.postman.com/macrometa"
   />
-      <card
-    heading="Javascript"
-    href="https://github.com/Macrometacorp/jsC8"
-  />
-      <card
-    heading="Python"
-    href="https://github.com/Macrometacorp/pyC8"
-  />
-        <card
-    heading="Python"
-    href="https://www.npmjs.com/package/gdnsl"
-  />
 </grid>

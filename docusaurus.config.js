@@ -126,11 +126,11 @@ const config = {
             items: [
               {
                 label: "PhotonIQ",
-                to: "/quickstart",
+                to: "/photoniq",
               },
               {
                 label: "GDN",
-                to: "/apps",
+                to: "/gdn",
               },
               {
                 label: "Release Notes",
@@ -177,6 +177,11 @@ const config = {
               {
                 href: "/tutorials",
                 label: "Tutorials",
+              },
+              {
+                className: "footer__link-item footer__item--external",
+                href: "https://www.macrometa.com/blog",
+                label: "Blog",
               },
               {
                 className: "footer__link-item footer__item--external",

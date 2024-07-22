@@ -16,7 +16,7 @@ const a = [
     icon: photoniqicon,
   },
   {
-    title: "Build and Deploy with Macrometa GDN",
+    title: "Build and deploy with Macrometa GDN",
     subtitle: `Start building and deploying globally available applications with our edge network to over 175 countries`,
     href: "https://macrometa.com/docs/",
     icon: gdnicon,
@@ -42,7 +42,7 @@ const b = [
     icon: faq,
   },
   {
-    title: "Release Notes",
+    title: "Release notes",
     subtitle: "Get all the information on our latest releases",
     href: "https://macrometa.com/docs/release-notes",
     icon: releasenotes,
@@ -62,8 +62,8 @@ export default function Hello() {
             Documentation
           </h1>
           <p className="text-center text-gray-700 font-medium  sm:text-xl text-[12px] w-2/3">
-            Welcome to the Macrometa Documentation. This page aims to get you
-            started using our suite of products and answer your questions
+            Welcome to the Macrometa documentation. 
+            This page aims to help you get started using our suite of products and to answer any questions you may have.
           </p>
         </div>
 
