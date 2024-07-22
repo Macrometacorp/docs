@@ -21,39 +21,39 @@
   :root {
     /* Macrometa Color Ramps */
 
-    --color-white: #FFFFFF;
+    --color-white: #ffffff;
 
-    --color-neutral-50: #F1F2F4;
-    --color-neutral-100: #E2E4E8;
-    --color-neutral-200: #C5C8D1;
-    --color-neutral-300: #A9ADB9;
-    --color-neutral-400: #8C91A2;
-    --color-neutral-500: #6F768B;
+    --color-neutral-50: #f1f2f4;
+    --color-neutral-100: #e2e4e8;
+    --color-neutral-200: #c5c8d1;
+    --color-neutral-300: #a9adb9;
+    --color-neutral-400: #8c91a2;
+    --color-neutral-500: #6f768b;
     --color-neutral-600: #535968;
-    --color-neutral-700: #383B46;
-    --color-neutral-800: #1C1E23;
-    --color-neutral-900: #0B0C0E;
+    --color-neutral-700: #383b46;
+    --color-neutral-800: #1c1e23;
+    --color-neutral-900: #0b0c0e;
 
-    --color-primary-50: #F0F0FD;
-    --color-primary-100: #E1E1FA;
-    --color-primary-200: #C2C2F5;
-    --color-primary-300: #A4A4F0;
-    --color-primary-400: #8585EB;
-    --color-primary-500: #6767E6;
-    --color-primary-600: #4D4DAD;
+    --color-primary-50: #f0f0fd;
+    --color-primary-100: #e1e1fa;
+    --color-primary-200: #c2c2f5;
+    --color-primary-300: #a4a4f0;
+    --color-primary-400: #8585eb;
+    --color-primary-500: #6767e6;
+    --color-primary-600: #4d4dad;
     --color-primary-700: #343473;
-    --color-primary-800: #191B1F; /*NEW*/
-    --color-primary-900: #0A0A17;
+    --color-primary-800: #191b1f; /*NEW*/
+    --color-primary-900: #0a0a17;
 
     /* Docusaurus Theming */
 
-    --font-family-base: 'Averta', ui-sans-serif, system-ui, -apple-system,
-      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-      'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-family-base: "Averta", ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
 
-    --font-family-monospace: 'Source Code Pro', ui-monospace, SFMono-Regular,
-      Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --font-family-monospace: "Source Code Pro", ui-monospace, SFMono-Regular,
+      Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
     --font-code: var(--font-family-monospace) !important;
     --font-mono: var(--font-family-monospace) !important;
@@ -82,7 +82,7 @@
     --ifm-font-family-base: var(--font-family-base);
     --ifm-font-family-monospace: var(--font-family-monospace);
     --ifm-font-weight-bold: 600;
-    
+
     --ifm-footer-background-color: var(--color-primary-500);
     --ifm-footer-color: var(--color-neutral-500);
     --ifm-footer-link-color: var(--color-primary-500);
@@ -90,20 +90,20 @@
     --ifm-footer-padding-horizontal: 0;
     --ifm-footer-padding-vertical: 0.5rem;
     --ifm-footer-title-color: var(--color-neutral-700);
-    
+
     --ifm-global-radius: 0.5rem;
-    
+
     --ifm-heading-color: var(--color-neutral-800);
     --ifm-heading-font-family: var(--font-family-base);
-    
+
     --ifm-hr-background-color: var(--color-neutral-100);
     --ifm-hr-margin-vertical: 2rem;
-    
+
     --ifm-link-color: var(--color-primary-500);
     --ifm-link-decoration: none;
 
     --ifm-list-item-margin: 0.5rem;
-    
+
     --ifm-menu-color: var(--color-neutral-700);
     --ifm-menu-color-active: var(--color-primary-600);
     --ifm-menu-color-background-active: var(--color-primary-500);
@@ -150,8 +150,7 @@
     --navbar-link-color-active: var(--color-primary-500);
   }
 
-  html[data-theme='dark'] {
-    
+  html[data-theme="dark"] {
     --ifm-background-color: var(--docs-color-background);
     --ifm-color-primary: var(--color-primary-400);
     --ifm-color-secondary-contrast-background: var(--color-neutral-700);
@@ -160,7 +159,7 @@
     --ifm-heading-color: var(--color-white);
     --ifm-hr-background-color: var(--color-neutral-700);
     --ifm-font-color-base: var(--color-neutral-200);
-    
+
     --ifm-footer-background-color: var(--color-primary-600);
     --ifm-footer-color: var(--color-neutral-300);
     --ifm-footer-link-color: var(--color-neutral-400);
@@ -168,14 +167,14 @@
     --ifm-footer-title-color: var(--color-white);
 
     --ifm-link-color: var(--color-primary-300);
-    
+
     --ifm-menu-color: var(--color-primary-100) !important;
     --ifm-menu-color-active: var(--color-white);
     --ifm-menu-color-background-hover: var(--color-primary-700);
     --ifm-menu-color-background-active: var(--color-primary-600);
-    
+
     --ifm-pre-background-color: var(--color-neutral-900);
-    
+
     --ifm-tabs-color-active-border: var(--color-primary-400);
     --ifm-tabs-color-active: var(--color-primary-400);
     --ifm-toc-link-color: var(--color-neutral-200) !important;
@@ -244,7 +243,8 @@ html {
   @apply mt-0;
 }
 
-div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) {
+div[class^="sidebar_"]
+  .menu__link.menu__link--active:not(.menu__link--sublist) {
   border-radius: 0.25rem;
   color: var(--color-white);
   background: var(--ifm-menu-color-background-active);
@@ -278,7 +278,7 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
 /* Optional style for only one link which acts as nav section header */
 
 .navbar-sidebar__backdrop {
-  background-color: rgba(11, 12, 14, .68);
+  background-color: rgba(11, 12, 14, 0.68);
 }
 
 .navbar__toggle {
@@ -304,12 +304,6 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
   display: none;
 }
 
-.footer__item--external::after,
-.navbar__item--external::after {
-  content: url(/img/icon-arrow-external.svg);
-  padding-left: 2px;
-}
-
 .navbar__logo {
   height: 34px;
   padding-bottom: 4px;
@@ -317,7 +311,6 @@ div[class^='sidebar_'] .menu__link.menu__link--active:not(.menu__link--sublist) 
 
 .navbar {
   background-color: var(--docs-color-background);
-  border-bottom: 1px solid var(--docs-color-border);
 }
 
 .navbar__link {
@@ -365,7 +358,7 @@ pre {
   @apply text-sm font-normal;
 }
 
-html[data-theme='dark'] .DocSearch-Button-Key {
+html[data-theme="dark"] .DocSearch-Button-Key {
   --docsearch-muted-color: rgba(255, 255, 255, 0.87) !important;
 }
 
@@ -419,28 +412,28 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   color: inherit !important;
 }
 
-.sl-elements div[aria-label='Responses'] span {
+.sl-elements div[aria-label="Responses"] span {
   @apply mr-auto;
 }
 
-.sl-elements div[aria-label='Responses'] div[data-key] {
+.sl-elements div[aria-label="Responses"] div[data-key] {
   @apply mr-2 flex items-center rounded-md border outline-none ring-0;
 }
 
-.sl-elements div[aria-label='Responses'] div[data-key]::before {
-  content: '';
+.sl-elements div[aria-label="Responses"] div[data-key]::before {
+  content: "";
   @apply mr-2 inline-block h-3 w-3 rounded-full bg-green-500 drop-shadow-sm;
 }
 
-.sl-elements div[aria-label='Responses'] div[data-key^='4']::before {
+.sl-elements div[aria-label="Responses"] div[data-key^="4"]::before {
   @apply bg-red-500;
 }
 
-.sl-elements div[aria-label='Responses'] div[data-key^='5']::before {
+.sl-elements div[aria-label="Responses"] div[data-key^="5"]::before {
   @apply bg-yellow-500;
 }
 
-.sl-elements div[aria-label='Responses'] div[aria-selected='true'] {
+.sl-elements div[aria-label="Responses"] div[aria-selected="true"] {
   @apply border-primary-100 shadow-sm;
 }
 
@@ -517,12 +510,12 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   @apply !text-primary-100;
 }
 
-html[data-theme='dark'] .sl-elements .token.boolean,
-html[data-theme='dark'] .sl-elements .token.number {
+html[data-theme="dark"] .sl-elements .token.boolean,
+html[data-theme="dark"] .sl-elements .token.number {
   @apply !text-yellow-400;
 }
 
-html[data-theme='dark'] .sl-elements .token.null.keyword {
+html[data-theme="dark"] .sl-elements .token.null.keyword {
   @apply !text-red-400;
 }
 
@@ -530,7 +523,7 @@ html[data-theme='dark'] .sl-elements .token.null.keyword {
   @apply !text-gray-200;
 }
 
-html[data-theme='dark'] .sl-text-warning {
+html[data-theme="dark"] .sl-text-warning {
   @apply !text-red-500;
 }
 
@@ -819,7 +812,8 @@ article img {
   padding: 1.25rem 1.25rem;
 }
 
-.alert > .admonitionHeading_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-styles-module {
+.alert
+  > .admonitionHeading_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-styles-module {
   margin-bottom: 0.5rem;
 }
 
@@ -852,7 +846,7 @@ article img {
 
 .pagination-nav__link--prev .pagination-nav__label::before,
 .pagination-nav__link--next .pagination-nav__label::after {
-  content: ''
+  content: "";
 }
 
 /*
@@ -861,13 +855,20 @@ article img {
 
 .footer {
   background-color: var(--docs-color-background);
-  border-top: 1px solid var(--docs-color-border);
   @apply text-base;
+
+  > div {
+    max-width: 1208px;
+    padding-inline: 1.5rem;
+    margin-inline: auto;
+    padding-block: 60px;
+  }
 }
 
 .footer__col {
-  padding: 0 1.5rem;
+  padding: 0;
 }
+
 @media (max-width: 996px) {
   .footer__col {
     margin: 0 0 2rem;
@@ -902,4 +903,41 @@ article img {
   &:not(:last-of-type):not(:first-of-type) {
     margin-inline: 0;
   }
+}
+
+.newsletter {
+  text-align: center;
+}
+
+footer .signup {
+  display: flex;
+  margin: 0 auto;
+}
+
+footer .signup input[type="email"] {
+  padding-inline: 6px;
+  padding-block: 5px;
+  border: 1px solid #6767e6;
+  border-right: none;
+  border-radius: 4px 0px 0px 4px;
+}
+
+footer .signup button[type="submit"] {
+  text-align: center;
+  background: transparent;
+  color: #4a5568;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  border-radius: 0px 4px 4px 0px;
+  border: 1px solid #6767e6;
+  padding-inline: 12px;
+  padding-block: 5px;
+  cursor: pointer;
+}
+
+.footer__copyright {
+  display: flex;
+  justify-content: space-between;
 }
