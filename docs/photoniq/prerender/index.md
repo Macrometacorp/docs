@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: PhotonIQ Prerender
+title: Prerender
 ---
 
 PhotonIQ Prerender offers a no-code,  robust solution for enhancing SEO and website performance for enterprise-level companies. This service generates static HTML from dynamic sites, ensuring the complete rendering of web elements like tabs and scrolls, improving search engine visibility and indexing speed, making it ideal for JavaScript-heavy websites. 
