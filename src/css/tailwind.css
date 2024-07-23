@@ -22,6 +22,7 @@
     /* Macrometa Color Ramps */
 
     --color-white: #ffffff;
+    --color-grey: #F7FAFC;
 
     --color-neutral-50: #f1f2f4;
     --color-neutral-100: #e2e4e8;
@@ -62,7 +63,7 @@
     --ifm-alert-border-left-width: 0.25rem;
     --ifm-alert-border-radius: 0.25rem;
 
-    --ifm-background-color: var(--color-white);
+    --ifm-background-color: var(--color-grey);
 
     --ifm-code-border-radius: 0.5rem;
     --ifm-code-font-size: 0.9375rem;
