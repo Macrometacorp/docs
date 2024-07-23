@@ -18,7 +18,7 @@ const a = [
   {
     title: "Build and deploy with Macrometa GDN",
     subtitle: `Build and deploy globally available applications with our edge network.`,
-    href: "https://macrometa.com/docs/",
+    href: "https://www.macrometa.com/docs/gdn/",
     icon: gdnicon,
   },
 ];
