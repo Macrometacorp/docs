@@ -1,0 +1,25 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_74_875)">
+<circle cx="29.0909" cy="29.0909" r="2.90909" transform="rotate(180 29.0909 29.0909)" fill="#343473"/>
+<circle cx="29.0909" cy="20.3637" r="2.90909" transform="rotate(180 29.0909 20.3637)" fill="#343473"/>
+<circle cx="29.0909" cy="11.6364" r="2.90909" transform="rotate(180 29.0909 11.6364)" fill="#343473"/>
+<circle cx="29.0909" cy="2.90902" r="2.90909" transform="rotate(180 29.0909 2.90902)" fill="#343473"/>
+<circle cx="20.3636" cy="29.0909" r="2.90909" transform="rotate(180 20.3636 29.0909)" fill="#343473" fill-opacity="0.7"/>
+<circle cx="20.3636" cy="20.3637" r="2.90909" transform="rotate(180 20.3636 20.3637)" fill="#343473" fill-opacity="0.7"/>
+<circle cx="20.3636" cy="11.6364" r="2.90909" transform="rotate(180 20.3636 11.6364)" fill="#343473" fill-opacity="0.7"/>
+<circle cx="20.3636" cy="2.90902" r="2.90909" transform="rotate(180 20.3636 2.90902)" fill="#343473"/>
+<circle cx="11.6364" cy="29.0909" r="2.90909" transform="rotate(180 11.6364 29.0909)" fill="#343473" fill-opacity="0.5"/>
+<circle cx="11.6364" cy="20.3637" r="2.90909" transform="rotate(180 11.6364 20.3637)" fill="#343473" fill-opacity="0.5"/>
+<circle cx="11.6364" cy="11.6364" r="2.90909" transform="rotate(180 11.6364 11.6364)" fill="#343473" fill-opacity="0.7"/>
+<circle cx="11.6364" cy="2.90902" r="2.90909" transform="rotate(180 11.6364 2.90902)" fill="#343473"/>
+<circle cx="2.90915" cy="29.0909" r="2.90909" transform="rotate(180 2.90915 29.0909)" fill="#343473" fill-opacity="0.3"/>
+<circle cx="2.90915" cy="20.3637" r="2.90909" transform="rotate(180 2.90915 20.3637)" fill="#343473" fill-opacity="0.5"/>
+<circle cx="2.90915" cy="11.6364" r="2.90909" transform="rotate(180 2.90915 11.6364)" fill="#343473" fill-opacity="0.7"/>
+<circle cx="2.90915" cy="2.90902" r="2.90909" transform="rotate(180 2.90915 2.90902)" fill="#343473"/>
+</g>
+<defs>
+<clipPath id="clip0_74_875">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
