@@ -949,6 +949,12 @@ footer .signup button[type="submit"] {
   cursor: pointer;
 }
 
+html[data-theme="dark"] footer .signup button[type="submit"] {
+  color: #ffffff;
+  border: 1px solid #6767e6;
+
+}
+
 .footer__copyright {
   display: flex;
   justify-content: space-between;
