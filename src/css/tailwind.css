@@ -322,10 +322,7 @@ div[class^="sidebar_"]
   box-shadow: none;
 
   > div {
-    max-width: 1208px;
     margin-inline: auto;
-    padding-inline: 1.5rem;
-
   }}
 
 .navbar__link {
@@ -962,4 +959,29 @@ footer .signup button[type="submit"] {
 }
 html[data-theme="dark"] .bg-custom-gray {
   background-color: var(--color-neutral-800);
+}
+.social-icons{
+  padding: 1px;
+  margin-top: 1rem;
+  
+}
+html[data-theme="dark"] .card-land{
+  background-color: var(--docs-card-background-color);
+  border: 1px solid var(--docs-card-border-color);
+  border-radius: 0.5rem;
+
+  > h1 >a{
+    color: var(--docs-card-title-color);
+    }
+  > h1{
+      color: var(--docs-card-title-color);
+    }
+  > h1 .help{
+    color: var(--color-primary-500);
+  
+  }
+
+  > p{
+    color: var(--docs-card-description-color);
+  }
 }

@@ -151,27 +151,7 @@ const config = {
               },
             ],
           },
-          // {
-          //   title: 'Connect',
-          //   items: [
-          //     {
-          //       className: 'footer__link-item footer__item--external',
-          //       href: 'https://github.com/macrometacorp',
-          //       label: 'GitHub',
-          //     },
-          //     {
-          //       className: 'footer__link-item footer__item--external',
-          //       href: 'https://macrometa.slack.com/join/shared_invite/zt-1v7jkj1tf-C6usbL12TBUUGlikJD9png#/shared-invite/email',
-          //       label: 'Slack',
-          //     },
-          //     {
-          //       className: 'footer__link-item footer__item--external',
-          //       href: 'https://twitter.com/macrometa',
-          //       label: 'Twitter',
-          //     },
-          //   ],
-          // },
-          {
+            {
             title: "Resources",
             items: [
               {
@@ -239,14 +219,17 @@ const config = {
               },
               {
                 html: `
-                  <a href="https://www.facebook.com/" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
+                  <a href="https://github.com/macrometacorp" target="_blank">
+                  <img class="social-icons" src="img/Icon-github.svg">
                   </a>
-                  <a href="https://twitter.com/?lang=en" target="_blank">
-                    <i class="fab fa-twitter"></i>
+                  <a href="https://facebook.com/MacrometaCorp" target="_blank">
+                  <img class="social-icons" src="img/Icon-facebook.svg">
                   </a>
-                  <a href="https://www.linkedin.com/" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
+                  <a href="https://twitter.com/macrometa" target="_blank">
+                  <img class="social-icons" src="img/Icon-twitter.svg">
+                  </a>
+                  <a href="https://linkedin.com/company/macrometa-corporation" target="_blank">
+                  <img class="social-icons" src="img/Icon-linkedin.svg">
                   </a>
                 `,
               },

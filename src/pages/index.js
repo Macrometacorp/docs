@@ -72,7 +72,7 @@ export default function Hello()
           {a.map((item, i) => (
             <div
               key={i}
-              className="flex flex-col text-center justify-center items-center py-[32px] px-[32px] lg:px-[114px] border rounded-2xl border-slate-300 shadow-md"
+              className="card-land flex flex-col text-center justify-center items-center py-[32px] px-[32px] lg:px-[114px] border rounded-2xl border-slate-300 shadow-md"
             >
               <img
                 src={item.icon}
@@ -92,7 +92,7 @@ export default function Hello()
           {b.map((item, i) => (
             <div
               key={i}
-              className="flex flex-col text-center justify-center items-center py-[32px] px-[21px] rounded-2xl border border-slate-300 shadow-md"
+              className=" card-land flex flex-col text-center justify-center items-center py-[32px] px-[21px] rounded-2xl border border-slate-300 shadow-md"
             >
               <img
                 src={item.icon}
@@ -109,13 +109,13 @@ export default function Hello()
         </div>
 
         <div className="mt-10">
-          <div className="flex text-center justify-center items-center py-[32px] rounded-2xl border border-slate-300 shadow-md">
+          <div className="card-land flex text-center justify-center items-center py-[32px] rounded-2xl border border-slate-300 shadow-md">
             <img src={support} className="" />
             <h1 className="ml-3 mb-0 items-center text-gray-700 sm:text-[15px] text-[13px] text-md">
               Still need help?
               <a
                 href="https://support.macrometa.com/hc/en-us/requests/new?"
-                className="ml-1 text-indigo-500 sm:text-[15px] text-[13px] text-md"
+                className="help ml-1 text-indigo-500 sm:text-[15px] text-[13px] text-md"
               >
                 Submit a request
               </a>
