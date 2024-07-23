@@ -85,7 +85,7 @@
 
     --ifm-footer-background-color: var(--color-primary-500);
     --ifm-footer-color: var(--color-neutral-500);
-    --ifm-footer-link-color: var(--color-primary-500);
+    --ifm-footer-link-color: var(--color-neutral-700);
     --ifm-footer-link-hover-color: var(--color-primary-600);
     --ifm-footer-padding-horizontal: 0;
     --ifm-footer-padding-vertical: 0.5rem;
@@ -146,13 +146,13 @@
 
     --image-background-color: var(--color-white);
 
-    --navbar-link-color: var(--color-neutral-500);
-    --navbar-link-color-active: var(--color-primary-500);
+    --navbar-link-color: var(--color-neutral-700);
+    --navbar-link-color-active: var(--color-primary-700);
   }
 
   html[data-theme="dark"]{
     --ifm-background-color: var(--docs-color-background);
-    --ifm-color-primary: var(--color-primary-400);
+    --ifm-color-primary: var(--color-primary-400); 
     --ifm-color-secondary-contrast-background: var(--color-neutral-700);
     --ifm-color-secondary-dark: var(--color-primary-300);
 
@@ -309,6 +309,9 @@ div[class^="sidebar_"]
   padding-left: 2px;
 }
 
+.dropdown > .navbar__link:after {
+  display: none;
+}
 .navbar__logo {
   height: 34px;
   padding-bottom: 4px;
@@ -317,7 +320,13 @@ div[class^="sidebar_"]
 .navbar {
   background-color: var(--docs-color-background);
   box-shadow: none;
-}
+
+  > div {
+    max-width: 1208px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+
+  }}
 
 .navbar__link {
   color: var(--navbar-link-color);
@@ -946,4 +955,11 @@ footer .signup button[type="submit"] {
 .footer__copyright {
   display: flex;
   justify-content: space-between;
+}
+
+.bg-custom-gray {
+  background-color: #F7FAFC;
+}
+html[data-theme="dark"] .bg-custom-gray {
+  background-color: var(--color-neutral-800);
 }
