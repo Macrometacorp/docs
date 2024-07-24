@@ -1,25 +1,18 @@
 import Layout from "@theme/Layout";
 import React from "react";
-import faq from "/img//faq.png";
-import gdnicon from "/img/gdnicon.png";
-import glossary from "/img/glossary.png";
-import photoniqicon from "/img/photoniqicon.png";
-import releasenotes from "/img/releasenotesicon.png";
-import support from "/img/supportrequest.png";
-import tutorials from "/img/tutorials.png";
 
 const a = [
   {
     title: "Get started with PhotonIQ",
     subtitle: `Improve website SEO, search engine rankings, and many more with PhotonIQ.`,
     href: "https://macrometa.com/docs/photoniq/",
-    icon: photoniqicon,
+    icon: "/docs/img/Icon-PhotonIQ.svg",
   },
   {
     title: "Build and deploy with Macrometa GDN",
     subtitle: `Build and deploy globally available applications with our edge network.`,
     href: "https://www.macrometa.com/docs/gdn/",
-    icon: gdnicon,
+    icon: "/docs/img/Icon-GDN.svg",
   },
 ];
 const b = [
@@ -27,25 +20,25 @@ const b = [
     title: "Tutorials",
     subtitle: "Learn from our tutorials and start building.",
     href: "https://macrometa.com/docs/tutorials",
-    icon: tutorials,
+    icon: "/docs/img/Icon-Tutorials.svg",
   },
   {
     title: "Glossary",
     subtitle: "Master our product language for seamless use.",
     href: "https://macrometa.com/docs/references/glossary",
-    icon: glossary,
+    icon: "/docs/img/Icon-Glossary.svg",
   },
   {
     title: "FAQs",
     subtitle: "Learn while getting answers to your questions.",
     href: "https://support.macrometa.com/hc/en-us/articles/15797660147597-Playground-Support-in-Community-Slack",
-    icon: faq,
+    icon: "/docs/img/Icon-FAQ.svg",
   },
   {
     title: "Release notes",
     subtitle: "Get all the information on our latest releases.",
     href: "https://macrometa.com/docs/release-notes",
-    icon: releasenotes,
+    icon: "/docs/img/Icon-Notes.svg",
   },
 ];
 
@@ -110,7 +103,7 @@ export default function Hello()
 
         <div className="mt-10">
           <div className="card-land flex text-center justify-center items-center py-[32px] rounded-2xl border border-slate-300 shadow-md">
-            <img src={support} className="" />
+            <img src="/docs/img/Icon-Support.svg" className="" />
             <h1 className="ml-3 mb-0 items-center text-gray-700 sm:text-[15px] text-[13px] text-md">
               Still need help?
               <a
