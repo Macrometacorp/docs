@@ -220,16 +220,16 @@ const config = {
               {
                 html: `
                   <a href="https://github.com/macrometacorp" target="_blank">
-                  <img class="social-icons" src="img/Icon-github.svg">
+                  <img class="social-icons" src="/docs/img/Icon-github.svg">
                   </a>
                   <a href="https://facebook.com/MacrometaCorp" target="_blank">
-                  <img class="social-icons" src="img/Icon-facebook.svg">
+                  <img class="social-icons" src="/docs/img/Icon-facebook.svg">
                   </a>
                   <a href="https://twitter.com/macrometa" target="_blank">
-                  <img class="social-icons" src="img/Icon-twitter.svg">
+                  <img class="social-icons" src="/docs/img/Icon-twitter.svg">
                   </a>
                   <a href="https://linkedin.com/company/macrometa-corporation" target="_blank">
-                  <img class="social-icons" src="img/Icon-linkedin.svg">
+                  <img class="social-icons" src="/docs/img/Icon-linkedin.svg">
                   </a>
                 `,
               },
