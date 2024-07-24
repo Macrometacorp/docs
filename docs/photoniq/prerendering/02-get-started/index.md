@@ -1,5 +1,5 @@
 ---
-title: Get Started with Prerendering
+title: Get Started with Prerender
 ---
 
 Although PhotonIQ offers Prerender as a completely managed, white-glove service, this guide provides a practical approach to setting up and using the service for self-starters.
@@ -10,7 +10,7 @@ This guide will help you:
 
 - [Set up your origin](../07-prerendering-management/manage-origins/manage-origins.md)
 - [Validate and monitor Prerender](../06-monitor-prerendering/validate-prerendering.md)
-- Purge the Cache
+- [Purge the Cache](../07-prerendering-management/manage-cache/manage-cache.md)
 - [Customize rendering behavior with Prerender headers](../03-features/02-prerendering-headers/index.md)
 
 ## Prerequisites
@@ -21,7 +21,7 @@ This guide will help you:
 
 ### Set Up Origin
 
-Before leveraging the different capabilities of Prerendering, you need to define your origin, which is the target site for Prerender. This step is crucial as it helps the system to understand the source of the pages and determine the caching strategy for ensuring optimal performance. For example, a regularly-updated products page may require shorter periods between subsequent caches than a contact page. 
+Before leveraging the different capabilities of Prerender, you need to define your origin, which is the target site for Prerender. This step is crucial as it helps the system to understand the source of the pages and determine the caching strategy for ensuring optimal performance. For example, a regularly-updated products page may require shorter periods between subsequent caches than a contact page. 
 
 To set up your origin:
 
@@ -53,7 +53,7 @@ You can further increase the capabilities of Prerendering by configuring the fol
     - [Add a click interaction policy](../03-features/01-synthetic-interactions/03-managing-synthetic-interaction-policies/manage-click-interactions.md).
     - [Add a hover interaction policy](../03-features/01-synthetic-interactions/03-managing-synthetic-interaction-policies/manage-hover-interactions.md).
 
-### Validate and Monitor Prerendering
+### Validate and Monitor Prerender
 
 After setting up your origin for Prerender, you can validate its operations and performance by observing monitoring metrics.
 

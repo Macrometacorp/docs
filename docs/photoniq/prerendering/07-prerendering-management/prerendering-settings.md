@@ -111,3 +111,5 @@ This settings dictates how Prerender handles redirects based on the selected str
 1. Scroll to **Follow Redirect** from the **Advanced Settings** tab.
 1. Select a strategy.
 1. Click **Save**
+
+![follow redirect](/img/prerendering/follow-redirect.png)
