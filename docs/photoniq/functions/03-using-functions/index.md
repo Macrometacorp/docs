@@ -5,11 +5,11 @@ title: Using Functions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-PhotonIQ functions eliminate the need to deploy and maintain servers by providing all necessary resources to keep your applications running smoothly. This allows you to focus on writing less code and managing fewer infrastructure components, resulting in significant cost savings. PhotonIQ functions allow you to implement your system's logic using event-driven, ready-to-use blocks of code called "functions."
-
+PhotonIQ Functions allow you to implement your system's logic using event-driven, ready-to-use blocks of code called "functions".
+They provide the necessary resources to keep your applications running smoothly, enabling you to focus on writing less code and managing fewer infrastructure components, ultimately resulting in significant cost savings
 
 :::important
-PhotonIQ functions support Rust and JavaScript environments.
+PhotonIQ Functions support Rust and JavaScript environments.
 :::
 
 ## Create a new function
@@ -43,8 +43,8 @@ functions/
     ├── Cargo.toml
     └── photoniq.toml
 ```
-- `main.rs`: Contains the function's code.
-- `photoniq.toml`: Contains the function's configuration settings. Refer to [Configuring Functions](configuring-functions.md) for more details.
+- `main.rs`: Contains the function code.
+- `photoniq.toml`: Contains the function configuration settings. Refer to [Configuring Functions](configuring-functions.md) for more details.
 
 Here is the default sample of the `main.rs` file:
 

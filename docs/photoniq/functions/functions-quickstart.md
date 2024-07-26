@@ -6,16 +6,16 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-PhotonIQ functions provides a real-time, event-driven method for enterprises to create and interact with their services using the [CLI](./04-faas-commands/index.md) and [API](https://www.macrometa.com/docs/apiFaas#/) requests.
+PhotonIQ Functions provides a real-time, event-driven method for enterprises to create and interact with their services using the [CLI](./04-faas-commands/index.md) and [API](https://www.macrometa.com/docs/apiFaas#/) requests.
 
-In this quickstart guide, you'll learn how to begin with PhotonIQ functions by:
+In this quickstart guide, you'll learn how to begin with PhotonIQ Functions by:
 - [Creating a function](#creating-a-function)
 - [Testing the function locally](#testing-the-function-locally)
-- [Deploying the function to remote PhotonIQ Server](#deploying-the-function-to-photoniq-server)
+- [Deploying the function to remote PhotonIQ Server](#deploying-the-function-to-the-remote-server)
 
 ## Prerequisite
 
-To use PhotonIQ functions locally, you need the functions CLI installed on your server. Follow these steps to install or update the functions CLI for your OS:
+Using the PhotonIQ Functions locally requires the  CLI installed. Follow these steps to install or update the PhotonIQ Functions CLI for your OS:
 
 
 <Tabs groupId="operating-systems">
@@ -30,11 +30,8 @@ rustup target add wasm32-wasi
 ```
  2. Download the [Functions MacOS CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-x86_64-apple-darwin.tar.gz) to your local machine.
 
- 3. Navigate to the Functions CLI directory and launch the CLI tool with the following command:
+ 3. Add the package directory to your PATH for the `faas` command to be globally accessible from any terminal. Launch the CLI with the `faas help` command.
 
-```shell
-faas help
-```
 </TabItem>
 
 <TabItem value="Windows" label="Windows">
@@ -48,11 +45,8 @@ rustup target add wasm32-wasi
 ```
 4. Download and extract the [Functions Windows CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-x86_64-pc-windows-gnu.zip).
 
-5. Navigate to the Functions CLI directory and launch the CLI tool with the following command:
+5. Add the package directory to your system's PATH environment variable for the `faas` command to be accessible from any terminal. Launch the CLI with the `faas help` command.
 
-```shell
-faas help
-```
 </TabItem>
 
 <TabItem value="Linux" label="Linux">
@@ -66,17 +60,8 @@ rustup target add wasm32-wasi
 
 2. Depending on your Linux system architecture, you can download the [Functions Linux GNU CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-aarch64-unknown-linux-gnu.tar.gz) or [Functions Linux MUSL CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-x86_64-unknown-linux-musl.tar.gz) to your local machine.
 
+3. Add the package directory to your system's PATH environment variable for the `faas` command to be accessible from any terminal. Launch the CLI with the `faas help` command.
 
-```shell
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup target add wasm32-wasi
-```
-
-3. Navigate into the Functions CLI directory, and launch the `functions` CLI tool with this command:
-
-```shell
-faas help
-```
 </TabItem>
 
 </Tabs>
@@ -88,9 +73,9 @@ For more information on available commands, refer to the [Functions CLI commands
 :::
 
 
-## Creating a Function
+## Creating a function
 
-1. With the functions CLI installed, create a new function named `testFunction`  with the `faas new` command:
+1. With the Functions CLI installed, create a new function named `testFunction`  with the `faas new` command:
 
 ```bash
 faas new testFunction
@@ -105,7 +90,7 @@ Configuration can be modified in the file: functions/testFunction/photoniq.toml
 
 :::note
 
-This command generates a new `functions/testFunction` directory with the default template files. While the default function template is created in `Rust`, PhotonIQ functions also support `Javascript`.  Refer to the [**Using Functions**](./03-using-functions/index.md) to create a Javascript function.
+This command generates a new `functions/testFunction` directory with the default template files. While the default function template is created in `Rust`, PhotonIQ Functions also support `Javascript`.  Refer to the [**Using Functions**](./03-using-functions/index.md) to create a Javascript function.
 
 :::
 
@@ -175,7 +160,7 @@ Env Var MESSAGE = Hello 👋! This message comes from an environment variable
 The `Env Var MESSAGE` is the value defined in the `photoniq.toml` file under the `[env_vars]` section.
 
 
-## Testing the Function locally
+## Testing the function locally
 
 1. To test the function, build it using the following command:
 
@@ -209,26 +194,29 @@ Env Var MESSAGE = Hello 👋! This message comes from an environment variable
 ```
 
 
-## Deploying the function to PhotonIQ Server
+## Deploying the function to the remote server
 
-Running functions locally limits their usage to your local server. To make your functions globally available, PhotonIQ uses geo-distributed GDN servers, ensuring high availability and faster performance by processing at the closest point of presence to the user. Furthermore, the [highly distributed nature of the GDN](https://www.macrometa.com/platform) means every function is georeplicated in all regions in the fabric. 
+Running functions locally limits their usage to your local server. To make your functions globally available, PhotonIQ Functions uses geo-distributed GDN servers, ensuring high availability and faster performance by processing at the closest point of presence to the user. Furthermore, the [highly distributed nature of the GDN](https://www.macrometa.com/platform) means every function is georeplicated in all regions in the fabric. 
 
-Before you proceed, [contact your Macrometa personnel](https://www.macrometa.com/contact/sales) to provide these  authentication credentials for accessing the PhotonIQ remote server:
+Before you proceed, [contact your Macrometa personnel](https://www.macrometa.com/contact/sales) to provide these authentication credentials for accessing the PhotonIQ remote server:
 - API_KEY
-- URL
+- API_URL
 
-1. Use the  `faas remote deploy` command to deploy the function:
+The `faas remote` command will request these credentials on your first attempt.
+
+1. Add the `API_URL` and `API_KEY` as enviroment variables `[env_vars]` in _phontoiq.toml_.
+
+2. Use the  `faas remote deploy` command to deploy the function:
 ```bash
 faas remote deploy testFunction
 ```
 
-2. Once deployed, execute the remote function with:
-`remote execute` command:
+3. Once deployed, execute the remote function with this command:
 ```bash
 faas remote execute testFunction
 ```
 
-3, To delete the function from the remote server, use:
+4. To delete the function from the remote server, use:
 
 ```bash
 faas remote delete testFunction
