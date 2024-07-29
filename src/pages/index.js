@@ -31,7 +31,7 @@ const b = [
   {
     title: "FAQs",
     subtitle: "Learn while getting answers to your questions.",
-    href: "https://support.macrometa.com/hc/en-us/articles/15797660147597-Playground-Support-in-Community-Slack",
+    href: "https://www.macrometa.com/faq",
     icon: "/docs/img/Icon-FAQ.svg",
   },
   {
@@ -107,7 +107,7 @@ export default function Hello()
             <h1 className="ml-3 mb-0 items-center text-gray-700 sm:text-[15px] text-[13px] text-md">
               Still need help?
               <a
-                href="https://support.macrometa.com/hc/en-us/requests/new?"
+                href="https://www.macrometa.com/support"
                 className="help ml-1 text-indigo-500 sm:text-[15px] text-[13px] text-md"
               >
                 Submit a request
