@@ -83,7 +83,7 @@ const config = {
           alt: "Macrometa Logo",
           src: "img/macrometa-logo.svg",
           srcDark: "img/macrometa-logo-dark.svg",
-          href: "/",
+          href: "http://macrometa.com/",
           target: "_self",
         },
         items: [
@@ -114,7 +114,7 @@ const config = {
           },
           {
             className: "navbar__item--external",
-            href: "https://support.macrometa.com/",
+            href: "https://www.macrometa.com/support",
             label: "Support",
           },
         ],
@@ -165,7 +165,7 @@ const config = {
               },
               {
                 className: "footer__link-item footer__item--external",
-                href: "https://support.macrometa.com",
+                href: "https://www.macrometa.com/support",
                 label: "Support",
               },
               // {
