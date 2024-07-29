@@ -200,7 +200,7 @@ const config = {
               {
                 className: "footer__link-item footer__item--external",
                 href: "https://www.macrometa.com/contact",
-                label: "Contacts Us",
+                label: "Contact Us",
               },
             ],
           },
