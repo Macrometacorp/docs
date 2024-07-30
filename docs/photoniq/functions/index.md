@@ -36,5 +36,5 @@ PhotonIQ Functions leverages [CLI](./04-faas-commands/index.md) and [API](https:
  </grid> 
 
 ## How PhotonIQ Functions work
-PhotonIQ Functions use an event-driven model to trigger and deploy lightweight, high-performance functions as [WebAssembly](https://webassembly.org/) modules in response to HTTP requests. This model ensures efficient resource consumption, as the Functions service only utilizes resources when needed. Additionally, the stateless nature of the service allows it to handle multiple requests independently and in parallel, thereby enhancing performance.
+PhotonIQ Functions uses a serverless model to trigger and deploy lightweight, high-performance functions as [WebAssembly](https://webassembly.org/) modules in response to HTTP requests. This model ensures efficient resource consumption, as the Functions service only utilizes resources when needed. Additionally, the stateless nature of the service allows it to handle multiple requests independently and in parallel, thereby enhancing performance.
 
