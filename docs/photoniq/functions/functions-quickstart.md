@@ -11,7 +11,7 @@ PhotonIQ Functions provides a real-time method for enterprises to create and int
 In this quickstart guide, you'll learn how to begin with PhotonIQ Functions by:
 - [Creating a function](#creating-a-function)
 - [Testing the function locally](#testing-the-function-locally)
-- [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-the-remote-server)
+- [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-remote-photoniq-functions-server)
 
 ## Prerequisite
 
@@ -194,7 +194,7 @@ Env Var MESSAGE = Hello 👋! This message comes from an environment variable
 ```
 
 
-## Deploying the function to the remote server
+## Deploying the function to remote PhotonIQ Functions server
 
 Running functions locally limits their usage to your local server. To make your functions globally available, PhotonIQ Functions uses geo-distributed GDN servers, ensuring high availability and faster performance by processing at the closest point of presence to the user. Furthermore, the [highly distributed nature of the GDN](https://www.macrometa.com/platform) means every function is georeplicated in all regions in the fabric. 
 
