@@ -1012,17 +1012,10 @@ html[data-theme="dark"] .card-land{
   cursor: pointer;
 }
 
-.hs-form-private .hs-button .actions {
-  text-align: center;
-  background: transparent;
-  color: #4a5568;
-  text-align: center;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 20px;
+.hs-submit .actions {
   border-radius: 0px 4px 4px 0px;
   border: 1px solid #6767e6;
   padding-inline: 12px;
-  padding-block: 5px;
+  padding-block: 4px;
   cursor: pointer;
 }
