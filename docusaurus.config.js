@@ -231,6 +231,14 @@ const config = {
                   <a href="https://linkedin.com/company/macrometa-corporation" target="_blank">
                   <img class="social-icons" src="/docs/img/Icon-linkedin.svg">
                   </a>
+                  <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                  <script>
+                    hbspt.forms.create({
+                      region: "na1",
+                      portalId: "4559600",
+                      formId: "2820791a-e45e-4742-842f-a6f1b08fe051"
+                    });
+                  </script>
                 `,
               },
             ],
