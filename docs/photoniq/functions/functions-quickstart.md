@@ -6,7 +6,7 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-PhotonIQ Functions provides a real-time, event-driven method for enterprises to create and interact with their services using the [CLI](./04-faas-commands/index.md) and [API](https://www.macrometa.com/docs/apiFaas#/) requests.
+PhotonIQ Functions provides a real-time method for enterprises to create and interact with their services using the [CLI](./04-faas-commands/index.md) and [API](https://www.macrometa.com/docs/apiFaas#/) requests.
 
 In this quickstart guide, you'll learn how to begin with PhotonIQ Functions by:
 - [Creating a function](#creating-a-function)
