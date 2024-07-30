@@ -992,3 +992,8 @@ html[data-theme="dark"] .card-land{
     color: var(--docs-card-description-color);
   }
 }
+
+.hbspt-form {
+  display: flex;
+  margin: 0 auto;
+}
