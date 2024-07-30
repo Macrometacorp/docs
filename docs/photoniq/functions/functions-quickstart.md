@@ -198,7 +198,7 @@ Env Var MESSAGE = Hello 👋! This message comes from an environment variable
 
 Running functions locally limits their usage to your local server. To make your functions globally available, PhotonIQ Functions uses geo-distributed GDN servers, ensuring high availability and faster performance by processing at the closest point of presence to the user. Furthermore, the [highly distributed nature of the GDN](https://www.macrometa.com/platform) means every function is georeplicated in all regions in the fabric. 
 
-Before you proceed, [contact your Macrometa personnel](https://www.macrometa.com/contact/sales) to provide these authentication credentials for accessing the PhotonIQ remote server:
+Before you proceed, [contact your Macrometa personnel](https://www.macrometa.com/contact/sales) to provide these authentication credentials for accessing the PhotonIQ Functions remote server:
 - API_KEY
 - API_URL
 
