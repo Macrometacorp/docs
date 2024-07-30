@@ -5,7 +5,7 @@ title: Using Functions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-PhotonIQ Functions allow you to implement your system's logic using event-driven, ready-to-use blocks of code called "functions".
+PhotonIQ Functions allow you to implement your system's logic using ready-to-use blocks of code called "functions".
 They provide the necessary resources to keep your applications running smoothly, enabling you to focus on writing less code and managing fewer infrastructure components, ultimately resulting in significant cost savings
 
 :::important
