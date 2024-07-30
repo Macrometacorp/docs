@@ -75,7 +75,7 @@ For more information on available commands, refer to the [Functions CLI commands
 
 ## Creating a function
 
-1. With the Functions CLI installed, create a new function named `testFunction`  with the `faas new` command:
+1. With the PhotonIQ Functions CLI installed, create a new function named `testFunction`  with the `faas new` command:
 
 ```bash
 faas new testFunction
