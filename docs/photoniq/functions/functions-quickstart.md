@@ -15,7 +15,7 @@ In this quickstart guide, you'll learn how to begin with PhotonIQ Functions by:
 
 ## Prerequisite
 
-Using the PhotonIQ Functions locally requires the  CLI installed. Follow these steps to install or update the PhotonIQ Functions CLI for your OS:
+Using the PhotonIQ Functions locally requires the CLI tool installed. Follow these steps to install or update the PhotonIQ Functions CLI for your OS:
 
 
 <Tabs groupId="operating-systems">
