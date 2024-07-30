@@ -11,7 +11,7 @@ PhotonIQ Functions provides a real-time method for enterprises to create and int
 In this quickstart guide, you'll learn how to begin with PhotonIQ Functions by:
 - [Creating a function](#creating-a-function)
 - [Testing the function locally](#testing-the-function-locally)
-- [Deploying the function to remote PhotonIQ Server](#deploying-the-function-to-the-remote-server)
+- [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-the-remote-server)
 
 ## Prerequisite
 
