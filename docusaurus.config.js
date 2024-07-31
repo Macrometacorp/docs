@@ -209,13 +209,15 @@ const config = {
             items: [
               {
                 html: `
-                <div class="newsletter">
-                <form class="signup">
-                  <input type="email" id="email" name="email" placeholder="Email Address">
-                  <button type="submit">Subscribe</button>
-                </form>
-              </div>
-                `,
+                <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                <script>
+                  hbspt.forms.create({
+                    region: "na1",
+                    portalId: "4559600",
+                    formId: "2820791a-e45e-4742-842f-a6f1b08fe051"
+                  });
+                </script>
+                `
               },
               {
                 html: `
@@ -231,16 +233,8 @@ const config = {
                   <a href="https://linkedin.com/company/macrometa-corporation" target="_blank">
                   <img class="social-icons" src="/docs/img/Icon-linkedin.svg">
                   </a>
-                  <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-                  <script>
-                    hbspt.forms.create({
-                      region: "na1",
-                      portalId: "4559600",
-                      formId: "2820791a-e45e-4742-842f-a6f1b08fe051"
-                    });
-                  </script>
                 `,
-              },
+              }
             ],
           },
         ],

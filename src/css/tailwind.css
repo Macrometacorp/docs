@@ -992,3 +992,41 @@ html[data-theme="dark"] .card-land{
     color: var(--docs-card-description-color);
   }
 }
+
+.hs-form-private {
+    display: flex;
+}
+.hs-input {
+  padding-inline: 10px;
+  padding-block: 10px;
+  border: 1px solid #6767e6;
+  border-right: none;
+  border-radius: 4px 0px 0px 4px;
+}
+.hs-form-private .hs-button{
+  background: transparent;
+  color: #4a5568;
+  font-size: 15px;
+  font-weight: 600;
+  padding-block: 5px;
+  cursor: pointer;
+}
+
+.hs-submit .actions {
+  border-radius: 0px 4px 4px 0px;
+  border: 1px solid #6767e6;
+  padding-inline: 12px;
+  padding-block: 4px;
+  cursor: pointer;
+}
+html[data-theme="dark"] .hs-submit .hs-button{
+  color: #ffffff;
+}
+html[data-theme="dark"] .submitted-message{
+  color: #ffffff;
+
+}
+.submitted-message{
+  color: #000000;
+
+}
