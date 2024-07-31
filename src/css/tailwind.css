@@ -1019,3 +1019,8 @@ html[data-theme="dark"] .card-land{
   padding-block: 4px;
   cursor: pointer;
 }
+html[data-theme="dark"] .hs-submit .actions{
+  color: #ffffff;
+  border: 1px solid #6767e6;
+
+}
