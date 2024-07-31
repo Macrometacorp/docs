@@ -58,7 +58,7 @@ const config = {
     ],
   ],
 
-  plugins: [tailwindPlugin, webpackPlugin, "posthog-docusaurus"],
+  plugins: [tailwindPlugin, webpackPlugin],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -72,12 +72,12 @@ const config = {
         contextualSearch: true,
         searchParameters: {},
       },
-      posthog: {
-        apiKey: process.env.POSTHOG_API_KEY || "DEV",
-        appUrl:
-          process.env.POSTHOG_API_URL || "https://posthog.prod.macrometa.io",
-        enableInDevelopment: false,
-      },
+      // posthog: {
+      //   apiKey: process.env.POSTHOG_API_KEY || "DEV",
+      //   appUrl:
+      //     process.env.POSTHOG_API_URL || "https://posthog.prod.macrometa.io",
+      //   enableInDevelopment: false,
+      // },
       navbar: {
         logo: {
           alt: "Macrometa Logo",
