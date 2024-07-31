@@ -996,7 +996,7 @@ html[data-theme="dark"] .card-land{
 .hs-form-private {
     display: flex;
 }
-.hs-form-private .hs_email .hs-input {
+.hs-input {
   padding-inline: 10px;
   padding-block: 10px;
   border: 1px solid #6767e6;
