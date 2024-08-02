@@ -39,7 +39,7 @@ Follow these instructions to view prerender activity in the web console.
 Prerender provides the following metrics. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - **Renders** - Total number of renders performed.
-- **Requests per Second** - Number of renders performed per second.
+- **Requests per Second (RPS)** - Number of renders performed per second.
 - **Requests** - Total number of page requests received.
 - **Cache Hits** - Number of requests served from the cache.
 - **Cache Misses** - Number of requests that were not in the cache and were dynamically rendered instead.

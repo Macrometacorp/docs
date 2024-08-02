@@ -30,7 +30,7 @@ Follow these instructions to view prefetching jobs in the web console.
 </TabItem>
 </Tabs>
 
-## Prefetching Configuration Fields
+### Prefetching Configuration Fields
 
 Prerender provides the following prefetching configuration fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
@@ -41,7 +41,7 @@ Prerender provides the following prefetching configuration fields. Field names i
 - **Devices** - Icon indicating whether the prefetch was rendered for just desktop or desktop and mobile.
 - **Actions** - Icon that allows you to update.
 
-## Create Prefetching Configurations
+## Configure Prefetching
 
 <Tabs groupId="operating-systems2">
 <TabItem value="console" label="Web Console">

@@ -103,3 +103,13 @@ In the web console, this displays current header keys and values. For more infor
 You can specify headers from a bot's request to be sent directly to the Prerender service. Click **Edit** to update the list.
 
 ![Pass-through Headers](/img/prerendering/pass-through-headers.png)
+
+### Follow Redirect
+
+This settings dictates how Prerender handles redirects based on the selected strategy. To select a strategy:
+
+1. Scroll to **Follow Redirect** from the **Advanced Settings** tab.
+1. Select a strategy.
+1. Click **Save**
+
+![follow redirect](/img/prerendering/follow-redirect.png)
