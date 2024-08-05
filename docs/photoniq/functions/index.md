@@ -22,12 +22,12 @@ PhotonIQ Functions leverages [CLI](./04-faas-commands/index.md) and [API](https:
  <card
     heading="Quickstart"
     description="Create and deploy your first function in minutes."
-    href="functions-quickstart"
+    href="https://www.macrometa.com/docs/photoniq/functions/functions-quickstart"
   />
    <card
     heading="Functions CLI commands"
     description="Explore CLI commands for managing functions."
-    href="faas-commands"
+    href="https://www.macrometa.com/docs/photoniq/functions/faas-commands"
   />
    <card
     heading="Functions API"
