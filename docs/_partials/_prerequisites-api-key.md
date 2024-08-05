@@ -1,2 +1,2 @@
 - A [Macrometa account](https://auth-play.macrometa.io/) with admin permissions.
-- An API key with admin permissions. For more information, refer to [Create API Keys](../account-management/api-keys/create-api-keys.md).
+- An API key with admin permissions. Here's how to [Create an API Key](../account-management/api-keys/create-api-keys.md).
