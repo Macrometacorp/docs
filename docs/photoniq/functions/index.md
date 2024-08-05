@@ -3,7 +3,8 @@ sidebar_position: 1
 title: Functions
 ---
 
-PhotonIQ Functions is an edge-computing service that allows you to run your applications smoothly without the hassle of managing infrastructure, server and resources manually. Utilizing the highly distributed [Global Data Mesh](https://www.macrometa.com/platform/global-data-mesh) to deploy and execute functions from the closest point of presence (PoP) to customers, it ensures low-latency and high-performance. PhotonIQ Functions allow you to implement your system's logic using event-driven, ready-to-use blocks of code called "functions".
+
+PhotonIQ Functions is an edge-computing service that allows you to run your serverless applications smoothly, eliminating the need for manual infrastructure management. It leverages the distributed [Global Data Mesh](https://www.macrometa.com/platform/global-data-mesh) to ensure low-latency and high performance by deploying functions at the nearest point of presence (PoP) to users. Additionally, PhotonIQ Functions is designed to handle complex integrations with third-party services via API requests, making it a versatile solution for diverse operational requirements. It allows you to implement your system's logic using event-driven, ready-to-use blocks of code called "functions".
 
 ## Key features
 
