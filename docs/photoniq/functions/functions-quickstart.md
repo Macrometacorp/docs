@@ -8,19 +8,9 @@ import TabItem from '@theme/TabItem';
 
 PhotonIQ Functions provides a real-time method for enterprises to create and interact with their services using the [CLI](./04-faas-commands/index.md) and [API](https://www.macrometa.com/docs/apiFaas#/) requests.
 
-In this quickstart guide, you'll learn how to begin with PhotonIQ Functions by:
-- [Creating a function](#creating-a-function)
-- [Testing the function locally](#testing-the-function-locally)
-- [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-remote-photoniq-functions-server)
-
 ## Prerequisite
 
-Using the PhotonIQ Functions locally requires the CLI tool installed. Follow these steps to install or update the PhotonIQ Functions CLI for your OS:
-
-
-<Tabs groupId="operating-systems">
-
-<TabItem value="MacOS" label="MacOS">
+Using the PhotonIQ Functions locally requires the CLI tool installed. Follow these steps to install or update the CLI tool:
 
 1. Install the Rust compiler and WebAssembly libraries required for creating Rust functions with:
 
@@ -28,43 +18,15 @@ Using the PhotonIQ Functions locally requires the CLI tool installed. Follow the
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup target add wasm32-wasi
 ```
- 2. Download the [Functions MacOS CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-x86_64-apple-darwin.tar.gz) to your local machine.
 
- 3. Add the package directory to your PATH for the `faas` command to be globally accessible from any terminal. Launch the CLI with the `faas help` command.
-
-</TabItem>
-
-<TabItem value="Windows" label="Windows">
-
-1. Install the [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/). In the installation menu select Desktop development with C++.
-2. Download [Rust](https://www.rust-lang.org/tools/install).
-3. Install WebAssembly libraries required for creating Rust functions with this command:
+2. Install the [NPM package for the CLI tool](https://www.npmjs.com/package/@macrometa/faas) with this command:
 
 ```bash
-rustup target add wasm32-wasi
-```
-4. Download and extract the [Functions Windows CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-x86_64-pc-windows-gnu.zip).
-
-5. Add the package directory to your system's PATH environment variable for the `faas` command to be accessible from any terminal. Launch the CLI with the `faas help` command.
-
-</TabItem>
-
-<TabItem value="Linux" label="Linux">
-
-1. Install the Rust compiler and WebAssembly libraries required for creating Rust functions by executing the following command:
-
-```shell
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup target add wasm32-wasi
+npm i -g  @macrometa/faas
 ```
 
-2. Depending on your Linux system architecture, you can download the [Functions Linux GNU CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-aarch64-unknown-linux-gnu.tar.gz) or [Functions Linux MUSL CLI package](https://macrometacorp.github.io/photoniq-faas-cli-docs/faas-1.0.0-x86_64-unknown-linux-musl.tar.gz) to your local machine.
+3. Launch the CLI with the `faas help` command.
 
-3. Add the package directory to your system's PATH environment variable for the `faas` command to be accessible from any terminal. Launch the CLI with the `faas help` command.
-
-</TabItem>
-
-</Tabs>
 
 :::tip
 
@@ -72,6 +34,119 @@ For more information on available commands, refer to the [Functions CLI commands
 
 :::
 
+<Tabs groupId="languages">
+
+<TabItem value="nextjs" label="NextJs">
+
+In this quickstart guide, you'll learn how to begin with PhotonIQ Functions with NextJS by:
+- [Creating a function](#create-a-function)
+- [Testing the function locally](#test-the-function-locally)
+- [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-remote-photoniq-functions-server)
+
+## Create a function
+
+1. To scaffold a new Next.js project with the Functions CLI, run the following command:
+
+```bash
+faas new <projectName> --lang nextjs
+```
+
+If successful, it returns a response similar to this:
+
+```
+Template function has been created in path: functions/projectName
+Configuration can be modified in the file: functions/projectName/photoniq.toml
+```
+
+This command creates a `functions` and `photoniq-faas-sdk` directory. The `functions` directory contains the Next.js app you just created.
+
+2. Navigate to /src/app/api directory. By default, some template routes are defined in `pingjs/route.js` and `pingts/route.ts`. Below is an example of `pingjs/route.js`:
+
+```javascript title="route.js"
+export function GET(req) {
+  return new Response('[GET] PhotonIQ FaaS function is working.', {
+    status: 200,
+    headers: { 'Content-Type': 'text/plain' },
+  });
+}
+
+export function POST(req) {
+  return new Response('[POST] PhotonIQ FaaS function is working.', {
+    status: 200,
+    headers: { 'Content-Type': 'text/plain' },
+  });
+}
+```
+
+For this guide, we'll use the default route provided. The default route above displays the following message when accessed: `"[GET] PhotonIQ FaaS function is working"`. Modify the function as desired and follow the next steps to test the function.
+
+## Test the function locally
+
+1. Use the `faas build` command to install the required dependencies and build the Next.js app with the functions:
+
+```bash
+faas build <projectName>
+```
+
+After the build is successful, start the local development server using the `faas run` command:
+
+```bash
+faas run <projectName> 
+```
+
+It is served on http://localhost:8080  by default. Open `http://localhost:8080` in your browser and test the routes you created in the function.
+To test the default routes in this example guide, go to `http://localhost:8080/api/pingjs`. It displays the following message: "`[GET] PhotonIQ FaaS function is working.`"
+
+
+## Deploying the function to remote PhotonIQ Functions server
+
+Running functions locally limits their usage to your local server. To make your functions globally available, PhotonIQ Functions uses geo-distributed GDN servers, ensuring high availability and faster performance by processing at the closest point of presence to the user. Furthermore, the [highly distributed nature of the GDN](https://www.macrometa.com/platform) means every function is georeplicated in all regions in the fabric. 
+
+Before you proceed, [contact your Macrometa personnel](https://www.macrometa.com/contact/sales) to provide these authentication credentials for accessing the PhotonIQ Functions remote server:
+- API_KEY
+- API_URL
+
+The `faas remote` command will request these credentials on your first attempt.
+
+1. Use the  `faas remote deploy` command to deploy the function:
+```bash
+faas remote deploy <projectName>
+```
+
+2. To check the status of the deployment, run this command:
+```bash
+faas remote status <projectName>
+```
+
+If successful, the response is similar to this:
+```bash
+version: 0.0.1
+url: <function_url>
+status: success
+name: <projectName>
+lastUpdated: 2024-08-04 16:52:35 
+```
+Use the `<function_url>` to access your function on the browser.
+
+3. Once deployed, execute the remote function with this command:
+```bash
+faas remote execute <projectName>
+```
+
+4. To delete the function from the remote server, use:
+
+```bash
+faas remote delete <projectName>
+```
+
+</TabItem>
+
+<TabItem value="Rust/Javascript" label="Rust/Javascript">
+
+In this quickstart guide, you'll learn how to begin with PhotonIQ Functions by:
+- [Creating a function](#creating-a-function)
+- [Testing the function locally](#testing-the-function-locally)
+- [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-remote-photoniq-functions-server-1)
 
 ## Creating a function
 
@@ -221,6 +296,8 @@ faas remote execute testFunction
 ```bash
 faas remote delete testFunction
 ```
+</TabItem>
 
+</Tabs>
 
 
