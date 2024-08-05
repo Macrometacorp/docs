@@ -82,12 +82,12 @@ For this guide, we'll use the default route provided. The default route above di
 
 ## Test the function locally
 
-1. Use the `faas build` command to install the required dependencies and build the Next.js app with the functions:
+1. Navigate back to the directory where you created the function and use the `faas build` command to install the required dependencies and build the Next.js app with the functions:
 
 ```bash
 faas build <projectName>
 ```
-
+To verify you're in the correct directory, use the ls command, which should list only the `functions` and `photoniq-faas-sdk` directories.
 After the build is successful, start the local development server using the `faas run` command:
 
 ```bash
