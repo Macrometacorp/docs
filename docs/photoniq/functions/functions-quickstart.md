@@ -36,9 +36,9 @@ For more information on available commands, refer to the [Functions CLI commands
 
 <Tabs groupId="languages">
 
-<TabItem value="nextjs" label="NextJs">
+<TabItem value="nextjs" label="Next.js">
 
-In this quickstart guide, you'll learn how to begin with PhotonIQ Functions with NextJS by:
+In this quickstart guide, you'll learn how to begin with PhotonIQ Functions with Next.js by:
 - [Creating a function](#create-a-function)
 - [Testing the function locally](#test-the-function-locally)
 - [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-remote-photoniq-functions-server)
@@ -60,7 +60,7 @@ Configuration can be modified in the file: functions/projectName/photoniq.toml
 
 This command creates a `functions` and `photoniq-faas-sdk` directory. The `functions` directory contains the Next.js app you just created.
 
-2. Navigate to /src/app/api directory. By default, some template routes are defined in `pingjs/route.js` and `pingts/route.ts`. Below is an example of `pingjs/route.js`:
+2. Navigate to the _/src/app/api_ directory in the Next.js app. By default, some template routes are defined in `pingjs/route.js` and `pingts/route.ts`. Below is an example of `pingjs/route.js`:
 
 ```javascript title="route.js"
 export function GET(req) {
@@ -87,14 +87,16 @@ For this guide, we'll use the default route provided. The default route above di
 ```bash
 faas build <projectName>
 ```
-To verify you're in the correct directory, use the ls command, which should list only the `functions` and `photoniq-faas-sdk` directories.
-After the build is successful, start the local development server using the `faas run` command:
+To verify you're in the correct directory, use the `ls` command, which should list only the `functions` and `photoniq-faas-sdk` directories.
+
+2. After the build is successful, start the local development server using the `faas run` command:
 
 ```bash
 faas run <projectName> 
 ```
 
-It is served on http://localhost:8080  by default. Open `http://localhost:8080` in your browser and test the routes you created in the function.
+It is served on `http://localhost:8080`  by default. Open `http://localhost:8080` in your browser and test the routes you created in the function.
+
 To test the default routes in this example guide, go to `http://localhost:8080/api/pingjs`. It displays the following message: "`[GET] PhotonIQ FaaS function is working.`"
 
 
