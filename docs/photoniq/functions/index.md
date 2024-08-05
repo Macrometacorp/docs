@@ -22,19 +22,19 @@ PhotonIQ Functions leverages [CLI](./04-faas-commands/index.md) and [API](https:
  <card
     heading="Quickstart"
     description="Create and deploy your first function in minutes."
-    href="functions-quickstart"
+    href="https://www.macrometa.com/docs/photoniq/functions/functions-quickstart"
   />
    <card
     heading="Functions CLI commands"
     description="Explore CLI commands for managing functions."
-    href="faas-commands"
+    href="https://www.macrometa.com/docs/photoniq/functions/faas-commands"
   />
    <card
     heading="Functions API"
     description="Integrate functions into your application via API."
     href="https://www.macrometa.com/docs/apiFaas#/"
   />
- </grid> 
+ </grid>
 
 ## How PhotonIQ Functions work
 PhotonIQ Functions uses a serverless model to trigger and deploy lightweight, high-performance functions as [WebAssembly](https://webassembly.org/) modules in response to HTTP requests. This model ensures efficient resource consumption, as the Functions service only utilizes resources when needed. Additionally, the stateless nature of the service allows it to handle multiple requests independently and in parallel, thereby enhancing performance.
