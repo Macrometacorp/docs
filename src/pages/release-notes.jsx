@@ -13,10 +13,10 @@ const App = () => {
     },
 
     {
-      id: 2, date: "August 26, 2024", tag: "GDN", Product: "Virtual Waiting Rooms 1.2.3 ", whatsnew: "What's New",
+      id: 2, date: "August 26, 2024", tag: "GDN", Product: "GDN v0.18.0 ", whatsnew: "What's New",
       whatsNewContents: [ "Create collections with strong consistency.", "Improvements to the web console for better management.", "New AWS S4 target for connection", "New API endpoint to Stream workers", "New Global API endpoint to Fabrics" ], 
       Improvement: "Improvement", improvementContents: [ "New Group ID API Endpoints", "Enhanced Error Handling for Stream Workers", "Stream workers support for all collection types.", "Addition of Akamai EdgeWorkers code bundles" ],
-       bugFix: "Bug Fixes", bugFixContents: [ "Corrected field order and capitalization on the Invite User signup page.", "Delete subscriptions only at stream worker deletion, not unpublish.", "Fixed Regex for http.status.code in http-call-response function."]},
+       bugFix: "Bug Fixes", bugFixContents: ["Corrected field order and capitalization on the Invite User signup page.", "Delete subscriptions only at stream worker deletion, not unpublish.", "Fixed Regex for http.status.code in http-call-response function."]},
   ];
 
   const filteredNotes = selectedTag === "All" 
@@ -49,7 +49,7 @@ const App = () => {
       <div className="mt-6">
         <div className="pb-20 md:pb-24 w-full max-w-screen-xl xl:mx-auto">
           <div className="relative min-h-[600px] w-full">
-            <div className="absolute bottom-0 left-0 top-2 w-[2px] bg-indigo-200 md:left-[25%] after:absolute after:inset-x-0 after:bottom-0 after:h-48 after:bg-gradient-to-b after:from-gray-100 after:to-white"></div>
+            <div className="absolute bottom-0 left-0 top-2 w-[2px] bg-[#6767E5] md:left-[25%] after:absolute after:inset-x-0 after:bottom-0 after:h-48 after:bg-gradient-to-b after:from-gray-100 after:to-white"></div>
             {filteredNotes.map((note) => {
               let { id, date, tag, Product, whatsnew, whatsNewContents, Improvement, improvementContents, bugFix, bugFixContents } = note;
               return (
@@ -58,7 +58,7 @@ const App = () => {
                     <div className="text-gray-600 md:mb-1 whitespace-nowrap">
                       {date}
                     </div>
-                    <span className="bg-indigo-200 w-fit flex-initial rounded-md px-1.5 py-0.5 text-sm text-gray-600">
+                    <span className="bg-[#6767E5] w-fit flex-initial rounded-md px-1.5 py-0.5 text-sm text-gray-100">
                       {tag}
                     </span>
                     <div className="absolute left-[-31px] top-1.5 h-4 w-4 rounded-full border-[2px] border-gray-200 bg-white md:left-auto md:right-[-9px]"></div>
@@ -95,7 +95,9 @@ const App = () => {
                         </div>
                       </div>
 
+                      {bugFixContents.length > 0 && (
                       <div className="font-bold">{bugFix}</div>
+                      )}
                       <div className="flex flex-col gap-y-3">
                         <div className="text-base">
                           {bugFixContents.map((bugFixContent, index) => (
