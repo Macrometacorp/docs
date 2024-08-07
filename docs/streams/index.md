@@ -3,45 +3,50 @@ sidebar_position: 1
 title: Streams
 ---
 
-Streams are flows of data in GDN to capture data in motion. Messages are sent via streams by publishers to consumers who then do something with the message. Streams can be created with client SDKs, REST APIs, CLI commands, or the web console.
-
-## Streams Workflow
-
-Streams in GDN is built on the [publish-subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern, aka pub-sub. In this pattern, producers publish messages to streams. Consumers can then subscribe to those streams, process incoming messages, and send an acknowledgement when processing is complete.
+Streams are flows of data in GDN that capture data in motion. Streams work using the [publish-subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern), aka pub-sub model where producers publish messages to streams and consumers subscribed to these streams consume and process these messages, and send an acknowledgement after processing.
 
 > producer/publisher --> stream --> subscription --> consumer
 
-For more information on these topics, refer to [Stream Basics](stream-basics/).
 
-### Producers/Publishers
+## Start working with Streams
 
-Messages from producers (publishers of messages) are only stored once on a stream, and can be consumed as many times as necessary by consumers. The stream is the source of truth for consumption. Although messages are only stored once on the stream, there can be different ways of consuming these messages.
+Start creating, publishing, and subscribing to streams.
 
-### Subscriptions
+<grid cols={4}>
+  <card
+    heading="Client SDKs"
+    description="Create, subscribe and publish to streams using our Python and Javascript SDKs."
+    href="https://www.macrometa.com/docs/streams/getting-started-streams"
+  />
+  <card
+    heading="REST APIs"
+    description="Leverage our extensive list of API endpoints to work with GDN Streams."
+    href="https://www.macrometa.com/docs/api#/operations/CreateStream"
+  />
+    <card
+    heading="Web Console"
+    description="Use our intuitive user interface to send, receive and subscribe to streams."
+    href="https://www.macrometa.com/docs/streams/stream-tasks/create-streams"
+/>
+    <card
+    heading="GDN CLI"
+    description="Install and use the interactive GDN CLI to start subscribing and publishing to streams."
+    href="https://www.macrometa.com/docs/cli/streams-cli#gdnsl-streams-create"
+  />
+</grid>
 
-Once a subscription has been created, GDN streams retain all messages even if the consumer disconnects from the server. Retained messages are only discarded when a consumer acknowledges that they've been successfully processed.
+## Why use streams?
 
-### Streams
+Streams enable:
 
-A stream is a named channel for sending messages. Each stream is backed by a distributed append-only log and can be local (at one edge location only) or global (across all edge locations in the fabric).
-
-### Consumers
-
-Consumers are grouped together for consuming messages. Each group of consumers is a subscription on a stream. Each consumer group can have its own way of consuming the messages: exclusively, shared, or failover.
-
-## Benefits
-
-Streams provide:
-
-- Seamless geo-replication of messages across regions
-- Very low publish and end-to-end latency
+- Seamless geo-replication of messages across regions with persistent message storage.
+- Very low publish and end-to-end latency with guaranteed message delivery.
 - Seamless scalability to over a million topics
 - Multiple subscription modes (`exclusive`, `shared`, and `failover`) for streams
-- Guaranteed message delivery with persistent message storage
 
 ## Stream Names
 
-As in other pub-sub systems, streams in GDN are named channels for transmitting messages from producers to consumers. Stream names are URLs that have a well-defined structure:
+As in other pub-sub systems, streams in GDN are named channels for transmitting messages from producers to consumers. Stream names are URLs with a well-defined structure:
 
 ```http
 persistent://tenant/fabric/stream-name
@@ -56,7 +61,7 @@ persistent://tenant/fabric/stream-name
 
 ## Streams and Fabrics
 
-A fabric is a geo-fenced grouping within a tenant. A tenant can create multiple fabrics. For more information about fabrics, refer to [Fabrics](../geofabrics/index.md).
+A [fabric](../geofabrics/index.md) is a geo-fenced grouping within a tenant. A tenant can create and house multiple fabrics.
 
 For example, a tenant with different applications can create a separate fabric for each application. A fabric allows the application to create and manage a hierarchy of streams. The stream `my-tenant/app1` is a fabric for the application `app1` for `my-tenant`. You can create any number of `streams` under the fabric.
 

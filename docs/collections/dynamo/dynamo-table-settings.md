@@ -41,7 +41,7 @@ Dynamo Table settings are displayed as a table schema similar to the following c
 }
 ```
 
-In the Settings tab, you can [Delete](../delete-collection.md) or [Purge](purge-dynamo-table.md) the collection.
+In the Settings tab, you can [Delete](../work-collections.md#delete-a-collection) or [Purge](purge-dynamo-table.md) the collection.
 
 </TabItem>
 <TabItem value="cli" label="CLI">

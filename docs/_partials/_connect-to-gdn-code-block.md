@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-When this code runs, it initializes the server connection to the specified region URL. For more information about connecting to GDN, refer to [Authentication](../account-management/auth/index.md).
+Running this code initializes a server connection to the specified region URL. Before attempting a connection, ensure to [authenticate your account](../account-management/auth/index.md) and have your details ready to enable a successful connection.  
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
@@ -10,7 +10,7 @@ When this code runs, it initializes the server connection to the specified regio
 # Import libraries
 from c8 import C8Client
 
-# Define constants
+# Define constants. You can find these constants in the GUI
 URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "my API key" # Change this to your API key

@@ -9,21 +9,40 @@ import Prerequisites from '../_partials/_prerequisites-sdk-api-key.md';
 import Steps from '../_partials/_get-started-steps.md';
 import ConnectToGDN from '../_partials/_connect-to-gdn-code-block.md';
 
-This article is an introduction to using streams with [Macrometa SDKs](../sdks/index.md).
+Before working with streams, you need to know the following concepts: 
+
+- **Producers/Publishers:** Producers publish messages to streams, which are stored once. However, consumers can consume these messages as many times as needed. The stream is the source of truth for consumption. 
+- **Consumers:** Streams group consumers together to consume messages. Each group of consumers is a subscription on a stream. Each consumer group can have its way of consuming the messages: **exclusively, shared, or failover**.
+- **Messages:** GDN streams retain all messages after creating a subscription, even after the consumer disconnects from the server. Retained messages are only discarded when a consumer acknowledges successful processing.
+- **Streams:** A stream is a named channel for sending messages. A distributed append-only log backs each stream and can be local (at one edge location only) or global (across all edge locations in the fabric).
+
+This guide demonstrates how to get started using Streams with the [pyC8](https://github.com/Macrometacorp/pyC8) and [jsC8](https://github.com/Macrometacorp/jsC8) SDKs and [GDN CLI](../cli/index.md).
+
+## Objectives
+
+At the end of this guide, you would have achieved the following: 
+
+- Created your first stream
+- Published messages to the stream
+- Subscribed to messages in a stream 
+
+<Tabs groupId="streams-sdk">
+<TabItem value="SDKs" label="Client SDK">
+
 
 ## Prerequisites
 
 <Prerequisites />
 
-## Get Started with Streams
 
-This page guides you through creating a stream, publishing messages to it, and subscribing to the stream using the [pyC8](https://github.com/Macrometacorp/pyC8) and [jsC8](https://github.com/Macrometacorp/jsC8) SDKs.
+## Before proceeding
 
 <Steps />
 
 **Note:** The code snippets in each step aren't the same as the code in the full demo file at the end.
 
-If you want to skip the explanation and just run the code, then go directly to the [Full Demo File](#full-demo-file).
+If you want to skip the explanation and just run the code, here is the [Full Demo File](#full-demo-file).
+
 
 ### Step 1. Connect to GDN
 
@@ -132,11 +151,12 @@ streams();
 
 ### Step 4. Publish Messages
 
-Example to publish documents to a stream. The stream can be either a local stream or could be a geo-replicated stream.
+Publish messages to a stream with a Producer. The stream can be a local stream or could be a geo-replicated stream.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
+    
 ```py
 producer = client.create_stream_producer(demo_stream, local=is_local)
 for i in range(10):
@@ -182,7 +202,7 @@ streams()
 
 ### Step 5. Subscribe to Stream
 
-Example to subscribe documents from a stream. The stream can be either a local stream or a geo-replicated global stream.
+Subscribe and receive messages from a local or global stream.
 
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
@@ -236,7 +256,7 @@ async function getDCList() {
 It's time to see streams in action!
 
 1. Replace the contents of your .js or .py file from above with the code block below.
-1. In your browser, open the GDN console and then click **Data > Streams**.
+1. Log in to the GDN console from your browser and click **Data > Streams**.
 
    - Select your recently created stream (c8globals.streamQuickstart) to view the output of the message within the console.
 
@@ -472,6 +492,18 @@ async function selectAction () {
   await selectAction();
 })();
 ```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+
+<TabItem value="gdn-cli" label="GDN CLI">
+
+To start creating, subscribing and receiving streams with the CLI, you need to [install the gdn CLI](../cli/index.md).
+
+After installing the CLI, you can then [use any of the gdnsl stream commands to create, subscribe, and publish messages](../cli/streams-cli.md). 
+
 
 </TabItem>
 </Tabs>

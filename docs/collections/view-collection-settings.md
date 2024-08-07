@@ -13,7 +13,7 @@ This page describes how to view and update collection settings.
 <Tabs groupId="operating-systems">
 <TabItem value="ui" label="Web Console">
 
-In the Macrometa web console, you can view and update collection settings in the Settings tab. You can also [Delete](delete-collection.md) or [Truncate](truncate-collection.md) the collection.
+In the Macrometa web console, you can view and update collection settings in the Settings tab. You can also [Delete](work-collections.md#delete-a-collection) or [Truncate](work-collections.md#truncate-a-collection) the collection.
 
 <ViewCollectionSettings />
 
@@ -47,12 +47,6 @@ Streams are enabled and disabled on a per-region basis, not a per-fabric basis. 
 ![Collection Stream Section](/img/collections/collection-stream.png)
 
 **Truncate Collection**
-
-For more information, refer to [Truncate Collection](./truncate-collection).
-
-**Delete Collection**
-
-For more information, refer to [Delete Collection](./delete-collection).
 
 </TabItem>
 <TabItem value="cli" label="CLI">
