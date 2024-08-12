@@ -13,7 +13,7 @@ If you want to follow along, you can create collections and add datasets to them
 
 Create the following collections. The collection names in the queries are case-sensitive.
 
-1. [Create a document collection](../../../collections/documents/create-document-store) called `places`.
+1. [Create a document collection](../../../collections/types-collections/documents/create-document-store) called `places`.
 2. [Create a graph edge collection](../../graph-tasks/create-graph-edge-collection) called `connections`.
 
 ### Add Vertex Dataset

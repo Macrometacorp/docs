@@ -5,10 +5,10 @@ title: REST APIs Document Collection Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../../_partials/_prerequisites-api-key.md';
-import Steps from '../../../_partials/_api-example-steps.md';
+import Prerequisites from '../../../../_partials/_prerequisites-api-key.md';
+import Steps from '../../../../_partials/_api-example-steps.md';
 
-This page demonstrates how you can work with Macrometa GDN document collections using the REST API. For more information about using Macrometa APIs, refer to [APIs](../../../api-docs/index.md).
+This page demonstrates how you can work with Macrometa GDN document collections using the REST API. For more information about using Macrometa APIs, refer to [APIs](../../../../api-docs/index.md).
 
 ## Prerequisites
 

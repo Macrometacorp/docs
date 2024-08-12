@@ -29,7 +29,7 @@ This guide will help you understand the fundamentals of working with graphs in M
 
 Create collections to hold the data that you will use to create graphs.
 
-1. [Create a document collection](../collections/documents/create-document-store) named `cities`.
+1. [Create a document collection](../collections/types-collections/documents/create-document-store) named `cities`.
    1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
    1. Click **Data > Collections** and then click **New Collection**.
    1. Click **Document**.

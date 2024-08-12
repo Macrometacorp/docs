@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Work with Collections
+title: Quickstart
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,8 +12,8 @@ Collections form the basis for interacting with the Macrometa GDN, allowing you 
 
 When viewing your collections, you can click **New Collection** to create a new collection. 
 
-- [Create a Document  Collection](documents/create-document-store.md)
-- [Create a Key-Value  Collection](keyvalue/create-key-value-store.md)
+- [Create a Document  Collection](../collections/types-collections/documents/create-document-store.md)
+- [Create a Key-Value  Collection](../collections/types-collections/keyvalue/create-key-value-store.md)
 - [Create a Redis Mode](redis-mode/create-redis-mode)
 - [Create a Dynamo Table](dynamo/create-dynamo-table.md)
 - [Create a Graph Edge](../graphs/graph-tasks/create-graph-edge-collection.md)

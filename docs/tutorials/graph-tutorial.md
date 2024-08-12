@@ -52,7 +52,7 @@ Graph edge example in `groceryOrders` collection (Connection between customer C0
 If you want to try out the example, you can import the data into your Macrometa GDN account.
 Data can be found in the `sample-data` folder of this [repository](https://github.com/Macrometacorp/macrometa-graph-example).
 
-- Create two [document collections](../collections/documents/index.md) in Macrometa GDN.
+- Create two [document collections](../collections/types-collections/documents/index.md) in Macrometa GDN.
     - `groceryItems`
     - `groceryCustomers`
 

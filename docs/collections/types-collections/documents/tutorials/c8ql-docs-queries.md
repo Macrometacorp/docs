@@ -5,10 +5,10 @@ title: C8QL Docs Queries Example
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../../_partials/_prerequisites-api-key.md';
-import GetStarted from '../../../_partials/_api-example-steps.md';
+import Prerequisites from '../../../../_partials/_prerequisites-api-key.md';
+import GetStarted from '../../../../_partials/_api-example-steps.md';
 
-This page demonstrates how you can use C8QL and the Macrometa API to run CRUD operations on document collection records. For more information about C8QL queries, refer to [C8QL](../../../queries/c8ql/) and [Queries](../../../queries/).
+This page demonstrates how you can use C8QL and the Macrometa API to run CRUD operations on document collection records. For more information about C8QL queries, refer to [C8QL](../../../../queries/c8ql/index.md) and [Queries](../../../../queries/index.md).
 
 ## Prerequisites
 

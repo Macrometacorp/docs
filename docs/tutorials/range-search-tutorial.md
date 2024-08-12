@@ -44,7 +44,7 @@ Here's an example shoe record from the dataset in JSON format:
 
 ## 1. Create the Inventory Collection
 
-Create a document collection called `inventory`. Be sure to enable the collection stream when you create the collection. This process is fully explained in [Create a Document Collection](../collections/documents/create-document-store.md).
+Create a document collection called `inventory`. Be sure to enable the collection stream when you create the collection. This process is fully explained in [Create a Document Collection](../collections/types-collections/documents/create-document-store.md).
 
 1. On the side menu, click **Data > Collections**.
 1. Click **New Collection**.
@@ -55,7 +55,7 @@ Create a document collection called `inventory`. Be sure to enable the collectio
 
 ## 2. Import Shoe Inventory Data into the Inventory Collection
 
-Add the records from `shoe-inventory.json` to the `inventory` collection. This process is fully explained in [Add Documents to a Collection](../collections/documents/add-document.md).
+Add the records from `shoe-inventory.json` to the `inventory` collection. This process is fully explained in [Add Documents to a Collection](../collections/types-collections/documents/add-document.md).
 
 1. In the collection list, click the name of the `inventory` document collection.
 2. Click the import icon, which is a down arrow pointing to a file box.

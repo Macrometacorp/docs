@@ -8,7 +8,7 @@ This page guides you through creating and querying your first semantic search vi
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
-- [Create a document collection](../../collections/documents/create-document-store.md) called `employees`.
+- [Create a document collection](../../collections/types-collections/documents/create-document-store.md) called `employees`.
 
 ## 1. Add Data to Collection
 

@@ -32,8 +32,8 @@ Setting up your event stream in the GDN for EDS involves two phases: [GDN accoun
 **Prerequisites**
 
 - A Macrometa account with sufficient permissions to create [collections](../../collections/). You can contact a Macrometa partner to sign up or [sign up](https://www.macrometa.com/sign-up) on your own. Once your Macrometa account is set up, you can choose the type of collection to stream your data into. The PhotonIQ GDN offers the following options for EDS:
-    - [Document Collection](../../collections/documents/index.md): Accepts any document type.
-    - [Key-Value Collection](../../collections/keyvalue/index.md): Accepts key-value pairs and can be configured to include blobs.
+    - [Document Collection](../../collections/types-collections/documents/index.md): Accepts any document type.
+    - [Key-Value Collection](../../collections/types-collections/keyvalue/index.md): Accepts key-value pairs and can be configured to include blobs.
 
 :::tip
 
@@ -44,7 +44,7 @@ Consult your Macrometa partner to help decide the best type for your business us
 Now, proceed to set up your collection stream in the GDN following these steps:
 
 1. [Create a Fabric](../../geofabrics/create-geofabric.md) for your collection to specify where your data resides. If you skip this step, the collection will be placed in the system fabric.
-2. [Create a Collection](../../collections/index.md) to receive streaming data. For this guide, we'll be using [Document Collection](../../collections/documents/index.md).
+2. [Create a Collection](../../collections/index.md) to receive streaming data. For this guide, we'll be using [Document Collection](../../collections/types-collections/documents/index.md).
 
 ![New Collection Stream](/img/photoniq/event-delivery/new-collection-stream.png)
 

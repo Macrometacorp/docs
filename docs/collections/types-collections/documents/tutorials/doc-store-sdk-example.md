@@ -4,7 +4,7 @@ title: Doc Store SDK Example
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '../../../_partials/_prerequisites-sdk-api-key.md';
+import Prerequisites from '../../../../_partials/_prerequisites-sdk-api-key.md';
 
 This tutorial demonstrates how to use Macrometa SDKs to work with document collections.
 

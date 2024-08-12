@@ -56,12 +56,12 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
   <card
     heading="Document Collections"
     description="NoSQL document collections with flexible indexing and modeling."
-    href="/collections/documents"
+    href="/collections/types-collections/documents"
   />
   <card
     heading="Key-Value Collections"
     description="High-throughput KV collections powering a wide range of use cases."
-    href="/collections/keyvalue"
+    href="/collections/types-collections/keyvalue"
   />
   <card
     heading="Graph Edge Collection"

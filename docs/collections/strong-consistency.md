@@ -3,7 +3,7 @@ sidebar_position: 50
 title: Strong Consistency
 ---
 
-When you create a [Document](./documents/), [Key-Value](./keyvalue/), or [Graph Edge](./graph-edge/) collection, you can select the **Strong consistency** checkbox or set  to make it strongly consistent.
+When you create a [Document](./types-collections/documents/create-document-store.md), [Key-Value](./types-collections/keyvalue/create-key-value-store.md), or [Graph Edge](./graph-edge/) collection, you can select the **Strong consistency** checkbox or set  to make it strongly consistent.
 
 Strong consistency aims to resolve data integrity issues like the double-spending problem by ensuring that concurrent read and write operations occur in a linear sequence globally.
 

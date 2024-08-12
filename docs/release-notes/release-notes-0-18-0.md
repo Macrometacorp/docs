@@ -18,8 +18,8 @@ You can now create collections with strong consistency guarantees and send reque
 The following topics were updated as a result of this feature:
 
 - [View Collection Settings](../collections/view-collection-settings.md)
-- [Create a Document Collection](../collections/documents/create-document-store.md)
-- [Create a Key-Value Collection](../collections/keyvalue/create-key-value-store.md)
+- [Create a Document Collection](../collections/types-collections/documents/create-document-store.md)
+- [Create a Key-Value Collection](../collections/types-collections/keyvalue/create-key-value-store.md)
 - [Create a Graph Edge Collection](../graphs/graph-tasks/create-graph-edge-collection.md)
 
 ### Web Console Updates
@@ -91,7 +91,7 @@ Two new API endpoints have been added to allow you to more efficiently manage ke
 - List all the groups in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groups`
 - Update the group ID for all the documents belonging to a particular group ID in a collection with the Group ID feature enabled: `PUT /_fabric/{fabric}/_api/kv/{collection}/groupID`
 
-[Manage Group IDs](../collections/keyvalue/manage-group-ids.md) was added as a result of this change.
+[Manage Group IDs](../collections/types-collections/keyvalue/manage-group-ids.md) was added as a result of this change.
 
 ### Enhanced Error Handling for Stream Workers
 

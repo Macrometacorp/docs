@@ -7,7 +7,7 @@ This page discusses best practices for determining what data should be stored in
 
 ## Vertices
 
-Vertices are the main objects in your graph data model, such as users, groups, or articles. For each type of object, a [document collection](../../collections/documents/) (also called a vertex collection) stores the individual entities. Entities can be connected by edges to express and classify relations between vertices. It often makes sense to have one edge collection per relation type.
+Vertices are the main objects in your graph data model, such as users, groups, or articles. For each type of object, a [document collection](../../collections/types-collections/documents/) (also called a vertex collection) stores the individual entities. Entities can be connected by edges to express and classify relations between vertices. It often makes sense to have one edge collection per relation type.
 
 Macrometa does not require you to store your data in graph structures with edges and vertices. You can also decide to embed attributes, such as which groups a user is part of or `_id`s of documents in another document, instead of connecting the documents with edges. This can be a meaningful performance optimization for _1:n_ relationships, if your data is not focused on relations and you don't need graph traversal with varying depth. However, it usually means introducing some redundancy and possibly inconsistencies if you embed data, so it should be considered as a tradeoff.
 

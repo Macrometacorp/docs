@@ -42,7 +42,7 @@ The following features updates are included in this release.
 
 You can now select the **Group** checkbox during collection creation to add the **Group ID** field to your Key-Value Store collection. This allows you to query by group ID more efficiently and to truncate by group ID.
 
-Several topics in [Key-Value Store](../collections/keyvalue/) were updated as a result of this change.
+Several topics in [Key-Value Store](../collections/types-collections/keyvalue/) were updated as a result of this change.
 
 ### Query Worker Permissions
 

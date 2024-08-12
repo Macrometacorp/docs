@@ -12,7 +12,7 @@ This page provides guidance for managing group IDs if they are enabled on your k
 
 To list all group IDs in a collection:
 
-1. Follow the instructions to [Run a Query in the Console](../../queries/running-queries.md#run-a-query-in-the-console) or [Run a Query with the CLI](../../queries/running-queries.md#run-a-query-with-cli).
+1. Follow the instructions to [Run a Query in the Console](../../../queries/running-queries.md#run-a-query-in-the-console) or [Run a Query with the CLI](../../../queries/running-queries.md#run-a-query-with-cli).
 2. Run the following query:
 
     ```sql
@@ -26,7 +26,7 @@ To list all group IDs in a collection:
 
 To update all key-value pairs belonging to old groupID with new groupID in a collection:
 
-1. Follow the instructions to [Run a Query in the Console](../../queries/running-queries.md#run-a-query-in-the-console) or [Run a Query with the CLI](../../queries/running-queries.md#run-a-query-with-cli).
+1. Follow the instructions to [Run a Query in the Console](../../../queries/running-queries.md#run-a-query-in-the-console) or [Run a Query with the CLI](../../../queries/running-queries.md#run-a-query-with-cli).
 2. Run the following query:
 
    ```sql

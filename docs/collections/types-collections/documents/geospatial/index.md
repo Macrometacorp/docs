@@ -15,4 +15,4 @@ With these functionalities, one can do more complex queries and build e.g. locat
 
 For instance, in the age of self-driving cars, one can find the nearest available maintenance team (geo query) with the right permission (graph model) to repair a given problem (sent automatically to the DB as e.g. a JSON document or key/value pair).
 
-Geospatial coordinates consisting of a latitude and longitude value can be stored either as two separate attributes, or as a single attribute in the form of an array with both numeric values. Macrometa can [index such coordinates](../../indexing/working-with-indexes#geo-spatial-indexes) for fast geospatial queries.
+Geospatial coordinates consisting of a latitude and longitude value can be stored either as two separate attributes, or as a single attribute in the form of an array with both numeric values. Macrometa can [index such coordinates](../../../indexing/working-with-indexes#geo-spatial-indexes) for fast geospatial queries.
