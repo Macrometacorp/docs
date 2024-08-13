@@ -38,7 +38,7 @@ For more information on available commands, refer to the [Functions CLI commands
 
 <TabItem value="nextjs" label="Next.js">
 
-In this quickstart guide, you'll learn how to begin with PhotonIQ Functions with Next.js by:
+In this quickstart guide, you'll learn how to begin with PhotonIQ Functions using Next.js by:
 - [Creating a function](#create-a-function)
 - [Testing the function locally](#test-the-function-locally)
 - [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-remote-photoniq-functions-server)
