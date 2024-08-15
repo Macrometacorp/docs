@@ -20,7 +20,7 @@ Let's begin building your CRUD and search APIs for the shoe store catalog datase
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create search views.
-- If you want to run cURL commands, then [Create an API Key](../account-management/api-keys/create-api-keys).
+- If you want to run cURL commands, then [Create an API Key](../../account-management/api-keys/create-api-keys).
 - Download the `shoe-inventory.json` dataset: [shoe-inventory.json](/datasets/shoe-inventory.json)
 
 ## Dataset Overview
@@ -44,7 +44,7 @@ Here's an example shoe record from the dataset in JSON format:
 
 ## 1. Create the Inventory Collection
 
-Create a document collection called `inventory`. Be sure to enable the collection stream when you create the collection. This process is fully explained in [Create a Document Collection](../collections/documents/create-document-store.md).
+Create a document collection called `inventory`. Be sure to enable the collection stream when you create the collection. This process is fully explained in [Create a Document Collection](../../collections/documents/create-document-store.md).
 
 1. On the side menu, click **Data > Collections**.
 1. Click **New Collection**.
@@ -55,7 +55,7 @@ Create a document collection called `inventory`. Be sure to enable the collectio
 
 ## 2. Import Shoe Inventory Data into the Inventory Collection
 
-Add the records from `shoe-inventory.json` to the `inventory` collection. This process is fully explained in [Add Documents to a Collection](../collections/documents/add-document.md).
+Add the records from `shoe-inventory.json` to the `inventory` collection. This process is fully explained in [Add Documents to a Collection](../../collections/documents/add-document.md).
 
 1. In the collection list, click the name of the `inventory` document collection.
 2. Click the import icon, which is a down arrow pointing to a file box.
@@ -68,9 +68,9 @@ After importing the file, the collection should contain 50 documents with shoe r
 
 To create a CRUD (Create, Read, Update, Delete) API, you'll create a query worker for each operation.
 
-The following sections provide queries that you will use to create query workers. Follow the instructions in [Create a New Query Worker](../queryworkers/query-workers#create-a-new-query-worker) to create the query workers that you will use for the CRUD API.
+The following sections provide queries that you will use to create query workers. Follow the instructions in [Create a New Query Worker](../../queryworkers/query-workers#create-a-new-query-worker) to create the query workers that you will use for the CRUD API.
 
-Any query worker can be used as an API endpoint. For more information, refer to [API Endpoints](../queryworkers/api-endpoints).
+Any query worker can be used as an API endpoint. For more information, refer to [API Endpoints](../../queryworkers/api-endpoints).
 
 ### 3.1 Create a Query Worker for the "Read" API Endpoint
 
@@ -103,7 +103,7 @@ INSERT {
 INTO inventory
 ```
 
-This query contains bind parameters for inserting data into the document. Bind parameters are denoted by the `@` symbol, such as `@brand`. For more information about bind parameters, refer to [Bind Parameters](../queries/bind-parameters).
+This query contains bind parameters for inserting data into the document. Bind parameters are denoted by the `@` symbol, such as `@brand`. For more information about bind parameters, refer to [Bind Parameters](../../queries/bind-parameters).
 
 ![Create a Query Worker](/img/search/range-example/query-workers.png)
 
@@ -154,7 +154,7 @@ Now that you've created query workers for all CRUD operations, you have successf
 
 Now that you have data in the `inventory` collection, it's time to enable high-performance search on various fields in the document collection.
 
-Create a search view named `inventory_view`. Follow the instructions in [Create a Fulltext Search View](../search-views/fulltext-search/tasks/create-search-views.md) to create the `inventory_view` search view.
+Create a search view named `inventory_view`. Follow the instructions in [Create a Fulltext Search View](../../search-views/fulltext-search/tasks/create-search-views.md) to create the `inventory_view` search view.
 
 When you create the `inventory_view` search view, map the following fields:
 
@@ -211,13 +211,13 @@ Here's an example screenshot of how to write a query and where to place bind par
 
 ## 6. Save the Query as a Query Worker
 
-Save the query you just wrote as a query worker named `inventorySearch`. This creates an API endpoint for it. For more information, refer to [API Endpoints](../queryworkers/api-endpoints).
+Save the query you just wrote as a query worker named `inventorySearch`. This creates an API endpoint for it. For more information, refer to [API Endpoints](../../queryworkers/api-endpoints).
 
 ![Save Query Worker](/img/search/range-example/search-query-worker.png)
 
 ## 7. Test the Query Worker API Endpoints
 
-You now have five query workers, each with an API endpoint. To view the API endpoint, [edit the query worker](../queryworkers/query-workers#edit-a-query-worker) and then click **API Endpoint**. Macrometa displays a cURL command that you can use to test the API endpoint.
+You now have five query workers, each with an API endpoint. To view the API endpoint, [edit the query worker](../../queryworkers/query-workers#edit-a-query-worker) and then click **API Endpoint**. Macrometa displays a cURL command that you can use to test the API endpoint.
 
 ![API Endpoint](/img/search/range-example/search-api.png)
 
@@ -227,8 +227,8 @@ Congratulations! You have successfully set up a CRUD API with query workers and 
 
 Now that you have completed this tutorial, consider exploring the following topics to enhance your understanding and further develop your skills:
 
-- [Getting Started with Search](../search-views/fulltext-search/getting-started-search)
-- [Getting Started with Graphs](../graphs/getting-started-with-graphs)
-- [C8QL Query Tutorial](../queries/got-tutorial/)
+- [Getting Started with Search](../../search-views/fulltext-search/getting-started-search)
+- [Getting Started with Graphs](../../graphs/getting-started-with-graphs)
+- [C8QL Query Tutorial](../../queries/got-tutorial/)
 
 By diving into these topics, you will be well-equipped to optimize and expand your Macrometa-powered projects. Good luck, and happy coding!

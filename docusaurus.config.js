@@ -93,6 +93,7 @@ const config = {
           //   position: 'left',
           //   label: 'Docs',
           // },
+
           {
             type: "dropdown",
             label: "Products",
@@ -155,8 +156,10 @@ const config = {
             title: "Resources",
             items: [
               {
+                
                 href: "/tutorials",
                 label: "Tutorials",
+                
               },
               {
                 className: "footer__link-item footer__item--external",
@@ -250,3 +253,4 @@ const config = {
 };
 
 module.exports = config;
+

@@ -19,7 +19,7 @@ const b = [
   {
     title: "Tutorials",
     subtitle: "Learn from our tutorials and start building.",
-    href: "https://macrometa.com/docs/tutorials",
+    href: "https://www.macrometa.com/docs/tutorials",
     icon: "/docs/img/Icon-Tutorials.svg",
   },
   {
