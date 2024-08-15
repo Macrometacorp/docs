@@ -1,6 +1,6 @@
 ---
 sidebar_position: 25
-title: Integrate Fingerprint as First Party
+title: First Party Fingerprint Integration
 ---
 
 For the best accuracy and results when using PhotonIQ Fingerprint, ensure both the application and cookies are integrated as first-party elements. This integration means their URLs must match the website they're associated with.

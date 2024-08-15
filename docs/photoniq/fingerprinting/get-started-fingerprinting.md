@@ -3,13 +3,23 @@ sidebar_position: 20
 title: Get Started with Fingerprint
 ---
 
-To incorporate the Fingerprint client into your website, add one of the following example scripts to your web page. In each example, replace the `DS_URL` placeholder with the data service URL that Macrometa provides you.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-After you incorporate the Fingerprint client, you should [integrate Fingerprint as a first-party](integrate-fingerprint.md). Fingerprint will work if you do not follow the first-party integration steps, but accuracy will be lower and some browsers will block the functionality.
+To get started with Fingerprint, you need to install the Fingerprint client on your website. 
 
-## Fingerprint on Page Load
+## Install Fingerprint Client
 
-In this example, the JavaScript is loaded at page load time, and the function to get the visitorId is run right away. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
+To install, add any of the following scripts to your webpage. These scripts all load the Fingerprint agent, but are activated at different stages when accessing a webpage. 
+
+:::important
+For each example, replace the `DS_URL` placeholder with the data service URL given to you by Macrometa
+:::
+
+<Tabs groupId="fingerprint-client">
+<TabItem value="page load" label="Activate on page load">
+
+This script loads the  Fingerprint agent at page load time to run the function that generates the `visitorId`. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
 
 ```html
 <body>
@@ -52,9 +62,11 @@ In this example, the JavaScript is loaded at page load time, and the function to
 </body>
 ```
 
-## Fingerprint on Button Click
+</TabItem>
 
-In this example, the JavaScript is initially loaded at page load time, and a function is created that is tied to a button. Once the button is clicked, a call is made to the fingerprint server, which returns the visitorId. The visitorId is returned in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
+<TabItem value="button click" label="Activate on button click">
+
+With this script, Javascript loading occurs at page load time, and triggers a button to create a function. Clicking this button makes a call to the fingerprint server, which returns the `visitorId` in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
 
 ```html
 <html>
@@ -117,9 +129,11 @@ In this example, the JavaScript is initially loaded at page load time, and a fun
 </html>
 ```
 
-## Fingerprint on Text Input
+</TabItem>
 
-In this example, the visitorId is fetched when a user enters text in the input field.
+<TabItem value="text input" label="Activate on text input">
+
+This script fetches the `visitorId` when a user enters text in the input field.
 
 ```html
 <html>
@@ -187,7 +201,9 @@ In this example, the visitorId is fetched when a user enters text in the input f
 </html>
 ```
 
-## Fingerprint with Google Tag Manager
+</TabItem>
+
+<TabItem value="Google tag" label="Activate with Google Tag manager">
 
 Here is an example of the JavaScript being loaded by Google’s Tag Manager. The vistorId is sent to the JavaScript console.
 
@@ -248,6 +264,14 @@ Here is an example of the JavaScript being loaded by Google’s Tag Manager. The
     </script>
 </body>
 ```
+
+</TabItem>
+</Tabs>
+
+
+:::note
+After incorporating the Fingerprint client, it is advisable to [integrate Fingerprint as a first-party](integrate-fingerprint.md) for improved accuracy as the default third-party integration reduces accuracy and functionality on some browsers.
+:::
 
 ## Fingerprint Response Headers
 
