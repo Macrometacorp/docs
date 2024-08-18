@@ -6,17 +6,21 @@ const App = () => {
 
   const notes = [
     {
-      id: 1, date: "August 26, 2024", tag: "PhotonIQ", Product: "Prerender v1.2.1", whatsnew: "What's New",
+      id: 1, date: "August 16, 2024", tag: "PhotonIQ", Product: "Prerender v1.2.1", whatsnew: "What's new",
       whatsNewContents: [ "Sync service for better connection and fault tolerance.", "Auth service for role-based access control.", "Editable GUI for better configuration management.", "Added Follow Redirect settings to manage redirect behavior."],
       Improvement: "Improvement", improvementContents: [ "Reduced load on GDN server aggregating and serving metrics every minute instead of pushing per request.", "Added new URL tags to the URL block list.", "Removed the entire cache purge feature." ],
-      bugFix: "Bug Fixes", bugFixContents: [],
+      bugFix: "Bug fixes", bugFixContents: [],
+      blogPostTitle:"Prerender v1.2.1 blog post" , blogPostLink: "https://www.macrometa.com/blog/photoniq-prerender-v1-2-2-update",
+
     },
 
     {
-      id: 2, date: "August 26, 2024", tag: "GDN", Product: "GDN v0.18.0 ", whatsnew: "What's New",
+      id: 2, date: "August 26, 2024", tag: "GDN", Product: "GDN v0.18.0 ", whatsnew: "What's new",
       whatsNewContents: [ "Create collections with strong consistency.", "Improvements to the web console for better management.", "New AWS S4 target for connection", "New API endpoint to Stream workers", "New Global API endpoint to Fabrics" ], 
       Improvement: "Improvement", improvementContents: [ "New Group ID API Endpoints", "Enhanced Error Handling for Stream Workers", "Stream workers support for all collection types.", "Addition of Akamai EdgeWorkers code bundles" ],
-       bugFix: "Bug Fixes", bugFixContents: ["Corrected field order and capitalization on the Invite User signup page.", "Delete subscriptions only at stream worker deletion, not unpublish.", "Fixed Regex for http.status.code in http-call-response function."]},
+       bugFix: "Bug fixes", bugFixContents: ["Corrected field order and capitalization on the Invite User signup page.", "Delete subscriptions only at stream worker deletion, not unpublish.", "Fixed Regex for http.status.code in http-call-response function."],
+      blogPostTitle: "", blogPostLink:"",
+      },
   ];
 
   const filteredNotes = selectedTag === "All" 
@@ -51,7 +55,7 @@ const App = () => {
           <div className="relative min-h-[600px] w-full">
             <div className="absolute bottom-0 left-0 top-2 w-[2px] bg-[#6767E5] md:left-[25%] after:absolute after:inset-x-0 after:bottom-0 after:h-48 after:bg-gradient-to-b after:from-gray-100 after:to-white"></div>
             {filteredNotes.map((note) => {
-              let { id, date, tag, Product, whatsnew, whatsNewContents, Improvement, improvementContents, bugFix, bugFixContents } = note;
+              let { id, date, tag, Product, whatsnew, whatsNewContents, Improvement, improvementContents, bugFix, bugFixContents, blogPostTitle, blogPostLink } = note;
               return (
                 <div key={id} className="ml-3 grid grid-cols-1 pb-20 md:ml-0 md:grid-cols-4" >
                   <div className="relative col-span-1 mb-4 flex flex-row items-center justify-between md:mb-0 md:flex-col md:items-start md:justify-start">
@@ -110,6 +114,12 @@ const App = () => {
                         </div>
                       </div>
                     </div>
+                    {blogPostLink != "" && (
+                    <p> For more detailed information, check out our <a href={blogPostLink}>{blogPostTitle}</a>.
+                    </p>
+                                        
+                    )}
+
                   </div>
                 </div>
               );
