@@ -17,7 +17,7 @@ The first time you log in to Macrometa, the system now displays a welcome page w
 
 You can now upgrade and manage your scale tier payment plan in the Account page in the Macrometa web console.
 
-The [Plans](../account-management/plans/) section was created as a result of this change.
+The [Plans](../../account-management/plans) section was created as a result of this change.
 
 ## Feature Updates
 
@@ -28,25 +28,25 @@ The following features updates are included in this release.
 - You can now enter SQL queries in the Macrometa query editor and save them as query workers.
 - Other SQL functionality improvements.
 
-Topics in [Queries](../queries/) and [SQL in Macrometa](../queries/sql/) were updated as a result of this change.
+Topics in [Queries](../../queries) and [SQL in Macrometa](../../queries/sql) were updated as a result of this change.
 
 ### Redis Support Updates - Beta
 
 - Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
-- Macrometa documentation now clarifies [Redis limitations](../queries/redis/limitations) and [Redis Data Formats](../queries/redis/data-type-format).
+- Macrometa documentation now clarifies [Redis limitations](../../queries/redis/limitations) and [Redis Data Formats](../../queries/redis/data-type-format).
 
-Topics in [Redis](../queries/redis/) were updated as a result of this change.
+Topics in [Redis](../../queries/redis) were updated as a result of this change.
 
 ### Akamai EdgeWorker Support Updates - Preview
 
 - Delete functionality improved. Refer to the [Function API](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType) for more information.
-- You can now invoke EdgeWorkers with stream workers. [Edge Functions](../cep/query-guide/functions/edge-functions/) was added as a result of this change.
+- You can now invoke EdgeWorkers with stream workers. [Edge Functions](../../cep/query-guide/functions/edge-functions) was added as a result of this change.
   - In the Stream Workers Samples tab in the Macrometa web console, Sample-Function-Worker was added.
 - Added API error response codes. [Functions API](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType) were updated as a result of this change.
 - `groupIdWithPrefix` has been added to EdgeWorker metadata. You should delete your existing metadata and create new metadata through APIs before creating new EdgeWorkers.
 - Macrometa SDK support for EdgeWorkers. You can now use EdgeWorkers with the jsC8 SDKs.
 
-[Akamai EdgeWorker SDK Support](../akamai/akamai-sdk) and [Manage Akamai Integrations](../akamai/manage-integrations) were updated as a result of these changes.
+[Akamai EdgeWorker SDK Support](../../akamai/akamai-sdk) and [Manage Akamai Integrations](../../akamai/manage-integrations) were updated as a result of these changes.
 
 ### Updated Side Menu
 
@@ -60,7 +60,7 @@ Screenshots and instructions were updated as a result of this change.
 
 You can now run multiple stream worker instances with the same query.
 
-[Stream Worker Metadata](../cep/metadata) has been updated as a result of this change.
+[Stream Worker Metadata](../../cep/metadata) has been updated as a result of this change.
 
 ### New Parameters for Stream Source and Stream Sink
 
@@ -79,7 +79,7 @@ The following parameters were added to stream source:
 - auth.plugin
 - auth.params
 
-[Stream Source](../cep/source/stream-source.md) was updated as a result of this change.
+[Stream Source](../../cep/source/stream-source.md) was updated as a result of this change.
 
 The following parameters were added to stream sink:
 
@@ -90,7 +90,7 @@ The following parameters were added to stream sink:
 - auth.plugin
 - auth.params
 
-[Stream Sink](../cep/sink/stream-sink.md) was updated as a result of this change.
+[Stream Sink](../../cep/sink/stream-sink.md) was updated as a result of this change.
 
 ### Streams Process Messages with _delete Fields in Database Extension (CEP-440)
 
