@@ -16,11 +16,11 @@ The Fingerprint service generates fingerprints that persist even after visitors 
 
 ### Browser-Side Agent
 
-Fingerprint uses a browser-side agent. This agent (a browser-side JavaScript library) automatically loads, collects, and transmits information about a visitor's browser to the Fingerprint service. Fingerprint processes this information using proprietary algorithms and advanced machine-learning models to identify web visitors. Some data types collected include user agents, screen resolutions, CPU counts, and others.
+Fingerprint uses a browser-side agent. This agent (a browser-side JavaScript library) loads, collects, and transmits information about a visitor's browser to the Fingerprint service. Fingerprint processes this information using proprietary algorithms and advanced machine-learning models to identify web visitors. Some data types collected include user agents, screen resolutions, CPU counts, and others.
 
 ### Server-Side Detection
 
-Fingerprint also uses server-side detection for its geolocation service to determine the visitor's location, including city, state, and zip code. It determines if users access your website via a VPN and compares the visitor's browser time zone with the source address's time zone and a list of well-known public VPN servers to identify the VPN used.
+Fingerprint also uses server-side detection to determine the visitor's location, including city, state, and zip code. It determines if users access your website via a VPN and compares the visitor's browser time zone with the source address's time zone and a list of well-known public VPN servers to identify the VPN used.
 
 The server compares the visitor's IP address with their ISP's Autonomous System Numbers (ASN) to detect any change in the visitor's location. 
 
