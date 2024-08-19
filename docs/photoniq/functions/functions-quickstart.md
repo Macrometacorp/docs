@@ -6,7 +6,7 @@ title: Quickstart
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-PhotonIQ Functions provides a real-time method for enterprises to create and interact with their services using the [CLI](./04-faas-commands/index.md) and [API](https://www.macrometa.com/docs/apiFaas#/) requests.
+PhotonIQ Functions provides a real-time method for enterprises to create and interact with their services using the [CLI](functions-cli.md) and [API](https://www.macrometa.com/docs/apiFaas#/) requests.
 
 ## Prerequisite
 
@@ -30,7 +30,7 @@ npm i -g  @macrometa/faas
 
 :::tip
 
-For more information on available commands, refer to the [Functions CLI commands](./04-faas-commands/index.md) guide.
+For more information on available commands, refer to the [Functions CLI commands](functions-cli.md) guide.
 
 :::
 

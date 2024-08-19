@@ -8,7 +8,7 @@ PhotonIQ Functions is an edge-computing service that allows you to run your serv
 
 ## Key features
 
-PhotonIQ Functions leverages [CLI](./04-faas-commands/index.md) and [API](https://www.macrometa.com/docs/apiFaas#/) to facilitate serverless applications, offering the following key features:
+PhotonIQ Functions leverages [CLI](functions-cli.md) and [API](https://www.macrometa.com/docs/apiFaas#/) to facilitate serverless applications, offering the following key features:
 
 - **Local to regional to global auto-scaling**: Automatically scales function instances based on workload demands, supporting both zero-to-N and 1-to-N scaling modes. This ensures optimal resource utilization and responsiveness to user and traffic pattern changes.
 
@@ -27,7 +27,7 @@ PhotonIQ Functions leverages [CLI](./04-faas-commands/index.md) and [API](https:
    <card
     heading="Functions CLI commands"
     description="Explore CLI commands for managing functions."
-    href="https://www.macrometa.com/docs/photoniq/functions/faas-commands"
+    href="https://www.macrometa.com/docs/photoniq/functions/functions-cli"
   />
    <card
     heading="Functions API"
