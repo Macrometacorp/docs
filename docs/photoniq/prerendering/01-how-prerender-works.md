@@ -1,5 +1,6 @@
 ---
 title: How Prerender Works
+sidebar_position: 2
 ---
 
 PhotonIQ Prerender runs the full version of a web browser in a server environment and loads an entire web application like a regular browser, including Javascript execution to generate a static HTML page. Prerender takes a snapshot of this resulting HTML code and serves to clients, enhancing the search engine optimization (SEO) of websites. 

@@ -1,5 +1,5 @@
 ---
-title: Explore the PhotonIQ Prerender Dashboard
+title: Explore the Prerender Dashboard
 ---
 
 Prerender offers its interactive dashboard, which allows you to view and manage your rendered pages. 
