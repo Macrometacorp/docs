@@ -20,7 +20,7 @@ When you create a new key-value store, you can select the **Blob storage** check
 
 This feature is available upon request. Contact support@macrometa.com to enable it on your account.
 
-The [Create a Key-Value Store](../account-management/plans/) has been updated as a result of this change.
+The [Create a Key-Value Store](../../account-management/plans) has been updated as a result of this change.
 
 ### Stream Worker Store Batch Support
 
@@ -31,7 +31,7 @@ The new parameters are:
 - `batch.size`
 - `batch.flush.time.ms`
 
-[Stream Worker Tables](../cep/table/) was updated as a result of this change.
+[Stream Worker Tables](../../cep/table) was updated as a result of this change.
 
 ### Retrieve API Keys
 

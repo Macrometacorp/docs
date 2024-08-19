@@ -15,11 +15,11 @@ const App = () => {
     },
 
     {
-      id: 2, date: "August 26, 2024", tag: "GDN", Product: "GDN v0.18.0 ", whatsnew: "What's new",
+      id: 2, date: "February - May, 2024", tag: "GDN", Product: "GDN v0.18.0 ", whatsnew: "What's new",
       whatsNewContents: [ "Create collections with strong consistency.", "Improvements to the web console for better management.", "New AWS S4 target for connection", "New API endpoint to Stream workers", "New Global API endpoint to Fabrics" ], 
       Improvement: "Improvement", improvementContents: [ "New Group ID API Endpoints", "Enhanced Error Handling for Stream Workers", "Stream workers support for all collection types.", "Addition of Akamai EdgeWorkers code bundles" ],
        bugFix: "Bug fixes", bugFixContents: ["Corrected field order and capitalization on the Invite User signup page.", "Delete subscriptions only at stream worker deletion, not unpublish.", "Fixed Regex for http.status.code in http-call-response function."],
-      blogPostTitle: "", blogPostLink:"",
+      blogPostTitle: "GDN v0.18.0 release page", blogPostLink:"https://www.macrometa.com/docs/release-notes/release-notes-0-18-0",
       },
   ];
 
@@ -115,11 +115,8 @@ const App = () => {
                       </div>
                     </div>
                     {blogPostLink != "" && (
-                    <p> For more detailed information, check out our <a href={blogPostLink}>{blogPostTitle}</a>.
-                    </p>
-                                        
+                    <p> For more detailed information, check out our <a href={blogPostLink}>{blogPostTitle}</a>.</p>                 
                     )}
-
                   </div>
                 </div>
               );
@@ -127,6 +124,8 @@ const App = () => {
           </div>
         </div>
       </div>
+      <center class="font-semibold text-[15px]"><p>  To learn more about past releases, see the official <a href="/docs/releases/">Releases pack</a>.</p>
+      </center>    
     </div>
     </Layout>
   );
