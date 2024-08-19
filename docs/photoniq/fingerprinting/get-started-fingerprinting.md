@@ -66,7 +66,7 @@ This script loads the  Fingerprint agent at page load time to run the function t
 
 <TabItem value="button click" label="Activate on button click">
 
-With this script, Javascript loading occurs at page load time, and triggers a button to create a function. Clicking this button makes a call to the fingerprint server, which returns the `visitorId` in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
+With this script, when Javascript loading occurs at page load time, it creates a function tied to a button. Clicking this button makes a call to the fingerprint server, which returns the `visitorId` in the response header (x-photoniq-vid) and the JSON body’s response (visitorId).
 
 ```html
 <html>
