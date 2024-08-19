@@ -59,7 +59,7 @@ const App = () => {
               return (
                 <div key={id} className="ml-3 grid grid-cols-1 pb-20 md:ml-0 md:grid-cols-4" >
                   <div className="relative col-span-1 mb-4 flex flex-row items-center justify-between md:mb-0 md:flex-col md:items-start md:justify-start">
-                    <div className="text-gray-600 md:mb-1 whitespace-nowrap">
+                    <div className=" md:mb-1 whitespace-nowrap">
                       {date}
                     </div>
                     <span className="bg-[#6767E5] w-fit flex-initial rounded-md px-1.5 py-0.5 text-sm text-gray-100">
