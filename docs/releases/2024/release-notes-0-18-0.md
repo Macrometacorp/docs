@@ -13,14 +13,14 @@ The following new features are included in this release.
 
 You can now create collections with strong consistency guarantees and send requests with strong consistency guarantees to those collections.
 
-[Strong Consistency](../collections/strong-consistency.md) was added as a result of this feature.
+[Strong Consistency](../../collections/strong-consistency.md) was added as a result of this feature.
 
 The following topics were updated as a result of this feature:
 
-- [View Collection Settings](../collections/view-collection-settings.md)
-- [Create a Document Collection](../collections/documents/create-document-store.md)
-- [Create a Key-Value Collection](../collections/keyvalue/create-key-value-store.md)
-- [Create a Graph Edge Collection](../graphs/graph-tasks/create-graph-edge-collection.md)
+- [View Collection Settings](../../collections/view-collection-settings.md)
+- [Create a Document Collection](../../collections/documents/create-document-store.md)
+- [Create a Key-Value Collection](../../collections/keyvalue/create-key-value-store.md)
+- [Create a Graph Edge Collection](../../graphs/graph-tasks/create-graph-edge-collection.md)
 
 ### Web Console Updates
 
@@ -52,7 +52,7 @@ A new **API Endpoint** button in Stream Workers screen generates cURL commands t
 
 ![API Endpoint Button](/img/release-notes/18-00-api-endpoint-button.png)
 
-[Create an API Endpoint](../cep/stream-worker-tasks/create-api-endpoint.md) was created as a result of this change.
+[Create an API Endpoint](../../cep/stream-worker-tasks/create-api-endpoint.md) was created as a result of this change.
 
 ### Added Global API Endpoint to Fabrics Tab
 
@@ -60,25 +60,25 @@ The Global API Endpoint for each fabric is now displayed in the Fabrics tab.
 
 ![Global API Endpoint](/img/release-notes/18-00-global-api-endpoint.png)
 
-[APIs](../api-docs/) was updated as a result of this change.
+[APIs](../../api-docs) was updated as a result of this change.
 
 ### New Connection - S3 Target
 
 A new target connector for AWS S3 is now available to use with Macrometa.
 
-[S3 Connector](../connections/connector-types/s3-connector) was added as a result of this feature.
+[S3 Connector](../../connections/connector-types/s3-connector) was added as a result of this feature.
 
 ### New memcache Function for Stream Workers
 
 This release includes the memcache function, which is a memory cache with a time-to-live (ttl) parameter.
 
-[Memcache](../cep/query-guide/functions/memcache/) was added a result of this feature.
+[Memcache](../../cep/query-guide/functions/memcache) was added a result of this feature.
 
 ### Transactions
 
 You can now aggregate API calls with the Transactions feature.
 
-The [Transactions](../transactions/) section was added as a result of this feature.
+The [Transactions](../../transactions) section was added as a result of this feature.
 
 ## Feature Updates
 
@@ -91,7 +91,7 @@ Two new API endpoints have been added to allow you to more efficiently manage ke
 - List all the groups in a collection with the Group ID feature enabled: `GET /_fabric/{fabric}/_api/kv/{collection}/groups`
 - Update the group ID for all the documents belonging to a particular group ID in a collection with the Group ID feature enabled: `PUT /_fabric/{fabric}/_api/kv/{collection}/groupID`
 
-[Manage Group IDs](../collections/keyvalue/manage-group-ids.md) was added as a result of this change.
+[Manage Group IDs](../../collections/keyvalue/manage-group-ids.md) was added as a result of this change.
 
 ### Enhanced Error Handling for Stream Workers
 
@@ -100,13 +100,13 @@ Two new API endpoints have been added to allow you to more efficiently manage ke
 - The new fault stream mechanism captures and handles errors from various stream elements including processes, functions, and executors.
 - Error handling now applies to tables as well.
 
-Topics in [Stream Worker Error Handling](../cep/error-handling/) were updated as a result of this change.
+Topics in [Stream Worker Error Handling](../../cep/error-handling) were updated as a result of this change.
 
 ### Stream Workers Support All Collection Types
 
 Stream workers now support Key-Value, Redis, and Dynamo collections.
 
-[Tables (Collections)](../cep/table/) was updated as a result of this change.
+[Tables (Collections)](../../cep/table) was updated as a result of this change.
 
 ### Akamai EdgeWorkers - Upload and Download Code Bundles
 
@@ -117,9 +117,9 @@ The following changes have been made to the Akamai EdgeWorker integration:
 
 The following topics were added as a result of this change:
 
-- [Test EdgeWorkers](../akamai/test-edgeworkers.md)
-- [Edit EdgeWorkers](../akamai/edit-edgeworkers.md)
-- [Manage EdgeWorker Version](../akamai/manage-edgeworker-versions.md)
+- [Test EdgeWorkers](../../akamai/test-edgeworkers.md)
+- [Edit EdgeWorkers](../../akamai/edit-edgeworkers.md)
+- [Manage EdgeWorker Version](../../akamai/manage-edgeworker-versions.md)
 
 ### Miscellaneous Changes
 
