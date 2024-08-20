@@ -90,11 +90,11 @@ export default function Hello() {
               className=" card-land flex flex-col text-center justify-center items-center py-[32px] px-[21px] rounded-2xl border border-slate-300 shadow-md"
             >
               <img src={item.icon} className="sm:text-2xl text-1xl" />
-              <h1 className="font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-600 text-lg">
+              <h2 className="font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-600 text-lg">
                 <a className="text-gray-700" href={item.href}>
                   {item.title}
                 </a>
-              </h1>
+              </h2>
               <p className="text-[14px] sm:text-[17px] text-gray-500 text-md">
                 {item.subtitle}
               </p>
