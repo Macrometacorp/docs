@@ -7,12 +7,12 @@ const App = () => {
   const notes = [
     {
       id: 1, date: "August 16, 2024", tag: "PhotonIQ", Product: "Prerender v1.2.1", whatsnew: "What's new",
-      whatsNewContents: [ "Sync service for better connection and fault tolerance.", "Auth service for role-based access control.", "Editable GUI for better configuration management.", "Added Follow Redirect settings to manage redirect behavior."],
-      Improvement: "Improvement", improvementContents: [ "Reduced load on GDN server aggregating and serving metrics every minute instead of pushing per request.", "Added new URL tags to the URL block list.", "Removed the entire cache purge feature." ],
+      whatsNewContents: [ "Connection: use our new Sync service for better connection and fault tolerance. Consolidate multiple Prerender services into a single WebSocket connection with the Sync service to reduce network overhead and improve performance.", "Authentication: Auth service for role-based access control. Manage and control access to the service to improve security and ease future auditing processes.", "Configuration: Editable GUI for better configuration management. This GUI also democratizes access to the service, ensuring technical and non-technical users use and manage their Prerender instance.", "Flexibility: Added Follow Redirect settings to manage redirect behavior. Achieve better flexibility by defining how the Prerender handles your redirects."],
+      Improvement: "Improvement", improvementContents: [ "Resource consumption: Improve resource efficiency by reducing the load on the GDN server by aggregating and serving metrics every minute instead of pushing per request.", "Security: Reduce the occurrence of malware and phishing attacks with our newly added URL tags to the URL block list.", "Auditing: Prevent the complete removal of previous renders with the removal of the entire cache purge feature." ],
       bugFix: "Bug fixes", bugFixContents: [],
       blogPostTitle:"Prerender v1.2.1 blog post" , blogPostLink: "https://www.macrometa.com/blog/photoniq-prerender-v1-2-2-update",
 
-    },
+ },
 
     {
       id: 2, date: "February - May, 2024", tag: "GDN", Product: "GDN v0.18.0 ", whatsnew: "What's new",
