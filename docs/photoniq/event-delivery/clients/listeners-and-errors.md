@@ -15,8 +15,8 @@ The listener can be attached to the client when use `connect` method to Event De
 let globalListener = function(event) {
     if (event.type === "open") {
         console.log('EDS connection established: ', event);
-    } else if (event.type === "connection-id") {
-        console.log("EDS assigned connection's ID: " + event.data);
+    } else if (event.type === "properties") {
+        console.log("EDS assigned properties: ", event.data);
     } else if (event.type === "server-global-error") {
         console.log(`EDS replied with an Error: `, event);
     }else if (event.type === "server-query-error") {
@@ -32,7 +32,7 @@ let globalListener = function(event) {
     }
 };
 
-let connection = PhotoniqEdsWs.connect({
+let connection = PhotoniqEdsSdk.connect({
 host: "<YOUR-PHOTONIQ>.photoniq.macrometa.io",
 customerId: "<YOUR-CUSTOMER-ID>",
 apiKey: "<YOUR-API-KEY>",
@@ -61,7 +61,7 @@ The `type` property can have the next `EDSEventType` enum values:
 | **Type** | **Description** |
 |----------------------|---------------------------|
 | `open` | Openned WebSocket/SSE connection   |
-| `connection-id` | Received a connection ID    |
+| `properties` | Received properties of connection   |
 | `server-query-error` | Server-side error related to a query    |
 | `server-global-error` | Server-side error **not** related to a query   |
 | `client-query-error` | Client-side error related to a query |

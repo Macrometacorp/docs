@@ -21,6 +21,13 @@ querySet.retrieve("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event
 })
 ```
 
+| **Argument** | **Type** | **Requred** | **Description** |
+|--------------|------------|----------|------------------------|
+| `query` | `string` | Yes | SQL query to retrieve/listen  |
+| `resultListener`| `function` | Yes |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#result-listener) |
+| `errorListener`| `function` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) |
+| `compress` | `boolean` | No | Compress incoming initial data.  |
+
 ### retrieveAndSubscribe
 
 Retrieves initial data and subscribes to changes in the query:
@@ -30,6 +37,13 @@ querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-K
 })
 ```
 
+| **Argument** | **Type** | **Requred** | **Description** |
+|--------------|------------|----------|-------------------|
+| `query` | `string` | Yes | SQL query to retrieve/listen  |
+| `resultListener`| `function` | Yes |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#result-listener) |
+| `errorListener`| `function` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) |
+| `compress` | `boolean` | No | Compress incoming initial data.  |
+
 ### subscribe
 
 Only subscribes to changes in the query:
@@ -38,6 +52,12 @@ querySet.subscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (even
     console.log(`Message event: `, event);
 })
 ```
+
+| **Argument** | **Type** | **Requred** | **Description** |
+|--------------|------------|----------|-------------------|
+| `query` | `string` | Yes | SQL query to retrieve/listen  |
+| `resultListener`| `function` | Yes |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#result-listener) |
+| `errorListener`| `function` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) |
 
 ### unubscribe
 
