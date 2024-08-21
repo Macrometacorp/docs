@@ -1,3 +1,0 @@
----
-title: Work with GDN
----
