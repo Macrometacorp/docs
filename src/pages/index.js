@@ -109,7 +109,7 @@ export default function Hello() {
 
         <div className="mt-10">
           <div className="card-land flex text-center justify-center items-center py-[32px] rounded-2xl border border-slate-300 shadow-md">
-            <img src="/docs/img/Icon-Support.svg" className="" />
+            <img src="/docs/img/Icon-Support.svg" alt="Support" />
             <h2 className="ml-3 mb-0 items-center text-gray-700 sm:text-[15px] text-[13px] text-md">
               Still need help?
               <a
