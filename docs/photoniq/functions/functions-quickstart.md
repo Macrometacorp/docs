@@ -1,12 +1,17 @@
 ---
 sidebar_position: 2
-title: Quickstart
+title: Functions Quickstart
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-PhotonIQ Functions provides a real-time method for enterprises to create and interact with their services using the [CLI](functions-cli.md) and [API](https://www.macrometa.com/docs/apiFaas#/) requests.
+PhotonIQ Functions provides a real-time method for enterprises to create and interact with their services using the [Functions CLI](functions-cli.md) or [Functions API](https://www.macrometa.com/docs/apiFaas#/) .
+
+In this quickstart guide, you'll learn how to begin with PhotonIQ Functions using your preffered language by:
+- Creating a function
+- Testing the function locally
+- Deploying the function to remote PhotonIQ Functions server
 
 ## Prerequisite
 
@@ -34,14 +39,11 @@ For more information on available commands, refer to the [Functions CLI commands
 
 :::
 
+Choose your preferred language or framework from the tabs below to begin working with PhotonIQ Functions. The implementation process varies depending on your selection.
+
 <Tabs groupId="languages">
 
 <TabItem value="nextjs" label="Next.js">
-
-In this quickstart guide, you'll learn how to begin with PhotonIQ Functions using Next.js by:
-- [Creating a function](#create-a-function)
-- [Testing the function locally](#test-the-function-locally)
-- [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-remote-photoniq-functions-server)
 
 ## Create a function
 
@@ -58,9 +60,9 @@ Template function has been created in path: functions/projectName
 Configuration can be modified in the file: functions/projectName/photoniq.toml
 ```
 
-This command creates a `functions` and `photoniq-faas-sdk` directory. The `functions` directory contains the Next.js app you just created.
+This command creates a `functions` and `photoniq-faas-sdk` directory. The `functions` directory contains the template function Next.js app created.
 
-2. Navigate to the _/src/app/api_ directory in the Next.js app. By default, some template routes are defined in `pingjs/route.js` and `pingts/route.ts`. Below is an example of `pingjs/route.js`:
+2. Navigate to the _/src/app/api_ directory in the template function Next.js app. By default, some template routes are defined in `pingjs/route.js` and `pingts/route.ts`. Below is an example of `pingjs/route.js`:
 
 ```javascript title="route.js"
 export function GET(req) {
@@ -78,16 +80,27 @@ export function POST(req) {
 }
 ```
 
-For this guide, we'll use the default route provided. The default route above displays the following message when accessed: `"[GET] PhotonIQ FaaS function is working"`. Modify the function as desired and follow the next steps to test the function.
+For this example guide, use the default route provided. You can create other routes based on your requirements.
 
+3. Modify the `GET` function in `pingjs/route.js` to the following code, which will display `[GET] PhotonIQ FaaS function is working. Hello, PhotonIQ NextJS Functions is working` when the route is accessed.
+
+```javascript title="route.js"
+export function GET(req) {
+  return new Response('[GET] PhotonIQ FaaS function is working. Hello, PhotonIQ Next.js Functions is working', {
+    status: 200,
+    headers: { 'Content-Type': 'text/plain' },
+  });
+}
+
+```
 ## Test the function locally
 
-1. Navigate back to the directory where you created the function and use the `faas build` command to install the required dependencies and build the Next.js app with the functions:
+1. Navigate back to the initial directory where you created the function and use the `faas build` command to install the required dependencies and build the Next.js app with the function:
 
 ```bash
 faas build <projectName>
 ```
-To verify you're in the correct directory, use the `ls` command, which should list only the `functions` and `photoniq-faas-sdk` directories.
+To verify you're in the correct directory, use the `ls` command, which should list the `functions` and `photoniq-faas-sdk` directories.
 
 2. After the build is successful, start the local development server using the `faas run` command:
 
@@ -97,8 +110,9 @@ faas run <projectName>
 
 It is served on `http://localhost:8080`  by default. Open `http://localhost:8080` in your browser and test the routes you created in the function.
 
-To test the default routes in this example guide, go to `http://localhost:8080/api/pingjs`. It displays the following message: "`[GET] PhotonIQ FaaS function is working.`"
+To test the route in this example guide, go to `http://localhost:8080/api/pingjs`. It displays the following message: `[GET] PhotonIQ FaaS function is working. Hello, PhotonIQ Next.js Functions is working`.
 
+Now, you can create other routes based on your requirements and test them locally. For these functions to be globally accessible, visit [Deploying the function remotely](#deploying-the-function-to-remote-photoniq-functions-server).
 
 ## Deploying the function to remote PhotonIQ Functions server
 
@@ -143,12 +157,113 @@ faas remote delete <projectName>
 
 </TabItem>
 
-<TabItem value="Rust/Javascript" label="Rust/Javascript">
+<TabItem value="Javascript" label="Javascript">
 
-In this quickstart guide, you'll learn how to begin with PhotonIQ Functions by:
-- [Creating a function](#creating-a-function)
-- [Testing the function locally](#testing-the-function-locally)
-- [Deploying the function to remote PhotonIQ Functions server](#deploying-the-function-to-remote-photoniq-functions-server-1)
+## Creating a function
+
+
+1. With the PhotonIQ Functions CLI installed, scaffold a new Javascript project with the `faas new` command:
+
+```bash
+faas new <projectName> --lang js
+```
+
+If successful, it returns a response similar to this:
+
+```
+Template function has been created in path: functions/<projectName>
+Configuration can be modified in the file: functions/<projectName>/photoniq.toml
+```
+
+This command creates a `functions` and `photoniq-faas-sdk` directory. The `functions` directory contains the Javascript template function created.
+
+2. Go to the `functions/<projectName>` directory in your project. This folder contains:
+
+  - index.js: The template code for your function.
+  - photoniq.toml: The configuration file for PhotonIQ Functions.
+
+  These files are prefilled with a template you can use for testing. The `index.js` file contains the function code, and the `photoniq.toml` file contains the configuration settings. Refer to the [Using Functions](03-developing-functions/index.md) to learn more about functions file structure in Javascript.
+
+3. Open the `index.js` file. This file currently has a POST request example for advanced learning. However, for this quickstart guide, we’ll replace it with a simple GET request. Replace the existing content of the `index.js` file with the following code:
+
+```javascript title=src/index.js
+addEventListener("handler", (event) => {
+  let response = `PhotonIQ Function Service function is working for Javascript functions`;
+
+  // Log messages with the following methods: error, warn, info, debug, trace
+  log.error(`[${file_line()}] Log an [ERROR] message`);
+
+  return event.respondWith(new HttpResponseBuilder().body(response).build());
+});
+```
+
+## Testing the function locally
+
+1. To test the function, use `faas run` to start the local test server:
+
+```bash
+faas run <projectName>
+```
+
+By default, the function can be accessed locally on `http://127.0.0.1:8080/<projectName>`.
+
+2. Open a new terminal window and run `faas execute` to trigger the code in `<projectName>`:
+
+```bash
+faas execute <projectName>
+```
+
+When this test function is executed or accessed locally, it returns the following response: "PhotonIQ Function Service function is working for Javascript functions".
+
+
+
+## Deploying the function to remote PhotonIQ Functions server
+
+Running functions locally limits their usage to your local server. To make your functions globally available, PhotonIQ Functions uses geo-distributed GDN servers, ensuring high availability and faster performance by processing at the closest point of presence to the user. Furthermore, the [highly distributed nature of the GDN](https://www.macrometa.com/platform) means every function is georeplicated in all regions in the fabric. 
+
+Before you proceed, [contact your Macrometa personnel](https://www.macrometa.com/contact/sales) to provide these authentication credentials for accessing the PhotonIQ Functions remote server:
+- API_KEY
+- API_URL
+
+The `faas remote` command will request these credentials on your first attempt.
+
+1. Use the  `faas remote deploy` command to deploy the function:
+
+```bash
+faas remote deploy <projectName>
+```
+
+2. To check the status of the deployment, run this command:
+
+```bash
+faas remote status <projectName>
+```
+
+If successful, the response is similar to this:
+
+```bash
+version: 0.0.1
+url: <function_url>
+status: success
+name: <projectName>
+lastUpdated: 2024-08-04 16:52:35 
+```
+Use the `<function_url>` to access your function on the browser.
+
+3. Once deployed, execute the remote function with this command:
+
+```bash
+faas remote execute <projectName>
+```
+
+4. To delete the function from the remote server, use:
+
+```bash
+faas remote delete <projectName>
+```
+</TabItem>
+
+<TabItem value="Rust" label="Rust">
 
 ## Creating a function
 
@@ -167,7 +282,7 @@ Configuration can be modified in the file: functions/testFunction/photoniq.toml
 
 :::note
 
-This command generates a new `functions/testFunction` directory with the default template files. While the default function template is created in `Rust`, PhotonIQ Functions also support `Javascript`.  Refer to the [**Using Functions**](./03-using-functions/index.md) to create a Javascript function.
+This command generates a new `functions/testFunction` directory with the default template files. While the default function template is created in `Rust`, PhotonIQ Functions also support Javascript and Next.js.  Refer to the [**Using Functions**](03-developing-functions/index.md) to learn more.
 
 :::
 
@@ -224,7 +339,7 @@ level = "INFO"
 MESSAGE = "Hello 👋! This message comes from an environment variable"
 ```
 
-These files are prefilled with a template you can use for testing. The `src/main.rs` file contains the function code, and the `photoniq.toml` file contains the configuration settings. Refer to the [Using Functions](./03-using-functions/index.md) to learn more about functions file structure in Rust and Javascript.
+These files are prefilled with a template you can use for testing. The `src/main.rs` file contains the function code, and the `photoniq.toml` file contains the configuration settings. Refer to the [Developing Functions](03-developing-functions/index.md) to learn more about functions file structure in Rust and Javascript.
 
 When this test function is [executed](#testing-the-function-locally), it should return the following response as defined in the function handler:
 
@@ -302,4 +417,8 @@ faas remote delete testFunction
 
 </Tabs>
 
+### Next steps
+- [Developing Functions](./03-developing-functions/index.md): Explore how to build and deploy functions in different programming languages using the Functions service. 
+
+- [Creating HTTP Requests with Functions](./03-developing-functions/creating-http-requests-with-functions.md): Learn to build APIs that send HTTP requests to external services within your functions. 
 
