@@ -22,7 +22,7 @@
     /* Macrometa Color Ramps */
 
     --color-white: #ffffff;
-    --color-grey: #F7FAFC;
+    --color-grey: #f7fafc;
 
     --color-neutral-50: #f1f2f4;
     --color-neutral-100: #e2e4e8;
@@ -151,9 +151,9 @@
     --navbar-link-color-active: var(--color-primary-700);
   }
 
-  html[data-theme="dark"]{
+  html[data-theme="dark"] {
     --ifm-background-color: var(--docs-color-background);
-    --ifm-color-primary: var(--color-primary-400); 
+    --ifm-color-primary: var(--color-primary-400);
     --ifm-color-secondary-contrast-background: var(--color-neutral-700);
     --ifm-color-secondary-dark: var(--color-primary-300);
 
@@ -290,6 +290,11 @@ div[class^="sidebar_"]
   @apply font-normal text-base;
 }
 
+.footer__item .socials {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .footer__item a {
   color: var(--ifm-footer-link-color);
 }
@@ -324,7 +329,8 @@ div[class^="sidebar_"]
 
   > div {
     margin-inline: auto;
-  }}
+  }
+}
 
 .navbar__link {
   color: var(--navbar-link-color);
@@ -953,7 +959,6 @@ footer .signup button[type="submit"] {
 html[data-theme="dark"] footer .signup button[type="submit"] {
   color: #ffffff;
   border: 1px solid #6767e6;
-
 }
 
 .footer__copyright {
@@ -962,39 +967,37 @@ html[data-theme="dark"] footer .signup button[type="submit"] {
 }
 
 .bg-custom-gray {
-  background-color: #F7FAFC;
+  background-color: #f7fafc;
 }
 html[data-theme="dark"] .bg-custom-gray {
   background-color: var(--color-neutral-800);
 }
-.social-icons{
+.social-icons {
   padding: 1px;
   margin-top: 1rem;
-  
 }
-html[data-theme="dark"] .card-land{
+html[data-theme="dark"] .card-land {
   background-color: var(--docs-card-background-color);
   border: 1px solid var(--docs-card-border-color);
   border-radius: 0.5rem;
 
-  > h1 >a{
+  > h1 > a {
     color: var(--docs-card-title-color);
-    }
-  > h1{
-      color: var(--docs-card-title-color);
-    }
-  > h1 .help{
+  }
+  > h1 {
+    color: var(--docs-card-title-color);
+  }
+  > h1 .help {
     color: var(--color-primary-500);
-  
   }
 
-  > p{
+  > p {
     color: var(--docs-card-description-color);
   }
 }
 
 .hs-form-private {
-    display: flex;
+  display: flex;
 }
 .hs-input {
   padding-inline: 10px;
@@ -1003,7 +1006,7 @@ html[data-theme="dark"] .card-land{
   border-right: none;
   border-radius: 4px 0px 0px 4px;
 }
-.hs-form-private .hs-button{
+.hs-form-private .hs-button {
   background: transparent;
   color: #4a5568;
   font-size: 15px;
@@ -1019,14 +1022,12 @@ html[data-theme="dark"] .card-land{
   padding-block: 4px;
   cursor: pointer;
 }
-html[data-theme="dark"] .hs-submit .hs-button{
+html[data-theme="dark"] .hs-submit .hs-button {
   color: #ffffff;
 }
-html[data-theme="dark"] .submitted-message{
+html[data-theme="dark"] .submitted-message {
   color: #ffffff;
-
 }
-.submitted-message{
+.submitted-message {
   color: #000000;
-
 }
