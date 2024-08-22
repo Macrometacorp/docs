@@ -88,10 +88,13 @@ export default function Hello() {
           {b.map((item, i) => (
             <div
               key={i}
-              alt={item.title}
               className=" card-land flex flex-col text-center justify-center items-center py-[32px] px-[21px] rounded-2xl border border-slate-300 shadow-md"
             >
-              <img src={item.icon} className="sm:text-2xl text-1xl" />
+              <img
+                src={item.icon}
+                alt={item.title}
+                className="sm:text-2xl text-1xl"
+              />
               <h2 className="font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-600 text-lg">
                 <a className="text-gray-700" href={item.href}>
                   {item.title}
