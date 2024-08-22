@@ -151,7 +151,7 @@ const config = {
               },
             ],
           },
-            {
+          {
             title: "Resources",
             items: [
               {
@@ -217,30 +217,32 @@ const config = {
                     formId: "2820791a-e45e-4742-842f-a6f1b08fe051"
                   });
                 </script>
-                `
+                `,
               },
               {
                 html: `
+                <div class="socials">
                   <a href="https://github.com/macrometacorp" target="_blank">
-                  <img class="social-icons" src="/docs/img/Icon-github.svg">
+                    <img class="social-icons" alt="GitHub" src="/docs/img/Icon-github.svg">
                   </a>
                   <a href="https://facebook.com/MacrometaCorp" target="_blank">
-                  <img class="social-icons" src="/docs/img/Icon-facebook.svg">
+                    <img class="social-icons" alt="Facebook" src="/docs/img/Icon-facebook.svg">
                   </a>
                   <a href="https://twitter.com/macrometa" target="_blank">
-                  <img class="social-icons" src="/docs/img/Icon-twitter.svg">
+                    <img class="social-icons" alt="X (Formerly Twitter)" src="/docs/img/Icon-twitter.svg">
                   </a>
                   <a href="https://linkedin.com/company/macrometa-corporation" target="_blank">
-                  <img class="social-icons" src="/docs/img/Icon-linkedin.svg">
+                    <img class="social-icons" alt="LinkedIn" src="/docs/img/Icon-linkedin.svg">
                   </a>
+                </div>
                 `,
-              }
+              },
             ],
           },
         ],
         copyright: `<div> © ${new Date().getFullYear()} Macrometa • All rights reserved <div>`,
       },
-    
+
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
