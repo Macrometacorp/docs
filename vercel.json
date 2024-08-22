@@ -293,7 +293,9 @@
     { "source": "/docs/release-notes/release-notes-0-17-12", "destination": "/docs/releases/2023/release-notes-0-17-12", "permanent": true },
     { "source": "/docs/release-notes/release-notes-0-17-11", "destination": "/docs/releases/2022/release-notes-0-17-11", "permanent": true },
     { "source": "/docs/release-notes/release-notes-0-17-10", "destination": "/docs/releases/2022/release-notes-0-17-10", "permanent": true },
-    { "source": "/docs/release-notes/release-notes-0-17-09", "destination": "/docs/releases/2022/release-notes-0-17-09", "permanent": true }
+    { "source": "/docs/release-notes/release-notes-0-17-09", "destination": "/docs/releases/2022/release-notes-0-17-09", "permanent": true },
+    { "source": "/docs/photoniq/functions/using-functions/configuring-functions", "destination": "/docs/photoniq/functions/developing-functions/configuring-functions", "permanent": true },
+    { "source": "/docs/photoniq/functions/using-functions", "destination": "/docs/photoniq/functions/developing-functions", "permanent": true }
 
   ]
 }
