@@ -1,21 +1,23 @@
 ---
 sidebar_position: 10
-title: Exclusive Subscription Example
+title: Configure an Exclusive Subscription
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Prerequisites from '../../../_partials/_prerequisites-sdk-api-key.md';
 
-This page describes how to configure an exclusive subscription for one stream. Refer to the [exclusive subscription](index.md#exclusive) section for details.
-
-To test the example code, open three terminals simultaneously and run `node producer.js`, then run `consumer-1.js` in second terminal and `consumer-2.js` in third terminal. If successful, you will see messages in both consumer terminals.
+Let's configure message delivery with an exclusive subscription. With an exclusive subscription, only one consumer is allowed to subscribe to a stream. 
 
 ## Prerequisites
 
 <Prerequisites />
 
-## Producer Example
+## Setup an Exclusive subscription
+
+To setup an exclusive subscription:
+
+### Step 1: Create a Stream and a Producer
 
 This code creates a stream if one doesn't already exist, then creates a producer.
 
@@ -143,7 +145,7 @@ create_producer()
 </TabItem>
 </Tabs>
 
-## Create Consumer 1
+### Step 2a: Create Consumer 1
 
 This code creates a stream if one doesn't already exist, then creates the first consumer.
 
@@ -249,7 +251,7 @@ create_consumer()
 </TabItem>
 </Tabs>
 
-## Create Consumer 2
+### Step 2b: Create Consumer 2
 
 This code creates a stream if one doesn't already exist, then creates the second consumer.
 
@@ -356,3 +358,14 @@ create_consumer()
 ```
 </TabItem>
 </Tabs>
+
+### Step 3: Test subscription
+
+To test your subscription:
+
+- Open three terminals.
+    - Run `node producer.js` in the first terminal.
+    - Run `consumer-1.js` in the second terminal.
+    - Run `consumer-2.js` in the third terminal
+
+ If successful, you will see messages in both consumer terminals.

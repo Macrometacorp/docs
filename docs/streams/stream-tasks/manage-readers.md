@@ -3,15 +3,15 @@ sidebar_position: 110
 title: Manage Readers
 ---
 
-Global Data Network (GDN) stream readers are similar to stream consumers, but there are two crucial differences between them:
+Global Data Network (GDN) stream readers are similar to stream consumers but have two crucial differences between them:
 
 - Readers allow you to specify the starting point for processing messages within a stream. In contrast, consumers always begin with the earliest or latest available unacknowledged message.
-- Unlike consumers, readers do not retain data or acknowledge messages. This means that readers can access messages without affecting other consumers or the message state within the stream.
+- Unlike consumers, readers do not retain data or acknowledge messages, meaning readers can access messages without affecting other consumers or the message state within the stream.
 - Readers read both acknowledged and unacknowledged messages.
 
 ## When to Use Readers
 
-Readers are useful in scenarios where you want to process the stream data without affecting the message acknowledgment state or when you need to start processing messages from a specific point in the stream. For example, you might use a reader for analytics, monitoring, or auditing purposes.
+Readers are helpful for use cases where stream data requires processing without affecting the message acknowledgment state or when messages need processing from a specific point in the stream. For example, a reader might be used for analytics, monitoring, or auditing purposes.
 
 ## Create a Reader
 
@@ -26,13 +26,13 @@ const dcName = "your-datacenter-name"; // Optional
 const reader = await client.createStreamReader(streamName, subscriptionName, local, dcName);
 ```
 
-## Read Messages with a Reader
+### Read Messages with a Reader
 
-Once you have created a reader, you can start listening for messages by registering event listeners. The following event listeners are available:
+After creating a reader, you can start listening for messages by registering event listeners. The following event listeners are available:
 
-- `open`: Triggered when the connection to the stream is established.
-- `message`: Triggered when a new message is received from the stream.
-- `close`: Triggered when the connection to the stream is closed.
+- `open`: Triggered after establishing a connection to the stream.
+- `message`: Triggered when receiving a new message from the stream.
+- `close`: Triggered after closing the connection to the stream.
 - `error`: Triggered when an error occurs during the connection or message processing.
 
 Here's an example of how to use event listeners with a reader:

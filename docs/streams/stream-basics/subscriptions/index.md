@@ -3,26 +3,31 @@ sidebar_position: 1
 title: Subscriptions
 ---
 
-A subscription is a named configuration rule that determines how messages are delivered to consumers. There are three available subscription modes in GDN streams: [exclusive](#exclusive), [shared](#shared), [failover](#failover), and [key_shared](#key_shared). These modes are illustrated in the figure below.
+A subscription is a named configuration rule that determines how messages are delivered to consumers. There are three available subscription modes in GDN streams:
+
+- [Exclusive subscription](#exclusive)
+- [Shared subscription](#shared)
+- [Failover subscription](#failover)
+- [Key-shared subscription](#key_shared)
+
+These modes are illustrated in the figure below.
 
 ![stream-subscription-modes](/img/stream-subscription-modes.png)
+
+
+## Configure a subscription
 
 To configure a subscription:
 
 1. Create a [producer](../producers.md).
 1. Create at least two [consumers](../consumers.md) with the same subscription name. For example, `consumer-subscription`.
-
-Refer to the following sections for code examples for each subscription type:
-
-- [Exclusive subscription](exclusive-example.md)
-- [Shared subscription](shared-example.md)
-- [Failover subscription](failover-example.md)
+1. Send a message and test the delivery of these messages to the created consumers.
 
 ## Exclusive
 
-Exclusive mode is the default in which only one consumer is allowed to subscribe. If further consumers attempt to subscribe to a stream with the same subscription, then the consumer receives an error.
+This is the default subscription mode which allows only one consumer to subscribe. Any further attempt by other consumers to subscribe results in the consumer receiving an error. 
 
-In the diagram below, only Consumer-A is allowed to consume messages.
+In the diagram below, only Consumer-A-0 is allowed to consume messages.
 
 ![stream-exclusive-subscriptions](/img/stream-exclusive-subscriptions.png)
 
@@ -30,9 +35,9 @@ In the diagram below, only Consumer-A is allowed to consume messages.
 
 In shared mode, also referred to as _round robin_, messages are distributed across consumers so that any given message is delivered to only one consumer.
 
-When a consumer disconnects, all of its unacknowledged messages reschedule to be sent to the remaining consumers.
+A disconnection from a consumer results in all of its unacknowledged messages rescheduled and sent to the remaining consumers.
 
-In the diagram below, Consumer-B-1 and Consumer-B-2 can subscribe to the stream, but Consumer-C-1 and others could as well.
+In the diagram below, Consumer-C-1 and Consumer-C-2 can subscribe to the stream, but Consumer-C-3 and others could as well.
 
 ![stream-shared-subscriptions](/img/stream-shared-subscriptions.png)
 
@@ -45,7 +50,7 @@ When using shared mode:
 
 In failover mode, the subscription designates a primary consumer to stream received messages. If the primary consumer disconnects, unacknowledged and subsequent messages deliver to the next consumer in line which becomes the new primary.
 
-In the diagram below, Consumer-C-1 is the primary consumer while Consumer-C-2 would be the next in line to receive messages if Consumer-C-1 disconnected.
+In the diagram below, Consumer-B-0 is the primary consumer while Consumer-B-1 would be the next in line to receive messages if Consumer-B-0 disconnected.
 
 ![stream-failover-subscriptions](/img/stream-failover-subscriptions.png)
 
@@ -74,4 +79,6 @@ When subscribing to multiple streams by regex, all streams must be in the same g
 
 When subscribing to multiple streams, the GDN stream client automatically calls the GDN API to discover and subscribe to any streams that match the regex pattern. The consumer also automatically subscribes to any future lists created with the regex pattern.
 
-When a consumer subscribes to multiple streams, all ordering guarantees normally provided by GDN on single stream do not hold. If your use case for GDN involves any strict ordering requirements, then best practice is not to use multi-stream subscriptions.
+:::note
+A consumer subscribing to multiple streams removes the strict ordering requirement GDN guarantees on single streams. Hence, use cases requiring strict ordering should use other subscription modes, not multi-stream subscriptions.
+:::

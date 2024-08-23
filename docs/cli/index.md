@@ -1,15 +1,17 @@
 ---
 sidebar_position: 1
-title: Command Line Interface
+title: Installing the GDN Command Line Interface
 ---
 
-Macrometa Command Line Interface (CLI) is a command line interface that enables developers to:
+The Macrometa GDN  Command Line Interface (CLI) is a command line interface that enables developers to:
 
 1. Deploy serverless microservices and functions.
 1. Script serverless workflows via GitHub.
 1. Easily learn commands with consistent verbs, nouns, and flags.
 
-You can use commands with the GDN Command Line Interface (CLI) to perform many of the same actions that you can perform in the GUI or API.
+This GDN Command Line Interface (CLI) provides various commands for performing many of the same actions you can perform in the GUI or API.
+
+Let's install the GDN CLI to get started using these various commands.
 
 ## Prerequisites
 
@@ -36,13 +38,26 @@ Sample gdnsl.yaml:
 
 ## Update GDN CLI
 
-To update `gdnsl`, we recommend that you completely uninstall the app and then reinstall it. If you are on an Apple or Linux system, then you might need to use `sudo`.
+To update `gdnsl`, we recommend that you completely uninstall the app and then reinstall it. Apple or Linux system users may need need to use `sudo`.
 
 ```bash
 npm uninstall -g gdnsl
+
+## now reinstall
+npm install -g gdnsl
 ```
 
-## Usage
+## Use the GDN CLI
+
+With the CLI now installed, here are a few tasks you can perform:
+
+- [Retrieve user account details](users-cli.md)
+- [Manage API Keys](api-key-cli.md)
+- [Manage billing](billing-cli.md)
+- [Work with collections](collections-cli.md)
+- [Manage your fabrics](fabrics-cli.md)
+- [Execute queries](queries-cli.md)
+- [Create, delete, and publish messages to streams](streams-cli.md)
 
 Macrometa serverless client executable options:
 

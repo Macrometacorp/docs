@@ -16,22 +16,22 @@ Start creating, publishing, and subscribing to streams.
   <card
     heading="Client SDKs"
     description="Create, subscribe and publish to streams using our Python and Javascript SDKs."
-    href="https://www.macrometa.com/docs/streams/getting-started-streams"
+    href="/docs/streams/getting-started-streams"
   />
   <card
     heading="REST APIs"
     description="Leverage our extensive list of API endpoints to work with GDN Streams."
-    href="https://www.macrometa.com/docs/api#/operations/CreateStream"
+    href="/docs/api#/operations/CreateStream"
   />
     <card
     heading="Web Console"
     description="Use our intuitive user interface to send, receive and subscribe to streams."
-    href="https://www.macrometa.com/docs/streams/stream-tasks/create-streams"
+    href="/docs/streams/stream-tasks/create-streams"
 />
     <card
     heading="GDN CLI"
     description="Install and use the interactive GDN CLI to start subscribing and publishing to streams."
-    href="https://www.macrometa.com/docs/cli/streams-cli#gdnsl-streams-create"
+    href="/docs/cli/streams-cli"
   />
 </grid>
 

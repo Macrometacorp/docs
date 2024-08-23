@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Messages
 ---
 
-Messages are the basic unit of Macrometa streams. Producers publish messages to streams, and consumers process the message and send and acknowledgment. 
+Messages are the basic unit of Macrometa streams. Producers publish messages to streams, and consumers process these messages and send an acknowledgment. 
 
 A message has the following properties:
 

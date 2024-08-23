@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-title: Shared Subscription Example
+title: Shared Subscription
 ---
 
 import Tabs from '@theme/Tabs';

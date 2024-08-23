@@ -3,7 +3,7 @@ sidebar_position: 50
 title: Create Streams
 ---
 
-This page explains how to create streams in Macrometa.
+Create a Macrometa Stream 
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 Create a stream.
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
-2. Click **Data > Streams**.
+2. Click **Data > Streams** from your dashboard.
 
    Macrometa displays a list of streams and their attributes.
 
@@ -104,7 +104,7 @@ createMyStream()
 </TabItem>
 <TabItem value="api-py" label="API - Python">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream](https://www.macrometa.com/docs/api#/operations/CreateStream).
+Use our interactive API Reference to [Create a Stream](https://www.macrometa.com/docs/api#/operations/CreateStream).
 
 ```py
 import requests
@@ -131,7 +131,7 @@ print("\nStream Created: ", resp.text)
 </TabItem>
 <TabItem value="api-js" label="API - JS">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://www.macrometa.com/docs/api#/operations/CreateStream).
+Use our interactive API Reference to [Create a Stream](https://www.macrometa.com/docs/api#/operations/CreateStream).
 
 ```js
 class APIRequest {

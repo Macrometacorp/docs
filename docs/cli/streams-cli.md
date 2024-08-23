@@ -1,20 +1,17 @@
 ---
-title: Stream Commands
+title: Manage Streams with GDN CLI
 ---
 
-# Streams (gdnsl streams)
+Before subscribing, receiving and publishing messages to streams with the GDN CLI commands, you need to [install the GDN CLI](index.md)
 
-## gdnsl streams publish
+## Publish to a Stream (gdnsl streams)
 
-Publish message to a stream.
+Tp publish a message to gdn streams, you use the `gdnsl streams publish` command.
 
 ```bash
  gdnsl streams publish <stream-name> [flags] <message-string>
-```
 
-**Examples:**
-
-```bash
+# Examples
 
   #Publish message to a stream of type global  
   gdnsl streams publish testStream --message "This is global stream"  --global
@@ -38,17 +35,14 @@ Publish message to a stream.
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-## gdnsl streams create
+## Create a Stream
 
-Create a stream.
+Use the `gdnsl streams create` command to create a stream.
 
 ```bash
   gdnsl streams create <stream-name> [flags]
-```
 
-**Examples:**
-
-```bash
+# Examples
 
   # Create a new stream name testStream of type global.
   gdnsl streams create testStream --global
@@ -72,17 +66,14 @@ Create a stream.
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-## gdnsl streams delete
+## Delete a Stream
 
-Delete a stream.
+Use the `gdnsl streams delete` to delete a stream
 
 ```bash
 gdnsl streams delete <stream-name> [flags]
-```
 
-**Examples:**
-
-```bash
+# Examples
 
   # Delete a stream of type global
   gdnsl streams delete testStream --global
@@ -106,17 +97,14 @@ gdnsl streams delete <stream-name> [flags]
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-## gdnsl streams list
+## Get a list of streams
 
-List streams.
+The `gdnsl streams list` retrieves a list of all the streams.
 
 ```bash
 gdnsl streams list [flags]
-```
 
-**Examples:**
-
-```bash
+# Examples
 
   # list streams 
   gdnsl streams list 
@@ -139,17 +127,14 @@ gdnsl streams list [flags]
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-## gdnsl streams describe
+## Get details about a Stream
 
-Describe a stream.
+The `gdnsl streams describe` retrieves the details about a specific stream.
 
 ```bash
  gdnsl streams describe <stream-name> [flags]
-```
 
-**Examples:**
-
-```bash
+#Examples
 
   # Get  stream's backlog  for stream type global
   gdnsl streams describe testStream --backlog --global
@@ -188,17 +173,14 @@ Describe a stream.
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-## gdnsl streams expire
+## Expire messages on a Stream
 
-Expire messages on the stream for all subscriptions.
+Use the `gdnsl streams expire` command to expire messages on the stream for all subscriptions.
 
 ```bash
 gdnsl streams expire <stream-name> [flags] <second-value-number>
-```
 
-**Examples:**
-
-```bash
+#Examples
 
   # Expire messages on the stream for all subscriptions for stream type global
   gdnsl streams expire testStream --seconds 9600 --global
@@ -223,17 +205,14 @@ gdnsl streams expire <stream-name> [flags] <second-value-number>
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-## gdnsl streams backlog
+## Delete streams backlog
 
-Delete backlog for all streams or for a subscription.
+The `gdnsl streams backlog` deletes backlog for all streams or for a subscription.
 
 ```bash
 gdnsl streams backlog [flags]
-```
 
-**Examples:**
-
-```bash
+# Examples
 
   # Clear backlog for all streams
   gdnsl streams backlog --delete
@@ -258,17 +237,14 @@ gdnsl streams backlog [flags]
       --config string         gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-## gdnsl streams subscription
+## Delete subscription on a stream(s)
 
-Delete subscription either on all streams or an a particular stream.
+Use the `gdnsl streams subscription` to delete subscription either on all streams or an a particular stream.
 
 ```bash
 gdnsl streams subscription NAME [flags]
-```
 
-**Examples:**
-
-```bash
+# Examples
 
   # Delete the given subscription on all streams
   gdnsl streams subscription mysubscription --delete 
@@ -294,17 +270,14 @@ gdnsl streams subscription NAME [flags]
 -c, --config=<value>     gdnsl config file (default is ./gdnsl.yaml)
 ```
 
-## gdnsl streams ttl
+## Set TTL for a stream
 
-Get or set message TTL (time-to-live) in seconds for streams.
+Use the `gdnsl streams ttl` to get or set message TTL (time-to-live) in seconds for streams.
 
 ```bash
 gdnsl streams ttl [flags]
-```
 
-**Examples:**
-
-```bash
+# Examples
 
   # Get streams TTL
   gdnsl streams ttl 

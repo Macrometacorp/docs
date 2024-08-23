@@ -1,6 +1,6 @@
 ---
 sidebar_position: 30
-title: Failover Subscription Example
+title: Failover Subscription
 ---
 
 import Tabs from '@theme/Tabs';
