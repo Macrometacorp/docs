@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Subscriptions
 ---
 
-A subscription is a named configuration rule that determines how messages are delivered to consumers. There are three available subscription modes in GDN streams:
+A subscription is a named configuration rule that determines how messages are delivered to consumers. These are the available subscription modes in GDN streams:
 
 - [Exclusive subscription](#exclusive)
 - [Shared subscription](#shared)
