@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Stream Tasks
+title: Work with Streams
 ---
 
 Let's go over some basic tasks you can perform with streams:

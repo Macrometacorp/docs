@@ -3,10 +3,15 @@ sidebar_position: 50
 title: Create Streams
 ---
 
-Create a Macrometa Stream 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+Macrometa GDN offers numerous ways to allow you to create a Macrometa Stream. 
+
+- Web console
+- SDKs
+- API reference
+- GDN CLI
 
 <Tabs groupId="operating-systems">
 <TabItem value="console" label="Web Console">
@@ -20,13 +25,13 @@ Create a stream.
 
 1. Click **New Stream**.
 1. Enter a stream **Name**.
-1. Select **Replication** type: **Local** or **Global**. Default is **Local**.
+1. Select a **Replication** type: **Local** or **Global**. Default is **Local**.
 1. Click **Create**.
 
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the Python SDK](../../sdks/install-sdks.md) before running this code.
 
 ```py
 from operator import concat
@@ -67,7 +72,7 @@ createStream()
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-You must [Install the JavaScript SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the JavaScript SDK](../../sdks/install-sdks.md) before running this code.
 
 ```js
 // Connect to GDN.
@@ -202,7 +207,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams create](../../cli/streams-cli#gdnsl-streams-create) CLI command to create a document collection.
+Use the [gdnsl streams create](../../cli/streams-cli#create-a-stream) CLI command to create a document collection.
 
 </TabItem>
 </Tabs>
