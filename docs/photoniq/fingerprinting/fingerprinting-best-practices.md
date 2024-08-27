@@ -12,7 +12,7 @@ The Digital Fingerprint service uses [third-party cookies](first-third-party-coo
 
 ### Fingerprint Browser Agent on Page Load
 
-The script used to activate the agent affects the performance of the Fingerprint service. For example, activating the Javascript agents at page load time also runs a function that generates the `visitorId`, improving the speed and performance, unlike the script that activates the agent after clicking on a button, which takes longer. 
+The Fingerprint service offers different scripts for activating the agent. These scripts provide flexibility, allowing businesses to use the best script for their web pages depending on the use cases. 
 
 ### Visitor Identifier to Third-Party Services
 
