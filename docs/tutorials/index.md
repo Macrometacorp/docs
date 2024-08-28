@@ -15,11 +15,11 @@ Here, you'll find step-by-step guides and in-depth tutorials designed to help yo
   <card
     heading="Build with GDN"
     description="Create, save, and query your own database"
-    href="/tutorials/gdn-tutorials"
+    href="/docs/tutorials/gdn-tutorials"
   />
     <card
     heading="Develop with PhotonIQ"
     description="Control and manage website traffic."
-    href="/tutorials/photoniq-tutorials"
+    href="/docs/tutorials/photoniq-tutorials"
   />
 </grid>
