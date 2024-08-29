@@ -1,21 +1,27 @@
 ---
 sidebar_position: 1
-title: Event Delivery Client SDKs
+title: Getting Started with Event Delivery Client SDK
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Manage connections to EDS using the JavaScript SDK, which supports both WebSocket and Server-Sent Events (SSE) connections.
+PhotonIQ offers SDK to enable you connect to and deliver event streams to your applications, services, and several other data-volatile use cases. It supports both WebSocket and Server-Sent Events (SSE) connections.
 
 ## Quick Start
 
+This section demonstrates some simple tasks to help get you started using this client SDK in two ways.
+
+This quickstart guide will guide you through:
+- Connecting to an event delivery service
+- Querying and subscribing that service and receiving query results and updates
+
 <Tabs groupId="sdks">
-<TabItem value="commonjs" label="Minified JS Script">
+<TabItem value="commonjs" label="Minified JS">
 
-- Download [Minified JS Script for Browsers](/download/eds-clients/photoniq-eds-sdk.min.js)
+- Download [`photoniq-eds-sdk.min.js`](/download/eds-clients/photoniq-eds-sdk.min.js) client SDK.
 
-- Attach the module to your html:
+- Attach the Javascript module to html code:
 ```html
 <script src="path/to/photoniq-eds-sdk.min.js"></script>
 ```
@@ -42,14 +48,12 @@ querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-K
 
 </TabItem>
 
-<TabItem value="nodejs" label="Node.JS Module">
+<TabItem value="nodejs" label="Node.JS">
 
-- Download [Node.JS module](/download/eds-clients/photoniq-eds-sdk.zip)
-
-- Link the module in another project by the next command:
+- Install the module:
 
 ```
-npm link ../photoniq-eds-sdk
+npm i photoniq-eds-sdk
 ```
 
 - Add dependency in the project:
@@ -61,10 +65,10 @@ import { connect } from 'photoniq-eds-sdk';
 export default {
   name: 'App',
   mounted() {
-    this.initializePhotoniqEdsSdk();
+    this.initialize();
   },
   methods: {
-    initializePhotoniqEdsSdk() {
+    initialize() {
         let connection = connect({
           host: "<YOUR-HOST>",
           customerId: "<YOUR-CUSTOMER-ID>",
