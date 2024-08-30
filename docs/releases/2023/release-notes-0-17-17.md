@@ -16,23 +16,23 @@ You can now create semantic search views.
 - In Search Views, you now have the option to create a Semantic Search View or a Fulltext Search View.
 - Improved Fulltext Search user interface.
 
-[Semantic Search](../search-views/semantic-search/) was added as a result of this feature and the [Search Views](../search-views/) section was edited and reorganized.
+[Semantic Search](../../search-views/semantic-search) was added as a result of this feature and the [Search Views](../../search-views) section was edited and reorganized.
 
 ### Client Connectors - Beta
 
-Macrometa now offers connectors that are installed on the client side. Like the connectors integrated with Macrometa GDN, these connectors allow you to connect Macrometa to external data sources as either a source or a target. The first client connector is [Databricks](../client-connectors/databricks-client/).
+Macrometa now offers connectors that are installed on the client side. Like the connectors integrated with Macrometa GDN, these connectors allow you to connect Macrometa to external data sources as either a source or a target. The first client connector is [Databricks](../../client-connectors/databricks-client).
 
-The [Client Connectors](../client-connectors/) was added as a result of this feature.
+The [Client Connectors](../../client-connectors) was added as a result of this feature.
 
 ### New Connectors
 
 The following connectors are included in this release:
 
-- [Oracle Target](../connections/connector-types/oracledb-connector)
-- [MSSQL Source and Target](../connections/connector-types/mssql-connector)
-- [MySQL/MariaDB Source and Target](../connections/connector-types/mysql-connector)
+- [Oracle Target](../../connections/connector-types/oracledb-connector)
+- [MSSQL Source and Target](../../connections/connector-types/mssql-connector)
+- [MySQL/MariaDB Source and Target](../../connections/connector-types/mysql-connector)
 
-[MySQL/MariaDB Connector](../connections/connector-types/mysql-connector) and [MSSQL Connector](../connections/connector-types/mssql-connector) were added and [OracleDB Connector](../connections/connector-types/oracledb-connector) was updated as a result of this change.
+[MySQL/MariaDB Connector](../../connections/connector-types/mysql-connector) and [MSSQL Connector](../../connections/connector-types/mssql-connector) were added and [OracleDB Connector](../../connections/connector-types/oracledb-connector) was updated as a result of this change.
 
 ## Feature Updates
 
@@ -42,7 +42,7 @@ The following features updates are included in this release.
 
 You can now select the **Group** checkbox during collection creation to add the **Group ID** field to your Key-Value Store collection. This allows you to query by group ID more efficiently and to truncate by group ID.
 
-Several topics in [Key-Value Store](../collections/keyvalue/) were updated as a result of this change.
+Several topics in [Key-Value Store](../../collections/keyvalue) were updated as a result of this change.
 
 ### Query Worker Permissions
 
@@ -85,7 +85,7 @@ The window functions in the `unique` namespace have been renamed as follows:
 To maintain compatibility, the old window names will remain valid.
 :::
 
-Pages in [Window Types](../cep/windows/window-types/) were updated as a result of this change.
+Pages in [Window Types](../../cep/windows/window-types) were updated as a result of this change.
 
 ### Streams Stats API Update
 

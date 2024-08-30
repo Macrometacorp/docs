@@ -282,6 +282,20 @@
     { "source": "/docs/streams/stream-basics/create-consumers", "destination": "/docs/streams/stream-tasks/create-consumers", "permanent": true },
     { "source": "/docs/streams/stream-basics/message-queues/set-message-queue", "destination": "/docs/streams/stream-tasks/set-message-queue", "permanent": true },
     { "source": "/docs/tutorials/graph-example", "destination": "/docs/tutorials/graph-tutorial", "permanent": true },
-    { "source": "/docs/photoniq/photoniq-demos", "destination": "https://photoniq.macrometa.com/demo", "permanent": true }
+    { "source": "/docs/photoniq/photoniq-demos", "destination": "https://photoniq.macrometa.com/demo", "permanent": true },
+    { "source": "/docs/photoniq/functions/faas-commands", "destination": "docs/photoniq/functions/functions-cli", "permanent": true },
+    { "source": "/docs/photoniq/functions/faas-commands/faas-cli", "destination": "docs/photoniq/functions/functions-cli", "permanent": true },
+    { "source": "/docs/photoniq/functions/faas-commands/faas-cli-commands", "destination": "docs/photoniq/functions/functions-cli", "permanent": true },
+    { "source": "/docs/release-notes/release-notes-0-18-0", "destination": "/docs/releases/2024/release-notes-0-18-0", "permanent": true },
+    { "source": "/docs/release-notes/release-notes-0-17-17", "destination": "/docs/releases/2023/release-notes-0-17-17", "permanent": true },
+    { "source": "/docs/release-notes/release-notes-0-17-16", "destination": "/docs/releases/2023/release-notes-0-17-16", "permanent": true },
+    { "source": "/docs/release-notes/release-notes-0-17-15", "destination": "/docs/releases/2023/release-notes-0-17-15", "permanent": true },
+    { "source": "/docs/release-notes/release-notes-0-17-12", "destination": "/docs/releases/2023/release-notes-0-17-12", "permanent": true },
+    { "source": "/docs/release-notes/release-notes-0-17-11", "destination": "/docs/releases/2022/release-notes-0-17-11", "permanent": true },
+    { "source": "/docs/release-notes/release-notes-0-17-10", "destination": "/docs/releases/2022/release-notes-0-17-10", "permanent": true },
+    { "source": "/docs/release-notes/release-notes-0-17-09", "destination": "/docs/releases/2022/release-notes-0-17-09", "permanent": true },
+    { "source": "/docs/photoniq/functions/using-functions/configuring-functions", "destination": "/docs/photoniq/functions/developing-functions/configuring-functions", "permanent": true },
+    { "source": "/docs/photoniq/functions/using-functions", "destination": "/docs/photoniq/functions/developing-functions", "permanent": true }
+
   ]
 }

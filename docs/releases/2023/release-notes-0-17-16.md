@@ -15,7 +15,7 @@ With connections, you can now connect Macrometa document collections to external
 
 This beta feature is available for instances larger than 16GB (SX-10 and DX-10). Contact support@macrometa.com if you want to try it out.
 
-The [Connections](../connections) section was added as a result of this feature.
+The [Connections](../../connections) section was added as a result of this feature.
 
 ## Feature Updates
 
@@ -28,7 +28,7 @@ The Settings tab in collections has been expanded and improved with updated look
 - Information about connections and ETL workflows.
 - Expanded information about collection streams.
 
-[View Collection Settings](../collections/view-collection-settings) was added as a result of this changed. Several pages had minor updates as a result of this change. Individual collection settings pages were removed for Document Store, Key-Value Store, Graph Edge, and Redis Mode collections.
+[View Collection Settings](../../collections/view-collection-settings) was added as a result of this changed. Several pages had minor updates as a result of this change. Individual collection settings pages were removed for Document Store, Key-Value Store, Graph Edge, and Redis Mode collections.
 
 ### Miscellaneous Changes
 
@@ -36,7 +36,7 @@ The following minor changes were added in this release.
 
 | Change # | Description |
 | -------- | ----------- |
-| CEP-559 | Change extension name for [unitconversion](../cep/query-guide/functions/unitconversion/) of `kgToStones` function. New name is [kgToStone](../cep/query-guide/functions/unitconversion/kgToStone). |
+| CEP-559 | Change extension name for [unitconversion](../../cep/query-guide/functions/unitconversion) of `kgToStones` function. New name is [kgToStone](../../cep/query-guide/functions/unitconversion/kgToStone). |
 | STRM-588 | Supports geo-replicated topics created by Pulsar clients.  |
 
 ## Defect Fixes
@@ -45,5 +45,5 @@ The following defects were fixed in this release.
 
 | Defect # | Description |
 | -------- | ----------- |
-| CEP-562 | The [bayesianRegression](../cep/query-guide/functions/streaming-ml/bayesianregression) and [updateBayesianRegression](../cep/query-guide/functions/streaming-ml/updatebayesianregression) stream processors were not working properly. |
+| CEP-562 | The [bayesianRegression](../../cep/query-guide/functions/streaming-ml/bayesianregression) and [updateBayesianRegression](../../cep/query-guide/functions/streaming-ml/updatebayesianregression) stream processors were not working properly. |
 | DB-2463  | Allow `/api/version` endpoint to return the system version for all users.  |

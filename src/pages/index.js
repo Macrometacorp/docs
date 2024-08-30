@@ -42,13 +42,12 @@ const b = [
   },
 ];
 
-export default function Hello() 
-  {
-    return (
+export default function Hello() {
+  return (
     <Layout
       title="Home Page"
       description="Macrometa Home"
-       wrapperClassName="bg-custom-gray"
+      wrapperClassName="bg-custom-gray"
     >
       <div className="max-w-[1208px] mt-20 my-20 px-6 mx-auto">
         <div className="px-8 flex items-center justify-center flex-col gap-3 ">
@@ -56,8 +55,9 @@ export default function Hello()
             Documentation
           </h1>
           <p className="text-center  sm:text-xl text-[12px] w-2/3 text-lg">
-            Welcome to the Macrometa documentation. 
-            This page aims to help you get started using our suite of products and to answer any questions you may have.
+            Welcome to the Macrometa documentation. This page aims to help you
+            get started using our suite of products and to answer any questions
+            you may have.
           </p>
         </div>
 
@@ -69,11 +69,14 @@ export default function Hello()
             >
               <img
                 src={item.icon}
+                alt={item.title}
                 className="text-purple-700 sm:text-2xl text-1xl"
               />
-              <h1 className="font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-700 text-lg">
-                <a className="text-gray-700" href={item.href}>{item.title}</a>
-              </h1>
+              <h2 className="font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-700 text-lg">
+                <a className="text-gray-700" href={item.href}>
+                  {item.title}
+                </a>
+              </h2>
               <p className="text-[14px] sm:text-[17px] text-gray-600 text-md">
                 {item.subtitle}
               </p>
@@ -89,11 +92,14 @@ export default function Hello()
             >
               <img
                 src={item.icon}
+                alt={item.title}
                 className="sm:text-2xl text-1xl"
               />
-              <h1 className="font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-600 text-lg">
-                <a className="text-gray-700" href={item.href}>{item.title}</a>
-              </h1>
+              <h2 className="font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-600 text-lg">
+                <a className="text-gray-700" href={item.href}>
+                  {item.title}
+                </a>
+              </h2>
               <p className="text-[14px] sm:text-[17px] text-gray-500 text-md">
                 {item.subtitle}
               </p>
@@ -103,8 +109,8 @@ export default function Hello()
 
         <div className="mt-10">
           <div className="card-land flex text-center justify-center items-center py-[32px] rounded-2xl border border-slate-300 shadow-md">
-            <img src="/docs/img/Icon-Support.svg" className="" />
-            <h1 className="ml-3 mb-0 items-center text-gray-700 sm:text-[15px] text-[13px] text-md">
+            <img src="/docs/img/Icon-Support.svg" alt="Support" />
+            <h2 className="ml-3 mb-0 items-center text-gray-700 sm:text-[15px] text-[13px] text-md">
               Still need help?
               <a
                 href="https://www.macrometa.com/support"
@@ -112,7 +118,7 @@ export default function Hello()
               >
                 Submit a request
               </a>
-            </h1>
+            </h2>
           </div>
         </div>
       </div>
