@@ -1,30 +1,45 @@
 ---
 sidebar_position: 100
-title: Pub-Sub with Streams Example
+title: Pub-Sub with Streams
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page describes how to create geo-replicated streams and set up queues and pub-sub messaging with local latencies across the globe.
+## Overview 
+
+This tutorial walks you through the steps to creating a pub-sub messaging model with local latencies across the globe using Macrometa SDKs. It achieves this through the following steps:
+
+1. Establishing a connection to GDN by and creating an authenticated instance with an API key. 
+1. Creating a stream
+1. Asking a user for input. These input values affect the streaming value in the following ways:
+    - An input value of 'w' lets you publish messages to the stream. 
+    - An input value of 'r' allows you to read messages from the stream
+    - A '0' input value closes the consumer connection.
+    - Any other input values returns an invalid user input response. 
+
+After writing to a stream, you can log in to your Macrometa acount and view the streamed messages in the terminal in real time. 
 
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create streams.
 - Appropriate SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
+- [An API key](https://www.macrometa.com/docs/account-management/api-keys/create-api-keys) 
 
-## Pub-Sub with Streams Code
+## Steps
 
-1. Copy and paste the code block below in your favorite IDE.
-1. Update constants with your values, such as the API key.
-1. Run the code.
-1. (Optional) Log in to the Macrometa console to view the streams.
+Follow the following steps:
 
 <Tabs groupId="operating-systems">
 <TabItem value="js" label="Javascript">
 
+## Step 1: Connect to GDN
+
+The first step uses an API key to connect to the Macrometa GDN. You can do this via the `js` or `.py` SDK.
+
 ```js
-// Connect to GDN.
+
+//define your constants
 const jsc8 = require("jsc8");
 const readline = require("readline");
 const globalUrl = "https://play.paas.macrometa.io";
@@ -45,6 +60,14 @@ const client = new jsc8({ url: globalUrl, token: "XXXX", fabricName: "_system" }
 const client = new jsc8(globalUrl);
 await client.login("your@email.com", "password");
 */
+
+```
+
+## Step 2: Create Stream
+
+Define Stream variables and create a stream and Producer
+
+```js
 
 // Variables
 const stream = "streamQuickstart";
@@ -79,6 +102,11 @@ async function sendData () {
       input: process.stdin,
       output: process.stdout
     });
+```
+
+## Step 3: Ask for user input
+
+```js
 
     // Repeatedly ask the user for message to be published to the stream. User can always exit by typing 0
     var recursiveUserInput = () => {
@@ -169,10 +197,15 @@ async function selectAction () {
   await selectAction();
 })();
 ```
+## Step 4: Test pub-sub messaging
+
+Open your terminal and run `node {filename}`. This asks for an input. 
 
 </TabItem>
 
 <TabItem value="py" label="Python">
+
+## Step 1: Connect to GDN 
 
 ```py
 """ This file is a demo to send data to/from a stream """
@@ -183,7 +216,6 @@ import warnings
 from c8 import C8Client
 warnings.filterwarnings("ignore")
 
-# Connect to GDN.
 URL = "play.paas.macrometa.io"
 GEO_FABRIC = "_system"
 API_KEY = "xxxxx" # Change this to your API key
@@ -197,8 +229,12 @@ if is_local:
     prefix_text = "c8locals."
 else:
     prefix_text = "c8globals."
+```
 
-# Create global and local streams.
+
+## Step 2: Create global and local streams.
+
+```python
 def createStream():
     """ This function creates a stream """
     stream_name = {"stream-id": ""}
@@ -209,8 +245,12 @@ def createStream():
     else:
         stream_name = client.create_stream(demo_stream, local=is_local)
         print ("New Producer =",  stream_name["stream-id"])
+```
 
-# Create the producer and publish messages.
+## Step 3: Create the producer and publish messages.
+
+```python
+
 def sendData():
     """ This function sends data through a stream """
     producer = client.create_stream_producer(demo_stream, local=is_local)
@@ -219,9 +259,12 @@ def sendData():
         if user_input == '0':
             break
         producer.send(user_input)
+```
 
+## Step 4:  Create the subscriber and receive data.
 
-# Create the subscriber and receive data.
+```python
+
 def receiveData():
     """ This function receives data from a stream """
     subscriber = client.subscribe(stream=demo_stream, local=is_local,
@@ -236,10 +279,12 @@ def receiveData():
         subscriber.send(json.dumps({'messageId': m1['messageId']})) # Acknowledge the received message
 
 createStream()
+```
 
-# User enters choice.
-# On one terminal use 'r' to start the subscriber to read data
-# Then on another terminal use 'w' to start the producer and publish message
+## Step 5: Set user input
+
+```python
+
 user_input = input("Type 'w' to write data, type 'r' read data, and type '0' to quit at any time: ")
 if user_input == "w":
     sendData()
@@ -248,6 +293,13 @@ elif user_input == "r":
 else:
     print ("Invalid user input. Stopping program") 
 ```
+
+## Step 6: Test stream messaging.
+
+1. Run `node {filename.js}` 
+1. User enters choice.
+    - On one terminal use 'r' to start the subscriber to read data
+    - Then on another terminal use 'w' to start the producer and publish message
 
 </TabItem>
 </Tabs>  

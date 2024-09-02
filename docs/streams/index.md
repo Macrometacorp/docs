@@ -44,7 +44,7 @@ Streams enable:
 - Seamless scalability to over a million topics
 - Multiple subscription modes (`exclusive`, `shared`, and `failover`) for streams
 
-## Stream Names
+## Understand Stream Naming
 
 As in other pub-sub systems, streams in GDN are named channels for transmitting messages from producers to consumers. Stream names are URLs with a well-defined structure:
 
