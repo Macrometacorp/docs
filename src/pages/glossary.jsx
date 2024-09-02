@@ -308,7 +308,7 @@ return (
                   : "text-gray-700"
                   } ${usedLetters.includes(letter)
                     ? "cursor-pointer"
-                    : "text-gray-300 cursor-not-allowed"
+                    : "text-gray-200 cursor-not-allowed"
                   }`}
                 onClick={() =>
                   usedLetters.includes(letter) && scrollToLetter(letter)
