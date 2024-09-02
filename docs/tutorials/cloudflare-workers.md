@@ -1,12 +1,9 @@
 ---
 sidebar_position: 15
-title: Authentication with Cloudflare Workers
+title: Working with Cloudflare Workers
 ---
 
-Before accessing Macrometa GDN and its numerous offerings, you need to authenticate your account.  Macrometa offers numerous methods for authenticating your account, one of which is via Cloudflare workers. 
-
-This tutorial will walk you through the steps to authenticating anf creating a collection with the GDN REST API and Cloudflare workers.
-
+This brief tutorial will show you have to authenticate to the GDN using it's REST API and Cloudflare workers. It will then create a collection!
 
 ## Auth and create first collection
 
