@@ -67,7 +67,7 @@ return (
       <div className="mt-20 mb-12 flex gap-2 flex-col md:items-center items-start">
         <h1 className="md:text-5xl mb-4 font-bold text-4xl text-indigo-500">Macrometa Glossary</h1>
         <p className="md:text-center md:w-[700px] w-full text-gray-700 md:text-[20px] text-[22px]">
-          Essential terminologies for understanding Macrometa's advanced technological framework. Let this be your guide to the edge computing
+          Essential terminologies for understanding and working with Macrometa's services. Let this be your guide to the edge computing
           world.
         </p>
       </div>
@@ -138,7 +138,7 @@ return (
                   {capitalizeFirstLetter(title)}
                   </h1>
                   <p className="md:text-[17px] text-[19px] text-gray-700">
-                    {content.substring(0, 130)}
+                    {content.substring(0, 200)}
                   </p>
                 </div>
               );
